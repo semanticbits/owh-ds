@@ -415,10 +415,12 @@ function buildAPIQuery(primaryFilter) {
             apiQuery.query[eachFilter.queryKey] = eachFilterQuery;
         }
     });
-    primaryFilter.sideFilters.forEach(function(filter) {
-       if(filter.filters.key === 'topic') {
-           apiQuery.query['question.path'].value = filter.filters.questions;
-       }
+    primaryFilter.sideFilters.forEach(function(category) {
+        category.sideFilters.forEach(function(filter){
+            if(filter.filters.key === 'topic') {
+                apiQuery.query['question.path'].value = filter.filters.questions;
+            }
+        })
     });
     apiQuery.aggregations.nested.table = rowAggregations.concat(columnAggregations);
     var result = prepareChartAggregations(headers.rowHeaders.concat(headers.columnHeaders), apiQuery.searchFor);
@@ -804,8 +806,10 @@ function addCountsToAutoCompleteOptions(primaryFilter) {
         aggregations: { simple: [] }
     };
     var filters = [];
-    primaryFilter.sideFilters.forEach(function(eachSideFilter) {
-        filters = filters.concat(eachSideFilter.filterGroup ? eachSideFilter.filters : [eachSideFilter.filters]);
+    primaryFilter.sideFilters.forEach(function(category) {
+        category.sideFilters.forEach(function(eachSideFilter) {
+            filters = filters.concat(eachSideFilter.filterGroup ? eachSideFilter.filters : [eachSideFilter.filters]);
+        });
     });
      filters.forEach(function(eachFilter) {
         apiQuery.aggregations.simple.push(getGroupQuery(eachFilter));

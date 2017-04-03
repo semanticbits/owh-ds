@@ -84,7 +84,7 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
         // Build filter params
         var f = '';
         for (q in apiQuery.query){
-            if(q != 'question.path' && 'value' in  apiQuery.query[q] && apiQuery.query[q].value) {
+            if(q != 'question.path' && q != 'breakout' && 'value' in  apiQuery.query[q] && apiQuery.query[q].value) {
                 f += (q + ':');
                 if(apiQuery.query[q].value instanceof  Array) {
                     f += apiQuery.query[q].value.join(',') + '|';

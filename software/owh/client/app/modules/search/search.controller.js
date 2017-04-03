@@ -154,29 +154,31 @@
         };
 
         //functionality to be added to the side filters
+        var confidenceIntervalOption = {
+            title: 'Confidence Intervals',
+            type: 'toggle',
+            value: false,
+            onChange: function(value) {
+                sc.showConfidenceIntervals = value;
+            },
+            options: [
+                {
+                    title: 'label.mortality.search.table.show.percentage.button',
+                    key: true
+                },
+                {
+                    title: 'label.mortality.search.table.hide.percentage.button',
+                    key: false
+                }
+            ]
+        };
+
         sc.filterUtilities = {
             'mental_health': [
                 {
                     title: 'Variance',
                     options: [
-                        {
-                            title: 'Confidence Intervals',
-                            type: 'toggle',
-                            value: false,
-                            onChange: function(value) {
-                                sc.showConfidenceIntervals = value;
-                            },
-                            options: [
-                                {
-                                    title: 'label.mortality.search.table.show.percentage.button',
-                                    key: true
-                                },
-                                {
-                                    title: 'label.mortality.search.table.hide.percentage.button',
-                                    key: false
-                                }
-                            ]
-                        },
+                        confidenceIntervalOption,
                         {
                             title: 'Unweighted Frequency',
                             type: 'toggle',
@@ -195,6 +197,14 @@
                                 }
                             ]
                         }
+                    ]
+                }
+            ],
+            'prams' : [
+                {
+                    title: 'Variance',
+                    options: [
+                        confidenceIntervalOption
                     ]
                 }
             ]
@@ -216,7 +226,7 @@
             yearFilter.value.push('2015');
 
             var pramsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'prams');
-            angular.forEach(pramsFilter.sideFilters, function(filter){
+            angular.forEach(pramsFilter.sideFilters[0].sideFilters, function(filter){
                 if(filter.filters.key === 'topic') {
                     filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
                     searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup['delivery']);
@@ -254,7 +264,7 @@
 
         function search(isFilterChanged) {
             if(sc.filters.selectedPrimaryFilter.key === 'prams') {
-                angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters, function(filter) {
+                angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters[0].sideFilters, function(filter) {
                     if(filter.filters.key === 'topic') {
                         filter.filters.questions = [];
                         if(filter.filters.value.length === 0) {
@@ -398,20 +408,22 @@
                     }
                 }
             });
-            angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters, function(filter) {
-                if(filter.filters.key === 'hispanicOrigin') {
-                    if(selectedFilter.key === 'crude_death_rates' || selectedFilter.key === 'age-adjusted_death_rates') {
-                        filter.filters.queryKey = 'ethnicity_group';
-                        filter.filters.autoCompleteOptions = sc.filters.ethnicityGroupOptions;
-                    } else {
-                        filter.filters.queryKey = 'hispanic_origin';
-                        filter.filters.autoCompleteOptions = sc.filters.hispanicOptions;
+            angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters, function(category) {
+                angular.forEach(category.sideFilters, function(filter) {
+                    if (filter.filters.key === 'hispanicOrigin') {
+                        if (selectedFilter.key === 'crude_death_rates' || selectedFilter.key === 'age-adjusted_death_rates') {
+                            filter.filters.queryKey = 'ethnicity_group';
+                            filter.filters.autoCompleteOptions = sc.filters.ethnicityGroupOptions;
+                        } else {
+                            filter.filters.queryKey = 'hispanic_origin';
+                            filter.filters.autoCompleteOptions = sc.filters.hispanicOptions;
+                        }
                     }
-                }
-                if(filter.filters.key === 'topic') {
-                    filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
-                    searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup[selectedFilter.key]);
-                }
+                    if (filter.filters.key === 'topic') {
+                        filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
+                        searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup[selectedFilter.key]);
+                    }
+                });
             });
             //we can change mapping here
             sc.filters.selectedPrimaryFilter.tableView = selectedFilter.key;

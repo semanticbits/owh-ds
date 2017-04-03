@@ -87,10 +87,10 @@
                 if(response.data.queryJSON) {
                     populateSelectedFilters(primaryFilter, response.data.queryJSON.sideFilters);
                 }
-                angular.forEach(response.data.queryJSON.sideFilters, function (filter, index) {
-                    primaryFilter.sideFilters[index].filters.value = filter.filters.value;
-                    primaryFilter.sideFilters[index].filters.groupBy = filter.filters.groupBy;
-                });
+                // angular.forEach(response.data.queryJSON.sideFilters, function (filter, index) {
+                //     primaryFilter.sideFilters[index].filters.value = filter.filters.value;
+                //     primaryFilter.sideFilters[index].filters.groupBy = filter.filters.groupBy;
+                // });
             }
             if (primaryFilter.key === 'bridge_race') {
                 primaryFilter.data = response.data.resultData.nested.table;
@@ -109,8 +109,10 @@
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
             }
             //make sure side filters are in proper order
-            angular.forEach(primaryFilter.sideFilters, function (filter) {
-                groupAutoCompleteOptions(filter.filters, groupOptions[tableView]);
+            angular.forEach(primaryFilter.sideFilters, function (category) {
+                angular.forEach(category.sideFilters, function(filter) {
+                    groupAutoCompleteOptions(filter.filters, groupOptions[tableView]);
+                });
             });
             //using extend to trigger $onChanges
             primaryFilter.sideFilters = angular.extend([], primaryFilter.sideFilters);
@@ -124,20 +126,22 @@
 
         function populateSelectedFilters(primaryFilter, updatedSideFilters) {
             //populate side filters based on cached query filters
-            angular.forEach(updatedSideFilters, function (filter, index) {
-                primaryFilter.sideFilters[index].filters.value = filter.filters.value;
-                primaryFilter.sideFilters[index].filters.groupBy = filter.filters.groupBy;
-                if(primaryFilter.sideFilters[index].refreshFiltersOnChange){
-                     utilService.refreshFilterAndOptions(primaryFilter.sideFilters[index].filters, primaryFilter.sideFilters, primaryFilter.key);
-                }
-                if(filter.filters.selectedNodes != undefined ) {
-                    primaryFilter.sideFilters[index].filters.selectedNodes = filter.filters.selectedNodes;
-                }
-                //To un-select selected nodes when user go back from current page
-                else if(primaryFilter.sideFilters[index].filters.selectedNodes != undefined) {
-                    primaryFilter.sideFilters[index].filters.selectedNodes.length = 0;
-                }
-                addOrFilterToPrimaryFilterValue(filter.filters, primaryFilter);
+            angular.forEach(updatedSideFilters, function (category, catIndex) {
+                angular.forEach(category.sideFilters, function(filter, index) {
+                    primaryFilter.sideFilters[catIndex].sideFilters[index].filters.value = filter.filters.value;
+                    primaryFilter.sideFilters[catIndex].sideFilters[index].filters.groupBy = filter.filters.groupBy;
+                    if (primaryFilter.sideFilters[catIndex].sideFilters[index].refreshFiltersOnChange) {
+                        utilService.refreshFilterAndOptions(primaryFilter.sideFilters[catIndex].sideFilters[index].filters, primaryFilter.sideFilters[catIndex].sideFilters, primaryFilter.key);
+                    }
+                    if (filter.filters.selectedNodes != undefined) {
+                        primaryFilter.sideFilters[catIndex].sideFilters[index].filters.selectedNodes = filter.filters.selectedNodes;
+                    }
+                    //To un-select selected nodes when user go back from current page
+                    else if (primaryFilter.sideFilters[catIndex].sideFilters[index].filters.selectedNodes != undefined) {
+                        primaryFilter.sideFilters[catIndex].sideFilters[index].filters.selectedNodes.length = 0;
+                    }
+                    addOrFilterToPrimaryFilterValue(filter.filters, primaryFilter);
+                })
             });
         }
 
@@ -204,11 +208,13 @@
                         filter.groupBy = false;
                     }
                 });
-                angular.forEach(selectedFilter.sideFilters, function(filter, index) {
-                    if(availableFilters[filterView].indexOf(filter.filters.key) < 0) {
-                        filter.filters.value = [];
-                        filter.filters.groupBy = false;
-                    }
+                angular.forEach(selectedFilter.sideFilters, function(category){
+                    angular.forEach(category.sideFilters, function(filter, index) {
+                        if(availableFilters[filterView].indexOf(filter.filters.key) < 0) {
+                            filter.filters.value = [];
+                            filter.filters.groupBy = false;
+                        }
+                    });
                 });
             }
         }
@@ -532,17 +538,21 @@
             }
             req.sideFilters = [];
             for (var i = 0; i< pFilter.sideFilters.length; i++){
-                var filter = utilService.clone(pFilter.sideFilters[i]);
-                // Clear autocomplete options for mcd and ucd
-                if( i == 9 || i == 10){
-                    filter.autoCompleteOptions = [];
-                    filter.filters.autoCompleteOptions[0].autoCompleteOptions = [];
-                }
-                removeSearchResults(filter.autoCompleteOptions);
-                if(filter.filters.autoCompleteOptions){
-                    removeSearchResults(filter.filters.autoCompleteOptions[0].autoCompleteOptions);
-                }
-                req.sideFilters.push(filter);
+                var category = utilService.clone(pFilter.sideFilters[i]);
+                angular.forEach(category.sideFilters, function(filter, filterIndex) {
+                    // Clear autocomplete options for mcd and ucd
+                    if( i == 9 || i == 10){
+                        filter.autoCompleteOptions = [];
+                        filter.filters.autoCompleteOptions[0].autoCompleteOptions = [];
+                    }
+                    removeSearchResults(filter.autoCompleteOptions);
+                    if(filter.filters.autoCompleteOptions){
+                        removeSearchResults(filter.filters.autoCompleteOptions[0].autoCompleteOptions);
+                    }
+
+                    // req.sideFilters.push(filter);
+                });
+                req.sideFilters.push(category);
             }
             return req;
         }
@@ -573,11 +583,13 @@
                 filters: []
             };
 
-            angular.forEach(primaryFilter.sideFilters, function(filter){
-                hashQuery.filters.push({
-                    key: filter.filters.key,
-                    groupBy: filter.filters.groupBy,
-                    value: filter.filters.value instanceof Array?filter.filters.value.sort():filter.filters.value
+            angular.forEach(primaryFilter.sideFilters, function(category){
+                angular.forEach(category.sideFilters, function(filter) {
+                    hashQuery.filters.push({
+                        key: filter.filters.key,
+                        groupBy: filter.filters.groupBy,
+                        value: filter.filters.value instanceof Array ? filter.filters.value.sort() : filter.filters.value
+                    });
                 });
             });
             return hashQuery;
@@ -1583,13 +1595,108 @@
 
             ];
 
+            filters.pramsAdequacyOptions = [
+                {"key": "adequate", "title": "Adequate PNC"},
+                {"key": "intermediate", "title": "Intermediate PNC"},
+                {"key": "inadequate", "title": "Inadequate PNC"},
+                {"key": "unknown", "title": "Unknown PNC"}
+            ];
+
+            filters.pramsBirthWeightOptions = [
+                {"key": "lbw", "title": "LBW (<= 2500g)"},
+                {"key": "nbw", "title": "NBW (>2500g)"}
+            ];
+
+            filters.pramsIncomeOptions = [
+                {"key": "0", "title": "Less than $10,000"},
+                {"key": "10", "title": "$10,000 to $24,999"},
+                {"key": "25", "title": "$25,000 to $49,999"},
+                {"key": "50", "title": "$50,000 or more"}
+            ];
+
+            filters.pramsMaritalStatusOptions = [
+                {"key": "married", "title": "Married"},
+                {"key": "other", "title": "Other"}
+            ];
+
+            filters.pramsMaternalAgeGroupingsOptions = [
+                {"key": "18", "title": "Age < 18"},
+                {"key": "24", "title": "Age 18 - 24"},
+                {"key": "29", "title": "Age 25 - 29"},
+                {"key": "44", "title": "Age 30 - 44"},
+                {"key": "45", "title": "Age 45+"}
+            ];
+
+            filters.pramsMaternalAgeYearsOptions = [
+                {"key": "18", "title": "Age 18-44"}
+            ];
+
+            filters.pramsMaternalAge3Options = [
+                {"key": "20", "title": "< 20 yrs"},
+                {"key": "29", "title": "20-29 yrs"},
+                {"key": "30", "title": "30+ yrs"}
+            ];
+
+            filters.pramsMaternalAge4Options = [
+                {"key": "20", "title": "< 20 yrs"},
+                {"key": "24", "title": "20-24 yrs"},
+                {"key": "34", "title": "25-34 yrs"},
+                {"key": "35", "title": "35+ yrs"}
+            ];
+
+            filters.pramsMaternalEducationOptions = [
+                {"key": "less", "title": "<12 yrs"},
+                {"key": "equal", "title": "12 yrs"},
+                {"key": "greater", "title": ">12 yrs"}
+            ];
+
+            filters.pramsMaternalRaceOptions = [
+                {"key": "white", "title": "White, Non-Hispanic"},
+                {"key": "black", "title": "Black, Non-Hispanic"},
+                {"key": "hispanic", "title": "Hispanic"},
+                {"key": "other", "title": "Other, Non- Hispanic"}
+            ];
+
+            filters.pramsMedicaidOptions = [
+                {"key": "medicaid", "title": "Medicaid"},
+                {"key": "non", "title": "Non-Medicaid"}
+            ];
+
+            filters.pramsMotherHispanicOptions = [
+                {"key": "hispanic", "title": "Hispanic"},
+                {"key": "non", "title": "Non-Hispanic"}
+            ];
+
+            filters.pramsPreviousBirthsOptions = [
+                {"key": "0", "title": "0"},
+                {"key": "1", "title": "1 or more"}
+            ];
+
+            filters.pramsWicPregnancyOptions = [
+                {"key": "wic", "title": "WIC"},
+                {"key": "non", "title": "Non-WIC"}
+            ];
+
+            filters.pramsPregnancyIntendednessOptions = [
+                {"key": "intended", "title": "Intended"},
+                {"key": "unintended", "title": "Unintended"}
+            ];
+
+            filters.pramsSmokedBeforeOptions = [
+                {"key": "non", "title": "Non-Smoker"},
+                {"key": "smoker", "title": "Smoker"}
+            ];
+
+            filters.pramsSmokedLastOptions = [
+                {"key": "non", "title": "Non-Smoker"},
+                {"key": "smoker", "title": "Smoker"}
+            ];
+
             filters.pramsFilters = [
                 {key: 'topic', title: 'label.prams.filter.topic', queryKey:"topic",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsTopicOptions), doNotShowAll: true},
                 {key: 'year', title: 'label.prams.filter.year', queryKey:"year",primary: false, value: ['2009'], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsYearOptions), doNotShowAll: false},
-                {key: 'breakout', title: 'label.prams.filter.breakout', queryKey:"breakout",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsBreakoutOptions), doNotShowAll: true},
                 {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [], groupBy: 'column',
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsStateOptions), doNotShowAll: true},
                 { key: 'question', title: 'label.prams.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
@@ -1600,7 +1707,41 @@
                     onIconClick: function(question) {
                         showChartForQuestion(filters.selectedPrimaryFilter, question);
                     }
-                }
+                },
+                {key: 'adequacy', title: 'label.prams.filter.adequacy', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsAdequacyOptions), doNotShowAll: false},
+                {key: 'birth_weight', title: 'label.prams.filter.birth_weight', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsBirthWeightOptions), doNotShowAll: false},
+                {key: 'income', title: 'label.prams.filter.income', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsIncomeOptions), doNotShowAll: false},
+                {key: 'marital_status', title: 'label.prams.filter.marital_status', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaritalStatusOptions), doNotShowAll: false},
+                {key: 'maternal_age_groupings', title: 'label.prams.filter.maternal_age_groupings', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalAgeGroupingsOptions), doNotShowAll: false},
+                {key: 'maternal_age_years', title: 'label.prams.filter.maternal_age_years', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalAgeYearsOptions), doNotShowAll: false},
+                {key: 'maternal_age_3', title: 'label.prams.filter.maternal_age_3', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalAge3Options), doNotShowAll: false},
+                {key: 'maternal_age_4', title: 'label.prams.filter.maternal_age_4', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalAge4Options), doNotShowAll: false},
+                {key: 'maternal_education', title: 'label.prams.filter.maternal_education', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalEducationOptions), doNotShowAll: false},
+                {key: 'maternal_race', title: 'label.prams.filter.maternal_race', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalRaceOptions), doNotShowAll: false},
+                {key: 'medicaid', title: 'label.prams.filter.medicaid', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMedicaidOptions), doNotShowAll: false},
+                {key: 'mother_hispanic', title: 'label.prams.filter.mother_hispanic', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMotherHispanicOptions), doNotShowAll: false},
+                {key: 'previous_births', title: 'label.prams.filter.previous_births', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsPreviousBirthsOptions), doNotShowAll: false},
+                {key: 'wic_pregnancy', title: 'label.prams.filter.wic_pregnancy', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsWicPregnancyOptions), doNotShowAll: false},
+                {key: 'pregnancy_intendedness', title: 'label.prams.filter.pregnancy_intendedness', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsPregnancyIntendednessOptions), doNotShowAll: false},
+                {key: 'smoked_before', title: 'label.prams.filter.smoked_before', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsSmokedBeforeOptions), doNotShowAll: false},
+                {key: 'smoked_last', title: 'label.prams.filter.smoked_last', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsSmokedLastOptions), doNotShowAll: false}
             ];
 
             filters.search = [
@@ -1611,52 +1752,60 @@
                     runOnFilterChange: true,
                     sideFilters:[
                         {
-                            filterGroup: false, collapse: false, allowGrouping: true,
-                            refreshFiltersOnChange: true, filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'year')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true,
-                            filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'race')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true,
-                            filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'gender')
-                        },
-                        {
-                            filterGroup: false, collapse: true,allowGrouping: true,
-                            filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'agegroup')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupBy: false,
-                            filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'hispanicOrigin')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true,
-                            filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'autopsy')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true,
-                            filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'placeofdeath')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true,
-                            filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'weekday')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true,
-                            filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'month')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true,
-                            filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'state')
-                        },
-                        {
-                            filterGroup: false, collapse: true,
-                            filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'ucd-chapter-10')
-                        },
-                        {
-                            filterGroup: false, collapse: true,
-                            filters: utilService.findByKeyAndValue(filters.ucdMcdFilters, 'key', 'mcd-filters')
+                            sideFilters: [
+
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: true,
+                                    refreshFiltersOnChange: true,
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'year')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'race')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'gender')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'agegroup')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true, groupBy: false,
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'hispanicOrigin')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'autopsy')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'placeofdeath')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'weekday')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'month')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'state')
+                                },
+                                {
+                                    filterGroup: false, collapse: true,
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'ucd-chapter-10')
+                                },
+                                {
+                                    filterGroup: false, collapse: true,
+                                    filters: utilService.findByKeyAndValue(filters.ucdMcdFilters, 'key', 'mcd-filters')
+                                }
+                            ]
                         }
                     ]
                 },
@@ -1668,54 +1817,99 @@
                     showBasicSearchSideMenu: true, runOnFilterChange: true, allFilters: filters.yrbsBasicFilters, // Default to basic filter
                     advancedSideFilters: [
                         {
-                            filterGroup: false, collapse: false, allowGrouping: true, groupOptions: filters.columnGroupOptions, dontShowCounts: true,
-                            filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'year')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,
-                            filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'yrbsSex')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,
-                            filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'yrbsRace')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,
-                            filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'yrbsGrade')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,
-                            filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'yrbsState')
-                        },
-                        {
-                            filterGroup: false, collapse: false, allowGrouping: false,
-                            filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'question')
+                            sideFilters: [
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'year')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'yrbsSex')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'yrbsRace')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'yrbsGrade')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'yrbsState')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'question')
+                                }
+                            ]
                         }
                     ],
-                    basicSideFilters:[
+                    basicSideFilters: [
                         {
-                            filterGroup: false, collapse: false, allowGrouping: true, groupOptions: filters.columnGroupOptions, dontShowCounts: true,
-                            filters: utilService.findByKeyAndValue(filters.yrbsBasicFilters, 'key', 'year')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,dontShowCounts: true,
-                            filters: utilService.findByKeyAndValue(filters.yrbsBasicFilters, 'key', 'yrbsSex')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,dontShowCounts: true,
-                            filters: utilService.findByKeyAndValue(filters.yrbsBasicFilters, 'key', 'yrbsRace')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,dontShowCounts: true,
-                            filters: utilService.findByKeyAndValue(filters.yrbsBasicFilters, 'key', 'yrbsGrade')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,dontShowCounts: true,
-                            filters: utilService.findByKeyAndValue(filters.yrbsBasicFilters, 'key', 'yrbsState')
-                        },
-                        {
-                            filterGroup: false, collapse: false, allowGrouping: false,
-                            filters: utilService.findByKeyAndValue(filters.yrbsBasicFilters, 'key', 'question')
+
+                            sideFilters: [
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.yrbsBasicFilters, 'key', 'year')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.yrbsBasicFilters, 'key', 'yrbsSex')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.yrbsBasicFilters, 'key', 'yrbsRace')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.yrbsBasicFilters, 'key', 'yrbsGrade')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.yrbsBasicFilters, 'key', 'yrbsState')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.yrbsBasicFilters, 'key', 'question')
+                                }
+                            ]
                         }
                     ]
                 },
@@ -1726,28 +1920,35 @@
                     runOnFilterChange: true,
                     sideFilters:[
                         {
-                            filterGroup: false, collapse: false, allowGrouping: true,
-                            refreshFiltersOnChange: true, filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'current_year')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'sex')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'agegroup')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'race')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'ethnicity')
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'state')
+                            sideFilters: [
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: true,
+                                    refreshFiltersOnChange: true,
+                                    filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'current_year')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'sex')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'agegroup')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'race')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'ethnicity')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'state')
+                                }
+                            ]
                         }
                     ]
                 },
@@ -1759,165 +1960,276 @@
                     birthAndFertilityRatesDisabledYears: ['2000', '2001', '2002'],
                     sideFilters:[
                         {
-                            filterGroup: false, collapse: false, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'current_year'),
-                            category: "Birth Characteristics",
-                            refreshFiltersOnChange: true
+                            category: 'Birth Characteristics',
+                            sideFilters: [
+
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'current_year'),
+                                    category: "Birth Characteristics",
+                                    refreshFiltersOnChange: true
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'month'),
+                                    category: "Birth Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'weekday'),
+                                    category: "Birth Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'sex'),
+                                    category: "Birth Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'gestational_age_r10'),
+                                    category: "Birth Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'prenatal_care'),
+                                    category: "Birth Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'birth_weight'),
+                                    category: "Birth Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'birth_weight_r4'),
+                                    category: "Birth Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'birth_weight_r12'),
+                                    category: "Birth Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'birth_plurality'),
+                                    category: "Birth Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'live_birth'),
+                                    category: "Birth Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'birth_place'),
+                                    category: "Birth Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'delivery_method'),
+                                    category: "Birth Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'medical_attendant'),
+                                    category: "Birth Characteristics"
+                                }
+                            ]
                         },
                         {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'month'),
-                            category: "Birth Characteristics"
+                            category: 'Maternal Characteristics',
+                            sideFilters: [
+
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'race'),
+                                    category: "Maternal Characteristics"
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'hispanic_origin'),
+                                    category: "Maternal Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'marital_status'),
+                                    category: "Maternal Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_age'),
+                                    category: "Maternal Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_age_r9'),
+                                    category: "Maternal Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_age_r8'),
+                                    category: "Maternal Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_age_r14'),
+                                    category: "Maternal Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_education'),
+                                    category: "Maternal Characteristics"
+                                }
+                            ]
                         },
                         {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'weekday'),
-                            category: "Birth Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'sex'),
-                            category: "Birth Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'gestational_age_r10'),
-                            category: "Birth Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'prenatal_care'),
-                            category: "Birth Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'birth_weight'),
-                            category: "Birth Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'birth_weight_r4'),
-                            category: "Birth Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'birth_weight_r12'),
-                            category: "Birth Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'birth_plurality'),
-                            category: "Birth Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'live_birth'),
-                            category: "Birth Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'birth_place'),
-                            category: "Birth Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'delivery_method'),
-                            category: "Birth Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'medical_attendant'),
-                            category: "Birth Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'race'),
-                            category: "Maternal Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'hispanic_origin'),
-                            category: "Maternal Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'marital_status'),
-                            category: "Maternal Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_age'),
-                            category: "Maternal Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_age_r9'),
-                            category: "Maternal Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_age_r8'),
-                            category: "Maternal Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_age_r14'),
-                            category: "Maternal Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_education'),
-                            category: "Maternal Characteristics"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'anemia'),
-                            category: "Maternal Risk Factors"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'cardiac_disease'),
-                            category: "Maternal Risk Factors"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'chronic_hypertension'),
-                            category: "Maternal Risk Factors"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'diabetes'),
-                            category: "Maternal Risk Factors"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'eclampsia'),
-                            category: "Maternal Risk Factors"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'hydramnios_oligohydramnios'),
-                            category: "Maternal Risk Factors"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'incompetent_cervix'),
-                            category: "Maternal Risk Factors"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'lung_disease'),
-                            category: "Maternal Risk Factors"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'pregnancy_hypertension'),
-                            category: "Maternal Risk Factors"
-                        },
-                        {
-                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
-                            filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'tobacco_use'),
-                            category: "Maternal Risk Factors"
+                            category: "Maternal Risk Factors",
+                            sideFilters: [
+
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'anemia'),
+                                    category: "Maternal Risk Factors"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'cardiac_disease'),
+                                    category: "Maternal Risk Factors"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'chronic_hypertension'),
+                                    category: "Maternal Risk Factors"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'diabetes'),
+                                    category: "Maternal Risk Factors"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'eclampsia'),
+                                    category: "Maternal Risk Factors"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'hydramnios_oligohydramnios'),
+                                    category: "Maternal Risk Factors"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'incompetent_cervix'),
+                                    category: "Maternal Risk Factors"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'lung_disease'),
+                                    category: "Maternal Risk Factors"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'pregnancy_hypertension'),
+                                    category: "Maternal Risk Factors"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'tobacco_use'),
+                                    category: "Maternal Risk Factors"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -1929,20 +2241,112 @@
                     showBasicSearchSideMenu: true, runOnFilterChange: true, allFilters: filters.pramsFilters, // Default to basic filter
                     sideFilters:[
                         {
-                            filterGroup: false, collapse: false, allowGrouping: true, groupOptions: filters.columnGroupOptions, dontShowCounts: true,
-                            filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'topic')
+
+                            sideFilters: [
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'topic')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'year')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'state')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'question')
+                                }
+                            ]
                         },
                         {
-                            filterGroup: false, collapse: false, allowGrouping: true, groupOptions: filters.columnGroupOptions, dontShowCounts: true,
-                            filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'year')
-                        },
-                        {
-                            filterGroup: false, collapse: false, allowGrouping: true, groupOptions: filters.columnGroupOptions, dontShowCounts: true,
-                            filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'state')
-                        },
-                        {
-                            filterGroup: false, collapse: false, allowGrouping: false,
-                            filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'question')
+                            category: 'Breakout',
+                            exclusive: true,
+                            sideFilters: [
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'adequacy')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'birth_weight')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'income')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'marital_status')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'maternal_age_groupings')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'maternal_age_years')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'maternal_age_3')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'maternal_age_4')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'maternal_education')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'maternal_race')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'medicaid')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'mother_hispanic')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'previous_births')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'wic_pregnancy')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'pregnancy_intendedness')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'smoked_before')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'smoked_last')
+                                }
+                            ]
+
                         }
                     ]
                 }
