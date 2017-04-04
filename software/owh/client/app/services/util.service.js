@@ -900,6 +900,7 @@
                     }
                 }
             }, function (error) {
+                angular.element(document.getElementById('spindiv')).addClass('ng-hide');
                 console.log(error);
             });
         }

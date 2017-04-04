@@ -63,7 +63,7 @@
                     ></owh-side-filter>
             </div>
         </div>
-        <div class="owh-search-content usa-width-three-fourths" ng-class="{'owh-search-content--expanded': !sc.sideMenu.visible }">
+        <div class="owh-search-content usa-width-three-fourths overflow-visible" ng-class="{'owh-search-content--expanded': !sc.sideMenu.visible }">
         <!--Charts-->
             <div class="usa-grid-full margin-top-30">
                 <div class="usa-width-one-whole">
@@ -111,7 +111,7 @@
 
             <!--Table-->
             <div class="usa-grid-full">
-                <div class="usa-width-one-whole overflow-auto">
+                <div class="usa-width-one-whole overflow-visible">
                     <hr />
                     <!-- show hide percentage -->
                     <div id="togglePercentage" class="togglePercentage pull-left" ng-show="sc.filters.selectedPrimaryFilter.title === 'label.filter.mortality' && sc.tableView === 'number_of_deaths'">

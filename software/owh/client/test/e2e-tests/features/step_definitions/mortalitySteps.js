@@ -194,6 +194,10 @@ var mortalityStepDefinitionsWrapper = function () {
         mortalityPage.raceOptionsLink.click();
     });
 
+    this.When(/^user expands sex options$/, function () {
+        mortalityPage.sexOptionsLink.click();
+    });
+
     this.When(/^user selects second race option$/, function () {
         mortalityPage.raceOption2Link.click();
     });
@@ -258,7 +262,7 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^the age adjusted rates are shown for each row$/, function () {
         mortalityPage.getTableRowData(0).then(function(value){
-            expect(value[1]).to.equal('Rate\n557.9\nDeaths\n98,769\nPopulation\n32,250,198');
+            expect(value[1]).to.equal('Rate\n511.3\nDeaths\n8,565\nPopulation\n2,279,263');
         });
     });
 
@@ -268,20 +272,16 @@ var mortalityStepDefinitionsWrapper = function () {
         });
     });
 
-    this.When(/^user filters by ethnicity Spaniard$/, function () {
-        mortalityPage.ethnicitySpaniardOption.click();
+    this.When(/^user filters by ethnicity Dominican/, function () {
+        mortalityPage.ethnicityDominicanOption.click();
     });
 
-    this.Then(/^user should only see total for white race in side filter$/, function () {
+    this.Then(/^user should see total for Male and Female in side filter suppressed$/, function () {
         mortalityPage.getSideFilterTotals().then(function(elements) {
-            // American Indian
-            expect(elements[18].getInnerHtml()).to.eventually.equal('');
-            //Asian or Pacific Islander
-            expect(elements[19].getInnerHtml()).to.eventually.equal('');
-            //Black
-            expect(elements[20].getInnerHtml()).to.eventually.equal('');
-            //White
-            expect(elements[21].getInnerHtml()).to.eventually.equal('608');
+            // Male
+            expect(elements[4].getInnerHtml()).to.eventually.equal('Suppressed');
+            //Female
+            expect(elements[5].getInnerHtml()).to.eventually.equal('Suppressed');
         });
     });
 
@@ -471,7 +471,7 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^I should see total for Non\-Hispanic$/, function () {
         mortalityPage.getSideFilterTotals().then(function(elements) {
-            expect(elements[34].getInnerHtml()).to.eventually.equal('34,926,053');
+            expect(elements[8].getInnerHtml()).to.eventually.equal('2,522,201');
         });
     });
 
@@ -548,28 +548,18 @@ var mortalityStepDefinitionsWrapper = function () {
         mortalityPage.deathRatesOption.click();
     });
 
-    this.Then(/^I see Age Groups, Autopsy, Place of Death, Weekday, Month, Underlying Cause of Death, Multiple Causes of Death disabled$/, function () {
+    this.Then(/^I see Ethnicity, Age Groups, Autopsy, Place of Death, Weekday, Month, Underlying Cause of Death, Multiple Causes of Death, State disabled$/, function () {
         var allElements = element.all(by.css('.cursor-not-allowed')).all(By.css('.filter-display-name'));
         allElements.getText().then(function (filters) {
             filters.forEach(function (filter) {
-                expect(['Age Groups','Autopsy','Place of Death', 'Weekday', 'Month',
-                    'Underlying Cause of Death', 'Multiple Causes of Death']).to.include(filter);
+                expect(['Ethnicity', 'Age Groups','Autopsy','Place of Death', 'Weekday', 'Month',
+                    'Underlying Cause of Death', 'Multiple Causes of Death', 'State']).to.include(filter);
             });
         });
     });
 
     this.When(/^I choose the option Age Adjusted Death Rates$/, function () {
         mortalityPage.ageRatesOption.click();
-    });
-
-    this.Then(/^I see Ethnicity, Age Groups, Autopsy, Place of Death, Weekday, Month, Underlying Cause of Death, Multiple Causes of Death disabled$/, function () {
-        var allElements = element.all(by.css('.cursor-not-allowed')).all(By.css('.filter-display-name'));
-        allElements.getText().then(function (filters) {
-            filters.forEach(function (filter) {
-                expect(['Ethnicity', 'Age Groups','Autopsy','Place of Death', 'Weekday', 'Month',
-                    'Underlying Cause of Death', 'Multiple Causes of Death']).to.include(filter);
-            })
-        });
     });
 
     this.Then(/^user expands placeOfDeath filter$/, function () {
@@ -725,5 +715,39 @@ var mortalityStepDefinitionsWrapper = function () {
             expect(rowdata[1]).to.equals('608');
         });
     });
+
+    this.Then(/^data table should display right population count for year 'All' filter$/, function () {
+        //Right now for year '2014' showing zero deaths, once this issue fixed then
+        //update death values and percentages
+        mortalityPage.getTableRowData(0).then(function(rowdata) {
+            //Race
+            expect(rowdata[0]).to.equals('American Indian');
+            //Female
+            expect(rowdata[1]).to.equals('107,334 (45.4%)');
+            //Male
+            expect(rowdata[2]).to.equals('128,863 (54.6%)');
+            //Number of Deaths
+            expect(rowdata[3]).to.equals('236,197');
+        });
+        mortalityPage.getTableRowData(1).then(function(rowdata) {
+            //Race
+            expect(rowdata[0]).to.equals('Asian or Pacific Islander');
+            //Female
+            expect(rowdata[1]).to.equals('368,746 (47.9%)');
+            //Male
+            expect(rowdata[2]).to.equals('401,777 (52.1%)');
+            //Number of Deaths
+            expect(rowdata[3]).to.equals('770,523');
+        });
+    });
+
+    this.When(/^user expands state filter$/, function () {
+        mortalityPage.expandStateFilter();
+    });
+
+    this.When(/^user selects Alaska state$/, function () {
+        element(by.id('deaths_state_AK')).click();
+    });
+
 };
 module.exports = mortalityStepDefinitionsWrapper;

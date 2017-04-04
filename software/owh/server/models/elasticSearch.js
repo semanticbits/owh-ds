@@ -304,7 +304,7 @@ ElasticClient.prototype.getDsMetadata = function (dataset, years) {
         }
         query.filter.and.filters.push({"or": yearfilter});
     }
-
+    logger.debug("DS metadata ES query: ", JSON.stringify(query));
     var client = this.getClient();
     var deferred = Q.defer();
     client.search({
@@ -312,6 +312,7 @@ ElasticClient.prototype.getDsMetadata = function (dataset, years) {
         type: dsmetadata_type,
         body: query
     }).then(function (resp){
+        logger.info("Successfully completed ds metadata ES query execution.");
         deferred.resolve(resp);
     }, function(err){
         logger.error("Failed to retrieve ds metadata ", err.message);

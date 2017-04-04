@@ -30,7 +30,7 @@ Scenario: Side filter collapse
 Scenario: Side filter options retain order
   Given I am on search page
   When user expands race options
-  Then user clicks on "+ 2 more" more link for "Race" filter
+  Then user clicks on "+ 1 more" more link for "Race" filter
   When user selects second race option
   Then race options retain their initial ordering
 
@@ -126,16 +126,16 @@ Scenario: Check box- Hispanic Sub Categories
 Scenario: Side filter total suppression
   Given I am on search page
   When user shows more year filters
-  And user filters by year 2013
-  And I un-select "Year" value "2015"
-  Then user expands race options
-  And user clicks on "+ 2 more" more link for "Race" filter
+  And user filters by year 2015
+  Then user expands sex options
+  And user expands state filter
+  And user selects Alaska state
   When user expands ethnicity filter
   And user groups ethnicity by row
   And user expands hispanic option group
-  And user filters by ethnicity Spaniard
-  Then user should only see total for white race in side filter
-  And total should be suppressed for all Races except White
+  And user filters by ethnicity Dominican
+  Then user should see total for Male and Female in side filter suppressed
+  #And total should be suppressed for all Races except White
 
 Scenario: Ethnicity order
   Given I am on search page
@@ -147,7 +147,7 @@ Scenario: Race options should be in proper order
   Given I am on search page
   When user sees side filter
   Then user expands race options
-  Then user clicks on "+ 2 more" more link for "Race" filter
+  Then user clicks on "+ 1 more" more link for "Race" filter
   Then race options should be in proper order
 
 Scenario: Autopsy options should be in proper order
@@ -180,6 +180,10 @@ Scenario: Crude Death rates population count should match with CDC for year 2000
   And I un-select "Year" value "2015"
   And data table should display right population count for Crude Death Rates
 
+Scenario: Select 'All' years
+  Given I am on search page
+  When user select "All" option in "Year" filter
+  Then data table should display right population count for year 'All' filter
 
 #Scenario: Suppressed
 #  When counts fall below the determined "cut-off" value and the conditions for suppression are met
@@ -232,10 +236,6 @@ Scenario: Disable other options when Unknown is selected
   When the user selects Unknown
   Then the rest of the options are disabled- grayed out
 
-Scenario: Only display percent for non-zero cells
-  Given I am on search page
-  When I update criteria in filter options with column "Ethnicity"
-  Then zero cells should not have percentage
 
 Scenario: Age group selection disabled for age rates
   Given I am on search page
@@ -243,33 +243,21 @@ Scenario: Age group selection disabled for age rates
   When the user chooses the option 'Age Adjusted Death Rates'
   Then table should not include age groups
 
-Scenario: Bookmark link UI
-  Given I am on search page
-  When I hovers on the bookmark link
-  Then the link gets a background box so that I feel it like a button/action
 
-#This scenario opening bookmark window but unable to find the tex on bookmark window.
-#Scenario: Bookmark link
-#  When I select the "Bookmark this search" link in application
-#  Then browser's bookmarking window should be displayed to save the link to Browser
+#TODO: Enable it while fixing OWH-304(Ethnicity is disabled needs to enable it)
+#Scenario: Hispanic Group options for crude death rate view
+#  When I update criteria in filter option with row "Ethnicity"
+#  When the user chooses the option 'Death Rates'
+#  Then table should display Hispanic groups only
 
-#Unable to find a way to click on button
-#Scenario: Launching the bookmark
-#  When I selects a saved bookmark
-#  Then all the search parameters should be autopopulated and search results should be displayed
-
-Scenario: Hispanic Group options for crude death rate view
-  When I update criteria in filter option with row "Ethnicity"
-  When the user chooses the option 'Death Rates'
-  Then table should display Hispanic groups only
-
-Scenario Outline: Show disabled filters sdfsa
+#TODO: remove Ethnicity & State from sideFilters list whenever we enable it for Crude Death Rates & Age Adjusted Death Rates
+  Scenario Outline: Show disabled filters sdfsa
   Given I am on search page
   When I choose the option <showMeFilter>
   Then I see <sideFilters> disabled
 
   Examples:
-    | showMeFilter              | sideFilters                                                                                                          |
-    |  Crude Death Rates        |  Age Groups, Autopsy, Place of Death, Weekday, Month, Underlying Cause of Death, Multiple Causes of Death            |
-    |  Age Adjusted Death Rates |  Ethnicity, Age Groups, Autopsy, Place of Death, Weekday, Month, Underlying Cause of Death, Multiple Causes of Death |
+    | showMeFilter              | sideFilters                                                                                                                 |
+    |  Crude Death Rates        |  Ethnicity, Age Groups, Autopsy, Place of Death, Weekday, Month, Underlying Cause of Death, Multiple Causes of Death, State |
+    |  Age Adjusted Death Rates |  Ethnicity, Age Groups, Autopsy, Place of Death, Weekday, Month, Underlying Cause of Death, Multiple Causes of Death, State |
 
