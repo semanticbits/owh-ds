@@ -127,13 +127,13 @@ Scenario: Side filter total suppression
   Given I am on search page
   When user shows more year filters
   And user filters by year 2015
-  Then user expands sex options
-  And user expands state filter
-  And user selects Alaska state
+  And user expands sex options
   When user expands ethnicity filter
   And user groups ethnicity by row
   And user expands hispanic option group
   And user filters by ethnicity Dominican
+  And user expands state filter
+  And user selects Alaska state
   Then user should see total for Male and Female in side filter suppressed
   #And total should be suppressed for all Races except White
 
