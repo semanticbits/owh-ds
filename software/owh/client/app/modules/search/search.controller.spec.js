@@ -2,7 +2,7 @@
 
 describe("Search controller: ", function () {
     var searchController, $scope, $controller, $httpBackend, $injector, $templateCache, $rootScope,
-        searchResultsResponse, $searchFactory, $q, filters;
+        searchResultsResponse, $searchFactory, $q, filters, shareUtilService;
 
     beforeEach(function() {
         module('owh');
@@ -24,10 +24,12 @@ describe("Search controller: ", function () {
             $httpBackend.whenPOST('/search').respond( $templateCache.get('app/partials/marker-template.html'));
             $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 11111}});
             $httpBackend.whenGET('/yrbsQuestionsTree/2015').respond({});
+            $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
             $httpBackend.whenGET('app/modules/home/home.html').respond({});
             searchResultsResponse = __fixtures__['app/modules/search/fixtures/search.factory/searchResultsResponse'];
             $searchFactory = searchFactory;
             filters = $searchFactory.getAllFilters();
+            shareUtilService = $injector.get('shareUtilService');
         });
     });
 
@@ -287,8 +289,53 @@ describe("Search controller: ", function () {
         expect(searchController.filters.selectedPrimaryFilter.allFilters[0].autoCompleteOptions[1].key).toEqual('Dominican');
     });
 
+    it('changeViewFilter should disable 2000, 2001, 2002 years for birth_rates', function() {
+        var searchController= $controller('SearchController',{$scope:$scope});
+        spyOn(searchController, 'search');
+        var filterUtils = $injector.get('filterUtils');
+        var utilService = $injector.get('utilService');
+        var yearFilters = utilService.findByKeyAndValue(filterUtils.getNatalityDataFilters(), 'key', 'current_year')
+
+        searchController.filters = {selectedPrimaryFilter: {birthAndFertilityRatesDisabledYears: ['2000', '2001', '2002'], tableView:'birth_rates', data: {}, allFilters: [yearFilters], sideFilters: []}};
+        searchController.changeViewFilter({key: 'birth_rates'});
+
+        var selectedYears = utilService.findByKeyAndValue(searchController.filters.selectedPrimaryFilter.allFilters,'key', 'current_year');
+
+        angular.forEach(selectedYears.autoCompleteOptions, function(eachObject){
+            if(eachObject.key == '2000' || eachObject.key == '2001' || eachObject.key == '2002') {
+                expect(eachObject.disabled).toEqual(true);
+            }
+            else {
+                expect(eachObject.disabled).toEqual(false);
+            }
+        });
+    });
+
+    it('changeViewFilter should disable 2000, 2001, 2002 years for fertility rates', function() {
+        var searchController= $controller('SearchController',{$scope:$scope});
+        spyOn(searchController, 'search');
+        var filterUtils = $injector.get('filterUtils');
+        var utilService = $injector.get('utilService');
+        var yearFilters = utilService.findByKeyAndValue(filterUtils.getNatalityDataFilters(), 'key', 'current_year')
+
+        searchController.filters = {selectedPrimaryFilter: {birthAndFertilityRatesDisabledYears: ['2000', '2001', '2002'], tableView:'birth_rates', data: {}, allFilters: [yearFilters], sideFilters: []}};
+        searchController.changeViewFilter({key: 'fertility_rates'});
+
+        var selectedYears = utilService.findByKeyAndValue(searchController.filters.selectedPrimaryFilter.allFilters,'key', 'current_year');
+
+        angular.forEach(selectedYears.autoCompleteOptions, function(eachObject){
+            if(eachObject.key == '2000' || eachObject.key == '2001' || eachObject.key == '2002') {
+                expect(eachObject.disabled).toEqual(true);
+            }
+            else {
+                expect(eachObject.disabled).toEqual(false);
+            }
+        });
+    });
+
     it('filterUtilities for yrbs should perform proper functions', function() {
         var searchController= $controller('SearchController',{$scope:$scope});
+
 
         searchController.filterUtilities['mental_health'][0].options[0].onChange(true);
 
@@ -320,6 +367,14 @@ describe("Search controller: ", function () {
          expect(searchController.filters.selectedPrimaryFilter.headers).toEqual(searchResultsResponse.data.resultData.headers);
          expect(searchResultsResponse.data.queryJSON.key).toEqual('deaths');
          deferred.resolve(searchResultsResponse);
+    }));
+
+    it('should share image to fb', inject(function () {
+
+        var searchController= $controller('SearchController',{$scope:$scope, shareUtilService: shareUtilService});
+        spyOn(shareUtilService, 'shareOnFb');
+        searchController.showFbDialog('testIndex', 'Census race estimates', 'X$Tsdfdsf1324345');
+        $scope.$apply();
     }));
 
     it('should generate hashcode for the default query if no queryID found', inject(function(searchFactory) {

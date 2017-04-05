@@ -1,22 +1,31 @@
 [
   {
+    "type":"simple",
+    "column":"residence",
+    "start": 138,
+    "stop": 138,
+    "field": "Residence Status"
+  },
+  {
     "column":"hispanic_origin",
     "type":"map",
-    "start": 148,
-    "stop": 148,
+    "start": 149,
+    "stop": 149,
     "field": "Mother’s Hispanic Origin",
     "mappings": {
-      "0": "Non-Hispanic",
       "1": "Mexican",
       "2": "Puerto Rican",
       "3": "Cuban",
       "4": "Central and South American",
-      "5": "Other and Unknown Hispanic Origin",
+      "5": "Other and Unknown Hispanic",
+      "6": "Non-Hispanic White",
+      "7": "Non-Hispanic Black",
+      "8": "Non-Hispanic Other Races",
       "9": "Origin unknown or not stated"
     }
   },
   {
-    "column": "mother_race",
+    "column": "race",
     "type":"map",
     "start": 143,
     "stop": 143,
@@ -145,7 +154,7 @@
     }
   },
   {
-    "column":"dob_yy",
+    "column":"current_year",
     "type":"simple",
     "start": 15,
     "stop": 18,
@@ -153,7 +162,7 @@
     "mappings": {}
   },
   {
-    "column":"dob_mm",
+    "column":"month",
     "type":"map",
     "start": 19,
     "stop": 20,
@@ -174,7 +183,7 @@
     }
   },
   {
-    "column":"dob_wk",
+    "column":"weekday",
     "type":"map",
     "start": 29,
     "stop": 29,
@@ -253,7 +262,7 @@
       "2200-2299": "2200 - 2299 grams",
       "2300-2399": "2300 - 2399 grams",
       "2400-2499": "2400 - 2499 grams",
-      "2500-2599":" 2500 - 2599 grams",
+      "2500-2599": "2500 - 2599 grams",
       "2600-2699": "2600 - 2699 grams",
       "2700-2799": "2700 - 2799 grams",
       "2800-2899": "2800 - 2899 grams",
@@ -309,7 +318,7 @@
       "7800-7899": "7800 - 7899 grams",
       "7900-7999": "7900 - 7999 grams",
       "8000-8099": "8000 - 8099 grams",
-      "8100-8199": "8100 - 8165 grams"
+      "8100-8165": "8100 - 8165 grams"
     }
   },
   {
@@ -396,13 +405,17 @@
   {
     "column":"delivery_method",
     "type": "map",
-    "start": 403,
-    "stop": 403,
+    "start": 401,
+    "stop": 401,
     "field": "Delivery method",
     "mappings": {
       "1": "Vaginal",
-      "2": "Cesarean",
-      "9": "Unknown"
+      "2": "Vaginal",
+      "3": "Cesarean",
+      "4": "Cesarean",
+      "5": "Not stated",
+      "6": "Vaginal",
+      "7": "Cesarean"
     }
   },
   {

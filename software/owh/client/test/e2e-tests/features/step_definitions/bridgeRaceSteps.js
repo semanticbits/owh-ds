@@ -8,10 +8,6 @@ var BridgeRaceStepDefinitionsWrapper = function () {
 
     var bridgeRacePage = require('../support/bridgerace.po');
 
-    this.Then(/^I should see Bridge race search page with filter type "([^"]*)"$/, function (arg) {
-        expect(bridgeRacePage.getSelectedFilterType()).to.eventually.equal(arg);
-    });
-
     this.Then(/^I see the data table with race, female, male and total table headers$/, function () {
         var dtTableHeaders = bridgeRacePage.getTableHeaders();
         expect(dtTableHeaders).to.eventually.contains('Race');

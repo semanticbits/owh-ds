@@ -9,7 +9,7 @@ Feature: Bridge race filters
     And  I click on Explore button in Health Information Gateway section
     Then I should get search page with default filter type "Mortality"
     When I change 'I'm interested in' dropdown value to "Bridged-Race Population Estimates"
-    Then I should see Bridge race search page with filter type "Bridged-Race Population Estimates"
+    Then I should see filter type "Bridged-Race Population Estimates" selected
 
 
   Scenario: Default filter state

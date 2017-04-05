@@ -1,26 +1,27 @@
 [
   {
-    "column":"current_year",
     "type":"simple",
-    "start": 15,
-    "stop": 18,
-    "field": "Birth Year",
-    "mappings": {}
+    "column":"residence",
+    "start": 138,
+    "stop": 138,
+    "field": "Residence Status"
   },
   {
     "column":"hispanic_origin",
     "type":"map",
-    "start": 148,
-    "stop": 148,
+    "start": 149,
+    "stop": 149,
     "field": "Mother’s Hispanic Origin",
     "mappings": {
-      "0": "Non-Hispanic",
       "1": "Mexican",
       "2": "Puerto Rican",
       "3": "Cuban",
       "4": "Central and South American",
-      "5": "Other and Unknown Hispanic Origin",
-      "9": "Hispanic origin not stated"
+      "5": "Other and Unknown Hispanic",
+      "6": "Non-Hispanic White",
+      "7": "Non-Hispanic Black",
+      "8": "Non-Hispanic Other Races",
+      "9": "Origin unknown or not stated"
     }
   },
   {
@@ -28,7 +29,7 @@
     "type":"map",
     "start": 89,
     "stop": 90,
-    "field": "Mother’s Age Recode 14",
+    "field": "Mother’s Single Year of Age",
     "mappings": {
       "12": "10-12 years",
       "13": "13 years",
@@ -68,7 +69,7 @@
       "47": "47 years",
       "48": "48 years",
       "49": "49 years",
-      "50": "50 years and over"
+      "50": "50-54 years"
     }
   },
   {
@@ -86,7 +87,7 @@
       "07": "19 years",
       "08": "20-24 years",
       "09": "25-29 years",
-      "10": "30-44 years",
+      "10": "30-34 years",
       "11": "35-39 years",
       "12": "40-44 years",
       "13": "45-49 years",
@@ -112,7 +113,7 @@
     }
   },
   {
-    "column": "mother_race",
+    "column": "race",
     "type":"map",
     "start": 143,
     "stop": 143,
@@ -156,7 +157,7 @@
     }
   },
   {
-    "column":"dob_yy",
+    "column":"current_year",
     "type":"simple",
     "start": 15,
     "stop": 18,
@@ -164,7 +165,7 @@
     "mappings": {}
   },
   {
-    "column":"dob_mm",
+    "column":"month",
     "type":"map",
     "start": 19,
     "stop": 20,
@@ -185,7 +186,7 @@
     }
   },
   {
-    "column":"dob_wk",
+    "column":"weekday",
     "type":"map",
     "start": 29,
     "stop": 29,
@@ -235,7 +236,7 @@
   },
   {
     "column":"birth_weight",
-    "type":"map",
+    "type":"range",
     "start": 463,
     "stop": 466,
     "field": "Birth Weight",
@@ -264,7 +265,7 @@
       "2200-2299": "2200 - 2299 grams",
       "2300-2399": "2300 - 2399 grams",
       "2400-2499": "2400 - 2499 grams",
-      "2500-2599":" 2500 - 2599 grams",
+      "2500-2599": "2500 - 2599 grams",
       "2600-2699": "2600 - 2699 grams",
       "2700-2799": "2700 - 2799 grams",
       "2800-2899": "2800 - 2899 grams",
@@ -353,7 +354,7 @@
     "field": "Birth Weight Recode 4",
     "mappings": {
       "1": "1499 grams or less",
-      "2": "1500 – 2499 grams",
+      "2": "1500 - 2499 grams",
       "3": "2500 - 8165 grams",
       "4": "Unknown or not stated"
     }

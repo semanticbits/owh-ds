@@ -9,7 +9,8 @@
         var service = {
             searchResults : searchResults,
             uploadImage : uploadImage,
-            generateHashCode : generateHashCode
+            generateHashCode : generateHashCode,
+            getDsMetadata: getDsMetadata
         };
         return service;
 
@@ -32,6 +33,14 @@
         function generateHashCode(query) {
             var deferred = $q.defer();
             API.generateHashCode({q:query}).$promise.then(onComplete).catch(onFailed);
+            function onComplete(response) { deferred.resolve(response); }
+            function onFailed(error) { deferred.reject(error) }
+            return deferred.promise;
+        }
+
+        function getDsMetadata(dataset, years) {
+            var deferred = $q.defer();
+            API.getDsMetadata({dataset:dataset, years:years}).$promise.then(onComplete).catch(onFailed);
             function onComplete(response) { deferred.resolve(response); }
             function onFailed(error) { deferred.reject(error) }
             return deferred.promise;

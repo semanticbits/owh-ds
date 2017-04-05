@@ -7,9 +7,6 @@ from owh.etl.common.fixedwidthfile_parser import FixedWidthFileParser
 
 logger = logging.getLogger('mortality_etl')
 
-us_states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA",
-             "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK",
-             "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
 
 class MortalityIndexer (ETL):
 
@@ -50,23 +47,25 @@ class MortalityIndexer (ETL):
         files = os.listdir(self.dataDirectory)
         files.sort()
         for f in files:
-            if not (f.endswith(".DUSMCPUB") or f.endswith(".dat")):
+            if not os.path.isfile(os.path.join(self.dataDirectory, f)) or f.endswith(".zip") :
                 continue
 
             file_path = os.path.join(self.dataDirectory, f)
             logger.info("Processing file: %s", file_path)
-            if f.startswith("VS"):
-                year = 2000 + int(f[2:4])   # VS14MORT.DUSMCPUB
+            if f.startswith("MULT"):
+                year = int(f[4:8])  # e.g. MULT2011
             else:
-                year = 2000 + int(f[4:6])   # Mort00us.dat
+                year = 2000 + int(f[4:6])  # e.g Mort01us
 
-            if year <= 2014 and year >= 2003:   # data file for year 2003 to 2014
-                config_file =  os.path.join(self.dataDirectory, 'data_mapping', 'mortality_mapping_03-14.json')
+            if year <= 2015 and year >= 2003:   # data file for year 2003 to 2014
+                config_file =  os.path.join(self.dataDirectory, 'data_mapping', 'mortality_mapping_03-15.json')
             elif year <= 2002 and year >= 2000:
                 config_file =  os.path.join(self.dataDirectory, 'data_mapping', 'mortality_mapping_00-02.json')
             else:
                 logger.warn("No mapping available for data file %s, skipping", file_path)
                 continue
+            # load dataset metadata
+            self.loadDataSetMetaData('deaths', str(year), config_file)
             # delete records for the year if action is update
             # FIXME: The delete function is not working as expected, the results vary by ES version
             # in 1.5.x, the delete action doesn't work at all, in 2.4.x it delete more records than specified
@@ -77,17 +76,17 @@ class MortalityIndexer (ETL):
             while True:
                 record  = mortalityParser.parseNextLine()
                 if not record:
-                    break;
+                    break
 
                 if(record['residence'] == '4'):
                     logger.info ("Skipping foreign resident")
-                    continue;
+                    continue
 
                 del record['residence']
                 recordCount += 1
                 self._process_conditions(record,'entity_axis_condn_count', 'EAC')
                 self._process_conditions(record,'record_axis_condn_count', 'RAC')
-                record['state'] = us_states[randint(0,49)]
+
                 icdcode = record['ICD_10_code'].upper()
                 if (icdcode):
                     record['ICD_10_code'] = {'code': icdcode, 'path':self.icd_10_code_mappings[icdcode]}
@@ -108,6 +107,7 @@ class MortalityIndexer (ETL):
             self.refresh_index()
         self.metrics.insertCount=recordCount
         self.metrics.deleteCount=deleteCount
+
 
     def validate_etl(self):
         """ Validate the ETL"""

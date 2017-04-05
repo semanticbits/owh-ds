@@ -31,6 +31,7 @@ describe('owhAccordionTable component: ', function() {
         $httpBackend.whenGET('app/modules/search/components/owh-accordion-table/owhAccordionTable.html').respond( $templateCache.get('app/modules/search/components/owh-accordion-table/owhAccordionTable.html'));
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 1111111111111111}});
         $httpBackend.whenGET('/yrbsQuestionsTree/2015').respond({data: {}});
+        $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
     });
 
     it('should have a row of headers for each column header', function() {
@@ -105,7 +106,8 @@ describe('owhAccordionTable component: ', function() {
         var data = [{questions: [{}, {}]}, {questions: []}]
         var bindings = {
             data: data,
-            headers: [[{}, {}], [{}, {}]]
+            headers: [[{}, {}], [{}, {}]],
+            primaryKey: 'mental_health'
         };
         var ctrl = $componentController('owhAccordionTable', null, bindings);
         var category = {title: 'Alcohol and Other Drug Use', questions: [
@@ -119,6 +121,21 @@ describe('owhAccordionTable component: ', function() {
 
         expect(list[0][0].title).toEqual('Currently Drinks');
         expect(list[1][0].title).toEqual('Currently Use');
+    });
+
+    it('question category and help text map should present', function() {
+        var questionCategoryHelpTextMap = {
+            "Tobacco Use": "label.help.text.question.tobacco.use",
+            "Unintentional Injuries and Violence": "label.help.text.question.unintentional.injuries.violence",
+            "Alcohol and Other Drug Use": "label.help.text.question.alcohol.other.drug.use",
+            "Sexual Behaviors": "label.help.text.question.sexua.behaviors",
+            "Physical Activity": "label.help.text.question.physical.activity",
+            "Obesity, Overweight, and Weight Control": "label.help.text.question.obesity.overweight.weight.control",
+            "Dietary Behaviors": "label.help.text.question.dietary.behaviors",
+            "Other Health Topics": "label.help.text.question.other.health.topics"
+        };
+        var ctrl = $componentController('owhAccordionTable');
+        expect(ctrl.qCategoryHelpTextMap).toEqual(questionCategoryHelpTextMap);
     });
 
 });

@@ -1104,10 +1104,16 @@ body {
 
 #clusterize-table {
     max-height: 900px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #clusterize-table table {
     margin-top: 0;
+}
+
+.overflow-visible {
+    overflow: visible;
 }
 
 #death-rate-disclaimer {

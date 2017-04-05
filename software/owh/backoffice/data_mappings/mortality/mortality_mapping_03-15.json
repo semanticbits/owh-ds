@@ -66,7 +66,7 @@
       "24-24": "90-94years",
       "25-25": "95-99years",
       "26-26": "100 years and over",
-      "27-27":"Age not started"
+      "27-27":"Age not stated"
     }
   },
   {
@@ -535,17 +535,16 @@
     "mappings": {}
   },
   {
-    "type":"map",
+    "type":"range",
     "column":"race",
     "start": 450,
     "stop": 450,
     "field": "Race Recode 5",
     "mappings": {
-      "0":"Other (Puerto Rico only)",
-      "1":"White",
-      "2":"Black",
-      "3":"American Indian",
-      "4":"Asian or Pacific Islander"
+      "1-1":"White",
+      "2-2":"Black",
+      "3-3":"American Indian",
+      "4-5":"Asian or Pacific Islander"
 
     }
   },
@@ -568,6 +567,66 @@
       "250-259":"Latin American",
       "280-299":"Other Hispanic",
       "996-999":"Unknown"
+    }
+  },
+  {
+    "column":"state",
+    "type":"map",
+    "start": 29,
+    "stop": 30,
+    "field": "State",
+    "mappings": {
+      "AL": "AL",
+      "AK": "AK",
+      "AZ": "AZ",
+      "AR": "AR",
+      "CA": "CA",
+      "CO": "CO",
+      "CT": "CT",
+      "DE": "DE",
+      "DC": "DC",
+      "FL": "FL",
+      "GA": "GA",
+      "HI": "HI",
+      "ID": "ID",
+      "IL": "IL",
+      "IN": "IN",
+      "IA": "IA",
+      "KS": "KS",
+      "KY": "KY",
+      "LA": "LA",
+      "ME": "ME",
+      "MD": "MD",
+      "MA": "MA",
+      "MI": "MI",
+      "MN": "MN",
+      "MS": "MS",
+      "MO": "MO",
+      "MT": "MT",
+      "NE": "NE",
+      "NV": "NV",
+      "NH": "NH",
+      "NJ": "NJ",
+      "NM": "NM",
+      "NY": "NY",
+      "NC": "NC",
+      "ND": "ND",
+      "OH": "OH",
+      "OK": "OK",
+      "OR": "OR",
+      "PA": "PA",
+      "RI": "RI",
+      "SC": "SC",
+      "SD": "SD",
+      "TN": "TN",
+      "TX": "TX",
+      "UT": "UT",
+      "VT": "VT",
+      "VA": "VA",
+      "WA": "WA",
+      "WV": "WV",
+      "WI": "WI",
+      "WY": "WY"
     }
   }
 ]

@@ -113,7 +113,7 @@ class ElasticSearchRepository(Repository, object):
         # in 1.5.x, the delete action doesn't work at all, in 2.4.x it delete more records than specified
         # will need to use a newer version of ES
         # set the elasticsearh log to WARN to avoid too many logs from the scan
-        logging.getLogger('elasticsearch').setLevel("DEBUG")
+        logging.getLogger('elasticsearch').setLevel("WARN")
         bulk_deletes = []
         for result in scan(self.es,
            query=q,

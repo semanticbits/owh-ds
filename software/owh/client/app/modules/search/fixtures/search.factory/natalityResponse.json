@@ -53,9 +53,9 @@
           "allChecked": true
         },
         {
-          "key": "mother_race",
+          "key": "race",
           "title": "label.filter.race",
-          "queryKey": "mother_race",
+          "queryKey": "race",
           "primary": false,
           "value": [],
           "defaultGroup": "column",
@@ -113,9 +113,9 @@
           "allChecked": true
         },
         {
-          "key": "dob_yy",
+          "key": "current_year",
           "title": "label.filter.year",
-          "queryKey": "dob_yy",
+          "queryKey": "current_year",
           "primary": false,
           "value": [
             "2014"
@@ -143,9 +143,9 @@
           "allChecked": false
         },
         {
-          "key": "dob_mm",
+          "key": "month",
           "title": "label.filter.month",
-          "queryKey": "dob_mm",
+          "queryKey": "month",
           "primary": false,
           "value": [],
           "defaultGroup": "column",
@@ -502,9 +502,9 @@
             }
           ],
           "filters": {
-            "key": "mother_race",
+            "key": "race",
             "title": "label.filter.race",
-            "queryKey": "mother_race",
+            "queryKey": "race",
             "primary": false,
             "value": [],
             "defaultGroup": "column",
@@ -672,9 +672,9 @@
             }
           ],
           "filters": {
-            "key": "dob_yy",
+            "key": "current_year",
             "title": "label.filter.year",
-            "queryKey": "dob_yy",
+            "queryKey": "current_year",
             "primary": false,
             "value": [
               "2014"
@@ -711,9 +711,9 @@
             }
           ],
           "filters": {
-            "key": "dob_mm",
+            "key": "month",
             "title": "label.filter.month",
-            "queryKey": "dob_mm",
+            "queryKey": "month",
             "primary": false,
             "value": [],
             "defaultGroup": "column",
@@ -748,9 +748,9 @@
             }
           ],
           "filters": {
-            "key": "dob_wk",
+            "key": "weekday",
             "title": "label.filter.weekday",
-            "queryKey": "dob_wk",
+            "queryKey": "weekday",
             "primary": false,
             "value": [],
             "defaultGroup": "column",
@@ -1298,7 +1298,7 @@
       },
       "nested": {
         "table": {
-          "mother_race": [
+          "race": [
             {
               "name": "White",
               "natality": 3029013,
@@ -1365,9 +1365,9 @@
       "headers": {
         "rowHeaders": [
           {
-            "key": "mother_race",
+            "key": "race",
             "title": "label.filter.race",
-            "queryKey": "mother_race",
+            "queryKey": "race",
             "primary": false,
             "value": [],
             "defaultGroup": "column",
@@ -1422,7 +1422,7 @@
       "pagination": {},
       "data":{
         "simple":{
-          "dob_yy": [
+          "current_year": [
             {
               "name": "2014",
               "bridge_race": 282162411

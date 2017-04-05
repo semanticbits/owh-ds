@@ -25,6 +25,7 @@
         sc.skipRefresh = false;
         sc.switchToYRBSBasic = switchToYRBSBasic;
         sc.switchToYRBSAdvanced = switchToYRBSAdvanced;
+        sc.showFbDialog = showFbDialog;
 
         var root = document.getElementsByTagName( 'html' )[0]; // '0' to assign the first (and only `HTML` tag)
         root.removeAttribute('class');
@@ -51,19 +52,37 @@
         }
 
         sc.selectedMapSize = 'small';
-        sc.showMeOptions = [
-            {key: 'number_of_deaths', title: 'Number of Deaths'},
-            {key: 'crude_death_rates', title: 'Crude Death Rates'},
-            {key: 'age-adjusted_death_rates', title: 'Age Adjusted Death Rates'}
-        ];
+        sc.showMeOptions = {
+            deaths: [
+                {key: 'number_of_deaths', title: 'Number of Deaths'},
+                {key: 'crude_death_rates', title: 'Crude Death Rates'},
+                {key: 'age-adjusted_death_rates', title: 'Age Adjusted Death Rates'}],
+            natality: [
+                {key: 'number_of_births', title: 'Number of Births'},
+                {key: 'birth_rates', title: 'Birth Rates'},
+                {key: 'fertility_rates', title: 'Fertility Rates'}],
+            prams: [
+                {key: 'delivery', title: 'Delivery'},
+                {key: 'demographics', title: 'Demographics'},
+                {key: 'family_planning', title: 'Family Planning'},
+                {key: 'flu', title: 'Flu'},
+                {key: 'infant_health', title: 'Infant Health'},
+                {key: 'maternal_behavior', title: 'Maternal Behavior/Health'},
+                {key: 'maternal_experiences', title: 'Maternal Experiences'},
+                {key: 'prenatal_care', title: 'Prenatal Care'},
+                {key: 'insurance_medicaid_services', title: 'Insurance/Medicaid/Services'}]
+        };
         sc.sort = {
-            "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'ucd-filters', 'mcd-filters'],
+            "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'ucd-chapter-10', 'mcd-filters'],
             "label.risk.behavior": ['year', 'yrbsSex', 'yrbsRace', 'yrbsGrade', 'yrbsState', 'question'],
-            "label.census.bridge.race.pop.estimate": ['current_year', 'sex', 'agegroup', 'race', 'ethnicity', 'state'],
-            "label.filter.natality": ['dob_yy', 'sex', 'mother_race', 'hispanic_origin', 'marital_status',
-                'mother_age', 'mother_education', 'dob_mm', 'dob_wk', 'prenatal_care',
-                'birth_weight', 'birth_plurality', 'live_birth', 'birth_place', 'delivery_method', 'medical_attendant',
-                'chronic_hypertension', 'diabetes', 'pregnancy_hypertension', 'eclampsia', 'tobacco_use']
+            "label.census.bridge.race.pop.estimate": ['current_year', 'sex', 'race', 'ethnicity', 'agegroup', 'state'],
+            "label.filter.natality": ['current_year', 'month', 'weekday', 'sex', 'gestational_age_r10', 'prenatal_care',
+                'birth_weight', 'birth_weight_r4', 'birth_weight_r12', 'birth_plurality', 'live_birth', 'birth_place',
+                'delivery_method', 'medical_attendant', 'race', 'hispanic_origin', 'marital_status',
+                'mother_age_r8', 'mother_age_r9', 'mother_age_r14', 'mother_age', 'mother_education',
+                'anemia', 'cardiac_disease', 'chronic_hypertension', 'diabetes', 'eclampsia', 'hydramnios_oligohydramnios',
+                'incompetent_cervix', 'lung_disease', 'pregnancy_hypertension', 'tobacco_use'],
+            "label.prams.title": []
         };
 
         sc.optionsGroup = {
@@ -77,53 +96,89 @@
                     },
                     'Unknown'
                 ],
-                "race": ['American Indian', 'Asian or Pacific Islander', 'Black', 'White', 'Other (Puerto Rico only)'],
+                "race": ['American Indian', 'Asian or Pacific Islander', 'Black', 'White'],
                 "year": ['2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000', '1999', '1997','1995','1993','1991' ]
             },
             "crude_death_rates": {
                 "hispanicOrigin": ['Non-Hispanic', 'Hispanic', 'Unknown'],
-                "race": ['American Indian', 'Asian or Pacific Islander', 'Black', 'White', 'Other (Puerto Rico only)'],
+                "race": ['American Indian', 'Asian or Pacific Islander', 'Black', 'White'],
                 "year": ['2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000']
             },
             "age-adjusted_death_rates": {
                 "hispanicOrigin": ['Non-Hispanic', 'Hispanic', 'Unknown'],
-                "race": ['American Indian', 'Asian or Pacific Islander', 'Black', 'White', 'Other (Puerto Rico only)'],
+                "race": ['American Indian', 'Asian or Pacific Islander', 'Black', 'White'],
                 "year": ['2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000']
             },
+            number_of_births: {},
+            birth_rates: {},
+            fertility_rates: {},
             bridge_race:{},
             mental_health:{},
-            natality:{}
+            natality:{},
+            prams:{},
+            delivery: {
+                "topic": ['cat_45', 'cat_39', 'cat_0']
+            },
+            demographics: {
+                "topic": ['cat_15', 'cat_38']
+            },
+            family_planning: {
+                "topic": ['cat_31', 'cat_20', 'cat_28', 'cat_11']
+            },
+            flu: {
+                "topic": ['cat_3', 'cat_5', 'cat_8', 'cat_7']
+            },
+            infant_health: {
+                "topic": ['cat_43', 'cat_1', 'cat_24', 'cat_19', 'cat_14', 'cat_25', 'cat_6']
+            },
+            maternal_behavior: {
+                "topic": ['cat_2', 'cat_13', 'cat_34', 'cat_12', 'cat_18', 'cat_9', 'cat_17', 'cat_35', 'cat_23', 'cat_10', 'cat_22', 'cat_26']
+            },
+            maternal_experiences: {
+                "topic": ['cat_29', 'cat_33', 'cat_42', 'cat_27']
+            },
+            prenatal_care: {
+                "topic": ['cat_37', 'cat_30', 'cat_4', 'cat_41', 'cat_40', 'cat_36', 'cat_16']
+            },
+            insurance_medicaid_services: {
+                "topic": ['cat_32', 'cat_21', 'cat_44']
+            }
         };
         //show certain filters for different table views
+        //add availablefilter for birth_rates
         sc.availableFilters = {
             'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin'],
-            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin']
+            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin'],
+            'birth_rates': ['current_year', 'race'],
+            'fertility_rates': ['current_year', 'race', 'mother_age_r8', 'mother_age_r14', 'mother_age_r9', 'mother_age' ]
         };
 
         //functionality to be added to the side filters
+        var confidenceIntervalOption = {
+            title: 'Confidence Intervals',
+            type: 'toggle',
+            value: false,
+            onChange: function(value) {
+                sc.showConfidenceIntervals = value;
+            },
+            options: [
+                {
+                    title: 'label.mortality.search.table.show.percentage.button',
+                    key: true
+                },
+                {
+                    title: 'label.mortality.search.table.hide.percentage.button',
+                    key: false
+                }
+            ]
+        };
+
         sc.filterUtilities = {
             'mental_health': [
                 {
                     title: 'Variance',
                     options: [
-                        {
-                            title: 'Confidence Intervals',
-                            type: 'toggle',
-                            value: false,
-                            onChange: function(value) {
-                                sc.showConfidenceIntervals = value;
-                            },
-                            options: [
-                                {
-                                    title: 'label.mortality.search.table.show.percentage.button',
-                                    key: true
-                                },
-                                {
-                                    title: 'label.mortality.search.table.hide.percentage.button',
-                                    key: false
-                                }
-                            ]
-                        },
+                        confidenceIntervalOption,
                         {
                             title: 'Unweighted Frequency',
                             type: 'toggle',
@@ -144,10 +199,18 @@
                         }
                     ]
                 }
+            ],
+            'prams' : [
+                {
+                    title: 'Variance',
+                    options: [
+                        confidenceIntervalOption
+                    ]
+                }
             ]
         };
         sc.queryID = $stateParams.queryID;
-        sc.tableView = $stateParams.tableView ? $stateParams.tableView : sc.showMeOptions[0].key;
+        sc.tableView = $stateParams.tableView ? $stateParams.tableView : sc.showMeOptions.deaths[0].key;
         //this flags whether to cache the incoming filter query
         sc.cacheQuery = $stateParams.cacheQuery;
 
@@ -160,7 +223,15 @@
         function setDefaults() {
             sc.filters.selectedPrimaryFilter = mortalityFilter;
             var yearFilter = utilService.findByKeyAndValue(sc.filters.selectedPrimaryFilter.allFilters, 'key', 'year');
-            yearFilter.value.push('2014');
+            yearFilter.value.push('2015');
+
+            var pramsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'prams');
+            angular.forEach(pramsFilter.sideFilters, function(filter){
+                if(filter.filters.key === 'topic') {
+                    filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
+                    searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup['delivery']);
+                }
+            });
         }
 
         if(sc.queryID === '') {
@@ -192,6 +263,34 @@
         }
 
         function search(isFilterChanged) {
+            if(sc.filters.selectedPrimaryFilter.key === 'prams') {
+                angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters, function(filter) {
+                    if(filter.filters.key === 'topic') {
+                        filter.filters.questions = [];
+                        if(filter.filters.value.length === 0) {
+                            angular.forEach(filter.filters.autoCompleteOptions, function (option) {
+                                angular.forEach($rootScope.pramsQuestions, function(pramsCat) {
+                                    if(option.key === pramsCat.id) {
+                                        angular.forEach(pramsCat.children, function(question) {
+                                            filter.filters.questions.push(question.id);
+                                        });
+                                    }
+                                });
+                            });
+                        } else {
+                            angular.forEach(filter.filters.value, function(cat) {
+                                angular.forEach($rootScope.pramsQuestions, function(pramsCat) {
+                                    if(cat === pramsCat.id) {
+                                        angular.forEach(pramsCat.children, function(question) {
+                                            filter.filters.questions.push(question.id);
+                                        });
+                                    }
+                                });
+                            });
+                        }
+                    }
+                });
+            }
             //TODO: $rootScope.requestProcessing is keeping this from running on initialization, do we need that check?
             // if(isFilterChanged && !$rootScope.requestProcessing) {
             if(isFilterChanged) {
@@ -219,6 +318,10 @@
         $scope.$on('yrbsQuestionsLoadded', function() {
             sc.filters.yrbsBasicFilters[4].autoCompleteOptions = $rootScope.questionsList;
             sc.filters.yrbsAdvancedFilters[4].autoCompleteOptions = $rootScope.questionsList;
+        });
+
+        $scope.$on('pramsQuestionsLoaded', function() {
+            sc.filters.pramsFilters[4].autoCompleteOptions = $rootScope.pramsQuestionsList;
         });
 
 
@@ -281,7 +384,7 @@
             return searchFactory.getQueryResults(queryID).then(function (response) {
                //if queryID exists in owh_querycache index, then update data that are required to display search results
                 if (response.data) {
-                    var result = searchFactory.updateFiltersAndData(sc.filters.primaryFilters, response, sc.optionsGroup, sc.mapOptions);
+                    var result = searchFactory.updateFiltersAndData(sc.filters, response, sc.optionsGroup, sc.mapOptions);
                     sc.tableView = result.tableView;
                     sc.tableData = result.tableData;
                     sc.filters.selectedPrimaryFilter = result.primaryFilter;
@@ -315,8 +418,47 @@
                         filter.filters.autoCompleteOptions = sc.filters.hispanicOptions;
                     }
                 }
+                if(filter.filters.key === 'topic') {
+                    filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
+                    searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup[selectedFilter.key]);
+                }
             });
+            //we can change mapping here
             sc.filters.selectedPrimaryFilter.tableView = selectedFilter.key;
+            var selectedYears = utilService.findByKeyAndValue(sc.filters.selectedPrimaryFilter.allFilters,'key', 'current_year');
+            if(selectedYears != null) {
+                //Always set calculateRate to true, because when user switches view from 'show me' drop down, values get reset.
+                angular.forEach(selectedYears.autoCompleteOptions, function (eachObject) {
+                    eachObject.disabled = false;
+                });
+                //Check if user selected year's 2000, 2001, 2002 and remove these years from selected year's list
+                //And disable these years in side filters for birth_rates and fertility_rates
+                if (sc.filters.selectedPrimaryFilter.tableView == 'birth_rates' || sc.filters.selectedPrimaryFilter.tableView == 'fertility_rates') {
+                    //Remove years 2000, 2001, 2002 from selected lists
+                    angular.forEach(sc.filters.selectedPrimaryFilter.birthAndFertilityRatesDisabledYears, function (year) {
+                        var index = selectedYears.value.indexOf(year);
+                        if (index >= 0) {
+                            selectedYears.value.splice(index, 1);
+                        }
+                    });
+                    //Disable 2000, 2001, 2002 in side filters
+                    angular.forEach(selectedYears.autoCompleteOptions, function (eachObject) {
+                        if (sc.filters.selectedPrimaryFilter.birthAndFertilityRatesDisabledYears.indexOf(eachObject.key) !== -1) {
+                            eachObject.disabled = true;
+                        }
+                    });
+                }
+                /**
+                 * When user switch back from birth_rates to number_of_births view,
+                 * we need to enable Sex filter with group by 'column'
+                 * Why only 'sex' ? because for 'number_of_births' view we have enabled group by for year, race, sex
+                 * when user switch to 'brith_rates' we are disabling 'sex' filter(not year, race), so we need enable sex filter group when
+                 * user switch to 'number_of_births' view.
+                 */
+                if(sc.filters.selectedPrimaryFilter.tableView == 'number_of_births') {
+                   searchFactory.setFilterGroupBy(sc.filters.selectedPrimaryFilter.allFilters, 'sex', 'column');
+                }
+            }
             sc.search(true);
             sc.tableView = selectedFilter.key;
         }
@@ -356,7 +498,7 @@
         function primaryFilterChanged(newFilter, queryID) {
             utilService.updateAllByKeyAndValue(sc.filters.search, 'initiated', false);
             return sc.filters.selectedPrimaryFilter.searchResults(sc.filters.selectedPrimaryFilter, queryID).then(function(response) {
-                var result = searchFactory.updateFiltersAndData(sc.filters.primaryFilters, response, sc.optionsGroup, sc.mapOptions);
+                var result = searchFactory.updateFiltersAndData(sc.filters, response, sc.optionsGroup, sc.mapOptions);
                 sc.tableView = result.tableView;
                 sc.tableData = result.tableData;
                 sc.filters.selectedPrimaryFilter = result.primaryFilter;
@@ -437,6 +579,13 @@
             sc.filters.selectedPrimaryFilter.allFilters = sc.filters.yrbsAdvancedFilters;
             sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[1].advancedSideFilters;
             sc.search(true);
+        }
+
+        /**
+         * Shows facebook share dialog box
+         */
+        function showFbDialog(svgIndex, title, data) {
+            shareUtilService.shareOnFb(svgIndex, title, undefined, undefined, data);
         }
     }
 }());

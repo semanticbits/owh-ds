@@ -4,10 +4,10 @@
         .module('owh')
         .service('mapService', mapService);
 
-    mapService.$inject = ['$rootScope', '$timeout', 'utilService', 'leafletData'];
+    mapService.$inject = ['$rootScope', '$timeout', 'utilService', 'leafletData', 'shareUtilService', '$translate'];
 
     //service to provide utilities for leaflet geographical map
-    function mapService($rootScope, $timeout, utilService, leafletData) {
+    function mapService($rootScope, $timeout, utilService, leafletData, shareUtilService, $translate) {
         var service = {
             updateStatesDeaths: updateStatesDeaths,
             addExpandControl: addExpandControl,
@@ -165,6 +165,7 @@
                 },
                 onAdd: function (map) {
                     var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom fa fa-share-alt fa-2x purple-icon');
+                    container.title = $translate.instant('label.share.on.fb');
                     container.onclick = function (event) {
                         angular.element(document.getElementById('spindiv')).removeClass('ng-hide');
                         leafletData.getMap().then(function (map) {

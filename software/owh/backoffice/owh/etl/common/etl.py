@@ -37,6 +37,7 @@ class ETL :
         """Initialize the ETL"""
         self.metrics = ETLMetrics()
         self.config = yaml.safe_load(configFile)
+        logging.getLogger('elasticsearch').setLevel("WARN") # To avoid too many logs from elasticsearch module
         logger.debug("Loaded configuration: %s", yaml.dump(self.config))
         if 'elastic_search' in self.config and 'bulk_load_size' in self.config['elastic_search']:
             self.esRepository = ElasticSearchRepository(self.config['elastic_search'])
@@ -132,6 +133,40 @@ class ETL :
             2. Validation of a random record by checking that all mandatory attributes are set have valid values in the expected range
         """
         raise NotImplementedError("ETL.valuidateETL must be implemented by dataset specific ETL subclass")
+
+    def insertDsMetadataRecord(self, datasetname, year, filter, pvs):
+        self.batchRepository.persist({"index": {"_index": 'owh_dsmetadata', "_type": 'dsmetadata'}})
+        self.batchRepository.persist({'dataset':datasetname, 'year': year, 'filter_name':filter, 'permissible_values':pvs})
+
+    def loadDataSetMetaData(self, datasetname, year, datamapping):
+         """
+            Load the dataset metadata for the specified year and dataset
+         """
+         metadataESConfig = {'host': self.config['elastic_search']['host'], 'port': self.config['elastic_search']['port'],
+                             'index': 'owh_dsmetadata', 'type': 'dsmetadata'}
+         esRepository = ElasticSearchRepository(metadataESConfig)
+         esRepository.create_index(json.load(open(os.path.join(os.path.dirname(__file__), 'es_mapping','dataset-metadata-mapping.json')))) # Create owh_dsmetadata index and mapping if doesn't exist
+
+         batchRepository = BatchRepository(100, self.esRepository)
+
+         # Delete existing mapping for the given dataset and year
+         esRepository.delete_records_by_query({"query": {"bool" : {"must" : [{"term": {"dataset":datasetname }},{"term": {"year":year}}]}}})
+
+         with open(datamapping) as datamap:
+             metadata = json.load(datamap)
+
+         for config in metadata :
+             if(config['type'] == 'simple'):
+                 self.insertDsMetadataRecord(datasetname, year,config['column'],None)
+             elif (config['type'] == 'map' or  config['type'] == 'range'):
+                 self.insertDsMetadataRecord(datasetname, year,config['column'],config['mappings'].values())
+             elif (config['type'] == 'split'):
+                 for col in config['columns']:
+                     self.insertDsMetadataRecord(datasetname, year,col,list(set(m[col] for m in config['mappings'].values())))
+
+         self.batchRepository.flush()
+         self.refresh_index()
+
 
     def execute(self):
         """Execute the ETL process"""

@@ -5,9 +5,6 @@
       "enabled": false
     },
     "properties": {
-      "current_year": {
-        "type": "string", "index": "no"
-      },
       "birth_place": {
         "type": "string", "index": "not_analyzed"
       },
@@ -47,13 +44,13 @@
       "delivery_method": {
         "type": "string", "index": "not_analyzed"
       },
-      "dob_mm": {
+      "month": {
         "type": "string", "index": "not_analyzed"
       },
-      "dob_wk": {
+      "weekday": {
         "type": "string", "index": "not_analyzed"
       },
-      "dob_yy": {
+      "current_year": {
         "type": "string", "index": "not_analyzed"
       },
       "eclampsia": {
@@ -74,6 +71,9 @@
       "mother_age": {
         "type": "string", "index": "not_analyzed"
       },
+      "mother_age_r8": {
+        "type": "string", "index": "not_analyzed"
+      },
       "mother_age_r9": {
         "type": "string", "index": "not_analyzed"
       },
@@ -83,7 +83,7 @@
       "mother_education": {
         "type": "string", "index": "not_analyzed"
       },
-      "mother_race": {
+      "race": {
         "type": "string", "index": "not_analyzed"
       },
       "pregnancy_hypertension": {

@@ -36,9 +36,9 @@ describe('filterUtils', function(){
             var bridgeRaceFilters = filterUtils.getNatalityDataFilters();
             expect(bridgeRaceFilters[0].key).toEqual('hispanic_origin');
             expect(bridgeRaceFilters[1].key).toEqual('mother_age');
-            expect(bridgeRaceFilters[2].key).toEqual('mother_race');
-            expect(bridgeRaceFilters[3].key).toEqual('marital_status');
-            expect(bridgeRaceFilters[4].key).toEqual('mother_education');
+            expect(bridgeRaceFilters[2].key).toEqual('mother_age_r9');
+            expect(bridgeRaceFilters[3].key).toEqual('mother_age_r8');
+            expect(bridgeRaceFilters[4].key).toEqual('mother_age_r14');
         });
     });
 });

@@ -32,7 +32,6 @@
     "expect.js": "^0.3.1",
     "mocha": "^3.0.2",
     "object-hash": "^1.1.4",
-    "should": "^7.1.1",
     "supertest": "^1.2.0",
     "istanbul": "^0.4.5"
   }

@@ -155,25 +155,51 @@ Feature: As a User
     Then I should get search page with default filter type "Youth Risk Behavior"
     When I expand "Race/Ethnicity" filter section
     And  filter "Race/Ethnicity" and option "Asian" selected
+    When I click on "Select Questions" button
+    And I select a few questions and clicks on the Add Selected Question(s) button
+    Then the "Select Questions" button should be renamed to "Update Questions"
     When I select the back button in browser
     Then I should get search page with default filter type "Youth Risk Behavior"
     And the results page (yrbs data table) should be refreshed to reflect "Race/Ethnicity" filter with option "All"
+    Then the "Update Questions" button should be renamed to "Select Questions"
+    And Questions selected value should be "All"
 
   Scenario: Browser forward button
     When I select the forward button in browser
     Then I should get search page with default filter type "Youth Risk Behavior"
     And the results page (yrbs data table) should be refreshed to reflect "Race/Ethnicity" filter with option "Asian"
+    Then the "Select Questions" button should be renamed to "Update Questions"
+    And Questions selected value should be "Dietary Behaviors"
 
-  Scenario: YRBS Basic Search
-    When I see a link "Basic Search" at the bottom of the sidebar (left)
-    When I click on the "Basic Search" link
-    Then the sidebar switches to an Basic Search mode
-    And the link below the sidebar changes to "Advanced Search"
-    And the link "Basic Search" should be disappear
-
-  Scenario: Advanced Search button
-    When I see a link "Advanced Search" at the bottom of the sidebar (right)
-    And I click on the "Advanced Search" link
+  Scenario: YRBS Advanced Search
+    When I see a link "Switch to Advanced Search" at the top of the sidebar
+    And I click on the "Switch to Advanced Search" link
     Then the sidebar switches to an Advanced Search mode
-    And the link below the sidebar changes to "Basic Search"
-    And the link "Advanced Search" should be disappear
+    And the link above the sidebar changes to "Switch to Basic Search"
+    And the link "Switch to Advanced Search" should be disappear
+
+  Scenario: Basic Search link
+    When I see a link "Switch to Basic Search" at the top of the sidebar
+    And I click on the "Switch to Basic Search" link
+    Then the sidebar switches to an Basic Search mode
+    And the link above the sidebar changes to "Switch to Advanced Search"
+    And the link "Switch to Basic Search" should be disappear
+
+  Scenario: Bookmark Advanced and Basic search
+    Given I am on search page
+    When I select YRBS as primary filter
+    Then I should get search page with default filter type "Youth Risk Behavior"
+    When I see a link "Switch to Advanced Search" at the top of the sidebar
+    And I expand "Race/Ethnicity" filter section
+    And  filter "Race/Ethnicity" and option "Asian" selected
+    And the link should be "Switch to Advanced Search" displayed
+    And filter "Asian" under "Race/Ethnicity" should be a "radio"
+    When I click on the "Switch to Advanced Search" link
+    And I see a link "Switch to Basic Search" at the top of the sidebar
+    When I select the back button in browser
+    And the link should be "Switch to Advanced Search" displayed
+    And filter "Asian" under "Race/Ethnicity" should be a "radio"
+    When I select the forward button in browser
+    And the link should be "Switch to Basic Search" displayed
+    And filter "Asian" under "Race/Ethnicity" should be a "checkbox"
+    And "Run Query" button should be displayed

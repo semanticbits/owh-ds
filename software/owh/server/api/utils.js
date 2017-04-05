@@ -62,24 +62,24 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
         if (buckets[index].key!=='-9') {
             var aggregation = new Aggregation(buckets[index], countKey, countQueryKey);
 
-            aggregation[countKey] = applySuppressionRules(countKey, aggregation[countKey]);
+            aggregation[countKey] = aggregation[countKey];
             var innerObjKey = isValueHasGroupData(buckets[index]);
             // take from pop.value instead of doc_count for census data
             if(countKey === 'pop') {
                 aggregation = {name: buckets[index]['key']};
                 if(buckets[index]['pop']) {
-                    aggregation[countKey] = applySuppressionRules(countKey, buckets[index]['pop'].value);
+                    aggregation[countKey] = buckets[index]['pop'].value;
                 } else {
-                    aggregation[countKey] = applySuppressionRules(countKey, sumBucketProperty(buckets[index][innerObjKey], 'pop'));
+                    aggregation[countKey] = sumBucketProperty(buckets[index][innerObjKey], 'pop');
 
                 }
             }
             if(countKey === 'bridge_race') {
                 aggregation = {name: buckets[index]['key']};
                 if(buckets[index]['group_count_pop']) {
-                    aggregation[countKey] = applySuppressionRules('pop', buckets[index]['group_count_pop'].value);
+                    aggregation[countKey] = buckets[index]['group_count_pop'].value;
                 } else {
-                    aggregation[countKey] = applySuppressionRules('pop', sumBucketProperty(buckets[index][innerObjKey], 'group_count_pop'));
+                    aggregation[countKey] = sumBucketProperty(buckets[index][innerObjKey], 'group_count_pop');
                 }
             }
             if( innerObjKey ) {
@@ -91,59 +91,101 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
                     //adding slice and join because some keys are delimited by underscore so need to be reconstructed
                     aggregation[innerObjKey.split("_").slice(splitIndex).join('_')] =  populateAggregatedData(buckets[index][innerObjKey].buckets, countKey, splitIndex, map, countQueryKey);
                 }
-                //check if total should be suppressed
-                if(countKey === 'deaths' && isMortalityTotalSuppressed(buckets[index][innerObjKey].buckets)) {
-                    aggregation[countKey] = 'suppressed';
-                }
+
             }
-            //replaces suppressed with 0 for chart data
-            if(splitIndex === 3 && !map) {
-                aggregation[countKey] = aggregation[countKey] === 'suppressed' ? 0 : aggregation[countKey];
-            }
+
             result.push(aggregation);
         }
     }
     return result;
 };
 
-//determines if any values in the total are suppressed
-var isMortalityTotalSuppressed = function(buckets) {
-    for(var index in buckets) {
-        if(buckets[index].key!=='-9') {
-            var innerObjKey = isValueHasGroupData(buckets[index]);
-            if(innerObjKey) {
-                var suppressed = isMortalityTotalSuppressed(buckets[index][innerObjKey].buckets);
-                if(suppressed) {
-                    return true;
-                }
-            } else {
-                if(applySuppressionRules('deaths', buckets[index]['doc_count']) === 'suppressed') {
-                    return true;
+function applySuppressions(obj, countKey) {
+
+    var dataType;
+
+    /**
+     * Suppress Counts if count is less than 10
+     * @param obj
+     * @param countKey
+     */
+    var suppressCounts = function (obj, countKey) {
+        for (var property in obj) {
+            if (property === 'name') {
+                continue;
+            }
+            //keep the track of data types
+            if (['table', 'charts', 'maps'].indexOf(property) != -1) {
+                dataType = property;
+            }
+
+            if (obj[property].constructor === Object) {
+                suppressCounts(obj[property], countKey);
+            } else if (obj[property].constructor === Array) {
+                obj[property].forEach(function(arrObj) {
+                    suppressCounts(arrObj, countKey);
+                });
+            } else if(obj[countKey] && obj[countKey] < 10) {
+                if(dataType == 'maps' || dataType == 'charts') {//for chart and map set suppressed values to 0
+                    obj[countKey] = 0;
+                } else {//for table data set to suppressed
+                    obj[countKey] = 'suppressed';
                 }
             }
         }
-    }
-    return false;
-};
+    };
+    /**
+     * Suppress totals if one of the count is suppressed
+     * @param obj
+     * @param countKey
+     */
+    var suppressTotalCounts = function (obj, countKey) {
+        for (var property in obj) {
+
+            if (property === 'name') {
+                continue;
+            }
+
+            if (['table', 'charts', 'maps'].indexOf(property) != -1) {
+                dataType = property;
+            }
+
+            if (obj[property].constructor === Object) {
+                if (obj[countKey] && JSON.stringify(obj).indexOf('suppressed') != -1 ) {
+                    if(dataType == 'maps' || dataType == 'charts') {//for chart and map set suppressed values to 0
+                        obj[countKey] = 0;
+                    } else {//for table data set to suppressed
+                        obj[countKey] = 'suppressed';
+                    }
+                }
+                suppressTotalCounts(obj[property], countKey);
+            } else if (obj[property].constructor === Array) {
+                obj[property].forEach(function(arrObj) {
+                    if (obj[countKey] && JSON.stringify(obj).indexOf('suppressed') != -1 ) {
+                        if(dataType == 'maps' || dataType == 'charts') {//for chart and map set suppressed values to 0
+                            obj[countKey] = 0;
+                        } else {//for table data set to suppressed
+                            obj[countKey] = 'suppressed';
+                        }
+                    }
+                    suppressTotalCounts(arrObj, countKey);
+                });
+            }
+        }
+    };
+
+    suppressCounts(obj.data, countKey);
+    suppressTotalCounts(obj.data, countKey);
+}
 
 var sumBucketProperty = function(bucket, key) {
     var sum = 0;
     for(var i = 0; i < bucket.buckets.length; i++) {
         if(bucket.buckets[i][key]) {
-            var value = applySuppressionRules(key, bucket.buckets[i][key].value);
-            if(value === 'suppressed') {
-                return value;
-            } else {
-                sum+= value;
-            }
+            sum += bucket.buckets[i][key].value;
         } else if(bucket.buckets[i].key !== '-9'){
             //recurse with next bucket
-            var value = sumBucketProperty(bucket.buckets[i][isValueHasGroupData(bucket.buckets[i])], key);
-            if(value === 'suppressed') {
-                return value;
-            } else {
-                sum+= value;
-            }
+            sum += sumBucketProperty(bucket.buckets[i][isValueHasGroupData(bucket.buckets[i])], key);
         }
     }
     return sum;
@@ -158,24 +200,10 @@ var isValueHasGroupData = function(bucket) {
     return false;
 };
 
-var applySuppressionRules = function(key, value) {
-    if(key === 'deaths') {
-        if(value < 10) {
-            return 'suppressed';
-        }
-    }
-    if(key === 'pop') {
-        if(value < 10) {
-            return 'suppressed';
-        }
-    }
-    return value;
-};
-
 //matches suppressed table totals with corresponding side filter total and replace if necessary
-var suppressSideFilterTotals = function(sideFilter, data) {
+/*var suppressSideFilterTotals = function(sideFilter, data) {
     for(var key in data) {
-        if(key !== 'deaths' && key !== 'name' && key !== 'ageAdjustedRate' && key !== 'standardPop' && key !== 'pop') {
+        if(key !== 'natality' && key !== 'deaths' && key !== 'name' && key !== 'ageAdjustedRate' && key !== 'standardPop' && key !== 'pop') {
             for(var i = 0; i < data[key].length; i++) {
                 if(data[key][i].deaths === 'suppressed') {
                     for(var j = 0; j < sideFilter[key].length; j++) {
@@ -188,7 +216,7 @@ var suppressSideFilterTotals = function(sideFilter, data) {
             }
         }
     }
-};
+};*/
 
 var populateYRBSData = function( results, headers, aggregations) {
     var data = {};
@@ -291,7 +319,7 @@ var mergeAgeAdjustedRates = function(mort, rates) {
     };
 
     for(var key in mort) {
-        if(key !== 'deaths' && key !== 'name' && key !== 'pop' && key !== 'ageAdjustedRate' && key !== 'standardPop') {
+        if(key !== 'natality' && key !== 'deaths' && key !== 'name' && key !== 'pop' && key !== 'ageAdjustedRate' && key !== 'standardPop') {
             for(var i = 0; i < mort[key].length; i++) {
                 var age = rates[mort[key][i].name];
                 if(!age) {
@@ -335,4 +363,4 @@ function numberWithCommas(number) {
 module.exports.populateDataWithMappings = populateDataWithMappings;
 module.exports.populateYRBSData = populateYRBSData;
 module.exports.mergeAgeAdjustedRates = mergeAgeAdjustedRates;
-module.exports.suppressSideFilterTotals = suppressSideFilterTotals;
+module.exports.applySuppressions = applySuppressions;

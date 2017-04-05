@@ -36,6 +36,7 @@ module.exports = function(config){
       'bower_components/js-xlsx/dist/xlsx.full.min.js',
       'bower_components/file-saver/FileSaver.min.js',
       'vendor/leaflet-image/leaflet-image.js',
+      'bower_components/angular-filter/dist/angular-filter.min.js',
       'app/**/*.module.js',
       'app/**/*.js',
       'app/**/*.html',

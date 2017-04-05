@@ -26,9 +26,23 @@
         </div>
         <div class="usa-width-one-fourth margin-right-0" ng-show="ots.filters.selectedPrimaryFilter.key === 'deaths'">
             <div class="usa-width-one-fourth show-me-text" ng-bind="'label.show.me' | translate"></div>
+            <select id="showMeDropDown" ng-model="ots.selectedShowFilter"
+                    ng-change="ots.onViewFilter({selectedFilter: ots.selectedShowFilter})"
+                    ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.deaths"
+                    class="usa-width-two-thirds add-on-element gray-border margin-0"></select>
+        </div>
+        <div class="usa-width-one-fourth margin-right-0" ng-show="ots.filters.selectedPrimaryFilter.key === 'natality'">
+            <div class="usa-width-one-fourth show-me-text" ng-bind="'label.show.me' | translate"></div>
             <select ng-model="ots.selectedShowFilter"
                     ng-change="ots.onViewFilter({selectedFilter: ots.selectedShowFilter})"
-                    ng-options="eachFilter.title | translate for eachFilter in ots.showFilters"
+                    ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.natality"
+                    class="usa-width-two-thirds add-on-element gray-border margin-0"></select>
+        </div>
+        <div class="usa-width-one-fourth margin-right-0" ng-show="ots.filters.selectedPrimaryFilter.key === 'prams'">
+            <div class="usa-width-one-fourth show-me-text" ng-bind="'label.prams.class' | translate"></div>
+            <select ng-model="ots.selectedShowFilter"
+                    ng-change="ots.onViewFilter({selectedFilter: ots.selectedShowFilter})"
+                    ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.prams"
                     class="usa-width-two-thirds add-on-element gray-border margin-0"></select>
         </div>
         <div class="forward-back">

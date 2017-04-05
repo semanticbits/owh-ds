@@ -44,6 +44,7 @@
         /*Multi Bar Horizontal Chart*/
         function horizontalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip) {
             postFixToTooltip = postFixToTooltip ? postFixToTooltip : '';
+
             var chartData = {
                 data: [],
                 title: "label.title."+filter1.key+"."+filter2.key,
@@ -83,7 +84,7 @@
                         },
                         valueFormat:function (n){
                             if(isNaN(n)){ return n; }
-                            else if (primaryFilter.key == 'mental_health') {
+                            else if (primaryFilter.key == 'mental_health' || primaryFilter.key === 'prams') {
                                 return d3.format(',.1f')(n);(n);
                             } else {
                                 return d3.format('d')(n);
@@ -98,7 +99,8 @@
                                     "<div class='usa-width-one-whole nvtooltip-value'>";
                                     d.series.forEach(function(elem){
                                         html += "<i class='fa fa-square' style='color:"+elem.color+"'></i>" +
-                                            "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"+$filter('number')(elem.value) + postFixToTooltip + "</div>";
+                                            "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"
+                                            + getCount(elem.value, primaryFilter) + postFixToTooltip + "</div>";
                                     });
                                     html += "</div>";
                                 return html;
@@ -109,13 +111,17 @@
             };
             var multiChartBarData = [];
 
-            if (primaryFilter.key == 'mental_health') {
+            if (primaryFilter.key == 'mental_health' || primaryFilter.key === 'prams') {
 
                 var getBarValues = function (barData, filter) {
                     var barValues = [];
-                    angular.forEach(utilService.getSelectedAutoCompleteOptions(filter), function (option,index) {
+                    angular.forEach(utilService.getSelectedAutoCompleteOptions(filter, primaryFilter.key === 'prams'), function (option,index) {
                         //get data for series
                         var eachPrimaryData = utilService.findByKeyAndValue(barData, 'name', option.key);
+                        //skip missing data for prams chart
+                        if(primaryFilter.key === 'prams' && !eachPrimaryData) {
+                            return;
+                        }
                         //set data to series values
                         barValues.push({"label":option.title, "value":
                             (eachPrimaryData &&  eachPrimaryData[primaryFilter.key]) ?
@@ -130,12 +136,47 @@
                     //series name
                     seriesDataObj["key"] = primaryFilter.chartAxisLabel;
                     //collect series values
-                    seriesDataObj["values"] = getBarValues(data.question[0][filter1.queryKey], filter1);
-                    multiChartBarData.push(seriesDataObj);
+                    var question = data.question[0];
+                    if(primaryFilter.key === 'prams') {
+                        var questionArray = [];
+                        angular.forEach(data.question, function(pramsQuestion) {
+                            if(pramsQuestion.name === primaryFilter.allFilters[4].value[0]) {
+                                question = pramsQuestion;
+                            }
+                        });
+                        // question = data.question[1][0];
+                        // questionArray = question[0];
+                        angular.forEach(question, function(response, responseKey) {
+                            if(typeof response === 'object') {
+                                question = response;
+                                var seriesDataObj = {};
+                                seriesDataObj["key"] = primaryFilter.chartAxisLabel;
+                                seriesDataObj["key"] += ' - ' + responseKey;
+                                seriesDataObj["values"] = getBarValues(question[filter1.queryKey], filter1);
+                                multiChartBarData.push(seriesDataObj);
+                            }
+                        });
+                    } else {
+                        seriesDataObj["values"] = getBarValues(question[filter1.queryKey], filter1);
+                        multiChartBarData.push(seriesDataObj);
+                    }
+
                 } else {//for two filters
                     angular.forEach(utilService.getSelectedAutoCompleteOptions(filter1), function (primaryOption,index) {
                         var seriesDataObj = {};
-                        var eachPrimaryData = utilService.findByKeyAndValue(data.question[0][filter1.queryKey], 'name', primaryOption.key);
+                        var question = data.question[0];
+                        if(primaryFilter.key === 'prams') {
+                            question = data.question[1][0];
+                            angular.forEach(data.question[1], function(response) {
+                                if(typeof response === 'object') {
+                                    question = response;
+                                }
+                            });
+                        }
+                        var eachPrimaryData = utilService.findByKeyAndValue(question[filter1.queryKey], 'name', primaryOption.key);
+                        if(!eachPrimaryData) {
+                            return;
+                        }
                         //Set name to series
                         seriesDataObj["key"] = primaryOption.title;
                         if(filter1.queryKey === 'sex') {
@@ -185,6 +226,7 @@
 
         /*Vertical Stacked Chart*/
         function verticalChart(filter1, filter2, data, primaryFilter, stacked) {
+
             var chartData = {
                 data: [],
                 title: "label.title."+filter1.key+"."+filter2.key,
@@ -247,7 +289,8 @@
                                     "<div class='usa-width-one-whole nvtooltip-value'>";
                                 d.series.forEach(function(elem){
                                     html += "<i class='fa fa-square' style='color:"+elem.color+"'></i>" +
-                                        "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"+$filter('number')(elem.value)+"</div>";
+                                        "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"
+                                        +getCount(elem.value, primaryFilter)+"</div>";
                                 });
                                 html += "</div>";
                                 return html;
@@ -293,6 +336,7 @@
         }
 
         function lineChart(data, filter, primaryFilter) {
+
             var chartData = {
                 data: [],
                 title: "label.graph."+filter.key,
@@ -352,7 +396,8 @@
                                     "<div class='usa-width-one-whole nvtooltip-value'>";
                                 d.series.forEach(function(elem){
                                     html += "<i class='fa fa-square' style='color:"+elem.color+"'></i>" +
-                                        "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"+$filter('number')(elem.value) + "</div>";
+                                        "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"
+                                        +getCount(elem.value, primaryFilter) + "</div>";
                                 });
                                 html += "</div>";
                                 return html;
@@ -387,6 +432,7 @@
         /*Prepare pie chart for single filter*/
         function pieChart( data, filter, primaryFilter, postFixToTooltip ) {
             postFixToTooltip = postFixToTooltip ? postFixToTooltip : '';
+
             var color = d3.scale.category20();
             var chartData = {
                 data: [],
@@ -435,7 +481,8 @@
                                     "<div class='usa-width-one-whole nvtooltip-value'>";
                                 d.series.forEach(function(elem){
                                     html += "<i class='fa fa-square' style='color:"+elem.color+"'></i>" +
-                                        "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"+$filter('number')(elem.value) + postFixToTooltip + "</div>";
+                                        "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"
+                                        +getCount(elem.value, primaryFilter) + postFixToTooltip + "</div>";
                                 });
                                 html += "</div>";
                                 return html;
@@ -594,6 +641,19 @@
                     modal.element.hide();
                 });
             });
+        }
+
+        /**
+         * If state filter is selected and count is equals 0- return Suppressed
+         * Else return actual count
+         */
+        function getCount(count, primaryFilter) {
+            if (count == 0 && primaryFilter.applySuppression) {
+                var stateFilter = utilService.findFilterByKeyAndValue(primaryFilter.sideFilters, 'key', 'state');
+                var isStateFilter = utilService.isFilterApplied(stateFilter);
+                return isStateFilter? 'Suppressed': $filter('number')(count);
+            }
+            return $filter('number')(count);
         }
     }
 }());

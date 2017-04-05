@@ -178,6 +178,7 @@ var buildTopLevelBoolQuery = function(filters, isQuery) {
 var buildBoolQuery = function(path, value, isQuery, isCaseChange, dataType) {
     var boolQuery = {};
     boolQuery.bool = {};
+    //if(value)
     if (path && path !== "" ){
         if (util.isArray(path)){
             for (var i=0 in path) {
@@ -268,50 +269,36 @@ var isEmptyObject = function(obj) {
     return !Object.keys(obj).length;
 };
 
-// Obsolete code
-// function buildQueryForYRBS(primaryFilter, dontAddYearAgg) {
-//     var result = buildAPIQuery(primaryFilter);
-//     var apiQuery = result.apiQuery;
-//     var headers = result.headers;
-//     var resultFilter = headers.columnHeaders.length > 0 ? headers.columnHeaders[0] : headers.rowHeaders[0];
-//     var resultAggregation = findByKeyAndValue(apiQuery.aggregations.nested.table, 'key', resultFilter.key);
-//     resultAggregation.isPrimary = true;
-//     apiQuery.dataKeys = findAllNotContainsKeyAndValue(resultFilter.autoCompleteOptions, 'isAllOption', true);
-//     headers.columnHeaders.concat(headers.rowHeaders).forEach(function(eachFilter) {
-//         var allValues = getValuesByKeyIncludingKeyAndValue(eachFilter.autoCompleteOptions, 'key', 'isAllOption', true);
-//         if(eachFilter.key === resultFilter.key) {
-//             if(apiQuery.query[eachFilter.queryKey]) {
-//                 apiQuery.query[eachFilter.queryKey].value = allValues;
-//             }
-//         } else if(eachFilter.key !== resultFilter.key && eachFilter.key !== 'question') {
-//             if(!apiQuery.query[eachFilter.queryKey] || allValues.indexOf(apiQuery.query[eachFilter.queryKey].value) >= 0) {
-//                 apiQuery.query[eachFilter.queryKey] = getFilterQuery(eachFilter);
-//                 apiQuery.query[eachFilter.queryKey].value = getValuesByKeyExcludingKeyAndValue(eachFilter.autoCompleteOptions, 'key', 'isAllOption', true);
-//             }
-//         }
-//     });
-//     apiQuery.query.primary_filter = getFilterQuery({key: 'primary_filter', queryKey: 'primary_filter', value: resultFilter.queryKey, primary: false});
-//     var yearFilter = findByKeyAndValue(primaryFilter.allFilters, 'key', 'year');
-//     if(yearFilter.value.length != 1 && !dontAddYearAgg) {
-//         headers.columnHeaders.push(yearFilter);
-//         apiQuery.aggregations.nested.table.push(getGroupQuery(yearFilter));
-//     }
-//     result.resultFilter = resultFilter;
-//     return result;
-// }
 
 /**
- * Finds and returns the first object in array of objects by using the key and value
+ * Find the filter in array by key and value
  * @param a
  * @param key
  * @param value
  * @returns {*}
  */
-function findByKeyAndValue(a, key, value) {
-    for (var i = 0; i < a.length; i++) {
-        if ( a[i][key] && a[i][key] === value ) {return a[i];}
+function findFilterByKeyAndValue(a, key, value) {
+    if (a) {
+        for (var i = 0; i < a.length; i++) {
+            var filter = a[i].filters;
+            if ( filter[key] && filter[key] === value ) {return a[i];}
+        }
     }
     return null;
+}
+
+/**
+ * Finds if the specified filter is applied or not
+ * @param a
+ * @param key
+ * @param value
+ * @returns {*}
+ */
+function isFilterApplied(a) {
+    if (a && a.filters) {
+        return a.filters.value.length > 0;
+    }
+    return false;
 }
 
 /**
@@ -391,7 +378,11 @@ function buildAPIQuery(primaryFilter) {
     if(primaryFilter.searchFor) {
         apiQuery = primaryFilter;
     }
-    //var defaultHeaders = [];
+
+    // For YRBS query capture the basisc/advanced search view
+    if(primaryFilter.key === 'mental_health' && primaryFilter.showBasicSearchSideMenu) {
+        apiQuery.yrbsBasic =  true;
+    }
     var sortedFilters = sortByKey(clone(primaryFilter.allFilters), getAutoCompleteOptionsLength);
     sortedFilters.forEach  (function(eachFilter) {
         if(eachFilter.groupBy) {
@@ -409,6 +400,11 @@ function buildAPIQuery(primaryFilter) {
         if(eachFilterQuery) {
             apiQuery.query[eachFilter.queryKey] = eachFilterQuery;
         }
+    });
+    primaryFilter.sideFilters.forEach(function(filter) {
+       if(filter.filters.key === 'topic') {
+           apiQuery.query['question.path'].value = filter.filters.questions;
+       }
     });
     apiQuery.aggregations.nested.table = rowAggregations.concat(columnAggregations);
     var result = prepareChartAggregations(headers.rowHeaders.concat(headers.columnHeaders), apiQuery.searchFor);
@@ -439,17 +435,13 @@ function sortByKey(array, key, asc) {
     });
 }
 
-
-function getGroupQuery(filter/*, isPrimary*/) {
+var getGroupQuery = function (filter){
     var groupQuery = {
         key: filter.key,
         queryKey: filter.aggregationKey ? filter.aggregationKey : filter.queryKey,
         getPercent: filter.getPercent,
-        size: 100000
-    };/*
-     if(isPrimary) {
-     groupQuery.isPrimary = true;
-     }*/
+        size: 0
+    };
     return groupQuery;
 }
 
@@ -470,10 +462,9 @@ function buildFilterQuery(filter) {
 }
 
 function getFilterQuery(filter) {
-    var values = [];
     return {
         key: filter.key,
-        queryKey: filter.queryKey,
+        queryKey: filter.aggregationKey ? filter.aggregationKey : filter.queryKey,
         value: filter.value,
         primary: filter.primary
     };
@@ -521,6 +512,34 @@ function prepareChartAggregations(headers, countKey) {
     }
 }
 
+/**
+ * To calculate Fertility Rates, Filter census rates query with
+ * Age filter (15 to 44 years) and Gender (Female)
+ * If user don't select any option for Age group related filters in Natality - Fertility Rates page, then Fertility Rates calculation consider
+ * all female with age 15 to 44 years population
+ * @param topLevelQuery
+ * @returns {*}
+ */
+function addFiltersToCalcFertilityRates(topLevelQuery) {
+
+    var query = topLevelQuery.query.filtered.filter;
+    var queryString = JSON.stringify(query);
+    //if(['mother_age', 'mother_age_r14', 'mother_age_r8', 'mother_age_r9'].indexOf(queryString) < 0) {
+    if(queryString.indexOf('mother_age') < 0 && queryString.indexOf('mother_age_r14') < 0 && queryString.indexOf('mother_age_r8') < 0 && queryString.indexOf('mother_age_r9') < 0 ) {
+        var ageValues = ["15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "37", "38", "39", "40", "41", "42", "43", "44"];
+        var ageQuery = buildBoolQuery("age", ageValues, false);
+        if(!isEmptyObject(ageQuery)) {
+            query.bool.must.push(ageQuery);
+        }
+    }
+    var sexQuery = buildBoolQuery("sex", 'Female', false);
+    if(!isEmptyObject(sexQuery)) {
+        query.bool.must.push(sexQuery);
+    }
+    topLevelQuery.query.filtered.filter = query;
+    return topLevelQuery;
+}
+
 var chartMappings = {
     "gender&race": "horizontalStack",
     "race&agegroup": "verticalStack",
@@ -552,97 +571,97 @@ var chartMappings = {
     "current_year&state":"horizontalBar",
     "current_year&region":"verticalBar",
     //natality
-    "hispanic_origin&mother_race": "horizontalBar",
-    "sex&mother_race": "horizontalBar",
+    "hispanic_origin&race": "horizontalBar",
+    "sex&race": "horizontalBar",
     "hispanic_origin&marital_status": "horizontalBar",
-    "mother_race&marital_status": "horizontalBar",
-    "mother_race&mother_age": "horizontalBar",
+    "race&marital_status": "horizontalBar",
+    "race&mother_age": "horizontalBar",
     "hispanic_origin&mother_age": "horizontalBar",
     "marital_status&mother_age": "horizontalBar",
-    "mother_race&mother_education": "horizontalBar",
+    "race&mother_education": "horizontalBar",
     "hispanic_origin&mother_education": "horizontalBar",
     "marital_status&mother_education": "horizontalBar",
     "mother_age&mother_education": "horizontalBar",
-    "dob_yy&marital_status": "horizontalBar",
-    "dob_yy&hispanic_origin": "horizontalBar",
-    "dob_yy&mother_race": "horizontalBar",
-    "dob_yy&mother_age": "horizontalBar",
-    "dob_yy&mother_education": "horizontalBar",
-    "hispanic_origin&dob_mm": "horizontalBar",
-    "mother_race&dob_mm": "horizontalBar",
-    "marital_statuc&dob_mm": "horizontalStack",
-    "mother_age&dob_mm": "horizontalStack",
-    "mother_education&dob_mm": "horizontalStack",
-    "dob_yy&dob_mm": "horizontalBar",
-    "hispanic_origin&dob_wk": "horizontalStack",
-    "mother_race&dob_wk": "horizontalStack",
-    "marital_status&dob_wk": "horizontalStack",
-    "mother_age&dob_wk": "horizontalStack",
-    "mother_education&dob_wk": "horizontalStack",
-    "dob_yy&dob_wk": "horizontalStack",
-    "dob_mm&dob_wk": "horizontalStack",
+    "current_year&marital_status": "horizontalBar",
+    "current_year&hispanic_origin": "horizontalBar",
+    "current_year&race": "horizontalBar",
+    "current_year&mother_age": "horizontalBar",
+    "current_year&mother_education": "horizontalBar",
+    "hispanic_origin&month": "horizontalBar",
+    "race&month": "horizontalBar",
+    "marital_statuc&month": "horizontalStack",
+    "mother_age&month": "horizontalStack",
+    "mother_education&month": "horizontalStack",
+    "current_year&month": "horizontalBar",
+    "hispanic_origin&weekday": "horizontalStack",
+    "race&weekday": "horizontalStack",
+    "marital_status&weekday": "horizontalStack",
+    "mother_age&weekday": "horizontalStack",
+    "mother_education&weekday": "horizontalStack",
+    "current_year&weekday": "horizontalStack",
+    "month&weekday": "horizontalStack",
     "sex&hispanic_origin": "horizontalStack",
     "sex&marital_status": "horizontalBar",
     "sex&mother_age": "horizontalBar",
     "sex&mother_education": "horizontalBar",
-    "dob_yy&sex": "horizontalBar",
-    "sex&dob_mm": "horizontalBar",
-    "sex&dob_wk": "horizontalBar",
+    "current_year&sex": "horizontalBar",
+    "sex&month": "horizontalBar",
+    "sex&weekday": "horizontalBar",
     //insert gestation age here
     "hispanic_origin&prenatal_care": "lineChart",
-    "mother_race&prenatal_care": "horizontalBar",
+    "race&prenatal_care": "horizontalBar",
     "marital_status&prenatal_care": "horizontalBar",
     "mother_age&prenatal_care": "horizontalBar",
     "mother_education&prenatal_care": "horizontalBar",
-    "dob_yy&prenatal_care": "horizontalBar",
-    "dob_mm&prenatal_care": "horizontalBar",
-    "dob_wk&prenatal_care": "horizontalBar",
+    "current_year&prenatal_care": "horizontalBar",
+    "month&prenatal_care": "horizontalBar",
+    "weekday&prenatal_care": "horizontalBar",
     "sex&prenatal_care": "horizontalBar",
 
     "hispanic_origin&birth_weight": "horizontalStack",
-    "mother_race&birth_weight": "horizontalStack",
+    "race&birth_weight": "horizontalStack",
     "marital_status&birth_weight": "horizontalStack",
     "mother_age&birth_weight": "horizontalStack",
     "mother_education&birth_weight": "horizontalStack",
-    "dob_yy&birth_weight": "horizontalStack",
-    "dob_mm&birth_weight": "horizontalStack",
-    "dob_wk&birth_weight": "horizontalStack",
+    "current_year&birth_weight": "horizontalStack",
+    "month&birth_weight": "horizontalStack",
+    "weekday&birth_weight": "horizontalStack",
     "sex&birth_weight": "horizontalStack",
     "prenatal_care&birth_weight": "horizontalStack",
 
     "hispanic_origin&birth_plurality": "horizontalStack",
-    "mother_race&birth_plurality": "horizontalStack",
+    "race&birth_plurality": "horizontalStack",
     "marital_status&birth_plurality": "horizontalStack",
     "mother_age&birth_plurality": "horizontalStack",
     "mother_education&birth_plurality": "horizontalStack",
-    "dob_yy&birth_plurality": "horizontalStack",
-    "dob_mm&birth_plurality": "horizontalStack",
-    "dob_wk&birth_plurality": "horizontalStack",
+    "current_year&birth_plurality": "horizontalStack",
+    "month&birth_plurality": "horizontalStack",
+    "weekday&birth_plurality": "horizontalStack",
     "sex&birth_plurality": "horizontalStack",
     "prenatal_care&birth_plurality": "horizontalStack",
     "birth_weight&birth_plurality": "horizontalStack",
 
     "hispanic_origin&live_birth": "horizontalStack",
-    "mother_race&live_birth": "horizontalStack",
+    "race&live_birth": "horizontalStack",
     "marital_status&live_birth": "horizontalStack",
     "mother_age&live_birth": "horizontalStack",
     "mother_education&live_birth": "horizontalStack",
-    "dob_yy&live_birth": "horizontalStack",
-    "dob_mm&live_birth": "horizontalStack",
-    "dob_wk&live_birth": "horizontalStack",
+    "current_year&live_birth": "horizontalStack",
+    "month&live_birth": "horizontalStack",
+    "weekday&live_birth": "horizontalStack",
     "sex&live_birth": "horizontalStack",
     "prenatal_care&live_birth": "horizontalStack",
     "birth_weight&live_birth": "horizontalStack",
     "birth_plurality&live_birth": "horizontalStack",
 
     "hispanic_origin&birth_place": "horizontalStack",
-    "mother_race&birth_place": "horizontalStack",
+    "race&birth_place": "horizontalStack",
     "marital_status&birth_place": "horizontalStack",
     "mother_age&birth_place": "horizontalStack",
     "mother_education&birth_place": "horizontalStack",
-    "dob_yy&birth_place": "horizontalStack",
-    "dob_mm&birth_place": "horizontalStack",
-    "dob_wk&birth_place": "horizontalStack",
+    "current_year&birth_place": "horizontalStack",
+    "month&birth_place": "horizontalStack",
+    "weekday&birth_place": "horizontalStack",
     "sex&birth_place": "horizontalStack",
     "prenatal_care&birth_place": "horizontalStack",
     "birth_weight&birth_place": "horizontalStack",
@@ -650,13 +669,13 @@ var chartMappings = {
     "live_birth&birth_place": "horizontalStack",
 
     "hispanic_origin&delivery_method": "horizontalStack",
-    "mother_race&delivery_method": "horizontalStack",
+    "race&delivery_method": "horizontalStack",
     "marital_status&delivery_method": "horizontalStack",
     "mother_age&delivery_method": "horizontalStack",
     "mother_education&delivery_method": "horizontalStack",
-    "dob_yy&delivery_method": "horizontalStack",
-    "dob_mm&delivery_method": "horizontalStack",
-    "dob_wk&delivery_method": "horizontalStack",
+    "current_year&delivery_method": "horizontalStack",
+    "month&delivery_method": "horizontalStack",
+    "weekday&delivery_method": "horizontalStack",
     "sex&delivery_method": "horizontalStack",
     "prenatal_care&delivery_method": "horizontalStack",
     "birth_weight&delivery_method": "horizontalStack",
@@ -664,13 +683,13 @@ var chartMappings = {
     "birth_place&delivery_method": "horizontalStack",
 
     "hispanic_origin&medical_attendant": "horizontalStack",
-    "mother_race&medical_attendant": "horizontalStack",
+    "race&medical_attendant": "horizontalStack",
     "marital_status&medical_attendant": "horizontalStack",
     "mother_age&medical_attendant": "horizontalStack",
     "mother_education&medical_attendant": "horizontalStack",
-    "dob_yy&medical_attendant": "horizontalStack",
-    "dob_mm&medical_attendant": "horizontalStack",
-    "dob_wk&medical_attendant": "horizontalStack",
+    "current_year&medical_attendant": "horizontalStack",
+    "month&medical_attendant": "horizontalStack",
+    "weekday&medical_attendant": "horizontalStack",
     "sex&medical_attendant": "horizontalStack",
     "prenatal_care&medical_attendant": "horizontalStack",
     "birth_weight&medical_attendant": "horizontalStack",
@@ -679,13 +698,13 @@ var chartMappings = {
     "delivery_method&medical_attendant": "horizontalStack",
 
     "hispanic_origin&chronic_hypertension": "horizontalStack",
-    "mother_race&chronic_hypertension": "horizontalStack",
+    "race&chronic_hypertension": "horizontalStack",
     "marital_status&chronic_hypertension": "horizontalStack",
     "mother_age&chronic_hypertension": "horizontalStack",
     "mother_education&chronic_hypertension": "horizontalStack",
-    "dob_yy&chronic_hypertension": "horizontalStack",
-    "dob_mm&chronic_hypertension": "horizontalStack",
-    "dob_wk&chronic_hypertension": "horizontalStack",
+    "current_year&chronic_hypertension": "horizontalStack",
+    "month&chronic_hypertension": "horizontalStack",
+    "weekday&chronic_hypertension": "horizontalStack",
     "sex&chronic_hypertension": "horizontalStack",
     "prenatal_care&chronic_hypertension": "horizontalStack",
     "birth_weight&chronic_hypertension": "horizontalStack",
@@ -695,13 +714,13 @@ var chartMappings = {
     "medical_attendant&chronic_hypertension": "horizontalStack",
 
     "hispanic_origin&diabetes": "horizontalStack",
-    "mother_race&diabetes": "horizontalStack",
+    "race&diabetes": "horizontalStack",
     "marital_status&diabetes": "horizontalStack",
     "mother_age&diabetes": "horizontalStack",
     "mother_education&diabetes": "horizontalStack",
-    "dob_yy&diabetes": "horizontalStack",
-    "dob_mm&diabetes": "horizontalStack",
-    "dob_wk&diabetes": "horizontalStack",
+    "current_year&diabetes": "horizontalStack",
+    "month&diabetes": "horizontalStack",
+    "weekday&diabetes": "horizontalStack",
     "sex&diabetes": "horizontalStack",
     "prenatal_care&diabetes": "horizontalStack",
     "birth_weight&diabetes": "horizontalStack",
@@ -712,13 +731,13 @@ var chartMappings = {
     "chronic_hypertension&diabetes": "horizontalStack",
 
     "hispanic_origin&eclampsia": "horizontalStack",
-    "mother_race&eclampsia": "horizontalStack",
+    "race&eclampsia": "horizontalStack",
     "marital_status&eclampsia": "horizontalStack",
     "mother_age&eclampsia": "horizontalStack",
     "mother_education&eclampsia": "horizontalStack",
-    "dob_yy&eclampsia": "horizontalStack",
-    "dob_mm&eclampsia": "horizontalStack",
-    "dob_wk&eclampsia": "horizontalStack",
+    "current_year&eclampsia": "horizontalStack",
+    "month&eclampsia": "horizontalStack",
+    "weekday&eclampsia": "horizontalStack",
     "sex&eclampsia": "horizontalStack",
     "prenatal_care&eclampsia": "horizontalStack",
     "birth_weight&eclampsia": "horizontalStack",
@@ -730,13 +749,13 @@ var chartMappings = {
     "diabetes&eclampsia": "horizontalStack",
 
     "hispanic_origin&tobacco_use": "horizontalStack",
-    "mother_race&tobacco_use": "horizontalStack",
+    "race&tobacco_use": "horizontalStack",
     "marital_status&tobacco_use": "horizontalStack",
     "mother_age&tobacco_use": "horizontalStack",
     "mother_education&tobacco_use": "horizontalStack",
-    "dob_yy&tobacco_use": "horizontalStack",
-    "dob_mm&tobacco_use": "horizontalStack",
-    "dob_wk&tobacco_use": "horizontalStack",
+    "current_year&tobacco_use": "horizontalStack",
+    "month&tobacco_use": "horizontalStack",
+    "weekday&tobacco_use": "horizontalStack",
     "sex&tobacco_use": "horizontalStack",
     "prenatal_care&tobacco_use": "horizontalStack",
     "birth_weight&tobacco_use": "horizontalStack",
@@ -749,17 +768,17 @@ var chartMappings = {
     "eclampsia&tobacco_use": "horizontalStack"
 };
 
-function prepareMapAggregations() {
+var prepareMapAggregations = function() {
     var chartAggregations = [];
     var primaryGroupQuery = {
         key: "states",
         queryKey: "state",
-        size: 100000
+        size: 0
     };
     var secondaryGroupQuery = {
         key: "sex",
         queryKey: "sex",
-        size: 100000
+        size: 0
     };
     chartAggregations.push([primaryGroupQuery, secondaryGroupQuery]);
     return chartAggregations;
@@ -788,5 +807,10 @@ module.exports.prepareAggregationQuery = prepareAggregationQuery;
 module.exports.buildSearchQuery = buildSearchQuery;
 module.exports.isEmptyObject = isEmptyObject;
 module.exports.buildAPIQuery = buildAPIQuery;
+module.exports.addFiltersToCalcFertilityRates = addFiltersToCalcFertilityRates;
 // module.exports.buildQueryForYRBS = buildQueryForYRBS;
 module.exports.addCountsToAutoCompleteOptions = addCountsToAutoCompleteOptions;
+module.exports.prepareMapAggregations = prepareMapAggregations;
+module.exports.getGroupQuery = getGroupQuery;
+module.exports.findFilterByKeyAndValue = findFilterByKeyAndValue;
+module.exports.isFilterApplied = isFilterApplied;

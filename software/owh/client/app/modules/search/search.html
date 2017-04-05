@@ -7,7 +7,9 @@
         <div class="usa-width-one-sixth sp-icon-div cursor-pointer">
             <img ui-sref="home" src="../images/owh-logo-white.svg" alt="owh_white_logo" height="60" width="200"/>
         </div>
-        <div class="usa-width-two-thirds sp-header-title" ng-bind="'label.app.title.qhdo' | translate"></div>
+        <div class="usa-width-one-third cursor-pointer">
+            <img ui-sref="home" src="../images/hig-logo-white.svg" alt="HIG Logo" height="60" width="300"/>
+        </div>
     </div>
 </div>
 <!--Search banner-->
@@ -50,15 +52,18 @@
                 <span>&lt;&lt; Hide Filters</span>
             </a>
             <div class="sort-by side-filter-padding">
-                <owh-side-filter filters="sc.filters"
-                    on-filter="sc.search(sc.filters.selectedPrimaryFilter, sc.filters, true)"
+                <owh-side-filter filters="sc.filters.selectedPrimaryFilter.sideFilters"
+                    group-options="sc.filters.groupOptions"
+                    primary-key="{{ sc.filters.selectedPrimaryFilter.key }}"
+                    on-filter="sc.search(true)"
                     sort="sc.sort[sc.filters.selectedPrimaryFilter.title]"
                     show-filters="sc.availableFilters[sc.tableView]"
                     utilities="sc.filterUtilities[sc.filters.selectedPrimaryFilter.key]"
+                    run-on-filter-change="sc.filters.selectedPrimaryFilter.runOnFilterChange"
                     ></owh-side-filter>
             </div>
         </div>
-        <div class="owh-search-content usa-width-three-fourths" ng-class="{'owh-search-content--expanded': !sc.sideMenu.visible }">
+        <div class="owh-search-content usa-width-three-fourths overflow-visible" ng-class="{'owh-search-content--expanded': !sc.sideMenu.visible }">
         <!--Charts-->
             <div class="usa-grid-full margin-top-30">
                 <div class="usa-width-one-whole">
@@ -82,7 +87,7 @@
                                     </a>
                                     <a name="share_fb" ng-click="sc.showFbDialog('chart_'+parentIndex+'_'+$index, chartData.title)"
                                        class="cursor-pointer">
-                                        &nbsp; <i class="fa fa-share-alt" title="Share on facebook"></i>
+                                        &nbsp; <i class="fa fa-share-alt" title="{{'label.share.on.fb' | translate}}"></i>
                                     </a>
                                 </div>
                                 <nvd3 id="chart_{{parentIndex}}_{{$index}}" options='chartData.options' data='chartData.data' api="chartData.api" on-ready="sc.updateCharts()"></nvd3>
@@ -106,7 +111,7 @@
 
             <!--Table-->
             <div class="usa-grid-full">
-                <div class="usa-width-one-whole overflow-auto">
+                <div class="usa-width-one-whole overflow-visible">
                     <hr />
                     <!-- show hide percentage -->
                     <div id="togglePercentage" class="togglePercentage pull-left" ng-show="sc.filters.selectedPrimaryFilter.title === 'label.filter.mortality' && sc.tableView === 'number_of_deaths'">
@@ -139,7 +144,9 @@
                                table-view="{{sc.tableView}}"
                                rowspan-threshold="50"></owh-table>
                     <owh-accordion-table headers="sc.tableData.headers" data="sc.tableData.data"
-                                ng-if="sc.filters.selectedPrimaryFilter.key === 'mental_health'"
+                                ng-if="sc.filters.selectedPrimaryFilter.key === 'mental_health' ||
+                                    sc.filters.selectedPrimaryFilter.key === 'prams'"
+                                primary-key="sc.filters.selectedPrimaryFilter.key"
                                 show-ci="sc.showConfidenceIntervals"
                                 show-uf="sc.showUnweightedFrequency"
                                 show-charts = "sc.filters.selectedPrimaryFilter.value.length > 1">

@@ -8,17 +8,20 @@
             controllerAs: 'sfc',
             bindings:{
                 //TODO: change to one-way binding and bubble filter changes up with event bindings
-                filters : "=",
+                filters : "<",
+                groupOptions: "<",
+                primaryKey: "@",
                 onFilter: '&',
                 sort: '<',
                 showFilters: '<',
-                utilities: '<'
+                utilities: '<',
+                runOnFilterChange: '<'
             }
         });
 
-    sideFilterController.$inject=['ModalService', 'utilService', 'searchFactory'];
+    sideFilterController.$inject=['ModalService', 'utilService', 'searchFactory', 'SearchService'];
 
-    function sideFilterController(ModalService, utilService, searchFactory){
+    function sideFilterController(ModalService, utilService, searchFactory, SearchService){
         var sfc = this;
         sfc.getOptionCountPercentage = getOptionCountPercentage;
         sfc.getOptionCount = getOptionCount;
@@ -32,7 +35,32 @@
         sfc.isOptionDisabled = isOptionDisabled;
         sfc.isOptionSelected = isOptionSelected;
         sfc.getShowHideOptionCount = getShowHideOptionCount;
-        sfc.runOnFilterChange = sfc.filters.selectedPrimaryFilter.runOnFilterChange;
+        sfc.onFilterValueChange = onFilterValueChange;
+
+        sfc.$onChanges = function(changes) {
+            if(changes.filters.currentValue) {
+                angular.forEach(changes.filters.currentValue, function(filter) {
+                    //iterate through filter options and add counts
+                    angular.forEach(filter.filters.autoCompleteOptions, function(option) {
+                        option.count = getOptionCount(option);
+                        if(option.options) {
+                            angular.forEach(option.options, function(subOption) {
+                                subOption.count = getOptionCount(subOption);
+                            });
+                        }
+                    });
+                });
+
+                //categorize filters
+                sfc.categories = {};
+                angular.forEach(changes.filters.currentValue, function(filter) {
+                    if(!sfc.categories[filter.category]) {
+                        sfc.categories[filter.category] = []
+                    }
+                    sfc.categories[filter.category].push(filter);
+                });
+            }
+        };
 
         function isOptionDisabled(group, option) {
             if(group.key === 'hispanicOrigin') {
@@ -49,7 +77,7 @@
                     }
                 }
             }
-            return false;
+            return false || option.disabled;
         }
 
         function filterGroup(option, group) {
@@ -95,13 +123,13 @@
         }
 
         function getOptionCountPercentage(option) {
-            var countKey = sfc.filters.selectedPrimaryFilter.key;
+            var countKey = sfc.primaryKey;
             var countPercentKey = countKey + 'Percentage';
             return option && option[countPercentKey] ? option[countPercentKey] : 0
         }
 
         function getOptionCount(option) {
-            var countKey = sfc.filters.selectedPrimaryFilter.key;
+            var countKey = sfc.primaryKey;
             //check if group option
             if(option.options) {
                 var count = 0;
@@ -121,7 +149,7 @@
                     clearSelection(eachFilter)
                 }
             });
-            var showTree = selectedFilter.key ==='ucd-filters' || selectedFilter.key === 'question';
+            var showTree = selectedFilter.key ==='ucd-chapter-10' || selectedFilter.key === 'question';
             if(!showTree) {
                 searchFactory.showPhaseTwoModal('label.mcd.impl.next');
             }else {
@@ -132,9 +160,10 @@
                     controller: function ($scope, close) {
                         var mc = this;
                         mc.codeKey = selectedFilter.key;
-                        mc.entityName = selectedFilter.key === 'question' ? 'Question' : 'Disease';
+                        mc.entityName = selectedFilter.key === 'question' ? 'Question' : 'Cause(s) of Death';
                         mc.modelHeader = selectedFilter.key === 'question' ? 'label.select.question' : 'label.cause.death';
                         mc.optionValues = selectedFilter.selectedNodes ? selectedFilter.selectedNodes : selectedFilter.selectedValues;
+                        mc.questions = selectedFilter.questions;
                         mc.close = close;
                     }
                 }).then(function (modal) {
@@ -190,7 +219,8 @@
         }
 
         //remove all elements from array for all select
-        function updateGroupValue(group) {
+        function updateGroupValue(sideFilter) {
+            var group = sideFilter.filterGroup ? sideFilter : sideFilter.filters;
             if(group.filterType === 'checkbox'){
                 if ( group.allChecked === false ) {
                     // When All is unchecked, select all other values
@@ -206,11 +236,23 @@
                     group.value = '';
                 }
             }
-            //  Run the filter call back only if runOnFilterChange is true
+
+            sfc.onFilterValueChange(sideFilter);
+        }
+
+
+        function onFilterValueChange(filter){
+            // Update the filter options if refreshFiltersOnChange is true
+            if (filter.refreshFiltersOnChange){
+                utilService.refreshFilterAndOptions(filter.filters,filter, sfc.primaryKey);
+            }
+            // Run the filter call back only if runOnFilterChange is true
             if(sfc.runOnFilterChange) {
                 sfc.onFilter();
             }
         }
+
+
 
         //called to determine order of side filters, looks at sort array passed in
         function getFilterOrder(filter) {

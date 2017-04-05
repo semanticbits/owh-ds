@@ -370,20 +370,17 @@ var yrbsStepDefinitionsWrapper = function () {
         raceParentElement2.element(by.xpath('.//*[.="2015"]')).isSelected().to.eventually.equal(true);
     });
 
-    this.Then(/^I see a link "([^"]*)" at the bottom of the sidebar \(left\)$/, function (arg1) {
-        expect(element(by.cssContainingText('span', 'Basic Search')).isPresent()).to.eventually.equal(true);
-    });
 
-    this.Then(/^I see a link "([^"]*)" at the bottom of the sidebar \(right\)$/, function (arg1) {
-        expect(element(by.cssContainingText('span', 'Advanced Search')).isPresent()).to.eventually.equal(true);
+    this.Then(/^I see a link "([^"]*)" at the top of the sidebar$/, function (arg1) {
+        expect(element(by.cssContainingText('span', arg1)).isPresent()).to.eventually.equal(true);
     });
 
     this.When(/^I click on the "([^"]*)" link$/, function (arg1) {
-         if(arg1 == 'Basic Search'){
-             element(by.cssContainingText('span', 'Basic Search')).click();
+         if(arg1 == 'Switch to Basic Search'){
+             element(by.cssContainingText('span', arg1)).click();
          }
-         else if(arg1 == 'Advanced Search'){
-             element(by.cssContainingText('span', 'Advanced Search')).click();
+         else if(arg1 == 'Switch to Advanced Search'){
+             element(by.cssContainingText('span', arg1)).click();
          }
     });
 
@@ -395,20 +392,39 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^the sidebar switches to an Basic Search mode$/, function () {
-        /*@Gopal here we need to verify new basic search filters are present or not
-        * Once your are done with adding basic search filters please add a condition to verify basic search filters
-        * */
-        /*element(by.partialLinkText('Sex')).click();
+        element(by.partialLinkText('Sex')).click();
         expect(element(by.id("mental_health_yrbsSex_Female")).getAttribute('type')).to.eventually.equal('radio')
-        expect(element(by.id("mental_health_yrbsSex_Male")).getAttribute('type')).to.eventually.equal('radio')*/
+        expect(element(by.id("mental_health_yrbsSex_Male")).getAttribute('type')).to.eventually.equal('radio')
     });
 
-    this.Then(/^the link below the sidebar changes to "([^"]*)"$/, function (arg1) {
+    this.Then(/^the link above the sidebar changes to "([^"]*)"$/, function (arg1) {
         expect(element(by.cssContainingText('span', arg1)).isPresent()).to.eventually.equal(true);
     });
 
     this.Then(/^the link "([^"]*)" should be disappear$/, function (arg1) {
         expect(element(by.cssContainingText('span', arg1)).isDisplayed()).to.eventually.equal(false);
+    });
+
+    this.Then(/^Questions selected value should be "([^"]*)"$/, function (arg1) {
+        if(arg1 == "All") {
+            expect(element(by.id("allNodes")).getText()).to.eventually.contains(arg1);
+        }
+        else {
+            expect(element(by.id("selectedNodes")).getText()).to.eventually.contains(arg1);
+        }
+    });
+
+    this.When(/^the link should be "([^"]*)" displayed$/, function (arg1) {
+        expect(element(by.cssContainingText('span', arg1)).isDisplayed()).to.eventually.equal(true);
+    });
+
+    this.When(/^filter "([^"]*)" under "([^"]*)" should be a "([^"]*)"/, function (arg1, arg2, arg3) {
+        element(by.partialLinkText(arg2)).click();
+        expect(element(by.id("mental_health_yrbsRace_"+arg1)).getAttribute("type")).to.eventually.equal(arg3);
+    });
+
+    this.When(/^"([^"]*)" button should be displayed$/, function (arg1) {
+        expect(yrbsPage.selectQuestionsButton.isDisplayed()).to.eventually.equal(true);
     });
 };
 module.exports = yrbsStepDefinitionsWrapper;

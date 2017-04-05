@@ -17,6 +17,18 @@
       "age_5_interval":{
         "type":"string", "index":"not_analyzed"
       },
+      "mother_age_r9": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "mother_age_r8": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "mother_age_r14": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "mother_age": {
+        "type":"string", "index":"not_analyzed"
+      },
       "race": {
         "type":"string", "index":"not_analyzed"
       },

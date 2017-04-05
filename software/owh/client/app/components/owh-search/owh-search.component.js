@@ -25,7 +25,17 @@
         ots.goForward = goForward;
         ots.goBackward = goBackward;
         ots.$onChanges = function() {
-            angular.forEach(ots.showFilters, function(filter) {
+            var filters = [];
+            if(ots.filters && ots.filters.selectedPrimaryFilter.key === 'prams') {
+                filters = ots.showFilters.prams;
+            }
+            else if(['number_of_deaths', 'crude_death_rates', 'age-adjusted_death_rates'].indexOf(ots.tableView) !== -1) {
+                filters = ots.showFilters.deaths;
+            }
+            else {
+                filters = ots.showFilters.natality;
+            }
+            angular.forEach(filters, function(filter) {
                 if(filter.key === ots.tableView) {
                     ots.selectedShowFilter = filter;
                 }
@@ -51,7 +61,7 @@
         /*Show phase two implementation box*/
         function phaseTwoImpl() {
             if(ots.selectedShowFilter.key !== 'number_of_deaths') {
-                ots.selectedShowFilter = ots.showFilters[0];
+                ots.selectedShowFilter = ots.showFilters.deaths[0];
                 searchFactory.showPhaseTwoModal('label.show.impl.next');
             }
         }

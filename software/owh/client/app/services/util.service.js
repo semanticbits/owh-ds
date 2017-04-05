@@ -5,9 +5,9 @@
         .module('owh.services')
         .service('utilService', utilService);
 
-    utilService.$inject = ['$dateParser', '$filter', '$translate', '$rootScope'];
+    utilService.$inject = ['$dateParser', '$filter', '$translate', '$rootScope', 'SearchService'];
 
-    function utilService($dateParser, $filter, $translate, $rootScope){
+    function utilService($dateParser, $filter, $translate, $rootScope, SearchService){
 
         var service = {
             isValueNotEmpty : isValueNotEmpty,
@@ -38,7 +38,10 @@
             generateMapLegendRanges : generateMapLegendRanges,
             getMinAndMaxValue : getMinAndMaxValue,
             getSelectedAutoCompleteOptions: getSelectedAutoCompleteOptions,
-            clone: clone
+            clone: clone,
+            refreshFilterAndOptions: refreshFilterAndOptions,
+            findFilterByKeyAndValue: findFilterByKeyAndValue,
+            isFilterApplied: isFilterApplied
         };
 
         return service;
@@ -90,6 +93,37 @@
                 }
             }
             return null;
+        }
+
+        /**
+         * Find the filter in array by key and value
+         * @param a
+         * @param key
+         * @param value
+         * @returns {*}
+         */
+        function findFilterByKeyAndValue(a, key, value) {
+            if (a) {
+                for (var i = 0; i < a.length; i++) {
+                    var filter = a[i].filters;
+                    if ( filter[key] && filter[key] === value ) {return a[i];}
+                }
+            }
+            return null;
+        }
+
+        /**
+         * Finds if the specified filter is applied or not
+         * @param a
+         * @param key
+         * @param value
+         * @returns {*}
+         */
+        function isFilterApplied(a) {
+            if (a && a.filters) {
+                return a.filters.value.length > 0;
+            }
+            return false;
         }
 
         /**
@@ -344,12 +378,18 @@
             return tableData;
         }
 
-        function getSelectedAutoCompleteOptions(filter) {
+        function getSelectedAutoCompleteOptions(filter, queryKey) {
             var filterValue = filter.value;
             if(angular.isArray(filterValue)) {
-                return isValueNotEmpty(filterValue)
-                    ? findAllByKeyAndValuesArray(filter.autoCompleteOptions, 'key', filter.value)
-                    : filter.autoCompleteOptions
+                if(queryKey) {
+                    return isValueNotEmpty(filterValue)
+                        ? findAllByKeyAndValuesArray(filter.autoCompleteOptions, 'qkey', filter.value)
+                        : filter.autoCompleteOptions
+                } else {
+                    return isValueNotEmpty(filterValue)
+                        ? findAllByKeyAndValuesArray(filter.autoCompleteOptions, 'key', filter.value)
+                        : filter.autoCompleteOptions
+                }
             } else {
                 var selectedOption = findByKeyAndValue(filter.autoCompleteOptions, 'key', filterValue);
                 return selectedOption ? [selectedOption]: filter.autoCompleteOptions;
@@ -466,28 +506,85 @@
                 var eachHeaderData = data[eachHeader.key];
                 angular.forEach(eachHeader.autoCompleteOptions, function(matchedOption, index) {
 
-                    var key = (countKey === 'mental_health')?matchedOption.qkey:matchedOption.key;
+                    var key = (countKey === 'mental_health' || countKey === 'prams')?matchedOption.qkey:matchedOption.key;
                     var eachData = findByKeyAndValue(eachHeaderData, 'name', key);
+                    if(countKey === 'prams') {
+                        eachData = findAllByKeyAndValue(eachHeaderData, 'name', key);
+                        if(eachData.length === 0) {
+                            return;
+                        }
+                        var questionCellAdded = false;
+                        angular.forEach(eachData, function(eachPramsData, eachDataIndex) {
+                            var childTableData = prepareMixedTableRowData(rowHeaders.slice(1), columnHeaders, eachPramsData, countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys);
+                            if(rowHeaders.length > 1 && calculateRowTotal) {
+                                childTableData.push(prepareTotalRow(eachPramsData, countKey, childTableData[0].length, totalCount, secondaryCountKeys));
+                            }
+                            var responseCell = {
+                                title: eachPramsData.response,
+                                rowspan: 1,
+                                colspan: 1,
+                                isCount: false,
+                                style: {
+                                    color: '#833eb0'
+                                }
+                            };
+                            // if(eachDataIndex < eachData.length - 1) {
+                            //     responseCell.style['border-bottom'] = 'white';
+                            // }
+                            if(!questionCellAdded) {
+                                var eachTableRow = {
+                                    title: matchedOption.title,
+                                    isCount: false,
+                                    rowspan: eachData.length,
+                                    colspan: 1,
+                                    key: matchedOption.key,
+                                    qkey: matchedOption.qkey,
+                                    iconClass: eachHeader.iconClass,
+                                    onIconClick: eachHeader.onIconClick
+                                };
+                                childTableData[0].unshift(responseCell);
+                                childTableData[0].unshift(eachTableRow);
+                                tableData = tableData.concat(childTableData);
+                                questionCellAdded = true;
+                            } else {
+                                var eachTableRow = {
+                                    title: '',
+                                    isCount: false,
+                                    rowspan: 1,
+                                    colspan: 1,
+                                    key: matchedOption.key,
+                                    qkey: matchedOption.qkey,
+                                    style: {
+                                        display: "none"
+                                    }
+                                };
+                                childTableData[0].unshift(responseCell);
+                                childTableData[0].unshift(eachTableRow);
+                                tableData = tableData.concat(childTableData);
+                            }
+                        });
+                    } else {
+                        if(!eachData) {
+                            return;
+                        }
+                        var childTableData = prepareMixedTableRowData(rowHeaders.slice(1), columnHeaders, eachData, countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys);
+                        if(rowHeaders.length > 1 && calculateRowTotal) {
+                            childTableData.push(prepareTotalRow(eachData, countKey, childTableData[0].length, totalCount, secondaryCountKeys));
+                        }
+                        var eachTableRow = {
+                            title: matchedOption.title,
+                            isCount: false,
+                            rowspan: childTableData.length,
+                            colspan: 1,
+                            key: matchedOption.key,
+                            qkey: matchedOption.qkey,
+                            iconClass: eachHeader.iconClass,
+                            onIconClick: eachHeader.onIconClick
+                        };
+                        childTableData[0].unshift(eachTableRow);
+                        tableData = tableData.concat(childTableData);
+                    }
 
-                    if(!eachData) {
-                        return;
-                    }
-                    var childTableData = prepareMixedTableRowData(rowHeaders.slice(1), columnHeaders, eachData, countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys);
-                    if(rowHeaders.length > 1 && calculateRowTotal) {
-                        childTableData.push(prepareTotalRow(eachData, countKey, childTableData[0].length, totalCount, secondaryCountKeys));
-                    }
-                    var eachTableRow = {
-                        title: matchedOption.title,
-                        isCount: false,
-                        rowspan: childTableData.length,
-                        colspan: 1,
-                        key: matchedOption.key,
-                        qkey: matchedOption.qkey,
-                        iconClass: eachHeader.iconClass,
-                        onIconClick: eachHeader.onIconClick
-                    };
-                    childTableData[0].unshift(eachTableRow);
-                    tableData = tableData.concat(childTableData);
                 });
             }
             /**
@@ -580,7 +677,6 @@
             if(columnHeaders && columnHeaders.length > 0) {
                 var eachColumnHeader = columnHeaders[0];
 
-
                 var eachHeaderData = data[eachColumnHeader.key]?data[eachColumnHeader.key]:data[eachColumnHeader.queryKey];
                 var eachOptionLength = 0;
                 angular.forEach(getSelectedAutoCompleteOptions(eachColumnHeader), function(eachOption, optionIndex) {
@@ -599,7 +695,7 @@
                         if(eachOptionLength <= 0) {
                             eachOptionLength = getOptionDataLength(columnHeaders.slice(1));
                         }
-                        tableData = tableData.concat(getArrayWithDefaultValue(eachOptionLength, {title: 0, percentage: percentage , isCount: true}));
+                        tableData = tableData.concat(getArrayWithDefaultValue(eachOptionLength, {title: 'Not Available', percentage: percentage , isCount: true}));
                     }
                 });
             }
@@ -780,6 +876,46 @@
             return labels;
         }
 
+        /**
+         * Enables/disables side filters and filter options based on the dataser metadata
+         * @param filter filter to be used for the querying ds metadata
+         * @param sideFilters sidefilters to be updated
+         * @param datasetname name of dataset          */
+        function refreshFilterAndOptions(filter, sideFilters, datasetname) {
+            var filterName = filter.queryKey;
+            var filterValue = filter.value;
+            SearchService.getDsMetadata(datasetname, filterValue ? filterValue.join(',') : null).then(function (response) {
+                var newFilters = response.data;
+                for (var f=0; f < sideFilters.length; f++) {
+                    var fkey = sideFilters[f].filters.queryKey;
+                    if (fkey !== filterName) {
+                        if (fkey in newFilters) {
+                            sideFilters[f].disabled = false;
+                            if (newFilters[fkey]) {
+                                var fopts = sideFilters[f].filters.autoCompleteOptions;
+                                for (var opt in fopts) {
+                                    if (newFilters[fkey].indexOf(fopts[opt].key) >= 0) {
+                                        fopts[opt].disabled = false;
+                                    }
+                                    //below condition only disable filters which are not parent(with no child filters) and
+                                    // not found in response metadata.
+                                    else if(!fopts[opt].group) {
+                                        fopts[opt].disabled = true;
+                                    }
+                                }
+                            }
+                        } else {
+                            sideFilters[f].filters.value = [];
+                            sideFilters[f].filters.groupBy = false;
+                            sideFilters[f].disabled = true;
+                        }
+                    }
+                }
+            }, function (error) {
+                angular.element(document.getElementById('spindiv')).addClass('ng-hide');
+                console.log(error);
+            });
+        }
 
         function clone (a) {
             return JSON.parse(JSON.stringify(a));

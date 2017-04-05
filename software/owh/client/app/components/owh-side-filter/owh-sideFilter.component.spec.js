@@ -2,7 +2,8 @@
 
 describe('OWH Side filter component: ', function() {
     var $rootScope, $injector, $templateCache, $scope, filters,closeDeferred, controllerProvider,
-        modalService,givenModalDefaults, ModalService,elementVisible, thenFunction;
+        modalService,givenModalDefaults, ModalService,elementVisible, thenFunction,  utilService;
+
     var $httpBackend, $compile, $http, $componentController;
 
     beforeEach(function() {
@@ -31,7 +32,7 @@ describe('OWH Side filter component: ', function() {
         });
 
         inject(function(_$rootScope_, _$state_, _$injector_, _$templateCache_,_$location_, _$compile_, _$http_,
-                        _$componentController_ , _$q_, _$controller_) {
+                        _$componentController_ , _$q_, _$controller_, _utilService_) {
             $rootScope  = _$rootScope_;
             $injector   = _$injector_;
             $templateCache = _$templateCache_;
@@ -43,6 +44,7 @@ describe('OWH Side filter component: ', function() {
             //modalService = _ModalService_;
             closeDeferred = _$q_.defer();
             controllerProvider = _$controller_;
+            utilService = _utilService_
         });
         $templateCache.put('app/components/owh-side-filter/owhSideFilter.html', 'app/components/owh-side-filter/owhSideFilter.html');
         $templateCache.put('app/modules/home/home.html', 'app/modules/home/home.html');
@@ -55,6 +57,7 @@ describe('OWH Side filter component: ', function() {
         $httpBackend.whenGET('app/partials/marker-template.html').respond( $templateCache.get('app/partials/marker-template.html'));
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 1111111111111111}});
         $httpBackend.whenGET('/yrbsQuestionsTree/2015').respond({data: { }});
+        $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
 
         function searchResultsFn() {
 
@@ -94,7 +97,7 @@ describe('OWH Side filter component: ', function() {
     }));
 
     it("should call getOptionCountPercent on the filter",inject( function() {
-        var bindings = { filters : filters };
+        var bindings = { filters : filters, primaryKey: 'deaths' };
 
         var ctrl = $componentController( 'owhSideFilter', { $scope: $scope }, bindings);
         expect(ctrl).toBeDefined();
@@ -205,7 +208,7 @@ describe('OWH Side filter component: ', function() {
     });
 
     it('getOptionCount should return correct total for given option', function() {
-        var bindings = { filters : filters };
+        var bindings = { filters : filters, primaryKey: 'deaths' };
         var ctrl = $componentController('owhSideFilter', { $scope: $scope }, bindings);
 
         ctrl.filters = {selectedPrimaryFilter: {key: 'deaths'}};
@@ -220,7 +223,7 @@ describe('OWH Side filter component: ', function() {
     });
 
     it('getOptionCount should return correct total for given group option', function() {
-        var bindings = { filters : filters };
+        var bindings = { filters : filters, primaryKey: 'deaths' };
         var ctrl = $componentController('owhSideFilter', { $scope: $scope }, bindings);
 
         ctrl.filters = {selectedPrimaryFilter: {key: 'deaths'}};
@@ -245,27 +248,27 @@ describe('OWH Side filter component: ', function() {
         var bindings = { filters : filters, onFilter: function(){}};
         var ctrl = $componentController('owhSideFilter', { $scope: $scope }, bindings);
 
-        var group = {filterType: 'checkbox', autoCompleteOptions: [{key: '2013'}, {key: '2014'}], value: [], allChecked: false};
+        var group = {filters:{filterType: 'checkbox', autoCompleteOptions: [{key: '2013'}, {key: '2014'}], value: [], allChecked: false}};
 
         ctrl.updateGroupValue(group);
 
-        expect(group.value.length).toEqual(2);
-        expect(group.value).toContain('2013');
-        expect(group.value).toContain('2014');
+        expect(group.filters.value.length).toEqual(2);
+        expect(group.filters.value).toContain('2013');
+        expect(group.filters.value).toContain('2014');
 
-        group.allChecked = true;
+        group.filters.allChecked = true;
 
         ctrl.updateGroupValue(group);
 
-        expect(group.value.length).toEqual(0);
+        expect(group.filters.value.length).toEqual(0);
     });
 
     it('updateGroupValue should call onFilter', function() {
-        var bindings = {filters : filters, onFilter: function(){}};
+        var bindings = {filters : filters, onFilter: function(){}, runOnFilterChange: true};
         var ctrl = $componentController('owhSideFilter', { $scope: $scope }, bindings);
         spyOn(ctrl, 'onFilter');
 
-        ctrl.updateGroupValue({value: []});
+        ctrl.updateGroupValue({filters:{value: []}});
 
         expect(ctrl.onFilter).toHaveBeenCalled();
 
@@ -446,9 +449,35 @@ describe('OWH Side filter component: ', function() {
         var ctrl = $componentController('owhSideFilter', { $scope: $scope }, bindings);
         spyOn(ctrl, 'onFilter');
 
-        ctrl.updateGroupValue({value: []});
+        ctrl.updateGroupValue({filters:{value: []}});
 
         expect(ctrl.onFilter).not.toHaveBeenCalled();
 
+    });
+
+    it('onFilterValueChange should not call onFilter or refreshFilterOptions when runFilterchange and refreshFiltersOnChange is false ', function() {
+        var bindings = {filters : filters, onFilter: function(){}};
+        bindings.filters.selectedPrimaryFilter.runOnFilterChange = false;
+
+        var ctrl = $componentController('owhSideFilter', { $scope: $scope }, bindings);
+        spyOn(ctrl, 'onFilter');
+        spyOn(utilService, 'refreshFilterAndOptions');
+        ctrl.onFilterValueChange({refreshFiltersOnChange: false, filters:{ value: []}});
+
+        expect(ctrl.onFilter).not.toHaveBeenCalled();
+        expect(utilService.refreshFilterAndOptions).not.toHaveBeenCalled();
+    });
+
+    it('onFilterValueChange should call onFilter and refreshFilterOptions when runFilterchange and refreshFiltersOnChange is true ', function() {
+        var bindings = {filters : filters, onFilter: function(){}, runOnFilterChange:true };
+
+        var ctrl = $componentController('owhSideFilter', { $scope: $scope }, bindings);
+        ctrl.refreshFilterOptions = function () {};
+        spyOn(ctrl, 'onFilter');
+        spyOn(utilService, 'refreshFilterAndOptions');
+        ctrl.onFilterValueChange({refreshFiltersOnChange: true, filters:{ value: []}});
+
+        expect(ctrl.onFilter).toHaveBeenCalled();
+        expect(utilService.refreshFilterAndOptions).toHaveBeenCalled();
     });
 });

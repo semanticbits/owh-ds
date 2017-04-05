@@ -4,9 +4,9 @@
         .module('owh.services')
         .service('shareUtilService', shareUtilService);
 
-    shareUtilService.$inject = ['searchFactory', '$q', '$filter'];
+    shareUtilService.$inject = ['SearchService', '$q', '$filter'];
 
-    function shareUtilService(searchFactory, $q, $filter) {
+    function shareUtilService(SearchService, $q, $filter) {
         var service = {
             shareOnFb: shareOnFb
         };
@@ -24,12 +24,14 @@
             }
         }
         function uploadImage(response, title, section, description){
-            searchFactory.uploadImage(response).then(function(response){
+            SearchService.uploadImage(response).then(function(response){
+                //TODO:remove once tested on DEV
+                console.log(response.data.appURL+'fb/'+response.data.imageId);
                 FB.ui({
                     method: 'feed',
                     name: 'OWH ' + section + ' '+ $filter('translate')(title),
-                    link: response.appURL,
-                    picture: response.appURL+'fb/'+response.imageId,
+                    link: response.data.appURL,
+                    picture: response.data.appURL+'fb/'+response.data.imageId,
                     caption: 'OWH Digital Services Visualization',
                     description: description,
                     message: 'OWH Mortality graph',

@@ -163,60 +163,6 @@
       "deaths": 309316
     },
     {
-      "key": "Other (Puerto Rico only)",
-      "values": [
-        {
-          "label": "Central American",
-          "value": 0
-        },
-        {
-          "label": "Central and South American",
-          "value": 0
-        },
-        {
-          "label": "Cuban",
-          "value": 0
-        },
-        {
-          "label": "Dominican",
-          "value": 0
-        },
-        {
-          "label": "Latin American",
-          "value": 0
-        },
-        {
-          "label": "Mexican",
-          "value": 0
-        },
-        {
-          "label": "Non-Hispanic",
-          "value": 0
-        },
-        {
-          "label": "Other Hispanic",
-          "value": 0
-        },
-        {
-          "label": "Puerto Rican",
-          "value": 0
-        },
-        {
-          "label": "South American",
-          "value": 0
-        },
-        {
-          "label": "Spaniard",
-          "value": 0
-        },
-        {
-          "label": "Unknown",
-          "value": 0
-        }
-      ],
-      "deaths": 0
-    },
-    {
       "key": "White",
       "values": [
         {

@@ -38,7 +38,8 @@
           "title":"Multiple Race"
         }
       ],
-      "defaultGroup":"column"
+      "defaultGroup":"column",
+      "helpText":"label.help.text.yrbs.race.ethnicity"
     },
     {
       "key": "question",
@@ -600,6 +601,7 @@
           "text": "Drank three or more glasses per day of water(during the 7 days before the survey)"
         }],
       "donotshowOnSearch": true,
+      "helpText":"label.help.text.yrbs.question",
       "selectTitle": "select.label.yrbs.filter.question",
       "updateTitle": "update.label.yrbs.filter.question",
       "iconClass": "fa fa-pie-chart purple-text"

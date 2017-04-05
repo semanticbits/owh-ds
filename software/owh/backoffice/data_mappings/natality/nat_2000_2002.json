@@ -1,5 +1,12 @@
 [
   {
+    "type":"simple",
+    "column":"residence",
+    "start": 6,
+    "stop": 6,
+    "field": "Residence Status"
+  },
+  {
     "column":"hispanic_origin",
     "type":"map",
     "start": 78,
@@ -10,7 +17,7 @@
       "2": "Puerto Rican",
       "3": "Cuban",
       "4": "Central and South American",
-      "5": "Other and Unknown Hispanic Origin",
+      "5": "Other and Unknown Hispanic",
       "6": "Non-Hispanic White",
       "7": "Non-Hispanic Black",
       "8": "Non-Hispanic other races",
@@ -18,25 +25,21 @@
     }
   },
   {
-    "column":"mother_age_r12",
+    "column":"mother_age_r8",
     "type":"map",
-    "start": 74,
-    "stop": 75,
-    "field": "Age of Mother",
+    "start": 76,
+    "stop": 76,
+    "field": "Age of Mother Recode 8",
     "mappings": {
-      "01": "Under 15 years",
-      "03": "15 years",
-      "04": "16 years",
-      "05": "17 years",
-      "06": "18 years",
-      "07": "19 years",
-      "08": "20-24 years",
-      "09": "25-29 years",
-      "10": "30-34 years",
-      "11": "35-39 years",
-      "12": "40-44 years",
-      "13": "45-49 years",
-      "14": "50-54 years"
+      "1": "Under 15 years",
+      "2": "15 - 19 years",
+      "3": "20 - 24 years",
+      "4": "25 - 29 years",
+      "5": "30 - 34 years",
+      "6": "35 - 39 years",
+      "7": "40 - 44 years",
+      "8": "45 - 49 years",
+      "9": "50 - 54 years"
     }
   },
   {
@@ -55,7 +58,7 @@
     }
   },
   {
-    "column":"dob_yy",
+    "column":"current_year",
     "type":"simple",
     "start": 176,
     "stop": 179,
@@ -276,7 +279,7 @@
   },
   {
     "column":"state",
-    "type":"simple",
+    "type":"map",
     "start": 42,
     "stop": 43,
     "field": "State",
