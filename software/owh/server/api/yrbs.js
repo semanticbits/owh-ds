@@ -345,6 +345,16 @@ function prepareQuestionTreeForYears(questions, years, prams) {
     var questionsList = [];
     var catCount = 0;
     var questionKeys = [];
+    //sort prams questions based on qKey
+    if(prams) {
+        var keys = Object.keys(questions);
+        keys.sort();
+        var newQuestions = [];
+        for(var i = 0; i < keys.length; i++) {
+            newQuestions.push(questions[keys[i]]);
+        }
+        questions = newQuestions;
+    }
     //iterate through questions
     for (var qKey in questions) {
         var quesObj = questions[qKey];

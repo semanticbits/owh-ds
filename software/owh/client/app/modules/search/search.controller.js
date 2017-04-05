@@ -117,31 +117,31 @@
             natality:{},
             prams:{},
             delivery: {
-                "topic": ['cat_41', 'cat_19', 'cat_17']
+                "topic": ['cat_45', 'cat_39', 'cat_0']
             },
             demographics: {
-                "topic": ['cat_14', 'cat_13']
+                "topic": ['cat_15', 'cat_38']
             },
             family_planning: {
-                "topic": ['cat_38', 'cat_16', 'cat_18', 'cat_15']
+                "topic": ['cat_31', 'cat_20', 'cat_28', 'cat_11']
             },
             flu: {
-                "topic": ['cat_42', 'cat_45', 'cat_44', 'cat_43']
+                "topic": ['cat_3', 'cat_5', 'cat_8', 'cat_7']
             },
             infant_health: {
-                "topic": ['cat_24', 'cat_20', 'cat_32', 'cat_21', 'cat_25', 'cat_22', 'cat_23']
+                "topic": ['cat_43', 'cat_1', 'cat_24', 'cat_19', 'cat_14', 'cat_25', 'cat_6']
             },
             maternal_behavior: {
-                "topic": ['cat_29', 'cat_35', 'cat_34', 'cat_37', 'cat_26', 'cat_28', 'cat_31', 'cat_33', 'cat_39', 'cat_36', 'cat_27', 'cat_30']
+                "topic": ['cat_2', 'cat_13', 'cat_34', 'cat_12', 'cat_18', 'cat_9', 'cat_17', 'cat_35', 'cat_23', 'cat_10', 'cat_22', 'cat_26']
             },
             maternal_experiences: {
-                "topic": ['cat_11', 'cat_40', 'cat_12', 'cat_10']
+                "topic": ['cat_29', 'cat_33', 'cat_42', 'cat_27']
             },
             prenatal_care: {
-                "topic": ['cat_35', 'cat_9', 'cat_4', 'cat_5', 'cat_7', 'cat_8', 'cat_6', 'cat_0']
+                "topic": ['cat_37', 'cat_30', 'cat_4', 'cat_41', 'cat_40', 'cat_36', 'cat_16']
             },
             insurance_medicaid_services: {
-                "topic": ['cat_3', 'cat_1', 'cat_2']
+                "topic": ['cat_32', 'cat_21', 'cat_44']
             }
         };
         //show certain filters for different table views
@@ -154,29 +154,31 @@
         };
 
         //functionality to be added to the side filters
+        var confidenceIntervalOption = {
+            title: 'Confidence Intervals',
+            type: 'toggle',
+            value: false,
+            onChange: function(value) {
+                sc.showConfidenceIntervals = value;
+            },
+            options: [
+                {
+                    title: 'label.mortality.search.table.show.percentage.button',
+                    key: true
+                },
+                {
+                    title: 'label.mortality.search.table.hide.percentage.button',
+                    key: false
+                }
+            ]
+        };
+
         sc.filterUtilities = {
             'mental_health': [
                 {
                     title: 'Variance',
                     options: [
-                        {
-                            title: 'Confidence Intervals',
-                            type: 'toggle',
-                            value: false,
-                            onChange: function(value) {
-                                sc.showConfidenceIntervals = value;
-                            },
-                            options: [
-                                {
-                                    title: 'label.mortality.search.table.show.percentage.button',
-                                    key: true
-                                },
-                                {
-                                    title: 'label.mortality.search.table.hide.percentage.button',
-                                    key: false
-                                }
-                            ]
-                        },
+                        confidenceIntervalOption,
                         {
                             title: 'Unweighted Frequency',
                             type: 'toggle',
@@ -195,6 +197,14 @@
                                 }
                             ]
                         }
+                    ]
+                }
+            ],
+            'prams' : [
+                {
+                    title: 'Variance',
+                    options: [
+                        confidenceIntervalOption
                     ]
                 }
             ]
