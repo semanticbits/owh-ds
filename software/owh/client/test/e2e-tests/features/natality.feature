@@ -32,6 +32,7 @@ Feature: Natality filters
   Scenario: Birth rates
     When I change show me dropdown option to "Birth Rates"
     Then I should see filter type "Birth Rates" selected for show me dropdown
+    And I should see a Birth rate statement above data table in natality page
     And the data table must show Births, Population and Birth Rates
 
   Scenario: Disable filters when show me filter value changes - Birth Rates
