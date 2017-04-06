@@ -147,7 +147,7 @@ var natalityStepsDefinitionWrapper = function () {
     });
 
     this.Then(/^I should see a Birth rate statement above data table in natality page$/, function () {
-        expect(natalityPage.birthRateDisclaimer.getText()).to.eventually.equal("Population details from NCHS Bridged Race Estimates is used to calculate Birth Rates (per 100,000)");
+        expect(natalityPage.birthRateDisclaimer.getText()).to.eventually.equal("Population details from NCHS Bridged Race Estimates are used to calculate Birth Rates (per 100,000)");
     });
 };
 
