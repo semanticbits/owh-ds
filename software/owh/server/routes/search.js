@@ -53,6 +53,12 @@ var searchRouter = function(app, rConfig) {
         });
     });
 
+    app.get('/pramsQuestionsTree', function (req, res) {
+        new yrbs().getPramsQuestionsTree().then(function(response) {
+            res.send(new result('OK', response, "success"));
+        });
+    });
+
     app.get('/dsmetadata/:dataset', function(req, res) {
         var dataset = req.params.dataset
         var years = req.query.years?req.query.years.split(','):[];
@@ -69,14 +75,17 @@ function search(q) {
     var deferred = Q.defer();
     var preparedQuery = queryBuilder.buildAPIQuery(q);
     var finalQuery = '';
+    var stateFilter = queryBuilder.findFilterByKeyAndValue(q.sideFilters, 'key', 'state');
+
+    var isStateSelected = queryBuilder.isFilterApplied(stateFilter);
+
     logger.debug("Incoming query: ", JSON.stringify(preparedQuery));
     if (preparedQuery.apiQuery.searchFor === "deaths") {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
         finalQuery.wonderQuery = preparedQuery.apiQuery;
-        new elasticSearch().aggregateDeaths(sideFilterQuery).then(function (sideFilterResults) {
-            new elasticSearch().aggregateDeaths(finalQuery).then(function (response) {
-                searchUtils.suppressSideFilterTotals(sideFilterResults.data.simple, response.data.nested.table);
+        new elasticSearch().aggregateDeaths(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
+            new elasticSearch().aggregateDeaths(finalQuery, isStateSelected).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
                 resData.resultData = response.data;
@@ -94,6 +103,16 @@ function search(q) {
             resData.sideFilterResults = [];
             deferred.resolve(resData);
         });
+    } else if(preparedQuery.apiQuery.searchFor === "prams") {
+        preparedQuery['pagination'] = {from: 0, size: 10000};
+        preparedQuery.apiQuery['pagination'] = {from: 0, size: 10000};
+        new yrbs().invokeYRBSService(preparedQuery.apiQuery).then(function (response) {
+            var resData = {};
+            resData.queryJSON = q;
+            resData.resultData = response;
+            resData.sideFilterResults = [];
+            deferred.resolve(resData);
+        });
     } else if (preparedQuery.apiQuery.searchFor === "bridge_race") {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
 
@@ -102,8 +121,8 @@ function search(q) {
         sideFilterTotalCountQuery.countQueryKey = 'pop';
         var sideFilterQuery = queryBuilder.buildSearchQuery(sideFilterTotalCountQuery, true);
 
-        new elasticSearch().aggregateCensusData(sideFilterQuery[0]).then(function (sideFilterResults) {
-            new elasticSearch().aggregateCensusData(finalQuery[0]).then(function (response) {
+        new elasticSearch().aggregateCensusData(sideFilterQuery[0], isStateSelected).then(function (sideFilterResults) {
+            new elasticSearch().aggregateCensusData(finalQuery[0], isStateSelected).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
                 resData.resultData = response.data;
@@ -117,6 +136,11 @@ function search(q) {
 
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
         new elasticSearch().aggregateNatalityData(sideFilterQuery).then(function (sideFilterResults) {
+            if(q.tableView === 'fertility_rates' && finalQuery[1]) {
+                var query1 = JSON.stringify(finalQuery[1]);
+                //For Natality Fertility Rates add mother's age filter
+                finalQuery[1] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(query1));
+            }
             new elasticSearch().aggregateNatalityData(finalQuery).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;

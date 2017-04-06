@@ -136,7 +136,7 @@ function mergeCensusRecursively(mort, census) {
 }
 
 
-ElasticClient.prototype.aggregateDeaths = function(query){
+ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
     var self = this;
     var client = this.getClient(mortality_index);
     var deferred = Q.defer();
@@ -145,15 +145,21 @@ ElasticClient.prototype.aggregateDeaths = function(query){
         logger.debug("Census ES Query: "+ JSON.stringify( query[1]));
         var promises = [
             this.executeMortilyAndNatalityQueries(query[0], mortality_index, mortality_type),
-            this.aggregateCensusDataForMortalityQuery(query[1], census_index, census_type)
+            this.aggregateCensusDataForMortalityQuery(query[1], census_rates_index, census_rates_type)
         ];
         if(query.wonderQuery) {
+            logger.debug("Wonder Query: "+ JSON.stringify(query.wonderQuery));
             promises.push(new wonder('D76').invokeWONDER(query.wonderQuery))
         }
         Q.all(promises).then( function (resp) {
             var data = searchUtils.populateDataWithMappings(resp[0], 'deaths');
             self.mergeWithCensusData(data, resp[1]);
             searchUtils.mergeAgeAdjustedRates(data.data.nested.table, resp[2]);
+
+            if (isStateSelected) {
+                searchUtils.applySuppressions(data, 'deaths');
+            }
+
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
@@ -164,6 +170,9 @@ ElasticClient.prototype.aggregateDeaths = function(query){
         logger.debug("Mortality ES Query: "+ JSON.stringify( query[0]));
         this.executeESQuery(mortality_index, mortality_type,query[0]).then(function (resp) {
             var data = searchUtils.populateDataWithMappings(resp, 'deaths');
+            if (isStateSelected) {
+                searchUtils.applySuppressions(data, 'deaths');
+            }
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
@@ -176,7 +185,7 @@ ElasticClient.prototype.aggregateDeaths = function(query){
 /**
  * This method is used to get the bridge race data(census) based on passed in query
  */
-ElasticClient.prototype.aggregateCensusData = function(query){
+ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected){
     //get tge elasic search client for census index
     var client = this.getClient(census_index);
     var deferred = Q.defer();
@@ -187,7 +196,11 @@ ElasticClient.prototype.aggregateCensusData = function(query){
         request_cache:true
     }).then(function (resp) {
         //parse the search results
-        deferred.resolve(searchUtils.populateDataWithMappings(resp, 'bridge_race', 'pop'))
+        var results = searchUtils.populateDataWithMappings(resp, 'bridge_race', 'pop');
+        if (isStateSelected) {
+            searchUtils.applySuppressions(results, 'bridge_race');
+        }
+        deferred.resolve(results);
     }, function (err) {
         logger.error(err.message);
         deferred.reject(err);
@@ -291,7 +304,7 @@ ElasticClient.prototype.getDsMetadata = function (dataset, years) {
         }
         query.filter.and.filters.push({"or": yearfilter});
     }
-
+    logger.debug("DS metadata ES query: ", JSON.stringify(query));
     var client = this.getClient();
     var deferred = Q.defer();
     client.search({
@@ -299,6 +312,7 @@ ElasticClient.prototype.getDsMetadata = function (dataset, years) {
         type: dsmetadata_type,
         body: query
     }).then(function (resp){
+        logger.info("Successfully completed ds metadata ES query execution.");
         deferred.resolve(resp);
     }, function(err){
         logger.error("Failed to retrieve ds metadata ", err.message);

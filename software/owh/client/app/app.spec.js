@@ -22,6 +22,7 @@ describe('angular-ui-route', function() {
         $httpBackend.whenGET('app/partials/marker-template.html').respond( $templateCache.get('app/partials/marker-template.html'));
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 1111111111111111}});
         $httpBackend.whenGET('/yrbsQuestionsTree/2015').respond({data: { }});
+        $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
     });
     describe('Testing success response ', function () {
         beforeEach(function() {

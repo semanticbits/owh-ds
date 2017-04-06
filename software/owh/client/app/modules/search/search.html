@@ -63,7 +63,7 @@
                     ></owh-side-filter>
             </div>
         </div>
-        <div class="owh-search-content usa-width-three-fourths" ng-class="{'owh-search-content--expanded': !sc.sideMenu.visible }">
+        <div class="owh-search-content usa-width-three-fourths overflow-visible" ng-class="{'owh-search-content--expanded': !sc.sideMenu.visible }">
         <!--Charts-->
             <div class="usa-grid-full margin-top-30">
                 <div class="usa-width-one-whole">
@@ -111,7 +111,7 @@
 
             <!--Table-->
             <div class="usa-grid-full">
-                <div class="usa-width-one-whole overflow-auto">
+                <div class="usa-width-one-whole overflow-visible">
                     <hr />
                     <!-- show hide percentage -->
                     <div id="togglePercentage" class="togglePercentage pull-left" ng-show="sc.filters.selectedPrimaryFilter.title === 'label.filter.mortality' && sc.tableView === 'number_of_deaths'">
@@ -135,7 +135,8 @@
                             <img src="images/xls.png"/>
                         </a>
                     </div>
-                    <p id="death-rate-disclaimer" ng-show="sc.tableView === 'crude_death_rates'" ng-bind=" 'label.crude.death.rates.statement' | translate"></p>
+                    <p id="death-rate-disclaimer" class="disclaimer" ng-if="sc.tableView === 'crude_death_rates'" ng-bind=" 'label.crude.death.rates.statement' | translate"></p>
+                    <p id="birth-rate-disclaimer" class="disclaimer" ng-if="sc.tableView === 'birth_rates'" ng-bind=" 'label.crude.brith.rates.statement' | translate"></p>
                     <owh-table table-data="sc.tableData"
                                show-percentage="sc.tableData.calculatePercentage"
                                ng-if="(sc.filters.selectedPrimaryFilter.headers && sc.filters.selectedPrimaryFilter.key === 'deaths' ||
@@ -144,7 +145,9 @@
                                table-view="{{sc.tableView}}"
                                rowspan-threshold="50"></owh-table>
                     <owh-accordion-table headers="sc.tableData.headers" data="sc.tableData.data"
-                                ng-if="sc.filters.selectedPrimaryFilter.key === 'mental_health'"
+                                ng-if="sc.filters.selectedPrimaryFilter.key === 'mental_health' ||
+                                    sc.filters.selectedPrimaryFilter.key === 'prams'"
+                                primary-key="sc.filters.selectedPrimaryFilter.key"
                                 show-ci="sc.showConfidenceIntervals"
                                 show-uf="sc.showUnweightedFrequency"
                                 show-charts = "sc.filters.selectedPrimaryFilter.value.length > 1">

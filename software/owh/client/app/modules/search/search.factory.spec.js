@@ -37,8 +37,10 @@ describe('search factory ', function(){
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 1111111111111111}});
         questionsTreeJson = __fixtures__['app/modules/search/fixtures/search.factory/questionsTree'];
         $httpBackend.whenGET('/yrbsQuestionsTree/2015').respond(questionsTreeJson);
+        $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
         $rootScope.questionsList = questionsTreeJson.questionsList;
         filters = searchFactory.getAllFilters();
+        filters.primaryFilters = utils.findAllByKeyAndValue(filters.search, 'primary', true);
 
         countsMortalityAutoCompletes = __fixtures__['app/modules/search/fixtures/search.factory/countsMortalityAutoCompletes'];
 
@@ -75,34 +77,6 @@ describe('search factory ', function(){
         closeDeferred.resolve({});
         $scope.$apply();
         expect(elementVisible).toBeFalsy();
-    });
-
-    it('updateFilterValues should add proper values to the value array on primaryFilter', function () {
-        var primaryFilter = angular.copy(filters.search[0]);
-        var yearFilter = primaryFilter.sideFilters[0];
-        var initialLength = yearFilter.filters.value.length;
-        yearFilter.filters.groupBy = 'row';
-        yearFilter.filters.value.push('2013');
-        searchFactory.updateFilterValues(primaryFilter);
-
-        expect(primaryFilter.value[0].key).toEqual('year');
-        expect(primaryFilter.value[0].value.length).toEqual(initialLength + 1);
-        expect(primaryFilter.value[0].value[initialLength]).toEqual('2013');
-    });
-
-    it('updateFilterValues should work with filterGroups', function () {
-        var primaryFilter = angular.copy(filters.search[0]);
-        var yearFilter = primaryFilter.sideFilters[0];
-        var initialLength = yearFilter.filters.value.length;
-        yearFilter.groupBy = 'row';
-        yearFilter.filters.value.push('2013');
-        yearFilter.filterGroup = true;
-        yearFilter.filters = [angular.copy(yearFilter.filters)];
-        searchFactory.updateFilterValues(primaryFilter);
-
-        expect(primaryFilter.value[0].key).toEqual('year');
-        expect(primaryFilter.value[0].value.length).toEqual(initialLength + 1);
-        expect(primaryFilter.value[0].value[initialLength]).toEqual('2013');
     });
 
     it('sortAutoCompleteOptions should sort autocomplete options based on given sort array', function(){
@@ -347,7 +321,7 @@ describe('search factory ', function(){
         });
 
         it('updateFiltersAndData without year autocompleters', function () {
-            var result = searchFactory.updateFiltersAndData([primaryFilter], searchResponse, {'number_of_deaths': {}}, {});
+            var result = searchFactory.updateFiltersAndData(filters, searchResponse, {'number_of_deaths': {}}, {});
             expect(JSON.stringify(result.primaryFilter.data)).toEqual(JSON.stringify(searchResponse.data.resultData.nested.table));
         });
 
@@ -361,12 +335,12 @@ describe('search factory ', function(){
             deferred.resolve(countsMortalityAutoCompletes);
             $scope.$apply();
             var yearFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year');
-            expect(yearFilter.autoCompleteOptions.length).toEqual(15);
+            expect(yearFilter.autoCompleteOptions.length).toEqual(16);
             expect(yearFilter.autoCompleteOptions[0].count).toEqual(2630800);
         });
 
         it('searchMortalityResults', function () {
-            var result = searchFactory.updateFiltersAndData([primaryFilter], searchResponse, {'number_of_deaths': {}}, {});
+            var result = searchFactory.updateFiltersAndData(filters, searchResponse, {'number_of_deaths': {}}, {});
             expect(JSON.stringify(result.primaryFilter.data)).toEqual(JSON.stringify(searchResponse.data.resultData.nested.table));
         });
 
@@ -374,7 +348,7 @@ describe('search factory ', function(){
             var genderFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'gender');
             genderFilter.groupBy = false;
 
-            var result = searchFactory.updateFiltersAndData([primaryFilter], searchResponse, {'number_of_deaths': {}}, {});
+            var result = searchFactory.updateFiltersAndData(filters, searchResponse, {'number_of_deaths': {}}, {});
             expect(JSON.stringify(result.primaryFilter.chartDataFromAPI)).toEqual(JSON.stringify(searchResponse.data.resultData.simple));
 
             genderFilter.groupBy = 'column';
@@ -384,7 +358,7 @@ describe('search factory ', function(){
             var raceFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'race');
             raceFilter.groupBy = false;
 
-            var result = searchFactory.updateFiltersAndData([primaryFilter], groupGenderResponse, {'number_of_deaths': {}}, {});
+            var result = searchFactory.updateFiltersAndData(filters, groupGenderResponse, {'number_of_deaths': {}}, {});
             expect(JSON.stringify(result.primaryFilter.headers)).toEqual(JSON.stringify(genderGroupHeaders));
 
             raceFilter.groupBy = 'row';
@@ -397,7 +371,7 @@ describe('search factory ', function(){
             var raceFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'race');
             raceFilter.groupBy = 'other';
 
-            var result = searchFactory.updateFiltersAndData([primaryFilter], searchResponse, {'number_of_deaths': {}}, {});
+            var result = searchFactory.updateFiltersAndData(filters, searchResponse, {'number_of_deaths': {}}, {});
             expect(JSON.stringify(result.primaryFilter.maps)).toEqual(JSON.stringify(searchResponse.data.resultData.nested.maps));
 
 
@@ -412,7 +386,7 @@ describe('search factory ', function(){
             var yearFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year');
             autopsyFilter.groupBy = 'column';
 
-            var result = searchFactory.updateFiltersAndData([primaryFilter], fourGroupsResponse, {'number_of_deaths': {}}, {});
+            var result = searchFactory.updateFiltersAndData(filters, fourGroupsResponse, {'number_of_deaths': {}}, {});
             expect(JSON.stringify(result.primaryFilter.searchCount)).toEqual(JSON.stringify(fourGroupsResponse.pagination.total));
 
             autopsyFilter.groupBy = false;
@@ -470,7 +444,7 @@ describe('search factory ', function(){
         });
 
         it('searchYRBSResults', function () {
-            var result = searchFactory.updateFiltersAndData([primaryFilter], yrbsResponse, {'mental_health': {}}, 'mental_health');
+            var result = searchFactory.updateFiltersAndData(filters, yrbsResponse, {'mental_health': {}}, 'mental_health');
             expect(JSON.stringify(result.primaryFilter.data)).toEqual(JSON.stringify(yrbsResponse.data.resultData.table));
         });
 
@@ -479,7 +453,7 @@ describe('search factory ', function(){
             raceFilter.groupBy = 'row';
             raceFilter.value = '';
 
-            var result = searchFactory.updateFiltersAndData([primaryFilter], yrbsResponse, {'mental_health': {}}, 'mental_health');
+            var result = searchFactory.updateFiltersAndData(filters, yrbsResponse, {'mental_health': {}}, 'mental_health');
             expect(JSON.stringify(result.primaryFilter.headers)).toEqual(JSON.stringify(raceNoValueHeaders));
 
             raceFilter.groupBy = 'column';
@@ -490,7 +464,7 @@ describe('search factory ', function(){
             var genderFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'yrbsSex');
             genderFilter.groupBy = 'column';
 
-            var result = searchFactory.updateFiltersAndData([primaryFilter], yrbsResponse, {'mental_health': {}}, 'mental_health');
+            var result = searchFactory.updateFiltersAndData(filters, yrbsResponse, {'mental_health': {}}, 'mental_health');
             expect(result.primaryFilter.headers.columnHeaders.length).toEqual(2);
 
             genderFilter.groupBy = false;
@@ -628,7 +602,7 @@ describe('search factory ', function(){
         });
 
         it('searchNatality', function () {
-            var result = searchFactory.updateFiltersAndData([primaryFilter], response, {'natality': {}}, 'natality');
+            var result = searchFactory.updateFiltersAndData(filters, response, {'natality': {}}, 'natality');
             expect(JSON.stringify(result.primaryFilter.data)).toEqual(JSON.stringify(response.data.resultData.nested.table));
         });
 

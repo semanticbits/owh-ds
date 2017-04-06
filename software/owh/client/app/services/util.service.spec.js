@@ -3,12 +3,15 @@
 /*group of common test goes here as describe*/
 describe('utilService', function(){
     var utils, list, tableData, multipleColumnsTableData, noColumnsTableData, noRowsTableData,
-        multipleColumnsTableDataWithUnmatchedColumns, singleValuedTableData;
+        multipleColumnsTableDataWithUnmatchedColumns, singleValuedTableData, $q, $scope;
 
     beforeEach(module('owh'));
 
-    beforeEach(inject(function ($injector,$rootScope, _$state_) {
+    beforeEach(inject(function ($injector,_$rootScope_, _$state_, _$q_) {
         utils = $injector.get('utilService');
+        $q = _$q_;
+        $scope= _$rootScope_.$new();
+        var $httpBackend = $injector.get('$httpBackend');
         list = [
             {key: '1', title: 'Sunday', show: true},
             {key: '2', title: 'Monday', show: true},
@@ -30,6 +33,13 @@ describe('utilService', function(){
         noRowsTableData = __fixtures__['app/services/fixtures/util.service/noRowsTableData'];
 
         singleValuedTableData = __fixtures__['app/services/fixtures/util.service/noRowsTableData'];
+
+        $httpBackend.whenGET('app/i18n/messages-en.json').respond({});
+        $httpBackend.whenGET('app/partials/marker-template.html').respond( {});
+        $httpBackend.whenGET('/getFBAppID').respond({});
+        $httpBackend.whenGET('/yrbsQuestionsTree/2015').respond({data: { }});
+        $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('app/modules/home/home.html').respond({data: { }});
     }));
 
     it('test utils isValueNotEmpty for undefined', function () {
@@ -70,6 +80,29 @@ describe('utilService', function(){
     it('test utils convertDateToString', function () {
         var result = utils.convertDateToString(new Date('12/12/2015'), 'yyyy-MM-dd');
         expect(result).toEqual('2015-12-12');
+    });
+
+    it('test utils findFilterByKeyAndValue', function () {
+        //if found
+        var filters = [{"filterGroup":false,"collapse":true,"allowGrouping":true,"filters":{"key":"gender","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"autoCompleteOptions":[{"key":"Female","title":"Female"},{"key":"Male","title":"Male"}]}},{"filters":{"queryKey":"state", "key":"state","primary":false,"value":["AL"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]}}];
+        var stateFilter = utils.findFilterByKeyAndValue(filters, 'key', 'state');
+        expect(stateFilter.filters.key).toEqual('state');
+
+        //not found
+        var filter = utils.findFilterByKeyAndValue(filters, 'key', 'race');
+        expect(filter).toEqual(null);
+    });
+
+    it('test utils isFilterApplied', function () {
+        //if filter applied
+        var filter = {"filters":{"queryKey":"state","primary":false,"value":["AL"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]}};
+        var isFilterApplied = utils.isFilterApplied(filter);
+        expect(isFilterApplied).toEqual(true);
+
+        //not applied
+        filter = {"filterGroup":false,"collapse":true,"allowGrouping":true,"filters":{"key":"gender","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"autoCompleteOptions":[{"key":"Female","title":"Female"},{"key":"Male","title":"Male"}]}};
+        var isFilterApplied = utils.isFilterApplied(filter);
+        expect(isFilterApplied).toEqual(false);
     });
 
     it('test utils formatDateString', function () {
@@ -253,4 +286,53 @@ describe('utilService', function(){
         expect(utils.generateMapLegendLabels(10000, 70000)).toEqual([ '> 64,000', '> 58,000', '> 52,000', '> 46,000', '> 40,000', '> 34,000', '> 28,000', '> 22,000', '> 16,000', '> 10,000', '< 10,000' ]);
         expect(utils.generateMapLegendLabels(10000, 10490)).toEqual([ '> 10,900', '> 10,800', '> 10,700', '> 10,600', '> 10,500', '> 10,400', '> 10,300', '> 10,200', '> 10,100', '> 10,000', '< 10,000' ]);
     });
+
+    it('refreshFilterAndOptions options should set filter option correctly ', inject(function(SearchService) {
+        var deferred = $q.defer();
+        var filters= [
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:"row",
+                filters: {key: 'year', title: 'label.filter.year', queryKey:"year", primary: false, value: [2000, 2014], groupBy: 'row',
+                    type:"label.filter.group.year", showChart: true, defaultGroup:"column",
+                    autoCompleteOptions: []}
+            },
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:false,
+                filters: {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [], groupBy: 'row',
+                    type:"label.filter.group.demographics", showChart: true, defaultGroup:"column",
+                    autoCompleteOptions: [{key:'White','title':'White'}]}
+            },
+            {
+                filterGroup: false, collapse: true, allowGrouping: true,groupBy:true,
+                filters: {key: 'gender', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [], groupBy: 'column',
+                    type:"label.filter.group.demographics", groupByDefault: 'column', showChart: true,
+                    autoCompleteOptions: [
+                        {key:'F',title:'Female'},
+                        {key:'M',title:'Male'}
+                    ], defaultGroup:"column"
+                }
+            },
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:false,
+                filters: {key: 'ethnicity', title: 'label.filter.ethnicity', queryKey:"ethnicity", primary: false, value: ['Hispanic'], groupBy: 'row',
+                    type:"label.filter.group.ethnicity", showChart: true, defaultGroup:"column",
+                    autoCompleteOptions: [{key:'Hispanic','title':'Hispanic'},{key:'Non-Hispanic','title':'Non-Hispanic'}]}
+            }
+        ];
+
+        spyOn(SearchService, 'getDsMetadata').and.returnValue(deferred.promise);
+
+        utils.refreshFilterAndOptions({ queryKey: "year", value: ["2000"]}, filters, 'deaths');
+        expect(SearchService.getDsMetadata).toHaveBeenCalledWith("deaths","2000");
+        deferred.resolve({"status":"OK","data":{"sex":["M"],"ethnicity":[]}});
+        $scope.$apply();
+        expect(filters[0].disabled).toBeFalsy();
+        expect(filters[0].groupBy).toEqual("row");
+        expect(filters[1].disabled).toBeTruthy();
+        expect(filters[1].groupBy).toBeFalsy();
+        expect(filters[2].disabled).toBeFalsy();
+        expect(filters[2].filters.autoCompleteOptions[0].disabled).toBeTruthy();
+        expect(filters[2].filters.autoCompleteOptions[1].disabled).toBeFalsy();
+        expect(filters[3].disabled).toBeFalsy();
+    }));
 });

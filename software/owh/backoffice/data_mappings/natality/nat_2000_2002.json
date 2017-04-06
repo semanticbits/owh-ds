@@ -1,5 +1,12 @@
 [
   {
+    "type":"simple",
+    "column":"residence",
+    "start": 6,
+    "stop": 6,
+    "field": "Residence Status"
+  },
+  {
     "column":"hispanic_origin",
     "type":"map",
     "start": 78,

@@ -30,7 +30,7 @@ Scenario: Side filter collapse
 Scenario: Side filter options retain order
   Given I am on search page
   When user expands race options
-  Then user clicks on "+ 2 more" more link for "Race" filter
+  Then user clicks on "+ 1 more" more link for "Race" filter
   When user selects second race option
   Then race options retain their initial ordering
 
@@ -46,7 +46,7 @@ Scenario: Display show/hide percentage button only on mortality page
 Scenario: Death Rates
   Given I am on search page
   When the user chooses the option 'Death Rates'
-  Then the rates are shown for each row (with the Total population, from Bridge Race Estimates, as the denominator) - and not the total number of deaths shown in the table
+  Then the rates and population are shown for each row in 'Death Rates' view
 
 Scenario: Dropdown Location
   Given I am on search page
@@ -90,12 +90,12 @@ Scenario: Quick visualizations
 Scenario: Help Message above the quick visualization pane
   Given I am on search page
   When the user chooses the option 'Death Rates'
-  Then the following message should be displayed stating that population data is being retrieved from Census "Population details from NCHS Bridge Race Estimates is used to calculate Death Rates (per 100,000)"
+  Then the following message should be displayed stating that population data is being retrieved from Census "Population details from NCHS Bridged-Race Estimates are used to calculate Death Rates (per 100,000)"
 
 Scenario: Years are supposed to be in descending order
   Given I am on search page
   When user sees side filter
-  Then user clicks on "+ 12 more" more link for "Year" filter
+  Then user clicks on "+ 13 more" more link for "Year" filter
   Then years should be in descending order
 
 Scenario: Ethnicity Filter
@@ -123,11 +123,31 @@ Scenario: Check box- Hispanic Sub Categories
   When user checks some options under hispanic group
   Then data should be filtered by the checked hispanic options
 
+Scenario: Side filter total suppression
+  Given I am on search page
+  When user shows more year filters
+  And user filters by year 2015
+  And user expands sex options
+  When user expands ethnicity filter
+  And user groups ethnicity by row
+  And user expands hispanic option group
+  And user filters by ethnicity Dominican
+  And user expands state filter
+  And user selects Alaska state
+  Then user should see total for Male and Female in side filter suppressed
+  #And total should be suppressed for all Races except White
+
+Scenario: Ethnicity order
+  Given I am on search page
+  When user expands ethnicity filter
+  And user expands hispanic option group
+  Then ethnicity filters should be in given order
+
 Scenario: Race options should be in proper order
   Given I am on search page
   When user sees side filter
   Then user expands race options
-  Then user clicks on "+ 2 more" more link for "Race" filter
+  Then user clicks on "+ 1 more" more link for "Race" filter
   Then race options should be in proper order
 
 Scenario: Autopsy options should be in proper order
@@ -136,6 +156,34 @@ Scenario: Autopsy options should be in proper order
   Then user expands autopsy filter
   Then autopsy options should be in proper order
 
+Scenario: verify Place of Death filter options
+  Given I am on search page
+  When user sees side filter
+  Then user expands placeOfDeath filter
+  And user clicks on "+ 6 more" more link for "Place of Death" filter
+  Then placeofDeath filter options should be in proper order
+
+Scenario: filter data with Hospice Facility
+  Given I am on search page
+  When user sees side filter
+  Then user expands placeOfDeath filter
+  And user clicks on "+ 6 more" more link for "Place of Death" filter
+  When user select "Hospice facility" option in "Place of Death" filter
+  Then data table should display right Number of Deaths
+
+Scenario: Crude Death rates population count should match with CDC for year 2000
+  Given I am on search page
+  When I choose the option "Crude Death Rates"
+  Then I should see Crude Deth Rates page
+  And user clicks on "+ 13 more" more link for "Year" filter
+  Then I select "Year" value "2000"
+  And I un-select "Year" value "2015"
+  And data table should display right population count for Crude Death Rates
+
+Scenario: Select 'All' years
+  Given I am on search page
+  When user select "All" option in "Year" filter
+  Then data table should display right population count for year 'All' filter
 
 #Scenario: Suppressed
 #  When counts fall below the determined "cut-off" value and the conditions for suppression are met
@@ -154,23 +202,6 @@ Scenario: Age filter for age adjusted rates
   Given I am on search page
   When the user chooses the option 'Age Adjusted Death Rates'
   Then the age filter should be hidden
-
-Scenario: Side filter total suppression
-  Given I am on search page
-  When user shows more year filters
-  And user filters by year 2013
-  Then user expands race options
-  And user clicks on "+ 2 more" more link for "Race" filter
-  When user expands ethnicity filter
-  When user expands hispanic option group
-  And user filters by ethnicity Spaniard
-  Then user should only see total for white race in side filter
-
-Scenario: Ethnicity order
-  Given I am on search page
-  When user expands ethnicity filter
-  And user expands hispanic option group
-  Then ethnicity filters should be in given order
 
 Scenario: Filer 'Multiple Causes of Deaths' should be displayed
   Given I am on search page
@@ -205,10 +236,6 @@ Scenario: Disable other options when Unknown is selected
   When the user selects Unknown
   Then the rest of the options are disabled- grayed out
 
-Scenario: Only display percent for non-zero cells
-  Given I am on search page
-  When I update criteria in filter options with column "Ethnicity"
-  Then zero cells should not have percentage
 
 Scenario: Age group selection disabled for age rates
   Given I am on search page
@@ -216,33 +243,21 @@ Scenario: Age group selection disabled for age rates
   When the user chooses the option 'Age Adjusted Death Rates'
   Then table should not include age groups
 
-Scenario: Bookmark link UI
-  Given I am on search page
-  When I hovers on the bookmark link
-  Then the link gets a background box so that I feel it like a button/action
 
-#This scenario opening bookmark window but unable to find the tex on bookmark window.
-#Scenario: Bookmark link
-#  When I select the "Bookmark this search" link in application
-#  Then browser's bookmarking window should be displayed to save the link to Browser
+#TODO: Enable it while fixing OWH-304(Ethnicity is disabled needs to enable it)
+#Scenario: Hispanic Group options for crude death rate view
+#  When I update criteria in filter option with row "Ethnicity"
+#  When the user chooses the option 'Death Rates'
+#  Then table should display Hispanic groups only
 
-#Unable to find a way to click on button
-#Scenario: Launching the bookmark
-#  When I selects a saved bookmark
-#  Then all the search parameters should be autopopulated and search results should be displayed
-
-Scenario: Hispanic Group options for crude death rate view
-  When I update criteria in filter option with row "Ethnicity"
-  When the user chooses the option 'Death Rates'
-  Then table should display Hispanic groups only
-
-Scenario Outline: Show disabled filters sdfsa
+#TODO: remove Ethnicity & State from sideFilters list whenever we enable it for Crude Death Rates & Age Adjusted Death Rates
+  Scenario Outline: Show disabled filters sdfsa
   Given I am on search page
   When I choose the option <showMeFilter>
   Then I see <sideFilters> disabled
 
   Examples:
-    | showMeFilter              | sideFilters                                                                                                          |
-    |  Crude Death Rates        |  Age Groups, Autopsy, Place of Death, Weekday, Month, Underlying Cause of Death, Multiple Causes of Death            |
-    |  Age Adjusted Death Rates |  Ethnicity, Age Groups, Autopsy, Place of Death, Weekday, Month, Underlying Cause of Death, Multiple Causes of Death |
+    | showMeFilter              | sideFilters                                                                                                                 |
+    |  Crude Death Rates        |  Ethnicity, Age Groups, Autopsy, Place of Death, Weekday, Month, Underlying Cause of Death, Multiple Causes of Death, State |
+    |  Age Adjusted Death Rates |  Ethnicity, Age Groups, Autopsy, Place of Death, Weekday, Month, Underlying Cause of Death, Multiple Causes of Death, State |
 

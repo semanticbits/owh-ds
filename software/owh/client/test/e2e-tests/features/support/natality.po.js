@@ -4,6 +4,7 @@ var NatalitySearchPage = function () {
 
     nsp.showMeDropDown = element(by.id("showMeDropDown"));
     nsp.owhTable = element(by.tagName('owh-table'));
+    nsp.birthRateDisclaimer = element(by.id('birth-rate-disclaimer'));
 
     nsp.getFilterCategories = function() {
         return element.all(by.className('filter-category'));

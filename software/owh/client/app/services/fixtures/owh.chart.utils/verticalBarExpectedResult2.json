@@ -160,59 +160,6 @@
       ]
     },
     {
-      "key": "Other (Puerto Rico only)",
-      "values": [
-        {
-          "x": "Central American",
-          "y": 0
-        },
-        {
-          "x": "Central and South American",
-          "y": 0
-        },
-        {
-          "x": "Cuban",
-          "y": 0
-        },
-        {
-          "x": "Dominican",
-          "y": 0
-        },
-        {
-          "x": "Latin American",
-          "y": 0
-        },
-        {
-          "x": "Mexican",
-          "y": 0
-        },
-        {
-          "x": "Non-Hispanic",
-          "y": 0
-        },
-        {
-          "x": "Other Hispanic",
-          "y": 0
-        },
-        {
-          "x": "Puerto Rican",
-          "y": 0
-        },
-        {
-          "x": "South American",
-          "y": 0
-        },
-        {
-          "x": "Spaniard",
-          "y": 0
-        },
-        {
-          "x": "Unknown",
-          "y": 0
-        }
-      ]
-    },
-    {
       "key": "White",
       "values": [
         {

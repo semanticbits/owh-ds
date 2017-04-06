@@ -4,6 +4,7 @@ var config = require('../config/config');
 var request = require('request');
 
 var cahcedQuestions = null;
+var cachedPramsQuestions = null;
 function yrbs() {
 }
 
@@ -28,10 +29,11 @@ yrbs.prototype.invokeYRBSService = function(apiQuery){
     for (var q in yrbsquery){
         queryPromises.push(invokeYRBS(yrbsquery[q]));
     }
+
     Q.all(queryPromises).then(function(resp){
         var duration = new Date().getTime() - startTime;
         logger.info("YRBS service response received for all "+yrbsquery.length+" questions, duration(s)="+ duration/1000);
-        deferred.resolve(self.processYRBSReponses(resp, apiQuery.yrbsBasic));
+        deferred.resolve(self.processYRBSReponses(resp, apiQuery.yrbsBasic, apiQuery.searchFor));
     }, function (error) {
         deferred.reject(error);
     });
@@ -97,9 +99,13 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
             var selectedQs = apiQuery.query['question.path'].value;
             for (var i = 0; i < selectedQs.length; i++) {
                 var qry = config.yrbs.queryUrl+'?'; //Base url
-                qry += 'd=yrbss&' // yrbs dataset
-                qry += 'r=1&' // count true responses
-                if(apiQuery.yrbsBasic){
+                if(apiQuery.searchFor === 'mental_health') {
+                    qry += 'd=yrbss&' // yrbs dataset
+                    qry += 'r=1&' // count true responses
+                } else if(apiQuery.searchFor === 'prams') {
+                    qry += 'd=prams&' // yrbs dataset
+                }
+                if(apiQuery.yrbsBasic || apiQuery.searchFor === 'prams'){
                     qry +='s=1&';
                 }
                 qry += 'q=' + selectedQs[i]; // Question param
@@ -119,11 +125,11 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
  * @param response
  * @returns {{table: {question: Array}, maxQuestion: string}}
  */
-yrbs.prototype.processYRBSReponses = function(response, precomputed){
+yrbs.prototype.processYRBSReponses = function(response, precomputed, key){
     var questions = []
     for (r in response){
         if (response[r] && 'results' in response[r]) {
-            questions.push(this.processQuestionResponse(response[r], precomputed));
+            questions.push(this.processQuestionResponse(response[r], precomputed, key));
         } else{
             logger.warn("Error response from YRBS: "+JSON.stringify(response[r]));
         }
@@ -138,13 +144,13 @@ yrbs.prototype.processYRBSReponses = function(response, precomputed){
  * @param response
  * @returns {{name: (Array|string|string|string|string|COLORS_ON.question|*), mental_health}}
  */
-yrbs.prototype.processQuestionResponse = function(response, precomputed){
+yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
     var q = {"name" :response.q};
 
     for (var i in  response.results){
         var r = response.results[i];
         if(isTotalCell(r, response.vars, precomputed)){
-            q["mental_health"]= resultCellObject(r);
+            q[key]= resultCellObject(r);
         }else if(!isSubTotalCell(r, response.vars, precomputed)){
             var cell = q;
             // The result table is always nested in the order Sex (sex), Grade (grade), Race (race7) and  Year (year)
@@ -158,17 +164,40 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed){
             if ('race' in r) {
                 cell = getResultCell(cell, 'race', r.race);
             }
+            //flag whether data was already sorted by responses for PRAMS
+            var responseAdded = false;
             if ('year' in r) {
                 cell = getResultCell(cell, 'year', r.year);
+                sortByResponse(response.results[i], q, cell, 'year', responseAdded);
+                responseAdded = true;
+                if(response.results[i].response) {
+                    delete q['year'];
+                }
             }
             if ('sitecode' in r) {
                 cell = getResultCell(cell, 'sitecode', r.sitecode);
+                sortByResponse(response.results[i], q, cell, 'sitecode', responseAdded);
+                if(response.results[i].response) {
+                    delete q['sitecode'];
+                }
             }
-            cell['mental_health'] = resultCellObject(r);
+
+            cell[key] = resultCellObject(r);
         }
     }
     return q;
 };
+
+function sortByResponse(result, q, cell, key, isAdded) {
+    if(result.response && !isAdded) {
+        var responseKey = result.response;
+        if(!q[responseKey]) {
+            q[responseKey] = {};
+            q[responseKey][key] = [];
+        }
+        q[responseKey][key].push(cell);
+    }
+}
 
 function isTotalCell(cell, groupings, precomputed){
     if(precomputed) {
@@ -285,16 +314,47 @@ yrbs.prototype.getQuestionsTreeByYears = function (yearList) {
 };
 
 /**
+ * Get questions for PRAMS
+ * @returns {*\promise}
+ */
+yrbs.prototype.getPramsQuestionsTree = function () {
+    var deferred = Q.defer();
+    if(cachedPramsQuestions) {
+        logger.info("Returning cached PRAMS questions");
+        deferred.resolve(cachedPramsQuestions);
+    } else {
+        invokeYRBS(config.yrbs.questionsUrl + '?d=prams').then(function(response) {
+            logger.info("Getting PRAMS questions from YRBS service");
+            var data = prepareQuestionTreeForYears(response, [], true);
+            cachedPramsQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
+            deferred.resolve(cachedPramsQuestions);
+        });
+    }
+    return deferred.promise;
+};
+
+/**
  * Prepare YRBS question tree based on question categories
  * @param questionList
  * @param years
  */
-function prepareQuestionTreeForYears(questions, years) {
+function prepareQuestionTreeForYears(questions, years, prams) {
     logger.info("Preparing questions tree");
     var qCategoryMap = {};
     var questionTree = [];
     var questionsList = [];
     var catCount = 0;
+    var questionKeys = [];
+    //sort prams questions based on qKey
+    if(prams) {
+        var keys = Object.keys(questions);
+        keys.sort();
+        var newQuestions = [];
+        for(var i = 0; i < keys.length; i++) {
+            newQuestions.push(questions[keys[i]]);
+        }
+        questions = newQuestions;
+    }
     //iterate through questions
     for (var qKey in questions) {
         var quesObj = questions[qKey];
@@ -308,6 +368,15 @@ function prepareQuestionTreeForYears(questions, years) {
                 qCategoryMap[qCategory].children.push(question);
                 //capture all questions into questionsList
                 questionsList.push({key : quesObj.question, qkey : qKey, title : quesObj.question +"("+quesObj.description+")"});
+            } else if(prams) {
+                //skip duplicate question keys
+                if(questionKeys.indexOf(quesObj.questionid) >= 0) {
+                    continue;
+                }
+                var question = {text:quesObj.question, id: quesObj.questionid};
+                qCategoryMap[qCategory].children.push(question);
+                questionsList.push({key: quesObj.question, qkey: quesObj.questionid, title: quesObj.question});
+                questionKeys.push(quesObj.questionid);
             }
         }
     }

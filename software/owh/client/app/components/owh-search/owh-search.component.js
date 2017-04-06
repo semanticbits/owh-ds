@@ -26,7 +26,10 @@
         ots.goBackward = goBackward;
         ots.$onChanges = function() {
             var filters = [];
-            if(['number_of_deaths', 'crude_death_rates', 'age-adjusted_death_rates'].indexOf(ots.tableView) !== -1) {
+            if(ots.filters && ots.filters.selectedPrimaryFilter.key === 'prams') {
+                filters = ots.showFilters.prams;
+            }
+            else if(['number_of_deaths', 'crude_death_rates', 'age-adjusted_death_rates'].indexOf(ots.tableView) !== -1) {
                 filters = ots.showFilters.deaths;
             }
             else {

@@ -66,9 +66,10 @@
 
                 <!-- conditions filter -->
                 <span ng-class="{'disabled-filter': !sfc.isVisible(sideFilter)}"
-                      ng-if="group.filterType === 'conditions' && ( group.key === 'ucd-filters' || group.key === 'mcd-filters')">
+                      ng-if="group.filterType === 'conditions' && ( group.key === 'ucd-chapter-10' || group.key === 'mcd-filters')">
                     <label class="side-pane-label custom-label">
-                        <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse" class="custom-link">
+                        <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
+                           title="{{group.helpText | translate}}" class="custom-link">
                             <i class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></i>
                             <span translate="{{group.title}}" class="filter-display-name"></span>
                         </a>
@@ -132,7 +133,8 @@
                 <!-- tree filter -->
                 <span ng-class="{'disabled-filter': !sfc.isVisible(sideFilter)}" ng-if="group.filterType === 'tree'">
                     <label class="side-pane-label custom-label">
-                        <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse" class="custom-link">
+                        <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
+                           title="{{group.helpText | translate}}" class="custom-link">
                             <i class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></i>
                             <span translate="{{group.title}}" class="filter-display-name"></span>
                         </a>
@@ -259,7 +261,8 @@
                                 <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                                        ng-init="title = option.title">
                                     <span class="count-label" translate="{{title}}"></span>
-                                    <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts" ng-bind="option.count | number"></span>
+                                    <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts && option.count != 'suppressed'" ng-bind="option.count | number"></span>
+                                    <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts && option.count === 'suppressed'">Suppressed</span>
                                 </label>
                             </div>
                         </li>
@@ -274,7 +277,8 @@
                                 <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                                        ng-init="title = option.title">
                                     <span ng-class="option.disabled?'disable-click':'count-label'" translate="{{title}}"></span>
-                                    <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts" ng-bind="option.count | number"></span>
+                                    <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts && option.count != 'suppressed'" ng-bind="option.count | number"></span>
+                                    <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts && option.count === 'suppressed'">Suppressed</span>
                                 </label>
                             </div>
 
@@ -296,11 +300,12 @@
                                     <li ng-repeat="subOption in option.options"
                                         class="group-option">
                                         <input id="{{sfc.primaryKey}}_{{group.key}}_{{subOption.key}}" name="{{group.queryKey}}" type="checkbox"
-                                               ng-show="group.filterType === 'checkbox'"  checklist-model="group.value" checklist-value="option.key" ng-disabled="sfc.isOptionDisabled(group, subOption)" ng-click="sfc.onFilterValueChange(sideFilter)">
+                                               ng-show="group.filterType === 'checkbox'"  checklist-model="group.value" checklist-value="subOption.key" ng-disabled="sfc.isOptionDisabled(group, subOption)" ng-click="sfc.onFilterValueChange(sideFilter)">
                                         <label for="{{sfc.primaryKey}}_{{group.key}}_{{subOption.key}}" class="custom-label"
                                                ng-init="title = subOption.title">
                                             <span class="count-label" translate="{{title}}"></span>
-                                            <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts" ng-bind="subOption.count | number"></span>
+                                            <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts && subOption.count != 'suppressed'" ng-bind="subOption.count | number"></span>
+                                            <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts && subOption.count === 'suppressed'">Suppressed</span>
                                         </label>
                                     </li>
                                 </ul>
@@ -327,7 +332,8 @@
                 <!-- radio filter -->
                 <span ng-class="{'disabled-filter': !sfc.isVisible(sideFilter)}" ng-if="group.filterType === 'radio'">
                     <label class="side-pane-label custom-label">
-                        <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse" class="custom-link">
+                        <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
+                           title="{{group.helpText | translate}}" class="custom-link">
                             <i class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></i>
                             <span translate="{{group.title}}" class="filter-display-name"></span>
                         </a>
@@ -439,7 +445,8 @@
         <li class="accordion" ng-repeat="util in sfc.utilities">
             <span>
                 <label class="side-pane-label custom-label">
-                    <a href="javascript:void(0)" ng-click="util.collapse = !util.collapse" class="custom-link">
+                    <a href="javascript:void(0)" ng-click="util.collapse = !util.collapse"
+                       title="{{util.helpText | translate}}" class="custom-link">
                         <i class="fa" ng-class="util.collapse?'fa-chevron-right':'fa-chevron-down'"></i>
                         <span translate="{{util.title}}"></span>
                     </a>

@@ -2,7 +2,7 @@
 
 describe('OWH Side filter component: ', function() {
     var $rootScope, $injector, $templateCache, $scope, filters,closeDeferred, controllerProvider,
-        modalService,givenModalDefaults, ModalService,elementVisible, thenFunction, SearchService;
+        modalService,givenModalDefaults, ModalService,elementVisible, thenFunction,  utilService;
 
     var $httpBackend, $compile, $http, $componentController;
 
@@ -32,7 +32,7 @@ describe('OWH Side filter component: ', function() {
         });
 
         inject(function(_$rootScope_, _$state_, _$injector_, _$templateCache_,_$location_, _$compile_, _$http_,
-                        _$componentController_ , _$q_, _$controller_) {
+                        _$componentController_ , _$q_, _$controller_, _utilService_) {
             $rootScope  = _$rootScope_;
             $injector   = _$injector_;
             $templateCache = _$templateCache_;
@@ -44,6 +44,7 @@ describe('OWH Side filter component: ', function() {
             //modalService = _ModalService_;
             closeDeferred = _$q_.defer();
             controllerProvider = _$controller_;
+            utilService = _utilService_
         });
         $templateCache.put('app/components/owh-side-filter/owhSideFilter.html', 'app/components/owh-side-filter/owhSideFilter.html');
         $templateCache.put('app/modules/home/home.html', 'app/modules/home/home.html');
@@ -56,6 +57,7 @@ describe('OWH Side filter component: ', function() {
         $httpBackend.whenGET('app/partials/marker-template.html').respond( $templateCache.get('app/partials/marker-template.html'));
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 1111111111111111}});
         $httpBackend.whenGET('/yrbsQuestionsTree/2015').respond({data: { }});
+        $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
 
         function searchResultsFn() {
 
@@ -459,74 +461,23 @@ describe('OWH Side filter component: ', function() {
 
         var ctrl = $componentController('owhSideFilter', { $scope: $scope }, bindings);
         spyOn(ctrl, 'onFilter');
-        spyOn(ctrl, 'refreshFilterOptions');
+        spyOn(utilService, 'refreshFilterAndOptions');
         ctrl.onFilterValueChange({refreshFiltersOnChange: false, filters:{ value: []}});
 
         expect(ctrl.onFilter).not.toHaveBeenCalled();
-        expect(ctrl.refreshFilterOptions).not.toHaveBeenCalled();
+        expect(utilService.refreshFilterAndOptions).not.toHaveBeenCalled();
     });
 
-    it('onFilterValueChange should not call onFilter or refreshFilterOptions when runFilterchange and refreshFiltersOnChange is true ', function() {
+    it('onFilterValueChange should call onFilter and refreshFilterOptions when runFilterchange and refreshFiltersOnChange is true ', function() {
         var bindings = {filters : filters, onFilter: function(){}, runOnFilterChange:true };
 
         var ctrl = $componentController('owhSideFilter', { $scope: $scope }, bindings);
         ctrl.refreshFilterOptions = function () {};
         spyOn(ctrl, 'onFilter');
-        spyOn(ctrl, 'refreshFilterOptions');
+        spyOn(utilService, 'refreshFilterAndOptions');
         ctrl.onFilterValueChange({refreshFiltersOnChange: true, filters:{ value: []}});
 
         expect(ctrl.onFilter).toHaveBeenCalled();
-        expect(ctrl.refreshFilterOptions).toHaveBeenCalled();
+        expect(utilService.refreshFilterAndOptions).toHaveBeenCalled();
     });
-
-    it('refreshFilter options should set filter option correctly ', inject(function(SearchService) {
-        filters= [
-                {
-                    filterGroup: false, collapse: false, allowGrouping: true, groupBy:"row",
-                    filters: {key: 'year', title: 'label.filter.year', queryKey:"year", primary: false, value: [2000, 2014], groupBy: 'row',
-                        type:"label.filter.group.year", showChart: true, defaultGroup:"column",
-                        autoCompleteOptions: []}
-                },
-                {
-                    filterGroup: false, collapse: false, allowGrouping: true, groupBy:false,
-                    filters: {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [], groupBy: 'row',
-                        type:"label.filter.group.demographics", showChart: true, defaultGroup:"column",
-                        autoCompleteOptions: [{key:'White','title':'White'}]}
-                },
-                {
-                    filterGroup: false, collapse: true, allowGrouping: true,groupBy:true,
-                    filters: {key: 'gender', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [], groupBy: 'column',
-                        type:"label.filter.group.demographics", groupByDefault: 'column', showChart: true,
-                        autoCompleteOptions: [
-                            {key:'F',title:'Female'},
-                            {key:'M',title:'Male'}
-                        ], defaultGroup:"column"
-                    }
-                },
-                {
-                    filterGroup: false, collapse: false, allowGrouping: true, groupBy:false,
-                    filters: {key: 'ethnicity', title: 'label.filter.ethnicity', queryKey:"ethnicity", primary: false, value: ['Hispanic'], groupBy: 'row',
-                        type:"label.filter.group.ethnicity", showChart: true, defaultGroup:"column",
-                        autoCompleteOptions: [{key:'Hispanic','title':'Hispanic'},{key:'Non-Hispanic','title':'Non-Hispanic'}]}
-                }
-            ];
-
-        var bindings = {filters : filters, onFilter: function(){}, runOnFilterChange:true, primaryKey:'deaths' };
-
-        var ctrl = $componentController('owhSideFilter', { $scope: $scope }, bindings);
-        spyOn(SearchService, 'getDsMetadata').and.returnValue(closeDeferred.promise);
-
-        ctrl.refreshFilterOptions({ queryKey: "year", value: ["2000"]});
-        expect(SearchService.getDsMetadata).toHaveBeenCalledWith("deaths","2000");
-        closeDeferred.resolve({"status":"OK","data":{"sex":["M"],"ethnicity":[]}});
-        $scope.$apply();
-        expect(filters[0].disabled).toBeFalsy();
-        expect(filters[0].groupBy).toEqual("row");
-        expect(filters[1].disabled).toBeTruthy();
-        expect(filters[1].groupBy).toBeFalsy();
-        expect(filters[2].disabled).toBeFalsy();
-        expect(filters[2].filters.autoCompleteOptions[0].disabled).toBeTruthy();
-        expect(filters[2].filters.autoCompleteOptions[1].disabled).toBeFalsy();
-        expect(filters[3].disabled).toBeFalsy();
-    }));
 });

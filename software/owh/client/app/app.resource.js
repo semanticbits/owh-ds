@@ -47,6 +47,10 @@
         method : 'GET',
         url: '/yrbsQuestionsTree/:years'
       },
+      'getPRAMSQuestionsTree': {
+          method: 'GET',
+          url: '/pramsQuestionsTree'
+      },
       'getDsMetadata' : {
         method : 'GET',
         url: '/dsmetadata/:dataset'

@@ -6,7 +6,7 @@
     </thead>
     <tbody class="owh-question__table" ng-repeat="eachCategory in oatc.data | filter: oatc.filterCategory">
         <tr class="owh-question__title-row" ng-if="eachCategory.questions.length > 0">
-            <td class="owh-question__title" colspan="100%">
+            <td class="owh-question__title" colspan="100%" title="{{ oatc.qCategoryHelpTextMap[eachCategory.title] |  translate }}">
                 <a class="owh-question__expand cursor-pointer" ng-if="!eachCategory.collapse" ng-click="oatc.collapseRow(eachCategory)">
                     <i class="fa fa-chevron-down" title="Collapse category"></i>
                 </a>
@@ -18,7 +18,7 @@
             </td>
         </tr>
         <tr class="owh-question__question" ng-repeat="eachRow in oatc.listRows(eachCategory)" ng-hide="$index > 1 && eachCategory.hide || eachCategory.collapse">
-            <td ng-repeat="eachColumn in eachRow" colspan="{{ eachColumn.colspan }}" rowspan="{{ eachColumn.rowspan }}">
+            <td ng-repeat="eachColumn in eachRow" colspan="{{ eachColumn.colspan }}" rowspan="{{ eachColumn.rowspan }}" ng-style="eachColumn.style">
                 <div class="owh-question__content" ng-class="{'text-right': $index > 0}">
                     <span ng-if="!eachColumn.title.mean" ng-bind-html="eachColumn.title"></span>
                     <div ng-if="eachColumn.title.mean" title="% of Yes responses">

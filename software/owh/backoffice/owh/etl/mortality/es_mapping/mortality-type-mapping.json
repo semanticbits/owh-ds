@@ -1,7 +1,7 @@
 {
   "mortality": {
     "_source": {
-      "enabled": false
+      "enabled": true
     },
     "include_in_all": false,
     "properties": {

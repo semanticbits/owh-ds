@@ -72,13 +72,6 @@
             "deathsPercentage": 11.64
           },
           {
-            "key": "0",
-            "title": "Other (Puerto Rico only)",
-            "deaths": 0,
-            "count": 0,
-            "deathsPercentage": 0
-          },
-          {
             "key": "White",
             "title": "White",
             "deaths": "10,918,196",
@@ -207,13 +200,6 @@
                 "deaths": "1,486,573",
                 "count": 1486573,
                 "deathsPercentage": 11.64
-              },
-              {
-                "key": "0",
-                "title": "Other (Puerto Rico only)",
-                "deaths": 0,
-                "count": 0,
-                "deathsPercentage": 0
               },
               {
                 "key": "White",
@@ -400,13 +386,6 @@
                 "deathsPercentage": 11.64
               },
               {
-                "key": "0",
-                "title": "Other (Puerto Rico only)",
-                "deaths": 0,
-                "count": 0,
-                "deathsPercentage": 0
-              },
-              {
                 "key": "White",
                 "title": "White",
                 "deaths": "10,918,196",
@@ -558,11 +537,11 @@
           "colspan": 1
         },
         {
-          "title": 0,
+          "title": "Not Available",
           "isCount": true
         },
         {
-          "title": 0,
+          "title": "Not Available",
           "isCount": true
         },
         {

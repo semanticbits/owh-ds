@@ -105,13 +105,16 @@
                     if(column.isCount) {
                         cell += '<label class="custom-label owh-table__cell-content">';
                             cell += '<div>';
-                        if(otc.tableView === 'crude_death_rates' || otc.tableView === 'age-adjusted_death_rates' || otc.tableView === 'birth_rates') {
+                        if(['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates'].indexOf(otc.tableView) >= 0) {
                             cell += '<div id="crudeRateDiv" class="owh-table__left-col ' + (row.length > 5 ? 'usa-width-one-half' : 'usa-width-one-third') + '">';
                             if(rowIndex === 0) {
                                 cell += '<label class="owh-table__label">Rate</label>';
                             }
                             var rateVisibility = getRateVisibility(column.title, column.pop);
-                            if(otc.tableView === 'crude_death_rates' || otc.tableView === 'birth_rates') {
+                            if(otc.tableView === 'age-adjusted_death_rates') {
+                                cell += '<span>' + (column.ageAdjustedRate ? column.ageAdjustedRate : 'Not Available') + '</span>';
+                            }
+                            else {
                                 cell += '<span>'
                                 if(rateVisibility === 'visible') {
                                     cell += $filter('number')(column.title / column.pop * 100000, 1);
@@ -124,14 +127,11 @@
                                 }
                                 cell += '</span>';
                             }
-                            if(otc.tableView === 'age-adjusted_death_rates') {
-                                cell += '<span>' + (column.ageAdjustedRate ? column.ageAdjustedRate : 'Not Available') + '</span>';
-                            }
                             cell += '</div>';
                             cell += '<div id="curdeDeathsPopuDiv" class="' + (row.length > 5 ? 'usa-width-one-half' : 'usa-width-one-third') + '">';
                             cell += '<div>';
                             if(rowIndex === 0) {
-                                if(otc.tableView === 'birth_rates') {
+                                if(otc.tableView === 'birth_rates' || otc.tableView === 'fertility_rates') {
                                     cell += '<label class="owh-table__label">Births</label>';
                                 }
                                 else {
@@ -147,10 +147,15 @@
                             cell += '</span>';
                             cell += '</div>';
                             cell += '<div>';
-                            if(otc.tableView === 'crude_death_rates' || otc.tableView === 'birth_rates') {
-                                if(rowIndex === 0) {
+                            if(rowIndex === 0) {
+                                if(otc.tableView == 'fertility_rates') {
+                                    cell += '<label class="owh-table__label">Female Population</label>';
+                                }
+                                else {
                                     cell += '<label class="owh-table__label">Population</label>';
                                 }
+                            }
+                            if(otc.tableView !== 'age-adjusted_death_rates') {
                                 cell += '<span>';
                                 if(column.pop) {
                                     cell += $filter('number')(column.pop);
@@ -158,10 +163,7 @@
                                     cell += 'Not Available';
                                 }
                                 cell += '</span>';
-                            } else if(otc.tableView === 'age-adjusted_death_rates') {
-                                if(rowIndex === 0) {
-                                    cell += '<label class="owh-table__label">Population</label>';
-                                }
+                            } else {
                                 cell += '<span>';
                                 if(column.standardPop && angular.isNumber(column.standardPop)) {
                                     cell += $filter('number')(column.standardPop);
@@ -177,6 +179,8 @@
                         } else if(otc.tableView === 'number_of_deaths') {
                             if(column.title === 'suppressed') {
                                 cell += '<span>Suppressed</span>';
+                            } else if(column.title === 'Not Available') {
+                                cell += '<span>Not Available</span>';
                             } else {
                                 cell += '<span class="count-value">' + $filter('number')(column.title) + '</span>';
                                 if(colIndex !== row.length - 1 && column.percentage  > 0 && otc.showPercentage) {
@@ -184,7 +188,13 @@
                                 }
                             }
                         } else if(otc.tableView === 'bridge_race') {
-                            cell += '<span class="count-value">' + $filter('number')(column.title) + '</span>';
+                            if(column.title === 'suppressed') {
+                                cell += '<span>Suppressed</span>';
+                            } else if(column.title === 'Not Available') {
+                                cell += '<span>Not Available</span>';
+                            } else {
+                                cell += '<span class="count-value">' + $filter('number')(column.title) + '</span>';
+                            }
                         } else if(otc.tableView === 'number_of_births') {
                             cell += '<span class="count-value">' + $filter('number')(column.title) + '</span>';
                         }

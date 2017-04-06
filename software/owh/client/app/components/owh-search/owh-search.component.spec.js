@@ -24,6 +24,7 @@ describe('OWH search component: ', function() {
         $httpBackend.whenGET('app/i18n/messages-en.json').respond({ hello: 'World' });
         $httpBackend.whenGET('app/partials/marker-template.html').respond( $templateCache.get('app/partials/marker-template.html'));
         $httpBackend.whenGET('app/partials/owhSearch.html').respond( $templateCache.get('app/partials/owhSearch.html'));
+        $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
     });
 
     it('Should have controller', inject(function ($httpBackend, $location) {

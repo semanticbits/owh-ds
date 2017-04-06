@@ -269,50 +269,36 @@ var isEmptyObject = function(obj) {
     return !Object.keys(obj).length;
 };
 
-// Obsolete code
-// function buildQueryForYRBS(primaryFilter, dontAddYearAgg) {
-//     var result = buildAPIQuery(primaryFilter);
-//     var apiQuery = result.apiQuery;
-//     var headers = result.headers;
-//     var resultFilter = headers.columnHeaders.length > 0 ? headers.columnHeaders[0] : headers.rowHeaders[0];
-//     var resultAggregation = findByKeyAndValue(apiQuery.aggregations.nested.table, 'key', resultFilter.key);
-//     resultAggregation.isPrimary = true;
-//     apiQuery.dataKeys = findAllNotContainsKeyAndValue(resultFilter.autoCompleteOptions, 'isAllOption', true);
-//     headers.columnHeaders.concat(headers.rowHeaders).forEach(function(eachFilter) {
-//         var allValues = getValuesByKeyIncludingKeyAndValue(eachFilter.autoCompleteOptions, 'key', 'isAllOption', true);
-//         if(eachFilter.key === resultFilter.key) {
-//             if(apiQuery.query[eachFilter.queryKey]) {
-//                 apiQuery.query[eachFilter.queryKey].value = allValues;
-//             }
-//         } else if(eachFilter.key !== resultFilter.key && eachFilter.key !== 'question') {
-//             if(!apiQuery.query[eachFilter.queryKey] || allValues.indexOf(apiQuery.query[eachFilter.queryKey].value) >= 0) {
-//                 apiQuery.query[eachFilter.queryKey] = getFilterQuery(eachFilter);
-//                 apiQuery.query[eachFilter.queryKey].value = getValuesByKeyExcludingKeyAndValue(eachFilter.autoCompleteOptions, 'key', 'isAllOption', true);
-//             }
-//         }
-//     });
-//     apiQuery.query.primary_filter = getFilterQuery({key: 'primary_filter', queryKey: 'primary_filter', value: resultFilter.queryKey, primary: false});
-//     var yearFilter = findByKeyAndValue(primaryFilter.allFilters, 'key', 'year');
-//     if(yearFilter.value.length != 1 && !dontAddYearAgg) {
-//         headers.columnHeaders.push(yearFilter);
-//         apiQuery.aggregations.nested.table.push(getGroupQuery(yearFilter));
-//     }
-//     result.resultFilter = resultFilter;
-//     return result;
-// }
 
 /**
- * Finds and returns the first object in array of objects by using the key and value
+ * Find the filter in array by key and value
  * @param a
  * @param key
  * @param value
  * @returns {*}
  */
-function findByKeyAndValue(a, key, value) {
-    for (var i = 0; i < a.length; i++) {
-        if ( a[i][key] && a[i][key] === value ) {return a[i];}
+function findFilterByKeyAndValue(a, key, value) {
+    if (a) {
+        for (var i = 0; i < a.length; i++) {
+            var filter = a[i].filters;
+            if ( filter[key] && filter[key] === value ) {return a[i];}
+        }
     }
     return null;
+}
+
+/**
+ * Finds if the specified filter is applied or not
+ * @param a
+ * @param key
+ * @param value
+ * @returns {*}
+ */
+function isFilterApplied(a) {
+    if (a && a.filters) {
+        return a.filters.value.length > 0;
+    }
+    return false;
 }
 
 /**
@@ -392,7 +378,6 @@ function buildAPIQuery(primaryFilter) {
     if(primaryFilter.searchFor) {
         apiQuery = primaryFilter;
     }
-    //var defaultHeaders = [];
 
     // For YRBS query capture the basisc/advanced search view
     if(primaryFilter.key === 'mental_health' && primaryFilter.showBasicSearchSideMenu) {
@@ -415,6 +400,11 @@ function buildAPIQuery(primaryFilter) {
         if(eachFilterQuery) {
             apiQuery.query[eachFilter.queryKey] = eachFilterQuery;
         }
+    });
+    primaryFilter.sideFilters.forEach(function(filter) {
+       if(filter.filters.key === 'topic') {
+           apiQuery.query['question.path'].value = filter.filters.questions;
+       }
     });
     apiQuery.aggregations.nested.table = rowAggregations.concat(columnAggregations);
     var result = prepareChartAggregations(headers.rowHeaders.concat(headers.columnHeaders), apiQuery.searchFor);
@@ -445,17 +435,13 @@ function sortByKey(array, key, asc) {
     });
 }
 
-
-function getGroupQuery(filter/*, isPrimary*/) {
+var getGroupQuery = function (filter){
     var groupQuery = {
         key: filter.key,
         queryKey: filter.aggregationKey ? filter.aggregationKey : filter.queryKey,
         getPercent: filter.getPercent,
-        size: 100000
-    };/*
-     if(isPrimary) {
-     groupQuery.isPrimary = true;
-     }*/
+        size: 0
+    };
     return groupQuery;
 }
 
@@ -476,10 +462,9 @@ function buildFilterQuery(filter) {
 }
 
 function getFilterQuery(filter) {
-    var values = [];
     return {
         key: filter.key,
-        queryKey: filter.queryKey,
+        queryKey: filter.aggregationKey ? filter.aggregationKey : filter.queryKey,
         value: filter.value,
         primary: filter.primary
     };
@@ -525,6 +510,34 @@ function prepareChartAggregations(headers, countKey) {
         chartHeaders: chartHeaders,
         chartAggregations: chartAggregations
     }
+}
+
+/**
+ * To calculate Fertility Rates, Filter census rates query with
+ * Age filter (15 to 44 years) and Gender (Female)
+ * If user don't select any option for Age group related filters in Natality - Fertility Rates page, then Fertility Rates calculation consider
+ * all female with age 15 to 44 years population
+ * @param topLevelQuery
+ * @returns {*}
+ */
+function addFiltersToCalcFertilityRates(topLevelQuery) {
+
+    var query = topLevelQuery.query.filtered.filter;
+    var queryString = JSON.stringify(query);
+    //if(['mother_age', 'mother_age_r14', 'mother_age_r8', 'mother_age_r9'].indexOf(queryString) < 0) {
+    if(queryString.indexOf('mother_age') < 0 && queryString.indexOf('mother_age_r14') < 0 && queryString.indexOf('mother_age_r8') < 0 && queryString.indexOf('mother_age_r9') < 0 ) {
+        var ageValues = ["15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "37", "38", "39", "40", "41", "42", "43", "44"];
+        var ageQuery = buildBoolQuery("age", ageValues, false);
+        if(!isEmptyObject(ageQuery)) {
+            query.bool.must.push(ageQuery);
+        }
+    }
+    var sexQuery = buildBoolQuery("sex", 'Female', false);
+    if(!isEmptyObject(sexQuery)) {
+        query.bool.must.push(sexQuery);
+    }
+    topLevelQuery.query.filtered.filter = query;
+    return topLevelQuery;
 }
 
 var chartMappings = {
@@ -755,17 +768,17 @@ var chartMappings = {
     "eclampsia&tobacco_use": "horizontalStack"
 };
 
-function prepareMapAggregations() {
+var prepareMapAggregations = function() {
     var chartAggregations = [];
     var primaryGroupQuery = {
         key: "states",
         queryKey: "state",
-        size: 100000
+        size: 0
     };
     var secondaryGroupQuery = {
         key: "sex",
         queryKey: "sex",
-        size: 100000
+        size: 0
     };
     chartAggregations.push([primaryGroupQuery, secondaryGroupQuery]);
     return chartAggregations;
@@ -794,5 +807,10 @@ module.exports.prepareAggregationQuery = prepareAggregationQuery;
 module.exports.buildSearchQuery = buildSearchQuery;
 module.exports.isEmptyObject = isEmptyObject;
 module.exports.buildAPIQuery = buildAPIQuery;
+module.exports.addFiltersToCalcFertilityRates = addFiltersToCalcFertilityRates;
 // module.exports.buildQueryForYRBS = buildQueryForYRBS;
 module.exports.addCountsToAutoCompleteOptions = addCountsToAutoCompleteOptions;
+module.exports.prepareMapAggregations = prepareMapAggregations;
+module.exports.getGroupQuery = getGroupQuery;
+module.exports.findFilterByKeyAndValue = findFilterByKeyAndValue;
+module.exports.isFilterApplied = isFilterApplied;

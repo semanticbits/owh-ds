@@ -61,7 +61,7 @@
   },
   {
     "column": "race",
-    "type": "simple",
+    "type": "map",
     "start": 6,
     "stop": 6,
     "field": "Race",
@@ -74,7 +74,7 @@
   },
   {
     "column": "sex",
-    "type": "simple",
+    "type": "map",
     "start": 7,
     "stop": 7,
     "field": "Sex",
@@ -103,6 +103,64 @@
     "mappings": {}
   },
   {
+    "column": "mother_age",
+    "type":"map",
+    "start": 9,
+    "stop": 10,
+    "field": "Age",
+    "mappings": {
+      "15": "15 years",
+      "16": "16 years",
+      "17": "17 years",
+      "18": "18 years",
+      "19": "19 years",
+      "20": "20 years",
+      "21": "21 years",
+      "22": "22 years",
+      "23": "23 years",
+      "24": "24 years",
+      "25": "25 years",
+      "26": "26 years",
+      "27": "27 years",
+      "28": "28 years",
+      "29": "29 years",
+      "30": "30 years",
+      "31": "31 years",
+      "32": "32 years",
+      "33": "33 years",
+      "34": "34 years",
+      "35": "35 years",
+      "36": "36 years",
+      "37": "37 years",
+      "38": "38 years",
+      "39": "39 years",
+      "40": "40 years",
+      "41": "41 years",
+      "42": "42 years",
+      "43": "43 years",
+      "44": "44 years"
+    }
+  },
+  {
+    "column":"mother_age_r14",
+    "type":"range",
+    "start": 9,
+    "stop": 10,
+    "field": "Age",
+    "mappings": {
+      "15-15": "15 years",
+      "16-16": "16 years",
+      "17-17": "17 years",
+      "18-18": "18 years",
+      "19-19": "19 years",
+      "20-24": "20-24 years",
+      "25-29": "25-29 years",
+      "30-34": "30-34 years",
+      "35-39": "35-39 years",
+      "40-44": "40-44 years"
+    }
+  },
+  {
     "column": "age_5_interval",
     "type":"range",
     "start": 9,
@@ -127,6 +185,36 @@
       "75-79": "75-79 years",
       "80-84": "80-84 years",
       "85-105": "85+ years"
+    }
+  },
+  {
+    "column": "mother_age_r8",
+    "type":"range",
+    "start": 9,
+    "stop": 10,
+    "field": "Age Groups",
+    "mappings": {
+      "15-19": "15 - 19 years",
+      "20-24": "20 - 24 years",
+      "25-29": "25 - 29 years",
+      "30-34": "30 - 34 years",
+      "35-39": "35 - 39 years",
+      "40-44": "40 - 44 years"
+    }
+  },
+  {
+    "column": "mother_age_r9",
+    "type":"range",
+    "start": 9,
+    "stop": 10,
+    "field": "Age Groups",
+    "mappings": {
+      "15-19": "15-19 years",
+      "20-24": "20-24 years",
+      "25-29": "25-29 years",
+      "30-34": "30-34 years",
+      "35-39": "35-39 years",
+      "40-44": "40-44 years"
     }
   },
   {

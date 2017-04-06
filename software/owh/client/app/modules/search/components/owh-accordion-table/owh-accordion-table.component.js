@@ -11,7 +11,8 @@
                 headers: '<',
                 showCi: '<',
                 showUf: '<',
-                showCharts:'<'
+                showCharts:'<',
+                primaryKey: '@'
             }
         });
     OWHAccordionTableController.$inject = ['$scope', 'utilService', '$rootScope'];
@@ -28,6 +29,17 @@
             "Obesity, Overweight, and Weight Control": [/^Had/, /^Were/],
             "Dietary Behaviors": [/^Drank A Can, Bottle, Or Glass Of A/, /^Drank A Can, Bottle, Or Glass Of S/],
             "Other Health Topics": [/^Did Not H/, /^Did Not S/]
+        };
+
+        oatc.qCategoryHelpTextMap = {
+             "Tobacco Use": "label.help.text.question.tobacco.use",
+             "Unintentional Injuries and Violence": "label.help.text.question.unintentional.injuries.violence",
+             "Alcohol and Other Drug Use": "label.help.text.question.alcohol.other.drug.use",
+             "Sexual Behaviors": "label.help.text.question.sexua.behaviors",
+             "Physical Activity": "label.help.text.question.physical.activity",
+             "Obesity, Overweight, and Weight Control": "label.help.text.question.obesity.overweight.weight.control",
+             "Dietary Behaviors": "label.help.text.question.dietary.behaviors",
+             "Other Health Topics": "label.help.text.question.other.health.topics"
         };
 
         oatc.collapseRow = function(row) {
@@ -70,29 +82,32 @@
 
         oatc.listRows = function(catagory) {
             var rows = [], firstRow = null;
+            if(oatc.primaryKey === 'mental_health') {
+                if (catagory.title in questionDefaults) {
 
-            if (catagory.title in questionDefaults) {
 
+                    for (var i = 0; i < catagory.questions.length; i++) {
+                        var question = catagory.questions[i],
+                            defaults = questionDefaults[catagory.title];
 
-                for (var i = 0; i < catagory.questions.length; i++) {
-                    var question = catagory.questions[i],
-                        defaults = questionDefaults[catagory.title];
+                        if (question[0].title.search(defaults[0]) == 0) {
+                            firstRow = question;
 
-                    if (question[0].title.search(defaults[0]) == 0) {
-                        firstRow = question;
+                        } else if (question[0].title.search(defaults[1]) == 0) {
+                            rows.splice(0, 0, question);
 
-                    } else if (question[0].title.search(defaults[1]) == 0) {
-                        rows.splice(0, 0, question);
-
-                    } else {
-                        rows.push(question);
+                        } else {
+                            rows.push(question);
+                        }
                     }
                 }
+                if (firstRow != null) {
+                    rows.splice(0, 0, firstRow);
+                }
+                return rows;
+            } else {
+                return catagory.questions;
             }
-            if (firstRow != null) {
-                rows.splice(0, 0, firstRow);
-            }
-            return rows;
         };
 
     }
