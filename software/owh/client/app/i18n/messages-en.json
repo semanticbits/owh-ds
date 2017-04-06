@@ -151,7 +151,7 @@
   "label.mortality.search.table.hide.percentage.button":"Hide",
   "label.mortality.search.table.hidden.percentage.button":"Percentages Hidden",
   "label.census.bridge.race.pop.estimate": "Bridged-Race Population Estimates",
-  "label.crude.death.rates.statement": "Population details from NCHS Bridged-Race Estimates is used to calculate Death Rates (per 100,000)",
+  "label.crude.death.rates.statement": "Population details from NCHS Bridged-Race Estimates are used to calculate Death Rates (per 100,000)",
   "label.crude.brith.rates.statement": "Population details from NCHS Bridged Race Estimates are used to calculate Birth Rates (per 100,000)",
   "label.title.sex.race":"Sex and Race",
   "label.title.sex.ethnicity":"Sex and Ethnicity",
