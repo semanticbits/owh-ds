@@ -9,7 +9,6 @@ var yrbsStepDefinitionsWrapper = function () {
     var yrbsPage = require('../support/yrbspage.po')
 
     this.Given(/^I select YRBS as primary filter$/, function () {
-        browser.sleep(300);
         yrbsPage.yrbsOption.click();
         browser.sleep(300);
     });
@@ -28,7 +27,7 @@ var yrbsStepDefinitionsWrapper = function () {
 
     this.When(/^I click on Show \# More under the questions in any category$/, function () {
         browser.sleep(300);
-        element(by.cssContainingText('a', 'Show 21 More')).click();
+        element(by.cssContainingText('a', 'Show 18 More')).click();
     });
 
     this.Then(/^the category should expand to show all the questions$/, function () {
@@ -145,8 +144,8 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^the default year selected should be 2015$/, function () {
-        var raceFilter = element(by.className('side-filters')).element(by.xpath('.//*[.="Year"]'));
-        raceFilter.element(by.xpath('2015')).isSelected().to.eventually.equal(true);
+        var filter = element(by.cssContainingText('a', "Year")).element(by.xpath('ancestor::label'));
+        filter.element(by.xpath('following-sibling::ul')).element(by.cssContainingText("li", "2015")).isSelected().to.eventually.equal(true);
     });
 
     this.Then(/^then table and visualizations adjust to that they use up the entire available screen space$/, function () {
@@ -162,17 +161,13 @@ var yrbsStepDefinitionsWrapper = function () {
         });
     });
 
-    this.Then(/^filters should be in this order "([^"]*)"$/, function (filters) {
-        var allFilters = element(by.css('.side-filters')).all(by.tagName('li'));
-        expect(allFilters.get(0).getText()).to.eventually.contains("Year");
-        expect(allFilters.get(1).getText()).to.eventually.contains("All");
-        expect(allFilters.get(2).getText()).to.eventually.contains("2015");
-        //expect(allFilters.get(3).getText()).to.eventually.contains("2013");
-        //expect(allFilters.get(4).getText()).to.eventually.contains("2011");
-        expect(allFilters.get(3).getText()).to.eventually.contains("Sex");
-        expect(allFilters.get(7).getText()).to.eventually.contains("Race");
-        expect(allFilters.get(17).getText()).to.eventually.contains("Grade");
-        expect(allFilters.get(24).getText()).to.eventually.contains("Question");
+    this.Then(/^filters should be in this order "([^"]*)"$/, function (givenFilters) {
+        var allElements =  element.all(by.css('filter-display-name'));
+        allElements.getText().then(function (filters) {
+            filters.forEach(function (filter, index) {
+                expect(filter).to.eventually.contains(givenFilters[index]);
+            });
+        });
     });
 
     this.Then(/^the data must be right justified in the table$/, function () {
@@ -209,8 +204,6 @@ var yrbsStepDefinitionsWrapper = function () {
             expect(elements[6].getText()).to.eventually.equals(questionCat7);
             expect(elements[7].getText()).to.eventually.equals(questionCat8);
         });
-        //close popup
-        yrbsPage.closePopup();
     });
 
     this.When(/^I select "([^"]*)" button$/, function (arg1) {
@@ -231,15 +224,9 @@ var yrbsStepDefinitionsWrapper = function () {
         yrbsPage.selectQuestionsButton.click();
     });
 
-    this.Then(/^the pop up box should open up \(just like UCD pop up\) with a list\- tree pattern\- of categories of Survey Questions$/, function () {
-        browser.sleep(100);
-        expect(element(by.cssContainingText('div', 'Hint: Use Ctrl + Click for multiple selections, or Shift + Click for a range.')).isPresent()).to.eventually.equal(true);
-    });
 
     this.Then(/^it should also have a Search Questions \- search bar above the list$/, function () {
         expect(element(by.id('search_text')).isPresent()).to.eventually.equal(true);
-        //close popup
-        yrbsPage.closePopup();
     });
 
     this.When(/^I open up the Survey Question pop up$/, function () {
@@ -260,9 +247,6 @@ var yrbsStepDefinitionsWrapper = function () {
         element(by.id('question')).element(by.tagName('ul')).all(by.className('jstree-hidden')).count().then(function (size) {
             expect(size).to.equal(7);
         });
-
-        //Clear text in search box
-        yrbsPage.searchQuestionsBox.clear();
     });
 
 
@@ -276,7 +260,7 @@ var yrbsStepDefinitionsWrapper = function () {
 
     this.When(/^I have selected a question$/, function () {
         //select first child question
-        element(by.className('jstree-anchor')).click();
+        element(by.className('jstree-anchor jstree-search')).click();
     });
 
     this.Then(/^the \+ sign changes to \- sign to indicate the user that he can click to deselect the question$/, function () {
@@ -363,11 +347,11 @@ var yrbsStepDefinitionsWrapper = function () {
     this.Then(/^the results page \(yrbs data table\) should be refreshed to reflect "([^"]*)" filter with option "([^"]*)"$/, function (filterName, option) {
         var raceFilter = yrbsPage.selectSideFilter(filterName);
         var raceParentElement = raceFilter.element(by.xpath('..')).element(by.xpath('..')).element(by.xpath('..'));
-        raceParentElement.element(by.xpath('.//*[.="'+option+'"]')).isSelected().to.eventually.equal(true);
+        expect(raceParentElement.element(by.xpath('.//*[.="'+option+'"]')).isSelected()).to.eventually.equal(true);
 
         var raceFilter2 = yrbsPage.selectSideFilter("year");
         var raceParentElement2 = raceFilter2.element(by.xpath('..')).element(by.xpath('..')).element(by.xpath('..'));
-        raceParentElement2.element(by.xpath('.//*[.="2015"]')).isSelected().to.eventually.equal(true);
+        expect(raceParentElement2.element(by.xpath('.//*[.="2015"]')).isSelected()).to.eventually.equal(true);
     });
 
 
@@ -402,7 +386,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^the link "([^"]*)" should be disappear$/, function (arg1) {
-        expect(element(by.cssContainingText('span', arg1)).isDisplayed()).to.eventually.equal(false);
+        expect(element(by.cssContainingText('span', arg1)).isPresent()).to.eventually.equal(false);
     });
 
     this.Then(/^Questions selected value should be "([^"]*)"$/, function (arg1) {
@@ -425,6 +409,18 @@ var yrbsStepDefinitionsWrapper = function () {
 
     this.When(/^"([^"]*)" button should be displayed$/, function (arg1) {
         expect(yrbsPage.selectQuestionsButton.isDisplayed()).to.eventually.equal(true);
+    });
+
+    this.When(/^I see hide filter button in yrbs page$/, function () {
+        browser.actions().mouseMove(element(by.cssContainingText('a', "<< Hide Filters"))).perform();
+    });
+
+    this.When(/^I click hide filter button in yrbs page$/, function () {
+        element(by.cssContainingText('span', "<< Hide Filters")).click();
+    });
+
+    this.Then(/^I click on Filter Selected Questions button$/, function () {
+        yrbsPage.addSelectedQuestionsButton.click();
     });
 };
 module.exports = yrbsStepDefinitionsWrapper;

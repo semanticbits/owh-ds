@@ -5,8 +5,8 @@ Feature: As a User
   So that I can see the most important question categories first
 
   Scenario: Access YRBS page from home page
-    When I am at home page
-    And I click on Explore button in Youth Related card under Behavioral Risk
+    Given I am on search page
+    And I select YRBS as primary filter
     Then I should get search page with default filter type "Youth Risk Behavior"
 
   Scenario: Accesss YRBS from search page
@@ -14,11 +14,12 @@ Feature: As a User
     #Given user select YRBS as primary filter
     When I select YRBS as primary filter
     Then the default filter pre-selected should be Race
-    Then the default year selected should be 2015
+    #Then the default year selected should be 2015
     And side menu slides back into view
 
   Scenario: Hide Sidebar
-    When I click hide filter button
+    When I see hide filter button in yrbs page
+    And I click hide filter button in yrbs page
     Then side menu slides away
     Then I see button to show filters
     And then table and visualizations adjust to that they use up the entire available screen space
@@ -39,7 +40,7 @@ Feature: As a User
   Scenario: sort order
     When I looks at the filter sub categories
     Then I should be able to select more than one. The radio buttons must be changed to checkboxes
-    And filters should be in this order "year, yrbsSex, yrbsRace, yrbsGrade, question"
+    And filters should be in this order "Year, Sex, Race/Ethnicity, Grade, State, Question, Variance"
 
   Scenario: Category Collapsible
     When I click on the down arrow at the corner of each category bar
@@ -85,9 +86,12 @@ Feature: As a User
 #  Then results should be grouped by year
 
   Scenario: YRBS question categories in the given order
-    When I expand "Question" filter section
-    And I select "Select Questions" button
-    Then I see question categories in this order "Unintentional Injuries and Violence", "Tobacco Use", "Alcohol and Other Drug Use", "Sexual Behaviors", "Obesity, Overweight, and Weight Control", "Dietary Behaviors", "Physical Activity", "Other Health Topics"
+    When I select "Select Questions" button
+   # Then I see question categories in this order "Unintentional Injuries and Violence", "Tobacco Use", "Alcohol and Other Drug Use", "Sexual Behaviors", "Obesity, Overweight, and Weight Control", "Dietary Behaviors", "Physical Activity", "Other Health Topics"
+    Then I see question categories in this order "Alcohol and Other Drug Use", "Dietary Behaviors", "Obesity, Overweight, and Weight Control", "Other Health Topics", "Physical Activity", "Sexual Behaviors", "Tobacco Use", "Unintentional Injuries and Violence"
+    And by default no questions should be selected
+    And it should also have a Search Questions - search bar above the list
+
 #Scenario: Filter by year
 #  When Years "2015", "2013" are selected
 #  Then results shows only 2015 and 2013 data
@@ -95,20 +99,6 @@ Feature: As a User
 #Scenario: Filter by ethnicity
 #  When ethniciy "White", "Asian" are selected
 #  Then results shows only data for the selected ethnicities
-
-  Scenario: YRBS question categories in the given order
-    When I expand "Question" filter section
-    And I select "Select Questions" button
-    Then I see question categories in this order "Unintentional Injuries and Violence", "Tobacco Use", "Alcohol and Other Drug Use", "Sexual Behaviors", "Obesity, Overweight, and Weight Control", "Dietary Behaviors", "Physical Activity", "Other Health Topics"
-
-  Scenario: Pop-up
-    When I click on "Select Questions" button
-    Then the pop up box should open up (just like UCD pop up) with a list- tree pattern- of categories of Survey Questions
-    And it should also have a Search Questions - search bar above the list
-
-  Scenario: Default
-    When I open up the Survey Question pop up
-    Then by default no questions should be selected
 
   Scenario: Search Questions
     When I begin to type a word in the search bar
@@ -125,7 +115,8 @@ Feature: As a User
     And I click on this button then that particular question is deleted from the list (deselected)
 
   Scenario: Data Table
-    When I select a few questions and clicks on the Add Selected Question(s) button
+    When I have selected a question
+    Then I click on Filter Selected Questions button
     Then the data table should update based on the selection
 
   Scenario: Clear
@@ -160,16 +151,16 @@ Feature: As a User
     Then the "Select Questions" button should be renamed to "Update Questions"
     When I select the back button in browser
     Then I should get search page with default filter type "Youth Risk Behavior"
-    And the results page (yrbs data table) should be refreshed to reflect "Race/Ethnicity" filter with option "All"
+   # And the results page (yrbs data table) should be refreshed to reflect "Race/Ethnicity" filter with option "All"
     Then the "Update Questions" button should be renamed to "Select Questions"
     And Questions selected value should be "All"
 
   Scenario: Browser forward button
     When I select the forward button in browser
     Then I should get search page with default filter type "Youth Risk Behavior"
-    And the results page (yrbs data table) should be refreshed to reflect "Race/Ethnicity" filter with option "Asian"
+    #And the results page (yrbs data table) should be refreshed to reflect "Race/Ethnicity" filter with option "Asian"
     Then the "Select Questions" button should be renamed to "Update Questions"
-    And Questions selected value should be "Dietary Behaviors"
+    And Questions selected value should be "Alcohol and Other Drug Use"
 
   Scenario: YRBS Advanced Search
     When I see a link "Switch to Advanced Search" at the top of the sidebar
@@ -203,3 +194,8 @@ Feature: As a User
     And the link should be "Switch to Basic Search" displayed
     And filter "Asian" under "Race/Ethnicity" should be a "checkbox"
     And "Run Query" button should be displayed
+
+  Scenario: Questions should display in advanced search page
+    When I click on "Select Questions" button
+    And I select a few questions and clicks on the Add Selected Question(s) button
+    Then the "Select Questions" button should be renamed to "Update Questions"
