@@ -11,7 +11,7 @@ Feature: Natality filters
     When I change 'I'm interested in' dropdown value to "Natality"
     Then I should see filter type "Natality" selected
     And I should see filter type "Number of Births" selected for show me dropdown
-    And user clicks on "+ 12 more" more link for "Year" filter
+    And user clicks on "+ 13 more" more link for "Year" filter
     And all years should be enabled in Year filter
 
   Scenario: Default filter state
