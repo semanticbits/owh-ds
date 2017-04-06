@@ -203,6 +203,7 @@
         function getNatalityDataFilters() {
             //filter options
             var yearOptions = [
+                { "key": "2015", "title": "2015"},
                 { "key": "2014", "title": "2014"},
                 { "key": "2013", "title": "2013"},
                 { "key": "2012", "title": "2012"},
@@ -655,7 +656,7 @@
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
                     autoCompleteOptions: angular.copy(educationOptions), helpText:"label.help.text.mother.education"},
 
-                {key: 'current_year', title: 'label.filter.year', queryKey:"current_year", primary: false, value: ["2014"], defaultGroup:'column', groupBy: false,
+                {key: 'current_year', title: 'label.filter.year', queryKey:"current_year", primary: false, value: ["2015"], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: angular.copy(yearOptions), helpText:"label.help.text.year"},
 
                 {key: 'month', title: 'label.filter.month', queryKey:"month", primary: false, value: [], defaultGroup:'column', groupBy: false,
