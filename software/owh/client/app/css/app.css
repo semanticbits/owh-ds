@@ -1116,7 +1116,7 @@ body {
     overflow: visible;
 }
 
-#death-rate-disclaimer {
+.disclaimer {
   color: #808080;
 }
 

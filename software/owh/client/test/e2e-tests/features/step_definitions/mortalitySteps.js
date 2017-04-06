@@ -607,7 +607,7 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I should see Crude Deth Rates page$/, function () {
-        expect(mortalityPage.deathRateDisclaimer.getText()).to.eventually.equal("Population details from NCHS Bridged-Race Estimates is used to calculate Death Rates (per 100,000)");
+        expect(mortalityPage.deathRateDisclaimer.getText()).to.eventually.equal("Population details from NCHS Bridged-Race Estimates are used to calculate Death Rates (per 100,000)");
     });
 
     this.Then(/^I select "([^"]*)" value "([^"]*)"$/, function (arg1, arg2) {
