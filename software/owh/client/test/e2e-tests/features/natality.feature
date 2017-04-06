@@ -17,7 +17,7 @@ Feature: Natality filters
   Scenario: Default filter state
     Then I see "Year" as first option in sidebar filters
     And  I see the data table with race, female, male and total table headers
-    And I see population count for "2014" option
+    And I see population count for "2015" option
 
   Scenario: Filter categories
     Then I see "Birth Characteristics" as first filter category
