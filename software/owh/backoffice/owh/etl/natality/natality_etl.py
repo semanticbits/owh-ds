@@ -11,7 +11,8 @@ data_mapping_configs = {'Natl00us.pb':'nat_2000_2002.json', 'Nat01pb.US':'nat_20
                         'Nat2007us.dat': 'nat_2007_2013.json', 'Nat2008us.dat':'nat_2007_2013.json',
                         'Nat2009usPub.r20131202':'nat_2007_2013.json', 'Nat2010PublicUS.r20131202': 'nat_2007_2013.json',
                         'Nat2011PublicUS.r20131211':'nat_2007_2013.json', 'Nat2012PublicUS.r20131217':'nat_2007_2013.json',
-                        'Nat2013PublicUS.r20141016':'nat_2007_2013.json', 'Nat2014PublicUS.c20150514.r20151022.txt':'nat_2014.json' }
+                        'Nat2013PublicUS.r20141016':'nat_2007_2013.json', 'Nat2014PublicUS.c20150514.r20151022.txt':'nat_2014_2015.json',
+                        'Nat2015PublicUS.c20160517.r20160907.txt': 'nat_2014_2015.json'}
 
 class NatalityETL (ETL):
     """
@@ -80,7 +81,8 @@ class NatalityETL (ETL):
         self.loadDataSetMetaData('natality', '2011', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2007_2013.json'))
         self.loadDataSetMetaData('natality', '2012', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2007_2013.json'))
         self.loadDataSetMetaData('natality', '2013', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2007_2013.json'))
-        self.loadDataSetMetaData('natality', '2014', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2014.json'))
+        self.loadDataSetMetaData('natality', '2014', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2014_2015.json'))
+        self.loadDataSetMetaData('natality', '2015', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2014_2015.json'))
 
     def validate_etl(self):
         """ Validate the ETL"""

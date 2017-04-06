@@ -11,6 +11,7 @@ var MortalitySearchPage = function() {
     msp.showPecentageButton = element(by.id('togglePercentage')).element(by.cssContainingText('a', 'Show'));
     msp.hidePecentageButton = element(by.id('togglePercentage')).element(by.cssContainingText('a', 'Hide'));
     msp.raceOptionsLink = element(by.partialLinkText('Race'));
+    msp.sexOptionsLink = element(by.partialLinkText('Sex'));
     msp.autopsyOptionsLink = element(by.partialLinkText('Autopsy'));
     msp.placeOfDeathOptionsLink = element(by.partialLinkText('Place of Death'));
     msp.raceOption2Link = element(by.cssContainingText('label', 'White'));
@@ -23,6 +24,7 @@ var MortalitySearchPage = function() {
     msp.mainSearch = element(by.tagName('owh-search'));
     msp.deathRateDisclaimer = element(by.id('death-rate-disclaimer'));
     msp.ethnicityHispanicOption = element(by.id('deaths_hispanicOrigin_Hispanic')).element(by.xpath('..'));
+    msp.ethnicityDominicanOption = element(by.id('deaths_hispanicOrigin_Dominican')).element(by.xpath('..'));
     msp.ethnicitySpaniardOption = element(by.id('deaths_hispanicOrigin_Spaniard')).element(by.xpath('..'));
     msp.showMoreYears = element(by.cssContainingText('a', '+ 13 more'));
     msp.expandEthnicity = element(by.cssContainingText('a', 'Ethnicity'));
@@ -111,7 +113,11 @@ var MortalitySearchPage = function() {
 
     msp.getOptionByFilterAndKey = function(filter, key) {
         return element(by.id('deaths_' + filter + '_' + key)).element(by.xpath('..'));
-    }
+    };
+
+    msp.expandStateFilter = function() {
+        element(by.cssContainingText('a', 'State')).click();
+    };
 
 };
 
