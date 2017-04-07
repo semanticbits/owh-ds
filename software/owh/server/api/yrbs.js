@@ -149,6 +149,7 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
 
     for (var i in  response.results){
         var r = response.results[i];
+
         if(isTotalCell(r, response.vars, precomputed)){
             q[key]= resultCellObject(r);
         }else if(!isSubTotalCell(r, response.vars, precomputed)){
@@ -168,17 +169,21 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
             var responseAdded = false;
             if ('year' in r) {
                 cell = getResultCell(cell, 'year', r.year);
-                sortByResponse(response.results[i], q, cell, 'year', responseAdded);
-                responseAdded = true;
-                if(response.results[i].response) {
-                    delete q['year'];
+                if(key === 'prams') {
+                    sortByResponse(response.results[i], q, cell, 'year', responseAdded);
+                    responseAdded = true;
+                    if(response.results[i].response) {
+                        delete q['year'];
+                    }
                 }
             }
             if ('sitecode' in r) {
                 cell = getResultCell(cell, 'sitecode', r.sitecode);
-                sortByResponse(response.results[i], q, cell, 'sitecode', responseAdded);
-                if(response.results[i].response) {
-                    delete q['sitecode'];
+                if(key === 'prams') {
+                    sortByResponse(response.results[i], q, cell, 'sitecode', responseAdded);
+                    if(response.results[i].response) {
+                        delete q['sitecode'];
+                    }
                 }
             }
 

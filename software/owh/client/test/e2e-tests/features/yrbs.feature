@@ -199,3 +199,13 @@ Feature: As a User
     When I click on "Select Questions" button
     And I select a few questions and clicks on the Add Selected Question(s) button
     Then the "Select Questions" button should be renamed to "Update Questions"
+
+  Scenario: Select only 'State' filter as column
+    Given I am on search page
+    When I select YRBS as primary filter
+    Then I should get search page with default filter type "Youth Risk Behavior"
+    When I click on "Select Questions" button
+    And I select a few questions and clicks on the Add Selected Question(s) button
+    When I set "Race" filter "Off"
+    Then I set "State" filter "Column"
+    Then I should see records for states
