@@ -211,4 +211,27 @@ describe("Build elastic search queries", function(){
         expect(JSON.stringify(updatedQuery)).equal(JSON.stringify(expectedQuery));
         done()
     });
+
+    it("find Filter by key and value", function () {
+        //if found
+        var filters = [{"filterGroup":false,"collapse":true,"allowGrouping":true,"filters":{"key":"gender","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"autoCompleteOptions":[{"key":"Female","title":"Female"},{"key":"Male","title":"Male"}]}},{"filters":{"queryKey":"state", "key":"state","primary":false,"value":["AL"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]}}];
+        var stateFilter = elasticQueryBuilder.findFilterByKeyAndValue(filters, 'key', 'state');
+        expect(stateFilter.filters.key).equal('state');
+
+        //not found
+        var filter = elasticQueryBuilder.findFilterByKeyAndValue(filters, 'key', 'race');
+        expect(filter).equal(null);
+    });
+
+    it("test if filter is applied", function () {
+        //if filter applied
+        var filter = {"filters":{"queryKey":"state","primary":false,"value":["AL"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]}};
+        var isFilterApplied = elasticQueryBuilder.isFilterApplied(filter);
+        expect(isFilterApplied).equal(true);
+
+        //not applied
+        filter = {"filterGroup":false,"collapse":true,"allowGrouping":true,"filters":{"key":"gender","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"autoCompleteOptions":[{"key":"Female","title":"Female"},{"key":"Male","title":"Male"}]}};
+        var isFilterApplied = elasticQueryBuilder.isFilterApplied(filter);
+        expect(isFilterApplied).equal(false);
+    });
 });

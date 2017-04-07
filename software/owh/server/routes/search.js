@@ -75,14 +75,17 @@ function search(q) {
     var deferred = Q.defer();
     var preparedQuery = queryBuilder.buildAPIQuery(q);
     var finalQuery = '';
+    var stateFilter = queryBuilder.findFilterByKeyAndValue(q.sideFilters, 'key', 'state');
+
+    var isStateSelected = queryBuilder.isFilterApplied(stateFilter);
+
     logger.debug("Incoming query: ", JSON.stringify(preparedQuery));
     if (preparedQuery.apiQuery.searchFor === "deaths") {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
         finalQuery.wonderQuery = preparedQuery.apiQuery;
-        new elasticSearch().aggregateDeaths(sideFilterQuery).then(function (sideFilterResults) {
-            new elasticSearch().aggregateDeaths(finalQuery).then(function (response) {
-                searchUtils.suppressSideFilterTotals(sideFilterResults.data.simple, response.data.nested.table);
+        new elasticSearch().aggregateDeaths(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
+            new elasticSearch().aggregateDeaths(finalQuery, isStateSelected).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
                 resData.resultData = response.data;
@@ -118,8 +121,8 @@ function search(q) {
         sideFilterTotalCountQuery.countQueryKey = 'pop';
         var sideFilterQuery = queryBuilder.buildSearchQuery(sideFilterTotalCountQuery, true);
 
-        new elasticSearch().aggregateCensusData(sideFilterQuery[0]).then(function (sideFilterResults) {
-            new elasticSearch().aggregateCensusData(finalQuery[0]).then(function (response) {
+        new elasticSearch().aggregateCensusData(sideFilterQuery[0], isStateSelected).then(function (sideFilterResults) {
+            new elasticSearch().aggregateCensusData(finalQuery[0], isStateSelected).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
                 resData.resultData = response.data;

@@ -95,7 +95,7 @@ Scenario: Help Message above the quick visualization pane
 Scenario: Years are supposed to be in descending order
   Given I am on search page
   When user sees side filter
-  Then user clicks on "+ 12 more" more link for "Year" filter
+  Then user clicks on "+ 13 more" more link for "Year" filter
   Then years should be in descending order
 
 Scenario: Ethnicity Filter
@@ -123,6 +123,26 @@ Scenario: Check box- Hispanic Sub Categories
   When user checks some options under hispanic group
   Then data should be filtered by the checked hispanic options
 
+Scenario: Side filter total suppression
+  Given I am on search page
+  When user shows more year filters
+  And user filters by year 2013
+  And I un-select "Year" value "2015"
+  Then user expands race options
+  And user clicks on "+ 2 more" more link for "Race" filter
+  When user expands ethnicity filter
+  And user groups ethnicity by row
+  And user expands hispanic option group
+  And user filters by ethnicity Spaniard
+  Then user should only see total for white race in side filter
+  And total should be suppressed for all Races except White
+
+Scenario: Ethnicity order
+  Given I am on search page
+  When user expands ethnicity filter
+  And user expands hispanic option group
+  Then ethnicity filters should be in given order
+
 Scenario: Race options should be in proper order
   Given I am on search page
   When user sees side filter
@@ -136,21 +156,34 @@ Scenario: Autopsy options should be in proper order
   Then user expands autopsy filter
   Then autopsy options should be in proper order
 
-  Scenario: verify Place of Death filter options
-    Given I am on search page
-    When user sees side filter
-    Then user expands placeOfDeath filter
-    And user clicks on "+ 6 more" more link for "Place of Death" filter
-    Then placeofDeath filter options should be in proper order
+Scenario: verify Place of Death filter options
+  Given I am on search page
+  When user sees side filter
+  Then user expands placeOfDeath filter
+  And user clicks on "+ 6 more" more link for "Place of Death" filter
+  Then placeofDeath filter options should be in proper order
 
-  Scenario: filter data with Hospice Facility
-    Given I am on search page
-    When user sees side filter
-    Then user expands placeOfDeath filter
-    And user clicks on "+ 6 more" more link for "Place of Death" filter
-    When user select "Hospice facility" option in "Place of Death" filter
-    Then data table should display right Number of Deaths
+Scenario: filter data with Hospice Facility
+  Given I am on search page
+  When user sees side filter
+  Then user expands placeOfDeath filter
+  And user clicks on "+ 6 more" more link for "Place of Death" filter
+  When user select "Hospice facility" option in "Place of Death" filter
+  Then data table should display right Number of Deaths
 
+Scenario: Crude Death rates population count should match with CDC for year 2000
+  Given I am on search page
+  When I choose the option "Crude Death Rates"
+  Then I should see Crude Deth Rates page
+  And user clicks on "+ 13 more" more link for "Year" filter
+  Then I select "Year" value "2000"
+  And I un-select "Year" value "2015"
+  And data table should display right population count for Crude Death Rates
+
+Scenario: Select 'All' years
+  Given I am on search page
+  When user select "All" option in "Year" filter
+  Then data table should display right population count for year 'All' filter
 
 #Scenario: Suppressed
 #  When counts fall below the determined "cut-off" value and the conditions for suppression are met
@@ -169,23 +202,6 @@ Scenario: Age filter for age adjusted rates
   Given I am on search page
   When the user chooses the option 'Age Adjusted Death Rates'
   Then the age filter should be hidden
-
-Scenario: Side filter total suppression
-  Given I am on search page
-  When user shows more year filters
-  And user filters by year 2013
-  Then user expands race options
-  And user clicks on "+ 2 more" more link for "Race" filter
-  When user expands ethnicity filter
-  When user expands hispanic option group
-  And user filters by ethnicity Spaniard
-  Then user should only see total for white race in side filter
-
-Scenario: Ethnicity order
-  Given I am on search page
-  When user expands ethnicity filter
-  And user expands hispanic option group
-  Then ethnicity filters should be in given order
 
 Scenario: Filer 'Multiple Causes of Deaths' should be displayed
   Given I am on search page

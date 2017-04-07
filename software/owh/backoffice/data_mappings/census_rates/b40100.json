@@ -61,7 +61,7 @@
   },
   {
     "column": "race",
-    "type": "simple",
+    "type": "map",
     "start": 6,
     "stop": 6,
     "field": "Race",
@@ -74,7 +74,7 @@
   },
   {
     "column": "sex",
-    "type": "simple",
+    "type": "map",
     "start": 7,
     "stop": 7,
     "field": "Sex",

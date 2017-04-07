@@ -31,13 +31,6 @@
       "deathsPercentage": 11.64
     },
     {
-      "key": "0",
-      "title": "Other (Puerto Rico only)",
-      "deaths": 0,
-      "count": 0,
-      "deathsPercentage": 0
-    },
-    {
       "key": "1",
       "title": "White",
       "deaths": "10,918,196",

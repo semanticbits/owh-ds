@@ -82,6 +82,29 @@ describe('utilService', function(){
         expect(result).toEqual('2015-12-12');
     });
 
+    it('test utils findFilterByKeyAndValue', function () {
+        //if found
+        var filters = [{"filterGroup":false,"collapse":true,"allowGrouping":true,"filters":{"key":"gender","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"autoCompleteOptions":[{"key":"Female","title":"Female"},{"key":"Male","title":"Male"}]}},{"filters":{"queryKey":"state", "key":"state","primary":false,"value":["AL"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]}}];
+        var stateFilter = utils.findFilterByKeyAndValue(filters, 'key', 'state');
+        expect(stateFilter.filters.key).toEqual('state');
+
+        //not found
+        var filter = utils.findFilterByKeyAndValue(filters, 'key', 'race');
+        expect(filter).toEqual(null);
+    });
+
+    it('test utils isFilterApplied', function () {
+        //if filter applied
+        var filter = {"filters":{"queryKey":"state","primary":false,"value":["AL"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]}};
+        var isFilterApplied = utils.isFilterApplied(filter);
+        expect(isFilterApplied).toEqual(true);
+
+        //not applied
+        filter = {"filterGroup":false,"collapse":true,"allowGrouping":true,"filters":{"key":"gender","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"autoCompleteOptions":[{"key":"Female","title":"Female"},{"key":"Male","title":"Male"}]}};
+        var isFilterApplied = utils.isFilterApplied(filter);
+        expect(isFilterApplied).toEqual(false);
+    });
+
     it('test utils formatDateString', function () {
         expect(utils.formatDateString('11/12/2016', 'MM/dd/yyyy', 'yyyy-MM-dd')).toEqual('2016-11-12');
     });

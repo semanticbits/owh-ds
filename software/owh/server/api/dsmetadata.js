@@ -1,5 +1,6 @@
 var elasticSearch = require('../models/elasticSearch');
 var Q = require('q');
+var logger = require('../config/logging');
 
 /**
  * Query dsnmeatadata for the given dataset and years and return a merged set of
@@ -37,8 +38,13 @@ dsmetadata.prototype.processDsMetadataQueryResponse = function (esResp){
         if(!(fname in result)){
             result[fname] = filter.permissible_values;
         } else if (result[fname]){
-            // get intersection of PVs
-            result[fname] = result[fname].filter(item => filter.permissible_values.indexOf(item) != -1);
+            if(filter.permissible_values) {
+                // get intersection of PVs
+                result[fname] = result[fname].filter(item => filter.permissible_values.indexOf(item) != -1);
+            }
+            else {
+                result[fname] = null;
+            }
         }
 
         if(!(year in filterByYear)) {
@@ -60,7 +66,7 @@ dsmetadata.prototype.processDsMetadataQueryResponse = function (esResp){
             }
         }
     }
-
+    logger.debug("processing metadata query response completed.");
     return result;
 }
 

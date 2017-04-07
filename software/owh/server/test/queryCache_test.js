@@ -176,7 +176,7 @@ describe("Query Cache", function () {
                         }, {"key": "Asian or Pacific Islander", "title": "Asian or Pacific Islander"}, {
                             "key": "Black",
                             "title": "Black"
-                        }, {"key": "Other (Puerto Rico only)", "title": "Other (Puerto Rico only)"}, {
+                        }, {
                             "key": "White",
                             "title": "White"
                         }]

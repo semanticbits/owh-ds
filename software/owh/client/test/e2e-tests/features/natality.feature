@@ -47,8 +47,8 @@ Feature: Natality filters
   Scenario: Fertility rates for Mother's age 9
     When I change show me dropdown option to "Fertility Rates"
     Then I click on "6 more filters"
-    And I expand "Mother’s Age 9" filter section
-    And  filter "Mother’s Age 9" and option "15-19 years" selected
+    And I expand "Mother's Age 9" filter section
+    And  filter "Mother's Age 9" and option "15-19 years" selected
     And the data table should display values filtered by age selected
 
   Scenario: Disable filters when show me filter value changes - Fertility Rates

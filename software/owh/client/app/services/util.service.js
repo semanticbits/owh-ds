@@ -39,7 +39,9 @@
             getMinAndMaxValue : getMinAndMaxValue,
             getSelectedAutoCompleteOptions: getSelectedAutoCompleteOptions,
             clone: clone,
-            refreshFilterAndOptions: refreshFilterAndOptions
+            refreshFilterAndOptions: refreshFilterAndOptions,
+            findFilterByKeyAndValue: findFilterByKeyAndValue,
+            isFilterApplied: isFilterApplied
         };
 
         return service;
@@ -91,6 +93,37 @@
                 }
             }
             return null;
+        }
+
+        /**
+         * Find the filter in array by key and value
+         * @param a
+         * @param key
+         * @param value
+         * @returns {*}
+         */
+        function findFilterByKeyAndValue(a, key, value) {
+            if (a) {
+                for (var i = 0; i < a.length; i++) {
+                    var filter = a[i].filters;
+                    if ( filter[key] && filter[key] === value ) {return a[i];}
+                }
+            }
+            return null;
+        }
+
+        /**
+         * Finds if the specified filter is applied or not
+         * @param a
+         * @param key
+         * @param value
+         * @returns {*}
+         */
+        function isFilterApplied(a) {
+            if (a && a.filters) {
+                return a.filters.value.length > 0;
+            }
+            return false;
         }
 
         /**
@@ -345,12 +378,18 @@
             return tableData;
         }
 
-        function getSelectedAutoCompleteOptions(filter) {
+        function getSelectedAutoCompleteOptions(filter, queryKey) {
             var filterValue = filter.value;
             if(angular.isArray(filterValue)) {
-                return isValueNotEmpty(filterValue)
-                    ? findAllByKeyAndValuesArray(filter.autoCompleteOptions, 'key', filter.value)
-                    : filter.autoCompleteOptions
+                if(queryKey) {
+                    return isValueNotEmpty(filterValue)
+                        ? findAllByKeyAndValuesArray(filter.autoCompleteOptions, 'qkey', filter.value)
+                        : filter.autoCompleteOptions
+                } else {
+                    return isValueNotEmpty(filterValue)
+                        ? findAllByKeyAndValuesArray(filter.autoCompleteOptions, 'key', filter.value)
+                        : filter.autoCompleteOptions
+                }
             } else {
                 var selectedOption = findByKeyAndValue(filter.autoCompleteOptions, 'key', filterValue);
                 return selectedOption ? [selectedOption]: filter.autoCompleteOptions;
@@ -475,7 +514,7 @@
                             return;
                         }
                         var questionCellAdded = false;
-                        angular.forEach(eachData, function(eachPramsData) {
+                        angular.forEach(eachData, function(eachPramsData, eachDataIndex) {
                             var childTableData = prepareMixedTableRowData(rowHeaders.slice(1), columnHeaders, eachPramsData, countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys);
                             if(rowHeaders.length > 1 && calculateRowTotal) {
                                 childTableData.push(prepareTotalRow(eachPramsData, countKey, childTableData[0].length, totalCount, secondaryCountKeys));
@@ -484,8 +523,14 @@
                                 title: eachPramsData.response,
                                 rowspan: 1,
                                 colspan: 1,
-                                isCount: false
+                                isCount: false,
+                                style: {
+                                    color: '#833eb0'
+                                }
                             };
+                            // if(eachDataIndex < eachData.length - 1) {
+                            //     responseCell.style['border-bottom'] = 'white';
+                            // }
                             if(!questionCellAdded) {
                                 var eachTableRow = {
                                     title: matchedOption.title,
@@ -650,7 +695,7 @@
                         if(eachOptionLength <= 0) {
                             eachOptionLength = getOptionDataLength(columnHeaders.slice(1));
                         }
-                        tableData = tableData.concat(getArrayWithDefaultValue(eachOptionLength, {title: 0, percentage: percentage , isCount: true}));
+                        tableData = tableData.concat(getArrayWithDefaultValue(eachOptionLength, {title: 'Not Available', percentage: percentage , isCount: true}));
                     }
                 });
             }
@@ -851,7 +896,10 @@
                                 for (var opt in fopts) {
                                     if (newFilters[fkey].indexOf(fopts[opt].key) >= 0) {
                                         fopts[opt].disabled = false;
-                                    } else {
+                                    }
+                                    //below condition only disable filters which are not parent(with no child filters) and
+                                    // not found in response metadata.
+                                    else if(!fopts[opt].group) {
                                         fopts[opt].disabled = true;
                                     }
                                 }
@@ -864,6 +912,7 @@
                     }
                 }
             }, function (error) {
+                angular.element(document.getElementById('spindiv')).addClass('ng-hide');
                 console.log(error);
             });
         }
