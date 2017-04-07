@@ -323,7 +323,10 @@ yrbs.prototype.getPramsQuestionsTree = function () {
         logger.info("Returning cached PRAMS questions");
         deferred.resolve(cachedPramsQuestions);
     } else {
-        invokeYRBS(config.yrbs.questionsUrl + '?d=prams').then(function(response) {
+        var pramsQuestionsUrl = config.yrbs.questionsUrl.split('/');
+        pramsQuestionsUrl.splice(3, 0, 'v2');
+        pramsQuestionsUrl = pramsQuestionsUrl.join('/');
+        invokeYRBS(pramsQuestionsUrl + '?d=prams').then(function(response) {
             logger.info("Getting PRAMS questions from YRBS service");
             var data = prepareQuestionTreeForYears(response, [], true);
             cachedPramsQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
