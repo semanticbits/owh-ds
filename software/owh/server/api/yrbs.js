@@ -328,7 +328,7 @@ yrbs.prototype.getPramsQuestionsTree = function () {
         pramsQuestionsUrl = pramsQuestionsUrl.join('/');
         invokeYRBS(pramsQuestionsUrl + '?d=prams').then(function(response) {
             logger.info("Getting PRAMS questions from YRBS service");
-            var data = prepareQuestionTreeForYears(response, [], true);
+            var data = prepareQuestionTreeForYears(response.questions, [], true);
             cachedPramsQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
             deferred.resolve(cachedPramsQuestions);
         });
@@ -352,9 +352,9 @@ function prepareQuestionTreeForYears(questions, years, prams) {
     if(prams) {
         var keys = Object.keys(questions);
         keys.sort();
-        var newQuestions = [];
+        var newQuestions = {};
         for(var i = 0; i < keys.length; i++) {
-            newQuestions.push(questions[keys[i]]);
+            newQuestions[keys[i]] = questions[keys[i]];
         }
         questions = newQuestions;
     }
@@ -362,6 +362,9 @@ function prepareQuestionTreeForYears(questions, years, prams) {
     for (var qKey in questions) {
         var quesObj = questions[qKey];
         var qCategory = quesObj.topic;
+        if(prams) {
+            qCategory = quesObj.subtopic;
+        }
         if (qCategory && qCategoryMap[qCategory] == undefined) {
             qCategoryMap[qCategory] = {id:'cat_'+catCount, text:qCategory, children:[]};
             catCount = catCount + 1;
@@ -373,13 +376,13 @@ function prepareQuestionTreeForYears(questions, years, prams) {
                 questionsList.push({key : quesObj.question, qkey : qKey, title : quesObj.question +"("+quesObj.description+")"});
             } else if(prams) {
                 //skip duplicate question keys
-                if(questionKeys.indexOf(quesObj.questionid) >= 0) {
+                if(questionKeys.indexOf(qKey) >= 0) {
                     continue;
                 }
-                var question = {text:quesObj.question, id: quesObj.questionid};
+                var question = {text:quesObj.question, id: qKey};
                 qCategoryMap[qCategory].children.push(question);
-                questionsList.push({key: quesObj.question, qkey: quesObj.questionid, title: quesObj.question});
-                questionKeys.push(quesObj.questionid);
+                questionsList.push({key: quesObj.question, qkey: qKey, title: quesObj.question});
+                questionKeys.push(qKey);
             }
         }
     }
