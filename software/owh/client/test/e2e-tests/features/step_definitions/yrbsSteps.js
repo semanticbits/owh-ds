@@ -422,5 +422,30 @@ var yrbsStepDefinitionsWrapper = function () {
     this.Then(/^I click on Filter Selected Questions button$/, function () {
         yrbsPage.addSelectedQuestionsButton.click();
     });
+
+    this.When(/^I set "([^"]*)" filter "([^"]*)"$/, function (filter1, viewType1) {
+        element(by.cssContainingText('a', filter1)).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('span', viewType1)).click();
+    });
+
+    this.Then(/^I should see records for states$/, function () {
+        yrbsPage.getTableRowData(1).then(function(rowdata){
+            expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            //Alabama
+            expect(rowdata[1]).to.contains('30.7');
+            //Alaska
+            expect(rowdata[2]).to.contains('22.0');
+            //Arizona
+            expect(rowdata[3]).to.contains('34.8');
+        });
+        yrbsPage.getTableRowData(2).then(function(rowdata){
+            expect(rowdata[0]).to.equals('Currently used marijuana(one or more times during the 30 days before the survey)');
+            //Alabama
+            expect(rowdata[1]).to.contains('17.3');
+            //Alaska
+            expect(rowdata[2]).to.contains('19.0');
+            //Arizona
+            expect(rowdata[3]).to.contains('23.3');
+        });
+    });
 };
 module.exports = yrbsStepDefinitionsWrapper;

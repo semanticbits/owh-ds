@@ -7,10 +7,10 @@ describe("Build elastic search queries", function(){
         var params = {query:{}, aggregations:{}};
         var result = elasticQueryBuilder.buildSearchQuery(params, true)
         var query = result[0];
-        expect(JSON.stringify(query.aggregations)).equal("{}");
-        expect(query.size).equal(0);
+        expect(JSON.stringify(query.aggregations)).to.eql("{}");
+        expect(query.size).to.eql(0);
         console.log(" result 1 ", result[1]);
-        expect(result[1]).equal(undefined);
+        expect(result[1]).to.eql(undefined);
         done()
     });
 
@@ -18,19 +18,19 @@ describe("Build elastic search queries", function(){
         var params = {query:{}, aggregations:{ simple:[{ key:"year", queryKey:"current_year", size:100000}]}};
         var result = elasticQueryBuilder.buildSearchQuery(params, true);
         var query = result[0];
-        expect(JSON.stringify(query.aggregations)).equal(JSON.stringify({"year":{"terms":{"field":"current_year","size":100000}}}));
-        expect(query.size).equal(0);
-        expect(query.query).to.not.equal(undefined);
-        expect(result[1]).equal(undefined);
+        expect(JSON.stringify(query.aggregations)).to.eql(JSON.stringify({"year":{"terms":{"field":"current_year","size":100000}}}));
+        expect(query.size).to.eql(0);
+        expect(query.query).to.not.eql(undefined);
+        expect(result[1]).to.eql(undefined);
         done()
     });
 
      it("Build search query with empty query and simple and nested aggregations", function(done){
         var params = {query:{}, aggregations:{ simple:[{ key:"year", queryKey:"current_year", size:100000}], nested:[]}};
         var query = elasticQueryBuilder.buildSearchQuery(params, true)[0];
-        expect(JSON.stringify(query.aggregations)).equal(JSON.stringify({"year":{"terms":{"field":"current_year","size":100000}}}));
-        expect(query.size).equal(0);
-        expect(query.query).to.not.equal(undefined);
+        expect(JSON.stringify(query.aggregations)).to.eql(JSON.stringify({"year":{"terms":{"field":"current_year","size":100000}}}));
+        expect(query.size).to.eql(0);
+        expect(query.query).to.not.eql(undefined);
         done()
     });
 
@@ -53,15 +53,15 @@ describe("Build elastic search queries", function(){
         expect(query.aggregations).to.have.property('group_maps_0_states');
         expect(query.aggregations.group_table_gender.aggregations).to.have.property('group_table_race');
         expect(query.aggregations.group_table_gender.aggregations.group_table_race.aggregations).to.have.property('group_table_year');
-        expect(query.size).equal(0);
+        expect(query.size).to.eql(0);
         expect(query).to.have.property('query');
         expect(query).to.have.property('size');
-        expect(censusQuery).to.not.equal(undefined);
+        expect(censusQuery).to.not.eql(undefined);
         expect(censusQuery.aggregations).to.have.property('group_table_gender');
         expect(censusQuery.aggregations.group_table_gender.aggregations).to.have.property('group_table_race');
         expect(censusQuery.aggregations.group_table_gender.aggregations.group_table_race.aggregations).to.have.property('group_table_year');
         expect(censusQuery.aggregations.group_table_gender.aggregations.group_table_race.aggregations.group_table_year.aggregations).to.have.property('pop');
-        expect(censusQuery.aggregations.group_table_gender.aggregations.group_table_race.aggregations.group_table_year.aggregations.pop.sum.field).equal("pop");
+        expect(censusQuery.aggregations.group_table_gender.aggregations.group_table_race.aggregations.group_table_year.aggregations.pop.sum.field).to.eql("pop");
         done()
     });
 
@@ -105,9 +105,9 @@ describe("Build elastic search queries", function(){
             }, aggregations:{}, pagination:{from:0, size:0}};
         var query = elasticQueryBuilder.buildSearchQuery(params, false);
         var queryZero = {"filtered":{"query":{"bool":{"must":[{"bool":{"should":[{"match":{"race":"1"}}]}},{"bool":{"should":[{"range":{"start_date":{"gte":"M","lte":"M"}}}]}},{"bool":{"should":[{"match":{"autopsy_data":"n"}}]}},{"bool":{}}]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2014"}}]}},{"bool":{"should":[{"term":{"gender":"m"}}]}},{"bool":{"should":[{"range":{"start_date":{"lte":"now"}}}]}},{"bool":{"should":[{"term":{"week_of_death":"6"}}]}},{"bool":{"should":[{"term":{"month_of_death":"12"}}]}}]}}}}
-        expect(query[0]).to.not.equal(undefined);
-        expect(JSON.stringify(query[0].query)).to.equal(JSON.stringify(queryZero));
-        expect(query[1]).equal(undefined);
+        expect(query[0]).to.not.eql(undefined);
+        expect(JSON.stringify(query[0].query)).to.eql(JSON.stringify(queryZero));
+        expect(query[1]).eql(undefined);
         done()
     });
 
@@ -123,9 +123,9 @@ describe("Build elastic search queries", function(){
         var query = elasticQueryBuilder.buildSearchQuery(params, false);
         console.log("query zero ", JSON.stringify(query[0]));
         var queryZero = {"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2014"}}]}},{"bool":{"should":[{"term":{"gender":"m"}}]}},{"bool":{"should":[{"range":{"start_date":{"lte":"now"}}}]}},{"bool":{"should":[{"term":{"week_of_death":"6"}}]}}]}}}};
-        expect(query[0]).to.not.equal(undefined);
-        expect(JSON.stringify(query[0].query)).to.equal(JSON.stringify(queryZero));
-        expect(query[1]).equal(undefined);
+        expect(query[0]).to.not.eql(undefined);
+        expect(JSON.stringify(query[0].query)).to.eql(JSON.stringify(queryZero));
+        expect(query[1]).to.eql(undefined);
         done()
     });
 
@@ -138,22 +138,22 @@ describe("Build elastic search queries", function(){
         var query = elasticQueryBuilder.buildSearchQuery(params, false);
         console.log("query zero ", JSON.stringify(query[0]));
         var queryZero = {"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{}}]}}}};
-        expect(query[0]).to.not.equal(undefined);
-        expect(JSON.stringify(query[0].query)).to.equal(JSON.stringify(queryZero));
-        expect(query[1]).equal(undefined);
+        expect(query[0]).to.not.eql(undefined);
+        expect(JSON.stringify(query[0].query)).to.eql(JSON.stringify(queryZero));
+        expect(query[1]).to.eql(undefined);
         done()
     });
 
      it("getGroupQuery returns query with size 0", function(done){
         var filter = {"key":"year","queryKey": "current_year","value":"2014","primary":false};
         var query = elasticQueryBuilder.getGroupQuery(filter);
-        expect(JSON.stringify(query)).equal(JSON.stringify({key: "year", queryKey: "current_year", getPercent: undefined, size: 0}));
+        expect(JSON.stringify(query)).to.eql(JSON.stringify({key: "year", queryKey: "current_year", getPercent: undefined, size: 0}));
         done()
     });
 
      it("prepareMapAggregations returns query with size 0", function(done){
         var query = elasticQueryBuilder.prepareMapAggregations();
-        expect(JSON.stringify(query)).equal(JSON.stringify([[{ key: 'states', queryKey: 'state', size: 0 },{ key: 'sex', queryKey: 'sex', size: 0 }]]));
+        expect(JSON.stringify(query)).to.eql(JSON.stringify([[{ key: 'states', queryKey: 'state', size: 0 },{ key: 'sex', queryKey: 'sex', size: 0 }]]));
         done()
     });
 
@@ -180,7 +180,7 @@ describe("Build elastic search queries", function(){
                                 }
                             };
         var updatedQuery = elasticQueryBuilder.addFiltersToCalcFertilityRates(topLevelQuery);
-        expect(JSON.stringify(updatedQuery)).equal(JSON.stringify(expectedQuery));
+        expect(JSON.stringify(updatedQuery)).to.eql(JSON.stringify(expectedQuery));
         done()
     });
 
@@ -208,30 +208,64 @@ describe("Build elastic search queries", function(){
                                         }
                             };
         var updatedQuery = elasticQueryBuilder.addFiltersToCalcFertilityRates(topLevelQuery);
-        expect(JSON.stringify(updatedQuery)).equal(JSON.stringify(expectedQuery));
+        expect(JSON.stringify(updatedQuery)).to.eql(JSON.stringify(expectedQuery));
         done()
     });
 
-    it("find Filter by key and value", function () {
+    it("find Filter by key and value", function (done) {
         //if found
         var filters = [{"filterGroup":false,"collapse":true,"allowGrouping":true,"filters":{"key":"gender","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"autoCompleteOptions":[{"key":"Female","title":"Female"},{"key":"Male","title":"Male"}]}},{"filters":{"queryKey":"state", "key":"state","primary":false,"value":["AL"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]}}];
         var stateFilter = elasticQueryBuilder.findFilterByKeyAndValue(filters, 'key', 'state');
-        expect(stateFilter.filters.key).equal('state');
+        expect(stateFilter.filters.key).to.eql('state');
 
         //not found
         var filter = elasticQueryBuilder.findFilterByKeyAndValue(filters, 'key', 'race');
-        expect(filter).equal(null);
+        expect(filter).to.eql(null);
+        done();
     });
 
-    it("test if filter is applied", function () {
+    it("test if filter is applied", function (done) {
         //if filter applied
         var filter = {"filters":{"queryKey":"state","primary":false,"value":["AL"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]}};
         var isFilterApplied = elasticQueryBuilder.isFilterApplied(filter);
-        expect(isFilterApplied).equal(true);
+        expect(isFilterApplied).to.eql(true);
 
         //not applied
         filter = {"filterGroup":false,"collapse":true,"allowGrouping":true,"filters":{"key":"gender","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"autoCompleteOptions":[{"key":"Female","title":"Female"},{"key":"Male","title":"Male"}]}};
         var isFilterApplied = elasticQueryBuilder.isFilterApplied(filter);
-        expect(isFilterApplied).equal(false);
+        expect(isFilterApplied).to.eql(false);
+        done();
+    });
+
+
+
+    it("build yrbs grade filter query", function (done) {
+        var filter = { key: 'yrbsGrade', title: 'label.yrbs.filter.grade', queryKey:"grade", primary: false, value: '11th', groupBy: false,
+            filterType: 'radio',autoCompleteOptions: ['9th', '10th', '11th','12th'], defaultGroup:"column", helpText:"label.help.text.yrbs.grade" }
+        var result = elasticQueryBuilder.buildFilterQuery(filter);
+        expect(result).to.eql( { key: 'yrbsGrade',
+            queryKey: 'grade',
+            value: '11th',
+            primary: false });
+        done();
+    });
+
+    it("test filter query with multiple selection", function (done) {
+        var filter = { key: 'yrbsGrade', title: 'label.yrbs.filter.grade', queryKey:"grade", primary: false, value: ['11th', '12th'], groupBy: false,
+            filterType: 'radio',autoCompleteOptions: ['9th', '10th', '11th','12th'], defaultGroup:"column", helpText:"label.help.text.yrbs.grade" }
+        var result = elasticQueryBuilder.buildFilterQuery(filter);
+        expect(result).to.eql( { key: 'yrbsGrade',
+            queryKey: 'grade',
+            value: ['11th','12th'],
+            primary: false });
+        done();
+    });
+
+    it("test filter query with all values selected", function (done) {
+        var filter = { key: 'yrbsGrade', title: 'label.yrbs.filter.grade', queryKey:"grade", primary: false, value: ['9th', '10th','11th', '12th'], groupBy: false,
+            filterType: 'radio',autoCompleteOptions: ['9th', '10th', '11th','12th'], defaultGroup:"column", helpText:"label.help.text.yrbs.grade" }
+        var result = elasticQueryBuilder.buildFilterQuery(filter);
+        expect(result).to.eql(false);
+        done();
     });
 });

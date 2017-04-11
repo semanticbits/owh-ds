@@ -146,12 +146,20 @@ yrbs.prototype.processYRBSReponses = function(response, precomputed, key){
  */
 yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
     var q = {"name" :response.q};
-
+    var precompgroups = [];
+    if(precomputed) {
+        for (var v in response.vars) {
+            if (!(response.vars[v] in response.filter)) {
+                precompgroups.push(response.vars[v]);
+            }
+        }
+    }
     for (var i in  response.results){
         var r = response.results[i];
-        if(isTotalCell(r, response.vars, precomputed)){
+
+        if(isTotalCell(r, precompgroups, precomputed)){
             q[key]= resultCellObject(r);
-        }else if(!isSubTotalCell(r, response.vars, precomputed)){
+        }else if(!isSubTotalCell(r, precompgroups, precomputed)){
             var cell = q;
             // The result table is always nested in the order Sex (sex), Grade (grade), Race (race7) and  Year (year)
             // so nest the results in that order
@@ -168,21 +176,31 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
             var responseAdded = false;
             if ('year' in r) {
                 cell = getResultCell(cell, 'year', r.year);
-                sortByResponse(response.results[i], q, cell, 'year', responseAdded);
-                responseAdded = true;
-                if(response.results[i].response) {
-                    delete q['year'];
+                if(key === 'prams') {
+                    sortByResponse(response.results[i], q, cell, 'year', responseAdded);
+                    responseAdded = true;
+                    if(response.results[i].response) {
+                        delete q['year'];
+                    }
                 }
             }
             if ('sitecode' in r) {
                 cell = getResultCell(cell, 'sitecode', r.sitecode);
-                sortByResponse(response.results[i], q, cell, 'sitecode', responseAdded);
-                if(response.results[i].response) {
-                    delete q['sitecode'];
+                if(key === 'prams') {
+                    sortByResponse(response.results[i], q, cell, 'sitecode', responseAdded);
+                    if(response.results[i].response) {
+                        delete q['sitecode'];
+                    }
                 }
             }
 
             cell[key] = resultCellObject(r);
+
+            // If the result has only one column then there is no separate total column value available in pre-computed results
+            // so assign the cell result to total as well
+            if(precomputed && q[key] == undefined ){
+                q[key] = cell[key];
+            }
         }
     }
     return q;
@@ -202,6 +220,9 @@ function sortByResponse(result, q, cell, key, isAdded) {
 function isTotalCell(cell, groupings, precomputed){
     if(precomputed) {
         // Total cell if all grouping attributes have value "Total"
+        if(groupings.length == 0){
+            return false;
+        }
         for (var g in groupings) {
             if (cell[groupings[g]] != "Total") {
                 return false;

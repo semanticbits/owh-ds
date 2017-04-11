@@ -7,6 +7,7 @@ var YRBSSearchPage = function() {
     ysp.addSelectedQuestionsButton = element(by.cssContainingText('button', 'Filter Selected Questions'));
     ysp.searchQuestionsBox = element(by.id('search_text'));
     ysp.clearSelectedQuestionsButton = element(by.cssContainingText('button', 'CLEAR'));
+    ysp.owhTable = element(by.className('owh-data-table'));
 
     ysp.closePopup = function() {
         element(by.id("modal-close")).click();
@@ -43,6 +44,11 @@ var YRBSSearchPage = function() {
     ysp.getQuestionContent = function() {
         return element.all(by.className('owh-question__content'));
     };
+
+    ysp.getTableRowData = function(rowNumber) {
+        return ysp.owhTable.element(by.tagName('tbody')).all(by.tagName('tr')).get(rowNumber).all(by.tagName('td')).getText();
+    };
+
 };
 
 module.exports = new YRBSSearchPage;
