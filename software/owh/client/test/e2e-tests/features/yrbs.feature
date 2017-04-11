@@ -6,7 +6,7 @@ Feature: As a User
 
   Scenario: Access YRBS page from home page
     Given I am on search page
-    And I select YRBS as primary filter
+    When I select YRBS as primary filter
     Then I should get search page with default filter type "Youth Risk Behavior"
 
   Scenario: Accesss YRBS from search page
@@ -17,19 +17,19 @@ Feature: As a User
     #Then the default year selected should be 2015
     And side menu slides back into view
 
-  Scenario: Hide Sidebar
-    When I see hide filter button in yrbs page
-    And I click hide filter button in yrbs page
-    Then side menu slides away
-    Then I see button to show filters
-    And then table and visualizations adjust to that they use up the entire available screen space
-    And the background highlight is in lighter purple (button color)
+  #Scenario: Hide Sidebar
+  #  When I see hide filter button in yrbs page
+ #   And I click hide filter button in yrbs page
+  #  Then side menu slides away
+  #  Then I see button to show filters
+  #  And then table and visualizations adjust to that they use up the entire available screen space
+  #  And the background highlight is in lighter purple (button color)
 
-  Scenario: Un collapse sidebar
-    When I click show filters button
-    Then side menu slides back into view
-    And the entire table and visualizations adjust to the reduced screen space
-    And there is button to hide filter
+  #Scenario: Un collapse sidebar
+  #  When I click show filters button
+  #  Then side menu slides back into view
+  #  And the entire table and visualizations adjust to the reduced screen space
+  #  And there is button to hide filter
 
 #Scenario: show chart for each question
   #  Given I am on search page

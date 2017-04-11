@@ -23,17 +23,19 @@ var homeStepDefinitionsWrapper = function () {
     this.When(/^I click on Explore button in Health Information Gateway section$/, function () {
         homePage.quickHealthExploreBtn.click();
     });
-    this.When(/^I click on Explore button in Youth Related card under Behavioral Risk$/, function () {
-        homePage.mentalExplorerLink.click();
+    this.When(/^I click on Explore button in Youth Related card under Behavioral Risk$/, function (next) {
+        homePage.mentalExplorerLink.click()
+            .then(next);
     });
 
     this.Then(/^I should get search page with default filter type "([^"]*)"$/, function (arg1) {
-        browser.sleep(300);
-        expect(mortalityPage.getSelectedFilterType()).to.eventually.equal(arg1);
+        browser.sleep(1000);
+        return expect(mortalityPage.getSelectedFilterType()).to.eventually.equal(arg1);
     });
 
-    this.When(/^I click on explore button in Birth card under womens health section$/, function () {
-        homePage.birthExplorerLink.click();
+    this.When(/^I click on explore button in Birth card under womens health section$/, function (next) {
+        homePage.birthExplorerLink.click()
+            .then(next);
     });
 
     this.Then(/^I should get a info modal$/, function () {

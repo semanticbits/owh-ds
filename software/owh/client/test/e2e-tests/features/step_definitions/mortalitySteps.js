@@ -6,6 +6,8 @@ var expect = chai.expect;
 
 var mortalityStepDefinitionsWrapper = function () {
 
+    this.setDefaultTimeout(30000);
+
     var mortalityPage = require('../support/mortalitypage.po')
 
     this.When(/^user sees a visualization$/, function () {
@@ -32,35 +34,38 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Given(/^I am on search page$/, function () {
         browser.get('/search/');
+        return browser.waitForAngular();
     });
 
     this.Then(/^user sees side filter$/, function () {
         browser.sleep(300);
-        expect(mortalityPage.sideMenu.isDisplayed()).to.eventually.equal(true);
+        return expect(mortalityPage.sideMenu.isDisplayed()).to.eventually.equal(true)
     });
 
     this.Then(/^there is button to hide filter$/, function () {
-        expect(mortalityPage.hideFiltersBtn.isDisplayed()).to.eventually.equal(true);
+        return expect(mortalityPage.hideFiltersBtn.isDisplayed()).to.eventually.equal(true);
     });
 
     this.When(/^I click hide filter button$/, function () {
         mortalityPage.hideFiltersBtn.click();
     });
 
-    this.Then(/^side menu slides away$/, function () {
+    this.Then(/^side menu slides away$/, function (next) {
         expect(mortalityPage.sideMenu.getAttribute('class')).to.eventually.include('ng-hide');
+        next();
     });
 
-    this.Then(/^I see button to show filters$/, function () {
+    this.Then(/^I see button to show filters$/, function (next) {
         expect(mortalityPage.showFiltersBtn.isDisplayed()).to.eventually.equal(true);
+        next();
     });
 
     this.When(/^I click show filters button$/, function () {
-        mortalityPage.showFiltersBtn.click();
+        return mortalityPage.showFiltersBtn.click();
     });
 
     this.Then(/^side menu slides back into view$/, function () {
-        expect(mortalityPage.sideMenu.getAttribute('class')).to.not.eventually.include('ng-hide');
+        return expect(mortalityPage.sideMenu.getAttribute('class')).to.not.eventually.include('ng-hide');
     });
 
     this.When(/^I see the number of deaths in data table$/, function () {
@@ -210,8 +215,9 @@ var mortalityStepDefinitionsWrapper = function () {
         });
     });
 
-    this.When(/^I change 'I'm interested in' dropdown value to "([^"]*)"$/, function (arg1) {
-        mortalityPage.interestedInSelectBox.element(by.cssContainingText('option', arg1)).click();
+    this.When(/^I change 'I'm interested in' dropdown value to "([^"]*)"$/, function (arg1, next) {
+        mortalityPage.interestedInSelectBox.element(by.cssContainingText('option', arg1)).click()
+            .then(next);
     });
 
     this.Then(/^I should be redirected to YRBS page$/, function () {
