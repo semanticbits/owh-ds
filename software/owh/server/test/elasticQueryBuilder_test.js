@@ -2,7 +2,7 @@ var elasticQueryBuilder = require("../api/elasticQueryBuilder");
 var supertest = require("supertest");
 var expect = require("expect.js");
 
-describe.only("Build elastic search queries", function(){
+describe("Build elastic search queries", function(){
      it("Build search query with empty query and aggregations", function(done){
         var params = {query:{}, aggregations:{}};
         var result = elasticQueryBuilder.buildSearchQuery(params, true)
