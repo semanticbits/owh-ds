@@ -133,6 +133,7 @@ td .inline-bar {
     z-index: 1;
 }
 
+.padding-top-5 { padding-top: 5px; }
 .padding-top-10 { padding-top: 10px; }
 .padding-top-20 { padding-top: 20px; }
 .padding-top-30 { padding-top: 30px; }
@@ -751,11 +752,16 @@ body {
 }
 
 .leaflet-container {
-    background-color: #fff;
+    background-color: #f6f6f6;
 }
 
 .leaflet-control-container .legend {
     width: 130px;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 5px;
+    background: rgba(255,255,255,0.95);
 }
 
 /*header*/

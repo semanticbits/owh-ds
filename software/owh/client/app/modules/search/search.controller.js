@@ -33,7 +33,7 @@
         var bridgedRaceFilter = null;
 
         sc.sideMenu = {visible: true};
-        sc.mapOptions = {selectedMapSize: 'small'};
+        sc.mapOptions = {selectedMapSize: 'big'};
         //For intial search call
         if($stateParams.selectedFilters == null) {
             sc.filters = searchFactory.getAllFilters();
@@ -51,7 +51,7 @@
             sc.filters.selectedPrimaryFilter = $stateParams.selectedFilters;
         }
 
-        sc.selectedMapSize = 'small';
+        sc.selectedMapSize = 'big';
         sc.showMeOptions = {
             deaths: [
                 {key: 'number_of_deaths', title: 'Number of Deaths'},
@@ -336,14 +336,14 @@
             usa: {
                 lat: 39,
                 lng: -97,
-                zoom: 3
+                zoom: 3.9
             },
             legend: {},
             defaults: {
                 tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
-                scrollWheelZoom: false,
-                minZoom: 2,
-                maxZoom: 6
+                scrollWheelZoom: true,
+                minZoom: 3,
+                maxZoom: 5
             },
             markers: {},
             events: {
@@ -510,7 +510,7 @@
         }
 
         //builds marker popup.
-        sc.mapPopup = L.popup({autoPan: false});
+        sc.mapPopup = L.popup({autoPan:true, closeButton:false});
         sc.currentFeature = {};
         function buildMarkerPopup(lat, lng, properties, map, tableView) {
             var childScope = $scope.$new();
@@ -518,6 +518,7 @@
             childScope.lng = lng;
             childScope.properties = properties;
             childScope.tableView = tableView;
+            console.log(map);
             var ele = angular.element('<div></div>');
             ele.html($templateCache.get('app/partials/marker-template.html'));
             var compileEle = $compile(ele.contents())(childScope);

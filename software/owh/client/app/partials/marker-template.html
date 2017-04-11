@@ -1,11 +1,13 @@
-<div class="usa-grid-full" style="width: 250px">
+<div class="usa-grid-full" style="width: 550px;">
     <div class="usa-width-one-whole">
-
-        <div class="usa-width-one-whole">
-            <div class="usa-width-two-thirds marker-label">Year(s)</div>
-            <div class="usa-width-one-third marker-years">{{properties.years.join();}}</div>
+        <div class="usa-width-one-whole" style="border-bottom: 1px solid #8c8c8c;font-weight: bold;font-size: 18px;bottom:10px;">
+            {{properties.name}}
         </div>
-        <div class="usa-width-one-whole" ng-repeat="eachCat in properties.sex">
+        <div class="usa-width-one-whole" style="margin-top: 10px;">
+            <div class="usa-width-two-thirds marker-label">Year(s)</div>
+            <div class="usa-width-one-third marker-years">{{properties.years.join(', ');}}</div>
+        </div>
+        <div class="usa-width-one-whole" ng-repeat="eachCat in properties.sex" style="margin-top: 5px;">
             <div class="usa-width-two-thirds marker-label" ng-bind="eachCat.name | GenderTitle"></div>
             <div ng-if="tableView === 'number_of_deaths'" class="usa-width-one-third">
                 <span ng-if="eachCat.deaths !== 'suppressed'" ng-bind="eachCat.deaths | number"></span>
@@ -15,7 +17,7 @@
                 <span ng-bind="eachCat.bridge_race | number"></span>
             </div>
         </div>
-        <div class="usa-width-one-whole">
+        <div class="usa-width-one-whole margin-top-5 padding-top-5 border-top-default padding-bottom-10">
             <div class="usa-width-two-thirds marker-label">
                 <span ng-if="tableView === 'number_of_deaths'">Total Deaths</span>
                 <span ng-if="tableView === 'bridge_race'">Total</span>
