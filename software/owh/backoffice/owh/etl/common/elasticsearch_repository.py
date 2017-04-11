@@ -3,6 +3,7 @@ __author__ = "Biju Joseph"
 import logging
 
 import elasticsearch
+import time
 from elasticsearch.helpers import bulk, scan
 from repositories import Repository
 
@@ -52,8 +53,10 @@ class ElasticSearchRepository(Repository, object):
 
         try:
             # Create the index
+            logging.info('Creating index %s', self.index_name)
             self.es.indices.create(index= self.index_name, body=INDEX_SETTINGS, ignore=400)
-
+            logging.info('Index created successfully. Waiting for shard allocations..')
+            time.sleep(10)
             #specify the mapping
             self.create_mappings(mapping)
             self.es.indices.clear_cache(index=self.index_name)
