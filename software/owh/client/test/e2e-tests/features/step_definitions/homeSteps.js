@@ -5,23 +5,27 @@ chai.use(chaiAsPromised);
 var expect = chai.expect;
 
 var homeStepDefinitionsWrapper = function () {
+    this.setDefaultTimeout(30000);
 
     var homePage = require('../support/homepage.po');
     var mortalityPage = require('../support/mortalitypage.po')
 
     this.When(/^I hit app url$/, function () {
         browser.get('/');
+        return browser.waitForAngular();
     });
 
-    this.Then(/^I should be automatically redirected to home page$/, function () {
+    this.Then(/^I should be automatically redirected to home page$/, function (next) {
         browser.getCurrentUrl().then(function(url) {
            expect(url).to.equal(browser.baseUrl);
-        });
+        }).then(next);
 
     });
 
     this.When(/^I click on Explore button in Health Information Gateway section$/, function () {
         homePage.quickHealthExploreBtn.click();
+        return browser.waitForAngular();
+
     });
     this.When(/^I click on Explore button in Youth Related card under Behavioral Risk$/, function (next) {
         homePage.mentalExplorerLink.click()
@@ -38,31 +42,33 @@ var homeStepDefinitionsWrapper = function () {
             .then(next);
     });
 
-    this.Then(/^I should get a info modal$/, function () {
+    this.Then(/^I should get a info modal$/, function (next) {
         homePage.getPhaseTwoPopupHeading().then(function(heading){
             expect(heading).to.equal('Work in progress')
-        });
+        }).then(next);
     });
 
     this.When(/^I am at home page$/, function () {
         browser.get("/");
+        return browser.waitForAngular();
     });
 
-    this.Then(/^gray banner on top reads "([^"]*)"$/, function (givenMessage) {
+    this.Then(/^gray banner on top reads "([^"]*)"$/, function (givenMessage, next) {
         homePage.getWorkInProgressMessage().then(function(foundMessage){
            expect(givenMessage).to.equal(foundMessage);
-        });
+        }).then(next);
     });
 
     this.When(/^I am at search page$/, function () {
         browser.get("/search");
+        browser.waitForAngular();
     });
 
-    this.Then(/^I see the name of application as "([^"]*)"$/, function (arg1) {
+    this.Then(/^I see the name of application as "([^"]*)"$/, function (arg1, next) {
         browser.sleep(10000);
         homePage.getOWHAppName().then(function(appName){
             expect(appName).to.equal(arg1)
-        });
+        }).then(next);
     });
 };
 module.exports = homeStepDefinitionsWrapper;

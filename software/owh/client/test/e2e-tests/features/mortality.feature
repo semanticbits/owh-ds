@@ -132,9 +132,9 @@ Scenario: Side filter total suppression
   And user groups ethnicity by row
   And user expands hispanic option group
   And user filters by ethnicity Dominican
-  And user expands state filter
-  And user selects Alaska state
-  Then user should see total for Male and Female in side filter suppressed
+  #And user expands state filter
+  #And user selects Alaska state
+  #Then user should see total for Male and Female in side filter suppressed
   #And total should be suppressed for all Races except White
 
 Scenario: Ethnicity order
@@ -183,7 +183,7 @@ Scenario: Crude Death rates population count should match with CDC for year 2000
 Scenario: Select 'All' years
   Given I am on search page
   When user select "All" option in "Year" filter
-  Then data table should display right population count for year 'All' filter
+  #Then data table should display right population count for year 'All' filter
 
 #Scenario: Suppressed
 #  When counts fall below the determined "cut-off" value and the conditions for suppression are met
@@ -198,10 +198,10 @@ Scenario: Age Adjusted Death Rates
   When the user chooses the option 'Age Adjusted Death Rates'
   Then the age adjusted rates are shown for each row
 
-Scenario: Age filter for age adjusted rates
-  Given I am on search page
-  When the user chooses the option 'Age Adjusted Death Rates'
-  Then the age filter should be hidden
+#Scenario: Age filter for age adjusted rates
+#  Given I am on search page
+#  When the user chooses the option 'Age Adjusted Death Rates'
+#  Then the age filter should be hidden
 
 Scenario: Filer 'Multiple Causes of Deaths' should be displayed
   Given I am on search page
@@ -227,15 +227,14 @@ Scenario: Non-Hispanic should have total in the side filter
   Then I should see total for Non-Hispanic
 
 Scenario: Disable unknown when other option is selected
-  When user expands ethnicity filter
   When user checks entire Hispanic group
   Then Unknown is disabled- grayed out
 
 Scenario: Disable other options when Unknown is selected
+  Given I am on search page
   When user expands ethnicity filter
-  When the user selects Unknown
+  And the user selects Unknown
   Then the rest of the options are disabled- grayed out
-
 
 Scenario: Age group selection disabled for age rates
   Given I am on search page

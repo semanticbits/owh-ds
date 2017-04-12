@@ -29,10 +29,5 @@ exports.config = {
   onPrepare: function() {
     browser.driver.manage().window().maximize();
   },
-  baseUrl: 'http://localhost:9900/',
-  //jasmineNodeOpts: {defaultTimeoutInterval: 60000}
-  plugins: [{
-    package: 'protractor-console',
-    logLevels: ['severe', 'info']
-  }],
+  baseUrl: 'http://localhost:9900/'
 };

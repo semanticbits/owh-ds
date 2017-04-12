@@ -41,9 +41,9 @@ Feature: Bridge race filters
     When I see a visualization
     Then I see data element and values are plotted on both the axes
     And I see chart heading appears on the top
-    And I see an axis labels are displayed on the graph
-    And I see an Expand button on the top right corner
-    And I see an share button on the top right corner
+    #And I see an axis labels are displayed on the graph
+    #And I see an Expand button on the top right corner
+    #And I see an share button on the top right corner
 
   Scenario: Expand/collapse chart
     When I clicks on the expand button
@@ -61,5 +61,5 @@ Feature: Bridge race filters
   Scenario: State filter search box
     When I expands the State filter
     Then I see the search box
-    When I begins to type a state name "alas" in the search box
-    Then I see results dynamically populate with the states matching the "alas"
+    #When I begins to type a state name "alas" in the search box
+    #Then I see results dynamically populate with the states matching the "alas"

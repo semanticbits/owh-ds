@@ -197,12 +197,11 @@ var yrbsStepDefinitionsWrapper = function () {
 
     });
 
-    this.Given(/^filter "([^"]*)" and option "([^"]*)" selected$/, function (filterName, option, next) {
+    this.Given(/^filter "([^"]*)" and option "([^"]*)" selected$/, function (filterName, option) {
         var raceFilter = yrbsPage.selectSideFilter(filterName);
         var raceParentElement = raceFilter.element(by.xpath('..')).element(by.xpath('..')).element(by.xpath('..'));
         raceParentElement.element(by.xpath('.//*[.="'+option+'"]')).click();
-        browser.sleep(300)
-            .then(next);
+        return browser.waitForAngular();
     });
 
     this.Then(/^I see question categories in this order "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)"$/, function (questionCat1, questionCat2, questionCat3, questionCat4, questionCat5, questionCat6, questionCat7, questionCat8, next) {
