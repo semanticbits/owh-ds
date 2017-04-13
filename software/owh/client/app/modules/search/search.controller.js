@@ -510,15 +510,14 @@
         }
 
         //builds marker popup.
-        sc.mapPopup = L.popup({autoPan:true, closeButton:false});
+        sc.mapPopup = L.popup({autoPan:false, closeButton:false});
         sc.currentFeature = {};
-        function buildMarkerPopup(lat, lng, properties, map, tableView) {
+        function buildMarkerPopup(lat, lng, properties, map, tableView, markerPosition) {
             var childScope = $scope.$new();
             childScope.lat = lat;
             childScope.lng = lng;
             childScope.properties = properties;
             childScope.tableView = tableView;
-            console.log(map);
             var ele = angular.element('<div></div>');
             ele.html($templateCache.get('app/partials/marker-template.html'));
             var compileEle = $compile(ele.contents())(childScope);
@@ -531,10 +530,41 @@
                     .setLatLng(L.latLng(lat, lng));
             }
 
+            var rotatePopup = function () {
+                $scope.$on("leafletDirectiveMap.popupopen", function (evt, args) {
+
+                    var popup = args.leafletEvent.popup;
+
+                    var popupHeight = angular.element('#chart_us_map').find('.leaflet-popup-content').height();
+
+                    //keep track of old position of popup
+                    if(!popup.options.oldOffset) {
+                        popup.options.oldOffset = popup.options.offset;
+                    }
+
+                    if(markerPosition.y < 180) {
+                        //change position if popup does not fit into map-container
+                        popup.options.offset = new L.Point(10, popupHeight + 100);
+                        angular.element('#chart_us_map').addClass('reverse-popup')
+                    } else {
+                        //revert position
+                        popup.options.offset = popup.options.oldOffset;
+                        angular.element('#chart_us_map').removeClass('reverse-popup')
+                    }
+                });
+                //on popupclose reset pop up position
+                $scope.$on("leafletDirectiveMap.popupclose", function (evt, args) {
+                    $('#chart_us_map').removeClass('reverse-popup')
+                })
+            };
+
+            rotatePopup();
+
         }
         $scope.$on("leafletDirectiveGeoJson.mouseover", function (event, args) {
             var leafEvent = args.leafletEvent;
-            buildMarkerPopup(leafEvent.latlng.lat, leafEvent.latlng.lng, leafEvent.target.feature.properties, args.leafletObject._map, sc.filters.selectedPrimaryFilter.key);
+            buildMarkerPopup(leafEvent.latlng.lat, leafEvent.latlng.lng, leafEvent.target.feature.properties,
+                args.leafletObject._map, sc.filters.selectedPrimaryFilter.key, leafEvent.containerPoint);
             sc.currentFeature = leafEvent.target.feature;
 
         });

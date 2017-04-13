@@ -764,6 +764,21 @@ body {
     background: rgba(255,255,255,0.95);
 }
 
+.marker-popup-header {
+    border-bottom: 1px solid #8c8c8c;
+    font-weight: bold;
+    font-size: 18px;
+    padding-bottom:2px;
+}
+
+.reverse-popup .leaflet-popup-tip-container {
+    position: absolute;
+    transform: rotate(180deg);
+    top: -20px;
+    left: 140px;
+}
+
+
 /*header*/
 .qh-header {
     background-color: #3b699b;
