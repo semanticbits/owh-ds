@@ -1,7 +1,7 @@
 var Cucumber = require('cucumber');
 const fs = require('fs');
 hooks = function () {
-    var outputDir = 'coverage';
+    var outputDir = 'cucumber-test-reports';
     this.After(function(scenario, callback) {
         if (scenario.isFailed()) {
                 browser.takeScreenshot().then(function(base64png) {
@@ -18,11 +18,13 @@ hooks = function () {
 
     var createHtmlReport = function(sourceJson) {
         var CucumberHtmlReport = require('cucumber-html-report');
-        var report = new CucumberHtmlReport({
+        var report = CucumberHtmlReport.create({
                 source: sourceJson, // source json
-                dest: outputDir // target directory (will create if not exists)
-        });
-        report.createReport();
+                dest: outputDir, // target directory (will create if not exists)
+                name:         'cucumber-test-report.html',                 // report file name (will be index.html if not exists)
+                title:        'Cucumber Test Report'
+        }).then(console.log("Cucumber test report created successfully."));
+        //report.createReport();
     };
 
     var JsonFormatter = Cucumber.Listener.JsonFormatter();
@@ -31,7 +33,7 @@ hooks = function () {
                 fs.mkdirSync(outputDir);
             }
 
-            var targetJson = outputDir + 'cucumber_report.json';
+            var targetJson = outputDir + '/cucumber-test-report.json';
         fs.writeFile(targetJson, string, function(err) {
                 if (err) {
                         console.log('Failed to save cucumber test results to json file.');

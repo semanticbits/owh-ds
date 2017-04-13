@@ -127,11 +127,11 @@ Scenario: Side filter total suppression
   Given I am on search page
   When user shows more year filters
   And user filters by year 2015
-  And user expands sex options
-  When user expands ethnicity filter
-  And user groups ethnicity by row
-  And user expands hispanic option group
-  And user filters by ethnicity Dominican
+  #And user expands sex options
+  #When user expands ethnicity filter
+  #And user groups ethnicity by row
+  #And user expands hispanic option group
+  #And user filters by ethnicity Dominican
   #And user expands state filter
   #And user selects Alaska state
   #Then user should see total for Male and Female in side filter suppressed
@@ -250,7 +250,7 @@ Scenario: Age group selection disabled for age rates
 #  Then table should display Hispanic groups only
 
 #TODO: remove Ethnicity & State from sideFilters list whenever we enable it for Crude Death Rates & Age Adjusted Death Rates
-  Scenario Outline: Show disabled filters sdfsa
+  Scenario Outline: Show disabled filters
   Given I am on search page
   When I choose the option <showMeFilter>
   Then I see <sideFilters> disabled

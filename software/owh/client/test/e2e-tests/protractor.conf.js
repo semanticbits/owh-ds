@@ -17,8 +17,8 @@ exports.config = {
       'features/step_definitions/yrbsSteps.js',
       'features/step_definitions/commonSteps.js',
       'features/step_definitions/bridgeRaceSteps.js',
-      'features/step_definitions/natalitySteps.js'
-      //'features/support/hook.js'
+      'features/step_definitions/natalitySteps.js',
+      'features/support/hook.js'
     ],
       format: 'pretty'
   },

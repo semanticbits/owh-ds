@@ -121,7 +121,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
 
-    this.Then(/^I should be able to select more than one\. The radio buttons must be changed to checkboxes$/, function (next) {
+    this.Then(/^I should be able to select more than one\. The radio buttons must be changed to checkboxes$/, function () {
         var raceFilter = yrbsPage.selectSideFilter("Race/Ethnicity");
         var raceParentElement = raceFilter.element(by.xpath('..')).element(by.xpath('..')).element(by.xpath('..'));
         raceFilter.getAttribute('class').then(function(className){
@@ -131,7 +131,7 @@ var yrbsStepDefinitionsWrapper = function () {
             }
             raceParentElement.element(by.xpath('.//*[.="Asian"]')).click();
         });
-        browser.sleep(300);
+        browser.waitForAngular();
         raceFilter.getAttribute('class').then(function(className){
             if(className =="fa fa-chevron-right") {
                 //Exapnd filter
@@ -139,8 +139,7 @@ var yrbsStepDefinitionsWrapper = function () {
             }
             raceParentElement.element(by.xpath('.//*[.="American Indian or Alaska Native"]')).click();
         });
-        browser.sleep(300)
-            .then(next);
+        return browser.waitForAngular();
     });
 
     this.Then(/^the default filter pre\-selected should be Race$/, function () {
@@ -383,15 +382,14 @@ var yrbsStepDefinitionsWrapper = function () {
         return expect(element(by.cssContainingText('span', arg1)).isPresent()).to.eventually.equal(true);
     });
 
-    this.When(/^I click on the "([^"]*)" link$/, function (arg1, next) {
+    this.When(/^I click on the "([^"]*)" link$/, function (arg1) {
          if(arg1 == 'Switch to Basic Search'){
-             element(by.cssContainingText('span', arg1)).click()
-                 .then(next);
+             element(by.cssContainingText('span', arg1)).click();
          }
          else if(arg1 == 'Switch to Advanced Search'){
-             element(by.cssContainingText('span', arg1)).click()
-                 .then(next);
+             element(by.cssContainingText('span', arg1)).click();
          }
+         return browser.waitForAngular();
     });
 
     this.Then(/^the sidebar switches to an Advanced Search mode$/, function () {
