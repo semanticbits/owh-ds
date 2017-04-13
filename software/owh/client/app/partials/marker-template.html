@@ -1,8 +1,6 @@
 <div class="usa-grid-full" style="width: 550px;">
     <div class="usa-width-one-whole">
-        <div class="usa-width-one-whole marker-popup-header">
-            {{properties.name}}
-        </div>
+        <div class="usa-width-one-whole marker-popup-header" ng-bind="properties.name"></div>
         <div class="usa-width-one-whole margin-top-10">
             <div class="usa-width-two-thirds marker-label">Year(s)</div>
             <div class="usa-width-one-third marker-years">{{properties.years.join(', ');}}</div>
