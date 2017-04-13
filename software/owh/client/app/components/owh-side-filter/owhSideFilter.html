@@ -431,15 +431,15 @@
                 <!-- end radio filter -->
             </li>
             <!--show hide/more filters of a category-->
-            <div ng-if="category.length > 2 && categoryKey"
+            <div ng-if="category.sideFilters.length > 2 && categoryKey"
                  class="padding-top-10 toggle-filter-link">
                 <a ng-show="!sfc.filters.selectedPrimaryFilter['cat'+$index]" class="custom-link show-more-{{$index}}"
                    translate="label.show.more.filters"
-                   translate-values="{showLength: (category.length - 2)}"
+                   translate-values="{showLength: (category.sideFilters.length - 2)}"
                    ng-click="sfc.filters.selectedPrimaryFilter['cat'+$index] = !sfc.filters.selectedPrimaryFilter['cat'+$index]" href="javascript:void(0)"></a>
                 <a ng-show="sfc.filters.selectedPrimaryFilter['cat'+$index]" class="custom-link show-less-{{$index}}"
                    translate="label.hide.more.filters"
-                   translate-values="{hideLength: (category.length -2)}"
+                   translate-values="{hideLength: (category.sideFilters.length -2)}"
                    ng-click="sfc.filters.selectedPrimaryFilter['cat'+$index] = !sfc.filters.selectedPrimaryFilter['cat'+$index]" href="javascript:void(0)"></a>
             </div>
         </div>
