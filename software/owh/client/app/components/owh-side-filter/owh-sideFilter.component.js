@@ -39,25 +39,18 @@
 
         sfc.$onChanges = function(changes) {
             if(changes.filters.currentValue) {
-                angular.forEach(changes.filters.currentValue, function(filter) {
-                    //iterate through filter options and add counts
-                    angular.forEach(filter.filters.autoCompleteOptions, function(option) {
-                        option.count = getOptionCount(option);
-                        if(option.options) {
-                            angular.forEach(option.options, function(subOption) {
-                                subOption.count = getOptionCount(subOption);
-                            });
-                        }
+                angular.forEach(changes.filters.currentValue, function(category) {
+                    angular.forEach(category.sideFilters, function(filter) {
+                        //iterate through filter options and add counts
+                        angular.forEach(filter.filters.autoCompleteOptions, function (option) {
+                            option.count = getOptionCount(option);
+                            if (option.options) {
+                                angular.forEach(option.options, function (subOption) {
+                                    subOption.count = getOptionCount(subOption);
+                                });
+                            }
+                        });
                     });
-                });
-
-                //categorize filters
-                sfc.categories = {};
-                angular.forEach(changes.filters.currentValue, function(filter) {
-                    if(!sfc.categories[filter.category]) {
-                        sfc.categories[filter.category] = []
-                    }
-                    sfc.categories[filter.category].push(filter);
                 });
             }
         };
@@ -241,7 +234,16 @@
         }
 
 
-        function onFilterValueChange(filter){
+        function onFilterValueChange(filter, category){
+
+            //clear values for other filters for exclusive categories
+            if(category.exclusive) {
+                angular.forEach(category.sideFilters, function(sideFilter) {
+                    if(filter !== sideFilter) {
+                        sideFilter.filters.value = [];
+                    }
+                });
+            }
             // Update the filter options if refreshFiltersOnChange is true
             if (filter.refreshFiltersOnChange){
                 utilService.refreshFilterAndOptions(filter.filters,filter, sfc.primaryKey);

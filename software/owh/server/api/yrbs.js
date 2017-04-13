@@ -84,7 +84,7 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
         // Build filter params
         var f = '';
         for (q in apiQuery.query){
-            if(q != 'question.path' && 'value' in  apiQuery.query[q] && apiQuery.query[q].value) {
+            if(q != 'question.path' && q != 'breakout' && 'value' in  apiQuery.query[q] && apiQuery.query[q].value) {
                 f += (q + ':');
                 if(apiQuery.query[q].value instanceof  Array) {
                     f += apiQuery.query[q].value.join(',') + '|';
@@ -344,9 +344,12 @@ yrbs.prototype.getPramsQuestionsTree = function () {
         logger.info("Returning cached PRAMS questions");
         deferred.resolve(cachedPramsQuestions);
     } else {
-        invokeYRBS(config.yrbs.questionsUrl + '?d=prams').then(function(response) {
+        var pramsQuestionsUrl = config.yrbs.questionsUrl.split('/');
+        pramsQuestionsUrl.splice(3, 0, 'v2');
+        pramsQuestionsUrl = pramsQuestionsUrl.join('/');
+        invokeYRBS(pramsQuestionsUrl + '?d=prams').then(function(response) {
             logger.info("Getting PRAMS questions from YRBS service");
-            var data = prepareQuestionTreeForYears(response, [], true);
+            var data = prepareQuestionTreeForYears(response.questions, [], true);
             cachedPramsQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
             deferred.resolve(cachedPramsQuestions);
         });
@@ -370,9 +373,9 @@ function prepareQuestionTreeForYears(questions, years, prams) {
     if(prams) {
         var keys = Object.keys(questions);
         keys.sort();
-        var newQuestions = [];
+        var newQuestions = {};
         for(var i = 0; i < keys.length; i++) {
-            newQuestions.push(questions[keys[i]]);
+            newQuestions[keys[i]] = questions[keys[i]];
         }
         questions = newQuestions;
     }
@@ -380,6 +383,9 @@ function prepareQuestionTreeForYears(questions, years, prams) {
     for (var qKey in questions) {
         var quesObj = questions[qKey];
         var qCategory = quesObj.topic;
+        if(prams) {
+            qCategory = quesObj.subtopic;
+        }
         if (qCategory && qCategoryMap[qCategory] == undefined) {
             qCategoryMap[qCategory] = {id:'cat_'+catCount, text:qCategory, children:[]};
             catCount = catCount + 1;
@@ -391,13 +397,13 @@ function prepareQuestionTreeForYears(questions, years, prams) {
                 questionsList.push({key : quesObj.question, qkey : qKey, title : quesObj.question +"("+quesObj.description+")"});
             } else if(prams) {
                 //skip duplicate question keys
-                if(questionKeys.indexOf(quesObj.questionid) >= 0) {
+                if(questionKeys.indexOf(qKey) >= 0) {
                     continue;
                 }
-                var question = {text:quesObj.question, id: quesObj.questionid};
+                var question = {text:quesObj.question, id: qKey};
                 qCategoryMap[qCategory].children.push(question);
-                questionsList.push({key: quesObj.question, qkey: quesObj.questionid, title: quesObj.question});
-                questionKeys.push(quesObj.questionid);
+                questionsList.push({key: quesObj.question, qkey: qKey, title: quesObj.question});
+                questionKeys.push(qKey);
             }
         }
     }
