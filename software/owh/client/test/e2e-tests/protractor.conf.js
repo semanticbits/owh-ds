@@ -17,8 +17,10 @@ exports.config = {
       'features/step_definitions/yrbsSteps.js',
       'features/step_definitions/commonSteps.js',
       'features/step_definitions/bridgeRaceSteps.js',
-      'features/step_definitions/natalitySteps.js'
-    ]
+      'features/step_definitions/natalitySteps.js',
+      'features/support/hook.js'
+    ],
+      format: 'pretty'
   },
 
   capabilities: {
@@ -27,10 +29,5 @@ exports.config = {
   onPrepare: function() {
     browser.driver.manage().window().maximize();
   },
-  baseUrl: 'http://localhost:9900/',
-  //jasmineNodeOpts: {defaultTimeoutInterval: 60000}
-  plugins: [{
-    package: 'protractor-console',
-    logLevels: ['severe', 'info']
-  }],
+  baseUrl: 'http://localhost:9900/'
 };

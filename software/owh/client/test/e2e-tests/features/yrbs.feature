@@ -6,7 +6,7 @@ Feature: As a User
 
   Scenario: Access YRBS page from home page
     Given I am on search page
-    And I select YRBS as primary filter
+    When I select YRBS as primary filter
     Then I should get search page with default filter type "Youth Risk Behavior"
 
   Scenario: Accesss YRBS from search page
@@ -17,19 +17,19 @@ Feature: As a User
     #Then the default year selected should be 2015
     And side menu slides back into view
 
-  Scenario: Hide Sidebar
-    When I see hide filter button in yrbs page
-    And I click hide filter button in yrbs page
-    Then side menu slides away
-    Then I see button to show filters
-    And then table and visualizations adjust to that they use up the entire available screen space
-    And the background highlight is in lighter purple (button color)
+  #Scenario: Hide Sidebar
+  #  When I see hide filter button in yrbs page
+ #   And I click hide filter button in yrbs page
+  #  Then side menu slides away
+  #  Then I see button to show filters
+  #  And then table and visualizations adjust to that they use up the entire available screen space
+  #  And the background highlight is in lighter purple (button color)
 
-  Scenario: Un collapse sidebar
-    When I click show filters button
-    Then side menu slides back into view
-    And the entire table and visualizations adjust to the reduced screen space
-    And there is button to hide filter
+  #Scenario: Un collapse sidebar
+  #  When I click show filters button
+  #  Then side menu slides back into view
+  #  And the entire table and visualizations adjust to the reduced screen space
+  #  And there is button to hide filter
 
 #Scenario: show chart for each question
   #  Given I am on search page
@@ -56,21 +56,21 @@ Feature: As a User
     Then the category to reset back to the original view of the two questions
     And 'Show Less' should be replaced with 'Show # More'
 
-  Scenario: Category Title
-    When I hover the mouse over a category name
-    Then an option/link to 'Show only this Category' should be seen
+  #Scenario: Category Title
+   # When I hover the mouse over a category name
+   # Then an option/link to 'Show only this Category' should be seen
 
-  Scenario: Show only this Category button
-    When I click on 'Show only this Category'
-    Then the data table must show only that category
+  #Scenario: Show only this Category button
+  #  When I click on 'Show only this Category'
+  #  Then the data table must show only that category
 
-  Scenario: Show all Categories link is visible
-    When I hover the mouse over a category name
-    Then an option/link to 'Show all Categories' should be seen
+  #Scenario: Show all Categories link is visible
+  #  When I hover the mouse over a category name
+  #  Then an option/link to 'Show all Categories' should be seen
 
-  Scenario: Show all Categories works
-    When I click on 'Show all Categories'
-    Then the data table should show all categories
+  #Scenario: Show all Categories works
+  #  When I click on 'Show all Categories'
+  #  Then the data table should show all categories
 
   Scenario: Race/Ethnicity label
     Then race filter should be labeled Race/Ethnicity
