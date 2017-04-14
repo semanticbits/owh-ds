@@ -23,7 +23,7 @@
             //update states info with trials data
             var stateDeathTotals = [];
             angular.forEach($rootScope.states.features, function(feature){
-                var state = utilService.findByKeyAndValue(data.states, 'name', feature.properties.code);
+                var state = utilService.findByKeyAndValue(data.states, 'name', feature.properties.abbreviation);
                 if (utilService.isValueNotEmpty(state)){
                     if(primaryFilter.key === 'deaths') {
                         stateDeathTotals.push(state['deaths']);
