@@ -477,12 +477,11 @@ var yrbsStepDefinitionsWrapper = function () {
         }).then(next);
     });
 
-    this.Given(/^I am on yrbs advanced search page$/, function (callback) {
+    this.Given(/^I am on yrbs advanced search page$/, function (next) {
         browser.get('/search/');
         yrbsPage.yrbsOption.click();
-        browser.sleep(300);
-        element(by.cssContainingText('span', 'Switch to Advanced Search')).click();
-        callback(null, 'done');
+        browser.waitForAngular();
+        element(by.cssContainingText('span', 'Switch to Advanced Search')).click().then(next);
     });
 
     this.Then(/^I see Sexual orientation and Sexual contact filter disabled$/, function (callback) {
@@ -490,34 +489,30 @@ var yrbsStepDefinitionsWrapper = function () {
         callback(null, 'done');
     });
 
-    this.When(/^I expand Sexual Identity section$/, function (callback) {
-        yrbsPage.sexualIdentity.click();
-        callback(null, 'done');
+    this.When(/^I expand Sexual Identity section$/, function (next) {
+        yrbsPage.sexualIdentity.click().then(next);
     });
 
-    this.Then(/^I see Heterosexual \(straight\), Gay or Lesbian, Bisexual, Not Sure$/, function (callback) {
+    this.Then(/^I see Heterosexual \(straight\), Gay or Lesbian, Bisexual, Not Sure$/, function (next) {
         yrbsPage.getOptions('Sexual Identity').then(function(elements) {
             expect(elements[1].getText()).to.eventually.contains('All');
             expect(elements[2].getText()).to.eventually.contains('Heterosexual (straight)');
             expect(elements[3].getText()).to.eventually.contains('Gay or Lesbian');
             expect(elements[4].getText()).to.eventually.contains('Bisexual');
             expect(elements[5].getText()).to.eventually.contains('Not Sure');
-        });
-        callback(null, 'done');
+        }).then(next);
     });
 
-    this.When(/^I select Bisexual$/, function (callback) {
+    this.When(/^I select Bisexual$/, function (next) {
         var filter = element(by.cssContainingText('label', 'Bisexual'));
-        filter.click();
-        callback(null, 'done');
+        filter.click().then(next);
     });
 
-    this.When(/^I click on run query button$/, function (callback) {
-        element(by.css('button[title="Click to Run Query"]')).click();
-        callback(null, 'done');
+    this.When(/^I click on run query button$/, function (next) {
+        element(by.css('button[title="Click to Run Query"]')).click().then(next);
     });
 
-    this.Then(/^I see results being displayed in data table for Sexual Identity$/, function (callback) {
+    this.Then(/^I see results being displayed in data table for Sexual Identity$/, function (next) {
         yrbsPage.getTableRowData(1).then(function(rowdata){
             expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
             //Alabama
@@ -526,11 +521,10 @@ var yrbsStepDefinitionsWrapper = function () {
             expect(rowdata[2]).to.contains('26.6');
             //Arizona
             expect(rowdata[3]).to.contains('34.2');
-        });
-        callback(null, 'done');
+        }).then(next);
     });
 
-    this.Then(/^I see results being displayed in data table for Sexual Contact$/, function (callback) {
+    this.Then(/^I see results being displayed in data table for Sexual Contact$/, function (next) {
         yrbsPage.getTableRowData(1).then(function(rowdata){
             expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
             //Alabama
@@ -539,41 +533,36 @@ var yrbsStepDefinitionsWrapper = function () {
             expect(rowdata[2]).to.contains('36.5');
             //Arizona
             expect(rowdata[3]).to.contains('31.7');
-        });
-        callback(null, 'done');
+        }).then(next);
     });
 
-    this.When(/^I expand Sexual Contact section$/, function (callback) {
-        yrbsPage.sexualContact.click();
-        callback(null, 'done');
+    this.When(/^I expand Sexual Contact section$/, function (next) {
+        yrbsPage.sexualContact.click().then(next);
     });
 
-    this.Then(/^I see Opposite Sex Only, Same Sex Only, Both Sexes, No Sexual Contact$/, function (callback) {
+    this.Then(/^I see Opposite Sex Only, Same Sex Only, Both Sexes, No Sexual Contact$/, function (next) {
         yrbsPage.getOptions('Sex of Sexual Contacts').then(function(elements) {
             expect(elements[1].getText()).to.eventually.contains('All');
             expect(elements[2].getText()).to.eventually.contains('Opposite Sex Only');
             expect(elements[3].getText()).to.eventually.contains('Same Sex Only');
             expect(elements[4].getText()).to.eventually.contains('Both Sexes');
             expect(elements[5].getText()).to.eventually.contains('No Sexual Contact');
-        });
-
-        callback(null, 'done');
+        }).then(next);
     });
 
-    this.When(/^I select Opposite Sex Only$/, function (callback) {
+    this.When(/^I select Opposite Sex Only$/, function (next) {
         var filter = element(by.cssContainingText('label', 'Opposite Sex Only'));
-        filter.click();
-        callback(null, 'done');
+        filter.click().then(next);
     });
 
-    this.When(/^user clicks on "([^"]*)" more link for Sexual Identity filter$/, function (arg1) {
+    this.When(/^user clicks on "([^"]*)" more link for Sexual Identity filter$/, function (arg1, next) {
         var sexualIdentity = element(by.cssContainingText('a', 'Sexual Identity')).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul'));
-        sexualIdentity.element(by.cssContainingText('a', arg1)).click();
+        sexualIdentity.element(by.cssContainingText('a', arg1)).click().then(next);
     });
 
-    this.When(/^user clicks on "([^"]*)" more link for Sexual Contact filter$/, function (arg1) {
+    this.When(/^user clicks on "([^"]*)" more link for Sexual Contact filter$/, function (arg1, next) {
         var sexualContact = element(by.cssContainingText('a', 'Sex of Sexual Contacts')).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul'));
-        sexualContact.element(by.cssContainingText('a', arg1)).click();
+        sexualContact.element(by.cssContainingText('a', arg1)).click().then(next);
     });
 };
 module.exports = yrbsStepDefinitionsWrapper;
