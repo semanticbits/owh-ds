@@ -8,49 +8,46 @@ var previousUrl = "";
 
 var commonStepDefinitionsWrapper = function () {
 
-
+    this.setDefaultTimeout(30000);
     var commonPage = require('../support/commonpage.po');
 
-    this.Then(/^URL in browser bar should change$/, function (done) {
+    this.Then(/^URL in browser bar should change$/, function () {
         browser.getCurrentUrl().then(function(url) {
             expect(url).not.to.equal(browser.baseUrl);
-            done();
         });
+        return browser.waitForAngular();
     });
 
-    this.Then(/^URL in browser bar should not be base URL$/, function (done) {
+    this.Then(/^URL in browser bar should not be base URL$/, function () {
         browser.getCurrentUrl().then(function(url) {
             expect(url).to.contains("/search/");
-            done();
         });
+        return browser.waitForAngular();
     });
 
-    this.When(/^I selects the back button then browser URL should change$/, function (done) {
+    this.When(/^I selects the back button then browser URL should change$/, function () {
         var previousUrl = browser.getCurrentUrl().then(function(url) {
             return url;
         });
         browser.navigate().back();
-        expect(browser.getCurrentUrl()).not.to.eventually.equal(previousUrl);
-        done();
+        return expect(browser.getCurrentUrl()).not.to.eventually.equal(previousUrl);
     });
 
-    this.When(/^I selects the forward button in browser then URL should change$/, function (done) {
+    this.When(/^I selects the forward button in browser then URL should change$/, function () {
         var previousUrl = browser.getCurrentUrl().then(function(url) {
             return url;
         });
         browser.navigate().forward();
-        expect(browser.getCurrentUrl()).not.to.eventually.equal(previousUrl);
-        done();
+        return expect(browser.getCurrentUrl()).not.to.eventually.equal(previousUrl);
     });
 
 
-    this.Then(/^most recent filter action "([^"]*)" type "([^"]*)" is removed and I am taken back by one step$/, function (filter, type, done) {
+    this.Then(/^most recent filter action "([^"]*)" type "([^"]*)" is removed and I am taken back by one step$/, function (filter, type) {
         var autopsyColumn = element(by.cssContainingText('a', filter)).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('a', type));
-        expect(autopsyColumn.getAttribute('class')).not.to.eventually.contains('selected');
-        done();
+        return expect(autopsyColumn.getAttribute('class')).not.to.eventually.contains('selected');
     });
 
-    this.Then(/^the results page should have (\d+) graphs and table has columns "([^"]*)", "([^"]*)", "([^"]*)" for filter "([^"]*)"$/, function (chartCount, column1, column2, column3, filterType, done) {
+    this.Then(/^the results page should have (\d+) graphs and table has columns "([^"]*)", "([^"]*)", "([^"]*)" for filter "([^"]*)"$/, function (chartCount, column1, column2, column3, filterType, next) {
         element.all(by.repeater('chartData in startChartData')).count().then(function (size) {
             expect(size).to.equal(parseInt(chartCount));
         });
@@ -66,30 +63,28 @@ var commonStepDefinitionsWrapper = function () {
                 expect(columns[5].getText()).to.eventually.equals(column2);
                 expect(columns[6].getText()).to.eventually.equals(column3);
             }
-            done();
-        });
+        }).then(next);
 
 
     });
 
-    this.Then(/^I should see the forward and backward button in the application$/, function (done) {
+    this.Then(/^I should see the forward and backward button in the application$/, function () {
         expect(commonPage.backButton.isDisplayed()).to.eventually.equal(true);
-        expect(commonPage.forwardButton.isDisplayed()).to.eventually.equal(true);
-        done();
+        return expect(commonPage.forwardButton.isDisplayed()).to.eventually.equal(true);
     });
 
-    this.When(/^I select the back button in application$/, function (done) {
-        commonPage.backButton.click();
-        done();
+    this.When(/^I select the back button in application$/, function (next) {
+        commonPage.backButton.click()
+            .then(next);
     });
 
-    this.When(/^I select the forward button in application$/, function (done) {
-        commonPage.forwardButton.click();
-        done();
+    this.When(/^I select the forward button in application$/, function (next) {
+        commonPage.forwardButton.click()
+            .then(next);
     });
 
     this.Then(/^I should see filter type "([^"]*)" selected$/, function (arg) {
-        expect(commonPage.getSelectedFilterType()).to.eventually.equal(arg);
+        return expect(commonPage.getSelectedFilterType()).to.eventually.equal(arg);
     });
 };
 module.exports = commonStepDefinitionsWrapper;
