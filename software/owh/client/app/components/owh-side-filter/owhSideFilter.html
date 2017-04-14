@@ -245,7 +245,7 @@
                         <li class="group-option" ng-if="!group.doNotShowAll"
                             ng-class="{'thin-border-top': (group.value.length > 0 && group.displaySelectedFirst)}">
                             <input type="checkbox" id="{{group.queryKey}}_all" name="{{group.queryKey}}_all" ng-checked="group.value.length === 0"
-                                   ng-click="sfc.updateGroupValue(sideFilter);" ng-model="group.allChecked" ng-init="group.allChecked = group.value.length === 0"
+                                   ng-click="sfc.updateGroupValue(sideFilter, category);" ng-model="group.allChecked" ng-init="group.allChecked = group.value.length === 0"
                                    ng-show="group.filterType === 'checkbox'" >
                             <label for="{{group.queryKey}}_all" class="custom-label">
                                 <span>All</span>

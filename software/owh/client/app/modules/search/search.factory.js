@@ -1598,100 +1598,100 @@
             ];
 
             filters.pramsAdequacyOptions = [
-                {"key": "adequate", "title": "Adequate PNC"},
-                {"key": "intermediate", "title": "Intermediate PNC"},
-                {"key": "inadequate", "title": "Inadequate PNC"},
-                {"key": "unknown", "title": "Unknown PNC"}
+                {"key": "PNC1", "title": "Adequate PNC"},
+                {"key": "PNC3", "title": "Intermediate PNC"},
+                {"key": "PNC2", "title": "Inadequate PNC"},
+                {"key": "PNC4", "title": "Unknown PNC"}
             ];
 
             filters.pramsBirthWeightOptions = [
-                {"key": "lbw", "title": "LBW (<= 2500g)"},
-                {"key": "nbw", "title": "NBW (>2500g)"}
+                {"key": "BWT1", "title": "LBW (<= 2500g)"},
+                {"key": "BWT2", "title": "NBW (>2500g)"}
             ];
 
             filters.pramsIncomeOptions = [
-                {"key": "0", "title": "Less than $10,000"},
-                {"key": "10", "title": "$10,000 to $24,999"},
-                {"key": "25", "title": "$25,000 to $49,999"},
-                {"key": "50", "title": "$50,000 or more"}
+                {"key": "INC39", "title": "Less than $10,000"},
+                {"key": "INC36", "title": "$10,000 to $24,999"},
+                {"key": "INC37", "title": "$25,000 to $49,999"},
+                {"key": "INC38", "title": "$50,000 or more"}
             ];
 
             filters.pramsMaritalStatusOptions = [
-                {"key": "married", "title": "Married"},
-                {"key": "other", "title": "Other"}
+                {"key": "MA1", "title": "Married"},
+                {"key": "MA2", "title": "Other"}
             ];
 
             filters.pramsMaternalAgeGroupingsOptions = [
-                {"key": "18", "title": "Age < 18"},
-                {"key": "24", "title": "Age 18 - 24"},
-                {"key": "29", "title": "Age 25 - 29"},
-                {"key": "44", "title": "Age 30 - 44"},
-                {"key": "45", "title": "Age 45+"}
+                {"key": "AGE1", "title": "Age < 18"},
+                {"key": "AGE2", "title": "Age 18 - 24"},
+                {"key": "AGE3", "title": "Age 25 - 29"},
+                {"key": "AGE4", "title": "Age 30 - 44"},
+                {"key": "AGE5", "title": "Age 45+"}
             ];
 
             filters.pramsMaternalAgeYearsOptions = [
-                {"key": "18", "title": "Age 18-44"}
+                {"key": "AGE1844ALL", "title": "Age 18-44"}
             ];
 
             filters.pramsMaternalAge3Options = [
-                {"key": "20", "title": "< 20 yrs"},
-                {"key": "29", "title": "20-29 yrs"},
-                {"key": "30", "title": "30+ yrs"}
+                {"key": "AYR1", "title": "< 20 yrs"},
+                {"key": "AYR2", "title": "20-29 yrs"},
+                {"key": "AYR3", "title": "30+ yrs"}
             ];
 
             filters.pramsMaternalAge4Options = [
-                {"key": "20", "title": "< 20 yrs"},
-                {"key": "24", "title": "20-24 yrs"},
-                {"key": "34", "title": "25-34 yrs"},
-                {"key": "35", "title": "35+ yrs"}
+                {"key": "AYR1", "title": "< 20 yrs"},
+                {"key": "AYR4", "title": "20-24 yrs"},
+                {"key": "AYR5", "title": "25-34 yrs"},
+                {"key": "AYR6", "title": "35+ yrs"}
             ];
 
             filters.pramsMaternalEducationOptions = [
-                {"key": "less", "title": "<12 yrs"},
-                {"key": "equal", "title": "12 yrs"},
-                {"key": "greater", "title": ">12 yrs"}
+                {"key": "12YR1", "title": "<12 yrs"},
+                {"key": "12YR3", "title": "12 yrs"},
+                {"key": "12YR2", "title": ">12 yrs"}
             ];
 
             filters.pramsMaternalRaceOptions = [
-                {"key": "white", "title": "White, Non-Hispanic"},
-                {"key": "black", "title": "Black, Non-Hispanic"},
-                {"key": "hispanic", "title": "Hispanic"},
-                {"key": "other", "title": "Other, Non- Hispanic"}
+                {"key": "ETH4", "title": "White, Non-Hispanic"},
+                {"key": "ETH1", "title": "Black, Non-Hispanic"},
+                {"key": "ETH2", "title": "Hispanic"},
+                {"key": "ETH3", "title": "Other, Non- Hispanic"}
             ];
 
             filters.pramsMedicaidOptions = [
-                {"key": "medicaid", "title": "Medicaid"},
-                {"key": "non", "title": "Non-Medicaid"}
+                {"key": "MED1", "title": "Medicaid"},
+                {"key": "MED2", "title": "Non-Medicaid"}
             ];
 
             filters.pramsMotherHispanicOptions = [
-                {"key": "hispanic", "title": "Hispanic"},
-                {"key": "non", "title": "Non-Hispanic"}
+                {"key": "HIS1", "title": "Hispanic"},
+                {"key": "HIS2", "title": "Non-Hispanic"}
             ];
 
             filters.pramsPreviousBirthsOptions = [
-                {"key": "0", "title": "0"},
-                {"key": "1", "title": "1 or more"}
+                {"key": "PRV0", "title": "0"},
+                {"key": "PRV1", "title": "1 or more"}
             ];
 
             filters.pramsWicPregnancyOptions = [
-                {"key": "wic", "title": "WIC"},
-                {"key": "non", "title": "Non-WIC"}
+                {"key": "WIC2", "title": "WIC"},
+                {"key": "WIC1", "title": "Non-WIC"}
             ];
 
             filters.pramsPregnancyIntendednessOptions = [
-                {"key": "intended", "title": "Intended"},
-                {"key": "unintended", "title": "Unintended"}
+                {"key": "IND1", "title": "Intended"},
+                {"key": "IND2", "title": "Unintended"}
             ];
 
             filters.pramsSmokedBeforeOptions = [
-                {"key": "non", "title": "Non-Smoker"},
-                {"key": "smoker", "title": "Smoker"}
+                {"key": "SMK1", "title": "Non-Smoker"},
+                {"key": "SMK2", "title": "Smoker"}
             ];
 
             filters.pramsSmokedLastOptions = [
-                {"key": "non", "title": "Non-Smoker"},
-                {"key": "smoker", "title": "Smoker"}
+                {"key": "SMK1", "title": "Non-Smoker"},
+                {"key": "SMK2", "title": "Smoker"}
             ];
 
             filters.pramsFilters = [
@@ -1710,39 +1710,39 @@
                         showChartForQuestion(filters.selectedPrimaryFilter, question);
                     }
                 },
-                {key: 'adequacy', title: 'label.prams.filter.adequacy', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'adequacy', title: 'label.prams.filter.adequacy', queryKey:"BOC18",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsAdequacyOptions), doNotShowAll: false},
-                {key: 'birth_weight', title: 'label.prams.filter.birth_weight', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'birth_weight', title: 'label.prams.filter.birth_weight', queryKey:"BOC1",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsBirthWeightOptions), doNotShowAll: false},
-                {key: 'income', title: 'label.prams.filter.income', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'income', title: 'label.prams.filter.income', queryKey:"BOC14",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsIncomeOptions), doNotShowAll: false},
-                {key: 'marital_status', title: 'label.prams.filter.marital_status', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'marital_status', title: 'label.prams.filter.marital_status', queryKey:"BOC3",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaritalStatusOptions), doNotShowAll: false},
-                {key: 'maternal_age_groupings', title: 'label.prams.filter.maternal_age_groupings', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'maternal_age_groupings', title: 'label.prams.filter.maternal_age_groupings', queryKey:"BOC17",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalAgeGroupingsOptions), doNotShowAll: false},
-                {key: 'maternal_age_years', title: 'label.prams.filter.maternal_age_years', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'maternal_age_years', title: 'label.prams.filter.maternal_age_years', queryKey:"BOC16",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalAgeYearsOptions), doNotShowAll: false},
-                {key: 'maternal_age_3', title: 'label.prams.filter.maternal_age_3', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'maternal_age_3', title: 'label.prams.filter.maternal_age_3', queryKey:"BOC19",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalAge3Options), doNotShowAll: false},
-                {key: 'maternal_age_4', title: 'label.prams.filter.maternal_age_4', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'maternal_age_4', title: 'label.prams.filter.maternal_age_4', queryKey:"BOC4",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalAge4Options), doNotShowAll: false},
-                {key: 'maternal_education', title: 'label.prams.filter.maternal_education', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'maternal_education', title: 'label.prams.filter.maternal_education', queryKey:"BOC5",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalEducationOptions), doNotShowAll: false},
-                {key: 'maternal_race', title: 'label.prams.filter.maternal_race', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'maternal_race', title: 'label.prams.filter.maternal_race', queryKey:"BOC6",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalRaceOptions), doNotShowAll: false},
-                {key: 'medicaid', title: 'label.prams.filter.medicaid', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'medicaid', title: 'label.prams.filter.medicaid', queryKey:"BOC9",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMedicaidOptions), doNotShowAll: false},
-                {key: 'mother_hispanic', title: 'label.prams.filter.mother_hispanic', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'mother_hispanic', title: 'label.prams.filter.mother_hispanic', queryKey:"BOC8",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMotherHispanicOptions), doNotShowAll: false},
-                {key: 'previous_births', title: 'label.prams.filter.previous_births', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'previous_births', title: 'label.prams.filter.previous_births', queryKey:"BOC20",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsPreviousBirthsOptions), doNotShowAll: false},
-                {key: 'wic_pregnancy', title: 'label.prams.filter.wic_pregnancy', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'wic_pregnancy', title: 'label.prams.filter.wic_pregnancy', queryKey:"BOC10",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsWicPregnancyOptions), doNotShowAll: false},
-                {key: 'pregnancy_intendedness', title: 'label.prams.filter.pregnancy_intendedness', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'pregnancy_intendedness', title: 'label.prams.filter.pregnancy_intendedness', queryKey:"BOC11",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsPregnancyIntendednessOptions), doNotShowAll: false},
-                {key: 'smoked_before', title: 'label.prams.filter.smoked_before', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'smoked_before', title: 'label.prams.filter.smoked_before', queryKey:"BOC12",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsSmokedBeforeOptions), doNotShowAll: false},
-                {key: 'smoked_last', title: 'label.prams.filter.smoked_last', queryKey:"breakout",primary: false, value: [], groupBy: false,
+                {key: 'smoked_last', title: 'label.prams.filter.smoked_last', queryKey:"BOC13",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsSmokedLastOptions), doNotShowAll: false}
             ];
 
