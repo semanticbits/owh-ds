@@ -515,11 +515,8 @@ var yrbsStepDefinitionsWrapper = function () {
     this.Then(/^I see results being displayed in data table for Sexual Identity$/, function (next) {
         yrbsPage.getTableRowData(1).then(function(rowdata){
             expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
-            //Alabama
             expect(rowdata[1]).to.contains('92.1');
-            //Alaska
             expect(rowdata[2]).to.contains('26.6');
-            //Arizona
             expect(rowdata[3]).to.contains('34.2');
         }).then(next);
     });
@@ -527,11 +524,8 @@ var yrbsStepDefinitionsWrapper = function () {
     this.Then(/^I see results being displayed in data table for Sexual Contact$/, function (next) {
         yrbsPage.getTableRowData(1).then(function(rowdata){
             expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
-            //Alabama
             expect(rowdata[1]).to.contains('47.7');
-            //Alaska
             expect(rowdata[2]).to.contains('36.5');
-            //Arizona
             expect(rowdata[3]).to.contains('31.7');
         }).then(next);
     });
