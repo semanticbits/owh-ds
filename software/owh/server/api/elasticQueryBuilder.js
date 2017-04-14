@@ -526,8 +526,7 @@ function addFiltersToCalcFertilityRates(topLevelQuery) {
 
     var query = topLevelQuery.query.filtered.filter;
     var queryString = JSON.stringify(query);
-    //if(['mother_age', 'mother_age_r14', 'mother_age_r8', 'mother_age_r9'].indexOf(queryString) < 0) {
-    if(queryString.indexOf('mother_age') < 0 && queryString.indexOf('mother_age_r14') < 0 && queryString.indexOf('mother_age_r8') < 0 && queryString.indexOf('mother_age_r9') < 0 ) {
+    if(queryString.indexOf('mother_age_1year_interval') < 0 && queryString.indexOf('mother_age_5year_interval') < 0 ) {
         var ageValues = ["15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "37", "38", "39", "40", "41", "42", "43", "44"];
         var ageQuery = buildBoolQuery("age", ageValues, false);
         if(!isEmptyObject(ageQuery)) {

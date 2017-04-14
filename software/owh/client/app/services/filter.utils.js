@@ -328,17 +328,7 @@
                 { "key": "50-54 years", "title": "50 years and over"}
             ];
 
-            var ageR8Options =  [
-                { "key": "Under 15 years", "title": "Under 15 years" },
-                { "key": "15-19 years", "title": "15-19 years" },
-                { "key": "20-24 years", "title": "20-24 years" },
-                { "key": "25-29 years", "title": "25-29 years" },
-                { "key": "30-34 years", "title": "30-34 years" },
-                { "key": "35-39 years", "title": "35-39 years" },
-                { "key": "40-44 year", "title": "40-44 year" },
-                { "key": "45-49 years", "title": "45-49 years" },
-                { "key": "50-54 years", "title": "50 years and over" }
-            ];
+
             var ageR9Options =  [
                 { "key": "Under 15 years", "title": "Under 15 years" },
                 { "key": "15-19 years", "title": "15-19 years" },
@@ -351,21 +341,6 @@
                 { "key": "50-54 years", "title": "50 years and over" }
             ];
 
-            var ageR14ptions =  [
-                { "key": "Under 15 years", "title": "Under 15 years" },
-                { "key": "15 years", "title": "15 years" },
-                { "key": "16 years", "title": "16 years" },
-                { "key": "17 years", "title": "17 years" },
-                { "key": "18 years", "title": "18 years" },
-                { "key": "19 years", "title": "19 years" },
-                { "key": "20-24 years", "title": "20-24 years" },
-                { "key": "25-29 years", "title": "25-29 years" },
-                { "key": "30-34 years", "title": "30-34 years" },
-                { "key": "35-39 years", "title": "35-39 years" },
-                { "key": "40-44 years", "title": "40-44 years" },
-                { "key": "45-49 years", "title": "45-49 years" },
-                { "key": "50-54 years", "title": "50 years and over" }
-            ];
 
             var gestationalAgeAtBirth =  [
                 { "key": "Under 20 weeks", "title": "Under 20 weeks" },
@@ -630,19 +605,12 @@
                     primary: false, value: [], defaultGroup:'row', groupBy: false, filterType: "checkbox",
                     autoCompleteOptions: angular.copy(hispanicOptions), helpText:"label.help.text.ethnicity"},
 
-                {key: 'mother_age', title: 'label.chart.mother_age.single.yr', queryKey:"mother_age", primary: false, value: [],
+                {key: 'mother_age_1year_interval', title: 'label.chart.mother_age.single.yr', queryKey:"mother_age_1year_interval", primary: false, value: [],
                     defaultGroup:'column', groupBy: false, filterType: "checkbox",
                     autoCompleteOptions: angular.copy(singleYearAgeOptions), helpText:"label.help.text.mother.age"},
 
-                {key: 'mother_age_r9', title: 'label.chart.mother_age.r9', queryKey:"mother_age_r9", primary: false, value: [],
+                {key: 'mother_age_5year_interval', title: 'label.chart.mother_age.r9', queryKey:"mother_age_5year_interval", primary: false, value: [],
                     defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: angular.copy(ageR9Options)},
-
-                {key: 'mother_age_r8', title: 'label.filter.ageOfMother', queryKey:"mother_age_r8", primary: false, value: [],
-                    defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: angular.copy(ageR8Options), helpText:"label.help.text.mother.age"},
-
-                {key: 'mother_age_r14', title: 'label.chart.mother_age.r14', queryKey:"mother_age_r14", primary: false, value: [],
-                    defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: angular.copy(ageR14ptions)},
 
                 {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'row', filterType: "checkbox",
