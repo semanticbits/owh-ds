@@ -212,7 +212,7 @@
         }
 
         //remove all elements from array for all select
-        function updateGroupValue(sideFilter) {
+        function updateGroupValue(sideFilter, category) {
             var group = sideFilter.filterGroup ? sideFilter : sideFilter.filters;
             if(group.filterType === 'checkbox'){
                 if ( group.allChecked === false ) {
@@ -230,12 +230,11 @@
                 }
             }
 
-            sfc.onFilterValueChange(sideFilter);
+            sfc.onFilterValueChange(sideFilter, category);
         }
 
 
         function onFilterValueChange(filter, category){
-
             //clear values for other filters for exclusive categories
             if(category.exclusive) {
                 angular.forEach(category.sideFilters, function(sideFilter) {
