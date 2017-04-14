@@ -209,3 +209,22 @@ Feature: As a User
     When I set "Race" filter "Off"
     Then I set "State" filter "Column"
     Then I should see records for states
+
+  Scenario: Sexual orientation and Sexual contact filter for only 2015 year
+    Given I am on yrbs advanced search page
+    When I select "Year" value "2013"
+#    Then I see Sexual orientation and Sexual contact filter disabled
+
+  Scenario Outline: Show disabled filters sdfsa
+    Given I am on yrbs advanced search page
+    When I expand <filter> section
+    And user clicks on "+ 1 more" more link for <filter> filter
+    Then I see <filterOptions>
+    When I select <filterOption>
+    And I click on run query button
+    Then I see results being displayed in data table for <filter>
+
+    Examples:
+      | filter                  | filterOptions                                                     | filterOption      |
+      |  Sexual Identity        |  Heterosexual (straight), Gay or Lesbian, Bisexual, Not Sure      | Bisexual          |
+      |  Sexual Contact         |  Opposite Sex Only, Same Sex Only, Both Sexes, No Sexual Contact  | Opposite Sex Only |

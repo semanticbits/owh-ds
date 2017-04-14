@@ -447,5 +447,104 @@ var yrbsStepDefinitionsWrapper = function () {
             expect(rowdata[3]).to.contains('23.3');
         });
     });
+
+    this.Given(/^I am on yrbs advanced search page$/, function (callback) {
+        browser.get('/search/');
+        yrbsPage.yrbsOption.click();
+        browser.sleep(300);
+        element(by.cssContainingText('span', 'Switch to Advanced Search')).click();
+        callback(null, 'done');
+    });
+
+    this.Then(/^I see Sexual orientation and Sexual contact filter disabled$/, function (callback) {
+        // Write code here that turns the phrase above into concrete actions
+        callback(null, 'done');
+    });
+
+    this.When(/^I expand Sexual Identity section$/, function (callback) {
+        yrbsPage.sexualIdentity.click();
+        callback(null, 'done');
+    });
+
+    this.Then(/^I see Heterosexual \(straight\), Gay or Lesbian, Bisexual, Not Sure$/, function (callback) {
+        yrbsPage.getOptions('Sexual Identity').then(function(elements) {
+            expect(elements[1].getText()).to.eventually.contains('All');
+            expect(elements[2].getText()).to.eventually.contains('Heterosexual (straight)');
+            expect(elements[3].getText()).to.eventually.contains('Gay or Lesbian');
+            expect(elements[4].getText()).to.eventually.contains('Bisexual');
+            expect(elements[5].getText()).to.eventually.contains('Not Sure');
+        });
+        callback(null, 'done');
+    });
+
+    this.When(/^I select Bisexual$/, function (callback) {
+        var filter = element(by.cssContainingText('label', 'Bisexual'));
+        filter.click();
+        callback(null, 'done');
+    });
+
+    this.When(/^I click on run query button$/, function (callback) {
+        element(by.css('button[title="Click to Run Query"]')).click();
+        callback(null, 'done');
+    });
+
+    this.Then(/^I see results being displayed in data table for Sexual Identity$/, function (callback) {
+        yrbsPage.getTableRowData(1).then(function(rowdata){
+            expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            //Alabama
+            expect(rowdata[1]).to.contains('92.1');
+            //Alaska
+            expect(rowdata[2]).to.contains('26.6');
+            //Arizona
+            expect(rowdata[3]).to.contains('34.2');
+        });
+        callback(null, 'done');
+    });
+
+    this.Then(/^I see results being displayed in data table for Sexual Contact$/, function (callback) {
+        yrbsPage.getTableRowData(1).then(function(rowdata){
+            expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            //Alabama
+            expect(rowdata[1]).to.contains('47.7');
+            //Alaska
+            expect(rowdata[2]).to.contains('36.5');
+            //Arizona
+            expect(rowdata[3]).to.contains('31.7');
+        });
+        callback(null, 'done');
+    });
+
+    this.When(/^I expand Sexual Contact section$/, function (callback) {
+        yrbsPage.sexualContact.click();
+        callback(null, 'done');
+    });
+
+    this.Then(/^I see Opposite Sex Only, Same Sex Only, Both Sexes, No Sexual Contact$/, function (callback) {
+        yrbsPage.getOptions('Sex of Sexual Contacts').then(function(elements) {
+            expect(elements[1].getText()).to.eventually.contains('All');
+            expect(elements[2].getText()).to.eventually.contains('Opposite Sex Only');
+            expect(elements[3].getText()).to.eventually.contains('Same Sex Only');
+            expect(elements[4].getText()).to.eventually.contains('Both Sexes');
+            expect(elements[5].getText()).to.eventually.contains('No Sexual Contact');
+        });
+
+        callback(null, 'done');
+    });
+
+    this.When(/^I select Opposite Sex Only$/, function (callback) {
+        var filter = element(by.cssContainingText('label', 'Opposite Sex Only'));
+        filter.click();
+        callback(null, 'done');
+    });
+
+    this.When(/^user clicks on "([^"]*)" more link for Sexual Identity filter$/, function (arg1) {
+        var sexualIdentity = element(by.cssContainingText('a', 'Sexual Identity')).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul'));
+        sexualIdentity.element(by.cssContainingText('a', arg1)).click();
+    });
+
+    this.When(/^user clicks on "([^"]*)" more link for Sexual Contact filter$/, function (arg1) {
+        var sexualContact = element(by.cssContainingText('a', 'Sex of Sexual Contacts')).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul'));
+        sexualContact.element(by.cssContainingText('a', arg1)).click();
+    });
 };
 module.exports = yrbsStepDefinitionsWrapper;

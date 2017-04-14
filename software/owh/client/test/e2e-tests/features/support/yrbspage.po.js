@@ -8,7 +8,8 @@ var YRBSSearchPage = function() {
     ysp.searchQuestionsBox = element(by.id('search_text'));
     ysp.clearSelectedQuestionsButton = element(by.cssContainingText('button', 'CLEAR'));
     ysp.owhTable = element(by.className('owh-data-table'));
-
+    ysp.sexualIdentity = element(by.partialLinkText('Sexual Identity'));
+    ysp.sexualContact = element(by.partialLinkText('Sex of Sexual Contacts'));
     ysp.closePopup = function() {
         element(by.id("modal-close")).click();
     };
@@ -47,6 +48,10 @@ var YRBSSearchPage = function() {
 
     ysp.getTableRowData = function(rowNumber) {
         return ysp.owhTable.element(by.tagName('tbody')).all(by.tagName('tr')).get(rowNumber).all(by.tagName('td')).getText();
+    };
+
+    ysp.getOptions = function(filterType) {
+        return element(by.cssContainingText('a', filterType)).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul')).all(by.tagName('li'));
     };
 
 };
