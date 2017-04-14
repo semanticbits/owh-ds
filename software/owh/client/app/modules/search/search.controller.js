@@ -544,7 +544,7 @@
 
                     if(markerPosition.y < 180) {
                         //change position if popup does not fit into map-container
-                        popup.options.offset = new L.Point(10, popupHeight + 100);
+                        popup.options.offset = new L.Point(10, popupHeight + 110);
                         angular.element('#chart_us_map').addClass('reverse-popup')
                     } else {
                         //revert position
