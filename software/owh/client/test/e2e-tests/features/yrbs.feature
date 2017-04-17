@@ -210,12 +210,12 @@ Feature: As a User
     Then I set "State" filter "Column"
     Then I should see records for states
 
-  Scenario: Sexual orientation and Sexual contact filter for only 2015 year
+  Scenario: Sexual Identity and Sex of Sexual contact filter for only 2015 year
     Given I am on yrbs advanced search page
     When I select "Year" value "2013"
-#    Then I see Sexual orientation and Sexual contact filter disabled
+    Then I see Sexual identity and Sexual contact filter disabled
 
-  Scenario Outline: Show disabled filters sdfsa
+  Scenario Outline: Search By Sexual Identity and Sex of Sexual contact
     Given I am on yrbs advanced search page
     When I expand <filter> section
     And user clicks on "+ 1 more" more link for <filter> filter
