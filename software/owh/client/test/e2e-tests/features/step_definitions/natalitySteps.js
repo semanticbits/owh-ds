@@ -11,7 +11,7 @@ var natalityStepsDefinitionWrapper = function () {
 
     this.Then(/^I see "([^"]*)" as first filter category$/, function (arg1, next) {
         natalityPage.getFilterCategories().then(function(categories) {
-            expect(categories.length).to.equal(3);
+            expect(categories.length).to.equal(4);
             expect(categories[0].getText()).to.eventually.equal(arg1);
         }).then(next);
     });
@@ -155,6 +155,74 @@ var natalityStepsDefinitionWrapper = function () {
 
     this.Then(/^I should see a Birth rate statement above data table in natality page$/, function () {
         return expect(natalityPage.birthRateDisclaimer.getText()).to.eventually.equal("Population details from NCHS Bridged Race Estimates are used to calculate Birth Rates (per 100,000)");
+    });
+
+    this.When(/^I see "([^"]*)" category in the sidebar$/, function (arg1, next) {
+        natalityPage.getFilterCategories().then(function(categories) {
+            expect(categories.length).to.equal(4);
+            expect(categories[2].getText()).to.eventually.equal(arg1);
+        }).then(next);
+    });
+
+   /* this.When(/^I expand the "([^"]*)" Age Group button in Mother Age category$/, function (arg1, next) {
+        browser.actions().mouseMove(element(by.cssContainingText('span', arg1))).perform();
+        element(by.cssContainingText('span', arg1)).element(by.xpath('..')).click().then(next);
+    });*/
+
+    this.Then(/^I should see "([^"]*)" options under Mother Age category for 5-Year age group$/, function (arg1, next) {
+        natalityPage.getOptions(arg1).then(function(elements) {
+            expect(elements[1].getText()).to.eventually.contains('All');
+            expect(elements[2].getText()).to.eventually.contains('Under 15 years');
+            expect(elements[3].getText()).to.eventually.contains('15-19 years');
+            expect(elements[4].getText()).to.eventually.contains('20-24 years');
+        }).then(next);
+    });
+
+    this.Then(/^I select groupBy "([^"]*)" option for "([^"]*)" filter$/, function (arg1, arg2, next) {
+        browser.waitForAngular();
+        natalityPage.selectSideFilter(arg2, arg1).click()
+            .then(next);
+    });
+
+    this.Then(/^data table should display right values for 5\-Year age filter$/, function (next) {
+        browser.waitForAngular();
+        natalityPage.getTableRowData(0).then(function(rowdata) {
+            //Race
+            expect(rowdata[0]).to.equals('American Indian or Alaska Native');
+            //Mother's Age 9
+            expect(rowdata[1]).to.equals('15-19 years');
+            //Female
+            expect(rowdata[2]).to.equals('3,776');
+            //Male
+            expect(rowdata[3]).to.equals('3,914');
+            //Total
+            expect(rowdata[4]).to.equals('7,690');
+        }).then(next);
+    });
+
+    this.Then(/^I should see "([^"]*)" options under Mother Age category for 1\-Year age group$/, function (arg1, next) {
+        browser.waitForAngular();
+        natalityPage.getOptions(arg1).then(function(elements) {
+            expect(elements[1].getText()).to.eventually.contains('All');
+            expect(elements[2].getText()).to.eventually.contains('13 years');
+            expect(elements[3].getText()).to.eventually.contains('14 years');
+            expect(elements[4].getText()).to.eventually.contains('15 years');
+        }).then(next);
+    });
+
+    this.Then(/^data table should display right values for 1\-Year age filter$/, function (next) {
+        natalityPage.getTableRowData(0).then(function(rowdata) {
+            //Race
+            expect(rowdata[0]).to.equals('American Indian or Alaska Native');
+            //Mother's Age 9
+            expect(rowdata[1]).to.equals('15 years');
+            //Female
+            expect(rowdata[2]).to.equals('957');
+            //Male
+            expect(rowdata[3]).to.equals('974');
+            //Total
+            expect(rowdata[4]).to.equals('1,931');
+        }).then(next);
     });
 };
 

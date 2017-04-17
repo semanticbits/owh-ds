@@ -57,6 +57,25 @@ Feature: Natality filters
     Then I see expected filters should be disabled for Fertility Rates
     And years "2000", "2001", "2002" should be disabled for Year filter
 
+  Scenario: Filter Name and Location
+    When I see "Mother Age" category in the sidebar
+    Then the category "Mother Age" should has 1-Year and 5-Year age group filters
 
+  Scenario: 5- Year Age Group
+    Then I expand "Mother's Age 9" filter section
+    And I should see "Mother's Age 9" options under Mother Age category for 5-Year age group
+    Then I select "Year" value "2003"
+    And I un-select "Year" value "2015"
+    And  filter "Mother's Age 9" and option "15-19 years" selected
+    And I select groupBy "Row" option for "Mother's Age 9" filter
+    Then data table should display right values for 5-Year age filter
 
+  Scenario: 1- Year Age Group
+    Then I expand "Mother's Single Year of Age" filter section
+    And I should see "Mother's Single Year of Age" options under Mother Age category for 1-Year age group
+    Then I select "Year" value "2003"
+    And I un-select "Year" value "2015"
+    And  filter "Mother's Single Year of Age" and option "15 years" selected
+    And I select groupBy "Row" option for "Mother's Single Year of Age" filter
+    Then data table should display right values for 1-Year age filter
 

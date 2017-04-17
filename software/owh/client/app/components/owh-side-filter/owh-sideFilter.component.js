@@ -236,10 +236,11 @@
 
         function onFilterValueChange(filter, category){
             //clear values for other filters for exclusive categories
-            if(category.exclusive) {
+            if(category != undefined && category.exclusive) {
                 angular.forEach(category.sideFilters, function(sideFilter) {
                     if(filter !== sideFilter) {
                         sideFilter.filters.value = [];
+                        sideFilter.filters.groupBy = false;
                     }
                 });
             }
