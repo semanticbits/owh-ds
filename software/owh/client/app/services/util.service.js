@@ -508,7 +508,7 @@
                             return;
                         }
                         var questionCellAdded = false;
-                        angular.forEach(eachData, function(eachPramsData, eachDataIndex) {
+                        angular.forEach(eachData, function(eachPramsData) {
                             var childTableData = prepareMixedTableRowData(rowHeaders.slice(1), columnHeaders, eachPramsData, countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys);
                             if(rowHeaders.length > 1 && calculateRowTotal) {
                                 childTableData.push(prepareTotalRow(eachPramsData, countKey, childTableData[0].length, totalCount, secondaryCountKeys));
@@ -522,9 +522,6 @@
                                     color: '#833eb0'
                                 }
                             };
-                            // if(eachDataIndex < eachData.length - 1) {
-                            //     responseCell.style['border-bottom'] = 'white';
-                            // }
                             if(!questionCellAdded) {
                                 var eachTableRow = {
                                     title: matchedOption.title,
