@@ -1690,7 +1690,7 @@
                     advancedSideFilters: [
                         {
                             filterGroup: false, collapse: false, allowGrouping: true, groupOptions: filters.columnGroupOptions, dontShowCounts: true,
-                            filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'year')
+                            refreshFiltersOnChange: true, filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'year')
                         },
                         {
                             filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,
