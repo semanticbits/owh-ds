@@ -274,6 +274,15 @@
   "label.prams.filter.smoked_before": "Smoked 3 months before pregnancy",
   "label.prams.filter.smoked_last": "Smoked last 3 months of pregnancy",
 
+  "label.help.text.prams.class" : "This field indicates that the Class by which the system indexes its variables for selection as the outcome variable in requested analyses.",
+  "label.help.text.prams.topic" : "Topics addressed in the PRAMS core questionnaire include barriers to and content of prenatal care, obstetric history, maternal use of alcohol and cigarettes, physical abuse, contraception, economic status, maternal stress, and early infant development and health status",
+  "label.help.text.prams.year" : "This field indicates the Year for which PRAMS data is available",
+  "label.help.text.prams.state" : "This field indicates the States for which PRAMS data is available",
+  "label.help.text.prams.question" : "This field indicates the questions which were developed and tested and ultimately placed on the PRAMS questionnaire",
+  "label.help.text.prams.question": "This field indicates the questions which were developed and tested and ultimately placed on the PRAMS questionnaire",
+  "label.help.text.prams.response": "Response",
+
+
   "label.help.text.yrbs.year": "This field indicates year of the Youth Risk Behavior Survey (YRBS).",
   "label.help.text.yrbs.sex": "This field indicates the sex of the students who participated in the YRBS National Survey.",
   "label.help.text.yrbs.race.ethnicity": "This field indicates the Race/Ethnicity of the students who participated in the YRBS National Survey.",
