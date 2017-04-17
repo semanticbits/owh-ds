@@ -444,6 +444,9 @@
                     rowspan: colHeight > 0 ? colHeight : 1,
                     title: $filter('translate')(eachRowHeader.title)
                 };
+                if(eachRowHeader.helpText) {
+                    eachTableRowHeader.helpText = $filter('translate')(eachRowHeader.helpText);
+                }
                 tableRowHeaders.push(eachTableRowHeader)
             });
             return tableRowHeaders;
@@ -473,7 +476,8 @@
                         title: eachOption.title,
                         colspan: colspan,
                         rowspan: 1,
-                        isData: true
+                        isData: true,
+                        helpText: eachOption.title
                     });
                     tableColumnHeaderData.totalColspan += colspan;
                 });

@@ -6,9 +6,9 @@
         .module('owh.search')
         .service('searchFactory', searchFactory);
 
-    searchFactory.$inject = ["utilService", "SearchService", "$q", "$translate", "chartUtilService", '$rootScope', '$timeout', 'ModalService', '$state', 'filterUtils', 'mapService'];
+    searchFactory.$inject = ["utilService", "SearchService", "$q", "$translate", "chartUtilService", '$rootScope', '$timeout', '$filter', 'ModalService', '$state', 'filterUtils', 'mapService'];
 
-    function searchFactory( utilService, SearchService, $q, $translate, chartUtilService, $rootScope, $timeout, ModalService, $state, filterUtils, mapService){
+    function searchFactory( utilService, SearchService, $q, $translate, chartUtilService, $rootScope, $timeout, $filter, ModalService, $state, filterUtils, mapService){
         var service = {
             getAllFilters : getAllFilters,
             queryMortalityAPI: queryMortalityAPI,
@@ -79,7 +79,7 @@
             if (primaryFilter.key === 'prams') {
                 primaryFilter.data = response.data.resultData.table;
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
-                tableData.headers[0].splice(1, 0, {colspan: 1, rowspan: tableData.headers.length, title: "Response"});
+                tableData.headers[0].splice(1, 0, {colspan: 1, rowspan: tableData.headers.length, title: "Response", helpText: $filter('translate')('label.help.text.prams.response')});
                 primaryFilter.headers = buildQueryForYRBS(primaryFilter, true).headers;
                 tableData.data = categorizeQuestions(tableData.data, $rootScope.pramsQuestions);
                 primaryFilter.showBasicSearchSideMenu = response.data.queryJSON.showBasicSearchSideMenu;
@@ -1598,7 +1598,7 @@
                     filterType: 'tree', autoCompleteOptions: $rootScope.pramsQuestionsList, donotshowOnSearch:true,
                     //add questions property to pass into owh-tree component
                     questions: $rootScope.pramsQuestions,
-                    selectTitle: 'select.label.yrbs.filter.question', updateTitle: 'update.label.yrbs.filter.question',  iconClass: 'fa fa-pie-chart purple-text',
+                    selectTitle: 'select.label.yrbs.filter.question', updateTitle: 'update.label.yrbs.filter.question',  iconClass: 'fa fa-pie-chart purple-text', helpText: 'label.help.text.prams.question',
                     onIconClick: function(question) {
                         showChartForQuestion(filters.selectedPrimaryFilter, question);
                     }
