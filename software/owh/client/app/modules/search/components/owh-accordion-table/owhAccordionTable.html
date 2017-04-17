@@ -1,7 +1,7 @@
 <table class="owh-data-table">
     <thead>
     <tr ng-repeat="eachHeaderRow in oatc.headers">
-        <th ng-repeat="eachHeader in eachHeaderRow" ng-bind="eachHeader.title" colspan="{{eachHeader.colspan}}" rowspan="{{eachHeader.rowspan}}" ></th>
+        <th ng-repeat="eachHeader in eachHeaderRow" ng-bind="eachHeader.title" colspan="{{eachHeader.colspan}}" rowspan="{{eachHeader.rowspan}}" title="{{eachHeader.helpText}}"></th>
     </tr>
     </thead>
     <tbody class="owh-question__table" ng-repeat="eachCategory in oatc.data | filter: oatc.filterCategory">

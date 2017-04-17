@@ -262,6 +262,9 @@
   "label.help.text.prams.year" : "This field indicates the Year for which PRAMS data is available",
   "label.help.text.prams.state" : "This field indicates the States for which PRAMS data is available",
   "label.help.text.prams.question" : "This field indicates the questions which were developed and tested and ultimately placed on the PRAMS questionnaire",
+  "label.help.text.prams.question": "This field indicates the questions which were developed and tested and ultimately placed on the PRAMS questionnaire",
+  "label.help.text.prams.response": "Response",
+
 
   "label.help.text.yrbs.year": "This field indicates year of the Youth Risk Behavior Survey (YRBS).",
   "label.help.text.yrbs.sex": "This field indicates the sex of the students who participated in the YRBS National Survey.",
