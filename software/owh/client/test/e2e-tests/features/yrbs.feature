@@ -129,15 +129,17 @@ Feature: As a User
     And I select a few questions and clicks on the Add Selected Question(s) button
     Then the "Select Questions" button should be renamed to "Update Questions"
 
-#  Scenario: Check/un-check/update questions
-#    When I click on Update Questions button
-#    Then I see checkboxes for the questions in a tree
-#    When I check a non-leaf node
-#    Then I see all leaf node being selected
-#    When I un-check one of the leaf nodes
-#    Then I see the node is un-checked
-#    And  I see it's parent node is also un-checked
-#    But  I see it's siblings are not un-checked
+  Scenario: Check/un-check questions
+    Given I am on search page
+    When I select YRBS as primary filter
+    And  I click on "Select Questions" button
+    When I expand one of the nodes
+    Then I see checkboxes for the questions in a tree
+    When I check a non-leaf node
+    Then I see all leaf node being selected
+    When I un-check one of the leaf nodes
+    Then I see the node is un-checked
+    And  I see it's parent node is also un-checked
 
   Scenario: Browser back button
     Given I am on search page

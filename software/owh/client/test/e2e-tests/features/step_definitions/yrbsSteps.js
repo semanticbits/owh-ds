@@ -564,5 +564,51 @@ var yrbsStepDefinitionsWrapper = function () {
         var sexualContact = element(by.cssContainingText('a', 'Sex of Sexual Contacts')).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul'));
         sexualContact.element(by.cssContainingText('a', arg1)).click().then(next);
     });
+
+    this.Then(/^I see checkboxes for the questions in a tree$/, function () {
+        //number of checkboxes and number of quesions should be same
+        return element.all(by.css('li[role=treeitem]')).then(function (questions) {
+            element.all(by.css('i.jstree-checkbox')).then(function (checkboxes) {
+                expect(questions.length).to.equal(checkboxes.length);
+            });
+        });
+    });
+
+    this.When(/^I check a non\-leaf node$/, function (next) {
+        element.all(by.css('.jstree-anchor')).then(function (nodes) {
+            nodes[0].click();
+        }).then(next);
+    });
+
+    this.Then(/^I see all leaf node being selected$/, function (next) {
+        element.all(by.css('li[aria-selected=true] a')).then(function(elements, index) {
+            elements.forEach(function (ele, index) {
+                expect(ele.getAttribute('class')).to.eventually.contain('jstree-clicked');
+            });
+        }).then(next);
+    });
+
+    this.When(/^I expand one of the nodes$/, function (next) {
+        element.all(by.css('i.jstree-ocl')).then(function(elements, index) {
+            elements[0].click();
+        }).then(next);
+    });
+
+    this.When(/^I un\-check one of the leaf nodes$/, function (next) {
+        element.all(by.css('li[aria-selected=true] a')).then(function(elements, index) {
+            elements[1].click();
+        }).then(next);
+    });
+
+    this.Then(/^I see the node is un\-checked$/, function (callback) {
+        // Write code here that turns the phrase above into concrete actions
+        callback(null, 'done');
+    });
+
+    this.Then(/^I see it's parent node is also un\-checked$/, function () {
+        return element.all(by.css('.jstree-undetermined')).then(function (elements) {
+            expect(elements.length).to.equal(1);
+        });
+    });
 };
 module.exports = yrbsStepDefinitionsWrapper;
