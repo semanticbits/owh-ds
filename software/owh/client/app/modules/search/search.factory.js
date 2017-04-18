@@ -1364,6 +1364,19 @@
                 { "key": "WY", "title": "Wyoming" }
             ];
 
+            filters.yrbsSexualIdentity = [
+                { "key": "Heterosexual", "title": "Heterosexual (straight)" },
+                { "key": "Gay or Lesbian", "title": "Gay or Lesbian" },
+                { "key": "Bisexual", "title": "Bisexual" },
+                { "key": "Not Sure", "title": "Not Sure" }
+            ];
+            filters.yrbsSexualContact = [
+                { "key": "Opposite sex only", "title": "Opposite Sex Only" },
+                { "key": "Same sex only", "title": "Same Sex Only" },
+                { "key": "Both Sexes", "title": "Both Sexes" },
+                { "key": "Never had sex", "title": "No Sexual Contact" }
+            ];
+
             filters.yrbsAdvancedFilters = [
                 {key: 'year', title: 'label.yrbs.filter.year', queryKey:"year",primary: false, value: ['2015'], groupBy: false,
                     filterType: 'checkbox', autoCompleteOptions: angular.copy(filters.yrbsYearsOptions), donotshowOnSearch:true, helpText:"label.help.text.yrbs.year" },
@@ -1376,6 +1389,12 @@
                     displaySearchBox:true, displaySelectedFirst:true, helpText:"label.help.text.yrbs.state" },
                 { key: 'yrbsRace', title: 'label.yrbs.filter.race', queryKey:"race", primary: false, value: [], groupBy: 'column',
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.yrbsRaceOptions), defaultGroup:"column", helpText:"label.help.text.yrbs.race.ethnicity"},
+                { key: 'sexid', title: 'label.yrbs.sexual.identity', queryKey:"sexid", primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.yrbsSexualIdentity), defaultGroup:"column"},
+
+                { key: 'sexpart', title: 'label.yrbs.sexual.contact', queryKey:"sexpart", primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.yrbsSexualContact), defaultGroup:"column"},
+
                 { key: 'question', title: 'label.yrbs.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
                     questions: $rootScope.questions,
                     filterType: 'tree', autoCompleteOptions: $rootScope.questionsList, donotshowOnSearch:true, helpText:"label.help.text.yrbs.question",
@@ -1669,7 +1688,7 @@
                     advancedSideFilters: [
                         {
                             filterGroup: false, collapse: false, allowGrouping: true, groupOptions: filters.columnGroupOptions, dontShowCounts: true,
-                            filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'year')
+                            refreshFiltersOnChange: true, filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'year')
                         },
                         {
                             filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,
@@ -1686,6 +1705,14 @@
                         {
                             filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,
                             filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'yrbsState')
+                        },
+                        {
+                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                            filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'sexid')
+                        },
+                        {
+                            filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                            filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'sexpart')
                         },
                         {
                             filterGroup: false, collapse: false, allowGrouping: false,
