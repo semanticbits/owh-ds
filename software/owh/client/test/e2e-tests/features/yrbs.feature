@@ -6,7 +6,7 @@ Feature: As a User
 
   Scenario: Access YRBS page from home page
     Given I am on search page
-    And I select YRBS as primary filter
+    When I select YRBS as primary filter
     Then I should get search page with default filter type "Youth Risk Behavior"
 
   Scenario: Accesss YRBS from search page
@@ -17,19 +17,19 @@ Feature: As a User
     #Then the default year selected should be 2015
     And side menu slides back into view
 
-  Scenario: Hide Sidebar
-    When I see hide filter button in yrbs page
-    And I click hide filter button in yrbs page
-    Then side menu slides away
-    Then I see button to show filters
-    And then table and visualizations adjust to that they use up the entire available screen space
-    And the background highlight is in lighter purple (button color)
+  #Scenario: Hide Sidebar
+  #  When I see hide filter button in yrbs page
+ #   And I click hide filter button in yrbs page
+  #  Then side menu slides away
+  #  Then I see button to show filters
+  #  And then table and visualizations adjust to that they use up the entire available screen space
+  #  And the background highlight is in lighter purple (button color)
 
-  Scenario: Un collapse sidebar
-    When I click show filters button
-    Then side menu slides back into view
-    And the entire table and visualizations adjust to the reduced screen space
-    And there is button to hide filter
+  #Scenario: Un collapse sidebar
+  #  When I click show filters button
+  #  Then side menu slides back into view
+  #  And the entire table and visualizations adjust to the reduced screen space
+  #  And there is button to hide filter
 
 #Scenario: show chart for each question
   #  Given I am on search page
@@ -56,21 +56,21 @@ Feature: As a User
     Then the category to reset back to the original view of the two questions
     And 'Show Less' should be replaced with 'Show # More'
 
-  Scenario: Category Title
-    When I hover the mouse over a category name
-    Then an option/link to 'Show only this Category' should be seen
+  #Scenario: Category Title
+   # When I hover the mouse over a category name
+   # Then an option/link to 'Show only this Category' should be seen
 
-  Scenario: Show only this Category button
-    When I click on 'Show only this Category'
-    Then the data table must show only that category
+  #Scenario: Show only this Category button
+  #  When I click on 'Show only this Category'
+  #  Then the data table must show only that category
 
-  Scenario: Show all Categories link is visible
-    When I hover the mouse over a category name
-    Then an option/link to 'Show all Categories' should be seen
+  #Scenario: Show all Categories link is visible
+  #  When I hover the mouse over a category name
+  #  Then an option/link to 'Show all Categories' should be seen
 
-  Scenario: Show all Categories works
-    When I click on 'Show all Categories'
-    Then the data table should show all categories
+  #Scenario: Show all Categories works
+  #  When I click on 'Show all Categories'
+  #  Then the data table should show all categories
 
   Scenario: Race/Ethnicity label
     Then race filter should be labeled Race/Ethnicity
@@ -129,9 +129,8 @@ Feature: As a User
     And I select a few questions and clicks on the Add Selected Question(s) button
     Then the "Select Questions" button should be renamed to "Update Questions"
 
-# TODO: Implement when we fix the e2e test cases issue
-#  Scenario: Check/un-check a questions
-#    When I click on "Select Questions" button
+#  Scenario: Check/un-check/update questions
+#    When I click on Update Questions button
 #    Then I see checkboxes for the questions in a tree
 #    When I check a non-leaf node
 #    Then I see all leaf node being selected
@@ -209,3 +208,22 @@ Feature: As a User
     When I set "Race" filter "Off"
     Then I set "State" filter "Column"
     Then I should see records for states
+
+  Scenario: Sexual Identity and Sex of Sexual contact filter for only 2015 year
+    Given I am on yrbs advanced search page
+    When I select "Year" value "2013"
+    Then I see Sexual identity and Sexual contact filter disabled
+
+  Scenario Outline: Search By Sexual Identity and Sex of Sexual contact
+    Given I am on yrbs advanced search page
+    When I expand <filter> section
+    And user clicks on "+ 1 more" more link for <filter> filter
+    Then I see <filterOptions>
+    When I select <filterOption>
+    And I click on run query button
+    Then I see results being displayed in data table for <filter>
+
+    Examples:
+      | filter                  | filterOptions                                                     | filterOption      |
+      |  Sexual Identity        |  Heterosexual (straight), Gay or Lesbian, Bisexual, Not Sure      | Bisexual          |
+      |  Sexual Contact         |  Opposite Sex Only, Same Sex Only, Both Sexes, No Sexual Contact  | Opposite Sex Only |

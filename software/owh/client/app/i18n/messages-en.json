@@ -111,6 +111,9 @@
   "label.title.race.hispanicOrigin":"Race and Ethnicity",
   "label.yrbs.filter.sex": "Sex",
   "label.yrbs.filter.race": "Race/Ethnicity",
+  "label.yrbs.sexual.orientation": "Sexual Orientation",
+  "label.yrbs.sexual.identity": "Sexual Identity",
+  "label.yrbs.sexual.contact": "Sex of Sexual Contacts",
   "label.official.us.gov": "An official website of the United States Government. This site is work in progress and may contain inaccuracies. If you don't find what you need, visit {{qhdos}} or {{cdc}}",
   "label.site.prototype": "This site is a prototype.",
   "label.learn.more": "Learn more.",
@@ -256,6 +259,15 @@
   "label.prams.filter.state": "State",
   "label.prams.filter.question": "Question",
   "label.prams.class": "Class",
+
+  "label.help.text.prams.class" : "This field indicates that the Class by which the system indexes its variables for selection as the outcome variable in requested analyses.",
+  "label.help.text.prams.topic" : "Topics addressed in the PRAMS core questionnaire include barriers to and content of prenatal care, obstetric history, maternal use of alcohol and cigarettes, physical abuse, contraception, economic status, maternal stress, and early infant development and health status",
+  "label.help.text.prams.year" : "This field indicates the Year for which PRAMS data is available",
+  "label.help.text.prams.state" : "This field indicates the States for which PRAMS data is available",
+  "label.help.text.prams.question" : "This field indicates the questions which were developed and tested and ultimately placed on the PRAMS questionnaire",
+  "label.help.text.prams.question": "This field indicates the questions which were developed and tested and ultimately placed on the PRAMS questionnaire",
+  "label.help.text.prams.response": "Response",
+
 
   "label.help.text.yrbs.year": "This field indicates year of the Youth Risk Behavior Survey (YRBS).",
   "label.help.text.yrbs.sex": "This field indicates the sex of the students who participated in the YRBS National Survey.",
