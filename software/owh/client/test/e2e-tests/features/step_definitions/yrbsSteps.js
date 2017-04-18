@@ -29,8 +29,8 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on Show \# More under the questions in any category$/, function (next) {
-        browser.sleep(300);
-        element(by.cssContainingText('a', 'Show 18 More')).click()
+        browser.waitForAngular();
+        element(by.cssContainingText('a', 'Show 17 More')).click()
             .then(next);
     });
 
@@ -235,6 +235,11 @@ var yrbsStepDefinitionsWrapper = function () {
 
     this.When(/^I click on "([^"]*)" button$/, function (arg1, next) {
         yrbsPage.selectQuestionsButton.click()
+            .then(next);
+    });
+
+    this.When(/^I click on Update Questions button$/, function (next) {
+        yrbsPage.updateQuestionsButton.click()
             .then(next);
     });
 
@@ -458,15 +463,6 @@ var yrbsStepDefinitionsWrapper = function () {
 
     this.Then(/^I should see records for states$/, function (next) {
         yrbsPage.getTableRowData(1).then(function(rowdata){
-            expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
-            //Alabama
-            expect(rowdata[1]).to.contains('30.7');
-            //Alaska
-            expect(rowdata[2]).to.contains('22.0');
-            //Arizona
-            expect(rowdata[3]).to.contains('34.8');
-        });
-        yrbsPage.getTableRowData(2).then(function(rowdata){
             expect(rowdata[0]).to.equals('Currently used marijuana(one or more times during the 30 days before the survey)');
             //Alabama
             expect(rowdata[1]).to.contains('17.3');
@@ -474,7 +470,99 @@ var yrbsStepDefinitionsWrapper = function () {
             expect(rowdata[2]).to.contains('19.0');
             //Arizona
             expect(rowdata[3]).to.contains('23.3');
+        });
+        yrbsPage.getTableRowData(2).then(function(rowdata){
+            expect(rowdata[0]).to.equals('Drank alcohol before age 13 years(for the first time other than a few sips)');
+            //Alabama
+            expect(rowdata[1]).to.contains('20.4');
+            //Alaska
+            expect(rowdata[2]).to.contains('14.3');
+            //Arizona
+            expect(rowdata[3]).to.contains('16.5');
         }).then(next);
+    });
+
+    this.Given(/^I am on yrbs advanced search page$/, function (next) {
+        browser.get('/search/');
+        yrbsPage.yrbsOption.click();
+        browser.waitForAngular();
+        element(by.cssContainingText('span', 'Switch to Advanced Search')).click().then(next);
+    });
+
+    this.Then(/^I see Sexual identity and Sexual contact filter disabled$/, function () {
+        return element.all(by.css('li.cursor-not-allowed')).then(function (filters) {
+            expect(filters.length).to.equal(2);
+        });
+    });
+
+    this.When(/^I expand Sexual Identity section$/, function (next) {
+        yrbsPage.sexualIdentity.click().then(next);
+    });
+
+    this.Then(/^I see Heterosexual \(straight\), Gay or Lesbian, Bisexual, Not Sure$/, function (next) {
+        yrbsPage.getOptions('Sexual Identity').then(function(elements) {
+            expect(elements[1].getText()).to.eventually.contains('All');
+            expect(elements[2].getText()).to.eventually.contains('Heterosexual (straight)');
+            expect(elements[3].getText()).to.eventually.contains('Gay or Lesbian');
+            expect(elements[4].getText()).to.eventually.contains('Bisexual');
+            expect(elements[5].getText()).to.eventually.contains('Not Sure');
+        }).then(next);
+    });
+
+    this.When(/^I select Bisexual$/, function (next) {
+        var filter = element(by.cssContainingText('label', 'Bisexual'));
+        filter.click().then(next);
+    });
+
+    this.When(/^I click on run query button$/, function (next) {
+        element(by.css('button[title="Click to Run Query"]')).click().then(next);
+    });
+
+    this.Then(/^I see results being displayed in data table for Sexual Identity$/, function (next) {
+        yrbsPage.getTableRowData(1).then(function(rowdata){
+            expect(rowdata[0]).to.equals('Currently used marijuana(one or more times during the 30 days before the survey)');
+            expect(rowdata[1]).to.contains('43.9');
+            expect(rowdata[2]).to.contains('13.5');
+            expect(rowdata[3]).to.contains('30.6');
+        }).then(next);
+    });
+
+    this.Then(/^I see results being displayed in data table for Sexual Contact$/, function (next) {
+        yrbsPage.getTableRowData(1).then(function(rowdata){
+            expect(rowdata[0]).to.equals('Currently used marijuana(one or more times during the 30 days before the survey)');
+            expect(rowdata[1]).to.contains('50.8');
+            expect(rowdata[2]).to.contains('23.7');
+            expect(rowdata[3]).to.contains('38.0');
+        }).then(next);
+    });
+
+    this.When(/^I expand Sexual Contact section$/, function (next) {
+        yrbsPage.sexualContact.click().then(next);
+    });
+
+    this.Then(/^I see Opposite Sex Only, Same Sex Only, Both Sexes, No Sexual Contact$/, function (next) {
+        yrbsPage.getOptions('Sex of Sexual Contacts').then(function(elements) {
+            expect(elements[1].getText()).to.eventually.contains('All');
+            expect(elements[2].getText()).to.eventually.contains('Opposite Sex Only');
+            expect(elements[3].getText()).to.eventually.contains('Same Sex Only');
+            expect(elements[4].getText()).to.eventually.contains('Both Sexes');
+            expect(elements[5].getText()).to.eventually.contains('No Sexual Contact');
+        }).then(next);
+    });
+
+    this.When(/^I select Opposite Sex Only$/, function (next) {
+        var filter = element(by.cssContainingText('label', 'Opposite Sex Only'));
+        filter.click().then(next);
+    });
+
+    this.When(/^user clicks on "([^"]*)" more link for Sexual Identity filter$/, function (arg1, next) {
+        var sexualIdentity = element(by.cssContainingText('a', 'Sexual Identity')).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul'));
+        sexualIdentity.element(by.cssContainingText('a', arg1)).click().then(next);
+    });
+
+    this.When(/^user clicks on "([^"]*)" more link for Sexual Contact filter$/, function (arg1, next) {
+        var sexualContact = element(by.cssContainingText('a', 'Sex of Sexual Contacts')).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul'));
+        sexualContact.element(by.cssContainingText('a', arg1)).click().then(next);
     });
 };
 module.exports = yrbsStepDefinitionsWrapper;

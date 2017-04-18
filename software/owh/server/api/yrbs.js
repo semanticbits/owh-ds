@@ -66,6 +66,12 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
     if(aggrsKeys.indexOf('grade') >= 0){
         sortedKeys.push('grade');
     }
+    if(aggrsKeys.indexOf('sexid') >= 0){
+        sortedKeys.push('sexid');
+    }
+    if(aggrsKeys.indexOf('sexpart') >= 0){
+        sortedKeys.push('sexpart');
+    }
     if(aggrsKeys.indexOf('race') >= 0){
         sortedKeys.push('race');
     }
@@ -168,6 +174,13 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
             }
             if ('grade' in r) {
                 cell = getResultCell(cell, 'grade', r.grade);
+            }
+            if ('sexid' in r) {
+                cell = getResultCell(cell, 'sexid', r.sexid);
+            }
+
+            if ('sexpart' in r) {
+                cell = getResultCell(cell, 'sexpart', r.sexpart);
             }
             if ('race' in r) {
                 cell = getResultCell(cell, 'race', r.race);
