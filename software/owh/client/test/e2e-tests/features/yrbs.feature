@@ -129,9 +129,8 @@ Feature: As a User
     And I select a few questions and clicks on the Add Selected Question(s) button
     Then the "Select Questions" button should be renamed to "Update Questions"
 
-# TODO: Implement when we fix the e2e test cases issue
-#  Scenario: Check/un-check a questions
-#    When I click on "Select Questions" button
+#  Scenario: Check/un-check/update questions
+#    When I click on Update Questions button
 #    Then I see checkboxes for the questions in a tree
 #    When I check a non-leaf node
 #    Then I see all leaf node being selected
