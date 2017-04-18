@@ -17,25 +17,24 @@ Feature: As a User
     #Then the default year selected should be 2015
     And side menu slides back into view
 
-  #Scenario: Hide Sidebar
-  #  When I see hide filter button in yrbs page
- #   And I click hide filter button in yrbs page
-  #  Then side menu slides away
-  #  Then I see button to show filters
-  #  And then table and visualizations adjust to that they use up the entire available screen space
-  #  And the background highlight is in lighter purple (button color)
+  Scenario: Hide Sidebar
+    When I see hide filter button in yrbs page
+    And I click hide filter button in yrbs page
+    Then side menu slides away
+    Then I see button to show filters
+    And then table and visualizations adjust to that they use up the entire available screen space
+    And the background highlight is in lighter purple (button color)
 
-  #Scenario: Un collapse sidebar
-  #  When I click show filters button
-  #  Then side menu slides back into view
-  #  And the entire table and visualizations adjust to the reduced screen space
-  #  And there is button to hide filter
+  Scenario: Un collapse sidebar
+    When I click show filters button
+    Then side menu slides back into view
+    And the entire table and visualizations adjust to the reduced screen space
+    And there is button to hide filter
 
-#Scenario: show chart for each question
-  #  Given I am on search page
-  #Given user select YRBS as primary filter
-  #  When I change 'I'm interested in' dropdown value to "Youth Risk Behavior"
-  # Then each question should have chart icon displayed
+Scenario: show chart for each question
+   Given I am on search page
+   When I select YRBS as primary filter
+   Then each question should have chart icon displayed
 
   Scenario: sort order
     When I looks at the filter sub categories
@@ -96,9 +95,9 @@ Feature: As a User
 #  When Years "2015", "2013" are selected
 #  Then results shows only 2015 and 2013 data
 
-#Scenario: Filter by ethnicity
-#  When ethniciy "White", "Asian" are selected
-#  Then results shows only data for the selected ethnicities
+Scenario: Filter by ethnicity
+  When ethniciy "White", "Asian" are selected
+  Then results shows only data for the selected ethnicities
 
   Scenario: Search Questions
     When I begin to type a word in the search bar

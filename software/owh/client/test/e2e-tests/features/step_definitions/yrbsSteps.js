@@ -11,10 +11,8 @@ var yrbsStepDefinitionsWrapper = function () {
     var yrbsPage = require('../support/yrbspage.po')
 
     this.When(/^I select YRBS as primary filter$/, function (next) {
-       yrbsPage.yrbsOption.click();
-       browser.driver.sleep(100)
-           .then(next);
-       });
+        yrbsPage.yrbsOption.click().then(next);
+    });
 
     this.When(/^I click on the down arrow at the corner of each category bar$/, function (next) {
         yrbsPage.getExpandLinks().then(function(elements) {
@@ -30,7 +28,7 @@ var yrbsStepDefinitionsWrapper = function () {
 
     this.When(/^I click on Show \# More under the questions in any category$/, function (next) {
         browser.waitForAngular();
-        element(by.cssContainingText('a', 'Show 17 More')).click()
+        element(by.cssContainingText('a', 'Show 18 More')).click()
             .then(next);
     });
 
@@ -387,14 +385,13 @@ var yrbsStepDefinitionsWrapper = function () {
         return expect(element(by.cssContainingText('span', arg1)).isPresent()).to.eventually.equal(true);
     });
 
-    this.When(/^I click on the "([^"]*)" link$/, function (arg1) {
+    this.When(/^I click on the "([^"]*)" link$/, function (arg1, next) {
          if(arg1 == 'Switch to Basic Search'){
-             element(by.cssContainingText('span', arg1)).click();
+             element(by.cssContainingText('span', arg1)).click().then(next);
          }
          else if(arg1 == 'Switch to Advanced Search'){
-             element(by.cssContainingText('span', arg1)).click();
+             element(by.cssContainingText('span', arg1)).click().then(next);
          }
-         return browser.waitForAngular();
     });
 
     this.Then(/^the sidebar switches to an Advanced Search mode$/, function () {
