@@ -145,13 +145,14 @@
         function resizeUSAMap(isZoomIn, primaryFilter) {
             leafletData.getMap().then(function(map) {
                 if(isZoomIn) {
+                    angular.element('div.legend').show();
                     map.zoomIn();
                     angular.extend(primaryFilter.mapData, {
                         legend: generateLegend(primaryFilter.mapData.mapMinValue, primaryFilter.mapData.mapMaxValue)
                     });
                 } else {
-                    primaryFilter.mapData.legend = undefined;
                     map.zoomOut();
+                    angular.element('div.legend').hide();
                 }
                 $timeout(function(){ map.invalidateSize()}, 1000);
             });
