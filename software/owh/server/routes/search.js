@@ -74,8 +74,16 @@ var searchRouter = function(app, rConfig) {
 function search(q) {
     var deferred = Q.defer();
     var preparedQuery = queryBuilder.buildAPIQuery(q);
+    console.log('preparedQuery', preparedQuery);
     var finalQuery = '';
-    var stateFilter = queryBuilder.findFilterByKeyAndValue(q.sideFilters, 'key', 'state');
+    var stateFilter = {};
+    q.sideFilters.forEach(function(category) {
+        category.sideFilters.forEach(function(filter) {
+            if(filter.key === 'state') {
+                stateFilter = filter;
+            }
+        })
+    });
 
     var isStateSelected = queryBuilder.isFilterApplied(stateFilter);
 
