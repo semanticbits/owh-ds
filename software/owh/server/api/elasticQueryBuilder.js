@@ -401,10 +401,12 @@ function buildAPIQuery(primaryFilter) {
             apiQuery.query[eachFilter.queryKey] = eachFilterQuery;
         }
     });
-    primaryFilter.sideFilters.forEach(function(filter) {
-       if(filter.filters.key === 'topic') {
-           apiQuery.query['question.path'].value = filter.filters.questions;
-       }
+    primaryFilter.sideFilters.forEach(function(category) {
+        category.sideFilters.forEach(function(filter){
+            if(filter.filters.key === 'topic') {
+                apiQuery.query['question.path'].value = filter.filters.questions;
+            }
+        })
     });
     apiQuery.aggregations.nested.table = rowAggregations.concat(columnAggregations);
     var result = prepareChartAggregations(headers.rowHeaders.concat(headers.columnHeaders), apiQuery.searchFor);
@@ -524,8 +526,7 @@ function addFiltersToCalcFertilityRates(topLevelQuery) {
 
     var query = topLevelQuery.query.filtered.filter;
     var queryString = JSON.stringify(query);
-    //if(['mother_age', 'mother_age_r14', 'mother_age_r8', 'mother_age_r9'].indexOf(queryString) < 0) {
-    if(queryString.indexOf('mother_age') < 0 && queryString.indexOf('mother_age_r14') < 0 && queryString.indexOf('mother_age_r8') < 0 && queryString.indexOf('mother_age_r9') < 0 ) {
+    if(queryString.indexOf('mother_age_1year_interval') < 0 && queryString.indexOf('mother_age_5year_interval') < 0 ) {
         var ageValues = ["15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "37", "38", "39", "40", "41", "42", "43", "44"];
         var ageQuery = buildBoolQuery("age", ageValues, false);
         if(!isEmptyObject(ageQuery)) {
@@ -790,8 +791,10 @@ function addCountsToAutoCompleteOptions(primaryFilter) {
         aggregations: { simple: [] }
     };
     var filters = [];
-    primaryFilter.sideFilters.forEach(function(eachSideFilter) {
-        filters = filters.concat(eachSideFilter.filterGroup ? eachSideFilter.filters : [eachSideFilter.filters]);
+    primaryFilter.sideFilters.forEach(function(category) {
+        category.sideFilters.forEach(function(eachSideFilter) {
+            filters = filters.concat(eachSideFilter.filterGroup ? eachSideFilter.filters : [eachSideFilter.filters]);
+        });
     });
      filters.forEach(function(eachFilter) {
         apiQuery.aggregations.simple.push(getGroupQuery(eachFilter));
