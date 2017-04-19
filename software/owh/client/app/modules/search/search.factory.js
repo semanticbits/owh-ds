@@ -1845,6 +1845,7 @@
                                     allowGrouping: true,
                                     groupOptions: filters.columnGroupOptions,
                                     dontShowCounts: true,
+                                    refreshFiltersOnChange: true,
                                     filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'year')
                                 },
                                 {
@@ -1874,6 +1875,14 @@
                                     allowGrouping: true,
                                     groupOptions: filters.columnGroupOptions,
                                     filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'yrbsState')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'sexid')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'sexpart')
                                 },
                                 {
                                     filterGroup: false, collapse: false, allowGrouping: false,
@@ -2129,39 +2138,29 @@
                                     collapse: true,
                                     allowGrouping: true,
                                     groupOptions: filters.groupOptions,
-                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_age'),
-                                    category: "Maternal Characteristics"
-                                },
-                                {
-                                    filterGroup: false,
-                                    collapse: true,
-                                    allowGrouping: true,
-                                    groupOptions: filters.groupOptions,
-                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_age_r9'),
-                                    category: "Maternal Characteristics"
-                                },
-                                {
-                                    filterGroup: false,
-                                    collapse: true,
-                                    allowGrouping: true,
-                                    groupOptions: filters.groupOptions,
-                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_age_r8'),
-                                    category: "Maternal Characteristics"
-                                },
-                                {
-                                    filterGroup: false,
-                                    collapse: true,
-                                    allowGrouping: true,
-                                    groupOptions: filters.groupOptions,
-                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_age_r14'),
-                                    category: "Maternal Characteristics"
-                                },
-                                {
-                                    filterGroup: false,
-                                    collapse: true,
-                                    allowGrouping: true,
-                                    groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_education'),
+                                    category: "Maternal Characteristics"
+                                }
+                            ]
+                        },
+                        {
+                            category: "Mother's Age",
+                            exclusive: true,
+                            sideFilters: [
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_age_1year_interval'),
+                                    category: "Maternal Characteristics"
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'mother_age_5year_interval'),
                                     category: "Maternal Characteristics"
                                 }
                             ]

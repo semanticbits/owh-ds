@@ -38,11 +38,11 @@
     }
   },
   {
-    "column":"mother_age_r9",
+    "column":"mother_age_5year_interval",
     "type":"map",
     "start": 93,
     "stop": 93,
-    "field": "Mother’s Age Recode 9",
+    "field": "Mother’s Age 5 Year Interval",
     "mappings": {
       "1": "Under 15 years",
       "2": "15-19 years",
@@ -56,29 +56,7 @@
     }
   },
   {
-    "column":"mother_age_r14",
-    "type":"map",
-    "start": 91,
-    "stop": 92,
-    "field": "Mother’s Age Recode 14",
-    "mappings": {
-      "01": "Under 15 years",
-      "03": "15 years",
-      "04": "16 years",
-      "05": "17 years",
-      "06": "18 years",
-      "07": "19 years",
-      "08": "20-24 years",
-      "09": "25-29 years",
-      "10": "30-34 years",
-      "11": "35-39 years",
-      "12": "40-44 years",
-      "13": "45-49 years",
-      "14": "50-54 years"
-    }
-  },
-  {
-    "column":"mother_age",
+    "column":"mother_age_1year_interval",
     "type":"map",
     "start": 89,
     "stop": 90,
