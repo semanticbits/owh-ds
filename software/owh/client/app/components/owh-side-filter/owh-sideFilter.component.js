@@ -246,7 +246,11 @@
             }
             // Update the filter options if refreshFiltersOnChange is true
             if (filter.refreshFiltersOnChange){
-                utilService.refreshFilterAndOptions(filter.filters, sfc.filters, sfc.primaryKey);
+                var sideFilters = [];
+                angular.forEach(sfc.filters, function (category, index) {
+                    sideFilters = sideFilters.concat(category.sideFilters);
+                });
+                utilService.refreshFilterAndOptions(filter.filters, sideFilters, sfc.primaryKey);
             }
             // Run the filter call back only if runOnFilterChange is true
             if(sfc.runOnFilterChange) {

@@ -605,12 +605,12 @@
                     primary: false, value: [], defaultGroup:'row', groupBy: false, filterType: "checkbox",
                     autoCompleteOptions: angular.copy(hispanicOptions), helpText:"label.help.text.ethnicity"},
 
-                {key: 'mother_age_1year_interval', title: 'label.chart.mother_age.single.yr', queryKey:"mother_age_1year_interval", primary: false, value: [],
+                {key: 'mother_age_1year_interval', title: 'label.chart.mother_age.single.year.group', queryKey:"mother_age_1year_interval", primary: false, value: [],
                     defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: angular.copy(singleYearAgeOptions), helpText:"label.help.text.mother.age"},
+                    autoCompleteOptions: angular.copy(singleYearAgeOptions), helpText:"label.help.text.mother.one.year.age"},
 
-                {key: 'mother_age_5year_interval', title: 'label.chart.mother_age.r9', queryKey:"mother_age_5year_interval", primary: false, value: [],
-                    defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: angular.copy(ageR9Options)},
+                {key: 'mother_age_5year_interval', title: 'label.chart.mother_age.five.year.group', queryKey:"mother_age_5year_interval", primary: false, value: [],
+                    defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: angular.copy(ageR9Options), helpText:"label.help.text.mother.five.year.age"},
 
                 {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'row', filterType: "checkbox",

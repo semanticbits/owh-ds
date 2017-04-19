@@ -73,11 +73,11 @@ var natalityStepsDefinitionWrapper = function () {
         //Expand all filters
         element(by.className('show-more-0')).click();
         element(by.className('show-more-1')).click();
-        element(by.className('show-more-2')).click();
+        element(by.className('show-more-3')).click();
         var allElements = element.all(by.css('cursor-not-allowed')).all(by.css('custom-link'));
         allElements.getText().then(function (filters) {
             filters.forEach(function (filter) {
-                expect(["Month","Weekday", "Sex", "Gestational Age at Birth","Month Prenatal Care Began","Birth Weight","Birth Weight 4","Birth Weight 12","Plurality or Multiple Birth","Live Birth Order","Birth Place","Delivery Method","Medical Attendant","Ethinicity","Marital Status","Age of Mother","Mother's Age 9","Mother's Age 12","Mother's Single Year of Age","Education",
+                expect(["Month","Weekday", "Sex", "Gestational Age at Birth","Month Prenatal Care Began","Birth Weight","Birth Weight 4","Birth Weight 12","Plurality or Multiple Birth","Live Birth Order","Birth Place","Delivery Method","Medical Attendant","Ethinicity","Marital Status", "Education", "1-Year Age Groups", "5-Year Age Groups",
                     "Anemia","Cardiac Disease","Chronic Hypertension","Diabetes","Eclampsia","Hydramnios / Oligohydramnios","Incompetent Cervix","Lung disease","Pregnancy-associated Hypertension","Tobacco Use"]).to.include(filter);
             });
         }).then(next);
@@ -143,7 +143,7 @@ var natalityStepsDefinitionWrapper = function () {
     this.Then(/^I see expected filters should be disabled for Fertility Rates$/, function (next) {
         element(by.className('show-more-0')).click();
         element(by.className('show-more-1')).click();
-        element(by.className('show-more-2')).click();
+        element(by.className('show-more-3')).click();
         var allElements = element.all(by.css('cursor-not-allowed')).all(by.css('custom-link'));
         allElements.getText().then(function (filters) {
             filters.forEach(function (filter) {
@@ -163,11 +163,6 @@ var natalityStepsDefinitionWrapper = function () {
             expect(categories[2].getText()).to.eventually.equal(arg1);
         }).then(next);
     });
-
-   /* this.When(/^I expand the "([^"]*)" Age Group button in Mother Age category$/, function (arg1, next) {
-        browser.actions().mouseMove(element(by.cssContainingText('span', arg1))).perform();
-        element(by.cssContainingText('span', arg1)).element(by.xpath('..')).click().then(next);
-    });*/
 
     this.Then(/^I should see "([^"]*)" options under Mother Age category for 5-Year age group$/, function (arg1, next) {
         natalityPage.getOptions(arg1).then(function(elements) {
@@ -222,6 +217,14 @@ var natalityStepsDefinitionWrapper = function () {
             expect(rowdata[3]).to.equals('974');
             //Total
             expect(rowdata[4]).to.equals('1,931');
+        }).then(next);
+    });
+
+    this.Then(/^the category Mother's Age should has 1\-Year and 5\-Year age group filters$/, function (next) {
+        var allFilters = element(by.className('category-2')).all(by.tagName('li'));
+        allFilters.getText().then(function (filters) {
+            expect(filters[0]).to.contains("1-Year Age Groups");
+            expect(filters[7]).to.contains("5-Year Age Groups");
         }).then(next);
     });
 };

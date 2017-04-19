@@ -47,9 +47,8 @@ Feature: Natality filters
 
   Scenario: Fertility rates for Mother's age 9
     When I change show me dropdown option to "Fertility Rates"
-    Then I click on "6 more filters"
-    And I expand "Mother's Age 9" filter section
-    And  filter "Mother's Age 9" and option "15-19 years" selected
+    And I expand "5-Year Age Groups" filter section
+    And  filter "5-Year Age Groups" and option "15-19 years" selected
     And the data table should display values filtered by age selected
 
   Scenario: Disable filters when show me filter value changes - Fertility Rates
@@ -58,24 +57,24 @@ Feature: Natality filters
     And years "2000", "2001", "2002" should be disabled for Year filter
 
   Scenario: Filter Name and Location
-    When I see "Mother Age" category in the sidebar
-    Then the category "Mother Age" should has 1-Year and 5-Year age group filters
+    When I see "Mother's Age" category in the sidebar
+    Then the category Mother's Age should has 1-Year and 5-Year age group filters
 
   Scenario: 5- Year Age Group
-    Then I expand "Mother's Age 9" filter section
-    And I should see "Mother's Age 9" options under Mother Age category for 5-Year age group
+    Then I expand "5-Year Age Groups" filter section
+    And I should see "5-Year Age Groups" options under Mother Age category for 5-Year age group
     Then I select "Year" value "2003"
     And I un-select "Year" value "2015"
-    And  filter "Mother's Age 9" and option "15-19 years" selected
-    And I select groupBy "Row" option for "Mother's Age 9" filter
+    And  filter "5-Year Age Groups" and option "15-19 years" selected
+    And I select groupBy "Row" option for "5-Year Age Groups" filter
     Then data table should display right values for 5-Year age filter
 
   Scenario: 1- Year Age Group
-    Then I expand "Mother's Single Year of Age" filter section
-    And I should see "Mother's Single Year of Age" options under Mother Age category for 1-Year age group
+    Then I expand "1-Year Age Groups" filter section
+    And I should see "1-Year Age Groups" options under Mother Age category for 1-Year age group
     Then I select "Year" value "2003"
     And I un-select "Year" value "2015"
-    And  filter "Mother's Single Year of Age" and option "15 years" selected
-    And I select groupBy "Row" option for "Mother's Single Year of Age" filter
+    And  filter "1-Year Age Groups" and option "15 years" selected
+    And I select groupBy "Row" option for "1-Year Age Groups" filter
     Then data table should display right values for 1-Year age filter
 
