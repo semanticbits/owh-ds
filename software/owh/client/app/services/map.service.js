@@ -11,7 +11,9 @@
         var service = {
             updateStatesDeaths: updateStatesDeaths,
             addExpandControl: addExpandControl,
-            addShareControl: addShareControl
+            addShareControl: addShareControl,
+            highlightFeature: highlightFeature,
+            resetHighlight: resetHighlight
         };
         return service;
 
@@ -180,6 +182,31 @@
                     return container;
                 }
             });
+        }
+
+        /**
+         * Set feature style
+         */
+        function highlightFeature(layerId, map) {
+            map._layers[layerId].setStyle({'color': '#333333','weight': 2.6,'opacity': 1});
+        }
+
+        /**
+         * Reset the feature style
+         * @param mapArgs
+         */
+        function resetHighlight(mapObj) {
+            var layer = mapObj.layer;
+            if(layer) {
+                var map = mapObj.target._map;
+                map._layers[layer._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black'});
+            } else {
+                if(mapObj.leafletEvent) {
+                    layer = mapObj.leafletEvent.target;
+                    var map = layer._map;
+                    map._layers[layer._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black'});
+                }
+            }
         }
 
     }

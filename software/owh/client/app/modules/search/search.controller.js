@@ -566,10 +566,12 @@
             buildMarkerPopup(leafEvent.latlng.lat, leafEvent.latlng.lng, leafEvent.target.feature.properties,
                 args.leafletObject._map, sc.filters.selectedPrimaryFilter.key, leafEvent.containerPoint);
             sc.currentFeature = leafEvent.target.feature;
+            mapService.highlightFeature(leafEvent.target._leaflet_id, args.leafletObject._map)
 
         });
         $scope.$on("leafletDirectiveGeoJson.mouseout", function (event, args) {
             sc.mapPopup._close();
+            mapService.resetHighlight(args);
         });
         $scope.$on("leafletDirectiveMap.mouseout", function (event, args) {
             sc.mapPopup._close();
