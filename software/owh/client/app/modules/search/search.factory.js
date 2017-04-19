@@ -862,8 +862,10 @@
                 aggregations: { simple: [] }
             };
             var filters = [];
-            angular.forEach(primaryFilter.sideFilters, function(eachSideFilter) {
-                filters = filters.concat(eachSideFilter.filterGroup ? eachSideFilter.filters : [eachSideFilter.filters]);
+            angular.forEach(primaryFilter.sideFilters, function(category) {
+                angular.forEach(category.sideFilters, function(eachSideFilter) {
+                    filters = filters.concat(eachSideFilter.filterGroup ? eachSideFilter.filters : [eachSideFilter.filters]);
+                });
             });
             angular.forEach(filters, function(eachFilter) {
                 apiQuery.aggregations.simple.push(getGroupQuery(eachFilter));
@@ -1710,39 +1712,39 @@
                     }
                 },
                 {key: 'adequacy', title: 'label.prams.filter.adequacy', queryKey:"BOC18",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsAdequacyOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsAdequacyOptions), doNotShowAll: false},
                 {key: 'birth_weight', title: 'label.prams.filter.birth_weight', queryKey:"BOC1",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsBirthWeightOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsBirthWeightOptions), doNotShowAll: false},
                 {key: 'income', title: 'label.prams.filter.income', queryKey:"BOC14",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsIncomeOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsIncomeOptions), doNotShowAll: false},
                 {key: 'marital_status', title: 'label.prams.filter.marital_status', queryKey:"BOC3",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaritalStatusOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMaritalStatusOptions), doNotShowAll: false},
                 {key: 'maternal_age_groupings', title: 'label.prams.filter.maternal_age_groupings', queryKey:"BOC17",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalAgeGroupingsOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMaternalAgeGroupingsOptions), doNotShowAll: false},
                 {key: 'maternal_age_years', title: 'label.prams.filter.maternal_age_years', queryKey:"BOC16",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalAgeYearsOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMaternalAgeYearsOptions), doNotShowAll: false},
                 {key: 'maternal_age_3', title: 'label.prams.filter.maternal_age_3', queryKey:"BOC19",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalAge3Options), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMaternalAge3Options), doNotShowAll: false},
                 {key: 'maternal_age_4', title: 'label.prams.filter.maternal_age_4', queryKey:"BOC4",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalAge4Options), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMaternalAge4Options), doNotShowAll: false},
                 {key: 'maternal_education', title: 'label.prams.filter.maternal_education', queryKey:"BOC5",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalEducationOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMaternalEducationOptions), doNotShowAll: false},
                 {key: 'maternal_race', title: 'label.prams.filter.maternal_race', queryKey:"BOC6",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMaternalRaceOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMaternalRaceOptions), doNotShowAll: false},
                 {key: 'medicaid', title: 'label.prams.filter.medicaid', queryKey:"BOC9",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMedicaidOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMedicaidOptions), doNotShowAll: false},
                 {key: 'mother_hispanic', title: 'label.prams.filter.mother_hispanic', queryKey:"BOC8",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsMotherHispanicOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMotherHispanicOptions), doNotShowAll: false},
                 {key: 'previous_births', title: 'label.prams.filter.previous_births', queryKey:"BOC20",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsPreviousBirthsOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsPreviousBirthsOptions), doNotShowAll: false},
                 {key: 'wic_pregnancy', title: 'label.prams.filter.wic_pregnancy', queryKey:"BOC10",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsWicPregnancyOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsWicPregnancyOptions), doNotShowAll: false},
                 {key: 'pregnancy_intendedness', title: 'label.prams.filter.pregnancy_intendedness', queryKey:"BOC11",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsPregnancyIntendednessOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsPregnancyIntendednessOptions), doNotShowAll: false},
                 {key: 'smoked_before', title: 'label.prams.filter.smoked_before', queryKey:"BOC12",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsSmokedBeforeOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsSmokedBeforeOptions), doNotShowAll: false},
                 {key: 'smoked_last', title: 'label.prams.filter.smoked_last', queryKey:"BOC13",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsSmokedLastOptions), doNotShowAll: false}
+                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsSmokedLastOptions), doNotShowAll: false}
             ];
 
             filters.search = [

@@ -408,7 +408,7 @@ describe("Search controller: ", function () {
         searchController.filters.selectedPrimaryFilter = searchController.filters.search[1]; //select YRBS
         searchController.switchToYRBSBasic();
         expect(searchController.filters.selectedPrimaryFilter.showBasicSearchSideMenu).toEqual(true);
-        expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].filters.filterType).toEqual('radio');
+        expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].sideFilters[0].filters.filterType).toEqual('radio');
         expect(searchController.search).toHaveBeenCalledWith(true);
 
     }));
@@ -425,7 +425,7 @@ describe("Search controller: ", function () {
         searchController.filters.selectedPrimaryFilter = searchController.filters.search[1]; //select YRBS
         searchController.switchToYRBSAdvanced();
         expect(searchController.filters.selectedPrimaryFilter.showBasicSearchSideMenu).toEqual(false);
-        expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].filters.filterType).toEqual('checkbox');
+        expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].sideFilters[0].filters.filterType).toEqual('checkbox');
         expect(searchController.search).toHaveBeenCalledWith(true);
 
     }));
