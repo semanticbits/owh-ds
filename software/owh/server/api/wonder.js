@@ -5,8 +5,8 @@ var X2JS = require('x2js');
 var inspect = require('util').inspect;
 var q = require('q');
 
-const WONDER_API_URL = "https://wonder.cdc.gov/controller/datarequest/";
-
+// const WONDER_API_URL = "https://wonder.cdc.gov/controller/datarequest/";
+const WONDER_API_URL = "http://54.242.94.197/wonder/";
 var wonderParamCodeMap = {
     'race': {
         "key": 'D76.V8',
@@ -32,8 +32,8 @@ var wonderParamCodeMap = {
             'Non-Hispanic': '2186-2'
         }
     },
-    'year':'D76.V1',
-    'year-group':'D76.V1-level1',
+    'year':'D76.V1',// Use this mapping for filtering param
+    'year-group':'D76.V1-level1', // Use this mapping for grouping param
     'agegroup':'D76.V51',
     'weekday':'D76.V24',
     'autopsy': {
@@ -47,7 +47,64 @@ var wonderParamCodeMap = {
     'placeofdeath':'D76.V21',
     'month':'D76.V1-level2',
     'ucd-filters':'D76.V2',
-    'mcd-filters':''
+    'mcd-filters':'',
+    'state-group':'D76.V9-level1', // Use this mapping for grouping param
+    'state': { // Use this for filtering param
+        "key":'D76.V9',
+        "values":{
+            "AL":"01",
+            "AK":"02",
+            "AZ":"04",
+            "AR":"05",
+            "CA":"06",
+            "CO":"08",
+            "CT":"09",
+            "DE":"10",
+            "DC":"11",
+            "FL":"12",
+            "GA":"13",
+            "HI":"15",
+            "ID":"16",
+            "IL":"17",
+            "IN":"18",
+            "IA":"19",
+            "KS":"20",
+            "KY":"21",
+            "LA":"22",
+            "ME":"23",
+            "MD":"24",
+            "MA":"25",
+            "MI":"26",
+            "MN":"27",
+            "MS":"28",
+            "MO":"29",
+            "MT":"30",
+            "NE":"31",
+            "NV":"32",
+            "NH":"33",
+            "NJ":"34",
+            "NM":"35",
+            "NY":"36",
+            "NC":"37",
+            "ND":"38",
+            "OH":"39",
+            "OK":"40",
+            "OR":"41",
+            "PA":"42",
+            "RI":"44",
+            "SC":"45",
+            "SD":"46",
+            "TN":"47",
+            "TX":"48",
+            "UT":"49",
+            "VT":"50",
+            "VA":"51",
+            "WA":"53",
+            "WV":"54",
+            "WI":"55",
+            "WY":"56"
+        }
+    }
 }
 
 /**
@@ -93,16 +150,18 @@ function wonder(dbID) {
 wonder.prototype.invokeWONDER = function (query){
     var req = createWONDERRquest(query);
     //var groupattrs = getGroupAttributes(query);
+    console.log("Wonder Request: "+req);
     var defer = q.defer();
+
     request.post({url:WONDER_API_URL+this.dbID, form:{request_xml:req} },function (error, response, body) {
         result = {};
-        if (! error) {
+        if (!error && body.indexOf('Processing Error') == -1) {
             result = processWONDERResponse(body);
             //logger.debug("Age adjusted rates: "+inspect(result, {depth:null}));
-            logger.debug("Age adjusted rates: "+JSON.stringify(result));
+            logger.debug("Age adjusted rates: " + JSON.stringify(result));
             defer.resolve(result);
         } else{
-            logger.error("WONDER Error: "+error);
+            logger.error("WONDER Error: "+ (error?error:body));
             defer.reject('Error invoking WONDER API');
         }
         //console.log(inspect(result, {depth: null, colors: true}));
@@ -171,6 +230,8 @@ function processWONDERResponse(response){
 function createWONDERRquest(query){
     var request = xmlbuilder.create('request-parameters', {version: '1.0', encoding: 'UTF-8'});
     addParamToWONDERReq(request, 'accept_datause_restrictions', 'true');
+    addParamToWONDERReq(request,'apix_project','OASH-OWH-HIG');
+    addParamToWONDERReq(request,'apix_token','4f9^fLE32-#NL31dg9%');
     request.com("Measures");
     addMeasures(request);
     request.com("Groups");
@@ -203,12 +264,12 @@ function addFilterParams (wreq, query){
     // Add mandatory advanced filter options
     addParamToWONDERReq(wreq,'V_D76.V19', '*All*');
     addParamToWONDERReq(wreq,'V_D76.V5', '*All*');
-    // add mandatory state filter
-    addParamToWONDERReq(wreq,'F_D76.V9', '*All*');
-
+    var statefound = false;
     if(query){
         for (var k in query){
-
+            if(query[k].key == 'state'){
+                statefound = true;
+            }
             p = wonderParamCodeMap[query[k].key];
             v = query[k].value;
             //make sure values are replaced by proper keys
@@ -229,6 +290,10 @@ function addFilterParams (wreq, query){
 
             addParamToWONDERReq(wreq,'F_'+p, v);
         }
+    }
+    if(!statefound){
+        // If state filter is not selected then add mandatory state filter
+        addParamToWONDERReq(wreq,'F_D76.V9', '*All*');
     }
 };
 
