@@ -91,6 +91,33 @@ describe("YRBS API", function () {
 
     });
 
+    it("buildYRBSQueries with sexid filtering and grouping", function (){
+        var apiQuery = {'searchFor': 'mental_health', 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000},
+            {"key":"sexid","queryKey":"sexid","size":100000}]}},
+            'query': {'question.path':{ 'value': ['qn8']}, 'sexid':{'value':['Bisexual', 'Heterosexual']}}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=yrbss&r=1&q=qn8&v=sexid&f=sexid:Bisexual,Heterosexual']);
+
+    });
+
+    it("buildYRBSQueries with year filtering and grouping", function (){
+        var apiQuery = {'searchFor': 'mental_health', 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000},
+            {"key":"year","queryKey":"year","size":100000}]}},
+            'query': {'question.path':{ 'value': ['qn8']}, 'year':{'value':['2015', '2014']}}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=yrbss&r=1&q=qn8&v=year&f=year:2015,2014']);
+
+    });
+
+    it("buildYRBSQueries with sexpart filtering and grouping", function (){
+        var apiQuery = {'searchFor': 'mental_health', 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000},
+            {"key":"sexpart","queryKey":"sexpart","size":100000}]}},
+            'query': {'question.path':{ 'value': ['qn8']}, 'sexpart':{'value':['Both Sexes', 'Same sex only']}}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=yrbss&r=1&q=qn8&v=sexpart&f=sexpart:Both Sexes,Same sex only']);
+
+    });
+
     it("processYRBSReponses", function (){
         var yrbsresp = [ {
             "q": "qn41",
@@ -511,6 +538,84 @@ describe("YRBS API", function () {
         });
     });
 
+    it("processYRBSReponses precomputed results with filter by grade and sex and group by sex", function (){
+        var yrbsresp = [
+            {
+                "results": [
+                    {
+                        "sex": "Female",
+                        "ci_u": 0.5116,
+                        "count": 2321,
+                        "mean": 0.485,
+                        "q_resp": true,
+                        "method": "socrata",
+                        "ci_l": 0.4581,
+                        "q": "qn46"
+                    }
+                ],
+                "q": "qn46",
+                "question": "Usually obtained the alcohol they drank by someone giving it to them",
+                "vars": [
+                    "sex"
+                ],
+                "response": true,
+                "filter": {
+                    "year": [
+                        "2015"
+                    ],
+                    "sex" : [ "Female"],
+                    "grade" : ["11th"]
+
+                },
+                "precomputed": [],
+                "var_levels": {
+                    "sex": {
+                        "responses": [
+                            [
+                                "1",
+                                "Female"
+                            ],
+                            [
+                                "2",
+                                "Male"
+                            ]
+                        ],
+                        "is_integer": true,
+                        "question": "1=Female, 2=Male"
+                    }
+                },
+                "is_socrata": true
+            }
+        ];
+
+        var result = yrbs.processYRBSReponses(yrbsresp, true, 'mental_health');
+        expect(result).to.eql( {
+            "table":{
+                "question":[
+                    {
+                        "name":"qn46",
+                        "mental_health": {
+                            "mean": 48.5,
+                            "ci_l": 45.8,
+                            "ci_u": 51.2,
+                            "count": 2321
+                        },
+                        sex:[
+                            {   "name":"Female",
+                                "mental_health": {
+                                    "mean": 48.5,
+                                    "ci_l": 45.8,
+                                    "ci_u": 51.2,
+                                    "count": 2321
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        });
+    });
+
     it("processYRBSReponses precomputed results with multiple groupings result nested in order Sex, race", function (){
         var yrbsresp = [{"results":[{"sex":"Female","ci_u":0.5116,"count":2321,"mean":0.485,"q_resp":true,"method":"socrata","ci_l":0.4581,"race":"Total","q":"qn46"},{"sex":"Male","ci_u":-1.0,"count":37,"mean":-1.0,"q_resp":true,"method":"socrata","ci_l":-1.0,"race":"Asian","q":"qn46"},{"sex":"Male","ci_u":0.527,"count":156,"mean":0.402,"q_resp":true,"method":"socrata","ci_l":0.2883,"race":"Black or African American","q":"qn46"},{"sex":"Female","ci_u":-1.0,"count":20,"mean":-1.0,"q_resp":true,"method":"socrata","ci_l":-1.0,"race":"American Indian or Alaska Native","q":"qn46"},{"sex":"Total","ci_u":-1.0,"count":25,"mean":-1.0,"q_resp":true,"method":"socrata","ci_l":-1.0,"race":"Native Hawaiian or Other Pacific Islander","q":"qn46"},{"sex":"Female","ci_u":0.5436,"count":1162,"mean":0.507,"q_resp":true,"method":"socrata","ci_l":0.4697,"race":"White","q":"qn46"},{"sex":"Female","ci_u":0.5485,"count":192,"mean":0.462,"q_resp":true,"method":"socrata","ci_l":0.3784,"race":"Black or African American","q":"qn46"},{"sex":"Male","ci_u":-1.0,"count":93,"mean":-1.0,"q_resp":true,"method":"socrata","ci_l":-1.0,"race":"Multiple Race","q":"qn46"},{"sex":"Female","ci_u":0.5456,"count":146,"mean":0.434,"q_resp":true,"method":"socrata","ci_l":0.3294,"race":"Multiple Race","q":"qn46"},{"sex":"Male","ci_u":-1.0,"count":21,"mean":-1.0,"q_resp":true,"method":"socrata","ci_l":-1.0,"race":"Native Hawaiian or Other Pacific Islander","q":"qn46"},{"sex":"Total","ci_u":0.5012,"count":241,"mean":0.407,"q_resp":true,"method":"socrata","ci_l":0.3197,"race":"Multiple Race","q":"qn46"},{"sex":"Total","ci_u":0.4642,"count":4436,"mean":0.441,"q_resp":true,"method":"socrata","ci_l":0.419,"race":"Total","q":"qn46"},{"sex":"Male","ci_u":0.4701,"count":1025,"mean":0.416,"q_resp":true,"method":"socrata","ci_l":0.3631,"race":"White","q":"qn46"},{"sex":"Female","ci_u":-1.0,"count":37,"mean":-1.0,"q_resp":true,"method":"socrata","ci_l":-1.0,"race":"Asian","q":"qn46"},{"sex":"Male","ci_u":-1.0,"count":36,"mean":-1.0,"q_resp":true,"method":"socrata","ci_l":-1.0,"race":"American Indian or Alaska Native","q":"qn46"},{"sex":"Total","ci_u":0.5127,"count":349,"mean":0.433,"q_resp":true,"method":"socrata","ci_l":0.3573,"race":"Black or African American","q":"qn46"},{"sex":"Female","ci_u":0.5026,"count":737,"mean":0.459,"q_resp":true,"method":"socrata","ci_l":0.4167,"race":"Hispanic or Latino","q":"qn46"},{"sex":"Female","ci_u":-1.0,"count":2,"mean":-1.0,"q_resp":true,"method":"socrata","ci_l":-1.0,"race":"Native Hawaiian or Other Pacific Islander","q":"qn46"},{"sex":"Male","ci_u":0.4317,"count":2088,"mean":0.399,"q_resp":true,"method":"socrata","ci_l":0.3676,"race":"Total","q":"qn46"},{"sex":"Total","ci_u":0.448,"count":1422,"mean":0.413,"q_resp":true,"method":"socrata","ci_l":0.3798,"race":"Hispanic or Latino","q":"qn46"},{"sex":"Male","ci_u":0.4138,"count":681,"mean":0.365,"q_resp":true,"method":"socrata","ci_l":0.3186,"race":"Hispanic or Latino","q":"qn46"},{"sex":"Total","ci_u":-1.0,"count":74,"mean":-1.0,"q_resp":true,"method":"socrata","ci_l":-1.0,"race":"Asian","q":"qn46"},{"sex":"Total","ci_u":0.4947,"count":2193,"mean":0.461,"q_resp":true,"method":"socrata","ci_l":0.4284,"race":"White","q":"qn46"},{"sex":"Total","ci_u":-1.0,"count":57,"mean":-1.0,"q_resp":true,"method":"socrata","ci_l":-1.0,"race":"American Indian or Alaska Native","q":"qn46"}],"q":"qn46","question":"Usually obtained the alcohol they drank by someone giving it to them","vars":["sex","race"],"response":true,"filter":{"year":["2015"]},"precomputed":[],"var_levels":{"race":{"responses":[["1","Am Indian \/ Alaska Native"],["2","Asian"],["3","Black or African American"],["4","Hispanic\/Latino"],["5","Native Hawaiian\/other PI"],["6","White"],["7","Multiple - Non-Hispanic"]],"is_integer":true,"question":"7-level race variable"},"sex":{"responses":[["1","Female"],["2","Male"]],"is_integer":true,"question":"1=Female, 2=Male"}},"is_socrata":true}];
         var result = yrbs.processYRBSReponses(yrbsresp,true, 'mental_health');
@@ -836,6 +941,143 @@ describe("YRBS API", function () {
                                             "ci_l": "60.9",
                                             "ci_u": "67.0",
                                             "count": 3266
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        });
+    });
+
+    it("processYRBSReponses with groupings for Sex, sexpart", function (){
+        var yrbsresp = [{"q":"qn8","results":[{"mean":0.6325,"level":0,"se":0.013,"ci_u":0.6584,"count":15049,"ci_l":0.6058},{"sex":"Female","q_resp":true,"level":2,"q":"qn8","se":0.073,"sexpart":"Opposite sex only","mean":0.6174,"ci_l":0.4551,"count":63,"ci_u":0.7572},{"sex":"Male","q_resp":true,"level":2,"q":"qn8","se":0.0678,"sexpart":"Opposite sex only","mean":0.7752,"ci_l":0.6081,"count":92,"ci_u":0.8846},{"sex":"Female","q_resp":true,"level":2,"q":"qn8","se":0.0372,"sexpart":"Same sex only","mean":0.4449,"ci_l":0.3704,"count":302,"ci_u":0.522},{"sex":"Male","q_resp":true,"level":2,"q":"qn8","se":0.0371,"sexpart":"Same sex only","mean":0.4212,"ci_l":0.3477,"count":308,"ci_u":0.4984}],"response":true,"question":"Ever drank alcohol","var_levels":{"sex":{"question":"What is your sex","responses":[["1","Female"],["2","Male"]]},"sexpart":{"question":"Sex of sex contact(s)","responses":[["1","Opposite sex only"],["2","Same sex only"]]}},"vars":["sexpart","sex"]}];
+        var result = yrbs.processYRBSReponses(yrbsresp, false, 'mental_health');
+        expect(result).to.eql( {
+            "table":{
+                "question":[
+                    {
+                        "name":"qn8",
+                        "mental_health": {
+                            "mean": "63.2",
+                            "ci_l": "60.6",
+                            "ci_u": "65.8",
+                            "count": 15049
+                        },
+                        "sex":[
+
+                            {
+                                "name":"Female",
+                                "sexpart":[
+                                    {
+                                        "name":"Opposite sex only",
+                                        "mental_health": {
+                                            "mean": "61.7",
+                                            "ci_l": "45.5",
+                                            "ci_u": "75.7",
+                                            "count": 63
+                                        }
+                                    },
+                                    {
+                                        "name":"Same sex only",
+                                        "mental_health": {
+                                            "mean": "44.5",
+                                            "ci_l": "37.0",
+                                            "ci_u": "52.2",
+                                            "count": 302
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name":"Male",
+                                "sexpart":[
+                                    {
+                                        "name":"Opposite sex only",
+                                        "mental_health": {
+                                            "mean": "77.5",
+                                            "ci_l": "60.8",
+                                            "ci_u": "88.5",
+                                            "count": 92
+                                        }
+                                    },
+                                    {
+                                        "name":"Same sex only",
+                                        "mental_health": {
+                                            "mean": "42.1",
+                                            "ci_l": "34.8",
+                                            "ci_u": "49.8",
+                                            "count": 308
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        });
+    });
+
+    it("processYRBSReponses with groupings for Sex, sexid", function (){
+        var yrbsresp = [{"q":"qn8","results":[{"mean":0.6325,"level":0,"se":0.013,"ci_u":0.6584,"count":15049,"ci_l":0.6058},{"sex":"Female","q_resp":true,"level":2,"q":"qn8","se":0.073,"sexid":"Heterosexual","mean":0.6174,"ci_l":0.4551,"count":63,"ci_u":0.7572},{"sex":"Male","q_resp":true,"level":2,"q":"qn8","se":0.0678,"sexid":"Heterosexual","mean":0.7752,"ci_l":0.6081,"count":92,"ci_u":0.8846},{"sex":"Female","q_resp":true,"level":2,"q":"qn8","se":0.0372,"sexid":"Bisexual","mean":0.4449,"ci_l":0.3704,"count":302,"ci_u":0.522},{"sex":"Male","q_resp":true,"level":2,"q":"qn8","se":0.0371,"sexid":"Bisexual","mean":0.4212,"ci_l":0.3477,"count":308,"ci_u":0.4984}],"response":true,"question":"Ever drank alcohol","var_levels":{"sex":{"question":"What is your sex","responses":[["1","Female"],["2","Male"]]},"sexpart":{"question":"Sexual identity","responses":[["1","Heterosexual"],["2","Bisexual"]]}},"vars":["sexpart","sex"]}];
+        var result = yrbs.processYRBSReponses(yrbsresp, false, 'mental_health');
+        expect(result).to.eql( {
+            "table":{
+                "question":[
+                    {
+                        "name":"qn8",
+                        "mental_health": {
+                            "mean": "63.2",
+                            "ci_l": "60.6",
+                            "ci_u": "65.8",
+                            "count": 15049
+                        },
+                        "sex":[
+                            {
+                                "name":"Female",
+                                "sexid":[
+                                    {
+                                        "name":"Heterosexual",
+                                        "mental_health": {
+                                            "mean": "61.7",
+                                            "ci_l": "45.5",
+                                            "ci_u": "75.7",
+                                            "count": 63
+                                        }
+                                    },
+                                    {
+                                        "name":"Bisexual",
+                                        "mental_health": {
+                                            "mean": "44.5",
+                                            "ci_l": "37.0",
+                                            "ci_u": "52.2",
+                                            "count": 302
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name":"Male",
+                                "sexid":[
+                                    {
+                                        "name":"Heterosexual",
+                                        "mental_health": {
+                                            "mean": "77.5",
+                                            "ci_l": "60.8",
+                                            "ci_u": "88.5",
+                                            "count": 92
+                                        }
+                                    },
+                                    {
+                                        "name":"Bisexual",
+                                        "mental_health": {
+                                            "mean": "42.1",
+                                            "ci_l": "34.8",
+                                            "ci_u": "49.8",
+                                            "count": 308
                                         }
                                     }
                                 ]

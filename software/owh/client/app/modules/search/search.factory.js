@@ -6,9 +6,9 @@
         .module('owh.search')
         .service('searchFactory', searchFactory);
 
-    searchFactory.$inject = ["utilService", "SearchService", "$q", "$translate", "chartUtilService", '$rootScope', '$timeout', 'ModalService', '$state', 'filterUtils', 'mapService'];
+    searchFactory.$inject = ["utilService", "SearchService", "$q", "$translate", "chartUtilService", '$rootScope', '$timeout', '$filter', 'ModalService', '$state', 'filterUtils', 'mapService'];
 
-    function searchFactory( utilService, SearchService, $q, $translate, chartUtilService, $rootScope, $timeout, ModalService, $state, filterUtils, mapService){
+    function searchFactory( utilService, SearchService, $q, $translate, chartUtilService, $rootScope, $timeout, $filter, ModalService, $state, filterUtils, mapService){
         var service = {
             getAllFilters : getAllFilters,
             queryMortalityAPI: queryMortalityAPI,
@@ -79,7 +79,7 @@
             if (primaryFilter.key === 'prams') {
                 primaryFilter.data = response.data.resultData.table;
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
-                tableData.headers[0].splice(1, 0, {colspan: 1, rowspan: tableData.headers.length, title: "Response"});
+                tableData.headers[0].splice(1, 0, {colspan: 1, rowspan: tableData.headers.length, title: "Response", helpText: $filter('translate')('label.help.text.prams.response')});
                 primaryFilter.headers = buildQueryForYRBS(primaryFilter, true).headers;
                 tableData.data = categorizeQuestions(tableData.data, $rootScope.pramsQuestions);
                 primaryFilter.showBasicSearchSideMenu = response.data.queryJSON.showBasicSearchSideMenu;
@@ -1378,6 +1378,19 @@
                 { "key": "WY", "title": "Wyoming" }
             ];
 
+            filters.yrbsSexualIdentity = [
+                { "key": "Heterosexual", "title": "Heterosexual (straight)" },
+                { "key": "Gay or Lesbian", "title": "Gay or Lesbian" },
+                { "key": "Bisexual", "title": "Bisexual" },
+                { "key": "Not Sure", "title": "Not Sure" }
+            ];
+            filters.yrbsSexualContact = [
+                { "key": "Opposite sex only", "title": "Opposite Sex Only" },
+                { "key": "Same sex only", "title": "Same Sex Only" },
+                { "key": "Both Sexes", "title": "Both Sexes" },
+                { "key": "Never had sex", "title": "No Sexual Contact" }
+            ];
+
             filters.yrbsAdvancedFilters = [
                 {key: 'year', title: 'label.yrbs.filter.year', queryKey:"year",primary: false, value: ['2015'], groupBy: false,
                     filterType: 'checkbox', autoCompleteOptions: angular.copy(filters.yrbsYearsOptions), donotshowOnSearch:true, helpText:"label.help.text.yrbs.year" },
@@ -1390,7 +1403,14 @@
                     displaySearchBox:true, displaySelectedFirst:true, helpText:"label.help.text.yrbs.state" },
                 { key: 'yrbsRace', title: 'label.yrbs.filter.race', queryKey:"race", primary: false, value: [], groupBy: 'column',
                     filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.yrbsRaceOptions), defaultGroup:"column", helpText:"label.help.text.yrbs.race.ethnicity"},
+                { key: 'sexid', title: 'label.yrbs.sexual.identity', queryKey:"sexid", primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.yrbsSexualIdentity), defaultGroup:"column"},
+
+                { key: 'sexpart', title: 'label.yrbs.sexual.contact', queryKey:"sexpart", primary: false, value: [], groupBy: false,
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.yrbsSexualContact), defaultGroup:"column"},
+
                 { key: 'question', title: 'label.yrbs.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
+                    questions: $rootScope.questions,
                     filterType: 'tree', autoCompleteOptions: $rootScope.questionsList, donotshowOnSearch:true, helpText:"label.help.text.yrbs.question",
                     selectTitle: 'select.label.yrbs.filter.question', updateTitle: 'update.label.yrbs.filter.question',  iconClass: 'fa fa-pie-chart purple-text',
                     onIconClick: function(question) {
@@ -1511,7 +1531,6 @@
                 {"key": "cat_25", "title": "Sleep Behaviors"},
                 {"key": "cat_6", "title": "Smoke Exposure"},
                 {"key": "cat_2", "title": "Alcohol Use"},
-                {"key": "cat_13", "title": "HIV Test"},
                 {"key": "cat_34", "title": "Maternal Health Care"},
                 {"key": "cat_12", "title": "Mental Health"},
                 {"key": "cat_18", "title": "Morbidity - Maternal"},
@@ -1529,7 +1548,6 @@
                 {"key": "cat_37", "title": "Prenatal Care - Barriers"},
                 {"key": "cat_30", "title": "Prenatal Care - Content"},
                 {"key": "cat_4", "title": "Prenatal Care - Initiation"},
-                {"key": "cat_41", "title": "Prenatal Care - Location"},
                 {"key": "cat_40", "title": "Prenatal Care - Payment"},
                 {"key": "cat_36", "title": "Prenatal Care - Provider"},
                 {"key": "cat_16", "title": "Prenatal Care - Visits"},
@@ -1697,16 +1715,16 @@
 
             filters.pramsFilters = [
                 {key: 'topic', title: 'label.prams.filter.topic', queryKey:"topic",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsTopicOptions), doNotShowAll: true},
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsTopicOptions), doNotShowAll: true, helpText: "label.help.text.prams.topic"},
                 {key: 'year', title: 'label.prams.filter.year', queryKey:"year",primary: false, value: ['2009'], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsYearOptions), doNotShowAll: false},
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsYearOptions), doNotShowAll: false, helpText: "label.help.text.prams.year"},
                 {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [], groupBy: 'column',
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsStateOptions), doNotShowAll: true},
+                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsStateOptions), doNotShowAll: true, helpText: "label.help.text.prams.state"},
                 { key: 'question', title: 'label.prams.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
                     filterType: 'tree', autoCompleteOptions: $rootScope.pramsQuestionsList, donotshowOnSearch:true,
                     //add questions property to pass into owh-tree component
                     questions: $rootScope.pramsQuestions,
-                    selectTitle: 'select.label.yrbs.filter.question', updateTitle: 'update.label.yrbs.filter.question',  iconClass: 'fa fa-pie-chart purple-text',
+                    selectTitle: 'select.label.yrbs.filter.question', updateTitle: 'update.label.yrbs.filter.question',  iconClass: 'fa fa-pie-chart purple-text', helpText: 'label.help.text.prams.question',
                     onIconClick: function(question) {
                         showChartForQuestion(filters.selectedPrimaryFilter, question);
                     }

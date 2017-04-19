@@ -18,11 +18,11 @@ describe("Elastic Search", function () {
             })
         ).then(function (resp) {
             expect(resp.aggregations.group_year.buckets[0].doc_count).to.be(2712630);
-            expect(resp.aggregations.group_year.buckets[1].doc_count).to.be(2596993);
-            expect(resp.aggregations.group_year.buckets[2].doc_count).to.be(2543279);
-            expect(resp.aggregations.group_year.buckets[3].doc_count).to.be(2515458);
-            expect(resp.aggregations.group_year.buckets[4].doc_count).to.be(2468435);
-            expect(resp.aggregations.group_year.buckets[14].doc_count).to.be(2403351);
+            expect(resp.aggregations.group_year.buckets[1].doc_count).to.be(2626418);
+            expect(resp.aggregations.group_year.buckets[2].doc_count).to.be(2596993);
+            expect(resp.aggregations.group_year.buckets[3].doc_count).to.be(2543279);
+            expect(resp.aggregations.group_year.buckets[4].doc_count).to.be(2515458);
+            expect(resp.aggregations.group_year.buckets[14].doc_count).to.be(2416425);
             done();
         })
     });

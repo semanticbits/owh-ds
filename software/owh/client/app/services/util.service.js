@@ -444,6 +444,9 @@
                     rowspan: colHeight > 0 ? colHeight : 1,
                     title: $filter('translate')(eachRowHeader.title)
                 };
+                if(eachRowHeader.helpText) {
+                    eachTableRowHeader.helpText = $filter('translate')(eachRowHeader.helpText);
+                }
                 tableRowHeaders.push(eachTableRowHeader)
             });
             return tableRowHeaders;
@@ -473,7 +476,8 @@
                         title: eachOption.title,
                         colspan: colspan,
                         rowspan: 1,
-                        isData: true
+                        isData: true,
+                        helpText: eachOption.title
                     });
                     tableColumnHeaderData.totalColspan += colspan;
                 });
@@ -524,7 +528,7 @@
                         });
 
                         var questionCellAdded = false;
-                        angular.forEach(eachData, function(eachPramsData, eachDataIndex) {
+                        angular.forEach(eachData, function(eachPramsData) {
                             if(eachPramsData.response === '-1') {
                                 return;
                             }
@@ -541,9 +545,6 @@
                                     color: '#833eb0'
                                 }
                             };
-                            // if(eachDataIndex < eachData.length - 1) {
-                            //     responseCell.style['border-bottom'] = 'white';
-                            // }
                             if(!questionCellAdded) {
                                 var eachTableRow = {
                                     title: matchedOption.title,

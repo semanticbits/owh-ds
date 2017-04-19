@@ -245,7 +245,7 @@
             }
             // Update the filter options if refreshFiltersOnChange is true
             if (filter.refreshFiltersOnChange){
-                utilService.refreshFilterAndOptions(filter.filters,filter, sfc.primaryKey);
+                utilService.refreshFilterAndOptions(filter.filters, sfc.filters, sfc.primaryKey);
             }
             // Run the filter call back only if runOnFilterChange is true
             if(sfc.runOnFilterChange) {

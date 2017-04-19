@@ -457,7 +457,7 @@ function buildFilterQuery(filter) {
         });
         return getFilterQuery(filter);
     }
-    else if( isValueNotEmpty(filter.value) && filter.value.length !== getAutoCompleteOptionsLength(filter)) {
+    else if( isValueNotEmpty(filter.value) && (!util.isArray(filter.value) || filter.value.length !== getAutoCompleteOptionsLength(filter))) {
         return getFilterQuery(filter);
     }
     return false;
@@ -818,3 +818,4 @@ module.exports.prepareMapAggregations = prepareMapAggregations;
 module.exports.getGroupQuery = getGroupQuery;
 module.exports.findFilterByKeyAndValue = findFilterByKeyAndValue;
 module.exports.isFilterApplied = isFilterApplied;
+module.exports.buildFilterQuery = buildFilterQuery;

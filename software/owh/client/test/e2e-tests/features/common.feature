@@ -23,28 +23,28 @@ Scenario: Filter options updated
 #  Then the results page should have 4 graphs and table has columns "Yes", "No", "Unknown" for filter "Autopsy"
 
 
-Scenario: Browser back and forward button
+Scenario: Browser back button
   When I am at home page
   And  I click on Explore button in Health Information Gateway section
   Then I should get search page with default filter type "Mortality"
   When I change 'I'm interested in' dropdown value to "Bridged-Race Population Estimates"
-  Then I should see Bridge race search page with filter type "Bridged-Race Population Estimates"
+  #Then I should see Bridge race search page with filter type "Bridged-Race Population Estimates"
   When I expand "Ethnicity" filter section
   And  filter "Ethnicity" and option "Non Hispanic" selected
   When I select the back button in browser
   Then I should get search page with default filter type "Bridged-Race Population Estimates"
-  And the results page (yrbs data table) should be refreshed to reflect "Ethnicity" filter with option "All"
+  #And the results page (yrbs data table) should be refreshed to reflect "Ethnicity" filter with option "All"
 
 Scenario: Browser forward button
   When I select the forward button in browser
   Then I should get search page with default filter type "Bridged-Race Population Estimates"
-  And the results page (yrbs data table) should be refreshed to reflect "Ethnicity" filter with option "Non Hispanic"
+  #And the results page (yrbs data table) should be refreshed to reflect "Ethnicity" filter with option "Non Hispanic"
 
 Scenario: In-application forward and backward buttons
   Then I should see the forward and backward button in the application
   When I select the back button in application
   Then I should get search page with default filter type "Bridged-Race Population Estimates"
-  And the results page (yrbs data table) should be refreshed to reflect "Ethnicity" filter with option "All"
+  #And the results page (yrbs data table) should be refreshed to reflect "Ethnicity" filter with option "All"
   When I select the forward button in application
   Then I should get search page with default filter type "Bridged-Race Population Estimates"
-  And the results page (yrbs data table) should be refreshed to reflect "Ethnicity" filter with option "Non Hispanic"
+  #And the results page (yrbs data table) should be refreshed to reflect "Ethnicity" filter with option "Non Hispanic"
