@@ -11,7 +11,9 @@
         var service = {
             updateStatesDeaths: updateStatesDeaths,
             addExpandControl: addExpandControl,
-            addShareControl: addShareControl
+            addShareControl: addShareControl,
+            highlightFeature: highlightFeature,
+            resetHighlight: resetHighlight
         };
         return service;
 
@@ -23,7 +25,7 @@
             //update states info with trials data
             var stateDeathTotals = [];
             angular.forEach($rootScope.states.features, function(feature){
-                var state = utilService.findByKeyAndValue(data.states, 'name', feature.properties.name);
+                var state = utilService.findByKeyAndValue(data.states, 'name', feature.properties.abbreviation);
                 if (utilService.isValueNotEmpty(state)){
                     if(primaryFilter.key === 'deaths') {
                         stateDeathTotals.push(state['deaths']);
@@ -74,7 +76,7 @@
         function generateLegend(minValue, maxValue){
             return {
                 position: 'bottomleft',
-                colors: ['#00374d','#005b80','#006e99','#0080b3','#0092cc','#00a4e6','#00b7ff','#1abeff','#4dccff','#80dbff','#b3e9ff'],
+                colors: ['#190032','#270053','#3f007d','#54278f','#6a51a3','#807dba','#9e9ac8','#bcbddc','#dadaeb','#efedf5','#fcfbfd'],
                 labels: getLabels(minValue, maxValue)
             }
         }
@@ -83,16 +85,16 @@
         function getColor(d, ranges) {
             // var ranges = utilService.generateMapLegendRanges(sc.filters.selectedPrimaryFilter.mapData.mapMinValue,
             //     sc.filters.selectedPrimaryFilter.mapData.mapMaxValue);
-            return d > ranges[10] ? '#00374d' :
-                d > ranges[9]  ? '#005b80' :
-                d > ranges[8]  ? '#006e99' :
-                d > ranges[7]  ? '#0080b3' :
-                d > ranges[6]  ? '#0092cc' :
-                d > ranges[5]  ? '#00a4e6' :
-                d > ranges[4]  ? '#00b7ff' :
-                d > ranges[3]  ? '#1abeff' :
-                d > ranges[2]  ? '#4dccff' :
-                d > ranges[1]  ? '#80dbff' : '#b3e9ff';
+            return d > ranges[10] ? '#190032' :
+                d > ranges[9]  ?  '#270053':
+                d > ranges[8]  ?  '#3f007d':
+                d > ranges[7]  ?  '#54278f':
+                d > ranges[6]  ?  '#6a51a3':
+                d > ranges[5]  ?  '#807dba':
+                d > ranges[4]  ?  '#9e9ac8':
+                d > ranges[3]  ?  '#bcbddc':
+                d > ranges[2]  ?  '#dadaeb':
+                d > ranges[1]  ?  '#efedf5': '#fcfbfd';
         }
 
         //return map feature styling configuration parameters
@@ -103,7 +105,7 @@
                 var total = feature.properties['bridge_race'];
                 return {
                     fillColor: getColor(total, ranges),
-                    weight: 0.5,
+                    weight: 0.8,
                     opacity: 1,
                     color: 'black',
                     dashArray: '3',
@@ -145,13 +147,14 @@
         function resizeUSAMap(isZoomIn, primaryFilter) {
             leafletData.getMap().then(function(map) {
                 if(isZoomIn) {
+                    angular.element('div.legend').show();
                     map.zoomIn();
                     angular.extend(primaryFilter.mapData, {
                         legend: generateLegend(primaryFilter.mapData.mapMinValue, primaryFilter.mapData.mapMaxValue)
                     });
                 } else {
-                    primaryFilter.mapData.legend = undefined;
                     map.zoomOut();
+                    angular.element('div.legend').hide();
                 }
                 $timeout(function(){ map.invalidateSize()}, 1000);
             });
@@ -179,6 +182,31 @@
                     return container;
                 }
             });
+        }
+
+        /**
+         * Set feature style
+         */
+        function highlightFeature(layerId, map) {
+            map._layers[layerId].setStyle({'color': '#333333','weight': 2.6,'opacity': 1});
+        }
+
+        /**
+         * Reset the feature style
+         * @param mapArgs
+         */
+        function resetHighlight(mapObj) {
+            var layer = mapObj.layer;
+            if(layer) {
+                var map = mapObj.target._map;
+                map._layers[layer._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black'});
+            } else {
+                if(mapObj.leafletEvent) {
+                    layer = mapObj.leafletEvent.target;
+                    var map = layer._map;
+                    map._layers[layer._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black'});
+                }
+            }
         }
 
     }

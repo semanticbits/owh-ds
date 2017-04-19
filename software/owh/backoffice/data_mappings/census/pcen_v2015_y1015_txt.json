@@ -1,7 +1,7 @@
 [ 
   {
    "column":"state",
-   "type":"simple",
+   "type":"map",
    "start": 5,
    "stop": 6,
    "field": "State",

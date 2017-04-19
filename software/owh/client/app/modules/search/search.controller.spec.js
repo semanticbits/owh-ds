@@ -2,7 +2,7 @@
 
 describe("Search controller: ", function () {
     var searchController, $scope, $controller, $httpBackend, $injector, $templateCache, $rootScope,
-        searchResultsResponse, $searchFactory, $q, filters, shareUtilService;
+        searchResultsResponse, $searchFactory, $q, filters, shareUtilService, $compile;
 
     beforeEach(function() {
         module('owh');
@@ -14,6 +14,7 @@ describe("Search controller: ", function () {
             $injector   = _$injector_;
             $scope= _$rootScope_.$new();
             $httpBackend = $injector.get('$httpBackend');
+            $compile = $injector.get('$compile');
             $templateCache = _$templateCache_;
             $q = _$q_;
 
@@ -428,5 +429,28 @@ describe("Search controller: ", function () {
         expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].filters.filterType).toEqual('checkbox');
         expect(searchController.search).toHaveBeenCalledWith(true);
 
+    }));
+
+    it("test all leaflet events", inject(function () {
+        var mapService = $injector.get('mapService');
+        var filters = {selectedPrimaryFilter:{key:"bridge_race"}};
+        searchController.mapService = mapService;
+        searchController.filters = filters;
+        searchController.currentFeature = {};
+        searchController.mapPopup = {
+            _close: function () {},
+            setContent: function () {return {setLatLng: function () {return {openOn:function () {}}}}}
+        };
+
+        var mouseoverData = {"leafletEvent":{"containerPoint":{x:90,y:88},"latlng":{"lat":3434,"lng":42234},
+            "target":{"feature":{"properties":{}}},"_map":{}},
+            "leafletObject":{"_map":{}}};
+        var popupopenData = {"leafletEvent":{"popup":{"options":{"offset":123}}},"target":{}};
+        $rootScope.$broadcast('leafletDirectiveGeoJson.mouseover', mouseoverData);
+        $rootScope.$broadcast('leafletDirectiveMap.popupopen', popupopenData);
+        $rootScope.$broadcast('leafletDirectiveMap.popupclose', {});
+        $rootScope.$broadcast('leafletDirectiveGeoJson.mouseout', {});
+        $rootScope.$broadcast('leafletDirectiveMap.mouseout', {});
+        //$scope.$digest();
     }));
 });
