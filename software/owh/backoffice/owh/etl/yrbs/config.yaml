@@ -11,3 +11,6 @@ elastic_search:
   host: 127.0.0.1
   port: 9200
   bulk_load_size: 1000
+  index: ''
+  type: ''
+  type_mapping: ''

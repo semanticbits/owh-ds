@@ -79,7 +79,7 @@
             "label.filter.natality": ['current_year', 'month', 'weekday', 'sex', 'gestational_age_r10', 'prenatal_care',
                 'birth_weight', 'birth_weight_r4', 'birth_weight_r12', 'birth_plurality', 'live_birth', 'birth_place',
                 'delivery_method', 'medical_attendant', 'race', 'hispanic_origin', 'marital_status',
-                'mother_age_r8', 'mother_age_r9', 'mother_age_r14', 'mother_age', 'mother_education',
+                'mother_education', 'mother_age_1year_interval', 'mother_age_5year_interval',
                 'anemia', 'cardiac_disease', 'chronic_hypertension', 'diabetes', 'eclampsia', 'hydramnios_oligohydramnios',
                 'incompetent_cervix', 'lung_disease', 'pregnancy_hypertension', 'tobacco_use'],
             "label.prams.title": []
@@ -150,7 +150,7 @@
             'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin'],
             'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin'],
             'birth_rates': ['current_year', 'race'],
-            'fertility_rates': ['current_year', 'race', 'mother_age_r8', 'mother_age_r14', 'mother_age_r9', 'mother_age' ]
+            'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval']
         };
 
         //functionality to be added to the side filters
@@ -226,7 +226,7 @@
             yearFilter.value.push('2015');
 
             var pramsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'prams');
-            angular.forEach(pramsFilter.sideFilters, function(filter){
+            angular.forEach(pramsFilter.sideFilters[0].sideFilters, function(filter){
                 if(filter.filters.key === 'topic') {
                     filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
                     searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup['delivery']);
@@ -264,7 +264,7 @@
 
         function search(isFilterChanged) {
             if(sc.filters.selectedPrimaryFilter.key === 'prams') {
-                angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters, function(filter) {
+                angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters[0].sideFilters, function(filter) {
                     if(filter.filters.key === 'topic') {
                         filter.filters.questions = [];
                         if(filter.filters.value.length === 0) {
@@ -408,20 +408,22 @@
                     }
                 }
             });
-            angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters, function(filter) {
-                if(filter.filters.key === 'hispanicOrigin') {
-                    if(selectedFilter.key === 'crude_death_rates' || selectedFilter.key === 'age-adjusted_death_rates') {
-                        filter.filters.queryKey = 'ethnicity_group';
-                        filter.filters.autoCompleteOptions = sc.filters.ethnicityGroupOptions;
-                    } else {
-                        filter.filters.queryKey = 'hispanic_origin';
-                        filter.filters.autoCompleteOptions = sc.filters.hispanicOptions;
+            angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters, function(category) {
+                angular.forEach(category.sideFilters, function(filter) {
+                    if (filter.filters.key === 'hispanicOrigin') {
+                        if (selectedFilter.key === 'crude_death_rates' || selectedFilter.key === 'age-adjusted_death_rates') {
+                            filter.filters.queryKey = 'ethnicity_group';
+                            filter.filters.autoCompleteOptions = sc.filters.ethnicityGroupOptions;
+                        } else {
+                            filter.filters.queryKey = 'hispanic_origin';
+                            filter.filters.autoCompleteOptions = sc.filters.hispanicOptions;
+                        }
                     }
-                }
-                if(filter.filters.key === 'topic') {
-                    filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
-                    searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup[selectedFilter.key]);
-                }
+                    if (filter.filters.key === 'topic') {
+                        filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
+                        searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup[selectedFilter.key]);
+                    }
+                });
             });
             //we can change mapping here
             sc.filters.selectedPrimaryFilter.tableView = selectedFilter.key;

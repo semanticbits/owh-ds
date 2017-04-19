@@ -21,6 +21,15 @@ var NatalitySearchPage = function () {
     nsp.getTableRowData = function(rowNumber) {
         return nsp.owhTable.element(by.id('clusterize-table')).element(by.tagName('tbody')).all(by.tagName('tr')).get(rowNumber).all(by.tagName('td')).getText();
     };
+
+    nsp.getOptions = function(filterType) {
+        return element(by.cssContainingText('a', filterType)).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul')).all(by.tagName('li'));
+    };
+
+    nsp.selectSideFilter = function(filterType, viewType) {
+        return element(by.cssContainingText('a', filterType)).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('a', viewType));
+    };
+
 };
 
 

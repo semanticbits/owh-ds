@@ -395,13 +395,15 @@
           "title": "Female",
           "colspan": 1,
           "rowspan": 1,
-          "isData": true
+          "isData": true,
+          "helpText": "Female"
         },
         {
           "title": "Male",
           "colspan": 1,
           "rowspan": 1,
-          "isData": true
+          "isData": true,
+          "helpText": "Male"
         },
         {
           "title": "Number of Deaths",

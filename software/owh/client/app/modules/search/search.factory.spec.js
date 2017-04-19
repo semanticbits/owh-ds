@@ -249,7 +249,7 @@ describe('search factory ', function(){
             'age-adjusted_death_rates': ['year', 'gender', 'race']
         };
 
-        var selectedFilter = {allFilters: allFilters, sideFilters: sideFilters};
+        var selectedFilter = {allFilters: allFilters, sideFilters: [{sideFilters: sideFilters}]};
 
         searchFactory.removeDisabledFilters(selectedFilter, 'age-adjusted_death_rates', availableFilters);
 
@@ -258,10 +258,10 @@ describe('search factory ', function(){
         expect(selectedFilter.allFilters[1].value.length).toEqual(0);
         expect(selectedFilter.allFilters[1].groupBy).toEqual(false);
 
-        expect(selectedFilter.sideFilters[0].filters.value.length).toEqual(2);
-        expect(selectedFilter.sideFilters[0].filters.groupBy).toEqual('row');
-        expect(selectedFilter.sideFilters[1].filters.value.length).toEqual(0);
-        expect(selectedFilter.sideFilters[1].filters.groupBy).toEqual(false);
+        expect(selectedFilter.sideFilters[0].sideFilters[0].filters.value.length).toEqual(2);
+        expect(selectedFilter.sideFilters[0].sideFilters[0].filters.groupBy).toEqual('row');
+        expect(selectedFilter.sideFilters[0].sideFilters[1].filters.value.length).toEqual(0);
+        expect(selectedFilter.sideFilters[0].sideFilters[1].filters.groupBy).toEqual(false);
     });
     
     it('generateHashCode should call out to search service with a normalized hashQuery', function() {
@@ -278,19 +278,24 @@ describe('search factory ', function(){
             tableView: 'number_of_deaths',
             sideFilters: [
                 {
-                    filters: {
-                        key: 'race',
-                        groupBy: false,
-                        value: ['White', 'Black']
-                    }
-                },
-                {
-                    filters: {
-                        key: 'gender',
-                        groupBy: 'row',
-                        value: ['Male']
-                    }
+                    sideFilters: [
+                        {
+                            filters: {
+                                key: 'race',
+                                groupBy: false,
+                                value: ['White', 'Black']
+                            }
+                        },
+                        {
+                            filters: {
+                                key: 'gender',
+                                groupBy: 'row',
+                                value: ['Male']
+                            }
+                        }
+                    ]
                 }
+
             ]
         }
 
