@@ -4,9 +4,8 @@ var xmlbuilder = require('xmlbuilder');
 var X2JS = require('x2js');
 var inspect = require('util').inspect;
 var q = require('q');
+var config = require('../config/config');
 
-// const WONDER_API_URL = "https://wonder.cdc.gov/controller/datarequest/";
-const WONDER_API_URL = "http://54.242.94.197/wonder/";
 var wonderParamCodeMap = {
     'race': {
         "key": 'D76.V8',
@@ -149,11 +148,9 @@ function wonder(dbID) {
  */
 wonder.prototype.invokeWONDER = function (query){
     var req = createWONDERRquest(query);
-    //var groupattrs = getGroupAttributes(query);
-    console.log("Wonder Request: "+req);
     var defer = q.defer();
 
-    request.post({url:WONDER_API_URL+this.dbID, form:{request_xml:req} },function (error, response, body) {
+    request.post({url:config.wonder.url+this.dbID, form:{request_xml:req} },function (error, response, body) {
         result = {};
         if (!error && body.indexOf('Processing Error') == -1) {
             result = processWONDERResponse(body);
@@ -230,8 +227,8 @@ function processWONDERResponse(response){
 function createWONDERRquest(query){
     var request = xmlbuilder.create('request-parameters', {version: '1.0', encoding: 'UTF-8'});
     addParamToWONDERReq(request, 'accept_datause_restrictions', 'true');
-    addParamToWONDERReq(request,'apix_project','OASH-OWH-HIG');
-    addParamToWONDERReq(request,'apix_token','4f9^fLE32-#NL31dg9%');
+    addParamToWONDERReq(request,'apix_project',config.wonder.apix_project);
+    addParamToWONDERReq(request,'apix_token', config.wonder.apix_token);
     request.com("Measures");
     addMeasures(request);
     request.com("Groups");
