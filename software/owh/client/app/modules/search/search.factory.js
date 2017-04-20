@@ -2266,8 +2266,7 @@
                                 {
                                     filterGroup: false,
                                     collapse: false,
-                                    allowGrouping: true,
-                                    groupOptions: filters.columnGroupOptions,
+                                    allowGrouping: false,
                                     dontShowCounts: true,
                                     filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'topic')
                                 },
