@@ -35,7 +35,7 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Given(/^I am on search page$/, function () {
         browser.get('/search/');
-        return browser.waitForAngular();
+        return; //browser.waitForAngular();
     });
 
     this.Then(/^user sees side filter$/, function () {

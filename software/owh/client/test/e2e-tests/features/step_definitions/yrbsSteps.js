@@ -11,10 +11,8 @@ var yrbsStepDefinitionsWrapper = function () {
     var yrbsPage = require('../support/yrbspage.po')
 
     this.When(/^I select YRBS as primary filter$/, function (next) {
-       yrbsPage.yrbsOption.click();
-       browser.driver.sleep(100)
-           .then(next);
-       });
+        yrbsPage.yrbsOption.click().then(next);
+    });
 
     this.When(/^I click on the down arrow at the corner of each category bar$/, function (next) {
         yrbsPage.getExpandLinks().then(function(elements) {
@@ -30,7 +28,7 @@ var yrbsStepDefinitionsWrapper = function () {
 
     this.When(/^I click on Show \# More under the questions in any category$/, function (next) {
         browser.waitForAngular();
-        element(by.cssContainingText('a', 'Show 17 More')).click()
+        element(by.cssContainingText('a', 'Show 18 More')).click()
             .then(next);
     });
 
@@ -387,14 +385,13 @@ var yrbsStepDefinitionsWrapper = function () {
         return expect(element(by.cssContainingText('span', arg1)).isPresent()).to.eventually.equal(true);
     });
 
-    this.When(/^I click on the "([^"]*)" link$/, function (arg1) {
+    this.When(/^I click on the "([^"]*)" link$/, function (arg1, next) {
          if(arg1 == 'Switch to Basic Search'){
-             element(by.cssContainingText('span', arg1)).click();
+             element(by.cssContainingText('span', arg1)).click().then(next);
          }
          else if(arg1 == 'Switch to Advanced Search'){
-             element(by.cssContainingText('span', arg1)).click();
+             element(by.cssContainingText('span', arg1)).click().then(next);
          }
-         return browser.waitForAngular();
     });
 
     this.Then(/^the sidebar switches to an Advanced Search mode$/, function () {
@@ -463,6 +460,15 @@ var yrbsStepDefinitionsWrapper = function () {
 
     this.Then(/^I should see records for states$/, function (next) {
         yrbsPage.getTableRowData(1).then(function(rowdata){
+            expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            //Alabama
+            expect(rowdata[1]).to.contains('30.7');
+            //Alaska
+            expect(rowdata[2]).to.contains('22.0');
+            //Arizona
+            expect(rowdata[3]).to.contains('34.8');
+        });
+        yrbsPage.getTableRowData(2).then(function(rowdata){
             expect(rowdata[0]).to.equals('Currently used marijuana(one or more times during the 30 days before the survey)');
             //Alabama
             expect(rowdata[1]).to.contains('17.3');
@@ -470,15 +476,6 @@ var yrbsStepDefinitionsWrapper = function () {
             expect(rowdata[2]).to.contains('19.0');
             //Arizona
             expect(rowdata[3]).to.contains('23.3');
-        });
-        yrbsPage.getTableRowData(2).then(function(rowdata){
-            expect(rowdata[0]).to.equals('Drank alcohol before age 13 years(for the first time other than a few sips)');
-            //Alabama
-            expect(rowdata[1]).to.contains('20.4');
-            //Alaska
-            expect(rowdata[2]).to.contains('14.3');
-            //Arizona
-            expect(rowdata[3]).to.contains('16.5');
         }).then(next);
     });
 
@@ -520,19 +517,19 @@ var yrbsStepDefinitionsWrapper = function () {
 
     this.Then(/^I see results being displayed in data table for Sexual Identity$/, function (next) {
         yrbsPage.getTableRowData(1).then(function(rowdata){
-            expect(rowdata[0]).to.equals('Currently used marijuana(one or more times during the 30 days before the survey)');
-            expect(rowdata[1]).to.contains('43.9');
-            expect(rowdata[2]).to.contains('13.5');
-            expect(rowdata[3]).to.contains('30.6');
+            expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            expect(rowdata[1]).to.contains('92.1');
+            expect(rowdata[2]).to.contains('26.6');
+            expect(rowdata[3]).to.contains('34.2');
         }).then(next);
     });
 
     this.Then(/^I see results being displayed in data table for Sexual Contact$/, function (next) {
         yrbsPage.getTableRowData(1).then(function(rowdata){
-            expect(rowdata[0]).to.equals('Currently used marijuana(one or more times during the 30 days before the survey)');
-            expect(rowdata[1]).to.contains('50.8');
-            expect(rowdata[2]).to.contains('23.7');
-            expect(rowdata[3]).to.contains('38.0');
+            expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            expect(rowdata[1]).to.contains('47.7');
+            expect(rowdata[2]).to.contains('36.5');
+            expect(rowdata[3]).to.contains('31.7');
         }).then(next);
     });
 
@@ -563,6 +560,52 @@ var yrbsStepDefinitionsWrapper = function () {
     this.When(/^user clicks on "([^"]*)" more link for Sexual Contact filter$/, function (arg1, next) {
         var sexualContact = element(by.cssContainingText('a', 'Sex of Sexual Contacts')).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul'));
         sexualContact.element(by.cssContainingText('a', arg1)).click().then(next);
+    });
+
+    this.Then(/^I see checkboxes for the questions in a tree$/, function () {
+        //number of checkboxes and number of quesions should be same
+        return element.all(by.css('li[role=treeitem]')).then(function (questions) {
+            element.all(by.css('i.jstree-checkbox')).then(function (checkboxes) {
+                expect(questions.length).to.equal(checkboxes.length);
+            });
+        });
+    });
+
+    this.When(/^I check a non\-leaf node$/, function (next) {
+        element.all(by.css('.jstree-anchor')).then(function (nodes) {
+            nodes[0].click();
+        }).then(next);
+    });
+
+    this.Then(/^I see all leaf node being selected$/, function (next) {
+        element.all(by.css('li[aria-selected=true] a')).then(function(elements, index) {
+            elements.forEach(function (ele, index) {
+                expect(ele.getAttribute('class')).to.eventually.contain('jstree-clicked');
+            });
+        }).then(next);
+    });
+
+    this.When(/^I expand one of the nodes$/, function (next) {
+        element.all(by.css('i.jstree-ocl')).then(function(elements, index) {
+            elements[0].click();
+        }).then(next);
+    });
+
+    this.When(/^I un\-check one of the leaf nodes$/, function (next) {
+        element.all(by.css('li[aria-selected=true] a')).then(function(elements, index) {
+            elements[1].click();
+        }).then(next);
+    });
+
+    this.Then(/^I see the node is un\-checked$/, function (callback) {
+        // Write code here that turns the phrase above into concrete actions
+        callback(null, 'done');
+    });
+
+    this.Then(/^I see it's parent node is also un\-checked$/, function () {
+        return element.all(by.css('.jstree-undetermined')).then(function (elements) {
+            expect(elements.length).to.equal(1);
+        });
     });
 };
 module.exports = yrbsStepDefinitionsWrapper;

@@ -17,25 +17,24 @@ Feature: As a User
     #Then the default year selected should be 2015
     And side menu slides back into view
 
-  #Scenario: Hide Sidebar
-  #  When I see hide filter button in yrbs page
- #   And I click hide filter button in yrbs page
-  #  Then side menu slides away
-  #  Then I see button to show filters
-  #  And then table and visualizations adjust to that they use up the entire available screen space
-  #  And the background highlight is in lighter purple (button color)
+  Scenario: Hide Sidebar
+    When I see hide filter button in yrbs page
+    And I click hide filter button in yrbs page
+    Then side menu slides away
+    Then I see button to show filters
+    And then table and visualizations adjust to that they use up the entire available screen space
+    And the background highlight is in lighter purple (button color)
 
-  #Scenario: Un collapse sidebar
-  #  When I click show filters button
-  #  Then side menu slides back into view
-  #  And the entire table and visualizations adjust to the reduced screen space
-  #  And there is button to hide filter
+  Scenario: Un collapse sidebar
+    When I click show filters button
+    Then side menu slides back into view
+    And the entire table and visualizations adjust to the reduced screen space
+    And there is button to hide filter
 
-#Scenario: show chart for each question
-  #  Given I am on search page
-  #Given user select YRBS as primary filter
-  #  When I change 'I'm interested in' dropdown value to "Youth Risk Behavior"
-  # Then each question should have chart icon displayed
+Scenario: show chart for each question
+   Given I am on search page
+   When I select YRBS as primary filter
+   Then each question should have chart icon displayed
 
   Scenario: sort order
     When I looks at the filter sub categories
@@ -129,15 +128,17 @@ Feature: As a User
     And I select a few questions and clicks on the Add Selected Question(s) button
     Then the "Select Questions" button should be renamed to "Update Questions"
 
-#  Scenario: Check/un-check/update questions
-#    When I click on Update Questions button
-#    Then I see checkboxes for the questions in a tree
-#    When I check a non-leaf node
-#    Then I see all leaf node being selected
-#    When I un-check one of the leaf nodes
-#    Then I see the node is un-checked
-#    And  I see it's parent node is also un-checked
-#    But  I see it's siblings are not un-checked
+  Scenario: Check/un-check questions
+    Given I am on search page
+    When I select YRBS as primary filter
+    And  I click on "Select Questions" button
+    When I expand one of the nodes
+    Then I see checkboxes for the questions in a tree
+    When I check a non-leaf node
+    Then I see all leaf node being selected
+    When I un-check one of the leaf nodes
+    Then I see the node is un-checked
+    And  I see it's parent node is also un-checked
 
   Scenario: Browser back button
     Given I am on search page
