@@ -1127,7 +1127,7 @@
                 { "key": "VT", "title": "Vermont" },
                 { "key": "VA", "title": "Virginia" },
                 { "key": "WA", "title": "Washington" },
-                { "key": "WA", "title": "West Virginia" },
+                { "key": "WV", "title": "West Virginia" },
                 { "key": "WI", "title": "Wisconsin" },
                 { "key": "WY", "title": "Wyoming" }
             ];

@@ -94,7 +94,10 @@ function search(q) {
     if (preparedQuery.apiQuery.searchFor === "deaths") {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
-        finalQuery.wonderQuery = preparedQuery.apiQuery;
+        // Invoke WONDER only for age_adjusted_rates view
+        if(q.tableView == 'age-adjusted_death_rates') {
+            finalQuery.wonderQuery = preparedQuery.apiQuery;
+        }
         new elasticSearch().aggregateDeaths(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
             new elasticSearch().aggregateDeaths(finalQuery, isStateSelected).then(function (response) {
                 var resData = {};

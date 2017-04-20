@@ -147,26 +147,30 @@ function wonder(dbID) {
  *
  */
 wonder.prototype.invokeWONDER = function (query){
-    var req = createWONDERRquest(query);
     var defer = q.defer();
-
-    request.post({url:config.wonder.url+this.dbID, form:{request_xml:req} },function (error, response, body) {
-        result = {};
-        if (!error && body.indexOf('Processing Error') == -1) {
-            result = processWONDERResponse(body);
-            //logger.debug("Age adjusted rates: "+inspect(result, {depth:null}));
-            logger.debug("Age adjusted rates: " + JSON.stringify(result));
-            defer.resolve(result);
-        } else{
-            logger.error("WONDER Error: "+ (error?error:body));
+    // If no aggregations then return empty result
+    if(query.aggregations.nested.table.length == 0){
+        defer.resolve({});
+    }else {
+        var req = createWONDERRquest(query);
+        request.post({url: config.wonder.url + this.dbID, form: {request_xml: req}}, function (error, response, body) {
+            result = {};
+            if (!error && body.indexOf('Processing Error') == -1) {
+                result = processWONDERResponse(body);
+                //logger.debug("Age adjusted rates: "+inspect(result, {depth:null}));
+                logger.debug("Age adjusted rates: " + JSON.stringify(result));
+                defer.resolve(result);
+            } else {
+                logger.error("WONDER Error: " + (error ? error : body));
+                defer.reject('Error invoking WONDER API');
+            }
+            //console.log(inspect(result, {depth: null, colors: true}));
+        }, function (error) {
+            logger.error("WONDER Error: " + error);
             defer.reject('Error invoking WONDER API');
-        }
-        //console.log(inspect(result, {depth: null, colors: true}));
-    }, function (error) {
-        logger.error("WONDER Error: "+error);
-        defer.reject('Error invoking WONDER API');
 
-    });
+        });
+    }
     return defer.promise;
 };
 

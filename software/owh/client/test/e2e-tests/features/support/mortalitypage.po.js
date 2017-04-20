@@ -70,6 +70,10 @@ var MortalitySearchPage = function() {
         return msp.owhTable.element(by.id('clusterize-table')).element(by.tagName('tbody')).all(by.tagName('tr')).get(rowNumber).all(by.tagName('td')).getText();
     };
 
+    msp.getTableCellData = function(row, column) {
+        return msp.owhTable.element(by.id('clusterize-table')).element(by.tagName('tbody')).all(by.tagName('tr')).get(row).all(by.tagName('td')).get(column).getText();
+    };
+
     msp.getTableRowDataCells = function(rowNumber) {
         return msp.owhTable.element(by.id('clusterize-table')).element(by.tagName('tbody')).all(by.tagName('tr')).get(rowNumber).all(by.tagName('td'));
     };

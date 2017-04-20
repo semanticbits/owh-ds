@@ -316,57 +316,57 @@ var mergeAgeAdjustedRates = function(mort, rates) {
         'American Indian': 'American Indian or Alaska Native',
         'Hispanic': 'Hispanic or Latino',
         'Non-Hispanic': 'Not Hispanic or Latino',
-            "AL": "Alabama",
-            "AK": "Alaska",
-            "AZ": "Arizona",
-            "AR": "Arkansas",
-            "CA": "California",
-            "CO": "Colorado",
-            "CT": "Connecticut",
-            "DE": "Delaware",
-            "DC": "District of Columbia",
-            "FL": "Florida",
-            "GA": "Georgia",
-            "HI": "Hawaii",
-            "ID": "Idaho",
-            "IL": "Illinois",
-            "IN": "Indiana",
-            "IA": "Iowa",
-            "KS": "Kansas",
-            "KY": "Kentucky",
-            "LA": "Louisiana",
-            "ME": "Maine",
-            "MD": "Maryland",
-            "MA": "Massachusetts",
-            "MI": "Michigan",
-            "MN": "Minnesota",
-            "MS": "Mississippi",
-            "MO": "Missouri",
-            "MT": "Montana",
-            "NE": "Nebraska",
-            "NV": "Nevada",
-            "NH": "New Hampshire",
-            "NJ": "New Jersey",
-            "NM": "New Mexico",
-            "NY": "New York",
-            "NC": "North Carolina",
-            "ND": "North Dakota",
-            "OH": "Ohio",
-            "OK": "Oklahoma",
-            "OR": "Oregon",
-            "PA": "Pennsylvania",
-            "RI": "Rhode Island",
-            "SC": "South Carolina",
-            "SD": "South Dakota",
-            "TN": "Tennessee",
-            "TX": "Texas",
-            "UT": "Utah",
-            "VT": "Vermont",
-            "VA": "Virginia",
-            "WA": "Washington",
-            "WA": "West Virginia",
-            "WI": "Wisconsin",
-            "WY": "Wyoming"
+        "AL": "Alabama",
+        "AK": "Alaska",
+        "AZ": "Arizona",
+        "AR": "Arkansas",
+        "CA": "California",
+        "CO": "Colorado",
+        "CT": "Connecticut",
+        "DE": "Delaware",
+        "DC": "District of Columbia",
+        "FL": "Florida",
+        "GA": "Georgia",
+        "HI": "Hawaii",
+        "ID": "Idaho",
+        "IL": "Illinois",
+        "IN": "Indiana",
+        "IA": "Iowa",
+        "KS": "Kansas",
+        "KY": "Kentucky",
+        "LA": "Louisiana",
+        "ME": "Maine",
+        "MD": "Maryland",
+        "MA": "Massachusetts",
+        "MI": "Michigan",
+        "MN": "Minnesota",
+        "MS": "Mississippi",
+        "MO": "Missouri",
+        "MT": "Montana",
+        "NE": "Nebraska",
+        "NV": "Nevada",
+        "NH": "New Hampshire",
+        "NJ": "New Jersey",
+        "NM": "New Mexico",
+        "NY": "New York",
+        "NC": "North Carolina",
+        "ND": "North Dakota",
+        "OH": "Ohio",
+        "OK": "Oklahoma",
+        "OR": "Oregon",
+        "PA": "Pennsylvania",
+        "RI": "Rhode Island",
+        "SC": "South Carolina",
+        "SD": "South Dakota",
+        "TN": "Tennessee",
+        "TX": "Texas",
+        "UT": "Utah",
+        "VT": "Vermont",
+        "VA": "Virginia",
+        "WA": "Washington",
+        "WV": "West Virginia",
+        "WI": "Wisconsin",
+        "WY": "Wyoming"
     };
 
     for(var key in mort) {
@@ -376,17 +376,15 @@ var mergeAgeAdjustedRates = function(mort, rates) {
                 if(!age) {
                     age = rates[keyMap[mort[key][i].name]];
                 }
-                //if key still doesn't exist, exit without merging
-                if(!age) {
-                    return;
-                }
-                if(age['Total']) {
-                    mort[key][i]['ageAdjustedRate'] = age['Total'].ageAdjustedRate;
-                    mort[key][i]['standardPop'] = age['Total'].standardPop;
-                    mergeAgeAdjustedRates(mort[key][i], age);
-                } else {
-                    mort[key][i]['ageAdjustedRate'] = age.ageAdjustedRate;
-                    mort[key][i]['standardPop'] = age.standardPop;
+                if(age) {
+                    if (age['Total']) {
+                        mort[key][i]['ageAdjustedRate'] = age['Total'].ageAdjustedRate;
+                        mort[key][i]['standardPop'] = age['Total'].standardPop;
+                        mergeAgeAdjustedRates(mort[key][i], age);
+                    } else {
+                        mort[key][i]['ageAdjustedRate'] = age.ageAdjustedRate;
+                        mort[key][i]['standardPop'] = age.standardPop;
+                    }
                 }
             }
         }

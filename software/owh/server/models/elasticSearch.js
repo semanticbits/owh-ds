@@ -154,12 +154,12 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
         Q.all(promises).then( function (resp) {
             var data = searchUtils.populateDataWithMappings(resp[0], 'deaths');
             self.mergeWithCensusData(data, resp[1]);
-            searchUtils.mergeAgeAdjustedRates(data.data.nested.table, resp[2]);
-
+            if(query.wonderQuery) {
+                searchUtils.mergeAgeAdjustedRates(data.data.nested.table, resp[2]);
+            }
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'deaths');
             }
-
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);

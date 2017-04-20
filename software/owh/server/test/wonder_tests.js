@@ -2,7 +2,7 @@ var wonder = require("../api/wonder");
 var supertest = require("supertest");
 var expect = require("expect.js");
 
-describe.only("WONDER API", function () {
+describe("WONDER API", function () {
     var w;
     this.timeout(18000);
     beforeEach( function () {
