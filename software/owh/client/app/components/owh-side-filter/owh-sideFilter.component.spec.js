@@ -250,7 +250,7 @@ describe('OWH Side filter component: ', function() {
 
         var group = {filters:{filterType: 'checkbox', autoCompleteOptions: [{key: '2013'}, {key: '2014'}], value: [], allChecked: false}};
 
-        ctrl.updateGroupValue(group);
+        ctrl.updateGroupValue(group, {exclusive: false});
 
         expect(group.filters.value.length).toEqual(2);
         expect(group.filters.value).toContain('2013');
@@ -258,7 +258,7 @@ describe('OWH Side filter component: ', function() {
 
         group.filters.allChecked = true;
 
-        ctrl.updateGroupValue(group);
+        ctrl.updateGroupValue(group, {exclusive: false});
 
         expect(group.filters.value.length).toEqual(0);
     });
@@ -268,7 +268,7 @@ describe('OWH Side filter component: ', function() {
         var ctrl = $componentController('owhSideFilter', { $scope: $scope }, bindings);
         spyOn(ctrl, 'onFilter');
 
-        ctrl.updateGroupValue({filters:{value: []}});
+        ctrl.updateGroupValue({filters:{value: []}}, {exclusive: false});
 
         expect(ctrl.onFilter).toHaveBeenCalled();
 
@@ -449,7 +449,7 @@ describe('OWH Side filter component: ', function() {
         var ctrl = $componentController('owhSideFilter', { $scope: $scope }, bindings);
         spyOn(ctrl, 'onFilter');
 
-        ctrl.updateGroupValue({filters:{value: []}});
+        ctrl.updateGroupValue({filters:{value: []}}, {exclusive: false});
 
         expect(ctrl.onFilter).not.toHaveBeenCalled();
 
@@ -462,7 +462,7 @@ describe('OWH Side filter component: ', function() {
         var ctrl = $componentController('owhSideFilter', { $scope: $scope }, bindings);
         spyOn(ctrl, 'onFilter');
         spyOn(utilService, 'refreshFilterAndOptions');
-        ctrl.onFilterValueChange({refreshFiltersOnChange: false, filters:{ value: []}});
+        ctrl.onFilterValueChange({refreshFiltersOnChange: false, filters:{ value: []}}, {exclusive: false});
 
         expect(ctrl.onFilter).not.toHaveBeenCalled();
         expect(utilService.refreshFilterAndOptions).not.toHaveBeenCalled();
@@ -475,7 +475,7 @@ describe('OWH Side filter component: ', function() {
         ctrl.refreshFilterOptions = function () {};
         spyOn(ctrl, 'onFilter');
         spyOn(utilService, 'refreshFilterAndOptions');
-        ctrl.onFilterValueChange({refreshFiltersOnChange: true, filters:{ value: []}});
+        ctrl.onFilterValueChange({refreshFiltersOnChange: true, filters:{ value: []}}, {exclusive: false});
 
         expect(ctrl.onFilter).toHaveBeenCalled();
         expect(utilService.refreshFilterAndOptions).toHaveBeenCalled();

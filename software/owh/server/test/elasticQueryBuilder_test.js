@@ -184,14 +184,14 @@ describe("Build elastic search queries", function(){
         done()
     });
 
-    it("add filters to calculate fertility rates with mother_age_r9 filter", function(done){
+    it("add filters to calculate fertility rates with mother_age_5year_interval filter", function(done){
         var topLevelQuery = {
             "size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}},
             "query":{
                 "filtered":{
                     "query":{"bool":{"must":[]}},
                     "filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2011"}}]}},
-                                              {"bool":{"should":[{"term":{"mother_age_r9":"15-19 years"}}]}}]}}
+                                              {"bool":{"should":[{"term":{"mother_age_5year_interval":"15-19 years"}}]}}]}}
                 }
             }
         };
@@ -202,7 +202,7 @@ describe("Build elastic search queries", function(){
                                                 {
                                                     "query":
                                                         {"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2011"}}]}},
-                                                                                      {"bool":{"should":[{"term":{"mother_age_r9":"15-19 years"}}]}},
+                                                                                      {"bool":{"should":[{"term":{"mother_age_5year_interval":"15-19 years"}}]}},
                                                                                       {"bool":{"should":[{"term":{"sex":"Female"}}]}}]}}
                                                 }
                                         }

@@ -517,8 +517,21 @@
                         if(eachData.length === 0) {
                             return;
                         }
+                        eachData.sort(function(a, b) {
+                            if (a.response < b.response) {
+                                return -1;
+                            }
+                            if (a.response > b.response) {
+                                return 1;
+                            }
+                            return 0;
+                        });
+
                         var questionCellAdded = false;
                         angular.forEach(eachData, function(eachPramsData) {
+                            if(eachPramsData.response === '-1') {
+                                return;
+                            }
                             var childTableData = prepareMixedTableRowData(rowHeaders.slice(1), columnHeaders, eachPramsData, countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys);
                             if(rowHeaders.length > 1 && calculateRowTotal) {
                                 childTableData.push(prepareTotalRow(eachPramsData, countKey, childTableData[0].length, totalCount, secondaryCountKeys));
@@ -536,7 +549,7 @@
                                 var eachTableRow = {
                                     title: matchedOption.title,
                                     isCount: false,
-                                    rowspan: eachData.length,
+                                    rowspan: eachData.length - 1,
                                     colspan: 1,
                                     key: matchedOption.key,
                                     qkey: matchedOption.qkey,
