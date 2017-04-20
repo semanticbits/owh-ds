@@ -782,9 +782,7 @@ body {
     width: 875px;
     margin-bottom: 1px !important;
     padding: 5px;
-    border: 1px solid #ccc;
-    box-shadow: 0 5px 8px rgba(0,0,0,0.1);
-    border-radius: 4px;
+    margin-left: 15px;
 }
 
 ul.legend-scale {
@@ -792,7 +790,6 @@ ul.legend-scale {
     padding-left: 10px;
     float: left;
     list-style: none;
-    background: whitesmoke;
 }
 ul.legend-scale li {
     display: block;
