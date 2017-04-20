@@ -443,13 +443,23 @@ describe("Search controller: ", function () {
         };
 
         var mouseoverData = {"leafletEvent":{"containerPoint":{x:90,y:88},"latlng":{"lat":3434,"lng":42234},
-            "target":{"feature":{"properties":{}}},"_map":{}},
-            "leafletObject":{"_map":{}}};
+            "target":{"_leaflet_id":123, "feature":{"properties":{}}},
+            "_map":{_layers:{"123":{setStyle:function () {}}}}},
+            "leafletObject":{"_map":{_layers:{"123":{setStyle:function () {}}}}}};
+
         var popupopenData = {"leafletEvent":{"popup":{"options":{"offset":123}}},"target":{}};
         $rootScope.$broadcast('leafletDirectiveGeoJson.mouseover', mouseoverData);
         $rootScope.$broadcast('leafletDirectiveMap.popupopen', popupopenData);
         $rootScope.$broadcast('leafletDirectiveMap.popupclose', {});
-        $rootScope.$broadcast('leafletDirectiveGeoJson.mouseout', {});
+
+        var mouseoutData = {"layer":{"_leaflet_id":123},"target":{"_leaflet_id":123,"feature":{"properties":{}},
+            "_map":{"_layers":{"123":{"setStyle":function () {}}}}}};
+        $rootScope.$broadcast('leafletDirectiveGeoJson.mouseout', mouseoutData);
+
+        mouseoutData = {"leafletEvent":{"containerPoint":{"x":90,"y":88},"latlng":{"lat":3434,"lng":42234},
+            "target":{"_leaflet_id":123,"feature":{"properties":{}},
+                "_map":{"_layers":{"123":{"setStyle":function () {}}}}}},"leafletObject":{"_map":{"_layers":{"123":{"setStyle":function () {}}}}}};
+        $rootScope.$broadcast('leafletDirectiveGeoJson.mouseout', mouseoutData);
         $rootScope.$broadcast('leafletDirectiveMap.mouseout', {});
         //$scope.$digest();
     }));
