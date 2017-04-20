@@ -461,6 +461,10 @@ describe("Search controller: ", function () {
                 "_map":{"_layers":{"123":{"setStyle":function () {}}}}}},"leafletObject":{"_map":{"_layers":{"123":{"setStyle":function () {}}}}}};
         $rootScope.$broadcast('leafletDirectiveGeoJson.mouseout', mouseoutData);
         $rootScope.$broadcast('leafletDirectiveMap.mouseout', {});
+
+        var maploadData = {"leafletObject":{addControl:function() {}}};
+        $rootScope.$broadcast('leafletDirectiveMap.load', maploadData);
+
         //$scope.$digest();
     }));
 });

@@ -778,6 +778,39 @@ body {
     left: 135px;
 }
 
+.custom-legend {
+    width: 875px;
+    margin-bottom: 1px !important;
+    padding: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 5px 8px rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
+
+ul.legend-scale {
+    margin: 0;
+    padding-left: 10px;
+    float: left;
+    list-style: none;
+    background: whitesmoke;
+}
+ul.legend-scale li {
+    display: block;
+    float: left;
+    width: 75px;
+    margin-bottom: 6px;
+    text-align: center;
+    font-size: 90%;
+    list-style: none;
+    padding-top: 8px;
+}
+ul.legend-scale li span {
+    display: block;
+    float: left;
+    height: 25px;
+    width: 75px;
+    margin-bottom: 5px;
+}
 
 /*header*/
 .qh-header {

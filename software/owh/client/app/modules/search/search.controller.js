@@ -334,7 +334,7 @@
         //US-states map
         var mapOptions = {
             usa: {
-                lat: 39,
+                lat: 35,
                 lng: -97,
                 zoom: 3.9
             },
@@ -577,6 +577,11 @@
         });
         $scope.$on("leafletDirectiveMap.mouseout", function (event, args) {
             sc.mapPopup._close();
+        });
+
+        $scope.$on("leafletDirectiveMap.load", function (event, args) {
+            var mapScaleControl = mapService.addScaleControl(sc.filters.selectedPrimaryFilter.mapData);
+            args.leafletObject.addControl(new mapScaleControl());
         });
 
         /*Show expanded graphs with whole set of features*/
