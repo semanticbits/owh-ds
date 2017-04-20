@@ -33,7 +33,7 @@
         var bridgedRaceFilter = null;
 
         sc.sideMenu = {visible: true};
-        sc.mapOptions = {selectedMapSize: 'small'};
+        sc.mapOptions = {selectedMapSize: 'big'};
         //For intial search call
         if($stateParams.selectedFilters == null) {
             sc.filters = searchFactory.getAllFilters();
@@ -51,7 +51,7 @@
             sc.filters.selectedPrimaryFilter = $stateParams.selectedFilters;
         }
 
-        sc.selectedMapSize = 'small';
+        sc.selectedMapSize = 'big';
         sc.showMeOptions = {
             deaths: [
                 {key: 'number_of_deaths', title: 'Number of Deaths'},
@@ -336,14 +336,14 @@
             usa: {
                 lat: 39,
                 lng: -97,
-                zoom: 3
+                zoom: 3.9
             },
             legend: {},
             defaults: {
                 tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
-                scrollWheelZoom: false,
-                minZoom: 2,
-                maxZoom: 6
+                scrollWheelZoom: true,
+                minZoom: 3,
+                maxZoom: 5
             },
             markers: {},
             events: {
@@ -512,9 +512,9 @@
         }
 
         //builds marker popup.
-        sc.mapPopup = L.popup({autoPan: false});
+        sc.mapPopup = L.popup({autoPan:false, closeButton:false});
         sc.currentFeature = {};
-        function buildMarkerPopup(lat, lng, properties, map, tableView) {
+        function buildMarkerPopup(lat, lng, properties, map, tableView, markerPosition) {
             var childScope = $scope.$new();
             childScope.lat = lat;
             childScope.lng = lng;
@@ -532,15 +532,48 @@
                     .setLatLng(L.latLng(lat, lng));
             }
 
+            var rotatePopup = function () {
+                $scope.$on("leafletDirectiveMap.popupopen", function (evt, args) {
+
+                    var popup = args.leafletEvent.popup;
+
+                    var popupHeight = angular.element('#chart_us_map').find('.leaflet-popup-content').height();
+
+                    //keep track of old position of popup
+                    if(!popup.options.oldOffset) {
+                        popup.options.oldOffset = popup.options.offset;
+                    }
+
+                    if(markerPosition.y < 180) {
+                        //change position if popup does not fit into map-container
+                        popup.options.offset = new L.Point(10, popupHeight + 110);
+                        angular.element('#chart_us_map').addClass('reverse-popup')
+                    } else {
+                        //revert position
+                        popup.options.offset = popup.options.oldOffset;
+                        angular.element('#chart_us_map').removeClass('reverse-popup')
+                    }
+                });
+                //on popupclose reset pop up position
+                $scope.$on("leafletDirectiveMap.popupclose", function (evt, args) {
+                    $('#chart_us_map').removeClass('reverse-popup')
+                })
+            };
+
+            rotatePopup();
+
         }
         $scope.$on("leafletDirectiveGeoJson.mouseover", function (event, args) {
             var leafEvent = args.leafletEvent;
-            buildMarkerPopup(leafEvent.latlng.lat, leafEvent.latlng.lng, leafEvent.target.feature.properties, args.leafletObject._map, sc.filters.selectedPrimaryFilter.key);
+            buildMarkerPopup(leafEvent.latlng.lat, leafEvent.latlng.lng, leafEvent.target.feature.properties,
+                args.leafletObject._map, sc.filters.selectedPrimaryFilter.key, leafEvent.containerPoint);
             sc.currentFeature = leafEvent.target.feature;
+            mapService.highlightFeature(leafEvent.target._leaflet_id, args.leafletObject._map)
 
         });
         $scope.$on("leafletDirectiveGeoJson.mouseout", function (event, args) {
             sc.mapPopup._close();
+            mapService.resetHighlight(args);
         });
         $scope.$on("leafletDirectiveMap.mouseout", function (event, args) {
             sc.mapPopup._close();
