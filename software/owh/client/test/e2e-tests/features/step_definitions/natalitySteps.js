@@ -227,6 +227,27 @@ var natalityStepsDefinitionWrapper = function () {
             expect(filters[7]).to.contains("5-Year Age Groups");
         }).then(next);
     });
+
+    this.Then(/^I see expected filters should be disabled in natality page for number for births$/, function (next) {
+        var allElements = element.all(by.css('.cursor-not-allowed')).all(By.css('.filter-display-name'));
+        allElements.getText().then(function (filters) {
+            filters.forEach(function (filter) {
+                expect(["Gestational Age at Birth", "Anemia", "Cardiac Disease", "Hydramnios / Oligohydramnios", "Incompetent Cervix", "Lung disease"]).to.include(filter);
+            });
+        }).then(next);
+    });
+
+    this.Then(/^I see expected filters should be enabled in natality page for number of births$/, function (next) {
+        var allElements = element.all(by.css('.cursor-not-allowed')).all(By.css('.filter-display-name'));
+        allElements.getText().then(function (filters) {
+            filters.forEach(function (filter) {
+                expect(["Year", "Month", "Weekday", "Sex", "Month Prenatal Care Began", "Birth Weight", "Birth Weight 4", "Birth Weight 12",
+                    "Plurality or Multiple Birth", "Live Birth Order", "Birth Place", "Delivery Method", "Medical Attendant", "Race", "Ethnicity",
+                    "Marital Status", "Education", "1-Year Age Groups", "5-Year Age Groups", "Chronic Hypertension", "Diabetes", "Eclampsia",
+                    "Pregnancy-associated Hypertension", "Tobacco Use" ]).to.not.include(filter);
+            });
+        }).then(next);
+    });
 };
 
 module.exports = natalityStepsDefinitionWrapper;
