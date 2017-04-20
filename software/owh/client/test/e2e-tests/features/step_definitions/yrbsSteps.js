@@ -460,6 +460,15 @@ var yrbsStepDefinitionsWrapper = function () {
 
     this.Then(/^I should see records for states$/, function (next) {
         yrbsPage.getTableRowData(1).then(function(rowdata){
+            expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            //Alabama
+            expect(rowdata[1]).to.contains('30.7');
+            //Alaska
+            expect(rowdata[2]).to.contains('22.0');
+            //Arizona
+            expect(rowdata[3]).to.contains('34.8');
+        });
+        yrbsPage.getTableRowData(2).then(function(rowdata){
             expect(rowdata[0]).to.equals('Currently used marijuana(one or more times during the 30 days before the survey)');
             //Alabama
             expect(rowdata[1]).to.contains('17.3');
@@ -467,15 +476,6 @@ var yrbsStepDefinitionsWrapper = function () {
             expect(rowdata[2]).to.contains('19.0');
             //Arizona
             expect(rowdata[3]).to.contains('23.3');
-        });
-        yrbsPage.getTableRowData(2).then(function(rowdata){
-            expect(rowdata[0]).to.equals('Drank alcohol before age 13 years(for the first time other than a few sips)');
-            //Alabama
-            expect(rowdata[1]).to.contains('20.4');
-            //Alaska
-            expect(rowdata[2]).to.contains('14.3');
-            //Arizona
-            expect(rowdata[3]).to.contains('16.5');
         }).then(next);
     });
 
@@ -517,19 +517,19 @@ var yrbsStepDefinitionsWrapper = function () {
 
     this.Then(/^I see results being displayed in data table for Sexual Identity$/, function (next) {
         yrbsPage.getTableRowData(1).then(function(rowdata){
-            expect(rowdata[0]).to.equals('Currently used marijuana(one or more times during the 30 days before the survey)');
-            expect(rowdata[1]).to.contains('43.9');
-            expect(rowdata[2]).to.contains('13.5');
-            expect(rowdata[3]).to.contains('30.6');
+            expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            expect(rowdata[1]).to.contains('92.1');
+            expect(rowdata[2]).to.contains('26.6');
+            expect(rowdata[3]).to.contains('34.2');
         }).then(next);
     });
 
     this.Then(/^I see results being displayed in data table for Sexual Contact$/, function (next) {
         yrbsPage.getTableRowData(1).then(function(rowdata){
-            expect(rowdata[0]).to.equals('Currently used marijuana(one or more times during the 30 days before the survey)');
-            expect(rowdata[1]).to.contains('50.8');
-            expect(rowdata[2]).to.contains('23.7');
-            expect(rowdata[3]).to.contains('38.0');
+            expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            expect(rowdata[1]).to.contains('47.7');
+            expect(rowdata[2]).to.contains('36.5');
+            expect(rowdata[3]).to.contains('31.7');
         }).then(next);
     });
 

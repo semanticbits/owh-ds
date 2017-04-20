@@ -95,9 +95,9 @@ Scenario: show chart for each question
 #  When Years "2015", "2013" are selected
 #  Then results shows only 2015 and 2013 data
 
-Scenario: Filter by ethnicity
-  When ethniciy "White", "Asian" are selected
-  Then results shows only data for the selected ethnicities
+#Scenario: Filter by ethnicity
+#  When ethniciy "White", "Asian" are selected
+#  Then results shows only data for the selected ethnicities
 
   Scenario: Search Questions
     When I begin to type a word in the search bar
