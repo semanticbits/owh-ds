@@ -6,11 +6,11 @@ data_file:
   aws_access_key_id: 'aws access key'
   aws_secret_access_key: 'aws secret key'
   aws_s3_bucket_name: 'owh-data'
-  aws_s3_directory: 'datasets/natality'
+  aws_s3_directory: 'datasets/yrbs'
 elastic_search:
   host: 127.0.0.1
   port: 9200
-  bulk_load_size: 10000
-  index: owh_natality
-  type: natality
-  type_mapping: natality-type-mapping.json
+  bulk_load_size: 1000
+  index: ''
+  type: ''
+  type_mapping: ''

@@ -25,7 +25,7 @@
     }
   },
   {
-    "column":"mother_age_r8",
+    "column":"mother_age_5year_interval",
     "type":"map",
     "start": 76,
     "stop": 76,

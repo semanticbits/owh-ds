@@ -5,17 +5,18 @@
     </div>
     <ul class="usa-sidenav-list side-filters">
         <!--iterate over filter by category-->
-        <div ng-repeat="(categoryKey, category) in sfc.categories"
+        <div ng-repeat="category in sfc.filters"
+             ng-init="categoryKey = category.category"
              class="category-{{$index}}">
 
             <div class="padding-top-20 bold-class grey-text filter-category"
-                 ng-if="categoryKey != 'undefined'" ng-bind="categoryKey">
+                 ng-if="categoryKey" ng-bind="categoryKey">
             </div>
             <!--iterate over filters of a category-->
-            <li class="accordion" ng-repeat="sideFilter in category | orderBy: sfc.getFilterOrder"
+            <li class="accordion" ng-repeat="sideFilter in category.sideFilters | orderBy: sfc.getFilterOrder"
                 ng-class="{'cursor-not-allowed disabled-filter': !sfc.isVisible(sideFilter) || sideFilter.disabled }"
                 ng-init="group = (sideFilter.filterGroup ? sideFilter : sideFilter.filters)"
-                ng-if="categoryKey == 'undefined' || $index < 2 || sfc.filters.selectedPrimaryFilter['cat'+$parent.$index]">
+                ng-if="!categoryKey || $index < 2 || sfc.filters.selectedPrimaryFilter['cat'+$parent.$index]">
 
                 <span ng-class="{'disabled-filter': !sfc.isVisible(sideFilter) || sideFilter.disabled }" ng-if="group.filterType === 'slider'">
                     <label class="side-pane-label custom-label">
@@ -244,7 +245,7 @@
                         <li class="group-option" ng-if="!group.doNotShowAll"
                             ng-class="{'thin-border-top': (group.value.length > 0 && group.displaySelectedFirst)}">
                             <input type="checkbox" id="{{group.queryKey}}_all" name="{{group.queryKey}}_all" ng-checked="group.value.length === 0"
-                                   ng-click="sfc.updateGroupValue(sideFilter);" ng-model="group.allChecked" ng-init="group.allChecked = group.value.length === 0"
+                                   ng-click="sfc.updateGroupValue(sideFilter, category);" ng-model="group.allChecked" ng-init="group.allChecked = group.value.length === 0"
                                    ng-show="group.filterType === 'checkbox'" >
                             <label for="{{group.queryKey}}_all" class="custom-label">
                                 <span>All</span>
@@ -257,7 +258,7 @@
                             class="group-option">
                             <div ng-show="!option.group && sfc.isOptionSelected(option, group.value)">
                                 <input id="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" type="checkbox"
-                                       checklist-model="group.value" checklist-value="option.key" ng-disabled="sfc.isOptionDisabled(group, option)" ng-click="sfc.onFilterValueChange(sideFilter)">
+                                       checklist-model="group.value" checklist-value="option.key" ng-disabled="sfc.isOptionDisabled(group, option)" ng-click="sfc.onFilterValueChange(sideFilter, category)">
                                 <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                                        ng-init="title = option.title">
                                     <span class="count-label" translate="{{title}}"></span>
@@ -273,7 +274,7 @@
                             class="group-option" ng-if="$index < 3 || sideFilter.showAll || ($index < (3+ group.value.length) && group.displaySelectedFirst)">
                             <div ng-if="!option.group && (group.displaySelectedFirst?!sfc.isOptionSelected(option, group.value):true)">
                                 <input id="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" type="checkbox"
-                                       checklist-model="group.value" checklist-value="option.key" ng-disabled="(sfc.isOptionDisabled(group, option))" ng-click="sfc.onFilterValueChange(sideFilter)">
+                                       checklist-model="group.value" checklist-value="option.key" ng-disabled="(sfc.isOptionDisabled(group, option))" ng-click="sfc.onFilterValueChange(sideFilter, category)">
                                 <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                                        ng-init="title = option.title">
                                     <span ng-class="option.disabled?'disable-click':'count-label'" translate="{{title}}"></span>
@@ -300,7 +301,7 @@
                                     <li ng-repeat="subOption in option.options"
                                         class="group-option">
                                         <input id="{{sfc.primaryKey}}_{{group.key}}_{{subOption.key}}" name="{{group.queryKey}}" type="checkbox"
-                                               ng-show="group.filterType === 'checkbox'"  checklist-model="group.value" checklist-value="subOption.key" ng-disabled="sfc.isOptionDisabled(group, subOption)" ng-click="sfc.onFilterValueChange(sideFilter)">
+                                               ng-show="group.filterType === 'checkbox'"  checklist-model="group.value" checklist-value="subOption.key" ng-disabled="sfc.isOptionDisabled(group, subOption)" ng-click="sfc.onFilterValueChange(sideFilter, category)">
                                         <label for="{{sfc.primaryKey}}_{{group.key}}_{{subOption.key}}" class="custom-label"
                                                ng-init="title = subOption.title">
                                             <span class="count-label" translate="{{title}}"></span>
@@ -378,7 +379,7 @@
                         <li class="group-option" ng-if="!group.doNotShowAll"
                             ng-class="{'thin-border-top': (group.value.length > 0 && group.displaySelectedFirst)}">
                             <input id="{{group.queryKey}}_all" name="{{group.queryKey}}" type="radio" ng-checked="!group.value" value=""
-                                   ng-model="group.value" ng-click="sfc.onFilterValueChange(sideFilter)">
+                                   ng-model="group.value" ng-click="sfc.onFilterValueChange(sideFilter, category)">
                             <label for="{{group.queryKey}}_all" class="custom-label">
                                 <span>All</span>
                             </label>
@@ -390,7 +391,7 @@
                             class="group-option">
                             <div ng-show="!option.group && sfc.isOptionSelected(option, group.value)">
                                    <input id="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" name="{{group.queryKey}}" type="radio"
-                                          ng-model="group.value" ng-value="option.key" ng-click="sfc.onFilterValueChange(sideFilter)">
+                                          ng-model="group.value" ng-value="option.key" ng-click="sfc.onFilterValueChange(sideFilter, category)">
                                 <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                                        ng-init="title = option.title">
                                     <span class="count-label" translate="{{title}}"></span>
@@ -405,7 +406,7 @@
                             class="group-option" ng-if="$index < 3 || sideFilter.showAll || ($index < (3+ group.value.length) && group.displaySelectedFirst)">
                             <div ng-if="!option.group && (group.displaySelectedFirst?!sfc.isOptionSelected(option, group.value):true)">
                                <input id="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" name="{{group.queryKey}}" type="radio"
-                                      ng-model="group.value" ng-value="option.key" ng-click="sfc.onFilterValueChange(sideFilter)">
+                                      ng-model="group.value" ng-value="option.key" ng-click="sfc.onFilterValueChange(sideFilter, category)">
                                 <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                                        ng-init="title = option.title">
                                     <span class="count-label" translate="{{title}}"></span>
@@ -430,15 +431,15 @@
                 <!-- end radio filter -->
             </li>
             <!--show hide/more filters of a category-->
-            <div ng-if="category.length > 2 && categoryKey != 'undefined'"
+            <div ng-if="category.sideFilters.length > 2 && categoryKey"
                  class="padding-top-10 toggle-filter-link">
                 <a ng-show="!sfc.filters.selectedPrimaryFilter['cat'+$index]" class="custom-link show-more-{{$index}}"
                    translate="label.show.more.filters"
-                   translate-values="{showLength: (category.length - 2)}"
+                   translate-values="{showLength: (category.sideFilters.length - 2)}"
                    ng-click="sfc.filters.selectedPrimaryFilter['cat'+$index] = !sfc.filters.selectedPrimaryFilter['cat'+$index]" href="javascript:void(0)"></a>
                 <a ng-show="sfc.filters.selectedPrimaryFilter['cat'+$index]" class="custom-link show-less-{{$index}}"
                    translate="label.hide.more.filters"
-                   translate-values="{hideLength: (category.length -2)}"
+                   translate-values="{hideLength: (category.sideFilters.length -2)}"
                    ng-click="sfc.filters.selectedPrimaryFilter['cat'+$index] = !sfc.filters.selectedPrimaryFilter['cat'+$index]" href="javascript:void(0)"></a>
             </div>
         </div>
