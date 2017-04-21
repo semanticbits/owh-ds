@@ -287,7 +287,7 @@ describe('utilService', function(){
         expect(utils.generateMapLegendLabels(10000, 10490)).toEqual([ '> 10,900', '> 10,800', '> 10,700', '> 10,600', '> 10,500', '> 10,400', '> 10,300', '> 10,200', '> 10,100', '> 10,000', '< 10,000' ]);
     });
 
-    it('refreshFilterAndOptions options should set filter option correctly ', inject(function(SearchService) {
+    it('refreshFilterAndOptions options should set filter option correctly - with category property ', inject(function(SearchService) {
         var deferred = $q.defer();
         var filters= [
             {
@@ -320,9 +320,63 @@ describe('utilService', function(){
             }
         ];
 
+        var categories = [{"category":"Birth Characteristics","sideFilters":filters}];
+
         spyOn(SearchService, 'getDsMetadata').and.returnValue(deferred.promise);
 
-        utils.refreshFilterAndOptions({ queryKey: "year", value: ["2000"]}, filters, 'deaths');
+        utils.refreshFilterAndOptions({ queryKey: "year", value: ["2000"]}, categories, 'deaths');
+        expect(SearchService.getDsMetadata).toHaveBeenCalledWith("deaths","2000");
+        deferred.resolve({"status":"OK","data":{"sex":["M"],"ethnicity":[]}});
+        $scope.$apply();
+        expect(filters[0].disabled).toBeFalsy();
+        expect(filters[0].groupBy).toEqual("row");
+        expect(filters[1].disabled).toBeTruthy();
+        expect(filters[1].groupBy).toBeFalsy();
+        expect(filters[2].disabled).toBeFalsy();
+        expect(filters[2].filters.autoCompleteOptions[0].disabled).toBeTruthy();
+        expect(filters[2].filters.autoCompleteOptions[1].disabled).toBeFalsy();
+        expect(filters[3].disabled).toBeFalsy();
+    }));
+
+
+    it('refreshFilterAndOptions options should set filter option correctly - without category property ', inject(function(SearchService) {
+        var deferred = $q.defer();
+        var filters= [
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:"row",
+                filters: {key: 'year', title: 'label.filter.year', queryKey:"year", primary: false, value: [2000, 2014], groupBy: 'row',
+                    type:"label.filter.group.year", showChart: true, defaultGroup:"column",
+                    autoCompleteOptions: []}
+            },
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:false,
+                filters: {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [], groupBy: 'row',
+                    type:"label.filter.group.demographics", showChart: true, defaultGroup:"column",
+                    autoCompleteOptions: [{key:'White','title':'White'}]}
+            },
+            {
+                filterGroup: false, collapse: true, allowGrouping: true,groupBy:true,
+                filters: {key: 'gender', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [], groupBy: 'column',
+                    type:"label.filter.group.demographics", groupByDefault: 'column', showChart: true,
+                    autoCompleteOptions: [
+                        {key:'F',title:'Female'},
+                        {key:'M',title:'Male'}
+                    ], defaultGroup:"column"
+                }
+            },
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:false,
+                filters: {key: 'ethnicity', title: 'label.filter.ethnicity', queryKey:"ethnicity", primary: false, value: ['Hispanic'], groupBy: 'row',
+                    type:"label.filter.group.ethnicity", showChart: true, defaultGroup:"column",
+                    autoCompleteOptions: [{key:'Hispanic','title':'Hispanic'},{key:'Non-Hispanic','title':'Non-Hispanic'}]}
+            }
+        ];
+
+        var categories = [{"sideFilters":filters}];
+
+        spyOn(SearchService, 'getDsMetadata').and.returnValue(deferred.promise);
+
+        utils.refreshFilterAndOptions({ queryKey: "year", value: ["2000"]}, categories, 'deaths');
         expect(SearchService.getDsMetadata).toHaveBeenCalledWith("deaths","2000");
         deferred.resolve({"status":"OK","data":{"sex":["M"],"ethnicity":[]}});
         $scope.$apply();

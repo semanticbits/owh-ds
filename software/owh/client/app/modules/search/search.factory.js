@@ -126,14 +126,15 @@
 
         function populateSelectedFilters(primaryFilter, updatedSideFilters) {
             var allFilters = primaryFilter.sideFilters[0].sideFilters[0].filters;
-            var refreshFiltersOnChange = primaryFilter.sideFilters[0].sideFilters[0].refreshFiltersOnChange;
-            var allSideFilters = [];
+            var refreshFiltersOnChange = false;
+            var allCategories = [];
             //populate side filters based on cached query filters
             angular.forEach(updatedSideFilters, function (category, catIndex) {
-                if (primaryFilter.sideFilters[catIndex] && refreshFiltersOnChange) {
-                    allSideFilters = allSideFilters.concat(primaryFilter.sideFilters[catIndex].sideFilters);
-                }
                 angular.forEach(category.sideFilters, function(filter, index) {
+                    if(primaryFilter.sideFilters[catIndex]) {
+                        allCategories = allCategories.concat(primaryFilter.sideFilters[catIndex]);
+                        refreshFiltersOnChange = refreshFiltersOnChange || primaryFilter.sideFilters[catIndex].sideFilters[index].refreshFiltersOnChange;
+                    }
                     primaryFilter.sideFilters[catIndex].sideFilters[index].filters.value = filter.filters.value;
                     primaryFilter.sideFilters[catIndex].sideFilters[index].filters.groupBy = filter.filters.groupBy;
                     if (filter.filters.selectedNodes != undefined) {
@@ -146,11 +147,10 @@
                     addOrFilterToPrimaryFilterValue(filter.filters, primaryFilter);
                 });
             });
-            if(refreshFiltersOnChange && allSideFilters.length > 0) {
-                utilService.refreshFilterAndOptions(allFilters, allSideFilters, primaryFilter.key);
+            if(refreshFiltersOnChange) {
+                utilService.refreshFilterAndOptions(allFilters, allCategories, primaryFilter.key);
             }
         }
-
 
         /*
             Builds table based on primaryFilter and options

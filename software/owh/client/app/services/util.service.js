@@ -893,9 +893,13 @@
         /**
          * Enables/disables side filters and filter options based on the dataser metadata
          * @param filter filter to be used for the querying ds metadata
-         * @param sideFilters sidefilters to be updated
+         * @param categories sidefilter categories
          * @param datasetname name of dataset          */
-        function refreshFilterAndOptions(filter, sideFilters, datasetname) {
+        function refreshFilterAndOptions(filter, categories, datasetname) {
+            var sideFilters = [];
+            angular.forEach(categories, function (category) {
+                sideFilters = sideFilters.concat(category.sideFilters);
+            });
             var filterName = filter.queryKey;
             var filterValue = filter.value;
             SearchService.getDsMetadata(datasetname, filterValue ? filterValue.join(',') : null).then(function (response) {
