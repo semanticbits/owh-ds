@@ -601,9 +601,9 @@ var mortalityStepDefinitionsWrapper = function () {
         mortalityPage.getOptions('Place of Death').then(function(elements) {
             expect(elements[1].getText()).to.eventually.contains('All');
             expect(elements[2].getText()).to.eventually.contains('Decedent’s home');
-            expect(elements[3].getText()).to.eventually.contains('Hospital, clinic or Medical Center- Patient status unknown');
+            expect(elements[3].getText()).to.eventually.contains('Hospital, Clinic or Medical Center- Patient status unknown');
             expect(elements[4].getText()).to.eventually.contains('Hospital, Clinic or Medical Center- Dead on Arrival');
-            expect(elements[5].getText()).to.eventually.contains('Hospital, clinic or Medical Center- Inpatient');
+            expect(elements[5].getText()).to.eventually.contains('Hospital, Clinic or Medical Center- Inpatient');
             expect(elements[6].getText()).to.eventually.contains('Hospital, Clinic or Medical Center- Outpatient or admitted to Emergency Room');
             expect(elements[7].getText()).to.eventually.contains('Nursing home/long term care');
             expect(elements[8].getText()).to.eventually.contains('Hospice facility');
