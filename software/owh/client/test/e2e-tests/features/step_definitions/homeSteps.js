@@ -11,8 +11,7 @@ var homeStepDefinitionsWrapper = function () {
     var mortalityPage = require('../support/mortalitypage.po')
 
     this.When(/^I hit app url$/, function () {
-        browser.get('/');
-        return browser.waitForAngular();
+       return browser.get('/');
     });
 
     this.Then(/^I should be automatically redirected to home page$/, function (next) {
@@ -33,7 +32,6 @@ var homeStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I should get search page with default filter type "([^"]*)"$/, function (arg1) {
-        browser.waitForAngular();
         return expect(mortalityPage.getSelectedFilterType()).to.eventually.equal(arg1);
     });
 
@@ -49,8 +47,7 @@ var homeStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I am at home page$/, function () {
-        browser.get("/");
-        return browser.waitForAngular();
+        return browser.get("/");
     });
 
     this.Then(/^gray banner on top reads "([^"]*)"$/, function (givenMessage, next) {
@@ -60,8 +57,7 @@ var homeStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I am at search page$/, function () {
-        browser.get("/search");
-        browser.waitForAngular();
+        return browser.get("/search");
     });
 
     this.Then(/^I see the name of application as "([^"]*)"$/, function (arg1, next) {

@@ -174,13 +174,11 @@ var natalityStepsDefinitionWrapper = function () {
     });
 
     this.Then(/^I select groupBy "([^"]*)" option for "([^"]*)" filter$/, function (arg1, arg2, next) {
-        browser.waitForAngular();
         natalityPage.selectSideFilter(arg2, arg1).click()
             .then(next);
     });
 
     this.Then(/^data table should display right values for 5\-Year age filter$/, function (next) {
-        browser.waitForAngular();
         natalityPage.getTableRowData(0).then(function(rowdata) {
             //Race
             expect(rowdata[0]).to.equals('American Indian or Alaska Native');
@@ -196,7 +194,6 @@ var natalityStepsDefinitionWrapper = function () {
     });
 
     this.Then(/^I should see "([^"]*)" options under Mother Age category for 1\-Year age group$/, function (arg1, next) {
-        browser.waitForAngular();
         natalityPage.getOptions(arg1).then(function(elements) {
             expect(elements[1].getText()).to.eventually.contains('All');
             expect(elements[2].getText()).to.eventually.contains('13 years');

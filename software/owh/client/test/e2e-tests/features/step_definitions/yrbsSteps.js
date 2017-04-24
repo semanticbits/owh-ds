@@ -27,7 +27,6 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on Show \# More under the questions in any category$/, function (next) {
-        browser.waitForAngular();
         element(by.cssContainingText('a', 'Show 18 More')).click()
             .then(next);
     });
@@ -119,7 +118,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
 
-    this.Then(/^I should be able to select more than one\. The radio buttons must be changed to checkboxes$/, function () {
+    this.Then(/^I should be able to select more than one\. The radio buttons must be changed to checkboxes$/, function (next) {
         var raceFilter = yrbsPage.selectSideFilter("Race/Ethnicity");
         var raceParentElement = raceFilter.element(by.xpath('..')).element(by.xpath('..')).element(by.xpath('..'));
         raceFilter.getAttribute('class').then(function(className){
@@ -136,8 +135,7 @@ var yrbsStepDefinitionsWrapper = function () {
                 raceFilter.element(by.xpath('..')).click();
             }
             raceParentElement.element(by.xpath('.//*[.="American Indian or Alaska Native"]')).click();
-        });
-        return browser.waitForAngular();
+        }).then(next);
     });
 
     this.Then(/^the default filter pre\-selected should be Race$/, function () {
@@ -609,12 +607,10 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on Confidence Intervals option's "([^"]*)" button$/, function (arg, next) {
-        browser.waitForAngular();
         element(by.className('owh-side-menu__utility-option')).element(by.cssContainingText('span', arg)).click().then(next);
     });
 
     this.Then(/^"([^"]*)" button for Confidence Intervals should be remain selected$/, function (arg1) {
-        browser.waitForAngular();
         return expect(element(by.className('owh-side-menu__utility-option')).element(by.cssContainingText('span', arg1)).element(by.xpath('..')).getAttribute('class')).to.eventually.include('selected');
     });
 
@@ -663,7 +659,6 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^"([^"]*)" button for Unweighted Frequency should be remain selected$/, function (arg1) {
-        browser.waitForAngular();
         return expect(element.all(by.className('owh-side-menu__utility-option')).last().element(by.cssContainingText('span', arg1)).element(by.xpath('..')).getAttribute('class')).to.eventually.include('selected');
     });
 
