@@ -128,11 +128,11 @@
         function resizeUSAMap(isZoomIn, primaryFilter) {
             leafletData.getMap().then(function(map) {
                 if(isZoomIn) {
-                    angular.element('div.legend').show();
+                    angular.element('div.custom-legend').show();
                     map.zoomIn();
                 } else {
                     map.zoomOut();
-                    angular.element('div.legend').hide();
+                    angular.element('div.custom-legend').hide();
                 }
                 $timeout(function(){ map.invalidateSize()}, 1000);
             });
