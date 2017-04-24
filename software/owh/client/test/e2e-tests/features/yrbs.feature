@@ -228,3 +228,23 @@ Scenario: show chart for each question
       | filter                  | filterOptions                                                     | filterOption      |
       |  Sexual Identity        |  Heterosexual (straight), Gay or Lesbian, Bisexual, Not Sure      | Bisexual          |
       |  Sexual Contact         |  Opposite Sex Only, Same Sex Only, Both Sexes, No Sexual Contact  | Opposite Sex Only |
+
+  Scenario: Show/Hide Confidence Intervals for variance filter
+    Given I am on search page
+    When I select YRBS as primary filter
+    Then I should get search page with default filter type "Youth Risk Behavior"
+    When I click on Confidence Intervals option's "Show" button
+    Then "Show" button for Confidence Intervals should be remain selected
+    And I see Confidence Intervals value in data table
+    And I set "Sex" filter "Column"
+    Then "Show" button for Confidence Intervals should be remain selected
+    And Confidence Intervals value in data table should be updated
+
+  Scenario: Show/Hide Confidence Intervals for variance filter
+    When I click on Unweighted Frequency option's "Show" button
+    Then "Show" button for Unweighted Frequency should be remain selected
+    And I see Unweighted Frequency value in data table
+    And I set "Sex" filter "Off"
+    Then "Show" button for Unweighted Frequency should be remain selected
+    And  Unweighted Frequency value in data table should be updated
+
