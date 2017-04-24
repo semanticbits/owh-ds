@@ -24,6 +24,10 @@ describe('filterUtils', function(){
         it('should provide me correct slider intervals', function () {
 
             var bridgeRaceFilters = filterUtils.getBridgeDataFilters();
+            //Slider lower and upper bounds
+            expect(bridgeRaceFilters[2].sliderOptions.from).toEqual(0);
+            expect(bridgeRaceFilters[2].sliderOptions.to).toEqual(85);
+
             bridgeRaceFilters[2].sliderOptions.callback('5;19');
 
             var ageGroupFilter = utilService.findByKeyAndValue(bridgeRaceFilters, 'key', 'agegroup');

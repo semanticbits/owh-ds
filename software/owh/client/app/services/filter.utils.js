@@ -110,7 +110,7 @@
             ];
 
             var censusAgeOptions = [
-                {key:'0-4 years', title:'0 - 4 years', min: 1, max: 4},
+                {key:'0-4 years', title:'0 - 4 years', min: 0, max: 4},
                 {key:'5-9 years', title:'5 - 9 years', min: 5, max: 9},
                 {key:'10-14 years', title:'10 - 14 years', min: 10, max: 14},
                 {key:'15-19 years', title:'15 - 19 years', min: 15, max: 19},
@@ -127,17 +127,16 @@
                 {key:'70-74 years', title:'70 - 74 years', min: 70, max: 74},
                 {key:'75-79 years', title:'75 - 79 years', min: 75, max: 79},
                 {key:'80-84 years',title:'80 - 84 years', min: 80, max: 84},
-                {key:'85-105 years',title:'85+ years', min: 85, max: 105},
-                {key:'Age not stated',title:'Age not stated', min: -5, max: 0}
+                {key:'85-105 years',title:'85+ years', min: 85, max: 105}
             ];
 
             var ageSliderOptions =  {
-                from: -5,
+                from: 0,
                 to: 85,
                 step: 5,
                 threshold: 0,
-                scale: ['Not stated', 0, '', 10, '', 20, '', 30, '', 40, '', 50, '', 60, '', 70, '', 80, '>85'],
-                modelLabels: {'-5': 'Not stated', 85: '>85'},
+                scale: [0, '', 10, '', 20, '', 30, '', 40, '', 50, '', 60, '', 70, '', 80, '>85'],
+                modelLabels: {85: '>85'},
                 css: {
                     background: {'background-color': '#ccc'}, before: {'background-color': '#ccc'},
                     default: {'background-color': 'white'}, after: {'background-color': '#ccc'},
@@ -153,7 +152,7 @@
                     var prevValue = angular.copy(ageGroupFilter.value);
                     ageGroupFilter.value = [];
                     // set the values list only if the slider selection is different from the default
-                    if(! (minValue == -5  && maxValue == 85)) {
+                    if(! (minValue == 0  && maxValue == 85)) {
                         angular.forEach(ageGroupFilter.autoCompleteOptions, function(eachOption) {
                             if((eachOption.min <= minValue && eachOption.max >= minValue)
                                 || (eachOption.min >= minValue && eachOption.max <= maxValue)
