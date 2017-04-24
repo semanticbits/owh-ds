@@ -6,7 +6,7 @@ var expect = chai.expect;
 
 var mortalityStepDefinitionsWrapper = function () {
 
-    this.setDefaultTimeout(30000);
+    this.setDefaultTimeout(60000);
 
     var mortalityPage = require('../support/mortalitypage.po')
 
@@ -87,6 +87,11 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.When(/^I update criteria in filter option with row "([^"]*)"$/, function (arg1, next) {
         mortalityPage.selectSideFilter(arg1, 'Row').click()
+            .then(next);
+    });
+
+    this.When(/^I update criteria in filter options with off "([^"]*)"$/, function (arg1, next) {
+        mortalityPage.selectSideFilter(arg1, 'Off').click()
             .then(next);
     });
 
@@ -562,12 +567,13 @@ var mortalityStepDefinitionsWrapper = function () {
 
     });
 
-    this.Then(/^table should display Hispanic groups only$/, function () {
+    this.Then(/^table should display Hispanic groups only$/, function (next) {
         mortalityPage.getTableRowDataCells(0).then(function (elements) {
             expect(elements[0].getText()).to.eventually.equal('Hispanic');
         });
         mortalityPage.getTableRowDataCells(5).then(function (elements) {
             expect(elements[0].getText()).to.eventually.equal('Non-Hispanic');
+            next();
         });
     });
 
@@ -577,13 +583,17 @@ var mortalityStepDefinitionsWrapper = function () {
             .then(next);
     });
 
-    this.Then(/^I see Ethnicity, Age Groups, Autopsy, Place of Death, Weekday, Month, Underlying Cause of Death, Multiple Causes of Death, State disabled$/, function (next) {
-        var allElements = element.all(by.css('.cursor-not-allowed')).all(By.css('.filter-display-name'));
-        allElements.getText().then(function (filters) {
-            filters.forEach(function (filter) {
-                expect(['Ethnicity', 'Age Groups','Autopsy','Place of Death', 'Weekday', 'Month',
-                    'Underlying Cause of Death', 'Multiple Causes of Death', 'State']).to.include(filter);
-            });
+    this.Then(/^I see appropriate side filters disabled$/, function (next) {
+        var disabledFilters = element.all(by.css('.cursor-not-allowed')).all(By.css('.filter-display-name'));
+        disabledFilters.getText().then(function (filters) {
+                expect([ 'Ethnicity',
+                    'Age Groups',
+                    'Autopsy',
+                    'Place of Death',
+                    'Weekday',
+                    'Month',
+                    'Underlying Cause of Death',
+                    'Multiple Causes of Death' ]).to.eql(filters);
         }).then(next);
     });
 
@@ -788,6 +798,74 @@ var mortalityStepDefinitionsWrapper = function () {
     this.When(/^I un\-check Hispanic group$/, function (next) {
         mortalityPage.ethnicityHispanicOption.click()
             .then(next);
+    });
+
+    this.When(/^I see all state age adjusted rate data by rows in the result table$/, function (next) {
+        mortalityPage.getTableHeaders().then(function(value) {
+            expect(value).to.contains('State');
+            mortalityPage.getTableCellData(0,0).then(function(data){
+                expect(data).to.contains('Alabama');
+            });
+            mortalityPage.getTableCellData(0,1).then(function(data){
+                expect(data).not.to.contains('Not Available');
+                expect(data).to.contains('924.5');
+            });
+            mortalityPage.getTableCellData(50,0).then(function(data){
+                expect(data).to.contains('Wyoming');
+            });
+            mortalityPage.getTableCellData(50,1).then(function(data){
+                expect(data).not.to.contains('Not Available');
+                expect(data).to.contains('748.3');
+            });
+        }).then(next);
+    });
+
+    this.When(/^I see all state age adjusted rate data by columns in the result table$/, function (next) {
+        mortalityPage.getTableHeaders().then(function(value) {
+            expect(value).to.contains('Alabama');
+            expect(value).to.contains('Wyoming');
+            mortalityPage.getTableCellData(0,0).then(function(data){
+                expect(data).to.contains('924.5');
+            });
+            mortalityPage.getTableCellData(0,50).then(function(data){
+                expect(data).not.to.contains('Not Available');
+                expect(data).to.contains('748.3');
+            });
+        }).then(next);
+    });
+
+    this.When(/^I see all state crude rate data by rows in the result table$/, function (next) {
+        mortalityPage.getTableHeaders().then(function(value) {
+            expect(value).to.contains('State');
+            mortalityPage.getTableCellData(0,0).then(function(data){
+                expect(data).to.contains('Alabama');
+            });
+            mortalityPage.getTableCellData(0,1).then(function(data){
+                expect(data).not.to.contains('Not Available');
+                expect(data).to.contains('7,029.6');
+            });
+            mortalityPage.getTableCellData(50,0).then(function(data){
+                expect(data).to.contains('Wyoming');
+            });
+            mortalityPage.getTableCellData(50,1).then(function(data){
+                expect(data).not.to.contains('Not Available');
+                expect(data).to.contains('815.2');
+            });
+        }).then(next);
+    });
+
+    this.When(/^I see all state crude rate data by columns in the result table$/, function (next) {
+        mortalityPage.getTableHeaders().then(function(value) {
+            expect(value).to.contains('Alabama');
+            expect(value).to.contains('Wyoming');
+            mortalityPage.getTableCellData(0,0).then(function(data){
+                expect(data).to.contains('7,029.6');
+            });
+            mortalityPage.getTableCellData(0,50).then(function(data){
+                expect(data).not.to.contains('Not Available');
+                expect(data).to.contains('815.2');
+            });
+        }).then(next);
     });
 };
 module.exports = mortalityStepDefinitionsWrapper;
