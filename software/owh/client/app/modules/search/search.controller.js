@@ -147,8 +147,8 @@
         //show certain filters for different table views
         //add availablefilter for birth_rates
         sc.availableFilters = {
-            'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin'],
-            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin'],
+            'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin','state'],
+            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state'],
             'birth_rates': ['current_year', 'race'],
             'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval']
         };

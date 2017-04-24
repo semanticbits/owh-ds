@@ -242,21 +242,37 @@ Scenario: Age group selection disabled for age rates
   When the user chooses the option 'Age Adjusted Death Rates'
   Then table should not include age groups
 
-
-#TODO: Enable it while fixing OWH-304(Ethnicity is disabled needs to enable it)
+# Ethiniciry filter is disabled in rate views, there is a task OWH-1028 to enable it, this test will be enabled
+  #after OWH-1028 is implemented
 #Scenario: Hispanic Group options for crude death rate view
 #  When I update criteria in filter option with row "Ethnicity"
 #  When the user chooses the option 'Death Rates'
 #  Then table should display Hispanic groups only
 
-#TODO: remove Ethnicity & State from sideFilters list whenever we enable it for Crude Death Rates & Age Adjusted Death Rates
-  Scenario Outline: Show disabled filters
+Scenario Outline: Non applicable filters disabled in cude and age adjusted rate
   Given I am on search page
   When I choose the option <showMeFilter>
-  Then I see <sideFilters> disabled
+  Then I see appropriate side filters disabled
 
   Examples:
-    | showMeFilter              | sideFilters                                                                                                                 |
-    |  Crude Death Rates        |  Ethnicity, Age Groups, Autopsy, Place of Death, Weekday, Month, Underlying Cause of Death, Multiple Causes of Death, State |
-    |  Age Adjusted Death Rates |  Ethnicity, Age Groups, Autopsy, Place of Death, Weekday, Month, Underlying Cause of Death, Multiple Causes of Death, State |
+    | showMeFilter              |
+    |  Crude Death Rates        |
+    |  Age Adjusted Death Rates |
 
+Scenario: Group by 'State' in age adjusted rate
+    When I update criteria in filter options with off "Sex"
+    And I update criteria in filter options with off "Race"
+    And I update criteria in filter option with row "State"
+    Then I see all state age adjusted rate data by rows in the result table
+    And I update criteria in filter options with column "State"
+    Then I see all state age adjusted rate data by columns in the result table
+
+ Scenario: Group by 'State' in crude rate
+    Given I am on search page
+    When I choose the option "Crude Death Rates"
+    And I update criteria in filter options with off "Sex"
+    And I update criteria in filter options with off "Race"
+    And I update criteria in filter option with row "State"
+    Then I see all state crude rate data by rows in the result table
+    And I update criteria in filter options with column "State"
+    Then I see all state crude rate data by columns in the result table

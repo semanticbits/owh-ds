@@ -33,7 +33,6 @@ describe("WONDER API", function () {
                     Male: { ageAdjustedRate: '853.4', standardPop :124142641 },
                     Total: { ageAdjustedRate: '725.4', standardPop :250630467 } },
                 Total: { ageAdjustedRate: '724.6', standardPop :318857056} });
-                //expect(duration).to.be.lessThan(8000);
         }, function(err){
             console.log(err);
             expect(err).to.be.undefined();
@@ -98,7 +97,6 @@ describe("WONDER API", function () {
                         Total: { ageAdjustedRate: '856.3',standardPop:247701921 } },
                     Total: { ageAdjustedRate: '728.2',standardPop: 499974965} },
                 Total: { ageAdjustedRate: '728.2',standardPop: 634985895} });
-            //expect(duration).to.be.lessThan(8000);
         }, function(err){
             console.log(err);
             expect(err).to.be.undefined();
@@ -118,7 +116,6 @@ describe("WONDER API", function () {
             var duration = new Date() - startTime;
             console.log("invoke wonder API bigger query (group by 5) duration: "+duration);
             expect(resp).to.not.be.empty();
-            //expect(duration).to.be.lessThan(8000);
         }, function(err){
             console.log(err);
             expect(err).to.be.undefined();
@@ -138,25 +135,23 @@ describe("WONDER API", function () {
             var duration = new Date() - startTime;
             console.log("invoke wonder API with year aggregation: "+duration);
             expect(resp).to.not.be.empty();
-            //expect(duration).to.be.lessThan(8000);
         }, function(err){
             console.log(err);
             expect(err).to.be.undefined();
         });
     })
 
-    it("invoke wonder API with no aggregations specified", function (){
+    it("invoke wonder API with no aggregations specified returns error", function (){
         query = {"searchFor":"deaths","query":{},
             "aggregations":{"simple":[],"nested":{"table":[]}}}
         var startTime = new Date();
         return w.invokeWONDER(query).then(function (resp) {
             var duration = new Date() - startTime;
-            console.log("invoke wonder API bigger query (group by 5) duration: "+duration);
+            console.log("invoke wonder API with no aggregations specified: "+duration);
             expect(resp).to.be.empty();
-            //expect(duration).to.be.lessThan(8000);
         }, function(err){
             console.log(err);
-            expect(err).to.be.undefined();
+            expect(err).to.not.be.empty();
         });
     })
 
@@ -168,7 +163,6 @@ describe("WONDER API", function () {
             var duration = new Date() - startTime;
             console.log("invoke wonder API with filter option duration: "+duration);
             expect(resp).to.not.be.empty();
-            //expect(duration).to.be.lessThan(8000);
         }, function(err){
             console.log(err);
             expect(err).to.be.undefined();
@@ -183,7 +177,36 @@ describe("WONDER API", function () {
             var duration = new Date() - startTime;
             console.log("invoke wonder API with unmapped filter option duration: "+duration);
             expect(resp).to.not.be.empty();
-            //expect(duration).to.be.lessThan(8000);
+        }, function(err){
+            console.log(err);
+            expect(err).to.be.undefined();
+        });
+    })
+
+    it("perform state level grouping query", function (){
+        query = {"searchFor":"deaths","query":{"race":{"key":"race","queryKey":"race","value":["White","Other (Puerto Rico only)"],"primary":false}},
+            "aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":100000},{"key":"gender","queryKey":"sex","size":100000},{"key":"state","queryKey":"state","size":100000}],"charts":[[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}}
+        var startTime = new Date();
+        return w.invokeWONDER(query).then(function (resp) {
+            var duration = new Date() - startTime;
+            console.log("invoke wonder API with unmapped filter option duration: "+duration);
+            expect(resp).to.not.be.empty();
+            expect(JSON.stringify(resp).indexOf('error')).to.eql(-1);
+        }, function(err){
+            console.log(err);
+            expect(err).to.be.undefined();
+        });
+    })
+
+    it("perform state level filtering query", function (){
+        query = {"searchFor":"deaths","query":{"race":{"key":"state","queryKey":"state","value":["01","02"],"primary":false}},
+            "aggregations":{"simple":[],"nested":{"table":[{"key":"state","queryKey":"state","size":100000}],"charts":[[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}}
+        var startTime = new Date();
+        return w.invokeWONDER(query).then(function (resp) {
+            var duration = new Date() - startTime;
+            console.log("invoke wonder API with unmapped filter option duration: "+duration);
+            expect(resp).to.not.be.empty();
+            expect(resp).eql({"Alabama":{"ageAdjustedRate":"964.5","standardPop":79153531},"Alaska":{"ageAdjustedRate":"771.6","standardPop":11619054},"Total":{"ageAdjustedRate":"947.3","standardPop":90772585}});
         }, function(err){
             console.log(err);
             expect(err).to.be.undefined();

@@ -8,6 +8,7 @@ var logger = require('../config/logging')
 var qc = require('../api/queryCache');
 var dsmetadata = require('../api/dsmetadata');
 var Q = require('q');
+var config = require('../config/config');
 
 var queryCache = new qc();
 
@@ -18,7 +19,7 @@ var searchRouter = function(app, rConfig) {
         var queryId = req.body.qID;
         if (queryId) {
             queryCache.getCachedQuery(queryId).then(function (r) {
-                if(r) {
+                if(r && !config.disableQueryCache) {
                    logger.info("Retrieved query results for query ID " + queryId + " from query cache");
                     var resData = {};
                     resData.queryJSON = JSON.parse(r._source.queryJSON);
@@ -30,7 +31,9 @@ var searchRouter = function(app, rConfig) {
                     if (q) {
                         res.connection.setTimeout(0); // To avoid the post callback being called multiple times when the search method takes long time
                         search(q).then(function (resp) {
-                            queryCache.cacheQuery(queryId, q.key, resp);
+                            if(!config.disableQueryCache) {
+                                queryCache.cacheQuery(queryId, q.key, resp);
+                            }
                             res.send(new result('OK', resp, "success"));
                         }, function (err) {
                             res.send(new result('Error executing query', err, "failed"));
@@ -91,7 +94,10 @@ function search(q) {
     if (preparedQuery.apiQuery.searchFor === "deaths") {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
-        finalQuery.wonderQuery = preparedQuery.apiQuery;
+        // Invoke WONDER only for age_adjusted_rates view
+        if(q.tableView == 'age-adjusted_death_rates') {
+            finalQuery.wonderQuery = preparedQuery.apiQuery;
+        }
         new elasticSearch().aggregateDeaths(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
             new elasticSearch().aggregateDeaths(finalQuery, isStateSelected).then(function (response) {
                 var resData = {};
