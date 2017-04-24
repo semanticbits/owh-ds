@@ -49,8 +49,9 @@
             mortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'deaths');
             bridgedRaceFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'bridge_race');
             sc.filters.selectedPrimaryFilter = $stateParams.selectedFilters;
-        }
 
+        }
+        sc.filterUtilities = sc.filters.filterUtilities;
         sc.selectedMapSize = 'big';
         sc.showMeOptions = {
             deaths: [
@@ -151,63 +152,6 @@
             'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin'],
             'birth_rates': ['current_year', 'race'],
             'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval']
-        };
-
-        //functionality to be added to the side filters
-        var confidenceIntervalOption = {
-            title: 'Confidence Intervals',
-            type: 'toggle',
-            value: false,
-            onChange: function(value) {
-                sc.showConfidenceIntervals = value;
-            },
-            options: [
-                {
-                    title: 'label.mortality.search.table.show.percentage.button',
-                    key: true
-                },
-                {
-                    title: 'label.mortality.search.table.hide.percentage.button',
-                    key: false
-                }
-            ]
-        };
-
-        sc.filterUtilities = {
-            'mental_health': [
-                {
-                    title: 'Variance',
-                    options: [
-                        confidenceIntervalOption,
-                        {
-                            title: 'Unweighted Frequency',
-                            type: 'toggle',
-                            value: false,
-                            onChange: function(value) {
-                                sc.showUnweightedFrequency = value;
-                            },
-                            options: [
-                                {
-                                    title: 'label.mortality.search.table.show.percentage.button',
-                                    key: true
-                                },
-                                {
-                                    title: 'label.mortality.search.table.hide.percentage.button',
-                                    key: false
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ],
-            'prams' : [
-                {
-                    title: 'Variance',
-                    options: [
-                        confidenceIntervalOption
-                    ]
-                }
-            ]
         };
         sc.queryID = $stateParams.queryID;
         sc.tableView = $stateParams.tableView ? $stateParams.tableView : sc.showMeOptions.deaths[0].key;

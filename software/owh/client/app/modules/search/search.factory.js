@@ -1003,6 +1003,60 @@
         function getAllFilters() {
             //TODO: consider making these available as angular values, split out into separate file
             var filters = {};
+            var confidenceIntervalOption = {
+                title: 'Confidence Intervals',
+                type: 'toggle',
+                value: false,
+                onChange: function(value, option) {
+                    option.value = value;
+                },
+                options: [
+                    {
+                        title: 'label.mortality.search.table.show.percentage.button',
+                        key: true
+                    },
+                    {
+                        title: 'label.mortality.search.table.hide.percentage.button',
+                        key: false
+                    }
+                ]
+            };
+            filters.filterUtilities = {
+                'mental_health': [
+                    {
+                        title: 'Variance',
+                        options: [
+                            confidenceIntervalOption,
+                            {
+                                title: 'Unweighted Frequency',
+                                type: 'toggle',
+                                value: false,
+                                onChange: function(value, option) {
+                                    option.value = value;
+                                },
+                                options: [
+                                    {
+                                        title: 'label.mortality.search.table.show.percentage.button',
+                                        key: true
+                                    },
+                                    {
+                                        title: 'label.mortality.search.table.hide.percentage.button',
+                                        key: false
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                'prams' : [
+                    {
+                        title: 'Variance',
+                        options: [
+                            confidenceIntervalOption
+                        ]
+                    }
+                ]
+            };
             filters.groupOptions = [
                 {key:'column',title:'Column', tooltip:'Select to view as columns on data table'},
                 {key:'row',title:'Row', tooltip:'Select to view as rows on data table'},
