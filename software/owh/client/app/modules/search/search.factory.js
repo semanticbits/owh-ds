@@ -1060,14 +1060,14 @@
 
             filters.podOptions = [
                 {key:'Decedent’s home',title:'Decedent’s home'},
-                {key:'Hospital, Clinic or Medical Center - Patient status unknown',title:'Hospital, Clinic or Medical Center-  Patient status unknown'},
                 {key:'Hospital, Clinic or Medical Center - Dead on Arrival',title:'Hospital, Clinic or Medical Center-  Dead on Arrival'},
                 {key:'Hospital, clinic or Medical Center - Inpatient',title:'Hospital, Clinic or Medical Center-  Inpatient'},
                 {key:'Hospital, Clinic or Medical Center - Outpatient or admitted to Emergency Room',title:'Hospital, Clinic or Medical Center-  Outpatient or admitted to Emergency Room'},
+                {key:'Hospital, Clinic or Medical Center - Patient status unknown',title:'Hospital, Clinic or Medical Center-  Patient status unknown'},
                 {key:'Nursing home/long term care',title:'Nursing home/long term care'},
                 {key:'Hospice facility',title:'Hospice facility'},
-                {key:'Place of death unknown',title:'Place of death unknown'},
-                {key:'Other',title:'Other'}
+                {key:'Other',title:'Other'},
+                {key:'Place of death unknown',title:'Place of death unknown'}
             ];
 
             filters.maritalStatuses = [
