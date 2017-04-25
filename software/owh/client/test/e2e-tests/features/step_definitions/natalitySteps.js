@@ -174,13 +174,11 @@ var natalityStepsDefinitionWrapper = function () {
     });
 
     this.Then(/^I select groupBy "([^"]*)" option for "([^"]*)" filter$/, function (arg1, arg2, next) {
-        browser.waitForAngular();
         natalityPage.selectSideFilter(arg2, arg1).click()
             .then(next);
     });
 
     this.Then(/^data table should display right values for 5\-Year age filter$/, function (next) {
-        browser.waitForAngular();
         natalityPage.getTableRowData(0).then(function(rowdata) {
             //Race
             expect(rowdata[0]).to.equals('American Indian or Alaska Native');
@@ -196,7 +194,6 @@ var natalityStepsDefinitionWrapper = function () {
     });
 
     this.Then(/^I should see "([^"]*)" options under Mother Age category for 1\-Year age group$/, function (arg1, next) {
-        browser.waitForAngular();
         natalityPage.getOptions(arg1).then(function(elements) {
             expect(elements[1].getText()).to.eventually.contains('All');
             expect(elements[2].getText()).to.eventually.contains('13 years');
@@ -225,6 +222,27 @@ var natalityStepsDefinitionWrapper = function () {
         allFilters.getText().then(function (filters) {
             expect(filters[0]).to.contains("1-Year Age Groups");
             expect(filters[7]).to.contains("5-Year Age Groups");
+        }).then(next);
+    });
+
+    this.Then(/^I see expected filters should be disabled in natality page for number for births$/, function (next) {
+        var allElements = element.all(by.css('.cursor-not-allowed')).all(By.css('.filter-display-name'));
+        allElements.getText().then(function (filters) {
+            filters.forEach(function (filter) {
+                expect(["Gestational Age at Birth", "Anemia", "Cardiac Disease", "Hydramnios / Oligohydramnios", "Incompetent Cervix", "Lung disease"]).to.include(filter);
+            });
+        }).then(next);
+    });
+
+    this.Then(/^I see expected filters should be enabled in natality page for number of births$/, function (next) {
+        var allElements = element.all(by.css('.cursor-not-allowed')).all(By.css('.filter-display-name'));
+        allElements.getText().then(function (filters) {
+            filters.forEach(function (filter) {
+                expect(["Year", "Month", "Weekday", "Sex", "Month Prenatal Care Began", "Birth Weight", "Birth Weight 4", "Birth Weight 12",
+                    "Plurality or Multiple Birth", "Live Birth Order", "Birth Place", "Delivery Method", "Medical Attendant", "Race", "Ethnicity",
+                    "Marital Status", "Education", "1-Year Age Groups", "5-Year Age Groups", "Chronic Hypertension", "Diabetes", "Eclampsia",
+                    "Pregnancy-associated Hypertension", "Tobacco Use" ]).to.not.include(filter);
+            });
         }).then(next);
     });
 };

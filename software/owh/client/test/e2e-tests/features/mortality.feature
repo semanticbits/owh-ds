@@ -256,8 +256,8 @@ Scenario Outline: Non applicable filters disabled in cude and age adjusted rate
 
   Examples:
     | showMeFilter              |
-    |  Crude Death Rates        |
-    |  Age Adjusted Death Rates |
+    |  "Crude Death Rates"        |
+    |  "Age Adjusted Death Rates" |
 
 Scenario: Group by 'State' in age adjusted rate
     When I update criteria in filter options with off "Sex"

@@ -34,8 +34,7 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.Given(/^I am on search page$/, function () {
-        browser.get('/search/');
-        return; //browser.waitForAngular();
+        return browser.get('/search/');
     });
 
     this.Then(/^user sees side filter$/, function () {
@@ -107,7 +106,6 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^the percentages get re\-calculated based on all the information displayed in a given row$/, function (next) {
-        browser.waitForAngular();
         browser.actions().mouseMove(element(by.tagName('owh-table'))).perform();
         mortalityPage.getTableRowData(9).then(function(value){
             expect(value[1]).to.equal('98 (9.4%)');
@@ -243,7 +241,6 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.When(/^the user chooses the option 'Death Rates'$/, function (next) {
-        browser.waitForAngular();
         mortalityPage.deathRatesOption.click()
             .then(next);
     });
@@ -312,7 +309,6 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.When(/^user expands ethnicity filter$/, function (next) {
-        browser.waitForAngular();
         mortalityPage.expandEthnicity.click()
             .then(next);
     });
@@ -337,7 +333,6 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^the age filter should be hidden$/, function () {
-        browser.waitForAngular();
         return expect(mortalityPage.selectSideFilter('Age Groups', 'Row').isPresent()).to.eventually.equal(false);
     });
 
@@ -483,7 +478,7 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I choose the option "([^"]*)"$/, function (arg1, next) {
-        mortalityPage.creduDeathRatesOption.click()
+        element(by.cssContainingText('option', arg1)).click()
             .then(next);
     });
 
@@ -511,7 +506,6 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.When(/^the user selects Unknown$/, function (next) {
-        browser.waitForAngular();
         mortalityPage.ethnicityUnknownOption.click()
             .then(next);
     });
@@ -575,12 +569,6 @@ var mortalityStepDefinitionsWrapper = function () {
             expect(elements[0].getText()).to.eventually.equal('Non-Hispanic');
             next();
         });
-    });
-
-    this.When(/^I choose the option Crude Death Rates$/, function (next) {
-        browser.waitForAngular();
-        mortalityPage.deathRatesOption.click()
-            .then(next);
     });
 
     this.Then(/^I see appropriate side filters disabled$/, function (next) {
@@ -784,7 +772,6 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.When(/^user expands state filter$/, function (next) {
-        browser.waitForAngular();
         mortalityPage.expandStateFilter()
             .then(next);
     });

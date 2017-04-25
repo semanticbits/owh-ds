@@ -18,6 +18,11 @@ Feature: Natality filters
     Then I see "Year" as first option in sidebar filters
     And  I see the data table with race, female, male and total table headers
     And I see population count for "2015" option
+    Then I expand "+ 12 more filters" filter section
+    And I expand "+ 2 more filters" filter section
+    And I expand "+ 8 more filters" filter section
+    And I see expected filters should be disabled in natality page for number for births
+    And I see expected filters should be enabled in natality page for number of births
 
   Scenario: Filter categories
     Then I see "Birth Characteristics" as first filter category

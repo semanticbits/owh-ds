@@ -148,8 +148,8 @@
                                 ng-if="sc.filters.selectedPrimaryFilter.key === 'mental_health' ||
                                     sc.filters.selectedPrimaryFilter.key === 'prams'"
                                 primary-key="sc.filters.selectedPrimaryFilter.key"
-                                show-ci="sc.showConfidenceIntervals"
-                                show-uf="sc.showUnweightedFrequency"
+                                show-ci="sc.filters.filterUtilities['mental_health'][0].options[0].value"
+                                show-uf="sc.filters.filterUtilities['mental_health'][0].options[1].value"
                                 show-charts = "sc.filters.selectedPrimaryFilter.value.length > 1">
                     </owh-accordion-table>
                 </div>

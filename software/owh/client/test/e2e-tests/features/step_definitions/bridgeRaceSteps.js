@@ -18,7 +18,6 @@ var BridgeRaceStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I see "([^"]*)" as first option in sidebar filters$/, function (arg1, next) {
-        browser.waitForAngular();
         element.all(by.css('.side-filters')).all(by.css('.accordion')).then(function (items) {
             expect(items[0].getText()).to.eventually.contains(arg1);
         }).then(next);
@@ -61,7 +60,6 @@ var BridgeRaceStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I see a visualization$/, function (next) {
-        browser.waitForAngular();
         bridgeRacePage.isVisualizationDisplayed().then(function(value) {
             expect(value).to.equal(true);
         }).then(next);
