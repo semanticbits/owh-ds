@@ -478,7 +478,7 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I choose the option "([^"]*)"$/, function (arg1, next) {
-        mortalityPage.creduDeathRatesOption.click()
+        element(by.cssContainingText('option', arg1)).click()
             .then(next);
     });
 
