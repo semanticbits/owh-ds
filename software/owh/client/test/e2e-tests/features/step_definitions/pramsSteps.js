@@ -23,7 +23,7 @@ var PRAMSStepDefinitionsWrapper = function () {
         return expect(selectedClass.getText()).to.eventually.equal('Delivery');
     });
 
-    this.Then(/^I state data displayed in data table$/, function (next) {
+    this.Then(/^I see state data displayed in data table$/, function (next) {
         //table headers
         pramsPage.getTableHeadData(0).then(function (value) {
             expect(value).to.contains('Question');

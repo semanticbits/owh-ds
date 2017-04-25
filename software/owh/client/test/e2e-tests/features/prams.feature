@@ -9,4 +9,4 @@ Feature: PRAMS filters
     When I select PRAMS as primary filter
     Then I see 'By' filter pre-selected with State and Question
     And  I see class- Delivery
-    And  I state data displayed in data table
+    And  I see state data displayed in data table
