@@ -437,9 +437,9 @@ var mortalityStepDefinitionsWrapper = function () {
     this.Then(/^race options should be in proper order$/, function (next) {
         mortalityPage.getOptions('Race').then(function(elements) {
             expect(elements[1].getText()).to.eventually.contains('All');
-            expect(elements[2].getText()).to.eventually.contains('American Indian');
+            expect(elements[2].getText()).to.eventually.contains('American Indian or Alaska Native');
             expect(elements[3].getText()).to.eventually.contains('Asian or Pacific Islander');
-            expect(elements[4].getText()).to.eventually.contains('Black');
+            expect(elements[4].getText()).to.eventually.contains('Black or African American');
             expect(elements[5].getText()).to.eventually.contains('White');
         }).then(next);
     });
@@ -619,7 +619,7 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^data table should display right Number of Deaths$/, function (next) {
         mortalityPage.getTableRowData(0).then(function(rowdata){
-            expect(rowdata[0]).to.equals('American Indian');
+            expect(rowdata[0]).to.equals('American Indian or Alaska Native');
             expect(rowdata[3]).to.contains('875');
         });
         mortalityPage.getTableRowData(1).then(function(rowdata){
@@ -627,7 +627,7 @@ var mortalityStepDefinitionsWrapper = function () {
             expect(rowdata[3]).to.contains('3,100');
         });
         mortalityPage.getTableRowData(2).then(function(rowdata){
-            expect(rowdata[0]).to.equals('Black');
+            expect(rowdata[0]).to.equals('Black or African American');
             expect(rowdata[3]).to.contains('22,147');
         });
         mortalityPage.getTableRowData(3).then(function(rowdata){
@@ -654,7 +654,7 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^data table should display right population count for Crude Death Rates$/, function (next) {
         mortalityPage.getTableRowData(0).then(function(rowdata){
-            expect(rowdata[0]).to.equals('American Indian');
+            expect(rowdata[0]).to.equals('American Indian or Alaska Native');
             //Female
             expect(rowdata[1]).to.contains('Rate');
             expect(rowdata[1]).to.contains('346.1');
@@ -681,7 +681,7 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^total should be suppressed for all Races except White$/, function (next) {
         mortalityPage.getTableRowData(0).then(function(rowdata) {
-            expect(rowdata[0]).to.equals('American Indian');
+            expect(rowdata[0]).to.equals('American Indian or Alaska Native');
             //Ethnicity
             expect(rowdata[1]).to.equals('Spaniard');
             //Female
@@ -713,7 +713,7 @@ var mortalityStepDefinitionsWrapper = function () {
             expect(rowdata[1]).to.equals('Suppressed');
         });
         mortalityPage.getTableRowData(4).then(function(rowdata) {
-            expect(rowdata[0]).to.equals('Black');
+            expect(rowdata[0]).to.equals('Black or African American');
             //Ethnicity
             expect(rowdata[1]).to.equals('Spaniard');
             //Female
@@ -751,7 +751,7 @@ var mortalityStepDefinitionsWrapper = function () {
         //update death values and percentages
         mortalityPage.getTableRowData(0).then(function(rowdata) {
             //Race
-            expect(rowdata[0]).to.equals('American Indian');
+            expect(rowdata[0]).to.equals('American Indian or Alaska Native');
             //Female
             expect(rowdata[1]).to.equals('107,334 (45.4%)');
             //Male
