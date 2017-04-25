@@ -854,5 +854,13 @@ var mortalityStepDefinitionsWrapper = function () {
             });
         }).then(next);
     });
+
+    this.Then(/^I see disabled option "([^"]*)" not being displayed in data table$/, function (arg1, next) {
+        element.all(by.binding('eachHeader.title')).then(function (headers) {
+            headers.forEach(function (header) {
+                expect(header.getText()).to.not.eventually.equal(arg1);
+            })
+        }).then(next);
+    });
 };
 module.exports = mortalityStepDefinitionsWrapper;

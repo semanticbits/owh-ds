@@ -276,3 +276,8 @@ Scenario: Group by 'State' in age adjusted rate
     Then I see all state crude rate data by rows in the result table
     And I update criteria in filter options with column "State"
     Then I see all state crude rate data by columns in the result table
+
+ Scenario: Disabled filters must not be seen in the data-table
+    Given I am on search page
+    When I select groupBy "Column" option for "Place of Death" filter
+    Then I see disabled option "Hospital, clinic or Medical Center- Patient status unknown" not being displayed in data table
