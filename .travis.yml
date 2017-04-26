@@ -61,8 +61,8 @@ jdk:
 script:
   #- npm run-script test-single-run
   - ls
-  - ls coverage
-  - ls 'coverage/PhantomJS 2.1.1 (Linux 0.0.0)'
+  #- ls coverage
+  #- ls 'coverage/PhantomJS 2.1.1 (Linux 0.0.0)'
   - cd ../server
   #- istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive test
   - npm start > /dev/null &
