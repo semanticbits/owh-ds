@@ -6,9 +6,12 @@ exports.config = {
   frameworkPath: require.resolve('protractor-cucumber-framework'),
 
   specs: [
-    'features/*.feature'
+    'features/home.feature'
   ],
-
+  plugins : [{
+      path: '../../node_modules/protractor-istanbul-plugin',
+      outputPath: 'cucumber-test-reports'
+  }],
   cucumberOpts: {
     // require step definitions
     require: [

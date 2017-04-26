@@ -74,6 +74,8 @@ after_success:
   - cd ..
   - lcov-result-merger './**/lcov.info' 'merged-lcov.info'
   - codeclimate-test-reporter < "merged-lcov.info"
+  - aws s3 sync client/cucumber-test-reports s3://owh-cucumber-report --acl public-read
+  #- codeclimate-test-reporter < "client/cucumber-test-reports/cucumber-test-report.json"
 
 before_deploy:
 
