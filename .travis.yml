@@ -59,12 +59,12 @@ jdk:
   - oraclejdk8
   
 script:
-  #- npm run-script test-single-run
+  - npm run-script test-single-run
   - ls
-  #- ls coverage
-  #- ls 'coverage/PhantomJS 2.1.1 (Linux 0.0.0)'
+  - ls coverage
+  - ls 'coverage/PhantomJS 2.1.1 (Linux 0.0.0)'
   - cd ../server
-  #- istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive test
+  - istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive test
   - npm start > /dev/null &
   - sleep 10
   - cd ../client
@@ -75,7 +75,6 @@ after_success:
   - lcov-result-merger './**/lcov.info' 'merged-lcov.info'
   - codeclimate-test-reporter < "merged-lcov.info"
   - aws s3 sync client/cucumber-test-reports s3://owh-cucumber-report --acl public-read
-  #- codeclimate-test-reporter < "client/cucumber-test-reports/cucumber-test-report.json"
 
 before_deploy:
 
