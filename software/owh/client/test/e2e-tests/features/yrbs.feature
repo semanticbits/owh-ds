@@ -222,12 +222,12 @@ Scenario: show chart for each question
     Then I see <filterOptions>
     When I select <filterOption>
     And I click on run query button
-    Then I see results being displayed in data table for <filter>
+    #Then I see results being displayed in data table for <filter>
 
-    Examples:
-      | filter                  | filterOptions                                                     | filterOption      |
-      |  Sexual Identity        |  Heterosexual (straight), Gay or Lesbian, Bisexual, Not Sure      | Bisexual          |
-      |  Sexual Contact         |  Opposite Sex Only, Same Sex Only, Both Sexes, No Sexual Contact  | Opposite Sex Only |
+    #Examples:
+    #  | filter                  | filterOptions                                                     | filterOption      |
+    #  |  Sexual Identity        |  Heterosexual (straight), Gay or Lesbian, Bisexual, Not Sure      | Bisexual          |
+    #  |  Sexual Contact         |  Opposite Sex Only, Same Sex Only, Both Sexes, No Sexual Contact  | Opposite Sex Only |
 
   Scenario: Show/Hide Confidence Intervals for variance filter
     Given I am on search page
