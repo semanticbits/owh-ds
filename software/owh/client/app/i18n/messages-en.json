@@ -188,6 +188,8 @@
   "label.chart.yrbsGrade": "Grade",
   "label.chart.yrbsRace": "Race",
   "label.chart.hispanic_origin": "Ethnicity",
+  "label.chart.month": "Month",
+  "label.chart.weekday": "Weekday",
   "label.chart.mother_race": "Race",
   "label.chart.marital_status": "Marital Status",
   "label.chart.mother_age.single.year.group": "1-Year Age Groups",
