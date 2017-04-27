@@ -115,7 +115,7 @@
 
                 var getBarValues = function (barData, filter) {
                     var barValues = [];
-                    angular.forEach(utilService.getSelectedAutoCompleteOptions(filter, primaryFilter.key === 'prams'), function (option,index) {
+                    angular.forEach(utilService.getSelectedAutoCompleteOptions(filter), function (option,index) {
                         //get data for series
                         var eachPrimaryData = utilService.findByKeyAndValue(barData, 'name', option.key);
                         //skip missing data for prams chart
@@ -147,7 +147,7 @@
                         // question = data.question[1][0];
                         // questionArray = question[0];
                         angular.forEach(question, function(response, responseKey) {
-                            if(typeof response === 'object') {
+                            if(typeof response === 'object' && responseKey != -1) {
                                 question = response;
                                 var seriesDataObj = {};
                                 seriesDataObj["key"] = primaryFilter.chartAxisLabel;
@@ -605,12 +605,9 @@
                      * @returns {*}
                      */
                     eg.getChartName = function (chartType) {
-                        var chartNames = {'yrbsSex&yrbsRace':'Sex and Race',
-                            'yrbsSex&yrbsGrade':'Sex and Grade',
-                            'yrbsGrade&yrbsRace': 'Grade and Race',
-                            'yrbsRace': 'Race',
-                            'yrbsSex': 'Sex',
-                            'yrbsGrade': 'Grade'};
+                        var chartNames = {'yrbsSex&yrbsRace':'Sex and Race', 'yrbsSex&yrbsGrade':'Sex and Grade',
+                            'yrbsGrade&yrbsRace': 'Grade and Race', 'yrbsRace': 'Race',
+                            'yrbsSex': 'Sex', 'yrbsGrade': 'Grade', 'year': 'Year', 'state': 'State'};
 
                         if (chartType.length == 1) {
                             return chartNames[chartType[0]];
