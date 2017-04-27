@@ -280,7 +280,7 @@ var isEmptyObject = function(obj) {
 function findFilterByKeyAndValue(a, key, value) {
     if (a) {
         for (var i = 0; i < a.length; i++) {
-            var filter = a[i].filters;
+            var filter = a[i];
             if ( filter[key] && filter[key] === value ) {return a[i];}
         }
     }
@@ -295,8 +295,8 @@ function findFilterByKeyAndValue(a, key, value) {
  * @returns {*}
  */
 function isFilterApplied(a) {
-    if (a && a.filters) {
-        return a.filters.value.length > 0;
+    if (a) {
+        return a.value.length > 0;
     }
     return false;
 }
