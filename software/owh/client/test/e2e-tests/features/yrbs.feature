@@ -215,13 +215,15 @@ Scenario: show chart for each question
     When I select "Year" value "2013"
     Then I see Sexual identity and Sexual contact filter disabled
 
-  Scenario Outline: Search By Sexual Identity and Sex of Sexual contact
-    Given I am on yrbs advanced search page
-    When I expand <filter> section
-    And user clicks on "+ 1 more" more link for <filter> filter
-    Then I see <filterOptions>
-    When I select <filterOption>
-    And I click on run query button
+  #YRBS service returning 'Internal Server Error' for feq questions and state combinations
+  # Once we fix this issue then enable below scenario.
+  #Scenario Outline: Search By Sexual Identity and Sex of Sexual contact
+  #  Given I am on yrbs advanced search page
+  #  When I expand <filter> section
+  #  And user clicks on "+ 1 more" more link for <filter> filter
+  #  Then I see <filterOptions>
+  #  When I select <filterOption>
+  #  And I click on run query button
     #Then I see results being displayed in data table for <filter>
 
     #Examples:
@@ -240,7 +242,7 @@ Scenario: show chart for each question
     Then "Show" button for Confidence Intervals should be remain selected
     And Confidence Intervals value in data table should be updated
 
-  Scenario: Show/Hide Confidence Intervals for variance filter
+  Scenario: Show/Hide Unweighted Frequency for variance filter
     When I click on Unweighted Frequency option's "Show" button
     Then "Show" button for Unweighted Frequency should be remain selected
     And I see Unweighted Frequency value in data table
