@@ -1791,7 +1791,7 @@
                 {key: 'year', title: 'label.prams.filter.year', queryKey:"year",primary: false, value: ['2009'], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsYearOptions, doNotShowAll: false, helpText: "label.help.text.prams.year"},
                 {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [], groupBy: 'column',
-                    filterType: 'checkbox',autoCompleteOptions: filters.pramsStateOptions, doNotShowAll: true, helpText: "label.help.text.prams.state"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsStateOptions, doNotShowAll: false, helpText: "label.help.text.prams.state"},
                 { key: 'question', title: 'label.prams.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
                     filterType: 'tree', autoCompleteOptions: $rootScope.pramsQuestionsList, donotshowOnSearch:true,
                     //add questions property to pass into owh-tree component
