@@ -9,7 +9,7 @@ Feature: Mortality page
 Scenario: Access mortality page
   When I am at home page
   And  I click on Explore button in Health Information Gateway section
-  Then I should get search page with default filter type "Mortality"
+  Then I should get search page with default filter type "Detailed Mortality"
 
 Scenario: Axis labels
   When user sees a visualization
@@ -37,7 +37,7 @@ Scenario: Side filter options retain order
 Scenario: Display show/hide percentage button only on mortality page
   When I am at home page
   And  I click on Explore button in Health Information Gateway section
-  Then I should get search page with default filter type "Mortality"
+  Then I should get search page with default filter type "Detailed Mortality"
   And an option to show/hide percentages is displayed
   When I change 'I'm interested in' dropdown value to "Youth Risk Behavior"
   Then I should be redirected to YRBS page
@@ -276,3 +276,8 @@ Scenario: Group by 'State' in age adjusted rate
     Then I see all state crude rate data by rows in the result table
     And I update criteria in filter options with column "State"
     Then I see all state crude rate data by columns in the result table
+
+ Scenario: Disabled filters must not be seen in the data-table
+    Given I am on search page
+    When I select groupBy "Column" option for "Place of Death" filter
+    Then I see disabled option "Hospital, clinic or Medical Center- Patient status unknown" not being displayed in data table
