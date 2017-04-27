@@ -752,7 +752,7 @@
                         headers.rowHeaders.push(eachFilter);
                     } else if( eachFilter.groupBy === 'column' ) {
                         columnAggregations.push(eachGroupQuery);
-                        headers.columnHeaders.push(eachFilter);
+                        headers.columnHeaders.push(removeDisabledFilterOptions(eachFilter));
                     }
                 }
                 var eachFilterQuery = buildFilterQuery(eachFilter);
@@ -771,6 +771,19 @@
                 apiQuery: apiQuery,
                 headers: headers
             };
+        }
+
+        /**
+         * Remove disabled filter options and return new copy of filter
+         * @param filter
+         * @returns {*|T}
+         */
+        function removeDisabledFilterOptions(filter) {
+            var tempFilter = angular.copy(filter);
+            tempFilter.autoCompleteOptions = filter.autoCompleteOptions.filter(function(option) {
+                return option.disabled !== true;
+            });
+            return tempFilter;
         }
 
         function getGroupQuery(filter/*, isPrimary*/) {
@@ -1452,21 +1465,21 @@
 
             filters.yrbsAdvancedFilters = [
                 {key: 'year', title: 'label.yrbs.filter.year', queryKey:"year",primary: false, value: ['2015'], groupBy: false,
-                    filterType: 'checkbox', autoCompleteOptions: angular.copy(filters.yrbsYearsOptions), donotshowOnSearch:true, helpText:"label.help.text.yrbs.year" },
+                    filterType: 'checkbox', autoCompleteOptions: filters.yrbsYearsOptions, donotshowOnSearch:true, helpText:"label.help.text.yrbs.year" },
                 { key: 'yrbsSex', title: 'label.yrbs.filter.sex', queryKey:"sex", primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.yrbsGenderOptions), defaultGroup:"column", helpText:"label.help.text.yrbs.sex" },
+                    filterType: 'checkbox',autoCompleteOptions: filters.yrbsGenderOptions, defaultGroup:"column", helpText:"label.help.text.yrbs.sex" },
                 { key: 'yrbsGrade', title: 'label.yrbs.filter.grade', queryKey:"grade", primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.yrbsGradeOptions), defaultGroup:"column", helpText:"label.help.text.yrbs.grade"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.yrbsGradeOptions, defaultGroup:"column", helpText:"label.help.text.yrbs.grade"},
                 { key: 'yrbsState', title: 'label.yrbs.filter.state', queryKey:"sitecode", primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.yrbsAdvancedStateFilters), defaultGroup:"column",
+                    filterType: 'checkbox',autoCompleteOptions: filters.yrbsAdvancedStateFilters, defaultGroup:"column",
                     displaySearchBox:true, displaySelectedFirst:true, helpText:"label.help.text.yrbs.state" },
                 { key: 'yrbsRace', title: 'label.yrbs.filter.race', queryKey:"race", primary: false, value: [], groupBy: 'column',
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.yrbsRaceOptions), defaultGroup:"column", helpText:"label.help.text.yrbs.race.ethnicity"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.yrbsRaceOptions, defaultGroup:"column", helpText:"label.help.text.yrbs.race.ethnicity"},
                 { key: 'sexid', title: 'label.yrbs.sexual.identity', queryKey:"sexid", primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.yrbsSexualIdentity), defaultGroup:"column"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.yrbsSexualIdentity, defaultGroup:"column"},
 
                 { key: 'sexpart', title: 'label.yrbs.sexual.contact', queryKey:"sexpart", primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.yrbsSexualContact), defaultGroup:"column"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.yrbsSexualContact, defaultGroup:"column"},
 
                 { key: 'question', title: 'label.yrbs.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
                     questions: $rootScope.questions,
@@ -1480,16 +1493,16 @@
 
             filters.yrbsBasicFilters = [
                 {key: 'year', title: 'label.yrbs.filter.year', queryKey:"year",primary: false, value: '2015', groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.yrbsYearsOptions), doNotShowAll: true, donotshowOnSearch:true, helpText:"label.help.text.yrbs.year" },
+                    filterType: 'radio',autoCompleteOptions: filters.yrbsYearsOptions, doNotShowAll: true, donotshowOnSearch:true, helpText:"label.help.text.yrbs.year" },
                 { key: 'yrbsSex', title: 'label.yrbs.filter.sex', queryKey:"sex", primary: false, value: '', groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.yrbsGenderOptions), defaultGroup:"column", helpText:"label.help.text.yrbs.sex" },
+                    filterType: 'radio',autoCompleteOptions: filters.yrbsGenderOptions, defaultGroup:"column", helpText:"label.help.text.yrbs.sex" },
                 { key: 'yrbsGrade', title: 'label.yrbs.filter.grade', queryKey:"grade", primary: false, value: '', groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.yrbsGradeOptions), defaultGroup:"column", helpText:"label.help.text.yrbs.grade" },
+                    filterType: 'radio',autoCompleteOptions: filters.yrbsGradeOptions, defaultGroup:"column", helpText:"label.help.text.yrbs.grade" },
                 { key: 'yrbsState', title: 'label.yrbs.filter.state', queryKey:"sitecode", primary: false, value: '', groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.yrbsBasicStateFilters), defaultGroup:"column",
+                    filterType: 'radio',autoCompleteOptions: filters.yrbsBasicStateFilters, defaultGroup:"column",
                     displaySearchBox:true, displaySelectedFirst:true, helpText:"label.help.text.yrbs.state" },
                 { key: 'yrbsRace', title: 'label.yrbs.filter.race', queryKey:"race", primary: false, value:'', groupBy: 'column',
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.yrbsRaceOptions), defaultGroup:"column", helpText:"label.help.text.yrbs.race.ethnicity"},
+                    filterType: 'radio',autoCompleteOptions: filters.yrbsRaceOptions, defaultGroup:"column", helpText:"label.help.text.yrbs.race.ethnicity"},
                 { key: 'question', title: 'label.yrbs.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
                     //questions to pass into owh-tree
                     questions: $rootScope.questions,
@@ -1506,43 +1519,43 @@
                 /*Demographics*/
                 {key: 'agegroup', title: 'label.filter.agegroup', queryKey:"age_5_interval",
                     primary: false, value: [], groupBy: false, type:"label.filter.group.demographics",
-                    filterType: 'slider', autoCompleteOptions: angular.copy(filters.ageOptions), showChart: true,
+                    filterType: 'slider', autoCompleteOptions: filters.ageOptions, showChart: true,
                     sliderOptions: filters.ageSliderOptions, sliderValue: '-5;105', timer: undefined, defaultGroup:"row"},
                 {key: 'hispanicOrigin', title: 'label.filter.hispanicOrigin', queryKey:"hispanic_origin",
                     primary: false, value: [], groupBy: false, type:"label.filter.group.demographics",
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.hispanicOptions), defaultGroup:"row"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.hispanicOptions, defaultGroup:"row"},
                 {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [], groupBy: 'row',
                     type:"label.filter.group.demographics", showChart: true, defaultGroup:"column",
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.races)},
+                    filterType: 'checkbox',autoCompleteOptions: filters.races},
                 {key: 'gender', title: 'label.filter.gender', queryKey:"sex", primary: false, value:  [], groupBy: 'column',
                     type:"label.filter.group.demographics", groupByDefault: 'column', showChart: true,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.genderOptions), defaultGroup:"column"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.genderOptions, defaultGroup:"column"},
 
 
                 /*Year and Month*/
                 //TODO: consider setting default selected years elsewhere
                 {key: 'year', title: 'label.filter.year', queryKey:"current_year",primary: false, value: [],
                     groupBy: false,type:"label.filter.group.year.month",
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.yearOptions),defaultGroup:"row"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.yearOptions,defaultGroup:"row"},
                 {key: 'month', title: 'label.filter.month', queryKey:"month_of_death", primary: false, value: [],
                     groupBy: false,type:"label.filter.group.year.month", defaultGroup:"row",
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.modOptions)},
+                    filterType: 'checkbox',autoCompleteOptions: filters.modOptions},
 
 
                 /*Weekday, Autopsy, Place of Death */
                 {key: 'weekday', title: 'label.filter.weekday', queryKey:"week_of_death",
                     primary: false, value:  [], groupBy: false,type:"label.filter.group.weekday.autopsy.pod",
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.weekday), defaultGroup:"row"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.weekday, defaultGroup:"row"},
                 {key: 'autopsy', title: 'label.filter.autopsy', queryKey:"autopsy",
                     primary: false, value: [], groupBy: false,type:"label.filter.group.weekday.autopsy.pod",
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.autopsy), defaultGroup:"row"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.autopsy, defaultGroup:"row"},
                 {key: 'placeofdeath', title: 'label.filter.pod', queryKey:"place_of_death",
                     primary: false, value:  [], groupBy: false,type:"label.filter.group.weekday.autopsy.pod",
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.podOptions), defaultGroup:"row"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.podOptions, defaultGroup:"row"},
 
                 {key: 'state', title: 'label.filter.state', queryKey:"state", primary: false, value:  [],
                     groupBy: false, type:"label.filter.group.location", filterType: 'checkbox',
-                    autoCompleteOptions: angular.copy(filters.stateOptions), defaultGroup:"column",
+                    autoCompleteOptions: filters.stateOptions, defaultGroup:"column",
                     displaySearchBox:true, displaySelectedFirst:true},
 
                 /*Underlying Cause of Death*/
@@ -1774,11 +1787,11 @@
 
             filters.pramsFilters = [
                 {key: 'topic', title: 'label.prams.filter.topic', queryKey:"topic",primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsTopicOptions), doNotShowAll: true, helpText: "label.help.text.prams.topic"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsTopicOptions, doNotShowAll: true, helpText: "label.help.text.prams.topic"},
                 {key: 'year', title: 'label.prams.filter.year', queryKey:"year",primary: false, value: ['2009'], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsYearOptions), doNotShowAll: false, helpText: "label.help.text.prams.year"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsYearOptions, doNotShowAll: false, helpText: "label.help.text.prams.year"},
                 {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [], groupBy: 'column',
-                    filterType: 'checkbox',autoCompleteOptions: angular.copy(filters.pramsStateOptions), doNotShowAll: true, helpText: "label.help.text.prams.state"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsStateOptions, doNotShowAll: true, helpText: "label.help.text.prams.state"},
                 { key: 'question', title: 'label.prams.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
                     filterType: 'tree', autoCompleteOptions: $rootScope.pramsQuestionsList, donotshowOnSearch:true,
                     //add questions property to pass into owh-tree component
@@ -1789,39 +1802,39 @@
                     }
                 },
                 {key: 'adequacy', title: 'label.prams.filter.adequacy', queryKey:"BOC18",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsAdequacyOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsAdequacyOptions, doNotShowAll: false},
                 {key: 'birth_weight', title: 'label.prams.filter.birth_weight', queryKey:"BOC1",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsBirthWeightOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsBirthWeightOptions, doNotShowAll: false},
                 {key: 'income', title: 'label.prams.filter.income', queryKey:"BOC14",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsIncomeOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsIncomeOptions, doNotShowAll: false},
                 {key: 'marital_status', title: 'label.prams.filter.marital_status', queryKey:"BOC3",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMaritalStatusOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaritalStatusOptions, doNotShowAll: false},
                 {key: 'maternal_age_groupings', title: 'label.prams.filter.maternal_age_groupings', queryKey:"BOC17",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMaternalAgeGroupingsOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAgeGroupingsOptions, doNotShowAll: false},
                 {key: 'maternal_age_years', title: 'label.prams.filter.maternal_age_years', queryKey:"BOC16",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMaternalAgeYearsOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAgeYearsOptions, doNotShowAll: false},
                 {key: 'maternal_age_3', title: 'label.prams.filter.maternal_age_3', queryKey:"BOC19",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMaternalAge3Options), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAge3Options, doNotShowAll: false},
                 {key: 'maternal_age_4', title: 'label.prams.filter.maternal_age_4', queryKey:"BOC4",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMaternalAge4Options), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAge4Options, doNotShowAll: false},
                 {key: 'maternal_education', title: 'label.prams.filter.maternal_education', queryKey:"BOC5",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMaternalEducationOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalEducationOptions, doNotShowAll: false},
                 {key: 'maternal_race', title: 'label.prams.filter.maternal_race', queryKey:"BOC6",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMaternalRaceOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalRaceOptions, doNotShowAll: false},
                 {key: 'medicaid', title: 'label.prams.filter.medicaid', queryKey:"BOC9",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMedicaidOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMedicaidOptions, doNotShowAll: false},
                 {key: 'mother_hispanic', title: 'label.prams.filter.mother_hispanic', queryKey:"BOC8",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsMotherHispanicOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMotherHispanicOptions, doNotShowAll: false},
                 {key: 'previous_births', title: 'label.prams.filter.previous_births', queryKey:"BOC20",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsPreviousBirthsOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsPreviousBirthsOptions, doNotShowAll: false},
                 {key: 'wic_pregnancy', title: 'label.prams.filter.wic_pregnancy', queryKey:"BOC10",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsWicPregnancyOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsWicPregnancyOptions, doNotShowAll: false},
                 {key: 'pregnancy_intendedness', title: 'label.prams.filter.pregnancy_intendedness', queryKey:"BOC11",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsPregnancyIntendednessOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsPregnancyIntendednessOptions, doNotShowAll: false},
                 {key: 'smoked_before', title: 'label.prams.filter.smoked_before', queryKey:"BOC12",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsSmokedBeforeOptions), doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsSmokedBeforeOptions, doNotShowAll: false},
                 {key: 'smoked_last', title: 'label.prams.filter.smoked_last', queryKey:"BOC13",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: angular.copy(filters.pramsSmokedLastOptions), doNotShowAll: false}
+                    filterType: 'radio',autoCompleteOptions: filters.pramsSmokedLastOptions, doNotShowAll: false}
             ];
 
             filters.search = [
