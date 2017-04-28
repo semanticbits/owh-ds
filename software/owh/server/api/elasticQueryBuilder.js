@@ -401,13 +401,9 @@ function buildAPIQuery(primaryFilter) {
             apiQuery.query[eachFilter.queryKey] = eachFilterQuery;
         }
     });
-    primaryFilter.sideFilters.forEach(function(category) {
-        category.sideFilters.forEach(function(filter){
-            if(filter.filters.key === 'topic') {
-                apiQuery.query['question.path'].value = filter.filters.questions;
-            }
-        })
-    });
+    if (primaryFilter.key === 'prams') {
+        getPramsQueryForAllYearsAndQuestions(primaryFilter, apiQuery)
+    }
     apiQuery.aggregations.nested.table = rowAggregations.concat(columnAggregations);
     var result = prepareChartAggregations(headers.rowHeaders.concat(headers.columnHeaders), apiQuery.searchFor);
     headers.chartHeaders = result.chartHeaders;
@@ -419,6 +415,40 @@ function buildAPIQuery(primaryFilter) {
         apiQuery: apiQuery,
         headers: headers
     };
+}
+
+/**
+ * Prepare queru for PRAMS Years and Questions
+ * @param primaryFilter
+ * @param apiQuery
+ */
+function getPramsQueryForAllYearsAndQuestions(primaryFilter, apiQuery) {
+    primaryFilter.sideFilters.forEach(function(category) {
+        category.sideFilters.forEach(function(filter){
+            if(filter.filters.key === 'topic') {
+                apiQuery.query['question.path'].value = filter.filters.questions;
+            } else if (filter.filters.key === 'year') {
+                apiQuery.query['year'] = getFilterQuery(filter.filters);
+                if(filter.filters.value.length == 0) {
+                    apiQuery.query['year'].value = getFilterOptionValues(filter.filters.autoCompleteOptions);
+                }
+            }
+        });
+    });
+}
+
+/**
+ * Get all options as array of values
+ * @param filterOptions
+ * @returns {null}
+ */
+function getFilterOptionValues(filterOptions) {
+    if(!filterOptions) {
+        return null;
+    }
+    return filterOptions.map(function(option) {
+        return option.key;
+    });
 }
 
 function clone(a) {
