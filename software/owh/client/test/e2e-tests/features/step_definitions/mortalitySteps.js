@@ -248,9 +248,9 @@ var mortalityStepDefinitionsWrapper = function () {
     this.Then(/^the rates and population are shown for each row in 'Death Rates' view$/, function (next) {
         //By default 2015 year is selected
         mortalityPage.getTableRowData(0).then(function(text){
-            expect(text[1]).to.equal('Rate\n375.8\nDeaths\n8,565\nPopulation\n2,279,263');
-            expect(text[2]).to.equal('Rate\n454.7\nDeaths\n10,451\nPopulation\n2,298,590');
-            expect(text[3]).to.equal('Rate\n415.4\nDeaths\n19,016\nPopulation\n4,577,853');
+            expect(text[1]).to.equal('Crude Death Rates\n375.8\nDeaths\n8,565\nPopulation\n2,279,263');
+            expect(text[2]).to.equal('Crude Death Rates\n454.7\nDeaths\n10,451\nPopulation\n2,298,590');
+            expect(text[3]).to.equal('Crude Death Rates\n415.4\nDeaths\n19,016\nPopulation\n4,577,853');
 
         }).then(next);
     });
@@ -279,7 +279,7 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^the age adjusted rates are shown for each row$/, function (next) {
         mortalityPage.getTableRowData(0).then(function(value){
-            expect(value[1]).to.equal('Rate\n511.3\nDeaths\n8,565\nPopulation\n2,279,263');
+            expect(value[1]).to.equal('Age Adjusted Death Rates\n511.3\nDeaths\n8,565\nPopulation\n2,279,263');
         }).then(next);
     });
 
@@ -656,21 +656,21 @@ var mortalityStepDefinitionsWrapper = function () {
         mortalityPage.getTableRowData(0).then(function(rowdata){
             expect(rowdata[0]).to.equals('American Indian or Alaska Native');
             //Female
-            expect(rowdata[1]).to.contains('Rate');
+            expect(rowdata[1]).to.contains('Crude Death Rates');
             expect(rowdata[1]).to.contains('346.1');
             expect(rowdata[1]).to.contains('Deaths');
             expect(rowdata[1]).to.contains('5,178');
             expect(rowdata[1]).to.contains('Population');
             expect(rowdata[1]).to.contains('1,496,044');
             //Male
-            expect(rowdata[2]).to.contains('Rate');
+            expect(rowdata[2]).to.contains('Crude Death Rates');
             expect(rowdata[2]).to.contains('415.6');
             expect(rowdata[2]).to.contains('Deaths');
             expect(rowdata[2]).to.contains('6,185');
             expect(rowdata[2]).to.contains('Population');
             expect(rowdata[2]).to.contains('1,488,106');
             //Number of deaths
-            expect(rowdata[3]).to.contains('Rate');
+            expect(rowdata[3]).to.contains('Crude Death Rates');
             expect(rowdata[3]).to.contains('380.8');
             expect(rowdata[3]).to.contains('Deaths');
             expect(rowdata[3]).to.contains('11,363');

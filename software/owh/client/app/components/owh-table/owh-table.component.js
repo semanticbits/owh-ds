@@ -108,7 +108,8 @@
                         if(['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates'].indexOf(otc.tableView) >= 0) {
                             cell += '<div id="crudeRateDiv" class="owh-table__left-col ' + (row.length > 5 ? 'usa-width-one-half' : 'usa-width-one-third') + '">';
                             if(rowIndex === 0) {
-                                cell += '<label class="owh-table__label">Rate</label>';
+                                var rateLabel = { 'crude_death_rates': 'Crude Death Rates', 'age-adjusted_death_rates': 'Age Adjusted Death Rates' }[otc.tableView] || 'Rate';
+                                cell += '<label class="owh-table__label">' + rateLabel + '</label>';
                             }
                             var rateVisibility = getRateVisibility(column.title, column.pop);
                             if(otc.tableView === 'age-adjusted_death_rates') {
