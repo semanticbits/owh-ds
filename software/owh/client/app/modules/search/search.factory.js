@@ -38,7 +38,7 @@
          * @param response
          */
         function updateFiltersAndData(filters, response, groupOptions, mapOptions) {
-            var primaryFilters = filters.primaryFilters;    
+            var primaryFilters = filters.primaryFilters;
             //sets primary filter
             var primaryFilter = utilService.findByKeyAndValue(primaryFilters, 'key', response.data.queryJSON.key);
             if(primaryFilter.key == 'mental_health') {
@@ -537,7 +537,7 @@
             for (var i = 0; i< pFilter.allFilters.length; i++){
                 var filter = utilService.clone(pFilter.allFilters[i]);
                 // Clear autocomplete options for mcd and ucd
-                if( i == 9 || i == 12){
+                if( i == 10 || i == 11){
                     filter.autoCompleteOptions = [];
                 }
                 removeSearchResults(filter.autoCompleteOptions);
