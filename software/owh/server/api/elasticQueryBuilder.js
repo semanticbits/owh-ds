@@ -440,7 +440,6 @@ function getPramsQueryForAllYearsAndQuestions(primaryFilter, apiQuery) {
 /**
  * Get all options as array of values
  * @param filterOptions
- * @returns {null}
  */
 function getFilterOptionValues(filterOptions) {
     return filterOptions.map(function(option) {
