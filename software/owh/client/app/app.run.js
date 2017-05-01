@@ -279,7 +279,23 @@
             "medical_attendant&tobacco_use": "horizontalStack",
             "chronic_hypertension&tobacco_use": "horizontalStack",
             "diabetes&tobacco_use": "horizontalStack",
-            "eclampsia&tobacco_use": "horizontalStack"
+            "eclampsia&tobacco_use": "horizontalStack",
+
+            "sex&ethnicity": "verticalBar",
+            "sex&agegroup": "horizontalStack",
+            "sex&state": "verticalBar",
+            "sex&region": "verticalBar",
+            "race&ethnicity": "horizontalBar",
+            "race&state": "horizontalStack",
+            "race&region": "verticalBar",
+            "ethnicity&agegroup": "horizontalBar",
+            "ethnicity&state": "horizontalStack",
+            "ethnicity&region": "verticalBar",
+            "agegroup&region": "verticalBar",
+            "current_year&ethnicity":"horizontalBar",
+            "current_year&agegroup":"horizontalBar",
+            "current_year&state":"horizontalBar",
+            "current_year&region":"verticalBar"
 
 
         };

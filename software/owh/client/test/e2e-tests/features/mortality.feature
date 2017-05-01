@@ -281,3 +281,8 @@ Scenario: Group by 'State' in age adjusted rate
     Given I am on search page
     When I select groupBy "Column" option for "Place of Death" filter
     Then I see disabled option "Hospital, clinic or Medical Center- Patient status unknown" not being displayed in data table
+
+ Scenario: State filter group by row
+   Given I am on search page
+   When I select groupBy "Row" option for "State" filter
+   Then I see data table with Race and State values
