@@ -8,7 +8,6 @@ exports.config = {
   specs: [
     'features/*.feature'
   ],
-
   cucumberOpts: {
     // require step definitions
     require: [
