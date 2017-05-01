@@ -1134,18 +1134,18 @@ describe("YRBS API", function () {
 
     it("invokeYRBS state service with grouping and filtering", function (){
         var apiQuery = {'searchFor': 'mental_health', 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000},{"key":"yrbsRace","queryKey":"race","size":100000},{"key":"yrbsState","queryKey":"sitecode","size":100000}]}},
-            'query': {'question.path':{ 'value': ['qn8']}, 'race':{value:['White', 'Black or African American']},'sitecode':{value:['VA','MO']}}};
+            'query': {'question.path':{ 'value': ['qn8']}, 'race':{value:['White', 'Black or African American']},'sitecode':{value:['CA','MO']}}};
 
         return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
             var q0=resp.table.question[0];
-            expect(q0.mental_health).to.eql({"mean":"86.4","ci_l":"84.7","ci_u":"87.9","count":16512});
+            expect(q0.mental_health).to.eql({"mean":"81.6","ci_l":"77.4","ci_u":"85.1","count":10156});
             var race = sortByKey(q0.race,'name',true);
             expect(race[0].name).to.eql("Black or African American");
             expect(race[1].name).to.eql("White");
             var b = sortByKey(race[0].sitecode, 'name', true);
-            expect(b).to.eql([{"name":"MO","mental_health":{"mean":"92.8","ci_l":"90.2","ci_u":"94.7","count":1395}},{"name":"VA","mental_health":{"mean":"91.1","ci_l":"88.7","ci_u":"93.1","count":2031}}]);
+            expect(b).to.eql([{"name":"CA","mental_health":{"mean":"90.1","ci_l":"76.8","ci_u":"96.1","count":38}}, {"name":"MO","mental_health":{"mean":"92.8","ci_l":"90.2","ci_u":"94.7","count":1395}}]);
             var w = sortByKey(race[1].sitecode, 'name', true);
-            expect(w).to.eql([{"name":"MO","mental_health":{"mean":"87.8","ci_l":"85.1","ci_u":"90.1","count":8483}},{"name":"VA","mental_health":{"mean":"77.6","ci_l":"74.7","ci_u":"80.3","count":4603}}]);
+            expect(w).to.eql([{"name":"CA","mental_health":{"mean":"48.8","ci_l":"37.8","ci_u":"59.8","count":240}}, {"name":"MO","mental_health":{"mean":"87.8","ci_l":"85.1","ci_u":"90.1","count":8483}}]);
         });
     });
 
