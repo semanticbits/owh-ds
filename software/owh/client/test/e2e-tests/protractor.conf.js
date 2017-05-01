@@ -8,7 +8,6 @@ exports.config = {
   specs: [
     'features/*.feature'
   ],
-
   cucumberOpts: {
     // require step definitions
     require: [
@@ -18,6 +17,7 @@ exports.config = {
       'features/step_definitions/commonSteps.js',
       'features/step_definitions/bridgeRaceSteps.js',
       'features/step_definitions/natalitySteps.js',
+      'features/step_definitions/pramsSteps.js',
       'features/support/hook.js'
     ],
       format: 'pretty'

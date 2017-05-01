@@ -7,7 +7,7 @@ Feature: Natality filters
   Background: Access Natality page
     When I am at home page
     And  I click on Explore button in Health Information Gateway section
-    Then I should get search page with default filter type "Mortality"
+    Then I should get search page with default filter type "Detailed Mortality"
     When I change 'I'm interested in' dropdown value to "Natality"
     Then I should see filter type "Natality" selected
     And I should see filter type "Number of Births" selected for show me dropdown
