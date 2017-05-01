@@ -1,6 +1,7 @@
 var elasticQueryBuilder = require("../api/elasticQueryBuilder");
 var supertest = require("supertest");
 var expect = require("expect.js");
+var pramsFilters = require('./prams_filters.json');
 
 describe("Build elastic search queries", function(){
      it("Build search query with empty query and aggregations", function(done){
@@ -266,6 +267,37 @@ describe("Build elastic search queries", function(){
             filterType: 'radio',autoCompleteOptions: ['9th', '10th', '11th','12th'], defaultGroup:"column", helpText:"label.help.text.yrbs.grade" }
         var result = elasticQueryBuilder.buildFilterQuery(filter);
         expect(result).to.eql(false);
+        done();
+    });
+
+    it("should build API query for prams selected year", function (done) {
+        var result = elasticQueryBuilder.buildAPIQuery(pramsFilters);
+        var apiQuery = result.apiQuery;
+        expect(apiQuery.searchFor).to.eql( 'prams');
+        var query = apiQuery.query;
+        expect(query.year).to.eql(
+            {key: 'year',
+            queryKey: 'year',
+            value: [ '2007' ],
+            primary: false });
+        done();
+    });
+
+    it("should build API query for prams all years", function (done) {
+        var yearFilter = pramsFilters.sideFilters[0].sideFilters[1];
+        //reset selected years
+        yearFilter.filters.value = [];
+        yearFilter.filters.allChecked = true;
+
+        var result = elasticQueryBuilder.buildAPIQuery(pramsFilters);
+        var apiQuery = result.apiQuery;
+        expect(apiQuery.searchFor).to.eql( 'prams');
+        var query = apiQuery.query;
+        expect(query.year).to.eql(
+            {key: 'year',
+            queryKey: 'year',
+            value: [ '2009','2007' ],
+            primary: false });
         done();
     });
 });

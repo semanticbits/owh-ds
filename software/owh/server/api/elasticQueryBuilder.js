@@ -443,9 +443,6 @@ function getPramsQueryForAllYearsAndQuestions(primaryFilter, apiQuery) {
  * @returns {null}
  */
 function getFilterOptionValues(filterOptions) {
-    if(!filterOptions) {
-        return null;
-    }
     return filterOptions.map(function(option) {
         return option.key;
     });
