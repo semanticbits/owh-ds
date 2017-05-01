@@ -6,7 +6,7 @@ Feature: Common functionality
 Scenario: Access mortality page
   When I am at home page
   And  I click on Explore button in Health Information Gateway section
-  Then I should get search page with default filter type "Mortality"
+  Then I should get search page with default filter type "Detailed Mortality"
   And URL in browser bar should not be base URL
 
 Scenario: Filter options updated
