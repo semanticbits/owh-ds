@@ -185,9 +185,14 @@ Scenario: Select 'All' years
   When user select "All" option in "Year" filter
   #Then data table should display right population count for year 'All' filter
 
-#Scenario: Suppressed
-#  When counts fall below the determined "cut-off" value and the conditions for suppression are met
-#  Then the value should be suppressed
+Scenario: Suppression
+  Given I am on search page
+  And I expands the State filter
+  When I select Alabama state from state filter
+  And I select groupBy "Off" option for "Sex" filter
+  And I select groupBy "Column" option for "Age Groups" filter
+  Then I see cell values being suppressed for American Indian race
+  And I see total is also being suppressed
 
 #Scenario: Data table
 #  When the user looks at a suppressed value in the data table

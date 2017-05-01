@@ -862,5 +862,30 @@ var mortalityStepDefinitionsWrapper = function () {
             })
         }).then(next);
     });
+
+    this.When(/^I select Alabama state from state filter$/, function (next) {
+        element.all(by.css('label[for=deaths_state_AL]')).then(function(elements, index) {
+            elements[1].click();
+        }).then(next);
+    });
+
+    this.Then(/^I see cell values being suppressed for American Indian race$/, function (next) {
+        mortalityPage.getTableCellData(0,0).then(function(data){
+            expect(data).to.contains('American Indian or Alaska Native');
+        });
+        mortalityPage.getTableCellData(0,1).then(function(data){
+            expect(data).to.contains('Suppressed');
+        }).then(next);
+    });
+
+    this.Then(/^I see total is also being suppressed$/, function (next) {
+        mortalityPage.getTableHeaders().then(function(data){
+            expect(data[22]).to.equals('Number of Deaths');
+        });
+        mortalityPage.getTableCellData(0,22).then(function(data){
+            expect(data).to.contains('Suppressed');
+        }).then(next);
+    });
+
 };
 module.exports = mortalityStepDefinitionsWrapper;
