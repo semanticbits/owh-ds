@@ -185,9 +185,9 @@ var natalityStepsDefinitionWrapper = function () {
             //Mother's Age 9
             expect(rowdata[1]).to.equals('15-19 years');
             //Female
-            expect(rowdata[2]).to.equals('3,776');
+            expect(rowdata[2]).to.equals('3,776 (49.1%)');
             //Male
-            expect(rowdata[3]).to.equals('3,914');
+            expect(rowdata[3]).to.equals('3,914 (50.9%)');
             //Total
             expect(rowdata[4]).to.equals('7,690');
         }).then(next);
@@ -209,9 +209,9 @@ var natalityStepsDefinitionWrapper = function () {
             //Mother's Age 9
             expect(rowdata[1]).to.equals('15 years');
             //Female
-            expect(rowdata[2]).to.equals('957');
+            expect(rowdata[2]).to.equals('957 (49.6%)');
             //Male
-            expect(rowdata[3]).to.equals('974');
+            expect(rowdata[3]).to.equals('974 (50.4%)');
             //Total
             expect(rowdata[4]).to.equals('1,931');
         }).then(next);
