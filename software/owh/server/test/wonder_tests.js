@@ -1,6 +1,7 @@
 var wonder = require("../api/wonder");
 var supertest = require("supertest");
 var expect = require("expect.js");
+var stateWonderResponse = require('./data/wonder_response_for_states.json');
 
 describe("WONDER API", function () {
     var w;
@@ -36,6 +37,28 @@ describe("WONDER API", function () {
         }, function(err){
             console.log(err);
             expect(err).to.be.undefined();
+        });
+    });
+
+    it("invoke wonder API query for state", function(){
+
+        query = {"searchFor":"deaths","query":{"current_year":{"key":"year","queryKey":"current_year","value":["2015"],"primary":false}},
+            "aggregations":{"simple":[],"nested":{"table": [{"key":"race","queryKey":"race","size":0},
+                                                            {"key":"state","queryKey ":"state","size":0},
+                                                            {"key":"gender","queryKey":"sex","size":0}],
+            "charts":[[{"key":"race","queryKey":"race","size":0},
+                       {"key":"state","queryKey":"state","size":0}],
+                      [{"key":"gender","queryKey":"sex","size":0},
+                       {"key":"race","queryKey":"race","size":0}]],
+            "maps":[[{"key":"states","queryKey":"state","size":0},
+                     {"key":"sex","queryKey":"sex","size":0}]]
+            }}
+        };
+        var startTime = new Date();
+        return w.invokeWONDER(query).then(function (resp) {
+            var duration = new Date() - startTime;
+            console.log("invoke wonder API query (group by 3) duration: " + duration);
+            expect(resp).to.eql(stateWonderResponse);
         });
     });
 
