@@ -280,7 +280,7 @@ var isEmptyObject = function(obj) {
 function findFilterByKeyAndValue(a, key, value) {
     if (a) {
         for (var i = 0; i < a.length; i++) {
-            var filter = a[i].filters;
+            var filter = a[i];
             if ( filter[key] && filter[key] === value ) {return a[i];}
         }
     }
@@ -295,8 +295,8 @@ function findFilterByKeyAndValue(a, key, value) {
  * @returns {*}
  */
 function isFilterApplied(a) {
-    if (a && a.filters) {
-        return a.filters.value.length > 0;
+    if (a) {
+        return a.value.length > 0;
     }
     return false;
 }
@@ -401,13 +401,9 @@ function buildAPIQuery(primaryFilter) {
             apiQuery.query[eachFilter.queryKey] = eachFilterQuery;
         }
     });
-    primaryFilter.sideFilters.forEach(function(category) {
-        category.sideFilters.forEach(function(filter){
-            if(filter.filters.key === 'topic') {
-                apiQuery.query['question.path'].value = filter.filters.questions;
-            }
-        })
-    });
+    if (primaryFilter.key === 'prams') {
+        getPramsQueryForAllYearsAndQuestions(primaryFilter, apiQuery)
+    }
     apiQuery.aggregations.nested.table = rowAggregations.concat(columnAggregations);
     var result = prepareChartAggregations(headers.rowHeaders.concat(headers.columnHeaders), apiQuery.searchFor);
     headers.chartHeaders = result.chartHeaders;
@@ -419,6 +415,36 @@ function buildAPIQuery(primaryFilter) {
         apiQuery: apiQuery,
         headers: headers
     };
+}
+
+/**
+ * Prepare queru for PRAMS Years and Questions
+ * @param primaryFilter
+ * @param apiQuery
+ */
+function getPramsQueryForAllYearsAndQuestions(primaryFilter, apiQuery) {
+    primaryFilter.sideFilters.forEach(function(category) {
+        category.sideFilters.forEach(function(filter){
+            if(filter.filters.key === 'topic') {
+                apiQuery.query['question.path'].value = filter.filters.questions;
+            } else if (filter.filters.key === 'year') {
+                apiQuery.query['year'] = getFilterQuery(filter.filters);
+                if(filter.filters.value.length == 0) {
+                    apiQuery.query['year'].value = getFilterOptionValues(filter.filters.autoCompleteOptions);
+                }
+            }
+        });
+    });
+}
+
+/**
+ * Get all options as array of values
+ * @param filterOptions
+ */
+function getFilterOptionValues(filterOptions) {
+    return filterOptions.map(function(option) {
+        return option.key;
+    });
 }
 
 function clone(a) {
