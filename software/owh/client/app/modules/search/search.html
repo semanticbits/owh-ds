@@ -116,7 +116,8 @@
                     <!-- show hide percentage -->
                     <div id="togglePercentage" class="togglePercentage pull-left"
                          ng-show="sc.filters.selectedPrimaryFilter.title === 'label.filter.mortality' && sc.tableView === 'number_of_deaths' ||
-                                  sc.filters.selectedPrimaryFilter.title === 'label.filter.natality' && sc.tableView === 'number_of_births'">
+                                  sc.filters.selectedPrimaryFilter.title === 'label.filter.natality' && sc.tableView === 'number_of_births' ||
+                                  sc.filters.selectedPrimaryFilter.title === 'label.census.bridge.race.pop.estimate' && sc.tableView === 'bridge_race'">
                         <a id="showPercentage" class="active-link custom-link " ng-class="{'selected': sc.tableData.calculatePercentage === true}" ng-click="sc.tableData.calculatePercentage = true;" title="Show percentage">
                             <span ng-show="sc.tableData.calculatePercentage === false" ng-bind="'label.mortality.search.table.show.percentage.button' | translate"></span>
                             <span ng-show="sc.tableData.calculatePercentage === true" ng-bind="'label.mortality.search.table.showing.percentage.button' | translate"></span>
@@ -126,7 +127,6 @@
                             <span ng-show="sc.tableData.calculatePercentage === false" ng-bind="'label.mortality.search.table.hidden.percentage.button' | translate"></span>
                         </a>
                     </div>
-
                     <div class="pull-right margin-bottom-20 margin-right-10">
                         <!--<div>Icons made by <a href="http://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">Madebyoliver</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
                         <a name="download_csv" ng-click="sc.downloadCSV()" title="Download CSV" class="cursor-pointer">
