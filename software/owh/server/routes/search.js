@@ -79,15 +79,8 @@ function search(q) {
     var preparedQuery = queryBuilder.buildAPIQuery(q);
     console.log('preparedQuery', preparedQuery);
     var finalQuery = '';
-    var stateFilter = {};
-    q.sideFilters.forEach(function(category) {
-        category.sideFilters.forEach(function(filter) {
-            if(filter.key === 'state') {
-                stateFilter = filter;
-            }
-        })
-    });
 
+    var stateFilter = queryBuilder.findFilterByKeyAndValue(q.allFilters, 'key', 'state');
     var isStateSelected = queryBuilder.isFilterApplied(stateFilter);
 
     logger.debug("Incoming query: ", JSON.stringify(preparedQuery));
