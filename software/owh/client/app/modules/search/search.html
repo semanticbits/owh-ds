@@ -114,7 +114,9 @@
                 <div class="usa-width-one-whole overflow-visible">
                     <hr />
                     <!-- show hide percentage -->
-                    <div id="togglePercentage" class="togglePercentage pull-left" ng-show="sc.filters.selectedPrimaryFilter.title === 'label.filter.mortality' && sc.tableView === 'number_of_deaths'">
+                    <div id="togglePercentage" class="togglePercentage pull-left"
+                         ng-show="sc.filters.selectedPrimaryFilter.title === 'label.filter.mortality' && sc.tableView === 'number_of_deaths' ||
+                                  sc.filters.selectedPrimaryFilter.title === 'label.filter.natality' && sc.tableView === 'number_of_births'">
                         <a id="showPercentage" class="active-link custom-link " ng-class="{'selected': sc.tableData.calculatePercentage === true}" ng-click="sc.tableData.calculatePercentage = true;" title="Show percentage">
                             <span ng-show="sc.tableData.calculatePercentage === false" ng-bind="'label.mortality.search.table.show.percentage.button' | translate"></span>
                             <span ng-show="sc.tableData.calculatePercentage === true" ng-bind="'label.mortality.search.table.showing.percentage.button' | translate"></span>
