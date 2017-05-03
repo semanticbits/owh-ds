@@ -6,7 +6,7 @@ var expect = chai.expect;
 
 var natalityStepsDefinitionWrapper = function () {
 
-    this.setDefaultTimeout(30000);
+    this.setDefaultTimeout(60000);
     var natalityPage = require('../support/natality.po');
 
     this.Then(/^I see "([^"]*)" as first filter category$/, function (arg1, next) {

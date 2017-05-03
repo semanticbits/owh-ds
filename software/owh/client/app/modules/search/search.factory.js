@@ -1919,6 +1919,7 @@
                                     collapse: true,
                                     allowGrouping: true,
                                     groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
                                     filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'yrbsSex')
                                 },
                                 {
@@ -1926,6 +1927,7 @@
                                     collapse: true,
                                     allowGrouping: true,
                                     groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
                                     filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'yrbsRace')
                                 },
                                 {
@@ -1933,6 +1935,7 @@
                                     collapse: true,
                                     allowGrouping: true,
                                     groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
                                     filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'yrbsGrade')
                                 },
                                 {
@@ -1940,18 +1943,19 @@
                                     collapse: true,
                                     allowGrouping: true,
                                     groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
                                     filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'yrbsState')
                                 },
                                 {
-                                    filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                    filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions, dontShowCounts: true,
                                     filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'sexid')
                                 },
                                 {
-                                    filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                    filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.columnGroupOptions, dontShowCounts: true,
                                     filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'sexpart')
                                 },
                                 {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filterGroup: false, collapse: false, allowGrouping: false, dontShowCounts: true,
                                     filters: utilService.findByKeyAndValue(filters.yrbsAdvancedFilters, 'key', 'question')
                                 }
                             ]

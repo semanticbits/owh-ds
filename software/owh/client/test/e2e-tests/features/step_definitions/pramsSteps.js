@@ -6,7 +6,7 @@ var expect = chai.expect;
 
 var PRAMSStepDefinitionsWrapper = function () {
 
-    this.setDefaultTimeout(30000);
+    this.setDefaultTimeout(60000);
     var pramsPage = require('../support/prams.po');
 
     this.When(/^I select PRAMS as primary filter$/, function (next) {

@@ -1,7 +1,7 @@
 //jshint strict: false
 exports.config = {
 
-  allScriptsTimeout: 11000,
+  allScriptsTimeout: 120000,
   framework: 'custom',
   frameworkPath: require.resolve('protractor-cucumber-framework'),
 

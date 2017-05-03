@@ -6,7 +6,7 @@ var expect = chai.expect;
 
 var yrbsStepDefinitionsWrapper = function () {
 
-    this.setDefaultTimeout(30000);
+    this.setDefaultTimeout(120000);
 
     var yrbsPage = require('../support/yrbspage.po')
 
