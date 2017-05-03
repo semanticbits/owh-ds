@@ -6,7 +6,7 @@ var expect = chai.expect;
 
 var BridgeRaceStepDefinitionsWrapper = function () {
 
-    this.setDefaultTimeout(30000);
+    this.setDefaultTimeout(60000);
     var bridgeRacePage = require('../support/bridgerace.po');
 
     this.Then(/^I see the data table with race, female, male and total table headers$/, function () {
