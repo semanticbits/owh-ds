@@ -1,16 +1,16 @@
 data_file:
   # when local_directory is set the data files will processed from this local directory and AWS properties will be ignored
-  local_directory: 'local data directory'
+  local_directory: '/home/ashok/projects/OWH/infant_deaths/data_files'
   # AWS S3 bucket information, when local_directory peroperty is not specified above, the ETL will try to download the data files
   # from the directory in the AWS S3 bucket specified below
   aws_access_key_id: 'your aws accesskey'
   aws_secret_access_key: 'your aws secret key'
   aws_s3_bucket_name: 'owh-data'
-  aws_s3_directory: 'datasets/mortality'
+  aws_s3_directory: 'datasets/infant_mortality'
 elastic_search:
   host: 127.0.0.1
   port: 9200
   bulk_load_size: 10000
-  index: owh_mortality
-  type: mortality
-  type_mapping: mortality-type-mapping.json
+  index: owh_infant_mortality
+  type: infant_mortality
+  type_mapping: infant-mortality-type-mapping.json

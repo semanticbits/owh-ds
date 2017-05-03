@@ -7,6 +7,11 @@ from owh.etl.common.fixedwidthfile_parser import FixedWidthFileParser
 
 logger = logging.getLogger('infant_mortality_etl')
 
+data_mapping_configs = {'LinkPE00USNum.dat':'link_num_2000_2002.json', 'LinkPE01USNum.dat':'link_num_2000_2002.json',
+                        'LinkPE02USNum.dat':'link_num_2000_2002.json', 'LinkPE03USNum.dat': 'link_num_2003.json',
+                        'LinkPE04USNum.dat':'link_num_2004.json', 'VS05LINK.USNUMPUB': 'link_num_2005_2006.json',
+                        'VS06LINK.USNUMPUB':'link_num_2005_2006.json', 'VS07LINK.USNUMPUB': 'link_num_2007_2008.json',
+                        'VS08LINK.USNUMPUB':'link_num_2007_2008.json'}
 
 class InfantMortalityETL (ETL):
 
@@ -18,7 +23,7 @@ class InfantMortalityETL (ETL):
         self.create_index(os.path.join(os.path.dirname(__file__), "es_mapping"
                            ,self.config['elastic_search']['type_mapping'])
                            ,self.action == 'replace')
-        #self._load_icd_code_mappings()
+        self._load_icd_code_mappings()
 
     def _load_icd_code_mappings(self):
         with open(os.path.join(os.path.dirname(__file__),"es_mapping/conditions-ICD-10-mappings.json")) as jf:
@@ -29,15 +34,7 @@ class InfantMortalityETL (ETL):
             if value == '':  # check for blank
                 record[key] = '_BLANK_'
 
-    def _process_conditions(self, record, condn_axis, condn_col_prefix):
-        condcount = record[condn_axis]
-        conditions = []
-        for i in range(1,21):
-            condcolname = '%s%d' % (condn_col_prefix, i)
-            if record[condcolname]:
-                conditions.append(record[condcolname])
-            del record[condcolname]
-        record[condn_axis[:-6]] = conditions
+
 
     def perform_etl(self):
         """Perform the infant mortality ETL"""
@@ -51,30 +48,19 @@ class InfantMortalityETL (ETL):
                 continue
 
             file_path = os.path.join(self.dataDirectory, f)
-            logger.info("Processing file: %s", file_path)
-            if f.startswith("MULT"):
-                year = int(f[4:8])  # e.g. MULT2011
-            else:
-                year = 2000 + int(f[4:6])  # e.g Mort01us
+            logger.info("Processing file: %s", f)
 
-            if year <= 2015 and year >= 2003:   # data file for year 2003 to 2014
-                config_file =  os.path.join(self.dataDirectory, 'data_mapping', 'mortality_mapping_03-15.json')
-            elif year <= 2002 and year >= 2000:
-                config_file =  os.path.join(self.dataDirectory, 'data_mapping', 'mortality_mapping_00-02.json')
-            else:
+            # get the corresponding data mapping file
+            config_file = os.path.join(self.dataDirectory, 'data_mapping', data_mapping_configs[f])
+
+            if not config_file:
                 logger.warn("No mapping available for data file %s, skipping", file_path)
                 continue
-            # load dataset metadata
-            self.loadDataSetMetaData('deaths', str(year), config_file)
-            # delete records for the year if action is update
-            # FIXME: The delete function is not working as expected, the results vary by ES version
-            # in 1.5.x, the delete action doesn't work at all, in 2.4.x it delete more records than specified
-            # because of these we can not use update action for now
-            if (self.action == 'update'):
-                deleteCount += self.esRepository.delete_records_for_year(year)[0]
-            mortalityParser = FixedWidthFileParser(file_path, config_file)
+
+            parser = FixedWidthFileParser(file_path, config_file)
+            record = []
             while True:
-                record  = mortalityParser.parseNextLine()
+                record  = parser.parseNextLine()
                 if not record:
                     break
 
@@ -84,20 +70,12 @@ class InfantMortalityETL (ETL):
 
                 del record['residence']
                 recordCount += 1
-                self._process_conditions(record,'entity_axis_condn_count', 'EAC')
-                self._process_conditions(record,'record_axis_condn_count', 'RAC')
 
                 icdcode = record['ICD_10_code'].upper()
                 if (icdcode):
                     record['ICD_10_code'] = {'code': icdcode, 'path':self.icd_10_code_mappings[icdcode]}
                 else:
                     record['ICD_10_code'] = self._check_blanks(icdcode)
-
-                #add ethnicity group based on hispanic_origin
-                if(record['hispanic_origin'] == 'Unknown' or record['hispanic_origin'] == 'Non-Hispanic'):
-                    record['ethnicity_group'] = record['hispanic_origin']
-                else:
-                    record['ethnicity_group'] = 'Hispanic'
 
                 self._check_blanks(record)
                 self.batchRepository.persist({"index": {"_index": self.config['elastic_search']['index'], "_type": self.config['elastic_search']['type'], "_id": recordCount}})
@@ -106,12 +84,26 @@ class InfantMortalityETL (ETL):
             self.batchRepository.flush()
             self.refresh_index()
         self.metrics.insertCount=recordCount
-        self.metrics.deleteCount=deleteCount
+        self.updateDsMetadata()
+        logger.info("*** Processed %s records from all natality data files", self.metrics.insertCount)
 
+
+    def updateDsMetadata(self):
+        logger.info("*** Loading infant deaths Metadata ***")
+        self.loadDataSetMetaData('infant_mortality', '2000', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2000_2002.json'))
+        self.loadDataSetMetaData('infant_mortality', '2001', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2000_2002.json'))
+        self.loadDataSetMetaData('infant_mortality', '2002', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2000_2002.json'))
+        self.loadDataSetMetaData('infant_mortality', '2003', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2003.json'))
+        self.loadDataSetMetaData('infant_mortality', '2004', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2004.json'))
+        self.loadDataSetMetaData('infant_mortality', '2005', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2005_2006.json'))
+        self.loadDataSetMetaData('infant_mortality', '2006', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2005_2006.json'))
+        self.loadDataSetMetaData('infant_mortality', '2007', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2007_2008.json'))
+        self.loadDataSetMetaData('infant_mortality', '2008', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2007_2008.json'))
+        logger.info("*** Metadata Loaded successfully ***")
 
     def validate_etl(self):
         """ Validate the ETL"""
-        expectedCount = (self.initialCount - self.metrics.deleteCount + self.metrics.insertCount)
+        expectedCount = (self.initialCount + self.metrics.insertCount)
         if expectedCount != self.get_record_count():
             self.metrics.message = "Number of records in the DB (%d) not same as the number of records expected (%d)" % (self.get_record_count(), expectedCount)
             return False
@@ -125,5 +117,5 @@ class InfantMortalityETL (ETL):
 
 if __name__ == "__main__":
     # Perform ETL
-    indexer = MortalityIndexer(file(os.path.join(os.path.dirname(__file__), "config.yaml"), 'r'))
+    indexer = InfantMortalityETL(file(os.path.join(os.path.dirname(__file__), "config.yaml"), 'r'))
     indexer.execute()
