@@ -1,6 +1,7 @@
 var elasticQueryBuilder = require("../api/elasticQueryBuilder");
 var supertest = require("supertest");
 var expect = require("expect.js");
+var pramsFilters = require('./prams_filters.json');
 
 describe("Build elastic search queries", function(){
      it("Build search query with empty query and aggregations", function(done){
@@ -214,9 +215,9 @@ describe("Build elastic search queries", function(){
 
     it("find Filter by key and value", function (done) {
         //if found
-        var filters = [{"filterGroup":false,"collapse":true,"allowGrouping":true,"filters":{"key":"gender","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"autoCompleteOptions":[{"key":"Female","title":"Female"},{"key":"Male","title":"Male"}]}},{"filters":{"queryKey":"state", "key":"state","primary":false,"value":["AL"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]}}];
+        var filters = [{"key":"gender","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"autoCompleteOptions":[{"key":"Female","title":"Female"},{"key":"Male","title":"Male"}]},{"queryKey":"state","key":"state","primary":false,"value":["AL"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]}];
         var stateFilter = elasticQueryBuilder.findFilterByKeyAndValue(filters, 'key', 'state');
-        expect(stateFilter.filters.key).to.eql('state');
+        expect(stateFilter.key).to.eql('state');
 
         //not found
         var filter = elasticQueryBuilder.findFilterByKeyAndValue(filters, 'key', 'race');
@@ -226,12 +227,12 @@ describe("Build elastic search queries", function(){
 
     it("test if filter is applied", function (done) {
         //if filter applied
-        var filter = {"filters":{"queryKey":"state","primary":false,"value":["AL"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]}};
+        var filter = {"queryKey":"state","key":"state","primary":false,"value":["AL"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]};
         var isFilterApplied = elasticQueryBuilder.isFilterApplied(filter);
         expect(isFilterApplied).to.eql(true);
 
         //not applied
-        filter = {"filterGroup":false,"collapse":true,"allowGrouping":true,"filters":{"key":"gender","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"autoCompleteOptions":[{"key":"Female","title":"Female"},{"key":"Male","title":"Male"}]}};
+        filter = {"queryKey":"state","key":"state","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]};
         var isFilterApplied = elasticQueryBuilder.isFilterApplied(filter);
         expect(isFilterApplied).to.eql(false);
         done();
@@ -266,6 +267,37 @@ describe("Build elastic search queries", function(){
             filterType: 'radio',autoCompleteOptions: ['9th', '10th', '11th','12th'], defaultGroup:"column", helpText:"label.help.text.yrbs.grade" }
         var result = elasticQueryBuilder.buildFilterQuery(filter);
         expect(result).to.eql(false);
+        done();
+    });
+
+    it("should build API query for prams selected year", function (done) {
+        var result = elasticQueryBuilder.buildAPIQuery(pramsFilters);
+        var apiQuery = result.apiQuery;
+        expect(apiQuery.searchFor).to.eql( 'prams');
+        var query = apiQuery.query;
+        expect(query.year).to.eql(
+            {key: 'year',
+            queryKey: 'year',
+            value: [ '2007' ],
+            primary: false });
+        done();
+    });
+
+    it("should build API query for prams all years", function (done) {
+        var yearFilter = pramsFilters.sideFilters[0].sideFilters[1];
+        //reset selected years
+        yearFilter.filters.value = [];
+        yearFilter.filters.allChecked = true;
+
+        var result = elasticQueryBuilder.buildAPIQuery(pramsFilters);
+        var apiQuery = result.apiQuery;
+        expect(apiQuery.searchFor).to.eql( 'prams');
+        var query = apiQuery.query;
+        expect(query.year).to.eql(
+            {key: 'year',
+            queryKey: 'year',
+            value: [ '2009','2007' ],
+            primary: false });
         done();
     });
 });

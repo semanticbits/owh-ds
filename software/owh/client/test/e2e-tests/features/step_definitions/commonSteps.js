@@ -8,21 +8,19 @@ var previousUrl = "";
 
 var commonStepDefinitionsWrapper = function () {
 
-    this.setDefaultTimeout(30000);
+    this.setDefaultTimeout(60000);
     var commonPage = require('../support/commonpage.po');
 
-    this.Then(/^URL in browser bar should change$/, function () {
+    this.Then(/^URL in browser bar should change$/, function (next) {
         browser.getCurrentUrl().then(function(url) {
             expect(url).not.to.equal(browser.baseUrl);
-        });
-        return browser.waitForAngular();
+        }).then(next);
     });
 
-    this.Then(/^URL in browser bar should not be base URL$/, function () {
+    this.Then(/^URL in browser bar should not be base URL$/, function (next) {
         browser.getCurrentUrl().then(function(url) {
             expect(url).to.contains("/search/");
-        });
-        return browser.waitForAngular();
+        }).then(next);
     });
 
     this.When(/^I selects the back button then browser URL should change$/, function () {

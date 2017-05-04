@@ -336,23 +336,71 @@ describe("Search controller: ", function () {
 
     it('filterUtilities for yrbs should perform proper functions', function() {
         var searchController= $controller('SearchController',{$scope:$scope});
+        var confidenceIntervalOption = {
+            title: 'Confidence Intervals',
+            type: 'toggle',
+            value: false,
+            onChange: function(value, option) {
+                option.value = value;
+            },
+            options: [
+                {
+                    title: 'label.mortality.search.table.show.percentage.button',
+                    key: true
+                },
+                {
+                    title: 'label.mortality.search.table.hide.percentage.button',
+                    key: false
+                }
+            ]
+        };
+        searchController.filterUtilities = {
+            'mental_health': [
+                {
+                    title: 'Variance',
+                    options: [
+                        confidenceIntervalOption,
+                        {
+                            title: 'Unweighted Frequency',
+                            type: 'toggle',
+                            value: false,
+                            onChange: function(value, option) {
+                                option.value = value;
+                            },
+                            options: [
+                                {
+                                    title: 'label.mortality.search.table.show.percentage.button',
+                                    key: true
+                                },
+                                {
+                                    title: 'label.mortality.search.table.hide.percentage.button',
+                                    key: false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            'prams' : [
+                {
+                    title: 'Variance',
+                    options: [
+                        confidenceIntervalOption
+                    ]
+                }
+            ]
+        };
+        var option1 = searchController.filterUtilities['mental_health'][0].options[0];
+        var option2 = searchController.filterUtilities['mental_health'][0].options[1];
 
-
-        searchController.filterUtilities['mental_health'][0].options[0].onChange(true);
-
-        expect(searchController.showConfidenceIntervals).toBeTruthy();
-
-        searchController.filterUtilities['mental_health'][0].options[0].onChange(false);
-
-        expect(searchController.showConfidenceIntervals).toBeFalsy();
-
-        searchController.filterUtilities['mental_health'][0].options[1].onChange(true);
-
-        expect(searchController.showUnweightedFrequency).toBeTruthy();
-
-        searchController.filterUtilities['mental_health'][0].options[1].onChange(false);
-
-        expect(searchController.showUnweightedFrequency).toBeFalsy();
+        option1.onChange(true, option1);
+        expect(option1.value).toBeTruthy();
+        option1.onChange(false, option1);
+        expect(option1.value).toBeFalsy();
+        option2.onChange(true, option2);
+        expect(option2.value).toBeTruthy();
+        option2.onChange(false, option2);
+        expect(option2.value).toBeFalsy();
     });
 
     it("search results by queryID", inject(function(searchFactory) {
@@ -461,6 +509,10 @@ describe("Search controller: ", function () {
                 "_map":{"_layers":{"123":{"setStyle":function () {}}}}}},"leafletObject":{"_map":{"_layers":{"123":{"setStyle":function () {}}}}}};
         $rootScope.$broadcast('leafletDirectiveGeoJson.mouseout', mouseoutData);
         $rootScope.$broadcast('leafletDirectiveMap.mouseout', {});
+
+        var maploadData = {"leafletObject":{addControl:function() {}}};
+        $rootScope.$broadcast('leafletDirectiveMap.load', maploadData);
+
         //$scope.$digest();
     }));
 });

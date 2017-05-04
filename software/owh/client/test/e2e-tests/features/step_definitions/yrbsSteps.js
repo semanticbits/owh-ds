@@ -6,7 +6,7 @@ var expect = chai.expect;
 
 var yrbsStepDefinitionsWrapper = function () {
 
-    this.setDefaultTimeout(30000);
+    this.setDefaultTimeout(300000);
 
     var yrbsPage = require('../support/yrbspage.po')
 
@@ -27,7 +27,6 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on Show \# More under the questions in any category$/, function (next) {
-        browser.waitForAngular();
         element(by.cssContainingText('a', 'Show 18 More')).click()
             .then(next);
     });
@@ -119,7 +118,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
 
-    this.Then(/^I should be able to select more than one\. The radio buttons must be changed to checkboxes$/, function () {
+    this.Then(/^I should be able to select more than one\. The radio buttons must be changed to checkboxes$/, function (next) {
         var raceFilter = yrbsPage.selectSideFilter("Race/Ethnicity");
         var raceParentElement = raceFilter.element(by.xpath('..')).element(by.xpath('..')).element(by.xpath('..'));
         raceFilter.getAttribute('class').then(function(className){
@@ -136,8 +135,7 @@ var yrbsStepDefinitionsWrapper = function () {
                 raceFilter.element(by.xpath('..')).click();
             }
             raceParentElement.element(by.xpath('.//*[.="American Indian or Alaska Native"]')).click();
-        });
-        return browser.waitForAngular();
+        }).then(next);
     });
 
     this.Then(/^the default filter pre\-selected should be Race$/, function () {
@@ -606,6 +604,66 @@ var yrbsStepDefinitionsWrapper = function () {
         return element.all(by.css('.jstree-undetermined')).then(function (elements) {
             expect(elements.length).to.equal(1);
         });
+    });
+
+    this.When(/^I click on Confidence Intervals option's "([^"]*)" button$/, function (arg, next) {
+        element(by.className('owh-side-menu__utility-option')).element(by.cssContainingText('span', arg)).click().then(next);
+    });
+
+    this.Then(/^"([^"]*)" button for Confidence Intervals should be remain selected$/, function (arg1) {
+        return expect(element(by.className('owh-side-menu__utility-option')).element(by.cssContainingText('span', arg1)).element(by.xpath('..')).getAttribute('class')).to.eventually.include('selected');
+    });
+
+    this.Then(/^I see Confidence Intervals value in data table$/, function (next) {
+        yrbsPage.getTableRowData(1).then(function(text) {
+            expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            //American Indian or Alaska Native
+            expect(text[1]).to.contains('46.0');
+            //Confidence Intervals
+            expect(text[1]).to.contains('(30.6-62.3)')
+        }).then(next);
+    });
+
+    this.Then(/^Confidence Intervals value in data table should be updated$/, function (next) {
+        yrbsPage.getTableRowData(1).then(function(text) {
+            expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            //American Indian or Alaska Native
+            expect(text[2]).to.contains('13.5');
+            //Confidence Intervals
+            expect(text[2]).to.contains('(10.3-17.6)');
+        }).then(next);
+    });
+
+    this.Then(/^I see Unweighted Frequency value in data table$/, function (next) {
+        yrbsPage.getTableRowData(1).then(function(text) {
+            expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            //American Indian or Alaska Native
+            expect(text[2]).to.contains('13.5');
+            //Confidence Intervals
+            expect(text[2]).to.contains('(10.3-17.6)');
+            //Unweighted Frequency
+            expect(text[2]).to.contains('290');
+        }).then(next);
+    });
+
+    this.Then(/^Unweighted Frequency value in data table should be updated$/, function (next) {
+        yrbsPage.getTableRowData(1).then(function(text) {
+            expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            //American Indian or Alaska Native
+            expect(text[1]).to.contains('46.0');
+            //Confidence Intervals
+            expect(text[1]).to.contains('(30.6-62.3)');
+            //Unweighted Frequency
+            expect(text[1]).to.contains('143');
+        }).then(next);
+    });
+
+    this.Then(/^"([^"]*)" button for Unweighted Frequency should be remain selected$/, function (arg1) {
+        return expect(element.all(by.className('owh-side-menu__utility-option')).last().element(by.cssContainingText('span', arg1)).element(by.xpath('..')).getAttribute('class')).to.eventually.include('selected');
+    });
+
+    this.When(/^I click on Unweighted Frequency option's "([^"]*)" button$/, function (arg, next) {
+        element.all(by.className('owh-side-menu__utility-option')).last().element(by.cssContainingText('span', arg)).click().then(next);
     });
 };
 module.exports = yrbsStepDefinitionsWrapper;

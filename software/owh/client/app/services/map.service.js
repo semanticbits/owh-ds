@@ -12,6 +12,7 @@
             updateStatesDeaths: updateStatesDeaths,
             addExpandControl: addExpandControl,
             addShareControl: addShareControl,
+            addScaleControl: addScaleControl,
             highlightFeature: highlightFeature,
             resetHighlight: resetHighlight
         };
@@ -44,12 +45,6 @@
                 mapMaxValue : minMaxValueObj.maxValue,
                 mapMinValue : minMaxValueObj.minValue
             });
-            //update legend values on filtering..
-            if (mapOptions.selectedMapSize==="big") {
-                angular.extend(primaryFilter.mapData, {
-                    legend: generateLegend(minMaxValueObj.minValue, minMaxValueObj.maxValue)
-                });
-            }
             angular.extend(primaryFilter.mapData, {
                 geojson: {
                     data: $rootScope.states,
@@ -70,15 +65,6 @@
         //generate labels for map legend labels
         function getLabels(minValue, maxValue) {
             return utilService.generateMapLegendLabels(minValue, maxValue);
-        }
-
-        //return legend configuration parameters
-        function generateLegend(minValue, maxValue){
-            return {
-                position: 'bottomleft',
-                colors: ['#190032','#270053','#3f007d','#54278f','#6a51a3','#807dba','#9e9ac8','#bcbddc','#dadaeb','#efedf5','#fcfbfd'],
-                labels: getLabels(minValue, maxValue)
-            }
         }
 
         //get map feature colors
@@ -132,11 +118,6 @@
                             resizeUSAMap(false, primaryFilter);
                             angular.element(container).removeClass('fa-compress');
                             angular.element(container).addClass('fa-expand');
-                        } else {
-                            mapOptions.selectedMapSize = "small";
-                            resizeUSAMap(false, primaryFilter);
-                            angular.element(container).removeClass('fa-compress');
-                            angular.element(container).addClass('fa-expand');
                         }
                     };
                     return container;
@@ -147,14 +128,11 @@
         function resizeUSAMap(isZoomIn, primaryFilter) {
             leafletData.getMap().then(function(map) {
                 if(isZoomIn) {
-                    angular.element('div.legend').show();
+                    angular.element('div.custom-legend').show();
                     map.zoomIn();
-                    angular.extend(primaryFilter.mapData, {
-                        legend: generateLegend(primaryFilter.mapData.mapMinValue, primaryFilter.mapData.mapMaxValue)
-                    });
                 } else {
                     map.zoomOut();
-                    angular.element('div.legend').hide();
+                    angular.element('div.custom-legend').hide();
                 }
                 $timeout(function(){ map.invalidateSize()}, 1000);
             });
@@ -185,6 +163,32 @@
         }
 
         /**
+         * Add horizontal Legend
+         * @param mapData
+         */
+        function addScaleControl(mapData) {
+            return L.Control.extend({
+                options: {
+                    position: 'bottomleft'
+                },
+                onAdd: function (map) {
+                    var container = L.DomUtil.create('div', 'leaflet-control leaflet-control-custom custom-legend');
+
+                    var colors = ['#190032','#270053','#3f007d','#54278f','#6a51a3','#807dba','#9e9ac8','#bcbddc','#dadaeb','#efedf5','#fcfbfd'];
+                    var labels = getLabels(mapData.mapMinValue, mapData.mapMaxValue);
+                    var legendScale = "<ul class='legend-scale'>";
+                    colors.forEach(function(color, index) {
+                        legendScale += '<li><span style="background:'+color+';"></span>'+labels[index]+'</li>';
+                    });
+                    legendScale += "</ul>";
+                    container.innerHTML = legendScale;
+                    return container;
+                }
+            });
+        }
+
+
+        /**
          * Set feature style
          */
         function highlightFeature(layerId, map) {
@@ -193,7 +197,7 @@
 
         /**
          * Reset the feature style
-         * @param mapArgs
+         * @param mapObj
          */
         function resetHighlight(mapObj) {
             var layer = mapObj.layer;

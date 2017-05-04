@@ -49,8 +49,9 @@
             mortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'deaths');
             bridgedRaceFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'bridge_race');
             sc.filters.selectedPrimaryFilter = $stateParams.selectedFilters;
-        }
 
+        }
+        sc.filterUtilities = sc.filters.filterUtilities;
         sc.selectedMapSize = 'big';
         sc.showMeOptions = {
             deaths: [
@@ -147,67 +148,10 @@
         //show certain filters for different table views
         //add availablefilter for birth_rates
         sc.availableFilters = {
-            'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin'],
-            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin'],
+            'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin','state'],
+            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state'],
             'birth_rates': ['current_year', 'race'],
             'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval']
-        };
-
-        //functionality to be added to the side filters
-        var confidenceIntervalOption = {
-            title: 'Confidence Intervals',
-            type: 'toggle',
-            value: false,
-            onChange: function(value) {
-                sc.showConfidenceIntervals = value;
-            },
-            options: [
-                {
-                    title: 'label.mortality.search.table.show.percentage.button',
-                    key: true
-                },
-                {
-                    title: 'label.mortality.search.table.hide.percentage.button',
-                    key: false
-                }
-            ]
-        };
-
-        sc.filterUtilities = {
-            'mental_health': [
-                {
-                    title: 'Variance',
-                    options: [
-                        confidenceIntervalOption,
-                        {
-                            title: 'Unweighted Frequency',
-                            type: 'toggle',
-                            value: false,
-                            onChange: function(value) {
-                                sc.showUnweightedFrequency = value;
-                            },
-                            options: [
-                                {
-                                    title: 'label.mortality.search.table.show.percentage.button',
-                                    key: true
-                                },
-                                {
-                                    title: 'label.mortality.search.table.hide.percentage.button',
-                                    key: false
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ],
-            'prams' : [
-                {
-                    title: 'Variance',
-                    options: [
-                        confidenceIntervalOption
-                    ]
-                }
-            ]
         };
         sc.queryID = $stateParams.queryID;
         sc.tableView = $stateParams.tableView ? $stateParams.tableView : sc.showMeOptions.deaths[0].key;
@@ -334,7 +278,7 @@
         //US-states map
         var mapOptions = {
             usa: {
-                lat: 39,
+                lat: 35,
                 lng: -97,
                 zoom: 3.9
             },
@@ -577,6 +521,11 @@
         });
         $scope.$on("leafletDirectiveMap.mouseout", function (event, args) {
             sc.mapPopup._close();
+        });
+
+        $scope.$on("leafletDirectiveMap.load", function (event, args) {
+            var mapScaleControl = mapService.addScaleControl(sc.filters.selectedPrimaryFilter.mapData);
+            args.leafletObject.addControl(new mapScaleControl());
         });
 
         /*Show expanded graphs with whole set of features*/

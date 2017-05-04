@@ -7,9 +7,10 @@ Feature: Bridge race filters
   Background: Access Bridged-Race Population estimates page
     When I am at home page
     And  I click on Explore button in Health Information Gateway section
-    Then I should get search page with default filter type "Mortality"
+    Then I should get search page with default filter type "Detailed Mortality"
     When I change 'I'm interested in' dropdown value to "Bridged-Race Population Estimates"
     Then I should see filter type "Bridged-Race Population Estimates" selected
+    And  An option to show/hide percentages is displayed
 
 
   Scenario: Default filter state
@@ -63,3 +64,7 @@ Feature: Bridge race filters
     Then I see the search box
     #When I begins to type a state name "alas" in the search box
     #Then I see results dynamically populate with the states matching the "alas"
+
+  Scenario: Percentages
+    When I click the "Hide" option
+    Then I should not see percentages
