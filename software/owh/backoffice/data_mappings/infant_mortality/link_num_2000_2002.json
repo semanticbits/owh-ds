@@ -139,7 +139,7 @@
     "column": "gestation_recode10",
     "start": 76,
     "stop": 77,
-    "field": "GESTATION RECODE 10",
+    "field": "Gestational Age Group2",
     "mappings": {
       "01": "Under 20 weeks",
       "02": "20 - 27 weeks",
@@ -158,7 +158,7 @@
     "column": "gestation_recode11",
     "start": 74,
     "stop": 75,
-    "field": "GESTATION RECODE 11- custom",
+    "field": "Gestational Age Group1",
     "mappings": {
       "17-19": "Under 20 weeks",
       "20-27": "20 - 27 weeks",

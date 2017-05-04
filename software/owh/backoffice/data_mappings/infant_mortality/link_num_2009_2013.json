@@ -77,17 +77,19 @@
   {
     "type": "map",
     "column": "mother_education",
-    "start": 158,
-    "stop": 158,
+    "start": 155,
+    "stop": 155,
     "field": "Education of Mother Recode",
     "mappings": {
-      "1": "0 - 8 years",
-      "2": "9 - 11 years",
-      "3": "12 years",
-      "4": "13 - 15 years",
-      "5": "16 years and over",
-      "6": "Not stated",
-      "": "Not on Certificate"
+      "1": "8 th grade or less",
+      "2": "9 th through 12 th grade with no diploma",
+      "3": "High school graduate or GED completed",
+      "4": "Some college credit, but not a degree",
+      "5": "Associate degree (AA, AS)",
+      "6": "Bachelor's degree (BA, AB, BS)",
+      "7": "Master’s degree (MA, MS, MEng, MEd, MSW, MBA)",
+      "8": "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
+      "9": "Unknown"
     }
   },
   {
@@ -132,22 +134,22 @@
     }
   },
   {
-    "type": "map",
+    "type": "range",
     "column": "gestation_recode10",
-    "start": 453,
-    "stop": 454,
+    "start": 451,
+    "stop": 452,
     "field": "Gestational Age Group2",
     "mappings": {
-      "01": "Under 20 weeks",
-      "02": "20 - 27 weeks",
-      "03": "28 - 31 weeks",
-      "04": "32 - 35 weeks",
-      "05": "36 weeks",
-      "06": "37 - 39 weeks",
-      "07": "40 weeks",
-      "08": "41 weeks",
-      "09": "42 weeks and over",
-      "10": "Unknown"
+      "17-19": "Under 20 weeks",
+      "20-27": "20 - 27 weeks",
+      "28-31": "28 - 31 weeks",
+      "32-35": "32 - 35 weeks",
+      "36-36": "36 weeks",
+      "37-39": "37 - 39 weeks",
+      "40-40": "40 weeks",
+      "41-41": "41 weeks",
+      "42-47": "42 weeks and over",
+      "99-99": "Unknown"
     }
   },
   {
@@ -173,8 +175,8 @@
   {
     "type": "map",
     "column": "prenatal_care",
-    "start": 256,
-    "stop": 257,
+    "start": 245,
+    "stop": 246,
     "field": "Month of Pregnancy Prenatal Care Began",
     "mappings": {
       "00": "No prenatal care",
@@ -188,8 +190,7 @@
       "08": "8th month",
       "09": "9th month",
       "10": "10th month",
-      "99": "Unknown or not stated",
-      "": "Not on certificate"
+      "99": "Unknown or not stated"
     }
   },
   {
@@ -231,7 +232,7 @@
   {
     "column":"live_birth",
     "type": "range",
-    "start": 212,
+      "start": 212,
     "stop": 212,
     "field": "Live Birth Order",
     "mappings": {

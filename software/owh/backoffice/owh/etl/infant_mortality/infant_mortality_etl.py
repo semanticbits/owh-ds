@@ -11,7 +11,9 @@ data_mapping_configs = {'LinkPE00USNum.dat':'link_num_2000_2002.json', 'LinkPE01
                         'LinkPE02USNum.dat':'link_num_2000_2002.json', 'LinkPE03USNum.dat': 'link_num_2003.json',
                         'LinkPE04USNum.dat':'link_num_2004.json', 'VS05LINK.USNUMPUB': 'link_num_2005_2006.json',
                         'VS06LINK.USNUMPUB':'link_num_2005_2006.json', 'VS07LINK.USNUMPUB': 'link_num_2007_2008.json',
-                        'VS08LINK.USNUMPUB':'link_num_2007_2008.json'}
+                        'VS08LINK.USNUMPUB':'link_num_2007_2008.json', 'VS09LINK.USNUMPUB':'link_num_2009_2013.json',
+                        'VS10LINK.USNUMPUB':'link_num_2009_2013.json', 'VS11LINK.USNUMPUB':'link_num_2009_2013.json',
+                        'VS12LINK.USNUMPUB':'link_num_2009_2013.json', 'VS13LINK.USNUMPUB':'link_num_2009_2013.json'}
 
 class InfantMortalityETL (ETL):
 
@@ -85,7 +87,7 @@ class InfantMortalityETL (ETL):
             self.refresh_index()
         self.metrics.insertCount=recordCount
         self.updateDsMetadata()
-        logger.info("*** Processed %s records from all natality data files", self.metrics.insertCount)
+        logger.info("*** Processed %s records from all infant mortality data files", self.metrics.insertCount)
 
 
     def updateDsMetadata(self):
@@ -99,6 +101,11 @@ class InfantMortalityETL (ETL):
         self.loadDataSetMetaData('infant_mortality', '2006', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2005_2006.json'))
         self.loadDataSetMetaData('infant_mortality', '2007', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2007_2008.json'))
         self.loadDataSetMetaData('infant_mortality', '2008', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2007_2008.json'))
+        self.loadDataSetMetaData('infant_mortality', '2009', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2007_2008.json'))
+        self.loadDataSetMetaData('infant_mortality', '2010', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2007_2008.json'))
+        self.loadDataSetMetaData('infant_mortality', '2011', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2007_2008.json'))
+        self.loadDataSetMetaData('infant_mortality', '2012', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2007_2008.json'))
+        self.loadDataSetMetaData('infant_mortality', '2013', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2007_2008.json'))
         logger.info("*** Metadata Loaded successfully ***")
 
     def validate_etl(self):
