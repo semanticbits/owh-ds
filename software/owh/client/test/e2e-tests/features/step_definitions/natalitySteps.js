@@ -245,6 +245,24 @@ var natalityStepsDefinitionWrapper = function () {
             });
         }).then(next);
     });
+
+    this.Then(/^I see an option to show\/hide percentages$/, function () {
+        expect(natalityPage.showOrHidePecentageDiv.isPresent()).to.eventually.equal(true);
+        expect(natalityPage.showPecentageButton.isPresent()).to.eventually.equal(true);
+        return expect(natalityPage.hidePecentageButton.isPresent()).to.eventually.equal(true);
+    });
+
+    this.When(/^I click the "([^"]*)" option$/, function (arg, next) {
+        natalityPage.hidePecentageButton.click().then(next)
+    });
+
+    this.Then(/^the percentages should be hidden$/, function () {
+        return natalityPage.getTableRowData(0).then(function (row) {
+            expect(row[1]).to.equal('21,593');
+            expect(row[2]).to.equal('22,706');
+            expect(row[3]).to.equal('44,299');
+        });
+    });
 };
 
 module.exports = natalityStepsDefinitionWrapper;
