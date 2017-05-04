@@ -186,6 +186,9 @@ Scenario: show chart for each question
     And the link should be "Switch to Advanced Search" displayed
     And filter "Asian" under "Race/Ethnicity" should be a "radio"
     When I click on the "Switch to Advanced Search" link
+    And I click on "Select Questions" button
+    And I select a few questions and clicks on the Add Selected Question(s) button
+    Then the "Select Questions" button should be renamed to "Update Questions"
     And I see a link "Switch to Basic Search" at the top of the sidebar
     When I select the back button in browser
     And the link should be "Switch to Advanced Search" displayed
@@ -194,11 +197,6 @@ Scenario: show chart for each question
     And the link should be "Switch to Basic Search" displayed
     And filter "Asian" under "Race/Ethnicity" should be a "checkbox"
     And "Run Query" button should be displayed
-
-  Scenario: Questions should display in advanced search page
-    When I click on "Select Questions" button
-    And I select a few questions and clicks on the Add Selected Question(s) button
-    Then the "Select Questions" button should be renamed to "Update Questions"
 
   Scenario: Select only 'State' filter as column
     Given I am on search page

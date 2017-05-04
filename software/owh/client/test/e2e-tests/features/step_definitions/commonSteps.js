@@ -8,7 +8,7 @@ var previousUrl = "";
 
 var commonStepDefinitionsWrapper = function () {
 
-    this.setDefaultTimeout(60000);
+    this.setDefaultTimeout(600000);
     var commonPage = require('../support/commonpage.po');
 
     this.Then(/^URL in browser bar should change$/, function (next) {

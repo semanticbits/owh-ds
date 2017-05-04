@@ -6,7 +6,7 @@ var expect = chai.expect;
 
 var BridgeRaceStepDefinitionsWrapper = function () {
 
-    this.setDefaultTimeout(60000);
+    this.setDefaultTimeout(600000);
     var bridgeRacePage = require('../support/bridgerace.po');
 
     this.Then(/^I see the data table with race, female, male and total table headers$/, function () {
@@ -183,7 +183,7 @@ var BridgeRaceStepDefinitionsWrapper = function () {
         return expect(bridgeRacePage.hidePecentageButton.isPresent()).to.eventually.equal(true);
     });
 
-    this.When(/^I click the "([^"]*)" option$/, function (arg, next) {
+    this.When(/^I click the "([^"]*)" button$/, function (arg, next) {
         bridgeRacePage.hidePecentageButton.click().then(next)
     });
 

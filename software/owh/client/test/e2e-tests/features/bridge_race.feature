@@ -66,5 +66,5 @@ Feature: Bridge race filters
     #Then I see results dynamically populate with the states matching the "alas"
 
   Scenario: Percentages
-    When I click the "Hide" option
+    When I click the "Hide" button
     Then I should not see percentages
