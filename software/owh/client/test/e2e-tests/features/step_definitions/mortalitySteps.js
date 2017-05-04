@@ -6,8 +6,7 @@ var expect = chai.expect;
 
 var mortalityStepDefinitionsWrapper = function () {
 
-    this.setDefaultTimeout(60000);
-
+    this.setDefaultTimeout(600000);
     var mortalityPage = require('../support/mortalitypage.po')
 
     this.When(/^user sees a visualization$/, function (next) {
