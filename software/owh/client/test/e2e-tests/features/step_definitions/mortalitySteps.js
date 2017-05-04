@@ -887,5 +887,20 @@ var mortalityStepDefinitionsWrapper = function () {
         }).then(next);
     });
 
+
+    this.Then(/^I see data table with Race and State values$/, function (next) {
+        mortalityPage.getTableRowData(0).then(function(rowdata) {
+            //Race
+            expect(rowdata[0]).to.equals('American Indian or Alaska Native');
+            //State
+            expect(rowdata[1]).to.equals('Alabama');
+            //Female
+            expect(rowdata[2]).to.equals('44 (41.5%)');
+            //Male
+            expect(rowdata[3]).to.equals('62 (58.5%)');
+            //Number of Deaths
+            expect(rowdata[4]).to.equals('106');
+        }).then(next);
+    });
 };
 module.exports = mortalityStepDefinitionsWrapper;

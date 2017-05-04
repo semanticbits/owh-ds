@@ -38,7 +38,7 @@
          * @param response
          */
         function updateFiltersAndData(filters, response, groupOptions, mapOptions) {
-            var primaryFilters = filters.primaryFilters;    
+            var primaryFilters = filters.primaryFilters;
             //sets primary filter
             var primaryFilter = utilService.findByKeyAndValue(primaryFilters, 'key', response.data.queryJSON.key);
             if(primaryFilter.key == 'mental_health') {
@@ -537,7 +537,7 @@
             for (var i = 0; i< pFilter.allFilters.length; i++){
                 var filter = utilService.clone(pFilter.allFilters[i]);
                 // Clear autocomplete options for mcd and ucd
-                if( i == 9 || i == 12){
+                if( filter.key == "mcd-chapter-10" || filter.key == "ucd-chapter-10" || filter.key == "mcd-filters"){
                     filter.autoCompleteOptions = [];
                 }
                 removeSearchResults(filter.autoCompleteOptions);
@@ -548,16 +548,10 @@
                 var category = utilService.clone(pFilter.sideFilters[i]);
                 angular.forEach(category.sideFilters, function(filter, filterIndex) {
                     // Clear autocomplete options for mcd and ucd
-                    if( i == 9 || i == 10){
-                        filter.autoCompleteOptions = [];
-                        filter.filters.autoCompleteOptions[0].autoCompleteOptions = [];
+                    if( filter.filters.key == "mcd-chapter-10" || filter.filters.key == "ucd-chapter-10" || filter.filters.key == "mcd-filters"){
+                        filter.filters.autoCompleteOptions = [];
                     }
-                    removeSearchResults(filter.autoCompleteOptions);
-                    if(filter.filters.autoCompleteOptions){
-                        removeSearchResults(filter.filters.autoCompleteOptions[0].autoCompleteOptions);
-                    }
-
-                    // req.sideFilters.push(filter);
+                    removeSearchResults(filter.filters.autoCompleteOptions);
                 });
                 req.sideFilters.push(category);
             }

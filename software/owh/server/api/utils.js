@@ -377,11 +377,13 @@ var mergeAgeAdjustedRates = function(mort, rates) {
                     age = rates[keyMap[mort[key][i].name]];
                 }
                 if(age) {
-                    if (age['Total']) {
-                        mort[key][i]['ageAdjustedRate'] = age['Total'].ageAdjustedRate;
-                        mort[key][i]['standardPop'] = age['Total'].standardPop;
+                    if (!age['ageAdjustedRate']) { // Nested result. go to the leaf node recursively
+                        if (age['Total']) { // If there is a subtotal, assign subtotal value
+                            mort[key][i]['ageAdjustedRate'] = age['Total'].ageAdjustedRate;
+                            mort[key][i]['standardPop'] = age['Total'].standardPop;
+                        }
                         mergeAgeAdjustedRates(mort[key][i], age);
-                    } else {
+                    }else {
                         mort[key][i]['ageAdjustedRate'] = age.ageAdjustedRate;
                         mort[key][i]['standardPop'] = age.standardPop;
                     }

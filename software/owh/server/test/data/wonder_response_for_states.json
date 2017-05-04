@@ -1,0 +1,1976 @@
+{
+  "American Indian or Alaska Native": {
+    "Alabama": {
+      "Female": {
+        "ageAdjustedRate": "274.1",
+        "standardPop": 18463
+      },
+      "Male": {
+        "ageAdjustedRate": "400.5",
+        "standardPop": 18765
+      }
+    },
+    "Alaska": {
+      "Female": {
+        "ageAdjustedRate": "993.8",
+        "standardPop": 60937
+      },
+      "Male": {
+        "ageAdjustedRate": "1,450.8",
+        "standardPop": 63015
+      }
+    },
+    "Arizona": {
+      "Female": {
+        "ageAdjustedRate": "679.7",
+        "standardPop": 196802
+      },
+      "Male": {
+        "ageAdjustedRate": "1,037.3",
+        "standardPop": 191838
+      }
+    },
+    "Arkansas": {
+      "Female": {
+        "ageAdjustedRate": "225.5",
+        "standardPop": 16372
+      },
+      "Male": {
+        "ageAdjustedRate": "277.6",
+        "standardPop": 16178
+      }
+    },
+    "California": {
+      "Female": {
+        "ageAdjustedRate": "331.0",
+        "standardPop": 382459
+      },
+      "Male": {
+        "ageAdjustedRate": "461.4",
+        "standardPop": 390250
+      }
+    },
+    "Colorado": {
+      "Female": {
+        "ageAdjustedRate": "392.7",
+        "standardPop": 51294
+      },
+      "Male": {
+        "ageAdjustedRate": "597.1",
+        "standardPop": 51941
+      }
+    },
+    "Connecticut": {
+      "Female": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 11001
+      },
+      "Male": {
+        "ageAdjustedRate": "286.2",
+        "standardPop": 11579
+      }
+    },
+    "Delaware": {
+      "Female": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 3492
+      }
+    },
+    "Florida": {
+      "Female": {
+        "ageAdjustedRate": "206.6",
+        "standardPop": 54102
+      },
+      "Male": {
+        "ageAdjustedRate": "353.9",
+        "standardPop": 58545
+      }
+    },
+    "Georgia": {
+      "Female": {
+        "ageAdjustedRate": "202.4",
+        "standardPop": 27368
+      },
+      "Male": {
+        "ageAdjustedRate": "237.9",
+        "standardPop": 30082
+      }
+    },
+    "Idaho": {
+      "Female": {
+        "ageAdjustedRate": "515.3",
+        "standardPop": 16567
+      },
+      "Male": {
+        "ageAdjustedRate": "812.1",
+        "standardPop": 16843
+      }
+    },
+    "Illinois": {
+      "Female": {
+        "ageAdjustedRate": "85.8",
+        "standardPop": 43347
+      },
+      "Male": {
+        "ageAdjustedRate": "126.2",
+        "standardPop": 45272
+      }
+    },
+    "Indiana": {
+      "Female": {
+        "ageAdjustedRate": "186.4",
+        "standardPop": 15586
+      },
+      "Male": {
+        "ageAdjustedRate": "184.8",
+        "standardPop": 16030
+      }
+    },
+    "Iowa": {
+      "Female": {
+        "ageAdjustedRate": "434.1",
+        "standardPop": 8869
+      },
+      "Male": {
+        "ageAdjustedRate": "671.5",
+        "standardPop": 8868
+      }
+    },
+    "Kansas": {
+      "Female": {
+        "ageAdjustedRate": "886.0",
+        "standardPop": 21242
+      },
+      "Male": {
+        "ageAdjustedRate": "1,340.5",
+        "standardPop": 21487
+      }
+    },
+    "Kentucky": {
+      "Male": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 7141
+      }
+    },
+    "Louisiana": {
+      "Female": {
+        "ageAdjustedRate": "356.5",
+        "standardPop": 19459
+      },
+      "Male": {
+        "ageAdjustedRate": "360.1",
+        "standardPop": 19598
+      }
+    },
+    "Maine": {
+      "Female": {
+        "ageAdjustedRate": "864.1",
+        "standardPop": 5594
+      },
+      "Male": {
+        "ageAdjustedRate": "1,015.2",
+        "standardPop": 5389
+      }
+    },
+    "Maryland": {
+      "Female": {
+        "ageAdjustedRate": "295.9",
+        "standardPop": 19404
+      },
+      "Male": {
+        "ageAdjustedRate": "338.5",
+        "standardPop": 20293
+      }
+    },
+    "Massachusetts": {
+      "Female": {
+        "ageAdjustedRate": "228.4",
+        "standardPop": 19149
+      },
+      "Male": {
+        "ageAdjustedRate": "223.8",
+        "standardPop": 19755
+      }
+    },
+    "Michigan": {
+      "Female": {
+        "ageAdjustedRate": "767.3",
+        "standardPop": 45404
+      },
+      "Male": {
+        "ageAdjustedRate": "841.0",
+        "standardPop": 44150
+      }
+    },
+    "Minnesota": {
+      "Female": {
+        "ageAdjustedRate": "986.5",
+        "standardPop": 42113
+      },
+      "Male": {
+        "ageAdjustedRate": "1,235.5",
+        "standardPop": 42009
+      }
+    },
+    "Mississippi": {
+      "Female": {
+        "ageAdjustedRate": "889.9",
+        "standardPop": 9439
+      },
+      "Male": {
+        "ageAdjustedRate": "782.2",
+        "standardPop": 9246
+      }
+    },
+    "Missouri": {
+      "Female": {
+        "ageAdjustedRate": "377.8",
+        "standardPop": 21188
+      },
+      "Male": {
+        "ageAdjustedRate": "329.7",
+        "standardPop": 21405
+      }
+    },
+    "Montana": {
+      "Female": {
+        "ageAdjustedRate": "1,204.4",
+        "standardPop": 37440
+      },
+      "Male": {
+        "ageAdjustedRate": "1,481.2",
+        "standardPop": 36943
+      }
+    },
+    "Nebraska": {
+      "Female": {
+        "ageAdjustedRate": "804.0",
+        "standardPop": 14493
+      },
+      "Male": {
+        "ageAdjustedRate": "714.7",
+        "standardPop": 14707
+      }
+    },
+    "Nevada": {
+      "Female": {
+        "ageAdjustedRate": "408.4",
+        "standardPop": 28074
+      },
+      "Male": {
+        "ageAdjustedRate": "624.4",
+        "standardPop": 27327
+      }
+    },
+    "New Jersey": {
+      "Female": {
+        "ageAdjustedRate": "105.4",
+        "standardPop": 31015
+      },
+      "Male": {
+        "ageAdjustedRate": "133.3",
+        "standardPop": 32235
+      }
+    },
+    "New Mexico": {
+      "Female": {
+        "ageAdjustedRate": "695.9",
+        "standardPop": 118932
+      },
+      "Male": {
+        "ageAdjustedRate": "1,027.9",
+        "standardPop": 112713
+      }
+    },
+    "New York": {
+      "Female": {
+        "ageAdjustedRate": "172.0",
+        "standardPop": 112102
+      },
+      "Male": {
+        "ageAdjustedRate": "177.2",
+        "standardPop": 112239
+      }
+    },
+    "North Carolina": {
+      "Female": {
+        "ageAdjustedRate": "657.9",
+        "standardPop": 84159
+      },
+      "Male": {
+        "ageAdjustedRate": "889.2",
+        "standardPop": 82489
+      }
+    },
+    "North Dakota": {
+      "Female": {
+        "ageAdjustedRate": "933.0",
+        "standardPop": 22342
+      },
+      "Male": {
+        "ageAdjustedRate": "1,417.8",
+        "standardPop": 22009
+      }
+    },
+    "Ohio": {
+      "Female": {
+        "ageAdjustedRate": "187.0",
+        "standardPop": 20896
+      },
+      "Male": {
+        "ageAdjustedRate": "247.9",
+        "standardPop": 20860
+      }
+    },
+    "Oklahoma": {
+      "Female": {
+        "ageAdjustedRate": "871.3",
+        "standardPop": 207549
+      },
+      "Male": {
+        "ageAdjustedRate": "1,295.2",
+        "standardPop": 203176
+      }
+    },
+    "Oregon": {
+      "Female": {
+        "ageAdjustedRate": "639.3",
+        "standardPop": 43770
+      },
+      "Male": {
+        "ageAdjustedRate": "734.7",
+        "standardPop": 44653
+      }
+    },
+    "Pennsylvania": {
+      "Female": {
+        "ageAdjustedRate": "176.9",
+        "standardPop": 26931
+      },
+      "Male": {
+        "ageAdjustedRate": "367.1",
+        "standardPop": 26666
+      }
+    },
+    "Rhode Island": {
+      "Female": {
+        "ageAdjustedRate": "481.5",
+        "standardPop": 5961
+      },
+      "Male": {
+        "ageAdjustedRate": "761.1",
+        "standardPop": 5598
+      }
+    },
+    "South Carolina": {
+      "Female": {
+        "ageAdjustedRate": "290.6",
+        "standardPop": 13947
+      },
+      "Male": {
+        "ageAdjustedRate": "397.4",
+        "standardPop": 14968
+      }
+    },
+    "South Dakota": {
+      "Female": {
+        "ageAdjustedRate": "1,129.9",
+        "standardPop": 41347
+      },
+      "Male": {
+        "ageAdjustedRate": "1,585.1",
+        "standardPop": 40203
+      }
+    },
+    "Tennessee": {
+      "Female": {
+        "ageAdjustedRate": "180.5",
+        "standardPop": 14939
+      },
+      "Male": {
+        "ageAdjustedRate": "295.5",
+        "standardPop": 16889
+      }
+    },
+    "Texas": {
+      "Female": {
+        "ageAdjustedRate": "145.4",
+        "standardPop": 150952
+      },
+      "Male": {
+        "ageAdjustedRate": "171.8",
+        "standardPop": 158790
+      }
+    },
+    "Utah": {
+      "Female": {
+        "ageAdjustedRate": "564.8",
+        "standardPop": 25820
+      },
+      "Male": {
+        "ageAdjustedRate": "916.2",
+        "standardPop": 26268
+      }
+    },
+    "Virginia": {
+      "Female": {
+        "ageAdjustedRate": "325.6",
+        "standardPop": 24482
+      },
+      "Male": {
+        "ageAdjustedRate": "321.9",
+        "standardPop": 26429
+      }
+    },
+    "Washington": {
+      "Female": {
+        "ageAdjustedRate": "717.4",
+        "standardPop": 81040
+      },
+      "Male": {
+        "ageAdjustedRate": "983.1",
+        "standardPop": 81981
+      }
+    },
+    "Wisconsin": {
+      "Female": {
+        "ageAdjustedRate": "829.6",
+        "standardPop": 36419
+      },
+      "Male": {
+        "ageAdjustedRate": "925.6",
+        "standardPop": 36660
+      }
+    },
+    "Wyoming": {
+      "Female": {
+        "ageAdjustedRate": "783.7",
+        "standardPop": 8575
+      },
+      "Male": {
+        "ageAdjustedRate": "1,455.7",
+        "standardPop": 8772
+      }
+    }
+  },
+  "Asian or Pacific Islander": {
+    "Alabama": {
+      "Female": {
+        "ageAdjustedRate": "222.6",
+        "standardPop": 40879
+      },
+      "Male": {
+        "ageAdjustedRate": "128.9",
+        "standardPop": 36873
+      }
+    },
+    "Alaska": {
+      "Female": {
+        "ageAdjustedRate": "419.6",
+        "standardPop": 31372
+      },
+      "Male": {
+        "ageAdjustedRate": "565.1",
+        "standardPop": 29572
+      }
+    },
+    "Arizona": {
+      "Female": {
+        "ageAdjustedRate": "330.2",
+        "standardPop": 143349
+      },
+      "Male": {
+        "ageAdjustedRate": "462.4",
+        "standardPop": 130550
+      }
+    },
+    "Arkansas": {
+      "Female": {
+        "ageAdjustedRate": "437.6",
+        "standardPop": 30420
+      },
+      "Male": {
+        "ageAdjustedRate": "629.4",
+        "standardPop": 28860
+      }
+    },
+    "California": {
+      "Female": {
+        "ageAdjustedRate": "337.3",
+        "standardPop": 3289643
+      },
+      "Male": {
+        "ageAdjustedRate": "474.8",
+        "standardPop": 2986427
+      }
+    },
+    "Colorado": {
+      "Female": {
+        "ageAdjustedRate": "350.2",
+        "standardPop": 111961
+      },
+      "Male": {
+        "ageAdjustedRate": "450.8",
+        "standardPop": 97314
+      }
+    },
+    "Connecticut": {
+      "Female": {
+        "ageAdjustedRate": "267.5",
+        "standardPop": 92173
+      },
+      "Male": {
+        "ageAdjustedRate": "339.1",
+        "standardPop": 86195
+      }
+    },
+    "Delaware": {
+      "Female": {
+        "ageAdjustedRate": "243.0",
+        "standardPop": 20628
+      },
+      "Male": {
+        "ageAdjustedRate": "314.0",
+        "standardPop": 19284
+      }
+    },
+    "District of Columbia": {
+      "Female": {
+        "ageAdjustedRate": "381.6",
+        "standardPop": 18388
+      },
+      "Male": {
+        "ageAdjustedRate": "447.3",
+        "standardPop": 13687
+      }
+    },
+    "Florida": {
+      "Female": {
+        "ageAdjustedRate": "292.6",
+        "standardPop": 352531
+      },
+      "Male": {
+        "ageAdjustedRate": "393.4",
+        "standardPop": 305656
+      }
+    },
+    "Georgia": {
+      "Female": {
+        "ageAdjustedRate": "340.0",
+        "standardPop": 228840
+      },
+      "Male": {
+        "ageAdjustedRate": "448.5",
+        "standardPop": 215752
+      }
+    },
+    "Hawaii": {
+      "Female": {
+        "ageAdjustedRate": "460.5",
+        "standardPop": 480317
+      },
+      "Male": {
+        "ageAdjustedRate": "712.6",
+        "standardPop": 446910
+      }
+    },
+    "Idaho": {
+      "Female": {
+        "ageAdjustedRate": "337.0",
+        "standardPop": 17173
+      },
+      "Male": {
+        "ageAdjustedRate": "502.5",
+        "standardPop": 14788
+      }
+    },
+    "Illinois": {
+      "Female": {
+        "ageAdjustedRate": "299.7",
+        "standardPop": 388047
+      },
+      "Male": {
+        "ageAdjustedRate": "435.6",
+        "standardPop": 361979
+      }
+    },
+    "Indiana": {
+      "Female": {
+        "ageAdjustedRate": "323.1",
+        "standardPop": 78937
+      },
+      "Male": {
+        "ageAdjustedRate": "448.7",
+        "standardPop": 77602
+      }
+    },
+    "Iowa": {
+      "Female": {
+        "ageAdjustedRate": "397.9",
+        "standardPop": 40009
+      },
+      "Male": {
+        "ageAdjustedRate": "399.9",
+        "standardPop": 40657
+      }
+    },
+    "Kansas": {
+      "Female": {
+        "ageAdjustedRate": "373.6",
+        "standardPop": 48137
+      },
+      "Male": {
+        "ageAdjustedRate": "437.8",
+        "standardPop": 46402
+      }
+    },
+    "Kentucky": {
+      "Female": {
+        "ageAdjustedRate": "256.2",
+        "standardPop": 37749
+      },
+      "Male": {
+        "ageAdjustedRate": "372.0",
+        "standardPop": 35010
+      }
+    },
+    "Louisiana": {
+      "Female": {
+        "ageAdjustedRate": "334.2",
+        "standardPop": 48598
+      },
+      "Male": {
+        "ageAdjustedRate": "483.1",
+        "standardPop": 46695
+      }
+    },
+    "Maine": {
+      "Female": {
+        "ageAdjustedRate": "276.3",
+        "standardPop": 10143
+      },
+      "Male": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 8024
+      }
+    },
+    "Maryland": {
+      "Female": {
+        "ageAdjustedRate": "282.7",
+        "standardPop": 221848
+      },
+      "Male": {
+        "ageAdjustedRate": "407.1",
+        "standardPop": 202199
+      }
+    },
+    "Massachusetts": {
+      "Female": {
+        "ageAdjustedRate": "328.9",
+        "standardPop": 246177
+      },
+      "Male": {
+        "ageAdjustedRate": "407.1",
+        "standardPop": 225711
+      }
+    },
+    "Michigan": {
+      "Female": {
+        "ageAdjustedRate": "308.1",
+        "standardPop": 166211
+      },
+      "Male": {
+        "ageAdjustedRate": "375.6",
+        "standardPop": 158235
+      }
+    },
+    "Minnesota": {
+      "Female": {
+        "ageAdjustedRate": "427.9",
+        "standardPop": 145918
+      },
+      "Male": {
+        "ageAdjustedRate": "493.5",
+        "standardPop": 139670
+      }
+    },
+    "Mississippi": {
+      "Female": {
+        "ageAdjustedRate": "439.4",
+        "standardPop": 19081
+      },
+      "Male": {
+        "ageAdjustedRate": "567.0",
+        "standardPop": 16971
+      }
+    },
+    "Missouri": {
+      "Female": {
+        "ageAdjustedRate": "361.7",
+        "standardPop": 73956
+      },
+      "Male": {
+        "ageAdjustedRate": "437.3",
+        "standardPop": 68004
+      }
+    },
+    "Montana": {
+      "Female": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 6137
+      },
+      "Male": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 4604
+      }
+    },
+    "Nebraska": {
+      "Female": {
+        "ageAdjustedRate": "248.4",
+        "standardPop": 25675
+      },
+      "Male": {
+        "ageAdjustedRate": "458.2",
+        "standardPop": 24465
+      }
+    },
+    "Nevada": {
+      "Female": {
+        "ageAdjustedRate": "380.9",
+        "standardPop": 158662
+      },
+      "Male": {
+        "ageAdjustedRate": "519.0",
+        "standardPop": 134277
+      }
+    },
+    "New Hampshire": {
+      "Female": {
+        "ageAdjustedRate": "290.9",
+        "standardPop": 19873
+      },
+      "Male": {
+        "ageAdjustedRate": "352.4",
+        "standardPop": 17912
+      }
+    },
+    "New Jersey": {
+      "Female": {
+        "ageAdjustedRate": "267.8",
+        "standardPop": 465687
+      },
+      "Male": {
+        "ageAdjustedRate": "353.3",
+        "standardPop": 440706
+      }
+    },
+    "New Mexico": {
+      "Female": {
+        "ageAdjustedRate": "339.9",
+        "standardPop": 23487
+      },
+      "Male": {
+        "ageAdjustedRate": "369.9",
+        "standardPop": 20327
+      }
+    },
+    "New York": {
+      "Female": {
+        "ageAdjustedRate": "291.3",
+        "standardPop": 951155
+      },
+      "Male": {
+        "ageAdjustedRate": "431.1",
+        "standardPop": 874938
+      }
+    },
+    "North Carolina": {
+      "Female": {
+        "ageAdjustedRate": "350.4",
+        "standardPop": 162197
+      },
+      "Male": {
+        "ageAdjustedRate": "462.1",
+        "standardPop": 152740
+      }
+    },
+    "North Dakota": {
+      "Male": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 6316
+      }
+    },
+    "Ohio": {
+      "Female": {
+        "ageAdjustedRate": "341.2",
+        "standardPop": 140515
+      },
+      "Male": {
+        "ageAdjustedRate": "403.1",
+        "standardPop": 130144
+      }
+    },
+    "Oklahoma": {
+      "Female": {
+        "ageAdjustedRate": "489.3",
+        "standardPop": 52088
+      },
+      "Male": {
+        "ageAdjustedRate": "495.7",
+        "standardPop": 48779
+      }
+    },
+    "Oregon": {
+      "Female": {
+        "ageAdjustedRate": "371.5",
+        "standardPop": 115977
+      },
+      "Male": {
+        "ageAdjustedRate": "499.7",
+        "standardPop": 102036
+      }
+    },
+    "Pennsylvania": {
+      "Female": {
+        "ageAdjustedRate": "333.3",
+        "standardPop": 240914
+      },
+      "Male": {
+        "ageAdjustedRate": "442.9",
+        "standardPop": 223313
+      }
+    },
+    "Rhode Island": {
+      "Female": {
+        "ageAdjustedRate": "392.2",
+        "standardPop": 22245
+      },
+      "Male": {
+        "ageAdjustedRate": "469.6",
+        "standardPop": 19732
+      }
+    },
+    "South Carolina": {
+      "Female": {
+        "ageAdjustedRate": "326.4",
+        "standardPop": 47126
+      },
+      "Male": {
+        "ageAdjustedRate": "410.1",
+        "standardPop": 42348
+      }
+    },
+    "South Dakota": {
+      "Female": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 6745
+      },
+      "Male": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 6592
+      }
+    },
+    "Tennessee": {
+      "Female": {
+        "ageAdjustedRate": "372.3",
+        "standardPop": 69903
+      },
+      "Male": {
+        "ageAdjustedRate": "398.2",
+        "standardPop": 63157
+      }
+    },
+    "Texas": {
+      "Female": {
+        "ageAdjustedRate": "331.7",
+        "standardPop": 722181
+      },
+      "Male": {
+        "ageAdjustedRate": "427.8",
+        "standardPop": 690727
+      }
+    },
+    "Utah": {
+      "Female": {
+        "ageAdjustedRate": "452.2",
+        "standardPop": 60261
+      },
+      "Male": {
+        "ageAdjustedRate": "551.1",
+        "standardPop": 57593
+      }
+    },
+    "Vermont": {
+      "Female": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 6060
+      },
+      "Male": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 5065
+      }
+    },
+    "Virginia": {
+      "Female": {
+        "ageAdjustedRate": "320.2",
+        "standardPop": 314190
+      },
+      "Male": {
+        "ageAdjustedRate": "394.8",
+        "standardPop": 284617
+      }
+    },
+    "Washington": {
+      "Female": {
+        "ageAdjustedRate": "361.8",
+        "standardPop": 379545
+      },
+      "Male": {
+        "ageAdjustedRate": "504.2",
+        "standardPop": 338023
+      }
+    },
+    "West Virginia": {
+      "Female": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 9248
+      },
+      "Male": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 8226
+      }
+    },
+    "Wisconsin": {
+      "Female": {
+        "ageAdjustedRate": "437.3",
+        "standardPop": 88099
+      },
+      "Male": {
+        "ageAdjustedRate": "624.8",
+        "standardPop": 83315
+      }
+    },
+    "Wyoming": {
+      "Female": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 3973
+      }
+    }
+  },
+  "Black or African American": {
+    "Alabama": {
+      "Female": {
+        "ageAdjustedRate": "805.7",
+        "standardPop": 707464
+      },
+      "Male": {
+        "ageAdjustedRate": "1,251.4",
+        "standardPop": 618441
+      }
+    },
+    "Alaska": {
+      "Female": {
+        "ageAdjustedRate": "599.6",
+        "standardPop": 16060
+      },
+      "Male": {
+        "ageAdjustedRate": "792.8",
+        "standardPop": 20982
+      }
+    },
+    "Arizona": {
+      "Female": {
+        "ageAdjustedRate": "642.5",
+        "standardPop": 180670
+      },
+      "Male": {
+        "ageAdjustedRate": "905.0",
+        "standardPop": 194194
+      }
+    },
+    "Arkansas": {
+      "Female": {
+        "ageAdjustedRate": "813.0",
+        "standardPop": 251525
+      },
+      "Male": {
+        "ageAdjustedRate": "1,210.2",
+        "standardPop": 230318
+      }
+    },
+    "California": {
+      "Female": {
+        "ageAdjustedRate": "688.7",
+        "standardPop": 1425867
+      },
+      "Male": {
+        "ageAdjustedRate": "961.1",
+        "standardPop": 1401954
+      }
+    },
+    "Colorado": {
+      "Female": {
+        "ageAdjustedRate": "653.1",
+        "standardPop": 133748
+      },
+      "Male": {
+        "ageAdjustedRate": "914.6",
+        "standardPop": 150257
+      }
+    },
+    "Connecticut": {
+      "Female": {
+        "ageAdjustedRate": "589.2",
+        "standardPop": 232160
+      },
+      "Male": {
+        "ageAdjustedRate": "811.8",
+        "standardPop": 213769
+      }
+    },
+    "Delaware": {
+      "Female": {
+        "ageAdjustedRate": "697.2",
+        "standardPop": 117414
+      },
+      "Male": {
+        "ageAdjustedRate": "916.6",
+        "standardPop": 104572
+      }
+    },
+    "District of Columbia": {
+      "Female": {
+        "ageAdjustedRate": "771.4",
+        "standardPop": 182093
+      },
+      "Male": {
+        "ageAdjustedRate": "1,272.8",
+        "standardPop": 151790
+      }
+    },
+    "Florida": {
+      "Female": {
+        "ageAdjustedRate": "618.3",
+        "standardPop": 1829903
+      },
+      "Male": {
+        "ageAdjustedRate": "892.2",
+        "standardPop": 1699081
+      }
+    },
+    "Georgia": {
+      "Female": {
+        "ageAdjustedRate": "722.4",
+        "standardPop": 1764305
+      },
+      "Male": {
+        "ageAdjustedRate": "1,064.7",
+        "standardPop": 1556114
+      }
+    },
+    "Hawaii": {
+      "Female": {
+        "ageAdjustedRate": "463.2",
+        "standardPop": 19848
+      },
+      "Male": {
+        "ageAdjustedRate": "680.9",
+        "standardPop": 29401
+      }
+    },
+    "Idaho": {
+      "Male": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 11041
+      }
+    },
+    "Illinois": {
+      "Female": {
+        "ageAdjustedRate": "751.3",
+        "standardPop": 1038136
+      },
+      "Male": {
+        "ageAdjustedRate": "1,137.7",
+        "standardPop": 924442
+      }
+    },
+    "Indiana": {
+      "Female": {
+        "ageAdjustedRate": "791.3",
+        "standardPop": 354442
+      },
+      "Male": {
+        "ageAdjustedRate": "1,161.5",
+        "standardPop": 331524
+      }
+    },
+    "Iowa": {
+      "Female": {
+        "ageAdjustedRate": "713.6",
+        "standardPop": 61461
+      },
+      "Male": {
+        "ageAdjustedRate": "972.4",
+        "standardPop": 68465
+      }
+    },
+    "Kansas": {
+      "Female": {
+        "ageAdjustedRate": "838.2",
+        "standardPop": 101100
+      },
+      "Male": {
+        "ageAdjustedRate": "1,065.7",
+        "standardPop": 108315
+      }
+    },
+    "Kentucky": {
+      "Female": {
+        "ageAdjustedRate": "793.1",
+        "standardPop": 197063
+      },
+      "Male": {
+        "ageAdjustedRate": "1,133.5",
+        "standardPop": 195763
+      }
+    },
+    "Louisiana": {
+      "Female": {
+        "ageAdjustedRate": "823.3",
+        "standardPop": 810453
+      },
+      "Male": {
+        "ageAdjustedRate": "1,261.8",
+        "standardPop": 735723
+      }
+    },
+    "Maine": {
+      "Female": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 10142
+      },
+      "Male": {
+        "ageAdjustedRate": "716.5",
+        "standardPop": 13400
+      }
+    },
+    "Maryland": {
+      "Female": {
+        "ageAdjustedRate": "665.4",
+        "standardPop": 1007026
+      },
+      "Male": {
+        "ageAdjustedRate": "1,006.5",
+        "standardPop": 883085
+      }
+    },
+    "Massachusetts": {
+      "Female": {
+        "ageAdjustedRate": "462.8",
+        "standardPop": 318789
+      },
+      "Male": {
+        "ageAdjustedRate": "708.1",
+        "standardPop": 300866
+      }
+    },
+    "Michigan": {
+      "Female": {
+        "ageAdjustedRate": "803.1",
+        "standardPop": 780206
+      },
+      "Male": {
+        "ageAdjustedRate": "1,169.5",
+        "standardPop": 709512
+      }
+    },
+    "Minnesota": {
+      "Female": {
+        "ageAdjustedRate": "668.3",
+        "standardPop": 179582
+      },
+      "Male": {
+        "ageAdjustedRate": "834.9",
+        "standardPop": 187280
+      }
+    },
+    "Mississippi": {
+      "Female": {
+        "ageAdjustedRate": "836.6",
+        "standardPop": 603917
+      },
+      "Male": {
+        "ageAdjustedRate": "1,281.6",
+        "standardPop": 536393
+      }
+    },
+    "Missouri": {
+      "Female": {
+        "ageAdjustedRate": "764.5",
+        "standardPop": 397512
+      },
+      "Male": {
+        "ageAdjustedRate": "1,234.3",
+        "standardPop": 363809
+      }
+    },
+    "Montana": {
+      "Female": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 4113
+      },
+      "Male": {
+        "ageAdjustedRate": "729.8",
+        "standardPop": 5845
+      }
+    },
+    "Nebraska": {
+      "Female": {
+        "ageAdjustedRate": "773.1",
+        "standardPop": 52052
+      },
+      "Male": {
+        "ageAdjustedRate": "1,084.7",
+        "standardPop": 54898
+      }
+    },
+    "Nevada": {
+      "Female": {
+        "ageAdjustedRate": "727.8",
+        "standardPop": 149947
+      },
+      "Male": {
+        "ageAdjustedRate": "966.8",
+        "standardPop": 148780
+      }
+    },
+    "New Hampshire": {
+      "Female": {
+        "ageAdjustedRate": "310.9",
+        "standardPop": 10759
+      },
+      "Male": {
+        "ageAdjustedRate": "479.1",
+        "standardPop": 13429
+      }
+    },
+    "New Jersey": {
+      "Female": {
+        "ageAdjustedRate": "680.7",
+        "standardPop": 732038
+      },
+      "Male": {
+        "ageAdjustedRate": "960.4",
+        "standardPop": 660048
+      }
+    },
+    "New Mexico": {
+      "Female": {
+        "ageAdjustedRate": "634.1",
+        "standardPop": 29406
+      },
+      "Male": {
+        "ageAdjustedRate": "789.0",
+        "standardPop": 34610
+      }
+    },
+    "New York": {
+      "Female": {
+        "ageAdjustedRate": "537.0",
+        "standardPop": 1952616
+      },
+      "Male": {
+        "ageAdjustedRate": "785.0",
+        "standardPop": 1712668
+      }
+    },
+    "North Carolina": {
+      "Female": {
+        "ageAdjustedRate": "738.1",
+        "standardPop": 1220457
+      },
+      "Male": {
+        "ageAdjustedRate": "1,102.5",
+        "standardPop": 1080856
+      }
+    },
+    "North Dakota": {
+      "Female": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 8871
+      },
+      "Male": {
+        "ageAdjustedRate": "338.8",
+        "standardPop": 12616
+      }
+    },
+    "Ohio": {
+      "Female": {
+        "ageAdjustedRate": "787.0",
+        "standardPop": 821484
+      },
+      "Male": {
+        "ageAdjustedRate": "1,132.2",
+        "standardPop": 757065
+      }
+    },
+    "Oklahoma": {
+      "Female": {
+        "ageAdjustedRate": "819.6",
+        "standardPop": 173776
+      },
+      "Male": {
+        "ageAdjustedRate": "1,242.0",
+        "standardPop": 173197
+      }
+    },
+    "Oregon": {
+      "Female": {
+        "ageAdjustedRate": "647.7",
+        "standardPop": 50666
+      },
+      "Male": {
+        "ageAdjustedRate": "872.0",
+        "standardPop": 57841
+      }
+    },
+    "Pennsylvania": {
+      "Female": {
+        "ageAdjustedRate": "761.7",
+        "standardPop": 822087
+      },
+      "Male": {
+        "ageAdjustedRate": "1,091.8",
+        "standardPop": 766652
+      }
+    },
+    "Rhode Island": {
+      "Female": {
+        "ageAdjustedRate": "431.4",
+        "standardPop": 47496
+      },
+      "Male": {
+        "ageAdjustedRate": "633.5",
+        "standardPop": 46279
+      }
+    },
+    "South Carolina": {
+      "Female": {
+        "ageAdjustedRate": "781.3",
+        "standardPop": 735905
+      },
+      "Male": {
+        "ageAdjustedRate": "1,167.6",
+        "standardPop": 651245
+      }
+    },
+    "South Dakota": {
+      "Female": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 8011
+      },
+      "Male": {
+        "ageAdjustedRate": "479.2",
+        "standardPop": 11605
+      }
+    },
+    "Tennessee": {
+      "Female": {
+        "ageAdjustedRate": "790.0",
+        "standardPop": 613861
+      },
+      "Male": {
+        "ageAdjustedRate": "1,202.8",
+        "standardPop": 553910
+      }
+    },
+    "Texas": {
+      "Female": {
+        "ageAdjustedRate": "757.5",
+        "standardPop": 1833448
+      },
+      "Male": {
+        "ageAdjustedRate": "1,069.5",
+        "standardPop": 1724117
+      }
+    },
+    "Utah": {
+      "Female": {
+        "ageAdjustedRate": "476.4",
+        "standardPop": 22892
+      },
+      "Male": {
+        "ageAdjustedRate": "566.3",
+        "standardPop": 28371
+      }
+    },
+    "Vermont": {
+      "Male": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 5738
+      }
+    },
+    "Virginia": {
+      "Female": {
+        "ageAdjustedRate": "697.8",
+        "standardPop": 899678
+      },
+      "Male": {
+        "ageAdjustedRate": "1,024.9",
+        "standardPop": 830013
+      }
+    },
+    "Washington": {
+      "Female": {
+        "ageAdjustedRate": "634.2",
+        "standardPop": 170595
+      },
+      "Male": {
+        "ageAdjustedRate": "858.2",
+        "standardPop": 195796
+      }
+    },
+    "West Virginia": {
+      "Female": {
+        "ageAdjustedRate": "862.9",
+        "standardPop": 35367
+      },
+      "Male": {
+        "ageAdjustedRate": "1,210.2",
+        "standardPop": 41008
+      }
+    },
+    "Wisconsin": {
+      "Female": {
+        "ageAdjustedRate": "781.3",
+        "standardPop": 210887
+      },
+      "Male": {
+        "ageAdjustedRate": "1,119.6",
+        "standardPop": 204744
+      }
+    },
+    "Wyoming": {
+      "Female": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 4522
+      },
+      "Male": {
+        "ageAdjustedRate": "Unreliable",
+        "standardPop": 6245
+      }
+    }
+  },
+  "White": {
+    "Alabama": {
+      "Female": {
+        "ageAdjustedRate": "774.3",
+        "standardPop": 1738989
+      },
+      "Male": {
+        "ageAdjustedRate": "1,079.0",
+        "standardPop": 1679105
+      }
+    },
+    "Alaska": {
+      "Female": {
+        "ageAdjustedRate": "591.0",
+        "standardPop": 241038
+      },
+      "Male": {
+        "ageAdjustedRate": "780.5",
+        "standardPop": 275456
+      }
+    },
+    "Arizona": {
+      "Female": {
+        "ageAdjustedRate": "565.0",
+        "standardPop": 2915754
+      },
+      "Male": {
+        "ageAdjustedRate": "777.0",
+        "standardPop": 2874908
+      }
+    },
+    "Arkansas": {
+      "Female": {
+        "ageAdjustedRate": "764.6",
+        "standardPop": 1217031
+      },
+      "Male": {
+        "ageAdjustedRate": "1,044.5",
+        "standardPop": 1187500
+      }
+    },
+    "California": {
+      "Female": {
+        "ageAdjustedRate": "555.3",
+        "standardPop": 14603781
+      },
+      "Male": {
+        "ageAdjustedRate": "771.1",
+        "standardPop": 14664437
+      }
+    },
+    "Colorado": {
+      "Female": {
+        "ageAdjustedRate": "577.3",
+        "standardPop": 2415808
+      },
+      "Male": {
+        "ageAdjustedRate": "778.0",
+        "standardPop": 2444251
+      }
+    },
+    "Connecticut": {
+      "Female": {
+        "ageAdjustedRate": "567.2",
+        "standardPop": 1503805
+      },
+      "Male": {
+        "ageAdjustedRate": "781.6",
+        "standardPop": 1440204
+      }
+    },
+    "Delaware": {
+      "Female": {
+        "ageAdjustedRate": "629.8",
+        "standardPop": 346591
+      },
+      "Male": {
+        "ageAdjustedRate": "879.4",
+        "standardPop": 330558
+      }
+    },
+    "District of Columbia": {
+      "Female": {
+        "ageAdjustedRate": "389.5",
+        "standardPop": 150838
+      },
+      "Male": {
+        "ageAdjustedRate": "541.8",
+        "standardPop": 150849
+      }
+    },
+    "Florida": {
+      "Female": {
+        "ageAdjustedRate": "543.4",
+        "standardPop": 8132197
+      },
+      "Male": {
+        "ageAdjustedRate": "788.1",
+        "standardPop": 7839257
+      }
+    },
+    "Georgia": {
+      "Female": {
+        "ageAdjustedRate": "693.2",
+        "standardPop": 3214465
+      },
+      "Male": {
+        "ageAdjustedRate": "925.3",
+        "standardPop": 3177934
+      }
+    },
+    "Hawaii": {
+      "Female": {
+        "ageAdjustedRate": "534.9",
+        "standardPop": 202755
+      },
+      "Male": {
+        "ageAdjustedRate": "747.2",
+        "standardPop": 244970
+      }
+    },
+    "Idaho": {
+      "Female": {
+        "ageAdjustedRate": "630.3",
+        "standardPop": 783965
+      },
+      "Male": {
+        "ageAdjustedRate": "847.7",
+        "standardPop": 786075
+      }
+    },
+    "Illinois": {
+      "Female": {
+        "ageAdjustedRate": "614.6",
+        "standardPop": 5075970
+      },
+      "Male": {
+        "ageAdjustedRate": "842.0",
+        "standardPop": 4982802
+      }
+    },
+    "Indiana": {
+      "Female": {
+        "ageAdjustedRate": "714.2",
+        "standardPop": 2908850
+      },
+      "Male": {
+        "ageAdjustedRate": "970.2",
+        "standardPop": 2836709
+      }
+    },
+    "Iowa": {
+      "Female": {
+        "ageAdjustedRate": "617.6",
+        "standardPop": 1461534
+      },
+      "Male": {
+        "ageAdjustedRate": "858.4",
+        "standardPop": 1434036
+      }
+    },
+    "Kansas": {
+      "Female": {
+        "ageAdjustedRate": "662.9",
+        "standardPop": 1287529
+      },
+      "Male": {
+        "ageAdjustedRate": "894.6",
+        "standardPop": 1277429
+      }
+    },
+    "Kentucky": {
+      "Female": {
+        "ageAdjustedRate": "787.8",
+        "standardPop": 2004536
+      },
+      "Male": {
+        "ageAdjustedRate": "1,104.4",
+        "standardPop": 1941180
+      }
+    },
+    "Louisiana": {
+      "Female": {
+        "ageAdjustedRate": "698.9",
+        "standardPop": 1508405
+      },
+      "Male": {
+        "ageAdjustedRate": "978.4",
+        "standardPop": 1481793
+      }
+    },
+    "Maine": {
+      "Female": {
+        "ageAdjustedRate": "673.0",
+        "standardPop": 652192
+      },
+      "Male": {
+        "ageAdjustedRate": "920.3",
+        "standardPop": 624444
+      }
+    },
+    "Maryland": {
+      "Female": {
+        "ageAdjustedRate": "584.7",
+        "standardPop": 1847038
+      },
+      "Male": {
+        "ageAdjustedRate": "815.7",
+        "standardPop": 1805508
+      }
+    },
+    "Massachusetts": {
+      "Female": {
+        "ageAdjustedRate": "598.9",
+        "standardPop": 2914189
+      },
+      "Male": {
+        "ageAdjustedRate": "843.1",
+        "standardPop": 2749786
+      }
+    },
+    "Michigan": {
+      "Female": {
+        "ageAdjustedRate": "657.7",
+        "standardPop": 4052607
+      },
+      "Male": {
+        "ageAdjustedRate": "895.0",
+        "standardPop": 3966251
+      }
+    },
+    "Minnesota": {
+      "Female": {
+        "ageAdjustedRate": "557.2",
+        "standardPop": 2392117
+      },
+      "Male": {
+        "ageAdjustedRate": "752.8",
+        "standardPop": 2360905
+      }
+    },
+    "Mississippi": {
+      "Female": {
+        "ageAdjustedRate": "782.9",
+        "standardPop": 908046
+      },
+      "Male": {
+        "ageAdjustedRate": "1,114.7",
+        "standardPop": 889240
+      }
+    },
+    "Missouri": {
+      "Female": {
+        "ageAdjustedRate": "688.0",
+        "standardPop": 2605971
+      },
+      "Male": {
+        "ageAdjustedRate": "948.6",
+        "standardPop": 2531827
+      }
+    },
+    "Montana": {
+      "Female": {
+        "ageAdjustedRate": "619.3",
+        "standardPop": 465929
+      },
+      "Male": {
+        "ageAdjustedRate": "856.2",
+        "standardPop": 471938
+      }
+    },
+    "Nebraska": {
+      "Female": {
+        "ageAdjustedRate": "629.8",
+        "standardPop": 858802
+      },
+      "Male": {
+        "ageAdjustedRate": "862.6",
+        "standardPop": 851098
+      }
+    },
+    "Nevada": {
+      "Female": {
+        "ageAdjustedRate": "674.8",
+        "standardPop": 1103611
+      },
+      "Male": {
+        "ageAdjustedRate": "899.6",
+        "standardPop": 1140167
+      }
+    },
+    "New Hampshire": {
+      "Female": {
+        "ageAdjustedRate": "627.0",
+        "standardPop": 639920
+      },
+      "Male": {
+        "ageAdjustedRate": "855.5",
+        "standardPop": 623760
+      }
+    },
+    "New Jersey": {
+      "Female": {
+        "ageAdjustedRate": "572.3",
+        "standardPop": 3357157
+      },
+      "Male": {
+        "ageAdjustedRate": "802.8",
+        "standardPop": 3239127
+      }
+    },
+    "New Mexico": {
+      "Female": {
+        "ageAdjustedRate": "604.0",
+        "standardPop": 879863
+      },
+      "Male": {
+        "ageAdjustedRate": "878.0",
+        "standardPop": 865771
+      }
+    },
+    "New York": {
+      "Female": {
+        "ageAdjustedRate": "569.0",
+        "standardPop": 7168405
+      },
+      "Male": {
+        "ageAdjustedRate": "794.2",
+        "standardPop": 6911668
+      }
+    },
+    "North Carolina": {
+      "Female": {
+        "ageAdjustedRate": "665.2",
+        "standardPop": 3683964
+      },
+      "Male": {
+        "ageAdjustedRate": "898.3",
+        "standardPop": 3575940
+      }
+    },
+    "North Dakota": {
+      "Female": {
+        "ageAdjustedRate": "569.1",
+        "standardPop": 331024
+      },
+      "Male": {
+        "ageAdjustedRate": "805.6",
+        "standardPop": 347912
+      }
+    },
+    "Ohio": {
+      "Female": {
+        "ageAdjustedRate": "707.1",
+        "standardPop": 4943998
+      },
+      "Male": {
+        "ageAdjustedRate": "960.2",
+        "standardPop": 4778461
+      }
+    },
+    "Oklahoma": {
+      "Female": {
+        "ageAdjustedRate": "764.1",
+        "standardPop": 1540801
+      },
+      "Male": {
+        "ageAdjustedRate": "1,031.7",
+        "standardPop": 1511972
+      }
+    },
+    "Oregon": {
+      "Female": {
+        "ageAdjustedRate": "635.5",
+        "standardPop": 1825394
+      },
+      "Male": {
+        "ageAdjustedRate": "840.8",
+        "standardPop": 1788640
+      }
+    },
+    "Pennsylvania": {
+      "Female": {
+        "ageAdjustedRate": "645.1",
+        "standardPop": 5448197
+      },
+      "Male": {
+        "ageAdjustedRate": "907.5",
+        "standardPop": 5247743
+      }
+    },
+    "Rhode Island": {
+      "Female": {
+        "ageAdjustedRate": "616.0",
+        "standardPop": 468647
+      },
+      "Male": {
+        "ageAdjustedRate": "892.9",
+        "standardPop": 440340
+      }
+    },
+    "South Carolina": {
+      "Female": {
+        "ageAdjustedRate": "693.9",
+        "standardPop": 1720200
+      },
+      "Male": {
+        "ageAdjustedRate": "946.6",
+        "standardPop": 1670407
+      }
+    },
+    "South Dakota": {
+      "Female": {
+        "ageAdjustedRate": "557.3",
+        "standardPop": 370390
+      },
+      "Male": {
+        "ageAdjustedRate": "806.3",
+        "standardPop": 373576
+      }
+    },
+    "Tennessee": {
+      "Female": {
+        "ageAdjustedRate": "759.9",
+        "standardPop": 2684135
+      },
+      "Male": {
+        "ageAdjustedRate": "1,023.9",
+        "standardPop": 2583505
+      }
+    },
+    "Texas": {
+      "Female": {
+        "ageAdjustedRate": "637.7",
+        "standardPop": 11124743
+      },
+      "Male": {
+        "ageAdjustedRate": "872.9",
+        "standardPop": 11064156
+      }
+    },
+    "Utah": {
+      "Female": {
+        "ageAdjustedRate": "646.5",
+        "standardPop": 1379846
+      },
+      "Male": {
+        "ageAdjustedRate": "796.1",
+        "standardPop": 1394868
+      }
+    },
+    "Vermont": {
+      "Female": {
+        "ageAdjustedRate": "613.3",
+        "standardPop": 305062
+      },
+      "Male": {
+        "ageAdjustedRate": "842.8",
+        "standardPop": 296162
+      }
+    },
+    "Virginia": {
+      "Female": {
+        "ageAdjustedRate": "622.7",
+        "standardPop": 3019878
+      },
+      "Male": {
+        "ageAdjustedRate": "829.3",
+        "standardPop": 2983706
+      }
+    },
+    "Washington": {
+      "Female": {
+        "ageAdjustedRate": "608.5",
+        "standardPop": 2954173
+      },
+      "Male": {
+        "ageAdjustedRate": "812.3",
+        "standardPop": 2969198
+      }
+    },
+    "West Virginia": {
+      "Female": {
+        "ageAdjustedRate": "815.1",
+        "standardPop": 886258
+      },
+      "Male": {
+        "ageAdjustedRate": "1,097.5",
+        "standardPop": 859367
+      }
+    },
+    "Wisconsin": {
+      "Female": {
+        "ageAdjustedRate": "597.1",
+        "standardPop": 2568332
+      },
+      "Male": {
+        "ageAdjustedRate": "829.5",
+        "standardPop": 2542881
+      }
+    },
+    "Wyoming": {
+      "Female": {
+        "ageAdjustedRate": "638.6",
+        "standardPop": 270136
+      },
+      "Male": {
+        "ageAdjustedRate": "865.3",
+        "standardPop": 280411
+      }
+    }
+  }
+}
