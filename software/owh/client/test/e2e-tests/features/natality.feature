@@ -83,3 +83,7 @@ Feature: Natality filters
     And I select groupBy "Row" option for "1-Year Age Groups" filter
     Then data table should display right values for 1-Year age filter
 
+  Scenario: Show/Hide Percentages
+    Then I see an option to show/hide percentages
+    When I click the "Hide" option
+    Then the percentages should be hidden
