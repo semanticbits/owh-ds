@@ -183,7 +183,7 @@ var BridgeRaceStepDefinitionsWrapper = function () {
         return expect(bridgeRacePage.hidePecentageButton.isPresent()).to.eventually.equal(true);
     });
 
-    this.When(/^I click the "([^"]*)" option$/, function (arg, next) {
+    this.When(/^I click the "([^"]*)" button$/, function (arg, next) {
         bridgeRacePage.hidePecentageButton.click().then(next)
     });
 
