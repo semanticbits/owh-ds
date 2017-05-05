@@ -101,11 +101,11 @@ class InfantMortalityETL (ETL):
         self.loadDataSetMetaData('infant_mortality', '2006', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2005_2006.json'))
         self.loadDataSetMetaData('infant_mortality', '2007', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2007_2008.json'))
         self.loadDataSetMetaData('infant_mortality', '2008', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2007_2008.json'))
-        self.loadDataSetMetaData('infant_mortality', '2009', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2007_2008.json'))
-        self.loadDataSetMetaData('infant_mortality', '2010', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2007_2008.json'))
-        self.loadDataSetMetaData('infant_mortality', '2011', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2007_2008.json'))
-        self.loadDataSetMetaData('infant_mortality', '2012', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2007_2008.json'))
-        self.loadDataSetMetaData('infant_mortality', '2013', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2007_2008.json'))
+        self.loadDataSetMetaData('infant_mortality', '2009', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2009_2013.json'))
+        self.loadDataSetMetaData('infant_mortality', '2010', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2009_2013.json'))
+        self.loadDataSetMetaData('infant_mortality', '2011', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2009_2013.json'))
+        self.loadDataSetMetaData('infant_mortality', '2012', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2009_2013.json'))
+        self.loadDataSetMetaData('infant_mortality', '2013', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2009_2013.json'))
         logger.info("*** Metadata Loaded successfully ***")
 
     def validate_etl(self):
