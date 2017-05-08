@@ -537,7 +537,7 @@
   },
   {
     "column":"state",
-    "type":"map",
+    "type":"simple",
     "start": 109,
     "stop": 110,
     "field": "State",
