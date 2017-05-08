@@ -469,5 +469,14 @@
       "N": "No",
       "U": "Unknown or not stated"
     }
+  },
+  {
+    "column":"state",
+    "type":"simple",
+    "start": 89,
+    "stop": 90,
+    "field": "State",
+    "mappings": {
+    }
   }
 ]
