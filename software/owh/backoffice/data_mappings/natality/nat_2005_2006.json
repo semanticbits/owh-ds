@@ -534,5 +534,14 @@
       "U": "Unknown or not stated",
       "": "Not on certificate"
     }
+  },
+  {
+    "column":"state",
+    "type":"map",
+    "start": 109,
+    "stop": 110,
+    "field": "State",
+    "mappings": {
+    }
   }
 ]
