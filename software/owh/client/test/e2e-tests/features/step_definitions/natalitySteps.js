@@ -11,7 +11,7 @@ var natalityStepsDefinitionWrapper = function () {
 
     this.Then(/^I see "([^"]*)" as first filter category$/, function (arg1, next) {
         natalityPage.getFilterCategories().then(function(categories) {
-            expect(categories.length).to.equal(4);
+            expect(categories.length).to.equal(5);
             expect(categories[0].getText()).to.eventually.equal(arg1);
         }).then(next);
     });
@@ -264,7 +264,7 @@ var natalityStepsDefinitionWrapper = function () {
         });
     });
 
-    this.When(/^I selects "([^"]*)" state$/, function (state, next) {
+    this.When(/^I select "([^"]*)" state$/, function (state, next) {
         if (state == 'Alabama') {
             element.all(by.css('label[for=natality_state_AL]')).then(function(elements, index) {
                 elements[1].click();
@@ -297,6 +297,27 @@ var natalityStepsDefinitionWrapper = function () {
             natalityPage.getTableCellData(0,2).then(function(data){
                 expect(data).to.contains('1,179 (45.3%)');
             });
+        }).then(next);
+    });
+
+    this.When(/^I select Puerto Rican ethnicity option$/, function (next) {
+        element.all(by.css('label[for*=natality_hispanic_origin_Puerto]')).then(function(elements, index) {
+            elements[0].click();
+        }).then(next);
+    });
+
+    this.Then(/^I see suppressed cells in data table$/, function (next) {
+        natalityPage.getTableCellData(0,1).then(function(data){
+            expect(data).to.contains('Suppressed');
+        });
+        natalityPage.getTableCellData(0,2).then(function(data){
+            expect(data).to.contains('Suppressed');
+        });
+        natalityPage.getTableCellData(2,1).then(function(data){
+            expect(data).to.contains('Suppressed');
+        });
+        natalityPage.getTableCellData(2,2).then(function(data){
+            expect(data).to.equal(11);
         }).then(next);
     });
 };

@@ -90,8 +90,15 @@ Feature: Natality filters
 
   Scenario: State filter
     When I expand "State" filter section
-    And  I selects "Alaska" state
+    And  I select "Alaska" state
     Then I see data is displayed in data-table for races
-    When I selects "Alabama" state
+    When I select "Alabama" state
     And  I select groupBy "Column" option for "State" filter
     Then I see data is grouped by state in data table
+
+  Scenario: Apply Suppression
+    When I expand "Ethnicity" filter section
+    And  I select Puerto Rican ethnicity option
+    And  I expand "State" filter section
+    And  I select "Alaska" state
+    Then I see suppressed cells in data table
