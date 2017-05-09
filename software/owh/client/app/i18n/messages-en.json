@@ -217,6 +217,7 @@
   "label.yrbs.advanced.search":"Switch to Advanced Search",
   "label.run.query": "Run Query",
   "label.run.query.title": "Click to Run Query",
+  "label.filter.infant_mortality": "Infant Mortality",
 
   "label.help.text.year": "This field indicates year of birth.",
   "label.help.text.sex": "This field indicates the gender of the child as recorded on the birth certificate.",

@@ -158,6 +158,19 @@ function search(q) {
             });
         });
 
+    } else if (preparedQuery.apiQuery.searchFor === "infant_mortality") {
+        finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
+        console.log('QUERY BUILDING >>>>>>>', preparedQuery.apiQuery)
+        var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
+        new elasticSearch().aggregateInfantMortalityData(sideFilterQuery).then(function (sideFilterResults) {
+            new elasticSearch().aggregateInfantMortalityData(function (response) {
+                var resData = {};
+                resData.resultData = response.data;
+                resData.resultData.headers = preparedQuery.headers;
+                resData.sideFilterResults = sideFilterResults;
+                deferred.resolve(resData);
+            });
+        });
     }
     return  deferred.promise;
 };
