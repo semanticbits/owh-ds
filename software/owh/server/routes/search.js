@@ -77,7 +77,6 @@ var searchRouter = function(app, rConfig) {
 function search(q) {
     var deferred = Q.defer();
     var preparedQuery = queryBuilder.buildAPIQuery(q);
-    console.log('preparedQuery', preparedQuery);
     var finalQuery = '';
 
     var stateFilter = queryBuilder.findFilterByKeyAndValue(q.allFilters, 'key', 'state');
@@ -158,6 +157,19 @@ function search(q) {
             });
         });
 
+    } else if (preparedQuery.apiQuery.searchFor === 'infant_mortality') {
+        finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
+        var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
+        new elasticSearch().aggregateInfantMortalityData(sideFilterQuery).then(function (sideFilterResults) {
+            new elasticSearch().aggregateInfantMortalityData(finalQuery).then(function (response) {
+                var resData = {};
+                resData.queryJSON = q;
+                resData.resultData = response.data;
+                resData.resultData.headers = preparedQuery.headers;
+                resData.sideFilterResults = sideFilterResults;
+                deferred.resolve(resData);
+            });
+        });
     }
     return  deferred.promise;
 };
