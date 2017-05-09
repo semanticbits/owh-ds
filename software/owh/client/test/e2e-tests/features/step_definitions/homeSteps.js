@@ -5,8 +5,8 @@ chai.use(chaiAsPromised);
 var expect = chai.expect;
 
 var homeStepDefinitionsWrapper = function () {
-    this.setDefaultTimeout(60000);
 
+    this.setDefaultTimeout(600000);
     var homePage = require('../support/homepage.po');
     var mortalityPage = require('../support/mortalitypage.po')
 

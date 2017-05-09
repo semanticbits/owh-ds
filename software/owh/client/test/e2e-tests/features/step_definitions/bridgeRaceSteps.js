@@ -6,7 +6,7 @@ var expect = chai.expect;
 
 var BridgeRaceStepDefinitionsWrapper = function () {
 
-    this.setDefaultTimeout(60000);
+    this.setDefaultTimeout(600000);
     var bridgeRacePage = require('../support/bridgerace.po');
 
     this.Then(/^I see the data table with race, female, male and total table headers$/, function () {
@@ -177,6 +177,23 @@ var BridgeRaceStepDefinitionsWrapper = function () {
         }).then(next);
     });
 
+    this.Then(/^An option to show\/hide percentages is displayed$/, function () {
+        expect(bridgeRacePage.showOrHidePecentageDiv.isPresent()).to.eventually.equal(true);
+        expect(bridgeRacePage.showPecentageButton.isPresent()).to.eventually.equal(true);
+        return expect(bridgeRacePage.hidePecentageButton.isPresent()).to.eventually.equal(true);
+    });
+
+    this.When(/^I click the "([^"]*)" button$/, function (arg, next) {
+        bridgeRacePage.hidePecentageButton.click().then(next)
+    });
+
+    this.Then(/^I should not see percentages$/, function () {
+        return bridgeRacePage.getTableRowData(0).then(function (row) {
+            expect(row[1]).to.equal('2,279,263');
+            expect(row[2]).to.equal('2,298,590');
+            expect(row[3]).to.equal('4,577,853');
+        });
+    });
 };
 
 module.exports = BridgeRaceStepDefinitionsWrapper;

@@ -6,8 +6,7 @@ var expect = chai.expect;
 
 var yrbsStepDefinitionsWrapper = function () {
 
-    this.setDefaultTimeout(300000);
-
+    this.setDefaultTimeout(600000);
     var yrbsPage = require('../support/yrbspage.po')
 
     this.When(/^I select YRBS as primary filter$/, function (next) {
@@ -393,6 +392,8 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^the sidebar switches to an Advanced Search mode$/, function () {
+        //var until = protractor.ExpectedConditions;
+        //browser.wait(until.presenceOf(element(by.tagName('owh-accordion-table'))), 600000, "Table 'owh-accordion-table' taking too long to appear in the DOM in YRBS advanced search page");
         /*Expand Sex to verify check boxes or radio buttons*/
         element(by.partialLinkText('Sex')).click();
         expect(element(by.id("mental_health_yrbsSex_Female")).getAttribute('type')).to.eventually.equal('checkbox');
