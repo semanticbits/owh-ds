@@ -74,7 +74,7 @@
                 tableData.data = categorizeQuestions(tableData.data, $rootScope.questions);
                 primaryFilter.showBasicSearchSideMenu = response.data.queryJSON.showBasicSearchSideMenu;
                 primaryFilter.runOnFilterChange = response.data.queryJSON.runOnFilterChange;
-               
+
             }
             if (primaryFilter.key === 'prams') {
                 primaryFilter.data = response.data.resultData.table;
@@ -190,18 +190,34 @@
 
         //takes mixedTable and returns categories array for use with owhAccordionTable
         function categorizeQuestions(data, questions) {
+            const QuestionsPerCategory = 2;
+
             var categories = [];
             angular.forEach(questions, function(questionCategory){
+                var questionCount = 0, rowCount = 0;
                 var category = {title: questionCategory.text, questions: [], hide: true};
                 angular.forEach(questionCategory.children, function(categoryChild) {
                     angular.forEach(data, function(row) {
                         if(row[0].qkey === categoryChild.id) {
                             category.questions.push(row);
+
+                            if (!row[0].style || row[0].style.display !== "none") {
+                                questionCount++;
+                            }
+
+                            if (questionCount <= QuestionsPerCategory) {
+                                rowCount++;
+                            }
                         }
                     });
                 });
+
+                category.questionsCount = questionCount;
+                category.rowsToShow = rowCount;
+
                 categories.push(category);
             });
+
             return categories;
         }
 
