@@ -175,6 +175,10 @@ Scenario: Crude Death rates population count should match with CDC for year 2000
   Given I am on search page
   When I choose the option "Crude Death Rates"
   Then I should see Crude Deth Rates page
+  When user sees a visualization
+  Then crude death rates labels are displayed on minimized visualization
+  When user expand visualization
+  Then crude death rates labels are displayed on expanded visualization
   And user clicks on "+ 13 more" more link for "Year" filter
   Then I select "Year" value "2000"
   And I un-select "Year" value "2015"

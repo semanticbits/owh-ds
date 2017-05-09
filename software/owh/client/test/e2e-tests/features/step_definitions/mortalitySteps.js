@@ -901,5 +901,18 @@ var mortalityStepDefinitionsWrapper = function () {
             expect(rowdata[4]).to.equals('106');
         }).then(next);
     });
+
+    this.Then(/^crude death rates labels are displayed on minimized visualization$/, function () {
+        var labelArray = mortalityPage.getAxisLabelsForMinimizedVisualization();
+        expect(labelArray[0].getText()).to.eventually.equal('Race');
+        return expect(labelArray[1].getText()).to.eventually.equal('Crude Death Rates');
+    });
+
+    this.Then(/^crude death rates labels are displayed on expanded visualization$/, function (next) {
+        var labelArray = mortalityPage.getAxisLabelsForExpandedVisualization();
+        expect(labelArray[0].getText()).to.eventually.equal('Race');
+        expect(labelArray[1].getText()).to.eventually.equal('Crude Death Rates');
+        element(by.name('close')).click().then(next);
+    });
 };
 module.exports = mortalityStepDefinitionsWrapper;
