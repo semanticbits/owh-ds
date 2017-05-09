@@ -63,6 +63,7 @@ describe("Build elastic search queries", function(){
         expect(censusQuery.aggregations.group_table_gender.aggregations.group_table_race.aggregations).to.have.property('group_table_year');
         expect(censusQuery.aggregations.group_table_gender.aggregations.group_table_race.aggregations.group_table_year.aggregations).to.have.property('pop');
         expect(censusQuery.aggregations.group_table_gender.aggregations.group_table_race.aggregations.group_table_year.aggregations.pop.sum.field).to.eql("pop");
+        expect(censusQuery.aggregations.group_chart_0_gender.aggregations.group_chart_0_race.aggregations.pop.sum.field).to.eql("pop");
         done()
     });
 

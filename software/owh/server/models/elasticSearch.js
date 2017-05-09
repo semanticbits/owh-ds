@@ -102,6 +102,7 @@ ElasticClient.prototype.executeMortilyAndNatalityQueries = function(query, index
 
 ElasticClient.prototype.mergeWithCensusData = function(data, censusData){
     mergeCensusRecursively(data.data.nested.table, censusData.data.nested.table);
+    mergeCensusRecursively(data.data.nested.charts, censusData.data.nested.charts);
 };
 
 function mergeCensusRecursively(mort, census) {

@@ -58,4 +58,41 @@ describe("Elastic Search", function () {
             done();
         })
     });
+
+    it("Check aggregate deaths data with Census rate query", function(done) {
+        var query = [{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_gender":{"terms":{"field":"sex","size":0}}}},"group_chart_0_gender":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0}}}},"group_maps_0_states":{"terms":{"field":"state","size":0},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}}}},{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_gender":{"terms":{"field":"sex","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}},"group_chart_0_gender":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}}}}] ;
+        new elasticSearch().aggregateDeaths(query).then(function (resp){
+            var  tableData = resp.data.nested.table.race;
+            var chartsData = resp.data.nested.charts[0].gender;
+            expect(tableData[0].name).equal('American Indian');
+            expect(tableData[0].deaths).equal(19016);
+            expect(tableData[0].pop).equal(4577853);
+            var  nestedData = tableData[0].gender;
+            expect(nestedData[0].name).equal('Female');
+            expect(nestedData[0].deaths).equal(8565);
+            expect(nestedData[0].pop).equal(2279263);
+            expect(nestedData[1].name).equal('Male');
+            expect(nestedData[1].deaths).equal(10451);
+            expect(nestedData[1].pop).equal(2298590);
+            //chart data
+            expect(chartsData[0].name).equal("Female");
+            expect(chartsData[0].deaths).equal(1339226);
+            expect(chartsData[0].pop).equal(163189523);
+            var nestedChartData = chartsData[0].race;
+            expect(nestedChartData[0].name).equal("American Indian");
+            expect(nestedChartData[0].deaths).equal(8565);
+            expect(nestedChartData[0].pop).equal(2279263);
+            expect(nestedChartData[1].name).equal("Asian or Pacific Islander");
+            expect(nestedChartData[1].deaths).equal(32574);
+            expect(nestedChartData[1].pop).equal(10480265);
+            expect(nestedChartData[2].name).equal("Black");
+            expect(nestedChartData[2].deaths).equal(155402);
+            expect(nestedChartData[2].pop).equal(23345129);
+            expect(nestedChartData[3].name).equal("White");
+            expect(nestedChartData[3].deaths).equal(1142685);
+            expect(nestedChartData[3].pop).equal(127084866);
+            done();
+        });
+
+    });
 });
