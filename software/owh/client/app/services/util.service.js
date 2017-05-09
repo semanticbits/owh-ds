@@ -105,7 +105,7 @@
         function findFilterByKeyAndValue(a, key, value) {
             if (a) {
                 for (var i = 0; i < a.length; i++) {
-                    var filter = a[i].filters;
+                    var filter = a[i];
                     if ( filter[key] && filter[key] === value ) {return a[i];}
                 }
             }
@@ -120,8 +120,8 @@
          * @returns {*}
          */
         function isFilterApplied(a) {
-            if (a && a.filters) {
-                return a.filters.value.length > 0;
+            if (a) {
+                return a.value.length > 0;
             }
             return false;
         }

@@ -646,7 +646,7 @@
          */
         function getCount(count, primaryFilter) {
             if (count == 0 && primaryFilter.applySuppression) {
-                var stateFilter = utilService.findFilterByKeyAndValue(primaryFilter.sideFilters, 'key', 'state');
+                var stateFilter = utilService.findFilterByKeyAndValue(primaryFilter.allFilters, 'key', 'state');
                 var isStateFilter = utilService.isFilterApplied(stateFilter);
                 return isStateFilter? 'Suppressed': $filter('number')(count);
             }
