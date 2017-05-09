@@ -37,9 +37,15 @@
             return verticalChart(filter1, filter2, data, primaryFilter, false);
         }
 
-        /*function bulletBar(filter1, filter2, data, primaryFilter) {
-            console.log("IN PROGRESS");
-        }*/
+        /**
+         * Get chart axis value from given data Object
+         * @param primaryFilter
+         * @param eachPrimaryData
+         * @returns {Number}
+         */
+        function getValueFromData(primaryFilter, eachPrimaryData) {
+            return  primaryFilter.tableView == "crude_death_rates" ? parseFloat($filter('number')(eachPrimaryData[primaryFilter.key] / eachPrimaryData['pop'] * 100000, 1)) : eachPrimaryData[primaryFilter.key];
+        }
 
         /*Multi Bar Horizontal Chart*/
         function horizontalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip) {
@@ -203,14 +209,14 @@
                     }
                     primaryDataObj["values"] = [];
                     if(eachPrimaryData) {
-                        primaryDataObj[primaryFilter.key] = primaryFilter.tableView == "crude_death_rates" ? parseFloat($filter('number')(eachPrimaryData[primaryFilter.key] / eachPrimaryData['pop'] * 100000, 1)): eachPrimaryData[primaryFilter.key];
+                        primaryDataObj[primaryFilter.key] = getValueFromData(primaryFilter, eachPrimaryData);
                     }
                     if(eachPrimaryData && eachPrimaryData[filter2.key]) {
                         angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2) , function (secondaryOption,j) {
                             var eachSecondaryData = utilService.findByKeyAndValue(eachPrimaryData[filter2.key], 'name', secondaryOption.key);
                             var value = 0;
                             if(eachSecondaryData &&  eachSecondaryData[primaryFilter.key]) {
-                                value = primaryFilter.tableView == "crude_death_rates" ? parseFloat($filter('number')(eachSecondaryData[primaryFilter.key] / eachSecondaryData['pop'] * 100000, 1)) : eachSecondaryData[primaryFilter.key];
+                                value = getValueFromData(primaryFilter, eachSecondaryData);
                             }
                             primaryDataObj.values.push({"label":secondaryOption.title, "value": value});
                         });
@@ -323,7 +329,7 @@
                             var eachSecondaryData = utilService.findByKeyAndValue(secondaryArrayData, 'name', secondaryOption.key);
                             var yAxisValue = 0;
                             if(eachSecondaryData &&  eachSecondaryData[primaryFilter.key]) {
-                                yAxisValue =  primaryFilter.tableView == "crude_death_rates" ? parseFloat( $filter('number')(eachSecondaryData[primaryFilter.key] / eachSecondaryData['pop'] * 100000, 1)) : eachSecondaryData[primaryFilter.key] ;
+                                yAxisValue =  getValueFromData(primaryFilter, eachSecondaryData);
                             }
                             primaryObj.values.push(
                                 { x : secondaryOption.title, y : yAxisValue }
@@ -422,7 +428,7 @@
                     var eachRow = utilService.findByKeyAndValue(data, 'name', eachOption.key);
                     var yAxisValue = 0;
                     if(eachRow) {
-                        yAxisValue =  primaryFilter.tableView == "crude_death_rates" ? parseFloat($filter('number')(eachRow[primaryFilter.key] / eachRow['pop'] * 100000, 1)) : eachRow[primaryFilter.key] ;
+                        yAxisValue =  getValueFromData(primaryFilter, eachRow);
                     }
                     lineData.push({x: eachOption.title, y: yAxisValue});
                 });
@@ -507,7 +513,7 @@
                 var eachRow = utilService.findByKeyAndValue(data, 'name', eachOption.key);
                 var value = 0;
                 if(eachRow) {
-                    value =  primaryFilter.tableView == "crude_death_rates" ? parseFloat($filter('number')(eachRow[primaryFilter.key] / eachRow['pop'] * 100000,1)) : eachRow[primaryFilter.key] ;
+                    value =  getValueFromData(primaryFilter, eachRow);
                 }
                 chartData.data.push({label: eachOption.title, value: value});
             });
