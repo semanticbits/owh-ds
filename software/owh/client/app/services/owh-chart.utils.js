@@ -39,12 +39,12 @@
 
         /**
          * Get chart axis value from given data Object
-         * @param primaryFilter
-         * @param eachPrimaryData
+         * @param filter
+         * @param data
          * @returns {Number}
          */
-        function getValueFromData(primaryFilter, eachPrimaryData) {
-            return  primaryFilter.tableView == "crude_death_rates" ? parseFloat($filter('number')(eachPrimaryData[primaryFilter.key] / eachPrimaryData['pop'] * 100000, 1)) : eachPrimaryData[primaryFilter.key];
+        function getValueFromData(filter, data) {
+            return  filter.tableView == "crude_death_rates" ? parseFloat($filter('number')(data[filter.key] / data['pop'] * 100000, 1)) : data[filter.key];
         }
 
         /*Multi Bar Horizontal Chart*/
