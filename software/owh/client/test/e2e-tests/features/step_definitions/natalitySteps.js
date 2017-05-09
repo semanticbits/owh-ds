@@ -263,6 +263,42 @@ var natalityStepsDefinitionWrapper = function () {
             expect(row[3]).to.equal('44,299');
         });
     });
+
+    this.When(/^I selects "([^"]*)" state$/, function (state, next) {
+        if (state == 'Alabama') {
+            element.all(by.css('label[for=natality_state_AL]')).then(function(elements, index) {
+                elements[1].click();
+            }).then(next);
+        } else if (state == 'Alaska') {
+            element.all(by.css('label[for=natality_state_AK]')).then(function(elements, index) {
+                elements[1].click();
+            }).then(next);
+        }
+    });
+
+    this.Then(/^I see data is displayed in data\-table for races$/, function (next) {
+        natalityPage.getTableRowData(0).then(function (row) {
+            expect(row[0]).to.equal('American Indian or Alaska Native');
+            expect(row[1]).to.equal('1,179 (48.8%)');
+            expect(row[2]).to.equal('1,236 (51.2%)');
+            expect(row[3]).to.equal('2,415');
+        }).then(next);
+    });
+
+    this.Then(/^I see data is grouped by state in data table$/, function (next) {
+        natalityPage.getTableHeaders().then(function(headers) {
+            expect(headers[4]).to.contains('Alabama');
+            expect(headers[5]).to.contains('Alaska');
+            //alabama
+            natalityPage.getTableCellData(0,1).then(function(data){
+                expect(data).to.contains('100 (3.8%)');
+            });
+            //Alaska
+            natalityPage.getTableCellData(0,2).then(function(data){
+                expect(data).to.contains('1,179 (45.3%)');
+            });
+        }).then(next);
+    });
 };
 
 module.exports = natalityStepsDefinitionWrapper;

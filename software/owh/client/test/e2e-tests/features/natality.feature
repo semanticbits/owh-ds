@@ -87,3 +87,11 @@ Feature: Natality filters
     Then I see an option to show/hide percentages
     When I click the "Hide" option
     Then the percentages should be hidden
+
+  Scenario: State filter
+    When I expand "State" filter section
+    And  I selects "Alaska" state
+    Then I see data is displayed in data-table for races
+    When I selects "Alabama" state
+    And  I select groupBy "Column" option for "State" filter
+    Then I see data is grouped by state in data table

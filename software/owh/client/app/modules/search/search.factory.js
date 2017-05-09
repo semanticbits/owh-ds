@@ -2196,6 +2196,19 @@
                             ]
                         },
                         {
+                            category: 'Maternal Residence',
+                            sideFilters: [
+
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'state')
+                                }
+                            ]
+                        },
+                        {
                             category: "Mother's Age",
                             exclusive: true,
                             sideFilters: [

@@ -246,6 +246,7 @@
   "label.help.text.lung.disease": "This field indicates whether Lung disease (acute or chronic) is reported as a maternal risk factor. These data are only available before year 2003.",
   "label.help.text.pregnancy.hypertension": "This field indicates whether Pregnancy-associated Hypertension is reported as a maternal risk factor.",
   "label.help.text.tobacco.use": "This field indicates whether tobacco use was reported during the pregnancy.",
+  "label.help.text.natality.state": "This field indicates mother's legal residence recorded on the birth certificate.",
 
   "label.help.text.bridged-race.year": "This field indicates July 1st estimates for 2000 through last year of the series.",
   "label.help.text.bridged-race.gender": "This field indicates the gender of the population.",
