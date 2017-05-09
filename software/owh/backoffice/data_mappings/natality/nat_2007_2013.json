@@ -31,9 +31,9 @@
     "stop": 90,
     "field": "Mother’s Single Year of Age",
     "mappings": {
-      "12": "10-12 years",
-      "13": "13 years",
-      "14": "14 years",
+      "12": "Under 15 years",
+      "13": "Under 15 years",
+      "14": "Under 15 years",
       "15": "15 years",
       "16": "16 years",
       "17": "17 years",

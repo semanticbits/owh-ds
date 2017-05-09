@@ -15,12 +15,8 @@
     "mappings": {
       "01-01": "White",
       "02-02": "Black",
-      "03-03": "American Indian",
-      "04-04": "Chinese",
-      "05-05": "Japanese",
-      "06-06": "Hawaiian",
-      "07-07": "Filipino",
-      "18-78": "Other Asian"
+      "03-03": "American Indian or Alaska Native",
+      "04-78": "Asian or Pacific Islander"
     }
   },
   {
@@ -49,14 +45,14 @@
     "field": "Age of Mother Recode 8",
     "mappings": {
       "1": "Under 15 years",
-      "2": "15 - 19 years",
-      "3": "20 - 24 years",
-      "4": "25 - 29 years",
-      "5": "30 - 34 years",
-      "6": "35 - 39 years",
-      "7": "40 - 44 years",
-      "8": "45 - 49 years",
-      "9": "50 - 54 years"
+      "2": "15-19 years",
+      "3": "20-24 years",
+      "4": "25-29 years",
+      "5": "30-34 years",
+      "6": "35-39 years",
+      "7": "40-44 years",
+      "8": "45-49 years",
+      "9": "50-54 years"
     }
   },
   {
