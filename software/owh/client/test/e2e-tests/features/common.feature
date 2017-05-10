@@ -6,7 +6,7 @@ Feature: Common functionality
 Scenario: Access mortality page
   When I am at home page
   And  I click on Explore button in Health Information Gateway section
-  Then I should get search page with default filter type "Mortality"
+  Then I should get search page with default filter type "Detailed Mortality"
   And URL in browser bar should not be base URL
 
 Scenario: Filter options updated
@@ -26,7 +26,7 @@ Scenario: Filter options updated
 Scenario: Browser back button
   When I am at home page
   And  I click on Explore button in Health Information Gateway section
-  Then I should get search page with default filter type "Mortality"
+  Then I should get search page with default filter type "Detailed Mortality"
   When I change 'I'm interested in' dropdown value to "Bridged-Race Population Estimates"
   #Then I should see Bridge race search page with filter type "Bridged-Race Population Estimates"
   When I expand "Ethnicity" filter section

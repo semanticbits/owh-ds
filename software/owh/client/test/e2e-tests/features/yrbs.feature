@@ -186,6 +186,9 @@ Scenario: show chart for each question
     And the link should be "Switch to Advanced Search" displayed
     And filter "Asian" under "Race/Ethnicity" should be a "radio"
     When I click on the "Switch to Advanced Search" link
+    And I click on "Select Questions" button
+    And I select a few questions and clicks on the Add Selected Question(s) button
+    Then the "Select Questions" button should be renamed to "Update Questions"
     And I see a link "Switch to Basic Search" at the top of the sidebar
     When I select the back button in browser
     And the link should be "Switch to Advanced Search" displayed
@@ -194,11 +197,6 @@ Scenario: show chart for each question
     And the link should be "Switch to Basic Search" displayed
     And filter "Asian" under "Race/Ethnicity" should be a "checkbox"
     And "Run Query" button should be displayed
-
-  Scenario: Questions should display in advanced search page
-    When I click on "Select Questions" button
-    And I select a few questions and clicks on the Add Selected Question(s) button
-    Then the "Select Questions" button should be renamed to "Update Questions"
 
   Scenario: Select only 'State' filter as column
     Given I am on search page
@@ -215,16 +213,38 @@ Scenario: show chart for each question
     When I select "Year" value "2013"
     Then I see Sexual identity and Sexual contact filter disabled
 
-  Scenario Outline: Search By Sexual Identity and Sex of Sexual contact
-    Given I am on yrbs advanced search page
-    When I expand <filter> section
-    And user clicks on "+ 1 more" more link for <filter> filter
-    Then I see <filterOptions>
-    When I select <filterOption>
-    And I click on run query button
-    Then I see results being displayed in data table for <filter>
+  #YRBS service returning 'Internal Server Error' for feq questions and state combinations
+  # Once we fix this issue then enable below scenario.
+  #Scenario Outline: Search By Sexual Identity and Sex of Sexual contact
+  #  Given I am on yrbs advanced search page
+  #  When I expand <filter> section
+  #  And user clicks on "+ 1 more" more link for <filter> filter
+  #  Then I see <filterOptions>
+  #  When I select <filterOption>
+  #  And I click on run query button
+    #Then I see results being displayed in data table for <filter>
 
-    Examples:
-      | filter                  | filterOptions                                                     | filterOption      |
-      |  Sexual Identity        |  Heterosexual (straight), Gay or Lesbian, Bisexual, Not Sure      | Bisexual          |
-      |  Sexual Contact         |  Opposite Sex Only, Same Sex Only, Both Sexes, No Sexual Contact  | Opposite Sex Only |
+    #Examples:
+    #  | filter                  | filterOptions                                                     | filterOption      |
+    #  |  Sexual Identity        |  Heterosexual (straight), Gay or Lesbian, Bisexual, Not Sure      | Bisexual          |
+    #  |  Sexual Contact         |  Opposite Sex Only, Same Sex Only, Both Sexes, No Sexual Contact  | Opposite Sex Only |
+
+  Scenario: Show/Hide Confidence Intervals for variance filter
+    Given I am on search page
+    When I select YRBS as primary filter
+    Then I should get search page with default filter type "Youth Risk Behavior"
+    When I click on Confidence Intervals option's "Show" button
+    Then "Show" button for Confidence Intervals should be remain selected
+    And I see Confidence Intervals value in data table
+    And I set "Sex" filter "Column"
+    Then "Show" button for Confidence Intervals should be remain selected
+    And Confidence Intervals value in data table should be updated
+
+  Scenario: Show/Hide Unweighted Frequency for variance filter
+    When I click on Unweighted Frequency option's "Show" button
+    Then "Show" button for Unweighted Frequency should be remain selected
+    And I see Unweighted Frequency value in data table
+    And I set "Sex" filter "Off"
+    Then "Show" button for Unweighted Frequency should be remain selected
+    And  Unweighted Frequency value in data table should be updated
+

@@ -6,7 +6,7 @@ var expect = chai.expect;
 
 var natalityStepsDefinitionWrapper = function () {
 
-    this.setDefaultTimeout(30000);
+    this.setDefaultTimeout(600000);
     var natalityPage = require('../support/natality.po');
 
     this.Then(/^I see "([^"]*)" as first filter category$/, function (arg1, next) {
@@ -174,29 +174,26 @@ var natalityStepsDefinitionWrapper = function () {
     });
 
     this.Then(/^I select groupBy "([^"]*)" option for "([^"]*)" filter$/, function (arg1, arg2, next) {
-        browser.waitForAngular();
         natalityPage.selectSideFilter(arg2, arg1).click()
             .then(next);
     });
 
     this.Then(/^data table should display right values for 5\-Year age filter$/, function (next) {
-        browser.waitForAngular();
         natalityPage.getTableRowData(0).then(function(rowdata) {
             //Race
             expect(rowdata[0]).to.equals('American Indian or Alaska Native');
             //Mother's Age 9
             expect(rowdata[1]).to.equals('15-19 years');
             //Female
-            expect(rowdata[2]).to.equals('3,776');
+            expect(rowdata[2]).to.equals('3,776 (49.1%)');
             //Male
-            expect(rowdata[3]).to.equals('3,914');
+            expect(rowdata[3]).to.equals('3,914 (50.9%)');
             //Total
             expect(rowdata[4]).to.equals('7,690');
         }).then(next);
     });
 
     this.Then(/^I should see "([^"]*)" options under Mother Age category for 1\-Year age group$/, function (arg1, next) {
-        browser.waitForAngular();
         natalityPage.getOptions(arg1).then(function(elements) {
             expect(elements[1].getText()).to.eventually.contains('All');
             expect(elements[2].getText()).to.eventually.contains('13 years');
@@ -212,9 +209,9 @@ var natalityStepsDefinitionWrapper = function () {
             //Mother's Age 9
             expect(rowdata[1]).to.equals('15 years');
             //Female
-            expect(rowdata[2]).to.equals('957');
+            expect(rowdata[2]).to.equals('957 (49.6%)');
             //Male
-            expect(rowdata[3]).to.equals('974');
+            expect(rowdata[3]).to.equals('974 (50.4%)');
             //Total
             expect(rowdata[4]).to.equals('1,931');
         }).then(next);
@@ -226,6 +223,45 @@ var natalityStepsDefinitionWrapper = function () {
             expect(filters[0]).to.contains("1-Year Age Groups");
             expect(filters[7]).to.contains("5-Year Age Groups");
         }).then(next);
+    });
+
+    this.Then(/^I see expected filters should be disabled in natality page for number for births$/, function (next) {
+        var allElements = element.all(by.css('.cursor-not-allowed')).all(By.css('.filter-display-name'));
+        allElements.getText().then(function (filters) {
+            filters.forEach(function (filter) {
+                expect(["Gestational Age at Birth", "Anemia", "Cardiac Disease", "Hydramnios / Oligohydramnios", "Incompetent Cervix", "Lung disease"]).to.include(filter);
+            });
+        }).then(next);
+    });
+
+    this.Then(/^I see expected filters should be enabled in natality page for number of births$/, function (next) {
+        var allElements = element.all(by.css('.cursor-not-allowed')).all(By.css('.filter-display-name'));
+        allElements.getText().then(function (filters) {
+            filters.forEach(function (filter) {
+                expect(["Year", "Month", "Weekday", "Sex", "Month Prenatal Care Began", "Birth Weight", "Birth Weight 4", "Birth Weight 12",
+                    "Plurality or Multiple Birth", "Live Birth Order", "Birth Place", "Delivery Method", "Medical Attendant", "Race", "Ethnicity",
+                    "Marital Status", "Education", "1-Year Age Groups", "5-Year Age Groups", "Chronic Hypertension", "Diabetes", "Eclampsia",
+                    "Pregnancy-associated Hypertension", "Tobacco Use" ]).to.not.include(filter);
+            });
+        }).then(next);
+    });
+
+    this.Then(/^I see an option to show\/hide percentages$/, function () {
+        expect(natalityPage.showOrHidePecentageDiv.isPresent()).to.eventually.equal(true);
+        expect(natalityPage.showPecentageButton.isPresent()).to.eventually.equal(true);
+        return expect(natalityPage.hidePecentageButton.isPresent()).to.eventually.equal(true);
+    });
+
+    this.When(/^I click the "([^"]*)" option$/, function (arg, next) {
+        natalityPage.hidePecentageButton.click().then(next)
+    });
+
+    this.Then(/^the percentages should be hidden$/, function () {
+        return natalityPage.getTableRowData(0).then(function (row) {
+            expect(row[1]).to.equal('21,593');
+            expect(row[2]).to.equal('22,706');
+            expect(row[3]).to.equal('44,299');
+        });
     });
 };
 

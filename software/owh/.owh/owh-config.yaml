@@ -2,34 +2,16 @@
 default: 
   elastic_search:
     url: 'http://localhost:9200/'
-  rserve:
-    host : localhost
-    port : 6311
-    user : ''
-    password : ''
   yrbs:
     queryUrl: ''
     questionsUrl: ''
+  wonder:
+    url: 'http://54.242.94.197/wonder/'
+    apix_project: ''
+    apix_token: ''
   logging:
     level: 'debug'
   fb:
     appID :
     appURL:
-
-# Dev configuration
-dev:
-
-# Test environment configuration
-test:
-
-# Production configuration
-production:
-  elastic_search:
-    url:
-  rserve:
-    host:
-      user:
-      password:
-  fb:
-    appID :
-    appURL:
+  disableQueryCache: false

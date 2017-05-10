@@ -108,7 +108,8 @@
                         if(['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates'].indexOf(otc.tableView) >= 0) {
                             cell += '<div id="crudeRateDiv" class="owh-table__left-col ' + (row.length > 5 ? 'usa-width-one-half' : 'usa-width-one-third') + '">';
                             if(rowIndex === 0) {
-                                cell += '<label class="owh-table__label">Rate</label>';
+                                var rateLabel = { 'crude_death_rates': 'Crude Death Rates', 'age-adjusted_death_rates': 'Age Adjusted Death Rates' }[otc.tableView] || 'Rate';
+                                cell += '<label class="owh-table__label">' + rateLabel + '</label>';
                             }
                             var rateVisibility = getRateVisibility(column.title, column.pop);
                             if(otc.tableView === 'age-adjusted_death_rates') {
@@ -176,7 +177,7 @@
 
 
 
-                        } else if(otc.tableView === 'number_of_deaths') {
+                        } else if(otc.tableView === 'number_of_deaths' || otc.tableView === 'bridge_race') {
                             if(column.title === 'suppressed') {
                                 cell += '<span>Suppressed</span>';
                             } else if(column.title === 'Not Available') {
@@ -187,16 +188,11 @@
                                     cell += '<span class="count-value"> (' + $filter('number')(column.percentage, 1) + '%)</span>';
                                 }
                             }
-                        } else if(otc.tableView === 'bridge_race') {
-                            if(column.title === 'suppressed') {
-                                cell += '<span>Suppressed</span>';
-                            } else if(column.title === 'Not Available') {
-                                cell += '<span>Not Available</span>';
-                            } else {
-                                cell += '<span class="count-value">' + $filter('number')(column.title) + '</span>';
-                            }
                         } else if(otc.tableView === 'number_of_births') {
-                            cell += '<span class="count-value">' + $filter('number')(column.title) + '</span>';
+                          cell += '<span class="count-value">' + $filter('number')(column.title) + '</span>';
+                          if(colIndex !== row.length - 1 && column.percentage  > 0 && otc.showPercentage) {
+                            cell += '<span class="count-value"> (' + $filter('number')(column.percentage, 1) + '%)</span>';
+                          }
                         }
 
                             cell+= '</div>';

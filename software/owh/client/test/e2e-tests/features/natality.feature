@@ -7,7 +7,7 @@ Feature: Natality filters
   Background: Access Natality page
     When I am at home page
     And  I click on Explore button in Health Information Gateway section
-    Then I should get search page with default filter type "Mortality"
+    Then I should get search page with default filter type "Detailed Mortality"
     When I change 'I'm interested in' dropdown value to "Natality"
     Then I should see filter type "Natality" selected
     And I should see filter type "Number of Births" selected for show me dropdown
@@ -18,6 +18,11 @@ Feature: Natality filters
     Then I see "Year" as first option in sidebar filters
     And  I see the data table with race, female, male and total table headers
     And I see population count for "2015" option
+    Then I expand "+ 12 more filters" filter section
+    And I expand "+ 2 more filters" filter section
+    And I expand "+ 8 more filters" filter section
+    And I see expected filters should be disabled in natality page for number for births
+    And I see expected filters should be enabled in natality page for number of births
 
   Scenario: Filter categories
     Then I see "Birth Characteristics" as first filter category
@@ -78,3 +83,7 @@ Feature: Natality filters
     And I select groupBy "Row" option for "1-Year Age Groups" filter
     Then data table should display right values for 1-Year age filter
 
+  Scenario: Show/Hide Percentages
+    Then I see an option to show/hide percentages
+    When I click the "Hide" option
+    Then the percentages should be hidden

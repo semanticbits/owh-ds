@@ -5,6 +5,9 @@ var NatalitySearchPage = function () {
     nsp.showMeDropDown = element(by.id("showMeDropDown"));
     nsp.owhTable = element(by.tagName('owh-table'));
     nsp.birthRateDisclaimer = element(by.id('birth-rate-disclaimer'));
+    nsp.showOrHidePecentageDiv = element(by.id('togglePercentage'));
+    nsp.showPecentageButton = element(by.id('togglePercentage')).element(by.cssContainingText('a', 'Show'));
+    nsp.hidePecentageButton = element(by.id('togglePercentage')).element(by.cssContainingText('a', 'Hide'));
 
     nsp.getFilterCategories = function() {
         return element.all(by.className('filter-category'));
