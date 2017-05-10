@@ -159,7 +159,7 @@ var natalityStepsDefinitionWrapper = function () {
 
     this.When(/^I see "([^"]*)" category in the sidebar$/, function (arg1, next) {
         natalityPage.getFilterCategories().then(function(categories) {
-            expect(categories.length).to.equal(4);
+            expect(categories.length).to.equal(5);
             expect(categories[2].getText()).to.eventually.equal(arg1);
         }).then(next);
     });
@@ -196,9 +196,9 @@ var natalityStepsDefinitionWrapper = function () {
     this.Then(/^I should see "([^"]*)" options under Mother Age category for 1\-Year age group$/, function (arg1, next) {
         natalityPage.getOptions(arg1).then(function(elements) {
             expect(elements[1].getText()).to.eventually.contains('All');
-            expect(elements[2].getText()).to.eventually.contains('13 years');
-            expect(elements[3].getText()).to.eventually.contains('14 years');
-            expect(elements[4].getText()).to.eventually.contains('15 years');
+            expect(elements[2].getText()).to.eventually.contains('Under 15 years');
+            expect(elements[3].getText()).to.eventually.contains('15 years');
+            expect(elements[4].getText()).to.eventually.contains('16 years');
         }).then(next);
     });
 
@@ -209,11 +209,11 @@ var natalityStepsDefinitionWrapper = function () {
             //Mother's Age 9
             expect(rowdata[1]).to.equals('15 years');
             //Female
-            expect(rowdata[2]).to.equals('957 (49.6%)');
+            expect(rowdata[2]).to.equals('204 (49.6%)');
             //Male
-            expect(rowdata[3]).to.equals('974 (50.4%)');
+            expect(rowdata[3]).to.equals('207 (50.4%)');
             //Total
-            expect(rowdata[4]).to.equals('1,931');
+            expect(rowdata[4]).to.equals('411');
         }).then(next);
     });
 
@@ -317,7 +317,7 @@ var natalityStepsDefinitionWrapper = function () {
             expect(data).to.contains('Suppressed');
         });
         natalityPage.getTableCellData(2,2).then(function(data){
-            expect(data).to.equal(11);
+            expect(data).to.equal('11');
         }).then(next);
     });
 };
