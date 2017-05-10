@@ -115,6 +115,32 @@ function wonder(dbID) {
 }
 
 /**
+ * To request wonder query with given request xml
+ * @param dbID
+ * @param req
+ * @return promise
+ */
+function requestWonder(dbID, req) {
+    var defer = q.defer();
+    request.post({url: config.wonder.url + dbID, form: {request_xml: req}}, function (error, response, body) {
+        result = {};
+        if (!error && body.indexOf('Processing Error') == -1) {
+            result = processWONDERResponse(body);
+            //logger.debug("Age adjusted rates: "+inspect(result, {depth:null}));
+            logger.debug("Age adjusted rates: " + JSON.stringify(result));
+            defer.resolve(result);
+        } else {
+            logger.error("WONDER Error: " + (error ? error : body));
+            defer.reject('Error invoking WONDER API');
+        }
+        //console.log(inspect(result, {depth: null, colors: true}));
+    }, function (error) {
+        logger.error("WONDER Error: " + error);
+        defer.reject('Error invoking WONDER API');
+    });
+    return defer.promise;
+}
+/**
  * Invoke WONDER rest API
  * @param query Query from the front end
  * @result processed result from WONDER in the following format
@@ -147,31 +173,22 @@ function wonder(dbID) {
  *
  */
 wonder.prototype.invokeWONDER = function (query){
-    var defer = q.defer();
+    var promises = [];
+    var dbID = this.dbID;
     // If no aggregations then return empty result
     if(query.aggregations.nested.table.length == 0){
         defer.resolve({});
     }else {
-        var req = createWONDERRquest(query);
-        request.post({url: config.wonder.url + this.dbID, form: {request_xml: req}}, function (error, response, body) {
-            result = {};
-            if (!error && body.indexOf('Processing Error') == -1) {
-                result = processWONDERResponse(body);
-                //logger.debug("Age adjusted rates: "+inspect(result, {depth:null}));
-                logger.debug("Age adjusted rates: " + JSON.stringify(result));
-                defer.resolve(result);
-            } else {
-                logger.error("WONDER Error: " + (error ? error : body));
-                defer.reject('Error invoking WONDER API');
-            }
-            //console.log(inspect(result, {depth: null, colors: true}));
-        }, function (error) {
-            logger.error("WONDER Error: " + error);
-            defer.reject('Error invoking WONDER API');
-
+        var reqArray = []
+        reqArray.push(createWONDERRquest(query.query, query.aggregations.nested.table));
+        query.aggregations.nested.charts.forEach(function(chart){
+            reqArray.push(createWONDERRquest(query.query, chart));
+        });
+        reqArray.forEach(function(req){
+            promises.push(requestWonder(dbID, req));
         });
     }
-    return defer.promise;
+    return promises;
 };
 
 
@@ -225,10 +242,11 @@ function processWONDERResponse(response){
 
 /**
  * Create a WONDER request from the HIG query
- * @param query HIG query from the UI
+ * @param filter HIG filters from the UI
+ * @param groupParams
  * @returns WONDER request
  */
-function createWONDERRquest(query){
+function createWONDERRquest(filter, groupParams){
     var request = xmlbuilder.create('request-parameters', {version: '1.0', encoding: 'UTF-8'});
     addParamToWONDERReq(request, 'accept_datause_restrictions', 'true');
     addParamToWONDERReq(request,'apix_project',config.wonder.apix_project);
@@ -236,9 +254,9 @@ function createWONDERRquest(query){
     request.com("Measures");
     addMeasures(request);
     request.com("Groups");
-    addGroupParams(request, query.aggregations.nested.table);
+    addGroupParams(request, groupParams);
     request.com("Filters");
-    addFilterParams(request, query.query);
+    addFilterParams(request, filter);
     request.com("Options");
     addOptionParams(request);
     var reqStr = request.end({pretty:true});
