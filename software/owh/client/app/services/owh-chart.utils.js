@@ -37,13 +37,22 @@
             return verticalChart(filter1, filter2, data, primaryFilter, false);
         }
 
-        /*function bulletBar(filter1, filter2, data, primaryFilter) {
-            console.log("IN PROGRESS");
-        }*/
+        /**
+         * Get chart axis value from given data Object
+         * @param filter
+         * @param data
+         * @returns {Number}
+         */
+        function getValueFromData(filter, data) {
+            return  filter.tableView == "crude_death_rates" ? parseFloat($filter('number')(data[filter.key] / data['pop'] * 100000, 1)) : data[filter.key];
+        }
 
         /*Multi Bar Horizontal Chart*/
         function horizontalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip) {
             postFixToTooltip = postFixToTooltip ? postFixToTooltip : '';
+            if(primaryFilter.tableView == "crude_death_rates") {
+                primaryFilter.chartAxisLabel = "Crude Death Rates";
+            }
 
             var chartData = {
                 data: [],
@@ -199,14 +208,17 @@
                         primaryDataObj["color"] = primaryOption.key === 'Male' ?  "#009aff" : "#fe66ff";
                     }
                     primaryDataObj["values"] = [];
-                    primaryDataObj[primaryFilter.key] = eachPrimaryData ? eachPrimaryData[primaryFilter.key]: 0;
-
+                    if(eachPrimaryData) {
+                        primaryDataObj[primaryFilter.key] = getValueFromData(primaryFilter, eachPrimaryData);
+                    }
                     if(eachPrimaryData && eachPrimaryData[filter2.key]) {
                         angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2) , function (secondaryOption,j) {
                             var eachSecondaryData = utilService.findByKeyAndValue(eachPrimaryData[filter2.key], 'name', secondaryOption.key);
-                            primaryDataObj.values.push({"label":secondaryOption.title, "value":
-                                (eachSecondaryData &&  eachSecondaryData[primaryFilter.key]) ?
-                                    eachSecondaryData[primaryFilter.key] : 0});
+                            var value = 0;
+                            if(eachSecondaryData &&  eachSecondaryData[primaryFilter.key]) {
+                                value = getValueFromData(primaryFilter, eachSecondaryData);
+                            }
+                            primaryDataObj.values.push({"label":secondaryOption.title, "value": value});
                         });
                         multiChartBarData.push(primaryDataObj);
                     }else{
@@ -315,9 +327,12 @@
                         var secondaryArrayData = utilService.sortByKey(eachPrimaryData[filter2.key], 'name');
                         angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2), function (secondaryOption,j) {
                             var eachSecondaryData = utilService.findByKeyAndValue(secondaryArrayData, 'name', secondaryOption.key);
+                            var yAxisValue = 0;
+                            if(eachSecondaryData &&  eachSecondaryData[primaryFilter.key]) {
+                                yAxisValue =  getValueFromData(primaryFilter, eachSecondaryData);
+                            }
                             primaryObj.values.push(
-                                { x : secondaryOption.title, y : (eachSecondaryData &&  eachSecondaryData[primaryFilter.key]) ?
-                                    eachSecondaryData[primaryFilter.key] :0 }
+                                { x : secondaryOption.title, y : yAxisValue }
                             );
                         });
                         multiBarChartData.push(primaryObj);
@@ -411,7 +426,11 @@
                 var lineData = [];
                 angular.forEach(utilService.getSelectedAutoCompleteOptions(filter), function(eachOption) {
                     var eachRow = utilService.findByKeyAndValue(data, 'name', eachOption.key);
-                    lineData.push({x: eachOption.title, y: eachRow ? eachRow[primaryFilter.key] : 0});
+                    var yAxisValue = 0;
+                    if(eachRow) {
+                        yAxisValue =  getValueFromData(primaryFilter, eachRow);
+                    }
+                    lineData.push({x: eachOption.title, y: yAxisValue});
                 });
 
                 //Line chart data should be sent as an array of series objects.
@@ -492,7 +511,11 @@
             };
             angular.forEach(utilService.getSelectedAutoCompleteOptions(filter), function(eachOption) {
                 var eachRow = utilService.findByKeyAndValue(data, 'name', eachOption.key);
-                chartData.data.push({label: eachOption.title, value: eachRow ? eachRow[primaryFilter.key] : 0});
+                var value = 0;
+                if(eachRow) {
+                    value =  getValueFromData(primaryFilter, eachRow);
+                }
+                chartData.data.push({label: eachOption.title, value: value});
             });
             return chartData;
         }
