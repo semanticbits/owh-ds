@@ -102,3 +102,21 @@ Feature: Natality filters
     And  I expand "State" filter section
     And  I select "Alaska" state
     Then I see suppressed cells in data table
+
+  Scenario: Birth rates by state
+    When I change show me dropdown option to "Birth Rates"
+    Then I should see filter type "Birth Rates" selected for show me dropdown
+    When I expand "State" filter section
+    And  I select "Alaska" state
+    And  I select "Alabama" state
+    And  I select groupBy "Column" option for "State" filter
+    Then I see birth rate for state
+
+  Scenario: Fertility rates by state
+    When I change show me dropdown option to "Fertility Rates"
+    Then I should see filter type "Fertility Rates" selected for show me dropdown
+    When I expand "State" filter section
+    And  I select "Alaska" state
+    And  I select "Alabama" state
+    And  I select groupBy "Column" option for "State" filter
+    Then I see fertility rates for state

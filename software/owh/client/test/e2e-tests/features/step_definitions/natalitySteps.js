@@ -320,6 +320,42 @@ var natalityStepsDefinitionWrapper = function () {
             expect(data).to.equal('11');
         }).then(next);
     });
+
+    this.Then(/^I see birth rate for state$/, function (next) {
+        natalityPage.getTableRowData(0).then(function(firstRowData){
+            expect(firstRowData[0]).to.equals('American Indian or Alaska Native');
+            expect(firstRowData[1]).to.contains('Rate');
+            expect(firstRowData[1]).to.contains('510.4');
+            expect(firstRowData[1]).to.contains('Births');
+            expect(firstRowData[1]).to.contains('190');
+            expect(firstRowData[1]).to.contains('Population');
+            expect(firstRowData[1]).to.contains('37,228');
+        });
+        natalityPage.getTableRowData(1).then(function(firstRowData){
+            expect(firstRowData[0]).to.equals('Asian or Pacific Islander');
+            expect(firstRowData[1]).to.contains('1,534.4');
+            expect(firstRowData[1]).to.contains('1,193');
+            expect(firstRowData[1]).to.contains('77,752')
+        }).then(next);
+    });
+
+    this.Then(/^I see fertility rates for state$/, function (next) {
+        natalityPage.getTableRowData(0).then(function(firstRowData){
+            expect(firstRowData[0]).to.equals('American Indian or Alaska Native');
+            expect(firstRowData[1]).to.contains('Rate');
+            expect(firstRowData[1]).to.contains('2,429.7');
+            expect(firstRowData[1]).to.contains('Births');
+            expect(firstRowData[1]).to.contains('190');
+            expect(firstRowData[1]).to.contains('Population');
+            expect(firstRowData[1]).to.contains('7,820');
+        });
+        natalityPage.getTableRowData(1).then(function(firstRowData){
+            expect(firstRowData[0]).to.equals('Asian or Pacific Islander');
+            expect(firstRowData[1]).to.contains('6,043.0');
+            expect(firstRowData[1]).to.contains('1,193');
+            expect(firstRowData[1]).to.contains('19,742')
+        }).then(next);
+    });
 };
 
 module.exports = natalityStepsDefinitionWrapper;

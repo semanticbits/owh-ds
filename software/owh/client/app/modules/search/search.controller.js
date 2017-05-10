@@ -150,8 +150,8 @@
         sc.availableFilters = {
             'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin','state'],
             'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state'],
-            'birth_rates': ['current_year', 'race'],
-            'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval']
+            'birth_rates': ['current_year', 'race', 'state'],
+            'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval', 'state']
         };
         sc.queryID = $stateParams.queryID;
         sc.tableView = $stateParams.tableView ? $stateParams.tableView : sc.showMeOptions.deaths[0].key;
