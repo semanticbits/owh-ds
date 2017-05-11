@@ -563,6 +563,7 @@
                                 var eachTableRow = {
                                     title: '',
                                     isCount: false,
+                                    isNotQuestionCell: true,
                                     rowspan: 1,
                                     colspan: 1,
                                     key: matchedOption.key,

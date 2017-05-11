@@ -201,7 +201,7 @@
                         if(row[0].qkey === categoryChild.id) {
                             category.questions.push(row);
 
-                            if (row[0].rowspan > 1) {
+                            if (!row[0].isNotQuestionCell) {
                                 questionCount++;
                             }
 
