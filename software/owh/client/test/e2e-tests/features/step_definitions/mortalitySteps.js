@@ -902,16 +902,16 @@ var mortalityStepDefinitionsWrapper = function () {
         }).then(next);
     });
 
-    this.Then(/^crude death rates labels are displayed on minimized visualization$/, function () {
+    this.Then(/^labels for "([^"]*)" are displayed on minimized visualization$/, function (arg1) {
         var labelArray = mortalityPage.getAxisLabelsForMinimizedVisualization();
         expect(labelArray[0].getText()).to.eventually.equal('Race');
-        return expect(labelArray[1].getText()).to.eventually.equal('Crude Death Rates');
+        return expect(labelArray[1].getText()).to.eventually.equal(arg1);
     });
 
-    this.Then(/^crude death rates labels are displayed on expanded visualization$/, function (next) {
+    this.Then(/^labels for "([^"]*)" are displayed on expanded visualization$/, function (arg1, next) {
         var labelArray = mortalityPage.getAxisLabelsForExpandedVisualization();
         expect(labelArray[0].getText()).to.eventually.equal('Race');
-        expect(labelArray[1].getText()).to.eventually.equal('Crude Death Rates');
+        expect(labelArray[1].getText()).to.eventually.equal(arg1);
         element(by.name('close')).click().then(next);
     });
 };
