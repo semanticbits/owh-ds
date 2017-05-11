@@ -45,9 +45,10 @@
          */
         function getValueFromData(filter, data) {
             if(filter.tableView == "crude_death_rates") {
-                return parseFloat(($filter('number')(data[filter.key] / data['pop'] * 100000, 1)).replace(/,/g, ''));
+                return Math.round(data[filter.key] / data['pop'] * 1000000) / 10;
             }
-            else if(filter.tableView == "age-adjusted_death_rates"){
+            else if(filter.tableView == "age-adjusted_death_rates" && data['ageAdjustedRate']){
+                //parsing string to return floating point number
                 return parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));
             }
             else {
