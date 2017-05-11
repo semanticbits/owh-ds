@@ -3,10 +3,7 @@ var expect = require("expect.js");
 
 describe("Elastic Search", function () {
 
-
-    beforeEach( function () {
-        this.timeout(10000);
-    });
+    this.timeout(60000);
 
     it("Check mortality counts by year", function (done){
         new elasticSearch().executeESQuery('owh_mortality', 'mortality',JSON.stringify({"size":0,
@@ -93,6 +90,150 @@ describe("Elastic Search", function () {
             expect(nestedChartData[3].pop).equal(127084866);
             done();
         });
+    });
 
+    it("Check aggregate deaths data with Census rate query and wonder query", function(done) {
+        var query = [{
+            "size": 0,
+            "aggregations": {
+                "group_table_race": {
+                    "terms": {"field": "race", "size": 0},
+                    "aggregations": {"group_table_gender": {"terms": {"field": "sex", "size": 0}}}
+                },
+                "group_chart_0_gender": {
+                    "terms": {"field": "sex", "size": 0},
+                    "aggregations": {"group_chart_0_race": {"terms": {"field": "race", "size": 0}}}
+                },
+                "group_maps_0_states": {
+                    "terms": {"field": "state", "size": 0},
+                    "aggregations": {"group_maps_0_sex": {"terms": {"field": "sex", "size": 0}}}
+                }
+            },
+            "query": {
+                "filtered": {
+                    "query": {"bool": {"must": []}},
+                    "filter": {"bool": {"must": [{"bool": {"should": [{"term": {"current_year": "2015"}}]}}]}}
+                }
+            }
+        }, {
+            "size": 0,
+            "aggregations": {
+                "group_table_race": {
+                    "terms": {"field": "race", "size": 0},
+                    "aggregations": {
+                        "group_table_gender": {
+                            "terms": {"field": "sex", "size": 0},
+                            "aggregations": {"pop": {"sum": {"field": "pop"}}}
+                        }
+                    }
+                },
+                "group_chart_0_gender": {
+                    "terms": {"field": "sex", "size": 0},
+                    "aggregations": {
+                        "group_chart_0_race": {
+                            "terms": {"field": "race", "size": 0},
+                            "aggregations": {"pop": {"sum": {"field": "pop"}}}
+                        }
+                    }
+                }
+            },
+            "query": {
+                "filtered": {
+                    "query": {"bool": {"must": []}},
+                    "filter": {"bool": {"must": [{"bool": {"should": [{"term": {"current_year": "2015"}}]}}]}}
+                }
+            }
+        }];
+        query.wonderQuery = {
+            "searchFor": "deaths",
+            "query": {
+                "current_year": {
+                    "key": "year",
+                    "queryKey": "current_year",
+                    "value": [
+                        "2015"
+                    ],
+                    "primary": false
+                }
+            },
+            "aggregations": {
+                "simple": [],
+                "nested": {
+                    "table": [
+                        {
+                            "key": "race",
+                            "queryKey": "race",
+                            "size": 0
+                        },
+                        {
+                            "key": "gender",
+                            "queryKey": "sex",
+                            "size": 0
+                        }
+                    ],
+                    "charts": [
+                        [
+                            {
+                                "key": "gender",
+                                "queryKey": "sex",
+                                "size": 0
+                            },
+                            {
+                                "key": "race",
+                                "queryKey": "race",
+                                "size": 0
+                            }
+                        ]
+                    ],
+                    "maps": [
+                        [
+                            {
+                                "key": "states",
+                                "queryKey": "state",
+                                "size": 0
+                            },
+                            {
+                                "key": "sex",
+                                "queryKey": "sex",
+                                "size": 0
+                            }
+                        ]
+                    ]
+                }
+            }
+        };
+        new elasticSearch().aggregateDeaths(query).then(function (resp) {
+            var  tableData = resp.data.nested.table.race;
+            var chartsData = resp.data.nested.charts[0].gender;
+            expect(tableData[0].name).equal('American Indian');
+            expect(tableData[0].deaths).equal(19016);
+            expect(tableData[0].ageAdjustedRate).equal("596.9");
+            expect(tableData[0].standardPop).equal(4577853);
+            expect(tableData[0].pop).equal(4577853);
+            var  nestedData = tableData[0].gender;
+            expect(nestedData[0].name).equal('Female');
+            expect(nestedData[0].deaths).equal(8565);
+            expect(nestedData[0].ageAdjustedRate).equal("511.3");
+            expect(nestedData[0].standardPop).equal(2279263);
+            expect(nestedData[0].pop).equal(2279263);
+            expect(nestedData[1].name).equal('Male');
+            expect(nestedData[1].deaths).equal(10451);
+            expect(nestedData[1].ageAdjustedRate).equal("693.6");
+            expect(nestedData[1].standardPop).equal(2298590);
+            expect(nestedData[1].pop).equal(2298590);
+            //chart data
+            expect(chartsData[0].name).equal("Female");
+            expect(chartsData[0].deaths).equal(1339226);
+            expect(chartsData[0].ageAdjustedRate).equal("624.2");
+            expect(chartsData[0].pop).equal(163189523);
+            expect(chartsData[0].standardPop).equal(163189523);
+            var nestedChartData = chartsData[0].race;
+            expect(nestedChartData[0].name).equal("American Indian");
+            expect(nestedChartData[0].deaths).equal(8565);
+            expect(nestedChartData[0].ageAdjustedRate).equal("511.3");
+            expect(nestedChartData[0].pop).equal(2279263);
+            expect(nestedChartData[0].standardPop).equal(2279263);
+            done();
+        });
     });
 });

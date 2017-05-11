@@ -173,17 +173,20 @@ function requestWonder(dbID, req) {
  *
  */
 wonder.prototype.invokeWONDER = function (query){
+    var defer = q.defer();
     var promises = [];
     var dbID = this.dbID;
     // If no aggregations then return empty result
     if(query.aggregations.nested.table.length == 0){
         defer.resolve({});
     }else {
-        var reqArray = []
+        var reqArray = [];
         reqArray.push(createWONDERRquest(query.query, query.aggregations.nested.table));
-        query.aggregations.nested.charts.forEach(function(chart){
-            reqArray.push(createWONDERRquest(query.query, chart));
-        });
+        if(query.aggregations.nested.charts) {
+            query.aggregations.nested.charts.forEach(function (chart) {
+                reqArray.push(createWONDERRquest(query.query, chart));
+            });
+        }
         reqArray.forEach(function(req){
             promises.push(requestWonder(dbID, req));
         });
