@@ -1,0 +1,50 @@
+{
+  "Female": {
+    "American Indian or Alaska Native": {
+      "ageAdjustedRate": "511.3",
+      "standardPop": 2279263
+    },
+    "Asian or Pacific Islander": {
+      "ageAdjustedRate": "338.0",
+      "standardPop": 10480265
+    },
+    "Black or African American": {
+      "ageAdjustedRate": "710.8",
+      "standardPop": 23345129
+    },
+    "White": {
+      "ageAdjustedRate": "627.0",
+      "standardPop": 127084866
+    },
+    "Total": {
+      "ageAdjustedRate": "624.2",
+      "standardPop": 163189523
+    }
+  },
+  "Male": {
+    "American Indian or Alaska Native": {
+      "ageAdjustedRate": "693.6",
+      "standardPop": 2298590
+    },
+    "Asian or Pacific Islander": {
+      "ageAdjustedRate": "467.6",
+      "standardPop": 9622452
+    },
+    "Black or African American": {
+      "ageAdjustedRate": "1,040.3",
+      "standardPop": 21518067
+    },
+    "White": {
+      "ageAdjustedRate": "861.9",
+      "standardPop": 124790188
+    },
+    "Total": {
+      "ageAdjustedRate": "863.2",
+      "standardPop": 158229297
+    }
+  },
+  "Total": {
+    "ageAdjustedRate": "733.1",
+    "standardPop": 321418820
+  }
+}
