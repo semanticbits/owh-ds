@@ -300,4 +300,21 @@ describe("Build elastic search queries", function(){
             primary: false });
         done();
     });
+
+    it("should build API query for selected prams question", function (done) {
+        var quesFilter = pramsFilters.allFilters[3];
+        //select questions
+        quesFilter.value = ['qn319', 'qn318'];
+        var result = elasticQueryBuilder.buildAPIQuery(pramsFilters);
+        var apiQuery = result.apiQuery;
+        var query = apiQuery.query;
+        expect(query['question.path']).to.eql(
+            {key: 'question',
+                queryKey: 'question.key',
+                value: [ 'qn319','qn318' ],
+                primary: false });
+        //reset selected filter
+        quesFilter.value = [];
+        done();
+    });
 });
