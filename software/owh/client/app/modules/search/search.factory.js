@@ -1597,6 +1597,7 @@
                 {"key": "cat_25", "title": "Sleep Behaviors"},
                 {"key": "cat_6", "title": "Smoke Exposure"},
                 {"key": "cat_2", "title": "Alcohol Use"},
+                {"key": "cat_13", "title": "HIV Test"},
                 {"key": "cat_34", "title": "Maternal Health Care"},
                 {"key": "cat_12", "title": "Mental Health"},
                 {"key": "cat_18", "title": "Morbidity - Maternal"},

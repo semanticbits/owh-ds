@@ -21,6 +21,10 @@ var PRAMSSearchPage = function() {
     prams.getChartHeader = function () {
         return element(by.binding('eg.graphTitle| translate'));
     };
+
+    prams.updateClassTo = function (clazz) {
+        element(by.cssContainingText('option', clazz)).click();
+    }
 };
 
 module.exports = new PRAMSSearchPage;

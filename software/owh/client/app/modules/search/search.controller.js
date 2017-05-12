@@ -133,7 +133,7 @@
                 "topic": ['cat_43', 'cat_1', 'cat_24', 'cat_19', 'cat_14', 'cat_25', 'cat_6']
             },
             maternal_behavior: {
-                "topic": ['cat_2', 'cat_34', 'cat_12', 'cat_18', 'cat_9', 'cat_17', 'cat_35', 'cat_23', 'cat_10', 'cat_22', 'cat_26']
+                "topic": ['cat_2', 'cat_13', 'cat_34', 'cat_12', 'cat_18', 'cat_9', 'cat_17', 'cat_35', 'cat_23', 'cat_10', 'cat_22', 'cat_26']
             },
             maternal_experiences: {
                 "topic": ['cat_29', 'cat_33', 'cat_42', 'cat_27']
