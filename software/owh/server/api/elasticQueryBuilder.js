@@ -306,58 +306,6 @@ function isFilterApplied(a) {
     return false;
 }
 
-/**
- * Finds and returns all objects in array of objects that not contains the key and value
- * @param a
- * @param key
- * @param value
- * @returns {Array}
- */
-function findAllNotContainsKeyAndValue(a, key, value) {
-    var result = [];
-    for (var i = 0; i < a.length; i++) {
-        if (a[i][key] !== value) {
-            result.push(a[i]);
-        }
-    }
-    return result;
-}
-
-/**
- * get the array with key
- * @param data
- * @param key
- * @param includeKey
- * @param includeValue
- * @returns {Array}
- */
-function getValuesByKeyIncludingKeyAndValue(data, key, includeKey, includeValue) {
-    var values = [];
-    for (var i = 0; i < data.length; i++) {
-        if(data[i][includeKey] === includeValue) {
-            values.push(data[i][key]);
-        }
-    }
-    return values;
-}
-
-/**
- * get the array with key
- * @param data
- * @param key
- * @returns {Array}
- */
-function getValuesByKeyExcludingKeyAndValue(data, key, excludeKey, excludeValue) {
-    var values = [];
-    for (var i = 0; i < data.length; i++) {
-        if(data[i][excludeKey] != excludeValue) {
-            values.push(data[i][key]);
-        }
-    }
-    return values;
-}
-
-
 function buildAPIQuery(primaryFilter) {
    var apiQuery = {
         searchFor: primaryFilter.key,
@@ -429,8 +377,9 @@ function buildAPIQuery(primaryFilter) {
  */
 function getPramsQueryForAllYearsAndQuestions(primaryFilter, apiQuery) {
     primaryFilter.sideFilters.forEach(function(category) {
-        category.sideFilters.forEach(function(filter){
-            if(filter.filters.key === 'topic') {
+        category.sideFilters.forEach(function(filter) {
+            if(filter.filters.key === 'topic'
+                && apiQuery.query['question.path'].value.length > filter.filters.questions.length) {
                 apiQuery.query['question.path'].value = filter.filters.questions;
             } else if (filter.filters.key === 'year') {
                 apiQuery.query['year'] = getFilterQuery(filter.filters);
