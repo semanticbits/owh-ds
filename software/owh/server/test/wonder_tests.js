@@ -18,11 +18,10 @@ describe("WONDER API", function () {
         query = {"searchFor":"deaths","query":{"current_year":{"key":"year","queryKey":"current_year","value":["2014"],"primary":false}},
             "aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":100000},{"key":"gender","queryKey":"sex","size":100000}]}}}
 
-        var promises = w.invokeWONDER(query);
-        Q.all(promises).then( function (respArray) {
+        w.invokeWONDER(query).then( function (resp) {
             var duration = new Date() - startTime;
             console.log("invoke wonder API default query duration: "+duration);
-            expect(respArray[0]).to.eql({ 'American Indian or Alaska Native':
+            expect(resp.table).to.eql({ 'American Indian or Alaska Native':
                 { Female: { ageAdjustedRate: '514.1', standardPop :2250008 },
                     Male: { ageAdjustedRate: '685.4', standardPop :2268973 },
                     Total: { ageAdjustedRate: '594.1', standardPop : 4518981} },
@@ -40,7 +39,7 @@ describe("WONDER API", function () {
                         Total: { ageAdjustedRate: '725.4', standardPop :250630467 } },
                 Total: { ageAdjustedRate: '724.6', standardPop :318857056} });
             //We didn't pass chart details in query, so response array won't have a chart results.
-            expect(respArray[1]).to.eql(undefined);
+            expect(resp.charts).to.eql([]);
             done();
         }, function(err){
             console.log(err);
@@ -63,13 +62,12 @@ describe("WONDER API", function () {
             }}
         };
         var startTime = new Date();
-        var promises = w.invokeWONDER(query);
-        Q.all(promises).then( function (respArray) {
+        w.invokeWONDER(query).then( function (resp) {
             var duration = new Date() - startTime;
             console.log("invoke wonder API query (group by 3) duration: " + duration);
-            expect(respArray[0]).to.eql(stateWonderResponse);
-            expect(respArray[1]).to.eql(stateWonderResponseForCharts_RaceAndState);
-            expect(respArray[2]).to.eql(stateWonderResponseForCharts_GenderAndSex);
+            expect(resp.table).to.eql(stateWonderResponse);
+            expect(resp.charts[0]).to.eql(stateWonderResponseForCharts_RaceAndState);
+            expect(resp.charts[1]).to.eql(stateWonderResponseForCharts_GenderAndSex);
             done();
         }, function(err){
             console.log(err);
@@ -83,11 +81,10 @@ describe("WONDER API", function () {
                                                                  {"key":"gender","queryKey":"sex","size":100000},
                                                                  {"key":"hispanicOrigin","queryKey":"hispanic_origin","size":100000}]}}};
         var startTime = new Date();
-        var promises = w.invokeWONDER(query);
-        Q.all(promises).then( function (respArray) {
+        w.invokeWONDER(query).then( function (resp) {
             var duration = new Date() - startTime;
             console.log("invoke wonder API query (group by 3) duration: "+duration);
-            expect(respArray[0]).to.eql( { 'American Indian or Alaska Native':
+            expect(resp.table).to.eql( { 'American Indian or Alaska Native':
                 { Female:
                     { 'Hispanic or Latino': { ageAdjustedRate: '79.3',standardPop:1763399  },
                         'Not Hispanic or Latino': { ageAdjustedRate: '671.9',standardPop: 2704061},
@@ -152,11 +149,10 @@ describe("WONDER API", function () {
                                                                 {"key":"weekday","queryKey":"week_of_death","size":100000}],
                                                                 "charts":[[{"key":"race","queryKey":"race","size":100000},{"key":"hispanicOrigin","queryKey":"hispanic_origin","size":100000}],[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}],[{"key":"gender","queryKey":"sex","size":100000},{"key":"placeofdeath","queryKey":"place_of_death","size":100000}],[{"key":"gender","queryKey":"sex","size":100000},{"key":"hispanicOrigin","queryKey":"hispanic_origin","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}}
         var startTime = new Date();
-        var promises = w.invokeWONDER(query);
-        Q.all(promises).then( function (respArray) {
+        w.invokeWONDER(query).then( function (resp) {
             var duration = new Date() - startTime;
             console.log("invoke wonder API bigger query (group by 5) duration: "+duration);
-            expect(respArray[0]).to.not.be.empty();
+            expect(resp.table).to.not.be.empty();
             done();
         }, function(err){
             console.log(err);
@@ -171,11 +167,10 @@ describe("WONDER API", function () {
                     {"key":"gender","queryKey":"sex","size":100000}],
                      "charts":[[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}}
         var startTime = new Date();
-        var promises = w.invokeWONDER(query);
-        Q.all(promises).then( function (respArray) {
+        w.invokeWONDER(query).then( function (resp) {
             var duration = new Date() - startTime;
             console.log("invoke wonder API with year aggregation: "+duration);
-            expect(respArray[0]).to.not.be.empty();
+            expect(resp.table).to.not.be.empty();
             done();
         }, function(err){
             console.log(err);
@@ -187,11 +182,10 @@ describe("WONDER API", function () {
         query = {"searchFor":"deaths","query":{},
             "aggregations":{"simple":[],"nested":{"table":[]}}};
         var startTime = new Date();
-        var promises = w.invokeWONDER(query);
-        Q.all(promises).then( function (respArray) {
+        w.invokeWONDER(query).then( function (resp) {
             var duration = new Date() - startTime;
             console.log("invoke wonder API with no aggregations specified: "+duration);
-            expect(respArray).to.be.empty();
+            expect(resp).to.be.empty();
             done();
         }, function(err){
             console.log(err);
@@ -203,11 +197,10 @@ describe("WONDER API", function () {
         query = {"searchFor":"deaths","query":{"sex":{"key":"gender","queryKey":"sex","value":["Female"],"primary":false}},
             "aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":100000},{"key":"gender","queryKey":"sex","size":100000}],"charts":[[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}};
         var startTime = new Date();
-        var promises = w.invokeWONDER(query);
-        Q.all(promises).then( function (respArray) {
+        w.invokeWONDER(query).then( function (resp) {
             var duration = new Date() - startTime;
             console.log("invoke wonder API with filter option duration: "+duration);
-            expect(respArray[0]).to.not.be.empty();
+            expect(resp.table).to.not.be.empty();
             done();
         }, function(err){
             console.log(err);
@@ -219,11 +212,10 @@ describe("WONDER API", function () {
         query = {"searchFor":"deaths","query":{"race":{"key":"race","queryKey":"race","value":["White","Other (Puerto Rico only)"],"primary":false}},
             "aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":100000},{"key":"gender","queryKey":"sex","size":100000}],"charts":[[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}}
         var startTime = new Date();
-        var promises = w.invokeWONDER(query);
-        Q.all(promises).then( function (respArray) {
+        w.invokeWONDER(query).then( function (resp) {
             var duration = new Date() - startTime;
             console.log("invoke wonder API with unmapped filter option duration: "+duration);
-            expect(respArray[0]).to.not.be.empty();
+            expect(resp.table).to.not.be.empty();
             done();
         }, function(err){
             console.log(err);
@@ -235,12 +227,11 @@ describe("WONDER API", function () {
         query = {"searchFor":"deaths","query":{"race":{"key":"race","queryKey":"race","value":["White","Other (Puerto Rico only)"],"primary":false}},
             "aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":100000},{"key":"gender","queryKey":"sex","size":100000},{"key":"state","queryKey":"state","size":100000}],"charts":[[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}}
         var startTime = new Date();
-        var promises = w.invokeWONDER(query);
-        Q.all(promises).then( function (respArray) {
+        w.invokeWONDER(query).then( function (resp) {
             var duration = new Date() - startTime;
             console.log("invoke wonder API with unmapped filter option duration: "+duration);
-            expect(respArray[0]).to.not.be.empty();
-            expect(JSON.stringify(respArray[0]).indexOf('error')).to.eql(-1);
+            expect(resp.table).to.not.be.empty();
+            expect(JSON.stringify(resp.table).indexOf('error')).to.eql(-1);
             done();
         }, function(err){
             console.log(err);
@@ -252,12 +243,11 @@ describe("WONDER API", function () {
         query = {"searchFor":"deaths","query":{"race":{"key":"state","queryKey":"state","value":["01","02"],"primary":false}},
             "aggregations":{"simple":[],"nested":{"table":[{"key":"state","queryKey":"state","size":100000}],"charts":[[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}}
         var startTime = new Date();
-        var promises = w.invokeWONDER(query);
-        Q.all(promises).then( function (respArray) {
+        w.invokeWONDER(query).then( function (resp) {
             var duration = new Date() - startTime;
             console.log("invoke wonder API with unmapped filter option duration: "+duration);
-            expect(respArray[0]).to.not.be.empty();
-            expect(respArray[0]).eql({"Alabama":{"ageAdjustedRate":"964.5","standardPop":79153531},"Alaska":{"ageAdjustedRate":"771.6","standardPop":11619054},"Total":{"ageAdjustedRate":"947.3","standardPop":90772585}});
+            expect(resp.table).to.not.be.empty();
+            expect(resp.table).eql({"Alabama":{"ageAdjustedRate":"964.5","standardPop":79153531},"Alaska":{"ageAdjustedRate":"771.6","standardPop":11619054},"Total":{"ageAdjustedRate":"947.3","standardPop":90772585}});
             done();
         }, function(err){
             console.log(err);

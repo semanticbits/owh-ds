@@ -150,20 +150,16 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
         ];
         if(query.wonderQuery) {
             logger.debug("Wonder Query: "+ JSON.stringify(query.wonderQuery));
-            new wonder('D76').invokeWONDER(query.wonderQuery).forEach(function(eachPromise){
-                promises.push(eachPromise);
-            });
+            promises.push(new wonder('D76').invokeWONDER(query.wonderQuery));
         }
         Q.all(promises).then( function (respArray) {
             var data = searchUtils.populateDataWithMappings(respArray[0], 'deaths');
             self.mergeWithCensusData(data, respArray[1]);
             if(query.wonderQuery) {
-                searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[2]);
+                searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[2].table);
                 //Loop through charts array and merge age ajusted rates from response
                 data.data.nested.charts.forEach(function(chart, index){
-                    if(respArray.length > index + 3) {
-                        searchUtils.mergeAgeAdjustedRates(chart, respArray[index + 3]);
-                    }
+                    searchUtils.mergeAgeAdjustedRates(chart, respArray[2].charts[index]);
                 });
             }
             if (isStateSelected) {

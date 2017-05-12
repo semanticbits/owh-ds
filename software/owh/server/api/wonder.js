@@ -126,14 +126,12 @@ function requestWonder(dbID, req) {
         result = {};
         if (!error && body.indexOf('Processing Error') == -1) {
             result = processWONDERResponse(body);
-            //logger.debug("Age adjusted rates: "+inspect(result, {depth:null}));
             logger.debug("Age adjusted rates: " + JSON.stringify(result));
             defer.resolve(result);
         } else {
             logger.error("WONDER Error: " + (error ? error : body));
             defer.reject('Error invoking WONDER API');
         }
-        //console.log(inspect(result, {depth: null, colors: true}));
     }, function (error) {
         logger.error("WONDER Error: " + error);
         defer.reject('Error invoking WONDER API');
@@ -144,7 +142,7 @@ function requestWonder(dbID, req) {
  * Invoke WONDER rest API
  * @param query Query from the front end
  * @result processed result from WONDER in the following format
- * {
+ * { table:{
   American Indian or Alaska Native:{
     Female:{ ageAdjustedRate:'514.1'  },
     Male:{ ageAdjustedRate:'685.4'  },
@@ -165,7 +163,22 @@ function requestWonder(dbID, req) {
     Male:{ ageAdjustedRate:'853.4' },
     Total:{ ageAdjustedRate:'725.4' }
   },
-  Total:{ ageAdjustedRate:'724.6' }
+  Total:{ ageAdjustedRate:'724.6' } },
+  charts: [{ Female:
+     { 'American Indian or Alaska Native': [Object],
+       'Asian or Pacific Islander': [Object],
+       'Black or African American': [Object],
+       White: [Object],
+       Total: [Object] },
+    Male:
+     { 'American Indian or Alaska Native': [Object],
+       'Asian or Pacific Islander': [Object],
+       'Black or African American': [Object],
+       White: [Object],
+       Total: [Object] },
+    Total: { ageAdjustedRate: '733.1', standardPop: 321418820 }
+    }]
+  }
 
   The attribute are nested in the same order the attributed specified in grouping
   in the input query
@@ -191,7 +204,19 @@ wonder.prototype.invokeWONDER = function (query){
             promises.push(requestWonder(dbID, req));
         });
     }
-    return promises;
+    q.all(promises).then( function (respArray) {
+          var result = {};
+          if(respArray.length > 0) {
+              result.table = respArray[0];
+              respArray.splice(0, 1);
+              result.charts = respArray;
+          }
+          defer.resolve(result);
+    }, function (err) {
+        logger.error(err.message);
+        defer.reject(err);
+    });
+   return defer.promise;
 };
 
 
