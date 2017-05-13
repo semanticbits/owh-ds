@@ -63,6 +63,7 @@ describe("Build elastic search queries", function(){
         expect(censusQuery.aggregations.group_table_gender.aggregations.group_table_race.aggregations).to.have.property('group_table_year');
         expect(censusQuery.aggregations.group_table_gender.aggregations.group_table_race.aggregations.group_table_year.aggregations).to.have.property('pop');
         expect(censusQuery.aggregations.group_table_gender.aggregations.group_table_race.aggregations.group_table_year.aggregations.pop.sum.field).to.eql("pop");
+        expect(censusQuery.aggregations.group_chart_0_gender.aggregations.group_chart_0_race.aggregations.pop.sum.field).to.eql("pop");
         done()
     });
 
@@ -298,6 +299,23 @@ describe("Build elastic search queries", function(){
             queryKey: 'year',
             value: [ '2009','2007' ],
             primary: false });
+        done();
+    });
+
+    it("should build API query for selected prams question", function (done) {
+        var quesFilter = pramsFilters.allFilters[3];
+        //select questions
+        quesFilter.value = ['qn319', 'qn318'];
+        var result = elasticQueryBuilder.buildAPIQuery(pramsFilters);
+        var apiQuery = result.apiQuery;
+        var query = apiQuery.query;
+        expect(query['question.path']).to.eql(
+            {key: 'question',
+                queryKey: 'question.key',
+                value: [ 'qn319','qn318' ],
+                primary: false });
+        //reset selected filter
+        quesFilter.value = [];
         done();
     });
 });

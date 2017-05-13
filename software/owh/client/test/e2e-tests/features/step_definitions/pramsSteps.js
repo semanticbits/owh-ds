@@ -48,6 +48,31 @@ var PRAMSStepDefinitionsWrapper = function () {
             expect(data[4]).to.contains('Not Available');
         }).then(next);
     });
+
+    this.When(/^I click on "([^"]*)" questions link$/, function (text, next) {
+        element(by.cssContainingText('a.owh-question__show', text)).click().then(next);
+    });
+
+    this.When(/^I click on chart icon for 'Indicator of whether delivery was paid for by insurance purchased directly question'$/, function (next) {
+        element(by.id('qn366')).click().then(next)
+    });
+
+    this.Then(/^I see chart being displayed for "([^"]*)" question$/, function (text, next) {
+        var header= pramsPage.getChartHeader();
+        header.getText().then(function (text) {
+            expect(text).to.equal(text);
+        }).then(next);
+    });
+
+    this.Then(/^I see axis labels for chart\- state and Percentage$/, function (next) {
+        var axisLabels = pramsPage.getChartAxis();
+        axisLabels[0].getText().then(function (text) {
+            expect(text).to.equal('State');
+        });
+        axisLabels[1].getText().then(function (text) {
+            expect(text).to.equal('Percentage');
+        }).then(next);
+    });
 };
 
 module.exports = PRAMSStepDefinitionsWrapper;
