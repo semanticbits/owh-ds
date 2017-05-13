@@ -12,7 +12,7 @@ Feature: PRAMS filters
     And  I see state data displayed in data table
 
   Scenario: Visualizations
-    When I click on "Show 4 More" questions link
+    When I click on "Show 3 More" questions link
     And  I click on chart icon for 'Indicator of whether delivery was paid for by insurance purchased directly question'
     Then I see chart being displayed for "Indicator of whether delivery was paid for by insurance purchased directly" question
     And  I see axis labels for chart- state and Percentage
