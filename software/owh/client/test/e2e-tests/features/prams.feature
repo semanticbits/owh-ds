@@ -16,7 +16,6 @@ Feature: PRAMS filters
     And  I click on chart icon for 'Indicator of whether delivery was paid for by insurance purchased directly question'
     Then I see chart being displayed for "Indicator of whether delivery was paid for by insurance purchased directly" question
     And  I see axis labels for chart- state and Percentage
-    And  I close chart dialog
 
   Scenario: Topic filter
     When I change class to "Demographics"
