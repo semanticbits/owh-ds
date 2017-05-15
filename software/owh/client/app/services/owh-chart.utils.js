@@ -37,47 +37,14 @@
             return verticalChart(filter1, filter2, data, primaryFilter, false);
         }
 
-        /**
-         * Get chart axis value from given data Object
-         * @param filter
-         * @param data
-         * @returns {Number}
-         */
-        function getValueFromData(filter, data) {
-            if(filter.tableView == "crude_death_rates") {
-                return Math.round(data[filter.key] / data['pop'] * 1000000) / 10;
-            }
-            else if(filter.tableView == "age-adjusted_death_rates" && data['ageAdjustedRate']){
-                //parsing string to return floating point number
-                return parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));
-            }
-            else {
-                return data[filter.key];
-            }
-        }
-
-        /**
-         * To get right chart label for given table view
-         * @param tableView
-         * @param chartLabel
-         * @return String chart label
-         */
-        function getAxisLabel(tableView, chartLabel){
-            switch (tableView) {
-                case "crude_death_rates":
-                    return "Crude Death Rates";
-                    break;
-                case "age-adjusted_death_rates":
-                    return "Age Adjusted Death Rates";
-                    break;
-                default:
-                    return chartLabel;
-            }
-        }
+        /*function bulletBar(filter1, filter2, data, primaryFilter) {
+            console.log("IN PROGRESS");
+        }*/
 
         /*Multi Bar Horizontal Chart*/
         function horizontalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip) {
             postFixToTooltip = postFixToTooltip ? postFixToTooltip : '';
+
             var chartData = {
                 data: [],
                 title: "label.title."+filter1.key+"."+filter2.key,
@@ -110,7 +77,7 @@
                             "showMaxMin": false
                         },
                         "yAxis": {
-                            "axisLabel": getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel),
+                            "axisLabel": primaryFilter.chartAxisLabel,
                             tickFormat:function () {
                                 return null;
                             }
@@ -232,17 +199,14 @@
                         primaryDataObj["color"] = primaryOption.key === 'Male' ?  "#009aff" : "#fe66ff";
                     }
                     primaryDataObj["values"] = [];
-                    if(eachPrimaryData) {
-                        primaryDataObj[primaryFilter.key] = getValueFromData(primaryFilter, eachPrimaryData);
-                    }
+                    primaryDataObj[primaryFilter.key] = eachPrimaryData ? eachPrimaryData[primaryFilter.key]: 0;
+
                     if(eachPrimaryData && eachPrimaryData[filter2.key]) {
                         angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2) , function (secondaryOption,j) {
                             var eachSecondaryData = utilService.findByKeyAndValue(eachPrimaryData[filter2.key], 'name', secondaryOption.key);
-                            var value = 0;
-                            if(eachSecondaryData &&  eachSecondaryData[primaryFilter.key]) {
-                                value = getValueFromData(primaryFilter, eachSecondaryData);
-                            }
-                            primaryDataObj.values.push({"label":secondaryOption.title, "value": value});
+                            primaryDataObj.values.push({"label":secondaryOption.title, "value":
+                                (eachSecondaryData &&  eachSecondaryData[primaryFilter.key]) ?
+                                    eachSecondaryData[primaryFilter.key] : 0});
                         });
                         multiChartBarData.push(primaryDataObj);
                     }else{
@@ -308,7 +272,7 @@
                         },
                         "yAxis": {
                             "axisLabelDistance": -20,
-                            "axisLabel": getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel),
+                            "axisLabel": primaryFilter.chartAxisLabel,
                             tickFormat:function () {
                                return null;
                             }
@@ -351,12 +315,9 @@
                         var secondaryArrayData = utilService.sortByKey(eachPrimaryData[filter2.key], 'name');
                         angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2), function (secondaryOption,j) {
                             var eachSecondaryData = utilService.findByKeyAndValue(secondaryArrayData, 'name', secondaryOption.key);
-                            var yAxisValue = 0;
-                            if(eachSecondaryData &&  eachSecondaryData[primaryFilter.key]) {
-                                yAxisValue =  getValueFromData(primaryFilter, eachSecondaryData);
-                            }
                             primaryObj.values.push(
-                                { x : secondaryOption.title, y : yAxisValue }
+                                { x : secondaryOption.title, y : (eachSecondaryData &&  eachSecondaryData[primaryFilter.key]) ?
+                                    eachSecondaryData[primaryFilter.key] :0 }
                             );
                         });
                         multiBarChartData.push(primaryObj);
@@ -450,11 +411,7 @@
                 var lineData = [];
                 angular.forEach(utilService.getSelectedAutoCompleteOptions(filter), function(eachOption) {
                     var eachRow = utilService.findByKeyAndValue(data, 'name', eachOption.key);
-                    var yAxisValue = 0;
-                    if(eachRow) {
-                        yAxisValue =  getValueFromData(primaryFilter, eachRow);
-                    }
-                    lineData.push({x: eachOption.title, y: yAxisValue});
+                    lineData.push({x: eachOption.title, y: eachRow ? eachRow[primaryFilter.key] : 0});
                 });
 
                 //Line chart data should be sent as an array of series objects.
@@ -535,11 +492,7 @@
             };
             angular.forEach(utilService.getSelectedAutoCompleteOptions(filter), function(eachOption) {
                 var eachRow = utilService.findByKeyAndValue(data, 'name', eachOption.key);
-                var value = 0;
-                if(eachRow) {
-                    value =  getValueFromData(primaryFilter, eachRow);
-                }
-                chartData.data.push({label: eachOption.title, value: value});
+                chartData.data.push({label: eachOption.title, value: eachRow ? eachRow[primaryFilter.key] : 0});
             });
             return chartData;
         }

@@ -175,10 +175,6 @@ Scenario: Crude Death rates population count should match with CDC for year 2000
   Given I am on search page
   When I choose the option "Crude Death Rates"
   Then I should see Crude Deth Rates page
-  When user sees a visualization
-  Then labels for "Crude Death Rates" are displayed on minimized visualization
-  When user expand visualization
-  Then labels for "Crude Death Rates" are displayed on expanded visualization
   And user clicks on "+ 13 more" more link for "Year" filter
   Then I select "Year" value "2000"
   And I un-select "Year" value "2015"
@@ -206,10 +202,6 @@ Scenario: Age Adjusted Death Rates
   Given I am on search page
   When the user chooses the option 'Age Adjusted Death Rates'
   Then the age adjusted rates are shown for each row
-  When user sees a visualization
-  Then labels for "Age Adjusted Death Rates" are displayed on minimized visualization
-  When user expand visualization
-  Then labels for "Age Adjusted Death Rates" are displayed on expanded visualization
 
 #Scenario: Age filter for age adjusted rates
 #  Given I am on search page

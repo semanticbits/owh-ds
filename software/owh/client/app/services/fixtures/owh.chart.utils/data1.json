@@ -5,19 +5,19 @@
       "deaths": 1331232,
       "race": [
         {
-          "name": "White",
+          "name": "1",
           "deaths": 1131379
         },
         {
-          "name": "Black",
+          "name": "2",
           "deaths": 157972
         },
         {
-          "name": "Asian or Pacific Islander",
+          "name": "4",
           "deaths": 32035
         },
         {
-          "name": "American Indian",
+          "name": "3",
           "deaths": 9846
         }
       ]
@@ -27,19 +27,19 @@
       "deaths": 1299568,
       "race": [
         {
-          "name": "White",
+          "name": "1",
           "deaths": 1109971
         },
         {
-          "name": "Black",
+          "name": "2",
           "deaths": 151344
         },
         {
-          "name": "Asian or Pacific Islander",
+          "name": "4",
           "deaths": 30068
         },
         {
-          "name": "American Indian",
+          "name": "3",
           "deaths": 8185
         }
       ]

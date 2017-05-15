@@ -1,18 +1,18 @@
 [
   {
-    "name": "White",
+    "name": "1",
     "deaths": 2241350
   },
   {
-    "name": "Black",
+    "name": "2",
     "deaths": 309316
   },
   {
-    "name": "Asian or Pacific Islander",
+    "name": "4",
     "deaths": 62103
   },
   {
-    "name": "American Indian",
+    "name": "3",
     "deaths": 18031
   }
 ]

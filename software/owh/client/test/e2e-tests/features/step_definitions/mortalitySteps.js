@@ -901,18 +901,5 @@ var mortalityStepDefinitionsWrapper = function () {
             expect(rowdata[4]).to.equals('106');
         }).then(next);
     });
-
-    this.Then(/^labels for "([^"]*)" are displayed on minimized visualization$/, function (arg1) {
-        var labelArray = mortalityPage.getAxisLabelsForMinimizedVisualization();
-        expect(labelArray[0].getText()).to.eventually.equal('Race');
-        return expect(labelArray[1].getText()).to.eventually.equal(arg1);
-    });
-
-    this.Then(/^labels for "([^"]*)" are displayed on expanded visualization$/, function (arg1, next) {
-        var labelArray = mortalityPage.getAxisLabelsForExpandedVisualization();
-        expect(labelArray[0].getText()).to.eventually.equal('Race');
-        expect(labelArray[1].getText()).to.eventually.equal(arg1);
-        element(by.name('close')).click().then(next);
-    });
 };
 module.exports = mortalityStepDefinitionsWrapper;
