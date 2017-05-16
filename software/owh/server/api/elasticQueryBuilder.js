@@ -8,11 +8,6 @@ var prepareCensusAggregationQuery = function(aggregations) {
         if (aggregations['nested']['table'] && aggregations['nested']['table'].length > 0) {
             censusQuery.aggregations = merge(censusQuery.aggregations, generateNestedCensusAggQuery(aggregations['nested']['table'], 'group_table_'));
         }
-      if (aggregations['nested']['charts']) {
-            for(var index in aggregations['nested']['charts']) {
-                censusQuery.aggregations = merge(censusQuery.aggregations, generateNestedCensusAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_'));
-            }
-      }
     }
     return censusQuery;
 };

@@ -84,9 +84,9 @@ describe('utilService', function(){
 
     it('test utils findFilterByKeyAndValue', function () {
         //if found
-        var filters = [{"filterGroup":false,"collapse":true,"allowGrouping":true,"filters":{"key":"gender","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"autoCompleteOptions":[{"key":"Female","title":"Female"},{"key":"Male","title":"Male"}]}},{"filters":{"queryKey":"state", "key":"state","primary":false,"value":["AL"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]}}];
+        var filters = [{"key":"state","value":["AK"],"autoCompleteOptions":[{"key":"AL"},{"key":"AK"}]}];
         var stateFilter = utils.findFilterByKeyAndValue(filters, 'key', 'state');
-        expect(stateFilter.filters.key).toEqual('state');
+        expect(stateFilter.key).toEqual('state');
 
         //not found
         var filter = utils.findFilterByKeyAndValue(filters, 'key', 'race');
@@ -95,12 +95,12 @@ describe('utilService', function(){
 
     it('test utils isFilterApplied', function () {
         //if filter applied
-        var filter = {"filters":{"queryKey":"state","primary":false,"value":["AL"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]}};
+        var filter = {"key":"state","value":["AK"],"autoCompleteOptions":[{"key":"AL"},{"key":"AK"}]};
         var isFilterApplied = utils.isFilterApplied(filter);
         expect(isFilterApplied).toEqual(true);
 
         //not applied
-        filter = {"filterGroup":false,"collapse":true,"allowGrouping":true,"filters":{"key":"gender","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"autoCompleteOptions":[{"key":"Female","title":"Female"},{"key":"Male","title":"Male"}]}};
+        filter = {"key":"state","value":[],"autoCompleteOptions":[{"key":"AL"},{"key":"AK"}]};
         var isFilterApplied = utils.isFilterApplied(filter);
         expect(isFilterApplied).toEqual(false);
     });

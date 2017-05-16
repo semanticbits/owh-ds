@@ -87,3 +87,36 @@ Feature: Natality filters
     Then I see an option to show/hide percentages
     When I click the "Hide" option
     Then the percentages should be hidden
+
+  Scenario: State filter
+    When I expand "State" filter section
+    And  I select "Alaska" state
+    Then I see data is displayed in data-table for races
+    When I select "Alabama" state
+    And  I select groupBy "Column" option for "State" filter
+    Then I see data is grouped by state in data table
+
+  Scenario: Apply Suppression
+    When I expand "Ethnicity" filter section
+    And  I select Puerto Rican ethnicity option
+    And  I expand "State" filter section
+    And  I select "Alaska" state
+    Then I see suppressed cells in data table
+
+  Scenario: Birth rates by state
+    When I change show me dropdown option to "Birth Rates"
+    Then I should see filter type "Birth Rates" selected for show me dropdown
+    When I expand "State" filter section
+    And  I select "Alaska" state
+    And  I select "Alabama" state
+    And  I select groupBy "Column" option for "State" filter
+    Then I see birth rate for state
+
+  Scenario: Fertility rates by state
+    When I change show me dropdown option to "Fertility Rates"
+    Then I should see filter type "Fertility Rates" selected for show me dropdown
+    When I expand "State" filter section
+    And  I select "Alaska" state
+    And  I select "Alabama" state
+    And  I select groupBy "Column" option for "State" filter
+    Then I see fertility rates for state

@@ -5,14 +5,14 @@ from owh.etl.common.fixedwidthfile_parser import FixedWidthFileParser
 logger = logging.getLogger('natality_etl')
 
 # data mappings config file map for natality data files
-data_mapping_configs = {'Natl00us.pb':'nat_2000_2002.json', 'Nat01pb.US':'nat_2000_2002.json', 'NAT02US.PB':'nat_2000_2002.json',
-                        'Nat03us.dat': 'nat_2003_2004.json', 'Nat2004us.dat':'nat_2003_2004.json',
-                        'Nat2005us.dat': 'nat_2005_2006.json', 'Nat2006us.dat': 'nat_2005_2006.json',
-                        'Nat2007us.dat': 'nat_2007_2013.json', 'Nat2008us.dat':'nat_2007_2013.json',
-                        'Nat2009usPub.r20131202':'nat_2007_2013.json', 'Nat2010PublicUS.r20131202': 'nat_2007_2013.json',
-                        'Nat2011PublicUS.r20131211':'nat_2007_2013.json', 'Nat2012PublicUS.r20131217':'nat_2007_2013.json',
-                        'Nat2013PublicUS.r20141016':'nat_2007_2013.json', 'Nat2014PublicUS.c20150514.r20151022.txt':'nat_2014_2015.json',
-                        'Nat2015PublicUS.c20160517.r20160907.txt': 'nat_2014_2015.json'}
+data_mapping_configs = {'Natl00us.pt2':'nat_2000_2002.json', 'Nat01us.pt2':'nat_2000_2002.json', 'Nat02us.dat':'nat_2000_2002.json',
+                        'Nat03uspt2.dat': 'nat_2003_2004.json', 'NAT04USpt2.dat':'nat_2003_2004.json',
+                        'NAT05USgeo.dat': 'nat_2005_2006.json', 'NAT06USgeo.dat': 'nat_2005_2006.json',
+                        'VS07NATL.DETAILUS.GEO': 'nat_2007_2013.json', 'VS08NATL.DETAILUS.GEO':'nat_2007_2013.json',
+                        'vs09natl.detailus.GEO':'nat_2007_2013.json', 'vs2010natl.detailus.GEO.c20120221.r20121119': 'nat_2007_2013.json',
+                        'vs2011natl.LimGeo_2013_08_27':'nat_2007_2013.json', 'Nat2012LimGeoUS_2014_02_03':'nat_2007_2013.json',
+                        'Nat2013US.LimGeo':'nat_2007_2013.json', 'Nat2014US.LimGeo.c20150514.r20151022.txt':'nat_2014_2015.json',
+                        'Nat2015US.LimGeo.c20160517.r20160919.txt': 'nat_2014_2015.json'}
 
 class NatalityETL (ETL):
     """

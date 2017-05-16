@@ -3,10 +3,9 @@
 /*group of common test goes here as describe*/
 describe('chart utils', function(){
     var chartUtils, shareUtils, searchFactory, diferred, closeDeferred, givenModalDefaults, ModalService, $rootScope, $scope, controllerProvider,
-        filter1, filter2, filter3, data1, data2, censusRatesData, primaryFilter, postFixToTooltip,
+        filter1, filter2, filter3, data1, data2, primaryFilter, postFixToTooltip,
         horizontalStackExpectedResult1, horizontalStackExpectedResult2,
         verticalStackExpectedResult, horizontalBarExpectedResult,
-        horizontalBarExpectedResultForCurdeDeathRates,
         verticalBarExpectedResult1, verticalBarExpectedResult2,
         horizontalStackNoDataExpectedResult, verticalBarNoDataExpectedResult, lineChartFilter, lineChartExpectedResult,
         lineChartData, pieChartData, pieChartExpectedResult, pieChartWithpostFixToTooltipExpectedResult,
@@ -55,7 +54,6 @@ describe('chart utils', function(){
 
         data1 = __fixtures__['app/services/fixtures/owh.chart.utils/data1'];
         data2 = __fixtures__['app/services/fixtures/owh.chart.utils/data2'];
-        censusRatesData = __fixtures__['app/services/fixtures/owh.chart.utils/census-rates-data'];
 
         pieChartData = __fixtures__['app/services/fixtures/owh.chart.utils/pieChartData'];
 
@@ -70,7 +68,6 @@ describe('chart utils', function(){
 
         verticalStackExpectedResult = __fixtures__['app/services/fixtures/owh.chart.utils/verticalStackExpectedResult'];
         horizontalBarExpectedResult = __fixtures__['app/services/fixtures/owh.chart.utils/horizontalBarExpectedResult'];
-        horizontalBarExpectedResultForCurdeDeathRates = __fixtures__['app/services/fixtures/owh.chart.utils/horizontalBarExpectedResultForCurdeDeathRates'];
 
         verticalBarExpectedResult1 = __fixtures__['app/services/fixtures/owh.chart.utils/verticalBarExpectedResult1'];
         verticalBarExpectedResult2 = __fixtures__['app/services/fixtures/owh.chart.utils/verticalBarExpectedResult2'];
@@ -134,11 +131,6 @@ describe('chart utils', function(){
     it('test chart utils horizontalBar', function () {
         var result = chartUtils.horizontalBar(filter1, filter2, data1, primaryFilter);
         expect(JSON.stringify(result)).toEqual(JSON.stringify(horizontalBarExpectedResult));
-    });
-    it('test chart utils horizontalBar for Crude Death Rates', function () {
-        primaryFilter.tableView = 'crude_death_rates';
-        var result = chartUtils.horizontalBar(filter1, filter2, censusRatesData, primaryFilter);
-        expect(JSON.stringify(result)).toEqual(JSON.stringify(horizontalBarExpectedResultForCurdeDeathRates));
     });
 
     it('test chart horizontalBar for PRAMS single filter', function () {

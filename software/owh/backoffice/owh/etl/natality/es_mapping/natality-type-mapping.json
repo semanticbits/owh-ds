@@ -91,6 +91,9 @@
       },
       "tobacco_use": {
         "type": "string", "index": "not_analyzed"
+      },
+      "state": {
+        "type": "string", "index": "not_analyzed"
       }
     }
   }

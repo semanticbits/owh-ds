@@ -828,7 +828,7 @@ var mortalityStepDefinitionsWrapper = function () {
             });
             mortalityPage.getTableCellData(0,1).then(function(data){
                 expect(data).not.to.contains('Not Available');
-                expect(data).to.contains('7,029.6');
+                expect(data).to.contains('1,068.3');
             });
             mortalityPage.getTableCellData(50,0).then(function(data){
                 expect(data).to.contains('Wyoming');
@@ -845,7 +845,7 @@ var mortalityStepDefinitionsWrapper = function () {
             expect(value).to.contains('Alabama');
             expect(value).to.contains('Wyoming');
             mortalityPage.getTableCellData(0,0).then(function(data){
-                expect(data).to.contains('7,029.6');
+                expect(data).to.contains('1,068.3');
             });
             mortalityPage.getTableCellData(0,50).then(function(data){
                 expect(data).not.to.contains('Not Available');
@@ -900,19 +900,6 @@ var mortalityStepDefinitionsWrapper = function () {
             //Number of Deaths
             expect(rowdata[4]).to.equals('106');
         }).then(next);
-    });
-
-    this.Then(/^labels for "([^"]*)" are displayed on minimized visualization$/, function (arg1) {
-        var labelArray = mortalityPage.getAxisLabelsForMinimizedVisualization();
-        expect(labelArray[0].getText()).to.eventually.equal('Race');
-        return expect(labelArray[1].getText()).to.eventually.equal(arg1);
-    });
-
-    this.Then(/^labels for "([^"]*)" are displayed on expanded visualization$/, function (arg1, next) {
-        var labelArray = mortalityPage.getAxisLabelsForExpandedVisualization();
-        expect(labelArray[0].getText()).to.eventually.equal('Race');
-        expect(labelArray[1].getText()).to.eventually.equal(arg1);
-        element(by.name('close')).click().then(next);
     });
 };
 module.exports = mortalityStepDefinitionsWrapper;

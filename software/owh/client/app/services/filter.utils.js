@@ -97,8 +97,7 @@
         ];
 
         var singleYearAgeOptions =  [
-            { "key": "13 years", "title": "13 years" },
-            { "key": "14 years", "title": "14 years" },
+            { "key": "Under 15 years", "title": "Under 15 years" },
             { "key": "15 years", "title": "15 years" },
             { "key": "16 years", "title": "16 years" },
             { "key": "17 years", "title": "17 years" },
@@ -408,7 +407,7 @@
             {key:'Unknown or not stated', title:'Unknown or not stated'}
         ];
 
-        var censusStateOptions =  [
+        var stateOptions =  [
             { "key": "AL", "title": "Alabama" },
             { "key": "AK", "title": "Alaska" },
             { "key": "AZ", "title": "Arizona" },
@@ -590,7 +589,7 @@
                     defaultGroup:'row', groupBy: false, filterType: 'checkbox',autoCompleteOptions: censusHispanicOriginOptions,
                     value:[], helpText:"label.help.text.bridged-race.ethnicity"},
                 {key: 'state', title: 'label.filter.state', queryKey:"state",primary: false, value:[], defaultGroup:'row',
-                    groupBy: false, filterType: 'checkbox',autoCompleteOptions: censusStateOptions,
+                    groupBy: false, filterType: 'checkbox',autoCompleteOptions: stateOptions,
                     displaySearchBox:true, displaySelectedFirst:true, helpText:"label.help.text.bridged-race.state"}
             ];
 
@@ -603,6 +602,9 @@
                 {key: 'hispanic_origin', title: 'label.filter.hispanicOrigin', queryKey:"hispanic_origin",
                     primary: false, value: [], defaultGroup:'row', groupBy: false, filterType: "checkbox",
                     autoCompleteOptions: hispanicOptions, helpText:"label.help.text.ethnicity"},
+                {key: 'state', title: 'label.filter.state', queryKey:"state",primary: false, value:[], defaultGroup:'row',
+                    groupBy: false, filterType: 'checkbox', displaySearchBox:true, displaySelectedFirst:true,
+                    autoCompleteOptions: stateOptions, helpText:"label.help.text.natality.state"},
 
                 {key: 'mother_age_1year_interval', title: 'label.chart.mother_age.single.year.group', queryKey:"mother_age_1year_interval", primary: false, value: [],
                     defaultGroup:'column', groupBy: false, filterType: "checkbox",
@@ -710,8 +712,8 @@
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
                     autoCompleteOptions: tobaccoOptions, helpText:"label.help.text.tobacco.use"}
             ];
-            return natalityFilters;
 
+            return natalityFilters;
         }
         function getInfantMortalityDataFilters () {
 
@@ -876,7 +878,7 @@
                 // Location
                 {key: 'state', title: 'label.filter.state', queryKey: 'state', primary: false,
                     value: [], defaultGroup: 'column', groupBy: false, filterType: 'checkbox',
-                    autoCompleteOptions: censusStateOptions, helpText: 'label.help.text.state'}
+                    autoCompleteOptions: stateOptions, helpText: 'label.help.text.state'}
             ]
         }
 
