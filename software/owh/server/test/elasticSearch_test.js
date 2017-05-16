@@ -49,8 +49,8 @@ describe("Elastic Search", function () {
             expect(data[2].name).equal('Black');
             expect(data[2].natality).equal('suppressed');
             var genderData = data[2].sex;
-            expect(genderData[0].natality).equal(11);
-            expect(genderData[1].natality).equal('suppressed');
+            expect(genderData[0].natality).equal('suppressed');
+            expect(genderData[1].natality).equal(11);
         });
     });
 
