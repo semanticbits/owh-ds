@@ -801,14 +801,18 @@
 
             return [
                 // Infant Characteristics
-                {key: 'year_of_death', title: 'label.filter.year', queryKey:"year_of_death", primary: false, value: ["2013"], defaultGroup:'column', groupBy: false,
-                    filterType: "checkbox", autoCompleteOptions: yearOptions, helpText:"label.help.text.year"},
+                {key: 'year_of_death', title: 'label.filter.year', queryKey:"year_of_death", primary: false, value: ["2013"],
+                    defaultGroup:'column', groupBy: false, filterType: "checkbox",
+                    // Data only available for 2000-2014
+                    autoCompleteOptions: yearOptions.slice(1), helpText:"label.help.text.year"},
 
-                {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [], defaultGroup:'column', groupBy: 'column',
-                    filterType: "checkbox", autoCompleteOptions: genderOptions, helpText:"label.help.text.sex"},
+                {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [],
+                    defaultGroup:'column', groupBy: 'column', filterType: "checkbox",
+                    autoCompleteOptions: genderOptions, helpText:"label.help.text.sex"},
 
-                {key: 'infant_age_at_death', title: 'label.filter.infant_age_at_death', queryKey: 'infant_age_at_death', primary: false, value: [], defaultGroup: 'column', groupBy: false,
-                    filterType: 'checkbox', autoCompleteOptions: infantDeathAge, helpText: 'label.help.text.infant_age_at_death'},
+                {key: 'infant_age_at_death', title: 'label.filter.infant_age_at_death', queryKey: 'infant_age_at_death', primary: false,
+                    value: [], defaultGroup: 'column', groupBy: false, filterType: 'checkbox',
+                    autoCompleteOptions: infantDeathAge, helpText: 'label.help.text.infant_age_at_death'},
 
                 // Maternal Characteristics
                 {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [],
