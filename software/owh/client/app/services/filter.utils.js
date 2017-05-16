@@ -737,6 +737,27 @@
                 { key: "28 days and over", title: "28 days and over" }
             ];
 
+            var im_educationOptions = [
+                // Options for 2000-2002
+                { key: "0 - 8 years", title: "0 - 8 years" },
+                { key: "9 - 11 years", title: "9 - 11 years" },
+                { key: "12 years", title: "12 years" },
+                { key: "13 - 15 years", title: "13 - 15 years" },
+                { key: "16 years and over", title: "16 years and over" },
+                { key: "Not stated", title: "Not stated" },
+                // Options for 2007-2008
+                { key: "8 th grade or less", title: "8 th grade or less" },
+                { key: "9 th through 12 th grade with no diploma", title: "9 th through 12 th grade with no diploma" },
+                { key: "High school graduate or GED completed", title: "High school graduate or GED completed" },
+                { key: "Some college credit, but not a degree", title: "Some college credit, but not a degree" },
+                { key: "Associate degree (AA, AS)", title: "Associate degree (AA, AS)" },
+                { key: "Bachelor's degree (BA, AB, BS)", title: "Bachelor's degree (BA, AB, BS)" },
+                { key: "Master’s degree (MA, MS, MEng, MEd, MSW, MBA)", title: "Master’s degree (MA, MS, MEng, MEd, MSW, MBA)" },
+                { key: "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)", title: "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)" },
+                { key: "Unknown", title: "Unknown" },
+                { key: "Not on Certificate", title: "Not on Certificate" }
+            ];
+
             var gestationalGroup1 = [
                 { key: "Under 20 weeks", title: "Under 20 weeks" },
                 { key: "20 - 27 weeks", title: "20 - 27 weeks" },
@@ -829,7 +850,7 @@
 
                 {key: 'mother_education', title: 'label.filter.education', queryKey:"mother_education", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: educationOptions, helpText:"label.help.text.mother.education"},
+                    autoCompleteOptions: im_educationOptions, helpText:"label.help.text.mother.education"},
 
                 // Birth Characteristics
                 {key: 'gestation_recode11', title: 'label.filter.infant_mortality.gestation_recode11', queryKey:"gestation_recode11",
