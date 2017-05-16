@@ -828,7 +828,7 @@ var mortalityStepDefinitionsWrapper = function () {
             });
             mortalityPage.getTableCellData(0,1).then(function(data){
                 expect(data).not.to.contains('Not Available');
-                expect(data).to.contains('7,029.6');
+                expect(data).to.contains('1,068.3');
             });
             mortalityPage.getTableCellData(50,0).then(function(data){
                 expect(data).to.contains('Wyoming');
@@ -845,7 +845,7 @@ var mortalityStepDefinitionsWrapper = function () {
             expect(value).to.contains('Alabama');
             expect(value).to.contains('Wyoming');
             mortalityPage.getTableCellData(0,0).then(function(data){
-                expect(data).to.contains('7,029.6');
+                expect(data).to.contains('1,068.3');
             });
             mortalityPage.getTableCellData(0,50).then(function(data){
                 expect(data).not.to.contains('Not Available');
