@@ -16,6 +16,8 @@ var census_index="owh_census";
 var census_rates_index="owh_census_rates";
 var census_type="census";
 var census_rates_type="census_rates";
+var infant_mortality_index = "owh_infant_mortality";
+var infant_mortality_type = "infant_mortality";
 //@TODO to work with my local ES DB I changed mapping name to 'queryResults1', revert before check in to 'queryResults'
 var _queryIndex = "owh_querycache";
 var _queryType = "queryData";
@@ -248,6 +250,22 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected)
     }
     return deferred.promise;
 };
+
+ElasticClient.prototype.aggregateInfantMortalityData = function (query) {
+    var client = this.getClient(infant_mortality_index);
+    var deferred = Q.defer();
+    if (query[0]) {
+        this.executeESQuery(infant_mortality_index, infant_mortality_type, query[0])
+            .then(function (response) {
+                var data = searchUtils.populateDataWithMappings(response, 'infant_mortality');
+                deferred.resolve(data);
+            }, function (error) {
+                logger.error(error.message);
+                deferred.reject(error);
+            });
+    }
+    return deferred.promise;
+}
 
 ElasticClient.prototype.getQueryCache = function(query){
     var client = this.getClient(_queryIndex);

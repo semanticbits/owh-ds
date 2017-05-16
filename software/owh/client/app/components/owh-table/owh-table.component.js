@@ -177,7 +177,8 @@
 
 
 
-                        } else if(otc.tableView === 'number_of_deaths' || otc.tableView === 'bridge_race' || otc.tableView === 'number_of_births') {
+                        } else if(otc.tableView === 'number_of_deaths' || otc.tableView === 'bridge_race'
+                            || otc.tableView === 'number_of_births' || otc.tableView === 'number_of_infant_deaths') {
                             if(column.title === 'suppressed') {
                                 cell += '<span>Suppressed</span>';
                             } else if(column.title === 'Not Available') {

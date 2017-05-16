@@ -218,6 +218,13 @@
   "label.run.query": "Run Query",
   "label.run.query.title": "Click to Run Query",
 
+  "label.filter.infant_mortality": "Infant Mortality",
+  "label.filter.infant_age_at_death": "Age of Infant at Death",
+  "label.filter.infant_mortality.gestation_recode11": "Gestational Age Group 1",
+  "label.filter.infant_mortality.gestation_recode10": "Gestational Age Group 2",
+  "label.filter.infant_mortality.gestation_weekly": "Gestational Weekly",
+  "label.filter.age_of_mother": "Age of Mother",
+
   "label.help.text.year": "This field indicates year of birth.",
   "label.help.text.sex": "This field indicates the gender of the child as recorded on the birth certificate.",
   "label.help.text.month": "This field indicates month of birth.",

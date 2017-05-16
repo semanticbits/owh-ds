@@ -83,6 +83,10 @@
                 'mother_education', 'mother_age_1year_interval', 'mother_age_5year_interval',
                 'anemia', 'cardiac_disease', 'chronic_hypertension', 'diabetes', 'eclampsia', 'hydramnios_oligohydramnios',
                 'incompetent_cervix', 'lung_disease', 'pregnancy_hypertension', 'tobacco_use'],
+            "label.filter.infant_mortality": ['year_of_death', 'sex', 'infant_age_at_death', 'race', 'hispanic_origin', 'marital_status',
+                'mother_age_5_interval', 'mother_education', 'gestational_age_r11', 'gestational_age_r10', 'gestation_weekly',
+                'prenatal_care', 'birth_weight', 'birth_plurality', 'live_birth', 'birth_place', 'delivery_method', 'medical_attendant',
+                'ucd-chapter-10', 'state'],
             "label.prams.title": []
         };
 
@@ -111,6 +115,7 @@
                 "year": ['2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000']
             },
             number_of_births: {},
+            number_of_infant_deaths: {},
             birth_rates: {},
             fertility_rates: {},
             bridge_race:{},

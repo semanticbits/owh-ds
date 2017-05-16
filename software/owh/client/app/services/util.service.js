@@ -511,9 +511,8 @@
                 angular.forEach(eachHeader.autoCompleteOptions, function(matchedOption, index) {
 
                     var key = (countKey === 'mental_health' || countKey === 'prams')?matchedOption.qkey:matchedOption.key;
-                    var eachData = findByKeyAndValue(eachHeaderData, 'name', key);
                     if(countKey === 'prams') {
-                        eachData = findAllByKeyAndValue(eachHeaderData, 'name', key);
+                        var eachData = findAllByKeyAndValue(eachHeaderData, 'name', key);
                         if(eachData.length === 0) {
                             return;
                         }
@@ -564,6 +563,7 @@
                                 var eachTableRow = {
                                     title: '',
                                     isCount: false,
+                                    isNotQuestionCell: true,
                                     rowspan: 1,
                                     colspan: 1,
                                     key: matchedOption.key,
@@ -578,6 +578,7 @@
                             }
                         });
                     } else {
+                        var eachData = findByKeyAndValue(eachHeaderData, 'name', key);
                         if(!eachData) {
                             return;
                         }

@@ -74,7 +74,7 @@
                 tableData.data = categorizeQuestions(tableData.data, $rootScope.questions);
                 primaryFilter.showBasicSearchSideMenu = response.data.queryJSON.showBasicSearchSideMenu;
                 primaryFilter.runOnFilterChange = response.data.queryJSON.runOnFilterChange;
-               
+
             }
             if (primaryFilter.key === 'prams') {
                 primaryFilter.data = response.data.resultData.table;
@@ -107,6 +107,13 @@
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
+            }
+            if (primaryFilter.key === 'infant_mortality') {
+                primaryFilter.data = response.data.resultData.nested.table;
+                tableData = getMixedTable(primaryFilter, groupOptions, tableView);
+                populateSideFilterTotals(primaryFilter, response.data);
+                primaryFilter.headers = tableData.headers;
+                primaryFilter.data = tableData.data;
             }
             //make sure side filters are in proper order
             angular.forEach(primaryFilter.sideFilters, function (category) {
@@ -190,18 +197,34 @@
 
         //takes mixedTable and returns categories array for use with owhAccordionTable
         function categorizeQuestions(data, questions) {
+            const QuestionsPerCategory = 2;
+
             var categories = [];
             angular.forEach(questions, function(questionCategory){
+                var questionCount = 0, rowCount = 0;
                 var category = {title: questionCategory.text, questions: [], hide: true};
                 angular.forEach(questionCategory.children, function(categoryChild) {
                     angular.forEach(data, function(row) {
                         if(row[0].qkey === categoryChild.id) {
                             category.questions.push(row);
+
+                            if (!row[0].isNotQuestionCell) {
+                                questionCount++;
+                            }
+
+                            if (questionCount <= QuestionsPerCategory) {
+                                rowCount++;
+                            }
                         }
                     });
                 });
+
+                category.questionsCount = questionCount;
+                category.rowsToShow = rowCount;
+
                 categories.push(category);
             });
+
             return categories;
         }
 
@@ -577,13 +600,11 @@
         }
 
         function buildHashcodeQuery(primaryFilter) {
-
             var hashQuery = {
                 primaryKey: primaryFilter.key,
                 tableView: primaryFilter.tableView,
                 filters: []
             };
-
             angular.forEach(primaryFilter.sideFilters, function(category){
                 angular.forEach(category.sideFilters, function(filter) {
                     hashQuery.filters.push({
@@ -1002,6 +1023,29 @@
                 deferred.resolve(response);
             });
 
+            return deferred.promise;
+        }
+
+        /**
+         * Fetch infant mortality data
+         */
+        function searchInfantMortality (primaryFilter, queryID) {
+            var deferred = $q.defer();
+
+            queryInfantMortality(primaryFilter, queryID).then(function (response) {
+                updateSideFilterCount(primaryFilter, response.data.sideFilterResults.data.simple);
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+        }
+
+        function queryInfantMortality (primaryFilter, queryID) {
+            var deferred = $q.defer();
+            SearchService.searchResults(primaryFilter, queryID)
+                .then(function (response) {
+                    deferred.resolve(response);
+                });
             return deferred.promise;
         }
 
@@ -1574,6 +1618,7 @@
 
             filters.censusFilters = filterUtils.getBridgeDataFilters();
             filters.natalityFilters = filterUtils.getNatalityDataFilters();
+            filters.infantMortalityFilters = filterUtils.getInfantMortalityDataFilters();
 
             filters.pramsTopicOptions = [
                 {"key": "cat_45", "title": "Delivery Method"},
@@ -2421,6 +2466,181 @@
                                 }
                             ]
 
+                        }
+                    ]
+                },
+                {
+                    key: 'infant_mortality', title: 'label.filter.infant_mortality', primary: true, value: [], header: 'Infant Mortality',
+                    allFilters: filters.infantMortalityFilters, searchResults: searchInfantMortality, showMap: false,
+                    chartAxisLabel: 'Infant Death', countLabel: 'Number of Infant Deaths', tableView: 'number_of_infant_deaths',
+                    runOnFilterChange: true, applySuppression: true,
+                    sideFilters:[
+                        {
+                            category: 'Infant Characteristics',
+                            sideFilters: [
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'year_of_death'),
+                                    refreshFiltersOnChange: true
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'sex')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'infant_age_at_death')
+                                }
+                            ]
+                        },
+                        {
+                            category: 'Maternal Characteristics',
+                            sideFilters: [
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'race')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'hispanic_origin')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'mother_age_5_interval')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'marital_status')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'mother_education')
+                                }
+
+                            ]
+                        },
+                        {
+                            category: "Birth Characteristics",
+                            sideFilters: [
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'gestation_recode11')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'gestation_recode10')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'gestation_weekly')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'prenatal_care')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'birth_weight')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'birth_plurality')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'live_birth')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'birth_place')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'delivery_method')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'medical_attendant')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: {key: 'ucd-chapter-10', title: 'label.filter.ucd', queryKey:"ICD_10_code",
+                                        primary: true, value: [], groupBy: false, type:"label.filter.group.ucd", groupKey:"ucd",
+                                        autoCompleteOptions: $rootScope.conditionsListICD10, filterType: 'conditions',
+                                        selectTitle: 'select.label.filter.ucd', updateTitle: 'update.label.filter.ucd',
+                                        aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions}
+                                }
+
+                            ]
+                        },
+                        {
+                            category: 'Location',
+                            sideFilters: [
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'state')
+                                }
+                            ]
                         }
                     ]
                 }
