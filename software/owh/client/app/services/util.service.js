@@ -511,7 +511,7 @@
                 angular.forEach(eachHeader.autoCompleteOptions, function(matchedOption, index) {
 
                     var key = (countKey === 'mental_health' || countKey === 'prams')?matchedOption.qkey:matchedOption.key;
-                    if(countKey === 'prams') {
+                    if(countKey === 'prams' || countKey === 'mental_health') {
                         var eachData = findAllByKeyAndValue(eachHeaderData, 'name', key);
                         if(eachData.length === 0) {
                             return;
@@ -548,7 +548,7 @@
                                 var eachTableRow = {
                                     title: matchedOption.title,
                                     isCount: false,
-                                    rowspan: eachData.length - 1,
+                                    rowspan: countKey === 'prams'?eachData.length - 1: eachData.length, //exclude the -1 response for prams
                                     colspan: 1,
                                     key: matchedOption.key,
                                     qkey: matchedOption.qkey,

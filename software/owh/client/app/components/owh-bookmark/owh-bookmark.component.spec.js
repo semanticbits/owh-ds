@@ -28,7 +28,7 @@ describe('bookmark component: ', function() {
         $httpBackend.whenGET('app/partials/marker-template.html').respond( $templateCache.get('app/partials/marker-template.html'));
         $httpBackend.whenGET('app/components/owh-bookmark/bookmark.html').respond( $templateCache.get('app/components/owh-bookmark/bookmark.html'));
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 11111}});
-        $httpBackend.whenGET('/yrbsQuestionsTree/2015').respond({data: { }});
+        $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
     });
 

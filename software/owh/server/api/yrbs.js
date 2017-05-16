@@ -8,6 +8,11 @@ var cachedPramsQuestions = null;
 function yrbs() {
 }
 
+//Mapping response key values from the data set to display values
+const responseKeyMap = {
+    true:'YES',
+    false:'NO'
+}
 /**
  * Invoke YRBS service for each selected question, merge the results and return a single result in the form
  * {"table":{"question":[{"name":"question 1","mental_health":"0.8136<br><br/><nobr>(0.7696-0.8508)</nobr><br/>8757",
@@ -107,7 +112,6 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
                 var qry = config.yrbs.queryUrl+'?'; //Base url
                 if(apiQuery.searchFor === 'mental_health') {
                     qry += 'd=yrbss&' // yrbs dataset
-                    qry += 'r=1&' // count true responses
                 } else if(apiQuery.searchFor === 'prams') {
                     qry += 'd=prams&' // yrbs dataset
                 }
@@ -162,11 +166,15 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
     }
     for (var i in  response.results){
         var r = response.results[i];
+        var responseKey = responseKeyMap[r.response]?responseKeyMap[r.response]:r.response;
+        if(!q[responseKey]) {
+            q[responseKey] = {};
+        }
 
         if(isTotalCell(r, precompgroups, precomputed)){
-            q[key]= resultCellObject(r);
+            q[responseKey][key]= resultCellObject(r);
         }else if(!isSubTotalCell(r, precompgroups, precomputed)){
-            var cell = q;
+            var cell = q[responseKey];
             // The result table is always nested in the order Sex (sex), Grade (grade), Race (race7) and  Year (year)
             // so nest the results in that order
             if ('sex' in r) {
@@ -185,50 +193,27 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
             if ('race' in r) {
                 cell = getResultCell(cell, 'race', r.race);
             }
-            //flag whether data was already sorted by responses for PRAMS
-            var responseAdded = false;
+
+            // Prams filters
             if ('year' in r) {
                 cell = getResultCell(cell, 'year', r.year);
-                if(key === 'prams') {
-                    sortByResponse(response.results[i], q, cell, 'year', responseAdded);
-                    responseAdded = true;
-                    if(response.results[i].response) {
-                        delete q['year'];
-                    }
-                }
             }
             if ('sitecode' in r) {
                 cell = getResultCell(cell, 'sitecode', r.sitecode);
-                if(key === 'prams') {
-                    sortByResponse(response.results[i], q, cell, 'sitecode', responseAdded);
-                    if(response.results[i].response) {
-                        delete q['sitecode'];
-                    }
-                }
             }
 
             cell[key] = resultCellObject(r);
 
             // If the result has only one column then there is no separate total column value available in pre-computed results
             // so assign the cell result to total as well
-            if(precomputed && q[key] == undefined ){
-                q[key] = cell[key];
+            if(precomputed && q[responseKey][key] == undefined ){
+                q[responseKey][key] = cell[key];
             }
         }
     }
     return q;
 };
 
-function sortByResponse(result, q, cell, key, isAdded) {
-    if(result.response && !isAdded) {
-        var responseKey = result.response;
-        if(!q[responseKey]) {
-            q[responseKey] = {};
-            q[responseKey][key] = [];
-        }
-        q[responseKey][key].push(cell);
-    }
-}
 
 function isTotalCell(cell, groupings, precomputed){
     if(precomputed) {
@@ -327,20 +312,21 @@ function invokeYRBS (query){
 };
 
 /**
- * To get questions from question service dynamically. *
- * @param yearList
+ * Get YRBS questions from question service dynamically. *
  * @returns {*|promise}
  */
-yrbs.prototype.getQuestionsTreeByYears = function (yearList) {
+yrbs.prototype.getYRBSQuestionsTree = function () {
     var deferred = Q.defer();
     if(cahcedQuestions){
         logger.info("Returning cached questions");
         deferred.resolve(cahcedQuestions);
     } else {
-        invokeYRBS(config.yrbs.questionsUrl + "?d=yrbss").then(function (response) {
+        invokeYRBS(config.yrbs.questionsUrl + '?d=yrbss').then(function (response) {
             logger.info("Getting questions from yrbs service");
-            var data = prepareQuestionTreeForYears(response, yearList);
-            cahcedQuestions = {questionTree: data.questionTree, questionsList: data.questionsList}
+            var data = prepareQuestionTree(response, false);
+            if (data.questionsList.length > 0) {
+                cahcedQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
+            }
             deferred.resolve(cahcedQuestions);
         });
     }
@@ -357,13 +343,13 @@ yrbs.prototype.getPramsQuestionsTree = function () {
         logger.info("Returning cached PRAMS questions");
         deferred.resolve(cachedPramsQuestions);
     } else {
-        var pramsQuestionsUrl = config.yrbs.questionsUrl.split('/');
-        pramsQuestionsUrl.splice(3, 0, 'v2');
-        pramsQuestionsUrl = pramsQuestionsUrl.join('/');
-        invokeYRBS(pramsQuestionsUrl + '?d=prams').then(function(response) {
+        invokeYRBS(config.yrbs.questionsUrl + '?d=prams').then(function(response) {
             logger.info("Getting PRAMS questions from YRBS service");
-            var data = prepareQuestionTreeForYears(response.questions, [], true);
-            cachedPramsQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
+            var data = prepareQuestionTree(response.questions, true);
+            // Cache the result only if it is valid
+            if (data.questionsList.length > 0) {
+                cachedPramsQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
+            }
             deferred.resolve(cachedPramsQuestions);
         });
     }
@@ -375,7 +361,7 @@ yrbs.prototype.getPramsQuestionsTree = function () {
  * @param questionList
  * @param years
  */
-function prepareQuestionTreeForYears(questions, years, prams) {
+function prepareQuestionTree(questions,  prams) {
     logger.info("Preparing questions tree");
     var qCategoryMap = {};
     var questionTree = [];
@@ -395,7 +381,7 @@ function prepareQuestionTreeForYears(questions, years, prams) {
     //iterate through questions
     for (var qKey in questions) {
         var quesObj = questions[qKey];
-        var qCategory = quesObj.topic;
+        var qCategory = quesObj.topic?quesObj.topic:'No Topic'; //Default the topic if not specified
         if(prams) {
             qCategory = quesObj.subtopic;
         }
@@ -403,12 +389,7 @@ function prepareQuestionTreeForYears(questions, years, prams) {
             qCategoryMap[qCategory] = {id:'cat_'+catCount, text:qCategory, children:[]};
             catCount = catCount + 1;
         } else {
-            if (quesObj.description !== undefined) {
-                var question = {text:quesObj.question +"("+quesObj.description+")", id:qKey};
-                qCategoryMap[qCategory].children.push(question);
-                //capture all questions into questionsList
-                questionsList.push({key : quesObj.question, qkey : qKey, title : quesObj.question +"("+quesObj.description+")"});
-            } else if(prams) {
+            if(prams) {
                 //skip duplicate question keys
                 if(questionKeys.indexOf(qKey) >= 0) {
                     continue;
@@ -417,6 +398,14 @@ function prepareQuestionTreeForYears(questions, years, prams) {
                 qCategoryMap[qCategory].children.push(question);
                 questionsList.push({key: quesObj.question, qkey: qKey, title: quesObj.question});
                 questionKeys.push(qKey);
+            } else {
+                // Select only those questions starting with qn
+                if(qKey.indexOf("qn") >= 0) {
+                    var question = {text: quesObj.question, id: qKey};
+                    qCategoryMap[qCategory].children.push(question);
+                    //capture all questions into questionsList
+                    questionsList.push({key: quesObj.question, qkey: qKey, title: quesObj.question});
+                }
             }
         }
     }
