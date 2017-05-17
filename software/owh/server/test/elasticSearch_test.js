@@ -27,6 +27,76 @@ describe("Elastic Search", function () {
         })
     });
 
+    it("should aggregate mortality side filter counts", function (){
+        var query = [{"size":0,"aggregations":{"year":{"terms":{"field":"current_year","size":0}},"race":{"terms":{"field":"race","size":0}},"gender":{"terms":{"field":"sex","size":0}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}}}},null];
+        return new elasticSearch().aggregateDeaths(query, true).then(function (response) {
+
+            var race = response.data.simple.race;
+            expect(race[0].name).to.eql("White");
+            expect(race[0].deaths).to.be(2306861);
+            expect(race[1].name).to.eql("Black");
+            expect(race[1].deaths).to.be(320072);
+
+            var gender = response.data.simple.gender;
+            expect(gender[0].name).to.eql("Male");
+            expect(gender[0].deaths).to.be(1373404);
+            expect(gender[1].name).to.eql("Female");
+            expect(gender[1].deaths).to.be(1339226);
+
+            var year = response.data.simple.year;
+            expect(year[0].name).to.eql("2015");
+            expect(race[0].deaths).to.be(2306861);
+        });
+    });
+
+    it("should aggregate mortality data by race and gender for 2015", function (){
+        var query = [{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_gender":{"terms":{"field":"sex","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}}}},{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_gender":{"terms":{"field":"sex","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}}}}];
+        return new elasticSearch().aggregateDeaths(query, true).then(function (response) {
+            var data = response.data.nested.table;
+
+            expect(data.race[0].name).to.eql("American Indian");
+            expect(data.race[0].deaths).to.be(19016);
+            expect(data.race[0].gender[0].name).to.eql("Female");
+            expect(data.race[0].gender[0].deaths).to.be(8565);
+            expect(data.race[0].gender[1].name).to.eql("Male");
+            expect(data.race[0].gender[1].deaths).to.be(10451);
+
+            expect(data.race[1].name).to.eql("Asian or Pacific Islander");
+            expect(data.race[1].deaths).to.be(66681);
+            expect(data.race[1].gender[0].name).to.eql("Female");
+            expect(data.race[1].gender[0].deaths).to.be(32574);
+            expect(data.race[1].gender[1].name).to.eql("Male");
+            expect(data.race[1].gender[1].deaths).to.be(34107);
+        });
+    });
+
+    it("should aggregate bridged-race data by race and gender for 2015", function (){
+        var query = {"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_pop":{"sum":{"field":"pop"}}}},"group_count_pop":{"sum":{"field":"pop"}}}},"group_count_pop":{"sum":{"field":"pop"}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}}}};
+        return new elasticSearch().aggregateCensusData(query, true).then(function (response) {
+            var race = response.data.nested.table.race;
+            expect(race[0].name).to.eql("American Indian");
+            expect(race[0].bridge_race).to.be(4577853);
+            expect(race[0].sex[0].name).to.eql("Female");
+            expect(race[0].sex[0].bridge_race).to.be(2279263);
+            expect(race[0].sex[1].name).to.eql("Male");
+            expect(race[0].sex[1].bridge_race).to.be(2298590);
+
+            expect(race[1].name).to.eql("Asian or Pacific Islander");
+            expect(race[1].bridge_race).to.be(20102717);
+            expect(race[1].sex[0].name).to.eql("Female");
+            expect(race[1].sex[0].bridge_race).to.be(10480265);
+            expect(race[1].sex[1].name).to.eql("Male");
+            expect(race[1].sex[1].bridge_race).to.be(9622452);
+        });
+    });
+
+    it("should fetch metadata for 2015", function (){
+        var natalityMetadata = require('./data/natality_matadata.json');
+        return new elasticSearch().getDsMetadata('natality', ['2015']).then(function (response) {
+            expect(JSON.stringify(response.hits.hits)).to.eql(JSON.stringify(natalityMetadata));
+        });
+    });
+
     it("Check aggregate natality data", function (){
         var query = [{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":100000},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":100000}}}},"group_maps_0_states":{"terms":{"field":"state","size":100000},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":100000}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2014"}}]}}]}}}}}];
         new elasticSearch().aggregateNatalityData(query).then(function (resp) {
