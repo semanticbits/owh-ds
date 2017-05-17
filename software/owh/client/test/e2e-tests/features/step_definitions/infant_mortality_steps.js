@@ -8,27 +8,78 @@ var infantMortalityStepDefinitions = function () {
     this.setDefaultTimeout(600000);
     var imp = require('../support/infant_mortality.po');
 
-    this.Then(/^I should see "([^"]*)" categories in the sidebar$/, function (match, next) {
-        imp.getFilterCategories().then(function(categories) {
-            expect(categories.length).to.equal(parseInt(match));
+    this.Then(/^I should see "([^"]*)" categories in the sidebar$/, function (number_of_categories, next) {
+        imp.getCategories().then(function(categories) {
+            expect(categories.length).to.equal(parseInt(number_of_categories));
         }).then(next);
     });
 
-    this.Then(/^the categories should be "([^"]*)"$/, function (match, next) {
-       var expected = match.split(', ');
-       imp.getFilterCategories().then(function (categories) {
+    this.Then(/^the categories should be "([^"]*)"$/, function (labels, next) {
+       var expected = labels.split(', ');
+       imp.getCategories().then(function (categories) {
            categories.forEach(function (category, index) {
                expect(category).to.equal(expected[index]);
            });
        }).then(next);
     });
 
-    this.Then(/^the "([^"]*)" filter should be toggled to "([^"]*)"$/, function (match1, match2, next) {
-        imp.getSelectedOptionForFilterGroup(match1).then(function (actual) {
-            expect(actual).to.equal(match2)
+    this.Then(/^the "([^"]*)" filter should be toggled to "([^"]*)"$/, function (filter, group_option, next) {
+        imp.getSelectedOptionForFilter(filter).then(function (actual) {
+            expect(actual).to.equal(group_option);
         }).then(next);
     });
 
+    this.Then(/^the default headers of the table should be "([^"]*)"$/, function (table_headers, next) {
+        var expected = table_headers.split(', ');
+        imp.getTableHeaders().then(function (headers) {
+            headers.forEach(function (header, index) {
+                expect(header).to.equal(expected[index]);
+            });
+        }).then(next);
+    });
+
+    this.Then(/the values in row "([^"]*)" should be "([^"]*)"$/, function (row, values, next) {
+        var expected = values.split(', ');
+        imp.getTableRowData(row).then(function (row) {
+            row.forEach(function (column, index) {
+               expect(column).to.equal(expected[index]);
+            });
+        }).then(next);
+    });
+
+    this.When(/^I click on the "([^"]*)" filter and expand all available options$/, function (filter) {
+        return imp.expandFilter(filter).then(function () {
+            return imp.clickMoreOptionsForFilter(filter);
+        });
+    });
+
+    this.Then(/^I see the available options "([^"]*)" for "([^"]*)"$/, function (available_options, filter, next) {
+        var expected = available_options.split('|');
+        imp.getAvailableFilterOptions(filter).then(function (options) {
+            options.forEach(function (option, index) {
+                expect(option).to.equal(expected[index]);
+            });
+        }).then(next);
+    });
+
+    this.Then(/^I see the disabled options "([^"]*)" for "([^"]*)"$/, function (disabled_options, filter, next) {
+       var expected = disabled_options.split('|');
+       imp.getDisabledFilterOptions(filter).then(function (options) {
+           options.forEach(function (option, index) {
+               expect(option).to.equal(expected[index]);
+           });
+       }).then(next);
+    });
+
+    this.When(/^I click to show all filters for "([^"]*)"$/, function (category) {
+        return imp.expandCategory(category);
+    });
+
+    this.Then(/^I see the available filter "([^"]*)" for "([^"]*)"$/, function (filter, category, next) {
+        imp.getFiltersForCategory(category).then(function (filters) {
+            expect(filters).to.contain(filter);
+        }).then(next);
+    });
 };
 
 module.exports = infantMortalityStepDefinitions;
