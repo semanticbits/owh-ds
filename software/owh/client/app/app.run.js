@@ -326,7 +326,7 @@
         * Get YRBS questions dynamically
         * For now we are loading only 2015(hardcoded)
         * */
-        API.getYRBSQuestionsTree({years:["2015"]}).$promise.then(function(response){
+        API.getYRBSQuestionsTree().$promise.then(function(response){
             $rootScope.questions = response.data.questionTree;
             $rootScope.questionsList = response.data.questionsList;
             $rootScope.$broadcast("yrbsQuestionsLoadded");
