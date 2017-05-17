@@ -907,6 +907,9 @@
                 var newFilters = response.data;
                 for (var f=0; f < sideFilters.length; f++) {
                     var fkey = sideFilters[f].filters.queryKey;
+                    if (fkey === 'ethnicity_group') {
+                       fkey = 'hispanic_origin';
+                    }
                     if (fkey !== filterName) {
                         if (fkey in newFilters) {
                             sideFilters[f].disabled = false;
@@ -918,7 +921,7 @@
                                     }
                                     //below condition only disable filters which are not parent(with no child filters) and
                                     // not found in response metadata.
-                                    else if(!fopts[opt].group) {
+                                    else if(!fopts[opt].group && fopts[opt].key != 'Hispanic') {
                                         fopts[opt].disabled = true;
                                     }
                                 }
