@@ -427,8 +427,8 @@ describe('utilService', function(){
 
         spyOn(SearchService, 'getDsMetadata').and.returnValue(deferred.promise);
 
-        utils.refreshFilterAndOptions({ queryKey: "year", value: ["2015"]}, categories, 'crude_death_rates');
-        expect(SearchService.getDsMetadata).toHaveBeenCalledWith("crude_death_rates","2015");
+        utils.refreshFilterAndOptions({ queryKey: "year", value: ["2015"]}, categories, 'deaths');
+        expect(SearchService.getDsMetadata).toHaveBeenCalledWith("deaths","2015");
         deferred.resolve({"status":"OK","data":{"sex":["Male","Female"],"hispanic_origin":["Dominican","Latin American","Central American","Cuban","Spaniard","Other Hispanic","South American","Non-Hispanic","Puerto Rican","Unknown","Mexican","Central and South American"],"race":["White","Black","American Indian","Asian or Pacific Islander"]}});
         $scope.$apply();
         //Year
@@ -449,7 +449,7 @@ describe('utilService', function(){
         expect(filters[3].filters.autoCompleteOptions[1].disabled).toBeFalsy();
     }));
 
-    it('refreshFilterAndOptions options should set filter option correctly - for Crude Death Rates ', inject(function(SearchService) {
+    it('refreshFilterAndOptions options should set filter option correctly - for Age Adjusted Death Rates ', inject(function(SearchService) {
         var deferred = $q.defer();
         var filters= [
             {
@@ -486,8 +486,8 @@ describe('utilService', function(){
 
         spyOn(SearchService, 'getDsMetadata').and.returnValue(deferred.promise);
 
-        utils.refreshFilterAndOptions({ queryKey: "year", value: ["2015"]}, categories, 'age-adjusted_death_rates');
-        expect(SearchService.getDsMetadata).toHaveBeenCalledWith("age-adjusted_death_rates","2015");
+        utils.refreshFilterAndOptions({ queryKey: "year", value: ["2015"]}, categories, 'deaths');
+        expect(SearchService.getDsMetadata).toHaveBeenCalledWith("deaths","2015");
         deferred.resolve({"status":"OK","data":{"sex":["Male","Female"],"hispanic_origin":["Dominican","Latin American","Central American","Cuban","Spaniard","Other Hispanic","South American","Non-Hispanic","Puerto Rican","Unknown","Mexican","Central and South American"],"race":["White","Black","American Indian","Asian or Pacific Islander"]}});
         $scope.$apply();
         //Year
