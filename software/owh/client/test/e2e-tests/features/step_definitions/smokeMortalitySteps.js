@@ -10,6 +10,16 @@ var homeStepDefinitionsWrapper = function () {
     var homePage = require('../support/homepage.po');
     var mortalityPage = require('../support/mortalitypage.po')
 
+    this.Then(/^the user observes the option "([^"]*)"$/, function (arg1) {
+        var text = mortalityPage.getSelectedShowMeFilterType();
+        expect(text).to.eventually.contains(arg1);
+    });
+
+    this.Then(/^user clicks on "([^"]*)" less link for "([^"]*)" filter$/, function (linkText, filterType, next) {
+        var filter = element(by.cssContainingText('a', filterType)).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul'));
+        filter.element(by.cssContainingText('a', linkText)).click()
+            .then(next)
+    });
 
 /*    this.When(/^I hit app url$/, function () {
        return browser.get('/');
