@@ -907,7 +907,7 @@
                 var newFilters = response.data;
                 for (var f=0; f < sideFilters.length; f++) {
                     var fkey = sideFilters[f].filters.queryKey;
-                    if (fkey === 'ethnicity_group') {
+                    if (fkey === 'ethnicity_group' && datasetname == 'deaths') {
                        fkey = 'hispanic_origin';
                     }
                     if (fkey !== filterName) {
