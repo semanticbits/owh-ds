@@ -581,8 +581,7 @@ var mortalityStepDefinitionsWrapper = function () {
     this.Then(/^I see appropriate side filters disabled$/, function (next) {
         var disabledFilters = element.all(by.css('.cursor-not-allowed')).all(By.css('.filter-display-name'));
         disabledFilters.getText().then(function (filters) {
-                expect([ 'Ethnicity',
-                    'Age Groups',
+                expect(['Age Groups',
                     'Autopsy',
                     'Place of Death',
                     'Weekday',
