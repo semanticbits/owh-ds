@@ -94,6 +94,14 @@ var PRAMSStepDefinitionsWrapper = function () {
     this.Then(/^I see only "([^"]*)" topic in data table$/, function (topic) {
         return expect(element(by.className('owh-question__title')).getText()).to.eventually.contains(topic);
     });
+
+    this.Then(/^I see question categories in question tree are matching with topic$/, function (next) {
+        pramsPage.getQuestionTree().getText().then(function(qCategories) {
+            pramsPage.getPramsTopics().getText().then(function (topics) {
+                expect(JSON.stringify(topics)).to.equal(JSON.stringify(qCategories));
+            });
+        }).then(next);
+    });
 };
 
 module.exports = PRAMSStepDefinitionsWrapper;
