@@ -208,8 +208,9 @@ Scenario: Age Adjusted Death Rates
   Then labels for "Age Adjusted Death Rates" are displayed on minimized visualization
   When user expand visualization
   Then labels for "Age Adjusted Death Rates" are displayed on expanded visualization
-  When I update criteria in filter option with row "Ethnicity"
-  Then table should display Hispanic groups for Age Adjusted Death Rates
+  #Enable once OWH-1179 issue fixed.
+  #When I update criteria in filter option with row "Ethnicity"
+  #Then table should display Hispanic groups for Age Adjusted Death Rates
 
 #Scenario: Age filter for age adjusted rates
 #  Given I am on search page
@@ -286,14 +287,15 @@ Scenario: Group by 'State' in age adjusted rate
    When I select groupBy "Row" option for "State" filter
    Then I see data table with Race and State values
 
- Scenario: Filtering on State- Rate
-   Given I am on search page
-   When I choose the option "Age Adjusted Death Rates"
-   And user expands state filter
-   Then user clicks on "+ 48 more" more link for "State" filter
-   When I select State "DC"
-   And I select State "CT"
-   And I select groupBy "Row" option for "State" filter
-   Then the rates corresponding to the deaths 0-9 must be suppressed
-   And any value in the data table is suppressed then the totals in the State filter (sidebar) must be suppressed too
-   And the death count <20 then the corresponding Rate must be marked as "Unreliable"
+   #Enable once OWH-1179 issue fixed.
+ #Scenario: Filtering on State- Rate
+ #  Given I am on search page
+ #  When I choose the option "Age Adjusted Death Rates"
+ #  And user expands state filter
+ #  Then user clicks on "+ 48 more" more link for "State" filter
+ #  When I select State "DC"
+ #  And I select State "CT"
+ #  And I select groupBy "Row" option for "State" filter
+ #  Then the rates corresponding to the deaths 0-9 must be suppressed
+ #  And any value in the data table is suppressed then the totals in the State filter (sidebar) must be suppressed too
+ #  And the death count <20 then the corresponding Rate must be marked as "Unreliable"

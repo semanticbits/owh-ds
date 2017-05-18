@@ -46,8 +46,8 @@ describe("WONDER API", function () {
             expect(err).to.be.undefined();
         });
     });
-
-    it("invoke wonder API query for state", function(done){
+    //Enable once OWH-1179 issue fixed.
+    it.x("invoke wonder API query for state", function(done){
 
         query = {"searchFor":"deaths","query":{"current_year":{"key":"year","queryKey":"current_year","value":["2015"],"primary":false}},
             "aggregations":{"simple":[],"nested":{"table": [{"key":"race","queryKey":"race","size":0},
@@ -160,7 +160,8 @@ describe("WONDER API", function () {
         });
     });
 
-    it("invoke wonder API with year aggregation", function (done){
+    //Enable once OWH-1179 issue fixed.
+    it.x("invoke wonder API with year aggregation", function (done){
         query =   {"searchFor":"deaths","query":{},"aggregations":{"simple":[],"nested":{"table":[
                     {"key":"race","queryKey":"race","size":100000},
                     {"key":"year","queryKey":"current_year","size":100000},
@@ -193,7 +194,8 @@ describe("WONDER API", function () {
         });
     });
 
-    it("invoke wonder API with filter option selected", function (done){
+    //Enable once OWH-1179 issue fixed.
+    it.x("invoke wonder API with filter option selected", function (done){
         query = {"searchFor":"deaths","query":{"sex":{"key":"gender","queryKey":"sex","value":["Female"],"primary":false}},
             "aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":100000},{"key":"gender","queryKey":"sex","size":100000}],"charts":[[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}};
         var startTime = new Date();
@@ -208,7 +210,8 @@ describe("WONDER API", function () {
         });
     });
 
-    it("invoke wonder API with unmapped filter options selected", function (done){
+    //Enable once OWH-1179 issue fixed.
+    it.x("invoke wonder API with unmapped filter options selected", function (done){
         query = {"searchFor":"deaths","query":{"race":{"key":"race","queryKey":"race","value":["White","Other (Puerto Rico only)"],"primary":false}},
             "aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":100000},{"key":"gender","queryKey":"sex","size":100000}],"charts":[[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}}
         var startTime = new Date();
@@ -223,7 +226,8 @@ describe("WONDER API", function () {
         });
     });
 
-    it("perform state level grouping query", function (done){
+    //Enable once OWH-1179 issue fixed.
+    it.x("perform state level grouping query", function (done){
         query = {"searchFor":"deaths","query":{"race":{"key":"race","queryKey":"race","value":["White","Other (Puerto Rico only)"],"primary":false}},
             "aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":100000},{"key":"gender","queryKey":"sex","size":100000},{"key":"state","queryKey":"state","size":100000}],"charts":[[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}}
         var startTime = new Date();
@@ -239,7 +243,8 @@ describe("WONDER API", function () {
         });
     });
 
-    it("perform state level filtering query", function (done){
+    //Enable once OWH-1179 issue fixed.
+    it.x("perform state level filtering query", function (done){
         query = {"searchFor":"deaths","query":{"race":{"key":"state","queryKey":"state","value":["01","02"],"primary":false}},
             "aggregations":{"simple":[],"nested":{"table":[{"key":"state","queryKey":"state","size":100000}],"charts":[[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}}
         var startTime = new Date();
