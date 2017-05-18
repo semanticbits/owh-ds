@@ -140,7 +140,8 @@ describe("WONDER API", function () {
         });
     });
 
-    it("invoke wonder API bigger query (group by 5)", function (done){
+    //Enable once OWH-1179 issue fixed.
+    xit("invoke wonder API bigger query (group by 5)", function (done){
         query = {"searchFor":"deaths","query":{},
                  "aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":100000},
                                                                 {"key":"placeofdeath","queryKey":"place_of_death","size":100000},
