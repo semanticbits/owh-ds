@@ -261,7 +261,7 @@ describe("WONDER API", function () {
         });
     });
 
-    it.only("perform UCD level filtering query", function (done){
+    it("perform UCD level filtering query", function (done){
         query = {
             "searchFor": "deaths",
             "query": {
