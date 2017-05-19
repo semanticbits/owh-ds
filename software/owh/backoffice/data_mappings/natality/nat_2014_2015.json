@@ -17,7 +17,7 @@
       "1": "Mexican",
       "2": "Puerto Rican",
       "3": "Cuban",
-      "4": "Central and South American",
+      "4": "Central or South American",
       "5": "Other and Unknown Hispanic",
       "9": "Hispanic origin not stated"
     }
@@ -81,7 +81,7 @@
       "4": "25-29 years",
       "5": "30-34 years",
       "6": "35-39 years",
-      "7": "40-44 year",
+      "7": "40-44 years",
       "8": "45-49 years",
       "9": "50-54 years"
     }
