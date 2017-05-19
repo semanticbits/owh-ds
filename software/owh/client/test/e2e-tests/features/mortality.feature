@@ -213,7 +213,7 @@ Scenario: Age Adjusted Death Rates
   #Then table should display Hispanic groups for Age Adjusted Death Rates
   When I expand "Underlying Cause of Death" filter section
   And I click on "Select Cause of Death" button
-  And I select a cause and click on the "Filter Selected Cause(s) of Death(s)" button
+  And I select a cause and click on the Filter Selected Cause(s) of Death(s) button
   Then the "Select Cause of Death" button should be renamed to "Update Cause of Death"
   And data table should display Age Adjusted Death Rates for selected cause of death
 

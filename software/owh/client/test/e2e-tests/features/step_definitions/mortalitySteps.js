@@ -977,9 +977,11 @@ var mortalityStepDefinitionsWrapper = function () {
          }).then(next);
     });
 
-    this.When(/^I select a cause and click on the "Filter Selected Cause\(s\) of Death\(s\)" button$/, function (arg1, next) {
+    this.When(/^I select a cause and click on the Filter Selected Cause\(s\) of Death\(s\) button$/, function (next) {
+        var until = protractor.ExpectedConditions;
+        browser.wait(until.presenceOf(element(by.className('jstree-anchor'))), 5000, 'Element taking too long to appear in the DOM');
         element(by.className('jstree-anchor')).click();
-        element(by.cssContainingText('button', arg1)).click()
+        element(by.cssContainingText('button', 'Filter Selected Cause(s) of Deaths')).click()
             .then(next);
     });
 
@@ -992,7 +994,7 @@ var mortalityStepDefinitionsWrapper = function () {
             expect(elements[3].getText()).to.eventually.contains('2.2');
         });
         mortalityPage.getTableRowDataCells(1).then(function (elements) {
-            expect(elements[0].getText()).to.eventually.equal('American Indian or Alaska Native');
+            expect(elements[0].getText()).to.eventually.equal('Asian or Pacific Islander');
             expect(elements[1].getText()).to.eventually.contains('2.7');
             expect(elements[2].getText()).to.eventually.contains('3.3');
             expect(elements[3].getText()).to.eventually.contains('3.0');
