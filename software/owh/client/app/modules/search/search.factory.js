@@ -142,6 +142,11 @@
                     }
                     primaryFilter.sideFilters[catIndex].sideFilters[index].filters.value = filter.filters.value;
                     primaryFilter.sideFilters[catIndex].sideFilters[index].filters.groupBy = filter.filters.groupBy;
+
+                    if (filter.filters.filterType === 'slider') {
+                        primaryFilter.sideFilters[catIndex].sideFilters[index].filters.sliderValue = filter.filters.sliderValue;
+                    }
+
                     if (filter.filters.selectedNodes != undefined) {
                         primaryFilter.sideFilters[catIndex].sideFilters[index].filters.selectedNodes = filter.filters.selectedNodes;
                     }
