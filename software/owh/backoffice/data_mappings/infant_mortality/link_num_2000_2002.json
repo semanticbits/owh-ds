@@ -24,10 +24,10 @@
       "2": "Puerto Rican",
       "3": "Cuban",
       "4": "Central or South American",
-      "5": "Other and unknown Hispanic",
+      "5": "Other and Unknown Hispanic",
       "6": "Non-Hispanic White",
       "7": "Non-Hispanic Black",
-      "8": "Non-Hispanic other races",
+      "8": "Non-Hispanic Other Races",
       "9": "Origin unknown or not stated"
     }
   },
@@ -68,14 +68,14 @@
     "field": "Age of Mother Recode 9",
     "mappings": {
       "1": "Under 15 years",
-      "2": "15 - 19 years",
-      "3": "20 - 24 years",
-      "4": "25 - 29 years",
-      "5": "30 - 34 years",
-      "6": "35 - 39 years",
-      "7": "40 - 44 years",
-      "8": "45 - 49 years",
-      "9": "50 - 54 years"
+      "2": "15-19 years",
+      "3": "20-24 years",
+      "4": "25-29 years",
+      "5": "30-34 years",
+      "6": "35-39 years",
+      "7": "40-44 years",
+      "8": "45-49 years",
+      "9": "50-54 years"
     }
   },
   {
@@ -85,10 +85,10 @@
     "stop": 41,
     "field": "Education of Mother Recode",
     "mappings": {
-      "1": "0 - 8 years",
-      "2": "9 - 11 years",
+      "1": "0 – 8 years",
+      "2": "9 – 11 years",
       "3": "12 years",
-      "4": "13 - 15 years",
+      "4": "13 – 15 years",
       "5": "16 years and over",
       "6": "Not stated"
     }
@@ -237,10 +237,10 @@
     "field": "Live Birth Order",
     "mappings": {
       "01-01": "1st child born alive to mother",
-      "02-02": "2nd children born alive to mother",
-      "03-03": "3rd children born alive to mother",
-      "04-04": "4th children born alive to mother",
-      "05-05": "5th children born alive to mother",
+      "02-02": "2nd child born alive to mother",
+      "03-03": "3rd child born alive to mother",
+      "04-04": "4th child born alive to mother",
+      "05-05": "5th child born alive to mother",
       "06-31": "6th or more children born alive to mother",
       "99-99": "Unknown or not stated"
     }
