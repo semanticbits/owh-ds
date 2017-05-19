@@ -1,7 +1,7 @@
 {
   "race": [
     {
-      "name": "1",
+      "name": "White",
       "deaths": 2241350,
       "hispanicOrigin": [
         {
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "name": "2",
+      "name": "Black",
       "deaths": 309316,
       "hispanicOrigin": [
         {
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "name": "4",
+      "name": "Asian or Pacific Islander",
       "deaths": 62103,
       "hispanicOrigin": [
         {
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "name": "3",
+      "name": "American Indian",
       "deaths": 18031,
       "hispanicOrigin": [
         {

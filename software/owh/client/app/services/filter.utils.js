@@ -88,7 +88,7 @@
             { "key": "Mexican", "title": "Mexican" },
             { "key": "Puerto Rican", "title": "Puerto Rican" },
             { "key": "Cuban", "title": "Cuban" },
-            { "key": "Central and South American", "title": "Central and South American" },
+            { "key": "Central or South American", "title": "Central or South American" },
             { "key": "Other and Unknown Hispanic", "title": "Other and Unknown Hispanic" },
             { "key": "Non-Hispanic White", "title": "Non-Hispanic White" },
             { "key": "Non-Hispanic Black", "title": "Non-Hispanic Black" },
@@ -144,7 +144,7 @@
             { "key": "25-29 years", "title": "25-29 years" },
             { "key": "30-34 years", "title": "30-34 years" },
             { "key": "35-39 years", "title": "35-39 years" },
-            { "key": "40-44 year", "title": "40-44 year" },
+            { "key": "40-44 years", "title": "40-44 years" },
             { "key": "45-49 years", "title": "45-49 years" },
             { "key": "50-54 years", "title": "50 years and over" }
         ];
@@ -801,14 +801,18 @@
 
             return [
                 // Infant Characteristics
-                {key: 'year_of_death', title: 'label.filter.year', queryKey:"year_of_death", primary: false, value: ["2013"], defaultGroup:'column', groupBy: false,
-                    filterType: "checkbox", autoCompleteOptions: yearOptions, helpText:"label.help.text.year"},
+                {key: 'year_of_death', title: 'label.filter.year', queryKey:"year_of_death", primary: false, value: ["2013"],
+                    defaultGroup:'column', groupBy: false, filterType: "checkbox",
+                    // Data only available for 2000-2014
+                    autoCompleteOptions: yearOptions.slice(1), helpText:"label.help.text.year"},
 
-                {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [], defaultGroup:'column', groupBy: 'column',
-                    filterType: "checkbox", autoCompleteOptions: genderOptions, helpText:"label.help.text.sex"},
+                {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [],
+                    defaultGroup:'column', groupBy: 'column', filterType: "checkbox",
+                    autoCompleteOptions: genderOptions, helpText:"label.help.text.sex"},
 
-                {key: 'infant_age_at_death', title: 'label.filter.infant_age_at_death', queryKey: 'infant_age_at_death', primary: false, value: [], defaultGroup: 'column', groupBy: false,
-                    filterType: 'checkbox', autoCompleteOptions: infantDeathAge, helpText: 'label.help.text.infant_age_at_death'},
+                {key: 'infant_age_at_death', title: 'label.filter.infant_age_at_death', queryKey: 'infant_age_at_death', primary: false,
+                    value: [], defaultGroup: 'column', groupBy: false, filterType: 'checkbox',
+                    autoCompleteOptions: infantDeathAge, helpText: 'label.help.text.infant_age_at_death'},
 
                 // Maternal Characteristics
                 {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [],

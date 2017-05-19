@@ -2,362 +2,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKR",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "White",
-        "American Indian or Alaska Native",
-        "Black",
-        "Asian or Pacific Islander"
-      ],
-      "filter_name": "race",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKW",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Sunday",
-        "Tuesday",
-        "Monday",
-        "Thursday",
-        "Wednesday",
-        "Saturday",
-        "Friday"
-      ],
-      "filter_name": "weekday",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKa",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "1499 grams or less",
-        "2500 - 8165 grams",
-        "1500 - 2499 grams",
-        "Unknown or not stated"
-      ],
-      "filter_name": "birth_weight_r4",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKf",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Vaginal",
-        "Unknown",
-        "Cesarean"
-      ],
-      "filter_name": "delivery_method",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKk",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Yes",
-        "Unknown",
-        "No",
-        "Not on certificate"
-      ],
-      "filter_name": "eclampsia",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKN",
-    "_score": 1,
-    "_source": {
-      "permissible_values": null,
-      "filter_name": "residence",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKS",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Married",
-        "Unmarried"
-      ],
-      "filter_name": "marital_status",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKX",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Male",
-        "Female"
-      ],
-      "filter_name": "sex",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKb",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "500 - 999 grams",
-        "1000 - 1499 grams",
-        "499 grams or less",
-        "2500 - 2999 grams",
-        "3000 - 3499 grams",
-        "1500 - 1999 grams",
-        "2000 - 2499 grams",
-        "3500 - 3999 grams",
-        "4000 - 4499 grams",
-        "Not Stated",
-        "5000 - 8165 grams",
-        "4500 - 4999 grams"
-      ],
-      "filter_name": "birth_weight_r12",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKg",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Doctor of Medicine (MD)",
-        "Certified Nurse Midwife (CNM)",
-        "Doctor of Osteopathy (DO)",
-        "Other",
-        "Other Midwife",
-        "Unknown or not stated"
-      ],
-      "filter_name": "medical_attendant",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKl",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Yes",
-        "Unknown or not stated",
-        "No"
-      ],
-      "filter_name": "tobacco_use",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKO",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Mexican",
-        "Non-Hispanic",
-        "Cuban",
-        "Puerto Rican",
-        "Other and Unknown Hispanic",
-        "Central and South American",
-        "Hispanic origin not stated"
-      ],
-      "filter_name": "hispanic_origin",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKT",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "8th grade or less",
-        "High school graduate or GED completed",
-        "9th through 12th grade with no diploma",
-        "Associate degree (AA,AS)",
-        "Some college credit, but not a degree",
-        "Master’s degree (MA, MS, MEng, MEd, MSW, MBA)",
-        "Bachelor’s degree (BA, AB, BS)",
-        "Unknown",
-        "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)"
-      ],
-      "filter_name": "mother_education",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKY",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "2nd month",
-        "3rd month",
-        "No prenatal care",
-        "1st month",
-        "6th month",
-        "7th month",
-        "4th month",
-        "5th month",
-        "8th month",
-        "9th month",
-        "Unknown or not stated",
-        "10th month"
-      ],
-      "filter_name": "prenatal_care",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKc",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Single",
-        "Triplet",
-        "Twin",
-        "Quintuplet or higher",
-        "Quadruplet"
-      ],
-      "filter_name": "birth_plurality",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKh",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Yes",
-        "Unknown",
-        "No",
-        "Not on certificate"
-      ],
-      "filter_name": "chronic_hypertension",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKm",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "WA",
-        "DE",
-        "DC",
-        "WI",
-        "WV",
-        "HI",
-        "FL",
-        "WY",
-        "NH",
-        "NJ",
-        "NM",
-        "TX",
-        "LA",
-        "NC",
-        "ND",
-        "NE",
-        "TN",
-        "NY",
-        "PA",
-        "CA",
-        "NV",
-        "VA",
-        "CO",
-        "AK",
-        "AL",
-        "AR",
-        "VT",
-        "IL",
-        "GA",
-        "IN",
-        "IA",
-        "OK",
-        "AZ",
-        "ID",
-        "CT",
-        "ME",
-        "MD",
-        "MA",
-        "OH",
-        "UT",
-        "MO",
-        "MN",
-        "MI",
-        "RI",
-        "KS",
-        "MT",
-        "MS",
-        "SC",
-        "KY",
-        "OR",
-        "SD"
-      ],
-      "filter_name": "state",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKP",
+    "_id": "AVwfxkFi-OCbMkrurtQB",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -407,7 +52,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKU",
+    "_id": "AVwfxkFi-OCbMkrurtQG",
     "_score": 1,
     "_source": {
       "permissible_values": null,
@@ -419,7 +64,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKZ",
+    "_id": "AVwfxkFi-OCbMkrurtQL",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -514,7 +159,110 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKd",
+    "_id": "AVwfxkFi-OCbMkrurtQQ",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "In Hospital",
+        "Clinic / Doctor’s Office",
+        "Freestanding Birthing Center",
+        "Other",
+        "Residence",
+        "Unknown"
+      ],
+      "filter_name": "birth_place",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtQV",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Yes",
+        "Unknown",
+        "No",
+        "Not on certificate"
+      ],
+      "filter_name": "pregnancy_hypertension",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtQA",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Mexican",
+        "Non-Hispanic",
+        "Cuban",
+        "Puerto Rican",
+        "Other and Unknown Hispanic",
+        "Central or South American",
+        "Hispanic origin not stated"
+      ],
+      "filter_name": "hispanic_origin",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtQF",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "8th grade or less",
+        "High school graduate or GED completed",
+        "9th through 12th grade with no diploma",
+        "Associate degree (AA,AS)",
+        "Some college credit, but not a degree",
+        "Master’s degree (MA, MS, MEng, MEd, MSW, MBA)",
+        "Bachelor’s degree (BA, AB, BS)",
+        "Unknown",
+        "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)"
+      ],
+      "filter_name": "mother_education",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtQK",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "2nd month",
+        "3rd month",
+        "No prenatal care",
+        "1st month",
+        "6th month",
+        "7th month",
+        "4th month",
+        "5th month",
+        "8th month",
+        "9th month",
+        "Unknown or not stated",
+        "10th month"
+      ],
+      "filter_name": "prenatal_care",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtQP",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -536,7 +284,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKi",
+    "_id": "AVwfxkFi-OCbMkrurtQU",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -553,7 +301,245 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKQ",
+    "_id": "AVwfxkFi-OCbMkrurtQE",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Married",
+        "Unmarried"
+      ],
+      "filter_name": "marital_status",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtQJ",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Male",
+        "Female"
+      ],
+      "filter_name": "sex",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtQO",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Single",
+        "Triplet",
+        "Twin",
+        "Quintuplet or higher",
+        "Quadruplet"
+      ],
+      "filter_name": "birth_plurality",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtQT",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Yes",
+        "Unknown",
+        "No",
+        "Not on certificate"
+      ],
+      "filter_name": "chronic_hypertension",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtQY",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "WA",
+        "DE",
+        "DC",
+        "WI",
+        "WV",
+        "HI",
+        "FL",
+        "WY",
+        "NH",
+        "NJ",
+        "NM",
+        "TX",
+        "LA",
+        "NC",
+        "ND",
+        "NE",
+        "TN",
+        "NY",
+        "PA",
+        "CA",
+        "NV",
+        "VA",
+        "CO",
+        "AK",
+        "AL",
+        "AR",
+        "VT",
+        "IL",
+        "GA",
+        "IN",
+        "IA",
+        "OK",
+        "AZ",
+        "ID",
+        "CT",
+        "ME",
+        "MD",
+        "MA",
+        "OH",
+        "UT",
+        "MO",
+        "MN",
+        "MI",
+        "RI",
+        "KS",
+        "MT",
+        "MS",
+        "SC",
+        "KY",
+        "OR",
+        "SD"
+      ],
+      "filter_name": "state",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtQD",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "White",
+        "American Indian or Alaska Native",
+        "Black",
+        "Asian or Pacific Islander"
+      ],
+      "filter_name": "race",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtQI",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Sunday",
+        "Tuesday",
+        "Monday",
+        "Thursday",
+        "Wednesday",
+        "Saturday",
+        "Friday"
+      ],
+      "filter_name": "weekday",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtQN",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "500 - 999 grams",
+        "1000 - 1499 grams",
+        "499 grams or less",
+        "2500 - 2999 grams",
+        "3000 - 3499 grams",
+        "1500 - 1999 grams",
+        "2000 - 2499 grams",
+        "3500 - 3999 grams",
+        "4000 - 4499 grams",
+        "Not Stated",
+        "5000 - 8165 grams",
+        "4500 - 4999 grams"
+      ],
+      "filter_name": "birth_weight_r12",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtQS",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Doctor of Medicine (MD)",
+        "Certified Nurse Midwife (CNM)",
+        "Doctor of Osteopathy (DO)",
+        "Other",
+        "Other Midwife",
+        "Unknown or not stated"
+      ],
+      "filter_name": "medical_attendant",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtQX",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Yes",
+        "Unknown or not stated",
+        "No"
+      ],
+      "filter_name": "tobacco_use",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtP_",
+    "_score": 1,
+    "_source": {
+      "permissible_values": null,
+      "filter_name": "residence",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtQC",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -562,7 +548,7 @@
         "15-19 years",
         "30-34 years",
         "25-29 years",
-        "40-44 year",
+        "40-44 years",
         "35-39 years",
         "50-54 years",
         "45-49 years"
@@ -575,7 +561,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKV",
+    "_id": "AVwfxkFi-OCbMkrurtQH",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -600,18 +586,16 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKe",
+    "_id": "AVwfxkFi-OCbMkrurtQM",
     "_score": 1,
     "_source": {
       "permissible_values": [
-        "In Hospital",
-        "Clinic / Doctor’s Office",
-        "Freestanding Birthing Center",
-        "Other",
-        "Residence",
-        "Unknown"
+        "1499 grams or less",
+        "2500 - 8165 grams",
+        "1500 - 2499 grams",
+        "Unknown or not stated"
       ],
-      "filter_name": "birth_place",
+      "filter_name": "birth_weight_r4",
       "year": "2015",
       "dataset": "natality"
     }
@@ -619,7 +603,23 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AVwP1G-N-OCbMkrurtKj",
+    "_id": "AVwfxkFi-OCbMkrurtQR",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Vaginal",
+        "Unknown",
+        "Cesarean"
+      ],
+      "filter_name": "delivery_method",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AVwfxkFi-OCbMkrurtQW",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -628,7 +628,7 @@
         "No",
         "Not on certificate"
       ],
-      "filter_name": "pregnancy_hypertension",
+      "filter_name": "eclampsia",
       "year": "2015",
       "dataset": "natality"
     }

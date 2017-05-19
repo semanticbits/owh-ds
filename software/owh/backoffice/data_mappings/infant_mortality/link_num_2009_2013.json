@@ -24,10 +24,10 @@
       "2": "Puerto Rican",
       "3": "Cuban",
       "4": "Central or South American",
-      "5": "Other and unknown Hispanic",
+      "5": "Other and Unknown Hispanic",
       "6": "Non-Hispanic White",
       "7": "Non-Hispanic Black",
-      "8": "Non-Hispanic other races",
+      "8": "Non-Hispanic Other Races",
       "9": "Origin unknown or not stated"
     }
   },
@@ -64,14 +64,14 @@
     "field": "Age of Mother Recode 9",
     "mappings": {
       "1": "Under 15 years",
-      "2": "15 - 19 years",
-      "3": "20 - 24 years",
-      "4": "25 - 29 years",
-      "5": "30 - 34 years",
-      "6": "35 - 39 years",
-      "7": "40 - 44 years",
-      "8": "45 - 49 years",
-      "9": "50 - 54 years"
+      "2": "15-19 years",
+      "3": "20-24 years",
+      "4": "25-29 years",
+      "5": "30-34 years",
+      "6": "35-39 years",
+      "7": "40-44 years",
+      "8": "45-49 years",
+      "9": "50-54 years"
     }
   },
   {
@@ -81,12 +81,12 @@
     "stop": 155,
     "field": "Education of Mother Recode",
     "mappings": {
-      "1": "8 th grade or less",
-      "2": "9 th through 12 th grade with no diploma",
+      "1": "8th grade or less",
+      "2": "9th through 12th grade with no diploma",
       "3": "High school graduate or GED completed",
       "4": "Some college credit, but not a degree",
-      "5": "Associate degree (AA, AS)",
-      "6": "Bachelor's degree (BA, AB, BS)",
+      "5": "Associate degree (AA,AS)",
+      "6": "Bachelor’s degree (BA, AB, BS)",
       "7": "Master’s degree (MA, MS, MEng, MEd, MSW, MBA)",
       "8": "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
       "9": "Unknown"
@@ -237,10 +237,10 @@
     "field": "Live Birth Order",
     "mappings": {
       "1-1": "1st child born alive to mother",
-      "2-2": "2nd children born alive to mother",
-      "3-3": "3rd children born alive to mother",
-      "4-4": "4th children born alive to mother",
-      "5-5": "5th children born alive to mother",
+      "2-2": "2nd child born alive to mother",
+      "3-3": "3rd child born alive to mother",
+      "4-4": "4th child born alive to mother",
+      "5-5": "5th child born alive to mother",
       "6-8": "6th or more children born alive to mother",
       "9-9": "Unknown or not stated"
     }

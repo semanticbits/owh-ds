@@ -11,6 +11,7 @@ var MortalitySearchPage = function() {
     msp.showPecentageButton = element(by.id('togglePercentage')).element(by.cssContainingText('a', 'Show'));
     msp.hidePecentageButton = element(by.id('togglePercentage')).element(by.cssContainingText('a', 'Hide'));
     msp.raceOptionsLink = element(by.partialLinkText('Race'));
+    msp.stateOptionsLink = element(by.partialLinkText('State'));
     msp.sexOptionsLink = element(by.partialLinkText('Sex'));
     msp.autopsyOptionsLink = element(by.partialLinkText('Autopsy'));
     msp.placeOfDeathOptionsLink = element(by.partialLinkText('Place of Death'));
