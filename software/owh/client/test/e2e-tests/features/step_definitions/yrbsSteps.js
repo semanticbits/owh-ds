@@ -229,7 +229,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on "([^"]*)" button$/, function (arg1, next) {
-        yrbsPage.selectQuestionsButton.click()
+        element(by.cssContainingText('button', arg1)).click()
             .then(next);
     });
 

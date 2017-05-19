@@ -45,7 +45,7 @@ var wonderParamCodeMap = {
     },
     'placeofdeath':'D76.V21',
     'month':'D76.V1-level2',
-    'ucd-filters':'D76.V2',
+    'ucd-chapter-10':'D76.V2',
     'mcd-filters':'',
     'state-group':'D76.V9-level1', // Use this mapping for grouping param
     'state': { // Use this for filtering param

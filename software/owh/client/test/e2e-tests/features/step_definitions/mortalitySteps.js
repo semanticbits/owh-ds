@@ -578,16 +578,11 @@ var mortalityStepDefinitionsWrapper = function () {
         }).then(next);
     });
 
-    this.Then(/^I see appropriate side filters disabled$/, function (next) {
+    this.Then(/^I see appropriate side filters disabled for "([^"]*)"$/, function (arg1, next) {
+        var givenFilters = arg1.split(',');
         var disabledFilters = element.all(by.css('.cursor-not-allowed')).all(By.css('.filter-display-name'));
         disabledFilters.getText().then(function (filters) {
-                expect(['Age Groups',
-                    'Autopsy',
-                    'Place of Death',
-                    'Weekday',
-                    'Month',
-                    'Underlying Cause of Death',
-                    'Multiple Causes of Death' ]).to.eql(filters);
+                expect(givenFilters).to.eql(filters);
         }).then(next);
     });
 
@@ -980,6 +975,28 @@ var mortalityStepDefinitionsWrapper = function () {
          expect(elements[3].getText()).to.eventually.contains('119.7');
          expect(elements[4].getText()).to.eventually.contains('96.7');
          }).then(next);
+    });
+
+    this.When(/^I select a cause and click on the "Filter Selected Cause\(s\) of Death\(s\)" button$/, function (arg1, next) {
+        element(by.className('jstree-anchor')).click();
+        element(by.cssContainingText('button', arg1)).click()
+            .then(next);
+    });
+
+    this.Then(/^data table should display Age Adjusted Death Rates for selected cause of death$/, function (next) {
+        mortalityPage.getTableRowDataCells(0).then(function (elements) {
+            expect(elements[0].getText()).to.eventually.equal('American Indian or Alaska Native');
+            expect(elements[1].getText()).to.eventually.contains('Age Adjusted Death Rates');
+            expect(elements[1].getText()).to.eventually.contains('2.1');
+            expect(elements[2].getText()).to.eventually.contains('2.3');
+            expect(elements[3].getText()).to.eventually.contains('2.2');
+        });
+        mortalityPage.getTableRowDataCells(1).then(function (elements) {
+            expect(elements[0].getText()).to.eventually.equal('American Indian or Alaska Native');
+            expect(elements[1].getText()).to.eventually.contains('2.7');
+            expect(elements[2].getText()).to.eventually.contains('3.3');
+            expect(elements[3].getText()).to.eventually.contains('3.0');
+        }).then(next);
     });
 };
 module.exports = mortalityStepDefinitionsWrapper;
