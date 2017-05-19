@@ -21,6 +21,13 @@ var homeStepDefinitionsWrapper = function () {
             .then(next)
     });
 
+    this.Then(/^I observe critera in filter options with off "([^"]*)"$/, function (arg1) {
+        var text = mortalityPage.selectSideFilter(arg1, 'Off').getText();
+        var type = mortalityPage.selectSideFilter(arg1, 'Off').element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('a', 'Off'));
+        expect(text).to.eventually.contains(arg1);
+        expect(type).to.eventually.contains('Off');
+    });
+
 /*    this.When(/^I hit app url$/, function () {
        return browser.get('/');
     });

@@ -20,9 +20,10 @@ Scenario: Observe default "Detailed Mortality" page
   Then user clicks on "+ 13 more" more link for "Year" filter
   Then user clicks on "- 13 less" less link for "Year" filter 
 
-#Scenario: Observe mortality default sidebar filters
+Scenario: Observe default "Detailed Mortality" sidebar filters
 #  Given I am on search page
-#  Then I should see sidebar filters in default positions
+#  Then I observe critera in filter options with off "Year"
+#  And I observe "Year" filter as "Off"
 
 #Scenario: Observe mortality default visualizations
 #  Given I am on search page
