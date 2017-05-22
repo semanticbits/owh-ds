@@ -28,6 +28,10 @@ var homeStepDefinitionsWrapper = function () {
         expect(type).to.eventually.contains('Off');
     });
 
+    this.Then(/^I observe a button for Facebook$/, function () {
+        return expect(mortalityPage.shareOnFacebookLink.isDisplayed()).to.eventually.equal(true);
+    });
+
 /*    this.When(/^I hit app url$/, function () {
        return browser.get('/');
     });
