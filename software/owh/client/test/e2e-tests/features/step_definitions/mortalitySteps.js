@@ -247,9 +247,9 @@ var mortalityStepDefinitionsWrapper = function () {
     this.Then(/^the rates and population are shown for each row in 'Death Rates' view$/, function (next) {
         //By default 2015 year is selected
         mortalityPage.getTableRowData(0).then(function(text){
-            expect(text[1]).to.equal('Crude Death Rates\n375.8\nDeaths\n8,565\nPopulation\n2,279,263');
-            expect(text[2]).to.equal('Crude Death Rates\n454.7\nDeaths\n10,451\nPopulation\n2,298,590');
-            expect(text[3]).to.equal('Crude Death Rates\n415.4\nDeaths\n19,016\nPopulation\n4,577,853');
+            expect(text[1]).to.equal('Crude Death Rate\n375.8\nDeaths\n8,565\nPopulation\n2,279,263');
+            expect(text[2]).to.equal('Crude Death Rate\n454.7\nDeaths\n10,451\nPopulation\n2,298,590');
+            expect(text[3]).to.equal('Crude Death Rate\n415.4\nDeaths\n19,016\nPopulation\n4,577,853');
 
         }).then(next);
     });
@@ -278,7 +278,7 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^the age adjusted rates are shown for each row$/, function (next) {
         mortalityPage.getTableRowData(0).then(function(value){
-            expect(value[1]).to.equal('Age Adjusted Death Rates\n511.3\nDeaths\n8,565\nPopulation\n2,279,263');
+            expect(value[1]).to.equal('Age Adjusted Death Rate\n511.3\nDeaths\n8,565\nPopulation\n2,279,263');
         }).then(next);
     });
 
@@ -564,7 +564,7 @@ var mortalityStepDefinitionsWrapper = function () {
         mortalityPage.getTableRowDataCells(0).then(function (elements) {
             expect(elements[0].getText()).to.eventually.equal('Non-Hispanic');
             expect(elements[1].getText()).to.eventually.equal('American Indian or Alaska Native');
-            expect(elements[2].getText()).to.eventually.contains('Crude Death Rates');
+            expect(elements[2].getText()).to.eventually.contains('Crude Death Rate');
             expect(elements[2].getText()).to.eventually.contains('425.0');
             expect(elements[3].getText()).to.eventually.contains('517.0');
             expect(elements[4].getText()).to.eventually.contains('470.3');
@@ -657,21 +657,21 @@ var mortalityStepDefinitionsWrapper = function () {
         mortalityPage.getTableRowData(0).then(function(rowdata){
             expect(rowdata[0]).to.equals('American Indian or Alaska Native');
             //Female
-            expect(rowdata[1]).to.contains('Crude Death Rates');
+            expect(rowdata[1]).to.contains('Crude Death Rate');
             expect(rowdata[1]).to.contains('346.1');
             expect(rowdata[1]).to.contains('Deaths');
             expect(rowdata[1]).to.contains('5,178');
             expect(rowdata[1]).to.contains('Population');
             expect(rowdata[1]).to.contains('1,496,044');
             //Male
-            expect(rowdata[2]).to.contains('Crude Death Rates');
+            expect(rowdata[2]).to.contains('Crude Death Rate');
             expect(rowdata[2]).to.contains('415.6');
             expect(rowdata[2]).to.contains('Deaths');
             expect(rowdata[2]).to.contains('6,185');
             expect(rowdata[2]).to.contains('Population');
             expect(rowdata[2]).to.contains('1,488,106');
             //Number of deaths
-            expect(rowdata[3]).to.contains('Crude Death Rates');
+            expect(rowdata[3]).to.contains('Crude Death Rate');
             expect(rowdata[3]).to.contains('380.8');
             expect(rowdata[3]).to.contains('Deaths');
             expect(rowdata[3]).to.contains('11,363');
@@ -904,16 +904,16 @@ var mortalityStepDefinitionsWrapper = function () {
         }).then(next);
     });
 
-    this.Then(/^labels for "([^"]*)" are displayed on minimized visualization$/, function (arg1) {
+    this.Then(/^labels "([^"]*)" and "([^"]*)" are displayed on minimized visualization$/, function (arg1, arg2) {
         var labelArray = mortalityPage.getAxisLabelsForMinimizedVisualization();
-        expect(labelArray[0].getText()).to.eventually.equal('Race');
-        return expect(labelArray[1].getText()).to.eventually.equal(arg1);
+        expect(labelArray[0].getText()).to.eventually.equal(arg1);
+        return expect(labelArray[1].getText()).to.eventually.equal(arg2);
     });
 
-    this.Then(/^labels for "([^"]*)" are displayed on expanded visualization$/, function (arg1, next) {
+    this.Then(/^labels "([^"]*)" and "([^"]*)" are displayed on expanded visualization$/, function (arg1, arg2, next) {
         var labelArray = mortalityPage.getAxisLabelsForExpandedVisualization();
-        expect(labelArray[0].getText()).to.eventually.equal('Race');
-        expect(labelArray[1].getText()).to.eventually.equal(arg1);
+        expect(labelArray[0].getText()).to.eventually.equal(arg1);
+        expect(labelArray[1].getText()).to.eventually.equal(arg2);
         element(by.name('close')).click().then(next);
     });
 
@@ -954,7 +954,7 @@ var mortalityStepDefinitionsWrapper = function () {
     this.Then(/^the death count <20 then the corresponding Rate must be marked as "([^"]*)"$/, function (arg1, next) {
         mortalityPage.getTableRowData(0).then(function(rowdata) {
             //Female
-            expect(rowdata[2]).to.contains('Age Adjusted Death Rates');
+            expect(rowdata[2]).to.contains('Age Adjusted Death Rate');
             expect(rowdata[2]).to.contains('Unreliable');
         }).then(next);
     });
@@ -963,7 +963,7 @@ var mortalityStepDefinitionsWrapper = function () {
          mortalityPage.getTableRowDataCells(0).then(function (elements) {
          expect(elements[0].getText()).to.eventually.equal('Non-Hispanic');
          expect(elements[1].getText()).to.eventually.equal('American Indian or Alaska Native');
-         expect(elements[2].getText()).to.eventually.contains('Age Adjusted Death Rates');
+         expect(elements[2].getText()).to.eventually.contains('Age Adjusted Death Rate');
          expect(elements[2].getText()).to.eventually.contains('679.5');
          expect(elements[3].getText()).to.eventually.contains('950.2');
          expect(elements[4].getText()).to.eventually.contains('805.7');
@@ -988,7 +988,7 @@ var mortalityStepDefinitionsWrapper = function () {
     this.Then(/^data table should display Age Adjusted Death Rates for selected cause of death$/, function (next) {
         mortalityPage.getTableRowDataCells(0).then(function (elements) {
             expect(elements[0].getText()).to.eventually.equal('American Indian or Alaska Native');
-            expect(elements[1].getText()).to.eventually.contains('Age Adjusted Death Rates');
+            expect(elements[1].getText()).to.eventually.contains('Age Adjusted Death Rate');
             expect(elements[1].getText()).to.eventually.contains('2.1');
             expect(elements[2].getText()).to.eventually.contains('2.3');
             expect(elements[3].getText()).to.eventually.contains('2.2');
