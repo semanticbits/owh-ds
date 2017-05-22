@@ -46,4 +46,18 @@ describe('filterUtils', function(){
             expect(natalityFilters[5].key).toEqual('marital_status');
         });
     });
+
+    describe('test natality filters', function() {
+        it('when I call getInfantMortalityDataFilters, I should get infant mortality filters', function () {
+            var InfantMortalityData= filterUtils.getInfantMortalityDataFilters();
+            expect(InfantMortalityData[0].key).toEqual('year_of_death');
+            expect(InfantMortalityData[1].key).toEqual('sex');
+            expect(InfantMortalityData[2].key).toEqual('infant_age_at_death');
+            expect(InfantMortalityData[3].key).toEqual('race');
+            expect(InfantMortalityData[4].key).toEqual('hispanic_origin');
+            expect(InfantMortalityData[5].key).toEqual('mother_age_5_interval');
+            expect(InfantMortalityData[6].key).toEqual('marital_status');
+            expect(InfantMortalityData[7].key).toEqual('mother_education');
+        });
+    });
 });
