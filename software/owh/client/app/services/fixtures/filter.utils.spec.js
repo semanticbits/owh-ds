@@ -47,7 +47,7 @@ describe('filterUtils', function(){
         });
     });
 
-    describe('test natality filters', function() {
+    describe('test infant mortality filters', function() {
         it('when I call getInfantMortalityDataFilters, I should get infant mortality filters', function () {
             var InfantMortalityData= filterUtils.getInfantMortalityDataFilters();
             expect(InfantMortalityData[0].key).toEqual('year_of_death');
