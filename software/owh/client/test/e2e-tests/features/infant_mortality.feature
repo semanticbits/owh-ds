@@ -25,12 +25,12 @@ Feature: Infant Mortality filters
     And the values in row "2" should be "Black or African American, 3,082 (45.3%), 3,727 (54.7%), 6,809"
     And the values in row "3" should be "White, 6,543 (44.1%), 8,278 (55.9%), 14,821"
 
-  Scenario: Infant Mortality Race Options for 2013
+  Scenario: Infant Mortality Race Options for 2014
     When I click on the "Race" filter and expand all available options
     Then I see the available options "American Indian / Alaskan Native|Asian / Pacific Islander|Black or African American|White" for "Race"
     And I see the disabled options "Chinese|Japanese|Hawaiian|Filipino|Other Asian" for "Race"
 
-  Scenario: Infant Mortality Education Options for 2013
+  Scenario: Infant Mortality Education Options for 2014
     When I click to show all filters for "Maternal Characteristics"
     Then I see the available filter "Education" for "Maternal Characteristics"
     When I click on the "Education" filter and expand all available options
