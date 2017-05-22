@@ -3,7 +3,7 @@ import os
 from random import randint
 from owh.etl.common.etl import ETL
 import logging
-from owh.etl.common.fixedwidthfile_parser import FixedWidthFileParser
+from owh.etl.common.datafile_parser import DataFileParser
 
 logger = logging.getLogger('mortality_etl')
 
@@ -72,7 +72,7 @@ class MortalityIndexer (ETL):
             # because of these we can not use update action for now
             if (self.action == 'update'):
                 deleteCount += self.esRepository.delete_records_for_year(year)[0]
-            mortalityParser = FixedWidthFileParser(file_path, config_file)
+            mortalityParser = DataFileParser(file_path, config_file)
             while True:
                 record  = mortalityParser.parseNextLine()
                 if not record:

@@ -1,104 +1,107 @@
-[
-  {
-    "type":"map",
-    "column":"sitecode",
-    "mappings": {
-      "1": "AL",
-      "2": "AK",
-      "3": "AZB",
-      "4": "AR",
-      "5": "CA",
-      "6": "CT",
-      "7": "DE",
-      "8": "FL",
-      "9": "ID",
-      "10": "IL",
-      "11": "IA",
-      "12": "KS",
-      "13": "KY",
-      "14": "ME",
-      "15": "MD",
-      "16": "MI",
-      "17": "MS",
-      "18": "MO",
-      "19": "MT",
-      "20": "NE",
-      "21": "NV",
-      "22": "NH",
-      "23": "NJ",
-      "24": "NY",
-      "25": "NC",
-      "26": "ND",
-      "27": "OK",
-      "28": "RI",
-      "29": "SC",
-      "30": "SD",
-      "31": "TN",
-      "32": "UT",
-      "33": "VA",
-      "34": "WV",
-      "35": "WI",
-      "36": "WY"
+{
+  "datafiletype": "fwf",
+  "columns": [
+    {
+      "type": "map",
+      "column": "sitecode",
+      "mappings": {
+        "1": "AL",
+        "2": "AK",
+        "3": "AZB",
+        "4": "AR",
+        "5": "CA",
+        "6": "CT",
+        "7": "DE",
+        "8": "FL",
+        "9": "ID",
+        "10": "IL",
+        "11": "IA",
+        "12": "KS",
+        "13": "KY",
+        "14": "ME",
+        "15": "MD",
+        "16": "MI",
+        "17": "MS",
+        "18": "MO",
+        "19": "MT",
+        "20": "NE",
+        "21": "NV",
+        "22": "NH",
+        "23": "NJ",
+        "24": "NY",
+        "25": "NC",
+        "26": "ND",
+        "27": "OK",
+        "28": "RI",
+        "29": "SC",
+        "30": "SD",
+        "31": "TN",
+        "32": "UT",
+        "33": "VA",
+        "34": "WV",
+        "35": "WI",
+        "36": "WY"
+      }
+    },
+    {
+      "type": "simple",
+      "column": "year"
+    },
+    {
+      "type": "map",
+      "column": "sex",
+      "field": "Sex",
+      "mappings": {
+        "1": "Male",
+        "2": "Female"
+      }
+    },
+    {
+      "type": "map",
+      "column": "grade",
+      "mappings": {
+        "1": "9th",
+        "2": "10th",
+        "3": "11th",
+        "4": "12th"
+      }
+    },
+    {
+      "type": "map",
+      "column": "race",
+      "mappings": {
+        "1": "Am Indian / Alaska Native",
+        "2": "Asian",
+        "3": "Black or African American",
+        "4": "Hispanic/Latino",
+        "5": "Native Hawaiian/other PI",
+        "6": "White",
+        "7": "Multiple - Non-Hispanic"
+      }
+    },
+    {
+      "type": "map",
+      "column": "sexid",
+      "mappings": {
+        "1": "Heterosexual",
+        "2": "Gay or Lesbian",
+        "3": "Bisexual",
+        "4": "Not Sure"
+      }
+    },
+    {
+      "type": "map",
+      "column": "sexpart",
+      "mappings": {
+        "1": "Opposite sex only",
+        "2": "Same sex only",
+        "3": "Both Sexes",
+        "4": "Never had sex"
+      }
+    },
+    {
+      "type": "simple",
+      "column": "question.path"
     }
-  },
-  {
-    "type":"simple",
-    "column":"year"
-  },
-  {
-    "type":"map",
-    "column":"sex",
-    "field": "Sex",
-    "mappings": {
-      "1": "Male",
-      "2": "Female"
-    }
-  },
-  {
-    "type":"map",
-    "column":"grade",
-    "mappings":{
-       "1": "9th",
-       "2": "10th",
-       "3": "11th",
-       "4": "12th"
-    }
-  },
-  {
-    "type": "map",
-    "column": "race",
-    "mappings": {
-      "1": "Am Indian / Alaska Native",
-      "2": "Asian",
-      "3": "Black or African American",
-      "4": "Hispanic/Latino",
-      "5": "Native Hawaiian/other PI",
-      "6": "White",
-      "7": "Multiple - Non-Hispanic"
-    }
-  },
-  {
-    "type": "map",
-    "column": "sexid",
-    "mappings": {
-      "1": "Heterosexual",
-      "2": "Gay or Lesbian",
-      "3": "Bisexual",
-      "4": "Not Sure"
-    }
-  },
-  {
-    "type": "map",
-    "column": "sexpart",
-    "mappings": {
-      "1": "Opposite sex only",
-      "2": "Same sex only",
-      "3": "Both Sexes",
-      "4": "Never had sex"
-    }
-  },
-  {
-    "type": "simple",
-    "column": "question.path"
-  }
-]
+  ]
+}
