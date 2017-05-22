@@ -211,11 +211,11 @@ Scenario: Age Adjusted Death Rates
   #Enable once OWH-1179 issue fixed.
   #When I update criteria in filter option with row "Ethnicity"
   #Then table should display Hispanic groups for Age Adjusted Death Rates
-  When I expand "Underlying Cause of Death" filter section
-  And I click on "Select Cause of Death" button
-  And I select a cause and click on the Filter Selected Cause(s) of Death(s) button
-  Then the "Select Cause of Death" button should be renamed to "Update Cause of Death"
-  And data table should display Age Adjusted Death Rates for selected cause of death
+  #When I expand "Underlying Cause of Death" filter section
+  #And I click on "Select Cause of Death" button
+  #And I select a cause and click on the Filter Selected Cause(s) of Death(s) button
+  #Then the "Select Cause of Death" button should be renamed to "Update Cause of Death"
+  #And data table should display Age Adjusted Death Rates for selected cause of death
 
 Scenario: Filer 'Multiple Causes of Deaths' should be displayed
   Given I am on search page
