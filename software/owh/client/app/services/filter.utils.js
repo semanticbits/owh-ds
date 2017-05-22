@@ -801,7 +801,7 @@
 
             return [
                 // Infant Characteristics
-                {key: 'year_of_death', title: 'label.filter.year', queryKey:"year_of_death", primary: false, value: ["2013"],
+                {key: 'year_of_death', title: 'label.filter.year', queryKey:"year_of_death", primary: false, value: ["2014"],
                     defaultGroup:'column', groupBy: false, filterType: "checkbox",
                     // Data only available for 2000-2014
                     autoCompleteOptions: yearOptions.slice(1), helpText:"label.help.text.year"},
