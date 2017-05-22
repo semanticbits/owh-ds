@@ -135,23 +135,23 @@
     }
   },
   {
-    "type": "range",
+    "type": "map",
     "column": "gestation_recode11",
     "start": 492,
     "stop": 493,
     "field": "Gestational Age Group1",
     "mappings": {
-      "17-19": "Under 20 weeks",
-      "20-27": "20 - 27 weeks",
-      "28-31": "28 - 31 weeks",
-      "32-33": "32 - 33 weeks",
-      "34-36": "34 - 36 weeks",
-      "37-38": "37 - 38 weeks",
-      "39-39": "39 weeks",
-      "40-40": "40 weeks",
-      "41-41": "41 weeks",
-      "42-47": "42 weeks and over",
-      "99-99": "Unknown"
+      "01": "Under 20 weeks",
+      "02": "20 - 27 weeks",
+      "03": "28 - 31 weeks",
+      "04": "32 - 33 weeks",
+      "05": "34 - 36 weeks",
+      "06": "37 - 38 weeks",
+      "07": "39 weeks",
+      "08": "40 weeks",
+      "09": "41 weeks",
+      "10": "42 weeks and over",
+      "99": "Unknown"
     }
   },
   {
