@@ -4,7 +4,7 @@ Feature: PRAMS filters
   So that I can see the results of the filter options
   and I can quickly visualize and analyze the data
 
-  Scenario: Default filter state
+  Background: : Default filter state
     Given I am on search page
     When I select PRAMS as primary filter
     Then I see 'By' filter pre-selected with State and Question
@@ -25,12 +25,10 @@ Feature: PRAMS filters
 #    Then I see only "Income" topic in data table
 
   Scenario: Questions filter
-    Given I am on search page
-    When I select PRAMS as primary filter
-    Then I see class- Delivery
     When I change class to "Demographics"
     And  I click on "Select Questions" button
     Then I see question categories in question tree are matching with topic
+    And  I close questions dialog
     When I change class to "Family Planning"
     And  user clicks on "+ 1 more" more link for "Topic" filter
     And  I click on "Select Questions" button
