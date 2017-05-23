@@ -200,15 +200,16 @@ Scenario: Suppression
   Then I see cell values being suppressed for American Indian race
   And I see total is also being suppressed
 
-Scenario: Age Adjusted Death Rates
-  Given I am on search page
-  When the user chooses the option 'Age Adjusted Death Rates'
-  Then the age adjusted rates are shown for each row
-  When user sees a visualization
-  Then labels for "Age Adjusted Death Rates" are displayed on minimized visualization
-  When user expand visualization
-  Then labels for "Age Adjusted Death Rates" are displayed on expanded visualization
-  #Enable once OWH-1179 issue fixed.
+#Enable once OWH-1179 issue fixed.
+#Scenario: Age Adjusted Death Rates
+#  Given I am on search page
+#  When the user chooses the option 'Age Adjusted Death Rates'
+#  Then the age adjusted rates are shown for each row
+#  When user sees a visualization
+#  Then labels for "Age Adjusted Death Rates" are displayed on minimized visualization
+#  When user expand visualization
+#  Then labels for "Age Adjusted Death Rates" are displayed on expanded visualization
+
   #When I update criteria in filter option with row "Ethnicity"
   #Then table should display Hispanic groups for Age Adjusted Death Rates
   #When I expand "Underlying Cause of Death" filter section
