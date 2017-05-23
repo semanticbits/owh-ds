@@ -78,6 +78,10 @@ var PRAMSStepDefinitionsWrapper = function () {
         element(by.css('a[name=close]')).click().then(next);
     });
 
+    this.Then(/^I close questions dialog$/, function (next) {
+        element(by.css('a[id=modal-close]')).click().then(next);
+    });
+
     this.When(/^I change class to "([^"]*)"$/, function (clazz) {
         return pramsPage.updateClassTo(clazz)
     });
