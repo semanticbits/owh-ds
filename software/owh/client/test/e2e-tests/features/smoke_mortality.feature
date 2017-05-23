@@ -30,8 +30,8 @@ Scenario: Observe default "Detailed Mortality" sidebar filters
 #  Given I am on search page
   When user sees a visualization
   Then labels are displayed on both the axes for minimized visualization
-  When user expand visualization
-  Then labels are displayed on both the axes for expanded visualization
+#  When user expand visualization
+#  Then labels are displayed on both the axes for expanded visualization
   Then I observe a button for Facebook
   When I see the number of deaths in data table
   Then the percentages are shown for each row are displayed by default
