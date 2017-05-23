@@ -37,12 +37,16 @@ Scenario: Observe default "Detailed Mortality" visualizations
 #  Then the percentages are shown for each row are displayed by default
 #  Then data should be right aligned in table
 
-#Scenario: Observe default mortality Crude Death Rates sidebar filters
+Scenario: Observe default "Detailed Mortality" with "Crude Death Rates" sidebar filters
 #  Given I am on search page
-#  When I choose the option "Crude Death Rates"
-#  Then I should see default filters
+  When I choose the option "Crude Death Rates"
+  Then I should see Crude Deth Rates page
+  When user sees a visualization
+  Then labels for "Crude Death Rates" are displayed on minimized visualization
 
-#Scenario: Observe default mortality Age Adjusted Death Rates sidebar filters
+Scenario: Observe default "Detailed Mortality" with "Age Adjusted Death Rates" sidebar filters
 #  Given I am on search page
-#  When the user chooses the option 'Age Adjusted Death Rates'
-#  Then I should see default filters
+  When the user chooses the option 'Age Adjusted Death Rates'
+  Then the age adjusted rates are shown for each row
+  When user sees a visualization
+  Then labels for "Age Adjusted Death Rates" are displayed on minimized visualization
