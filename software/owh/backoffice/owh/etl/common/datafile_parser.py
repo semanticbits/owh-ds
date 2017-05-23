@@ -141,7 +141,7 @@ class CSVFileReader (DataFileReader):
         return self.line
 
     def getColumnValue(self, columnConfig):
-        if (columnConfig['column_index']):
+        if (columnConfig['column_index'] != None):
             if(self.line != None):
                 return self.line[columnConfig['column_index']]
             else:
