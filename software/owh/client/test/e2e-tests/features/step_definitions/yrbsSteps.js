@@ -229,7 +229,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on "([^"]*)" button$/, function (arg1, next) {
-        yrbsPage.selectQuestionsButton.click()
+        yrbsPage.selectQuestionsButton(arg1).click()
             .then(next);
     });
 
@@ -244,7 +244,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I open up the Survey Question pop up$/, function (next) {
-        yrbsPage.selectQuestionsButton.click()
+        yrbsPage.selectButton("Select Questions")
             .then(next);
     });
 
@@ -434,7 +434,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^"([^"]*)" button should be displayed$/, function (arg1) {
-       return expect(yrbsPage.selectQuestionsButton.isDisplayed()).to.eventually.equal(true);
+       return expect(yrbsPage.selectQuestionsButton('Select Questions').isDisplayed()).to.eventually.equal(true);
     });
 
     this.When(/^I see hide filter button in yrbs page$/, function (next) {
