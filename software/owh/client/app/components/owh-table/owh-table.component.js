@@ -178,7 +178,7 @@
 
 
                         } else if(otc.tableView === 'number_of_deaths' || otc.tableView === 'bridge_race'
-                            || otc.tableView === 'number_of_births' || otc.tableView === 'number_of_infant_deaths') {
+                            || otc.tableView === 'number_of_births') {
                             if(column.title === 'suppressed') {
                                 cell += '<span>Suppressed</span>';
                             } else if(column.title === 'Not Available') {
@@ -189,6 +189,17 @@
                                     cell += '<span class="count-value"> (' + $filter('number')(column.percentage, 1) + '%)</span>';
                                 }
                             }
+                        } else if (otc.tableView === 'number_of_infant_deaths') {
+                            cell += (function (count) {
+                                if (isNaN(parseInt(count))) return count;
+                                if (count < 10) return '<span>Suppressed</span>';
+                                if (count < 20) return '<span>Unreliable</span>';
+                                var result = '<span class="count-value">' + $filter('number')(count) + '</span>';
+                                if (colIndex !== row.length - 1 && column.percentage  > 0) {
+                                    result += '<span class="count-value"> (' + $filter('number')(column.percentage, 1) + '%)</span>';
+                                }
+                                return result;
+                            })(column.title);
                         }
                         cell+= '</div>';
                         cell += '</label>';

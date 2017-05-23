@@ -80,6 +80,19 @@ var infantMortalityStepDefinitions = function () {
             expect(filters).to.contain(filter);
         }).then(next);
     });
+
+    this.When(/^I select the option "([^"]*)" for "([^"]*)" and the option "([^"]*)" for "([^"]*)"$/, function (filter_1_option, filter_1, filter_2_option, filter_2) {
+        return imp.clickMoreOptionsForFilter(filter_1).then(function () {
+            return imp.clickOptionForFilter(filter_1, filter_1_option);
+        }).then(function () {
+            // De-select 2013 to show values that should be suppressed
+            return imp.clickOptionForFilter(filter_1, '2013');
+        }).then(function () {
+            return imp.expandFilter(filter_2);
+        }).then(function () {
+            return imp.clickOptionForFilter(filter_2, filter_2_option);
+        });
+    });
 };
 
 module.exports = infantMortalityStepDefinitions;
