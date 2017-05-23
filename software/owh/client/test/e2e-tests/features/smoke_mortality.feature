@@ -20,22 +20,22 @@ Scenario: Observe default "Detailed Mortality" page
   Then user clicks on "+ 13 more" more link for "Year" filter
   Then user clicks on "- 13 less" less link for "Year" filter 
 
-Scenario: Observe default "Detailed Mortality" sidebar filters
+#Scenario: Observe default "Detailed Mortality" sidebar filters
 #  Given I am on search page
 #  Then I observe critera in filter options with off "Year"
 #  And I observe "Year" filter as "Off"
 #  And I make observations for all other enabled filters
 
-#Scenario: Observe default "Detailed Mortality" visualizations
+Scenario: Observe default "Detailed Mortality" visualizations
 #  Given I am on search page
   When user sees a visualization
   Then labels are displayed on both the axes for minimized visualization
 #  When user expand visualization
 #  Then labels are displayed on both the axes for expanded visualization
   Then I observe a button for Facebook
-  When I see the number of deaths in data table
-  Then the percentages are shown for each row are displayed by default
-  Then data should be right aligned in table
+#  When I see the number of deaths in data table
+#  Then the percentages are shown for each row are displayed by default
+#  Then data should be right aligned in table
 
 #Scenario: Observe default mortality Crude Death Rates sidebar filters
 #  Given I am on search page
