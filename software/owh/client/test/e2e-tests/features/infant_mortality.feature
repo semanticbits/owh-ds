@@ -18,19 +18,19 @@ Feature: Infant Mortality filters
     And the "Sex" filter should be toggled to "Column"
     And the "Race" filter should be toggled to "Row"
 
-  Scenario: Infant Mortality Default Table Data for 2013
+  Scenario: Infant Mortality Default Table Data for 2014
     Then the default headers of the table should be "Race, Female, Male, Number of Infant Deaths"
-    And the values in row "0" should be "American Indian / Alaskan Native, 153 (43.8%), 196 (56.2%), 349"
-    And the values in row "1" should be "Asian / Pacific Islander, 462 (43.1%), 609 (56.9%), 1,071"
-    And the values in row "2" should be "Black or African American, 3,102 (45.6%), 3,707 (54.4%), 6,809"
-    And the values in row "3" should be "White, 6,524 (43.5%), 8,471 (56.5%), 14,995"
+    And the values in row "0" should be "American Indian / Alaskan Native, 146 (42.9%), 194 (57.1%), 340"
+    And the values in row "1" should be "Asian / Pacific Islander, 480 (44.4%), 600 (55.6%), 1,080"
+    And the values in row "2" should be "Black or African American, 3,082 (45.3%), 3,727 (54.7%), 6,809"
+    And the values in row "3" should be "White, 6,543 (44.1%), 8,278 (55.9%), 14,821"
 
-  Scenario: Infant Mortality Race Options for 2013
+  Scenario: Infant Mortality Race Options for 2014
     When I click on the "Race" filter and expand all available options
     Then I see the available options "American Indian / Alaskan Native|Asian / Pacific Islander|Black or African American|White" for "Race"
     And I see the disabled options "Chinese|Japanese|Hawaiian|Filipino|Other Asian" for "Race"
 
-  Scenario: Infant Mortality Education Options for 2013
+  Scenario: Infant Mortality Education Options for 2014
     When I click to show all filters for "Maternal Characteristics"
     Then I see the available filter "Education" for "Maternal Characteristics"
     When I click on the "Education" filter and expand all available options
