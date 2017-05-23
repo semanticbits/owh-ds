@@ -200,22 +200,23 @@ Scenario: Suppression
   Then I see cell values being suppressed for American Indian race
   And I see total is also being suppressed
 
-Scenario: Age Adjusted Death Rates
-  Given I am on search page
-  When the user chooses the option 'Age Adjusted Death Rates'
-  Then the age adjusted rates are shown for each row
-  When user sees a visualization
-  Then labels for "Age Adjusted Death Rates" are displayed on minimized visualization
-  When user expand visualization
-  Then labels for "Age Adjusted Death Rates" are displayed on expanded visualization
-  #Enable once OWH-1179 issue fixed.
-  #When I update criteria in filter option with row "Ethnicity"
-  #Then table should display Hispanic groups for Age Adjusted Death Rates
-
-#Scenario: Age filter for age adjusted rates
+#Enable once OWH-1179 issue fixed.
+#Scenario: Age Adjusted Death Rates
 #  Given I am on search page
 #  When the user chooses the option 'Age Adjusted Death Rates'
-#  Then the age filter should be hidden
+#  Then the age adjusted rates are shown for each row
+#  When user sees a visualization
+#  Then labels for "Age Adjusted Death Rates" are displayed on minimized visualization
+#  When user expand visualization
+#  Then labels for "Age Adjusted Death Rates" are displayed on expanded visualization
+
+  #When I update criteria in filter option with row "Ethnicity"
+  #Then table should display Hispanic groups for Age Adjusted Death Rates
+  #When I expand "Underlying Cause of Death" filter section
+  #And I click on "Select Cause of Death" button
+  #And I select a cause and click on the Filter Selected Cause(s) of Death(s) button
+  #Then the "Select Cause of Death" button should be renamed to "Update Cause of Death"
+  #And data table should display Age Adjusted Death Rates for selected cause of death
 
 Scenario: Filer 'Multiple Causes of Deaths' should be displayed
   Given I am on search page
@@ -252,12 +253,12 @@ Scenario: Age group selection disabled for age rates
 Scenario Outline: Non applicable filters disabled in cude and age adjusted rate
   Given I am on search page
   When I choose the option <showMeFilter>
-  Then I see appropriate side filters disabled
+  Then I see appropriate side filters disabled for <filterOptions>
 
   Examples:
-    | showMeFilter              |
-    |  "Crude Death Rates"        |
-    |  "Age Adjusted Death Rates" |
+    | showMeFilter              |   filterOptions |
+    |  "Crude Death Rates"        | "Age Groups,Autopsy,Place of Death,Weekday,Month,Underlying Cause of Death,Multiple Causes of Death" |
+    |  "Age Adjusted Death Rates" | "Age Groups,Autopsy,Place of Death,Weekday,Month,Multiple Causes of Death" |
 
 Scenario: Group by 'State' in age adjusted rate
     When I update criteria in filter options with off "Sex"

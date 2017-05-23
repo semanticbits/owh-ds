@@ -89,8 +89,20 @@ describe("Elastic Search", function () {
 
     it("should fetch metadata for 2015", function (){
         var natalityMetadata = require('./data/natality_matadata.json');
+        var sortFn = function (a, b){
+            if (a._source.filter_name > b._source.filter_name) { return 1; }
+            if (a._source.filter_name < b._source.filter_name) { return -1; }
+            return 0;
+        };
         return new elasticSearch().getDsMetadata('natality', ['2015']).then(function (response) {
-            expect(JSON.stringify(response.hits.hits)).to.eql(JSON.stringify(natalityMetadata));
+            var resultsFromMetaData = response.hits.hits.sort(sortFn);
+            var natalityResults = natalityMetadata.sort(sortFn);
+            resultsFromMetaData.forEach(function(filter, index){
+               expect(filter._source.filter_name).to.eql(natalityResults[index]._source.filter_name);
+               expect(filter._source.year).to.eql(natalityResults[index]._source.year);
+               expect(filter._source.dataset).to.eql(natalityResults[index]._source.dataset);
+               expect(JSON.stringify(filter._source.permissible_values)).to.eql(JSON.stringify(natalityResults[index]._source.permissible_values));
+            });
         });
     });
 
