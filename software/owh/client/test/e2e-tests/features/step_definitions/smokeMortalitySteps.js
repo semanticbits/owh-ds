@@ -4,7 +4,7 @@ var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 var expect = chai.expect;
 
-var homeStepDefinitionsWrapper = function () {
+var smokeMortalityStepDefinitionsWrapper = function () {
 
     this.setDefaultTimeout(600000);
     var homePage = require('../support/homepage.po');
@@ -38,4 +38,4 @@ var homeStepDefinitionsWrapper = function () {
         expect(filterParentElement.element(by.xpath('.//*[.="'+arg1+'"]').element(by.model('checked').isSelected()))).to.eventually.equal(true);
     });
 }; 
-module.exports = homeStepDefinitionsWrapper;
+module.exports = smokeMortalityStepDefinitionsWrapper;

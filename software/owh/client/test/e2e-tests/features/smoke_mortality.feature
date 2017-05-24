@@ -21,10 +21,11 @@ Scenario: Observe default "Detailed Mortality" page
   Then years should be in descending order
   Then user clicks on "- 13 less" less link for "Year" filter 
 
-#Scenario: Observe default "Detailed Mortality" sidebar filters
+Scenario: Observe default "Detailed Mortality" sidebar filters
 #  Given I am on search page
-#  Then I observe critera in filter options with off "Year"
-#  And I observe "Year" filter as "Off"
+  Then I see "Year" as first option in sidebar filters
+  And  filter "Year" and option "" selected
+  And  filter "Year" and option "" selected
 #  And I make observations for all other enabled filters
 
 Scenario: Observe default "Detailed Mortality" visualizations

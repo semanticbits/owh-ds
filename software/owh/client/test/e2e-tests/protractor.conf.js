@@ -23,6 +23,7 @@ exports.config = {
       'features/step_definitions/pramsSteps.js',
       'features/step_definitions/infant_mortality_steps.js',
       'features/step_definitions/smokeMortalitySteps.js',
+      'features/step_definitions/smokeBridgeRaceSteps.js',
       'features/support/hook.js'
     ],
       format: 'pretty'
