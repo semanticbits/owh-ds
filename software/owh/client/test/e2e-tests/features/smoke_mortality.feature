@@ -34,9 +34,13 @@ Scenario: Observe default "Detailed Mortality" visualizations
 #  When user expand visualization
 #  Then labels are displayed on both the axes for expanded visualization
   Then I observe a button for Facebook
-#  When I see the number of deaths in data table
-#  Then the percentages are shown for each row are displayed by default
+  When I see the number of deaths in data table
 #  Then data should be right aligned in table
+  Then the percentages are shown for each row are displayed by default
+  Then the Percentages should have a one decimal precision
+#  Then percentages are displayed in the same column/cell in parenthesis
+  And an option to show/hide percentages is displayed
+#  And when that option is toggled, the percentages are either displayed/hidden
 
 Scenario: Observe default "Detailed Mortality" with "Crude Death Rates" sidebar filters
 #  Given I am on search page
