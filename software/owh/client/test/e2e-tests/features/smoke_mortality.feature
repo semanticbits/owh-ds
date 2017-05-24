@@ -18,6 +18,7 @@ Scenario: Observe default "Detailed Mortality" page
   When I click show filters button
   Then side menu slides back into view
   Then user clicks on "+ 13 more" more link for "Year" filter
+  Then years should be in descending order
   Then user clicks on "- 13 less" less link for "Year" filter 
 
 #Scenario: Observe default "Detailed Mortality" sidebar filters
@@ -43,6 +44,7 @@ Scenario: Observe default "Detailed Mortality" with "Crude Death Rates" sidebar 
   Then I should see Crude Deth Rates page
   When user sees a visualization
   Then labels for "Crude Death Rates" are displayed on minimized visualization
+#  And I should observe "2015" option is selected in "Year" filter
 
 Scenario: Observe default "Detailed Mortality" with "Age Adjusted Death Rates" sidebar filters
 #  Given I am on search page
