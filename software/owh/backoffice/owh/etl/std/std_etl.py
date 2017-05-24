@@ -54,11 +54,6 @@ class STDETL (ETL):
                 else:
                     record['cases'] = 0
 
-                if(len(record ['rate']) > 0):
-                    record['rate'] = float(record['rate'])
-                else:
-                    record['rate'] = 0.0
-
                 record_count += 1
                 self.batchRepository.persist({"index": {"_index": self.config['elastic_search']['index'],
                                                         "_type": self.config['elastic_search']['type'],
