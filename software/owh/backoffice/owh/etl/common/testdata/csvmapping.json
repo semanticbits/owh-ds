@@ -1,11 +1,10 @@
 {
-  "datafiletype" : "fwf",
+  "datafiletype" : "csv",
   "columns": [
     {
       "type": "simple",
       "column": "st_fips",
-      "start": 5,
-      "stop": 6,
+      "column_index": 1,
       "field": "State FIPS code",
       "mappings": {
       }
@@ -13,8 +12,7 @@
     {
       "type": "range",
       "column": "age",
-      "start": 10,
-      "stop": 11,
+      "column_index": 3,
       "field": "Age",
       "mappings": {
         "01-06": "0-4years",
@@ -47,8 +45,7 @@
         "race",
         "sex"
       ],
-      "start": 12,
-      "stop": 12,
+      "column_index": 4,
       "field": "Bridged-race-sex",
       "mappings": {
         "1": {
@@ -88,8 +85,7 @@
     {
       "type": "simple",
       "column": "hispanic_origin",
-      "start": 13,
-      "stop": 13,
+      "column_index": 5,
       "field": "Hispanic origin",
       "mappings": {
         "1": "not Hispanic or Latino",
@@ -102,48 +98,42 @@
       "index_column": "year",
       "fields": [
         {
-          "start": 14,
-          "stop": 21,
+          "column_index": 6,
           "index_value": "2010",
           "field": "April 1, 2010 base population estimate",
           "mappings": {
           }
         },
         {
-          "start": 30,
-          "stop": 37,
+          "column_index": 8,
           "index_value": "2011",
           "field": "July 1, 2011 postcensal resident population estimate",
           "mappings": {
           }
         },
         {
-          "start": 38,
-          "stop": 45,
+          "column_index": 9,
           "index_value": "2012",
           "field": "July 1, 2012 postcensal resident population estimate",
           "mappings": {
           }
         },
         {
-          "start": 46,
-          "stop": 53,
+          "column_index": 10,
           "index_value": "2013",
           "field": "July 1, 2013 postcensal resident population estimate",
           "mappings": {
           }
         },
         {
-          "start": 54,
-          "stop": 61,
+          "column_index": 11,
           "index_value": "2014",
           "field": "July 1, 2014 postcensal resident population estimate",
           "mappings": {
           }
         },
         {
-          "start": 62,
-          "stop": 69,
+          "column_index": 12,
           "index_value": "2015",
           "field": "July 1, 2015 postcensal resident population estimate",
           "mappings": {
