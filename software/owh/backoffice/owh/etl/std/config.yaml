@@ -6,11 +6,11 @@ data_file:
   aws_access_key_id: 'aws access key'
   aws_secret_access_key: 'aws secret key'
   aws_s3_bucket_name: 'owh-data'
-  aws_s3_directory: 'datasets/census_rates'
+  aws_s3_directory: 'datasets/std'
 elastic_search:
   host: 127.0.0.1
   port: 9200
   bulk_load_size: 10000
-  index: owh_census_rates
-  type: census_rates
-  type_mapping: census-rates-type-mapping.json
+  index: owh_std
+  type: std
+  type_mapping: std-type-mapping.json

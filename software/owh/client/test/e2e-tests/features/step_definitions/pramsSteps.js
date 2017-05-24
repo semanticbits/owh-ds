@@ -73,6 +73,27 @@ var PRAMSStepDefinitionsWrapper = function () {
             expect(text).to.equal('Percentage');
         }).then(next);
     });
+
+    this.Then(/^I close chart dialog$/, function (next) {
+        element(by.css('a[name=close]')).click().then(next);
+    });
+
+    this.When(/^I change class to "([^"]*)"$/, function (clazz) {
+        return pramsPage.updateClassTo(clazz)
+    });
+
+    this.When(/^I see topics Household Characteristics and Income displayed in side filter$/, function (next) {
+
+        element.all(by.css('label[for*=prams_topic_]')).then(function(topics, index) {
+            expect(topics.length).to.equal(2);
+            expect(topics[0].getText()).to.eventually.contains('Household Characteristics');
+            expect(topics[1].getText()).to.eventually.contains('Income');
+        }).then(next);
+    });
+
+    this.Then(/^I see only "([^"]*)" topic in data table$/, function (topic) {
+        return expect(element(by.className('owh-question__title')).getText()).to.eventually.contains(topic);
+    });
 };
 
 module.exports = PRAMSStepDefinitionsWrapper;

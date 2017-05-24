@@ -11,7 +11,7 @@ var natalityStepsDefinitionWrapper = function () {
 
     this.Then(/^I see "([^"]*)" as first filter category$/, function (arg1, next) {
         natalityPage.getFilterCategories().then(function(categories) {
-            expect(categories.length).to.equal(4);
+            expect(categories.length).to.equal(5);
             expect(categories[0].getText()).to.eventually.equal(arg1);
         }).then(next);
     });
@@ -159,7 +159,7 @@ var natalityStepsDefinitionWrapper = function () {
 
     this.When(/^I see "([^"]*)" category in the sidebar$/, function (arg1, next) {
         natalityPage.getFilterCategories().then(function(categories) {
-            expect(categories.length).to.equal(4);
+            expect(categories.length).to.equal(5);
             expect(categories[2].getText()).to.eventually.equal(arg1);
         }).then(next);
     });
@@ -196,9 +196,9 @@ var natalityStepsDefinitionWrapper = function () {
     this.Then(/^I should see "([^"]*)" options under Mother Age category for 1\-Year age group$/, function (arg1, next) {
         natalityPage.getOptions(arg1).then(function(elements) {
             expect(elements[1].getText()).to.eventually.contains('All');
-            expect(elements[2].getText()).to.eventually.contains('13 years');
-            expect(elements[3].getText()).to.eventually.contains('14 years');
-            expect(elements[4].getText()).to.eventually.contains('15 years');
+            expect(elements[2].getText()).to.eventually.contains('Under 15 years');
+            expect(elements[3].getText()).to.eventually.contains('15 years');
+            expect(elements[4].getText()).to.eventually.contains('16 years');
         }).then(next);
     });
 
@@ -209,11 +209,11 @@ var natalityStepsDefinitionWrapper = function () {
             //Mother's Age 9
             expect(rowdata[1]).to.equals('15 years');
             //Female
-            expect(rowdata[2]).to.equals('957 (49.6%)');
+            expect(rowdata[2]).to.equals('204 (49.6%)');
             //Male
-            expect(rowdata[3]).to.equals('974 (50.4%)');
+            expect(rowdata[3]).to.equals('207 (50.4%)');
             //Total
-            expect(rowdata[4]).to.equals('1,931');
+            expect(rowdata[4]).to.equals('411');
         }).then(next);
     });
 
@@ -262,6 +262,99 @@ var natalityStepsDefinitionWrapper = function () {
             expect(row[2]).to.equal('22,706');
             expect(row[3]).to.equal('44,299');
         });
+    });
+
+    this.When(/^I select "([^"]*)" state$/, function (state, next) {
+        if (state == 'Alabama') {
+            element.all(by.css('label[for=natality_state_AL]')).then(function(elements, index) {
+                elements[1].click();
+            }).then(next);
+        } else if (state == 'Alaska') {
+            element.all(by.css('label[for=natality_state_AK]')).then(function(elements, index) {
+                elements[1].click();
+            }).then(next);
+        }
+    });
+
+    this.Then(/^I see data is displayed in data\-table for races$/, function (next) {
+        natalityPage.getTableRowData(0).then(function (row) {
+            expect(row[0]).to.equal('American Indian or Alaska Native');
+            expect(row[1]).to.equal('1,179 (48.8%)');
+            expect(row[2]).to.equal('1,236 (51.2%)');
+            expect(row[3]).to.equal('2,415');
+        }).then(next);
+    });
+
+    this.Then(/^I see data is grouped by state in data table$/, function (next) {
+        natalityPage.getTableHeaders().then(function(headers) {
+            expect(headers[4]).to.contains('Alabama');
+            expect(headers[5]).to.contains('Alaska');
+            //alabama
+            natalityPage.getTableCellData(0,1).then(function(data){
+                expect(data).to.contains('100 (3.8%)');
+            });
+            //Alaska
+            natalityPage.getTableCellData(0,2).then(function(data){
+                expect(data).to.contains('1,179 (45.3%)');
+            });
+        }).then(next);
+    });
+
+    this.When(/^I select Puerto Rican ethnicity option$/, function (next) {
+        element.all(by.css('label[for*=natality_hispanic_origin_Puerto]')).then(function(elements, index) {
+            elements[0].click();
+        }).then(next);
+    });
+
+    this.Then(/^I see suppressed cells in data table$/, function (next) {
+        natalityPage.getTableCellData(0,1).then(function(data){
+            expect(data).to.contains('Suppressed');
+        });
+        natalityPage.getTableCellData(0,2).then(function(data){
+            expect(data).to.contains('Suppressed');
+        });
+        natalityPage.getTableCellData(2,1).then(function(data){
+            expect(data).to.contains('Suppressed');
+        });
+        natalityPage.getTableCellData(2,2).then(function(data){
+            expect(data).to.equal('11');
+        }).then(next);
+    });
+
+    this.Then(/^I see birth rate for state$/, function (next) {
+        natalityPage.getTableRowData(0).then(function(firstRowData){
+            expect(firstRowData[0]).to.equals('American Indian or Alaska Native');
+            expect(firstRowData[1]).to.contains('Rate');
+            expect(firstRowData[1]).to.contains('510.4');
+            expect(firstRowData[1]).to.contains('Births');
+            expect(firstRowData[1]).to.contains('190');
+            expect(firstRowData[1]).to.contains('Population');
+            expect(firstRowData[1]).to.contains('37,228');
+        });
+        natalityPage.getTableRowData(1).then(function(firstRowData){
+            expect(firstRowData[0]).to.equals('Asian or Pacific Islander');
+            expect(firstRowData[1]).to.contains('1,534.4');
+            expect(firstRowData[1]).to.contains('1,193');
+            expect(firstRowData[1]).to.contains('77,752')
+        }).then(next);
+    });
+
+    this.Then(/^I see fertility rates for state$/, function (next) {
+        natalityPage.getTableRowData(0).then(function(firstRowData){
+            expect(firstRowData[0]).to.equals('American Indian or Alaska Native');
+            expect(firstRowData[1]).to.contains('Rate');
+            expect(firstRowData[1]).to.contains('2,429.7');
+            expect(firstRowData[1]).to.contains('Births');
+            expect(firstRowData[1]).to.contains('190');
+            expect(firstRowData[1]).to.contains('Population');
+            expect(firstRowData[1]).to.contains('7,820');
+        });
+        natalityPage.getTableRowData(1).then(function(firstRowData){
+            expect(firstRowData[0]).to.equals('Asian or Pacific Islander');
+            expect(firstRowData[1]).to.contains('6,043.0');
+            expect(firstRowData[1]).to.contains('1,193');
+            expect(firstRowData[1]).to.contains('19,742')
+        }).then(next);
     });
 };
 

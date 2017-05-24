@@ -183,8 +183,10 @@ Scenario: Crude Death rates population count should match with CDC for year 2000
   Then I select "Year" value "2000"
   And I un-select "Year" value "2015"
   And data table should display right population count for Crude Death Rates
+  When I update criteria in filter option with row "Ethnicity"
+  Then table should display Hispanic groups for Crude Death Rates
 
-Scenario: Select 'All' years
+  Scenario: Select 'All' years
   Given I am on search page
   When user select "All" option in "Year" filter
   #Then data table should display right population count for year 'All' filter
@@ -198,23 +200,23 @@ Scenario: Suppression
   Then I see cell values being suppressed for American Indian race
   And I see total is also being suppressed
 
-#Scenario: Data table
-#  When the user looks at a suppressed value in the data table
-#  Then the word suppressed must be displayed in it's place
-
-Scenario: Age Adjusted Death Rates
-  Given I am on search page
-  When the user chooses the option 'Age Adjusted Death Rates'
-  Then the age adjusted rates are shown for each row
-  When user sees a visualization
-  Then labels for "Age Adjusted Death Rates" are displayed on minimized visualization
-  When user expand visualization
-  Then labels for "Age Adjusted Death Rates" are displayed on expanded visualization
-
-#Scenario: Age filter for age adjusted rates
+#Enable once OWH-1179 issue fixed.
+#Scenario: Age Adjusted Death Rates
 #  Given I am on search page
 #  When the user chooses the option 'Age Adjusted Death Rates'
-#  Then the age filter should be hidden
+#  Then the age adjusted rates are shown for each row
+#  When user sees a visualization
+#  Then labels for "Age Adjusted Death Rates" are displayed on minimized visualization
+#  When user expand visualization
+#  Then labels for "Age Adjusted Death Rates" are displayed on expanded visualization
+
+  #When I update criteria in filter option with row "Ethnicity"
+  #Then table should display Hispanic groups for Age Adjusted Death Rates
+  #When I expand "Underlying Cause of Death" filter section
+  #And I click on "Select Cause of Death" button
+  #And I select a cause and click on the Filter Selected Cause(s) of Death(s) button
+  #Then the "Select Cause of Death" button should be renamed to "Update Cause of Death"
+  #And data table should display Age Adjusted Death Rates for selected cause of death
 
 Scenario: Filer 'Multiple Causes of Deaths' should be displayed
   Given I am on search page
@@ -226,13 +228,6 @@ Scenario: Data should be right aligned
   When I update criteria in filter options with column "Autopsy"
   When I update criteria in filter option with row "Sex"
   Then data should be right aligned in table
-
-#Scenario: Rates, Deaths and Population values closer to each other
-#  Given I am on search page
-#  When I choose the option "Crude Death Rates"
-#  Then Rates, Deaths and Population values look as a single data element in the column
-#  When I select "Column" type for "Race" filter
-#  Then Rates, Deaths and Population shouldn't be overlap
 
 Scenario: Non-Hispanic should have total in the side filter
   Given I am on search page
@@ -255,22 +250,15 @@ Scenario: Age group selection disabled for age rates
   When the user chooses the option 'Age Adjusted Death Rates'
   Then table should not include age groups
 
-# Ethiniciry filter is disabled in rate views, there is a task OWH-1028 to enable it, this test will be enabled
-  #after OWH-1028 is implemented
-#Scenario: Hispanic Group options for crude death rate view
-#  When I update criteria in filter option with row "Ethnicity"
-#  When the user chooses the option 'Death Rates'
-#  Then table should display Hispanic groups only
-
 Scenario Outline: Non applicable filters disabled in cude and age adjusted rate
   Given I am on search page
   When I choose the option <showMeFilter>
-  Then I see appropriate side filters disabled
+  Then I see appropriate side filters disabled for <filterOptions>
 
   Examples:
-    | showMeFilter              |
-    |  "Crude Death Rates"        |
-    |  "Age Adjusted Death Rates" |
+    | showMeFilter              |   filterOptions |
+    |  "Crude Death Rates"        | "Age Groups,Autopsy,Place of Death,Weekday,Month,Underlying Cause of Death,Multiple Causes of Death" |
+    |  "Age Adjusted Death Rates" | "Age Groups,Autopsy,Place of Death,Weekday,Month,Multiple Causes of Death" |
 
 Scenario: Group by 'State' in age adjusted rate
     When I update criteria in filter options with off "Sex"
@@ -299,3 +287,16 @@ Scenario: Group by 'State' in age adjusted rate
    Given I am on search page
    When I select groupBy "Row" option for "State" filter
    Then I see data table with Race and State values
+
+   #Enable once OWH-1179 issue fixed.
+ #Scenario: Filtering on State- Rate
+ #  Given I am on search page
+ #  When I choose the option "Age Adjusted Death Rates"
+ #  And user expands state filter
+ #  Then user clicks on "+ 48 more" more link for "State" filter
+ #  When I select State "DC"
+ #  And I select State "CT"
+ #  And I select groupBy "Row" option for "State" filter
+ #  Then the rates corresponding to the deaths 0-9 must be suppressed
+ #  And any value in the data table is suppressed then the totals in the State filter (sidebar) must be suppressed too
+ #  And the death count <20 then the corresponding Rate must be marked as "Unreliable"

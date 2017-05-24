@@ -46,8 +46,8 @@ describe("WONDER API", function () {
             expect(err).to.be.undefined();
         });
     });
-
-    it("invoke wonder API query for state", function(done){
+    //Enable once OWH-1179 issue fixed.
+    xit("invoke wonder API query for state", function(done){
 
         query = {"searchFor":"deaths","query":{"current_year":{"key":"year","queryKey":"current_year","value":["2015"],"primary":false}},
             "aggregations":{"simple":[],"nested":{"table": [{"key":"race","queryKey":"race","size":0},
@@ -140,7 +140,8 @@ describe("WONDER API", function () {
         });
     });
 
-    it("invoke wonder API bigger query (group by 5)", function (done){
+    //Enable once OWH-1179 issue fixed.
+    xit("invoke wonder API bigger query (group by 5)", function (done){
         query = {"searchFor":"deaths","query":{},
                  "aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":100000},
                                                                 {"key":"placeofdeath","queryKey":"place_of_death","size":100000},
@@ -160,7 +161,8 @@ describe("WONDER API", function () {
         });
     });
 
-    it("invoke wonder API with year aggregation", function (done){
+    //Enable once OWH-1179 issue fixed.
+    xit("invoke wonder API with year aggregation", function (done){
         query =   {"searchFor":"deaths","query":{},"aggregations":{"simple":[],"nested":{"table":[
                     {"key":"race","queryKey":"race","size":100000},
                     {"key":"year","queryKey":"current_year","size":100000},
@@ -193,7 +195,8 @@ describe("WONDER API", function () {
         });
     });
 
-    it("invoke wonder API with filter option selected", function (done){
+    //Enable once OWH-1179 issue fixed.
+    xit("invoke wonder API with filter option selected", function (done){
         query = {"searchFor":"deaths","query":{"sex":{"key":"gender","queryKey":"sex","value":["Female"],"primary":false}},
             "aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":100000},{"key":"gender","queryKey":"sex","size":100000}],"charts":[[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}};
         var startTime = new Date();
@@ -208,7 +211,8 @@ describe("WONDER API", function () {
         });
     });
 
-    it("invoke wonder API with unmapped filter options selected", function (done){
+    //Enable once OWH-1179 issue fixed.
+    xit("invoke wonder API with unmapped filter options selected", function (done){
         query = {"searchFor":"deaths","query":{"race":{"key":"race","queryKey":"race","value":["White","Other (Puerto Rico only)"],"primary":false}},
             "aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":100000},{"key":"gender","queryKey":"sex","size":100000}],"charts":[[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}}
         var startTime = new Date();
@@ -223,7 +227,8 @@ describe("WONDER API", function () {
         });
     });
 
-    it("perform state level grouping query", function (done){
+    //Enable once OWH-1179 issue fixed.
+    xit("perform state level grouping query", function (done){
         query = {"searchFor":"deaths","query":{"race":{"key":"race","queryKey":"race","value":["White","Other (Puerto Rico only)"],"primary":false}},
             "aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":100000},{"key":"gender","queryKey":"sex","size":100000},{"key":"state","queryKey":"state","size":100000}],"charts":[[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}}
         var startTime = new Date();
@@ -239,7 +244,8 @@ describe("WONDER API", function () {
         });
     });
 
-    it("perform state level filtering query", function (done){
+    //Enable once OWH-1179 issue fixed.
+    xit("perform state level filtering query", function (done){
         query = {"searchFor":"deaths","query":{"race":{"key":"state","queryKey":"state","value":["01","02"],"primary":false}},
             "aggregations":{"simple":[],"nested":{"table":[{"key":"state","queryKey":"state","size":100000}],"charts":[[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}}
         var startTime = new Date();
@@ -248,6 +254,86 @@ describe("WONDER API", function () {
             console.log("invoke wonder API with unmapped filter option duration: "+duration);
             expect(resp.table).to.not.be.empty();
             expect(resp.table).eql({"Alabama":{"ageAdjustedRate":"964.5","standardPop":79153531},"Alaska":{"ageAdjustedRate":"771.6","standardPop":11619054},"Total":{"ageAdjustedRate":"947.3","standardPop":90772585}});
+            done();
+        }, function(err){
+            console.log(err);
+            expect(err).to.be.undefined();
+        });
+    });
+
+    it("perform UCD level filtering query", function (done){
+        query = {
+            "searchFor": "deaths",
+            "query": {
+                "ICD_10_code": {
+                    "key": "ucd-chapter-10",
+                    "queryKey": "ICD_10_code.path",
+                    "value": [
+                        "P00-P96"
+                    ],
+                    "primary": true
+                },
+                "current_year": {
+                    "key": "year",
+                    "queryKey": "current_year",
+                    "value": [
+                        "2015"
+                    ],
+                    "primary": false
+                }
+            },
+            "aggregations": {
+                "simple": [],
+                "nested": {
+                    "table": [
+                        {
+                            "key": "race",
+                            "queryKey": "race",
+                            "size": 0
+                        },
+                        {
+                            "key": "gender",
+                            "queryKey": "sex",
+                            "size": 0
+                        }
+                    ],
+                    "charts": [
+                        [
+                            {
+                                "key": "gender",
+                                "queryKey": "sex",
+                                "size": 0
+                            },
+                            {
+                                "key": "race",
+                                "queryKey": "race",
+                                "size": 0
+                            }
+                        ]
+                    ],
+                    "maps": [
+                        [
+                            {
+                                "key": "states",
+                                "queryKey": "state",
+                                "size": 0
+                            },
+                            {
+                                "key": "sex",
+                                "queryKey": "sex",
+                                "size": 0
+                            }
+                        ]
+                    ]
+                }
+            }
+        };
+        var startTime = new Date();
+        w.invokeWONDER(query).then( function (resp) {
+            var duration = new Date() - startTime;
+            console.log("invoke wonder API with filter option duration: "+duration);
+            expect(resp.table).to.not.be.empty();
+            expect(resp.table).eql({"American Indian or Alaska Native":{"Female":{"ageAdjustedRate":"2.1","standardPop":2279263},"Male":{"ageAdjustedRate":"2.3","standardPop":2298590},"Total":{"ageAdjustedRate":"2.2","standardPop":4577853}},"Asian or Pacific Islander":{"Female":{"ageAdjustedRate":"2.7","standardPop":10480265},"Male":{"ageAdjustedRate":"3.3","standardPop":9622452},"Total":{"ageAdjustedRate":"3.0","standardPop":20102717}},"Black or African American":{"Female":{"ageAdjustedRate":"7.4","standardPop":23345129},"Male":{"ageAdjustedRate":"8.9","standardPop":21518067},"Total":{"ageAdjustedRate":"8.2","standardPop":44863196}},"White":{"Female":{"ageAdjustedRate":"3.0","standardPop":127084866},"Male":{"ageAdjustedRate":"3.5","standardPop":124790188},"Total":{"ageAdjustedRate":"3.2","standardPop":251875054}},"Total":{"ageAdjustedRate":"4.1","standardPop":321418820}});
             done();
         }, function(err){
             console.log(err);

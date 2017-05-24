@@ -1,7 +1,7 @@
 {
   "infant_mortality": {
     "_source": {
-      "enabled": true
+      "enabled": false
     },
     "include_in_all": false,
     "properties": {

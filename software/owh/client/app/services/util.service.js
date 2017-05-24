@@ -105,7 +105,7 @@
         function findFilterByKeyAndValue(a, key, value) {
             if (a) {
                 for (var i = 0; i < a.length; i++) {
-                    var filter = a[i].filters;
+                    var filter = a[i];
                     if ( filter[key] && filter[key] === value ) {return a[i];}
                 }
             }
@@ -120,8 +120,8 @@
          * @returns {*}
          */
         function isFilterApplied(a) {
-            if (a && a.filters) {
-                return a.filters.value.length > 0;
+            if (a) {
+                return a.value.length > 0;
             }
             return false;
         }
@@ -907,6 +907,9 @@
                 var newFilters = response.data;
                 for (var f=0; f < sideFilters.length; f++) {
                     var fkey = sideFilters[f].filters.queryKey;
+                    if (fkey === 'ethnicity_group' && datasetname == 'deaths') {
+                       fkey = 'hispanic_origin';
+                    }
                     if (fkey !== filterName) {
                         if (fkey in newFilters) {
                             sideFilters[f].disabled = false;
@@ -918,7 +921,7 @@
                                     }
                                     //below condition only disable filters which are not parent(with no child filters) and
                                     // not found in response metadata.
-                                    else if(!fopts[opt].group) {
+                                    else if(!fopts[opt].group && fopts[opt].key != 'Hispanic') {
                                         fopts[opt].disabled = true;
                                     }
                                 }

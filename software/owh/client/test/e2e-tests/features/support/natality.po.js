@@ -33,6 +33,15 @@ var NatalitySearchPage = function () {
         return element(by.cssContainingText('a', filterType)).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('a', viewType));
     };
 
+    nsp.getTableHeaders = function() {
+        return nsp.owhTable.element(by.tagName('table')).element(by.tagName('thead')).all(by.tagName('th')).getText();
+
+    };
+
+    nsp.getTableCellData = function(row, column) {
+        return nsp.owhTable.element(by.id('clusterize-table')).element(by.tagName('tbody')).all(by.tagName('tr')).get(row).all(by.tagName('td')).get(column).getText();
+    };
+
 };
 
 

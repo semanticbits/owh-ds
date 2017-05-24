@@ -1,7 +1,6 @@
 import os
 from owh.etl.common.etl import ETL
 import logging
-from owh.etl.common.fixedwidthfile_parser import FixedWidthFileParser
 logger = logging.getLogger('yrbs_etl')
 
 

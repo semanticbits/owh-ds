@@ -218,7 +218,7 @@ ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected){
 /**
  * This method is used to fetch the natality data
  */
-ElasticClient.prototype.aggregateNatalityData = function(query){
+ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected){
     //get tge elastic search client for natality index
     var self = this;
     var client = this.getClient(natality_index);
@@ -234,6 +234,9 @@ ElasticClient.prototype.aggregateNatalityData = function(query){
 
             var data = searchUtils.populateDataWithMappings(resp[0], 'natality');
             self.mergeWithCensusData(data, resp[1]);
+            if (isStateSelected) {
+                searchUtils.applySuppressions(data, 'natality');
+            }
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);

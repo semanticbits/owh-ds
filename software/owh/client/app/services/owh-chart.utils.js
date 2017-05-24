@@ -44,12 +44,13 @@
          * @returns {Number}
          */
         function getValueFromData(filter, data) {
-            if(filter.tableView == "crude_death_rates") {
+            if(filter.tableView == "crude_death_rates" && data['pop']) {
                 return Math.round(data[filter.key] / data['pop'] * 1000000) / 10;
             }
             else if(filter.tableView == "age-adjusted_death_rates" && data['ageAdjustedRate']){
+                var ageAdjustedRate = parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));
                 //parsing string to return floating point number
-                return parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));
+                return ageAdjustedRate == NaN ? data['ageAdjustedRate'] : ageAdjustedRate ;
             }
             else {
                 return data[filter.key];
@@ -693,7 +694,7 @@
          */
         function getCount(count, primaryFilter) {
             if (count == 0 && primaryFilter.applySuppression) {
-                var stateFilter = utilService.findFilterByKeyAndValue(primaryFilter.sideFilters, 'key', 'state');
+                var stateFilter = utilService.findFilterByKeyAndValue(primaryFilter.allFilters, 'key', 'state');
                 var isStateFilter = utilService.isFilterApplied(stateFilter);
                 return isStateFilter? 'Suppressed': $filter('number')(count);
             }
