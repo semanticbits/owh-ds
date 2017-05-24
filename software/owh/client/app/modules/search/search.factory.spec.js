@@ -590,8 +590,15 @@ describe('search factory ', function(){
 
         it('sliderValue is updated', function () {
             var mortalityFilter = utils.findByKeyAndValue(filters.primaryFilters, 'key', 'deaths');
+
+            mortalityFilter.sideFilters[0].sideFilters[3].filters.sliderValue = '-5;105';
+
+            var expectedSliderValue = '10,50';
+            searchResponseForAgeGroup.data.queryJSON.sideFilters[0].sideFilters[0].filters.sliderValue = expectedSliderValue;
+
             var result = searchFactory.updateFiltersAndData(filters, searchResponseForAgeGroup, { 'number_of_deaths': {} }, {});
-            expect(mortalityFilter.sideFilters[0].sideFilters[3].filters.sliderValue).toEqual(searchResponseForAgeGroup.data.queryJSON.sideFilters[0].sideFilters[0].filters.sliderValue);
+
+            expect(mortalityFilter.sideFilters[0].sideFilters[3].filters.sliderValue).toEqual(expectedSliderValue);
         });
 
     });
