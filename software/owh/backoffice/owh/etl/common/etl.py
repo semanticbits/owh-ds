@@ -153,7 +153,7 @@ class ETL :
          esRepository.delete_records_by_query({"query": {"bool" : {"must" : [{"term": {"dataset":datasetname }},{"term": {"year":year}}]}}})
 
          with open(datamapping) as datamap:
-             metadata = json.load(datamap)
+             metadata = json.load(datamap)['columns']
 
          for config in metadata :
              if(config['type'] == 'simple'):
