@@ -85,8 +85,8 @@ var infantMortalityStepDefinitions = function () {
         return imp.clickMoreOptionsForFilter(filter_1).then(function () {
             return imp.clickOptionForFilter(filter_1, filter_1_option);
         }).then(function () {
-            // De-select 2013 to show values that should be suppressed
-            return imp.clickOptionForFilter(filter_1, '2013');
+            // De-select 2014 to show values that should be suppressed
+            return imp.clickOptionForFilter(filter_1, '2014');
         }).then(function () {
             return imp.expandFilter(filter_2);
         }).then(function () {

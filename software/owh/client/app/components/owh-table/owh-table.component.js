@@ -191,9 +191,9 @@
                             }
                         } else if (otc.tableView === 'number_of_infant_deaths') {
                             cell += (function (count) {
-                                if (isNaN(parseInt(count))) return count;
-                                if (count < 10) return '<span>Suppressed</span>';
+                                if (count === 'suppressed') return '<span>Suppressed</span>';
                                 if (count < 20) return '<span>Unreliable</span>';
+                                if (isNaN(parseInt(count))) return count;
                                 var result = '<span class="count-value">' + $filter('number')(count) + '</span>';
                                 if (colIndex !== row.length - 1 && column.percentage  > 0) {
                                     result += '<span class="count-value"> (' + $filter('number')(column.percentage, 1) + '%)</span>';
