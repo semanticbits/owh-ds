@@ -86,8 +86,7 @@
       "column": "current_year",
       "column_index": 2,
       "type": "simple",
-      "field": "YEAR",
-      "mappings": {}
+      "field": "YEAR"
     },
     {
       "column": "age_group",
@@ -123,15 +122,15 @@
       "type": "map",
       "field": "RACE",
       "mappings": {
-        "1": "American Indian/Alaska Native",
+        "1": "American Indian or Alaska Native",
         "2": "Asian",
-        "3": "Black/African American",
-        "4": "Hispanic/Latino",
-        "5": "Native Hawaiian/Other Pacific Islander",
+        "3": "Black or African American",
+        "4": "Hispanic or Latino",
+        "5": "Native Hawaiian or Other Pacific Islander",
         "6": "White",
         "7": "Multiple races",
         "8": "Unknown",
-        "9": "Asian/Pacific Islander",
+        "9": "Asian or Pacific Islander",
         "10": "Other"
       }
     },
@@ -171,12 +170,6 @@
       "column_index": 8,
       "type": "simple",
       "field": "POP"
-    },
-    {
-      "column": "rate",
-      "column_index": 9,
-      "type": "simple",
-      "field": "RATE"
     }
   ]
 }
