@@ -3,7 +3,7 @@ import os
 from random import randint
 from owh.etl.common.etl import ETL
 import logging
-from owh.etl.common.fixedwidthfile_parser import FixedWidthFileParser
+from owh.etl.common.datafile_parser import DataFileParser
 
 logger = logging.getLogger('infant_mortality_etl')
 
@@ -60,7 +60,7 @@ class InfantMortalityETL (ETL):
                 logger.warn("No mapping available for data file %s, skipping", file_path)
                 continue
 
-            parser = FixedWidthFileParser(file_path, config_file)
+            parser = DataFileParser(file_path, config_file)
             record = []
             while True:
                 record  = parser.parseNextLine()

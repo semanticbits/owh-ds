@@ -1,353 +1,358 @@
-[
-  {
-    "type":"simple",
-    "column":"residence",
-    "start": 6,
-    "stop": 6,
-    "field": "Residence Status"
-  },
-  {
-    "type": "range",
-    "column": "race",
-    "start": 80,
-    "stop": 81,
-    "field": "Detail Race",
-    "mappings": {
-      "01-01": "White",
-      "02-02": "Black",
-      "03-03": "American Indian or Alaska Native",
-      "04-78": "Asian or Pacific Islander"
+{
+  "datafiletype": "fwf",
+  "columns": [
+    {
+      "type": "simple",
+      "column": "residence",
+      "start": 6,
+      "stop": 6,
+      "field": "Residence Status"
+    },
+    {
+      "type": "range",
+      "column": "race",
+      "start": 80,
+      "stop": 81,
+      "field": "Detail Race",
+      "mappings": {
+        "01-01": "White",
+        "02-02": "Black",
+        "03-03": "American Indian or Alaska Native",
+        "04-78": "Asian or Pacific Islander"
+      }
+    },
+    {
+      "column": "hispanic_origin",
+      "type": "map",
+      "start": 78,
+      "stop": 78,
+      "field": "Mother’s Hispanic Origin",
+      "mappings": {
+        "1": "Mexican",
+        "2": "Puerto Rican",
+        "3": "Cuban",
+        "4": "Central or South American",
+        "5": "Other and Unknown Hispanic",
+        "6": "Non-Hispanic White",
+        "7": "Non-Hispanic Black",
+        "8": "Non-Hispanic Other Races",
+        "9": "Origin unknown or not stated"
+      }
+    },
+    {
+      "column": "mother_age_5year_interval",
+      "type": "map",
+      "start": 76,
+      "stop": 76,
+      "field": "Age of Mother Recode 8",
+      "mappings": {
+        "1": "Under 15 years",
+        "2": "15-19 years",
+        "3": "20-24 years",
+        "4": "25-29 years",
+        "5": "30-34 years",
+        "6": "35-39 years",
+        "7": "40-44 years",
+        "8": "45-49 years",
+        "9": "50-54 years"
+      }
+    },
+    {
+      "column": "mother_education",
+      "type": "map",
+      "start": 85,
+      "stop": 85,
+      "field": "Mother’s Education",
+      "mappings": {
+        "1": "0 – 8 years",
+        "2": "9 – 11 years",
+        "3": "12 years",
+        "4": "13 – 15 years",
+        "5": "16 years and over",
+        "6": "Not stated"
+      }
+    },
+    {
+      "column": "current_year",
+      "type": "simple",
+      "start": 176,
+      "stop": 179,
+      "field": "Birth Year",
+      "mappings": {}
+    },
+    {
+      "column": "sex",
+      "type": "map",
+      "start": 189,
+      "stop": 189,
+      "field": "Sex of Infant",
+      "mappings": {
+        "1": "Male",
+        "2": "Female"
+      }
+    },
+    {
+      "column": "gestational_age_r10",
+      "type": "map",
+      "start": 185,
+      "stop": 186,
+      "field": "Gestational Age at Birth",
+      "mappings": {
+        "01": "Under 20 weeks",
+        "02": "20 - 27 weeks",
+        "03": "28 - 31 weeks",
+        "04": "32 - 35 weeks",
+        "05": "36 weeks",
+        "06": "37 - 39 weeks",
+        "07": "40 weeks",
+        "08": "41 weeks",
+        "09": "42 weeks and over",
+        "10": "Not stated"
+      }
+    },
+    {
+      "column": "prenatal_care",
+      "type": "map",
+      "start": 106,
+      "stop": 107,
+      "field": "Month Prenatal Care Began",
+      "mappings": {
+        "00": "No prenatal care",
+        "01": "1st month",
+        "02": "2nd month",
+        "03": "3rd month",
+        "04": "4th month",
+        "05": "5th month",
+        "06": "6th month",
+        "07": "7th month",
+        "08": "8th month",
+        "09": "9th month",
+        "99": "Unknown or not stated"
+      }
+    },
+    {
+      "column": "birth_weight_r12",
+      "type": "map",
+      "start": 197,
+      "stop": 198,
+      "field": "Birth Weight",
+      "mappings": {
+        "01": "499 grams or less",
+        "02": "500 - 999 grams",
+        "03": "1000 - 1499 grams",
+        "04": "1500 - 1999 grams",
+        "05": "2000 - 2499 grams",
+        "06": "2500 - 2999 grams",
+        "07": "3000 - 3499 grams",
+        "08": "3500 - 3999 grams",
+        "09": "4000 - 4499 grams",
+        "10": "4500 - 4999 grams",
+        "11": "5000 - 8165 grams",
+        "12": "Not Stated"
+      }
+    },
+    {
+      "column": "birth_plurality",
+      "type": "map",
+      "start": 201,
+      "stop": 201,
+      "field": "Plurality or Multiple Birth",
+      "mappings": {
+        "1": "Single",
+        "2": "Twin",
+        "3": "Triplet",
+        "4": "Quadruplet",
+        "5": "Quintuplet or higher"
+      }
+    },
+    {
+      "column": "anemia",
+      "type": "map",
+      "start": 225,
+      "stop": 225,
+      "field": "Anemia",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "cardiac_disease",
+      "type": "map",
+      "start": 226,
+      "stop": 226,
+      "field": "Cardiac Disease",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "chronic_hypertension",
+      "type": "map",
+      "start": 232,
+      "stop": 232,
+      "field": "Chronic Hypertension",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "diabetes",
+      "type": "map",
+      "start": 228,
+      "stop": 228,
+      "field": "Diabetes",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "eclampsia",
+      "type": "map",
+      "start": 234,
+      "stop": 234,
+      "field": "Eclampsia",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "hydramnios_oligohydramnios",
+      "type": "map",
+      "start": 230,
+      "stop": 230,
+      "field": "Hydramnios / Oligohydramnios",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "incompetent_cervix",
+      "type": "map",
+      "start": 235,
+      "stop": 235,
+      "field": "Incompetent Cervix",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "lung_disease",
+      "type": "map",
+      "start": 227,
+      "stop": 227,
+      "field": "Lung Disease",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "pregnancy_hypertension",
+      "type": "map",
+      "start": 233,
+      "stop": 233,
+      "field": "Pregnancy Associated Hypertension",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "tobacco_use",
+      "type": "map",
+      "start": 242,
+      "stop": 242,
+      "field": "Tobacco use",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "9": "Unknown or not stated"
+      }
+    },
+    {
+      "column": "state",
+      "type": "map",
+      "start": 42,
+      "stop": 43,
+      "field": "State",
+      "mappings": {
+        "01": "AL",
+        "02": "AK",
+        "04": "AZ",
+        "05": "AR",
+        "06": "CA",
+        "08": "CO",
+        "09": "CT",
+        "10": "DE",
+        "11": "DC",
+        "12": "FL",
+        "13": "GA",
+        "15": "HI",
+        "16": "ID",
+        "17": "IL",
+        "18": "IN",
+        "19": "IA",
+        "20": "KS",
+        "21": "KY",
+        "22": "LA",
+        "23": "ME",
+        "24": "MD",
+        "25": "MA",
+        "26": "MI",
+        "27": "MN",
+        "28": "MS",
+        "29": "MO",
+        "30": "MT",
+        "31": "NE",
+        "32": "NV",
+        "33": "NH",
+        "34": "NJ",
+        "35": "NM",
+        "36": "NY",
+        "37": "NC",
+        "38": "ND",
+        "39": "OH",
+        "40": "OK",
+        "41": "OR",
+        "42": "PA",
+        "44": "RI",
+        "45": "SC",
+        "46": "SD",
+        "47": "TN",
+        "48": "TX",
+        "49": "UT",
+        "50": "VT",
+        "51": "VA",
+        "53": "WA",
+        "54": "WV",
+        "55": "WI",
+        "56": "WY"
+      }
     }
-  },
-  {
-    "column":"hispanic_origin",
-    "type":"map",
-    "start": 78,
-    "stop": 78,
-    "field": "Mother’s Hispanic Origin",
-    "mappings": {
-      "1": "Mexican",
-      "2": "Puerto Rican",
-      "3": "Cuban",
-      "4": "Central or South American",
-      "5": "Other and Unknown Hispanic",
-      "6": "Non-Hispanic White",
-      "7": "Non-Hispanic Black",
-      "8": "Non-Hispanic Other Races",
-      "9": "Origin unknown or not stated"
-    }
-  },
-  {
-    "column":"mother_age_5year_interval",
-    "type":"map",
-    "start": 76,
-    "stop": 76,
-    "field": "Age of Mother Recode 8",
-    "mappings": {
-      "1": "Under 15 years",
-      "2": "15-19 years",
-      "3": "20-24 years",
-      "4": "25-29 years",
-      "5": "30-34 years",
-      "6": "35-39 years",
-      "7": "40-44 years",
-      "8": "45-49 years",
-      "9": "50-54 years"
-    }
-  },
-  {
-    "column":"mother_education",
-    "type":"map",
-    "start": 85,
-    "stop": 85,
-    "field": "Mother’s Education",
-    "mappings": {
-      "1":"0 – 8 years",
-      "2":"9 – 11 years",
-      "3":"12 years",
-      "4":"13 – 15 years",
-      "5":"16 years and over",
-      "6":"Not stated"
-    }
-  },
-  {
-    "column":"current_year",
-    "type":"simple",
-    "start": 176,
-    "stop": 179,
-    "field": "Birth Year",
-    "mappings": {}
-  },
-  {
-	"column":"sex",
-	"type":"map",
-	"start": 189,
-	"stop": 189,
-	"field": "Sex of Infant",
-	"mappings": {
-	  "1": "Male",
-	  "2": "Female"
-	}
-  },
-  {
-	"column":"gestational_age_r10",
-	"type":"map",
-	"start": 185,
-	"stop": 186,
-	"field": "Gestational Age at Birth",
-	"mappings": {
-	  "01": "Under 20 weeks",
-	  "02": "20 - 27 weeks",
-	  "03": "28 - 31 weeks",
-	  "04": "32 - 35 weeks",
-	  "05": "36 weeks",
-	  "06": "37 - 39 weeks",
-	  "07": "40 weeks",
-	  "08": "41 weeks",
-	  "09": "42 weeks and over",
-	  "10": "Not stated"
-    }
-  },
-  {
-    "column":"prenatal_care",
-    "type": "map",
-    "start": 106,
-    "stop": 107,
-    "field": "Month Prenatal Care Began",
-    "mappings": {
-      "00": "No prenatal care",
-      "01": "1st month",
-      "02": "2nd month",
-      "03": "3rd month",
-      "04": "4th month",
-      "05": "5th month",
-      "06": "6th month",
-      "07": "7th month",
-      "08": "8th month",
-      "09": "9th month",
-      "99": "Unknown or not stated"
-    }
-  },
-  {
-    "column":"birth_weight_r12",
-    "type":"map",
-    "start": 197,
-    "stop": 198,
-    "field": "Birth Weight",
-    "mappings": {
-      "01": "499 grams or less",
-      "02": "500 - 999 grams",
-      "03": "1000 - 1499 grams",
-      "04": "1500 - 1999 grams",
-      "05": "2000 - 2499 grams",
-      "06": "2500 - 2999 grams",
-      "07": "3000 - 3499 grams",
-      "08": "3500 - 3999 grams",
-      "09": "4000 - 4499 grams",
-      "10": "4500 - 4999 grams",
-      "11": "5000 - 8165 grams",
-      "12": "Not Stated"
-    }
-  },
-  {
-    "column":"birth_plurality",
-    "type":"map",
-    "start": 201,
-    "stop": 201,
-    "field": "Plurality or Multiple Birth",
-    "mappings": {
-      "1": "Single",
-      "2": "Twin",
-      "3": "Triplet",
-      "4": "Quadruplet",
-      "5": "Quintuplet or higher"
-    }
-  },
-  {
-    "column":"anemia",
-    "type":"map",
-    "start": 225,
-    "stop": 225,
-    "field": "Anemia",
-    "mappings": {
-      "1": "Yes",
-      "2": "No",
-      "8": "Not on certificate",
-      "9": "Unknown"
-    }
-  },{
-    "column":"cardiac_disease",
-    "type":"map",
-    "start": 226,
-    "stop": 226,
-    "field": "Cardiac Disease",
-    "mappings": {
-      "1": "Yes",
-      "2": "No",
-      "8": "Not on certificate",
-      "9": "Unknown"
-    }
-  },
-  {
-    "column":"chronic_hypertension",
-    "type":"map",
-    "start": 232,
-    "stop": 232,
-    "field": "Chronic Hypertension",
-    "mappings": {
-      "1": "Yes",
-      "2": "No",
-      "8": "Not on certificate",
-      "9": "Unknown"
-    }
-  },
-  {
-    "column":"diabetes",
-    "type":"map",
-    "start": 228,
-    "stop": 228,
-    "field": "Diabetes",
-    "mappings": {
-      "1": "Yes",
-      "2": "No",
-      "8": "Not on certificate",
-      "9": "Unknown"
-    }
-  },
-  {
-    "column":"eclampsia",
-    "type":"map",
-    "start": 234,
-    "stop": 234,
-    "field": "Eclampsia",
-    "mappings": {
-      "1": "Yes",
-      "2": "No",
-      "8": "Not on certificate",
-      "9": "Unknown"
-    }
-  },
-  {
-    "column":"hydramnios_oligohydramnios",
-    "type":"map",
-    "start": 230,
-    "stop": 230,
-    "field": "Hydramnios / Oligohydramnios",
-    "mappings": {
-      "1": "Yes",
-      "2": "No",
-      "8": "Not on certificate",
-      "9": "Unknown"
-    }
-  },
-  {
-    "column":"incompetent_cervix",
-    "type":"map",
-    "start": 235,
-    "stop": 235,
-    "field": "Incompetent Cervix",
-    "mappings": {
-      "1": "Yes",
-      "2": "No",
-      "8": "Not on certificate",
-      "9": "Unknown"
-    }
-  },
-  {
-    "column":"lung_disease",
-    "type":"map",
-    "start": 227,
-    "stop": 227,
-    "field": "Lung Disease",
-    "mappings": {
-      "1": "Yes",
-      "2": "No",
-      "8": "Not on certificate",
-      "9": "Unknown"
-    }
-  },{
-    "column":"pregnancy_hypertension",
-    "type":"map",
-    "start": 233,
-    "stop": 233,
-    "field": "Pregnancy Associated Hypertension",
-    "mappings": {
-      "1": "Yes",
-      "2": "No",
-      "8": "Not on certificate",
-      "9": "Unknown"
-    }
-  },
-  {
-    "column":"tobacco_use",
-    "type":"map",
-    "start": 242,
-    "stop": 242,
-    "field": "Tobacco use",
-    "mappings": {
-      "1": "Yes",
-      "2": "No",
-      "9": "Unknown or not stated"
-    }
-  },
-  {
-    "column":"state",
-    "type":"map",
-    "start": 42,
-    "stop": 43,
-    "field": "State",
-    "mappings": {
-      "01": "AL",
-      "02": "AK",
-      "04": "AZ",
-      "05": "AR",
-      "06": "CA",
-      "08": "CO",
-      "09": "CT",
-      "10": "DE",
-      "11": "DC",
-      "12": "FL",
-      "13": "GA",
-      "15": "HI",
-      "16": "ID",
-      "17": "IL",
-      "18": "IN",
-      "19": "IA",
-      "20": "KS",
-      "21": "KY",
-      "22": "LA",
-      "23": "ME",
-      "24": "MD",
-      "25": "MA",
-      "26": "MI",
-      "27": "MN",
-      "28": "MS",
-      "29": "MO",
-      "30": "MT",
-      "31": "NE",
-      "32": "NV",
-      "33": "NH",
-      "34": "NJ",
-      "35": "NM",
-      "36": "NY",
-      "37": "NC",
-      "38": "ND",
-      "39": "OH",
-      "40": "OK",
-      "41": "OR",
-      "42": "PA",
-      "44": "RI",
-      "45": "SC",
-      "46": "SD",
-      "47": "TN",
-      "48": "TX",
-      "49": "UT",
-      "50": "VT",
-      "51": "VA",
-      "53": "WA",
-      "54": "WV",
-      "55": "WI",
-      "56": "WY"
-    }
-  }
-]
+  ]
+}
