@@ -400,30 +400,25 @@ function prepareQuestionTreeForYears(questions, years, prams) {
             qCategory = quesObj.subtopic;
         }
 
-        var addQuestionToCategoryAndList = function () {
-            if (quesObj.description !== undefined) {
-                var question = {text:quesObj.question +"("+quesObj.description+")", id:qKey};
-                qCategoryMap[qCategory].children.push(question);
-                //capture all questions into questionsList
-                questionsList.push({key : quesObj.question, qkey : qKey, title : quesObj.question +"("+quesObj.description+")"});
-            } else if(prams) {
-                //skip duplicate question keys
-                if(questionKeys.indexOf(qKey) >= 0) {
-                    return;
-                }
-                var question = {text:quesObj.question, id: qKey};
-                qCategoryMap[qCategory].children.push(question);
-                questionsList.push({key: quesObj.question, qkey: qKey, title: quesObj.question});
-                questionKeys.push(qKey);
-            }
-        };
-
         if (qCategory && qCategoryMap[qCategory] == undefined) {
             qCategoryMap[qCategory] = {id:'cat_'+catCount, text:qCategory, children:[]};
-            addQuestionToCategoryAndList();
             catCount = catCount + 1;
-        } else {
-            addQuestionToCategoryAndList();
+        }
+
+        if (quesObj.description !== undefined) {
+            var question = {text:quesObj.question +"("+quesObj.description+")", id:qKey};
+            qCategoryMap[qCategory].children.push(question);
+            //capture all questions into questionsList
+            questionsList.push({key : quesObj.question, qkey : qKey, title : quesObj.question +"("+quesObj.description+")"});
+        } else if(prams) {
+            //skip duplicate question keys
+            if(questionKeys.indexOf(qKey) >= 0) {
+                continue;
+            }
+            var question = {text:quesObj.question, id: qKey};
+            qCategoryMap[qCategory].children.push(question);
+            questionsList.push({key: quesObj.question, qkey: qKey, title: quesObj.question});
+            questionKeys.push(qKey);
         }
     }
 
