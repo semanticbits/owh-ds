@@ -44,10 +44,10 @@
          * @returns {Number}
          */
         function getValueFromData(filter, data) {
-            if(filter.tableView == "crude_death_rates" && data['pop']) {
+            if(data['pop'] && (filter.tableView == "crude_death_rates" || filter.tableView == "birth_rates" || filter.tableView == "fertility_rates")) {
                 return Math.round(data[filter.key] / data['pop'] * 1000000) / 10;
             }
-            else if(filter.tableView == "age-adjusted_death_rates" && data['ageAdjustedRate']){
+            else if(data['ageAdjustedRate'] && filter.tableView == "age-adjusted_death_rates"){
                 var ageAdjustedRate = parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));
                 //parsing string to return floating point number
                 return ageAdjustedRate == NaN ? data['ageAdjustedRate'] : ageAdjustedRate ;
@@ -70,6 +70,12 @@
                     break;
                 case "age-adjusted_death_rates":
                     return "Age Adjusted Death Rates";
+                    break;
+                case "birth_rates":
+                    return "Birth Rates";
+                    break;
+                case "fertility_rates":
+                    return "Fertility Rates";
                     break;
                 default:
                     return chartLabel;
