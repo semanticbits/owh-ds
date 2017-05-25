@@ -536,6 +536,24 @@ label.side-pane-label.custom-label a.custom-link i {
 	color: #999;
 	width: 20px;
 }
+label.side-pane-label.custom-label i {
+	font-size: 16px;
+	vertical-align: -1px;
+	margin-left: 3px;
+	margin-right: 5px;
+	color: #999;
+	width: 20px;
+}
+.sidebar-chevron {
+	width: 8%;
+}
+.sidebar-filter-label {
+	width: 47%;
+}
+.sidebar-switch {
+	width: 45%;
+}
+
 owh-toggle-switch a.active-link {
 	border-color: #ccc;
 	margin-top: 2px;
@@ -791,7 +809,7 @@ label.common-label {
 	border: none;
 	box-shadow: 0 10px 30px black;
 }
-.usa-sidenav-list label.custom-label > a > span {
+.usa-sidenav-list span.filter-display-name {
 	font-family: 'Merriweather';
 	font-size: 14px;
 	font-weight: bold;

@@ -34,32 +34,33 @@ Feature: Natality filters
     When I click on show less filters
     Then I see 2 filters visible
 
-  Scenario: Birth rates
+  Scenario: Birth rates - Disable filters when show me filter value changes
     When I change show me dropdown option to "Birth Rates"
     Then I should see filter type "Birth Rates" selected for show me dropdown
     And I should see a Birth rate statement above data table in natality page
-    And the data table must show Births, Population and Birth Rates
-
-  Scenario: Disable filters when show me filter value changes - Birth Rates
-    When I change show me dropdown option to "Birth Rates"
-    Then I see expected filters should be disabled for Birth Rates
+    And I see expected filters should be disabled for Birth Rates
     And years "2000", "2001", "2002" should be disabled for Year filter
+    And the data table must show Births, Population and Birth Rates
+    When  I select groupBy "Row" option for "State" filter
+    And user sees a visualization
+    Then labels "State" and "Birth Rates" are displayed on minimized visualization
+    When user expand visualization
+    Then labels "State" and "Birth Rates" are displayed on expanded visualization
 
-  Scenario: Fertility rates
+  Scenario: Fertility rates - Disable filters when show me filter value changes
     When I change show me dropdown option to "Fertility Rates"
     Then I should see filter type "Fertility Rates" selected for show me dropdown
-    And the data table must show Births, Female Population and Birth Rates
-
-  Scenario: Fertility rates for Mother's age 9
-    When I change show me dropdown option to "Fertility Rates"
-    And I expand "5-Year Age Groups" filter section
-    And  filter "5-Year Age Groups" and option "15-19 years" selected
-    And the data table should display values filtered by age selected
-
-  Scenario: Disable filters when show me filter value changes - Fertility Rates
-    When I change show me dropdown option to "Fertility Rates"
-    Then I see expected filters should be disabled for Fertility Rates
+    And I see expected filters should be disabled for Fertility Rates
     And years "2000", "2001", "2002" should be disabled for Year filter
+    And the data table must show Births, Female Population and Birth Rates
+    When I expand "5-Year Age Groups" filter section
+    And  filter "5-Year Age Groups" and option "15-19 years" selected
+    Then the data table should display values filtered by age selected
+    When  I select groupBy "Row" option for "State" filter
+    And user sees a visualization
+    Then labels "State" and "Fertility Rates" are displayed on minimized visualization
+    When user expand visualization
+    Then labels "State" and "Fertility Rates" are displayed on expanded visualization
 
   Scenario: Filter Name and Location
     When I see "Mother's Age" category in the sidebar
