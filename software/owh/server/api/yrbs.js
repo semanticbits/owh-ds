@@ -35,14 +35,14 @@ yrbs.prototype.invokeYRBSService = function(apiQuery){
         logger.info("YRBS service response received for all "+yrbsquery.length+" questions, duration(s)="+ duration/1000);
         var data = self.processYRBSReponses(resp, apiQuery.yrbsBasic, apiQuery.searchFor);
         //if 'Sexual Identity' or 'Sex of Sexual Contacts' option(s) selected
-        var isSexFilterSelected = 'sexid' in apiQuery.query || 'sexpart' in apiQuery.query;
+        var isSexualOrientationSelected = 'sexid' in apiQuery.query || 'sexpart' in apiQuery.query;
         //if only groupBy 'row' or 'column' selected for 'Sexual Identity' or 'Sex of Sexual Contacts' filters
         apiQuery.aggregations.nested.table.forEach(function(filter){
             if(filter.key == 'sexid' || filter.key == 'sexpart'){
-                isSexFilterSelected = true;
+                isSexualOrientationSelected = true;
             }
         });
-        searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexFilterSelected);
+        searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexualOrientationSelected);
         deferred.resolve(data);
     }, function (error) {
         deferred.reject(error);
