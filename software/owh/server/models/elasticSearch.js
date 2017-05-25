@@ -256,13 +256,14 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected)
     return deferred.promise;
 };
 
-ElasticClient.prototype.aggregateInfantMortalityData = function (query) {
+ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateSelected) {
     var client = this.getClient(infant_mortality_index);
     var deferred = Q.defer();
     if (query[0]) {
         this.executeESQuery(infant_mortality_index, infant_mortality_type, query[0])
             .then(function (response) {
                 var data = searchUtils.populateDataWithMappings(response, 'infant_mortality');
+                isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');
                 deferred.resolve(data);
             }, function (error) {
                 logger.error(error.message);
@@ -270,7 +271,7 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query) {
             });
     }
     return deferred.promise;
-}
+};
 
 ElasticClient.prototype.getQueryCache = function(query){
     var client = this.getClient(_queryIndex);
