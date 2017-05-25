@@ -176,9 +176,9 @@ Scenario: Crude Death rates population count should match with CDC for year 2000
   When I choose the option "Crude Death Rates"
   Then I should see Crude Deth Rates page
   When user sees a visualization
-  Then labels for "Crude Death Rates" are displayed on minimized visualization
+  Then labels "Race" and "Crude Death Rates" are displayed on minimized visualization
   When user expand visualization
-  Then labels for "Crude Death Rates" are displayed on expanded visualization
+  Then labels "Race" and "Crude Death Rates" are displayed on expanded visualization
   And user clicks on "+ 13 more" more link for "Year" filter
   Then I select "Year" value "2000"
   And I un-select "Year" value "2015"
@@ -206,10 +206,9 @@ Scenario: Suppression
 #  When the user chooses the option 'Age Adjusted Death Rates'
 #  Then the age adjusted rates are shown for each row
 #  When user sees a visualization
-#  Then labels for "Age Adjusted Death Rates" are displayed on minimized visualization
+#  Then labels "Race" and "Age Adjusted Death Rates" are displayed on minimized visualization
 #  When user expand visualization
-#  Then labels for "Age Adjusted Death Rates" are displayed on expanded visualization
-
+#  Then labels "Race" and "Age Adjusted Death Rates" are displayed on expanded visualization
   #When I update criteria in filter option with row "Ethnicity"
   #Then table should display Hispanic groups for Age Adjusted Death Rates
   #When I expand "Underlying Cause of Death" filter section

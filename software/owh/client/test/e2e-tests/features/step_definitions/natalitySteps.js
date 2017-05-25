@@ -53,7 +53,7 @@ var natalityStepsDefinitionWrapper = function () {
     this.Then(/^the data table must show Births, Population and Birth Rates$/, function (next) {
         natalityPage.getTableRowData(0).then(function(firstRowData){
             expect(firstRowData[0]).to.equals('American Indian or Alaska Native');
-            expect(firstRowData[1]).to.contains('Rate');
+            expect(firstRowData[1]).to.contains('Birth Rate');
             expect(firstRowData[1]).to.contains('967.7');
             expect(firstRowData[1]).to.contains('Births');
             expect(firstRowData[1]).to.contains('44,299');
@@ -102,7 +102,7 @@ var natalityStepsDefinitionWrapper = function () {
     this.Then(/^the data table must show Births, Female Population and Birth Rates$/, function (next) {
         natalityPage.getTableRowData(0).then(function(firstRowData){
             expect(firstRowData[0]).to.equals('American Indian or Alaska Native');
-            expect(firstRowData[1]).to.contains('Rate');
+            expect(firstRowData[1]).to.contains('Fertility Rate');
             expect(firstRowData[1]).to.contains('4,385.7');
             expect(firstRowData[1]).to.contains('Births');
             expect(firstRowData[1]).to.contains('44,299');
@@ -120,7 +120,7 @@ var natalityStepsDefinitionWrapper = function () {
     this.Then(/^the data table should display values filtered by age selected$/, function (next) {
         natalityPage.getTableRowData(0).then(function(firstRowData){
             expect(firstRowData[0]).to.equals('American Indian or Alaska Native');
-            expect(firstRowData[1]).to.contains('Rate');
+            expect(firstRowData[1]).to.contains('Fertility Rate');
             expect(firstRowData[1]).to.contains('2,574.6');
             expect(firstRowData[1]).to.contains('Births');
             expect(firstRowData[1]).to.contains('4,738');
@@ -324,7 +324,7 @@ var natalityStepsDefinitionWrapper = function () {
     this.Then(/^I see birth rate for state$/, function (next) {
         natalityPage.getTableRowData(0).then(function(firstRowData){
             expect(firstRowData[0]).to.equals('American Indian or Alaska Native');
-            expect(firstRowData[1]).to.contains('Rate');
+            expect(firstRowData[1]).to.contains('Birth Rate');
             expect(firstRowData[1]).to.contains('510.4');
             expect(firstRowData[1]).to.contains('Births');
             expect(firstRowData[1]).to.contains('190');
@@ -342,7 +342,7 @@ var natalityStepsDefinitionWrapper = function () {
     this.Then(/^I see fertility rates for state$/, function (next) {
         natalityPage.getTableRowData(0).then(function(firstRowData){
             expect(firstRowData[0]).to.equals('American Indian or Alaska Native');
-            expect(firstRowData[1]).to.contains('Rate');
+            expect(firstRowData[1]).to.contains('Fertility Rate');
             expect(firstRowData[1]).to.contains('2,429.7');
             expect(firstRowData[1]).to.contains('Births');
             expect(firstRowData[1]).to.contains('190');
