@@ -11,6 +11,7 @@ var YRBSSearchPage = function() {
     ysp.owhTable = element(by.className('owh-data-table'));
     ysp.sexualIdentity = element(by.partialLinkText('Sexual Identity'));
     ysp.sexualContact = element(by.partialLinkText('Sex of Sexual Contacts'));
+    ysp.raceOptionsLink = element(by.partialLinkText('Race/Ethnicity'));
 
     ysp.selectQuestionsButton = function(val){
         return element(by.cssContainingText('button', val));
@@ -41,11 +42,6 @@ var YRBSSearchPage = function() {
 
     ysp.getShowOnlyLinks = function() {
         return element.all(by.className('owh-question__show-only'));
-    };
-
-    ysp.selectSideFilter = function(filterType) {
-        var filter = element(by.className('side-filters')).element(by.xpath('.//*[.="'+filterType+'"]'));
-        return filter.element(by.xpath('..')).element(by.tagName('i'));
     };
 
     ysp.getQuestionContent = function() {

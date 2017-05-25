@@ -160,8 +160,8 @@ function search(q) {
     } else if (preparedQuery.apiQuery.searchFor === 'infant_mortality') {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
-        new elasticSearch().aggregateInfantMortalityData(sideFilterQuery).then(function (sideFilterResults) {
-            new elasticSearch().aggregateInfantMortalityData(finalQuery).then(function (response) {
+        new elasticSearch().aggregateInfantMortalityData(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
+            new elasticSearch().aggregateInfantMortalityData(finalQuery, isStateSelected).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
                 resData.resultData = response.data;

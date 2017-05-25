@@ -7,7 +7,8 @@ var expect = chai.expect;
 var yrbsStepDefinitionsWrapper = function () {
 
     this.setDefaultTimeout(600000);
-    var yrbsPage = require('../support/yrbspage.po')
+    var yrbsPage = require('../support/yrbspage.po');
+    var commonPage = require('../support/commonpage.po');
 
     this.When(/^I select YRBS as primary filter$/, function (next) {
         yrbsPage.yrbsOption.click().then(next);
@@ -26,7 +27,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on Show \# More under the questions in any category$/, function (next) {
-        element(by.cssContainingText('a', 'Show 18 More')).click()
+        element(by.cssContainingText('a', 'Show 19 More')).click()
             .then(next);
     });
 
@@ -118,29 +119,15 @@ var yrbsStepDefinitionsWrapper = function () {
 
 
     this.Then(/^I should be able to select more than one\. The radio buttons must be changed to checkboxes$/, function (next) {
-        var raceFilter = yrbsPage.selectSideFilter("Race/Ethnicity");
-        var raceParentElement = raceFilter.element(by.xpath('..')).element(by.xpath('..')).element(by.xpath('..'));
-        raceFilter.getAttribute('class').then(function(className){
-            if(className =="fa fa-chevron-right") {
-                //Exapnd filter
-                raceFilter.element(by.xpath('..')).click();
-            }
-            raceParentElement.element(by.xpath('.//*[.="Asian"]')).click();
-        });
+        yrbsPage.raceOptionsLink.click();
+        var raceFilter = commonPage.getFilterOptionContainerForFilter("Race/Ethnicity");
+        raceFilter.element(by.xpath('.//*[.="Asian"]')).click();
         browser.waitForAngular();
-        raceFilter.getAttribute('class').then(function(className){
-            if(className =="fa fa-chevron-right") {
-                //Exapnd filter
-                raceFilter.element(by.xpath('..')).click();
-            }
-            raceParentElement.element(by.xpath('.//*[.="American Indian or Alaska Native"]')).click();
-        }).then(next);
+        raceFilter.element(by.xpath('.//*[.="American Indian or Alaska Native"]')).click().then(next);
     });
 
     this.Then(/^the default filter pre\-selected should be Race$/, function () {
-        var raceFilter = element(by.className('side-filters')).element(by.xpath('.//*[.="Race/Ethnicity"]'));
-        var raceParentLabel = raceFilter.element(by.xpath('..')).element(by.xpath('..'));
-        var columnButton = raceParentLabel.element(by.tagName('owh-toggle-switch')).element(by.tagName('a'));
+        var columnButton = element(by.cssContainingText('div.sidebar-filter-label', 'Race/Ethnicity')).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.tagName('a'));
         expect(columnButton.getAttribute('class')).to.eventually.contains("selected");
     });
 
@@ -191,11 +178,10 @@ var yrbsStepDefinitionsWrapper = function () {
 
     });
 
-    this.Given(/^filter "([^"]*)" and option "([^"]*)" selected$/, function (filterName, option) {
-        var raceFilter = yrbsPage.selectSideFilter(filterName);
-        var raceParentElement = raceFilter.element(by.xpath('..')).element(by.xpath('..')).element(by.xpath('..'));
-        raceParentElement.element(by.xpath('.//*[.="'+option+'"]')).click();
-        return browser.waitForAngular();
+    this.Given(/^filter "([^"]*)" and option "([^"]*)" selected$/, function (filterName, option, next) {
+        var selectedFilter = commonPage.getFilterOptionContainerForFilter(filterName);
+        var selectedOption = selectedFilter.element(by.xpath('.//*[.="'+option+'"]'));
+        selectedOption.click().then(next);
     });
 
     this.Then(/^I see question categories in this order "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)"$/, function (questionCat1, questionCat2, questionCat3, questionCat4, questionCat5, questionCat6, questionCat7, questionCat8, next) {
@@ -368,11 +354,11 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^the results page \(yrbs data table\) should be refreshed to reflect "([^"]*)" filter with option "([^"]*)"$/, function (filterName, option) {
-        var raceFilter = yrbsPage.selectSideFilter(filterName);
+        var raceFilter = commonPage.getFilterOptionContainerForFilter(filterName);
         var raceParentElement = raceFilter.element(by.xpath('..')).element(by.xpath('..')).element(by.xpath('..'));
         expect(raceParentElement.element(by.xpath('.//*[.="'+option+'"]')).isSelected()).to.eventually.equal(true);
 
-        var raceFilter2 = yrbsPage.selectSideFilter("year");
+        var raceFilter2 = commonPage.getFilterOptionContainerForFilter("year");
         var raceParentElement2 = raceFilter2.element(by.xpath('..')).element(by.xpath('..')).element(by.xpath('..'));
         return expect(raceParentElement2.element(by.xpath('.//*[.="2015"]')).isSelected()).to.eventually.equal(true);
     });
@@ -453,7 +439,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I set "([^"]*)" filter "([^"]*)"$/, function (filter1, viewType1, next) {
-        element(by.cssContainingText('a', filter1)).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('span', viewType1)).click()
+        element(by.cssContainingText('div.sidebar-filter-label', filter1)).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('span', viewType1)).click()
             .then(next);
     });
 
