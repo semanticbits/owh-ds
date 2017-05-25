@@ -30,7 +30,7 @@ var NatalitySearchPage = function () {
     };
 
     nsp.selectSideFilter = function(filterType, viewType) {
-        return element(by.cssContainingText('a', filterType)).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('a', viewType));
+        return element(by.cssContainingText('div.sidebar-filter-label', filterType)).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('a', viewType));
     };
 
     nsp.getTableHeaders = function() {

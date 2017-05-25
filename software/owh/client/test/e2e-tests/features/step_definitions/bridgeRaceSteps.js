@@ -8,6 +8,7 @@ var BridgeRaceStepDefinitionsWrapper = function () {
 
     this.setDefaultTimeout(600000);
     var bridgeRacePage = require('../support/bridgerace.po');
+    var commonPage = require('../support/commonpage.po');
 
     this.Then(/^I see the data table with race, female, male and total table headers$/, function () {
         var dtTableHeaders = bridgeRacePage.getTableHeaders();
@@ -24,7 +25,7 @@ var BridgeRaceStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on row button in row-column switch for "([^"]*)"$/, function (arg1, next) {
-        bridgeRacePage.selectRowOrColumn(arg1, 'Row').click()
+        commonPage.getRowSwitchByFilterType(arg1).click()
             .then(next);
     });
 
