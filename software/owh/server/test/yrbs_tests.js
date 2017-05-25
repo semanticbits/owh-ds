@@ -1212,6 +1212,34 @@ describe("YRBS API", function () {
         });
     });
 
+    it("should get prams questions tree", function (){
+        return yrbs.getPramsQuestionsTree().then(function (response) {
+
+            expect(response.questionTree[0].text).to.eql("Abuse - Mental");
+            expect(response.questionTree[0].children.length).to.eql(1);
+            expect(response.questionTree[0].children[0].text).to.eql("(*PCH) During the 12 months before pregnancy  did your husband or partner threaten you  limit your activities against your will  or make you feel unsafe in any other way?");
+
+            expect(response.questionTree[1].text).to.eql("Abuse - Physical");
+            expect(response.questionTree[1].children.length).to.eql(8);
+            expect(response.questionTree[1].children[0].text).to.eql("(*PCH) During the 12 months before you got pregnant  did your husband or partner push  hit  slap, kick, choke, or physically hurt you in any other way?");
+            expect(response.questionTree[1].children[7].text).to.eql("Indicator of no physical abuse during pregnancy");
+
+            expect(response.questionTree[2].text).to.eql("Alcohol Use");
+            expect(response.questionTree[2].children.length).to.eql(5);
+            expect(response.questionTree[2].children[0].text).to.eql("(*PCH) Indicator of binge drinking (4+ drinks) during 3 months before pregnancy");
+            expect(response.questionTree[2].children[4].text).to.eql("Indicator of whether mother reported having any alcoholic drinks during the last 3 months of pregnancy");
+
+            //46 topics
+            expect(response.questionTree.length).to.eql(46);
+            //224 questions
+            expect(response.questionsList.length).to.eql(270);
+
+            yrbs.getPramsQuestionsTree().then(function (cachedResponse) {
+                expect(JSON.stringify(response)).to.eql(JSON.stringify(cachedResponse));
+            });
+        });
+    });
+
     function sortByKey(array, key, asc) {
         return array.sort(function(a, b) {
             var x = typeof(key) === 'function' ? key(a) : a[key];

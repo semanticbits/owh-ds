@@ -399,10 +399,8 @@ function prepareQuestionTreeForYears(questions, years, prams) {
         if(prams) {
             qCategory = quesObj.subtopic;
         }
-        if (qCategory && qCategoryMap[qCategory] == undefined) {
-            qCategoryMap[qCategory] = {id:'cat_'+catCount, text:qCategory, children:[]};
-            catCount = catCount + 1;
-        } else {
+
+        var addQuestionToCategoryAndList = function () {
             if (quesObj.description !== undefined) {
                 var question = {text:quesObj.question +"("+quesObj.description+")", id:qKey};
                 qCategoryMap[qCategory].children.push(question);
@@ -411,13 +409,21 @@ function prepareQuestionTreeForYears(questions, years, prams) {
             } else if(prams) {
                 //skip duplicate question keys
                 if(questionKeys.indexOf(qKey) >= 0) {
-                    continue;
+                    return;
                 }
                 var question = {text:quesObj.question, id: qKey};
                 qCategoryMap[qCategory].children.push(question);
                 questionsList.push({key: quesObj.question, qkey: qKey, title: quesObj.question});
                 questionKeys.push(qKey);
             }
+        };
+
+        if (qCategory && qCategoryMap[qCategory] == undefined) {
+            qCategoryMap[qCategory] = {id:'cat_'+catCount, text:qCategory, children:[]};
+            addQuestionToCategoryAndList();
+            catCount = catCount + 1;
+        } else {
+            addQuestionToCategoryAndList();
         }
     }
 
