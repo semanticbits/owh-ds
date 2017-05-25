@@ -2,7 +2,7 @@ var Q = require('q');
 var logger = require('../config/logging');
 var config = require('../config/config');
 var request = require('request');
-
+var searchUtils = require('../api/utils');
 var cahcedQuestions = null;
 var cachedPramsQuestions = null;
 function yrbs() {
@@ -33,7 +33,17 @@ yrbs.prototype.invokeYRBSService = function(apiQuery){
     Q.all(queryPromises).then(function(resp){
         var duration = new Date().getTime() - startTime;
         logger.info("YRBS service response received for all "+yrbsquery.length+" questions, duration(s)="+ duration/1000);
-        deferred.resolve(self.processYRBSReponses(resp, apiQuery.yrbsBasic, apiQuery.searchFor));
+        var data = self.processYRBSReponses(resp, apiQuery.yrbsBasic, apiQuery.searchFor);
+        //if 'Sexual Identity' or 'Sex of Sexual Contacts' option(s) selected
+        var isSexFilterSelected = 'sexid' in apiQuery.query || 'sexpart' in apiQuery.query;
+        //if only groupBy 'row' or 'column' selected for 'Sexual Identity' or 'Sex of Sexual Contacts' filters
+        apiQuery.aggregations.nested.table.forEach(function(filter){
+            if(filter.key == 'sexid' || filter.key == 'sexpart'){
+                isSexFilterSelected = true;
+            }
+        });
+        searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexFilterSelected);
+        deferred.resolve(data);
     }, function (error) {
         deferred.reject(error);
     });
