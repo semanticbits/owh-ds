@@ -36,3 +36,10 @@ Feature: Infant Mortality filters
     When I click on the "Education" filter and expand all available options
     Then I see the available options "8th grade or less|9th through 12th grade with no diploma|High school graduate or GED completed|Some college credit, but not a degree|Associate degree (AA,AS)|Bachelor’s degree (BA, AB, BS)|Master’s degree (MA, MS, MEng, MEd, MSW, MBA)|Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)|Unknown" for "Education"
     And I see the disabled options "0 – 8 years|9 – 11 years|12 years|13 – 15 years|16 years and over|Not stated|Not on certificate" for "Education"
+
+  Scenario: Infant Mortality Table Data Suppression for Alaska in 2000
+    When I select the option "2000" for "Year" and the option "Alaska" for "State"
+    Then the values in row "0" should be "Black or African American, Not Available, Suppressed, Suppressed"
+    And the values in row "1" should be "White, Unreliable, 20 (54.1%), 37"
+    And the values in row "2" should be "Hawaiian, Not Available, Suppressed, Suppressed"
+    And the values in row "3" should be "Other Asian, Suppressed, Not Available, Suppressed"
