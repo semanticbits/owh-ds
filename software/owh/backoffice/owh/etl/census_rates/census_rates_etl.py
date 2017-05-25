@@ -2,7 +2,7 @@ import os
 from random import randint
 from owh.etl.common.etl import ETL
 import logging
-from owh.etl.common.fixedwidthfile_parser import FixedWidthFileParser
+from owh.etl.common.datafile_parser import DataFileParser
 logger = logging.getLogger('census_etl')
 
 class CensusETL (ETL):
@@ -41,7 +41,7 @@ class CensusETL (ETL):
                 config_file =  os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2012_15_y1215.json')
             else:
                 config_file =  os.path.join(self.dataDirectory, 'data_mapping', f.replace(".txt", ".json"))
-            censusParser = FixedWidthFileParser(file_path, config_file)
+            censusParser = DataFileParser(file_path, config_file)
             stateAggregatedRecods = {}
             curState = None
             while True:
