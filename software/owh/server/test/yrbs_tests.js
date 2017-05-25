@@ -1231,7 +1231,7 @@ describe("YRBS API", function () {
 
             //46 topics
             expect(response.questionTree.length).to.eql(46);
-            //224 questions
+            //270 questions
             expect(response.questionsList.length).to.eql(270);
 
             yrbs.getPramsQuestionsTree().then(function (cachedResponse) {
