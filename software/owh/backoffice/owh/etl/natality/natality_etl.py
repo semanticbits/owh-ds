@@ -1,7 +1,7 @@
 import os
 from owh.etl.common.etl import ETL
 import logging
-from owh.etl.common.fixedwidthfile_parser import FixedWidthFileParser
+from owh.etl.common.datafile_parser import DataFileParser
 logger = logging.getLogger('natality_etl')
 
 # data mappings config file map for natality data files
@@ -42,7 +42,7 @@ class NatalityETL (ETL):
                 logger.warn("No mapping available for data file %s, skipping", file_path)
                 continue
 
-            natality_parser = FixedWidthFileParser(file_path, config_file)
+            natality_parser = DataFileParser(file_path, config_file)
             while True:
                 record  = natality_parser.parseNextLine()
                 if not record:

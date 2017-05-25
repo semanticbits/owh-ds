@@ -1,248 +1,251 @@
-[
-  {
-    "column":"state",
-    "type":"map",
-    "start": 9,
-    "stop": 10,
-    "field": "State",
-    "mappings": {
-      "01": "AL",
-      "02": "AK",
-      "04": "AZ",
-      "05": "AR",
-      "06": "CA",
-      "08": "CO",
-      "09": "CT",
-      "10": "DE",
-      "11": "DC",
-      "12": "FL",
-      "13": "GA",
-      "15": "HI",
-      "16": "ID",
-      "17": "IL",
-      "18": "IN",
-      "19": "IA",
-      "20": "KS",
-      "21": "KY",
-      "22": "LA",
-      "23": "ME",
-      "24": "MD",
-      "25": "MA",
-      "26": "MI",
-      "27": "MN",
-      "28": "MS",
-      "29": "MO",
-      "30": "MT",
-      "31": "NE",
-      "32": "NV",
-      "33": "NH",
-      "34": "NJ",
-      "35": "NM",
-      "36": "NY",
-      "37": "NC",
-      "38": "ND",
-      "39": "OH",
-      "40": "OK",
-      "41": "OR",
-      "42": "PA",
-      "44": "RI",
-      "45": "SC",
-      "46": "SD",
-      "47": "TN",
-      "48": "TX",
-      "49": "UT",
-      "50": "VT",
-      "51": "VA",
-      "53": "WA",
-      "54": "WV",
-      "55": "WI",
-      "56": "WY"
-    }
-  },
-  {
-    "column":"age",
-    "type":"simple",
-    "start": 14,
-    "stop": 15,
-    "field": "Age",
-    "mappings": {}
-  },
-  {
-    "column": "mother_age_1year_interval",
-    "type":"map",
-    "start": 14,
-    "stop": 15,
-    "field": "Age",
-    "mappings": {
-      "15": "15 years",
-      "16": "16 years",
-      "17": "17 years",
-      "18": "18 years",
-      "19": "19 years",
-      "20": "20 years",
-      "21": "21 years",
-      "22": "22 years",
-      "23": "23 years",
-      "24": "24 years",
-      "25": "25 years",
-      "26": "26 years",
-      "27": "27 years",
-      "28": "28 years",
-      "29": "29 years",
-      "30": "30 years",
-      "31": "31 years",
-      "32": "32 years",
-      "33": "33 years",
-      "34": "34 years",
-      "35": "35 years",
-      "36": "36 years",
-      "37": "37 years",
-      "38": "38 years",
-      "39": "39 years",
-      "40": "40 years",
-      "41": "41 years",
-      "42": "42 years",
-      "43": "43 years",
-      "44": "44 years"
-    }
-  },
-  {
-    "column": "age_5_interval",
-    "type":"range",
-    "start": 14,
-    "stop": 15,
-    "field": "Age Groups",
-    "mappings": {
-      "00-04": "0-4 years",
-      "05-09": "5-9 years",
-      "10-14": "10-14 years",
-      "15-19": "15-19 years",
-      "20-24": "20-24 years",
-      "25-29": "25-29 years",
-      "30-34": "30-34 years",
-      "35-39": "35-39 years",
-      "40-44": "40-44 years",
-      "45-49": "45-49 years",
-      "50-54": "50-54 years",
-      "55-59": "55-59 years",
-      "60-64": "60-64 years",
-      "65-69": "65-69 years",
-      "70-74": "70-74 years",
-      "75-79": "75-79 years",
-      "80-84": "80-84 years",
-      "85-105": "85+ years"
-    }
-  },
-  {
-    "column": "mother_age_5year_interval",
-    "type":"range",
-    "start": 14,
-    "stop": 15,
-    "field": "Age Groups",
-    "mappings": {
-      "15-19": "15-19 years",
-      "20-24": "20-24 years",
-      "25-29": "25-29 years",
-      "30-34": "30-34 years",
-      "35-39": "35-39 years",
-      "40-44": "40-44 years"
-    }
-  },
-  {
-    "columns":[
-      "race",
-      "sex"
-    ],
-    "type":"split",
-    "start":16,
-    "stop":16,
-    "field":"Bridged-race-sex",
-    "mappings":{
-      "1":{
-        "race":"White",
-        "sex":"Male"
-      },
-      "2":{
-        "race":"White",
-        "sex":"Female"
-      },
-      "3":{
-        "race":"Black",
-        "sex":"Male"
-      },
-      "4":{
-        "race":"Black",
-        "sex":"Female"
-      },
-      "5":{
-        "race":"American Indian",
-        "sex":"Male"
-      },
-      "6":{
-        "race":"American Indian",
-        "sex":"Female"
-      },
-      "7":{
-        "race":"Asian or Pacific Islander",
-        "sex":"Male"
-      },
-      "8":{
-        "race":"Asian or Pacific Islander",
-        "sex":"Female"
+{
+  "datafiletype": "fwf",
+  "columns": [
+    {
+      "column": "state",
+      "type": "map",
+      "start": 9,
+      "stop": 10,
+      "field": "State",
+      "mappings": {
+        "01": "AL",
+        "02": "AK",
+        "04": "AZ",
+        "05": "AR",
+        "06": "CA",
+        "08": "CO",
+        "09": "CT",
+        "10": "DE",
+        "11": "DC",
+        "12": "FL",
+        "13": "GA",
+        "15": "HI",
+        "16": "ID",
+        "17": "IL",
+        "18": "IN",
+        "19": "IA",
+        "20": "KS",
+        "21": "KY",
+        "22": "LA",
+        "23": "ME",
+        "24": "MD",
+        "25": "MA",
+        "26": "MI",
+        "27": "MN",
+        "28": "MS",
+        "29": "MO",
+        "30": "MT",
+        "31": "NE",
+        "32": "NV",
+        "33": "NH",
+        "34": "NJ",
+        "35": "NM",
+        "36": "NY",
+        "37": "NC",
+        "38": "ND",
+        "39": "OH",
+        "40": "OK",
+        "41": "OR",
+        "42": "PA",
+        "44": "RI",
+        "45": "SC",
+        "46": "SD",
+        "47": "TN",
+        "48": "TX",
+        "49": "UT",
+        "50": "VT",
+        "51": "VA",
+        "53": "WA",
+        "54": "WV",
+        "55": "WI",
+        "56": "WY"
       }
-    }
-  },
-  {
-    "column":"ethnicity_group",
-    "type":"map",
-    "start": 17,
-    "stop": 17,
-    "field": "Hispanic origin",
-    "mappings": {
-      "1":"Non-Hispanic",
-      "2":"Hispanic"
-    }
-  },
-  {
-    "column":"pop",
-    "type":"union",
-    "index_column":"current_year",
-    "fields":[
-      {
-        "start":18,
-        "stop":25,
-        "index_value":"2005",
-        "field":"Population estimate for July 1, 2005",
-        "mappings":{}
-      },
-      {
-        "start":26,
-        "stop":33,
-        "index_value":"2006",
-        "field":"Population estimate for July 1, 2006",
-        "mappings":{}
-      },
-      {
-        "start":34,
-        "stop":41,
-        "index_value":"2007",
-        "field":"Population estimate for July 1, 2007",
-        "mappings":{}
-      },
-      {
-        "start":42,
-        "stop":49,
-        "index_value":"2008",
-        "field":"Population estimate for July 1, 2008",
-        "mappings":{}
-      },
-      {
-        "start":50,
-        "stop":57,
-        "index_value":"2009",
-        "field":"Population estimate for July 1, 2009",
-        "mappings":{}
+    },
+    {
+      "column": "age",
+      "type": "simple",
+      "start": 14,
+      "stop": 15,
+      "field": "Age",
+      "mappings": {}
+    },
+    {
+      "column": "mother_age_1year_interval",
+      "type": "map",
+      "start": 14,
+      "stop": 15,
+      "field": "Age",
+      "mappings": {
+        "15": "15 years",
+        "16": "16 years",
+        "17": "17 years",
+        "18": "18 years",
+        "19": "19 years",
+        "20": "20 years",
+        "21": "21 years",
+        "22": "22 years",
+        "23": "23 years",
+        "24": "24 years",
+        "25": "25 years",
+        "26": "26 years",
+        "27": "27 years",
+        "28": "28 years",
+        "29": "29 years",
+        "30": "30 years",
+        "31": "31 years",
+        "32": "32 years",
+        "33": "33 years",
+        "34": "34 years",
+        "35": "35 years",
+        "36": "36 years",
+        "37": "37 years",
+        "38": "38 years",
+        "39": "39 years",
+        "40": "40 years",
+        "41": "41 years",
+        "42": "42 years",
+        "43": "43 years",
+        "44": "44 years"
       }
-    ]
-  }
-]
+    },
+    {
+      "column": "age_5_interval",
+      "type": "range",
+      "start": 14,
+      "stop": 15,
+      "field": "Age Groups",
+      "mappings": {
+        "00-04": "0-4 years",
+        "05-09": "5-9 years",
+        "10-14": "10-14 years",
+        "15-19": "15-19 years",
+        "20-24": "20-24 years",
+        "25-29": "25-29 years",
+        "30-34": "30-34 years",
+        "35-39": "35-39 years",
+        "40-44": "40-44 years",
+        "45-49": "45-49 years",
+        "50-54": "50-54 years",
+        "55-59": "55-59 years",
+        "60-64": "60-64 years",
+        "65-69": "65-69 years",
+        "70-74": "70-74 years",
+        "75-79": "75-79 years",
+        "80-84": "80-84 years",
+        "85-105": "85+ years"
+      }
+    },
+    {
+      "column": "mother_age_5year_interval",
+      "type": "range",
+      "start": 14,
+      "stop": 15,
+      "field": "Age Groups",
+      "mappings": {
+        "15-19": "15-19 years",
+        "20-24": "20-24 years",
+        "25-29": "25-29 years",
+        "30-34": "30-34 years",
+        "35-39": "35-39 years",
+        "40-44": "40-44 years"
+      }
+    },
+    {
+      "columns": [
+        "race",
+        "sex"
+      ],
+      "type": "split",
+      "start": 16,
+      "stop": 16,
+      "field": "Bridged-race-sex",
+      "mappings": {
+        "1": {
+          "race": "White",
+          "sex": "Male"
+        },
+        "2": {
+          "race": "White",
+          "sex": "Female"
+        },
+        "3": {
+          "race": "Black",
+          "sex": "Male"
+        },
+        "4": {
+          "race": "Black",
+          "sex": "Female"
+        },
+        "5": {
+          "race": "American Indian",
+          "sex": "Male"
+        },
+        "6": {
+          "race": "American Indian",
+          "sex": "Female"
+        },
+        "7": {
+          "race": "Asian or Pacific Islander",
+          "sex": "Male"
+        },
+        "8": {
+          "race": "Asian or Pacific Islander",
+          "sex": "Female"
+        }
+      }
+    },
+    {
+      "column": "ethnicity_group",
+      "type": "map",
+      "start": 17,
+      "stop": 17,
+      "field": "Hispanic origin",
+      "mappings": {
+        "1": "Non-Hispanic",
+        "2": "Hispanic"
+      }
+    },
+    {
+      "column": "pop",
+      "type": "union",
+      "index_column": "current_year",
+      "fields": [
+        {
+          "start": 18,
+          "stop": 25,
+          "index_value": "2005",
+          "field": "Population estimate for July 1, 2005",
+          "mappings": {}
+        },
+        {
+          "start": 26,
+          "stop": 33,
+          "index_value": "2006",
+          "field": "Population estimate for July 1, 2006",
+          "mappings": {}
+        },
+        {
+          "start": 34,
+          "stop": 41,
+          "index_value": "2007",
+          "field": "Population estimate for July 1, 2007",
+          "mappings": {}
+        },
+        {
+          "start": 42,
+          "stop": 49,
+          "index_value": "2008",
+          "field": "Population estimate for July 1, 2008",
+          "mappings": {}
+        },
+        {
+          "start": 50,
+          "stop": 57,
+          "index_value": "2009",
+          "field": "Population estimate for July 1, 2009",
+          "mappings": {}
+        }
+      ]
+    }
+  ]
+}

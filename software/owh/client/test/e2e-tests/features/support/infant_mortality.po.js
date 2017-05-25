@@ -51,6 +51,20 @@ var InfantMortalityPage = function () {
             });
     };
 
+    imp.clickOptionForFilter = function (target_filter, option) {
+        return imp.getFilter(target_filter)
+            .element(by.xpath('..'))
+            .element(by.tagName('ul')).all(by.className('count-label'))
+            .filter(function (label) {
+                return label.getText().then(function (text) {
+                    return text === option;
+                });
+            })
+            .first()
+            .element(by.xpath('ancestor::label'))
+            .click();
+    };
+
     // Sidebar Category Elements and Actions
     imp.getCategories = function() {
         return element.all(by.className('filter-category')).map(function (category) {
