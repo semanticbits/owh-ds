@@ -996,5 +996,39 @@ var mortalityStepDefinitionsWrapper = function () {
             expect(elements[3].getText()).to.eventually.contains('3.0');
         }).then(next);
     });
+
+    this.When(/^I select Age Groups from '20' to '100'$/, function (next) {
+        element(by.className('jslider-scale')).all(by.tagName('span')).then(function(elements){
+             elements[5].click();
+        }).then(next);
+    });
+
+    this.Then(/^Age Group values "([^"]*)" and "([^"]*)" should be displayed on slider$/, function (arg1, arg2, next) {
+        element.all(by.className('jslider-value')).then(function(elements){
+            expect(elements[0].getText()).to.eventually.equal(arg1);
+            expect(elements[1].getText()).to.eventually.equal(arg2);
+        }).then(next);
+    });
+
+    this.Then(/^mortality data table should display results for Age Group$/, function () {
+        mortalityPage.getTableRowDataCells(0).then(function (elements) {
+            expect(elements[0].getText()).to.eventually.equal('American Indian or Alaska Native');
+            //15 - 19 years
+            expect(elements[1].getText()).to.eventually.contains('Not Available');
+            //20 - 24 years
+            expect(elements[2].getText()).to.eventually.contains('Suppressed');
+            //25 - 29 years
+            expect(elements[3].getText()).to.eventually.contains('Not Available');
+        });
+        mortalityPage.getTableRowDataCells(2).then(function (elements) {
+            expect(elements[0].getText()).to.eventually.equal('Black or African American');
+            //15 - 19 years
+            expect(elements[1].getText()).to.eventually.contains('83 (0.7%)');
+            //20 - 24 years
+            expect(elements[2].getText()).to.eventually.contains('169 (1.5%)');
+            //25 - 29 years
+            expect(elements[3].getText()).to.eventually.contains('187 (1.6%)');
+        });
+    });
 };
 module.exports = mortalityStepDefinitionsWrapper;
