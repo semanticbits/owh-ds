@@ -229,7 +229,7 @@ Scenario: show chart for each question
     #  |  Sexual Identity        |  Heterosexual (straight), Gay or Lesbian, Bisexual, Not Sure      | Bisexual          |
     #  |  Sexual Contact         |  Opposite Sex Only, Same Sex Only, Both Sexes, No Sexual Contact  | Opposite Sex Only |
 
-  Scenario: Show/Hide Confidence Intervals for variance filter
+  Scenario: Show/Hide Confidence Intervals for variance filter - YRBS Basic Search
     Given I am on search page
     When I select YRBS as primary filter
     Then I should get search page with default filter type "Youth Risk Behavior"
@@ -240,11 +240,24 @@ Scenario: show chart for each question
     Then "Show" button for Confidence Intervals should be remain selected
     And Confidence Intervals value in data table should be updated
 
-  Scenario: Show/Hide Unweighted Frequency for variance filter
+  Scenario: Show/Hide Unweighted Frequency for variance filter  - YRBS Basic Search
     When I click on Unweighted Frequency option's "Show" button
     Then "Show" button for Unweighted Frequency should be remain selected
     And I see Unweighted Frequency value in data table
     And I set "Sex" filter "Off"
     Then "Show" button for Unweighted Frequency should be remain selected
     And  Unweighted Frequency value in data table should be updated
+
+  Scenario: Show/Hide Confidence Intervals and Unweighted Frequency for variance filter - YRBS Advanced Search
+    When I click on the "Switch to Advanced Search" link
+    When I click on "Select Questions" button
+    And I select a few questions and clicks on the Add Selected Question(s) button
+    Then "Show" button for Confidence Intervals should be remain selected
+    And "Show" button for Unweighted Frequency should be remain selected
+    And I see both Confidence Intervals and Unweighted Frequency values in data table
+    When I set "Sex of Sexual Contacts" filter "Column"
+    And I expand "Sexual Identity" filter section
+    And  filter "Sexual Identity" and option "Heterosexual (straight)" selected
+    And I click on run query button
+    Then results in yrbs data table should be suppressed
 

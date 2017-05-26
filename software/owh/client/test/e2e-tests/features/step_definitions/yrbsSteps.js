@@ -615,6 +615,8 @@ var yrbsStepDefinitionsWrapper = function () {
         yrbsPage.getTableRowData(1).then(function(text) {
             expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
             //American Indian or Alaska Native
+            expect(text[1]).to.contains('Suppressed');
+            //Asian
             expect(text[2]).to.contains('13.5');
             //Confidence Intervals
             expect(text[2]).to.contains('(10.3-17.6)');
@@ -625,6 +627,10 @@ var yrbsStepDefinitionsWrapper = function () {
         yrbsPage.getTableRowData(1).then(function(text) {
             expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
             //American Indian or Alaska Native
+            expect(text[1]).to.contains('Suppressed');
+            //Unweighted Frequency < 100
+            expect(text[1]).to.contains('58');
+            //Asian
             expect(text[2]).to.contains('13.5');
             //Confidence Intervals
             expect(text[2]).to.contains('(10.3-17.6)');
@@ -651,6 +657,36 @@ var yrbsStepDefinitionsWrapper = function () {
 
     this.When(/^I click on Unweighted Frequency option's "([^"]*)" button$/, function (arg, next) {
         element.all(by.className('owh-side-menu__utility-option')).last().element(by.cssContainingText('span', arg)).click().then(next);
+    });
+
+    this.Then(/^I see both Confidence Intervals and Unweighted Frequency values in data table$/, function (next) {
+        yrbsPage.getTableRowData(1).then(function(text) {
+            expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            //American Indian or Alaska Native
+            expect(text[1]).to.contains('46.0');
+            //Confidence Intervals
+            expect(text[1]).to.contains('(30.5-62.3)');
+            //Unweighted Frequency
+            expect(text[1]).to.contains('143');
+            //Native Hawaiian or Other Pacific Islander
+            expect(text[5]).to.contains('Suppressed');
+            //Unweighted Frequency < 100
+            expect(text[5]).to.contains('84');
+        }).then(next);
+    });
+
+    this.Then(/^results in yrbs data table should be suppressed$/, function (next) {
+        yrbsPage.getTableRowData(1).then(function(text) {
+            expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            //American Indian or Alaska Native - Same Sex Only
+            expect(text[8]).to.contains('Suppressed');
+            //Unweighted Frequency < 30
+            expect(text[8]).to.contains('0');
+            //Asian - Same Sex Only
+            expect(text[9]).to.contains('Suppressed');
+            //Unweighted Frequency < 30
+            expect(text[9]).to.contains('2');
+        }).then(next);
     });
 };
 module.exports = yrbsStepDefinitionsWrapper;

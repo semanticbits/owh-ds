@@ -1143,7 +1143,7 @@ describe("YRBS API", function () {
             expect(race[0].name).to.eql("Black or African American");
             expect(race[1].name).to.eql("White");
             var b = sortByKey(race[0].sitecode, 'name', true);
-            expect(b).to.eql([{"name":"CA","mental_health":{"mean":"90.1","ci_l":"76.8","ci_u":"96.1","count":38}}, {"name":"MO","mental_health":{"mean":"92.8","ci_l":"90.2","ci_u":"94.7","count":1395}}]);
+            expect(b).to.eql([{"name":"CA","mental_health":{"mean":"suppressed","ci_l":"76.8","ci_u":"96.1","count":38}}, {"name":"MO","mental_health":{"mean":"92.8","ci_l":"90.2","ci_u":"94.7","count":1395}}]);
             var w = sortByKey(race[1].sitecode, 'name', true);
             expect(w).to.eql([{"name":"CA","mental_health":{"mean":"48.8","ci_l":"37.8","ci_u":"59.9","count":240}}, {"name":"MO","mental_health":{"mean":"87.8","ci_l":"85.1","ci_u":"90.1","count":8483}}]);
         });
@@ -1183,9 +1183,9 @@ describe("YRBS API", function () {
             "sexid":{"key":"sexid","queryKey":"sexid","value":["Heterosexual"],"primary":false},
             "question.path":{"key":"question","queryKey":"question.key","value":["qn64"],"primary":false}},"aggregations":{"simple":[],
             "nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"yrbsRace","queryKey":"race","size":0}],
-            "charts":[], "maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}},"yrbsBasic":true, "pagination":{"from":0,"size":10000}};
+            "charts":[], "maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}}, "pagination":{"from":0,"size":10000}};
         return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
-            expect(resp).to.eql({"table":{"question":[{"name":"qn64","race":[{"name":"Black or African American","mental_health":{"mean":"21.8","ci_l":"13.7","ci_u":"32.9","count":458}},{"name":"Native Hawaiian/other PI","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":18}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"18.7","ci_l":"12.5","ci_u":"27.1","count":202}},{"name":"White","mental_health":{"mean":"19.3","ci_l":"17.1","ci_u":"21.7","count":1899}},{"name":"Asian","mental_health":{"mean":"0","ci_l":"0","ci_u":"0","count":90}},{"name":"Hispanic/Latino","mental_health":{"mean":"22.8","ci_l":"19.7","ci_u":"26.3","count":1375}},{"name":"Am Indian / Alaska Native","mental_health":{"mean":"0","ci_l":"0","ci_u":"0","count":56}}],"mental_health":{"mean":"20.6","ci_l":"18.9","ci_u":"22.5","count":4160}}]}});
+            expect(resp).to.eql({"table":{"question":[{"name":"qn64","mental_health":{"mean":"20.0","ci_l":"18.0","ci_u":"22.1","count":3637},"race":[{"name":"Hispanic/Latino","mental_health":{"mean":"21.7","ci_l":"18.7","ci_u":"25.1","count":1211}},{"name":"White","mental_health":{"mean":"19.3","ci_l":"16.5","ci_u":"22.5","count":1664}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"13.8","ci_l":"9.0","ci_u":"20.7","count":166}},{"name":"Native Hawaiian/other PI","mental_health":{"mean":"suppressed","ci_l":"7.6","ci_u":"59.3","count":16}},{"name":"Asian","mental_health":{"mean":"15.8","ci_l":"5.8","ci_u":"36.4","count":81}},{"name":"Am Indian / Alaska Native","mental_health":{"mean":"38.7","ci_l":"22.7","ci_u":"57.6","count":50}},{"name":"Black or African American","mental_health":{"mean":"21.0","ci_l":"14.1","ci_u":"30.0","count":394}}]}]}});
         });
     });
 
