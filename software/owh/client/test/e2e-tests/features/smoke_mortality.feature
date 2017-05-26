@@ -24,8 +24,7 @@ Scenario: Observe default "Detailed Mortality" page
 Scenario: Observe default "Detailed Mortality" sidebar filters
 #  Given I am on search page
   Then I see "Year" as first option in sidebar filters
-  And  filter "Year" and option "" selected
-  And  filter "Year" and option "" selected
+#  And I see filter Year and option 2015 selected
 #  And I make observations for all other enabled filters
 
 Scenario: Observe default "Detailed Mortality" visualizations
@@ -48,7 +47,7 @@ Scenario: Observe default "Detailed Mortality" with "Crude Death Rates" sidebar 
   When I choose the option "Crude Death Rates"
   Then I should see Crude Deth Rates page
   When user sees a visualization
-  Then labels for "Crude Death Rates" are displayed on minimized visualization
+#  Then labels for "Crude Death Rates" are displayed on minimized visualization
 #  And I should observe "2015" option is selected in "Year" filter
 
 Scenario: Observe default "Detailed Mortality" with "Age Adjusted Death Rates" sidebar filters
@@ -56,4 +55,4 @@ Scenario: Observe default "Detailed Mortality" with "Age Adjusted Death Rates" s
   When the user chooses the option 'Age Adjusted Death Rates'
   Then the age adjusted rates are shown for each row
   When user sees a visualization
-  Then labels for "Age Adjusted Death Rates" are displayed on minimized visualization
+#  Then labels for "Age Adjusted Death Rates" are displayed on minimized visualization
