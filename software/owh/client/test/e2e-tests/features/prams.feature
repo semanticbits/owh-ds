@@ -8,7 +8,6 @@ Feature: PRAMS filters
     Given I am on search page
     When I select PRAMS as primary filter
     Then I see 'By' filter pre-selected with State and Question
-    And  I see class- Delivery
     And  I see state data displayed in data table
 
   Scenario: Visualizations
