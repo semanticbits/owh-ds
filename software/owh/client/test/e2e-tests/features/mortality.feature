@@ -191,7 +191,6 @@ Scenario: Crude Death rates population count should match with CDC for year 2000
   When user select "All" option in "Year" filter
   #Then data table should display right population count for year 'All' filter
 
-  @Only
 Scenario: Suppression
   Given I am on search page
   And I expands the State filter
