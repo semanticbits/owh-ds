@@ -105,7 +105,7 @@
         function findFilterByKeyAndValue(a, key, value) {
             if (a) {
                 for (var i = 0; i < a.length; i++) {
-                    var filter = a[i].filters;
+                    var filter = a[i];
                     if ( filter[key] && filter[key] === value ) {return a[i];}
                 }
             }
@@ -120,8 +120,8 @@
          * @returns {*}
          */
         function isFilterApplied(a) {
-            if (a && a.filters) {
-                return a.filters.value.length > 0;
+            if (a) {
+                return a.value.length > 0;
             }
             return false;
         }
@@ -511,9 +511,8 @@
                 angular.forEach(eachHeader.autoCompleteOptions, function(matchedOption, index) {
 
                     var key = (countKey === 'mental_health' || countKey === 'prams')?matchedOption.qkey:matchedOption.key;
-                    var eachData = findByKeyAndValue(eachHeaderData, 'name', key);
                     if(countKey === 'prams') {
-                        eachData = findAllByKeyAndValue(eachHeaderData, 'name', key);
+                        var eachData = findAllByKeyAndValue(eachHeaderData, 'name', key);
                         if(eachData.length === 0) {
                             return;
                         }
@@ -564,6 +563,7 @@
                                 var eachTableRow = {
                                     title: '',
                                     isCount: false,
+                                    isNotQuestionCell: true,
                                     rowspan: 1,
                                     colspan: 1,
                                     key: matchedOption.key,
@@ -578,6 +578,7 @@
                             }
                         });
                     } else {
+                        var eachData = findByKeyAndValue(eachHeaderData, 'name', key);
                         if(!eachData) {
                             return;
                         }
@@ -893,15 +894,22 @@
         /**
          * Enables/disables side filters and filter options based on the dataser metadata
          * @param filter filter to be used for the querying ds metadata
-         * @param sideFilters sidefilters to be updated
+         * @param categories sidefilter categories
          * @param datasetname name of dataset          */
-        function refreshFilterAndOptions(filter, sideFilters, datasetname) {
+        function refreshFilterAndOptions(filter, categories, datasetname) {
+            var sideFilters = [];
+            angular.forEach(categories, function (category) {
+                sideFilters = sideFilters.concat(category.sideFilters);
+            });
             var filterName = filter.queryKey;
             var filterValue = filter.value;
             SearchService.getDsMetadata(datasetname, filterValue ? filterValue.join(',') : null).then(function (response) {
                 var newFilters = response.data;
                 for (var f=0; f < sideFilters.length; f++) {
                     var fkey = sideFilters[f].filters.queryKey;
+                    if (fkey === 'ethnicity_group' && datasetname == 'deaths') {
+                       fkey = 'hispanic_origin';
+                    }
                     if (fkey !== filterName) {
                         if (fkey in newFilters) {
                             sideFilters[f].disabled = false;
@@ -913,7 +921,7 @@
                                     }
                                     //below condition only disable filters which are not parent(with no child filters) and
                                     // not found in response metadata.
-                                    else if(!fopts[opt].group) {
+                                    else if(!fopts[opt].group && fopts[opt].key != 'Hispanic') {
                                         fopts[opt].disabled = true;
                                     }
                                 }

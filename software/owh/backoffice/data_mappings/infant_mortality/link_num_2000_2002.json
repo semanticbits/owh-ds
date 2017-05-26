@@ -1,0 +1,392 @@
+{
+  "datafiletype": "fwf",
+  "columns": [
+    {
+      "type": "simple",
+      "column": "residence",
+      "start": 11,
+      "stop": 11,
+      "field": "Resident Status"
+    },
+    {
+      "type": "simple",
+      "column": "year_of_death",
+      "start": 524,
+      "stop": 527,
+      "field": "Year of death"
+    },
+    {
+      "type": "map",
+      "column": "hispanic_origin",
+      "start": 34,
+      "stop": 34,
+      "field": "Hispanic Origin",
+      "mappings": {
+        "1": "Mexican",
+        "2": "Puerto Rican",
+        "3": "Cuban",
+        "4": "Central or South American",
+        "5": "Other and Unknown Hispanic",
+        "6": "Non-Hispanic White",
+        "7": "Non-Hispanic Black",
+        "8": "Non-Hispanic Other Races",
+        "9": "Origin unknown or not stated"
+      }
+    },
+    {
+      "type": "range",
+      "column": "race",
+      "start": 36,
+      "stop": 37,
+      "field": "Detail Race",
+      "mappings": {
+        "01-01": "White",
+        "02-02": "Black",
+        "03-03": "American Indian",
+        "04-04": "Chinese",
+        "05-05": "Japanese",
+        "06-06": "Hawaiian",
+        "07-07": "Filipino",
+        "18-78": "Other Asian"
+      }
+    },
+    {
+      "type": "map",
+      "column": "marital_status",
+      "start": 43,
+      "stop": 43,
+      "field": "Marital Status",
+      "mappings": {
+        "1": "Married",
+        "2": "Unmarried",
+        "9": "Unknown or not stated"
+      }
+    },
+    {
+      "type": "map",
+      "column": "mother_age_5_interval",
+      "start": 32,
+      "stop": 32,
+      "field": "Age of Mother Recode 9",
+      "mappings": {
+        "1": "Under 15 years",
+        "2": "15-19 years",
+        "3": "20-24 years",
+        "4": "25-29 years",
+        "5": "30-34 years",
+        "6": "35-39 years",
+        "7": "40-44 years",
+        "8": "45-49 years",
+        "9": "50-54 years"
+      }
+    },
+    {
+      "type": "map",
+      "column": "mother_education",
+      "start": 41,
+      "stop": 41,
+      "field": "Education of Mother Recode",
+      "mappings": {
+        "1": "0 – 8 years",
+        "2": "9 – 11 years",
+        "3": "12 years",
+        "4": "13 – 15 years",
+        "5": "16 years and over",
+        "6": "Not stated"
+      }
+    },
+    {
+      "type": "map",
+      "column": "gestation_weekly",
+      "start": 74,
+      "stop": 75,
+      "field": "Gestation - Detail in Weeks",
+      "mappings": {
+        "17": "17 weeks",
+        "18": "18 weeks",
+        "19": "19 weeks",
+        "20": "20 weeks",
+        "21": "21 weeks",
+        "22": "22 weeks",
+        "23": "23 weeks",
+        "24": "24 weeks",
+        "25": "25 weeks",
+        "26": "26 weeks",
+        "27": "27 weeks",
+        "28": "28 weeks",
+        "29": "29 weeks",
+        "30": "30 weeks",
+        "31": "31 weeks",
+        "32": "32 weeks",
+        "33": "33 weeks",
+        "34": "34 weeks",
+        "35": "35 weeks",
+        "36": "36 weeks",
+        "37": "37 weeks",
+        "38": "38 weeks",
+        "39": "39 weeks",
+        "40": "40 weeks",
+        "41": "41 weeks",
+        "42": "42 weeks",
+        "43": "43 weeks",
+        "44": "44 weeks",
+        "45": "45 weeks",
+        "46": "46 weeks",
+        "47": "47 weeks",
+        "99": "Unknown"
+      }
+    },
+    {
+      "type": "map",
+      "column": "gestation_recode10",
+      "start": 76,
+      "stop": 77,
+      "field": "Gestational Age Group2",
+      "mappings": {
+        "01": "Under 20 weeks",
+        "02": "20 - 27 weeks",
+        "03": "28 - 31 weeks",
+        "04": "32 - 35 weeks",
+        "05": "36 weeks",
+        "06": "37 - 39 weeks",
+        "07": "40 weeks",
+        "08": "41 weeks",
+        "09": "42 weeks and over",
+        "10": "Not stated"
+      }
+    },
+    {
+      "type": "range",
+      "column": "gestation_recode11",
+      "start": 74,
+      "stop": 75,
+      "field": "Gestational Age Group1",
+      "mappings": {
+        "17-19": "Under 20 weeks",
+        "20-27": "20 - 27 weeks",
+        "28-31": "28 - 31 weeks",
+        "32-33": "32 - 33 weeks",
+        "34-36": "34 - 36 weeks",
+        "37-38": "37 - 38 weeks",
+        "39-39": "39 weeks",
+        "40-40": "40 weeks",
+        "41-41": "41 weeks",
+        "42-47": "42 weeks and over",
+        "99-99": "Unknown"
+      }
+    },
+    {
+      "type": "map",
+      "column": "prenatal_care",
+      "start": 51,
+      "stop": 52,
+      "field": "Month of Pregnancy Prenatal Care Began",
+      "mappings": {
+        "00": "No prenatal care",
+        "01": "1st month",
+        "02": "2nd month",
+        "03": "3rd month",
+        "04": "4th month",
+        "05": "5th month",
+        "06": "6th month",
+        "07": "7th month",
+        "08": "8th month",
+        "09": "9th month",
+        "99": "Unknown or not stated"
+      }
+    },
+    {
+      "type": "map",
+      "column": "birth_weight_r12",
+      "start": 85,
+      "stop": 86,
+      "field": "Birth Weight",
+      "mappings": {
+        "01": "499 grams or less",
+        "02": "500 - 999 grams",
+        "03": "1000 - 1499 grams",
+        "04": "1500 - 1999 grams",
+        "05": "2000 - 2499 grams",
+        "06": "2500 - 2999 grams",
+        "07": "3000 - 3499 grams",
+        "08": "3500 - 3999 grams",
+        "09": "4000 - 4499 grams",
+        "10": "4500 - 4999 grams",
+        "11": "5000 - 8165 grams",
+        "12": "Unknown or not stated"
+      }
+    },
+    {
+      "column": "birth_plurality",
+      "type": "map",
+      "start": 89,
+      "stop": 89,
+      "field": "Plurality or Multiple Birth",
+      "mappings": {
+        "1": "Single",
+        "2": "Twin",
+        "3": "Triplet",
+        "4": "Quadruplet",
+        "5": "Quintuplet or higher"
+      }
+    },
+    {
+      "column": "live_birth",
+      "type": "range",
+      "start": 49,
+      "stop": 50,
+      "field": "Live Birth Order",
+      "mappings": {
+        "01-01": "1st child born alive to mother",
+        "02-02": "2nd child born alive to mother",
+        "03-03": "3rd child born alive to mother",
+        "04-04": "4th child born alive to mother",
+        "05-05": "5th child born alive to mother",
+        "06-31": "6th or more children born alive to mother",
+        "99-99": "Unknown or not stated"
+      }
+    },
+    {
+      "column": "birth_place",
+      "type": "range",
+      "start": 67,
+      "stop": 67,
+      "field": "Birth Place",
+      "mappings": {
+        "1-1": "In Hospital",
+        "2-5": "Not in Hospital",
+        "9-9": "Unknown or Not Stated"
+      }
+    },
+    {
+      "column": "delivery_method",
+      "type": "map",
+      "start": 99,
+      "stop": 99,
+      "field": "Delivery method",
+      "mappings": {
+        "1": "Vaginal",
+        "2": "Vaginal",
+        "3": "Cesarean",
+        "4": "Cesarean",
+        "5": "Not stated"
+      }
+    },
+    {
+      "column": "medical_attendant",
+      "type": "map",
+      "start": 68,
+      "stop": 68,
+      "field": "Medical Attendant",
+      "mappings": {
+        "1": "Doctor of Medicine (MD)",
+        "2": "Doctor of Osteopathy (DO)",
+        "3": "Certified Nurse Midwife (CNM)",
+        "4": "Other Midwife",
+        "5": "Other",
+        "9": "Unknown or not stated"
+      }
+    },
+    {
+      "column": "infant_age_at_death",
+      "type": "map",
+      "start": 214,
+      "stop": 214,
+      "field": "Infant Age Recode 5",
+      "mappings": {
+        "1": "Under 1 hour",
+        "2": "1-23 hours",
+        "3": "1-6 days",
+        "4": "7-27 days",
+        "5": "28 days and over"
+      }
+    },
+    {
+      "column": "sex",
+      "type": "map",
+      "start": 79,
+      "stop": 79,
+      "field": "Sex of Infant",
+      "mappings": {
+        "1": "Male",
+        "2": "Female"
+      }
+    },
+    {
+      "column": "state",
+      "type": "map",
+      "start": 19,
+      "stop": 20,
+      "field": "State",
+      "mappings": {
+        "01": "AL",
+        "02": "AK",
+        "04": "AZ",
+        "05": "AR",
+        "06": "CA",
+        "08": "CO",
+        "09": "CT",
+        "10": "DE",
+        "11": "DC",
+        "12": "FL",
+        "13": "GA",
+        "15": "HI",
+        "16": "ID",
+        "17": "IL",
+        "18": "IN",
+        "19": "IA",
+        "20": "KS",
+        "21": "KY",
+        "22": "LA",
+        "23": "ME",
+        "24": "MD",
+        "25": "MA",
+        "26": "MI",
+        "27": "MN",
+        "28": "MS",
+        "29": "MO",
+        "30": "MT",
+        "31": "NE",
+        "32": "NV",
+        "33": "NH",
+        "34": "NJ",
+        "35": "NM",
+        "36": "NY",
+        "37": "NC",
+        "38": "ND",
+        "39": "OH",
+        "40": "OK",
+        "41": "OR",
+        "42": "PA",
+        "44": "RI",
+        "45": "SC",
+        "46": "SD",
+        "47": "TN",
+        "48": "TX",
+        "49": "UT",
+        "50": "VT",
+        "51": "VA",
+        "53": "WA",
+        "54": "WV",
+        "55": "WI",
+        "56": "WY"
+      }
+    },
+    {
+      "type": "simple",
+      "column": "ICD_10_code",
+      "start": 216,
+      "stop": 219,
+      "field": "ICD-10 Codes",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "ICD_130_code",
+      "start": 220,
+      "stop": 222,
+      "field": "ICD-10 130 Cause List (Infants)",
+      "mappings": {}
+    }
+  ]
+}

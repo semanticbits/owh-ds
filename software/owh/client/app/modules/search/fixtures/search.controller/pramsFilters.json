@@ -1,0 +1,690 @@
+{
+  "key": "prams",
+  "title": "label.prams.title",
+  "primary": true,
+  "value": [
+    {
+      "key": "state",
+      "title": "label.prams.filter.state",
+      "queryKey": "sitecode",
+      "primary": false,
+      "value": [],
+      "groupBy": "column",
+      "filterType": "checkbox",
+      "autoCompleteOptions": [
+        {
+          "key": "AL",
+          "title": "Alabama"
+        },
+        {
+          "key": "AK",
+          "title": "Alaska"
+        },
+        {
+          "key": "AZB",
+          "title": "Arizona"
+        }
+      ],
+      "doNotShowAll": false,
+      "helpText": "label.help.text.prams.state",
+      "allChecked": true
+    },
+    {
+      "key": "question",
+      "title": "label.prams.filter.question",
+      "queryKey": "question.path",
+      "aggregationKey": "question.key",
+      "primary": false,
+      "value": [],
+      "groupBy": "row",
+      "filterType": "tree",
+      "autoCompleteOptions": [
+        {
+          "key": "Indicator of no insurance to pay for delivery",
+          "qkey": "qn365",
+          "title": "Indicator of no insurance to pay for delivery"
+        },
+        {
+          "key": "Indicator of whether delivery was paid for by insurance purchased directly",
+          "qkey": "qn366",
+          "title": "Indicator of whether delivery was paid for by insurance purchased directly"
+        },
+        {
+          "key": "Indicator of whether delivery was paid for by insurance through an employer",
+          "qkey": "qn367",
+          "title": "Indicator of whether delivery was paid for by insurance through an employer"
+        },
+        {
+          "key": "Indicator of whether delivery was paid for by insurance through the military",
+          "qkey": "qn364",
+          "title": "Indicator of whether delivery was paid for by insurance through the military"
+        },
+        {
+          "key": "Indicator of whether other sources paid for delivery",
+          "qkey": "qn319",
+          "title": "Indicator of whether other sources paid for delivery"
+        },
+        {
+          "key": "Indicator of whether personal income paid for delivery",
+          "qkey": "qn318",
+          "title": "Indicator of whether personal income paid for delivery"
+        },
+        {
+          "key": "Indicator of baby born in a hospital",
+          "qkey": "qn168",
+          "title": "Indicator of baby born in a hospital"
+        },
+        {
+          "key": "Indicator of mother delivering in a hospital",
+          "qkey": "qn169",
+          "title": "Indicator of mother delivering in a hospital"
+        }
+      ],
+      "donotshowOnSearch": true,
+      "questions": [
+        {
+          "id": "cat_45",
+          "text": "Delivery - Method",
+          "children": []
+        },
+        {
+          "id": "cat_39",
+          "text": "Delivery - Payment",
+          "children": [
+            {
+              "text": "Indicator of no insurance to pay for delivery",
+              "id": "qn365"
+            },
+            {
+              "text": "Indicator of whether delivery was paid for by insurance purchased directly",
+              "id": "qn366"
+            },
+            {
+              "text": "Indicator of whether delivery was paid for by insurance through an employer",
+              "id": "qn367"
+            },
+            {
+              "text": "Indicator of whether delivery was paid for by insurance through the military",
+              "id": "qn364"
+            },
+            {
+              "text": "Indicator of whether other sources paid for delivery",
+              "id": "qn319"
+            },
+            {
+              "text": "Indicator of whether personal income paid for delivery",
+              "id": "qn318"
+            }
+          ]
+        }
+      ],
+      "selectTitle": "select.label.yrbs.filter.question",
+      "updateTitle": "update.label.yrbs.filter.question",
+      "iconClass": "fa fa-pie-chart purple-text",
+      "helpText": "label.help.text.prams.question"
+    }
+  ],
+  "header": "Pregnancy Risk Assessment",
+  "dontShowInlineCharting": true,
+  "additionalHeaders": [
+    {
+      "key": "question",
+      "title": "Question"
+    },
+    {
+      "key": "count",
+      "title": "Total"
+    }
+  ],
+  "countLabel": "Total",
+  "tableView": "delivery",
+  "chartAxisLabel": "Percentage",
+  "showBasicSearchSideMenu": true,
+  "runOnFilterChange": true,
+  "allFilters": [
+    {
+      "key": "topic",
+      "title": "label.prams.filter.topic",
+      "queryKey": "topic",
+      "primary": false,
+      "value": [],
+      "groupBy": false,
+      "filterType": "checkbox",
+      "autoCompleteOptions": [
+        {
+          "key": "cat_45",
+          "title": "Delivery Method"
+        },
+        {
+          "key": "cat_39",
+          "title": "Delivery Payment"
+        }
+      ],
+      "doNotShowAll": true,
+      "helpText": "label.help.text.prams.topic",
+      "filterLength": 3,
+      "questions": [
+        "qn365",
+        "qn366",
+        "qn367",
+        "qn364",
+        "qn319",
+        "qn318",
+        "qn168",
+        "qn169"
+      ]
+    },
+    {
+      "key": "year",
+      "title": "label.prams.filter.year",
+      "queryKey": "year",
+      "primary": false,
+      "value": [
+        "2007"
+      ],
+      "groupBy": false,
+      "filterType": "checkbox",
+      "autoCompleteOptions": [
+        {
+          "key": "2009",
+          "title": "2009"
+        },
+        {
+          "key": "2007",
+          "title": "2007"
+        }
+      ],
+      "doNotShowAll": false,
+      "helpText": "label.help.text.prams.year",
+      "allChecked": false
+    },
+    {
+      "key": "state",
+      "title": "label.prams.filter.state",
+      "queryKey": "sitecode",
+      "primary": false,
+      "value": [],
+      "groupBy": "column",
+      "filterType": "checkbox",
+      "autoCompleteOptions": [
+        {
+          "key": "AL",
+          "title": "Alabama"
+        },
+        {
+          "key": "AK",
+          "title": "Alaska"
+        },
+        {
+          "key": "AZB",
+          "title": "Arizona"
+        }
+      ],
+      "doNotShowAll": false,
+      "helpText": "label.help.text.prams.state",
+      "allChecked": true
+    },
+    {
+      "key": "question",
+      "title": "label.prams.filter.question",
+      "queryKey": "question.path",
+      "aggregationKey": "question.key",
+      "primary": false,
+      "value": [],
+      "groupBy": "row",
+      "filterType": "tree",
+      "autoCompleteOptions": [
+        {
+          "key": "Indicator of no insurance to pay for delivery",
+          "qkey": "qn365",
+          "title": "Indicator of no insurance to pay for delivery"
+        },
+        {
+          "key": "Indicator of whether delivery was paid for by insurance purchased directly",
+          "qkey": "qn366",
+          "title": "Indicator of whether delivery was paid for by insurance purchased directly"
+        },
+        {
+          "key": "Indicator of whether delivery was paid for by insurance through an employer",
+          "qkey": "qn367",
+          "title": "Indicator of whether delivery was paid for by insurance through an employer"
+        },
+        {
+          "key": "Indicator of whether delivery was paid for by insurance through the military",
+          "qkey": "qn364",
+          "title": "Indicator of whether delivery was paid for by insurance through the military"
+        },
+        {
+          "key": "Indicator of whether other sources paid for delivery",
+          "qkey": "qn319",
+          "title": "Indicator of whether other sources paid for delivery"
+        },
+        {
+          "key": "Indicator of whether personal income paid for delivery",
+          "qkey": "qn318",
+          "title": "Indicator of whether personal income paid for delivery"
+        },
+        {
+          "key": "Indicator of baby born in a hospital",
+          "qkey": "qn168",
+          "title": "Indicator of baby born in a hospital"
+        },
+        {
+          "key": "Indicator of mother delivering in a hospital",
+          "qkey": "qn169",
+          "title": "Indicator of mother delivering in a hospital"
+        }
+      ],
+      "donotshowOnSearch": true,
+      "questions": [
+        {
+          "id": "cat_45",
+          "text": "Delivery - Method",
+          "children": []
+        },
+        {
+          "id": "cat_39",
+          "text": "Delivery - Payment",
+          "children": [
+            {
+              "text": "Indicator of no insurance to pay for delivery",
+              "id": "qn365"
+            },
+            {
+              "text": "Indicator of whether delivery was paid for by insurance purchased directly",
+              "id": "qn366"
+            },
+            {
+              "text": "Indicator of whether delivery was paid for by insurance through an employer",
+              "id": "qn367"
+            },
+            {
+              "text": "Indicator of whether delivery was paid for by insurance through the military",
+              "id": "qn364"
+            },
+            {
+              "text": "Indicator of whether other sources paid for delivery",
+              "id": "qn319"
+            },
+            {
+              "text": "Indicator of whether personal income paid for delivery",
+              "id": "qn318"
+            }
+          ]
+        }
+      ],
+      "selectTitle": "select.label.yrbs.filter.question",
+      "updateTitle": "update.label.yrbs.filter.question",
+      "iconClass": "fa fa-pie-chart purple-text",
+      "helpText": "label.help.text.prams.question"
+    }
+  ],
+  "sideFilters": [
+    {
+      "sideFilters": [
+        {
+          "filterGroup": false,
+          "collapse": false,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": false,
+              "title": "Off",
+              "tooltip": "Select to hide on data table"
+            }
+          ],
+          "dontShowCounts": true,
+          "filters": {
+            "key": "topic",
+            "title": "label.prams.filter.topic",
+            "queryKey": "topic",
+            "primary": false,
+            "value": [],
+            "groupBy": false,
+            "filterType": "checkbox",
+            "autoCompleteOptions": [
+              {
+                "key": "cat_45",
+                "title": "Delivery Method"
+              },
+              {
+                "key": "cat_39",
+                "title": "Delivery Payment"
+              }
+            ],
+            "doNotShowAll": true,
+            "helpText": "label.help.text.prams.topic",
+            "filterLength": 3,
+            "questions": [
+              "qn365",
+              "qn366",
+              "qn367",
+              "qn364",
+              "qn319",
+              "qn318",
+              "qn168",
+              "qn169"
+            ]
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": false,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": false,
+              "title": "Off",
+              "tooltip": "Select to hide on data table"
+            }
+          ],
+          "dontShowCounts": true,
+          "filters": {
+            "key": "year",
+            "title": "label.prams.filter.year",
+            "queryKey": "year",
+            "primary": false,
+            "value": [
+              "2007"
+            ],
+            "groupBy": false,
+            "filterType": "checkbox",
+            "autoCompleteOptions": [
+              {
+                "key": "2009",
+                "title": "2009"
+              },
+              {
+                "key": "2007",
+                "title": "2007"
+              }
+            ],
+            "doNotShowAll": false,
+            "helpText": "label.help.text.prams.year",
+            "allChecked": false
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": false,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": false,
+              "title": "Off",
+              "tooltip": "Select to hide on data table"
+            }
+          ],
+          "dontShowCounts": true,
+          "filters": {
+            "key": "state",
+            "title": "label.prams.filter.state",
+            "queryKey": "sitecode",
+            "primary": false,
+            "value": [],
+            "groupBy": "column",
+            "filterType": "checkbox",
+            "autoCompleteOptions": [
+              {
+                "key": "AL",
+                "title": "Alabama"
+              },
+              {
+                "key": "AK",
+                "title": "Alaska"
+              },
+              {
+                "key": "AZB",
+                "title": "Arizona"
+              }
+            ],
+            "doNotShowAll": false,
+            "helpText": "label.help.text.prams.state",
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": false,
+          "allowGrouping": false,
+          "filters": {
+            "key": "question",
+            "title": "label.prams.filter.question",
+            "queryKey": "question.path",
+            "aggregationKey": "question.key",
+            "primary": false,
+            "value": [],
+            "groupBy": "row",
+            "filterType": "tree",
+            "autoCompleteOptions": [
+              {
+                "key": "Indicator of no insurance to pay for delivery",
+                "qkey": "qn365",
+                "title": "Indicator of no insurance to pay for delivery"
+              },
+              {
+                "key": "Indicator of whether delivery was paid for by insurance purchased directly",
+                "qkey": "qn366",
+                "title": "Indicator of whether delivery was paid for by insurance purchased directly"
+              },
+              {
+                "key": "Indicator of whether delivery was paid for by insurance through an employer",
+                "qkey": "qn367",
+                "title": "Indicator of whether delivery was paid for by insurance through an employer"
+              },
+              {
+                "key": "Indicator of whether delivery was paid for by insurance through the military",
+                "qkey": "qn364",
+                "title": "Indicator of whether delivery was paid for by insurance through the military"
+              },
+              {
+                "key": "Indicator of whether other sources paid for delivery",
+                "qkey": "qn319",
+                "title": "Indicator of whether other sources paid for delivery"
+              },
+              {
+                "key": "Indicator of whether personal income paid for delivery",
+                "qkey": "qn318",
+                "title": "Indicator of whether personal income paid for delivery"
+              },
+              {
+                "key": "Indicator of baby born in a hospital",
+                "qkey": "qn168",
+                "title": "Indicator of baby born in a hospital"
+              },
+              {
+                "key": "Indicator of mother delivering in a hospital",
+                "qkey": "qn169",
+                "title": "Indicator of mother delivering in a hospital"
+              }
+            ],
+            "donotshowOnSearch": true,
+            "questions": [
+              {
+                "id": "cat_45",
+                "text": "Delivery - Method",
+                "children": []
+              },
+              {
+                "id": "cat_39",
+                "text": "Delivery - Payment",
+                "children": [
+                  {
+                    "text": "Indicator of no insurance to pay for delivery",
+                    "id": "qn365"
+                  },
+                  {
+                    "text": "Indicator of whether delivery was paid for by insurance purchased directly",
+                    "id": "qn366"
+                  },
+                  {
+                    "text": "Indicator of whether delivery was paid for by insurance through an employer",
+                    "id": "qn367"
+                  },
+                  {
+                    "text": "Indicator of whether delivery was paid for by insurance through the military",
+                    "id": "qn364"
+                  },
+                  {
+                    "text": "Indicator of whether other sources paid for delivery",
+                    "id": "qn319"
+                  },
+                  {
+                    "text": "Indicator of whether personal income paid for delivery",
+                    "id": "qn318"
+                  }
+                ]
+              }
+            ],
+            "selectTitle": "select.label.yrbs.filter.question",
+            "updateTitle": "update.label.yrbs.filter.question",
+            "iconClass": "fa fa-pie-chart purple-text",
+            "helpText": "label.help.text.prams.question"
+          }
+        }
+      ]
+    }
+  ],
+  "headers": {
+    "rowHeaders": [
+      {
+        "key": "question",
+        "title": "label.prams.filter.question",
+        "queryKey": "question.path",
+        "aggregationKey": "question.key",
+        "primary": false,
+        "value": [],
+        "groupBy": "row",
+        "filterType": "tree",
+        "autoCompleteOptions": [
+          {
+            "key": "Indicator of no insurance to pay for delivery",
+            "qkey": "qn365",
+            "title": "Indicator of no insurance to pay for delivery"
+          },
+          {
+            "key": "Indicator of whether delivery was paid for by insurance purchased directly",
+            "qkey": "qn366",
+            "title": "Indicator of whether delivery was paid for by insurance purchased directly"
+          },
+          {
+            "key": "Indicator of whether delivery was paid for by insurance through an employer",
+            "qkey": "qn367",
+            "title": "Indicator of whether delivery was paid for by insurance through an employer"
+          },
+          {
+            "key": "Indicator of whether delivery was paid for by insurance through the military",
+            "qkey": "qn364",
+            "title": "Indicator of whether delivery was paid for by insurance through the military"
+          },
+          {
+            "key": "Indicator of whether other sources paid for delivery",
+            "qkey": "qn319",
+            "title": "Indicator of whether other sources paid for delivery"
+          },
+          {
+            "key": "Indicator of whether personal income paid for delivery",
+            "qkey": "qn318",
+            "title": "Indicator of whether personal income paid for delivery"
+          },
+          {
+            "key": "Indicator of baby born in a hospital",
+            "qkey": "qn168",
+            "title": "Indicator of baby born in a hospital"
+          },
+          {
+            "key": "Indicator of mother delivering in a hospital",
+            "qkey": "qn169",
+            "title": "Indicator of mother delivering in a hospital"
+          }
+        ],
+        "donotshowOnSearch": true,
+        "questions": [
+          {
+            "id": "cat_45",
+            "text": "Delivery - Method",
+            "children": []
+          },
+          {
+            "id": "cat_39",
+            "text": "Delivery - Payment",
+            "children": [
+              {
+                "text": "Indicator of no insurance to pay for delivery",
+                "id": "qn365"
+              },
+              {
+                "text": "Indicator of whether delivery was paid for by insurance purchased directly",
+                "id": "qn366"
+              },
+              {
+                "text": "Indicator of whether delivery was paid for by insurance through an employer",
+                "id": "qn367"
+              },
+              {
+                "text": "Indicator of whether delivery was paid for by insurance through the military",
+                "id": "qn364"
+              },
+              {
+                "text": "Indicator of whether other sources paid for delivery",
+                "id": "qn319"
+              },
+              {
+                "text": "Indicator of whether personal income paid for delivery",
+                "id": "qn318"
+              }
+            ]
+          }
+        ],
+        "selectTitle": "select.label.yrbs.filter.question",
+        "updateTitle": "update.label.yrbs.filter.question",
+        "iconClass": "fa fa-pie-chart purple-text",
+        "helpText": "label.help.text.prams.question"
+      }
+    ],
+    "columnHeaders": [
+      {
+        "key": "state",
+        "title": "label.prams.filter.state",
+        "queryKey": "sitecode",
+        "primary": false,
+        "value": [],
+        "groupBy": "column",
+        "filterType": "checkbox",
+        "autoCompleteOptions": [
+          {
+            "key": "AL",
+            "title": "Alabama"
+          },
+          {
+            "key": "AK",
+            "title": "Alaska"
+          },
+          {
+            "key": "AZB",
+            "title": "Arizona"
+          }
+        ],
+        "doNotShowAll": false,
+        "helpText": "label.help.text.prams.state",
+        "allChecked": true
+      }
+    ],
+    "chartHeaders": []
+  }
+}

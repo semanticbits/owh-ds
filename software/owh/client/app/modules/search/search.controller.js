@@ -49,8 +49,9 @@
             mortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'deaths');
             bridgedRaceFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'bridge_race');
             sc.filters.selectedPrimaryFilter = $stateParams.selectedFilters;
-        }
 
+        }
+        sc.filterUtilities = sc.filters.filterUtilities;
         sc.selectedMapSize = 'big';
         sc.showMeOptions = {
             deaths: [
@@ -82,6 +83,10 @@
                 'mother_education', 'mother_age_1year_interval', 'mother_age_5year_interval',
                 'anemia', 'cardiac_disease', 'chronic_hypertension', 'diabetes', 'eclampsia', 'hydramnios_oligohydramnios',
                 'incompetent_cervix', 'lung_disease', 'pregnancy_hypertension', 'tobacco_use'],
+            "label.filter.infant_mortality": ['year_of_death', 'sex', 'infant_age_at_death', 'race', 'hispanic_origin', 'marital_status',
+                'mother_age_5_interval', 'mother_education', 'gestational_age_r11', 'gestational_age_r10', 'gestation_weekly',
+                'prenatal_care', 'birth_weight', 'birth_plurality', 'live_birth', 'birth_place', 'delivery_method', 'medical_attendant',
+                'ucd-chapter-10', 'state'],
             "label.prams.title": []
         };
 
@@ -110,6 +115,7 @@
                 "year": ['2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000']
             },
             number_of_births: {},
+            number_of_infant_deaths: {},
             birth_rates: {},
             fertility_rates: {},
             bridge_race:{},
@@ -132,7 +138,7 @@
                 "topic": ['cat_43', 'cat_1', 'cat_24', 'cat_19', 'cat_14', 'cat_25', 'cat_6']
             },
             maternal_behavior: {
-                "topic": ['cat_2', 'cat_34', 'cat_12', 'cat_18', 'cat_9', 'cat_17', 'cat_35', 'cat_23', 'cat_10', 'cat_22', 'cat_26']
+                "topic": ['cat_2', 'cat_13', 'cat_34', 'cat_12', 'cat_18', 'cat_9', 'cat_17', 'cat_35', 'cat_23', 'cat_10', 'cat_22', 'cat_26']
             },
             maternal_experiences: {
                 "topic": ['cat_29', 'cat_33', 'cat_42', 'cat_27']
@@ -147,67 +153,10 @@
         //show certain filters for different table views
         //add availablefilter for birth_rates
         sc.availableFilters = {
-            'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin'],
-            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin'],
-            'birth_rates': ['current_year', 'race'],
-            'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval']
-        };
-
-        //functionality to be added to the side filters
-        var confidenceIntervalOption = {
-            title: 'Confidence Intervals',
-            type: 'toggle',
-            value: false,
-            onChange: function(value) {
-                sc.showConfidenceIntervals = value;
-            },
-            options: [
-                {
-                    title: 'label.mortality.search.table.show.percentage.button',
-                    key: true
-                },
-                {
-                    title: 'label.mortality.search.table.hide.percentage.button',
-                    key: false
-                }
-            ]
-        };
-
-        sc.filterUtilities = {
-            'mental_health': [
-                {
-                    title: 'Variance',
-                    options: [
-                        confidenceIntervalOption,
-                        {
-                            title: 'Unweighted Frequency',
-                            type: 'toggle',
-                            value: false,
-                            onChange: function(value) {
-                                sc.showUnweightedFrequency = value;
-                            },
-                            options: [
-                                {
-                                    title: 'label.mortality.search.table.show.percentage.button',
-                                    key: true
-                                },
-                                {
-                                    title: 'label.mortality.search.table.hide.percentage.button',
-                                    key: false
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ],
-            'prams' : [
-                {
-                    title: 'Variance',
-                    options: [
-                        confidenceIntervalOption
-                    ]
-                }
-            ]
+            'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin','state'],
+            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state', 'ucd-chapter-10'],
+            'birth_rates': ['current_year', 'race', 'state'],
+            'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval', 'state']
         };
         sc.queryID = $stateParams.queryID;
         sc.tableView = $stateParams.tableView ? $stateParams.tableView : sc.showMeOptions.deaths[0].key;
@@ -334,7 +283,7 @@
         //US-states map
         var mapOptions = {
             usa: {
-                lat: 39,
+                lat: 35,
                 lng: -97,
                 zoom: 3.9
             },
@@ -577,6 +526,11 @@
         });
         $scope.$on("leafletDirectiveMap.mouseout", function (event, args) {
             sc.mapPopup._close();
+        });
+
+        $scope.$on("leafletDirectiveMap.load", function (event, args) {
+            var mapScaleControl = mapService.addScaleControl(sc.filters.selectedPrimaryFilter.mapData);
+            args.leafletObject.addControl(new mapScaleControl());
         });
 
         /*Show expanded graphs with whole set of features*/

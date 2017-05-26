@@ -8,6 +8,7 @@ var logger = require('../config/logging')
 var qc = require('../api/queryCache');
 var dsmetadata = require('../api/dsmetadata');
 var Q = require('q');
+var config = require('../config/config');
 
 var queryCache = new qc();
 
@@ -18,7 +19,7 @@ var searchRouter = function(app, rConfig) {
         var queryId = req.body.qID;
         if (queryId) {
             queryCache.getCachedQuery(queryId).then(function (r) {
-                if(r) {
+                if(r && !config.disableQueryCache) {
                    logger.info("Retrieved query results for query ID " + queryId + " from query cache");
                     var resData = {};
                     resData.queryJSON = JSON.parse(r._source.queryJSON);
@@ -30,7 +31,9 @@ var searchRouter = function(app, rConfig) {
                     if (q) {
                         res.connection.setTimeout(0); // To avoid the post callback being called multiple times when the search method takes long time
                         search(q).then(function (resp) {
-                            queryCache.cacheQuery(queryId, q.key, resp);
+                            if(!config.disableQueryCache) {
+                                queryCache.cacheQuery(queryId, q.key, resp);
+                            }
                             res.send(new result('OK', resp, "success"));
                         }, function (err) {
                             res.send(new result('Error executing query', err, "failed"));
@@ -74,24 +77,19 @@ var searchRouter = function(app, rConfig) {
 function search(q) {
     var deferred = Q.defer();
     var preparedQuery = queryBuilder.buildAPIQuery(q);
-    console.log('preparedQuery', preparedQuery);
     var finalQuery = '';
-    var stateFilter = {};
-    q.sideFilters.forEach(function(category) {
-        category.sideFilters.forEach(function(filter) {
-            if(filter.key === 'state') {
-                stateFilter = filter;
-            }
-        })
-    });
 
+    var stateFilter = queryBuilder.findFilterByKeyAndValue(q.allFilters, 'key', 'state');
     var isStateSelected = queryBuilder.isFilterApplied(stateFilter);
 
     logger.debug("Incoming query: ", JSON.stringify(preparedQuery));
     if (preparedQuery.apiQuery.searchFor === "deaths") {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
-        finalQuery.wonderQuery = preparedQuery.apiQuery;
+        // Invoke WONDER only for age_adjusted_rates view
+        if(q.tableView == 'age-adjusted_death_rates') {
+            finalQuery.wonderQuery = preparedQuery.apiQuery;
+        }
         new elasticSearch().aggregateDeaths(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
             new elasticSearch().aggregateDeaths(finalQuery, isStateSelected).then(function (response) {
                 var resData = {};
@@ -143,13 +141,13 @@ function search(q) {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
 
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
-        new elasticSearch().aggregateNatalityData(sideFilterQuery).then(function (sideFilterResults) {
+        new elasticSearch().aggregateNatalityData(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
             if(q.tableView === 'fertility_rates' && finalQuery[1]) {
                 var query1 = JSON.stringify(finalQuery[1]);
                 //For Natality Fertility Rates add mother's age filter
                 finalQuery[1] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(query1));
             }
-            new elasticSearch().aggregateNatalityData(finalQuery).then(function (response) {
+            new elasticSearch().aggregateNatalityData(finalQuery, isStateSelected).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
                 resData.resultData = response.data;
@@ -159,6 +157,19 @@ function search(q) {
             });
         });
 
+    } else if (preparedQuery.apiQuery.searchFor === 'infant_mortality') {
+        finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
+        var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
+        new elasticSearch().aggregateInfantMortalityData(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
+            new elasticSearch().aggregateInfantMortalityData(finalQuery, isStateSelected).then(function (response) {
+                var resData = {};
+                resData.queryJSON = q;
+                resData.resultData = response.data;
+                resData.resultData.headers = preparedQuery.headers;
+                resData.sideFilterResults = sideFilterResults;
+                deferred.resolve(resData);
+            });
+        });
     }
     return  deferred.promise;
 };

@@ -6,7 +6,7 @@ data_file:
   aws_access_key_id: 'aws access key'
   aws_secret_access_key: 'aws secret key'
   aws_s3_bucket_name: 'owh-data'
-  aws_s3_directory: 'datasets/census'
+  aws_s3_directory: 'datasets/census_rates'
 elastic_search:
   host: 127.0.0.1
   port: 9200

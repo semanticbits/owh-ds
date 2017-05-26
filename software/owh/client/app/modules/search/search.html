@@ -74,7 +74,7 @@
                             <div id="chart_us_map" ng-if="chartData.isMap && sc.filters.selectedPrimaryFilter.showMap && sc.filters.selectedPrimaryFilter.maps">
                                 <leaflet  lf-center="chartData.usa" markers="chartData.markers" events="chartData.events" geojson="chartData.geojson"
                                           legend="chartData.legend" controls="chartData.controls" defaults="chartData.defaults" tiles=""
-                                          height="{{sc.mapOptions.selectedMapSize==='small'?'277px':'430px'}}" width="{{sc.mapOptions.selectedMapSize==='small'?'auto':'100%'}}"></leaflet>
+                                          height="{{sc.mapOptions.selectedMapSize==='small'?'277px':'480px'}}" width="{{sc.mapOptions.selectedMapSize==='small'?'auto':'100%'}}"></leaflet>
                             </div>
                             <!-- Map -->
 
@@ -114,7 +114,10 @@
                 <div class="usa-width-one-whole overflow-visible">
                     <hr />
                     <!-- show hide percentage -->
-                    <div id="togglePercentage" class="togglePercentage pull-left" ng-show="sc.filters.selectedPrimaryFilter.title === 'label.filter.mortality' && sc.tableView === 'number_of_deaths'">
+                    <div id="togglePercentage" class="togglePercentage pull-left"
+                         ng-show="sc.filters.selectedPrimaryFilter.title === 'label.filter.mortality' && sc.tableView === 'number_of_deaths' ||
+                                  sc.filters.selectedPrimaryFilter.title === 'label.filter.natality' && sc.tableView === 'number_of_births' ||
+                                  sc.filters.selectedPrimaryFilter.title === 'label.census.bridge.race.pop.estimate' && sc.tableView === 'bridge_race'">
                         <a id="showPercentage" class="active-link custom-link " ng-class="{'selected': sc.tableData.calculatePercentage === true}" ng-click="sc.tableData.calculatePercentage = true;" title="Show percentage">
                             <span ng-show="sc.tableData.calculatePercentage === false" ng-bind="'label.mortality.search.table.show.percentage.button' | translate"></span>
                             <span ng-show="sc.tableData.calculatePercentage === true" ng-bind="'label.mortality.search.table.showing.percentage.button' | translate"></span>
@@ -124,7 +127,6 @@
                             <span ng-show="sc.tableData.calculatePercentage === false" ng-bind="'label.mortality.search.table.hidden.percentage.button' | translate"></span>
                         </a>
                     </div>
-
                     <div class="pull-right margin-bottom-20 margin-right-10">
                         <!--<div>Icons made by <a href="http://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">Madebyoliver</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
                         <a name="download_csv" ng-click="sc.downloadCSV()" title="Download CSV" class="cursor-pointer">
@@ -141,15 +143,16 @@
                                show-percentage="sc.tableData.calculatePercentage"
                                ng-if="(sc.filters.selectedPrimaryFilter.headers && sc.filters.selectedPrimaryFilter.key === 'deaths' ||
                                sc.filters.selectedPrimaryFilter.key === 'bridge_race' ||
-                               sc.filters.selectedPrimaryFilter.key === 'natality')"
+                               sc.filters.selectedPrimaryFilter.key === 'natality' ||
+                               sc.filters.selectedPrimaryFilter.key === 'infant_mortality')"
                                table-view="{{sc.tableView}}"
                                rowspan-threshold="50"></owh-table>
                     <owh-accordion-table headers="sc.tableData.headers" data="sc.tableData.data"
                                 ng-if="sc.filters.selectedPrimaryFilter.key === 'mental_health' ||
                                     sc.filters.selectedPrimaryFilter.key === 'prams'"
                                 primary-key="sc.filters.selectedPrimaryFilter.key"
-                                show-ci="sc.showConfidenceIntervals"
-                                show-uf="sc.showUnweightedFrequency"
+                                show-ci="sc.filters.filterUtilities['mental_health'][0].options[0].value"
+                                show-uf="sc.filters.filterUtilities['mental_health'][0].options[1].value"
                                 show-charts = "sc.filters.selectedPrimaryFilter.value.length > 1">
                     </owh-accordion-table>
                 </div>

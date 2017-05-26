@@ -5,6 +5,9 @@ var BridgeRaceSearchPage = function() {
     brs.sideMenu = element(by.className('owh-side-menu'));
     brs.hideFiltersBtn = element(by.className('owh-side-menu__handle'));
     brs.showFiltersBtn = element(by.className('owh-side-menu__handle--collapsed'));
+    brs.showOrHidePecentageDiv = element(by.id('togglePercentage'));
+    brs.showPecentageButton = element(by.id('togglePercentage')).element(by.cssContainingText('a', 'Show'));
+    brs.hidePecentageButton = element(by.id('togglePercentage')).element(by.cssContainingText('a', 'Hide'));
     brs.owhTable = element(by.tagName('owh-table'));
     brs.sexOptionsLink = element(by.partialLinkText('Sex'));
     brs.expandGraphLink = element(by.css('a[name=expand_graph]'));
@@ -23,8 +26,8 @@ var BridgeRaceSearchPage = function() {
         return brs.owhTable.element(by.tagName('table')).element(by.tagName('thead')).all(by.tagName('th')).getText();
     };
 
-    brs.selectRowOrColumn = function(filterType, rowColumnOpt) {
-        return element(by.cssContainingText('a', filterType)).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('a', rowColumnOpt));
+    brs.getTableRowData = function(rowNumber) {
+      return brs.owhTable.element(by.id('clusterize-table')).element(by.tagName('tbody')).all(by.tagName('tr')).get(rowNumber).all(by.tagName('td')).getText();
     };
 
     brs.getSubFiltersOfAFilter = function(filterType) {

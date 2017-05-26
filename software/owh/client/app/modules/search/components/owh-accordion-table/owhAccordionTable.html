@@ -17,7 +17,7 @@
                     <a class="owh-question__show-only" ng-if="oatc.categoryFilter!=null" ng-click="oatc.showOnly(null);">Show all categories</a>
             </td>
         </tr>
-        <tr class="owh-question__question" ng-repeat="eachRow in oatc.listRows(eachCategory)" ng-hide="$index > 1 && eachCategory.hide || eachCategory.collapse">
+        <tr class="owh-question__question" ng-repeat="eachRow in oatc.listRows(eachCategory)" ng-hide="$index >= eachCategory.rowsToShow && eachCategory.hide || eachCategory.collapse">
             <td ng-repeat="eachColumn in eachRow" colspan="{{ eachColumn.colspan }}" rowspan="{{ eachColumn.rowspan }}" ng-style="eachColumn.style">
                 <div class="owh-question__content" ng-class="{'text-right': $index > 0}">
                     <span ng-if="!eachColumn.title.mean" ng-bind-html="eachColumn.title"></span>
@@ -39,9 +39,9 @@
                 </div>
             </td>
         </tr>
-        <tr ng-hide="eachCategory.collapse" ng-if="eachCategory.questions.length > 2">
+        <tr ng-hide="eachCategory.collapse" ng-if="eachCategory.questionsCount > 2">
             <td colspan="100%">
-                <a class="owh-question__show cursor-pointer" ng-if="eachCategory.hide" ng-click="oatc.showMore(eachCategory)">Show {{ eachCategory.questions.length - 2 }} More</a>
+                <a class="owh-question__show cursor-pointer" ng-if="eachCategory.hide" ng-click="oatc.showMore(eachCategory)">Show {{ eachCategory.questionsCount - 2 }} More</a>
                 <a class="owh-question__show cursor-pointer" ng-if="!eachCategory.hide" ng-click="oatc.showLess(eachCategory)">Show Less</a>
             </td>
         </tr>

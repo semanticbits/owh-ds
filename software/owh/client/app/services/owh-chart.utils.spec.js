@@ -3,9 +3,10 @@
 /*group of common test goes here as describe*/
 describe('chart utils', function(){
     var chartUtils, shareUtils, searchFactory, diferred, closeDeferred, givenModalDefaults, ModalService, $rootScope, $scope, controllerProvider,
-        filter1, filter2, filter3, data1, data2, primaryFilter, postFixToTooltip,
+        filter1, filter2, filter3, data1, data2, censusRatesData, primaryFilter, postFixToTooltip,
         horizontalStackExpectedResult1, horizontalStackExpectedResult2,
         verticalStackExpectedResult, horizontalBarExpectedResult,
+        horizontalBarExpectedResultForCurdeDeathRates,
         verticalBarExpectedResult1, verticalBarExpectedResult2,
         horizontalStackNoDataExpectedResult, verticalBarNoDataExpectedResult, lineChartFilter, lineChartExpectedResult,
         lineChartData, pieChartData, pieChartExpectedResult, pieChartWithpostFixToTooltipExpectedResult,
@@ -54,6 +55,7 @@ describe('chart utils', function(){
 
         data1 = __fixtures__['app/services/fixtures/owh.chart.utils/data1'];
         data2 = __fixtures__['app/services/fixtures/owh.chart.utils/data2'];
+        censusRatesData = __fixtures__['app/services/fixtures/owh.chart.utils/census-rates-data'];
 
         pieChartData = __fixtures__['app/services/fixtures/owh.chart.utils/pieChartData'];
 
@@ -68,6 +70,7 @@ describe('chart utils', function(){
 
         verticalStackExpectedResult = __fixtures__['app/services/fixtures/owh.chart.utils/verticalStackExpectedResult'];
         horizontalBarExpectedResult = __fixtures__['app/services/fixtures/owh.chart.utils/horizontalBarExpectedResult'];
+        horizontalBarExpectedResultForCurdeDeathRates = __fixtures__['app/services/fixtures/owh.chart.utils/horizontalBarExpectedResultForCurdeDeathRates'];
 
         verticalBarExpectedResult1 = __fixtures__['app/services/fixtures/owh.chart.utils/verticalBarExpectedResult1'];
         verticalBarExpectedResult2 = __fixtures__['app/services/fixtures/owh.chart.utils/verticalBarExpectedResult2'];
@@ -131,6 +134,20 @@ describe('chart utils', function(){
     it('test chart utils horizontalBar', function () {
         var result = chartUtils.horizontalBar(filter1, filter2, data1, primaryFilter);
         expect(JSON.stringify(result)).toEqual(JSON.stringify(horizontalBarExpectedResult));
+    });
+    it('test chart utils horizontalBar for Crude Death Rates', function () {
+        primaryFilter.tableView = 'crude_death_rates';
+        var result = chartUtils.horizontalBar(filter1, filter2, censusRatesData, primaryFilter);
+        expect(JSON.stringify(result)).toEqual(JSON.stringify(horizontalBarExpectedResultForCurdeDeathRates));
+    });
+
+    it('test chart horizontalBar for PRAMS single filter', function () {
+        var filter = {"key":"state","title":"label.prams.filter.state","queryKey":"sitecode","value":["AK"],"autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]};
+        var data = {"question":[{"name":"qn365","-1":{"sitecode":[{"name":"AK","prams":{"mean":"23.0","ci_l":"0","ci_u":"0"}},{"name":"AK","prams":{"mean":"21.0","ci_l":"0","ci_u":"0"}}]},"NO (UNCHECKED)":{"sitecode":[{"name":"AK","prams":{"mean":"97.4","ci_l":"96.0","ci_u":"98.3"}},{"name":"AK","prams":{"mean":"97.1","ci_l":"95.6","ci_u":"98.1"}}]},"YES (CHECKED)":{"sitecode":[{"name":"AK","prams":{"mean":"2.6","ci_l":"1.7","ci_u":"4.0"}},{"name":"AK","prams":{"mean":"2.9","ci_l":"1.9","ci_u":"4.4"}}]}}]};
+        var primaryFilter = {key:'prams', chartAxisLabel: 'Percentage', allFilters:[{topic:[]}, {year:[]}, {state:[]}, {ques:[]}, {value:[]}]};
+        var expectedOutput = {"data":[{"key":"Percentage - NO (UNCHECKED)","values":[{"label":"Alaska","value":97.4}]},{"key":"Percentage - YES (CHECKED)","values":[{"label":"Alaska","value":2.6}]}],"title":"label.title.state.state","options":{"chart":{"type":"multiBarHorizontalChart","height":250,"width":0,"margin":{"top":5,"right":5,"bottom":45,"left":45},"showLegend":false,"showControls":false,"showValues":false,"showXAxis":true,"showYAxis":true,"stacked":false,"duration":500,"xAxis":{"axisLabelDistance":-20,"axisLabel":"label.prams.filter.state","showMaxMin":false},"yAxis":{"axisLabel":"Percentage"},"useInteractiveGuideline":false,"interactive":false,"tooltip":{}}}};
+        var result = chartUtils.horizontalBar(filter, filter, data, primaryFilter);
+        expect(JSON.stringify(result)).toEqual(JSON.stringify(expectedOutput));
     });
 
     it('test chart utils verticalBar', function () {
@@ -257,6 +274,12 @@ describe('chart utils', function(){
 
         var chartName = ctrl.getChartName(['yrbsGrade']);
         expect(chartName).toEqual('Grade');
+
+        var chartName = ctrl.getChartName(['state']);
+        expect(chartName).toEqual('State');
+
+        var chartName = ctrl.getChartName(['year']);
+        expect(chartName).toEqual('Year');
     });
 
     it('test chart utils showExpandedGraph for getYrbsChartData', function () {

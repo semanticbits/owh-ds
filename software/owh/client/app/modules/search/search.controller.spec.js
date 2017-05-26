@@ -2,7 +2,7 @@
 
 describe("Search controller: ", function () {
     var searchController, $scope, $controller, $httpBackend, $injector, $templateCache, $rootScope,
-        searchResultsResponse, $searchFactory, $q, filters, shareUtilService, $compile;
+        searchResultsResponse, $searchFactory, $q, filters, shareUtilService, $compile, pramsFilters;
 
     beforeEach(function() {
         module('owh');
@@ -28,6 +28,7 @@ describe("Search controller: ", function () {
             $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
             $httpBackend.whenGET('app/modules/home/home.html').respond({});
             searchResultsResponse = __fixtures__['app/modules/search/fixtures/search.factory/searchResultsResponse'];
+            pramsFilters = __fixtures__['app/modules/search/fixtures/search.controller/pramsFilters'];
             $searchFactory = searchFactory;
             filters = $searchFactory.getAllFilters();
             shareUtilService = $injector.get('shareUtilService');
@@ -336,23 +337,71 @@ describe("Search controller: ", function () {
 
     it('filterUtilities for yrbs should perform proper functions', function() {
         var searchController= $controller('SearchController',{$scope:$scope});
+        var confidenceIntervalOption = {
+            title: 'Confidence Intervals',
+            type: 'toggle',
+            value: false,
+            onChange: function(value, option) {
+                option.value = value;
+            },
+            options: [
+                {
+                    title: 'label.mortality.search.table.show.percentage.button',
+                    key: true
+                },
+                {
+                    title: 'label.mortality.search.table.hide.percentage.button',
+                    key: false
+                }
+            ]
+        };
+        searchController.filterUtilities = {
+            'mental_health': [
+                {
+                    title: 'Variance',
+                    options: [
+                        confidenceIntervalOption,
+                        {
+                            title: 'Unweighted Frequency',
+                            type: 'toggle',
+                            value: false,
+                            onChange: function(value, option) {
+                                option.value = value;
+                            },
+                            options: [
+                                {
+                                    title: 'label.mortality.search.table.show.percentage.button',
+                                    key: true
+                                },
+                                {
+                                    title: 'label.mortality.search.table.hide.percentage.button',
+                                    key: false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            'prams' : [
+                {
+                    title: 'Variance',
+                    options: [
+                        confidenceIntervalOption
+                    ]
+                }
+            ]
+        };
+        var option1 = searchController.filterUtilities['mental_health'][0].options[0];
+        var option2 = searchController.filterUtilities['mental_health'][0].options[1];
 
-
-        searchController.filterUtilities['mental_health'][0].options[0].onChange(true);
-
-        expect(searchController.showConfidenceIntervals).toBeTruthy();
-
-        searchController.filterUtilities['mental_health'][0].options[0].onChange(false);
-
-        expect(searchController.showConfidenceIntervals).toBeFalsy();
-
-        searchController.filterUtilities['mental_health'][0].options[1].onChange(true);
-
-        expect(searchController.showUnweightedFrequency).toBeTruthy();
-
-        searchController.filterUtilities['mental_health'][0].options[1].onChange(false);
-
-        expect(searchController.showUnweightedFrequency).toBeFalsy();
+        option1.onChange(true, option1);
+        expect(option1.value).toBeTruthy();
+        option1.onChange(false, option1);
+        expect(option1.value).toBeFalsy();
+        option2.onChange(true, option2);
+        expect(option2.value).toBeTruthy();
+        option2.onChange(false, option2);
+        expect(option2.value).toBeFalsy();
     });
 
     it("search results by queryID", inject(function(searchFactory) {
@@ -461,6 +510,156 @@ describe("Search controller: ", function () {
                 "_map":{"_layers":{"123":{"setStyle":function () {}}}}}},"leafletObject":{"_map":{"_layers":{"123":{"setStyle":function () {}}}}}};
         $rootScope.$broadcast('leafletDirectiveGeoJson.mouseout', mouseoutData);
         $rootScope.$broadcast('leafletDirectiveMap.mouseout', {});
+
+        var maploadData = {"leafletObject":{addControl:function() {}}};
+        $rootScope.$broadcast('leafletDirectiveMap.load', maploadData);
+
         //$scope.$digest();
+    }));
+
+    it("should update prams questions based on chane in prams class", inject(function () {
+        searchController.searchFactory = $searchFactory;
+        var topicFilter = pramsFilters.sideFilters[0].sideFilters[0];
+
+        searchController.filters = {selectedPrimaryFilter: pramsFilters};
+
+        $rootScope.pramsQuestions = [
+            {
+                "id": "cat_45",
+                "text": "Delivery - Method",
+                "children": [
+                    {
+                        "text": "Indicator of whether personal income paid for delivery",
+                        "id": "qn318"
+                    }
+                ]
+            },
+            {
+                "id": "cat_39",
+                "text": "Delivery - Payment",
+                "children": [
+                    {
+                        "text": "Indicator of no insurance to pay for delivery",
+                        "id": "qn365"
+                    },
+                    {
+                        "text": "Indicator of whether delivery was paid for by insurance purchased directly",
+                        "id": "qn366"
+                    },
+                    {
+                        "text": "Indicator of whether delivery was paid for by insurance through an employer",
+                        "id": "qn367"
+                    },
+                    {
+                        "text": "Indicator of whether delivery was paid for by insurance through the military",
+                        "id": "qn364"
+                    },
+                    {
+                        "text": "Indicator of whether other sources paid for delivery",
+                        "id": "qn319"
+                    }
+                ]
+            }
+        ];
+        searchController.search(true);
+        //should collect questions from all topics of a class
+        expect(topicFilter.filters.questions).toEqual([ 'qn318', 'qn365', 'qn366', 'qn367', 'qn364', 'qn319' ]);
+    }));
+
+    it("should update questions based on change in prams topic", inject(function () {
+        searchController.searchFactory = $searchFactory;
+        //select a topic
+        var topicFilter = pramsFilters.sideFilters[0].sideFilters[0];
+            topicFilter.filters.value = ["cat_39"];
+
+        searchController.filters = {selectedPrimaryFilter: pramsFilters};
+
+        var deferred = $q.defer();
+
+        $rootScope.pramsQuestions = [
+            {
+                "id": "cat_45",
+                "text": "Delivery - Method",
+                "children": [
+                    {
+                        "text": "Indicator of whether personal income paid for delivery",
+                        "id": "qn318"
+                    }
+                ]
+            },
+            {
+                "id": "cat_39",
+                "text": "Delivery - Payment",
+                "children": [
+                    {
+                        "text": "Indicator of no insurance to pay for delivery",
+                        "id": "qn365"
+                    },
+                    {
+                        "text": "Indicator of whether delivery was paid for by insurance purchased directly",
+                        "id": "qn366"
+                    },
+                    {
+                        "text": "Indicator of whether delivery was paid for by insurance through an employer",
+                        "id": "qn367"
+                    },
+                    {
+                        "text": "Indicator of whether delivery was paid for by insurance through the military",
+                        "id": "qn364"
+                    },
+                    {
+                        "text": "Indicator of whether other sources paid for delivery",
+                        "id": "qn319"
+                    }
+                ]
+            }
+        ];
+        searchController.search(true);
+        //should collect questions from selected topic of a class only
+        expect(topicFilter.filters.questions).toEqual([ 'qn365', 'qn366', 'qn367', 'qn364', 'qn319' ]);
+        //reset topic filter
+        topicFilter.filters.value = [];
+    }));
+
+    it("should listen for pramsQuestionsLoaded event", inject(function () {
+
+        $rootScope.pramsQuestionsList = [
+            {
+                "text": "Indicator of whether personal income paid for delivery",
+                "id": "qn318"
+            },
+            {
+                "text": "Indicator of no insurance to pay for delivery",
+                "id": "qn365"
+            }
+        ];
+        searchController.filters = {pramsFilters: [{},{},{},{},{"key": "question", autoCompleteOptions:[]}]};
+
+        $rootScope.$broadcast('pramsQuestionsLoaded', $rootScope.pramsQuestionsList);
+        //should collect questions from selected topic of a class only
+        expect(JSON.stringify(searchController.filters.pramsFilters[4].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.pramsQuestionsList));
+    }));
+
+    it("should listen for yrbsQuestionsLoadded event", inject(function () {
+
+        $rootScope.questionsList = [
+            {
+                "text": "Indicator of whether personal income paid for delivery",
+                "id": "qn318"
+            },
+            {
+                "text": "Indicator of no insurance to pay for delivery",
+                "id": "qn365"
+            }
+        ];
+
+        searchController.filters = {
+            yrbsBasicFilters: [{},{},{},{},{"key": "question", autoCompleteOptions:[]}],
+            yrbsAdvancedFilters: [{},{},{},{},{"key": "question", autoCompleteOptions:[]}]
+        };
+
+        $rootScope.$broadcast('yrbsQuestionsLoadded', $rootScope.pramsQuestionsList);
+        expect(JSON.stringify(searchController.filters.yrbsBasicFilters[4].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.questionsList));
+        expect(JSON.stringify(searchController.filters.yrbsAdvancedFilters[4].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.questionsList));
     }));
 });

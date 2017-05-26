@@ -6,9 +6,9 @@ var expect = chai.expect;
 
 var yrbsStepDefinitionsWrapper = function () {
 
-    this.setDefaultTimeout(30000);
-
-    var yrbsPage = require('../support/yrbspage.po')
+    this.setDefaultTimeout(600000);
+    var yrbsPage = require('../support/yrbspage.po');
+    var commonPage = require('../support/commonpage.po');
 
     this.When(/^I select YRBS as primary filter$/, function (next) {
         yrbsPage.yrbsOption.click().then(next);
@@ -27,8 +27,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on Show \# More under the questions in any category$/, function (next) {
-        browser.waitForAngular();
-        element(by.cssContainingText('a', 'Show 18 More')).click()
+        element(by.cssContainingText('a', 'Show 19 More')).click()
             .then(next);
     });
 
@@ -119,31 +118,16 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
 
-    this.Then(/^I should be able to select more than one\. The radio buttons must be changed to checkboxes$/, function () {
-        var raceFilter = yrbsPage.selectSideFilter("Race/Ethnicity");
-        var raceParentElement = raceFilter.element(by.xpath('..')).element(by.xpath('..')).element(by.xpath('..'));
-        raceFilter.getAttribute('class').then(function(className){
-            if(className =="fa fa-chevron-right") {
-                //Exapnd filter
-                raceFilter.element(by.xpath('..')).click();
-            }
-            raceParentElement.element(by.xpath('.//*[.="Asian"]')).click();
-        });
+    this.Then(/^I should be able to select more than one\. The radio buttons must be changed to checkboxes$/, function (next) {
+        yrbsPage.raceOptionsLink.click();
+        var raceFilter = commonPage.getFilterOptionContainerForFilter("Race/Ethnicity");
+        raceFilter.element(by.xpath('.//*[.="Asian"]')).click();
         browser.waitForAngular();
-        raceFilter.getAttribute('class').then(function(className){
-            if(className =="fa fa-chevron-right") {
-                //Exapnd filter
-                raceFilter.element(by.xpath('..')).click();
-            }
-            raceParentElement.element(by.xpath('.//*[.="American Indian or Alaska Native"]')).click();
-        });
-        return browser.waitForAngular();
+        raceFilter.element(by.xpath('.//*[.="American Indian or Alaska Native"]')).click().then(next);
     });
 
     this.Then(/^the default filter pre\-selected should be Race$/, function () {
-        var raceFilter = element(by.className('side-filters')).element(by.xpath('.//*[.="Race/Ethnicity"]'));
-        var raceParentLabel = raceFilter.element(by.xpath('..')).element(by.xpath('..'));
-        var columnButton = raceParentLabel.element(by.tagName('owh-toggle-switch')).element(by.tagName('a'));
+        var columnButton = element(by.cssContainingText('div.sidebar-filter-label', 'Race/Ethnicity')).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.tagName('a'));
         expect(columnButton.getAttribute('class')).to.eventually.contains("selected");
     });
 
@@ -194,11 +178,10 @@ var yrbsStepDefinitionsWrapper = function () {
 
     });
 
-    this.Given(/^filter "([^"]*)" and option "([^"]*)" selected$/, function (filterName, option) {
-        var raceFilter = yrbsPage.selectSideFilter(filterName);
-        var raceParentElement = raceFilter.element(by.xpath('..')).element(by.xpath('..')).element(by.xpath('..'));
-        raceParentElement.element(by.xpath('.//*[.="'+option+'"]')).click();
-        return browser.waitForAngular();
+    this.Given(/^filter "([^"]*)" and option "([^"]*)" selected$/, function (filterName, option, next) {
+        var selectedFilter = commonPage.getFilterOptionContainerForFilter(filterName);
+        var selectedOption = selectedFilter.element(by.xpath('.//*[.="'+option+'"]'));
+        selectedOption.click().then(next);
     });
 
     this.Then(/^I see question categories in this order "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)"$/, function (questionCat1, questionCat2, questionCat3, questionCat4, questionCat5, questionCat6, questionCat7, questionCat8, next) {
@@ -232,7 +215,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on "([^"]*)" button$/, function (arg1, next) {
-        yrbsPage.selectQuestionsButton.click()
+        yrbsPage.selectQuestionsButton(arg1).click()
             .then(next);
     });
 
@@ -247,7 +230,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I open up the Survey Question pop up$/, function (next) {
-        yrbsPage.selectQuestionsButton.click()
+        yrbsPage.selectButton("Select Questions")
             .then(next);
     });
 
@@ -371,11 +354,11 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^the results page \(yrbs data table\) should be refreshed to reflect "([^"]*)" filter with option "([^"]*)"$/, function (filterName, option) {
-        var raceFilter = yrbsPage.selectSideFilter(filterName);
+        var raceFilter = commonPage.getFilterOptionContainerForFilter(filterName);
         var raceParentElement = raceFilter.element(by.xpath('..')).element(by.xpath('..')).element(by.xpath('..'));
         expect(raceParentElement.element(by.xpath('.//*[.="'+option+'"]')).isSelected()).to.eventually.equal(true);
 
-        var raceFilter2 = yrbsPage.selectSideFilter("year");
+        var raceFilter2 = commonPage.getFilterOptionContainerForFilter("year");
         var raceParentElement2 = raceFilter2.element(by.xpath('..')).element(by.xpath('..')).element(by.xpath('..'));
         return expect(raceParentElement2.element(by.xpath('.//*[.="2015"]')).isSelected()).to.eventually.equal(true);
     });
@@ -395,6 +378,8 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^the sidebar switches to an Advanced Search mode$/, function () {
+        //var until = protractor.ExpectedConditions;
+        //browser.wait(until.presenceOf(element(by.tagName('owh-accordion-table'))), 600000, "Table 'owh-accordion-table' taking too long to appear in the DOM in YRBS advanced search page");
         /*Expand Sex to verify check boxes or radio buttons*/
         element(by.partialLinkText('Sex')).click();
         expect(element(by.id("mental_health_yrbsSex_Female")).getAttribute('type')).to.eventually.equal('checkbox');
@@ -435,7 +420,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^"([^"]*)" button should be displayed$/, function (arg1) {
-       return expect(yrbsPage.selectQuestionsButton.isDisplayed()).to.eventually.equal(true);
+       return expect(yrbsPage.selectQuestionsButton('Select Questions').isDisplayed()).to.eventually.equal(true);
     });
 
     this.When(/^I see hide filter button in yrbs page$/, function (next) {
@@ -454,7 +439,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I set "([^"]*)" filter "([^"]*)"$/, function (filter1, viewType1, next) {
-        element(by.cssContainingText('a', filter1)).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('span', viewType1)).click()
+        element(by.cssContainingText('div.sidebar-filter-label', filter1)).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('span', viewType1)).click()
             .then(next);
     });
 
@@ -606,6 +591,66 @@ var yrbsStepDefinitionsWrapper = function () {
         return element.all(by.css('.jstree-undetermined')).then(function (elements) {
             expect(elements.length).to.equal(1);
         });
+    });
+
+    this.When(/^I click on Confidence Intervals option's "([^"]*)" button$/, function (arg, next) {
+        element(by.className('owh-side-menu__utility-option')).element(by.cssContainingText('span', arg)).click().then(next);
+    });
+
+    this.Then(/^"([^"]*)" button for Confidence Intervals should be remain selected$/, function (arg1) {
+        return expect(element(by.className('owh-side-menu__utility-option')).element(by.cssContainingText('span', arg1)).element(by.xpath('..')).getAttribute('class')).to.eventually.include('selected');
+    });
+
+    this.Then(/^I see Confidence Intervals value in data table$/, function (next) {
+        yrbsPage.getTableRowData(1).then(function(text) {
+            expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            //American Indian or Alaska Native
+            expect(text[1]).to.contains('46.0');
+            //Confidence Intervals
+            expect(text[1]).to.contains('(30.6-62.3)')
+        }).then(next);
+    });
+
+    this.Then(/^Confidence Intervals value in data table should be updated$/, function (next) {
+        yrbsPage.getTableRowData(1).then(function(text) {
+            expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            //American Indian or Alaska Native
+            expect(text[2]).to.contains('13.5');
+            //Confidence Intervals
+            expect(text[2]).to.contains('(10.3-17.6)');
+        }).then(next);
+    });
+
+    this.Then(/^I see Unweighted Frequency value in data table$/, function (next) {
+        yrbsPage.getTableRowData(1).then(function(text) {
+            expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            //American Indian or Alaska Native
+            expect(text[2]).to.contains('13.5');
+            //Confidence Intervals
+            expect(text[2]).to.contains('(10.3-17.6)');
+            //Unweighted Frequency
+            expect(text[2]).to.contains('290');
+        }).then(next);
+    });
+
+    this.Then(/^Unweighted Frequency value in data table should be updated$/, function (next) {
+        yrbsPage.getTableRowData(1).then(function(text) {
+            expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            //American Indian or Alaska Native
+            expect(text[1]).to.contains('46.0');
+            //Confidence Intervals
+            expect(text[1]).to.contains('(30.6-62.3)');
+            //Unweighted Frequency
+            expect(text[1]).to.contains('143');
+        }).then(next);
+    });
+
+    this.Then(/^"([^"]*)" button for Unweighted Frequency should be remain selected$/, function (arg1) {
+        return expect(element.all(by.className('owh-side-menu__utility-option')).last().element(by.cssContainingText('span', arg1)).element(by.xpath('..')).getAttribute('class')).to.eventually.include('selected');
+    });
+
+    this.When(/^I click on Unweighted Frequency option's "([^"]*)" button$/, function (arg, next) {
+        element.all(by.className('owh-side-menu__utility-option')).last().element(by.cssContainingText('span', arg)).click().then(next);
     });
 };
 module.exports = yrbsStepDefinitionsWrapper;

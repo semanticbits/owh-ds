@@ -1134,18 +1134,18 @@ describe("YRBS API", function () {
 
     it("invokeYRBS state service with grouping and filtering", function (){
         var apiQuery = {'searchFor': 'mental_health', 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000},{"key":"yrbsRace","queryKey":"race","size":100000},{"key":"yrbsState","queryKey":"sitecode","size":100000}]}},
-            'query': {'question.path':{ 'value': ['qn8']}, 'race':{value:['White', 'Black or African American']},'sitecode':{value:['VA','MO']}}};
+            'query': {'question.path':{ 'value': ['qn8']}, 'race':{value:['White', 'Black or African American']},'sitecode':{value:['CA','MO']}}};
 
         return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
             var q0=resp.table.question[0];
-            expect(q0.mental_health).to.eql({"mean":"86.4","ci_l":"84.7","ci_u":"87.9","count":16512});
+            expect(q0.mental_health).to.eql({"mean":"81.6","ci_l":"77.4","ci_u":"85.1","count":10156});
             var race = sortByKey(q0.race,'name',true);
             expect(race[0].name).to.eql("Black or African American");
             expect(race[1].name).to.eql("White");
             var b = sortByKey(race[0].sitecode, 'name', true);
-            expect(b).to.eql([{"name":"MO","mental_health":{"mean":"92.8","ci_l":"90.2","ci_u":"94.7","count":1395}},{"name":"VA","mental_health":{"mean":"91.1","ci_l":"88.7","ci_u":"93.1","count":2031}}]);
+            expect(b).to.eql([{"name":"CA","mental_health":{"mean":"90.1","ci_l":"76.8","ci_u":"96.1","count":38}}, {"name":"MO","mental_health":{"mean":"92.8","ci_l":"90.2","ci_u":"94.7","count":1395}}]);
             var w = sortByKey(race[1].sitecode, 'name', true);
-            expect(w).to.eql([{"name":"MO","mental_health":{"mean":"87.8","ci_l":"85.1","ci_u":"90.1","count":8483}},{"name":"VA","mental_health":{"mean":"77.6","ci_l":"74.7","ci_u":"80.3","count":4603}}]);
+            expect(w).to.eql([{"name":"CA","mental_health":{"mean":"48.8","ci_l":"37.8","ci_u":"59.9","count":240}}, {"name":"MO","mental_health":{"mean":"87.8","ci_l":"85.1","ci_u":"90.1","count":8483}}]);
         });
     });
 
@@ -1209,6 +1209,34 @@ describe("YRBS API", function () {
             expect(response.questionsList[1].qkey).to.eql("qn11");
             expect(response.questionsList[0].title).to.eql("Rode with a driver who had been drinking alcohol(in a car or other vehicle one or more times during the 30 days before the survey)");
             expect(response.questionsList[1].title).to.eql("Drove when drinking alcohol(in a car or other vehicle one or more times during the 30 days before the survey, among students who had driven a car or other vehicle during the 30 days before the survey)");
+        });
+    });
+
+    it("should get prams questions tree", function (){
+        return yrbs.getPramsQuestionsTree().then(function (response) {
+
+            expect(response.questionTree[0].text).to.eql("Abuse - Mental");
+            expect(response.questionTree[0].children.length).to.eql(1);
+            expect(response.questionTree[0].children[0].text).to.eql("(*PCH) During the 12 months before pregnancy  did your husband or partner threaten you  limit your activities against your will  or make you feel unsafe in any other way?");
+
+            expect(response.questionTree[1].text).to.eql("Abuse - Physical");
+            expect(response.questionTree[1].children.length).to.eql(8);
+            expect(response.questionTree[1].children[0].text).to.eql("(*PCH) During the 12 months before you got pregnant  did your husband or partner push  hit  slap, kick, choke, or physically hurt you in any other way?");
+            expect(response.questionTree[1].children[7].text).to.eql("Indicator of no physical abuse during pregnancy");
+
+            expect(response.questionTree[2].text).to.eql("Alcohol Use");
+            expect(response.questionTree[2].children.length).to.eql(5);
+            expect(response.questionTree[2].children[0].text).to.eql("(*PCH) Indicator of binge drinking (4+ drinks) during 3 months before pregnancy");
+            expect(response.questionTree[2].children[4].text).to.eql("Indicator of whether mother reported having any alcoholic drinks during the last 3 months of pregnancy");
+
+            //46 topics
+            expect(response.questionTree.length).to.eql(46);
+            //270 questions
+            expect(response.questionsList.length).to.eql(270);
+
+            yrbs.getPramsQuestionsTree().then(function (cachedResponse) {
+                expect(JSON.stringify(response)).to.eql(JSON.stringify(cachedResponse));
+            });
         });
     });
 

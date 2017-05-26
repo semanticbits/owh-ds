@@ -6,8 +6,9 @@ var expect = chai.expect;
 
 var BridgeRaceStepDefinitionsWrapper = function () {
 
-    this.setDefaultTimeout(30000);
+    this.setDefaultTimeout(600000);
     var bridgeRacePage = require('../support/bridgerace.po');
+    var commonPage = require('../support/commonpage.po');
 
     this.Then(/^I see the data table with race, female, male and total table headers$/, function () {
         var dtTableHeaders = bridgeRacePage.getTableHeaders();
@@ -18,14 +19,13 @@ var BridgeRaceStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I see "([^"]*)" as first option in sidebar filters$/, function (arg1, next) {
-        browser.waitForAngular();
         element.all(by.css('.side-filters')).all(by.css('.accordion')).then(function (items) {
             expect(items[0].getText()).to.eventually.contains(arg1);
         }).then(next);
     });
 
     this.When(/^I click on row button in row-column switch for "([^"]*)"$/, function (arg1, next) {
-        bridgeRacePage.selectRowOrColumn(arg1, 'Row').click()
+        commonPage.getRowSwitchByFilterType(arg1).click()
             .then(next);
     });
 
@@ -61,7 +61,6 @@ var BridgeRaceStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I see a visualization$/, function (next) {
-        browser.waitForAngular();
         bridgeRacePage.isVisualizationDisplayed().then(function(value) {
             expect(value).to.equal(true);
         }).then(next);
@@ -179,6 +178,23 @@ var BridgeRaceStepDefinitionsWrapper = function () {
         }).then(next);
     });
 
+    this.Then(/^An option to show\/hide percentages is displayed$/, function () {
+        expect(bridgeRacePage.showOrHidePecentageDiv.isPresent()).to.eventually.equal(true);
+        expect(bridgeRacePage.showPecentageButton.isPresent()).to.eventually.equal(true);
+        return expect(bridgeRacePage.hidePecentageButton.isPresent()).to.eventually.equal(true);
+    });
+
+    this.When(/^I click the "([^"]*)" button$/, function (arg, next) {
+        bridgeRacePage.hidePecentageButton.click().then(next)
+    });
+
+    this.Then(/^I should not see percentages$/, function () {
+        return bridgeRacePage.getTableRowData(0).then(function (row) {
+            expect(row[1]).to.equal('2,279,263');
+            expect(row[2]).to.equal('2,298,590');
+            expect(row[3]).to.equal('4,577,853');
+        });
+    });
 };
 
 module.exports = BridgeRaceStepDefinitionsWrapper;

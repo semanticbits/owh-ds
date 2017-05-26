@@ -4,7 +4,7 @@
 describe('search factory ', function(){
     var searchFactory, utils, $rootScope, $scope, controllerProvider, searchService, deferred, $q,
         primaryFilter, $httpBackend, $templateCache, filters, countsMortalityAutoCompletes,
-        searchResponse, groupGenderResponse, genderGroupHeaders, fourGroupsResponse,
+        searchResponse, searchResponseForAgeGroup, groupGenderResponse, genderGroupHeaders, fourGroupsResponse,
         ModalService, givenModalDefaults, elementVisible, thenFunction, closeDeferred, $timeout, filterUtils, questionsTreeJson;
     module.sharedInjector();
 
@@ -45,6 +45,7 @@ describe('search factory ', function(){
         countsMortalityAutoCompletes = __fixtures__['app/modules/search/fixtures/search.factory/countsMortalityAutoCompletes'];
 
         searchResponse = __fixtures__['app/modules/search/fixtures/search.factory/searchResponse'];
+        searchResponseForAgeGroup = __fixtures__['app/modules/search/fixtures/search.factory/searchResponseForAgeGroup'];
         groupGenderResponse = __fixtures__['app/modules/search/fixtures/search.factory/groupGenderResponse'];
         fourGroupsResponse = __fixtures__['app/modules/search/fixtures/search.factory/fourGroupsResponse'];
 
@@ -586,6 +587,16 @@ describe('search factory ', function(){
             });
             deferred.resolve(response);
         });
+
+        it('sliderValue is updated', function () {
+            var mortalityFilter = utils.findByKeyAndValue(filters.primaryFilters, 'key', 'deaths');
+            mortalityFilter.sideFilters[0].sideFilters[0].filters.sliderValue = '-5;105';
+            var expectedSliderValue = '10,50';
+            searchResponseForAgeGroup.data.queryJSON.sideFilters[0].sideFilters[0].filters.sliderValue = expectedSliderValue;
+            searchFactory.updateFiltersAndData(filters, searchResponseForAgeGroup, { 'number_of_deaths': {} }, {});
+            expect(mortalityFilter.sideFilters[0].sideFilters[0].filters.sliderValue).toEqual(expectedSliderValue);
+        });
+
     });
 
     describe('test with natality data', function () {

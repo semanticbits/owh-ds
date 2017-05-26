@@ -8,6 +8,11 @@ var prepareCensusAggregationQuery = function(aggregations) {
         if (aggregations['nested']['table'] && aggregations['nested']['table'].length > 0) {
             censusQuery.aggregations = merge(censusQuery.aggregations, generateNestedCensusAggQuery(aggregations['nested']['table'], 'group_table_'));
         }
+      if (aggregations['nested']['charts']) {
+            for(var index in aggregations['nested']['charts']) {
+                censusQuery.aggregations = merge(censusQuery.aggregations, generateNestedCensusAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_'));
+            }
+      }
     }
     return censusQuery;
 };
@@ -280,7 +285,7 @@ var isEmptyObject = function(obj) {
 function findFilterByKeyAndValue(a, key, value) {
     if (a) {
         for (var i = 0; i < a.length; i++) {
-            var filter = a[i].filters;
+            var filter = a[i];
             if ( filter[key] && filter[key] === value ) {return a[i];}
         }
     }
@@ -295,63 +300,11 @@ function findFilterByKeyAndValue(a, key, value) {
  * @returns {*}
  */
 function isFilterApplied(a) {
-    if (a && a.filters) {
-        return a.filters.value.length > 0;
+    if (a) {
+        return a.value.length > 0;
     }
     return false;
 }
-
-/**
- * Finds and returns all objects in array of objects that not contains the key and value
- * @param a
- * @param key
- * @param value
- * @returns {Array}
- */
-function findAllNotContainsKeyAndValue(a, key, value) {
-    var result = [];
-    for (var i = 0; i < a.length; i++) {
-        if (a[i][key] !== value) {
-            result.push(a[i]);
-        }
-    }
-    return result;
-}
-
-/**
- * get the array with key
- * @param data
- * @param key
- * @param includeKey
- * @param includeValue
- * @returns {Array}
- */
-function getValuesByKeyIncludingKeyAndValue(data, key, includeKey, includeValue) {
-    var values = [];
-    for (var i = 0; i < data.length; i++) {
-        if(data[i][includeKey] === includeValue) {
-            values.push(data[i][key]);
-        }
-    }
-    return values;
-}
-
-/**
- * get the array with key
- * @param data
- * @param key
- * @returns {Array}
- */
-function getValuesByKeyExcludingKeyAndValue(data, key, excludeKey, excludeValue) {
-    var values = [];
-    for (var i = 0; i < data.length; i++) {
-        if(data[i][excludeKey] != excludeValue) {
-            values.push(data[i][key]);
-        }
-    }
-    return values;
-}
-
 
 function buildAPIQuery(primaryFilter) {
    var apiQuery = {
@@ -401,13 +354,9 @@ function buildAPIQuery(primaryFilter) {
             apiQuery.query[eachFilter.queryKey] = eachFilterQuery;
         }
     });
-    primaryFilter.sideFilters.forEach(function(category) {
-        category.sideFilters.forEach(function(filter){
-            if(filter.filters.key === 'topic') {
-                apiQuery.query['question.path'].value = filter.filters.questions;
-            }
-        })
-    });
+    if (primaryFilter.key === 'prams') {
+        getPramsQueryForAllYearsAndQuestions(primaryFilter, apiQuery)
+    }
     apiQuery.aggregations.nested.table = rowAggregations.concat(columnAggregations);
     var result = prepareChartAggregations(headers.rowHeaders.concat(headers.columnHeaders), apiQuery.searchFor);
     headers.chartHeaders = result.chartHeaders;
@@ -419,6 +368,37 @@ function buildAPIQuery(primaryFilter) {
         apiQuery: apiQuery,
         headers: headers
     };
+}
+
+/**
+ * Prepare queru for PRAMS Years and Questions
+ * @param primaryFilter
+ * @param apiQuery
+ */
+function getPramsQueryForAllYearsAndQuestions(primaryFilter, apiQuery) {
+    primaryFilter.sideFilters.forEach(function(category) {
+        category.sideFilters.forEach(function(filter) {
+            if(filter.filters.key === 'topic'
+                && apiQuery.query['question.path'].value.length > filter.filters.questions.length) {
+                apiQuery.query['question.path'].value = filter.filters.questions;
+            } else if (filter.filters.key === 'year') {
+                apiQuery.query['year'] = getFilterQuery(filter.filters);
+                if(filter.filters.value.length == 0) {
+                    apiQuery.query['year'].value = getFilterOptionValues(filter.filters.autoCompleteOptions);
+                }
+            }
+        });
+    });
+}
+
+/**
+ * Get all options as array of values
+ * @param filterOptions
+ */
+function getFilterOptionValues(filterOptions) {
+    return filterOptions.map(function(option) {
+        return option.key;
+    });
 }
 
 function clone(a) {
