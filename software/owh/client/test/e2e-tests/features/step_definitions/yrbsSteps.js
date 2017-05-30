@@ -215,6 +215,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on "([^"]*)" button$/, function (arg1, next) {
+        browser.sleep(5000);
         yrbsPage.selectQuestionsButton(arg1).click()
             .then(next);
     });
