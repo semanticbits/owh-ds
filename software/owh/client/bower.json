@@ -15,7 +15,6 @@
     "html5-boilerplate": "~5.2.0",
     "angular-translate": "~2.11.0",
     "angular-translate-loader-static-files": "~2.11.0",
-    "angular-aria": "^1.5.3",
     "jquery": "~2.1.4",
     "angular-ui-router": "^0.2.18",
     "angular-animate": "~1.5.5",
