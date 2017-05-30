@@ -4,7 +4,8 @@ var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 var expect = chai.expect;
 
-var smokeMortalityStepDefinitionsWrapper = function () {
+var smokeMortalityStepDefinitionsWrapper;
+smokeMortalityStepDefinitionsWrapper = function () {
 
     this.setDefaultTimeout(600000);
     var homePage = require('../support/homepage.po');
@@ -32,8 +33,9 @@ var smokeMortalityStepDefinitionsWrapper = function () {
         expect(mortalityPage.shareOnFacebookLink.isDisplayed()).to.eventually.equal(true);
     });
 
-    this.Then(/^I see filter Year and option 2015 selected$/, function () {
-        expect(element(by.id('deaths_year_2015')).element(by.model('checked'))).to.eventually.equal(true);
+    this.Then(/^I see filter Year and option "([^"]*)" selected$/, function (option) {
+        var yearSelected = element(by.id('deaths_year_'+option+'')).isSelected();
+        expect(yearSelected).to.eventually.equal(true);
     });
 }; 
 module.exports = smokeMortalityStepDefinitionsWrapper;

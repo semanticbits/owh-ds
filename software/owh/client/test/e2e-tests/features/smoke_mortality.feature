@@ -23,8 +23,8 @@ Scenario: Observe default "Detailed Mortality" page
 
 Scenario: Observe default "Detailed Mortality" sidebar filters
 #  Given I am on search page
-  Then I see "Year" as first option in sidebar filters
-#  And I see filter Year and option 2015 selected
+  When I see "Year" as first option in sidebar filters
+  Then I see filter Year and option "2015" selected
 #  And I make observations for all other enabled filters
 
 Scenario: Observe default "Detailed Mortality" visualizations
