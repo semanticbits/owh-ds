@@ -199,6 +199,16 @@ Scenario: Suppression
   And I select groupBy "Column" option for "Age Groups" filter
   Then I see cell values being suppressed for American Indian race
   And I see total is also being suppressed
+  When I expand "Age Groups" filter section
+  And I select Age Groups from '20' to '100'
+  Then Age Group values "20" and ">100" should be displayed on slider
+  And mortality data table should display results for Age Group
+  When I select the back button in browser
+  Then Age Group values "Not stated" and ">100" should be displayed on slider
+  When I select the forward button in browser
+  Then Age Group values "20" and ">100" should be displayed on slider
+
+
 
 #Enable once OWH-1179 issue fixed.
 #Scenario: Age Adjusted Death Rates
