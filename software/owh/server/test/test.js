@@ -114,6 +114,506 @@ describe("Utils", function(){
         done();
 
     });
+
+    it("Apply suppression rules for yrbs basic search", function (done) {
+        var data  = {
+            "table": {
+                "question": [
+                    {
+                        "name": "qn10",
+                        "race": [
+                            {
+                                "name": "Am Indian / Alaska Native",
+                                "mental_health": {
+                                    "mean": "25.3",
+                                    "ci_l": "16.8",
+                                    "ci_u": "36.2",
+                                    "count": 161
+                                }
+                            },
+                            {
+                                "name": "Hispanic/Latino",
+                                "mental_health": {
+                                    "mean": "26.2",
+                                    "ci_l": "24.4",
+                                    "ci_u": "28.2",
+                                    "count": 5101
+                                }
+                            },
+                            {
+                                "name": "Native Hawaiian/other PI",
+                                "mental_health": {
+                                    "mean": "0",
+                                    "ci_l": "0",
+                                    "ci_u": "0",
+                                    "count": 97
+                                }
+                            },
+                            {
+                                "name": "Multiple - Non-Hispanic",
+                                "mental_health": {
+                                    "mean": "19.6",
+                                    "ci_l": "15.7",
+                                    "ci_u": "24.2",
+                                    "count": 738
+                                }
+                            },
+                            {
+                                "name": "Black or African American",
+                                "mental_health": {
+                                    "mean": "21.1",
+                                    "ci_l": "17.2",
+                                    "ci_u": "25.6",
+                                    "count": 1655
+                                }
+                            },
+                            {
+                                "name": "White",
+                                "mental_health": {
+                                    "mean": "17.7",
+                                    "ci_l": "15.9",
+                                    "ci_u": "19.6",
+                                    "count": 6837
+                                }
+                            },
+                            {
+                                "name": "Asian",
+                                "mental_health": {
+                                    "mean": "11.2",
+                                    "ci_l": "7.8",
+                                    "ci_u": "15.8",
+                                    "count": 625
+                                }
+                            }
+                        ],
+                        "mental_health": {
+                            "mean": "20.0",
+                            "ci_l": "18.4",
+                            "ci_u": "21.6",
+                            "count": 15555
+                        }
+                    },
+                    {
+                        "name": "qn11",
+                        "race": [
+                            {
+                                "name": "Native Hawaiian/other PI",
+                                "mental_health": {
+                                    "mean": "0",
+                                    "ci_l": "0",
+                                    "ci_u": "0",
+                                    "count": 46
+                                }
+                            },
+                            {
+                                "name": "Multiple - Non-Hispanic",
+                                "mental_health": {
+                                    "mean": "8.3",
+                                    "ci_l": "5.1",
+                                    "ci_u": "13.2",
+                                    "count": 381
+                                }
+                            },
+                            {
+                                "name": "Black or African American",
+                                "mental_health": {
+                                    "mean": "6.9",
+                                    "ci_l": "5.2",
+                                    "ci_u": "9.1",
+                                    "count": 748
+                                }
+                            },
+                            {
+                                "name": "Asian",
+                                "mental_health": {
+                                    "mean": "5.4",
+                                    "ci_l": "2.7",
+                                    "ci_u": "10.8",
+                                    "count": 277
+                                }
+                            },
+                            {
+                                "name": "White",
+                                "mental_health": {
+                                    "mean": "7.4",
+                                    "ci_l": "5.9",
+                                    "ci_u": "9.3",
+                                    "count": 4145
+                                }
+                            },
+                            {
+                                "name": "Hispanic/Latino",
+                                "mental_health": {
+                                    "mean": "9.4",
+                                    "ci_l": "7.8",
+                                    "ci_u": "11.3",
+                                    "count": 2584
+                                }
+                            },
+                            {
+                                "name": "Am Indian / Alaska Native",
+                                "mental_health": {
+                                    "mean": "0",
+                                    "ci_l": "0",
+                                    "ci_u": "0",
+                                    "count": 92
+                                }
+                            }
+                        ],
+                        "mental_health": {
+                            "mean": "7.8",
+                            "ci_l": "6.8",
+                            "ci_u": "9.0",
+                            "count": 8432
+                        }
+                    }
+                ]
+            }
+        };
+
+        searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', false);
+        expect(data.table.question[0].race[2].mental_health.mean).equal('suppressed');
+        expect(data.table.question[0].race[2].mental_health.count).equal(97);
+        expect(data.table.question[1].race[0].mental_health.mean).equal('suppressed');
+        expect(data.table.question[1].race[0].mental_health.count).equal(46);
+        done();
+
+    });
+
+it("Apply suppression rules for yrbs advanced search", function (done) {
+    var data  = {
+        "table": {
+            "question": [
+                {
+                    "name": "qn10",
+                    "mental_health": {
+                        "mean": "20.0",
+                        "ci_l": "18.3",
+                        "ci_u": "21.8",
+                        "count": 12914
+                    },
+                    "sexpart": [
+                        {
+                            "name": "Same sex only",
+                            "mental_health": {
+                                "mean": "43.5",
+                                "ci_l": "23.8",
+                                "ci_u": "65.4",
+                                "count": 65
+                            },
+                            "race": [
+                                {
+                                    "name": "Multiple - Non-Hispanic",
+                                    "mental_health": {
+                                        "mean": "0",
+                                        "ci_l": "0",
+                                        "ci_u": "0",
+                                        "count": 2
+                                    }
+                                },
+                                {
+                                    "name": "Native Hawaiian/other PI",
+                                    "mental_health": {
+                                        "mean": "0",
+                                        "ci_l": "0",
+                                        "ci_u": "0",
+                                        "count": 0
+                                    }
+                                },
+                                {
+                                    "name": "Asian",
+                                    "mental_health": {
+                                        "mean": "20.2",
+                                        "ci_l": "0",
+                                        "ci_u": "0",
+                                        "count": 3
+                                    }
+                                },
+                                {
+                                    "name": "White",
+                                    "mental_health": {
+                                        "mean": "17.7",
+                                        "ci_l": "0.5",
+                                        "ci_u": "90.3",
+                                        "count": 17
+                                    }
+                                },
+                                {
+                                    "name": "Hispanic/Latino",
+                                    "mental_health": {
+                                        "mean": "50.9",
+                                        "ci_l": "14.8",
+                                        "ci_u": "86.0",
+                                        "count": 23
+                                    }
+                                },
+                                {
+                                    "name": "Am Indian / Alaska Native",
+                                    "mental_health": {
+                                        "mean": "0",
+                                        "ci_l": "0",
+                                        "ci_u": "0",
+                                        "count": 0
+                                    }
+                                },
+                                {
+                                    "name": "Black or African American",
+                                    "mental_health": {
+                                        "mean": "60.9",
+                                        "ci_l": "0.1",
+                                        "ci_u": "100.0",
+                                        "count": 17
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Opposite sex only",
+                            "race": [
+                                {
+                                    "name": "Hispanic/Latino",
+                                    "mental_health": {
+                                        "mean": "32.1",
+                                        "ci_l": "28.9",
+                                        "ci_u": "35.5",
+                                        "count": 2141
+                                    }
+                                },
+                                {
+                                    "name": "Native Hawaiian/other PI",
+                                    "mental_health": {
+                                        "mean": "20.9",
+                                        "ci_l": "9.0",
+                                        "ci_u": "41.5",
+                                        "count": 35
+                                    }
+                                },
+                                {
+                                    "name": "Black or African American",
+                                    "mental_health": {
+                                        "mean": "24.5",
+                                        "ci_l": "19.5",
+                                        "ci_u": "30.3",
+                                        "count": 748
+                                    }
+                                },
+                                {
+                                    "name": "Multiple - Non-Hispanic",
+                                    "mental_health": {
+                                        "mean": "26.4",
+                                        "ci_l": "19.1",
+                                        "ci_u": "35.3",
+                                        "count": 337
+                                    }
+                                },
+                                {
+                                    "name": "White",
+                                    "mental_health": {
+                                        "mean": "23.3",
+                                        "ci_l": "20.6",
+                                        "ci_u": "26.2",
+                                        "count": 2948
+                                    }
+                                },
+                                {
+                                    "name": "Am Indian / Alaska Native",
+                                    "mental_health": {
+                                        "mean": "30.9",
+                                        "ci_l": "20.5",
+                                        "ci_u": "43.6",
+                                        "count": 79
+                                    }
+                                },
+                                {
+                                    "name": "Asian",
+                                    "mental_health": {
+                                        "mean": "25.7",
+                                        "ci_l": "17.9",
+                                        "ci_u": "35.5",
+                                        "count": 176
+                                    }
+                                }
+                            ],
+                            "mental_health": {
+                                "mean": "25.6",
+                                "ci_l": "23.4",
+                                "ci_u": "28.0",
+                                "count": 6556
+                            }
+                        },
+                        {
+                            "name": "Both Sexes",
+                            "race": [
+                                {
+                                    "name": "Multiple - Non-Hispanic",
+                                    "mental_health": {
+                                        "mean": "16.4",
+                                        "ci_l": "0.7",
+                                        "ci_u": "84.5",
+                                        "count": 11
+                                    }
+                                },
+                                {
+                                    "name": "Black or African American",
+                                    "mental_health": {
+                                        "mean": "7.8",
+                                        "ci_l": "1.8",
+                                        "ci_u": "27.7",
+                                        "count": 25
+                                    }
+                                },
+                                {
+                                    "name": "Native Hawaiian/other PI",
+                                    "mental_health": {
+                                        "mean": "0",
+                                        "ci_l": "0",
+                                        "ci_u": "0",
+                                        "count": 1
+                                    }
+                                },
+                                {
+                                    "name": "Hispanic/Latino",
+                                    "mental_health": {
+                                        "mean": "51.3",
+                                        "ci_l": "34.4",
+                                        "ci_u": "67.9",
+                                        "count": 52
+                                    }
+                                },
+                                {
+                                    "name": "Asian",
+                                    "mental_health": {
+                                        "mean": "0",
+                                        "ci_l": "0",
+                                        "ci_u": "0",
+                                        "count": 4
+                                    }
+                                },
+                                {
+                                    "name": "Am Indian / Alaska Native",
+                                    "mental_health": {
+                                        "mean": "0",
+                                        "ci_l": "0",
+                                        "ci_u": "0",
+                                        "count": 0
+                                    }
+                                },
+                                {
+                                    "name": "White",
+                                    "mental_health": {
+                                        "mean": "29.2",
+                                        "ci_l": "18.8",
+                                        "ci_u": "42.4",
+                                        "count": 88
+                                    }
+                                }
+                            ],
+                            "mental_health": {
+                                "mean": "29.1",
+                                "ci_l": "21.6",
+                                "ci_u": "38.1",
+                                "count": 181
+                            }
+                        },
+                        {
+                            "name": "Never had sex",
+                            "race": [
+                                {
+                                    "name": "White",
+                                    "mental_health": {
+                                        "mean": "12.0",
+                                        "ci_l": "9.9",
+                                        "ci_u": "14.6",
+                                        "count": 2578
+                                    }
+                                },
+                                {
+                                    "name": "Hispanic/Latino",
+                                    "mental_health": {
+                                        "mean": "18.4",
+                                        "ci_l": "16.1",
+                                        "ci_u": "20.8",
+                                        "count": 1940
+                                    }
+                                },
+                                {
+                                    "name": "Am Indian / Alaska Native",
+                                    "mental_health": {
+                                        "mean": "8.3",
+                                        "ci_l": "2.5",
+                                        "ci_u": "24.2",
+                                        "count": 49
+                                    }
+                                },
+                                {
+                                    "name": "Multiple - Non-Hispanic",
+                                    "mental_health": {
+                                        "mean": "10.3",
+                                        "ci_l": "6.0",
+                                        "ci_u": "17.2",
+                                        "count": 220
+                                    }
+                                },
+                                {
+                                    "name": "Black or African American",
+                                    "mental_health": {
+                                        "mean": "15.6",
+                                        "ci_l": "11.4",
+                                        "ci_u": "21.1",
+                                        "count": 487
+                                    }
+                                },
+                                {
+                                    "name": "Native Hawaiian/other PI",
+                                    "mental_health": {
+                                        "mean": "6.2",
+                                        "ci_l": "1.2",
+                                        "ci_u": "26.6",
+                                        "count": 30
+                                    }
+                                },
+                                {
+                                    "name": "Asian",
+                                    "mental_health": {
+                                        "mean": "4.7",
+                                        "ci_l": "2.5",
+                                        "ci_u": "8.7",
+                                        "count": 322
+                                    }
+                                }
+                            ],
+                            "mental_health": {
+                                "mean": "13.4",
+                                "ci_l": "11.5",
+                                "ci_u": "15.4",
+                                "count": 5728
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+
+    searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', true);
+    //Multiple - Non-Hispanic
+    expect(data.table.question[0].sexpart[0].race[0].mental_health.mean).equal('suppressed');
+    expect(data.table.question[0].sexpart[0].race[0].mental_health.count).equal(2);
+    //Native Hawaiian/other PI
+    expect(data.table.question[0].sexpart[0].race[1].mental_health.mean).equal('suppressed');
+    expect(data.table.question[0].sexpart[0].race[1].mental_health.count).equal(0);
+    //Asian
+    expect(data.table.question[0].sexpart[0].race[2].mental_health.mean).equal('suppressed');
+    expect(data.table.question[0].sexpart[0].race[2].mental_health.count).equal(3);
+    //White
+    expect(data.table.question[0].sexpart[0].race[3].mental_health.mean).equal('suppressed');
+    expect(data.table.question[0].sexpart[0].race[3].mental_health.count).equal(17);
+    //Multiple - Non-Hispanic
+    expect(data.table.question[0].sexpart[2].race[0].mental_health.mean).equal('suppressed');
+    expect(data.table.question[0].sexpart[2].race[0].mental_health.count).equal(11);
+    done();
+
+});
 });
 
 describe('ElasticClient', function(){

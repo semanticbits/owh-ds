@@ -22,8 +22,8 @@
                 <div class="owh-question__content" ng-class="{'text-right': $index > 0}">
                     <span ng-if="!eachColumn.title.mean" ng-bind-html="eachColumn.title"></span>
                     <div ng-if="eachColumn.title.mean" title="% of Yes responses">
-                        {{eachColumn.title.mean}}
-                        <div ng-if="oatc.showCi" title="Confidence interval">
+                        {{eachColumn.title.mean == 'suppressed' ? 'Suppressed' : eachColumn.title.mean}}
+                        <div ng-if="oatc.showCi && eachColumn.title.mean != 'suppressed'" title="Confidence interval">
                             <br/><br/>
                             ({{eachColumn.title.ci_l}}-{{eachColumn.title.ci_u}})
                         </div>
