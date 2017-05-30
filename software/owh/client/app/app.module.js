@@ -3,6 +3,7 @@
 
   angular.module('owh', [
     'ui.router',
+    'ngAria',
     'ngResource',
     'ngSanitize',
     'pascalprecht.translate',
