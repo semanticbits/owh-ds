@@ -1174,7 +1174,7 @@ ul.legend-scale li span {
 /* YRBS Table */
 
 .owh-question__expand {
-    color: white;
+    color: white !important;
 }
 
 .owh-question__show-only {
