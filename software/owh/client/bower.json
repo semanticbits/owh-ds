@@ -10,7 +10,6 @@
     "angular-route": "~1.5.5",
     "angular-loader": "~1.5.5",
     "angular-mocks": "~1.5.5",
-    "angular-aria": "~1.5.3",
     "angular-sanitize": "~1.5.5",
     "angular-resource": "~1.5.5",
     "html5-boilerplate": "~5.2.0",
