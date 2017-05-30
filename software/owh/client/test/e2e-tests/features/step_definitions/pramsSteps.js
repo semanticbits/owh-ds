@@ -50,6 +50,7 @@ var PRAMSStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on "([^"]*)" questions link$/, function (text, next) {
+        browser.sleep(3000);
         element(by.cssContainingText('a.owh-question__show', text)).click().then(next);
     });
 
@@ -83,6 +84,7 @@ var PRAMSStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I change class to "([^"]*)"$/, function (clazz) {
+        browser.sleep(5000);
         return pramsPage.updateClassTo(clazz)
     });
 
