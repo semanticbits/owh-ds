@@ -42,7 +42,9 @@ yrbs.prototype.invokeYRBSService = function(apiQuery){
                 isSexualOrientationSelected = true;
             }
         });
-        searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexualOrientationSelected);
+        if(apiQuery.searchFor == 'mental_health') {
+            searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexualOrientationSelected);
+        }
         deferred.resolve(data);
     }, function (error) {
         deferred.reject(error);
