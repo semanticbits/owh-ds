@@ -21,7 +21,7 @@
                 <span ng-class="{'disabled-filter': !sfc.isVisible(sideFilter) || sideFilter.disabled }" ng-if="group.filterType === 'slider'">
                     <label class="side-pane-label custom-label">
                         <div class="sidebar-chevron left-float padding-left-5">
-                            <i class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></i>
+                            <span class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
                         </div>
                         <div class="left-float sidebar-filter-label">
                             <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
@@ -39,7 +39,7 @@
                            ng-if="sideFilter.allowGrouping" ng-class="{'selected': group.groupBy}"
                            ng-click="sfc.groupBySideFilter(group)">
                             <span translate="label.group.by"></span>
-                            <i class="fa" ng-class="{'fa-times': group.groupBy}"></i>
+                            <span class="fa" ng-class="{'fa-times': group.groupBy}"></span>
                         </a>-->
                     </label>
                     <ul class="usa-unstyled-list group-options" ng-if="group.filterGroup" ng-hide="sideFilter.collapse">
@@ -76,7 +76,7 @@
                     <label class="side-pane-label custom-label">
                         <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
                            title="{{group.helpText | translate}}" class="custom-link">
-                            <i class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></i>
+                            <span class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
                             <span translate="{{group.title}}" class="filter-display-name"></span>
                         </a>
                         <owh-toggle-switch ng-if="sideFilter.allowGrouping" class="pull-right"
@@ -88,7 +88,7 @@
                            ng-if="sideFilter.allowGrouping" ng-class="{'selected': group.groupBy}"
                            ng-click="sfc.groupBySideFilter(group)">
                             <span translate="label.group.by"></span>
-                            <i class="fa" ng-class="{'fa-times': group.groupBy}"></i>
+                            <span class="fa" ng-class="{'fa-times': group.groupBy}"></span>
                         </a>-->
                     </label>
                     <ul class="usa-unstyled-list group-options" ng-if="group.filterGroup" ng-hide="sideFilter.collapse">
@@ -141,7 +141,7 @@
                     <label class="side-pane-label custom-label">
                         <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
                            title="{{group.helpText | translate}}" class="custom-link">
-                            <i class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></i>
+                            <span class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
                             <span translate="{{group.title}}" class="filter-display-name"></span>
                         </a>
                         <owh-toggle-switch ng-if="sideFilter.allowGrouping" class="pull-right"
@@ -153,7 +153,7 @@
                            ng-if="sideFilter.allowGrouping" ng-class="{'selected': group.groupBy}"
                            ng-click="sfc.groupBySideFilter(group)">
                             <span translate="label.group.by"></span>
-                            <i class="fa" ng-class="{'fa-times': group.groupBy}"></i>
+                            <span class="fa" ng-class="{'fa-times': group.groupBy}"></span>
                         </a>-->
                     </label>
                     <ul class="usa-unstyled-list group-options" ng-if="group.filterGroup" ng-hide="sideFilter.collapse">
@@ -205,7 +205,7 @@
                 <span ng-class="{'disabled-filter': !sfc.isVisible(sideFilter)}" ng-if="group.filterType === 'checkbox'">
                     <label class="side-pane-label custom-label">
                         <div class="sidebar-chevron left-float padding-left-5">
-                            <i class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></i>
+                            <span class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
                         </div>
                         <div class="left-float sidebar-filter-label">
                             <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
@@ -241,7 +241,7 @@
                         <!-- Display search box -->
                         <li class="group-option padding-right-10" ng-show="group.displaySearchBox">
                             <input ng-model="search.title" type="text" class="filter-search-box" placeholder="Start typing to find">
-                            <i ng-show="search.title" class="cursor-pointer clear-text-icon fa fa-remove" ng-click="search.title =''"></i>
+                            <span ng-show="search.title" class="cursor-pointer clear-text-icon fa fa-remove" ng-click="search.title =''"></span>
                         </li>
 
                         <!--Check box filter-->
@@ -294,7 +294,7 @@
                                 <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                                        ng-init="title = option.title">
                                     <a href="javascript:void(0)" ng-click="option.collapse = !option.collapse" class="custom-link ">
-                                        <i class="fa" ng-class="option.collapse?'fa-chevron-right':'fa-chevron-down'"></i>
+                                        <span class="fa" ng-class="option.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
                                         <!--<span translate="{{group.title}}"></span>-->
                                     </a>
                                     <span class="count-label" translate="{{title}}"></span>
@@ -338,7 +338,7 @@
                 <span ng-class="{'disabled-filter': !sfc.isVisible(sideFilter)}" ng-if="group.filterType === 'radio'">
                     <label class="side-pane-label custom-label">
                         <div class="sidebar-chevron left-float padding-left-5">
-                            <i class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></i>
+                            <span class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
                         </div>
                         <div class="left-float sidebar-filter-label">
                             <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
@@ -357,7 +357,7 @@
                            ng-if="sideFilter.allowGrouping" ng-class="{'selected': group.groupBy}"
                            ng-click="sfc.groupBySideFilter(group)">
                             <span translate="label.group.by"></span>
-                            <i class="fa" ng-class="{'fa-times': group.groupBy}"></i>
+                            <span class="fa" ng-class="{'fa-times': group.groupBy}"></span>
                         </a>-->
                     </label>
                     <ul class="usa-unstyled-list group-options" ng-if="group.filterGroup" ng-hide="sideFilter.collapse">
@@ -381,7 +381,7 @@
                         <!-- Display search box -->
                         <li class="group-option padding-right-10" ng-show="group.displaySearchBox">
                             <input ng-model="search.title" type="text" class="filter-search-box" placeholder="Start typing to find">
-                            <i ng-show="search.title" class="cursor-pointer clear-text-icon fa fa-remove" ng-click="search.title =''"></i>
+                            <span ng-show="search.title" class="cursor-pointer clear-text-icon fa fa-remove" ng-click="search.title =''"></span>
                         </li>
 
                         <!--radio filter-->
@@ -458,7 +458,7 @@
                 <label class="side-pane-label custom-label">
                     <a href="javascript:void(0)" ng-click="util.collapse = !util.collapse"
                        title="{{util.helpText | translate}}" class="custom-link">
-                        <i class="fa" ng-class="util.collapse?'fa-chevron-right':'fa-chevron-down'"></i>
+                        <span class="fa" ng-class="util.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
                         <span translate="{{util.title}}"></span>
                     </a>
                 </label>

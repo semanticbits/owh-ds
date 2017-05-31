@@ -4,7 +4,7 @@
                translate-values="{entityName: tc.entityName}"></label>
         <div class="padding-left-5" style="font-size: 13px">
             <p ng-repeat="eachNode in tc.optionValues">
-                {{eachNode.text}} <a class="remove-question" ng-click="tc.removeNode(eachNode.id)" id="removeQuestion"><i class="fa fa-times-circle-o" title="Remove"></i></a>
+                {{eachNode.text}} <a class="remove-question" ng-click="tc.removeNode(eachNode.id)" id="removeQuestion"><span class="fa fa-times-circle-o" title="Remove"></span></a>
             </p>
         </div>
         <button class="action-button margin-left-5" translate="label.tree.submit" translate-values="{entityName: tc.entityName}"
