@@ -372,7 +372,7 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.When(/^user expands hispanic option group$/, function (next) {
         commonPage.getGroupOptionsFor('Ethnicity').then(function(elements) {
-            elements[0].element(by.tagName('i')).click();
+            elements[0].element(by.tagName('span')).click();
         }).then(next);
     });
 
