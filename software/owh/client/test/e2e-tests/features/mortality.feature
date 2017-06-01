@@ -6,17 +6,20 @@ Feature: Mortality page
   I want to see raw data and percentages (as default results) when I select to view "Number of Deaths" in the main search bar
   So that I can see percentages along with number of deaths
 
+@mortalitySmoke
 Scenario: Access mortality page
   When I am at home page
   And  I click on Explore button in Health Information Gateway section
   Then I should get search page with default filter type "Detailed Mortality"
 
+@mortalitySmoke
 Scenario: Axis labels
   When user sees a visualization
   Then labels are displayed on both the axes for minimized visualization
   When user expand visualization
   Then labels are displayed on both the axes for expanded visualization
 
+@mortalitySmoke
 Scenario: Side filter collapse
   Given I am on search page
   Then user sees side filter
@@ -48,14 +51,17 @@ Scenario: Death Rates
   When the user chooses the option 'Death Rates'
   Then the rates and population are shown for each row in 'Death Rates' view
 
+@mortalitySmoke
 Scenario: Dropdown Location
   Given I am on search page
   Then dropdown is in the main search bar
 
+@mortalitySmoke
 Scenario: Decimal Precision
   Given I am on search page
   Then the Percentages should have a one decimal precision
 
+@mortalitySmoke
 Scenario: Percentages in data table
   When I see the number of deaths in data table
   Then the percentages are shown for each row are displayed by default
@@ -82,22 +88,27 @@ Scenario: Decimal Precision
   And percentage option is enabled
   Then the Rates and Percentages should have a one decimal precision
 
+@mortalitySmoke
 Scenario: Quick visualizations
   Given I am on search page
   When I see the quick visualizations
   Then they're displayed same as before and nothing changes
 
+@mortalitySmoke
 Scenario: Help Message above the quick visualization pane
   Given I am on search page
   When the user chooses the option 'Death Rates'
   Then the following message should be displayed stating that population data is being retrieved from Census "Population details from NCHS Bridged-Race Estimates are used to calculate Death Rates (per 100,000)"
 
+@mortalitySmoke
 Scenario: Years are supposed to be in descending order
   Given I am on search page
   When user sees side filter
   Then user clicks on "+ 13 more" more link for "Year" filter
   Then years should be in descending order
+  Then user clicks on "- 13 less" less link for "Year" filter
 
+@mortalitySmoke
 Scenario: Ethnicity Filter
   Given I am on search page
   When user expands ethnicity filter
@@ -137,12 +148,14 @@ Scenario: Side filter total suppression
   #Then user should see total for Male and Female in side filter suppressed
   #And total should be suppressed for all Races except White
 
+@mortalitySmoke
 Scenario: Ethnicity order
   Given I am on search page
   When user expands ethnicity filter
   And user expands hispanic option group
   Then ethnicity filters should be in given order
 
+@mortalitySmoke
 Scenario: Race options should be in proper order
   Given I am on search page
   When user sees side filter
@@ -150,12 +163,14 @@ Scenario: Race options should be in proper order
   Then user clicks on "+ 1 more" more link for "Race" filter
   Then race options should be in proper order
 
+@mortalitySmoke
 Scenario: Autopsy options should be in proper order
   Given I am on search page
   When user sees side filter
   Then user expands autopsy filter
   Then autopsy options should be in proper order
 
+@mortalitySmoke
 Scenario: verify Place of Death filter options
   Given I am on search page
   When user sees side filter
@@ -238,27 +253,32 @@ Scenario: Data should be right aligned
   When I update criteria in filter option with row "Sex"
   Then data should be right aligned in table
 
+@mortalitySmoke
 Scenario: Non-Hispanic should have total in the side filter
   Given I am on search page
   When user expands ethnicity filter
   Then I should see total for Non-Hispanic
 
+@mortalitySmoke
 Scenario: Disable unknown when other option is selected
   When user checks entire Hispanic group
   Then Unknown is disabled- grayed out
 
+@moralitySmoke
 Scenario: Disable other options when Unknown is selected
   Given I am on search page
   When user expands ethnicity filter
   And the user selects Unknown
   Then the rest of the options are disabled- grayed out
 
+@mortalitySmoke
 Scenario: Age group selection disabled for age rates
   Given I am on search page
   When I update criteria in filter option with row "Age Groups"
   When the user chooses the option 'Age Adjusted Death Rates'
   Then table should not include age groups
 
+@mortalitySmoke
 Scenario Outline: Non applicable filters disabled in cude and age adjusted rate
   Given I am on search page
   When I choose the option <showMeFilter>

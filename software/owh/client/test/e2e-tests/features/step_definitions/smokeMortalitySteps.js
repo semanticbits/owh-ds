@@ -16,12 +16,6 @@ smokeMortalityStepDefinitionsWrapper = function () {
         expect(text).to.eventually.contains(arg1);
     });
 
-    this.Then(/^user clicks on "([^"]*)" less link for "([^"]*)" filter$/, function (linkText, filterType, next) {
-        var filter = element(by.cssContainingText('a', filterType)).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul'));
-        filter.element(by.cssContainingText('a', linkText)).click()
-            .then(next)
-    });
-
     this.Then(/^I observe critera in filter options with off "([^"]*)"$/, function (arg1) {
         var text = mortalityPage.selectSideFilter(arg1, 'Off').getText();
         var type = mortalityPage.selectSideFilter(arg1, 'Off').element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('a', 'Off'));

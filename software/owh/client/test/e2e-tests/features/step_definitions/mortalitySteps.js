@@ -363,6 +363,10 @@ var mortalityStepDefinitionsWrapper = function () {
         commonPage.getShowMoreFilterOptionsLinkFor(filterType, linkText).click().then(next);
     });
 
+    this.Then(/^user clicks on "([^"]*)" less link for "([^"]*)" filter$/, function (linkText, filterType, next) {
+        commonPage.getShowLessFilterOptionsLinkFor(filterType, linkText).click().then(next);
+    });
+
     this.Then(/^user should see two subcategories\- Hispanic and NonHispanic$/, function (next) {
         commonPage.getAllOptionsForFilter('Ethnicity').then(function(elements) {
             expect(elements[2].getText()).to.eventually.contains('Non-Hispanic');

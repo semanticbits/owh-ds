@@ -55,6 +55,10 @@ var CommonPage = function() {
     cp.getShowMoreFilterOptionsLinkFor = function (filterType, linkText) {
         return cp.getFilterOptionContainerForFilter(filterType).element(by.cssContainingText('a', linkText));
     }
+
+    cp.getShowLessFilterOptionsLinkFor = function (filterType, linkText) {
+        return cp.getFilterOptionContainerForFilter(filterType).element(by.cssContainingText('a', linkText));
+    }
 };
 
 module.exports = new CommonPage;
