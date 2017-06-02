@@ -1,3 +1,4 @@
+@bridgedRaceSmoke @smoke
 Feature: Bridge race filters
   As a user
   I want to see the data table upon selection of Bridged-Race filters
@@ -12,14 +13,12 @@ Feature: Bridge race filters
     Then I should see filter type "Bridged-Race Population Estimates" selected
     And  An option to show/hide percentages is displayed
 
-  @bridgedRaceSmoke @smoke
   Scenario: Default filter state
     Then I see "Yearly July 1st Estimates" as first option in sidebar filters
     And  filter "Yearly July 1st Estimates" and option "2015" selected
     And  I see the data table with race, female, male and total table headers
     And I see population count for "2015" option
 
-  @bridgedRaceSmoke @smoke
   Scenario: Side filter collapse
     Then user sees side filter
     Then there is button to hide filter
@@ -33,14 +32,12 @@ Feature: Bridge race filters
     When I click on row button in row-column switch for "Yearly July 1st Estimates"
     Then I see "Yearly July 1st Estimates" filter in data table header
 
-  @bridgedRaceSmoke @smoke
   Scenario: Expand/collapse a filter option
     When I click on sex filter
     Then I see male and female sub filters
     When I click on sex filter
     Then I see sex filter options disappeared
 
-  @bridgedRaceSmoke @smoke
   Scenario: View axis labels & data elements for chart
     When I see a visualization
     Then I see data element and values are plotted on both the axes
@@ -49,7 +46,6 @@ Feature: Bridge race filters
     #And I see an Expand button on the top right corner
     #And I see an share button on the top right corner
 
-  @bridgedRaceSmoke @smoke
   Scenario: Expand/collapse chart
     When I clicks on the expand button
     Then I see expanded graph in modal dialog
@@ -68,8 +64,7 @@ Feature: Bridge race filters
     Then I see the search box
     #When I begins to type a state name "alas" in the search box
     #Then I see results dynamically populate with the states matching the "alas"
-
-  @bridgedRaceSmoke @smoke
+  
   Scenario: Percentages
     When I click the "Hide" button
     Then I should not see percentages
