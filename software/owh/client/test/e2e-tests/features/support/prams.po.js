@@ -1,7 +1,7 @@
 var PRAMSSearchPage = function() {
     var prams = this;
 
-    prams.pramsOption = element(by.cssContainingText('option', 'PRAMS'));
+    prams.pramsOption = element(by.cssContainingText('option', 'Pregnancy Risk Assessment Monitoring System'));
     prams.dataTable = element(by.className('owh-data-table'));
 
     prams.getSelectedPramsClass = function () {
