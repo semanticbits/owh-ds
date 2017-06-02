@@ -992,4 +992,12 @@ ul.custom-nav-tabs {
 	cursor: not-allowed;
 }
 
+.by-filter {
+	margin-left:-50px;
+	width: 24% !important;
+}
+.interested-in-filter {
+	width: 28% !important;
+}
+
 /*Custom tab css*/
