@@ -265,7 +265,7 @@ Scenario: Disable unknown when other option is selected
   When user checks entire Hispanic group
   Then Unknown is disabled- grayed out
 
-@moralitySmoke
+@mortalitySmoke
 Scenario: Disable other options when Unknown is selected
   Given I am on search page
   When user expands ethnicity filter
