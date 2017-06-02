@@ -11,6 +11,7 @@ Scenario: Access mortality page
   When I am at home page
   And  I click on Explore button in Health Information Gateway section
   Then I should get search page with default filter type "Detailed Mortality"
+  Then I observe a button for Facebook
 
 @mortalitySmoke
 Scenario: Axis labels

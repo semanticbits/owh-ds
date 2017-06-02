@@ -10,6 +10,10 @@ var mortalityStepDefinitionsWrapper = function () {
     var mortalityPage = require('../support/mortalitypage.po');
     var commonPage = require('../support/commonpage.po');
 
+    this.Then(/^I observe a button for Facebook$/, function () {
+        expect(mortalityPage.shareOnFacebookLink.isDisplayed()).to.eventually.equal(true);
+    });
+
     this.When(/^user sees a visualization$/, function (next) {
         mortalityPage.isVisualizationDisplayed().then(function(value) {
             expect(value).to.equal(true);
