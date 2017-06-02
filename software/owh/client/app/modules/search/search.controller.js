@@ -368,9 +368,16 @@
                             filter.filters.autoCompleteOptions = sc.filters.hispanicOptions;
                         }
                     }
+
                     if (filter.filters.key === 'topic') {
+                        //clear selected topics on class change
+                        filter.filters.value = [];
                         filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
                         searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup[selectedFilter.key]);
+                    } else if (sc.filters.selectedPrimaryFilter.key === 'prams'
+                        && filter.filters.key === 'question') {
+                        //clear selected question on class change
+                        filter.filters.value = [];
                     }
                 });
             });

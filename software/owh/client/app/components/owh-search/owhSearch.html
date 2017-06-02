@@ -1,16 +1,16 @@
 <div class="usa-grid-full">
     <div class="usa-grid-full usa-width-one-whole">
-        <div class="usa-width-one-third margin-right-0" >
-            <div class="usa-width-one-whole ">
-                <div class="usa-width-one-third text-right interested-text" ng-bind="'label.interested.in' | translate"></div>
+        <div class="usa-width-two-third margin-right-0 margin-left-10" >
+            <div>
+                <div class="left-float text-right interested-text" ng-bind="'label.interested.in' | translate"></div>
                 <select id="interestedIn" ng-model="ots.filters.selectedPrimaryFilter"
                         ng-options="primaryFilter.title | translate for primaryFilter in ots.filters.primaryFilters"
                         ng-change="ots.onPrimaryFilter({newFilter: ots.filters.selectedPrimaryFilter})"
-                        class="usa-width-one-half add-on-element gray-border margin-0"></select>
-                <div class="usa-width-one-twelfth" style="padding-top:15px;">by</div>
+                        class="interested-in-filter usa-width-one-half add-on-element gray-border margin-0"></select>
+                <div class="usa-width-one-twelfth padding-top-10">by</div>
             </div>
         </div>
-        <div class="usa-width-one-third margin-right-0" style="margin-left:-40px;">
+        <div class="usa-width-one-third margin-right-0 by-filter">
             <ui-select multiple ng-model="ots.filters.selectedPrimaryFilter.value"
                        theme="bootstrap" name="filter" id="filter"
                        class="usa-width-one-whole dashboard-element"
