@@ -37,13 +37,28 @@ describe('filterUtils', function(){
 
     describe('test natality filters', function() {
         it('when I call getNatalityDataFilters, I should get natality filters', function () {
-            var bridgeRaceFilters = filterUtils.getNatalityDataFilters();
-            expect(bridgeRaceFilters[0].key).toEqual('hispanic_origin');
-            expect(bridgeRaceFilters[1].key).toEqual('state');
-            expect(bridgeRaceFilters[2].key).toEqual('mother_age_1year_interval');
-            expect(bridgeRaceFilters[3].key).toEqual('mother_age_5year_interval');
-            expect(bridgeRaceFilters[4].key).toEqual('race');
-            expect(bridgeRaceFilters[5].key).toEqual('marital_status');
+            var natalityFilters = filterUtils.getNatalityDataFilters();
+            expect(natalityFilters[0].key).toEqual('hispanic_origin');
+            expect(natalityFilters[1].key).toEqual('state');
+            expect(natalityFilters[2].key).toEqual('mother_age_1year_interval');
+            expect(natalityFilters[3].key).toEqual('mother_age_5year_interval');
+            expect(natalityFilters[4].key).toEqual('race');
+            expect(natalityFilters[5].key).toEqual('marital_status');
+        });
+    });
+
+    describe('test infant mortality filters', function() {
+        it('when I call getInfantMortalityDataFilters, I should get infant mortality filters', function () {
+            var InfantMortalityData= filterUtils.getInfantMortalityDataFilters();
+            expect(InfantMortalityData[0].key).toEqual('year_of_death');
+            expect(InfantMortalityData[0].value).toEqual(['2014']);
+            expect(InfantMortalityData[1].key).toEqual('sex');
+            expect(InfantMortalityData[2].key).toEqual('infant_age_at_death');
+            expect(InfantMortalityData[3].key).toEqual('race');
+            expect(InfantMortalityData[4].key).toEqual('hispanic_origin');
+            expect(InfantMortalityData[5].key).toEqual('mother_age_5_interval');
+            expect(InfantMortalityData[6].key).toEqual('marital_status');
+            expect(InfantMortalityData[7].key).toEqual('mother_education');
         });
     });
 });

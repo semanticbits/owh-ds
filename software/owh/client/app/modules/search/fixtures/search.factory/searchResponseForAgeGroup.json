@@ -1,0 +1,295 @@
+{
+  "data": {
+    "queryJSON": {
+      "key": "deaths",
+      "tableView": "number_of_deaths",
+      "sideFilters" : [
+        {
+          "sideFilters": [
+
+            {
+              "filterGroup": false,
+              "collapse": false,
+              "allowGrouping": true,
+              "filters": {
+                "key": "agegroup",
+                "title": "label.filter.agegroup",
+                "queryKey": "age_5_interval",
+                "primary": false,
+                "value": [
+                  "100years and over",
+                  "25-29years",
+                  "30-34years",
+                  "35-39years",
+                  "40-44years",
+                  "45-49years",
+                  "50-54years",
+                  "55-59years",
+                  "60-64years",
+                  "65-69years",
+                  "70-74years",
+                  "75-79years",
+                  "80-84years",
+                  "85-89years",
+                  "90-94years",
+                  "95-99years"
+                ],
+                "groupBy": false,
+                "type": "label.filter.group.demographics",
+                "filterType": "slider",
+                "autoCompleteOptions": [
+                  {
+                    "key": "0-4years",
+                    "title": "0 - 4 years",
+                    "min": 1,
+                    "max": 5,
+                    "disabled": false
+                  },
+                  {
+                    "key": "5-9years",
+                    "title": "5 - 9 years",
+                    "min": 6,
+                    "max": 10,
+                    "disabled": false
+                  },
+                  {
+                    "key": "10-14years",
+                    "title": "10 - 14 years",
+                    "min": 11,
+                    "max": 15,
+                    "disabled": false
+                  },
+                  {
+                    "key": "15-19years",
+                    "title": "15 - 19 years",
+                    "min": 16,
+                    "max": 20,
+                    "disabled": false
+                  },
+                  {
+                    "key": "20-24years",
+                    "title": "20 - 24 years",
+                    "min": 21,
+                    "max": 25,
+                    "disabled": false
+                  },
+                  {
+                    "key": "25-29years",
+                    "title": "25 - 29 years",
+                    "min": 26,
+                    "max": 30,
+                    "disabled": false
+                  },
+                  {
+                    "key": "30-34years",
+                    "title": "30 - 34 years",
+                    "min": 31,
+                    "max": 35,
+                    "disabled": false
+                  },
+                  {
+                    "key": "35-39years",
+                    "title": "35 - 39 years",
+                    "min": 36,
+                    "max": 40,
+                    "disabled": false
+                  },
+                  {
+                    "key": "40-44years",
+                    "title": "40 - 44 years",
+                    "min": 41,
+                    "max": 45,
+                    "disabled": false
+                  },
+                  {
+                    "key": "45-49years",
+                    "title": "45 - 49 years",
+                    "min": 46,
+                    "max": 50,
+                    "disabled": false
+                  },
+                  {
+                    "key": "50-54years",
+                    "title": "50 - 54 years",
+                    "min": 51,
+                    "max": 55,
+                    "disabled": false
+                  },
+                  {
+                    "key": "55-59years",
+                    "title": "55 - 59 years",
+                    "min": 56,
+                    "max": 60,
+                    "disabled": false
+                  },
+                  {
+                    "key": "60-64years",
+                    "title": "60 - 64 years",
+                    "min": 61,
+                    "max": 65,
+                    "disabled": false
+                  },
+                  {
+                    "key": "65-69years",
+                    "title": "65 - 69 years",
+                    "min": 66,
+                    "max": 70,
+                    "disabled": false
+                  },
+                  {
+                    "key": "70-74years",
+                    "title": "70 - 74 years",
+                    "min": 71,
+                    "max": 75,
+                    "disabled": false
+                  },
+                  {
+                    "key": "75-79years",
+                    "title": "75 - 79 years",
+                    "min": 76,
+                    "max": 80,
+                    "disabled": false
+                  },
+                  {
+                    "key": "80-84years",
+                    "title": "80 - 84 years",
+                    "min": 81,
+                    "max": 85,
+                    "disabled": false
+                  },
+                  {
+                    "key": "85-89years",
+                    "title": "85 - 89 years",
+                    "min": 86,
+                    "max": 90,
+                    "disabled": false
+                  },
+                  {
+                    "key": "90-94years",
+                    "title": "90 - 94 years",
+                    "min": 91,
+                    "max": 95,
+                    "disabled": false
+                  },
+                  {
+                    "key": "95-99years",
+                    "title": "95 - 99 years",
+                    "min": 96,
+                    "max": 100,
+                    "disabled": false
+                  },
+                  {
+                    "key": "100years and over",
+                    "title": ">100",
+                    "min": 101,
+                    "max": 105,
+                    "disabled": true
+                  },
+                  {
+                    "key": "Age not stated",
+                    "title": "Age not stated",
+                    "min": -5,
+                    "max": 0,
+                    "disabled": false
+                  }
+                ],
+                "showChart": true,
+                "sliderOptions": {
+                  "from": -5,
+                  "to": 105,
+                  "step": 5,
+                  "threshold": 0,
+                  "scale": [
+                    "Not stated",
+                    0,
+                    "",
+                    10,
+                    "",
+                    20,
+                    "",
+                    30,
+                    "",
+                    40,
+                    "",
+                    50,
+                    "",
+                    60,
+                    "",
+                    70,
+                    "",
+                    80,
+                    "",
+                    90,
+                    "",
+                    100,
+                    ">100"
+                  ],
+                  "modelLabels": {
+                    "105": ">100",
+                    "-5": "Not stated"
+                  },
+                  "css": {
+                    "background": {
+                      "background-color": "#ccc"
+                    },
+                    "before": {
+                      "background-color": "#ccc"
+                    },
+                    "default": {
+                      "background-color": "white"
+                    },
+                    "after": {
+                      "background-color": "#ccc"
+                    },
+                    "pointer": {
+                      "background-color": "#914fb5"
+                    },
+                    "range": {
+                      "background-color": "#914fb5"
+                    }
+                  },
+                  "limits": true
+                },
+                "sliderValue": "-5;105",
+                "defaultGroup": "row"
+              },
+              "disabled": false
+            }
+          ]
+        }
+      ]
+    },
+    "resultData": {
+      "nested": {
+        "table": {
+
+        },
+        "charts": {
+
+        },
+        "maps": {
+
+        }
+      }
+    },
+    "sideFilterResults" : {
+      "data": {
+        "simple": {
+
+        },
+        "nested": {
+          "table": {
+
+          }
+        }
+      },
+      "pagination": {
+
+      }
+    }
+},
+  "pagination": {
+
+  },
+  "messages": "success"
+}

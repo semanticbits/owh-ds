@@ -100,84 +100,110 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
     return result;
 };
 
-function applySuppressions(obj, countKey) {
+/**
+ * Suppress Counts if count is less than give 'maxValue'
+ * If 'maxValue' undefined suppress counts if count is less then 10
+ * @param obj
+ * @param countKey - if 'obj['countKey']' less then 10 or maxValue then set 'suppressed'
+ * @param dataType
+ * @param suppressKey - if suppressKey passed then set 'obj[suppresskey]' to 'suppressed'
+ * @param maxValue
+ */
+function suppressCounts (obj, countKey, dataType, suppressKey, maxValue) {
+    var key = suppressKey ? suppressKey : countKey;
+    var value = maxValue ? maxValue : 10;
+    for (var property in obj) {
+        if (property === 'name') {
+            continue;
+        }
+        //keep the track of data types
+        if (['table', 'charts', 'maps'].indexOf(property) != -1) {
+            dataType = property;
+        }
 
-    var dataType;
-
-    /**
-     * Suppress Counts if count is less than 10
-     * @param obj
-     * @param countKey
-     */
-    var suppressCounts = function (obj, countKey) {
-        for (var property in obj) {
-            if (property === 'name') {
-                continue;
+        if (obj[property].constructor === Object) {
+            suppressCounts(obj[property], countKey, dataType, suppressKey, maxValue);
+        } else if (obj[property].constructor === Array) {
+            obj[property].forEach(function(arrObj) {
+                suppressCounts(arrObj, countKey, dataType, suppressKey, maxValue);
+            });
+        } else if(obj[countKey] != undefined && obj[countKey] < value) {
+            if(dataType == 'maps' || dataType == 'charts') {//for chart and map set suppressed values to 0
+                obj[countKey] = 0;
+            } else {//for table data set to suppressed
+                obj[key] = 'suppressed';
             }
-            //keep the track of data types
-            if (['table', 'charts', 'maps'].indexOf(property) != -1) {
-                dataType = property;
-            }
+        }
+    }
+};
 
-            if (obj[property].constructor === Object) {
-                suppressCounts(obj[property], countKey);
-            } else if (obj[property].constructor === Array) {
-                obj[property].forEach(function(arrObj) {
-                    suppressCounts(arrObj, countKey);
-                });
-            } else if(obj[countKey] && obj[countKey] < 10) {
+/**
+ * Suppress totals if one of the count is suppressed
+ * @param obj
+ * @param countKey - if 'obj['countKey']' less then 10 or maxValue then set 'suppressed'
+ * @param dataType
+ * @param suppressKey - if suppressKey passed then set 'obj[suppresskey]' to 'suppressed'
+ */
+function suppressTotalCounts (obj, countKey, dataType, suppressKey) {
+    var key = suppressKey ? suppressKey : countKey;
+    for (var property in obj) {
+
+        if (property === 'name') {
+            continue;
+        }
+
+        if (['table', 'charts', 'maps'].indexOf(property) != -1) {
+            dataType = property;
+        }
+
+        if (obj[property].constructor === Object) {
+            if (obj[countKey] && JSON.stringify(obj).indexOf('suppressed') != -1 ) {
                 if(dataType == 'maps' || dataType == 'charts') {//for chart and map set suppressed values to 0
                     obj[countKey] = 0;
                 } else {//for table data set to suppressed
-                    obj[countKey] = 'suppressed';
+                    obj[key] = 'suppressed';
                 }
             }
-        }
-    };
-    /**
-     * Suppress totals if one of the count is suppressed
-     * @param obj
-     * @param countKey
-     */
-    var suppressTotalCounts = function (obj, countKey) {
-        for (var property in obj) {
-
-            if (property === 'name') {
-                continue;
-            }
-
-            if (['table', 'charts', 'maps'].indexOf(property) != -1) {
-                dataType = property;
-            }
-
-            if (obj[property].constructor === Object) {
+            suppressTotalCounts(obj[property], countKey, dataType, suppressKey);
+        } else if (obj[property].constructor === Array) {
+            obj[property].forEach(function(arrObj) {
                 if (obj[countKey] && JSON.stringify(obj).indexOf('suppressed') != -1 ) {
                     if(dataType == 'maps' || dataType == 'charts') {//for chart and map set suppressed values to 0
                         obj[countKey] = 0;
                     } else {//for table data set to suppressed
-                        obj[countKey] = 'suppressed';
+                        obj[key] = 'suppressed';
                     }
                 }
-                suppressTotalCounts(obj[property], countKey);
-            } else if (obj[property].constructor === Array) {
-                obj[property].forEach(function(arrObj) {
-                    if (obj[countKey] && JSON.stringify(obj).indexOf('suppressed') != -1 ) {
-                        if(dataType == 'maps' || dataType == 'charts') {//for chart and map set suppressed values to 0
-                            obj[countKey] = 0;
-                        } else {//for table data set to suppressed
-                            obj[countKey] = 'suppressed';
-                        }
-                    }
-                    suppressTotalCounts(arrObj, countKey);
-                });
-            }
+                suppressTotalCounts(arrObj, countKey, dataType, suppressKey);
+            });
         }
-    };
+    }
+};
 
-    suppressCounts(obj.data, countKey);
-    suppressTotalCounts(obj.data, countKey);
+/**
+ * Apply suppression for data
+ * @param obj
+ * @param countKey
+ */
+function applySuppressions(obj, countKey) {
+    var dataType;
+    suppressCounts(obj.data, countKey, dataType);
+    suppressTotalCounts(obj.data, countKey, dataType);
 }
 
+/**
+ * To suppress YRBS Basic and Advanced search data
+ * @param obj
+ * @param countKey
+ * @param suppressKey
+ * @param isSexFiltersSelected
+ */
+function applyYRBSSuppressions(obj, countKey, suppressKey, isSexFiltersSelected ) {
+    var dataType;
+    var maxValue = isSexFiltersSelected ? 30 : 100;
+    suppressCounts(obj.data, countKey, dataType, suppressKey, maxValue);
+    suppressTotalCounts(obj.data, countKey, dataType, suppressKey);
+};
 var sumBucketProperty = function(bucket, key) {
     var sum = 0;
     for(var i = 0; i < bucket.buckets.length; i++) {
@@ -415,3 +441,4 @@ module.exports.populateDataWithMappings = populateDataWithMappings;
 module.exports.populateYRBSData = populateYRBSData;
 module.exports.mergeAgeAdjustedRates = mergeAgeAdjustedRates;
 module.exports.applySuppressions = applySuppressions;
+module.exports.applyYRBSSuppressions = applyYRBSSuppressions;

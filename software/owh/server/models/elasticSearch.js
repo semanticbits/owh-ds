@@ -104,6 +104,7 @@ ElasticClient.prototype.executeMortilyAndNatalityQueries = function(query, index
 
 ElasticClient.prototype.mergeWithCensusData = function(data, censusData){
     mergeCensusRecursively(data.data.nested.table, censusData.data.nested.table);
+    mergeCensusRecursively(data.data.nested.charts, censusData.data.nested.charts);
 };
 
 function mergeCensusRecursively(mort, census) {
@@ -151,13 +152,17 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
         ];
         if(query.wonderQuery) {
             logger.debug("Wonder Query: "+ JSON.stringify(query.wonderQuery));
-            promises.push(new wonder('D76').invokeWONDER(query.wonderQuery))
+            promises.push(new wonder('D76').invokeWONDER(query.wonderQuery));
         }
-        Q.all(promises).then( function (resp) {
-            var data = searchUtils.populateDataWithMappings(resp[0], 'deaths');
-            self.mergeWithCensusData(data, resp[1]);
+        Q.all(promises).then( function (respArray) {
+            var data = searchUtils.populateDataWithMappings(respArray[0], 'deaths');
+            self.mergeWithCensusData(data, respArray[1]);
             if(query.wonderQuery) {
-                searchUtils.mergeAgeAdjustedRates(data.data.nested.table, resp[2]);
+                searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[2].table);
+                //Loop through charts array and merge age ajusted rates from response
+                data.data.nested.charts.forEach(function(chart, index){
+                    searchUtils.mergeAgeAdjustedRates(chart, respArray[2].charts[index]);
+                });
             }
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'deaths');
@@ -251,13 +256,14 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected)
     return deferred.promise;
 };
 
-ElasticClient.prototype.aggregateInfantMortalityData = function (query) {
+ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateSelected) {
     var client = this.getClient(infant_mortality_index);
     var deferred = Q.defer();
     if (query[0]) {
         this.executeESQuery(infant_mortality_index, infant_mortality_type, query[0])
             .then(function (response) {
                 var data = searchUtils.populateDataWithMappings(response, 'infant_mortality');
+                isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');
                 deferred.resolve(data);
             }, function (error) {
                 logger.error(error.message);
@@ -265,7 +271,7 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query) {
             });
     }
     return deferred.promise;
-}
+};
 
 ElasticClient.prototype.getQueryCache = function(query){
     var client = this.getClient(_queryIndex);

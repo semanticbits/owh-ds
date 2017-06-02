@@ -2,7 +2,7 @@ var Q = require('q');
 var logger = require('../config/logging');
 var config = require('../config/config');
 var request = require('request');
-
+var searchUtils = require('../api/utils');
 var cahcedQuestions = null;
 var cachedPramsQuestions = null;
 function yrbs() {
@@ -38,7 +38,19 @@ yrbs.prototype.invokeYRBSService = function(apiQuery){
     Q.all(queryPromises).then(function(resp){
         var duration = new Date().getTime() - startTime;
         logger.info("YRBS service response received for all "+yrbsquery.length+" questions, duration(s)="+ duration/1000);
-        deferred.resolve(self.processYRBSReponses(resp, apiQuery.yrbsBasic, apiQuery.searchFor));
+        var data = self.processYRBSReponses(resp, apiQuery.yrbsBasic, apiQuery.searchFor);
+        //if 'Sexual Identity' or 'Sex of Sexual Contacts' option(s) selected
+        var isSexualOrientationSelected = 'sexid' in apiQuery.query || 'sexpart' in apiQuery.query;
+        //if only groupBy 'row' or 'column' selected for 'Sexual Identity' or 'Sex of Sexual Contacts' filters
+        apiQuery.aggregations.nested.table.forEach(function(filter){
+            if(filter.key == 'sexid' || filter.key == 'sexpart'){
+                isSexualOrientationSelected = true;
+            }
+        });
+        if(apiQuery.searchFor == 'mental_health') {
+            searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexualOrientationSelected);
+        }
+        deferred.resolve(data);
     }, function (error) {
         deferred.reject(error);
     });
@@ -386,27 +398,24 @@ function prepareQuestionTree(questions,  prams) {
             qCategory = quesObj.subtopic;
         }
         if (qCategory && qCategoryMap[qCategory] == undefined) {
-            qCategoryMap[qCategory] = {id:'cat_'+catCount, text:qCategory, children:[]};
+            qCategoryMap[qCategory] = {id: 'cat_' + catCount, text: qCategory, children: []};
             catCount = catCount + 1;
-        } else {
-            if(prams) {
-                //skip duplicate question keys
-                if(questionKeys.indexOf(qKey) >= 0) {
-                    continue;
-                }
-                var question = {text:quesObj.question, id: qKey};
-                qCategoryMap[qCategory].children.push(question);
-                questionsList.push({key: quesObj.question, qkey: qKey, title: quesObj.question});
-                questionKeys.push(qKey);
-            } else {
-                // Select only those questions starting with qn
-                if(qKey.indexOf("qn") >= 0) {
-                    var question = {text: quesObj.question, id: qKey};
-                    qCategoryMap[qCategory].children.push(question);
-                    //capture all questions into questionsList
-                    questionsList.push({key: quesObj.question, qkey: qKey, title: quesObj.question});
-                }
+        }
+
+        if (quesObj.description !== undefined) {
+            var question = {text:quesObj.question +"("+quesObj.description+")", id:qKey};
+            qCategoryMap[qCategory].children.push(question);
+            //capture all questions into questionsList
+            questionsList.push({key : quesObj.question, qkey : qKey, title : quesObj.question +"("+quesObj.description+")"});
+        } else if(prams) {
+            //skip duplicate question keys
+            if(questionKeys.indexOf(qKey) >= 0) {
+                continue;
             }
+            var question = {text:quesObj.question, id: qKey};
+            qCategoryMap[qCategory].children.push(question);
+            questionsList.push({key: quesObj.question, qkey: qKey, title: quesObj.question});
+            questionKeys.push(qKey);
         }
     }
 

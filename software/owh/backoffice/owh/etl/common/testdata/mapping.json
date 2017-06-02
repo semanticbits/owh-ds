@@ -1,160 +1,155 @@
-[  
-  {  
-    "type":"simple",
-    "column":"st_fips",
-    "start":5,
-    "stop":6,
-    "field":"State FIPS code",
-    "mappings":{  
-
-    }
-  },
-  {  
-    "type":"range",
-    "column":"age",
-    "start":10,
-    "stop":11,
-    "field":"Age",
-    "mappings":{
-      "01-06": "0-4years",
-      "07-07": "5-9years",
-      "08-08": "10-14years",
-      "09-09": "15-19years",
-      "10-10": "20-24years",
-      "11-11": "25-29years",
-      "12-12": "30-34years",
-      "13-13": "35-39years",
-      "14-14": "40-44years",
-      "15-15": "45-49years",
-      "16-16": "50-54years",
-      "17-17": "55-59years",
-      "18-18": "60-64years",
-      "19-19": "65-69years",
-      "20-20": "70-74years",
-      "21-21": "75-79years",
-      "22-22": "80-84years",
-      "23-23": "85-89years",
-      "24-24": "90-94years",
-      "25-25": "95-99years",
-      "26-26": "100 years and over",
-      "27-27":"Age not started"
-    }
-  },
-  {  
-    "type":"split",
-    "columns":[  
-      "race",
-      "sex"
-    ],
-    "start":12,
-    "stop":12,
-    "field":"Bridged-race-sex",
-    "mappings": {
-      "1": {
-        "race": "1",
-        "sex": "M"
-      },
-      "2": {
-        "race": "1",
-        "sex": "F"
-      },
-      "3": {
-        "race": "2",
-        "sex": "M"
-      },
-      "4": {
-        "race": "2",
-        "sex": "F"
-      },
-      "5": {
-        "race": "3",
-        "sex": "M"
-      },
-      "6": {
-        "race": "3",
-        "sex": "F"
-      },
-      "7": {
-        "race": "4",
-        "sex": "M"
-      },
-      "8": {
-        "race": "4",
-        "sex": "F"
+{
+  "datafiletype" : "fwf",
+  "columns": [
+    {
+      "type": "simple",
+      "column": "st_fips",
+      "start": 5,
+      "stop": 6,
+      "field": "State FIPS code",
+      "mappings": {
       }
-    }
-  },
-  {  
-    "type":"simple",
-    "column":"hispanic_origin",
-    "start":13,
-    "stop":13,
-    "field":"Hispanic origin",
-    "mappings":{  
-      "1":"not Hispanic or Latino",
-      "2":"Hispanic or Latino"
-    }
-  },
-  {
-
-    "type":"union",
-    "column":"pop",
-    "index_column":"year",
-    "fields":[
-      {
-        "start":14,
-        "stop":21,
-        "index_value":"2010",
-        "field":"April 1, 2010 base population estimate",
-        "mappings":{
-
-        }
-      },
-      {
-        "start":30,
-        "stop":37,
-        "index_value":"2011",
-        "field":"July 1, 2011 postcensal resident population estimate",
-        "mappings":{
-
-        }
-      },
-      {
-        "start":38,
-        "stop":45,
-        "index_value":"2012",
-        "field":"July 1, 2012 postcensal resident population estimate",
-        "mappings":{
-
-        }
-      },
-      {
-        "start":46,
-        "stop":53,
-        "index_value":"2013",
-        "field":"July 1, 2013 postcensal resident population estimate",
-        "mappings":{
-
-        }
-      },
-      {
-        "start":54,
-        "stop":61,
-        "index_value":"2014",
-        "field":"July 1, 2014 postcensal resident population estimate",
-        "mappings":{
-
-        }
-      },
-      {
-        "start":62,
-        "stop":69,
-        "index_value":"2015",
-        "field":"July 1, 2015 postcensal resident population estimate",
-        "mappings":{
-
+    },
+    {
+      "type": "range",
+      "column": "age",
+      "start": 10,
+      "stop": 11,
+      "field": "Age",
+      "mappings": {
+        "01-06": "0-4years",
+        "07-07": "5-9years",
+        "08-08": "10-14years",
+        "09-09": "15-19years",
+        "10-10": "20-24years",
+        "11-11": "25-29years",
+        "12-12": "30-34years",
+        "13-13": "35-39years",
+        "14-14": "40-44years",
+        "15-15": "45-49years",
+        "16-16": "50-54years",
+        "17-17": "55-59years",
+        "18-18": "60-64years",
+        "19-19": "65-69years",
+        "20-20": "70-74years",
+        "21-21": "75-79years",
+        "22-22": "80-84years",
+        "23-23": "85-89years",
+        "24-24": "90-94years",
+        "25-25": "95-99years",
+        "26-26": "100 years and over",
+        "27-27": "Age not started"
+      }
+    },
+    {
+      "type": "split",
+      "columns": [
+        "race",
+        "sex"
+      ],
+      "start": 12,
+      "stop": 12,
+      "field": "Bridged-race-sex",
+      "mappings": {
+        "1": {
+          "race": "1",
+          "sex": "M"
+        },
+        "2": {
+          "race": "1",
+          "sex": "F"
+        },
+        "3": {
+          "race": "2",
+          "sex": "M"
+        },
+        "4": {
+          "race": "2",
+          "sex": "F"
+        },
+        "5": {
+          "race": "3",
+          "sex": "M"
+        },
+        "6": {
+          "race": "3",
+          "sex": "F"
+        },
+        "7": {
+          "race": "4",
+          "sex": "M"
+        },
+        "8": {
+          "race": "4",
+          "sex": "F"
         }
       }
-    ]
-  }
-]
+    },
+    {
+      "type": "simple",
+      "column": "hispanic_origin",
+      "start": 13,
+      "stop": 13,
+      "field": "Hispanic origin",
+      "mappings": {
+        "1": "not Hispanic or Latino",
+        "2": "Hispanic or Latino"
+      }
+    },
+    {
+      "type": "union",
+      "column": "pop",
+      "index_column": "year",
+      "fields": [
+        {
+          "start": 14,
+          "stop": 21,
+          "index_value": "2010",
+          "field": "April 1, 2010 base population estimate",
+          "mappings": {
+          }
+        },
+        {
+          "start": 30,
+          "stop": 37,
+          "index_value": "2011",
+          "field": "July 1, 2011 postcensal resident population estimate",
+          "mappings": {
+          }
+        },
+        {
+          "start": 38,
+          "stop": 45,
+          "index_value": "2012",
+          "field": "July 1, 2012 postcensal resident population estimate",
+          "mappings": {
+          }
+        },
+        {
+          "start": 46,
+          "stop": 53,
+          "index_value": "2013",
+          "field": "July 1, 2013 postcensal resident population estimate",
+          "mappings": {
+          }
+        },
+        {
+          "start": 54,
+          "stop": 61,
+          "index_value": "2014",
+          "field": "July 1, 2014 postcensal resident population estimate",
+          "mappings": {
+          }
+        },
+        {
+          "start": 62,
+          "stop": 69,
+          "index_value": "2015",
+          "field": "July 1, 2015 postcensal resident population estimate",
+          "mappings": {
+          }
+        }
+      ]
+    }
+  ]
+}

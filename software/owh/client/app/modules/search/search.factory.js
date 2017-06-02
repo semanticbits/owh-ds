@@ -88,10 +88,10 @@
                 if(response.data.queryJSON) {
                     populateSelectedFilters(primaryFilter, response.data.queryJSON.sideFilters);
                 }
-                // angular.forEach(response.data.queryJSON.sideFilters, function (filter, index) {
-                //     primaryFilter.sideFilters[index].filters.value = filter.filters.value;
-                //     primaryFilter.sideFilters[index].filters.groupBy = filter.filters.groupBy;
-                // });
+                //update questions based on topics
+                var topics = groupOptions[tableView].topic;
+                var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question')
+                questionFilter.questions = getQuestionsForTopics(topics);
             }
             if (primaryFilter.key === 'bridge_race') {
                 primaryFilter.data = response.data.resultData.nested.table;
@@ -132,6 +132,20 @@
             };
         }
 
+        /**
+         * Update prams questions based on topics
+         * @param questionFilter
+         * @param topics
+         */
+        function getQuestionsForTopics(topics) {
+            var questions = [];
+            angular.forEach(topics, function (topic) {
+                var ques = utilService.findByKeyAndValue($rootScope.pramsQuestions, 'id', topic);
+                questions.push(ques);
+            });
+            return questions;
+        }
+
         function populateSelectedFilters(primaryFilter, updatedSideFilters) {
             var allFilters = primaryFilter.sideFilters[0].sideFilters[0].filters;
             var refreshFiltersOnChange = false;
@@ -143,6 +157,11 @@
                     }
                     primaryFilter.sideFilters[catIndex].sideFilters[index].filters.value = filter.filters.value;
                     primaryFilter.sideFilters[catIndex].sideFilters[index].filters.groupBy = filter.filters.groupBy;
+
+                    if (filter.filters.filterType === 'slider') {
+                        primaryFilter.sideFilters[catIndex].sideFilters[index].filters.sliderValue = filter.filters.sliderValue;
+                    }
+
                     if (filter.filters.selectedNodes != undefined) {
                         primaryFilter.sideFilters[catIndex].sideFilters[index].filters.selectedNodes = filter.filters.selectedNodes;
                     }
@@ -2366,8 +2385,7 @@
                                 {
                                     filterGroup: false,
                                     collapse: false,
-                                    allowGrouping: true,
-                                    groupOptions: filters.columnGroupOptions,
+                                    allowGrouping: false,
                                     dontShowCounts: true,
                                     filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'topic')
                                 },

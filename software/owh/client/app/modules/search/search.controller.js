@@ -154,7 +154,7 @@
         //add availablefilter for birth_rates
         sc.availableFilters = {
             'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin','state'],
-            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state'],
+            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state', 'ucd-chapter-10'],
             'birth_rates': ['current_year', 'race', 'state'],
             'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval', 'state']
         };
@@ -368,9 +368,16 @@
                             filter.filters.autoCompleteOptions = sc.filters.hispanicOptions;
                         }
                     }
+
                     if (filter.filters.key === 'topic') {
+                        //clear selected topics on class change
+                        filter.filters.value = [];
                         filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
                         searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup[selectedFilter.key]);
+                    } else if (sc.filters.selectedPrimaryFilter.key === 'prams'
+                        && filter.filters.key === 'question') {
+                        //clear selected question on class change
+                        filter.filters.value = [];
                     }
                 });
             });

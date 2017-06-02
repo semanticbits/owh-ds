@@ -3,7 +3,7 @@ import os
 from random import randint
 from owh.etl.common.etl import ETL
 import logging
-from owh.etl.common.fixedwidthfile_parser import FixedWidthFileParser
+from owh.etl.common.datafile_parser import DataFileParser
 
 logger = logging.getLogger('infant_mortality_etl')
 
@@ -13,7 +13,8 @@ data_mapping_configs = {'LinkPE00USNum.dat':'link_num_2000_2002.json', 'LinkPE01
                         'VS06LINK.USNUMPUB':'link_num_2005_2006.json', 'VS07LINK.USNUMPUB': 'link_num_2007_2008.json',
                         'VS08LINK.USNUMPUB':'link_num_2007_2008.json', 'VS09LINK.USNUMPUB':'link_num_2009_2013.json',
                         'VS10LINK.USNUMPUB':'link_num_2009_2013.json', 'VS11LINK.USNUMPUB':'link_num_2009_2013.json',
-                        'VS12LINK.USNUMPUB':'link_num_2009_2013.json', 'VS13LINK.USNUMPUB':'link_num_2009_2013.json'}
+                        'VS12LINK.USNUMPUB':'link_num_2009_2013.json', 'VS13LINK.USNUMPUB':'link_num_2009_2013.json',
+                        'VS14LINK.USNUMPUB':'link_num_2014.json'}
 
 class InfantMortalityETL (ETL):
 
@@ -59,7 +60,7 @@ class InfantMortalityETL (ETL):
                 logger.warn("No mapping available for data file %s, skipping", file_path)
                 continue
 
-            parser = FixedWidthFileParser(file_path, config_file)
+            parser = DataFileParser(file_path, config_file)
             record = []
             while True:
                 record  = parser.parseNextLine()
@@ -106,6 +107,7 @@ class InfantMortalityETL (ETL):
         self.loadDataSetMetaData('infant_mortality', '2011', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2009_2013.json'))
         self.loadDataSetMetaData('infant_mortality', '2012', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2009_2013.json'))
         self.loadDataSetMetaData('infant_mortality', '2013', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2009_2013.json'))
+        self.loadDataSetMetaData('infant_mortality', '2014', os.path.join(self.dataDirectory, 'data_mapping', 'link_num_2014.json'))
         logger.info("*** Metadata Loaded successfully ***")
 
     def validate_etl(self):

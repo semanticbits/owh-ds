@@ -3,7 +3,7 @@ var YRBSSearchPage = function() {
 
     ysp.yrbsOption = element(by.cssContainingText('option', 'Youth Risk Behavior'));
     ysp.sideFilterUnOrderedList = element(by.css('.side-filters'));
-    ysp.selectQuestionsButton = element(by.cssContainingText('button', 'Select Questions'));
+    //ysp.selectQuestionsButton = element(by.cssContainingText('button', 'Select Questions'));
     ysp.updateQuestionsButton = element(by.cssContainingText('button', 'Update Questions'));
     ysp.addSelectedQuestionsButton = element(by.cssContainingText('button', 'Filter Selected Questions'));
     ysp.searchQuestionsBox = element(by.id('search_text'));
@@ -11,6 +11,12 @@ var YRBSSearchPage = function() {
     ysp.owhTable = element(by.className('owh-data-table'));
     ysp.sexualIdentity = element(by.partialLinkText('Sexual Identity'));
     ysp.sexualContact = element(by.partialLinkText('Sex of Sexual Contacts'));
+    ysp.raceOptionsLink = element(by.partialLinkText('Race/Ethnicity'));
+
+    ysp.selectQuestionsButton = function(val){
+        return element(by.cssContainingText('button', val));
+    };
+
     ysp.closePopup = function() {
         element(by.id("modal-close")).click();
     };
@@ -36,11 +42,6 @@ var YRBSSearchPage = function() {
 
     ysp.getShowOnlyLinks = function() {
         return element.all(by.className('owh-question__show-only'));
-    };
-
-    ysp.selectSideFilter = function(filterType) {
-        var filter = element(by.className('side-filters')).element(by.xpath('.//*[.="'+filterType+'"]'));
-        return filter.element(by.xpath('..')).element(by.tagName('i'));
     };
 
     ysp.getQuestionContent = function() {

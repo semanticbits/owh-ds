@@ -20,16 +20,21 @@
 
                 <span ng-class="{'disabled-filter': !sfc.isVisible(sideFilter) || sideFilter.disabled }" ng-if="group.filterType === 'slider'">
                     <label class="side-pane-label custom-label">
-                        <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
-                           class="custom-link" title="{{group.helpText | translate}}">
+                        <div class="sidebar-chevron left-float padding-left-5">
                             <i class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></i>
+                        </div>
+                        <div class="left-float sidebar-filter-label">
+                            <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
+                               class="custom-link" title="{{group.helpText | translate}}">
                             <span translate="{{group.title}}" class="filter-display-name"></span>
                         </a>
-                        <owh-toggle-switch ng-if="sideFilter.allowGrouping" class="pull-right"
+                        </div>
+                        <owh-toggle-switch ng-if="sideFilter.allowGrouping" class="right-float sidebar-switch"
                                            options="sideFilter.groupOptions ? sideFilter.groupOptions : sfc.groupOptions"
                                            model="group.groupBy" on-change="sfc.onFilterValueChange(sideFilter)"
                                            tooltip="{{'label.group.by.tooltip' | translate}}">
                         </owh-toggle-switch>
+                        <div class="clearfix"></div>
                         <!--<a class="group-by-link custom-link" href="javascript:void(0)"
                            ng-if="sideFilter.allowGrouping" ng-class="{'selected': group.groupBy}"
                            ng-click="sfc.groupBySideFilter(group)">
@@ -199,22 +204,21 @@
                 <!-- checkbox filter -->
                 <span ng-class="{'disabled-filter': !sfc.isVisible(sideFilter)}" ng-if="group.filterType === 'checkbox'">
                     <label class="side-pane-label custom-label">
-                        <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
-                           title="{{group.helpText | translate}}" class="custom-link">
+                        <div class="sidebar-chevron left-float padding-left-5">
                             <i class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></i>
-                            <span translate="{{group.title}}" class="filter-display-name"></span>
-                        </a>
-                        <owh-toggle-switch ng-if="sideFilter.allowGrouping" class="pull-right"
+                        </div>
+                        <div class="left-float sidebar-filter-label">
+                            <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
+                                   title="{{group.helpText | translate}}" class="custom-link">
+                                <span translate="{{group.title}}" class="filter-display-name"></span>
+                            </a>
+                        </div>
+                        <owh-toggle-switch ng-if="sideFilter.allowGrouping" class="right-float sidebar-switch"
                                            options="sideFilter.groupOptions ? sideFilter.groupOptions : sfc.groupOptions"
                                            model="group.groupBy" on-change="sfc.runOnFilterChange && sfc.onFilter()"
                                            tooltip="{{'label.group.by.tooltip' | translate}}">
                         </owh-toggle-switch>
-                        <!--<a class="group-by-link custom-link" href="javascript:void(0)"
-                           ng-if="sideFilter.allowGrouping" ng-class="{'selected': group.groupBy}"
-                           ng-click="sfc.groupBySideFilter(group)">
-                            <span translate="label.group.by"></span>
-                            <i class="fa" ng-class="{'fa-times': group.groupBy}"></i>
-                        </a>-->
+                        <div class="clearfix"></div>
                     </label>
                     <ul class="usa-unstyled-list group-options" ng-if="group.filterGroup" ng-hide="sideFilter.collapse">
                         <li ng-repeat="eachFilter in group.filters" class="group-option" ng-show="$index < 3 || sideFilter.showAll">
@@ -333,16 +337,22 @@
                 <!-- radio filter -->
                 <span ng-class="{'disabled-filter': !sfc.isVisible(sideFilter)}" ng-if="group.filterType === 'radio'">
                     <label class="side-pane-label custom-label">
-                        <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
-                           title="{{group.helpText | translate}}" class="custom-link">
+                        <div class="sidebar-chevron left-float padding-left-5">
                             <i class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></i>
+                        </div>
+                        <div class="left-float sidebar-filter-label">
+                            <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
+                               title="{{group.helpText | translate}}" class="custom-link">
                             <span translate="{{group.title}}" class="filter-display-name"></span>
                         </a>
-                        <owh-toggle-switch ng-if="sideFilter.allowGrouping" class="pull-right"
+                        </div>
+                        <owh-toggle-switch ng-if="sideFilter.allowGrouping"
+                                           class="right-float sidebar-switch"
                                            options="sideFilter.groupOptions ? sideFilter.groupOptions : sfc.groupOptions"
                                            model="group.groupBy" on-change="sfc.onFilterValueChange(sideFilter)"
                                            tooltip="{{'label.group.by.tooltip' | translate}}">
                         </owh-toggle-switch>
+                        <div class="clearfix"></div>
                         <!--<a class="group-by-link custom-link" href="javascript:void(0)"
                            ng-if="sideFilter.allowGrouping" ng-class="{'selected': group.groupBy}"
                            ng-click="sfc.groupBySideFilter(group)">

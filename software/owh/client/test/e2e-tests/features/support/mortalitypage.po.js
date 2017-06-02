@@ -11,6 +11,7 @@ var MortalitySearchPage = function() {
     msp.showPecentageButton = element(by.id('togglePercentage')).element(by.cssContainingText('a', 'Show'));
     msp.hidePecentageButton = element(by.id('togglePercentage')).element(by.cssContainingText('a', 'Hide'));
     msp.raceOptionsLink = element(by.partialLinkText('Race'));
+    msp.stateOptionsLink = element(by.partialLinkText('State'));
     msp.sexOptionsLink = element(by.partialLinkText('Sex'));
     msp.autopsyOptionsLink = element(by.partialLinkText('Autopsy'));
     msp.placeOfDeathOptionsLink = element(by.partialLinkText('Place of Death'));
@@ -80,7 +81,7 @@ var MortalitySearchPage = function() {
     //FilterType ex: Race, Sex, Autopsy...
     //viewType ex: Column, Row, Off
     msp.selectSideFilter = function(filterType, viewType) {
-        return element(by.cssContainingText('a', filterType)).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('a', viewType));
+        return element(by.cssContainingText('div.sidebar-filter-label', filterType)).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('a', viewType));
     };
 
     msp.getCategoryBars = function() {
@@ -101,14 +102,6 @@ var MortalitySearchPage = function() {
 
     msp.getExpandLinks = function() {
         return element.all(by.className('owh-question__expand'));
-    };
-
-    msp.getOptions = function(filterType) {
-        return element(by.cssContainingText('a', filterType)).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul')).all(by.tagName('li'));
-    };
-
-    msp.getGroupOptions = function(filterType) {
-        return element(by.cssContainingText('a', filterType)).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul')).all(by.className('owh-side-menu__group-option'));
     };
 
     msp.getSideFilterTotals = function() {

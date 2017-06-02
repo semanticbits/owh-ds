@@ -50,6 +50,7 @@ var PRAMSStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on "([^"]*)" questions link$/, function (text, next) {
+        browser.sleep(3000);
         element(by.cssContainingText('a.owh-question__show', text)).click().then(next);
     });
 
@@ -78,7 +79,12 @@ var PRAMSStepDefinitionsWrapper = function () {
         element(by.css('a[name=close]')).click().then(next);
     });
 
+    this.Then(/^I close questions dialog$/, function (next) {
+        element(by.css('a[id=modal-close]')).click().then(next);
+    });
+
     this.When(/^I change class to "([^"]*)"$/, function (clazz) {
+        browser.sleep(5000);
         return pramsPage.updateClassTo(clazz)
     });
 
@@ -93,6 +99,14 @@ var PRAMSStepDefinitionsWrapper = function () {
 
     this.Then(/^I see only "([^"]*)" topic in data table$/, function (topic) {
         return expect(element(by.className('owh-question__title')).getText()).to.eventually.contains(topic);
+    });
+
+    this.Then(/^I see question categories in question tree are matching with topic$/, function (next) {
+        pramsPage.getQuestionTree().getText().then(function(qCategories) {
+            pramsPage.getPramsTopics().getText().then(function (topics) {
+                expect(JSON.stringify(topics)).to.equal(JSON.stringify(qCategories));
+            });
+        }).then(next);
     });
 };
 

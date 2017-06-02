@@ -291,6 +291,30 @@ describe("Search controller: ", function () {
         expect(searchController.filters.selectedPrimaryFilter.allFilters[0].autoCompleteOptions[1].key).toEqual('Dominican');
     });
 
+    it('should reset topic filter on changeViewFilter for prams class', function() {
+        var searchController= $controller('SearchController',{$scope:$scope});
+        var utilService = $injector.get('utilService');
+        var pramsFilters  =filters.search[4];
+
+        var topicFilter = utilService.findByKeyAndValue(pramsFilters.allFilters, 'key', 'topic');
+        topicFilter.value = ['cat_45'];
+        searchController.filters = {selectedPrimaryFilter: pramsFilters};
+        searchController.changeViewFilter(pramsFilters);
+        expect(topicFilter.value).toEqual([]);
+    });
+
+    it('should reset question filter on changeViewFilter for prams class', function() {
+        var searchController= $controller('SearchController',{$scope:$scope});
+        var utilService = $injector.get('utilService');
+        var pramsFilters  =filters.search[4];
+
+        var questionFilter = utilService.findByKeyAndValue(pramsFilters.allFilters, 'key', 'question');
+        questionFilter.value = ['"qn144"'];
+        searchController.filters = {selectedPrimaryFilter: pramsFilters};
+        searchController.changeViewFilter(pramsFilters);
+        expect(questionFilter.value).toEqual([]);
+    });
+
     it('changeViewFilter should disable 2000, 2001, 2002 years for birth_rates', function() {
         var searchController= $controller('SearchController',{$scope:$scope});
         spyOn(searchController, 'search');

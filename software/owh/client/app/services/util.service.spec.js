@@ -389,4 +389,122 @@ describe('utilService', function(){
         expect(filters[2].filters.autoCompleteOptions[1].disabled).toBeFalsy();
         expect(filters[3].disabled).toBeFalsy();
     }));
+
+    it('refreshFilterAndOptions options should set filter option correctly - for Crude Death Rates ', inject(function(SearchService) {
+        var deferred = $q.defer();
+        var filters= [
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:"row",
+                filters: {key: 'year', title: 'label.filter.year', queryKey:"year", primary: false, value: [2015], groupBy: 'row',
+                    type:"label.filter.group.year", showChart: true, defaultGroup:"column",
+                    autoCompleteOptions: []}
+            },
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:false,
+                filters: {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [], groupBy: 'row',
+                    type:"label.filter.group.demographics", showChart: true, defaultGroup:"column",
+                    autoCompleteOptions: [{key:'White','title':'White'}]}
+            },
+           {
+                filterGroup: false, collapse: true, allowGrouping: true,groupBy:true,
+                filters: {key: 'gender', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [], groupBy: 'column',
+                    type:"label.filter.group.demographics", groupByDefault: 'column', showChart: true,
+                    autoCompleteOptions: [
+                        {key:'Female',title:'Female'},
+                        {key:'Male',title:'Male'}
+                    ], defaultGroup:"column"
+                }
+            },
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:false,
+                filters: {key: 'hispanicOrigin', title: 'label.filter.hispanicOrigin', queryKey:"ethnicity_group", primary: false, value: [], groupBy: 'row',
+                    type:"label.filter.group.demographics", defaultGroup:"row", filterType: 'checkbox',
+                    autoCompleteOptions: [{key:'Hispanic','title':'Hispanic'},{key:'Non-Hispanic','title':'Non-Hispanic'}]}
+            }
+        ];
+
+        var categories = [{"sideFilters":filters}];
+
+        spyOn(SearchService, 'getDsMetadata').and.returnValue(deferred.promise);
+
+        utils.refreshFilterAndOptions({ queryKey: "year", value: ["2015"]}, categories, 'deaths');
+        expect(SearchService.getDsMetadata).toHaveBeenCalledWith("deaths","2015");
+        deferred.resolve({"status":"OK","data":{"sex":["Male","Female"],"hispanic_origin":["Dominican","Latin American","Central American","Cuban","Spaniard","Other Hispanic","South American","Non-Hispanic","Puerto Rican","Unknown","Mexican","Central and South American"],"race":["White","Black","American Indian","Asian or Pacific Islander"]}});
+        $scope.$apply();
+        //Year
+        expect(filters[0].disabled).toBeFalsy();
+        expect(filters[0].groupBy).toEqual("row");
+        //Race
+        expect(filters[1].disabled).toBeFalsy();
+        expect(filters[1].groupBy).toBeFalsy();
+        //Gender
+        expect(filters[2].disabled).toBeFalsy();
+        expect(filters[2].filters.autoCompleteOptions[0].disabled).toBeFalsy();
+        expect(filters[2].filters.autoCompleteOptions[1].disabled).toBeFalsy();
+        //Ethnicity
+        expect(filters[3].disabled).toBeFalsy();
+        //Hispanic
+        expect(filters[3].filters.autoCompleteOptions[0].disabled).toBeFalsy();
+        //Non-Hispanic
+        expect(filters[3].filters.autoCompleteOptions[1].disabled).toBeFalsy();
+    }));
+
+    it('refreshFilterAndOptions options should set filter option correctly - for Age Adjusted Death Rates ', inject(function(SearchService) {
+        var deferred = $q.defer();
+        var filters= [
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:"row",
+                filters: {key: 'year', title: 'label.filter.year', queryKey:"year", primary: false, value: [2015], groupBy: 'row',
+                    type:"label.filter.group.year", showChart: true, defaultGroup:"column",
+                    autoCompleteOptions: []}
+            },
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:false,
+                filters: {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [], groupBy: 'row',
+                    type:"label.filter.group.demographics", showChart: true, defaultGroup:"column",
+                    autoCompleteOptions: [{key:'White','title':'White'}]}
+            },
+            {
+                filterGroup: false, collapse: true, allowGrouping: true,groupBy:true,
+                filters: {key: 'gender', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [], groupBy: 'column',
+                    type:"label.filter.group.demographics", groupByDefault: 'column', showChart: true,
+                    autoCompleteOptions: [
+                        {key:'Female',title:'Female'},
+                        {key:'Male',title:'Male'}
+                    ], defaultGroup:"column"
+                }
+            },
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:false,
+                filters: {key: 'hispanicOrigin', title: 'label.filter.hispanicOrigin', queryKey:"ethnicity_group", primary: false, value: [], groupBy: 'row',
+                    type:"label.filter.group.demographics", defaultGroup:"row", filterType: 'checkbox',
+                    autoCompleteOptions: [{key:'Hispanic','title':'Hispanic'},{key:'Non-Hispanic','title':'Non-Hispanic'}]}
+            }
+        ];
+
+        var categories = [{"sideFilters":filters}];
+
+        spyOn(SearchService, 'getDsMetadata').and.returnValue(deferred.promise);
+
+        utils.refreshFilterAndOptions({ queryKey: "year", value: ["2015"]}, categories, 'deaths');
+        expect(SearchService.getDsMetadata).toHaveBeenCalledWith("deaths","2015");
+        deferred.resolve({"status":"OK","data":{"sex":["Male","Female"],"hispanic_origin":["Dominican","Latin American","Central American","Cuban","Spaniard","Other Hispanic","South American","Non-Hispanic","Puerto Rican","Unknown","Mexican","Central and South American"],"race":["White","Black","American Indian","Asian or Pacific Islander"]}});
+        $scope.$apply();
+        //Year
+        expect(filters[0].disabled).toBeFalsy();
+        expect(filters[0].groupBy).toEqual("row");
+        //Race
+        expect(filters[1].disabled).toBeFalsy();
+        expect(filters[1].groupBy).toBeFalsy();
+        //Gender
+        expect(filters[2].disabled).toBeFalsy();
+        expect(filters[2].filters.autoCompleteOptions[0].disabled).toBeFalsy();
+        expect(filters[2].filters.autoCompleteOptions[1].disabled).toBeFalsy();
+        //Ethnicity
+        expect(filters[3].disabled).toBeFalsy();
+        //Hispanic
+        expect(filters[3].filters.autoCompleteOptions[0].disabled).toBeFalsy();
+        //Non-Hispanic
+        expect(filters[3].filters.autoCompleteOptions[1].disabled).toBeFalsy();
+    }));
 });

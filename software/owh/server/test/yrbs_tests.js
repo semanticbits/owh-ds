@@ -5,7 +5,7 @@ var config = require('../config/config');
 
 describe("YRBS API", function () {
     var yrbs;
-    this.timeout(30000);
+    this.timeout(60000);
     beforeEach( function () {
         yrbs = new y();
     });
@@ -3705,7 +3705,7 @@ describe("YRBS API", function () {
             expect(race[0].name).to.eql("Black or African American");
             expect(race[1].name).to.eql("White");
             var b = sortByKey(race[0].sitecode, 'name', true);
-            expect(b).to.eql([{"name":"CA","mental_health":{"mean":"90.1","ci_l":"76.8","ci_u":"96.1","count":38}}, {"name":"MO","mental_health":{"mean":"92.8","ci_l":"90.2","ci_u":"94.7","count":1395}}]);
+            expect(b).to.eql([{"name":"CA","mental_health":{"mean":"suppressed","ci_l":"76.8","ci_u":"96.1","count":38}}, {"name":"MO","mental_health":{"mean":"92.8","ci_l":"90.2","ci_u":"94.7","count":1395}}]);
             var w = sortByKey(race[1].sitecode, 'name', true);
             expect(w).to.eql([{"name":"CA","mental_health":{"mean":"48.8","ci_l":"37.8","ci_u":"59.9","count":240}}, {"name":"MO","mental_health":{"mean":"87.8","ci_l":"85.1","ci_u":"90.1","count":8483}}]);
             expect(q0.NO).to.eql({"mental_health":{"mean":"81.6","ci_l":"77.4","ci_u":"85.1","count":10156},"race":[{"name":"White","sitecode":[{"name":"CA","mental_health":{"mean":"48.8","ci_l":"37.8","ci_u":"59.9","count":240}},{"name":"MO","mental_health":{"mean":"87.8","ci_l":"85.1","ci_u":"90.1","count":8483}}],"mental_health":{"mean":"79.6","ci_l":"74.8","ci_u":"83.8","count":8723}},{"name":"Black or African American","mental_health":{"mean":"92.5","ci_l":"90.5","ci_u":"94.1","count":1433},"sitecode":[{"name":"MO","mental_health":{"mean":"92.8","ci_l":"90.2","ci_u":"94.7","count":1395}},{"name":"CA","mental_health":{"mean":"90.1","ci_l":"76.8","ci_u":"96.1","count":38}}]}]});
@@ -3730,9 +3730,30 @@ describe("YRBS API", function () {
         });
     });
 
-    // Excluding this test until YRBS question service is fixed
-    xit("getYRBSQuestions from yrbs service ", function (){
-        return yrbs.getYRBSQuestionsTree().then(function (response) {
+    it("invokeYRBS service for basic results with default grouping - suppressing if value < 100", function (){
+        var apiQuery = {"searchFor":"mental_health","query":{"year":{"key":"year","queryKey":"year","value":"2015","primary":false},
+            "question.path":{"key":"question","queryKey":"question.key","value":["qn14"],"primary":false}},"aggregations":{"simple":[],
+            "nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"yrbsSex","queryKey":"sex","size":0},
+            {"key":"yrbsRace","queryKey":"race","size":0}],"charts":[],"maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}},"yrbsBasic":true,"pagination":{"from":0,"size":10000}}
+
+            return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
+            expect(resp).to.eql({"table":{"question":[{"name":"qn14","sex":[{"name":"Female","race":[{"name":"Native Hawaiian/other PI","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":19}},{"name":"Hispanic/Latino","mental_health":{"mean":"1.9","ci_l":"1.1","ci_u":"3.2","count":2436}},{"name":"Black or African American","mental_health":{"mean":"1.7","ci_l":"0.8","ci_u":"3.6","count":689}},{"name":"Asian","mental_health":{"mean":"0.6","ci_l":"0.1","ci_u":"4.0","count":293}},{"name":"White","mental_health":{"mean":"1.4","ci_l":"0.9","ci_u":"2.0","count":2723}},{"name":"Am Indian / Alaska Native","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":54}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"1.9","ci_l":"0.9","ci_u":"4.0","count":334}}]},{"name":"Male","race":[{"name":"Native Hawaiian/other PI","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":64}},{"name":"Am Indian / Alaska Native","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":88}},{"name":"White","mental_health":{"mean":"9.6","ci_l":"7.8","ci_u":"11.9","count":2607}},{"name":"Black or African American","mental_health":{"mean":"9.6","ci_l":"6.1","ci_u":"14.6","count":682}},{"name":"Hispanic/Latino","mental_health":{"mean":"6.5","ci_l":"5.2","ci_u":"8.1","count":2366}},{"name":"Asian","mental_health":{"mean":"3.8","ci_l":"1.5","ci_u":"9.0","count":304}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"9.5","ci_l":"6.5","ci_u":"13.6","count":298}}]}],"mental_health":{"mean":"5.3","ci_l":"4.6","ci_u":"6.1","count":13263}}]}});
+        });
+    });
+
+    it("invokeYRBS service for advanced results with sexid filter - suppressing if value < 30", function (){
+        var apiQuery = {"searchFor":"mental_health","query":{"year":{"key":"year","queryKey":"year","value":["2015"],"primary":false},
+            "sexid":{"key":"sexid","queryKey":"sexid","value":["Heterosexual"],"primary":false},
+            "question.path":{"key":"question","queryKey":"question.key","value":["qn64"],"primary":false}},"aggregations":{"simple":[],
+            "nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"yrbsRace","queryKey":"race","size":0}],
+            "charts":[], "maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}}, "pagination":{"from":0,"size":10000}};
+        return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
+            expect(resp).to.eql({"table":{"question":[{"name":"qn64","mental_health":{"mean":"20.0","ci_l":"18.0","ci_u":"22.1","count":3637},"race":[{"name":"Hispanic/Latino","mental_health":{"mean":"21.7","ci_l":"18.7","ci_u":"25.1","count":1211}},{"name":"White","mental_health":{"mean":"19.3","ci_l":"16.5","ci_u":"22.5","count":1664}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"13.8","ci_l":"9.0","ci_u":"20.7","count":166}},{"name":"Native Hawaiian/other PI","mental_health":{"mean":"suppressed","ci_l":"7.6","ci_u":"59.3","count":16}},{"name":"Asian","mental_health":{"mean":"15.8","ci_l":"5.8","ci_u":"36.4","count":81}},{"name":"Am Indian / Alaska Native","mental_health":{"mean":"38.7","ci_l":"22.7","ci_u":"57.6","count":50}},{"name":"Black or African American","mental_health":{"mean":"21.0","ci_l":"14.1","ci_u":"30.0","count":394}}]}]}});
+        });
+    });
+
+    it("getQuestionsTreeByYears from yrbs service using 'All'", function (){
+        return yrbs.getQuestionsTreeByYears(["All"]).then(function (response) {
             expect(response.questionTree[7].text).to.eql("Unintentional Injuries and Violence");
             expect(response.questionTree[6].text).to.eql("Tobacco Use");
             expect(response.questionTree[0].text).to.eql("Alcohol and Other Drug Use");
@@ -3751,6 +3772,34 @@ describe("YRBS API", function () {
             expect(response.questionsList[1].qkey).to.eql("qn11");
             expect(response.questionsList[0].title).to.eql("Rode with a driver who had been drinking alcohol(in a car or other vehicle one or more times during the 30 days before the survey)");
             expect(response.questionsList[1].title).to.eql("Drove when drinking alcohol(in a car or other vehicle one or more times during the 30 days before the survey, among students who had driven a car or other vehicle during the 30 days before the survey)");
+        });
+    });
+
+    it("should get prams questions tree", function (){
+        return yrbs.getPramsQuestionsTree().then(function (response) {
+
+            expect(response.questionTree[0].text).to.eql("Abuse - Mental");
+            expect(response.questionTree[0].children.length).to.eql(1);
+            expect(response.questionTree[0].children[0].text).to.eql("(*PCH) During the 12 months before pregnancy  did your husband or partner threaten you  limit your activities against your will  or make you feel unsafe in any other way?");
+
+            expect(response.questionTree[1].text).to.eql("Abuse - Physical");
+            expect(response.questionTree[1].children.length).to.eql(8);
+            expect(response.questionTree[1].children[0].text).to.eql("(*PCH) During the 12 months before you got pregnant  did your husband or partner push  hit  slap, kick, choke, or physically hurt you in any other way?");
+            expect(response.questionTree[1].children[7].text).to.eql("Indicator of no physical abuse during pregnancy");
+
+            expect(response.questionTree[2].text).to.eql("Alcohol Use");
+            expect(response.questionTree[2].children.length).to.eql(5);
+            expect(response.questionTree[2].children[0].text).to.eql("(*PCH) Indicator of binge drinking (4+ drinks) during 3 months before pregnancy");
+            expect(response.questionTree[2].children[4].text).to.eql("Indicator of whether mother reported having any alcoholic drinks during the last 3 months of pregnancy");
+
+            //46 topics
+            expect(response.questionTree.length).to.eql(46);
+            //270 questions
+            expect(response.questionsList.length).to.eql(270);
+
+            yrbs.getPramsQuestionsTree().then(function (cachedResponse) {
+                expect(JSON.stringify(response)).to.eql(JSON.stringify(cachedResponse));
+            });
         });
     });
 
