@@ -158,16 +158,41 @@ function search(q) {
 
     } else if (preparedQuery.apiQuery.searchFor === 'infant_mortality') {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
-        sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
-        new elasticSearch().aggregateInfantMortalityData(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
-            new elasticSearch().aggregateInfantMortalityData(finalQuery, isStateSelected).then(function (response) {
-                var resData = {};
-                resData.queryJSON = q;
-                resData.resultData = response.data;
-                resData.resultData.headers = preparedQuery.headers;
-                resData.sideFilterResults = sideFilterResults;
-                deferred.resolve(resData);
-            });
+        var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
+
+        var selectedYears = searchUtils.getYearFilter(q.allFilters);
+        var groupByOptions = searchUtils.getSelectedGroupByOptions(q.allFilters);
+        var options = selectedYears.reduce(function (prev, year) {
+            var clone = JSON.parse(JSON.stringify(groupByOptions));
+            return prev.concat(clone.map(function (option) {
+                option.year = year;
+                return option;
+            }));
+        }, []);
+
+        var es = new elasticSearch();
+        var optionPromises = options.map(function (option) {
+            return es.getCountForYearByFilter(option.year, option.filter, option.key);
+        });
+        var promises = [
+            es.aggregateInfantMortalityData(sideFilterQuery, isStateSelected),
+            es.aggregateInfantMortalityData(finalQuery, isStateSelected)
+        ];
+        promises = promises.concat(optionPromises);
+
+        Q.all(promises).spread(function (sideFilterResults, response) {
+            var optionResults = Array.prototype.slice.call(arguments, 2);
+            var lineChartData = searchUtils.mapAndGroupOptionResults(options, optionResults);
+            var resData = {};
+            resData.queryJSON = q;
+            resData.resultData = response.data;
+            resData.resultData.nested.lineCharts = lineChartData;
+            resData.resultData.headers = preparedQuery.headers;
+            resData.sideFilterResults = sideFilterResults;
+            deferred.resolve(resData);
+        }).catch(function (error) {
+            logger.error('Infant Mortality ElasticSearch ', error);
+            deferred.reject(error);
         });
     } else if (preparedQuery.apiQuery.searchFor === 'std') {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true, searchUtils.getAllOptionValues());

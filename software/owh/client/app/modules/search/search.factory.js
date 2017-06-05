@@ -116,10 +116,9 @@
             }
             else if (primaryFilter.key === 'infant_mortality') {
                 primaryFilter.data = response.data.resultData.nested.table;
-                tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 populateSideFilterTotals(primaryFilter, response.data);
-                primaryFilter.headers = tableData.headers;
-                primaryFilter.data = tableData.data;
+                primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
+                tableData = getMixedTable(primaryFilter, groupOptions, tableView);
             }
             else if (response.data.queryJSON.key == 'std' ||
                 response.data.queryJSON.key == 'tb') {
@@ -691,9 +690,28 @@
             }
             //When user selects more than one filter
             if( headers.chartHeaders.length > 0 ) {
-                angular.forEach(headers.chartHeaders, function(eachChartHeaders, index) {
-                    chartData.push(chartUtilService[eachChartHeaders.chartType](eachChartHeaders.headers[0], eachChartHeaders.headers[1],
-                        nestedData.charts[index], primaryFilter));
+                var allOtherCharts = [];
+                var multiLineCharts = headers.chartHeaders.reduce(function (prev, header) {
+                    if (header.chartType !== 'multiLineChart') {
+                        allOtherCharts.push(header);
+                        return prev;
+                    }
+                    return prev.concat(header);
+                }, []).map(function (chart) {
+                    chart.data = nestedData.lineCharts.reduce(function (prev, curr) {
+                        if (prev) return prev;
+                        if (curr[0].filter === chart.headers[0].key || curr[0].filter === chart.headers[1].key) return curr;
+                        return null;
+                    }, null);
+                    return chart;
+                });
+
+                multiLineCharts.forEach(function (chart) {
+                    chartData.push(chartUtilService.multiLineChart(chart, primaryFilter));
+                });
+
+                angular.forEach(allOtherCharts, function(eachChartHeaders, index) {
+                    chartData.push(chartUtilService[eachChartHeaders.chartType](eachChartHeaders.headers[0], eachChartHeaders.headers[1], nestedData.charts[index], primaryFilter));
                 });
             }else if( ( headers.rowHeaders.length + headers.columnHeaders.length ) === 1 ) {
                 var data = nestedData.table;

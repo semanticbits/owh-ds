@@ -260,7 +260,6 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected)
 };
 
 ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateSelected) {
-    var client = this.getClient(infant_mortality_index);
     var deferred = Q.defer();
     if (query[0]) {
         this.executeESQuery(infant_mortality_index, infant_mortality_type, query[0])
@@ -417,5 +416,29 @@ ElasticClient.prototype.getDsMetadata = function (dataset, years) {
     return deferred.promise;
 };
 
+ElasticClient.prototype.getCountForYearByFilter = function (year, filter, option) {
+    var client = this.getClient();
+    var target = {};
+    target[filter] = option;
+    return client.count({
+        index: infant_mortality_index,
+        type: infant_mortality_type,
+        body: {
+            query: {
+                bool: {
+                    must: [
+                        { match: { 'year_of_death': year } },
+                        { match: target }
+                    ]
+                }
+            }
+        }
+    }).then(function (data) {
+        return data;
+    }).catch(function (error) {
+        logger.error('Failed to get count for ', filter, ' ', error);
+        return error;
+    });
+};
 
 module.exports = ElasticClient;
