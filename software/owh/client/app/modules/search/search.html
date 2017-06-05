@@ -34,21 +34,21 @@
 
 <div class="usa-grid border-top-default" ng-class="{'allow-inline-charting': sc.filters.allowInlineCharting}">
     <div class="usa-width-one-whole bottom-pane">
-        <a class="owh-side-menu__handle--collapsed cursor-pointer" ng-hide="sc.sideMenu.visible" ng-click="sc.sideMenu.visible = !sc.sideMenu.visible; sc.updateCharts()">
+        <a class="owh-side-menu__handle--collapsed cursor-pointer" ng-hide="sc.sideMenu.visible" ng-click="sc.sideMenu.visible = !sc.sideMenu.visible; sc.updateCharts()" href="javascript:void(0)">
             <span>Show Filters &gt;&gt;</span>
         </a>
         <div class="usa-width-one-fourth side-pane-padding border-right-default owh-side-menu" ng-hide="!sc.sideMenu.visible">
             <div ng-show="sc.filters.selectedPrimaryFilter.title === 'label.risk.behavior'" class="yrbs_search_links">
                 <a class="owh-side-menu__handle cursor-pointer pull-left" ng-show="sc.filters.selectedPrimaryFilter.title === 'label.risk.behavior'"
-                   ng-click="sc.switchToYRBSBasic();" ng-if="!sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu">
+                   ng-click="sc.switchToYRBSBasic();" ng-if="!sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu" href="javascript:void(0)">
                     <span ng-bind="'label.yrbs.basic.search' | translate"></span>
                 </a>
                 <a class="owh-side-menu__handle cursor-pointer pull-left" ng-show="sc.filters.selectedPrimaryFilter.title === 'label.risk.behavior'"
-                   ng-click="sc.switchToYRBSAdvanced();" ng-if="sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu">
+                   ng-click="sc.switchToYRBSAdvanced();" ng-if="sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu" href="javascript:void(0)">
                     <span ng-bind="'label.yrbs.advanced.search' | translate"></span>
                 </a>
             </div>
-            <a class="owh-side-menu__handle cursor-pointer" ng-click="sc.sideMenu.visible = false; sc.updateCharts()">
+            <a class="owh-side-menu__handle cursor-pointer" ng-click="sc.sideMenu.visible = false; sc.updateCharts()" href="javascript:void(0)">
                 <span>&lt;&lt; Hide Filters</span>
             </a>
             <div class="sort-by side-filter-padding">
@@ -82,11 +82,11 @@
                             <div ng-if="!chartData.isMap">
                                 <div class="text-center margin-top-5" >
                                     <span ng-bind="sc.getChartTitle(chartData.title)" class="graph-title"></span>
-                                    <a name="expand_graph" ng-click="sc.showExpandedGraph(chartData)" class="cursor-pointer">
+                                    <a name="expand_graph" ng-click="sc.showExpandedGraph(chartData)" class="cursor-pointer" href="javascript:void(0)">
                                         &nbsp;<span class="fa fa-expand" title="Expand graph"></span>
                                     </a>
                                     <a name="share_fb" ng-click="sc.showFbDialog('chart_'+parentIndex+'_'+$index, chartData.title)"
-                                       class="cursor-pointer">
+                                       class="cursor-pointer" href="javascript:void()">
                                         &nbsp; <span class="fa fa-share-alt" title="{{'label.share.on.fb' | translate}}"></span>
                                     </a>
                                 </div>
@@ -118,23 +118,23 @@
                          ng-show="sc.filters.selectedPrimaryFilter.title === 'label.filter.mortality' && sc.tableView === 'number_of_deaths' ||
                                   sc.filters.selectedPrimaryFilter.title === 'label.filter.natality' && sc.tableView === 'number_of_births' ||
                                   sc.filters.selectedPrimaryFilter.title === 'label.census.bridge.race.pop.estimate' && sc.tableView === 'bridge_race'">
-                        <a id="showPercentage" class="active-link custom-link " ng-class="{'selected': sc.tableData.calculatePercentage === true}" ng-click="sc.tableData.calculatePercentage = true;" title="Show percentage">
+                        <a id="showPercentage" class="active-link custom-link " ng-class="{'selected': sc.tableData.calculatePercentage === true}" ng-click="sc.tableData.calculatePercentage = true;" title="Show percentage" href="javascript:void(0)">
                             <span ng-show="sc.tableData.calculatePercentage === false" ng-bind="'label.mortality.search.table.show.percentage.button' | translate"></span>
                             <span ng-show="sc.tableData.calculatePercentage === true" ng-bind="'label.mortality.search.table.showing.percentage.button' | translate"></span>
                         </a>
-                        <a id="hidePercentage" class="active-link custom-link" ng-class="{'selected': sc.tableData.calculatePercentage === false}" ng-click="sc.tableData.calculatePercentage = false;" title="Hide percentage">
+                        <a id="hidePercentage" class="active-link custom-link" ng-class="{'selected': sc.tableData.calculatePercentage === false}" ng-click="sc.tableData.calculatePercentage = false;" title="Hide percentage" href="javascript:void(0)">
                             <span ng-show="sc.tableData.calculatePercentage === true" ng-bind="'label.mortality.search.table.hide.percentage.button' | translate"></span>
                             <span ng-show="sc.tableData.calculatePercentage === false" ng-bind="'label.mortality.search.table.hidden.percentage.button' | translate"></span>
                         </a>
                     </div>
                     <div class="pull-right margin-bottom-20 margin-right-10">
                         <!--<div>Icons made by <a href="http://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">Madebyoliver</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
-                        <a name="download_csv" ng-click="sc.downloadCSV()" title="Download CSV" class="cursor-pointer">
-                            <img src="images/csv.png"/>
+                        <a name="download_csv" ng-click="sc.downloadCSV()" title="Download CSV" class="cursor-pointer" href="javascript:void(0)">
+                            <img alt="Export to csv" src="images/csv.png"/>
                         </a>
                         |
-                        <a name="download_xls" ng-click="sc.downloadXLS()" title="Download XLS" class="cursor-pointer">
-                            <img src="images/xls.png"/>
+                        <a name="download_xls" ng-click="sc.downloadXLS()" title="Download XLS" class="cursor-pointer" href="javascript:void(0)">
+                            <img alt="Export to Excel" src="images/xls.png"/>
                         </a>
                     </div>
                     <p id="death-rate-disclaimer" class="disclaimer" ng-if="sc.tableView === 'crude_death_rates'" ng-bind=" 'label.crude.death.rates.statement' | translate"></p>
