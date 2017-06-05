@@ -457,8 +457,7 @@ describe('search factory ', function(){
         it('searchYRBSResults with only one row group having no value', function () {
             var raceFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'yrbsRace');
             raceFilter.groupBy = 'row';
-            raceFilter.value = ['ai_an'];
-            //raceFilter.value = '[]';
+            raceFilter.value = '';
 
             var result = searchFactory.updateFiltersAndData(filters, yrbsResponse, {'mental_health': {}}, 'mental_health');
             expect(JSON.stringify(result.primaryFilter.headers)).toEqual(JSON.stringify(raceNoValueHeaders));

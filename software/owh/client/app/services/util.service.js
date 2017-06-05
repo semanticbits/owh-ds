@@ -175,9 +175,11 @@
          */
         function findAllByKeyAndValue(a, key, value) {
             var result = [];
-            for (var i = 0; i < a.length; i++) {
-                if (a[i][key] === value) {
-                    result.push(a[i]);
+            if(a) {
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i][key] === value) {
+                        result.push(a[i]);
+                    }
                 }
             }
             return result;
