@@ -9,13 +9,7 @@ tmp
 .DS_Store
 .idea
 *.pyc
-Web.config
-*.sln
-*.njsproj
 .vs
-/software/owh/.owh
-/software/.vs
-/software/owh/bin
-/software/owh/obj
-_Chutzpah.*.test.html
+bin/
+obj/
 npm-debug.log
