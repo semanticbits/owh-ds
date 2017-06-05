@@ -528,9 +528,6 @@
 
                         var questionCellAdded = false;
                         angular.forEach(eachData, function(eachPramsData) {
-                            if(eachPramsData.response === '-1') {
-                                return;
-                            }
                             var childTableData = prepareMixedTableRowData(rowHeaders.slice(1), columnHeaders, eachPramsData, countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys);
                             if(rowHeaders.length > 1 && calculateRowTotal) {
                                 childTableData.push(prepareTotalRow(eachPramsData, countKey, childTableData[0].length, totalCount, secondaryCountKeys));
@@ -548,7 +545,7 @@
                                 var eachTableRow = {
                                     title: matchedOption.title,
                                     isCount: false,
-                                    rowspan: countKey === 'prams'?eachData.length - 1: eachData.length, //exclude the -1 response for prams
+                                    rowspan: eachData.length,
                                     colspan: 1,
                                     key: matchedOption.key,
                                     qkey: matchedOption.qkey,

@@ -179,6 +179,12 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
     for (var i in  response.results){
         var r = response.results[i];
         var responseKey = responseKeyMap[r.response]?responseKeyMap[r.response]:r.response;
+
+        // skip NA responses for PRAMS
+        if (responseKey == 'NA') {
+            continue;
+        }
+
         if(!q[responseKey]) {
             q[responseKey] = {};
         }
@@ -355,7 +361,7 @@ yrbs.prototype.getPramsQuestionsTree = function () {
         logger.info("Returning cached PRAMS questions");
         deferred.resolve(cachedPramsQuestions);
     } else {
-        invokeYRBS(config.yrbs.questionsUrl + '?d=prams').then(function(response) {
+        invokeYRBS(config.yrbs.questionsUrl + '/v2?d=prams').then(function(response) {
             logger.info("Getting PRAMS questions from YRBS service");
             var data = prepareQuestionTree(response.questions, true);
             // Cache the result only if it is valid
@@ -393,7 +399,7 @@ function prepareQuestionTree(questions,  prams) {
     //iterate through questions
     for (var qKey in questions) {
         var quesObj = questions[qKey];
-        var qCategory = quesObj.topic?quesObj.topic:'No Topic'; //Default the topic if not specified
+        var qCategory = quesObj.topic;
         if(prams) {
             qCategory = quesObj.subtopic;
         }

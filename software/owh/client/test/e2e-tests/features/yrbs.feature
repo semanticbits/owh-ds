@@ -14,8 +14,11 @@ Feature: As a User
     #Given user select YRBS as primary filter
     When I select YRBS as primary filter
     Then the default filter pre-selected should be Race
-    #Then the default year selected should be 2015
     And side menu slides back into view
+
+  Scenario: Result table shows both Yes and No Responses
+    #Then I should see "Response" column in the result table
+    And I should see YES and NO responses for question
 
   Scenario: Hide Sidebar
     When I see hide filter button in yrbs page
@@ -55,34 +58,34 @@ Scenario: show chart for each question
     Then the category to reset back to the original view of the two questions
     And 'Show Less' should be replaced with 'Show # More'
 
-  #Scenario: Category Title
-   # When I hover the mouse over a category name
-   # Then an option/link to 'Show only this Category' should be seen
+  Scenario: Category Title
+    When I hover the mouse over a category name
+    Then an option/link to 'Show only this Category' should be seen
 
-  #Scenario: Show only this Category button
-  #  When I click on 'Show only this Category'
-  #  Then the data table must show only that category
+  Scenario: Show only this Category button
+    When I click on 'Show only this Category'
+    Then the data table must show only that category
 
-  #Scenario: Show all Categories link is visible
-  #  When I hover the mouse over a category name
-  #  Then an option/link to 'Show all Categories' should be seen
+  Scenario: Show all Categories link is visible
+    When I hover the mouse over a category name
+    Then an option/link to 'Show all Categories' should be seen
 
-  #Scenario: Show all Categories works
-  #  When I click on 'Show all Categories'
-  #  Then the data table should show all categories
+  Scenario: Show all Categories works
+    When I click on 'Show all Categories'
+    Then the data table should show all categories
 
   Scenario: Race/Ethnicity label
     Then race filter should be labeled Race/Ethnicity
   Scenario: Data Alignment
     Then the data must be right justified in the table
 
-#Scenario: Show all odd years from 1991-2015
-#  When Click on show more on year filter
-#  Then year filter should list all odd years 1991-2015
+  Scenario: Show all odd years from 1991-2015
+   When Click on show more on year filter
+   Then year filter should list all odd years 1991-2015
 
-#Scenario: Group by year
-#  When Group by year is selected
-#  Then results should be grouped by year
+  Scenario: Group by year
+    When Group by year is selected
+    Then results should be grouped by year
 
   Scenario: YRBS question categories in the given order
     When I select "Select Questions" button
@@ -91,13 +94,13 @@ Scenario: show chart for each question
     And by default no questions should be selected
     And it should also have a Search Questions - search bar above the list
 
-#Scenario: Filter by year
-#  When Years "2015", "2013" are selected
-#  Then results shows only 2015 and 2013 data
+Scenario: Filter by year
+  When Years "2015", "2013" are selected
+  Then results shows only 2015 and 2013 data
 
-#Scenario: Filter by ethnicity
-#  When ethniciy "White", "Asian" are selected
-#  Then results shows only data for the selected ethnicities
+Scenario: Filter by ethnicity
+  When ethniciy "White", "Asian" are selected
+  Then results shows only data for the selected ethnicities
 
   Scenario: Search Questions
     When I begin to type a word in the search bar
@@ -228,6 +231,7 @@ Scenario: show chart for each question
     #  | filter                  | filterOptions                                                     | filterOption      |
     #  |  Sexual Identity        |  Heterosexual (straight), Gay or Lesbian, Bisexual, Not Sure      | Bisexual          |
     #  |  Sexual Contact         |  Opposite Sex Only, Same Sex Only, Both Sexes, No Sexual Contact  | Opposite Sex Only |
+
 
   Scenario: Show/Hide Confidence Intervals for variance filter - YRBS Basic Search
     Given I am on search page
