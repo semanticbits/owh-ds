@@ -14,6 +14,7 @@ Feature: Natality filters
     And user clicks on "+ 13 more" more link for "Year" filter
     And all years should be enabled in Year filter
 
+  @natalitySmoke @smoke
   Scenario: Default filter state
     Then I see "Year" as first option in sidebar filters
     And  I see the data table with race, female, male and total table headers
@@ -104,6 +105,7 @@ Feature: Natality filters
     And  I select "Alaska" state
     Then I see suppressed cells in data table
 
+  @natalitySmoke @smoke
   Scenario: Birth rates by state
     When I change show me dropdown option to "Birth Rates"
     Then I should see filter type "Birth Rates" selected for show me dropdown
@@ -113,6 +115,7 @@ Feature: Natality filters
     And  I select groupBy "Column" option for "State" filter
     Then I see birth rate for state
 
+  @natalitySmoke @smoke
   Scenario: Fertility rates by state
     When I change show me dropdown option to "Fertility Rates"
     Then I should see filter type "Fertility Rates" selected for show me dropdown

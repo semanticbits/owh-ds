@@ -9,6 +9,7 @@ Feature: As a User
     When I select YRBS as primary filter
     Then I should get search page with default filter type "Youth Risk Behavior"
 
+  @yrbsSmoke @smoke
   Scenario: Accesss YRBS from search page
     Given I am on search page
     #Given user select YRBS as primary filter
@@ -162,6 +163,7 @@ Scenario: show chart for each question
     Then the "Select Questions" button should be renamed to "Update Questions"
     And Questions selected value should be "Alcohol and Other Drug Use"
 
+  @yrbsSmoke @smoke
   Scenario: YRBS Advanced Search
     When I see a link "Switch to Advanced Search" at the top of the sidebar
     And I click on the "Switch to Advanced Search" link
