@@ -71,14 +71,10 @@
         function getColor(d, ranges) {
             // var ranges = utilService.generateMapLegendRanges(sc.filters.selectedPrimaryFilter.mapData.mapMinValue,
             //     sc.filters.selectedPrimaryFilter.mapData.mapMaxValue);
-            return d > ranges[10] ? '#190032' :
-                d > ranges[9]  ?  '#270053':
-                d > ranges[8]  ?  '#3f007d':
-                d > ranges[7]  ?  '#54278f':
-                d > ranges[6]  ?  '#6a51a3':
-                d > ranges[5]  ?  '#807dba':
-                d > ranges[4]  ?  '#9e9ac8':
-                d > ranges[3]  ?  '#bcbddc':
+            return d > ranges[6] ? '#190032' :
+                d > ranges[5]  ?  '#3f007d':
+                d > ranges[4]  ?  '#6a51a3':
+                d > ranges[3]  ?  '#9e9ac8':
                 d > ranges[2]  ?  '#dadaeb':
                 d > ranges[1]  ?  '#efedf5': '#fcfbfd';
         }
@@ -174,7 +170,7 @@
                 onAdd: function (map) {
                     var container = L.DomUtil.create('div', 'leaflet-control leaflet-control-custom custom-legend');
 
-                    var colors = ['#190032','#270053','#3f007d','#54278f','#6a51a3','#807dba','#9e9ac8','#bcbddc','#dadaeb','#efedf5','#fcfbfd'];
+                    var colors = ['#190032','#3f007d','#6a51a3', '#9e9ac8','#dadaeb','#efedf5','#fcfbfd'];
                     var labels = getLabels(mapData.mapMinValue, mapData.mapMaxValue);
                     var legendScale = "<ul class='legend-scale'>";
                     colors.forEach(function(color, index) {
