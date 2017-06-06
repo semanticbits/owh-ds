@@ -170,6 +170,19 @@ function search(q) {
                 deferred.resolve(resData);
             });
         });
+    } else if (preparedQuery.apiQuery.searchFor === 'std') {
+        finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
+        var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
+        new elasticSearch().aggregateSTDData(sideFilterQuery).then(function (sideFilterResults) {
+            new elasticSearch().aggregateSTDData(finalQuery).then(function (response) {
+                var resData = {};
+                resData.queryJSON = q;
+                resData.resultData = response.data;
+                resData.resultData.headers = preparedQuery.headers;
+                resData.sideFilterResults = sideFilterResults;
+                deferred.resolve(resData);
+            });
+        });
     }
     return  deferred.promise;
 };

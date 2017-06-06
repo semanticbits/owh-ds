@@ -18,6 +18,8 @@ var census_type="census";
 var census_rates_type="census_rates";
 var infant_mortality_index = "owh_infant_mortality";
 var infant_mortality_type = "infant_mortality";
+var std_index = "owh_std";
+var std_type = "std";
 //@TODO to work with my local ES DB I changed mapping name to 'queryResults1', revert before check in to 'queryResults'
 var _queryIndex = "owh_querycache";
 var _queryType = "queryData";
@@ -264,6 +266,23 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
             .then(function (response) {
                 var data = searchUtils.populateDataWithMappings(response, 'infant_mortality');
                 isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');
+                deferred.resolve(data);
+            }, function (error) {
+                logger.error(error.message);
+                deferred.reject(error);
+            });
+    }
+    return deferred.promise;
+};
+
+ElasticClient.prototype.aggregateSTDData = function (query) {
+    var client = this.getClient(std_index);
+    var deferred = Q.defer();
+    if (query[0]) {
+        logger.debug("STD ES Query: "+ JSON.stringify( query[0]));
+        this.executeESQuery(std_index, std_type, query[0])
+            .then(function (response) {
+                var data = searchUtils.populateDataWithMappings(response, 'std', 'cases');
                 deferred.resolve(data);
             }, function (error) {
                 logger.error(error.message);

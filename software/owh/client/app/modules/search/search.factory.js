@@ -102,7 +102,7 @@
                 primaryFilter.maps = response.data.resultData.nested.maps;
                 mapService.updateStatesDeaths(primaryFilter, primaryFilter.maps, primaryFilter.searchCount, mapOptions);
             }
-            else if (response.data.queryJSON.key == 'natality') {
+            else if (response.data.queryJSON.key == 'natality' || response.data.queryJSON.key == 'std') {
                 primaryFilter.data = response.data.resultData.nested.table;
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
@@ -1068,6 +1068,20 @@
             return deferred.promise;
         }
 
+        /**
+         * Search STD results
+         * @param primaryFilter
+         * @param queryID
+         */
+        function searchSTDResults(primaryFilter, queryID){
+            var deferred = $q.defer();
+            SearchService.searchResults(primaryFilter, queryID).then(function(response) {
+                updateSideFilterCount(primaryFilter, response.data.sideFilterResults.data.simple);
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+        }
+
         function getAllFilters() {
             //TODO: consider making these available as angular values, split out into separate file
             var filters = {};
@@ -1638,6 +1652,7 @@
             filters.censusFilters = filterUtils.getBridgeDataFilters();
             filters.natalityFilters = filterUtils.getNatalityDataFilters();
             filters.infantMortalityFilters = filterUtils.getInfantMortalityDataFilters();
+            filters.stdFilters = filterUtils.getSTDDataFilters();
 
             filters.pramsTopicOptions = [
                 {"key": "cat_45", "title": "Delivery Method"},
@@ -2658,6 +2673,58 @@
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'state')
                                 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    key: 'std', title: 'label.filter.std', primary: true, value:[], header:"STD",
+                    allFilters: filters.stdFilters, searchResults: searchSTDResults, showMap: false,
+                    chartAxisLabel:'Cases', countLabel: 'Number of Cases', tableView:'std',
+                    runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
+                    sideFilters:[
+                        {
+                           sideFilters: [
+
+
+                               {
+                                   filterGroup: false, collapse: true, allowGrouping: true, groupBy: false,
+                                   groupOptions: filters.groupOptions,
+                                   filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'disease')
+                               },
+                               {
+                                   filterGroup: false,
+                                   collapse: false,
+                                   allowGrouping: true,
+                                   groupOptions: filters.groupOptions,
+                                   filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'current_year')
+                               },
+                               {
+                                   filterGroup: false, collapse: true, allowGrouping: true,
+                                   groupOptions: filters.groupOptions,
+                                   filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'sex')
+                               },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'race')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'age_group')
+                                },
+                               {
+                                   filterGroup: false, collapse: true, allowGrouping: true,
+                                   groupOptions: filters.groupOptions,
+                                   filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'state')
+                               },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'transmission')
+                                }
+
                             ]
                         }
                     ]

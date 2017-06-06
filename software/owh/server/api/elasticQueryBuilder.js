@@ -90,6 +90,10 @@ var generateAggregationQuery = function( aggQuery, groupByKeyStart, countQueryKe
         query[ groupByKeyStart + aggQuery.key] = getTermQuery(aggQuery);
         query[ groupByKeyStart + aggQuery.key].aggregations=getPopulationSumQuery();
         merge(query, getPopulationSumQuery());
+    } if(countQueryKey == 'cases') {
+        query[ groupByKeyStart + aggQuery.key] = getTermQuery(aggQuery);
+        query[ groupByKeyStart + aggQuery.key].aggregations=getCasesSumQuery();
+        merge(query, getCasesSumQuery());
     } else {//for yrbs and mortality
         query[ groupByKeyStart + aggQuery.key] = getTermQuery(aggQuery);
     }
@@ -119,6 +123,20 @@ function getPopulationSumQuery() {
         "group_count_pop": {
             "sum": {
                 "field": "pop"
+            }
+        }
+    }
+}
+
+/**
+ * prepare cases sum query
+ * @returns {{group_count_cases: {sum: {field: string}}}}
+ */
+function getCasesSumQuery() {
+    return {
+        "group_count_cases": {
+            "sum": {
+                "field": "cases"
             }
         }
     }
