@@ -672,17 +672,17 @@ var yrbsStepDefinitionsWrapper = function () {
 
     this.Then(/^I see both Confidence Intervals and Unweighted Frequency values in data table$/, function (next) {
         yrbsPage.getTableRowData(1).then(function(text) {
-            expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            expect(text[0]).to.contains('Ever took steroids without a doctors prescription(pills or shots, one or more times during their life)');
             //American Indian or Alaska Native
-            expect(text[2]).to.contains('46.0');
+            expect(text[2]).to.contains('1.9');
             //Confidence Intervals
-            expect(text[2]).to.contains('(30.5-62.3)');
+            expect(text[2]).to.contains('(0.4-8.9)');
             //Unweighted Frequency
-            expect(text[2]).to.contains('143');
+            expect(text[2]).to.contains('161');
             //Native Hawaiian or Other Pacific Islander
             expect(text[6]).to.contains('Suppressed');
             //Unweighted Frequency < 100
-            expect(text[6]).to.contains('84');
+            expect(text[6]).to.contains('98');
         }).then(next);
     });
 

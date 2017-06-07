@@ -34,7 +34,7 @@ Feature: As a User
     And the entire table and visualizations adjust to the reduced screen space
     And there is button to hide filter
 
-Scenario: show chart for each question
+  Scenario: show chart for each question
    Given I am on search page
    When I select YRBS as primary filter
    Then each question should have chart icon displayed
@@ -79,13 +79,13 @@ Scenario: show chart for each question
   Scenario: Data Alignment
     Then the data must be right justified in the table
 
-  Scenario: Show all odd years from 1991-2015
-   When Click on show more on year filter
-   Then year filter should list all odd years 1991-2015
+  #Scenario: Show all odd years from 1991-2015
+  # When Click on show more on year filter
+  # Then year filter should list all odd years 1991-2015
 
-  Scenario: Group by year
-    When Group by year is selected
-    Then results should be grouped by year
+  #Scenario: Group by year
+  #  When Group by year is selected
+  #  Then results should be grouped by year
 
   Scenario: YRBS question categories in the given order
     When I select "Select Questions" button
@@ -94,13 +94,13 @@ Scenario: show chart for each question
     And by default no questions should be selected
     And it should also have a Search Questions - search bar above the list
 
-Scenario: Filter by year
-  When Years "2015", "2013" are selected
-  Then results shows only 2015 and 2013 data
+#Scenario: Filter by year
+#  When Years "2015", "2013" are selected
+#  Then results shows only 2015 and 2013 data
 
-Scenario: Filter by ethnicity
-  When ethniciy "White", "Asian" are selected
-  Then results shows only data for the selected ethnicities
+#Scenario: Filter by ethnicity
+#  When ethniciy "White", "Asian" are selected
+#  Then results shows only data for the selected ethnicities
 
   Scenario: Search Questions
     When I begin to type a word in the search bar
