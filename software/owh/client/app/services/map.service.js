@@ -178,17 +178,60 @@
                     });
                     legendScale += "</ul>";
                     container.innerHTML = legendScale;
+
+                    var polygons = [];
+                    L.DomEvent.on(container, 'mouseover', function(event) {
+                        var target = event.target;
+                        if(target.tagName.toLowerCase() === 'span') {
+                            var color = target.style.background;
+                            polygons = getMapPolygonsByColor(map, color);
+                            highlightPolygons(polygons);
+                        }
+                    });
+
+                    L.DomEvent.on(container, 'mouseout', function(event) {
+                        var target = event.target;
+                        if(target.tagName.toLowerCase() === 'span') {
+                            resetHighlightedPolygons(polygons);
+                        }
+                    });
                     return container;
                 }
             });
         }
+        
+        function getMapPolygonsByColor(map, color) {
+            var polygonList = [];
+            //convert background color from rgb to hex
+            var ctx = document.createElement('canvas').getContext('2d');
+            ctx.strokeStyle = color;
+            var hexColor = ctx.strokeStyle;
+            //list out matching colored polygons
+            angular.forEach(map._layers, function (polygon) {
+                if (polygon.options && polygon.options.fillColor == hexColor) {
+                    polygonList.push(polygon);
+                }
+            });
+            return polygonList;
+        }
 
+        function highlightPolygons(polygons) {
+            angular.forEach(polygons, function (polygon) {
+                highlightFeature(polygon);
+            });
+        }
+
+        function resetHighlightedPolygons(polygons) {
+            angular.forEach(polygons, function (polygon) {
+                polygon.setStyle({weight: 0.8, opacity: 1, color: 'black', fillOpacity: 0.7});
+            });
+        }
 
         /**
          * Set feature style
          */
-        function highlightFeature(layerId, map) {
-            map._layers[layerId].setStyle({'color': '#333333','weight': 2.6,'opacity': 1});
+        function highlightFeature(feature) {
+            feature.setStyle({'color': '#333333', 'weight': 2.6, 'opacity': 1, fillOpacity: 0.9});
         }
 
         /**
@@ -199,12 +242,12 @@
             var layer = mapObj.layer;
             if(layer) {
                 var map = mapObj.target._map;
-                map._layers[layer._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black'});
+                map._layers[layer._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black', fillOpacity: 0.7});
             } else {
                 if(mapObj.leafletEvent) {
                     layer = mapObj.leafletEvent.target;
                     var map = layer._map;
-                    map._layers[layer._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black'});
+                    map._layers[layer._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black', fillOpacity: 0.7});
                 }
             }
         }

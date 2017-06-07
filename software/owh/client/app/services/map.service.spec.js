@@ -37,6 +37,23 @@ describe('mapService', function(){
             mapControl.onAdd();
         });
 
+        it('should trigger mouseover event', function () {
+            var mapData = {mapMinValue:40289400, mapMaxValue:58000};
+            var control = mapService.addScaleControl(mapData);
+            //test callback
+            var mapControl = new control();
+
+            var container = mapControl.onAdd();
+
+            var evt = document.createEvent('MouseEvents');
+            evt.initEvent('mouseover', true, true);
+
+            var childContainer = container.childNodes[0].childNodes[0].childNodes[0];
+
+            //container.dispatchEvent(evt);
+            childContainer.dispatchEvent(evt);
+        });
+
         it('should add share control', function () {
             var mapData = {mapMinValue:40289400, mapMaxValue:58000};
             var control = mapService.addShareControl(mapData);
