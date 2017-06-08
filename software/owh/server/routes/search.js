@@ -172,7 +172,9 @@ function search(q) {
         });
     } else if (preparedQuery.apiQuery.searchFor === 'std') {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
-        var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
+        var sideFilterTotalCountQuery = queryBuilder.addCountsToAutoCompleteOptions(q);
+        sideFilterTotalCountQuery.countQueryKey = 'cases';
+        var sideFilterQuery = queryBuilder.buildSearchQuery(sideFilterTotalCountQuery, true);
         new elasticSearch().aggregateSTDData(sideFilterQuery).then(function (sideFilterResults) {
             new elasticSearch().aggregateSTDData(finalQuery).then(function (response) {
                 var resData = {};

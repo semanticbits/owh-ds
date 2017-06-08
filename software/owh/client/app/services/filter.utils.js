@@ -408,6 +408,7 @@
         ];
 
         var stateOptions =  [
+            { "key": "All", "title": "All" },
             { "key": "AL", "title": "Alabama" },
             { "key": "AK", "title": "Alaska" },
             { "key": "AZ", "title": "Arizona" },
@@ -889,21 +890,11 @@
 
         function getSTDDataFilters() {
             var stdDiseaseOptions = [
-                {"key": "HIV, stage 3 (AIDS)", "title": "HIV, stage 3 (AIDS)"},
-                {"key": "HIV, stage 3 (AIDS) deaths", "title": "HIV, stage 3 (AIDS) deaths"},
-                {"key": "Persons living with HIV, stage 3 (AIDS)", "title": "Persons living with HIV, stage 3 (AIDS)"},
-                {"key": "HIV diagnoses", "title": "HIV diagnoses"},
-                {"key": "HIV deaths", "title": "HIV deaths"},
-                {"key": "Persons living with diagnosed HIV", "title": "Persons living with diagnosed HIV"},
                 {"key": "Chlamydia", "title": "Chlamydia"},
                 {"key": "Gonorrhea", "title": "Gonorrhea"},
                 {"key": "Primary and Secondary Syphilis", "title": "Primary and Secondary Syphilis"},
                 {"key": "Early Latent Syphilis", "title": "Early Latent Syphilis"},
-                {"key": "Congenital Syphilis", "title": "Congenital Syphilis"},
-                {"key": "Tuberculosis", "title": "Tuberculosis"},
-                {"key": "Acute Viral Hepatitis  A", "title": "Acute Viral Hepatitis  A"},
-                {"key": "Acute Viral Hepatitis  B", "title": "Acute Viral Hepatitis  B"},
-                {"key": "Acute Viral Hepatitis  C", "title": "Acute Viral Hepatitis  C"}
+                {"key": "Congenital Syphilis", "title": "Congenital Syphilis"}
             ];
 
             var stdStateOptions = [
@@ -1022,19 +1013,6 @@
                 {"key": "Female", "title": "Female"},
                 {"key": "Male", "title": "Male"}
             ];
-            var stdTransmissionOptions = [
-                {"key": "No stratification", "title": "No stratification"},
-                {"key": "Male-to-Male sexual contact", "title": "Male-to-Male sexual contact"},
-                {"key": "Injection drug use", "title": "Injection drug use"},
-                {
-                    "key": "Male-to-male sexual contact and injection drug use",
-                    "title": "Male-to-male sexual contact and injection drug use"
-                },
-                {"key": "Heterosexual contact", "title": "Heterosexual contact"},
-                {"key": "Other", "title": "Other"},
-                {"key": "US-born", "title": "US-born"},
-                {"key": "Foreign-born", "title": "Foreign-born"}
-            ];
 
             return [
                 {
@@ -1043,7 +1021,6 @@
                     queryKey: "current_year",
                     primary: false,
                     value: "2015",
-                    /*defaultGroup:'column',*/
                     groupBy: false,
                     filterType: 'radio',
                     autoCompleteOptions: stdYearOptions,
@@ -1055,7 +1032,7 @@
                     title: 'label.filter.disease',
                     queryKey: "disease",
                     primary: false,
-                    value: '',
+                    value: 'Chlamydia',
                     groupBy: false,
                     filterType: 'radio',
                     autoCompleteOptions: stdDiseaseOptions,
@@ -1064,7 +1041,7 @@
                 },
 
                 {
-                    key: 'state', title: 'label.filter.state', queryKey: "state", primary: false, value: '',
+                    key: 'state', title: 'label.filter.state', queryKey: "state", primary: false, value: 'All',
                     groupBy: false, filterType: 'radio', displaySearchBox: true, displaySelectedFirst: true,
                     autoCompleteOptions: stdStateOptions,
                     doNotShowAll: true,
@@ -1076,7 +1053,7 @@
                     title: 'label.filter.agegroup',
                     queryKey: "age_group",
                     primary: false,
-                    value: '',
+                    value: 'All',
                     groupBy: false,
                     filterType: 'radio',
                     autoCompleteOptions: stdAgeGroupOptions,
@@ -1089,7 +1066,7 @@
                     title: 'label.yrbs.filter.race',
                     queryKey: "race_ethnicity",
                     primary: false,
-                    value: '',
+                    value: 'All',
                     groupBy: "row",
                     filterType: 'radio',
                     autoCompleteOptions: stdRaceOptions,
@@ -1106,19 +1083,6 @@
                     groupBy: "column",
                     filterType: 'radio',
                     autoCompleteOptions: stdGenderOptions,
-                    doNotShowAll: true,
-                    helpText: "label.help.text.sex"
-                },
-
-                {
-                    key: 'transmission',
-                    title: 'label.filter.transmission',
-                    queryKey: "transmission",
-                    primary: false,
-                    value: '',
-                    groupBy: false,
-                    filterType: 'radio',
-                    autoCompleteOptions: stdTransmissionOptions,
                     doNotShowAll: true,
                     helpText: "label.help.text.sex"
                 }

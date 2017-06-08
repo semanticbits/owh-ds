@@ -460,6 +460,9 @@
             if(columnHeaders.length > 0) {
                 var eachColumnHeader = columnHeaders[0];
                 tableColumnHeaderData.headers.push([]);
+                if(eachColumnHeader.autoCompleteOptions[0].key == 'All') {
+                    eachColumnHeader.autoCompleteOptions.push(eachColumnHeader.autoCompleteOptions.shift());
+                }
                 angular.forEach(getSelectedAutoCompleteOptions(eachColumnHeader), function(eachOption, optionIndex) {
                     var colspan = 1;
                     if(columnHeaders.length > 1) {
@@ -610,7 +613,7 @@
             else {
                 var count = data[countKey];
                 var columnData = prepareMixedTableColumnData(columnHeaders, data, countKey, count, calculatePercentage, secondaryCountKeys);
-                if(typeof data[countKey] !== 'undefined') {
+                if(typeof data[countKey] !== 'undefined' && countKey != 'std') {
                     columnData.push(prepareCountCell(count, data, countKey, totalCount, calculatePercentage, secondaryCountKeys, true));
                 }
                 tableData.push(columnData);

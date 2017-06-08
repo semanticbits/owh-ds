@@ -67,7 +67,7 @@
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
-            if (primaryFilter.key === 'mental_health') {
+            else if (primaryFilter.key === 'mental_health') {
                 primaryFilter.data = response.data.resultData.table;
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 primaryFilter.headers = buildQueryForYRBS(primaryFilter, true).headers;
@@ -76,7 +76,7 @@
                 primaryFilter.runOnFilterChange = response.data.queryJSON.runOnFilterChange;
 
             }
-            if (primaryFilter.key === 'prams') {
+            else if (primaryFilter.key === 'prams') {
                 primaryFilter.data = response.data.resultData.table;
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 tableData.headers[0].splice(1, 0, {colspan: 1, rowspan: tableData.headers.length, title: "Response", helpText: $filter('translate')('label.help.text.prams.response')});
@@ -92,7 +92,7 @@
                 var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question')
                 questionFilter.questions = getQuestionsForTopics(topics);
             }
-            if (primaryFilter.key === 'bridge_race') {
+            else if (primaryFilter.key === 'bridge_race') {
                 primaryFilter.data = response.data.resultData.nested.table;
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 populateSideFilterTotals(primaryFilter, response.data);
@@ -102,18 +102,24 @@
                 primaryFilter.maps = response.data.resultData.nested.maps;
                 mapService.updateStatesDeaths(primaryFilter, primaryFilter.maps, primaryFilter.searchCount, mapOptions);
             }
-            else if (response.data.queryJSON.key == 'natality' || response.data.queryJSON.key == 'std') {
+            else if (response.data.queryJSON.key == 'natality') {
                 primaryFilter.data = response.data.resultData.nested.table;
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
             }
-            if (primaryFilter.key === 'infant_mortality') {
+            else if (primaryFilter.key === 'infant_mortality') {
                 primaryFilter.data = response.data.resultData.nested.table;
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.headers = tableData.headers;
                 primaryFilter.data = tableData.data;
+            }
+            else if (response.data.queryJSON.key == 'std') {
+                primaryFilter.data = response.data.resultData.nested.table;
+                populateSideFilterTotals(primaryFilter, response.data);
+                primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
+                tableData = getMixedTable(primaryFilter, groupOptions, tableView);
             }
             //make sure side filters are in proper order
             angular.forEach(primaryFilter.sideFilters, function (category) {
@@ -786,6 +792,11 @@
                         headers.rowHeaders.push(eachFilter);
                     } else if( eachFilter.groupBy === 'column' ) {
                         columnAggregations.push(eachGroupQuery);
+                        //For STD, if user set groupBy column and select 'All' filter
+                        //then setting filter value to empty, so that all filter options will be appear on table column
+                        if(eachFilter.value == 'All') {
+                            eachFilter.value = "" ;
+                        }
                         headers.columnHeaders.push(removeDisabledFilterOptions(eachFilter));
                     }
                 }
@@ -2680,7 +2691,7 @@
                 {
                     key: 'std', title: 'label.filter.std', primary: true, value:[], header:"STD",
                     allFilters: filters.stdFilters, searchResults: searchSTDResults, showMap: false,
-                    chartAxisLabel:'Cases', countLabel: 'Number of Cases', tableView:'std',
+                    chartAxisLabel:'Cases', tableView:'std',
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
                         {
@@ -2718,12 +2729,7 @@
                                    filterGroup: false, collapse: true, allowGrouping: true,
                                    groupOptions: filters.groupOptions,
                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'state')
-                               },
-                                {
-                                    filterGroup: false, collapse: true, allowGrouping: true,
-                                    groupOptions: filters.groupOptions,
-                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'transmission')
-                                }
+                               }
 
                             ]
                         }

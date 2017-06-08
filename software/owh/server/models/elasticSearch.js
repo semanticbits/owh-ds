@@ -54,7 +54,7 @@ ElasticClient.prototype.getClient = function(database) {
 
 };
 
-ElasticClient.prototype.aggregateCensusDataForMortalityQuery = function(query, index, type){
+ElasticClient.prototype.aggregateCensusDataQuery = function(query, index, type){
     var deferred = Q.defer();
     this.executeESQuery(index, type, query).then(function (resp) {
         deferred.resolve(searchUtils.populateDataWithMappings(resp, 'pop'));
@@ -80,7 +80,7 @@ ElasticClient.prototype.executeESQuery = function(index, type, query){
 };
 
 
-ElasticClient.prototype.executeMortilyAndNatalityQueries = function(query, index, type){
+ElasticClient.prototype.executeMultipleESQueries = function(query, index, type){
     var deferred = Q.defer();
     var queryPromises = [];
     var aggrs = query.aggregations;
@@ -143,14 +143,13 @@ function mergeCensusRecursively(mort, census) {
 
 ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
     var self = this;
-    var client = this.getClient(mortality_index);
     var deferred = Q.defer();
     if(query[1]){
         logger.debug("Mortality ES Query: "+ JSON.stringify( query[0]));
         logger.debug("Census ES Query: "+ JSON.stringify( query[1]));
         var promises = [
-            this.executeMortilyAndNatalityQueries(query[0], mortality_index, mortality_type),
-            this.aggregateCensusDataForMortalityQuery(query[1], census_rates_index, census_rates_type)
+            this.executeMultipleESQueries(query[0], mortality_index, mortality_type),
+            this.aggregateCensusDataQuery(query[1], census_rates_index, census_rates_type)
         ];
         if(query.wonderQuery) {
             logger.debug("Wonder Query: "+ JSON.stringify(query.wonderQuery));
@@ -223,14 +222,13 @@ ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected){
 ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected){
     //get tge elastic search client for natality index
     var self = this;
-    var client = this.getClient(natality_index);
     var deferred = Q.defer();
     if(query[1]) {
         logger.debug("Natality ES Query: "+ JSON.stringify( query[0]));
         logger.debug("Census Rates ES Query: "+ JSON.stringify( query[1]));
         var promises = [
-            this.executeMortilyAndNatalityQueries(query[0], natality_index, natality_type),
-            this.aggregateCensusDataForMortalityQuery(query[1], census_rates_index, census_rates_type)
+            this.executeMultipleESQueries(query[0], natality_index, natality_type),
+            this.aggregateCensusDataQuery(query[1], census_rates_index, census_rates_type)
         ];
         Q.all(promises).then( function (resp) {
 
@@ -276,18 +274,34 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
 };
 
 ElasticClient.prototype.aggregateSTDData = function (query) {
-    var client = this.getClient(std_index);
+    var self = this;
     var deferred = Q.defer();
-    if (query[0]) {
+    if(query[1]) {
         logger.debug("STD ES Query: "+ JSON.stringify( query[0]));
-        this.executeESQuery(std_index, std_type, query[0])
-            .then(function (response) {
-                var data = searchUtils.populateDataWithMappings(response, 'std', 'cases');
-                deferred.resolve(data);
-            }, function (error) {
-                logger.error(error.message);
-                deferred.reject(error);
-            });
+        logger.debug("STD ES Query To Get Population Count: "+ JSON.stringify( query[1]));
+        var promises = [
+            this.executeMultipleESQueries(query[0], std_index, std_type),
+            //Using aggregateCensusDataQuery method to get STD population data
+            this.aggregateCensusDataQuery(query[1], std_index, std_type)
+        ];
+        Q.all(promises).then( function (resp) {
+            var data = searchUtils.populateDataWithMappings(resp[0], 'std', 'cases');
+            self.mergeWithCensusData(data, resp[1]);
+            deferred.resolve(data);
+        }, function (err) {
+            logger.error(err.message);
+            deferred.reject(err);
+        });
+    }
+    else {
+        logger.debug("STD ES Query: "+ JSON.stringify( query[0]));
+        this.executeESQuery(std_index, std_type, query[0]).then(function (response) {;
+            var data = searchUtils.populateDataWithMappings(response, 'std', 'cases');
+            deferred.resolve(data);
+        }, function (err) {
+            logger.error(err.message);
+            deferred.reject(err);
+        });
     }
     return deferred.promise;
 };

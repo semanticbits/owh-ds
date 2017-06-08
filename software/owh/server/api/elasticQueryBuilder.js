@@ -165,6 +165,21 @@ var buildSearchQuery = function(params, isAggregation) {
     }
     elasticQuery.query = {};
     elasticQuery.query.filtered = {};
+    /*
+    * For STD, TB, HIV-AIDS
+    * If user select groupBy column / row for any filter then this logic will remove 'All' filter from filter query
+    * So that data table display all options for that filter
+    */
+    if(params.searchFor == 'std' && params.aggregations['nested'] && params.aggregations['nested']['table']) {
+        params.aggregations['nested']['table'].forEach(function (aggregation) {
+            Object.keys(userQuery).forEach(function(key){
+                var eachObject = userQuery[key];
+                if(eachObject.queryKey && eachObject.queryKey == aggregation.queryKey && eachObject.value == 'All'){
+                    delete userQuery[key];
+                }
+            });
+        });
+    }
     //build top level bool queries
     var primaryQuery = buildTopLevelBoolQuery(groupByPrimary(userQuery, true), true);
     var filterQuery = buildTopLevelBoolQuery(groupByPrimary(userQuery, false), false);
