@@ -1031,5 +1031,15 @@ var mortalityStepDefinitionsWrapper = function () {
             expect(elements[3].getText()).to.eventually.contains('187 (1.6%)');
         });
     });
+
+    this.Then(/^I should see the options "([^"]*)" enabled$/, function (filters, next) {
+        var enabled = filters.split(', ');
+        mortalityPage.getDisabledSideFilters().then(function (disabled) {
+            enabled.map(function (filter) {
+                expect(disabled).to.not.contain(filter);
+            });
+        }).then(next);
+    });
+
 };
 module.exports = mortalityStepDefinitionsWrapper;

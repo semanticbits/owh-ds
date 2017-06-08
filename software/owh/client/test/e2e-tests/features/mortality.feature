@@ -187,7 +187,12 @@ Scenario: Crude Death rates population count should match with CDC for year 2000
   When I update criteria in filter option with row "Ethnicity"
   Then table should display Hispanic groups for Crude Death Rates
 
-  Scenario: Select 'All' years
+Scenario: Crude Death Rates side filter options
+  Given I am on search page
+  When I choose the option "Crude Death Rates"
+  Then I should see the options "Year, Sex, Race, Ethnicity, Age Groups, State, Underlying Case of Death" enabled
+
+Scenario: Select 'All' years
   Given I am on search page
   When user select "All" option in "Year" filter
   #Then data table should display right population count for year 'All' filter
@@ -264,7 +269,7 @@ Scenario Outline: Non applicable filters disabled in cude and age adjusted rate
 
   Examples:
     | showMeFilter              |   filterOptions |
-    |  "Crude Death Rates"        | "Age Groups,Autopsy,Place of Death,Weekday,Month,Underlying Cause of Death,Multiple Causes of Death" |
+    |  "Crude Death Rates"        | "Autopsy,Place of Death,Weekday,Month,Multiple Causes of Death" |
     |  "Age Adjusted Death Rates" | "Age Groups,Autopsy,Place of Death,Weekday,Month,Multiple Causes of Death" |
 
 Scenario: Group by 'State' in age adjusted rate
