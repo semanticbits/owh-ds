@@ -171,7 +171,7 @@ function search(q) {
             });
         });
     } else if (preparedQuery.apiQuery.searchFor === 'std') {
-        finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
+        finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true, searchUtils.getAllOptionValues());
         var sideFilterTotalCountQuery = queryBuilder.addCountsToAutoCompleteOptions(q);
         sideFilterTotalCountQuery.countQueryKey = 'cases';
         var sideFilterQuery = queryBuilder.buildSearchQuery(sideFilterTotalCountQuery, true);

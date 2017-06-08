@@ -273,102 +273,23 @@
             return matchedOption ? matchedOption[outputKey] : defaultValue;
         }
 
-        /*function prepareNestedAccordionData(headers, data, countKey, totalCount, countLabel) {
-         if(headers.length == 2) {
-         return prepareBasicTableData(headers, data, countKey, totalCount, countLabel);
-         }
-         var accordionObject = {
-         isAccordion: true,
-         data: []
-         };
-         angular.forEach(headers, function(eachHeader, headerIndex) {
-         var eachHeaderData = data[eachHeader.key];
-         angular.forEach(eachHeaderData, function(eachData, index) {
-         var eachAccordion = {};
-         eachAccordion.headerTitle = eachHeader.title;
-         eachAccordion.title = getValueFromOptions(eachHeader.autoCompleteOptions, 'key', eachData.name, 'title');
-         eachAccordion.count = numberWithCommas(eachData[countKey]);
-         eachAccordion.percentage = (eachData[countKey] / totalCount) * 100;
-         eachAccordion.children = prepareNestedAccordionData(headers.slice(1), eachData, countKey, totalCount, countLabel);
-         accordionObject.data.push(eachAccordion);
-         });
-         });
-         return accordionObject;
-         }*/
-        /*function prepareBasicTableData(headers, data, countKey, totalCount, countLabel) {
-         var tableObject = {
-         isAccordion: false,
-         data: [],
-         headers: []
-         };
-
-         var headerData = data[headers[0].key];
-         tableObject.headers.push(headers[0].title);
-         angular.forEach(headers[1].autoCompleteOptions, function(eachOption) {
-         tableObject.headers.push(eachOption.title);
-         });
-         tableObject.headers.push(countLabel);
-         angular.forEach(headerData, function(eachData, index) {
-         var eachTableRow = [];
-         eachTableRow.push({
-         title: getValueFromOptions(headers[0].autoCompleteOptions, 'key', eachData.name, 'title'),
-         isCount: false
-         });
-         angular.forEach(headers[1].autoCompleteOptions, function(eachOption) {
-         var count = getValueFromOptions(eachData[headers[1].key], 'name', eachOption.key, countKey, '0');
-         eachTableRow.push({
-         title: numberWithCommas(Number(count)),
-         isCount: true,
-         percentage: (Number(count) / totalCount) * 100
-         });
-         });
-         eachTableRow.push({
-         title: numberWithCommas(eachData[countKey]),
-         isCount: true,
-         percentage: (eachData[countKey] / totalCount) * 100
-         });
-         tableObject.data.push(eachTableRow);
-         });
-         return tableObject;
-         }*/
-        /*function prepareGroupedTableData(headers, data, countKey, totalCount, cssClass, headerStartIndex) {
-         if(!cssClass) {
-         cssClass = 'group';
-         } if( !headerStartIndex ) {
-         headerStartIndex = 0;
-         }
-         var tableData = [];
-         angular.forEach(headers, function(eachHeader, headerIndex) {
-         var eachHeaderData = data[eachHeader.key];
-         angular.forEach(eachHeaderData, function(eachData, index) {
-         var eachTableRow = {};
-         var matchedOption;
-         if(eachHeader.autoCompleteOptions) {
-         matchedOption = findByKeyAndValue(eachHeader.autoCompleteOptions, 'key', eachData.name);
-         }
-         eachTableRow[eachHeader.key] = matchedOption ? matchedOption.title : eachData.name;
-         eachTableRow[countKey] = eachData[countKey];
-         eachTableRow[countKey + 'Percentage'] = (eachData[countKey] / totalCount) * 100;
-         eachTableRow.cssClass = cssClass;
-         eachTableRow.childCssClass = cssClass + ' ' + cssClass + '_' + index;
-         if(headers.length > 1) {
-         eachTableRow.allowCollapse = true;
-         eachTableRow.collapsibleIndex = headerStartIndex;
-         var nextHeader = headers[headerIndex + 1];
-         $translate(nextHeader.title).then(function (translation) {
-         eachTableRow[nextHeader.key] = eachData[nextHeader.key].length + ' ' + translation + 's'
-         });
-         }
-         tableData.push(eachTableRow);
-         tableData = tableData.concat(prepareGroupedTableData(headers.slice(1), eachData, countKey, totalCount, eachTableRow.childCssClass, headerStartIndex + 1, totalCount));
-         });
-         });
-         return tableData;
-         }*/
+        /**
+         *
+         * @param headers -> row and column header
+         * @param data  -> response data
+         * @param countKey
+         * @param totalCount
+         * @param countLabel  -> Ex: Number of Deaths
+         * @param calculatePercentage
+         * @param calculateRowTotal
+         * @param secondaryCountKeys
+         * @param allOptionValues  -> List of All option values for STD, TB, HIV-AIDS filters
+         * @return Table data and headers
+         */
         function prepareMixedTableData(headers, data, countKey, totalCount, countLabel, calculatePercentage,
-                                       calculateRowTotal, secondaryCountKeys) {
+                                       calculateRowTotal, secondaryCountKeys, allOptionValues) {
             var tableData = {
-                headers: prepareMixedTableHeaders(headers, countLabel),
+                headers: prepareMixedTableHeaders(headers, countLabel, allOptionValues),
                 data: [],
                 calculatePercentage: calculatePercentage
             };
@@ -404,9 +325,9 @@
          * @param countLabel
          * @returns {*[]}
          */
-        function prepareMixedTableHeaders(headers, countLabel) {
+        function prepareMixedTableHeaders(headers, countLabel, allOptionValues) {
             var tableHeaders = [[]];
-            var tableColumnHeaders = prepareMixedTableColumnHeaders(headers.columnHeaders);
+            var tableColumnHeaders = prepareMixedTableColumnHeaders(headers.columnHeaders, allOptionValues);
             var tableRowHeaders = prepareMixedTableRowHeaders(headers.rowHeaders, tableColumnHeaders.headers.length);
             var tableHeaders = mergeMixedTableHeaders(tableColumnHeaders, tableRowHeaders, countLabel);
 
@@ -452,7 +373,7 @@
             return tableRowHeaders;
         }
 
-        function prepareMixedTableColumnHeaders(columnHeaders) {
+        function prepareMixedTableColumnHeaders(columnHeaders, allOptionValues) {
             var tableColumnHeaderData = {
                 totalColspan: 0,
                 headers: []
@@ -460,13 +381,13 @@
             if(columnHeaders.length > 0) {
                 var eachColumnHeader = columnHeaders[0];
                 tableColumnHeaderData.headers.push([]);
-                if(eachColumnHeader.autoCompleteOptions[0].key == 'All') {
+                if(allOptionValues.indexOf(eachColumnHeader.autoCompleteOptions[0].key) > -1) {
                     eachColumnHeader.autoCompleteOptions.push(eachColumnHeader.autoCompleteOptions.shift());
                 }
                 angular.forEach(getSelectedAutoCompleteOptions(eachColumnHeader), function(eachOption, optionIndex) {
                     var colspan = 1;
                     if(columnHeaders.length > 1) {
-                        var childColumnHeaderData = prepareMixedTableColumnHeaders(columnHeaders.slice(1));
+                        var childColumnHeaderData = prepareMixedTableColumnHeaders(columnHeaders.slice(1), allOptionValues);
                         colspan = childColumnHeaderData.totalColspan;
                         angular.forEach(childColumnHeaderData.headers, function(eachChildHeader, childHeaderIndex) {
                             if(optionIndex == 0) {

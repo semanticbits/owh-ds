@@ -437,8 +437,19 @@ var findIndexByKeyAndValue = function (a, key, value) {
 function numberWithCommas(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
+
+/**
+ * STD, TB and HIV-AIDS filters has different types of All values
+ * To show data table data in proper order, we need this list
+ * @return Side filters All option values
+ */
+function getAllOptionValues() {
+    return ["Both sexes", "All races/ethnicities", "All age groups", "National"]
+}
+
 module.exports.populateDataWithMappings = populateDataWithMappings;
 module.exports.populateYRBSData = populateYRBSData;
 module.exports.mergeAgeAdjustedRates = mergeAgeAdjustedRates;
 module.exports.applySuppressions = applySuppressions;
 module.exports.applyYRBSSuppressions = applyYRBSSuppressions;
+module.exports.getAllOptionValues = getAllOptionValues;

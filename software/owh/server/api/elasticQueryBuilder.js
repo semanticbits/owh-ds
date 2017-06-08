@@ -148,7 +148,15 @@ function getCasesSumQuery() {
  * @param isAggregation
  * @returns {{}}
  */
-var buildSearchQuery = function(params, isAggregation) {
+
+/**
+ * Common function to build a search query
+ * @param params
+ * @param isAggregation
+ * @param allOptionValues -> List of All option values for STD, TB, HIV-AIDS filters
+ * @return {[]}
+ */
+var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     var userQuery = params.query ? params.query : {};
     var elasticQuery = {};
     var censusQuery = undefined;
@@ -174,7 +182,7 @@ var buildSearchQuery = function(params, isAggregation) {
         params.aggregations['nested']['table'].forEach(function (aggregation) {
             Object.keys(userQuery).forEach(function(key){
                 var eachObject = userQuery[key];
-                if(eachObject.queryKey && eachObject.queryKey == aggregation.queryKey && eachObject.value == 'All'){
+                if(eachObject.queryKey && eachObject.queryKey == aggregation.queryKey && allOptionValues.indexOf(eachObject.value) > -1){
                     delete userQuery[key];
                 }
             });

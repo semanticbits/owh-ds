@@ -217,7 +217,7 @@
             var calculateRowTotal = selectedFilter.calculateRowTotal;
             var secondaryCountKeys = ['pop', 'ageAdjustedRate', 'standardPop'];
 
-            return utilService.prepareMixedTableData(headers, file, countKey, totalCount, countLabel, calculatePercentage, calculateRowTotal, secondaryCountKeys);
+            return utilService.prepareMixedTableData(headers, file, countKey, totalCount, countLabel, calculatePercentage, calculateRowTotal, secondaryCountKeys, filterUtils.getAllOptionValues());
         }
 
         //takes mixedTable and returns categories array for use with owhAccordionTable
@@ -792,9 +792,9 @@
                         headers.rowHeaders.push(eachFilter);
                     } else if( eachFilter.groupBy === 'column' ) {
                         columnAggregations.push(eachGroupQuery);
-                        //For STD, if user set groupBy column and select 'All' filter
+                        //For STD, if user set groupBy column and select ["Both sexes", "All races/ethnicities", "All age groups", "National"] filter
                         //then setting filter value to empty, so that all filter options will be appear on table column
-                        if(eachFilter.value == 'All') {
+                        if(filterUtils.getAllOptionValues().indexOf(eachFilter.value) > -1) {
                             eachFilter.value = "" ;
                         }
                         headers.columnHeaders.push(removeDisabledFilterOptions(eachFilter));

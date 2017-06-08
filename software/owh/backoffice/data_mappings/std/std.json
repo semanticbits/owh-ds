@@ -30,7 +30,7 @@
       "type": "map",
       "field": "AREA",
       "mappings": {
-        "00": "All",
+        "00": "National",
         "01": "AL",
         "02": "AK",
         "04": "AZ",
@@ -96,7 +96,7 @@
       "type": "map",
       "field": "AGEGROUP",
       "mappings": {
-        "10": "All",
+        "10": "All age groups",
         "20": "Age 15 and older",
         "30": "0-4",
         "40": "0-14",
@@ -126,7 +126,7 @@
       "type": "map",
       "field": "RACE",
       "mappings": {
-        "0": "All",
+        "0": "All races/ethnicities",
         "1": "American Indian or Alaska Native",
         "2": "Asian",
         "3": "Black or African American",
@@ -145,7 +145,7 @@
       "type": "map",
       "field": "SEX",
       "mappings": {
-        "0": "All",
+        "0": "Both sexes",
         "1": "Male",
         "2": "Female"
       }

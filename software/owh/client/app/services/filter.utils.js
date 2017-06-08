@@ -466,7 +466,8 @@
             getBridgeDataFilters: getBridgeDataFilters,
             getNatalityDataFilters: getNatalityDataFilters,
             getInfantMortalityDataFilters: getInfantMortalityDataFilters,
-            getSTDDataFilters: getSTDDataFilters
+            getSTDDataFilters: getSTDDataFilters,
+            getAllOptionValues: getAllOptionValues
         };
 
         function getBridgeDataFilters() {
@@ -888,6 +889,10 @@
             ]
         }
 
+        /**
+         * To prepare all STD side filters
+         * @return STD side filters array
+         */
         function getSTDDataFilters() {
             var stdDiseaseOptions = [
                 {"key": "Chlamydia", "title": "Chlamydia"},
@@ -898,7 +903,7 @@
             ];
 
             var stdStateOptions = [
-                {"key": "All", "title": "All"},
+                {"key": "National", "title": "National"},
                 {"key": "AL", "title": "Alabama"},
                 {"key": "AK", "title": "Alaska"},
                 {"key": "AZ", "title": "Arizona"},
@@ -970,7 +975,7 @@
                 {"key": "2000", "title": "2000"}
             ];
             var stdAgeGroupOptions = [
-                {"key": "All", "title": "All"},
+                {"key": "All age groups", "title": "All age groups"},
                 {"key": "Age 15 and older", "title": "Age 15 and older"},
                 {"key": "0-4", "title": "0-4"},
                 {"key": "0-14", "title": "0-14"},
@@ -995,7 +1000,7 @@
                 {"key": "Unknown", "title": "Unknown"}
             ];
             var stdRaceOptions = [
-                {"key": "All", "title": "All"},
+                {"key": "All races/ethnicities", "title": "All races/ethnicities"},
                 {"key": "American Indian or Alaska Native", "title": "American Indian or Alaska Native"},
                 {"key": "Asian", "title": "Asian"},
                 {"key": "Black or African American", "title": "Black or African American"},
@@ -1009,7 +1014,7 @@
 
             ];
             var stdGenderOptions = [
-                {"key": "All", "title": "All"},
+                {"key": "Both sexes", "title": "Both sexes"},
                 {"key": "Female", "title": "Female"},
                 {"key": "Male", "title": "Male"}
             ];
@@ -1041,7 +1046,7 @@
                 },
 
                 {
-                    key: 'state', title: 'label.filter.state', queryKey: "state", primary: false, value: 'All',
+                    key: 'state', title: 'label.filter.state', queryKey: "state", primary: false, value: 'National',
                     groupBy: false, filterType: 'radio', displaySearchBox: true, displaySelectedFirst: true,
                     autoCompleteOptions: stdStateOptions,
                     doNotShowAll: true,
@@ -1053,7 +1058,7 @@
                     title: 'label.filter.agegroup',
                     queryKey: "age_group",
                     primary: false,
-                    value: 'All',
+                    value: 'All age groups',
                     groupBy: false,
                     filterType: 'radio',
                     autoCompleteOptions: stdAgeGroupOptions,
@@ -1066,7 +1071,7 @@
                     title: 'label.yrbs.filter.race',
                     queryKey: "race_ethnicity",
                     primary: false,
-                    value: 'All',
+                    value: 'All races/ethnicities',
                     groupBy: "row",
                     filterType: 'radio',
                     autoCompleteOptions: stdRaceOptions,
@@ -1079,7 +1084,7 @@
                     title: 'label.filter.gender',
                     queryKey: "sex",
                     primary: false,
-                    value: '',
+                    value: 'Both sexes',
                     groupBy: "column",
                     filterType: 'radio',
                     autoCompleteOptions: stdGenderOptions,
@@ -1088,6 +1093,15 @@
                 }
                 ]
 
+        }
+
+        /**
+         * STD, TB and HIV-AIDS filters has different types of All values
+         * To show data table data in proper order, we need this list
+         * @return Side filters All option values
+         */
+        function getAllOptionValues() {
+            return ["Both sexes", "All races/ethnicities", "All age groups", "National"]
         }
 
     }
