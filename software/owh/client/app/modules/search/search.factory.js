@@ -70,6 +70,7 @@
             if (primaryFilter.key === 'mental_health') {
                 primaryFilter.data = response.data.resultData.table;
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
+                tableData.headers[0].splice(1, 0, {colspan: 1, rowspan: tableData.headers.length, title: "Response", helpText: $filter('translate')('label.help.text.prams.response')});
                 primaryFilter.headers = buildQueryForYRBS(primaryFilter, true).headers;
                 tableData.data = categorizeQuestions(tableData.data, $rootScope.questions);
                 primaryFilter.showBasicSearchSideMenu = response.data.queryJSON.showBasicSearchSideMenu;
@@ -182,7 +183,7 @@
         function getMixedTable(selectedFilter, groupOptions, tableView){
             var file = selectedFilter.data ? selectedFilter.data : {};
 
-            if(selectedFilter.key === 'prams') {
+            if(selectedFilter.key === 'prams' || selectedFilter.key == 'mental_health') {
                 var questions = [];
                 angular.forEach(file.question, function(question) {
                     angular.forEach(question, function(response, key) {

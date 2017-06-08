@@ -56,6 +56,9 @@ var YRBSSearchPage = function() {
         return element(by.cssContainingText('a', filterType)).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul')).all(by.tagName('li'));
     };
 
+    ysp.getTableHeaderData = function() {
+        return ysp.owhTable.element(by.tagName('thead')).all(by.tagName('tr')).get(rowNumber).all(by.tagName('th')).getText();
+    };
 };
 
 module.exports = new YRBSSearchPage;

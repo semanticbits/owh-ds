@@ -36,7 +36,7 @@ describe('search factory ', function(){
         $httpBackend.whenGET('app/partials/marker-template.html').respond( $templateCache.get('app/partials/marker-template.html'));
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 1111111111111111}});
         questionsTreeJson = __fixtures__['app/modules/search/fixtures/search.factory/questionsTree'];
-        $httpBackend.whenGET('/yrbsQuestionsTree/2015').respond(questionsTreeJson);
+        $httpBackend.whenGET('/yrbsQuestionsTree').respond(questionsTreeJson);
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
         $rootScope.questionsList = questionsTreeJson.questionsList;
         filters = searchFactory.getAllFilters();

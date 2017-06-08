@@ -447,29 +447,37 @@ var yrbsStepDefinitionsWrapper = function () {
     this.Then(/^I should see records for states$/, function (next) {
         yrbsPage.getTableRowData(1).then(function(rowdata){
             expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
-            //Alabama
-            expect(rowdata[1]).to.contains('30.7');
-            //Alaska
-            expect(rowdata[2]).to.contains('22.0');
-            //Arizona
-            expect(rowdata[3]).to.contains('34.8');
         });
         yrbsPage.getTableRowData(2).then(function(rowdata){
-            expect(rowdata[0]).to.equals('Currently used marijuana(one or more times during the 30 days before the survey)');
+            expect(rowdata[1]).to.contains('YES');
             //Alabama
-            expect(rowdata[1]).to.contains('17.3');
+            expect(rowdata[2]).to.contains('30.7');
             //Alaska
-            expect(rowdata[2]).to.contains('19.0');
+            expect(rowdata[3]).to.contains('22.0');
             //Arizona
-            expect(rowdata[3]).to.contains('23.3');
+            expect(rowdata[4]).to.contains('34.8');
+        });
+        yrbsPage.getTableRowData(3).then(function(rowdata){
+            expect(rowdata[0]).to.equals('Currently used marijuana(one or more times during the 30 days before the survey)');
+        });
+        yrbsPage.getTableRowData(4).then(function(rowdata){
+            expect(rowdata[1]).to.contains('YES');
+            //Alabama
+            expect(rowdata[2]).to.contains('17.3');
+            //Alaska
+            expect(rowdata[3]).to.contains('19.0');
+            //Arizona
+            expect(rowdata[4]).to.contains('23.3');
         }).then(next);
     });
 
     this.Given(/^I am on yrbs advanced search page$/, function (next) {
-        browser.get('/search/');
-        yrbsPage.yrbsOption.click();
-        browser.waitForAngular();
-        element(by.cssContainingText('span', 'Switch to Advanced Search')).click().then(next);
+        browser.get('/search/').then(function () {
+            yrbsPage.yrbsOption.click();
+            browser.waitForAngular();
+            element(by.cssContainingText('span', 'Switch to Advanced Search')).click().then(next);
+        });
+
     });
 
     this.Then(/^I see Sexual identity and Sexual contact filter disabled$/, function () {
@@ -502,20 +510,22 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I see results being displayed in data table for Sexual Identity$/, function (next) {
-        yrbsPage.getTableRowData(1).then(function(rowdata){
+        yrbsPage.getTableRowData(2).then(function(rowdata){
             expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
-            expect(rowdata[1]).to.contains('92.1');
-            expect(rowdata[2]).to.contains('26.6');
-            expect(rowdata[3]).to.contains('34.2');
+            expect(rowdata[1]).to.contains('YES');
+            expect(rowdata[2]).to.contains('92.1');
+            expect(rowdata[3]).to.contains('26.6');
+            expect(rowdata[4]).to.contains('34.2');
         }).then(next);
     });
 
     this.Then(/^I see results being displayed in data table for Sexual Contact$/, function (next) {
-        yrbsPage.getTableRowData(1).then(function(rowdata){
+        yrbsPage.getTableRowData(4).then(function(rowdata){
             expect(rowdata[0]).to.equals('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
-            expect(rowdata[1]).to.contains('47.7');
-            expect(rowdata[2]).to.contains('36.5');
-            expect(rowdata[3]).to.contains('31.7');
+            expect(rowdata[1]).to.contains('YES');
+            expect(rowdata[2]).to.contains('47.7');
+            expect(rowdata[3]).to.contains('36.5');
+            expect(rowdata[4]).to.contains('31.7');
         }).then(next);
     });
 
@@ -606,9 +616,9 @@ var yrbsStepDefinitionsWrapper = function () {
         yrbsPage.getTableRowData(1).then(function(text) {
             expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
             //American Indian or Alaska Native
-            expect(text[1]).to.contains('46.0');
+            expect(text[2]).to.contains('54.0');
             //Confidence Intervals
-            expect(text[1]).to.contains('(30.6-62.3)')
+            expect(text[2]).to.contains('(37.8-69.4)')
         }).then(next);
     });
 
@@ -616,11 +626,11 @@ var yrbsStepDefinitionsWrapper = function () {
         yrbsPage.getTableRowData(1).then(function(text) {
             expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
             //American Indian or Alaska Native
-            expect(text[1]).to.contains('Suppressed');
+            expect(text[2]).to.contains('Suppressed');
             //Asian
-            expect(text[2]).to.contains('13.5');
+            expect(text[3]).to.contains('86.5');
             //Confidence Intervals
-            expect(text[2]).to.contains('(10.3-17.6)');
+            expect(text[3]).to.contains('(82.4-89.7)');
         }).then(next);
     });
 
@@ -628,15 +638,15 @@ var yrbsStepDefinitionsWrapper = function () {
         yrbsPage.getTableRowData(1).then(function(text) {
             expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
             //American Indian or Alaska Native
-            expect(text[1]).to.contains('Suppressed');
+            expect(text[2]).to.contains('Suppressed');
             //Unweighted Frequency < 100
-            expect(text[1]).to.contains('58');
+            expect(text[2]).to.contains('58');
             //Asian
-            expect(text[2]).to.contains('13.5');
+            expect(text[3]).to.contains('86.5');
             //Confidence Intervals
-            expect(text[2]).to.contains('(10.3-17.6)');
+            expect(text[3]).to.contains('(82.4-89.7)');
             //Unweighted Frequency
-            expect(text[2]).to.contains('290');
+            expect(text[3]).to.contains('290');
         }).then(next);
     });
 
@@ -644,11 +654,11 @@ var yrbsStepDefinitionsWrapper = function () {
         yrbsPage.getTableRowData(1).then(function(text) {
             expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
             //American Indian or Alaska Native
-            expect(text[1]).to.contains('46.0');
+            expect(text[2]).to.contains('54.0');
             //Confidence Intervals
-            expect(text[1]).to.contains('(30.6-62.3)');
+            expect(text[2]).to.contains('(37.8-69.4)');
             //Unweighted Frequency
-            expect(text[1]).to.contains('143');
+            expect(text[2]).to.contains('143');
         }).then(next);
     });
 
@@ -662,17 +672,17 @@ var yrbsStepDefinitionsWrapper = function () {
 
     this.Then(/^I see both Confidence Intervals and Unweighted Frequency values in data table$/, function (next) {
         yrbsPage.getTableRowData(1).then(function(text) {
-            expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            expect(text[0]).to.contains('Ever took steroids without a doctors prescription(pills or shots, one or more times during their life)');
             //American Indian or Alaska Native
-            expect(text[1]).to.contains('46.0');
+            expect(text[2]).to.contains('1.9');
             //Confidence Intervals
-            expect(text[1]).to.contains('(30.5-62.3)');
+            expect(text[2]).to.contains('(0.4-8.9)');
             //Unweighted Frequency
-            expect(text[1]).to.contains('143');
+            expect(text[2]).to.contains('161');
             //Native Hawaiian or Other Pacific Islander
-            expect(text[5]).to.contains('Suppressed');
+            expect(text[6]).to.contains('Suppressed');
             //Unweighted Frequency < 100
-            expect(text[5]).to.contains('84');
+            expect(text[6]).to.contains('98');
         }).then(next);
     });
 
@@ -680,14 +690,31 @@ var yrbsStepDefinitionsWrapper = function () {
         yrbsPage.getTableRowData(1).then(function(text) {
             expect(text[0]).to.contains('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
             //American Indian or Alaska Native - Same Sex Only
-            expect(text[8]).to.contains('Suppressed');
-            //Unweighted Frequency < 30
-            expect(text[8]).to.contains('0');
-            //Asian - Same Sex Only
             expect(text[9]).to.contains('Suppressed');
             //Unweighted Frequency < 30
-            expect(text[9]).to.contains('2');
+            expect(text[9]).to.contains('0');
+            //Asian - Same Sex Only
+            expect(text[10]).to.contains('Suppressed');
+            //Unweighted Frequency < 30
+            expect(text[10]).to.contains('2');
         }).then(next);
     });
+
+    this.Then(/^I should see "([^"]*)" column in the result table$/, function (headerColmn, next) {
+        yrbsPage.getTableHeaderData().then(function(colmndata, next){
+            expect(colmndata.to.contains(headerColmn));
+        }).then(next);
+    });
+
+    this.Then(/^I should see YES and NO responses for question$/, function (next) {
+        yrbsPage.getTableRowData(1).then(function(text) {
+            expect(text[1]).to.contains('NO');
+        });
+        yrbsPage.getTableRowData(2).then(function(text) {
+            expect(text[1]).to.contains('YES');
+        }).then(next);
+    });
+
+
 };
 module.exports = yrbsStepDefinitionsWrapper;
