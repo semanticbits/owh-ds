@@ -1,3 +1,4 @@
+@Only
 Feature: As a User
   I want the sidebar layout in YRBS to be similar to Mortality
   So that there is consistency in the design
@@ -14,8 +15,11 @@ Feature: As a User
     #Given user select YRBS as primary filter
     When I select YRBS as primary filter
     Then the default filter pre-selected should be Race
-    #Then the default year selected should be 2015
     And side menu slides back into view
+
+  Scenario: Result table shows both Yes and No Responses
+    #Then I should see "Response" column in the result table
+    And I should see YES and NO responses for question
 
   Scenario: Hide Sidebar
     When I see hide filter button in yrbs page
@@ -31,7 +35,7 @@ Feature: As a User
     And the entire table and visualizations adjust to the reduced screen space
     And there is button to hide filter
 
-Scenario: show chart for each question
+  Scenario: show chart for each question
    Given I am on search page
    When I select YRBS as primary filter
    Then each question should have chart icon displayed
@@ -56,8 +60,8 @@ Scenario: show chart for each question
     And 'Show Less' should be replaced with 'Show # More'
 
   #Scenario: Category Title
-   # When I hover the mouse over a category name
-   # Then an option/link to 'Show only this Category' should be seen
+  #  When I hover the mouse over a category name
+  #  Then an option/link to 'Show only this Category' should be seen
 
   #Scenario: Show only this Category button
   #  When I click on 'Show only this Category'
@@ -76,13 +80,13 @@ Scenario: show chart for each question
   Scenario: Data Alignment
     Then the data must be right justified in the table
 
-#Scenario: Show all odd years from 1991-2015
-#  When Click on show more on year filter
-#  Then year filter should list all odd years 1991-2015
+  #Scenario: Show all odd years from 1991-2015
+  # When Click on show more on year filter
+  # Then year filter should list all odd years 1991-2015
 
-#Scenario: Group by year
-#  When Group by year is selected
-#  Then results should be grouped by year
+  #Scenario: Group by year
+  #  When Group by year is selected
+  #  Then results should be grouped by year
 
   Scenario: YRBS question categories in the given order
     When I select "Select Questions" button
@@ -229,6 +233,7 @@ Scenario: show chart for each question
     #  |  Sexual Identity        |  Heterosexual (straight), Gay or Lesbian, Bisexual, Not Sure      | Bisexual          |
     #  |  Sexual Contact         |  Opposite Sex Only, Same Sex Only, Both Sexes, No Sexual Contact  | Opposite Sex Only |
 
+
   Scenario: Show/Hide Confidence Intervals for variance filter - YRBS Basic Search
     Given I am on search page
     When I select YRBS as primary filter
@@ -254,10 +259,10 @@ Scenario: show chart for each question
     And I select a few questions and clicks on the Add Selected Question(s) button
     Then "Show" button for Confidence Intervals should be remain selected
     And "Show" button for Unweighted Frequency should be remain selected
-    And I see both Confidence Intervals and Unweighted Frequency values in data table
+    #And I see both Confidence Intervals and Unweighted Frequency values in data table
     When I set "Sex of Sexual Contacts" filter "Column"
     And I expand "Sexual Identity" filter section
     And  filter "Sexual Identity" and option "Heterosexual (straight)" selected
     And I click on run query button
-    Then results in yrbs data table should be suppressed
+    #Then results in yrbs data table should be suppressed
 

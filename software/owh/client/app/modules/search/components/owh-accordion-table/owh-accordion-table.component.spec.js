@@ -30,7 +30,7 @@ describe('owhAccordionTable component: ', function() {
         $httpBackend.whenGET('app/modules/home/home.html').respond( $templateCache.get('app/modules/home/home.html'));
         $httpBackend.whenGET('app/modules/search/components/owh-accordion-table/owhAccordionTable.html').respond( $templateCache.get('app/modules/search/components/owh-accordion-table/owhAccordionTable.html'));
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 1111111111111111}});
-        $httpBackend.whenGET('/yrbsQuestionsTree/2015').respond({data: {}});
+        $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: {}});
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
     });
 

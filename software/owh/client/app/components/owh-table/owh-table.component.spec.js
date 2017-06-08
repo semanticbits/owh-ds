@@ -31,7 +31,7 @@ describe('owhTable component: ', function() {
         $httpBackend.whenGET('app/partials/marker-template.html').respond( $templateCache.get('app/partials/marker-template.html'));
         $httpBackend.whenGET('app/components/owh-table/owhTable.html').respond( $templateCache.get('app/components/owh-table/owhTable.html'));
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 1111111111111111}});
-        $httpBackend.whenGET('/yrbsQuestionsTree/2015').respond({data: {}});
+        $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: {}});
     });
 
     //TODO: will need to load templates before this will pass, also clusterize will error without dom

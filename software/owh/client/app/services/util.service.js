@@ -175,9 +175,11 @@
          */
         function findAllByKeyAndValue(a, key, value) {
             var result = [];
-            for (var i = 0; i < a.length; i++) {
-                if (a[i][key] === value) {
-                    result.push(a[i]);
+            if(a) {
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i][key] === value) {
+                        result.push(a[i]);
+                    }
                 }
             }
             return result;
@@ -511,7 +513,7 @@
                 angular.forEach(eachHeader.autoCompleteOptions, function(matchedOption, index) {
 
                     var key = (countKey === 'mental_health' || countKey === 'prams')?matchedOption.qkey:matchedOption.key;
-                    if(countKey === 'prams') {
+                    if(countKey === 'prams' || countKey === 'mental_health') {
                         var eachData = findAllByKeyAndValue(eachHeaderData, 'name', key);
                         if(eachData.length === 0) {
                             return;
@@ -528,9 +530,6 @@
 
                         var questionCellAdded = false;
                         angular.forEach(eachData, function(eachPramsData) {
-                            if(eachPramsData.response === '-1') {
-                                return;
-                            }
                             var childTableData = prepareMixedTableRowData(rowHeaders.slice(1), columnHeaders, eachPramsData, countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys);
                             if(rowHeaders.length > 1 && calculateRowTotal) {
                                 childTableData.push(prepareTotalRow(eachPramsData, countKey, childTableData[0].length, totalCount, secondaryCountKeys));
@@ -548,7 +547,7 @@
                                 var eachTableRow = {
                                     title: matchedOption.title,
                                     isCount: false,
-                                    rowspan: eachData.length - 1,
+                                    rowspan: eachData.length,
                                     colspan: 1,
                                     key: matchedOption.key,
                                     qkey: matchedOption.qkey,

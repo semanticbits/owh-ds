@@ -24,7 +24,7 @@ describe("Search controller: ", function () {
             $httpBackend.whenGET('app/partials/home/home.html').respond( $templateCache.get('app/partials/home/home.html'));
             $httpBackend.whenPOST('/search').respond( $templateCache.get('app/partials/marker-template.html'));
             $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 11111}});
-            $httpBackend.whenGET('/yrbsQuestionsTree/2015').respond({});
+            $httpBackend.whenGET('/yrbsQuestionsTree').respond({});
             $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
             $httpBackend.whenGET('app/modules/home/home.html').respond({});
             searchResultsResponse = __fixtures__['app/modules/search/fixtures/search.factory/searchResultsResponse'];

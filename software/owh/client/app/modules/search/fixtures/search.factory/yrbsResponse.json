@@ -3,3615 +3,649 @@
   "data":{
     "queryJSON": {"key": "mental_health", "tableView": "mental_health", "showBasicSearchSideMenu": true},
     "resultData": {
-    "table": {
-      "question": [
-        {
-          "name": "Riding with a drinking driver",
-          "mental_health": "20.0<br/><nobr>(18.4&#8209;21.6)</nobr><br/>15,555",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "25.3<br/><nobr>(16.8&#8209;36.2)</nobr><br/>161"
-            },
-            {
-              "name": "asian",
-              "mental_health": "11.2<br/><nobr>(7.8&#8209;15.8)</nobr><br/>625"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "21.1<br/><nobr>(17.2&#8209;25.6)</nobr><br/>1,655"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "26.2<br/><nobr>(24.4&#8209;28.2)</nobr><br/>5,101"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>97"
-            },
-            {
-              "name": "white",
-              "mental_health": "17.7<br/><nobr>(15.9&#8209;19.6)</nobr><br/>6,837"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "19.6<br/><nobr>(15.7&#8209;24.2)</nobr><br/>738"
-            }
-          ]
-        },
-        {
-          "name": "Weapon carrying at school",
-          "mental_health": "4.1<br/><nobr>(3.5&#8209;4.7)</nobr><br/>15,468",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "10.5<br/><nobr>(6.4&#8209;16.7)</nobr><br/>160"
-            },
-            {
-              "name": "asian",
-              "mental_health": "2.3<br/><nobr>(1.1&#8209;4.5)</nobr><br/>620"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "3.4<br/><nobr>(2.3&#8209;5.1)</nobr><br/>1,642"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "4.5<br/><nobr>(3.5&#8209;5.8)</nobr><br/>5,064"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>99"
-            },
-            {
-              "name": "white",
-              "mental_health": "3.7<br/><nobr>(2.9&#8209;4.6)</nobr><br/>6,814"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "5.7<br/><nobr>(3.3&#8209;9.7)</nobr><br/>733"
-            }
-          ]
-        },
-        {
-          "name": "Injurious physical fighting",
-          "mental_health": "2.9<br/><nobr>(2.5&#8209;3.4)</nobr><br/>13,340",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "3.9<br/><nobr>(1.5&#8209;9.6)</nobr><br/>144"
-            },
-            {
-              "name": "asian",
-              "mental_health": "2.2<br/><nobr>(0.9&#8209;5.1)</nobr><br/>594"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "4.7<br/><nobr>(3.5&#8209;6.3)</nobr><br/>1,392"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "3.8<br/><nobr>(3.0&#8209;4.8)</nobr><br/>4,828"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>87"
-            },
-            {
-              "name": "white",
-              "mental_health": "1.9<br/><nobr>(1.4&#8209;2.6)</nobr><br/>5,397"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "3.7<br/><nobr>(1.6&#8209;8.2)</nobr><br/>638"
-            }
-          ]
-        },
-        {
-          "name": "Forced sexual intercourse",
-          "mental_health": "6.7<br/><nobr>(5.6&#8209;8.0)</nobr><br/>14,896",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "6.6<br/><nobr>(3.2&#8209;13.2)</nobr><br/>155"
-            },
-            {
-              "name": "asian",
-              "mental_health": "4.2<br/><nobr>(2.2&#8209;7.7)</nobr><br/>594"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "7.3<br/><nobr>(5.6&#8209;9.6)</nobr><br/>1,592"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "7.0<br/><nobr>(5.6&#8209;8.6)</nobr><br/>4,936"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>88"
-            },
-            {
-              "name": "white",
-              "mental_health": "6.0<br/><nobr>(4.7&#8209;7.5)</nobr><br/>6,505"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "12.1<br/><nobr>(8.6&#8209;16.8)</nobr><br/>704"
-            }
-          ]
-        },
-        {
-          "name": "Injurious suicide attempt",
-          "mental_health": "2.8<br/><nobr>(2.2&#8209;3.5)</nobr><br/>12,331",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "4.0<br/><nobr>(1.7&#8209;9.0)</nobr><br/>126"
-            },
-            {
-              "name": "asian",
-              "mental_health": "1.5<br/><nobr>(0.6&#8209;3.6)</nobr><br/>547"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "3.8<br/><nobr>(2.2&#8209;6.3)</nobr><br/>1,294"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "3.7<br/><nobr>(2.7&#8209;5.1)</nobr><br/>4,272"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>73"
-            },
-            {
-              "name": "white",
-              "mental_health": "2.1<br/><nobr>(1.5&#8209;2.9)</nobr><br/>5,168"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "4.7<br/><nobr>(2.8&#8209;7.6)</nobr><br/>616"
-            }
-          ]
-        },
-        {
-          "name": "Smoked >10 cigarettes",
-          "mental_health": "7.9<br/><nobr>(6.2&#8209;9.9)</nobr><br/>1,611",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>26"
-            },
-            {
-              "name": "asian",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>31"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "7.5<br/><nobr>(3.4&#8209;15.7)</nobr><br/>105"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "9.3<br/><nobr>(5.4&#8209;15.7)</nobr><br/>440"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>10"
-            },
-            {
-              "name": "white",
-              "mental_health": "5.7<br/><nobr>(4.3&#8209;7.6)</nobr><br/>883"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>90"
-            }
-          ]
-        },
-        {
-          "name": "Cigarettes from store",
-          "mental_health": "12.6<br/><nobr>(9.7&#8209;16.1)</nobr><br/>1,198",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>21"
-            },
-            {
-              "name": "asian",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>14"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>69"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "17.5<br/><nobr>(12.7&#8209;23.7)</nobr><br/>302"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>6"
-            },
-            {
-              "name": "white",
-              "mental_health": "9.7<br/><nobr>(6.9&#8209;13.6)</nobr><br/>696"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>70"
-            }
-          ]
-        },
-        {
-          "name": "Electronic vapor product use",
-          "mental_health": "44.9<br/><nobr>(41.9&#8209;48.0)</nobr><br/>15,091",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "61.3<br/><nobr>(48.3&#8209;72.8)</nobr><br/>159"
-            },
-            {
-              "name": "asian",
-              "mental_health": "29.5<br/><nobr>(20.4&#8209;40.5)</nobr><br/>611"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "42.4<br/><nobr>(37.1&#8209;47.8)</nobr><br/>1,492"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "51.9<br/><nobr>(49.2&#8209;54.6)</nobr><br/>5,007"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>95"
-            },
-            {
-              "name": "white",
-              "mental_health": "43.2<br/><nobr>(38.8&#8209;47.6)</nobr><br/>6,694"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "48.1<br/><nobr>(43.4&#8209;52.8)</nobr><br/>706"
-            }
-          ]
-        },
-        {
-          "name": "Current alcohol use",
-          "mental_health": "32.8<br/><nobr>(30.4&#8209;35.2)</nobr><br/>14,114",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "46.0<br/><nobr>(30.6&#8209;62.3)</nobr><br/>143"
-            },
-            {
-              "name": "asian",
-              "mental_health": "13.1<br/><nobr>(9.8&#8209;17.3)</nobr><br/>581"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "23.8<br/><nobr>(18.6&#8209;30.0)</nobr><br/>1,417"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "34.4<br/><nobr>(31.9&#8209;37.0)</nobr><br/>4,532"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>84"
-            },
-            {
-              "name": "white",
-              "mental_health": "35.2<br/><nobr>(31.2&#8209;39.3)</nobr><br/>6,382"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "39.6<br/><nobr>(34.3&#8209;45.1)</nobr><br/>676"
-            }
-          ]
-        },
-        {
-          "name": "Initiation of marijuana use",
-          "mental_health": "7.5<br/><nobr>(6.5&#8209;8.7)</nobr><br/>15,198",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "13.7<br/><nobr>(8.3&#8209;21.9)</nobr><br/>158"
-            },
-            {
-              "name": "asian",
-              "mental_health": "3.5<br/><nobr>(1.7&#8209;7.2)</nobr><br/>611"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "10.6<br/><nobr>(8.4&#8209;13.3)</nobr><br/>1,575"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "10.9<br/><nobr>(9.5&#8209;12.6)</nobr><br/>4,989"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>90"
-            },
-            {
-              "name": "white",
-              "mental_health": "5.4<br/><nobr>(4.3&#8209;6.9)</nobr><br/>6,731"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "8.0<br/><nobr>(5.8&#8209;11.0)</nobr><br/>717"
-            }
-          ]
-        },
-        {
-          "name": "Ever steroid use",
-          "mental_health": "3.5<br/><nobr>(2.8&#8209;4.3)</nobr><br/>15,165",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "1.9<br/><nobr>(0.4&#8209;8.7)</nobr><br/>161"
-            },
-            {
-              "name": "asian",
-              "mental_health": "2.0<br/><nobr>(0.6&#8209;6.4)</nobr><br/>605"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "4.5<br/><nobr>(2.5&#8209;7.7)</nobr><br/>1,495"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "4.1<br/><nobr>(3.1&#8209;5.4)</nobr><br/>5,050"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>98"
-            },
-            {
-              "name": "white",
-              "mental_health": "2.7<br/><nobr>(2.1&#8209;3.4)</nobr><br/>6,707"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "5.9<br/><nobr>(3.5&#8209;9.7)</nobr><br/>715"
-            }
-          ]
-        },
-        {
-          "name": "How marijuana used",
-          "mental_health": "90.0<br/><nobr>(87.5&#8209;92.1)</nobr><br/>2,650",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>34"
-            },
-            {
-              "name": "asian",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>45"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "92.2<br/><nobr>(88.0&#8209;95.0)</nobr><br/>306"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "89.7<br/><nobr>(85.1&#8209;93.1)</nobr><br/>982"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>21"
-            },
-            {
-              "name": "white",
-              "mental_health": "91.2<br/><nobr>(88.5&#8209;93.2)</nobr><br/>1,084"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "91.8<br/><nobr>(84.2&#8209;95.9)</nobr><br/>128"
-            }
-          ]
-        },
-        {
-          "name": "Ever sexual intercourse",
-          "mental_health": "41.2<br/><nobr>(37.5&#8209;45.0)</nobr><br/>13,988",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "39.1<br/><nobr>(28.2&#8209;51.3)</nobr><br/>145"
-            },
-            {
-              "name": "asian",
-              "mental_health": "19.3<br/><nobr>(14.4&#8209;25.4)</nobr><br/>559"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "48.5<br/><nobr>(43.2&#8209;53.8)</nobr><br/>1,385"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "42.5<br/><nobr>(38.6&#8209;46.5)</nobr><br/>4,621"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>68"
-            },
-            {
-              "name": "white",
-              "mental_health": "39.9<br/><nobr>(35.0&#8209;45.0)</nobr><br/>6,262"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "49.2<br/><nobr>(43.5&#8209;55.0)</nobr><br/>664"
-            }
-          ]
-        },
-        {
-          "name": "Birth control pill use",
-          "mental_health": "81.8<br/><nobr>(79.5&#8209;83.9)</nobr><br/>4,071",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>53"
-            },
-            {
-              "name": "asian",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>89"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "91.0<br/><nobr>(87.6&#8209;93.6)</nobr><br/>470"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "88.2<br/><nobr>(84.3&#8209;91.2)</nobr><br/>1,329"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>19"
-            },
-            {
-              "name": "white",
-              "mental_health": "76.5<br/><nobr>(73.1&#8209;79.6)</nobr><br/>1,849"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "84.9<br/><nobr>(77.1&#8209;90.3)</nobr><br/>200"
-            }
-          ]
-        },
-        {
-          "name": "HIV testing",
-          "mental_health": "89.8<br/><nobr>(88.2&#8209;91.3)</nobr><br/>14,896",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "88.6<br/><nobr>(81.3&#8209;93.3)</nobr><br/>155"
-            },
-            {
-              "name": "asian",
-              "mental_health": "90.4<br/><nobr>(86.6&#8209;93.3)</nobr><br/>615"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "83.4<br/><nobr>(76.1&#8209;88.8)</nobr><br/>1,556"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "88.9<br/><nobr>(86.9&#8209;90.6)</nobr><br/>4,868"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>86"
-            },
-            {
-              "name": "white",
-              "mental_health": "92.0<br/><nobr>(90.9&#8209;92.9)</nobr><br/>6,598"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "86.6<br/><nobr>(81.5&#8209;90.4)</nobr><br/>703"
-            }
-          ]
-        },
-        {
-          "name": "Soda drinking >= 1 times",
-          "mental_health": "20.4<br/><nobr>(18.1&#8209;23.0)</nobr><br/>15,292",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "21.8<br/><nobr>(15.1&#8209;30.4)</nobr><br/>159"
-            },
-            {
-              "name": "asian",
-              "mental_health": "8.9<br/><nobr>(6.1&#8209;12.8)</nobr><br/>619"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "22.7<br/><nobr>(18.1&#8209;28.1)</nobr><br/>1,589"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "21.7<br/><nobr>(19.5&#8209;24.0)</nobr><br/>4,982"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>96"
-            },
-            {
-              "name": "white",
-              "mental_health": "19.7<br/><nobr>(16.4&#8209;23.4)</nobr><br/>6,784"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "24.0<br/><nobr>(18.3&#8209;30.7)</nobr><br/>725"
-            }
-          ]
-        },
-        {
-          "name": "Soda drinking >= 3 times",
-          "mental_health": "7.1<br/><nobr>(5.8&#8209;8.6)</nobr><br/>15,292",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "7.7<br/><nobr>(3.9&#8209;14.7)</nobr><br/>159"
-            },
-            {
-              "name": "asian",
-              "mental_health": "3.2<br/><nobr>(1.6&#8209;6.5)</nobr><br/>619"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "9.5<br/><nobr>(7.2&#8209;12.4)</nobr><br/>1,589"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "8.1<br/><nobr>(6.8&#8209;9.5)</nobr><br/>4,982"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>96"
-            },
-            {
-              "name": "white",
-              "mental_health": "5.9<br/><nobr>(4.4&#8209;8.0)</nobr><br/>6,784"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "10.0<br/><nobr>(6.9&#8209;14.4)</nobr><br/>725"
-            }
-          ]
-        },
-        {
-          "name": "No water drinking",
-          "mental_health": "3.5<br/><nobr>(2.8&#8209;4.3)</nobr><br/>11,350",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "1.6<br/><nobr>(0.3&#8209;8.8)</nobr><br/>128"
-            },
-            {
-              "name": "asian",
-              "mental_health": "2.1<br/><nobr>(0.8&#8209;5.3)</nobr><br/>410"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "8.7<br/><nobr>(6.4&#8209;11.7)</nobr><br/>988"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "3.3<br/><nobr>(2.5&#8209;4.3)</nobr><br/>3,903"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>64"
-            },
-            {
-              "name": "white",
-              "mental_health": "2.7<br/><nobr>(2.0&#8209;3.7)</nobr><br/>5,113"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "3.6<br/><nobr>(2.0&#8209;6.5)</nobr><br/>521"
-            }
-          ]
-        },
-        {
-          "name": "Television watching",
-          "mental_health": "24.7<br/><nobr>(22.7&#8209;26.9)</nobr><br/>15,124",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "30.4<br/><nobr>(21.6&#8209;41.0)</nobr><br/>156"
-            },
-            {
-              "name": "asian",
-              "mental_health": "14.5<br/><nobr>(10.8&#8209;19.1)</nobr><br/>613"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "39.2<br/><nobr>(34.1&#8209;44.5)</nobr><br/>1,580"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "28.2<br/><nobr>(26.0&#8209;30.6)</nobr><br/>4,961"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>95"
-            },
-            {
-              "name": "white",
-              "mental_health": "20.0<br/><nobr>(17.3&#8209;23.1)</nobr><br/>6,669"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "27.9<br/><nobr>(22.6&#8209;33.8)</nobr><br/>716"
-            }
-          ]
-        },
-        {
-          "name": "Obesity",
-          "mental_health": "13.9<br/><nobr>(12.5&#8209;15.5)</nobr><br/>14,358",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "15.9<br/><nobr>(7.6&#8209;30.3)</nobr><br/>150"
-            },
-            {
-              "name": "asian",
-              "mental_health": "5.5<br/><nobr>(3.6&#8209;8.4)</nobr><br/>583"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "16.8<br/><nobr>(14.2&#8209;19.6)</nobr><br/>1,484"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "16.4<br/><nobr>(14.8&#8209;18.2)</nobr><br/>4,661"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>84"
-            },
-            {
-              "name": "white",
-              "mental_health": "12.4<br/><nobr>(10.5&#8209;14.6)</nobr><br/>6,476"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "17.5<br/><nobr>(13.5&#8209;22.4)</nobr><br/>688"
-            }
-          ]
-        },
-        {
-          "name": "Indoor tanning device use",
-          "mental_health": "7.3<br/><nobr>(6.0&#8209;8.9)</nobr><br/>11,197",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "6.1<br/><nobr>(2.6&#8209;13.3)</nobr><br/>126"
-            },
-            {
-              "name": "asian",
-              "mental_health": "3.2<br/><nobr>(1.4&#8209;7.3)</nobr><br/>407"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "3.7<br/><nobr>(2.5&#8209;5.4)</nobr><br/>978"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "4.7<br/><nobr>(3.5&#8209;6.3)</nobr><br/>3,867"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>63"
-            },
-            {
-              "name": "white",
-              "mental_health": "9.4<br/><nobr>(7.5&#8209;11.6)</nobr><br/>5,030"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "4.8<br/><nobr>(2.8&#8209;8.0)</nobr><br/>511"
-            }
-          ]
-        },
-        {
-          "name": "Drinking and driving",
-          "mental_health": "7.8<br/><nobr>(6.8&#8209;9.0)</nobr><br/>8,432",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>92"
-            },
-            {
-              "name": "asian",
-              "mental_health": "5.4<br/><nobr>(2.7&#8209;10.8)</nobr><br/>277"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "6.9<br/><nobr>(5.2&#8209;9.1)</nobr><br/>748"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "9.4<br/><nobr>(7.8&#8209;11.3)</nobr><br/>2,584"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>46"
-            },
-            {
-              "name": "white",
-              "mental_health": "7.4<br/><nobr>(5.9&#8209;9.3)</nobr><br/>4,145"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "8.3<br/><nobr>(5.1&#8209;13.2)</nobr><br/>381"
-            }
-          ]
-        },
-        {
-          "name": "Threatened at school",
-          "mental_health": "6.0<br/><nobr>(5.2&#8209;6.8)</nobr><br/>14,993",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "8.2<br/><nobr>(4.2&#8209;15.5)</nobr><br/>159"
-            },
-            {
-              "name": "asian",
-              "mental_health": "3.6<br/><nobr>(1.6&#8209;7.8)</nobr><br/>618"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "7.9<br/><nobr>(6.0&#8209;10.4)</nobr><br/>1,453"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "6.6<br/><nobr>(5.4&#8209;8.0)</nobr><br/>4,947"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>89"
-            },
-            {
-              "name": "white",
-              "mental_health": "4.9<br/><nobr>(4.0&#8209;6.0)</nobr><br/>6,717"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "8.0<br/><nobr>(5.0&#8209;12.5)</nobr><br/>698"
-            }
-          ]
-        },
-        {
-          "name": "Physical fighting at school",
-          "mental_health": "7.8<br/><nobr>(6.7&#8209;8.9)</nobr><br/>15,332",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "13.2<br/><nobr>(7.5&#8209;22.1)</nobr><br/>159"
-            },
-            {
-              "name": "asian",
-              "mental_health": "6.3<br/><nobr>(3.7&#8209;10.5)</nobr><br/>621"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "12.6<br/><nobr>(9.1&#8209;17.1)</nobr><br/>1,625"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "8.9<br/><nobr>(7.3&#8209;10.9)</nobr><br/>5,040"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>94"
-            },
-            {
-              "name": "white",
-              "mental_health": "5.6<br/><nobr>(5.0&#8209;6.4)</nobr><br/>6,724"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "9.3<br/><nobr>(6.7&#8209;12.7)</nobr><br/>730"
-            }
-          ]
-        },
-        {
-          "name": "Physical dating violence",
-          "mental_health": "9.6<br/><nobr>(8.8&#8209;10.6)</nobr><br/>10,501",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "9.6<br/><nobr>(4.5&#8209;19.4)</nobr><br/>113"
-            },
-            {
-              "name": "asian",
-              "mental_health": "4.6<br/><nobr>(1.9&#8209;11.0)</nobr><br/>300"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "10.5<br/><nobr>(8.4&#8209;13.0)</nobr><br/>1,172"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "9.7<br/><nobr>(8.0&#8209;11.7)</nobr><br/>3,380"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>64"
-            },
-            {
-              "name": "white",
-              "mental_health": "9.0<br/><nobr>(7.5&#8209;10.7)</nobr><br/>4,744"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "16.0<br/><nobr>(11.1&#8209;22.5)</nobr><br/>495"
-            }
-          ]
-        },
-        {
-          "name": "Ever cigarette use",
-          "mental_health": "32.3<br/><nobr>(28.9&#8209;35.8)</nobr><br/>13,799",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "47.9<br/><nobr>(36.2&#8209;59.8)</nobr><br/>147"
-            },
-            {
-              "name": "asian",
-              "mental_health": "18.2<br/><nobr>(13.0&#8209;24.7)</nobr><br/>599"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "30.1<br/><nobr>(25.0&#8209;35.7)</nobr><br/>1,552"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "35.2<br/><nobr>(32.7&#8209;37.9)</nobr><br/>4,942"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>90"
-            },
-            {
-              "name": "white",
-              "mental_health": "31.8<br/><nobr>(26.8&#8209;37.2)</nobr><br/>5,510"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "39.0<br/><nobr>(32.6&#8209;45.8)</nobr><br/>667"
-            }
-          ]
-        },
-        {
-          "name": "Current daily cigarette use",
-          "mental_health": "2.3<br/><nobr>(1.7&#8209;3.0)</nobr><br/>14,989",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "2.8<br/><nobr>(0.9&#8209;8.4)</nobr><br/>151"
-            },
-            {
-              "name": "asian",
-              "mental_health": "1.4<br/><nobr>(0.5&#8209;3.6)</nobr><br/>615"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "1.4<br/><nobr>(0.8&#8209;2.5)</nobr><br/>1,574"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "1.6<br/><nobr>(1.1&#8209;2.2)</nobr><br/>4,878"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>89"
-            },
-            {
-              "name": "white",
-              "mental_health": "2.8<br/><nobr>(1.9&#8209;4.0)</nobr><br/>6,646"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "2.7<br/><nobr>(1.5&#8209;5.0)</nobr><br/>713"
-            }
-          ]
-        },
-        {
-          "name": "Cigarettes from Internet",
-          "mental_health": "1.0<br/><nobr>(0.4&#8209;2.1)</nobr><br/>1,198",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>21"
-            },
-            {
-              "name": "asian",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>14"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>69"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "0.8<br/><nobr>(0.3&#8209;2.0)</nobr><br/>302"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>6"
-            },
-            {
-              "name": "white",
-              "mental_health": "0.1<br/><nobr>(0.0&#8209;0.6)</nobr><br/>696"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>70"
-            }
-          ]
-        },
-        {
-          "name": "Current electronic vapor product use",
-          "mental_health": "24.1<br/><nobr>(22.1&#8209;26.2)</nobr><br/>15,318",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "30.2<br/><nobr>(20.3&#8209;42.4)</nobr><br/>161"
-            },
-            {
-              "name": "asian",
-              "mental_health": "14.5<br/><nobr>(10.5&#8209;19.7)</nobr><br/>619"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "18.0<br/><nobr>(14.9&#8209;21.7)</nobr><br/>1,618"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "26.3<br/><nobr>(23.6&#8209;29.1)</nobr><br/>5,045"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>98"
-            },
-            {
-              "name": "white",
-              "mental_health": "25.2<br/><nobr>(22.2&#8209;28.5)</nobr><br/>6,719"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "25.8<br/><nobr>(21.3&#8209;30.8)</nobr><br/>721"
-            }
-          ]
-        },
-        {
-          "name": "Source of alcohol",
-          "mental_health": "44.1<br/><nobr>(41.9&#8209;46.4)</nobr><br/>4,436",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>57"
-            },
-            {
-              "name": "asian",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>74"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "43.3<br/><nobr>(35.7&#8209;51.3)</nobr><br/>349"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "41.3<br/><nobr>(38.0&#8209;44.8)</nobr><br/>1,422"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>25"
-            },
-            {
-              "name": "white",
-              "mental_health": "46.1<br/><nobr>(42.8&#8209;49.5)</nobr><br/>2,193"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "40.7<br/><nobr>(32.0&#8209;50.1)</nobr><br/>241"
-            }
-          ]
-        },
-        {
-          "name": "Current marijuana use",
-          "mental_health": "21.7<br/><nobr>(19.3&#8209;24.2)</nobr><br/>15,250",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "26.9<br/><nobr>(17.8&#8209;38.6)</nobr><br/>159"
-            },
-            {
-              "name": "asian",
-              "mental_health": "8.2<br/><nobr>(5.5&#8209;12.0)</nobr><br/>614"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "27.1<br/><nobr>(24.0&#8209;30.4)</nobr><br/>1,585"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "24.5<br/><nobr>(21.6&#8209;27.6)</nobr><br/>5,012"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>92"
-            },
-            {
-              "name": "white",
-              "mental_health": "19.9<br/><nobr>(16.8&#8209;23.5)</nobr><br/>6,736"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "23.5<br/><nobr>(19.4&#8209;28.2)</nobr><br/>721"
-            }
-          ]
-        },
-        {
-          "name": "Ever cocaine use",
-          "mental_health": "5.2<br/><nobr>(4.3&#8209;6.2)</nobr><br/>15,432",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "5.3<br/><nobr>(2.7&#8209;10.1)</nobr><br/>163"
-            },
-            {
-              "name": "asian",
-              "mental_health": "3.4<br/><nobr>(1.6&#8209;7.1)</nobr><br/>621"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "3.8<br/><nobr>(2.5&#8209;6.0)</nobr><br/>1,623"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "8.0<br/><nobr>(6.6&#8209;9.7)</nobr><br/>5,062"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>99"
-            },
-            {
-              "name": "white",
-              "mental_health": "4.1<br/><nobr>(3.3&#8209;5.2)</nobr><br/>6,786"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "5.8<br/><nobr>(3.6&#8209;9.3)</nobr><br/>731"
-            }
-          ]
-        },
-        {
-          "name": "Ever prescription drug use",
-          "mental_health": "16.8<br/><nobr>(15.4&#8209;18.2)</nobr><br/>15,367",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "19.7<br/><nobr>(13.1&#8209;28.4)</nobr><br/>163"
-            },
-            {
-              "name": "asian",
-              "mental_health": "9.7<br/><nobr>(5.4&#8209;16.6)</nobr><br/>615"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "14.8<br/><nobr>(12.8&#8209;17.1)</nobr><br/>1,608"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "17.5<br/><nobr>(15.6&#8209;19.7)</nobr><br/>5,058"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>96"
-            },
-            {
-              "name": "white",
-              "mental_health": "16.5<br/><nobr>(14.7&#8209;18.5)</nobr><br/>6,755"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "24.7<br/><nobr>(19.3&#8209;30.9)</nobr><br/>727"
-            }
-          ]
-        },
-        {
-          "name": "Sex before 13 years",
-          "mental_health": "3.9<br/><nobr>(3.2&#8209;4.8)</nobr><br/>13,932",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "1.8<br/><nobr>(0.7&#8209;4.6)</nobr><br/>144"
-            },
-            {
-              "name": "asian",
-              "mental_health": "0.7<br/><nobr>(0.2&#8209;2.2)</nobr><br/>557"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "8.3<br/><nobr>(6.4&#8209;10.8)</nobr><br/>1,371"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "5.0<br/><nobr>(4.0&#8209;6.1)</nobr><br/>4,600"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>68"
-            },
-            {
-              "name": "white",
-              "mental_health": "2.5<br/><nobr>(1.9&#8209;3.4)</nobr><br/>6,249"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "5.8<br/><nobr>(3.4&#8209;9.7)</nobr><br/>661"
-            }
-          ]
-        },
-        {
-          "name": "IUD or implant use",
-          "mental_health": "96.7<br/><nobr>(95.6&#8209;97.5)</nobr><br/>4,071",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>53"
-            },
-            {
-              "name": "asian",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>89"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "97.9<br/><nobr>(95.6&#8209;99.0)</nobr><br/>470"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "97.1<br/><nobr>(95.5&#8209;98.2)</nobr><br/>1,329"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>19"
-            },
-            {
-              "name": "white",
-              "mental_health": "96.1<br/><nobr>(94.6&#8209;97.2)</nobr><br/>1,849"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "96.2<br/><nobr>(91.0&#8209;98.5)</nobr><br/>200"
-            }
-          ]
-        },
-        {
-          "name": "No fruit consumption",
-          "mental_health": "5.2<br/><nobr>(4.4&#8209;6.0)</nobr><br/>15,301",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "4.1<br/><nobr>(1.6&#8209;10.0)</nobr><br/>161"
-            },
-            {
-              "name": "asian",
-              "mental_health": "2.8<br/><nobr>(1.6&#8209;4.9)</nobr><br/>615"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "6.9<br/><nobr>(4.9&#8209;9.8)</nobr><br/>1,591"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "4.9<br/><nobr>(3.8&#8209;6.1)</nobr><br/>4,990"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>94"
-            },
-            {
-              "name": "white",
-              "mental_health": "4.9<br/><nobr>(4.0&#8209;5.9)</nobr><br/>6,784"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "7.3<br/><nobr>(4.9&#8209;10.6)</nobr><br/>727"
-            }
-          ]
-        },
-        {
-          "name": "Soda drinking >= 2 times",
-          "mental_health": "13.0<br/><nobr>(11.1&#8209;15.2)</nobr><br/>15,292",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "14.5<br/><nobr>(10.3&#8209;19.9)</nobr><br/>159"
-            },
-            {
-              "name": "asian",
-              "mental_health": "5.6<br/><nobr>(3.2&#8209;9.6)</nobr><br/>619"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "15.4<br/><nobr>(11.4&#8209;20.6)</nobr><br/>1,589"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "14.4<br/><nobr>(12.4&#8209;16.6)</nobr><br/>4,982"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>96"
-            },
-            {
-              "name": "white",
-              "mental_health": "12.1<br/><nobr>(9.6&#8209;15.0)</nobr><br/>6,784"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "14.1<br/><nobr>(10.5&#8209;18.7)</nobr><br/>725"
-            }
-          ]
-        },
-        {
-          "name": "No sports drinks",
-          "mental_health": "57.6<br/><nobr>(54.6&#8209;60.5)</nobr><br/>11,305",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "72.2<br/><nobr>(61.3&#8209;80.9)</nobr><br/>130"
-            },
-            {
-              "name": "asian",
-              "mental_health": "38.0<br/><nobr>(28.2&#8209;48.8)</nobr><br/>408"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "64.0<br/><nobr>(58.2&#8209;69.4)</nobr><br/>983"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "63.8<br/><nobr>(59.2&#8209;68.1)</nobr><br/>3,900"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>63"
-            },
-            {
-              "name": "white",
-              "mental_health": "55.4<br/><nobr>(52.1&#8209;58.7)</nobr><br/>5,084"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "56.0<br/><nobr>(50.5&#8209;61.4)</nobr><br/>519"
-            }
-          ]
-        },
-        {
-          "name": "Breakfast eating",
-          "mental_health": "13.8<br/><nobr>(12.4&#8209;15.4)</nobr><br/>13,856",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "14.3<br/><nobr>(9.8&#8209;20.3)</nobr><br/>146"
-            },
-            {
-              "name": "asian",
-              "mental_health": "11.4<br/><nobr>(8.6&#8209;14.9)</nobr><br/>610"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "18.0<br/><nobr>(15.5&#8209;20.7)</nobr><br/>1,540"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "14.7<br/><nobr>(12.8&#8209;16.9)</nobr><br/>4,920"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>93"
-            },
-            {
-              "name": "white",
-              "mental_health": "12.0<br/><nobr>(10.1&#8209;14.3)</nobr><br/>5,579"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "18.2<br/><nobr>(13.8&#8209;23.6)</nobr><br/>669"
-            }
-          ]
-        },
-        {
-          "name": "PE attendance",
-          "mental_health": "48.4<br/><nobr>(42.6&#8209;54.1)</nobr><br/>15,172",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "51.2<br/><nobr>(34.7&#8209;67.5)</nobr><br/>155"
-            },
-            {
-              "name": "asian",
-              "mental_health": "46.7<br/><nobr>(34.3&#8209;59.6)</nobr><br/>617"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "40.8<br/><nobr>(35.6&#8209;46.2)</nobr><br/>1,580"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "44.6<br/><nobr>(38.4&#8209;51.0)</nobr><br/>4,945"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>96"
-            },
-            {
-              "name": "white",
-              "mental_health": "51.6<br/><nobr>(44.2&#8209;58.9)</nobr><br/>6,730"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "50.4<br/><nobr>(41.4&#8209;59.3)</nobr><br/>716"
-            }
-          ]
-        },
-        {
-          "name": "Overweight",
-          "mental_health": "16.0<br/><nobr>(15.2&#8209;16.9)</nobr><br/>14,358",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "12.7<br/><nobr>(6.7&#8209;22.8)</nobr><br/>150"
-            },
-            {
-              "name": "asian",
-              "mental_health": "11.9<br/><nobr>(9.1&#8209;15.5)</nobr><br/>583"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "17.2<br/><nobr>(15.1&#8209;19.5)</nobr><br/>1,484"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "18.4<br/><nobr>(17.0&#8209;19.9)</nobr><br/>4,661"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>84"
-            },
-            {
-              "name": "white",
-              "mental_health": "15.2<br/><nobr>(14.1&#8209;16.5)</nobr><br/>6,476"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "15.5<br/><nobr>(11.8&#8209;19.9)</nobr><br/>688"
-            }
-          ]
-        },
-        {
-          "name": "Weight loss",
-          "mental_health": "54.4<br/><nobr>(52.7&#8209;56.0)</nobr><br/>13,844",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "48.6<br/><nobr>(35.6&#8209;61.9)</nobr><br/>147"
-            },
-            {
-              "name": "asian",
-              "mental_health": "54.7<br/><nobr>(49.5&#8209;59.8)</nobr><br/>606"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "60.6<br/><nobr>(56.8&#8209;64.3)</nobr><br/>1,553"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "46.9<br/><nobr>(44.1&#8209;49.8)</nobr><br/>4,927"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>89"
-            },
-            {
-              "name": "white",
-              "mental_health": "55.9<br/><nobr>(53.6&#8209;58.2)</nobr><br/>5,561"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "52.6<br/><nobr>(47.3&#8209;57.9)</nobr><br/>670"
-            }
-          ]
-        },
-        {
-          "name": "Sunburn",
-          "mental_health": "55.8<br/><nobr>(51.2&#8209;60.3)</nobr><br/>11,185",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "44.7<br/><nobr>(30.1&#8209;60.2)</nobr><br/>126"
-            },
-            {
-              "name": "asian",
-              "mental_health": "28.1<br/><nobr>(22.7&#8209;34.2)</nobr><br/>407"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "15.0<br/><nobr>(12.1&#8209;18.4)</nobr><br/>976"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "40.8<br/><nobr>(37.4&#8209;44.4)</nobr><br/>3,864"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>63"
-            },
-            {
-              "name": "white",
-              "mental_health": "72.5<br/><nobr>(68.3&#8209;76.4)</nobr><br/>5,020"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "43.9<br/><nobr>(38.1&#8209;49.8)</nobr><br/>511"
-            }
-          ]
-        },
-        {
-          "name": "Texting and driving",
-          "mental_health": "41.5<br/><nobr>(38.9&#8209;44.1)</nobr><br/>8,788",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "32.7<br/><nobr>(23.4&#8209;43.6)</nobr><br/>100"
-            },
-            {
-              "name": "asian",
-              "mental_health": "43.4<br/><nobr>(33.3&#8209;54.0)</nobr><br/>290"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "32.8<br/><nobr>(28.5&#8209;37.5)</nobr><br/>841"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "35.8<br/><nobr>(31.2&#8209;40.7)</nobr><br/>2,707"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>55"
-            },
-            {
-              "name": "white",
-              "mental_health": "45.2<br/><nobr>(42.1&#8209;48.3)</nobr><br/>4,215"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "40.5<br/><nobr>(33.3&#8209;48.2)</nobr><br/>403"
-            }
-          ]
-        },
-        {
-          "name": "Safety concerns at school",
-          "mental_health": "5.6<br/><nobr>(4.8&#8209;6.5)</nobr><br/>15,563",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "8.5<br/><nobr>(4.5&#8209;15.5)</nobr><br/>163"
-            },
-            {
-              "name": "asian",
-              "mental_health": "5.3<br/><nobr>(3.0&#8209;9.2)</nobr><br/>624"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "6.8<br/><nobr>(5.4&#8209;8.5)</nobr><br/>1,656"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "7.6<br/><nobr>(6.3&#8209;9.0)</nobr><br/>5,108"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>99"
-            },
-            {
-              "name": "white",
-              "mental_health": "4.2<br/><nobr>(3.2&#8209;5.4)</nobr><br/>6,836"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "6.3<br/><nobr>(3.8&#8209;10.2)</nobr><br/>736"
-            }
-          ]
-        },
-        {
-          "name": "Sexual dating violence",
-          "mental_health": "10.6<br/><nobr>(9.5&#8209;11.7)</nobr><br/>10,180",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "10.5<br/><nobr>(4.9&#8209;21.1)</nobr><br/>109"
-            },
-            {
-              "name": "asian",
-              "mental_health": "10.5<br/><nobr>(6.0&#8209;17.8)</nobr><br/>292"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "10.0<br/><nobr>(7.0&#8209;14.0)</nobr><br/>1,147"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "10.6<br/><nobr>(8.8&#8209;12.6)</nobr><br/>3,311"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>59"
-            },
-            {
-              "name": "white",
-              "mental_health": "10.1<br/><nobr>(8.7&#8209;11.7)</nobr><br/>4,554"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "14.2<br/><nobr>(9.8&#8209;20.2)</nobr><br/>483"
-            }
-          ]
-        },
-        {
-          "name": "Suicide consideration",
-          "mental_health": "17.7<br/><nobr>(16.7&#8209;18.8)</nobr><br/>15,434",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "20.9<br/><nobr>(13.2&#8209;31.4)</nobr><br/>161"
-            },
-            {
-              "name": "asian",
-              "mental_health": "17.7<br/><nobr>(13.1&#8209;23.5)</nobr><br/>617"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "14.5<br/><nobr>(12.3&#8209;17.1)</nobr><br/>1,647"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "18.8<br/><nobr>(17.1&#8209;20.7)</nobr><br/>5,061"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>98"
-            },
-            {
-              "name": "white",
-              "mental_health": "17.2<br/><nobr>(15.4&#8209;19.2)</nobr><br/>6,782"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "26.6<br/><nobr>(21.0&#8209;33.0)</nobr><br/>729"
-            }
-          ]
-        },
-        {
-          "name": "Initiation of cigarette use",
-          "mental_health": "6.6<br/><nobr>(5.5&#8209;7.9)</nobr><br/>14,819",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "10.7<br/><nobr>(5.8&#8209;19.1)</nobr><br/>152"
-            },
-            {
-              "name": "asian",
-              "mental_health": "6.4<br/><nobr>(3.8&#8209;10.7)</nobr><br/>591"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "7.0<br/><nobr>(5.2&#8209;9.4)</nobr><br/>1,535"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "7.1<br/><nobr>(6.1&#8209;8.3)</nobr><br/>4,840"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>88"
-            },
-            {
-              "name": "white",
-              "mental_health": "6.0<br/><nobr>(4.5&#8209;7.9)</nobr><br/>6,589"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "7.9<br/><nobr>(5.6&#8209;11.1)</nobr><br/>708"
-            }
-          ]
-        },
-        {
-          "name": "Smoking cessation",
-          "mental_health": "54.6<br/><nobr>(50.5&#8209;58.7)</nobr><br/>1,326",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>23"
-            },
-            {
-              "name": "asian",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>28"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>87"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "50.4<br/><nobr>(45.0&#8209;55.8)</nobr><br/>407"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>7"
-            },
-            {
-              "name": "white",
-              "mental_health": "55.9<br/><nobr>(50.5&#8209;61.2)</nobr><br/>674"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>80"
-            }
-          ]
-        },
-        {
-          "name": "Current cigarette or cigar use",
-          "mental_health": "16.0<br/><nobr>(14.2&#8209;18.0)</nobr><br/>14,866",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "26.9<br/><nobr>(12.7&#8209;48.1)</nobr><br/>152"
-            },
-            {
-              "name": "asian",
-              "mental_health": "8.5<br/><nobr>(5.4&#8209;13.3)</nobr><br/>525"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "13.9<br/><nobr>(11.3&#8209;16.9)</nobr><br/>1,577"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "13.1<br/><nobr>(11.0&#8209;15.5)</nobr><br/>4,866"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>89"
-            },
-            {
-              "name": "white",
-              "mental_health": "17.5<br/><nobr>(14.6&#8209;20.9)</nobr><br/>6,633"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "20.6<br/><nobr>(15.7&#8209;26.6)</nobr><br/>694"
-            }
-          ]
-        },
-        {
-          "name": "5 or more drinks in a row",
-          "mental_health": "17.7<br/><nobr>(15.8&#8209;19.8)</nobr><br/>14,967",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "33.3<br/><nobr>(19.7&#8209;50.4)</nobr><br/>157"
-            },
-            {
-              "name": "asian",
-              "mental_health": "8.1<br/><nobr>(5.8&#8209;11.2)</nobr><br/>602"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "11.4<br/><nobr>(8.8&#8209;14.7)</nobr><br/>1,552"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "17.7<br/><nobr>(15.8&#8209;19.7)</nobr><br/>4,853"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>95"
-            },
-            {
-              "name": "white",
-              "mental_health": "19.7<br/><nobr>(16.8&#8209;23.0)</nobr><br/>6,668"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "18.7<br/><nobr>(15.1&#8209;22.9)</nobr><br/>714"
-            }
-          ]
-        },
-        {
-          "name": "Ever synthetic marijuana use",
-          "mental_health": "9.2<br/><nobr>(7.9&#8209;10.8)</nobr><br/>15,450",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "11.6<br/><nobr>(5.9&#8209;21.6)</nobr><br/>162"
-            },
-            {
-              "name": "asian",
-              "mental_health": "3.3<br/><nobr>(1.5&#8209;7.0)</nobr><br/>619"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "7.8<br/><nobr>(6.0&#8209;9.9)</nobr><br/>1,627"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "11.7<br/><nobr>(9.8&#8209;13.9)</nobr><br/>5,064"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>98"
-            },
-            {
-              "name": "white",
-              "mental_health": "8.8<br/><nobr>(7.2&#8209;10.7)</nobr><br/>6,810"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "8.9<br/><nobr>(5.9&#8209;13.1)</nobr><br/>728"
-            }
-          ]
-        },
-        {
-          "name": "Ever ecstasy use",
-          "mental_health": "5.0<br/><nobr>(4.3&#8209;5.8)</nobr><br/>15,397",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "8.3<br/><nobr>(4.4&#8209;15.2)</nobr><br/>163"
-            },
-            {
-              "name": "asian",
-              "mental_health": "4.1<br/><nobr>(2.1&#8209;8.0)</nobr><br/>619"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "4.3<br/><nobr>(3.0&#8209;6.1)</nobr><br/>1,616"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "6.1<br/><nobr>(4.9&#8209;7.5)</nobr><br/>5,053"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>98"
-            },
-            {
-              "name": "white",
-              "mental_health": "4.3<br/><nobr>(3.4&#8209;5.3)</nobr><br/>6,778"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "7.6<br/><nobr>(4.6&#8209;12.2)</nobr><br/>726"
-            }
-          ]
-        },
-        {
-          "name": "Ever inhalant use",
-          "mental_health": "7.0<br/><nobr>(6.2&#8209;8.0)</nobr><br/>15,158",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "2.9<br/><nobr>(1.3&#8209;6.3)</nobr><br/>161"
-            },
-            {
-              "name": "asian",
-              "mental_health": "4.0<br/><nobr>(1.9&#8209;8.2)</nobr><br/>605"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "6.8<br/><nobr>(4.4&#8209;10.2)</nobr><br/>1,492"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "7.8<br/><nobr>(6.7&#8209;9.0)</nobr><br/>5,047"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>95"
-            },
-            {
-              "name": "white",
-              "mental_health": "6.4<br/><nobr>(5.4&#8209;7.6)</nobr><br/>6,704"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "11.4<br/><nobr>(7.9&#8209;16.2)</nobr><br/>714"
-            }
-          ]
-        },
-        {
-          "name": "Multiple sex partners",
-          "mental_health": "11.5<br/><nobr>(9.9&#8209;13.3)</nobr><br/>13,910",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "11.1<br/><nobr>(6.6&#8209;17.9)</nobr><br/>145"
-            },
-            {
-              "name": "asian",
-              "mental_health": "5.0<br/><nobr>(2.9&#8209;8.6)</nobr><br/>559"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "19.0<br/><nobr>(15.7&#8209;22.9)</nobr><br/>1,367"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "11.0<br/><nobr>(9.3&#8209;13.1)</nobr><br/>4,596"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>68"
-            },
-            {
-              "name": "white",
-              "mental_health": "9.9<br/><nobr>(8.1&#8209;12.0)</nobr><br/>6,238"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "15.8<br/><nobr>(12.1&#8209;20.4)</nobr><br/>656"
-            }
-          ]
-        },
-        {
-          "name": "Shot, patch, or ring use",
-          "mental_health": "94.7<br/><nobr>(93.4&#8209;95.7)</nobr><br/>4,071",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>53"
-            },
-            {
-              "name": "asian",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>89"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "95.1<br/><nobr>(92.2&#8209;97.0)</nobr><br/>470"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "96.9<br/><nobr>(95.2&#8209;98.0)</nobr><br/>1,329"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>19"
-            },
-            {
-              "name": "white",
-              "mental_health": "94.0<br/><nobr>(92.3&#8209;95.4)</nobr><br/>1,849"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "92.8<br/><nobr>(86.4&#8209;96.4)</nobr><br/>200"
-            }
-          ]
-        },
-        {
-          "name": "Dual birth control use",
-          "mental_health": "91.2<br/><nobr>(89.4&#8209;92.7)</nobr><br/>4,044",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>53"
-            },
-            {
-              "name": "asian",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>88"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "95.3<br/><nobr>(93.0&#8209;96.9)</nobr><br/>466"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "95.3<br/><nobr>(93.5&#8209;96.6)</nobr><br/>1,317"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>19"
-            },
-            {
-              "name": "white",
-              "mental_health": "88.0<br/><nobr>(85.3&#8209;90.3)</nobr><br/>1,840"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "94.7<br/><nobr>(88.9&#8209;97.6)</nobr><br/>200"
-            }
-          ]
-        },
-        {
-          "name": "No vegetable eating",
-          "mental_health": "6.7<br/><nobr>(6.0&#8209;7.5)</nobr><br/>15,179",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "4.2<br/><nobr>(1.2&#8209;13.7)</nobr><br/>157"
-            },
-            {
-              "name": "asian",
-              "mental_health": "4.8<br/><nobr>(3.0&#8209;7.7)</nobr><br/>617"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "10.9<br/><nobr>(9.2&#8209;13.0)</nobr><br/>1,565"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "8.5<br/><nobr>(7.3&#8209;9.7)</nobr><br/>4,943"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>95"
-            },
-            {
-              "name": "white",
-              "mental_health": "4.9<br/><nobr>(4.2&#8209;5.8)</nobr><br/>6,754"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "9.0<br/><nobr>(5.9&#8209;13.4)</nobr><br/>717"
-            }
-          ]
-        },
-        {
-          "name": "Sports drinks >= 1 times",
-          "mental_health": "13.8<br/><nobr>(12.1&#8209;15.8)</nobr><br/>11,305",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "15.1<br/><nobr>(8.2&#8209;26.1)</nobr><br/>130"
-            },
-            {
-              "name": "asian",
-              "mental_health": "6.2<br/><nobr>(3.6&#8209;10.3)</nobr><br/>408"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "19.7<br/><nobr>(16.6&#8209;23.3)</nobr><br/>983"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "15.7<br/><nobr>(13.5&#8209;18.0)</nobr><br/>3,900"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>63"
-            },
-            {
-              "name": "white",
-              "mental_health": "12.4<br/><nobr>(10.4&#8209;14.8)</nobr><br/>5,084"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "14.5<br/><nobr>(10.4&#8209;19.8)</nobr><br/>519"
-            }
-          ]
-        },
-        {
-          "name": "Daily breakfast eating",
-          "mental_health": "63.7<br/><nobr>(60.9&#8209;66.3)</nobr><br/>13,856",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "74.0<br/><nobr>(62.5&#8209;83.0)</nobr><br/>146"
-            },
-            {
-              "name": "asian",
-              "mental_health": "52.2<br/><nobr>(43.4&#8209;60.8)</nobr><br/>610"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "72.1<br/><nobr>(67.3&#8209;76.5)</nobr><br/>1,540"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "65.2<br/><nobr>(62.8&#8209;67.5)</nobr><br/>4,920"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>93"
-            },
-            {
-              "name": "white",
-              "mental_health": "61.0<br/><nobr>(56.7&#8209;65.1)</nobr><br/>5,579"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "70.8<br/><nobr>(66.4&#8209;74.9)</nobr><br/>669"
-            }
-          ]
-        },
-        {
-          "name": "Daily PE attendance",
-          "mental_health": "70.2<br/><nobr>(63.8&#8209;76.0)</nobr><br/>15,172",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "62.6<br/><nobr>(43.3&#8209;78.6)</nobr><br/>155"
-            },
-            {
-              "name": "asian",
-              "mental_health": "74.1<br/><nobr>(54.5&#8209;87.3)</nobr><br/>617"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "64.3<br/><nobr>(57.3&#8209;70.7)</nobr><br/>1,580"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "62.3<br/><nobr>(54.7&#8209;69.3)</nobr><br/>4,945"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>96"
-            },
-            {
-              "name": "white",
-              "mental_health": "74.6<br/><nobr>(66.7&#8209;81.2)</nobr><br/>6,730"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "70.3<br/><nobr>(61.2&#8209;77.9)</nobr><br/>716"
-            }
-          ]
-        },
-        {
-          "name": "Perception of weight",
-          "mental_health": "31.5<br/><nobr>(30.2&#8209;32.9)</nobr><br/>15,320",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "39.8<br/><nobr>(25.5&#8209;56.2)</nobr><br/>159"
-            },
-            {
-              "name": "asian",
-              "mental_health": "29.6<br/><nobr>(24.9&#8209;34.7)</nobr><br/>614"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "27.0<br/><nobr>(24.2&#8209;30.1)</nobr><br/>1,607"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "36.4<br/><nobr>(34.2&#8209;38.8)</nobr><br/>5,007"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>94"
-            },
-            {
-              "name": "white",
-              "mental_health": "30.3<br/><nobr>(28.6&#8209;32.2)</nobr><br/>6,784"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "38.2<br/><nobr>(33.4&#8209;43.2)</nobr><br/>728"
-            }
-          ]
-        },
-        {
-          "name": "Asthma",
-          "mental_health": "22.8<br/><nobr>(21.5&#8209;24.1)</nobr><br/>14,012",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "17.7<br/><nobr>(11.5&#8209;26.3)</nobr><br/>143"
-            },
-            {
-              "name": "asian",
-              "mental_health": "17.7<br/><nobr>(12.3&#8209;24.9)</nobr><br/>582"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "27.8<br/><nobr>(24.6&#8209;31.2)</nobr><br/>1,322"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "22.5<br/><nobr>(20.0&#8209;25.2)</nobr><br/>4,577"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>76"
-            },
-            {
-              "name": "white",
-              "mental_health": "22.1<br/><nobr>(20.7&#8209;23.5)</nobr><br/>6,398"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "25.9<br/><nobr>(22.2&#8209;30.1)</nobr><br/>628"
-            }
-          ]
-        },
-        {
-          "name": "Food allergies",
-          "mental_health": "16.0<br/><nobr>(14.8&#8209;17.2)</nobr><br/>11,249",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "13.1<br/><nobr>(8.5&#8209;19.6)</nobr><br/>129"
-            },
-            {
-              "name": "asian",
-              "mental_health": "18.9<br/><nobr>(15.3&#8209;23.1)</nobr><br/>408"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "20.7<br/><nobr>(17.1&#8209;24.8)</nobr><br/>984"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "14.1<br/><nobr>(12.7&#8209;15.7)</nobr><br/>3,880"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>63"
-            },
-            {
-              "name": "white",
-              "mental_health": "15.4<br/><nobr>(13.5&#8209;17.5)</nobr><br/>5,050"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "19.1<br/><nobr>(14.6&#8209;24.5)</nobr><br/>516"
-            }
-          ]
-        },
-        {
-          "name": "Bicycle helmet use",
-          "mental_health": "81.4<br/><nobr>(77.0&#8209;85.1)</nobr><br/>8,757",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "77.4<br/><nobr>(47.6&#8209;92.8)</nobr><br/>101"
-            },
-            {
-              "name": "asian",
-              "mental_health": "79.9<br/><nobr>(72.5&#8209;85.7)</nobr><br/>349"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "88.2<br/><nobr>(80.6&#8209;93.1)</nobr><br/>837"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "90.1<br/><nobr>(87.6&#8209;92.1)</nobr><br/>3,074"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>59"
-            },
-            {
-              "name": "white",
-              "mental_health": "76.4<br/><nobr>(70.5&#8209;81.4)</nobr><br/>3,757"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "86.5<br/><nobr>(80.8&#8209;90.7)</nobr><br/>416"
-            }
-          ]
-        },
-        {
-          "name": "Weapon carrying",
-          "mental_health": "16.2<br/><nobr>(14.4&#8209;18.1)</nobr><br/>14,423",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "22.4<br/><nobr>(15.3&#8209;31.5)</nobr><br/>152"
-            },
-            {
-              "name": "asian",
-              "mental_health": "7.1<br/><nobr>(4.8&#8209;10.3)</nobr><br/>600"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "12.4<br/><nobr>(9.9&#8209;15.4)</nobr><br/>1,272"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "13.7<br/><nobr>(11.6&#8209;16.2)</nobr><br/>4,823"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>87"
-            },
-            {
-              "name": "white",
-              "mental_health": "18.1<br/><nobr>(15.5&#8209;21.0)</nobr><br/>6,530"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "20.8<br/><nobr>(16.1&#8209;26.3)</nobr><br/>669"
-            }
-          ]
-        },
-        {
-          "name": "Electronic bullying",
-          "mental_health": "15.5<br/><nobr>(14.5&#8209;16.6)</nobr><br/>15,465",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "18.7<br/><nobr>(12.4&#8209;27.3)</nobr><br/>161"
-            },
-            {
-              "name": "asian",
-              "mental_health": "13.9<br/><nobr>(9.7&#8209;19.5)</nobr><br/>620"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "8.6<br/><nobr>(6.8&#8209;10.8)</nobr><br/>1,638"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "12.4<br/><nobr>(10.5&#8209;14.5)</nobr><br/>5,074"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "11.8<br/><nobr>(5.5&#8209;23.5)</nobr><br/>100"
-            },
-            {
-              "name": "white",
-              "mental_health": "18.4<br/><nobr>(16.8&#8209;20.0)</nobr><br/>6,799"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "20.4<br/><nobr>(15.9&#8209;25.8)</nobr><br/>733"
-            }
-          ]
-        },
-        {
-          "name": "Sad or hopeless",
-          "mental_health": "29.9<br/><nobr>(28.0&#8209;31.8)</nobr><br/>15,455",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "34.9<br/><nobr>(25.2&#8209;46.0)</nobr><br/>160"
-            },
-            {
-              "name": "asian",
-              "mental_health": "22.9<br/><nobr>(18.0&#8209;28.7)</nobr><br/>620"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "25.2<br/><nobr>(21.7&#8209;29.1)</nobr><br/>1,640"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "35.3<br/><nobr>(32.3&#8209;38.4)</nobr><br/>5,069"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "33.7<br/><nobr>(19.4&#8209;51.7)</nobr><br/>100"
-            },
-            {
-              "name": "white",
-              "mental_health": "28.6<br/><nobr>(25.8&#8209;31.5)</nobr><br/>6,794"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "38.8<br/><nobr>(34.8&#8209;43.0)</nobr><br/>732"
-            }
-          ]
-        },
-        {
-          "name": "Suicide plan",
-          "mental_health": "14.6<br/><nobr>(13.4&#8209;15.8)</nobr><br/>15,141",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "17.4<br/><nobr>(12.2&#8209;24.4)</nobr><br/>160"
-            },
-            {
-              "name": "asian",
-              "mental_health": "13.8<br/><nobr>(8.5&#8209;21.6)</nobr><br/>516"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "13.7<br/><nobr>(10.8&#8209;17.2)</nobr><br/>1,606"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "15.7<br/><nobr>(14.2&#8209;17.4)</nobr><br/>4,980"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>92"
-            },
-            {
-              "name": "white",
-              "mental_health": "13.9<br/><nobr>(12.1&#8209;15.9)</nobr><br/>6,748"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "19.6<br/><nobr>(15.8&#8209;24.1)</nobr><br/>706"
-            }
-          ]
-        },
-        {
-          "name": "Current cigarette use",
-          "mental_health": "10.8<br/><nobr>(9.4&#8209;12.4)</nobr><br/>14,989",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "12.2<br/><nobr>(7.1&#8209;20.2)</nobr><br/>151"
-            },
-            {
-              "name": "asian",
-              "mental_health": "7.0<br/><nobr>(4.2&#8209;11.3)</nobr><br/>615"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "6.5<br/><nobr>(4.8&#8209;8.7)</nobr><br/>1,574"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "9.2<br/><nobr>(7.9&#8209;10.7)</nobr><br/>4,878"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>89"
-            },
-            {
-              "name": "white",
-              "mental_health": "12.4<br/><nobr>(10.1&#8209;15.2)</nobr><br/>6,646"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "14.2<br/><nobr>(11.1&#8209;18.0)</nobr><br/>713"
-            }
-          ]
-        },
-        {
-          "name": "Current smokeless tobacco use",
-          "mental_health": "7.3<br/><nobr>(6.1&#8209;8.6)</nobr><br/>15,146",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "9.3<br/><nobr>(4.5&#8209;18.2)</nobr><br/>160"
-            },
-            {
-              "name": "asian",
-              "mental_health": "3.2<br/><nobr>(1.4&#8209;7.4)</nobr><br/>523"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "3.7<br/><nobr>(2.4&#8209;5.5)</nobr><br/>1,614"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "4.5<br/><nobr>(3.3&#8209;6.2)</nobr><br/>4,989"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>94"
-            },
-            {
-              "name": "white",
-              "mental_health": "9.3<br/><nobr>(7.5&#8209;11.4)</nobr><br/>6,719"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "5.9<br/><nobr>(4.2&#8209;8.4)</nobr><br/>707"
-            }
-          ]
-        },
-        {
-          "name": "Current cigarette, cigar, or smokeless tobacco use",
-          "mental_health": "18.5<br/><nobr>(16.5&#8209;20.8)</nobr><br/>14,883",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "30.1<br/><nobr>(15.3&#8209;50.7)</nobr><br/>153"
-            },
-            {
-              "name": "asian",
-              "mental_health": "9.1<br/><nobr>(5.9&#8209;13.8)</nobr><br/>525"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "14.9<br/><nobr>(12.1&#8209;18.2)</nobr><br/>1,582"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "14.2<br/><nobr>(11.8&#8209;17.0)</nobr><br/>4,867"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>91"
-            },
-            {
-              "name": "white",
-              "mental_health": "21.2<br/><nobr>(17.8&#8209;25.0)</nobr><br/>6,636"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "22.7<br/><nobr>(17.7&#8209;28.7)</nobr><br/>696"
-            }
-          ]
-        },
-        {
-          "name": "Ever alcohol use",
-          "mental_health": "63.2<br/><nobr>(60.6&#8209;65.8)</nobr><br/>15,049",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "71.5<br/><nobr>(61.6&#8209;79.7)</nobr><br/>157"
-            },
-            {
-              "name": "asian",
-              "mental_health": "43.2<br/><nobr>(38.1&#8209;48.4)</nobr><br/>610"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "54.4<br/><nobr>(48.8&#8209;59.9)</nobr><br/>1,560"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "65.9<br/><nobr>(63.1&#8209;68.7)</nobr><br/>4,923"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>95"
-            },
-            {
-              "name": "white",
-              "mental_health": "65.3<br/><nobr>(61.2&#8209;69.2)</nobr><br/>6,671"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "70.8<br/><nobr>(66.8&#8209;74.5)</nobr><br/>712"
-            }
-          ]
-        },
-        {
-          "name": "Largest number of drinks",
-          "mental_health": "4.3<br/><nobr>(3.6&#8209;5.1)</nobr><br/>11,597",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "4.8<br/><nobr>(2.1&#8209;10.6)</nobr><br/>122"
-            },
-            {
-              "name": "asian",
-              "mental_health": "1.2<br/><nobr>(0.3&#8209;4.5)</nobr><br/>497"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "2.1<br/><nobr>(1.3&#8209;3.3)</nobr><br/>1,078"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "5.1<br/><nobr>(4.2&#8209;6.2)</nobr><br/>4,151"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>62"
-            },
-            {
-              "name": "white",
-              "mental_health": "4.5<br/><nobr>(3.5&#8209;5.8)</nobr><br/>4,942"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "5.5<br/><nobr>(3.4&#8209;8.9)</nobr><br/>524"
-            }
-          ]
-        },
-        {
-          "name": "Ever heroin use",
-          "mental_health": "2.1<br/><nobr>(1.5&#8209;2.8)</nobr><br/>15,424",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "2.3<br/><nobr>(0.6&#8209;8.4)</nobr><br/>163"
-            },
-            {
-              "name": "asian",
-              "mental_health": "2.2<br/><nobr>(0.8&#8209;6.0)</nobr><br/>620"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "2.7<br/><nobr>(1.3&#8209;5.6)</nobr><br/>1,615"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "2.6<br/><nobr>(1.8&#8209;3.8)</nobr><br/>5,071"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>98"
-            },
-            {
-              "name": "white",
-              "mental_health": "1.3<br/><nobr>(1.0&#8209;1.7)</nobr><br/>6,786"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "3.3<br/><nobr>(1.5&#8209;7.1)</nobr><br/>729"
-            }
-          ]
-        },
-        {
-          "name": "Illegal injected drug use",
-          "mental_health": "1.8<br/><nobr>(1.3&#8209;2.3)</nobr><br/>14,786",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "1.8<br/><nobr>(0.3&#8209;9.2)</nobr><br/>158"
-            },
-            {
-              "name": "asian",
-              "mental_health": "1.9<br/><nobr>(0.7&#8209;5.3)</nobr><br/>606"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "2.5<br/><nobr>(1.6&#8209;4.0)</nobr><br/>1,405"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "2.2<br/><nobr>(1.4&#8209;3.4)</nobr><br/>4,903"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>88"
-            },
-            {
-              "name": "white",
-              "mental_health": "1.2<br/><nobr>(0.9&#8209;1.6)</nobr><br/>6,632"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "2.1<br/><nobr>(0.9&#8209;4.6)</nobr><br/>688"
-            }
-          ]
-        },
-        {
-          "name": "Current sexual activity",
-          "mental_health": "30.1<br/><nobr>(27.4&#8209;32.9)</nobr><br/>13,910",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "31.5<br/><nobr>(22.2&#8209;42.5)</nobr><br/>144"
-            },
-            {
-              "name": "asian",
-              "mental_health": "12.2<br/><nobr>(8.4&#8209;17.3)</nobr><br/>558"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "33.1<br/><nobr>(28.7&#8209;37.8)</nobr><br/>1,365"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "30.3<br/><nobr>(27.3&#8209;33.5)</nobr><br/>4,590"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>68"
-            },
-            {
-              "name": "white",
-              "mental_health": "30.3<br/><nobr>(26.7&#8209;34.0)</nobr><br/>6,248"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "35.7<br/><nobr>(30.9&#8209;40.9)</nobr><br/>658"
-            }
-          ]
-        },
-        {
-          "name": "Pill, IUD, or shot use",
-          "mental_health": "73.2<br/><nobr>(70.4&#8209;75.7)</nobr><br/>4,071",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>53"
-            },
-            {
-              "name": "asian",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>89"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "84.1<br/><nobr>(79.7&#8209;87.6)</nobr><br/>470"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "82.2<br/><nobr>(77.5&#8209;86.1)</nobr><br/>1,329"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>19"
-            },
-            {
-              "name": "white",
-              "mental_health": "66.7<br/><nobr>(63.1&#8209;70.1)</nobr><br/>1,849"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "73.9<br/><nobr>(63.9&#8209;81.9)</nobr><br/>200"
-            }
-          ]
-        },
-        {
-          "name": "No birth control use",
-          "mental_health": "13.8<br/><nobr>(11.8&#8209;16.1)</nobr><br/>4,071",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>53"
-            },
-            {
-              "name": "asian",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>89"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "15.9<br/><nobr>(11.0&#8209;22.6)</nobr><br/>470"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "20.0<br/><nobr>(16.4&#8209;24.2)</nobr><br/>1,329"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>19"
-            },
-            {
-              "name": "white",
-              "mental_health": "10.4<br/><nobr>(8.2&#8209;13.1)</nobr><br/>1,849"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "16.7<br/><nobr>(10.1&#8209;26.2)</nobr><br/>200"
-            }
-          ]
-        },
-        {
-          "name": "No milk drinking",
-          "mental_health": "21.5<br/><nobr>(19.8&#8209;23.4)</nobr><br/>13,215",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "28.5<br/><nobr>(14.9&#8209;47.6)</nobr><br/>143"
-            },
-            {
-              "name": "asian",
-              "mental_health": "24.6<br/><nobr>(21.7&#8209;27.8)</nobr><br/>599"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "34.7<br/><nobr>(32.4&#8209;37.0)</nobr><br/>1,345"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "19.6<br/><nobr>(17.7&#8209;21.6)</nobr><br/>4,744"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>83"
-            },
-            {
-              "name": "white",
-              "mental_health": "18.3<br/><nobr>(15.9&#8209;21.1)</nobr><br/>5,411"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "26.3<br/><nobr>(21.8&#8209;31.4)</nobr><br/>627"
-            }
-          ]
-        },
-        {
-          "name": "Sports drinks >= 2 times",
-          "mental_health": "8.3<br/><nobr>(7.1&#8209;9.8)</nobr><br/>11,305",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "6.4<br/><nobr>(3.0&#8209;13.3)</nobr><br/>130"
-            },
-            {
-              "name": "asian",
-              "mental_health": "3.3<br/><nobr>(1.7&#8209;6.3)</nobr><br/>408"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "15.8<br/><nobr>(13.2&#8209;18.7)</nobr><br/>983"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "10.5<br/><nobr>(8.9&#8209;12.3)</nobr><br/>3,900"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>63"
-            },
-            {
-              "name": "white",
-              "mental_health": "6.3<br/><nobr>(5.0&#8209;7.9)</nobr><br/>5,084"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "8.7<br/><nobr>(5.8&#8209;12.7)</nobr><br/>519"
-            }
-          ]
-        },
-        {
-          "name": "Physical activity",
-          "mental_health": "14.3<br/><nobr>(12.9&#8209;15.8)</nobr><br/>15,245",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "13.6<br/><nobr>(8.6&#8209;20.9)</nobr><br/>158"
-            },
-            {
-              "name": "asian",
-              "mental_health": "19.8<br/><nobr>(16.4&#8209;23.8)</nobr><br/>620"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "20.4<br/><nobr>(16.9&#8209;24.5)</nobr><br/>1,582"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "15.6<br/><nobr>(13.7&#8209;17.6)</nobr><br/>4,972"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>96"
-            },
-            {
-              "name": "white",
-              "mental_health": "11.6<br/><nobr>(9.7&#8209;13.8)</nobr><br/>6,761"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "14.3<br/><nobr>(9.6&#8209;20.8)</nobr><br/>723"
-            }
-          ]
-        },
-        {
-          "name": "Daily physical activity",
-          "mental_health": "72.9<br/><nobr>(71.2&#8209;74.6)</nobr><br/>15,245",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "60.8<br/><nobr>(45.9&#8209;73.9)</nobr><br/>158"
-            },
-            {
-              "name": "asian",
-              "mental_health": "83.5<br/><nobr>(78.6&#8209;87.5)</nobr><br/>620"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "75.8<br/><nobr>(71.7&#8209;79.6)</nobr><br/>1,582"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "75.4<br/><nobr>(72.7&#8209;77.9)</nobr><br/>4,972"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>96"
-            },
-            {
-              "name": "white",
-              "mental_health": "71.0<br/><nobr>(68.4&#8209;73.4)</nobr><br/>6,761"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "69.6<br/><nobr>(65.5&#8209;73.4)</nobr><br/>723"
-            }
-          ]
-        },
-        {
-          "name": "Sports team participation",
-          "mental_health": "42.4<br/><nobr>(38.8&#8209;46.0)</nobr><br/>13,122",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "41.8<br/><nobr>(28.6&#8209;56.3)</nobr><br/>138"
-            },
-            {
-              "name": "asian",
-              "mental_health": "53.4<br/><nobr>(46.9&#8209;59.8)</nobr><br/>597"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "42.4<br/><nobr>(37.8&#8209;47.2)</nobr><br/>1,337"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "51.5<br/><nobr>(49.1&#8209;53.9)</nobr><br/>4,721"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>83"
-            },
-            {
-              "name": "white",
-              "mental_health": "37.6<br/><nobr>(32.1&#8209;43.4)</nobr><br/>5,359"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "41.9<br/><nobr>(35.0&#8209;49.2)</nobr><br/>623"
-            }
-          ]
-        },
-        {
-          "name": "Oral health care",
-          "mental_health": "25.6<br/><nobr>(22.9&#8209;28.4)</nobr><br/>14,855",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "30.5<br/><nobr>(19.2&#8209;44.7)</nobr><br/>153"
-            },
-            {
-              "name": "asian",
-              "mental_health": "25.7<br/><nobr>(20.5&#8209;31.7)</nobr><br/>603"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "37.5<br/><nobr>(33.7&#8209;41.5)</nobr><br/>1,453"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "33.6<br/><nobr>(31.7&#8209;35.6)</nobr><br/>4,909"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>91"
-            },
-            {
-              "name": "white",
-              "mental_health": "19.0<br/><nobr>(16.4&#8209;21.8)</nobr><br/>6,616"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "25.5<br/><nobr>(21.0&#8209;30.7)</nobr><br/>705"
-            }
-          ]
-        },
-        {
-          "name": "Seat belt use",
-          "mental_health": "6.1<br/><nobr>(4.9&#8209;7.6)</nobr><br/>14,070",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "9.8<br/><nobr>(4.2&#8209;21.3)</nobr><br/>151"
-            },
-            {
-              "name": "asian",
-              "mental_health": "5.7<br/><nobr>(3.4&#8209;9.3)</nobr><br/>607"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "10.1<br/><nobr>(7.1&#8209;14.2)</nobr><br/>1,611"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "6.5<br/><nobr>(5.5&#8209;7.8)</nobr><br/>5,038"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>96"
-            },
-            {
-              "name": "white",
-              "mental_health": "4.4<br/><nobr>(3.1&#8209;6.3)</nobr><br/>5,583"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "6.8<br/><nobr>(4.4&#8209;10.2)</nobr><br/>683"
-            }
-          ]
-        },
-        {
-          "name": "Gun carrying",
-          "mental_health": "5.3<br/><nobr>(4.6&#8209;6.1)</nobr><br/>13,263",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "6.2<br/><nobr>(2.7&#8209;13.8)</nobr><br/>143"
-            },
-            {
-              "name": "asian",
-              "mental_health": "2.3<br/><nobr>(1.0&#8209;5.2)</nobr><br/>597"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "6.0<br/><nobr>(4.3&#8209;8.3)</nobr><br/>1,378"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "4.3<br/><nobr>(3.4&#8209;5.4)</nobr><br/>4,820"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>85"
-            },
-            {
-              "name": "white",
-              "mental_health": "5.5<br/><nobr>(4.7&#8209;6.6)</nobr><br/>5,348"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "5.7<br/><nobr>(4.0&#8209;7.9)</nobr><br/>634"
-            }
-          ]
-        },
-        {
-          "name": "Physical fighting",
-          "mental_health": "22.6<br/><nobr>(20.9&#8209;24.4)</nobr><br/>13,124",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "29.9<br/><nobr>(20.8&#8209;41.0)</nobr><br/>143"
-            },
-            {
-              "name": "asian",
-              "mental_health": "14.7<br/><nobr>(12.6&#8209;17.1)</nobr><br/>587"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "32.4<br/><nobr>(28.3&#8209;36.8)</nobr><br/>1,247"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "23.0<br/><nobr>(20.8&#8209;25.3)</nobr><br/>4,778"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>82"
-            },
-            {
-              "name": "white",
-              "mental_health": "20.1<br/><nobr>(17.9&#8209;22.5)</nobr><br/>5,405"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "27.6<br/><nobr>(22.7&#8209;33.1)</nobr><br/>628"
-            }
-          ]
-        },
-        {
-          "name": "Bullying at school",
-          "mental_health": "20.2<br/><nobr>(18.8&#8209;21.7)</nobr><br/>15,448",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "20.9<br/><nobr>(14.5&#8209;29.1)</nobr><br/>160"
-            },
-            {
-              "name": "asian",
-              "mental_health": "14.8<br/><nobr>(10.9&#8209;19.8)</nobr><br/>616"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "13.2<br/><nobr>(10.7&#8209;16.3)</nobr><br/>1,639"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "16.5<br/><nobr>(14.2&#8209;19.1)</nobr><br/>5,073"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>99"
-            },
-            {
-              "name": "white",
-              "mental_health": "23.5<br/><nobr>(21.7&#8209;25.3)</nobr><br/>6,796"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "25.8<br/><nobr>(21.0&#8209;31.3)</nobr><br/>729"
-            }
-          ]
-        },
-        {
-          "name": "Attempted suicide",
-          "mental_health": "8.6<br/><nobr>(7.6&#8209;9.6)</nobr><br/>12,567",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "15.0<br/><nobr>(8.9&#8209;24.1)</nobr><br/>127"
-            },
-            {
-              "name": "asian",
-              "mental_health": "7.8<br/><nobr>(4.9&#8209;12.2)</nobr><br/>550"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "8.9<br/><nobr>(6.7&#8209;11.9)</nobr><br/>1,310"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "11.3<br/><nobr>(9.9&#8209;13.0)</nobr><br/>4,363"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>75"
-            },
-            {
-              "name": "white",
-              "mental_health": "6.8<br/><nobr>(5.5&#8209;8.4)</nobr><br/>5,270"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "15.2<br/><nobr>(11.5&#8209;19.8)</nobr><br/>623"
-            }
-          ]
-        },
-        {
-          "name": "Frequent cigarette use",
-          "mental_health": "3.4<br/><nobr>(2.6&#8209;4.3)</nobr><br/>14,989",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "4.2<br/><nobr>(1.5&#8209;11.3)</nobr><br/>151"
-            },
-            {
-              "name": "asian",
-              "mental_health": "3.1<br/><nobr>(1.3&#8209;6.9)</nobr><br/>615"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "1.8<br/><nobr>(1.0&#8209;3.0)</nobr><br/>1,574"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "2.1<br/><nobr>(1.6&#8209;2.9)</nobr><br/>4,878"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>89"
-            },
-            {
-              "name": "white",
-              "mental_health": "4.0<br/><nobr>(2.9&#8209;5.4)</nobr><br/>6,646"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "5.0<br/><nobr>(3.0&#8209;8.2)</nobr><br/>713"
-            }
-          ]
-        },
-        {
-          "name": "Current cigar use",
-          "mental_health": "10.3<br/><nobr>(9.0&#8209;11.8)</nobr><br/>15,185",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "22.1<br/><nobr>(9.2&#8209;44.2)</nobr><br/>159"
-            },
-            {
-              "name": "asian",
-              "mental_health": "3.9<br/><nobr>(1.9&#8209;8.0)</nobr><br/>525"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "11.0<br/><nobr>(8.4&#8209;14.4)</nobr><br/>1,614"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "9.5<br/><nobr>(7.7&#8209;11.7)</nobr><br/>5,004"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>94"
-            },
-            {
-              "name": "white",
-              "mental_health": "10.4<br/><nobr>(8.7&#8209;12.5)</nobr><br/>6,741"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "12.3<br/><nobr>(9.2&#8209;16.4)</nobr><br/>707"
-            }
-          ]
-        },
-        {
-          "name": "Current tobacco use",
-          "mental_health": "31.4<br/><nobr>(29.1&#8209;33.8)</nobr><br/>15,032",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "47.0<br/><nobr>(30.6&#8209;64.1)</nobr><br/>158"
-            },
-            {
-              "name": "asian",
-              "mental_health": "17.5<br/><nobr>(12.2&#8209;24.6)</nobr><br/>546"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "26.3<br/><nobr>(22.7&#8209;30.3)</nobr><br/>1,593"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "31.8<br/><nobr>(28.7&#8209;35.1)</nobr><br/>4,925"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>93"
-            },
-            {
-              "name": "white",
-              "mental_health": "32.9<br/><nobr>(29.0&#8209;37.1)</nobr><br/>6,679"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "34.2<br/><nobr>(29.0&#8209;39.9)</nobr><br/>703"
-            }
-          ]
-        },
-        {
-          "name": "Initiation of alcohol use",
-          "mental_health": "17.2<br/><nobr>(16.0&#8209;18.4)</nobr><br/>15,257",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "17.2<br/><nobr>(9.7&#8209;28.6)</nobr><br/>159"
-            },
-            {
-              "name": "asian",
-              "mental_health": "17.7<br/><nobr>(12.8&#8209;24.0)</nobr><br/>608"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "18.0<br/><nobr>(16.1&#8209;20.2)</nobr><br/>1,605"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "21.3<br/><nobr>(19.4&#8209;23.4)</nobr><br/>4,998"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>97"
-            },
-            {
-              "name": "white",
-              "mental_health": "14.5<br/><nobr>(12.6&#8209;16.6)</nobr><br/>6,733"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "23.4<br/><nobr>(19.6&#8209;27.6)</nobr><br/>720"
-            }
-          ]
-        },
-        {
-          "name": "Ever marijuana use",
-          "mental_health": "38.6<br/><nobr>(35.5&#8209;41.8)</nobr><br/>15,157",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "55.4<br/><nobr>(43.9&#8209;66.4)</nobr><br/>157"
-            },
-            {
-              "name": "asian",
-              "mental_health": "16.0<br/><nobr>(11.6&#8209;21.7)</nobr><br/>607"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "45.5<br/><nobr>(42.4&#8209;48.6)</nobr><br/>1,566"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "45.6<br/><nobr>(42.8&#8209;48.5)</nobr><br/>4,980"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>91"
-            },
-            {
-              "name": "white",
-              "mental_health": "35.2<br/><nobr>(30.9&#8209;39.8)</nobr><br/>6,712"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "42.8<br/><nobr>(38.1&#8209;47.7)</nobr><br/>717"
-            }
-          ]
-        },
-        {
-          "name": "Ever methamphetamine use",
-          "mental_health": "3.0<br/><nobr>(2.4&#8209;3.8)</nobr><br/>14,889",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "2.3<br/><nobr>(0.6&#8209;8.6)</nobr><br/>159"
-            },
-            {
-              "name": "asian",
-              "mental_health": "2.3<br/><nobr>(0.9&#8209;6.1)</nobr><br/>612"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "2.8<br/><nobr>(1.5&#8209;5.1)</nobr><br/>1,428"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "4.4<br/><nobr>(3.3&#8209;5.9)</nobr><br/>4,905"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>89"
-            },
-            {
-              "name": "white",
-              "mental_health": "2.1<br/><nobr>(1.5&#8209;2.8)</nobr><br/>6,690"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "5.5<br/><nobr>(3.0&#8209;9.8)</nobr><br/>692"
-            }
-          ]
-        },
-        {
-          "name": "Illegal drugs at school",
-          "mental_health": "21.7<br/><nobr>(19.4&#8209;24.2)</nobr><br/>14,796",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "19.8<br/><nobr>(13.1&#8209;28.8)</nobr><br/>157"
-            },
-            {
-              "name": "asian",
-              "mental_health": "15.3<br/><nobr>(11.1&#8209;20.9)</nobr><br/>613"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "20.6<br/><nobr>(15.9&#8209;26.2)</nobr><br/>1,398"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "27.2<br/><nobr>(24.8&#8209;29.8)</nobr><br/>4,883"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>88"
-            },
-            {
-              "name": "white",
-              "mental_health": "19.8<br/><nobr>(16.7&#8209;23.4)</nobr><br/>6,666"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "24.7<br/><nobr>(20.1&#8209;30.0)</nobr><br/>689"
-            }
-          ]
-        },
-        {
-          "name": "Ever hallucinogenic drug use",
-          "mental_health": "6.4<br/><nobr>(5.3&#8209;7.7)</nobr><br/>11,412",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "10.0<br/><nobr>(5.7&#8209;16.9)</nobr><br/>134"
-            },
-            {
-              "name": "asian",
-              "mental_health": "4.1<br/><nobr>(1.6&#8209;9.6)</nobr><br/>407"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "4.7<br/><nobr>(3.1&#8209;7.2)</nobr><br/>1,007"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "6.8<br/><nobr>(5.3&#8209;8.7)</nobr><br/>3,946"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>65"
-            },
-            {
-              "name": "white",
-              "mental_health": "6.4<br/><nobr>(5.0&#8209;8.1)</nobr><br/>5,109"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "8.4<br/><nobr>(4.9&#8209;13.9)</nobr><br/>521"
-            }
-          ]
-        },
-        {
-          "name": "Condom use",
-          "mental_health": "43.1<br/><nobr>(40.2&#8209;46.1)</nobr><br/>4,196",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>56"
-            },
-            {
-              "name": "asian",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>89"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "36.6<br/><nobr>(30.3&#8209;43.5)</nobr><br/>478"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "44.4<br/><nobr>(40.9&#8209;48.1)</nobr><br/>1,370"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>20"
-            },
-            {
-              "name": "white",
-              "mental_health": "43.2<br/><nobr>(38.9&#8209;47.5)</nobr><br/>1,913"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "48.8<br/><nobr>(37.6&#8209;60.1)</nobr><br/>205"
-            }
-          ]
-        },
-        {
-          "name": "Alcohol/drugs and sex",
-          "mental_health": "20.6<br/><nobr>(18.9&#8209;22.5)</nobr><br/>4,160",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>56"
-            },
-            {
-              "name": "asian",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>90"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "21.8<br/><nobr>(13.7&#8209;32.9)</nobr><br/>458"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "22.8<br/><nobr>(19.7&#8209;26.3)</nobr><br/>1,375"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>18"
-            },
-            {
-              "name": "white",
-              "mental_health": "19.3<br/><nobr>(17.1&#8209;21.7)</nobr><br/>1,899"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "18.7<br/><nobr>(12.5&#8209;27.1)</nobr><br/>202"
-            }
-          ]
-        },
-        {
-          "name": "No soda drinking",
-          "mental_health": "73.8<br/><nobr>(71.1&#8209;76.4)</nobr><br/>15,292",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "86.3<br/><nobr>(74.9&#8209;93.0)</nobr><br/>159"
-            },
-            {
-              "name": "asian",
-              "mental_health": "60.0<br/><nobr>(52.4&#8209;67.1)</nobr><br/>619"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "77.2<br/><nobr>(73.5&#8209;80.5)</nobr><br/>1,589"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "77.4<br/><nobr>(74.9&#8209;79.7)</nobr><br/>4,982"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>96"
-            },
-            {
-              "name": "white",
-              "mental_health": "72.5<br/><nobr>(68.9&#8209;75.8)</nobr><br/>6,784"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "72.1<br/><nobr>(66.3&#8209;77.2)</nobr><br/>725"
-            }
-          ]
-        },
-        {
-          "name": "Sports drinks >= 3 times",
-          "mental_health": "4.8<br/><nobr>(3.9&#8209;5.9)</nobr><br/>11,305",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "2.9<br/><nobr>(1.0&#8209;7.7)</nobr><br/>130"
-            },
-            {
-              "name": "asian",
-              "mental_health": "3.2<br/><nobr>(1.7&#8209;6.0)</nobr><br/>408"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "9.2<br/><nobr>(6.9&#8209;12.1)</nobr><br/>983"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "7.1<br/><nobr>(5.8&#8209;8.7)</nobr><br/>3,900"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>63"
-            },
-            {
-              "name": "white",
-              "mental_health": "3.1<br/><nobr>(2.3&#8209;4.3)</nobr><br/>5,084"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "4.7<br/><nobr>(2.6&#8209;8.3)</nobr><br/>519"
-            }
-          ]
-        },
-        {
-          "name": "Physical activity >= 5 days",
-          "mental_health": "51.4<br/><nobr>(48.8&#8209;54.0)</nobr><br/>15,245",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "46.1<br/><nobr>(33.8&#8209;58.9)</nobr><br/>158"
-            },
-            {
-              "name": "asian",
-              "mental_health": "65.8<br/><nobr>(58.6&#8209;72.3)</nobr><br/>620"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "56.5<br/><nobr>(51.8&#8209;61.1)</nobr><br/>1,582"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "56.6<br/><nobr>(53.8&#8209;59.3)</nobr><br/>4,972"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>96"
-            },
-            {
-              "name": "white",
-              "mental_health": "47.3<br/><nobr>(43.8&#8209;50.7)</nobr><br/>6,761"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "50.2<br/><nobr>(45.0&#8209;55.3)</nobr><br/>723"
-            }
-          ]
-        },
-        {
-          "name": "Computer use",
-          "mental_health": "41.7<br/><nobr>(39.3&#8209;44.2)</nobr><br/>15,178",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "35.9<br/><nobr>(24.7&#8209;48.8)</nobr><br/>154"
-            },
-            {
-              "name": "asian",
-              "mental_health": "45.6<br/><nobr>(36.8&#8209;54.7)</nobr><br/>619"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "44.6<br/><nobr>(40.2&#8209;49.1)</nobr><br/>1,579"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "46.2<br/><nobr>(44.3&#8209;48.1)</nobr><br/>4,950"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>96"
-            },
-            {
-              "name": "white",
-              "mental_health": "38.6<br/><nobr>(34.8&#8209;42.5)</nobr><br/>6,725"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "46.9<br/><nobr>(42.9&#8209;51.0)</nobr><br/>720"
-            }
-          ]
-        },
-        {
-          "name": "Muscle strengthening",
-          "mental_health": "46.6<br/><nobr>(44.4&#8209;48.9)</nobr><br/>11,320",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "33.0<br/><nobr>(21.7&#8209;46.8)</nobr><br/>127"
-            },
-            {
-              "name": "asian",
-              "mental_health": "59.0<br/><nobr>(52.6&#8209;65.2)</nobr><br/>408"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "47.7<br/><nobr>(43.4&#8209;52.0)</nobr><br/>983"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "47.6<br/><nobr>(44.6&#8209;50.7)</nobr><br/>3,894"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>64"
-            },
-            {
-              "name": "white",
-              "mental_health": "45.5<br/><nobr>(42.3&#8209;48.6)</nobr><br/>5,107"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "46.3<br/><nobr>(39.0&#8209;53.8)</nobr><br/>518"
-            }
-          ]
-        },
-        {
-          "name": "Sleep",
-          "mental_health": "72.7<br/><nobr>(70.4&#8209;74.9)</nobr><br/>14,534",
-          "yrbsRace": [
-            {
-              "name": "ai_an",
-              "mental_health": "75.0<br/><nobr>(60.0&#8209;85.7)</nobr><br/>150"
-            },
-            {
-              "name": "asian",
-              "mental_health": "79.3<br/><nobr>(72.2&#8209;84.9)</nobr><br/>607"
-            },
-            {
-              "name": "black_african_american",
-              "mental_health": "76.6<br/><nobr>(72.8&#8209;79.9)</nobr><br/>1,383"
-            },
-            {
-              "name": "hispanic",
-              "mental_health": "70.2<br/><nobr>(66.6&#8209;73.6)</nobr><br/>4,736"
-            },
-            {
-              "name": "nhopi",
-              "mental_health": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>86"
-            },
-            {
-              "name": "white",
-              "mental_health": "72.0<br/><nobr>(69.5&#8209;74.4)</nobr><br/>6,596"
-            },
-            {
-              "name": "multiple_race",
-              "mental_health": "79.6<br/><nobr>(74.8&#8209;83.7)</nobr><br/>677"
-            }
-          ]
-        }
-      ]
-    },
-    "maxQuestion": "Safety concerns at school"
-  }},
+       "table":{
+         "question":[
+           {
+             "name":"qn8",
+             "YES":{
+               "mental_health":{
+                 "mean":"87.4",
+                 "ci_l":"86.5",
+                 "ci_u":"88.3",
+                 "count":121103
+               },
+               "sex":[
+                 {
+                   "name":"Male",
+                   "mental_health":{
+                     "mean":"88.3",
+                     "ci_l":"87.4",
+                     "ci_u":"89.1",
+                     "count":66586
+                   },
+                   "race":[
+                     {
+                       "name":"Asian",
+                       "mental_health":{
+                         "mean":"81.3",
+                         "ci_l":"78.1",
+                         "ci_u":"84.1",
+                         "count":2115
+                       }
+                     },
+                     {
+                       "name":"Black or African American",
+                       "mental_health":{
+                         "mean":"94.4",
+                         "ci_l":"93.7",
+                         "ci_u":"95.1",
+                         "count":13866
+                       }
+                     },
+                     {
+                       "name":"Native Hawaiian/other PI",
+                       "mental_health":{
+                         "mean":"81.2",
+                         "ci_l":"73.2",
+                         "ci_u":"87.3",
+                         "count":417
+                       }
+                     },
+                     {
+                       "name":"Am Indian / Alaska Native",
+                       "mental_health":{
+                         "mean":"91.5",
+                         "ci_l":"87.3",
+                         "ci_u":"94.3",
+                         "count":832
+                       }
+                     },
+                     {
+                       "name":"White",
+                       "mental_health":{
+                         "mean":"86.8",
+                         "ci_l":"85.7",
+                         "ci_u":"87.9",
+                         "count":28769
+                       }
+                     },
+                     {
+                       "name":"Hispanic/Latino",
+                       "mental_health":{
+                         "mean":"91.5",
+                         "ci_l":"90.6",
+                         "ci_u":"92.3",
+                         "count":17566
+                       }
+                     },
+                     {
+                       "name":"Multiple - Non-Hispanic",
+                       "mental_health":{
+                         "mean":"83.9",
+                         "ci_l":"78.7",
+                         "ci_u":"88.0",
+                         "count":1509
+                       }
+                     }
+                   ]
+                 },
+                 {
+                   "name":"Female",
+                   "race":[
+                     {
+                       "name":"White",
+                       "mental_health":{
+                         "mean":"84.8",
+                         "ci_l":"83.4",
+                         "ci_u":"86.1",
+                         "count":23714
+                       }
+                     },
+                     {
+                       "name":"Am Indian / Alaska Native",
+                       "mental_health":{
+                         "mean":"88.4",
+                         "ci_l":"83.1",
+                         "ci_u":"92.2",
+                         "count":519
+                       }
+                     },
+                     {
+                       "name":"Hispanic/Latino",
+                       "mental_health":{
+                         "mean":"89.6",
+                         "ci_l":"88.5",
+                         "ci_u":"90.6",
+                         "count":14016
+                       }
+                     },
+                     {
+                       "name":"Asian",
+                       "mental_health":{
+                         "mean":"76.8",
+                         "ci_l":"72.9",
+                         "ci_u":"80.2",
+                         "count":1541
+                       }
+                     },
+                     {
+                       "name":"Native Hawaiian/other PI",
+                       "mental_health":{
+                         "mean":"81.3",
+                         "ci_l":"72.0",
+                         "ci_u":"88.1",
+                         "count":274
+                       }
+                     },
+                     {
+                       "name":"Black or African American",
+                       "mental_health":{
+                         "mean":"92.9",
+                         "ci_l":"91.5",
+                         "ci_u":"94.0",
+                         "count":11670
+                       }
+                     },
+                     {
+                       "name":"Multiple - Non-Hispanic",
+                       "mental_health":{
+                         "mean":"82.1",
+                         "ci_l":"77.5",
+                         "ci_u":"85.9",
+                         "count":1370
+                       }
+                     }
+                   ],
+                   "mental_health":{
+                     "mean":"86.3",
+                     "ci_l":"85.1",
+                     "ci_u":"87.3",
+                     "count":54197
+                   }
+                 }
+               ]
+             },
+             "NO":{
+               "mental_health":{
+                 "mean":"87.4",
+                 "ci_l":"86.5",
+                 "ci_u":"88.3",
+                 "count":121103
+               },
+               "sex":[
+                 {
+                   "name":"Male",
+                   "mental_health":{
+                     "mean":"88.3",
+                     "ci_l":"87.4",
+                     "ci_u":"89.1",
+                     "count":66586
+                   },
+                   "race":[
+                     {
+                       "name":"Asian",
+                       "mental_health":{
+                         "mean":"81.3",
+                         "ci_l":"78.1",
+                         "ci_u":"84.1",
+                         "count":2115
+                       }
+                     },
+                     {
+                       "name":"Black or African American",
+                       "mental_health":{
+                         "mean":"94.4",
+                         "ci_l":"93.7",
+                         "ci_u":"95.1",
+                         "count":13866
+                       }
+                     },
+                     {
+                       "name":"Native Hawaiian/other PI",
+                       "mental_health":{
+                         "mean":"81.2",
+                         "ci_l":"73.2",
+                         "ci_u":"87.3",
+                         "count":417
+                       }
+                     },
+                     {
+                       "name":"Am Indian / Alaska Native",
+                       "mental_health":{
+                         "mean":"91.5",
+                         "ci_l":"87.3",
+                         "ci_u":"94.3",
+                         "count":832
+                       }
+                     },
+                     {
+                       "name":"White",
+                       "mental_health":{
+                         "mean":"86.8",
+                         "ci_l":"85.7",
+                         "ci_u":"87.9",
+                         "count":28769
+                       }
+                     },
+                     {
+                       "name":"Hispanic/Latino",
+                       "mental_health":{
+                         "mean":"91.5",
+                         "ci_l":"90.6",
+                         "ci_u":"92.3",
+                         "count":17566
+                       }
+                     },
+                     {
+                       "name":"Multiple - Non-Hispanic",
+                       "mental_health":{
+                         "mean":"83.9",
+                         "ci_l":"78.7",
+                         "ci_u":"88.0",
+                         "count":1509
+                       }
+                     }
+                   ]
+                 },
+                 {
+                   "name":"Female",
+                   "race":[
+                     {
+                       "name":"White",
+                       "mental_health":{
+                         "mean":"84.8",
+                         "ci_l":"83.4",
+                         "ci_u":"86.1",
+                         "count":23714
+                       }
+                     },
+                     {
+                       "name":"Am Indian / Alaska Native",
+                       "mental_health":{
+                         "mean":"88.4",
+                         "ci_l":"83.1",
+                         "ci_u":"92.2",
+                         "count":519
+                       }
+                     },
+                     {
+                       "name":"Hispanic/Latino",
+                       "mental_health":{
+                         "mean":"89.6",
+                         "ci_l":"88.5",
+                         "ci_u":"90.6",
+                         "count":14016
+                       }
+                     },
+                     {
+                       "name":"Asian",
+                       "mental_health":{
+                         "mean":"76.8",
+                         "ci_l":"72.9",
+                         "ci_u":"80.2",
+                         "count":1541
+                       }
+                     },
+                     {
+                       "name":"Native Hawaiian/other PI",
+                       "mental_health":{
+                         "mean":"81.3",
+                         "ci_l":"72.0",
+                         "ci_u":"88.1",
+                         "count":274
+                       }
+                     },
+                     {
+                       "name":"Black or African American",
+                       "mental_health":{
+                         "mean":"92.9",
+                         "ci_l":"91.5",
+                         "ci_u":"94.0",
+                         "count":11670
+                       }
+                     },
+                     {
+                       "name":"Multiple - Non-Hispanic",
+                       "mental_health":{
+                         "mean":"82.1",
+                         "ci_l":"77.5",
+                         "ci_u":"85.9",
+                         "count":1370
+                       }
+                     }
+                   ],
+                   "mental_health":{
+                     "mean":"86.3",
+                     "ci_l":"85.1",
+                     "ci_u":"87.3",
+                     "count":54197
+                   }
+                 }
+               ]
+             }
+           },
+           {
+             "name":"qn9",
+             "YES":{
+               "mental_health":{
+                 "mean":"14.2",
+                 "ci_l":"13.4",
+                 "ci_u":"15.1",
+                 "count":186154
+               },
+               "sex":[
+                 {
+                   "name":"Male",
+                   "mental_health":{
+                     "mean":"17.3",
+                     "ci_l":"16.2",
+                     "ci_u":"18.3",
+                     "count":91770
+                   },
+                   "race":[
+                     {
+                       "name":"Asian",
+                       "mental_health":{
+                         "mean":"11.3",
+                         "ci_l":"9.7",
+                         "ci_u":"13.2",
+                         "count":3219
+                       }
+                     },
+                     {
+                       "name":"Black or African American",
+                       "mental_health":{
+                         "mean":"22.7",
+                         "ci_l":"21.0",
+                         "ci_u":"24.4",
+                         "count":19484
+                       }
+                     },
+                     {
+                       "name":"Native Hawaiian/other PI",
+                       "mental_health":{
+                         "mean":"21.9",
+                         "ci_l":"16.4",
+                         "ci_u":"28.7",
+                         "count":605
+                       }
+                     },
+                     {
+                       "name":"Am Indian / Alaska Native",
+                       "mental_health":{
+                         "mean":"22.4",
+                         "ci_l":"18.4",
+                         "ci_u":"27.1",
+                         "count":1158
+                       }
+                     },
+                     {
+                       "name":"White",
+                       "mental_health":{
+                         "mean":"16.7",
+                         "ci_l":"15.4",
+                         "ci_u":"18.1",
+                         "count":38390
+                       }
+                     },
+                     {
+                       "name":"Hispanic/Latino",
+                       "mental_health":{
+                         "mean":"15.3",
+                         "ci_l":"13.9",
+                         "ci_u":"16.8",
+                         "count":24735
+                       }
+                     },
+                     {
+                       "name":"Multiple - Non-Hispanic",
+                       "mental_health":{
+                         "mean":"14.0",
+                         "ci_l":"11.3",
+                         "ci_u":"17.2",
+                         "count":2074
+                       }
+                     }
+                   ]
+                 },
+                 {
+                   "name":"Female",
+                   "race":[
+                     {
+                       "name":"White",
+                       "mental_health":{
+                         "mean":"9.8",
+                         "ci_l":"8.9",
+                         "ci_u":"10.8",
+                         "count":37544
+                       }
+                     },
+                     {
+                       "name":"Am Indian / Alaska Native",
+                       "mental_health":{
+                         "mean":"15.7",
+                         "ci_l":"12.3",
+                         "ci_u":"20.0",
+                         "count":942
+                       }
+                     },
+                     {
+                       "name":"Hispanic/Latino",
+                       "mental_health":{
+                         "mean":"11.2",
+                         "ci_l":"10.1",
+                         "ci_u":"12.3",
+                         "count":25577
+                       }
+                     },
+                     {
+                       "name":"Asian",
+                       "mental_health":{
+                         "mean":"9.1",
+                         "ci_l":"7.6",
+                         "ci_u":"10.8",
+                         "count":3065
+                       }
+                     },
+                     {
+                       "name":"Native Hawaiian/other PI",
+                       "mental_health":{
+                         "mean":"11.1",
+                         "ci_l":"7.5",
+                         "ci_u":"16.2",
+                         "count":492
+                       }
+                     },
+                     {
+                       "name":"Black or African American",
+                       "mental_health":{
+                         "mean":"15.8",
+                         "ci_l":"14.5",
+                         "ci_u":"17.3",
+                         "count":21819
+                       }
+                     },
+                     {
+                       "name":"Multiple - Non-Hispanic",
+                       "mental_health":{
+                         "mean":"7.3",
+                         "ci_l":"5.6",
+                         "ci_u":"9.5",
+                         "count":2472
+                       }
+                     }
+                   ],
+                   "mental_health":{
+                     "mean":"11.0",
+                     "ci_l":"10.2",
+                     "ci_u":"11.8",
+                     "count":93823
+                   }
+                 }
+               ]
+             },
+             "NO":{
+               "mental_health":{
+                 "mean":"14.2",
+                 "ci_l":"13.4",
+                 "ci_u":"15.1",
+                 "count":186154
+               },
+               "sex":[
+                 {
+                   "name":"Male",
+                   "mental_health":{
+                     "mean":"17.3",
+                     "ci_l":"16.2",
+                     "ci_u":"18.3",
+                     "count":91770
+                   },
+                   "race":[
+                     {
+                       "name":"Asian",
+                       "mental_health":{
+                         "mean":"11.3",
+                         "ci_l":"9.7",
+                         "ci_u":"13.2",
+                         "count":3219
+                       }
+                     },
+                     {
+                       "name":"Black or African American",
+                       "mental_health":{
+                         "mean":"22.7",
+                         "ci_l":"21.0",
+                         "ci_u":"24.4",
+                         "count":19484
+                       }
+                     },
+                     {
+                       "name":"Native Hawaiian/other PI",
+                       "mental_health":{
+                         "mean":"21.9",
+                         "ci_l":"16.4",
+                         "ci_u":"28.7",
+                         "count":605
+                       }
+                     },
+                     {
+                       "name":"Am Indian / Alaska Native",
+                       "mental_health":{
+                         "mean":"22.4",
+                         "ci_l":"18.4",
+                         "ci_u":"27.1",
+                         "count":1158
+                       }
+                     },
+                     {
+                       "name":"White",
+                       "mental_health":{
+                         "mean":"16.7",
+                         "ci_l":"15.4",
+                         "ci_u":"18.1",
+                         "count":38390
+                       }
+                     },
+                     {
+                       "name":"Hispanic/Latino",
+                       "mental_health":{
+                         "mean":"15.3",
+                         "ci_l":"13.9",
+                         "ci_u":"16.8",
+                         "count":24735
+                       }
+                     },
+                     {
+                       "name":"Multiple - Non-Hispanic",
+                       "mental_health":{
+                         "mean":"14.0",
+                         "ci_l":"11.3",
+                         "ci_u":"17.2",
+                         "count":2074
+                       }
+                     }
+                   ]
+                 },
+                 {
+                   "name":"Female",
+                   "race":[
+                     {
+                       "name":"White",
+                       "mental_health":{
+                         "mean":"9.8",
+                         "ci_l":"8.9",
+                         "ci_u":"10.8",
+                         "count":37544
+                       }
+                     },
+                     {
+                       "name":"Am Indian / Alaska Native",
+                       "mental_health":{
+                         "mean":"15.7",
+                         "ci_l":"12.3",
+                         "ci_u":"20.0",
+                         "count":942
+                       }
+                     },
+                     {
+                       "name":"Hispanic/Latino",
+                       "mental_health":{
+                         "mean":"11.2",
+                         "ci_l":"10.1",
+                         "ci_u":"12.3",
+                         "count":25577
+                       }
+                     },
+                     {
+                       "name":"Asian",
+                       "mental_health":{
+                         "mean":"9.1",
+                         "ci_l":"7.6",
+                         "ci_u":"10.8",
+                         "count":3065
+                       }
+                     },
+                     {
+                       "name":"Native Hawaiian/other PI",
+                       "mental_health":{
+                         "mean":"11.1",
+                         "ci_l":"7.5",
+                         "ci_u":"16.2",
+                         "count":492
+                       }
+                     },
+                     {
+                       "name":"Black or African American",
+                       "mental_health":{
+                         "mean":"15.8",
+                         "ci_l":"14.5",
+                         "ci_u":"17.3",
+                         "count":21819
+                       }
+                     },
+                     {
+                       "name":"Multiple - Non-Hispanic",
+                       "mental_health":{
+                         "mean":"7.3",
+                         "ci_l":"5.6",
+                         "ci_u":"9.5",
+                         "count":2472
+                       }
+                     }
+                   ],
+                   "mental_health":{
+                     "mean":"11.0",
+                     "ci_l":"10.2",
+                     "ci_u":"11.8",
+                     "count":93823
+                   }
+                 }
+               ]
+             }
+           }
+         ]
+       }
+    }
+  },
   "messages": "success"
 }
