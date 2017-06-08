@@ -45,7 +45,7 @@
       },
       'getYRBSQuestionsTree' : {
         method : 'GET',
-        url: '/yrbsQuestionsTree/:years'
+        url: '/yrbsQuestionsTree'
       },
       'getPRAMSQuestionsTree': {
           method: 'GET',

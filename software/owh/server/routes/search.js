@@ -49,9 +49,8 @@ var searchRouter = function(app, rConfig) {
         }
     });
 
-    app.get('/yrbsQuestionsTree/:years', function (req, res) {
-        var years = req.params.years.split(',');
-        new yrbs().getQuestionsTreeByYears(years).then(function (response) {
+    app.get('/yrbsQuestionsTree', function (req, res) {
+        new yrbs().getYRBSQuestionsTree().then(function (response) {
             res.send(new result('OK', response, "success"));
         });
     });
