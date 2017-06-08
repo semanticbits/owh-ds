@@ -1053,5 +1053,15 @@ var mortalityStepDefinitionsWrapper = function () {
             });
         }).then(next);
     });
+
+    this.Then(/^I should see the options "([^"]*)" enabled$/, function (filters, next) {
+        var enabled = filters.split(', ');
+        mortalityPage.getDisabledSideFilters().then(function (disabled) {
+            enabled.map(function (filter) {
+                expect(disabled).to.not.contain(filter);
+            });
+        }).then(next);
+    });
+    
 };
 module.exports = mortalityStepDefinitionsWrapper;
