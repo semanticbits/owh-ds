@@ -52,7 +52,6 @@ describe('mapService', function(){
             //mouseover event
             var evt = document.createEvent('MouseEvents');
             evt.initEvent('mouseover', true, true);
-            legend.childNodes[0].childNodes[0].append = function (content) {};
             var legendInterval = legend.childNodes[0].childNodes[0].childNodes[0];
             legendInterval.dispatchEvent(evt);
 
