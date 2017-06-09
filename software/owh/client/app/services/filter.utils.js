@@ -464,7 +464,9 @@
         return {
             getBridgeDataFilters: getBridgeDataFilters,
             getNatalityDataFilters: getNatalityDataFilters,
-            getInfantMortalityDataFilters: getInfantMortalityDataFilters
+            getInfantMortalityDataFilters: getInfantMortalityDataFilters,
+            getSTDDataFilters: getSTDDataFilters,
+            getAllOptionValues: getAllOptionValues
         };
 
         function getBridgeDataFilters() {
@@ -884,6 +886,221 @@
                     value: [], defaultGroup: 'column', groupBy: false, filterType: 'checkbox',
                     autoCompleteOptions: stateOptions, helpText: 'label.help.text.state'}
             ]
+        }
+
+        /**
+         * To prepare all STD side filters
+         * @return STD side filters array
+         */
+        function getSTDDataFilters() {
+            var stdDiseaseOptions = [
+                {"key": "Chlamydia", "title": "Chlamydia"},
+                {"key": "Gonorrhea", "title": "Gonorrhea"},
+                {"key": "Primary and Secondary Syphilis", "title": "Primary and Secondary Syphilis"},
+                {"key": "Early Latent Syphilis", "title": "Early Latent Syphilis"},
+                {"key": "Congenital Syphilis", "title": "Congenital Syphilis"}
+            ];
+
+            var stdStateOptions = [
+                {"key": "National", "title": "National"},
+                {"key": "AL", "title": "Alabama"},
+                {"key": "AK", "title": "Alaska"},
+                {"key": "AZ", "title": "Arizona"},
+                {"key": "AR", "title": "Arkansas"},
+                {"key": "CA", "title": "California"},
+                {"key": "CO", "title": "Colorado"},
+                {"key": "CT", "title": "Connecticut"},
+                {"key": "DE", "title": "Delaware"},
+                {"key": "DC", "title": "District of Columbia"},
+                {"key": "FL", "title": "Florida"},
+                {"key": "GA", "title": "Georgia"},
+                {"key": "HI", "title": "Hawaii"},
+                {"key": "ID", "title": "Idaho"},
+                {"key": "IL", "title": "Illinois"},
+                {"key": "IN", "title": "Indiana"},
+                {"key": "IA", "title": "Iowa"},
+                {"key": "KS", "title": "Kansas"},
+                {"key": "KY", "title": "Kentucky"},
+                {"key": "LA", "title": "Louisiana"},
+                {"key": "ME", "title": "Maine"},
+                {"key": "MD", "title": "Maryland"},
+                {"key": "MA", "title": "Massachusetts"},
+                {"key": "MI", "title": "Michigan"},
+                {"key": "MN", "title": "Minnesota"},
+                {"key": "MS", "title": "Mississippi"},
+                {"key": "MO", "title": "Missouri"},
+                {"key": "MT", "title": "Montana"},
+                {"key": "NE", "title": "Nebraska"},
+                {"key": "NV", "title": "Nevada"},
+                {"key": "NH", "title": "New Hampshire"},
+                {"key": "NJ", "title": "New Jersey"},
+                {"key": "NM", "title": "New Mexico"},
+                {"key": "NY", "title": "New York"},
+                {"key": "NC", "title": "North Carolina"},
+                {"key": "ND", "title": "North Dakota"},
+                {"key": "OH", "title": "Ohio"},
+                {"key": "OK", "title": "Oklahoma"},
+                {"key": "OR", "title": "Oregon"},
+                {"key": "PA", "title": "Pennsylvania"},
+                {"key": "RI", "title": "Rhode Island"},
+                {"key": "SC", "title": "South Carolina"},
+                {"key": "SD", "title": "South Dakota"},
+                {"key": "TN", "title": "Tennessee"},
+                {"key": "TX", "title": "Texas"},
+                {"key": "UT", "title": "Utah"},
+                {"key": "VT", "title": "Vermont"},
+                {"key": "VA", "title": "Virginia"},
+                {"key": "WA", "title": "Washington"},
+                {"key": "WV", "title": "West Virginia"},
+                {"key": "WI", "title": "Wisconsin"},
+                {"key": "WY", "title": "Wyoming"}
+            ];
+            var stdYearOptions = [
+                {"key": "2015", "title": "2015"},
+                {"key": "2014", "title": "2014"},
+                {"key": "2013", "title": "2013"},
+                {"key": "2012", "title": "2012"},
+                {"key": "2011", "title": "2011"},
+                {"key": "2010", "title": "2010"},
+                {"key": "2009", "title": "2009"},
+                {"key": "2008", "title": "2008"},
+                {"key": "2007", "title": "2007"},
+                {"key": "2006", "title": "2006"},
+                {"key": "2005", "title": "2005"},
+                {"key": "2004", "title": "2004"},
+                {"key": "2003", "title": "2003"},
+                {"key": "2002", "title": "2002"},
+                {"key": "2001", "title": "2001"},
+                {"key": "2000", "title": "2000"}
+            ];
+            var stdAgeGroupOptions = [
+                {"key": "All age groups", "title": "All age groups"},
+                {"key": "Age 15 and older", "title": "Age 15 and older"},
+                {"key": "0-4", "title": "0-4"},
+                {"key": "0-14", "title": "0-14"},
+                {"key": "05-14", "title": "05-14"},
+                {"key": "13-24", "title": "13-24"},
+                {"key": "15-19", "title": "15-19"},
+                {"key": "15-24", "title": "15-24"},
+                {"key": "15-39", "title": "15-39"},
+                {"key": "20-24", "title": "20-24"},
+                {"key": "25-29", "title": "25-29"},
+                {"key": "25-34", "title": "25-34"},
+                {"key": "30-34", "title": "30-34"},
+                {"key": "35-39", "title": "35-39"},
+                {"key": "35-44", "title": "35-44"},
+                {"key": "40-44", "title": "40-44"},
+                {"key": "40-59", "title": "40-59"},
+                {"key": "45-54", "title": "45-54"},
+                {"key": "55-64", "title": "55-64"},
+                {"key": "55+", "title": "55+"},
+                {"key": "60+", "title": "60+"},
+                {"key": "65+", "title": "65+"},
+                {"key": "Unknown", "title": "Unknown"}
+            ];
+            var stdRaceOptions = [
+                {"key": "All races/ethnicities", "title": "All races/ethnicities"},
+                {"key": "American Indian or Alaska Native", "title": "American Indian or Alaska Native"},
+                {"key": "Asian", "title": "Asian"},
+                {"key": "Black or African American", "title": "Black or African American"},
+                {"key": "Hispanic or Latino", "title": "Hispanic or Latino"},
+                {"key": "Native Hawaiian or Other Pacific Islander", "title": "Native Hawaiian or Other Pacific Islander"},
+                {"key": "White", "title": "White"},
+                {"key": "Multiple races", "title": "Multiple races"},
+                {"key": "Unknown", "title": "Unknown"},
+                {"key": "Asian or Pacific Islander", "title": "Asian or Pacific Islander"},
+                {"key": "Other", "title": "Other"}
+
+            ];
+            var stdGenderOptions = [
+                {"key": "Both sexes", "title": "Both sexes"},
+                {"key": "Female", "title": "Female"},
+                {"key": "Male", "title": "Male"}
+            ];
+
+            return [
+                {
+                    key: 'current_year',
+                    title: 'label.filter.year',
+                    queryKey: "current_year",
+                    primary: false,
+                    value: "2015",
+                    groupBy: false,
+                    filterType: 'radio',
+                    autoCompleteOptions: stdYearOptions,
+                    doNotShowAll: true,
+                    helpText: "label.help.text.year"
+                },
+                {
+                    key: 'disease',
+                    title: 'label.filter.disease',
+                    queryKey: "disease",
+                    primary: false,
+                    value: 'Chlamydia',
+                    groupBy: false,
+                    filterType: 'radio',
+                    autoCompleteOptions: stdDiseaseOptions,
+                    doNotShowAll: true,
+                    helpText: "label.help.text.natality.state"
+                },
+
+                {
+                    key: 'state', title: 'label.filter.state', queryKey: "state", primary: false, value: 'National',
+                    groupBy: false, filterType: 'radio', displaySearchBox: true, displaySelectedFirst: true,
+                    autoCompleteOptions: stdStateOptions,
+                    doNotShowAll: true,
+                    helpText: "label.help.text.natality.state"
+                },
+
+                {
+                    key: 'age_group',
+                    title: 'label.filter.agegroup',
+                    queryKey: "age_group",
+                    primary: false,
+                    value: 'All age groups',
+                    groupBy: false,
+                    filterType: 'radio',
+                    autoCompleteOptions: stdAgeGroupOptions,
+                    doNotShowAll: true,
+                    helpText: "label.help.text.bridged-race.agegroup"
+                },
+
+                {
+                    key: 'race',
+                    title: 'label.yrbs.filter.race',
+                    queryKey: "race_ethnicity",
+                    primary: false,
+                    value: 'All races/ethnicities',
+                    groupBy: "row",
+                    filterType: 'radio',
+                    autoCompleteOptions: stdRaceOptions,
+                    doNotShowAll: true,
+                    helpText: "label.help.text.race"
+                },
+
+                {
+                    key: 'sex',
+                    title: 'label.filter.gender',
+                    queryKey: "sex",
+                    primary: false,
+                    value: 'Both sexes',
+                    groupBy: "column",
+                    filterType: 'radio',
+                    autoCompleteOptions: stdGenderOptions,
+                    doNotShowAll: true,
+                    helpText: "label.help.text.sex"
+                }
+                ]
+
+        }
+
+        /**
+         * STD, TB and HIV-AIDS filters has different types of All values
+         * To show data table data in proper order, we need this list
+         * @return Side filters All option values
+         */
+        function getAllOptionValues() {
+            return ["Both sexes", "All races/ethnicities", "All age groups", "National"]
         }
 
     }

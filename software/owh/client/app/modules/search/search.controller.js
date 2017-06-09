@@ -87,7 +87,8 @@
                 'mother_age_5_interval', 'mother_education', 'gestational_age_r11', 'gestational_age_r10', 'gestation_weekly',
                 'prenatal_care', 'birth_weight', 'birth_plurality', 'live_birth', 'birth_place', 'delivery_method', 'medical_attendant',
                 'ucd-chapter-10', 'state'],
-            "label.prams.title": []
+            "label.prams.title": [],
+            "label.filter.std": []
         };
 
         sc.optionsGroup = {
@@ -119,6 +120,7 @@
             birth_rates: {},
             fertility_rates: {},
             bridge_race:{},
+            std:{},
             mental_health:{},
             natality:{},
             prams:{},

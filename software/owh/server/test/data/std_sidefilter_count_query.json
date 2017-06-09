@@ -1,0 +1,169 @@
+{
+  "size": 0,
+  "aggregations": {
+    "disease": {
+      "terms": {
+        "field": "disease",
+        "size": 0
+      },
+      "aggregations": {
+        "group_count_cases": {
+          "sum": {
+            "field": "cases"
+          }
+        }
+      }
+    },
+    "group_count_cases": {
+      "sum": {
+        "field": "cases"
+      }
+    },
+    "current_year": {
+      "terms": {
+        "field": "current_year",
+        "size": 0
+      },
+      "aggregations": {
+        "group_count_cases": {
+          "sum": {
+            "field": "cases"
+          }
+        }
+      }
+    },
+    "sex": {
+      "terms": {
+        "field": "sex",
+        "size": 0
+      },
+      "aggregations": {
+        "group_count_cases": {
+          "sum": {
+            "field": "cases"
+          }
+        }
+      }
+    },
+    "race": {
+      "terms": {
+        "field": "race_ethnicity",
+        "size": 0
+      },
+      "aggregations": {
+        "group_count_cases": {
+          "sum": {
+            "field": "cases"
+          }
+        }
+      }
+    },
+    "age_group": {
+      "terms": {
+        "field": "age_group",
+        "size": 0
+      },
+      "aggregations": {
+        "group_count_cases": {
+          "sum": {
+            "field": "cases"
+          }
+        }
+      }
+    },
+    "state": {
+      "terms": {
+        "field": "state",
+        "size": 0
+      },
+      "aggregations": {
+        "group_count_cases": {
+          "sum": {
+            "field": "cases"
+          }
+        }
+      }
+    }
+  },
+  "query": {
+    "filtered": {
+      "query": {
+        "bool": {
+          "must": []
+        }
+      },
+      "filter": {
+        "bool": {
+          "must": [
+            {
+              "bool": {
+                "should": [
+                  {
+                    "term": {
+                      "sex": "Both sexes"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "bool": {
+                "should": [
+                  {
+                    "term": {
+                      "disease": "Chlamydia"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "bool": {
+                "should": [
+                  {
+                    "term": {
+                      "race_ethnicity": "All races/ethnicities"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "bool": {
+                "should": [
+                  {
+                    "term": {
+                      "current_year": "2015"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "bool": {
+                "should": [
+                  {
+                    "term": {
+                      "age_group": "All age groups"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "bool": {
+                "should": [
+                  {
+                    "term": {
+                      "state": "National"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

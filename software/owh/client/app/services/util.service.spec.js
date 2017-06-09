@@ -265,6 +265,12 @@ describe('utilService', function(){
         expect(row[2].percentage).toEqual(undefined);
     });
 
+    it('test utils prepareMixedTableData for std row and column headers', function () {
+        var stdHeadersAndData = __fixtures__['app/services/fixtures/util.service/stdHeadersAndData'];
+        var result = utils.prepareMixedTableData(stdHeadersAndData.headers, stdHeadersAndData.data, 'std', 1, undefined, true, undefined, ["pop"], ["Both sexes", "All races/ethnicities", "All age groups", "National"]);
+        expect(JSON.stringify(result)).toEqual(JSON.stringify(stdHeadersAndData.expectedResults));
+    });
+
     it('test utils concatenateByKey', function () {
         expect(utils.concatenateByKey(list, 'title', ',')).toEqual("Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Unknown");
         expect(utils.concatenateByKey(list, 'key')).toEqual("1, 2, 3, 4, 5, 6, 7, 9");

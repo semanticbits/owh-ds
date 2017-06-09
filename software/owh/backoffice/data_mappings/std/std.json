@@ -6,7 +6,8 @@
       "column_index": 0,
       "type": "map",
       "field": "DISEASE",
-      "mappings": {"1": "HIV, stage 3 (AIDS)",
+      "mappings": {
+        "1": "HIV, stage 3 (AIDS)",
         "2": "HIV, stage 3 (AIDS) deaths",
         "3": "Persons living with HIV, stage 3 (AIDS)",
         "4": "HIV diagnoses",
@@ -29,6 +30,7 @@
       "type": "map",
       "field": "AREA",
       "mappings": {
+        "00": "National",
         "01": "AL",
         "02": "AK",
         "04": "AZ",
@@ -93,7 +95,9 @@
       "column_index": 3,
       "type": "map",
       "field": "AGEGROUP",
-      "mappings": {"20": "Age 15 and older",
+      "mappings": {
+        "10": "All age groups",
+        "20": "Age 15 and older",
         "30": "0-4",
         "40": "0-14",
         "50": "05-14",
@@ -122,6 +126,7 @@
       "type": "map",
       "field": "RACE",
       "mappings": {
+        "0": "All races/ethnicities",
         "1": "American Indian or Alaska Native",
         "2": "Asian",
         "3": "Black or African American",
@@ -138,8 +143,9 @@
       "column": "sex",
       "column_index": 5,
       "type": "map",
-      "field": "RACE",
+      "field": "SEX",
       "mappings": {
+        "0": "Both sexes",
         "1": "Male",
         "2": "Female"
       }
@@ -149,7 +155,8 @@
       "column_index": 6,
       "type": "map",
       "field": "TRANSMISSION",
-      "mappings": {"0": "No stratification",
+      "mappings": {
+        "0": "No stratification",
         "1": "Male-to-Male sexual contact",
         "2": "Injection drug use",
         "3": "Male-to-male sexual contact and injection drug use",
