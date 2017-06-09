@@ -57,7 +57,7 @@ describe('mapService', function(){
 
             //style changed
             expect(map._layers[0].style).toEqual({"color":"#333333","weight":2.6,"opacity":1,"fillOpacity":0.9});
-            //no style change
+            //no style change for polygon which does not match event target
             expect(map._layers[1].style).toEqual({color: 'black', fillOpacity: 0.7});
 
             //mouseout event
