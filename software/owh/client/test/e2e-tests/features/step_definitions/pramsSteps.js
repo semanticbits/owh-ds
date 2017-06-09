@@ -43,7 +43,7 @@ var PRAMSStepDefinitionsWrapper = function () {
             //Alabama
             expect(data[2]).to.contains('Not Available');
             //Alaska
-            expect(data[3]).to.contains('97.4');
+            expect(data[3]).to.contains('97.1');
             //Arizona
             expect(data[4]).to.contains('Not Available');
         }).then(next);

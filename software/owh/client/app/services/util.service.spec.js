@@ -37,7 +37,7 @@ describe('utilService', function(){
         $httpBackend.whenGET('app/i18n/messages-en.json').respond({});
         $httpBackend.whenGET('app/partials/marker-template.html').respond( {});
         $httpBackend.whenGET('/getFBAppID').respond({});
-        $httpBackend.whenGET('/yrbsQuestionsTree/2015').respond({data: { }});
+        $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('app/modules/home/home.html').respond({data: { }});
     }));
