@@ -37,21 +37,37 @@ describe('mapService', function(){
             mapControl.onAdd();
         });
 
-        it('should trigger mouseover event', function () {
+        it('should trigger mouseover & mouseout event', function () {
             var mapData = {mapMinValue:40289400, mapMaxValue:58000};
             var control = mapService.addScaleControl(mapData);
-            //test callback
             var mapControl = new control();
 
-            var container = mapControl.onAdd();
+            var map = {_layers:[{options:{fillColor:'#190032'}, style:{color: 'black', fillOpacity: 0.7},
+                setStyle:function (style) {this.style = style }},
+                {options:{fillColor:'#3f007d'}, style:{color: 'black', fillOpacity: 0.7},
+                    setStyle:function (style) { this.style = style }}]};
 
+            var legend = mapControl.onAdd(map);
+
+            //mouseover event
             var evt = document.createEvent('MouseEvents');
             evt.initEvent('mouseover', true, true);
+            legend.childNodes[0].childNodes[0].append = function (content) {};
+            var legendInterval = legend.childNodes[0].childNodes[0].childNodes[0];
+            legendInterval.dispatchEvent(evt);
 
-            var childContainer = container.childNodes[0].childNodes[0].childNodes[0];
+            //style changed
+            expect(map._layers[0].style).toEqual({"color":"#333333","weight":2.6,"opacity":1,"fillOpacity":0.9});
+            //no style change
+            expect(map._layers[1].style).toEqual({color: 'black', fillOpacity: 0.7});
 
-            //container.dispatchEvent(evt);
-            childContainer.dispatchEvent(evt);
+            //mouseout event
+            evt = document.createEvent('MouseEvents');
+            evt.initEvent('mouseout', true, true);
+            legendInterval.dispatchEvent(evt);
+            //reset style
+            expect(map._layers[0].style).toEqual({weight: 0.8, opacity: 1, color: 'black', fillOpacity: 0.7});
+
         });
 
         it('should add share control', function () {

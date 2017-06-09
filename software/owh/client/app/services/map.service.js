@@ -172,28 +172,24 @@
 
                     var colors = ['#190032','#3f007d','#6a51a3', '#9e9ac8','#dadaeb','#efedf5','#fcfbfd'];
                     var labels = getLabels(mapData.mapMinValue, mapData.mapMaxValue);
-                    var legendScale = "<ul class='legend-scale'>";
-                    colors.forEach(function(color, index) {
-                        legendScale += '<li><span style="background:'+color+';"></span>'+labels[index]+'</li>';
-                    });
-                    legendScale += "</ul>";
-                    container.innerHTML = legendScale;
-
+                    var legendScale = L.DomUtil.create('ul', 'legend-scale', container);
                     var polygons = [];
-                    L.DomEvent.on(container, 'mouseover', function(event) {
-                        var target = event.target;
-                        if(target.tagName.toLowerCase() === 'span') {
+                    colors.forEach(function(color, index) {
+                        var li = L.DomUtil.create('li', '', legendScale);
+                        var span = L.DomUtil.create('span', '', li);
+                        span.style.background = color;
+                        angular.element(li).append(labels[index]);
+
+                        L.DomEvent.on(span, 'mouseover', function(event) {
+                            var target = event.target;
                             var color = target.style.background;
                             polygons = getMapPolygonsByColor(map, color);
                             highlightPolygons(polygons);
-                        }
-                    });
+                        });
 
-                    L.DomEvent.on(container, 'mouseout', function(event) {
-                        var target = event.target;
-                        if(target.tagName.toLowerCase() === 'span') {
+                        L.DomEvent.on(span, 'mouseout', function(event) {
                             resetHighlightedPolygons(polygons);
-                        }
+                        });
                     });
                     return container;
                 }
