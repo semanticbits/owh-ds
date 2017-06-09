@@ -71,14 +71,10 @@
         function getColor(d, ranges) {
             // var ranges = utilService.generateMapLegendRanges(sc.filters.selectedPrimaryFilter.mapData.mapMinValue,
             //     sc.filters.selectedPrimaryFilter.mapData.mapMaxValue);
-            return d > ranges[10] ? '#190032' :
-                d > ranges[9]  ?  '#270053':
-                d > ranges[8]  ?  '#3f007d':
-                d > ranges[7]  ?  '#54278f':
-                d > ranges[6]  ?  '#6a51a3':
-                d > ranges[5]  ?  '#807dba':
-                d > ranges[4]  ?  '#9e9ac8':
-                d > ranges[3]  ?  '#bcbddc':
+            return d > ranges[6] ? '#190032' :
+                d > ranges[5]  ?  '#3f007d':
+                d > ranges[4]  ?  '#6a51a3':
+                d > ranges[3]  ?  '#9e9ac8':
                 d > ranges[2]  ?  '#dadaeb':
                 d > ranges[1]  ?  '#efedf5': '#fcfbfd';
         }
@@ -174,25 +170,64 @@
                 onAdd: function (map) {
                     var container = L.DomUtil.create('div', 'leaflet-control leaflet-control-custom custom-legend');
 
-                    var colors = ['#190032','#270053','#3f007d','#54278f','#6a51a3','#807dba','#9e9ac8','#bcbddc','#dadaeb','#efedf5','#fcfbfd'];
+                    var colors = ['#190032','#3f007d','#6a51a3', '#9e9ac8','#dadaeb','#efedf5','#fcfbfd'];
                     var labels = getLabels(mapData.mapMinValue, mapData.mapMaxValue);
-                    var legendScale = "<ul class='legend-scale'>";
+                    var legendScale = L.DomUtil.create('ul', 'legend-scale', container);
+                    var polygons = [];
                     colors.forEach(function(color, index) {
-                        legendScale += '<li><span style="background:'+color+';"></span>'+labels[index]+'</li>';
+                        var li = L.DomUtil.create('li', '', legendScale);
+                        var span = L.DomUtil.create('span', '', li);
+                        span.style.background = color;
+                        angular.element(li).append(labels[index]);
+
+                        L.DomEvent.on(span, 'mouseover', function(event) {
+                            var target = event.target;
+                            var color = target.style.background;
+                            polygons = getMapPolygonsByColor(map, color);
+                            highlightPolygons(polygons);
+                        });
+
+                        L.DomEvent.on(span, 'mouseout', function(event) {
+                            resetHighlightedPolygons(polygons);
+                        });
                     });
-                    legendScale += "</ul>";
-                    container.innerHTML = legendScale;
                     return container;
                 }
             });
         }
+        
+        function getMapPolygonsByColor(map, color) {
+            var polygonList = [];
+            //convert background color from rgb to hex
+            var ctx = document.createElement('canvas').getContext('2d');
+            ctx.strokeStyle = color;
+            var hexColor = ctx.strokeStyle;
+            //list out matching colored polygons
+            angular.forEach(map._layers, function (polygon) {
+                if (polygon.options && polygon.options.fillColor == hexColor) {
+                    polygonList.push(polygon);
+                }
+            });
+            return polygonList;
+        }
 
+        function highlightPolygons(polygons) {
+            angular.forEach(polygons, function (polygon) {
+                highlightFeature(polygon);
+            });
+        }
+
+        function resetHighlightedPolygons(polygons) {
+            angular.forEach(polygons, function (polygon) {
+                polygon.setStyle({weight: 0.8, opacity: 1, color: 'black', fillOpacity: 0.7});
+            });
+        }
 
         /**
          * Set feature style
          */
-        function highlightFeature(layerId, map) {
-            map._layers[layerId].setStyle({'color': '#333333','weight': 2.6,'opacity': 1});
+        function highlightFeature(feature) {
+            feature.setStyle({'color': '#333333', 'weight': 2.6, 'opacity': 1, fillOpacity: 0.9});
         }
 
         /**
@@ -203,12 +238,12 @@
             var layer = mapObj.layer;
             if(layer) {
                 var map = mapObj.target._map;
-                map._layers[layer._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black'});
+                map._layers[layer._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black', fillOpacity: 0.7});
             } else {
                 if(mapObj.leafletEvent) {
                     layer = mapObj.leafletEvent.target;
                     var map = layer._map;
-                    map._layers[layer._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black'});
+                    map._layers[layer._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black', fillOpacity: 0.7});
                 }
             }
         }

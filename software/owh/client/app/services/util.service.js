@@ -797,7 +797,7 @@
             var minRoundedValue = Math.round(minValue/100, 0)*100;
             var ranges = [];
             ranges.push(minRoundedValue);
-            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].forEach(function(option, index){
+            [1, 2, 3, 4, 5, 6].forEach(function(option, index){
                 ranges.push(minRoundedValue + (counterRoundedValue*index));
             });
             return ranges;
