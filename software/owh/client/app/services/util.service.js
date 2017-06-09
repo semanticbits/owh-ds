@@ -383,7 +383,7 @@
             if(columnHeaders.length > 0) {
                 var eachColumnHeader = columnHeaders[0];
                 tableColumnHeaderData.headers.push([]);
-                if(allOptionValues.indexOf(eachColumnHeader.autoCompleteOptions[0].key) > -1) {
+                if(allOptionValues && allOptionValues.indexOf(eachColumnHeader.autoCompleteOptions[0].key) > -1) {
                     eachColumnHeader.autoCompleteOptions.push(eachColumnHeader.autoCompleteOptions.shift());
                 }
                 angular.forEach(getSelectedAutoCompleteOptions(eachColumnHeader), function(eachOption, optionIndex) {

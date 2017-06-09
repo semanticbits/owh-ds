@@ -408,7 +408,6 @@
         ];
 
         var stateOptions =  [
-            { "key": "All", "title": "All" },
             { "key": "AL", "title": "Alabama" },
             { "key": "AK", "title": "Alaska" },
             { "key": "AZ", "title": "Arizona" },

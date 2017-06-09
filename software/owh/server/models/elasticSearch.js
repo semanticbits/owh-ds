@@ -295,7 +295,7 @@ ElasticClient.prototype.aggregateSTDData = function (query) {
     }
     else {
         logger.debug("STD ES Query: "+ JSON.stringify( query[0]));
-        this.executeESQuery(std_index, std_type, query[0]).then(function (response) {;
+        this.executeESQuery(std_index, std_type, query[0]).then(function (response) {
             var data = searchUtils.populateDataWithMappings(response, 'std', 'cases');
             deferred.resolve(data);
         }, function (err) {

@@ -1,5 +1,9 @@
 var elasticSearch = require('../models/elasticSearch');
 var expect = require("expect.js");
+var stdCasesQuery = require('./data/std_cases_elastic_query.json');
+var stdPopulationQuery = require('./data/std_population_elastic_query.json');
+var stdSideFilterCountQuery = require('./data/std_sidefilter_count_query.json');
+var stdAggreFinalQueryResp = require('./data/std_aggregate_data_final_query_response.json');
 
 describe("Elastic Search", function () {
 
@@ -332,4 +336,48 @@ describe("Elastic Search", function () {
             done();
         });
     });
+
+    it("Check aggregate std data with final query", function (done){
+        var query = [stdCasesQuery, stdPopulationQuery];
+        new elasticSearch().aggregateSTDData(query).then(function (resp) {
+            //All races/ethnicities
+            expect(resp.data.nested.table.race[0].name).equal(stdAggreFinalQueryResp.data.nested.table.race[0].name);
+            expect(resp.data.nested.table.race[0].std).equal(stdAggreFinalQueryResp.data.nested.table.race[0].std);
+            //Both sexes
+            expect(resp.data.nested.table.race[0].sex[0].name).equal(stdAggreFinalQueryResp.data.nested.table.race[0].sex[0].name);
+            expect(resp.data.nested.table.race[0].sex[0].std).equal(stdAggreFinalQueryResp.data.nested.table.race[0].sex[0].std);
+            expect(resp.data.nested.table.race[0].sex[0].pop).equal(stdAggreFinalQueryResp.data.nested.table.race[0].sex[0].pop);
+            done();
+        })
+    });
+
+    it("Check aggregate std data with sidefilter query", function (done){
+        var expectedResponseData = {"data":{"simple":{"disease":[{"name":"Chlamydia","std":1526658}],"current_year":[{"name":"2015","std":1526658}],"race":[{"name":"All races/ethnicities","std":1526658}],"age_group":[{"name":"All age groups","std":1526658}],"sex":[{"name":"Both sexes","std":1526658}],"state":[{"name":"National","std":1526658}],"group_count_cases":[]},"nested":{"table":{},"charts":[],"maps":{}}},"pagination":{"total":1}};
+        new elasticSearch().aggregateSTDData([stdSideFilterCountQuery]).then(function (resp) {
+            //SideFilter counts: disease
+            expect(resp.data.simple.disease[0].name).equal(expectedResponseData.data.simple.disease[0].name);
+            expect(resp.data.simple.disease[0].std).equal(expectedResponseData.data.simple.disease[0].std);
+            //SideFilter counts: current_year
+            expect(resp.data.simple.current_year[0].name).equal(expectedResponseData.data.simple.current_year[0].name);
+            expect(resp.data.simple.current_year[0].std).equal(expectedResponseData.data.simple.current_year[0].std);
+            //SideFilter counts: race
+            expect(resp.data.simple.race[0].name).equal(expectedResponseData.data.simple.race[0].name);
+            expect(resp.data.simple.race[0].std).equal(expectedResponseData.data.simple.race[0].std);
+            //SideFilter counts: age_group
+            expect(resp.data.simple.age_group[0].name).equal(expectedResponseData.data.simple.age_group[0].name);
+            expect(resp.data.simple.age_group[0].std).equal(expectedResponseData.data.simple.age_group[0].std);
+            //SideFilter counts: sex
+            expect(resp.data.simple.sex[0].name).equal(expectedResponseData.data.simple.sex[0].name);
+            expect(resp.data.simple.sex[0].std).equal(expectedResponseData.data.simple.sex[0].std);
+            //SideFilter counts: state
+            expect(resp.data.simple.state[0].name).equal(expectedResponseData.data.simple.state[0].name);
+            expect(resp.data.simple.state[0].std).equal(expectedResponseData.data.simple.state[0].std);
+            //nested table, charts, maps length should be zero
+            expect(resp.data.nested.table.length).equal(expectedResponseData.data.nested.table.length);
+            expect(resp.data.nested.charts.length).equal(expectedResponseData.data.nested.charts.length);
+            expect(resp.data.nested.maps.length).equal(expectedResponseData.data.nested.maps.length);
+            done();
+        })
+    });
+
 });
