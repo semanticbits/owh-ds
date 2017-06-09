@@ -310,7 +310,7 @@ Scenario: Group by 'State' in age adjusted rate
  #  And any value in the data table is suppressed then the totals in the State filter (sidebar) must be suppressed too
  #  And the death count <20 then the corresponding Rate must be marked as "Unreliable"
   
- Scenario: put UCDs on columns
+ Scenario: Group UCD codes on Row
    Given I am on search page
    And I expand "Underlying Cause of Death" filter section
    When I set "Underlying Cause of Death" filter "Row"
