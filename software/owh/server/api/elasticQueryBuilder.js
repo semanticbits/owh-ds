@@ -90,6 +90,10 @@ var generateAggregationQuery = function( aggQuery, groupByKeyStart, countQueryKe
         query[ groupByKeyStart + aggQuery.key] = getTermQuery(aggQuery);
         query[ groupByKeyStart + aggQuery.key].aggregations=getPopulationSumQuery();
         merge(query, getPopulationSumQuery());
+    } if(countQueryKey == 'cases') {
+        query[ groupByKeyStart + aggQuery.key] = getTermQuery(aggQuery);
+        query[ groupByKeyStart + aggQuery.key].aggregations=getCasesSumQuery();
+        merge(query, getCasesSumQuery());
     } else {//for yrbs and mortality
         query[ groupByKeyStart + aggQuery.key] = getTermQuery(aggQuery);
     }
@@ -125,12 +129,34 @@ function getPopulationSumQuery() {
 }
 
 /**
+ * prepare cases sum query
+ * @returns {{group_count_cases: {sum: {field: string}}}}
+ */
+function getCasesSumQuery() {
+    return {
+        "group_count_cases": {
+            "sum": {
+                "field": "cases"
+            }
+        }
+    }
+}
+
+/**
  * Builds a search query
  * @param params
  * @param isAggregation
  * @returns {{}}
  */
-var buildSearchQuery = function(params, isAggregation) {
+
+/**
+ * Common function to build a search query
+ * @param params
+ * @param isAggregation
+ * @param allOptionValues -> List of All option values for STD, TB, HIV-AIDS filters
+ * @return {[]}
+ */
+var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     var userQuery = params.query ? params.query : {};
     var elasticQuery = {};
     var censusQuery = undefined;
@@ -147,6 +173,21 @@ var buildSearchQuery = function(params, isAggregation) {
     }
     elasticQuery.query = {};
     elasticQuery.query.filtered = {};
+    /*
+    * For STD, TB, HIV-AIDS
+    * If user select groupBy column / row for any filter then this logic will remove 'All' filter from filter query
+    * So that data table display all options for that filter
+    */
+    if(params.searchFor == 'std' && params.aggregations['nested'] && params.aggregations['nested']['table']) {
+        params.aggregations['nested']['table'].forEach(function (aggregation) {
+            Object.keys(userQuery).forEach(function(key){
+                var eachObject = userQuery[key];
+                if(eachObject.queryKey && eachObject.queryKey == aggregation.queryKey && allOptionValues.indexOf(eachObject.value) > -1){
+                    delete userQuery[key];
+                }
+            });
+        });
+    }
     //build top level bool queries
     var primaryQuery = buildTopLevelBoolQuery(groupByPrimary(userQuery, true), true);
     var filterQuery = buildTopLevelBoolQuery(groupByPrimary(userQuery, false), false);
