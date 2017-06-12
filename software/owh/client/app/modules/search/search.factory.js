@@ -1631,13 +1631,6 @@
                     groupOptions: filters.conditionGroupOptions}
             ];
 
-            filters.ucdMcdFilters = [
-                {key: 'mcd-filters', title: 'label.filter.mcd', selectTitle: 'select.label.filter.mcd', updateTitle: 'update.label.filter.mcd',  queryKey:"",
-                    primary: false, value: [], groupBy: false,type:"label.filter.group.mcd",
-                    filterType: 'conditions', groupOptions: [],
-                    autoCompleteOptions: utilService.findAllByKeyAndValue(filters.allMortalityFilters, 'key', 'mcd-chapter-10')}
-            ];
-
             filters.censusFilters = filterUtils.getBridgeDataFilters();
             filters.natalityFilters = filterUtils.getNatalityDataFilters();
             filters.infantMortalityFilters = filterUtils.getInfantMortalityDataFilters();
