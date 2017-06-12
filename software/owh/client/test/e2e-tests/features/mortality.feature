@@ -1,3 +1,4 @@
+@Mortality
 Feature: Mortality page
   As a user
   I should be able to access mortality page
@@ -208,24 +209,21 @@ Scenario: Suppression
   When I select the forward button in browser
   Then Age Group values "20" and ">100" should be displayed on slider
 
-
-
-#Enable once OWH-1179 issue fixed.
-#Scenario: Age Adjusted Death Rates
-#  Given I am on search page
-#  When the user chooses the option 'Age Adjusted Death Rates'
-#  Then the age adjusted rates are shown for each row
-#  When user sees a visualization
-#  Then labels "Race" and "Age Adjusted Death Rates" are displayed on minimized visualization
-#  When user expand visualization
-#  Then labels "Race" and "Age Adjusted Death Rates" are displayed on expanded visualization
-  #When I update criteria in filter option with row "Ethnicity"
-  #Then table should display Hispanic groups for Age Adjusted Death Rates
-  #When I expand "Underlying Cause of Death" filter section
-  #And I click on "Select Cause of Death" button
-  #And I select a cause and click on the Filter Selected Cause(s) of Death(s) button
-  #Then the "Select Cause of Death" button should be renamed to "Update Cause of Death"
-  #And data table should display Age Adjusted Death Rates for selected cause of death
+Scenario: Age Adjusted Death Rates
+  Given I am on search page
+  When the user chooses the option 'Age Adjusted Death Rates'
+  Then the age adjusted rates are shown for each row
+  When user sees a visualization
+  Then labels "Race" and "Age Adjusted Death Rates" are displayed on minimized visualization
+  When user expand visualization
+  Then labels "Race" and "Age Adjusted Death Rates" are displayed on expanded visualization
+  When I update criteria in filter option with row "Ethnicity"
+  Then table should display Hispanic groups for Age Adjusted Death Rates
+  When I expand "Underlying Cause of Death" filter section
+  And I click on "Select Cause of Death" button
+  And I select a cause and click on the Filter Selected Cause(s) of Death(s) button
+  Then the "Select Cause of Death" button should be renamed to "Update Cause of Death"
+  And data table should display Age Adjusted Death Rates for selected cause of death
 
 Scenario: Filer 'Multiple Causes of Deaths' should be displayed
   Given I am on search page
@@ -297,15 +295,14 @@ Scenario: Group by 'State' in age adjusted rate
    When I select groupBy "Row" option for "State" filter
    Then I see data table with Race and State values
 
-   #Enable once OWH-1179 issue fixed.
- #Scenario: Filtering on State- Rate
- #  Given I am on search page
- #  When I choose the option "Age Adjusted Death Rates"
- #  And user expands state filter
- #  Then user clicks on "+ 48 more" more link for "State" filter
- #  When I select State "DC"
- #  And I select State "CT"
- #  And I select groupBy "Row" option for "State" filter
- #  Then the rates corresponding to the deaths 0-9 must be suppressed
- #  And any value in the data table is suppressed then the totals in the State filter (sidebar) must be suppressed too
- #  And the death count <20 then the corresponding Rate must be marked as "Unreliable"
+  Scenario: Filtering on State- Rate
+   Given I am on search page
+   When I choose the option "Age Adjusted Death Rates"
+   And user expands state filter
+   Then user clicks on "+ 48 more" more link for "State" filter
+   When I select State "DC"
+   And I select State "CT"
+   And I select groupBy "Row" option for "State" filter
+   Then the rates corresponding to the deaths 0-9 must be suppressed
+   And any value in the data table is suppressed then the totals in the State filter (sidebar) must be suppressed too
+   And the death count <20 then the corresponding Rate must be marked as "Unreliable"
