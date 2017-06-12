@@ -34,7 +34,7 @@
         var bridgedRaceFilter = null;
 
         sc.sideMenu = {visible: true};
-        sc.mapOptions = {selectedMapSize: 'big'};
+        sc.mapOptions = {selectedMapSize: 'small'};
         //For intial search call
         if($stateParams.selectedFilters == null) {
             sc.filters = searchFactory.getAllFilters();
@@ -53,7 +53,7 @@
 
         }
         sc.filterUtilities = sc.filters.filterUtilities;
-        sc.selectedMapSize = 'big';
+        sc.selectedMapSize = 'small';
         sc.showMeOptions = {
             deaths: [
                 {key: 'number_of_deaths', title: 'Number of Deaths'},
@@ -307,7 +307,7 @@
             usa: {
                 lat: 35,
                 lng: -97,
-                zoom: 3.9
+                zoom: 3
             },
             legend: {},
             defaults: {
@@ -328,6 +328,7 @@
             },
             isMap:true
         }
+
         angular.extend(mortalityFilter.mapData, mapOptions);
 
         angular.extend(bridgedRaceFilter.mapData, mapOptions);
@@ -566,6 +567,9 @@
         $scope.$on("leafletDirectiveMap.load", function (event, args) {
             var mapScaleControl = mapService.addScaleControl(sc.filters.selectedPrimaryFilter.mapData);
             args.leafletObject.addControl(new mapScaleControl());
+            if (sc.mapOptions.selectedMapSize === 'small') {
+                angular.element('div.custom-legend').hide();
+            }
         });
 
         /*Show expanded graphs with whole set of features*/

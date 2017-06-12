@@ -38,6 +38,7 @@
                     feature.properties.totalCount = state['deaths']; /*+ (Math.floor((Math.random()*10)+1))*100000;*/
                     feature.properties.sex = state.sex;
                     feature.properties['bridge_race'] = state['bridge_race'];
+                    feature.properties['deaths'] = state['deaths'];
                 }
             });
             var minMaxValueObj = utilService.getMinAndMaxValue(stateDeathTotals);
@@ -52,11 +53,10 @@
                 },
                 mapTotalCount: totalCount
             });
-
         }
 
         function getSelectedYears(primaryFilter) {
-            var yearFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'current_year');
+            var yearFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'current_year') || utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year');
             if (yearFilter) {
                 return utilService.isValueNotEmpty(yearFilter.value) ? yearFilter.value : utilService.getValuesByKey(yearFilter.autoCompleteOptions, 'title');
             }
@@ -84,7 +84,7 @@
             var ranges = utilService.generateMapLegendRanges(primaryFilter.mapData.mapMinValue,
                 primaryFilter.mapData.mapMaxValue);
             return function style(feature) {
-                var total = feature.properties['bridge_race'];
+                var total = feature.properties['bridge_race'] || feature.properties['deaths'];
                 return {
                     fillColor: getColor(total, ranges),
                     weight: 0.8,

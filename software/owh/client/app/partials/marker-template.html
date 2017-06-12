@@ -7,7 +7,7 @@
         </div>
         <div class="usa-width-one-whole margin-top-5" ng-repeat="eachCat in properties.sex">
             <div class="usa-width-two-thirds marker-label" ng-bind="eachCat.name | GenderTitle"></div>
-            <div ng-if="tableView === 'number_of_deaths'" class="usa-width-one-third">
+            <div ng-if="tableView === 'deaths'" class="usa-width-one-third">
                 <span ng-if="eachCat.deaths !== 'suppressed'" ng-bind="eachCat.deaths | number"></span>
                 <span ng-if="eachCat.deaths === 'suppressed'">Suppressed</span>
             </div>
@@ -17,10 +17,10 @@
         </div>
         <div class="usa-width-one-whole margin-top-5 padding-top-5 border-top-default padding-bottom-10">
             <div class="usa-width-two-thirds marker-label">
-                <span ng-if="tableView === 'number_of_deaths'">Total Deaths</span>
+                <span ng-if="tableView === 'deaths'">Total Deaths</span>
                 <span ng-if="tableView === 'bridge_race'">Total</span>
             </div>
-            <div ng-if="tableView === 'number_of_deaths'" class="usa-width-one-third">
+            <div ng-if="tableView === 'deaths'" class="usa-width-one-third">
                 <span ng-if="properties.totalCount !== 'suppressed'">{{properties.totalCount | number}}</span>
                 <span ng-if="properties.totalCount === 'suppressed'">Suppressed</span>
             </div>
