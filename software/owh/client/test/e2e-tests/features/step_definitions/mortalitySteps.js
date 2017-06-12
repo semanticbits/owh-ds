@@ -983,16 +983,17 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^data table should display Age Adjusted Death Rates for selected cause of death$/, function (next) {
         mortalityPage.getTableRowDataCells(0).then(function (elements) {
-            expect(elements[0].getText()).to.eventually.equal('American Indian or Alaska Native');
-            expect(elements[1].getText()).to.eventually.contains('Age Adjusted Death Rate');
-            expect(elements[1].getText()).to.eventually.contains('2.1');
-            expect(elements[2].getText()).to.eventually.contains('2.3');
-            expect(elements[3].getText()).to.eventually.contains('2.2');
+            expect(elements[0].getText()).to.eventually.equal('Non-Hispanic');
+            expect(elements[1].getText()).to.eventually.equal('American Indian or Alaska Native');
+            expect(elements[2].getText()).to.eventually.contains('Age Adjusted Death Rate');
+            expect(elements[2].getText()).to.eventually.contains('3.4');
+            expect(elements[3].getText()).to.eventually.contains('3.6');
+            expect(elements[4].getText()).to.eventually.contains('3.5');
         });
         mortalityPage.getTableRowDataCells(1).then(function (elements) {
             expect(elements[0].getText()).to.eventually.equal('Asian or Pacific Islander');
             expect(elements[1].getText()).to.eventually.contains('2.7');
-            expect(elements[2].getText()).to.eventually.contains('3.3');
+            expect(elements[2].getText()).to.eventually.contains('3.2');
             expect(elements[3].getText()).to.eventually.contains('3.0');
         }).then(next);
     });
