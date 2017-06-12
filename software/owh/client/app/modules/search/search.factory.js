@@ -1624,9 +1624,11 @@
                     aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions},
 
                 /*Multiple Cause of death*/
-                {key: 'mcd-chapter-10', title: 'label.filter.mcd.icd.chapter', queryKey:"record_axis_condn",
-                    primary: false, value: [], groupBy: false,type:"label.filter.group.mcd", groupKey:"mcd",
-                    autoCompleteOptions: $rootScope.conditionsListICD10, disableFilter: true}
+                {key: 'mcd-chapter-10', title: 'label.filter.mcd', queryKey:"ICD_10_code",
+                    primary: false, value: [], groupBy: false, type: "label.filter.group.mcd", groupKey:"mcd",
+                    autoCompleteOptions: $rootScope.conditionsListICD10, filterType: 'conditions',
+                    selectTitle: 'select.label.filter.mcd', updateTitle: 'update.label.filter.mcd',
+                    groupOptions: filters.conditionGroupOptions}
             ];
 
             filters.ucdMcdFilters = [
@@ -1956,7 +1958,7 @@
                                 },
                                 {
                                     filterGroup: false, collapse: true,
-                                    filters: utilService.findByKeyAndValue(filters.ucdMcdFilters, 'key', 'mcd-filters')
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'mcd-chapter-10')
                                 }
                             ]
                         }
