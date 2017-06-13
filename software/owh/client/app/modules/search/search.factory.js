@@ -2568,7 +2568,7 @@
                 {
                     key: 'infant_mortality', title: 'label.filter.infant_mortality', primary: true, value: [], header: 'Infant Mortality',
                     allFilters: filters.infantMortalityFilters, searchResults: searchInfantMortality, showMap: false,
-                    chartAxisLabel: 'Infant Death', countLabel: 'Number of Infant Deaths', tableView: 'number_of_infant_deaths',
+                    chartAxisLabel: 'Number of Infant Deaths', countLabel: 'Number of Infant Deaths', tableView: 'number_of_infant_deaths',
                     runOnFilterChange: true, applySuppression: true,
                     sideFilters:[
                         {

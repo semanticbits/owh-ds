@@ -551,7 +551,7 @@
                         },
                         yAxis: {
                             axisLabelDistance: -20,
-                            axisLabel: 'Number of Infant Deaths',
+                            axisLabel: primaryFilter.chartAxisLabel,
                             tickFormat: function (d) {
                                 return null;
                             }

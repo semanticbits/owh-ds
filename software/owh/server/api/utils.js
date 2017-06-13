@@ -465,6 +465,7 @@ function getYearFilter (filters) {
     var yearFilter = filters.find(function (filter) {
         return filter.key === 'year_of_death'
     });
+    if (!yearFilter) return [];
     if (yearFilter.allChecked) {
         return yearFilter.autoCompleteOptions.map(function (option) {
             return option.key;
