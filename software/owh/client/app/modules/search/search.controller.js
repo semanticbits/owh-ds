@@ -74,7 +74,7 @@
                 {key: 'insurance_medicaid_services', title: 'Insurance/Medicaid/Services'}]
         };
         sc.sort = {
-            "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'ucd-chapter-10', 'mcd-filters'],
+            "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'ucd-chapter-10', 'mcd-chapter-10'],
             "label.risk.behavior": ['year', 'yrbsSex', 'yrbsRace', 'yrbsGrade', 'sexid', 'sexpart', 'yrbsState', 'question'],
             "label.census.bridge.race.pop.estimate": ['current_year', 'sex', 'race', 'ethnicity', 'agegroup', 'state'],
             "label.filter.natality": ['current_year', 'month', 'weekday', 'sex', 'gestational_age_r10', 'prenatal_care',
@@ -87,7 +87,8 @@
                 'mother_age_5_interval', 'mother_education', 'gestational_age_r11', 'gestational_age_r10', 'gestation_weekly',
                 'prenatal_care', 'birth_weight', 'birth_plurality', 'live_birth', 'birth_place', 'delivery_method', 'medical_attendant',
                 'ucd-chapter-10', 'state'],
-            "label.prams.title": []
+            "label.prams.title": [],
+            "label.filter.std": []
         };
 
         sc.optionsGroup = {
@@ -119,6 +120,7 @@
             birth_rates: {},
             fertility_rates: {},
             bridge_race:{},
+            std:{},
             mental_health:{},
             natality:{},
             prams:{},
@@ -524,7 +526,7 @@
             buildMarkerPopup(leafEvent.latlng.lat, leafEvent.latlng.lng, leafEvent.target.feature.properties,
                 args.leafletObject._map, sc.filters.selectedPrimaryFilter.key, leafEvent.containerPoint);
             sc.currentFeature = leafEvent.target.feature;
-            mapService.highlightFeature(leafEvent.target._leaflet_id, args.leafletObject._map)
+            mapService.highlightFeature(args.leafletObject._map._layers[leafEvent.target._leaflet_id])
 
         });
         $scope.$on("leafletDirectiveGeoJson.mouseout", function (event, args) {
