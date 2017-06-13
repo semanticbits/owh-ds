@@ -430,10 +430,12 @@ var getGroupQuery = function (filter){
 function buildFilterQuery(filter) {
     if(filter.key === 'question' && filter.value.length == 0){
         filter.value = [];
-        filter.autoCompleteOptions.forEach( function(q) {
-            if(q.qkey.startsWith('qn')) {
-                filter.value.push(q.qkey);
-            }
+        filter.questions.forEach( function(q) {
+          if(q.children){
+              filter.value = filter.value.concat(q.children.map(function (it) { return it.id;}));
+          }else{
+              filter.value.push(q.id);
+          }
         });
         return getFilterQuery(filter);
     }

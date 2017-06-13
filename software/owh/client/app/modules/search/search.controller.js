@@ -71,7 +71,17 @@
                 {key: 'maternal_behavior', title: 'Maternal Behavior/Health'},
                 {key: 'maternal_experiences', title: 'Maternal Experiences'},
                 {key: 'prenatal_care', title: 'Prenatal Care'},
-                {key: 'insurance_medicaid_services', title: 'Insurance/Medicaid/Services'}]
+                {key: 'insurance_medicaid_services', title: 'Insurance/Medicaid/Services'}],
+            mental_health: [
+                {key: 'All Health Topics', title: 'All Health Topics'},
+                {key: 'Unintentional Injuries and Violence', title: 'Unintentional Injuries and Violence'},
+                {key: 'Tobacco Use', title: 'Tobacco Use'},
+                {key: 'Alcohol and Other Drug Use', title: 'Alcohol and Other Drug Use'},
+                {key: 'Sexual Behaviors', title: 'Sexual Behaviors'},
+                {key: 'Dietary Behaviors', title: 'Dietary Behaviors'},
+                {key: 'Physical Activity', title: 'Physical Activity'},
+                {key: 'Obesity, Overweight, and Weight Control', title: 'Obesity, Overweight, and Weight Control'},
+                {key: 'Other Health Topics', title: 'Other Health Topics'}]
         };
         sc.sort = {
             "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'ucd-chapter-10', 'mcd-filters'],
@@ -149,6 +159,7 @@
             insurance_medicaid_services: {
                 "topic": ['cat_32', 'cat_21', 'cat_44']
             }
+            
         };
         //show certain filters for different table views
         //add availablefilter for birth_rates
@@ -212,36 +223,6 @@
         }
 
         function search(isFilterChanged) {
-            if(sc.filters.selectedPrimaryFilter.key === 'prams') {
-                angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters[0].sideFilters, function(filter) {
-                    if(filter.filters.key === 'topic') {
-                        filter.filters.questions = [];
-                        if(filter.filters.value.length === 0) {
-                            angular.forEach(filter.filters.autoCompleteOptions, function (option) {
-                                angular.forEach($rootScope.pramsQuestions, function(pramsCat) {
-                                    if(option.key === pramsCat.id) {
-                                        angular.forEach(pramsCat.children, function(question) {
-                                            filter.filters.questions.push(question.id);
-                                        });
-                                    }
-                                });
-                            });
-                        } else {
-                            angular.forEach(filter.filters.value, function(cat) {
-                                angular.forEach($rootScope.pramsQuestions, function(pramsCat) {
-                                    if(cat === pramsCat.id) {
-                                        angular.forEach(pramsCat.children, function(question) {
-                                            filter.filters.questions.push(question.id);
-                                        });
-                                    }
-                                });
-                            });
-                        }
-                    }
-                });
-            }
-            //TODO: $rootScope.requestProcessing is keeping this from running on initialization, do we need that check?
-            // if(isFilterChanged && !$rootScope.requestProcessing) {
             if(isFilterChanged) {
                 //filters changed
                 searchFactory.generateHashCode(sc.filters.selectedPrimaryFilter).then(function(hash) {
@@ -374,10 +355,36 @@
                         filter.filters.value = [];
                         filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
                         searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup[selectedFilter.key]);
-                    } else if (sc.filters.selectedPrimaryFilter.key === 'prams'
-                        && filter.filters.key === 'question') {
-                        //clear selected question on class change
+                        filter.filters.questions = [];
+                        if(filter.filters.value.length === 0) {
+                            angular.forEach(filter.filters.autoCompleteOptions, function (option) {
+                                angular.forEach($rootScope.pramsQuestions, function(pramsCat) {
+                                    if(option.key === pramsCat.id) {
+                                        angular.forEach(pramsCat.children, function(question) {
+                                            filter.filters.questions.push(question.id);
+                                        });
+                                    }
+                                });
+                            });
+                        } else {
+                            angular.forEach(filter.filters.value, function(cat) {
+                                angular.forEach($rootScope.pramsQuestions, function(pramsCat) {
+                                    if(cat === pramsCat.id) {
+                                        angular.forEach(pramsCat.children, function(question) {
+                                            filter.filters.questions.push(question.id);
+                                        });
+                                    }
+                                });
+                            });
+                        }
+                    } else if (filter.filters.key === 'question') {
+                        // Clear questions selection and update questions list on class/topic change for PRAMS and YRBS datasets
                         filter.filters.value = [];
+                        filter.filters.selectedValues = [];
+                        filter.filters.selectedNodes = [];
+                        if(sc.filters.selectedPrimaryFilter.key === 'mental_health') {
+                            filter.filters.questions = searchFactory.getYrbsQuestionsForTopic(selectedFilter.key);
+                        }
                     }
                 });
             });

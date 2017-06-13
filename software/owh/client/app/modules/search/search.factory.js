@@ -29,7 +29,9 @@
             populateSideFilterTotals: populateSideFilterTotals,
             updateFiltersAndData: updateFiltersAndData,
             getMixedTable: getMixedTable,
-            setFilterGroupBy: setFilterGroupBy
+            setFilterGroupBy: setFilterGroupBy,
+            getYrbsQuestionsForTopic: getYrbsQuestionsForTopic
+
         };
         return service;
 
@@ -75,7 +77,9 @@
                 tableData.data = categorizeQuestions(tableData.data, $rootScope.questions);
                 primaryFilter.showBasicSearchSideMenu = response.data.queryJSON.showBasicSearchSideMenu;
                 primaryFilter.runOnFilterChange = response.data.queryJSON.runOnFilterChange;
-
+                //update questions based on selected
+                var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question')
+                questionFilter.questions = getYrbsQuestionsForTopic(tableView);
             }
             if (primaryFilter.key === 'prams') {
                 primaryFilter.data = response.data.resultData.table;
@@ -91,7 +95,7 @@
                 //update questions based on topics
                 var topics = groupOptions[tableView].topic;
                 var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question')
-                questionFilter.questions = getQuestionsForTopics(topics);
+                questionFilter.questions = getPramsQuestionsForTopics(topics);
             }
             if (primaryFilter.key === 'bridge_race') {
                 primaryFilter.data = response.data.resultData.nested.table;
@@ -134,16 +138,27 @@
 
         /**
          * Update prams questions based on topics
-         * @param questionFilter
          * @param topics
          */
-        function getQuestionsForTopics(topics) {
+        function getPramsQuestionsForTopics(topics) {
             var questions = [];
             angular.forEach(topics, function (topic) {
                 var ques = utilService.findByKeyAndValue($rootScope.pramsQuestions, 'id', topic);
                 questions.push(ques);
             });
             return questions;
+        }
+
+        /**
+         * Update yrbs questions based on topics
+         * @param topic
+         */
+        function getYrbsQuestionsForTopic(topic) {
+            if(topic == 'All Health Topics'){
+                return $rootScope.questions;
+            } else {
+                return [utilService.findByKeyAndValue($rootScope.questions, 'text', topic)];
+            }
         }
 
         function populateSelectedFilters(primaryFilter, updatedSideFilters) {
@@ -271,7 +286,7 @@
             var groupedOptions = [];
             var filterLength = 0;
             //build groupOptions object from autoCompleteOptions
-            if(sort[filter.key]) {
+            if(sort && sort[filter.key]) {
                 //find corresponding key in sort object
                 for(var i = 0; i < sort[filter.key].length; i++) {
                     angular.forEach(filter.autoCompleteOptions, function(option) {
@@ -338,7 +353,7 @@
             var sortedOptions = [];
             var filterLength = 0;
             //build sortedOptions object from autoCompleteOptions
-            if(sort[filter.key]) {
+            if(sort && sort[filter.key]) {
                 //find corresponding key in sort object
                 for(var i = 0; i < sort[filter.key].length; i++) {
                     angular.forEach(filter.autoCompleteOptions, function(option) {
@@ -1965,7 +1980,7 @@
                 {
                     key: 'mental_health', title: 'label.risk.behavior', primary: true, value:[], header:"Youth risk behavior",
                     searchResults: searchYRBSResults, dontShowInlineCharting: true,
-                    additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total', tableView:'mental_health',
+                    additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total', tableView:'All Health Topics',
                     chartAxisLabel:'Percentage',
                     showBasicSearchSideMenu: true, runOnFilterChange: true, allFilters: filters.yrbsBasicFilters, // Default to basic filter
                     advancedSideFilters: [
