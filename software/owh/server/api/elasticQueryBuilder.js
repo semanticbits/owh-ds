@@ -196,11 +196,16 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     elasticQuery.query.filtered.query = primaryQuery;
     elasticQuery.query.filtered.filter = filterQuery;
     if(censusQuery) {
+        var clonedUserQuery = clone(userQuery);
+        if (clonedUserQuery['ICD_10_code']) delete clonedUserQuery['ICD_10_code'];
+        var clonedPrimaryQuery = buildTopLevelBoolQuery(groupByPrimary(clonedUserQuery, true), true);
+        var clonedFilterQuery = buildTopLevelBoolQuery(groupByPrimary(clonedUserQuery, false), false);
+
         censusQuery.query = {};
         censusQuery.query.filtered = {};
 
-        censusQuery.query.filtered.query = primaryQuery;
-        censusQuery.query.filtered.filter = filterQuery;
+        censusQuery.query.filtered.query = clonedPrimaryQuery;
+        censusQuery.query.filtered.filter = clonedFilterQuery;
     }
     return [elasticQuery, censusQuery];
 };
