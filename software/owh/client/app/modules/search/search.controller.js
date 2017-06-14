@@ -545,8 +545,8 @@
         });
 
         /*Show expanded graphs with whole set of features*/
-        function showExpandedGraph(chartData) {
-            chartUtilService.showExpandedGraph([chartData]);
+        function showExpandedGraph(chartData, tableView) {
+            chartUtilService.showExpandedGraph([chartData], tableView);
         }
 
         function getChartTitle(title) {
@@ -590,12 +590,12 @@
 
         /**
          * To change Visualizations data based on selected view.
-         * @param defaultChartView
+         * @param tableView
          */
         function onSTDChartViewChange(tableView) {
             if(tableView === 'std') {
                 sc.filters.selectedPrimaryFilter.tableView = 'std_rate';
-                sc.filters.selectedPrimaryFilter.chartAxisLabel = 'Rate';
+                sc.filters.selectedPrimaryFilter.chartAxisLabel = 'Rates';
                 sc.filters.selectedPrimaryFilter.defaultChartView = 'rate';
             }
             else if(tableView === 'std_rate') {

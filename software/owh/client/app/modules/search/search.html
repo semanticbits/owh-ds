@@ -87,7 +87,7 @@
                             <div ng-if="!chartData.isMap">
                                 <div class="text-center margin-top-5" >
                                     <span ng-bind="sc.getChartTitle(chartData.title)" class="graph-title"></span>
-                                    <a name="expand_graph" ng-click="sc.showExpandedGraph(chartData)" class="cursor-pointer" href="javascript:void(0)">
+                                    <a name="expand_graph" ng-click="sc.showExpandedGraph(chartData, sc.filters.selectedPrimaryFilter.tableView)" class="cursor-pointer" href="javascript:void(0)">
                                         &nbsp;<i class="fa fa-expand" title="Expand graph"></i>
                                     </a>
                                     <a name="share_fb" ng-click="sc.showFbDialog('chart_'+parentIndex+'_'+$index, chartData.title)"

@@ -314,6 +314,8 @@
 
   "label.filter.std": "STD",
   "label.filter.disease": "Disease",
-  "label.filter.transmission": "Transmission"
+  "label.title.age_group.race": "Age Group and Race",
+  "label.title.sex.age_group": "Sex and Age Group",
+  "label.title.age_group.state": "Age Group and State"
 
 }

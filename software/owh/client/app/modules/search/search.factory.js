@@ -423,7 +423,7 @@
         function showChartForQuestion(primaryFilter, question) {
 
             prepareQuestionChart(primaryFilter, question).then(function (response) {
-                chartUtilService.showExpandedGraph([response.chartData], question.title,
+                chartUtilService.showExpandedGraph([response.chartData], null, question.title,
                     null, response.chartTypes, primaryFilter, question);
             });
 
