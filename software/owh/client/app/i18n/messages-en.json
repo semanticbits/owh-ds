@@ -310,5 +310,10 @@
   "label.help.text.question.physical.activity": "These questions contain summaries of survey data related to physical activity/inactivity, including vigorous exercise, involvement in physical education and organized sports, watching TV, and playing video/computer games.",
   "label.help.text.question.obesity.overweight.weight.control": "These questions contain summaries of survey data on weight and obesity.",
   "label.help.text.question.dietary.behaviors": "These questions contain summaries of survey data on dietary behaviors,nutrition, and fat intake.",
-  "label.help.text.question.other.health.topics": "These questions contain summaries of survey data related to a question on asthma."
+  "label.help.text.question.other.health.topics": "These questions contain summaries of survey data related to a question on asthma.",
+
+  "label.filter.std": "STD",
+  "label.filter.disease": "Disease",
+  "label.filter.transmission": "Transmission"
+
 }
