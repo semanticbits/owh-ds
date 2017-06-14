@@ -1655,16 +1655,11 @@
                     aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions},
 
                 /*Multiple Cause of death*/
-                {key: 'mcd-chapter-10', title: 'label.filter.mcd.icd.chapter', queryKey:"record_axis_condn",
-                    primary: false, value: [], groupBy: false,type:"label.filter.group.mcd", groupKey:"mcd",
-                    autoCompleteOptions: $rootScope.conditionsListICD10, disableFilter: true}
-            ];
-
-            filters.ucdMcdFilters = [
-                {key: 'mcd-filters', title: 'label.filter.mcd', selectTitle: 'select.label.filter.mcd', updateTitle: 'update.label.filter.mcd',  queryKey:"",
-                    primary: false, value: [], groupBy: false,type:"label.filter.group.mcd",
-                    filterType: 'conditions', groupOptions: [],
-                    autoCompleteOptions: utilService.findAllByKeyAndValue(filters.allMortalityFilters, 'key', 'mcd-chapter-10')}
+                {key: 'mcd-chapter-10', title: 'label.filter.mcd', queryKey:"ICD_10_code",
+                    primary: false, value: [], groupBy: false, type: "label.filter.group.mcd", groupKey:"mcd",
+                    autoCompleteOptions: $rootScope.conditionsListICD10, filterType: 'conditions',
+                    selectTitle: 'select.label.filter.mcd', updateTitle: 'update.label.filter.mcd',
+                    groupOptions: filters.conditionGroupOptions}
             ];
 
             filters.censusFilters = filterUtils.getBridgeDataFilters();
@@ -1988,7 +1983,7 @@
                                 },
                                 {
                                     filterGroup: false, collapse: true,
-                                    filters: utilService.findByKeyAndValue(filters.ucdMcdFilters, 'key', 'mcd-filters')
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'mcd-chapter-10')
                                 }
                             ]
                         }

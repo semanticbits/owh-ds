@@ -427,6 +427,14 @@ describe('search factory ', function(){
             $scope.$apply();
         });
 
+        it('mcd filters', function () {
+            var mcdFilter = utils.findByKeyAndValue(filters.allMortalityFilters, 'key', 'mcd-chapter-10');
+            expect(mcdFilter.disableFilter).toEqual(undefined);
+            expect(mcdFilter.queryKey).toEqual('ICD_10_code');
+            expect(mcdFilter.filterType).toEqual('conditions');
+            expect(mcdFilter.selectTitle).toEqual('select.label.filter.mcd');
+            expect(mcdFilter.updateTitle).toEqual('update.label.filter.mcd');
+        });
     });
 
     describe('test with yrbs data', function () {
