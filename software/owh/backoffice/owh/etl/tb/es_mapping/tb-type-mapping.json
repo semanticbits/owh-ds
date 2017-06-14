@@ -2,7 +2,7 @@
   "tb": {
     "include_in_all": false,
     "_source": {
-      "enabled": false
+      "enabled": true
     },
     "properties": {
       "current_year": {
