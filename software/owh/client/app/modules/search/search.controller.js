@@ -570,6 +570,7 @@
             if (sc.mapOptions.selectedMapSize === 'small') {
                 angular.element('div.custom-legend').hide();
             }
+            mapService.setInitialView();
         });
 
         /*Show expanded graphs with whole set of features*/

@@ -14,7 +14,8 @@
             addShareControl: addShareControl,
             addScaleControl: addScaleControl,
             highlightFeature: highlightFeature,
-            resetHighlight: resetHighlight
+            resetHighlight: resetHighlight,
+            setInitialView: setInitialView
         };
         return service;
 
@@ -248,5 +249,11 @@
             }
         }
 
+        function setInitialView () {
+            leafletData.getMap().then(function (map) {
+               map.setView(new L.LatLng(38, 14), 3);
+                $timeout(function(){ map.invalidateSize()}, 100);
+            });
+        }
     }
 }());
