@@ -64,7 +64,12 @@
             </div>
         </div>
         <div class="owh-search-content usa-width-three-fourths overflow-visible" ng-class="{'owh-search-content--expanded': !sc.sideMenu.visible }">
-        <!--Charts-->
+            <owh-toggle-switch ng-if="sc.tableView == 'std' || sc.tableView == 'std_rate'" class="left-float chart-view-toggle"
+                               options="sc.filters.selectedPrimaryFilter.chartViewOptions"
+                               model="sc.filters.selectedPrimaryFilter.defaultChartView" on-change="sc.onSTDChartViewChange(sc.filters.selectedPrimaryFilter.tableView)"
+                               tooltip="{{'label.group.by.tooltip' | translate}}">
+            </owh-toggle-switch>
+            <!--Charts-->
             <div class="usa-grid-full margin-top-30">
                 <div class="usa-width-one-whole">
                     <div ng-repeat="startChartData in sc.filters.selectedPrimaryFilter.chartData" ng-init="parentIndex = $index">

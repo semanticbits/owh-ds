@@ -26,6 +26,7 @@
         sc.switchToYRBSBasic = switchToYRBSBasic;
         sc.switchToYRBSAdvanced = switchToYRBSAdvanced;
         sc.showFbDialog = showFbDialog;
+        sc.onSTDChartViewChange = onSTDChartViewChange;
 
         var root = document.getElementsByTagName( 'html' )[0]; // '0' to assign the first (and only `HTML` tag)
         root.removeAttribute('class');
@@ -121,6 +122,7 @@
             fertility_rates: {},
             bridge_race:{},
             std:{},
+            std_rate:{},
             mental_health:{},
             natality:{},
             prams:{},
@@ -584,6 +586,24 @@
          */
         function showFbDialog(svgIndex, title, data) {
             shareUtilService.shareOnFb(svgIndex, title, undefined, undefined, data);
+        }
+
+        /**
+         * To change Visualizations data based on selected view.
+         * @param defaultChartView
+         */
+        function onSTDChartViewChange(tableView) {
+            if(tableView === 'std') {
+                sc.filters.selectedPrimaryFilter.tableView = 'std_rate';
+                sc.filters.selectedPrimaryFilter.chartAxisLabel = 'Rate';
+                sc.filters.selectedPrimaryFilter.defaultChartView = 'rate';
+            }
+            else if(tableView === 'std_rate') {
+                sc.filters.selectedPrimaryFilter.tableView = 'std';
+                sc.filters.selectedPrimaryFilter.chartAxisLabel = 'Cases';
+                sc.filters.selectedPrimaryFilter.defaultChartView = 'cases';
+            }
+            sc.filters.selectedPrimaryFilter.chartData =searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
         }
     }
 }());

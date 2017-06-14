@@ -117,6 +117,7 @@
                 primaryFilter.data = tableData.data;
             }
             else if (response.data.queryJSON.key == 'std') {
+                primaryFilter.nestedData = response.data.resultData.nested;
                 primaryFilter.data = response.data.resultData.nested.table;
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
@@ -790,10 +791,15 @@
                     if ( eachFilter.groupBy === 'row' ) {
                         //user defined aggregations for rendering table
                         rowAggregations.push(eachGroupQuery);
+                        //For STD, TB, HIV-AIDS, if user set groupBy row and select ["Both sexes", "All races/ethnicities", "All age groups", "National"] filter
+                        //then setting filter value to empty, so that all filter options will be appear on visualizations
+                        if(filterUtils.getAllOptionValues().indexOf(eachFilter.value) > -1) {
+                            eachFilter.value = "" ;
+                        }
                         headers.rowHeaders.push(eachFilter);
                     } else if( eachFilter.groupBy === 'column' ) {
                         columnAggregations.push(eachGroupQuery);
-                        //For STD, if user set groupBy column and select ["Both sexes", "All races/ethnicities", "All age groups", "National"] filter
+                        //For STD, TB, HIV-AIDS, if user set groupBy column and select ["Both sexes", "All races/ethnicities", "All age groups", "National"] filter
                         //then setting filter value to empty, so that all filter options will be appear on table column
                         if(filterUtils.getAllOptionValues().indexOf(eachFilter.value) > -1) {
                             eachFilter.value = "" ;
@@ -2693,6 +2699,8 @@
                     key: 'std', title: 'label.filter.std', primary: true, value:[], header:"STD",
                     allFilters: filters.stdFilters, searchResults: searchSTDResults, showMap: false,
                     chartAxisLabel:'Cases', tableView:'std',
+                    chartViewOptions: [{key:'cases',title:'Cases', tooltip:'Select to view as cases on charts'}, {key:'rate',title:'Rate', tooltip:'Select to view as rates on charts'}],
+                    defaultChartView: 'cases',
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
                         {

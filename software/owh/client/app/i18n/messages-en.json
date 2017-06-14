@@ -178,6 +178,7 @@
   "label.chart.gender": "Sex",
   "label.chart.race": "Race",
   "label.chart.agegroup": "Age Group",
+  "label.chart.age_group": "Age Group",
   "label.chart.hispanicOrigin": "Ethnicity",
   "label.chart.autopsy": "Autopsy",
   "label.chart.placeofdeath": "Place of Death",

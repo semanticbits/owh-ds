@@ -105,7 +105,7 @@
                     if(column.isCount) {
                         cell += '<label class="custom-label owh-table__cell-content">';
                             cell += '<div>';
-                        if(['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates', 'std'].indexOf(otc.tableView) >= 0) {
+                        if(['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates', 'std', 'std_rate'].indexOf(otc.tableView) >= 0) {
                             cell += '<div id="crudeRateDiv" class="owh-table__left-col ' + (row.length > 5 ? 'usa-width-one-half' : 'usa-width-one-third') + '">';
                             if(rowIndex === 0) {
                                 var rateLabel = { 'crude_death_rates': 'Crude Death Rate', 'age-adjusted_death_rates': 'Age Adjusted Death Rate', 'birth_rates':'Birth Rate', 'fertility_rates':'Fertility Rate' }[otc.tableView] || 'Rate';
@@ -135,7 +135,7 @@
                                 if(otc.tableView === 'birth_rates' || otc.tableView === 'fertility_rates') {
                                     cell += '<label class="owh-table__label">Births</label>';
                                 }
-                                else if(otc.tableView === 'std') {
+                                else if(otc.tableView === 'std' || otc.tableView === 'std_rate') {
                                     cell += '<label class="owh-table__label">Cases</label>';
                                 }
                                 else {

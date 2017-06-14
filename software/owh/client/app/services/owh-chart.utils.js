@@ -44,7 +44,7 @@
          * @returns {Number}
          */
         function getValueFromData(filter, data) {
-            if(data['pop'] && (filter.tableView == "crude_death_rates" || filter.tableView == "birth_rates" || filter.tableView == "fertility_rates")) {
+            if(data['pop'] && (filter.tableView == "crude_death_rates" || filter.tableView == "birth_rates" || filter.tableView == "fertility_rates" || filter.tableView == "std_rate")) {
                 return Math.round(data[filter.key] / data['pop'] * 1000000) / 10;
             }
             else if(data['ageAdjustedRate'] && filter.tableView == "age-adjusted_death_rates"){
