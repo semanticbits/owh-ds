@@ -2749,8 +2749,8 @@
 
                 {
                     key: 'tb', title: 'label.filter.tb', primary: true, value:[], header:"Tuberculosis",
-                    allFilters: filters.stdFilters, searchResults: searchTBResults, showMap: false,
-                    chartAxisLabel:'Cases', tableView:'std',
+                    allFilters: filters.tbFilters, searchResults: searchTBResults, showMap: false,
+                    chartAxisLabel:'Cases', tableView:'tb',
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
                         {
