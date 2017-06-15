@@ -1095,7 +1095,7 @@
         }
 
         /**
-         * Search STD results
+         * Fetch TB data based on filters
          * @param primaryFilter
          * @param queryID
          */
