@@ -2759,7 +2759,8 @@
                 {
                     key: 'tb', title: 'label.filter.tb', primary: true, value:[], header:"Tuberculosis",
                     allFilters: filters.tbFilters, searchResults: searchTBResults, showMap: false,
-                    chartAxisLabel:'Cases', tableView:'tb',
+                    chartAxisLabel:'Cases', tableView:'tb', defaultChartView: 'cases',
+                    chartViewOptions: [{key:'cases',title:'Cases', tooltip:'Select to view as cases on charts'}, {key:'rate',title:'Rate', tooltip:'Select to view as rates on charts'}],
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
                         {
