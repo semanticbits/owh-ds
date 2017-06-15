@@ -26,6 +26,7 @@
         sc.switchToYRBSBasic = switchToYRBSBasic;
         sc.switchToYRBSAdvanced = switchToYRBSAdvanced;
         sc.showFbDialog = showFbDialog;
+        sc.onChartViewChange = onChartViewChange;
 
         var root = document.getElementsByTagName( 'html' )[0]; // '0' to assign the first (and only `HTML` tag)
         root.removeAttribute('class');
@@ -121,6 +122,7 @@
             fertility_rates: {},
             bridge_race:{},
             std:{},
+            disease_rate:{},
             mental_health:{},
             natality:{},
             prams:{},
@@ -543,8 +545,8 @@
         });
 
         /*Show expanded graphs with whole set of features*/
-        function showExpandedGraph(chartData) {
-            chartUtilService.showExpandedGraph([chartData]);
+        function showExpandedGraph(chartData, tableView) {
+            chartUtilService.showExpandedGraph([chartData], tableView);
         }
 
         function getChartTitle(title) {
@@ -584,6 +586,28 @@
          */
         function showFbDialog(svgIndex, title, data) {
             shareUtilService.shareOnFb(svgIndex, title, undefined, undefined, data);
+        }
+
+        /**
+         * For STD, TB and HIV
+         * To change Visualizations data based on selected view.
+         * @param tableView
+         */
+        function onChartViewChange(tableView, key) {
+            if(tableView === key) {
+                sc.filters.selectedPrimaryFilter.tableView = 'disease_rate';
+                sc.filters.selectedPrimaryFilter.chartAxisLabel = 'Rates';
+                sc.filters.selectedPrimaryFilter.defaultChartView = 'rate';
+            }
+            /**
+             * 'disease_rate' is a common tableview for STD, TB and HIV
+             */
+            else if(tableView === 'disease_rate') {
+                sc.filters.selectedPrimaryFilter.tableView = key;
+                sc.filters.selectedPrimaryFilter.chartAxisLabel = 'Cases';
+                sc.filters.selectedPrimaryFilter.defaultChartView = 'cases';
+            }
+            sc.filters.selectedPrimaryFilter.chartData =searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
         }
     }
 }());

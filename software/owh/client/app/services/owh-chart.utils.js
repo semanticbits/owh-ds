@@ -44,8 +44,8 @@
          * @returns {Number}
          */
         function getValueFromData(filter, data) {
-            if(data['pop'] && (filter.tableView == "crude_death_rates" || filter.tableView == "birth_rates" || filter.tableView == "fertility_rates")) {
-                return Math.round(data[filter.key] / data['pop'] * 1000000) / 10;
+            if(filter.tableView == "crude_death_rates" || filter.tableView == "birth_rates" || filter.tableView == "fertility_rates" || filter.tableView == "disease_rate") {
+                return data['pop'] ? Math.round(data[filter.key] / data['pop'] * 1000000) / 10 : 0;
             }
             else if(data['ageAdjustedRate'] && filter.tableView == "age-adjusted_death_rates"){
                 var ageAdjustedRate = parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));
@@ -552,13 +552,13 @@
         }
 
         /*Show expanded graphs with whole set of features*/
-        function showExpandedGraph(chartData, graphTitle, graphSubTitle,
+        function showExpandedGraph(chartData, tableView, graphTitle, graphSubTitle,
                                    chartTypes, primaryFilters, selectedQuestion) {
 
             /**
              * Update chart dimensions and data
              */
-            var updateChart = function (chartData) {
+            var updateChart = function (chartData, tableView) {
                 var allExpandedChartDatas = [];
                 graphTitle = graphTitle ? graphTitle : (chartData.length > 1? 'label.graph.expanded': chartData[0].title);
                 angular.forEach(chartData, function(eachChartData) {
@@ -567,7 +567,13 @@
                     expandedChartData.options.chart.height = 500;
                     expandedChartData.options.chart.width = 750;
                     expandedChartData.options.chart.showLegend = true;
-                    expandedChartData.options.chart.showControls = true;
+                    //If Rates selected then not enabling controls(grouped, stacked) for expanded visualizations and default view set to grouped.
+                    if(tableView === 'disease_rate') {
+                        expandedChartData.options.chart.stacked = false;
+                    }
+                    else {
+                        expandedChartData.options.chart.showControls = true;
+                    }
                     expandedChartData.options.chart.showValues = true;
                     expandedChartData.options.chart.showXAxis = true;
                     expandedChartData.options.chart.showYAxis = true;
@@ -642,7 +648,7 @@
                 controllerAs: 'eg',
                 controller: function ($scope, close, shareUtilService, searchFactory) {
                     var eg = this;
-                    eg.chartData = updateChart(chartData);
+                    eg.chartData = updateChart(chartData, tableView);
                     eg.graphTitle = graphTitle;
                     eg.graphSubTitle = graphSubTitle;
                     eg.chartTypes = chartTypes;

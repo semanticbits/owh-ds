@@ -787,7 +787,11 @@ var chartMappings = {
     "medical_attendant&tobacco_use": "horizontalStack",
     "chronic_hypertension&tobacco_use": "horizontalStack",
     "diabetes&tobacco_use": "horizontalStack",
-    "eclampsia&tobacco_use": "horizontalStack"
+    "eclampsia&tobacco_use": "horizontalStack",
+
+    "sex&age_group": "horizontalBar",
+    "age_group&race": "horizontalBar",
+    "age_group&state": "horizontalBar"
 };
 
 var prepareMapAggregations = function() {
