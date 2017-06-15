@@ -73,13 +73,13 @@
                 {key: 'prenatal_care', title: 'Prenatal Care'},
                 {key: 'insurance_medicaid_services', title: 'Insurance/Medicaid/Services'}],
             mental_health: [
-                {key: 'Unintentional Injuries and Violence', title: 'Unintentional Injuries and Violence'},
-                {key: 'Tobacco Use', title: 'Tobacco Use'},
                 {key: 'Alcohol and Other Drug Use', title: 'Alcohol and Other Drug Use'},
-                {key: 'Sexual Behaviors', title: 'Sexual Behaviors'},
                 {key: 'Dietary Behaviors', title: 'Dietary Behaviors'},
-                {key: 'Physical Activity', title: 'Physical Activity'},
                 {key: 'Obesity, Overweight, and Weight Control', title: 'Obesity, Overweight, and Weight Control'},
+                {key: 'Physical Activity', title: 'Physical Activity'},
+                {key: 'Sexual Behaviors', title: 'Sexual Behaviors'},
+                {key: 'Tobacco Use', title: 'Tobacco Use'},
+                {key: 'Unintentional Injuries and Violence', title: 'Unintentional Injuries and Violence'},
                 {key: 'Other Health Topics', title: 'Other Health Topics'}]
         };
         sc.sort = {

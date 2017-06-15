@@ -59,6 +59,10 @@ var YRBSSearchPage = function() {
     ysp.getTableHeaderData = function() {
         return ysp.owhTable.element(by.tagName('thead')).all(by.tagName('tr')).get(rowNumber).all(by.tagName('th')).getText();
     };
+
+    ysp.getSelectedTopic = function () {
+        return element(by.css('select[ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.mental_health"]')).$('[selected]');
+    };
 };
 
 module.exports = new YRBSSearchPage;

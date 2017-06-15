@@ -715,6 +715,27 @@ var yrbsStepDefinitionsWrapper = function () {
         }).then(next);
     });
 
+    this.Then(/^I see "([^"]*)" filter on the top of the page$/, function (arg1, next) {
+        element.all(by.css('select[ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.mental_health"]')).then(function (element){
+            expect(element.length).to.equal(1);
+           expect(element[0].isPresent()).to.eventually.equal(true);
+        }).then(next());
+    });
 
+    this.Then(/^Default selected topic is "([^"]*)"$/, function (arg1) {
+        return expect(yrbsPage.getSelectedTopic().getText()).to.eventually.equal(arg1);
+    });
+
+    this.Then(/^I see only "([^"]*)" category in the result table$/, function (arg1) {
+        yrbsPage.getCategoryBars().then(function(elements) {
+            expect(elements.length).to.equal(1);
+            expect(elements[0].isDisplayed()).to.eventually.equal(true);
+            return expect(elements[0].getText()).to.eventually.equal(arg1);
+        });
+    });
+
+    this.When(/^I change topic to "([^"]*)"$/, function (arg1) {
+        return element(by.cssContainingText('option', arg1)).click();
+    });
 };
 module.exports = yrbsStepDefinitionsWrapper;

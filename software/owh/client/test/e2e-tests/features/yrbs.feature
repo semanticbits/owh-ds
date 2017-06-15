@@ -1,9 +1,10 @@
-@Only
+@Yrbs
 Feature: As a User
   I want the sidebar layout in YRBS to be similar to Mortality
   So that there is consistency in the design
   I want to see the YRBS question categories in the given order
   So that I can see the most important question categories first
+
 
   Scenario: Access YRBS page from home page
     Given I am on search page
@@ -16,6 +17,14 @@ Feature: As a User
     When I select YRBS as primary filter
     Then the default filter pre-selected should be Race
     And side menu slides back into view
+
+  Scenario: Health Topic options
+    And I see "Topic" filter on the top of the page
+    And Default selected topic is "Alcohol and Other Drug Use"
+    And I see only "Alcohol and Other Drug Use" category in the result table
+    When I change topic to "Dietary Behaviors"
+    Then I see only "Dietary Behaviors" category in the result table
+    When I change topic to "Alcohol and Other Drug Use"
 
   Scenario: Result table shows both Yes and No Responses
     #Then I should see "Response" column in the result table
@@ -260,6 +269,19 @@ Feature: As a User
     Then "Show" button for Confidence Intervals should be remain selected
     And "Show" button for Unweighted Frequency should be remain selected
     #And I see both Confidence Intervals and Unweighted Frequency values in data table
+    When I set "Sex of Sexual Contacts" filter "Column"
+    And I expand "Sexual Identity" filter section
+    And  filter "Sexual Identity" and option "Heterosexual (straight)" selected
+    And I click on run query button
+    #Then results in yrbs data table should be suppressed
+
+  Scenario: I want to see the filter "Health Topic" on the YRBS page
+    When I click on the "Switch to Advanced Search" link
+    When I click on "Select Questions" button
+    And I select a few questions and clicks on the Add Selected Question(s) button
+    Then "Show" button for Confidence Intervals should be remain selected
+    And "Show" button for Unweighted Frequency should be remain selected
+   #And I see both Confidence Intervals and Unweighted Frequency values in data table
     When I set "Sex of Sexual Contacts" filter "Column"
     And I expand "Sexual Identity" filter section
     And  filter "Sexual Identity" and option "Heterosexual (straight)" selected
