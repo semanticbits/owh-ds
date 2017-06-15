@@ -295,7 +295,10 @@
             "current_year&ethnicity":"horizontalBar",
             "current_year&agegroup":"horizontalBar",
             "current_year&state":"horizontalBar",
-            "current_year&region":"verticalBar"
+            "current_year&region":"verticalBar",
+            "sex&age_group": "horizontalBar",
+            "age_group&race": "horizontalBar",
+            "age_group&state": "horizontalBar"
 
 
         };

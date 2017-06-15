@@ -102,6 +102,22 @@ var stdStepDefinitionsWrapper = function () {
         expect(element(by.id("std_state_AL")).getAttribute("type")).to.eventually.equal("radio");
         return expect(element(by.id("std_state_AK")).getAttribute("type")).to.eventually.equal("radio");
     });
+
+    this.When(/^I click on Rate chart view toggle button$/, function (next) {
+         element(by.cssContainingText('span', 'Rate')).click()
+             .then(next);
+    });
+
+    this.Then(/^I should see grouped and stacked controls on expaned visualization$/, function () {
+        expect(element(by.className('nv-controlsWrap ')).isPresent()).to.eventually.equal(true);
+        expect(element(by.cssContainingText('text', 'Grouped')).isDisplayed()).to.eventually.equal(true);
+        return expect(element(by.cssContainingText('text', 'Stacked')).isDisplayed()).to.eventually.equal(true);
+    });
+
+    this.Then(/^I should not see grouped and stacked controls on expaned visualization$/, function () {
+        expect(element(by.cssContainingText('text', 'Grouped')).isPresent()).to.eventually.equal(false);
+        return expect(element(by.cssContainingText('text', 'Stacked')).isPresent()).to.eventually.equal(false);
+    });
 };
 
 module.exports = stdStepDefinitionsWrapper;

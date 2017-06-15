@@ -975,8 +975,8 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.When(/^I select a cause and click on the Filter Selected Cause\(s\) of Death\(s\) button$/, function (next) {
         var until = protractor.ExpectedConditions;
-        browser.wait(until.presenceOf(element(by.className('jstree-anchor'))), 5000, 'Element taking too long to appear in the DOM');
-        element(by.className('jstree-anchor')).click();
+        browser.wait(until.presenceOf(element(by.className('jstree-checkbox'))), 10000, 'Element taking too long to appear in the DOM');
+        element(by.className('jstree-checkbox')).click();
         element(by.cssContainingText('button', 'Filter Selected Cause(s) of Deaths')).click()
             .then(next);
     });

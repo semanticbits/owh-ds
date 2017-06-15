@@ -117,6 +117,7 @@
                 primaryFilter.data = tableData.data;
             }
             else if (response.data.queryJSON.key == 'std') {
+                primaryFilter.nestedData = response.data.resultData.nested;
                 primaryFilter.data = response.data.resultData.nested.table;
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
@@ -422,7 +423,7 @@
         function showChartForQuestion(primaryFilter, question) {
 
             prepareQuestionChart(primaryFilter, question).then(function (response) {
-                chartUtilService.showExpandedGraph([response.chartData], question.title,
+                chartUtilService.showExpandedGraph([response.chartData], null, question.title,
                     null, response.chartTypes, primaryFilter, question);
             });
 
@@ -790,10 +791,15 @@
                     if ( eachFilter.groupBy === 'row' ) {
                         //user defined aggregations for rendering table
                         rowAggregations.push(eachGroupQuery);
+                        //For STD, TB, HIV-AIDS, if user set groupBy row and select ["Both sexes", "All races/ethnicities", "All age groups", "National"] filter
+                        //then setting filter value to empty, so that all filter options will be appear on visualizations
+                        if(filterUtils.getAllOptionValues().indexOf(eachFilter.value) > -1) {
+                            eachFilter.value = "" ;
+                        }
                         headers.rowHeaders.push(eachFilter);
                     } else if( eachFilter.groupBy === 'column' ) {
                         columnAggregations.push(eachGroupQuery);
-                        //For STD, if user set groupBy column and select ["Both sexes", "All races/ethnicities", "All age groups", "National"] filter
+                        //For STD, TB, HIV-AIDS, if user set groupBy column and select ["Both sexes", "All races/ethnicities", "All age groups", "National"] filter
                         //then setting filter value to empty, so that all filter options will be appear on table column
                         if(filterUtils.getAllOptionValues().indexOf(eachFilter.value) > -1) {
                             eachFilter.value = "" ;
@@ -1649,16 +1655,11 @@
                     aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions},
 
                 /*Multiple Cause of death*/
-                {key: 'mcd-chapter-10', title: 'label.filter.mcd.icd.chapter', queryKey:"record_axis_condn",
-                    primary: false, value: [], groupBy: false,type:"label.filter.group.mcd", groupKey:"mcd",
-                    autoCompleteOptions: $rootScope.conditionsListICD10, disableFilter: true}
-            ];
-
-            filters.ucdMcdFilters = [
-                {key: 'mcd-filters', title: 'label.filter.mcd', selectTitle: 'select.label.filter.mcd', updateTitle: 'update.label.filter.mcd',  queryKey:"",
-                    primary: false, value: [], groupBy: false,type:"label.filter.group.mcd",
-                    filterType: 'conditions', groupOptions: [],
-                    autoCompleteOptions: utilService.findAllByKeyAndValue(filters.allMortalityFilters, 'key', 'mcd-chapter-10')}
+                {key: 'mcd-chapter-10', title: 'label.filter.mcd', queryKey:"ICD_10_code",
+                    primary: false, value: [], groupBy: false, type: "label.filter.group.mcd", groupKey:"mcd",
+                    autoCompleteOptions: $rootScope.conditionsListICD10, filterType: 'conditions',
+                    selectTitle: 'select.label.filter.mcd', updateTitle: 'update.label.filter.mcd',
+                    groupOptions: filters.conditionGroupOptions}
             ];
 
             filters.censusFilters = filterUtils.getBridgeDataFilters();
@@ -1982,7 +1983,7 @@
                                 },
                                 {
                                     filterGroup: false, collapse: true,
-                                    filters: utilService.findByKeyAndValue(filters.ucdMcdFilters, 'key', 'mcd-filters')
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'mcd-chapter-10')
                                 }
                             ]
                         }
@@ -2693,6 +2694,8 @@
                     key: 'std', title: 'label.filter.std', primary: true, value:[], header:"STD",
                     allFilters: filters.stdFilters, searchResults: searchSTDResults, showMap: false,
                     chartAxisLabel:'Cases', tableView:'std',
+                    chartViewOptions: [{key:'cases',title:'Cases', tooltip:'Select to view as cases on charts'}, {key:'rate',title:'Rate', tooltip:'Select to view as rates on charts'}],
+                    defaultChartView: 'cases',
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
                         {
