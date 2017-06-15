@@ -135,7 +135,7 @@
                                 if(otc.tableView === 'birth_rates' || otc.tableView === 'fertility_rates') {
                                     cell += '<label class="owh-table__label">Births</label>';
                                 }
-                                else if(otc.tableView === 'std') {
+                                else if(otc.tableView === 'std' || otc.tableView === 'tb') {
                                     cell += '<label class="owh-table__label">Cases</label>';
                                 }
                                 else {
