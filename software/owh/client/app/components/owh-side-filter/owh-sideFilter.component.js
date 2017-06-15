@@ -142,7 +142,7 @@
                     clearSelection(eachFilter)
                 }
             });
-            var showTree = selectedFilter.key ==='ucd-chapter-10' || selectedFilter.key === 'question';
+            var showTree = selectedFilter.key === 'ucd-chapter-10' || selectedFilter.key === 'mcd-chapter-10' || selectedFilter.key === 'question';
             if(!showTree) {
                 searchFactory.showPhaseTwoModal('label.mcd.impl.next');
             }else {
