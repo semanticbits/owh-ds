@@ -30,3 +30,18 @@ Feature: STD page
   Scenario: Radio Buttons
     When I expand each STD filter
     Then every STD filter must have Radio buttons under then
+
+  Scenario: STD Cases visualizations
+    When user sees a visualization
+    Then labels "Race/Ethnicity" and "Cases" are displayed on minimized visualization
+    When user expand visualization
+    Then I should see grouped and stacked controls on expaned visualization
+    And labels "Race/Ethnicity" and "Cases" are displayed on expanded visualization
+
+  Scenario: STD Rates visualizations
+    When I click on Rate chart view toggle button
+    And user sees a visualization
+    Then labels "Race/Ethnicity" and "Rates" are displayed on minimized visualization
+    When user expand visualization
+    Then I should not see grouped and stacked controls on expaned visualization
+    And labels "Race/Ethnicity" and "Rates" are displayed on expanded visualization

@@ -696,4 +696,22 @@ describe("Search controller: ", function () {
         expect(JSON.stringify(searchController.filters.yrbsBasicFilters[4].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.questionsList));
         expect(JSON.stringify(searchController.filters.yrbsAdvancedFilters[4].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.questionsList));
     }));
+
+    it("On chart view change for std", inject(function(searchFactory) {
+        var deferred = $q.defer();
+        var searchController= $controller('SearchController',{$scope:$scope, searchFactory: searchFactory});
+        var utilService = $injector.get('utilService');
+        searchController.filters = filters;
+        filters.selectedPrimaryFilter = filters.search[6];
+        filters.primaryFilters = utilService.findAllByKeyAndValue(searchController.filters.search, 'primary', true);
+        spyOn(searchFactory, 'prepareChartData').and.returnValue(deferred.promise);
+        searchController.onChartViewChange('std', filters.selectedPrimaryFilter.key);
+        expect(searchController.filters.selectedPrimaryFilter.tableView).toEqual('disease_rate');
+        expect(searchController.filters.selectedPrimaryFilter.chartAxisLabel).toEqual('Rates');
+        expect(searchController.filters.selectedPrimaryFilter.defaultChartView).toEqual('rate');
+        searchController.onChartViewChange('disease_rate', filters.selectedPrimaryFilter.key);
+        expect(searchController.filters.selectedPrimaryFilter.tableView).toEqual('std');
+        expect(searchController.filters.selectedPrimaryFilter.chartAxisLabel).toEqual('Cases');
+        expect(searchController.filters.selectedPrimaryFilter.defaultChartView).toEqual('cases');
+    }));
 });
