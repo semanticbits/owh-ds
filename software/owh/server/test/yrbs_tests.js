@@ -3689,10 +3689,15 @@ describe("YRBS API", function () {
             var q0=resp.table.question[0];
             expect(q0.YES.mental_health).to.eql({"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":35384});
             expect(q0.YES.sex.length).to.eql(1);
-            expect(q0.YES.sex[0].name).to.eql("Female");
-            var race = sortByKey(q0.YES.sex[0].race, 'name', true);
+            var sex = sortByKey(q0.YES.sex, 'name', true);
+            expect(sex[0].name).to.eql("Female");
+            var race = sortByKey(sex[0].race, 'name', true);
             expect(race).to.eql([{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11670}},{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":23714}}]);
-            expect(q0.NO).to.eql({"mental_health":{"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":35384},"sex":[{"name":"Female","mental_health":{"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":35384},"race":[{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":23714}},{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11670}}]}]});
+            expect(q0.NO.mental_health).to.eql({"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":35384});
+            var sexno = sortByKey(q0.NO.sex, 'name', true);
+            expect(sex[0].name).to.eql("Female");
+            var race = sortByKey(sex[0].race, 'name', true);
+            expect([{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11670}},{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":23714}}]);
         });
     });
 
