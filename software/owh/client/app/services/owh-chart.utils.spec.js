@@ -235,7 +235,7 @@ describe('chart utils', function(){
     it('test chart utils showExpandedGraph with multiple charts for agegroup.autopsy and gender.placeofdeath', function () {
         horizontalStackExpectedResult1.title = 'label.title.agegroup.autopsy';
         verticalBarExpectedResult1.title = 'label.title.gender.placeofdeath';
-        chartUtils.showExpandedGraph([verticalBarExpectedResult1, horizontalStackExpectedResult1],'graph title');
+        chartUtils.showExpandedGraph([verticalBarExpectedResult1, horizontalStackExpectedResult1], null, 'graph title');
         var ctrl = controllerProvider(givenModalDefaults.controller, { $scope: $scope, close: closeDeferred.promise, shareUtilService: shareUtils});
         expect(ctrl.graphTitle).toEqual('graph title');
     });
@@ -258,7 +258,7 @@ describe('chart utils', function(){
 
     it('test chart utils showExpandedGraph for bulletChart', function () {
         horizontalStackExpectedResult1.options.chart.type = 'bulletChart';
-        chartUtils.showExpandedGraph([horizontalStackExpectedResult1], 'graph title', 'graph sub title');
+        chartUtils.showExpandedGraph([horizontalStackExpectedResult1], null, 'graph title', 'graph sub title');
         spyOn(shareUtils, 'shareOnFb');
         var ctrl = controllerProvider(givenModalDefaults.controller, { $scope: $scope, close: closeDeferred.promise, shareUtilService: shareUtils});
         expect(ctrl.graphSubTitle).toEqual('graph sub title');
