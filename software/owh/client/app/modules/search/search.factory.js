@@ -30,7 +30,8 @@
             updateFiltersAndData: updateFiltersAndData,
             getMixedTable: getMixedTable,
             setFilterGroupBy: setFilterGroupBy,
-            getYrbsQuestionsForTopic: getYrbsQuestionsForTopic
+            getYrbsQuestionsForTopic: getYrbsQuestionsForTopic,
+            getPramsQuestionsForTopics: getPramsQuestionsForTopics
 
         };
         return service;
@@ -2001,7 +2002,7 @@
                 {
                     key: 'mental_health', title: 'label.risk.behavior', primary: true, value:[], header:"Youth risk behavior",
                     searchResults: searchYRBSResults, dontShowInlineCharting: true,
-                    additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total', tableView:'All Health Topics',
+                    additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total', tableView:'Unintentional Injuries and Violence',
                     chartAxisLabel:'Percentage',
                     showBasicSearchSideMenu: true, runOnFilterChange: true, allFilters: filters.yrbsBasicFilters, // Default to basic filter
                     advancedSideFilters: [

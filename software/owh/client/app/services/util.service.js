@@ -691,10 +691,12 @@
          */
         function getValuesByKeyIncludingKeyAndValue(data, key, includeKey, includeValue) {
             var values = [];
-            for (var i = 0; i < data.length; i++) {
-                if(data[i][includeKey] === includeValue) {
-                    values.push(data[i][key]);
-                }
+            if(data){
+                    for (var i = 0; i < data.length; i++) {
+                        if(data[i][includeKey] === includeValue) {
+                            values.push(data[i][key]);
+                        }
+                    }
             }
             return values;
         }

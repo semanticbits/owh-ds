@@ -244,14 +244,24 @@ describe("Search controller: ", function () {
         expect(utilService.prepareMixedTableData).toHaveBeenCalled();
     }));
 
-    it('changeViewFilter should set the tableView and call out to search', function() {
+    it('changeViewFilter should set the tableView and call out to search when runOnFilterChange is true', function() {
         var searchController= $controller('SearchController',{$scope:$scope});
         spyOn(searchController, 'search');
-        searchController.filters = {selectedPrimaryFilter: {data: {}, allFilters: [], sideFilters: []}};
+        searchController.filters = {selectedPrimaryFilter: {data: {}, allFilters: [], sideFilters: [], runOnFilterChange:true}};
         searchController.changeViewFilter({key: 'number_of_deaths'});
 
         expect(searchController.tableView).toEqual('number_of_deaths');
         expect(searchController.search).toHaveBeenCalled();
+    });
+
+    it('changeViewFilter should set the tableView and does npt call search when runOnFilterChange is false', function() {
+        var searchController= $controller('SearchController',{$scope:$scope});
+        spyOn(searchController, 'search');
+        searchController.filters = {selectedPrimaryFilter: {data: {}, allFilters: [], sideFilters: [], runOnFilterChange:false}};
+        searchController.changeViewFilter({key: 'number_of_deaths'});
+
+        expect(searchController.tableView).toEqual('number_of_deaths');
+        expect(searchController.search).not.toHaveBeenCalled();
     });
 
     it('changeViewFilter should replace ethnicity queryKey and options for crude_death_rates', function() {
@@ -541,7 +551,7 @@ describe("Search controller: ", function () {
         //$scope.$digest();
     }));
 
-    it("should update prams questions based on chane in prams class", inject(function () {
+    it("should update prams questions based on change in prams class", inject(function () {
         searchController.searchFactory = $searchFactory;
         var topicFilter = pramsFilters.sideFilters[0].sideFilters[0];
 

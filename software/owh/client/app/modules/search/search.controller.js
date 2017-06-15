@@ -73,7 +73,6 @@
                 {key: 'prenatal_care', title: 'Prenatal Care'},
                 {key: 'insurance_medicaid_services', title: 'Insurance/Medicaid/Services'}],
             mental_health: [
-                {key: 'All Health Topics', title: 'All Health Topics'},
                 {key: 'Unintentional Injuries and Violence', title: 'Unintentional Injuries and Violence'},
                 {key: 'Tobacco Use', title: 'Tobacco Use'},
                 {key: 'Alcohol and Other Drug Use', title: 'Alcohol and Other Drug Use'},
@@ -179,6 +178,7 @@
         function changePrimaryFilter(newFilter) {
             sc.tableData = {};
             sc.filters.selectedPrimaryFilter = newFilter;
+            sc.tableView = newFilter.tableView;
             search(true);
         }
 
@@ -225,6 +225,40 @@
         }
 
         function search(isFilterChanged) {
+            if(sc.filters.selectedPrimaryFilter.key === 'prams' || sc.filters.selectedPrimaryFilter.key === 'mental_health') {
+                angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters[0].sideFilters, function(filter) {
+                    if(filter.filters.key === 'topic') {
+                        filter.filters.questions = [];
+                        if(filter.filters.value.length === 0) {
+                            angular.forEach(filter.filters.autoCompleteOptions, function (option) {
+                                angular.forEach($rootScope.pramsQuestions, function(pramsCat) {
+                                    if(option.key === pramsCat.id) {
+                                        angular.forEach(pramsCat.children, function(question) {
+                                            filter.filters.questions.push(question.id);
+                                        });
+                                    }
+                                });
+                            });
+                        } else {
+                            angular.forEach(filter.filters.value, function(cat) {
+                                angular.forEach($rootScope.pramsQuestions, function(pramsCat) {
+                                    if(cat === pramsCat.id) {
+                                        angular.forEach(pramsCat.children, function(question) {
+                                            filter.filters.questions.push(question.id);
+                                        });
+                                    }
+                                });
+                            });
+                        }
+                    } else if (filter.filters.key === 'question'){
+                        if(sc.filters.selectedPrimaryFilter.key === 'mental_health') {
+                            filter.filters.questions = searchFactory.getYrbsQuestionsForTopic(sc.tableView);
+                        } else if(sc.filters.selectedPrimaryFilter.key === 'prams'){
+                            filter.filters.questions = searchFactory.getPramsQuestionsForTopics(sc.optionsGroup[sc.tableView].topic);
+                        }
+                    }
+                });
+            }
             if(isFilterChanged) {
                 //filters changed
                 searchFactory.generateHashCode(sc.filters.selectedPrimaryFilter).then(function(hash) {
@@ -328,6 +362,7 @@
 
 
         function changeViewFilter(selectedFilter) {
+            sc.tableView = selectedFilter.key;
             searchFactory.removeDisabledFilters(sc.filters.selectedPrimaryFilter, selectedFilter.key, sc.availableFilters);
             angular.forEach(sc.filters.selectedPrimaryFilter.allFilters, function(filter) {
                 if(filter.key === 'hispanicOrigin') {
@@ -357,36 +392,11 @@
                         filter.filters.value = [];
                         filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
                         searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup[selectedFilter.key]);
-                        filter.filters.questions = [];
-                        if(filter.filters.value.length === 0) {
-                            angular.forEach(filter.filters.autoCompleteOptions, function (option) {
-                                angular.forEach($rootScope.pramsQuestions, function(pramsCat) {
-                                    if(option.key === pramsCat.id) {
-                                        angular.forEach(pramsCat.children, function(question) {
-                                            filter.filters.questions.push(question.id);
-                                        });
-                                    }
-                                });
-                            });
-                        } else {
-                            angular.forEach(filter.filters.value, function(cat) {
-                                angular.forEach($rootScope.pramsQuestions, function(pramsCat) {
-                                    if(cat === pramsCat.id) {
-                                        angular.forEach(pramsCat.children, function(question) {
-                                            filter.filters.questions.push(question.id);
-                                        });
-                                    }
-                                });
-                            });
-                        }
                     } else if (filter.filters.key === 'question') {
                         // Clear questions selection and update questions list on class/topic change for PRAMS and YRBS datasets
                         filter.filters.value = [];
                         filter.filters.selectedValues = [];
                         filter.filters.selectedNodes = [];
-                        if(sc.filters.selectedPrimaryFilter.key === 'mental_health') {
-                            filter.filters.questions = searchFactory.getYrbsQuestionsForTopic(selectedFilter.key);
-                        }
                     }
                 });
             });
@@ -426,8 +436,12 @@
                    searchFactory.setFilterGroupBy(sc.filters.selectedPrimaryFilter.allFilters, 'sex', 'column');
                 }
             }
-            sc.search(true);
-            sc.tableView = selectedFilter.key;
+
+            // Don't trigger search automatically for advaced search
+            if(sc.filters.selectedPrimaryFilter.runOnFilterChange) {
+                sc.search(true);
+            }
+
         }
 
         function downloadCSV() {
