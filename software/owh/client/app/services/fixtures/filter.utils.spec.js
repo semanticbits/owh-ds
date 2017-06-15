@@ -61,4 +61,30 @@ describe('filterUtils', function(){
             expect(InfantMortalityData[7].key).toEqual('mother_education');
         });
     });
+
+    describe('STD filters -> ', function() {
+        it('when I call getSTDDataFilters, I should get all std filters', function () {
+            var stdDataFilters= filterUtils.getSTDDataFilters();
+            expect(stdDataFilters[0].key).toEqual('current_year');
+            expect(stdDataFilters[0].value).toEqual('2015');
+            expect(stdDataFilters[1].key).toEqual('disease');
+            expect(stdDataFilters[1].value).toEqual('Chlamydia');
+            expect(stdDataFilters[2].key).toEqual('state');
+            expect(stdDataFilters[2].value).toEqual('National');
+            expect(stdDataFilters[3].key).toEqual('age_group');
+            expect(stdDataFilters[3].value).toEqual('All age groups');
+            expect(stdDataFilters[4].key).toEqual('race');
+            expect(stdDataFilters[4].value).toEqual('All races/ethnicities');
+            expect(stdDataFilters[5].key).toEqual('sex');
+            expect(stdDataFilters[5].value).toEqual('Both sexes');
+        });
+
+        it('When I call getAllOptionValues, I should get list of All option values', function(){
+            var values = filterUtils.getAllOptionValues();
+            expect(values[0]).toEqual("Both sexes");
+            expect(values[1]).toEqual("All races/ethnicities");
+            expect(values[2]).toEqual("All age groups");
+            expect(values[3]).toEqual("National");
+        });
+    });
 });

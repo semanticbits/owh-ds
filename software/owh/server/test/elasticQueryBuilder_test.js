@@ -2,6 +2,9 @@ var elasticQueryBuilder = require("../api/elasticQueryBuilder");
 var supertest = require("supertest");
 var expect = require("expect.js");
 var pramsFilters = require('./prams_filters.json');
+var stdCasesQuery = require('./data/std_cases_elastic_query.json');
+var stdPopulationQuery = require('./data/std_population_elastic_query.json');
+var stdSideFilterCountQuery = require('./data/std_sidefilter_count_query.json');
 
 describe("Build elastic search queries", function(){
      it("Build search query with empty query and aggregations", function(done){
@@ -143,6 +146,162 @@ describe("Build elastic search queries", function(){
         expect(query[0]).to.not.eql(undefined);
         expect(JSON.stringify(query[0].query)).to.eql(JSON.stringify(queryZero));
         expect(query[1]).to.eql(undefined);
+        done()
+    });
+
+    it("Build search query for STD data", function(done){
+        var allOptionValues = ["Both sexes", "All races/ethnicities", "All age groups", "National"];
+        var params = {
+            "searchFor": "std",
+            "countQueryKey": "cases",
+            "query": {
+                "sex": {
+                    "key": "sex",
+                    "queryKey": "sex",
+                    "value": "Both sexes",
+                    "primary": false
+                },
+                "disease": {
+                    "key": "disease",
+                    "queryKey": "disease",
+                    "value": "Chlamydia",
+                    "primary": false
+                },
+                "race_ethnicity": {
+                    "key": "race",
+                    "queryKey": "race_ethnicity",
+                    "value": "All races/ethnicities",
+                    "primary": false
+                },
+                "current_year": {
+                    "key": "current_year",
+                    "queryKey": "current_year",
+                    "value": "2015",
+                    "primary": false
+                },
+                "age_group": {
+                    "key": "age_group",
+                    "queryKey": "age_group",
+                    "value": "All age groups",
+                    "primary": false
+                },
+                "state": {
+                    "key": "state",
+                    "queryKey": "state",
+                    "value": "National",
+                    "primary": false
+                }
+            },
+            "aggregations": {
+                "simple": [],
+                "nested": {
+                    "table": [
+                        {
+                            "key": "race",
+                            "queryKey": "race_ethnicity",
+                            "size": 0
+                        },
+                        {
+                            "key": "sex",
+                            "queryKey": "sex",
+                            "size": 0
+                        }
+                    ],
+                    "charts": [],
+                    "maps": []
+                }
+            }
+        };
+        var resultQuery = elasticQueryBuilder.buildSearchQuery(params, true, allOptionValues);
+        expect(resultQuery[0]).to.not.eql(undefined);
+        expect(resultQuery[0].query).to.eql(stdCasesQuery.query);
+        expect(resultQuery[1]).to.not.eql(undefined);
+        expect(resultQuery[1].query).to.eql(stdPopulationQuery.query);
+        done()
+    });
+
+    it("Build search query for STD sidefilters count", function(done){
+        var allOptionValues = ["Both sexes", "All races/ethnicities", "All age groups", "National"];
+        var params = {
+            "searchFor": "std",
+            "aggregations": {
+                "simple": [
+                    {
+                        "key": "disease",
+                        "queryKey": "disease",
+                        "size": 0
+                    },
+                    {
+                        "key": "current_year",
+                        "queryKey": "current_year",
+                        "size": 0
+                    },
+                    {
+                        "key": "sex",
+                        "queryKey": "sex",
+                        "size": 0
+                    },
+                    {
+                        "key": "race",
+                        "queryKey": "race_ethnicity",
+                        "size": 0
+                    },
+                    {
+                        "key": "age_group",
+                        "queryKey": "age_group",
+                        "size": 0
+                    },
+                    {
+                        "key": "state",
+                        "queryKey": "state",
+                        "size": 0
+                    }
+                ]
+            },
+            "query": {
+                "sex": {
+                    "key": "sex",
+                    "queryKey": "sex",
+                    "value": "Both sexes",
+                    "primary": false
+                },
+                "disease": {
+                    "key": "disease",
+                    "queryKey": "disease",
+                    "value": "Chlamydia",
+                    "primary": false
+                },
+                "race_ethnicity": {
+                    "key": "race",
+                    "queryKey": "race_ethnicity",
+                    "value": "All races/ethnicities",
+                    "primary": false
+                },
+                "current_year": {
+                    "key": "current_year",
+                    "queryKey": "current_year",
+                    "value": "2015",
+                    "primary": false
+                },
+                "age_group": {
+                    "key": "age_group",
+                    "queryKey": "age_group",
+                    "value": "All age groups",
+                    "primary": false
+                },
+                "state": {
+                    "key": "state",
+                    "queryKey": "state",
+                    "value": "National",
+                    "primary": false
+                }
+            },
+            "countQueryKey": "cases"
+        };
+        var resultQuery = elasticQueryBuilder.buildSearchQuery(params, true);
+        expect(resultQuery[0]).to.not.eql(undefined);
+        expect(resultQuery[0].query).to.eql(stdSideFilterCountQuery.query);
+        expect(resultQuery[1]).to.eql(undefined);
         done()
     });
 

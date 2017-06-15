@@ -975,24 +975,25 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.When(/^I select a cause and click on the Filter Selected Cause\(s\) of Death\(s\) button$/, function (next) {
         var until = protractor.ExpectedConditions;
-        browser.wait(until.presenceOf(element(by.className('jstree-anchor'))), 5000, 'Element taking too long to appear in the DOM');
-        element(by.className('jstree-anchor')).click();
+        browser.wait(until.presenceOf(element(by.className('jstree-checkbox'))), 10000, 'Element taking too long to appear in the DOM');
+        element(by.className('jstree-checkbox')).click();
         element(by.cssContainingText('button', 'Filter Selected Cause(s) of Deaths')).click()
             .then(next);
     });
 
     this.Then(/^data table should display Age Adjusted Death Rates for selected cause of death$/, function (next) {
         mortalityPage.getTableRowDataCells(0).then(function (elements) {
-            expect(elements[0].getText()).to.eventually.equal('American Indian or Alaska Native');
-            expect(elements[1].getText()).to.eventually.contains('Age Adjusted Death Rate');
-            expect(elements[1].getText()).to.eventually.contains('2.1');
-            expect(elements[2].getText()).to.eventually.contains('2.3');
-            expect(elements[3].getText()).to.eventually.contains('2.2');
+            expect(elements[0].getText()).to.eventually.equal('Non-Hispanic');
+            expect(elements[1].getText()).to.eventually.equal('American Indian or Alaska Native');
+            expect(elements[2].getText()).to.eventually.contains('Age Adjusted Death Rate');
+            expect(elements[2].getText()).to.eventually.contains('3.4');
+            expect(elements[3].getText()).to.eventually.contains('3.6');
+            expect(elements[4].getText()).to.eventually.contains('3.5');
         });
         mortalityPage.getTableRowDataCells(1).then(function (elements) {
             expect(elements[0].getText()).to.eventually.equal('Asian or Pacific Islander');
             expect(elements[1].getText()).to.eventually.contains('2.7');
-            expect(elements[2].getText()).to.eventually.contains('3.3');
+            expect(elements[2].getText()).to.eventually.contains('3.2');
             expect(elements[3].getText()).to.eventually.contains('3.0');
         }).then(next);
     });

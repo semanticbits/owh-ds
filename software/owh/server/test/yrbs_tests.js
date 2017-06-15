@@ -3689,10 +3689,15 @@ describe("YRBS API", function () {
             var q0=resp.table.question[0];
             expect(q0.YES.mental_health).to.eql({"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":35384});
             expect(q0.YES.sex.length).to.eql(1);
-            expect(q0.YES.sex[0].name).to.eql("Female");
-            var race = sortByKey(q0.YES.sex[0].race, 'name', true);
+            var sex = sortByKey(q0.YES.sex, 'name', true);
+            expect(sex[0].name).to.eql("Female");
+            var race = sortByKey(sex[0].race, 'name', true);
             expect(race).to.eql([{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11670}},{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":23714}}]);
-            expect(q0.NO).to.eql({"mental_health":{"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":35384},"sex":[{"name":"Female","mental_health":{"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":35384},"race":[{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":23714}},{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11670}}]}]});
+            expect(q0.NO.mental_health).to.eql({"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":35384});
+            var sexno = sortByKey(q0.NO.sex, 'name', true);
+            expect(sex[0].name).to.eql("Female");
+            var race = sortByKey(sex[0].race, 'name', true);
+            expect([{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11670}},{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":23714}}]);
         });
     });
 
@@ -3728,7 +3733,21 @@ describe("YRBS API", function () {
             'query': {'question.path':{ 'value': ['qn8']}, 'year':{value:['2015']}}};
 
         return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
-            expect(resp).to.eql( {"table":{"question":[{"name":"qn8","YES":{"mental_health":{"mean":"81.4","ci_l":"77.0","ci_u":"85.1","count":8757},"sex":[{"name":"Female","mental_health":{"mean":"80.1","ci_l":"75.2","ci_u":"84.3","count":3951}},{"name":"Male","mental_health":{"mean":"82.4","ci_l":"78.2","ci_u":"86.0","count":4769}}]},"NO":{"mental_health":{"mean":"18.6","ci_l":"14.9","ci_u":"23.0","count":8757},"sex":[{"name":"Female","mental_health":{"mean":"19.9","ci_l":"15.7","ci_u":"24.8","count":3951}},{"name":"Male","mental_health":{"mean":"17.6","ci_l":"14.0","ci_u":"21.8","count":4769}}]}}]}} );
+            var q0=resp.table.question[0];
+            expect(q0.YES.mental_health.mean).to.eql(81.4);
+            expect(q0.YES.mental_health.ci_l).to.eql(77.0);
+            expect(q0.YES.mental_health.ci_u).to.eql(85.1);
+            expect(q0.YES.mental_health.count).to.eql(8757);
+            var sex= sortByKey(q0.YES.sex,'name',true);
+            expect(sex[0].name).to.eql("Female");
+            expect(sex[0].mental_health.mean).to.eql(80.1);
+            expect(sex[0].mental_health.ci_l).to.eql(75.2);
+            expect(sex[0].mental_health.ci_u).to.eql(84.3);
+            expect(sex[0].mental_health.count).to.eql(3951);
+            expect(q0.NO.mental_health.mean).to.eql(18.6);
+            expect(q0.NO.mental_health.ci_l).to.eql(14.9);
+            expect(q0.NO.mental_health.ci_u).to.eql(23.0);
+            expect(q0.NO.mental_health.count).to.eql(8757);
         });
     });
 
@@ -3739,9 +3758,19 @@ describe("YRBS API", function () {
             {"key":"yrbsRace","queryKey":"race","size":0}],"charts":[],"maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}},"yrbsBasic":true,"pagination":{"from":0,"size":10000}}
 
             return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
-                expect(resp).to.eql({"table":{"question":[{"name":"qn14","YES":{"sex":[{"name":"Female","race":[{"name":"Native Hawaiian/other PI","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":19}},{"name":"Hispanic/Latino","mental_health":{"mean":"1.9","ci_l":"1.1","ci_u":"3.2","count":2436}},{"name":"Black or African American","mental_health":{"mean":"1.7","ci_l":"0.8","ci_u":"3.6","count":689}},{"name":"Asian","mental_health":{"mean":"0.6","ci_l":"0.1","ci_u":"4.0","count":293}},{"name":"White","mental_health":{"mean":"1.4","ci_l":"0.9","ci_u":"2.0","count":2723}},{"name":"Am Indian / Alaska Native","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":54}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"1.9","ci_l":"0.9","ci_u":"4.0","count":334}}]},{"name":"Male","race":[{"name":"Native Hawaiian/other PI","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":64}},{"name":"Am Indian / Alaska Native","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":88}},{"name":"White","mental_health":{"mean":"9.6","ci_l":"7.8","ci_u":"11.9","count":2607}},{"name":"Black or African American","mental_health":{"mean":"9.6","ci_l":"6.1","ci_u":"14.6","count":682}},{"name":"Hispanic/Latino","mental_health":{"mean":"6.5","ci_l":"5.2","ci_u":"8.1","count":2366}},{"name":"Asian","mental_health":{"mean":"3.8","ci_l":"1.5","ci_u":"9.0","count":304}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"9.5","ci_l":"6.5","ci_u":"13.6","count":298}}]}],"mental_health":{"mean":"5.3","ci_l":"4.6","ci_u":"6.1","count":13263}},"NO":{"sex":[{"name":"Female","race":[{"name":"Native Hawaiian/other PI","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":19}},{"name":"Hispanic/Latino","mental_health":{"mean":"98.1","ci_l":"96.8","ci_u":"98.9","count":2436}},{"name":"Black or African American","mental_health":{"mean":"98.3","ci_l":"96.4","ci_u":"99.2","count":689}},{"name":"Asian","mental_health":{"mean":"99.4","ci_l":"96.0","ci_u":"99.9","count":293}},{"name":"White","mental_health":{"mean":"98.6","ci_l":"98.0","ci_u":"99.1","count":2723}},{"name":"Am Indian / Alaska Native","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":54}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"98.1","ci_l":"96.0","ci_u":"99.1","count":334}}]},{"name":"Male","race":[{"name":"Native Hawaiian/other PI","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":64}},{"name":"Am Indian / Alaska Native","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":88}},{"name":"White","mental_health":{"mean":"90.4","ci_l":"88.1","ci_u":"92.2","count":2607}},{"name":"Black or African American","mental_health":{"mean":"90.4","ci_l":"85.4","ci_u":"93.9","count":682}},{"name":"Hispanic/Latino","mental_health":{"mean":"93.5","ci_l":"91.9","ci_u":"94.8","count":2366}},{"name":"Asian","mental_health":{"mean":"96.2","ci_l":"91.0","ci_u":"98.5","count":304}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"90.5","ci_l":"86.4","ci_u":"93.5","count":298}}]}],"mental_health":{"mean":"94.7","ci_l":"93.9","ci_u":"95.4","count":13263}}}]}});
+                var q0=resp.table.question[0];
+                var sex= sortByKey(q0.YES.sex,'name',true);
+                var race= sortByKey(sex[0].race,'name',true);
+                expect(race[5].name).to.eql("Native Hawaiian/other PI");
+                expect(race[5].mental_health.mean).to.eql("suppressed");
+                expect(race[5].mental_health.count).to.eql("19");
+
+                expect(race[6].name).to.eql("White");
+                expect(race[6].mental_health.mean).to.not.eql("suppressed");
+                expect(race[6].mental_health.count).to.eql("2723");
         });
     });
+
 
     it("invokeYRBS service for advanced results with sexid filter - suppressing if value < 30", function (){
         var apiQuery = {"searchFor":"mental_health","query":{"year":{"key":"year","queryKey":"year","value":["2015"],"primary":false},
@@ -3750,7 +3779,15 @@ describe("YRBS API", function () {
             "nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"yrbsRace","queryKey":"race","size":0}],
             "charts":[], "maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}}, "pagination":{"from":0,"size":10000}};
         return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
-            expect(resp).to.eql({"table":{"question":[{"name":"qn64","YES":{"mental_health":{"mean":"20.0","ci_l":"18.0","ci_u":"22.1","count":3637},"race":[{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"13.8","ci_l":"9.0","ci_u":"20.7","count":166}},{"name":"Native Hawaiian/other PI","mental_health":{"mean":"suppressed","ci_l":"7.6","ci_u":"59.3","count":16}},{"name":"Am Indian / Alaska Native","mental_health":{"mean":"38.7","ci_l":"22.7","ci_u":"57.6","count":50}},{"name":"Asian","mental_health":{"mean":"15.8","ci_l":"5.8","ci_u":"36.4","count":81}},{"name":"Hispanic/Latino","mental_health":{"mean":"21.7","ci_l":"18.7","ci_u":"25.1","count":1211}},{"name":"Black or African American","mental_health":{"mean":"21.0","ci_l":"14.1","ci_u":"30.0","count":394}},{"name":"White","mental_health":{"mean":"19.3","ci_l":"16.5","ci_u":"22.5","count":1664}}]},"NO":{"mental_health":{"mean":"20.0","ci_l":"18.0","ci_u":"22.1","count":3637},"race":[{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"13.8","ci_l":"9.0","ci_u":"20.7","count":166}},{"name":"Native Hawaiian/other PI","mental_health":{"mean":"suppressed","ci_l":"7.6","ci_u":"59.3","count":16}},{"name":"Am Indian / Alaska Native","mental_health":{"mean":"38.7","ci_l":"22.7","ci_u":"57.6","count":50}},{"name":"Asian","mental_health":{"mean":"15.8","ci_l":"5.8","ci_u":"36.4","count":81}},{"name":"Hispanic/Latino","mental_health":{"mean":"21.7","ci_l":"18.7","ci_u":"25.1","count":1211}},{"name":"Black or African American","mental_health":{"mean":"21.0","ci_l":"14.1","ci_u":"30.0","count":394}},{"name":"White","mental_health":{"mean":"19.3","ci_l":"16.5","ci_u":"22.5","count":1664}}]}}]}});
+            var q0=resp.table.question[0];
+            var race = sortByKey(q0.YES.race,'name',true);
+            expect(race[5].name).to.eql("Native Hawaiian/other PI");
+            expect(race[5].mental_health.mean).to.eql("suppressed");
+            expect(race[5].mental_health.count).to.eql("16");
+
+            expect(race[1].name).to.eql("Asian");
+            expect(race[1].mental_health.mean).to.not.eql("suppressed");
+            expect(race[1].mental_health.count).to.eql("81");
         });
     });
 

@@ -264,7 +264,7 @@ describe('search factory ', function(){
         expect(selectedFilter.sideFilters[0].sideFilters[1].filters.value.length).toEqual(0);
         expect(selectedFilter.sideFilters[0].sideFilters[1].filters.groupBy).toEqual(false);
     });
-    
+
     it('generateHashCode should call out to search service with a normalized hashQuery', function() {
         spyOn(searchService, "generateHashCode").and.callFake(function() {
             return {
@@ -427,6 +427,14 @@ describe('search factory ', function(){
             $scope.$apply();
         });
 
+        it('mcd filters', function () {
+            var mcdFilter = utils.findByKeyAndValue(filters.allMortalityFilters, 'key', 'mcd-chapter-10');
+            expect(mcdFilter.disableFilter).toEqual(undefined);
+            expect(mcdFilter.queryKey).toEqual('ICD_10_code');
+            expect(mcdFilter.filterType).toEqual('conditions');
+            expect(mcdFilter.selectTitle).toEqual('select.label.filter.mcd');
+            expect(mcdFilter.updateTitle).toEqual('update.label.filter.mcd');
+        });
     });
 
     describe('test with yrbs data', function () {
@@ -534,8 +542,7 @@ describe('search factory ', function(){
 
             var yrbsMockData = __fixtures__['app/modules/search/fixtures/search.factory/yrbsChartMockData'];
             var selectedQuestion = yrbsMockData.selectedQuestion;
-            primaryFilter.value = yrbsMockData.selectedFilters2;           
-
+            primaryFilter.value = yrbsMockData.selectedFilters2;
             searchFactory.prepareQuestionChart(primaryFilter,selectedQuestion,
                 ['yrbsSex', 'yrbsRace']).then(function (response) {
                 expect(response.chartTypes.length).toEqual(3);
@@ -549,7 +556,7 @@ describe('search factory ', function(){
             yrbsChartDeferred.resolve(yrbsMockData.chartData2);
         });
     });
-    
+
     describe('test with bridge race data', function () {
         var response;
         beforeAll(function() {
@@ -651,5 +658,20 @@ describe('search factory ', function(){
             expect(result.primaryFilter.allFilters[3].questions.length).toEqual(groupOptions.delivery.topic.length);
         });
     });
-    
+
+    describe('STD search ->', function() {
+        var stdSearchResponse;
+        beforeAll(function() {
+            stdSearchResponse = __fixtures__['app/modules/search/fixtures/search.factory/stdSearchResponse'];
+        });
+        beforeEach(function() {
+            deferred = $q.defer();
+        });
+        it('updateFiltersAndData for std response', function(){
+            filters.primaryFilters = [filters.search[6]];
+            var result = searchFactory.updateFiltersAndData(filters, stdSearchResponse, {'std': {}}, {});
+            expect(JSON.stringify(result.primaryFilter.data)).toEqual(JSON.stringify(stdSearchResponse.data.resultData.nested.table));
+        });
+
+    });
 });

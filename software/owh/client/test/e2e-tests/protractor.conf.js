@@ -22,6 +22,7 @@ exports.config = {
       'features/step_definitions/natalitySteps.js',
       'features/step_definitions/pramsSteps.js',
       'features/step_definitions/infant_mortality_steps.js',
+      'features/step_definitions/stdSteps.js',
       'features/support/hook.js'
     ],
       format: 'pretty'

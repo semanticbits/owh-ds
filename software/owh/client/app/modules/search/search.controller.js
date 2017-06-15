@@ -26,6 +26,7 @@
         sc.switchToYRBSBasic = switchToYRBSBasic;
         sc.switchToYRBSAdvanced = switchToYRBSAdvanced;
         sc.showFbDialog = showFbDialog;
+        sc.onChartViewChange = onChartViewChange;
 
         var root = document.getElementsByTagName( 'html' )[0]; // '0' to assign the first (and only `HTML` tag)
         root.removeAttribute('class');
@@ -74,7 +75,7 @@
                 {key: 'insurance_medicaid_services', title: 'Insurance/Medicaid/Services'}]
         };
         sc.sort = {
-            "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'ucd-chapter-10', 'mcd-filters'],
+            "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'ucd-chapter-10', 'mcd-chapter-10'],
             "label.risk.behavior": ['year', 'yrbsSex', 'yrbsRace', 'yrbsGrade', 'sexid', 'sexpart', 'yrbsState', 'question'],
             "label.census.bridge.race.pop.estimate": ['current_year', 'sex', 'race', 'ethnicity', 'agegroup', 'state'],
             "label.filter.natality": ['current_year', 'month', 'weekday', 'sex', 'gestational_age_r10', 'prenatal_care',
@@ -87,7 +88,8 @@
                 'mother_age_5_interval', 'mother_education', 'gestational_age_r11', 'gestational_age_r10', 'gestation_weekly',
                 'prenatal_care', 'birth_weight', 'birth_plurality', 'live_birth', 'birth_place', 'delivery_method', 'medical_attendant',
                 'ucd-chapter-10', 'state'],
-            "label.prams.title": []
+            "label.prams.title": [],
+            "label.filter.std": []
         };
 
         sc.optionsGroup = {
@@ -119,6 +121,8 @@
             birth_rates: {},
             fertility_rates: {},
             bridge_race:{},
+            std:{},
+            disease_rate:{},
             mental_health:{},
             natality:{},
             prams:{},
@@ -541,8 +545,8 @@
         });
 
         /*Show expanded graphs with whole set of features*/
-        function showExpandedGraph(chartData) {
-            chartUtilService.showExpandedGraph([chartData]);
+        function showExpandedGraph(chartData, tableView) {
+            chartUtilService.showExpandedGraph([chartData], tableView);
         }
 
         function getChartTitle(title) {
@@ -582,6 +586,28 @@
          */
         function showFbDialog(svgIndex, title, data) {
             shareUtilService.shareOnFb(svgIndex, title, undefined, undefined, data);
+        }
+
+        /**
+         * For STD, TB and HIV
+         * To change Visualizations data based on selected view.
+         * @param tableView
+         */
+        function onChartViewChange(tableView, key) {
+            if(tableView === key) {
+                sc.filters.selectedPrimaryFilter.tableView = 'disease_rate';
+                sc.filters.selectedPrimaryFilter.chartAxisLabel = 'Rates';
+                sc.filters.selectedPrimaryFilter.defaultChartView = 'rate';
+            }
+            /**
+             * 'disease_rate' is a common tableview for STD, TB and HIV
+             */
+            else if(tableView === 'disease_rate') {
+                sc.filters.selectedPrimaryFilter.tableView = key;
+                sc.filters.selectedPrimaryFilter.chartAxisLabel = 'Cases';
+                sc.filters.selectedPrimaryFilter.defaultChartView = 'cases';
+            }
+            sc.filters.selectedPrimaryFilter.chartData =searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
         }
     }
 }());
