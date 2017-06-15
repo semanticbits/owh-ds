@@ -1096,8 +1096,8 @@
         }
 
         /**
-         * To prepare all STD side filters
-         * @return STD side filters array
+         * To prepare all TB side filters
+         * @return TB side filters array
          */
         function getTBDataFilters() {
             var stateOptions = [
