@@ -276,7 +276,8 @@
         });
 
         $scope.$on('pramsQuestionsLoaded', function() {
-            sc.filters.pramsFilters[4].autoCompleteOptions = $rootScope.pramsQuestionsList;
+            var questionFilter = utilService.findFilterByKeyAndValue(sc.filters.pramsFilters, 'key', 'question');
+            questionFilter.autoCompleteOptions = $rootScope.pramsQuestionsList;
         });
 
 

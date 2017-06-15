@@ -17,22 +17,22 @@ Feature: PRAMS filters
     And  I see axis labels for chart- state and Percentage
     And  I close chart dialog
 
-  #Scenario: Topic filter
-    #Given I am on search page
-    #And  I select PRAMS as primary filter
-    #When I change class to "Demographics"
-    #And  I see topics Household Characteristics and Income displayed in side filter
-    #When filter "Topic" and option "Income" selected
-    #Then I see only "Income" topic in data table
+  Scenario: Topic filter
+    Given I am on search page
+    And  I select PRAMS as primary filter
+    When I change class to "Demographics"
+    And  I see topics Household Characteristics and Income displayed in side filter
+    When filter "Topic" and option "Income" selected
+    Then I see only "Income" topic in data table
 
-#  Scenario: Questions filter
-#    Given I am on search page
-#    And  I select PRAMS as primary filter
-#    When I change class to "Demographics"
-#    And  I click on "Select Questions" button
-#    Then I see question categories in question tree are matching with topic
-#    And  I close questions dialog
-#    When I change class to "Family Planning"
-#    And  user clicks on "+ 1 more" more link for "Topic" filter
-#    And  I click on "Select Questions" button
-#    Then I see question categories in question tree are matching with topic
+  Scenario: Questions filter
+    Given I am on search page
+    And  I select PRAMS as primary filter
+    When I change class to "Demographics"
+    And  I click on "Select Questions" button
+    Then I see question categories in question tree are matching with topic
+    And  I close questions dialog
+    When I change class to "Family Planning"
+    And  user clicks on "+ 1 more" more link for "Topic" filter
+    And  I click on "Select Questions" button
+    Then I see question categories in question tree are matching with topic

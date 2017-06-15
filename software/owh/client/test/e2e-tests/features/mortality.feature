@@ -306,3 +306,9 @@ Scenario: Group by 'State' in age adjusted rate
    Then the rates corresponding to the deaths 0-9 must be suppressed
    And any value in the data table is suppressed then the totals in the State filter (sidebar) must be suppressed too
    And the death count <20 then the corresponding Rate must be marked as "Unreliable"
+
+  Scenario: Group UCD codes on Row
+    Given I am on search page
+    And I expand "Underlying Cause of Death" filter section
+    When I set "Underlying Cause of Death" filter "Row"
+    Then I see data in data table grouped by Underlying Cause of Death and Race
