@@ -6,21 +6,8 @@
       "column_index": 0,
       "type": "map",
       "field": "DISEASE",
-      "mappings": {"1": "HIV, stage 3 (AIDS)",
-        "2": "HIV, stage 3 (AIDS) deaths",
-        "3": "Persons living with HIV, stage 3 (AIDS)",
-        "4": "HIV diagnoses",
-        "5": "HIV deaths",
-        "6": "Persons living with diagnosed HIV",
-        "7": "Chlamydia",
-        "8": "Gonorrhea",
-        "9": "Primary and Secondary Syphilis",
-        "14": "Early Latent Syphilis",
-        "3506": "Congenital Syphilis",
-        "10": "Tuberculosis",
-        "11": "Acute Viral Hepatitis  A",
-        "12": "Acute Viral Hepatitis  B",
-        "13": "Acute Viral Hepatitis  C"
+      "mappings": {
+        "10": "Tuberculosis"
       }
     },
     {
