@@ -26,7 +26,7 @@
         sc.switchToYRBSBasic = switchToYRBSBasic;
         sc.switchToYRBSAdvanced = switchToYRBSAdvanced;
         sc.showFbDialog = showFbDialog;
-        sc.onSTDChartViewChange = onSTDChartViewChange;
+        sc.onChartViewChange = onChartViewChange;
 
         var root = document.getElementsByTagName( 'html' )[0]; // '0' to assign the first (and only `HTML` tag)
         root.removeAttribute('class');
@@ -122,7 +122,7 @@
             fertility_rates: {},
             bridge_race:{},
             std:{},
-            std_rate:{},
+            disease_rate:{},
             mental_health:{},
             natality:{},
             prams:{},
@@ -589,17 +589,21 @@
         }
 
         /**
+         * For STD, TB and HIV
          * To change Visualizations data based on selected view.
          * @param tableView
          */
-        function onSTDChartViewChange(tableView) {
-            if(tableView === 'std') {
-                sc.filters.selectedPrimaryFilter.tableView = 'std_rate';
+        function onChartViewChange(tableView, key) {
+            if(tableView === key) {
+                sc.filters.selectedPrimaryFilter.tableView = 'disease_rate';
                 sc.filters.selectedPrimaryFilter.chartAxisLabel = 'Rates';
                 sc.filters.selectedPrimaryFilter.defaultChartView = 'rate';
             }
-            else if(tableView === 'std_rate') {
-                sc.filters.selectedPrimaryFilter.tableView = 'std';
+            /**
+             * 'disease_rate' is a common tableview for STD, TB and HIV
+             */
+            else if(tableView === 'disease_rate') {
+                sc.filters.selectedPrimaryFilter.tableView = key;
                 sc.filters.selectedPrimaryFilter.chartAxisLabel = 'Cases';
                 sc.filters.selectedPrimaryFilter.defaultChartView = 'cases';
             }
