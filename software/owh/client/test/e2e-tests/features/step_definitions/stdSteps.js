@@ -118,6 +118,27 @@ var stdStepDefinitionsWrapper = function () {
         expect(element(by.cssContainingText('text', 'Grouped')).isPresent()).to.eventually.equal(false);
         return expect(element(by.cssContainingText('text', 'Stacked')).isPresent()).to.eventually.equal(false);
     });
+
+    this.Then(/^std data table should suppress results$/, function (next) {
+        stdPage.getTableRowData(5).then(function(firstRowData){
+            expect(firstRowData[0]).to.equals('Native Hawaiian or Other Pacific Islander');
+            //Female
+            expect(firstRowData[1]).to.contains('Suppressed');
+            expect(firstRowData[1]).to.contains('1,096');
+            //Male
+            expect(firstRowData[2]).to.contains('Suppressed');
+            expect(firstRowData[2]).to.contains('1,168');
+            //Both sexes
+            expect(firstRowData[3]).to.contains('Suppressed');
+            expect(firstRowData[3]).to.contains('2,264');
+        }).then(next);
+    });
+
+    this.When(/^I select "([^"]*)" state in disease related views$/, function (arg1, callback) {
+        element.all(by.css('label[for=natality_state_AL]')).then(function(elements, index) {
+            elements[1].click();
+        }).then(next);
+    });
 };
 
 module.exports = stdStepDefinitionsWrapper;

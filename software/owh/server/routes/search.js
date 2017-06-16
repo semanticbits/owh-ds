@@ -174,8 +174,8 @@ function search(q) {
         var sideFilterTotalCountQuery = queryBuilder.addCountsToAutoCompleteOptions(q);
         sideFilterTotalCountQuery.countQueryKey = 'cases';
         var sideFilterQuery = queryBuilder.buildSearchQuery(sideFilterTotalCountQuery, true);
-        new elasticSearch().aggregateSTDData(sideFilterQuery).then(function (sideFilterResults) {
-            new elasticSearch().aggregateSTDData(finalQuery).then(function (response) {
+        new elasticSearch().aggregateSTDData(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
+            new elasticSearch().aggregateSTDData(finalQuery, isStateSelected).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
                 resData.resultData = response.data;

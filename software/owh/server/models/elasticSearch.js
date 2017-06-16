@@ -273,7 +273,7 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
     return deferred.promise;
 };
 
-ElasticClient.prototype.aggregateSTDData = function (query) {
+ElasticClient.prototype.aggregateSTDData = function (query, isStateSelected) {
     var self = this;
     var deferred = Q.defer();
     if(query[1]) {
@@ -287,6 +287,7 @@ ElasticClient.prototype.aggregateSTDData = function (query) {
         Q.all(promises).then( function (resp) {
             var data = searchUtils.populateDataWithMappings(resp[0], 'std', 'cases');
             self.mergeWithCensusData(data, resp[1]);
+            isStateSelected && searchUtils.applySuppressions(data, 'std', 4);
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);

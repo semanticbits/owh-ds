@@ -185,10 +185,10 @@ function suppressTotalCounts (obj, countKey, dataType, suppressKey) {
  * @param obj
  * @param countKey
  */
-function applySuppressions(obj, countKey) {
+function applySuppressions(obj, countKey, maxValue) {
     var dataType;
-    suppressCounts(obj.data, countKey, dataType);
-    suppressTotalCounts(obj.data, countKey, dataType);
+    suppressCounts(obj.data, countKey, dataType, null, maxValue);
+    suppressTotalCounts(obj.data, countKey, dataType, null, maxValue);
 }
 
 /**
