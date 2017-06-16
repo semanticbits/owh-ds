@@ -90,7 +90,7 @@ var generateAggregationQuery = function( aggQuery, groupByKeyStart, countQueryKe
         query[ groupByKeyStart + aggQuery.key] = getTermQuery(aggQuery);
         query[ groupByKeyStart + aggQuery.key].aggregations=getPopulationSumQuery();
         merge(query, getPopulationSumQuery());
-    } if(countQueryKey == 'cases') {
+    }else if(countQueryKey == 'cases') {
         query[ groupByKeyStart + aggQuery.key] = getTermQuery(aggQuery);
         query[ groupByKeyStart + aggQuery.key].aggregations=getCasesSumQuery();
         merge(query, getCasesSumQuery());
