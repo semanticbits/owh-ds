@@ -1,3 +1,4 @@
+@Natality
 Feature: Natality filters
   As a user
   I want to see the data table upon selection of natality filters
@@ -91,7 +92,7 @@ Feature: Natality filters
 
   Scenario: State filter
     When I expand "State" filter section
-    And  I select "Ak" state for "natality"
+    And  I select "AK" state for "natality"
     Then I see data is displayed in data-table for races
     When I select "AL" state for "natality"
     And  I select groupBy "Column" option for "State" filter
