@@ -313,6 +313,7 @@
   "label.help.text.question.other.health.topics": "These questions contain summaries of survey data related to a question on asthma.",
 
   "label.filter.std": "STD",
+  "label.filter.tb": "Tuberculosis",
   "label.filter.disease": "Disease",
   "label.title.age_group.race": "Age Group and Race",
   "label.title.sex.age_group": "Sex and Age Group",

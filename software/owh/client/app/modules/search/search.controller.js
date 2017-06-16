@@ -89,7 +89,8 @@
                 'prenatal_care', 'birth_weight', 'birth_plurality', 'live_birth', 'birth_place', 'delivery_method', 'medical_attendant',
                 'ucd-chapter-10', 'state'],
             "label.prams.title": [],
-            "label.filter.std": []
+            "label.filter.std": [],
+            "label.filter.tb": []
         };
 
         sc.optionsGroup = {
@@ -123,6 +124,7 @@
             bridge_race:{},
             std:{},
             disease_rate:{},
+            tb:{},
             mental_health:{},
             natality:{},
             prams:{},
@@ -157,7 +159,7 @@
         //show certain filters for different table views
         //add availablefilter for birth_rates
         sc.availableFilters = {
-            'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin','state'],
+            'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'state', 'ucd-chapter-10'],
             'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state', 'ucd-chapter-10'],
             'birth_rates': ['current_year', 'race', 'state'],
             'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval', 'state']

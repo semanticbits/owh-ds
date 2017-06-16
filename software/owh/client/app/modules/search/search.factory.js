@@ -116,7 +116,8 @@
                 primaryFilter.headers = tableData.headers;
                 primaryFilter.data = tableData.data;
             }
-            else if (response.data.queryJSON.key == 'std') {
+            else if (response.data.queryJSON.key == 'std' ||
+                response.data.queryJSON.key == 'tb') {
                 primaryFilter.nestedData = response.data.resultData.nested;
                 primaryFilter.data = response.data.resultData.nested.table;
                 populateSideFilterTotals(primaryFilter, response.data);
@@ -1094,6 +1095,20 @@
             return deferred.promise;
         }
 
+        /**
+         * Fetch TB data based on filters
+         * @param primaryFilter
+         * @param queryID
+         */
+        function searchTBResults(primaryFilter, queryID){
+            var deferred = $q.defer();
+            SearchService.searchResults(primaryFilter, queryID).then(function(response) {
+                updateSideFilterCount(primaryFilter, response.data.sideFilterResults.data.simple);
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+        }
+
         function getAllFilters() {
             //TODO: consider making these available as angular values, split out into separate file
             var filters = {};
@@ -1168,6 +1183,12 @@
                 {key: true,title:'On', tooltip:'Select to view inline charts'},
                 {key: false,title:'Off', tooltip:'Select to hide inline charts'}
             ];
+
+            filters.diseaseVizGroupOptions = [
+                {key:'cases',title:'Cases', tooltip:'Select to view as cases on charts'},
+                {key:'rate',title:'Rate', tooltip:'Select to view as rates on charts'}
+            ];
+
             filters.allowInlineCharting = false;
             //TODO check with @Gopal why mapping json don't have 'Other'
             filters.races = [
@@ -1660,6 +1681,7 @@
             filters.natalityFilters = filterUtils.getNatalityDataFilters();
             filters.infantMortalityFilters = filterUtils.getInfantMortalityDataFilters();
             filters.stdFilters = filterUtils.getSTDDataFilters();
+            filters.tbFilters = filterUtils.getTBDataFilters();
 
             filters.pramsTopicOptions = [
                 {"key": "cat_45", "title": "Delivery Method"},
@@ -2688,8 +2710,7 @@
                     key: 'std', title: 'label.filter.std', primary: true, value:[], header:"STD",
                     allFilters: filters.stdFilters, searchResults: searchSTDResults, showMap: false,
                     chartAxisLabel:'Cases', tableView:'std',
-                    chartViewOptions: [{key:'cases',title:'Cases', tooltip:'Select to view as cases on charts'}, {key:'rate',title:'Rate', tooltip:'Select to view as rates on charts'}],
-                    defaultChartView: 'cases',
+                    chartViewOptions: filters.diseaseVizGroupOptions, defaultChartView: 'cases',
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
                         {
@@ -2727,6 +2748,48 @@
                                    filterGroup: false, collapse: true, allowGrouping: true,
                                    groupOptions: filters.groupOptions,
                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'state')
+                               }
+
+                            ]
+                        }
+                    ]
+                },
+
+                {
+                    key: 'tb', title: 'label.filter.tb', primary: true, value:[], header:"Tuberculosis",
+                    allFilters: filters.tbFilters, searchResults: searchTBResults, showMap: false,
+                    chartAxisLabel:'Cases', tableView:'tb', defaultChartView: 'cases',
+                    chartViewOptions: filters.diseaseVizGroupOptions,
+                    runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
+                    sideFilters:[
+                        {
+                           sideFilters: [
+                               {
+                                   filterGroup: false,
+                                   collapse: false,
+                                   allowGrouping: true,
+                                   groupOptions: filters.groupOptions,
+                                   filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'current_year')
+                               },
+                               {
+                                   filterGroup: false, collapse: true, allowGrouping: true,
+                                   groupOptions: filters.groupOptions,
+                                   filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'sex')
+                               },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'race')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'age_group')
+                                },
+                               {
+                                   filterGroup: false, collapse: true, allowGrouping: true,
+                                   groupOptions: filters.groupOptions,
+                                   filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'state')
                                }
 
                             ]
