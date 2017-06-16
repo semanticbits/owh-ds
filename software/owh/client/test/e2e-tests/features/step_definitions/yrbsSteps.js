@@ -170,12 +170,11 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^each question should have chart icon displayed$/, function (next) {
-        element.all(by.className('owh-question__table')).each(function(questionBlock){
-            questionBlock.element(by.className('owh-question__question')).all(by.css('chart-icon')).count().then(function(size){
+        element.all(by.className('owh-question__table')).each(function (questionBlock) {
+            questionBlock.element(by.className('owh-question__question')).all(by.className('chart-icon')).count().then(function (size) {
                 expect(size).to.equal(1);
             });
         }).then(next);
-
     });
 
     this.Given(/^filter "([^"]*)" and option "([^"]*)" selected$/, function (filterName, option, next) {
