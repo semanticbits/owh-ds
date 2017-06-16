@@ -184,17 +184,10 @@ var yrbsStepDefinitionsWrapper = function () {
         selectedOption.click().then(next);
     });
 
-    this.Then(/^I see question categories in this order "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)"$/, function (questionCat1, questionCat2, questionCat3, questionCat4, questionCat5, questionCat6, questionCat7, questionCat8, next) {
+    this.Then(/^I see question category "([^"]*)"$/, function (questionCat1, next) {
         browser.sleep(100);
         element(by.id('question')).all(by.tagName('li')).then(function(elements){
             expect(elements[0].getText()).to.eventually.equals(questionCat1);
-            expect(elements[1].getText()).to.eventually.equals(questionCat2);
-            expect(elements[2].getText()).to.eventually.equals(questionCat3);
-            expect(elements[3].getText()).to.eventually.equals(questionCat4);
-            expect(elements[4].getText()).to.eventually.equals(questionCat5);
-            expect(elements[5].getText()).to.eventually.equals(questionCat6);
-            expect(elements[6].getText()).to.eventually.equals(questionCat7);
-            expect(elements[7].getText()).to.eventually.equals(questionCat8);
         }).then(next);
     });
 
@@ -241,14 +234,14 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I begin to type a word in the search bar$/, function (next) {
-        yrbsPage.searchQuestionsBox.clear().sendKeys('Unintentional')
+        yrbsPage.searchQuestionsBox.clear().sendKeys('Alcohol and Other Drug Use')
             .then(next);
     });
 
     this.Then(/^the list below that should be updated dynamically$/, function (next) {
         //I should see only one question with string 'Unintentional', remaining 7 parent nodes should be hidden
         element(by.id('question')).element(by.tagName('ul')).all(by.className('jstree-hidden')).count().then(function (size) {
-            expect(size).to.equal(7);
+            expect(size).to.equal(0);
         }).then(next);
 
     });
@@ -283,12 +276,12 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^then the selected question must be listed under the Selected Question\(s\)$/, function () {
-        return expect(element(by.repeater('eachNode in tc.optionValues')).getText()).to.eventually.equal('Unintentional Injuries and Violence');
+        return expect(element(by.repeater('eachNode in tc.optionValues')).getText()).to.eventually.equal('Alcohol and Other Drug Use');
     });
 
 
     this.When(/^I see the selected questions under the Selected Question\(s\) list$/, function () {
-        return expect(element(by.repeater('eachNode in tc.optionValues')).getText()).to.eventually.equal('Unintentional Injuries and Violence');
+        return expect(element(by.repeater('eachNode in tc.optionValues')).getText()).to.eventually.equal('Alcohol and Other Drug Use');
     });
 
 
@@ -322,7 +315,7 @@ var yrbsStepDefinitionsWrapper = function () {
         }
         //Verify the data table
         var allNodes = element(by.tagName('owh-accordion-table')).all(by.tagName('tr'));
-        return expect(allNodes.get(1).getText()).to.eventually.contains('Unintentional Injuries and Violence');
+        return expect(allNodes.get(1).getText()).to.eventually.contains('Alcohol and Other Drug Use');
     });
 
     this.When(/^I see the selected questions under the Selected Question\(s\) list in side filter$/, function () {

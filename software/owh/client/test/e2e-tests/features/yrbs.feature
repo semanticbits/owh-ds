@@ -13,7 +13,6 @@ Feature: As a User
 
   Scenario: Accesss YRBS from search page
     Given I am on search page
-    #Given user select YRBS as primary filter
     When I select YRBS as primary filter
     Then the default filter pre-selected should be Race
     And side menu slides back into view
@@ -99,8 +98,7 @@ Feature: As a User
 
   Scenario: YRBS question categories in the given order
     When I select "Select Questions" button
-   # Then I see question categories in this order "Unintentional Injuries and Violence", "Tobacco Use", "Alcohol and Other Drug Use", "Sexual Behaviors", "Obesity, Overweight, and Weight Control", "Dietary Behaviors", "Physical Activity", "Other Health Topics"
-    Then I see question categories in this order "Alcohol and Other Drug Use", "Dietary Behaviors", "Obesity, Overweight, and Weight Control", "Other Health Topics", "Physical Activity", "Sexual Behaviors", "Tobacco Use", "Unintentional Injuries and Violence"
+    Then I see question category "Alcohol and Other Drug Use"
     And by default no questions should be selected
     And it should also have a Search Questions - search bar above the list
 
