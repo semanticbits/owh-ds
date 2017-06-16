@@ -25,3 +25,18 @@ Feature: TB page
   Scenario: Radio Buttons
     When I expand each TB filter
     Then every TB filter must have Radio buttons under then
+
+  Scenario: TB Cases visualizations
+    When user sees a visualization
+    Then labels "Race/Ethnicity" and "Cases" are displayed on minimized visualization
+    When user expand visualization
+    Then I should see grouped and stacked controls on expaned visualization
+    And labels "Race/Ethnicity" and "Cases" are displayed on expanded visualization
+
+  Scenario: TB Rates visualizations
+    When I click on Rate chart view toggle button
+    And  user sees a visualization
+    Then labels "Race/Ethnicity" and "Rates" are displayed on minimized visualization
+    When user expand visualization
+    Then I should not see grouped and stacked controls on expanded visualization
+    And  labels "Race/Ethnicity" and "Rates" are displayed on expanded visualization

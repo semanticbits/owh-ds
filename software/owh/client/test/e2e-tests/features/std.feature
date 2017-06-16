@@ -43,5 +43,5 @@ Feature: STD page
     And user sees a visualization
     Then labels "Race/Ethnicity" and "Rates" are displayed on minimized visualization
     When user expand visualization
-    Then I should not see grouped and stacked controls on expaned visualization
+    Then I should not see grouped and stacked controls on expanded visualization
     And labels "Race/Ethnicity" and "Rates" are displayed on expanded visualization
