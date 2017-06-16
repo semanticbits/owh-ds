@@ -89,7 +89,8 @@
                 'prenatal_care', 'birth_weight', 'birth_plurality', 'live_birth', 'birth_place', 'delivery_method', 'medical_attendant',
                 'ucd-chapter-10', 'state'],
             "label.prams.title": [],
-            "label.filter.std": []
+            "label.filter.std": [],
+            "label.filter.tb": []
         };
 
         sc.optionsGroup = {
@@ -123,6 +124,7 @@
             bridge_race:{},
             std:{},
             disease_rate:{},
+            tb:{},
             mental_health:{},
             natality:{},
             prams:{},
