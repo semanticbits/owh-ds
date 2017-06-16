@@ -378,4 +378,46 @@ describe("Elastic Search", function () {
         })
     });
 
+    it("should aggregate tb data by race and sex", function (done){
+        var query = [{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"group_count_cases":{"sum":{"field":"cases"}}}},"group_count_cases":{"sum":{"field":"cases"}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"group_count_cases":{"sum":{"field":"cases"}}}},"group_maps_0_states":{"terms":{"field":"state","size":0},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"group_count_cases":{"sum":{"field":"cases"}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"age_group":"All age groups"}}]}},{"bool":{"should":[{"term":{"state":"National"}}]}}]}}}}},
+                    {"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"age_group":"All age groups"}}]}},{"bool":{"should":[{"term":{"state":"National"}}]}}]}}}}}];
+        new elasticSearch().aggregateTBData(query).then(function (resp) {
+            //All races/ethnicities
+            expect(resp.data.nested.table.race[0].name).equal('All races/ethnicities');
+            expect(resp.data.nested.table.race[0].tb).equal(38168);
+
+            //Both sexes
+            expect(resp.data.nested.table.race[0].sex[0].name).equal('Both sexes');
+            expect(resp.data.nested.table.race[0].sex[0].tb).equal(19087);
+
+            expect(resp.data.nested.table.race[0].sex[1].name).equal('Female');
+            expect(resp.data.nested.table.race[0].sex[1].tb).equal(7648);
+
+            expect(resp.data.nested.table.race[0].sex[2].name).equal('Male');
+            expect(resp.data.nested.table.race[0].sex[2].tb).equal(11433);
+            done();
+        })
+    });
+
+    it("should aggregate tb data for each filter", function (done){
+        var query = {"size":0,"aggregations":{"current_year":{"terms":{"field":"current_year","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"group_count_cases":{"sum":{"field":"cases"}},"sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"age_group":{"terms":{"field":"age_group","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"state":{"terms":{"field":"state","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"sex":"Both sexes"}}]}},{"bool":{"should":[{"term":{"race_ethnicity":"All races/ethnicities"}}]}},{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"age_group":"All age groups"}}]}},{"bool":{"should":[{"term":{"state":"National"}}]}}]}}}}};
+        new elasticSearch().aggregateTBData([query]).then(function (resp) {
+            console.log('resp.data.simple.current_year[0].name')
+            console.log(JSON.stringify(resp.data.simple))
+            //SideFilter counts: current_year
+            expect(resp.data.simple.current_year[0].name).equal('2015');
+            expect(resp.data.simple.current_year[0].tb).equal(19087);
+            //SideFilter counts: race
+            expect(resp.data.simple.race[0].name).equal('All races/ethnicities');
+            expect(resp.data.simple.race[0].tb).equal(19087);
+            //SideFilter counts: age_group
+            expect(resp.data.simple.age_group[0].name).equal('All age groups');
+            expect(resp.data.simple.age_group[0].tb).equal(19087);
+            //SideFilter counts: sex
+            expect(resp.data.simple.sex[0].name).equal('Both sexes');
+            expect(resp.data.simple.sex[0].tb).equal(19087);
+            done();
+        })
+    });
+
 });
