@@ -660,17 +660,8 @@
         //search results by grouping
         function queryMortalityAPI( primaryFilter, queryID) {
             var deferred = $q.defer();
-            //@TODO we are bulding api query at server side, but still using this method to build headers
-            var apiQuery = buildAPIQuery(primaryFilter);
-            var headers = apiQuery.headers;
-            //var query = apiQuery.apiQuery;
             //Passing completed primaryFilters to backend and building query at server side
             SearchService.searchResults(createBackendSearchRequest(primaryFilter), queryID).then(function(response) {
-                //resolve data for controller
-                //need to build headers with primary filter returned from backend in order for charts to build properly
-                if(response.data.queryJSON) {
-                    headers = buildAPIQuery(response.data.queryJSON).headers;
-                }
                 deferred.resolve(response);
             });
             return deferred.promise;
@@ -880,6 +871,9 @@
         function getAutoCompleteOptionsLength(filter) {
             //take into account group options length
             var length = filter.autoCompleteOptions ? filter.autoCompleteOptions.length : 0;
+            if (filter.key === 'ucd-chapter-10') {
+                return 0 ;
+            }
             if(filter.autoCompleteOptions) {
                 angular.forEach(filter.autoCompleteOptions, function(option) {
                     if(option.options) {
@@ -1978,7 +1972,7 @@
                                     filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'state')
                                 },
                                 {
-                                    filterGroup: false, collapse: true,
+                                    filterGroup: false, collapse: true, allowGrouping: true,
                                     filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'ucd-chapter-10')
                                 },
                                 {

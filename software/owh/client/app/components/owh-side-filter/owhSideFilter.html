@@ -74,22 +74,21 @@
                 <span ng-class="{'disabled-filter': !sfc.isVisible(sideFilter)}"
                       ng-if="group.filterType === 'conditions' && ( group.key === 'ucd-chapter-10' || group.key === 'mcd-chapter-10')">
                     <label class="side-pane-label custom-label">
-                        <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
-                           title="{{group.helpText | translate}}" class="custom-link">
+                        <div class="sidebar-chevron left-float padding-left-5">
                             <span class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
-                            <span translate="{{group.title}}" class="filter-display-name"></span>
-                        </a>
-                        <owh-toggle-switch ng-if="sideFilter.allowGrouping" class="pull-right"
-                                           options="sideFilter.groupOptions ? sideFilter.groupOptions : sfc.groupOptions"
+                        </div>
+                        <div class="left-float sidebar-filter-label">
+                            <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
+                               title="{{group.helpText | translate}}" class="custom-link">
+                                <span translate="{{group.title}}" class="filter-display-name"></span>
+                            </a>
+                        </div>
+                        <owh-toggle-switch ng-if="sideFilter.allowGrouping" class="right-float sidebar-switch"
+                                           options="sideFilter.filters.groupOptions"
                                            model="group.groupBy" on-change="sfc.runOnFilterChange && sfc.onFilter()"
                                            tooltip="{{'label.group.by.tooltip' | translate}}">
                         </owh-toggle-switch>
-                        <!--<a class="group-by-link custom-link" href="javascript:void(0)"
-                           ng-if="sideFilter.allowGrouping" ng-class="{'selected': group.groupBy}"
-                           ng-click="sfc.groupBySideFilter(group)">
-                            <span translate="label.group.by"></span>
-                            <span class="fa" ng-class="{'fa-times': group.groupBy}"></span>
-                        </a>-->
+                        <div class="clearfix"></div>
                     </label>
                     <ul class="usa-unstyled-list group-options" ng-if="group.filterGroup" ng-hide="sideFilter.collapse">
                         <li ng-repeat="eachFilter in group.filters" class="group-option" ng-show="$index < 3 || sideFilter.showAll">
