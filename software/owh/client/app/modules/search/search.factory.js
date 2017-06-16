@@ -1183,6 +1183,12 @@
                 {key: true,title:'On', tooltip:'Select to view inline charts'},
                 {key: false,title:'Off', tooltip:'Select to hide inline charts'}
             ];
+
+            filters.diseaseVizGroupOptions = [
+                {key:'cases',title:'Cases', tooltip:'Select to view as cases on charts'},
+                {key:'rate',title:'Rate', tooltip:'Select to view as rates on charts'}
+            ];
+
             filters.allowInlineCharting = false;
             //TODO check with @Gopal why mapping json don't have 'Other'
             filters.races = [
@@ -2704,8 +2710,7 @@
                     key: 'std', title: 'label.filter.std', primary: true, value:[], header:"STD",
                     allFilters: filters.stdFilters, searchResults: searchSTDResults, showMap: false,
                     chartAxisLabel:'Cases', tableView:'std',
-                    chartViewOptions: [{key:'cases',title:'Cases', tooltip:'Select to view as cases on charts'}, {key:'rate',title:'Rate', tooltip:'Select to view as rates on charts'}],
-                    defaultChartView: 'cases',
+                    chartViewOptions: filters.diseaseVizGroupOptions, defaultChartView: 'cases',
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
                         {
@@ -2754,7 +2759,7 @@
                     key: 'tb', title: 'label.filter.tb', primary: true, value:[], header:"Tuberculosis",
                     allFilters: filters.tbFilters, searchResults: searchTBResults, showMap: false,
                     chartAxisLabel:'Cases', tableView:'tb', defaultChartView: 'cases',
-                    chartViewOptions: [{key:'cases',title:'Cases', tooltip:'Select to view as cases on charts'}, {key:'rate',title:'Rate', tooltip:'Select to view as rates on charts'}],
+                    chartViewOptions: filters.diseaseVizGroupOptions,
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
                         {
