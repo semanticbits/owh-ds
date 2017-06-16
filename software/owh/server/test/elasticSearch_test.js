@@ -4,6 +4,7 @@ var stdCasesQuery = require('./data/std_cases_elastic_query.json');
 var stdPopulationQuery = require('./data/std_population_elastic_query.json');
 var stdSideFilterCountQuery = require('./data/std_sidefilter_count_query.json');
 var stdAggreFinalQueryResp = require('./data/std_aggregate_data_final_query_response.json');
+var stdSuppressionQueryResp = require('./data/std_suppression_query_response.json');
 
 describe("Elastic Search", function () {
 
@@ -377,5 +378,40 @@ describe("Elastic Search", function () {
             done();
         })
     });
+
+    it("Check aggregate std data with final query for suppression", function (done){
+        //Filter by State 'Alabama'
+        stdCasesQuery.query.filtered.filter.bool.must[3].bool.should[0].term.state = 'AL';
+        var query = [stdCasesQuery, stdPopulationQuery];
+        new elasticSearch().aggregateSTDData(query, true).then(function (resp) {
+            //All races/ethnicities
+            expect(resp.data.nested.table.race[0].name).equal(stdSuppressionQueryResp.data.nested.table.race[0].name);
+            expect(resp.data.nested.table.race[0].std).equal(stdSuppressionQueryResp.data.nested.table.race[0].std);
+            //Both sexes
+            expect(resp.data.nested.table.race[0].sex[0].name).equal(stdSuppressionQueryResp.data.nested.table.race[0].sex[0].name);
+            expect(resp.data.nested.table.race[0].sex[0].std).equal(stdSuppressionQueryResp.data.nested.table.race[0].sex[0].std);
+            expect(resp.data.nested.table.race[0].sex[0].pop).equal(stdSuppressionQueryResp.data.nested.table.race[0].sex[0].pop);
+            //suppression
+            //name = Native Hawaiian or Other Pacific Islander
+            expect(resp.data.nested.table.race[6].name).equal(stdSuppressionQueryResp.data.nested.table.race[6].name);
+            //Both Sexes
+            expect(resp.data.nested.table.race[6].sex[0].name).equal(stdSuppressionQueryResp.data.nested.table.race[6].sex[0].name);
+            //value Suppressed
+            expect(resp.data.nested.table.race[6].sex[0].std).equal('suppressed');
+            expect(stdSuppressionQueryResp.data.nested.table.race[6].sex[0].std).equal('suppressed');
+            //Female
+            expect(resp.data.nested.table.race[6].sex[1].name).equal(stdSuppressionQueryResp.data.nested.table.race[6].sex[1].name);
+            //value Suppressed
+            expect(resp.data.nested.table.race[6].sex[1].std).equal('suppressed');
+            expect(stdSuppressionQueryResp.data.nested.table.race[6].sex[1].std).equal('suppressed');
+            //Male
+            expect(resp.data.nested.table.race[6].sex[2].name).equal(stdSuppressionQueryResp.data.nested.table.race[6].sex[2].name);
+            //value Suppressed
+            expect(resp.data.nested.table.race[6].sex[2].std).equal('suppressed');
+            expect(stdSuppressionQueryResp.data.nested.table.race[6].sex[2].std).equal('suppressed');
+            done();
+        })
+    });
+
 
 });
