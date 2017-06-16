@@ -18,10 +18,6 @@ var census_type="census";
 var census_rates_type="census_rates";
 var infant_mortality_index = "owh_infant_mortality";
 var infant_mortality_type = "infant_mortality";
-var std_index = "owh_std";
-var std_type = "std";
-var tb_index = "owh_tb";
-var tb_type = "tb";
 
 //@TODO to work with my local ES DB I changed mapping name to 'queryResults1', revert before check in to 'queryResults'
 var _queryIndex = "owh_querycache";
@@ -276,7 +272,7 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
     return deferred.promise;
 };
 
-ElasticClient.prototype.aggregateDataByDisease = function (query, diseaseName, indexName, indexType) {
+ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, indexName, indexType) {
     var self = this;
     var deferred = Q.defer();
     if(query[1]) {
@@ -285,7 +281,7 @@ ElasticClient.prototype.aggregateDataByDisease = function (query, diseaseName, i
         var promises = [
             this.executeMultipleESQueries(query[0], indexName, indexType),
             //Using aggregateCensusDataQuery method to get STD population data
-            this.aggregateCensusDataQuery(query[1], std_index, std_type)
+            this.aggregateCensusDataQuery(query[1], indexName, indexType)
         ];
         Q.all(promises).then( function (resp) {
             var data = searchUtils.populateDataWithMappings(resp[0], diseaseName, 'cases');

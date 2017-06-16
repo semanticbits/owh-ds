@@ -175,14 +175,14 @@ function search(q) {
         sideFilterTotalCountQuery = queryBuilder.addCountsToAutoCompleteOptions(q);
         sideFilterTotalCountQuery.countQueryKey = 'cases';
         sideFilterQuery = queryBuilder.buildSearchQuery(sideFilterTotalCountQuery, true);
-        var diseaseName, indexName, indexType;
+        var indexName, indexType;
         if (preparedQuery.apiQuery.searchFor === 'std') {
-            diseaseName = 'std'; indexName = 'owh_std'; indexType = 'std';
+            indexName = 'owh_std'; indexType = 'std';
         } else if (preparedQuery.apiQuery.searchFor === 'tb') {
-            diseaseName = 'tb'; indexName = 'owh_tb'; indexType = 'tb';
+            indexName = 'owh_tb'; indexType = 'tb';
         }
-        new elasticSearch().aggregateDataByDisease(sideFilterQuery, diseaseName, indexName, indexType).then(function (sideFilterResults) {
-            new elasticSearch().aggregateDataByDisease(finalQuery, diseaseName, indexName, indexType).then(function (response) {
+        new elasticSearch().aggregateDiseaseData(sideFilterQuery, preparedQuery.apiQuery.searchFor, indexName, indexType).then(function (sideFilterResults) {
+            new elasticSearch().aggregateDiseaseData(finalQuery, preparedQuery.apiQuery.searchFor, indexName, indexType).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
                 resData.resultData = response.data;
