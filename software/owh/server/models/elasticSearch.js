@@ -281,7 +281,7 @@ ElasticClient.prototype.aggregateDataByDisease = function (query, diseaseName, i
     var deferred = Q.defer();
     if(query[1]) {
         logger.debug("ES Query for "+ diseaseName+ " :"+ JSON.stringify( query[0]));
-        logger.debug("ES Query for "+ diseaseName+ " :"+ JSON.stringify( query[1]));
+        logger.debug("ES Query for "+ diseaseName+ " to get population count:"+ JSON.stringify( query[1]));
         var promises = [
             this.executeMultipleESQueries(query[0], indexName, indexType),
             //Using aggregateCensusDataQuery method to get STD population data
