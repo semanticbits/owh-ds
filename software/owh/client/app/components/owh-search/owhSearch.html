@@ -45,6 +45,13 @@
                     ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.prams"
                     class="usa-width-two-thirds add-on-element gray-border margin-0"></select>
         </div>
+        <div class="usa-width-one-fourth margin-right-0" ng-show="ots.filters.selectedPrimaryFilter.key === 'mental_health'">
+            <div class="usa-width-one-fourth show-me-text" ng-bind="'label.yrbs.healthtopics' | translate" title="{{'label.yrbs.healthtopics' | translate}}"></div>
+            <select ng-model="ots.selectedShowFilter"
+                    ng-change="ots.onViewFilter({selectedFilter: ots.selectedShowFilter})"
+                    ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.mental_health"
+                    class="usa-width-two-thirds add-on-element gray-border margin-0"></select>
+        </div>
         <div class="forward-back">
             <button class="action-button condition-option ng-scope"  ng-click="ots.goBackward();" title="Previous Query"><span class="fa fa-chevron-left" ng-class="fa-chevron-left"></span></button>
             <button class="action-button condition-option ng-scope"  ng-click="ots.goForward();" title="Next Query"><span class="fa fa-chevron-right" ng-class="fa-chevron-right"></span></button>
