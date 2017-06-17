@@ -317,6 +317,66 @@ describe('search factory ', function(){
 
     });
 
+    describe('TB search ->', function() {
+        var response;
+        beforeAll(function() {
+            //get the filters
+            primaryFilter = filters.search[7];
+            filters.selectedPrimaryFilter = primaryFilter;
+            //prepare mock response
+            response = __fixtures__['app/modules/search/fixtures/search.factory/tbDefaultSearchResponse'];
+        });
+
+        it('searchTBResults for TB', function(){
+            var deferredResults = $q.defer();
+
+            spyOn(searchService, 'searchResults').and.returnValue(deferredResults.promise);
+
+            primaryFilter.searchResults(primaryFilter, '35343dsfvvcxvsd').then(function(result) {
+                expect(JSON.stringify(result.data.resultData.nested.table)).toEqual(JSON.stringify(response.data.resultData.nested.table));
+                expect(JSON.stringify(result.data.resultData.nested.charts)).toEqual(JSON.stringify(response.data.resultData.nested.charts));
+            });
+
+            deferredResults.resolve(response);
+            $scope.$apply()
+        });
+
+    });
+
+    describe('STD search ->', function() {
+        var stdSearchResponse;
+        beforeAll(function() {
+            stdSearchResponse = __fixtures__['app/modules/search/fixtures/search.factory/stdSearchResponse'];
+        });
+        beforeEach(function() {
+            deferred = $q.defer();
+        });
+        it('updateFiltersAndData for std response', function(){
+            var stdFilters = {primaryFilters: [filters.search[6]]};
+            var result = searchFactory.updateFiltersAndData(stdFilters, stdSearchResponse, {'std': {}}, {});
+            expect(JSON.stringify(result.primaryFilter.data)).toEqual(JSON.stringify(stdSearchResponse.data.resultData.nested.table));
+        });
+
+        it('searchSTDResults', function(){
+
+            var deferredResults = $q.defer();
+
+            primaryFilter = filters.search[6];
+            filters.selectedPrimaryFilter = primaryFilter;
+
+            spyOn(searchService, 'searchResults').and.returnValue(deferredResults.promise);
+
+            primaryFilter.searchResults(primaryFilter, '35343dsfvvcxvsd').then(function(result) {
+                expect(JSON.stringify(result.data.resultData.nested.table)).toEqual(JSON.stringify(stdSearchResponse.data.resultData.nested.table));
+                expect(JSON.stringify(result.data.resultData.nested.charts)).toEqual(JSON.stringify(stdSearchResponse.data.resultData.nested.charts));
+            });
+
+            deferredResults.resolve(stdSearchResponse);
+            $scope.$apply()
+        });
+
+    });
+
     describe('test with mortality data', function () {
         beforeAll(function() {
             primaryFilter = filters.search[0];
@@ -657,21 +717,5 @@ describe('search factory ', function(){
             expect(JSON.stringify(result.primaryFilter.data.question)).toEqual(JSON.stringify(response.data.resultData.table.question));
             expect(result.primaryFilter.allFilters[3].questions.length).toEqual(groupOptions.delivery.topic.length);
         });
-    });
-
-    describe('STD search ->', function() {
-        var stdSearchResponse;
-        beforeAll(function() {
-            stdSearchResponse = __fixtures__['app/modules/search/fixtures/search.factory/stdSearchResponse'];
-        });
-        beforeEach(function() {
-            deferred = $q.defer();
-        });
-        it('updateFiltersAndData for std response', function(){
-            filters.primaryFilters = [filters.search[6]];
-            var result = searchFactory.updateFiltersAndData(filters, stdSearchResponse, {'std': {}}, {});
-            expect(JSON.stringify(result.primaryFilter.data)).toEqual(JSON.stringify(stdSearchResponse.data.resultData.nested.table));
-        });
-
     });
 });
