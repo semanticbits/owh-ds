@@ -1,9 +1,10 @@
-@Only
+@Yrbs
 Feature: As a User
   I want the sidebar layout in YRBS to be similar to Mortality
   So that there is consistency in the design
   I want to see the YRBS question categories in the given order
   So that I can see the most important question categories first
+
 
   Scenario: Access YRBS page from home page
     Given I am on search page
@@ -12,10 +13,17 @@ Feature: As a User
 
   Scenario: Accesss YRBS from search page
     Given I am on search page
-    #Given user select YRBS as primary filter
     When I select YRBS as primary filter
     Then the default filter pre-selected should be Race
     And side menu slides back into view
+
+  Scenario: Health Topic options
+    And I see "Topic" filter on the top of the page
+    And Default selected topic is "Alcohol and Other Drug Use"
+    And I see only "Alcohol and Other Drug Use" category in the result table
+    When I change topic to "Dietary Behaviors"
+    Then I see only "Dietary Behaviors" category in the result table
+    When I change topic to "Alcohol and Other Drug Use"
 
   Scenario: Result table shows both Yes and No Responses
     #Then I should see "Response" column in the result table
@@ -38,7 +46,7 @@ Feature: As a User
   Scenario: show chart for each question
    Given I am on search page
    When I select YRBS as primary filter
-   Then each question should have chart icon displayed
+   #Then each question should have chart icon displayed
 
   Scenario: sort order
     When I looks at the filter sub categories
@@ -90,8 +98,7 @@ Feature: As a User
 
   Scenario: YRBS question categories in the given order
     When I select "Select Questions" button
-   # Then I see question categories in this order "Unintentional Injuries and Violence", "Tobacco Use", "Alcohol and Other Drug Use", "Sexual Behaviors", "Obesity, Overweight, and Weight Control", "Dietary Behaviors", "Physical Activity", "Other Health Topics"
-    Then I see question categories in this order "Alcohol and Other Drug Use", "Dietary Behaviors", "Obesity, Overweight, and Weight Control", "Other Health Topics", "Physical Activity", "Sexual Behaviors", "Tobacco Use", "Unintentional Injuries and Violence"
+    Then I see question category "Alcohol and Other Drug Use"
     And by default no questions should be selected
     And it should also have a Search Questions - search bar above the list
 
@@ -265,4 +272,3 @@ Feature: As a User
     And  filter "Sexual Identity" and option "Heterosexual (straight)" selected
     And I click on run query button
     #Then results in yrbs data table should be suppressed
-

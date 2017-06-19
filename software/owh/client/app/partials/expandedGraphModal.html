@@ -3,10 +3,10 @@
         <div class="custom-modal-header">
             <div>
                 <span ng-class="{'small-model-title': eg.chartData.length > 1}" ng-bind=" eg.graphTitle| translate"></span>
-                <span style="float: right" ng-if="eg.chartData.length > 1"><a class="cursor-pointer" name="close" ng-click="eg.close()"><i class="fa fa-times" title="Close graph"></i></a></span>
-                <span style="float: right" ng-if="eg.chartData.length === 1"><a name="close" class="cursor-pointer" ng-click="eg.close()"><i class="fa purple-icon fa-compress" title="Minimize graph"></i></a></span>
+                <span style="float: right" ng-if="eg.chartData.length > 1"><a class="cursor-pointer" name="close" ng-click="eg.close()"><span class="fa fa-times" title="Close graph"></span></a></span>
+                <span style="float: right" ng-if="eg.chartData.length === 1"><a name="close" class="cursor-pointer" ng-click="eg.close()"><span class="fa purple-icon fa-compress" title="Minimize graph"></span></a></span>
                 <span style="float:right" class="margin-right-20" ng-if="eg.chartData.length === 1">
-                    <a name="share" class="cursor-pointer" ng-click="eg.showFbDialog('chart_expanded_0', eg.graphTitle)">&nbsp; <i class="fa purple-icon fa-share-alt" title="Share on facebook"></i></a>
+                    <a name="share" class="cursor-pointer" ng-click="eg.showFbDialog('chart_expanded_0', eg.graphTitle)">&nbsp; <span class="fa purple-icon fa-share-alt" title="Share on facebook"></span></a>
                 </span>
             </div>
             <div ng-bind="eg.graphSubTitle"></div>
@@ -26,7 +26,7 @@
                     <div class="text-center margin-top-5" ng-if="eg.chartData.length > 1">
                         <span ng-bind="eachChartData.title | translate" class="graph-title"></span>
                         <a name="share" class="font-20 cursor-pointer" ng-click="eg.showFbDialog('chart_expanded_'+$index, eachChartData.title, 'YRBS by', eg.graphTitle)">
-                            &nbsp; <i class="fa purple-icon fa-share-alt" title="{{'label.share.on.fb' | translate}}"></i>
+                            &nbsp; <span class="fa purple-icon fa-share-alt" title="{{'label.share.on.fb' | translate}}"></span>
                         </a>
                     </div>
                     <nvd3 id="chart_expanded_{{$index}}" options='eachChartData.options' data='eachChartData.data'></nvd3>

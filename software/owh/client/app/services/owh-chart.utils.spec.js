@@ -110,7 +110,7 @@ describe('chart utils', function(){
         expect(result.options.chart.valueFormat('1,234')).toEqual('1,234');
         expect(result.options.chart.valueFormat(1234)).toEqual('1234');
 
-        expect(result.options.chart.tooltip.contentGenerator({value: 1234, series: [{color: 'red', value: 1234}]})).toEqual("<div class='usa-grid-full'<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>1234</div><div class='usa-width-one-whole nvtooltip-value'><i class='fa fa-square' style='color:red'></i>&nbsp;&nbsp;&nbsp;undefined&nbsp;&nbsp;&nbsp;1,234data</div></div>");
+        expect(result.options.chart.tooltip.contentGenerator({value: 1234, series: [{color: 'red', value: 1234}]})).toEqual("<div class='usa-grid-full'<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>1234</div><div class='usa-width-one-whole nvtooltip-value'><span class='fa fa-square' style='color:red'></span>&nbsp;&nbsp;&nbsp;undefined&nbsp;&nbsp;&nbsp;1,234data</div></div>");
     });
 
     it('test chart utils verticalStack', function () {
@@ -128,7 +128,7 @@ describe('chart utils', function(){
         expect(result.options.chart.valueFormat('1,234')).toEqual('1,234');
         expect(result.options.chart.valueFormat(1234)).toEqual('1234');
 
-        expect(result.options.chart.tooltip.contentGenerator({value: 1234, series: [{color: 'red', value: 1234}]})).toEqual("<div class='usa-grid-full'<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>1234</div><div class='usa-width-one-whole nvtooltip-value'><i class='fa fa-square' style='color:red'></i>&nbsp;&nbsp;&nbsp;undefined&nbsp;&nbsp;&nbsp;1,234</div></div>");
+        expect(result.options.chart.tooltip.contentGenerator({value: 1234, series: [{color: 'red', value: 1234}]})).toEqual("<div class='usa-grid-full'<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>1234</div><div class='usa-width-one-whole nvtooltip-value'><span class='fa fa-square' style='color:red'></span>&nbsp;&nbsp;&nbsp;undefined&nbsp;&nbsp;&nbsp;1,234</div></div>");
     });
 
     it('test chart utils horizontalBar', function () {
@@ -185,7 +185,7 @@ describe('chart utils', function(){
 
         expect(result.options.chart.yAxis.tickFormat(1234)).toEqual(null);
         console.log(result.options.chart.tooltip.contentGenerator({value: 1234, series: [{color: 'red', value: 1234}]}));
-        expect(result.options.chart.tooltip.contentGenerator({value: 1234, series: [{color: 'red', value: 1234}]})).toEqual("<div class='usa-grid-full'<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>1234</div><div class='usa-width-one-whole nvtooltip-value'><i class='fa fa-square' style='color:red'></i>&nbsp;&nbsp;&nbsp;undefined&nbsp;&nbsp;&nbsp;1,234</div></div>");
+        expect(result.options.chart.tooltip.contentGenerator({value: 1234, series: [{color: 'red', value: 1234}]})).toEqual("<div class='usa-grid-full'<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>1234</div><div class='usa-width-one-whole nvtooltip-value'><span class='fa fa-square' style='color:red'></span>&nbsp;&nbsp;&nbsp;undefined&nbsp;&nbsp;&nbsp;1,234</div></div>");
 
     });
 
@@ -207,7 +207,7 @@ describe('chart utils', function(){
 
         expect(result.options.chart.color({label: 'label'}, 1)).toEqual(d3.scale.category20()(1));
 
-        expect(result.options.chart.tooltip.contentGenerator({value: 1234, series: [{color: 'red', value: 1234}]})).toEqual("<div class='usa-grid-full'<div class='usa-width-one-whole nvtooltip-value'><i class='fa fa-square' style='color:red'></i>&nbsp;&nbsp;&nbsp;undefined&nbsp;&nbsp;&nbsp;1,234data</div></div>");
+        expect(result.options.chart.tooltip.contentGenerator({value: 1234, series: [{color: 'red', value: 1234}]})).toEqual("<div class='usa-grid-full'<div class='usa-width-one-whole nvtooltip-value'><span class='fa fa-square' style='color:red'></span>&nbsp;&nbsp;&nbsp;undefined&nbsp;&nbsp;&nbsp;1,234data</div></div>");
     });
 
     it('test chart utils pieChart for gender filter', function () {
