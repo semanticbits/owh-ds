@@ -372,7 +372,7 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.When(/^user expands hispanic option group$/, function (next) {
         commonPage.getGroupOptionsFor('Ethnicity').then(function(elements) {
-            elements[0].element(by.tagName('i')).click();
+            elements[0].element(by.tagName('span')).click();
         }).then(next);
     });
 
@@ -1031,5 +1031,37 @@ var mortalityStepDefinitionsWrapper = function () {
             expect(elements[3].getText()).to.eventually.contains('187 (1.6%)');
         });
     });
+
+    this.Then(/^I see data in data table grouped by Underlying Cause of Death and Race$/, function (next) {
+        mortalityPage.getTableRowDataCells(0).then(function (elements) {
+            expect(elements[0].getText()).to.eventually.equal('4-Aminophenol derivatives (Y45.5)');
+            mortalityPage.getTableCellData(0,1).then(function(data){
+                expect(data).to.contains('White');
+            });
+            mortalityPage.getTableCellData(0,2).then(function(data){
+                expect(data).to.contains('1 (100.0%)');
+            });
+
+            mortalityPage.getTableRowDataCells(2).then(function (elements) {
+                expect(elements[0].getText()).to.eventually.equal('Abdomen - Malignant neoplasms (C76.2)');
+                mortalityPage.getTableCellData(2,1).then(function(data){
+                    expect(data).to.contains('American Indian or Alaska Native');
+                });
+                mortalityPage.getTableCellData(2,2).then(function(data){
+                    expect(data).to.contains('3 (100.0%)');
+                });
+            });
+        }).then(next);
+    });
+
+    this.Then(/^I should see the options "([^"]*)" enabled$/, function (filters, next) {
+        var enabled = filters.split(', ');
+        mortalityPage.getDisabledSideFilters().then(function (disabled) {
+            enabled.map(function (filter) {
+                expect(disabled).to.not.contain(filter);
+            });
+        }).then(next);
+    });
+    
 };
 module.exports = mortalityStepDefinitionsWrapper;

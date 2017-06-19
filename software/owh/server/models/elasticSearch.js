@@ -20,6 +20,9 @@ var infant_mortality_index = "owh_infant_mortality";
 var infant_mortality_type = "infant_mortality";
 var std_index = "owh_std";
 var std_type = "std";
+var tb_index = "owh_tb";
+var tb_type = "tb";
+
 //@TODO to work with my local ES DB I changed mapping name to 'queryResults1', revert before check in to 'queryResults'
 var _queryIndex = "owh_querycache";
 var _queryType = "queryData";
@@ -298,6 +301,39 @@ ElasticClient.prototype.aggregateSTDData = function (query, isStateSelected) {
         logger.debug("STD ES Query: "+ JSON.stringify( query[0]));
         this.executeESQuery(std_index, std_type, query[0]).then(function (response) {
             var data = searchUtils.populateDataWithMappings(response, 'std', 'cases');
+            deferred.resolve(data);
+        }, function (err) {
+            logger.error(err.message);
+            deferred.reject(err);
+        });
+    }
+    return deferred.promise;
+};
+
+ElasticClient.prototype.aggregateTBData = function (query) {
+    var self = this;
+    var deferred = Q.defer();
+    if(query[1]) {
+        logger.debug("TB ES Query: "+ JSON.stringify( query[0]));
+        logger.debug("TB ES Query To Get Population Count: "+ JSON.stringify( query[1]));
+        var promises = [
+            this.executeMultipleESQueries(query[0], tb_index, tb_type),
+            //Using aggregateCensusDataQuery method to get STD population data
+            this.aggregateCensusDataQuery(query[1], tb_index, tb_type)
+        ];
+        Q.all(promises).then( function (resp) {
+            var data = searchUtils.populateDataWithMappings(resp[0], 'tb', 'cases');
+            self.mergeWithCensusData(data, resp[1]);
+            deferred.resolve(data);
+        }, function (err) {
+            logger.error(err.message);
+            deferred.reject(err);
+        });
+    }
+    else {
+        logger.debug("TB ES Query: "+ JSON.stringify( query[0]));
+        this.executeESQuery(tb_index, tb_type, query[0]).then(function (response) {
+            var data = searchUtils.populateDataWithMappings(response, 'tb', 'cases');
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);

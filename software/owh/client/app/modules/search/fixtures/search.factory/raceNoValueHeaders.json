@@ -49,6 +49,9 @@
       "primary": false,
       "value": [],
       "groupBy": "row",
+      "questions":[
+        null
+      ],
       "filterType": "tree",
       "autoCompleteOptions": [{
         "key": "Drove when drinking alcohol",

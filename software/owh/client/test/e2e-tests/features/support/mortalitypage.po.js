@@ -116,6 +116,13 @@ var MortalitySearchPage = function() {
         element(by.cssContainingText('a', 'State')).click();
     };
 
+    msp.getDisabledSideFilters = function () {
+        return element.all(by.className('disabled-filter'))
+            .map(function (el) {
+                return el.element(by.className('filter-display-name'))
+                    .getText()
+            })
+    };
 };
 
 module.exports = new MortalitySearchPage;

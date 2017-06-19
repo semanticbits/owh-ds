@@ -87,4 +87,19 @@ describe('filterUtils', function(){
             expect(values[3]).toEqual("National");
         });
     });
+
+    describe('TB filters -> ', function() {
+        it('when I call getTBDataFilters, I should get all TB filters', function () {
+            var stdDataFilters= filterUtils.getTBDataFilters();
+            expect(stdDataFilters[0].key).toEqual('current_year');
+            expect(stdDataFilters[0].value).toEqual('2015');
+            expect(stdDataFilters[1].key).toEqual('age_group');
+            expect(stdDataFilters[2].key).toEqual('race');
+            expect(stdDataFilters[2].value).toEqual('All races/ethnicities');
+            expect(stdDataFilters[3].key).toEqual('sex');
+            expect(stdDataFilters[3].value).toEqual('Both sexes');
+            expect(stdDataFilters[4].key).toEqual('state');
+            expect(stdDataFilters[4].value).toEqual('National');
+        });
+    });
 });

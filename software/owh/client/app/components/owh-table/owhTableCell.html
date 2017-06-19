@@ -1,6 +1,6 @@
 <div>
     <span ng-if="!otcc.cell.isCount" ng-bind-html="otcc.cell.title"></span>
-    <i class="cursor-pointer {{otcc.cell.iconClass}}" ng-if="otcc.cell.iconClass" ng-click="otcc.cell.onIconClick(otcc.cell.key)"></i>
+    <span class="cursor-pointer {{otcc.cell.iconClass}}" ng-if="otcc.cell.iconClass" ng-click="otcc.cell.onIconClick(otcc.cell.key)"></span>
     <label class="custom-label owh-table__cell-content" ng-if="otcc.cell.isCount">
         <div ng-if="otcc.tableView === 'crude_death_rates' || otcc.tableView === 'age-adjusted_death_rates'">
             <div id="crudeRateDiv" ng-class="{true: 'usa-width-one-half owh-table__left-col', false: 'usa-width-one-third owh-table__left-col'}[otcc.row.length > 5]">

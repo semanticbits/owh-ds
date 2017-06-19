@@ -138,7 +138,7 @@
                                     "<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>"+ d.value+"</div>" +
                                     "<div class='usa-width-one-whole nvtooltip-value'>";
                                     d.series.forEach(function(elem){
-                                        html += "<i class='fa fa-square' style='color:"+elem.color+"'></i>" +
+                                        html += "<span class='fa fa-square' style='color:"+elem.color+"'></span>" +
                                             "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"
                                             + getCount(elem.value, primaryFilter) + postFixToTooltip + "</div>";
                                     });
@@ -331,7 +331,7 @@
                                     "<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>"+ d.value+"</div>" +
                                     "<div class='usa-width-one-whole nvtooltip-value'>";
                                 d.series.forEach(function(elem){
-                                    html += "<i class='fa fa-square' style='color:"+elem.color+"'></i>" +
+                                    html += "<span class='fa fa-square' style='color:"+elem.color+"'></span>" +
                                         "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"
                                         +getCount(elem.value, primaryFilter)+"</div>";
                                 });
@@ -441,7 +441,7 @@
                                     "<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>"+ d.value+"</div>" +
                                     "<div class='usa-width-one-whole nvtooltip-value'>";
                                 d.series.forEach(function(elem){
-                                    html += "<i class='fa fa-square' style='color:"+elem.color+"'></i>" +
+                                    html += "<span class='fa fa-square' style='color:"+elem.color+"'></span>" +
                                         "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"
                                         +getCount(elem.value, primaryFilter) + "</div>";
                                 });
@@ -530,7 +530,7 @@
                                 var html = "<div class='usa-grid-full'"+
                                     "<div class='usa-width-one-whole nvtooltip-value'>";
                                 d.series.forEach(function(elem){
-                                    html += "<i class='fa fa-square' style='color:"+elem.color+"'></i>" +
+                                    html += "<span class='fa fa-square' style='color:"+elem.color+"'></span>" +
                                         "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"
                                         +getCount(elem.value, primaryFilter) + postFixToTooltip + "</div>";
                                 });

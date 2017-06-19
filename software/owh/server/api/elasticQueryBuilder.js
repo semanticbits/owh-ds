@@ -90,7 +90,7 @@ var generateAggregationQuery = function( aggQuery, groupByKeyStart, countQueryKe
         query[ groupByKeyStart + aggQuery.key] = getTermQuery(aggQuery);
         query[ groupByKeyStart + aggQuery.key].aggregations=getPopulationSumQuery();
         merge(query, getPopulationSumQuery());
-    } if(countQueryKey == 'cases') {
+    }else if(countQueryKey == 'cases') {
         query[ groupByKeyStart + aggQuery.key] = getTermQuery(aggQuery);
         query[ groupByKeyStart + aggQuery.key].aggregations=getCasesSumQuery();
         merge(query, getCasesSumQuery());
@@ -173,12 +173,13 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     }
     elasticQuery.query = {};
     elasticQuery.query.filtered = {};
+
     /*
     * For STD, TB, HIV-AIDS
     * If user select groupBy column / row for any filter then this logic will remove 'All' filter from filter query
     * So that data table display all options for that filter
     */
-    if(params.searchFor == 'std' && params.aggregations['nested'] && params.aggregations['nested']['table']) {
+    if((params.searchFor == 'std' || params.searchFor == 'tb') && params.aggregations['nested'] && params.aggregations['nested']['table']) {
         params.aggregations['nested']['table'].forEach(function (aggregation) {
             Object.keys(userQuery).forEach(function(key){
                 var eachObject = userQuery[key];
@@ -195,11 +196,16 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     elasticQuery.query.filtered.query = primaryQuery;
     elasticQuery.query.filtered.filter = filterQuery;
     if(censusQuery) {
+        var clonedUserQuery = clone(userQuery);
+        if (clonedUserQuery['ICD_10_code']) delete clonedUserQuery['ICD_10_code'];
+        var clonedPrimaryQuery = buildTopLevelBoolQuery(groupByPrimary(clonedUserQuery, true), true);
+        var clonedFilterQuery = buildTopLevelBoolQuery(groupByPrimary(clonedUserQuery, false), false);
+
         censusQuery.query = {};
         censusQuery.query.filtered = {};
 
-        censusQuery.query.filtered.query = primaryQuery;
-        censusQuery.query.filtered.filter = filterQuery;
+        censusQuery.query.filtered.query = clonedPrimaryQuery;
+        censusQuery.query.filtered.filter = clonedFilterQuery;
     }
     return [elasticQuery, censusQuery];
 };
@@ -471,10 +477,12 @@ var getGroupQuery = function (filter){
 function buildFilterQuery(filter) {
     if(filter.key === 'question' && filter.value.length == 0){
         filter.value = [];
-        filter.autoCompleteOptions.forEach( function(q) {
-            if(q.qkey.startsWith('qn')) {
-                filter.value.push(q.qkey);
-            }
+        filter.questions.forEach( function(q) {
+          if(q.children){
+              filter.value = filter.value.concat(q.children.map(function (it) { return it.id;}));
+          }else{
+              filter.value.push(q.id);
+          }
         });
         return getFilterQuery(filter);
     }

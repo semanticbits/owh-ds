@@ -114,7 +114,7 @@ var stdStepDefinitionsWrapper = function () {
         return expect(element(by.cssContainingText('text', 'Stacked')).isDisplayed()).to.eventually.equal(true);
     });
 
-    this.Then(/^I should not see grouped and stacked controls on expaned visualization$/, function () {
+    this.Then(/^I should not see grouped and stacked controls on expanded visualization$/, function () {
         expect(element(by.cssContainingText('text', 'Grouped')).isPresent()).to.eventually.equal(false);
         return expect(element(by.cssContainingText('text', 'Stacked')).isPresent()).to.eventually.equal(false);
     });

@@ -533,7 +533,7 @@
             else {
                 var count = data[countKey];
                 var columnData = prepareMixedTableColumnData(columnHeaders, data, countKey, count, calculatePercentage, secondaryCountKeys);
-                if(typeof data[countKey] !== 'undefined' && countKey != 'std') {
+                if(typeof data[countKey] !== 'undefined' && countKey != 'std' && countKey != 'tb') {
                     columnData.push(prepareCountCell(count, data, countKey, totalCount, calculatePercentage, secondaryCountKeys, true));
                 }
                 tableData.push(columnData);
@@ -691,10 +691,12 @@
          */
         function getValuesByKeyIncludingKeyAndValue(data, key, includeKey, includeValue) {
             var values = [];
-            for (var i = 0; i < data.length; i++) {
-                if(data[i][includeKey] === includeValue) {
-                    values.push(data[i][key]);
-                }
+            if(data){
+                    for (var i = 0; i < data.length; i++) {
+                        if(data[i][includeKey] === includeValue) {
+                            values.push(data[i][key]);
+                        }
+                    }
             }
             return values;
         }

@@ -72,7 +72,16 @@
                 {key: 'maternal_behavior', title: 'Maternal Behavior/Health'},
                 {key: 'maternal_experiences', title: 'Maternal Experiences'},
                 {key: 'prenatal_care', title: 'Prenatal Care'},
-                {key: 'insurance_medicaid_services', title: 'Insurance/Medicaid/Services'}]
+                {key: 'insurance_medicaid_services', title: 'Insurance/Medicaid/Services'}],
+            mental_health: [
+                {key: 'Alcohol and Other Drug Use', title: 'Alcohol and Other Drug Use'},
+                {key: 'Dietary Behaviors', title: 'Dietary Behaviors'},
+                {key: 'Obesity, Overweight, and Weight Control', title: 'Obesity, Overweight, and Weight Control'},
+                {key: 'Physical Activity', title: 'Physical Activity'},
+                {key: 'Sexual Behaviors', title: 'Sexual Behaviors'},
+                {key: 'Tobacco Use', title: 'Tobacco Use'},
+                {key: 'Unintentional Injuries and Violence', title: 'Unintentional Injuries and Violence'},
+                {key: 'Other Health Topics', title: 'Other Health Topics'}]
         };
         sc.sort = {
             "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'ucd-chapter-10', 'mcd-chapter-10'],
@@ -89,7 +98,8 @@
                 'prenatal_care', 'birth_weight', 'birth_plurality', 'live_birth', 'birth_place', 'delivery_method', 'medical_attendant',
                 'ucd-chapter-10', 'state'],
             "label.prams.title": [],
-            "label.filter.std": []
+            "label.filter.std": [],
+            "label.filter.tb": []
         };
 
         sc.optionsGroup = {
@@ -123,6 +133,7 @@
             bridge_race:{},
             std:{},
             disease_rate:{},
+            tb:{},
             mental_health:{},
             natality:{},
             prams:{},
@@ -153,11 +164,12 @@
             insurance_medicaid_services: {
                 "topic": ['cat_32', 'cat_21', 'cat_44']
             }
+            
         };
         //show certain filters for different table views
         //add availablefilter for birth_rates
         sc.availableFilters = {
-            'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin','state'],
+            'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'state', 'ucd-chapter-10'],
             'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state', 'ucd-chapter-10'],
             'birth_rates': ['current_year', 'race', 'state'],
             'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval', 'state']
@@ -170,6 +182,7 @@
         function changePrimaryFilter(newFilter) {
             sc.tableData = {};
             sc.filters.selectedPrimaryFilter = newFilter;
+            sc.tableView = newFilter.tableView;
             search(true);
         }
 
@@ -216,7 +229,7 @@
         }
 
         function search(isFilterChanged) {
-            if(sc.filters.selectedPrimaryFilter.key === 'prams') {
+            if(sc.filters.selectedPrimaryFilter.key === 'prams' || sc.filters.selectedPrimaryFilter.key === 'mental_health') {
                 angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters[0].sideFilters, function(filter) {
                     if(filter.filters.key === 'topic') {
                         filter.filters.questions = [];
@@ -241,11 +254,15 @@
                                 });
                             });
                         }
+                    } else if (filter.filters.key === 'question'){
+                        if(sc.filters.selectedPrimaryFilter.key === 'mental_health') {
+                            filter.filters.questions = searchFactory.getYrbsQuestionsForTopic(sc.tableView);
+                        } else if(sc.filters.selectedPrimaryFilter.key === 'prams'){
+                            filter.filters.questions = searchFactory.getPramsQuestionsForTopics(sc.optionsGroup[sc.tableView].topic);
+                        }
                     }
                 });
             }
-            //TODO: $rootScope.requestProcessing is keeping this from running on initialization, do we need that check?
-            // if(isFilterChanged && !$rootScope.requestProcessing) {
             if(isFilterChanged) {
                 //filters changed
                 searchFactory.generateHashCode(sc.filters.selectedPrimaryFilter).then(function(hash) {
@@ -274,7 +291,8 @@
         });
 
         $scope.$on('pramsQuestionsLoaded', function() {
-            sc.filters.pramsFilters[4].autoCompleteOptions = $rootScope.pramsQuestionsList;
+            var questionFilter = utilService.findFilterByKeyAndValue(sc.filters.pramsFilters, 'key', 'question');
+            questionFilter.autoCompleteOptions = $rootScope.pramsQuestionsList;
         });
 
 
@@ -349,6 +367,7 @@
 
 
         function changeViewFilter(selectedFilter) {
+            sc.tableView = selectedFilter.key;
             searchFactory.removeDisabledFilters(sc.filters.selectedPrimaryFilter, selectedFilter.key, sc.availableFilters);
             angular.forEach(sc.filters.selectedPrimaryFilter.allFilters, function(filter) {
                 if(filter.key === 'hispanicOrigin') {
@@ -378,10 +397,11 @@
                         filter.filters.value = [];
                         filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
                         searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup[selectedFilter.key]);
-                    } else if (sc.filters.selectedPrimaryFilter.key === 'prams'
-                        && filter.filters.key === 'question') {
-                        //clear selected question on class change
+                    } else if (filter.filters.key === 'question') {
+                        // Clear questions selection and update questions list on class/topic change for PRAMS and YRBS datasets
                         filter.filters.value = [];
+                        filter.filters.selectedValues = [];
+                        filter.filters.selectedNodes = [];
                     }
                 });
             });
@@ -421,8 +441,12 @@
                    searchFactory.setFilterGroupBy(sc.filters.selectedPrimaryFilter.allFilters, 'sex', 'column');
                 }
             }
-            sc.search(true);
-            sc.tableView = selectedFilter.key;
+
+            // Don't trigger search automatically for advaced search
+            if(sc.filters.selectedPrimaryFilter.runOnFilterChange) {
+                sc.search(true);
+            }
+
         }
 
         function downloadCSV() {

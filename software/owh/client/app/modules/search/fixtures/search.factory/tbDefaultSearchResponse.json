@@ -1,0 +1,2250 @@
+{
+  "status": "OK",
+  "data": {
+    "queryJSON": {
+      "key": "tb",
+      "title": "label.filter.tb",
+      "primary": true,
+      "value": [],
+      "header": "Tuberculosis",
+      "allFilters": [
+        {
+          "key": "current_year",
+          "title": "label.filter.year",
+          "queryKey": "current_year",
+          "primary": false,
+          "value": "2015",
+          "groupBy": false,
+          "filterType": "radio",
+          "autoCompleteOptions": [
+            {
+              "key": "2015",
+              "title": "2015",
+              "count": 0
+            },
+            {
+              "key": "2014",
+              "title": "2014",
+              "count": 0
+            },
+            {
+              "key": "2013",
+              "title": "2013",
+              "count": 0
+            },
+            {
+              "key": "2012",
+              "title": "2012",
+              "count": 0
+            },
+            {
+              "key": "2011",
+              "title": "2011",
+              "count": 0
+            },
+            {
+              "key": "2010",
+              "title": "2010",
+              "count": 0
+            },
+            {
+              "key": "2009",
+              "title": "2009",
+              "count": 0
+            },
+            {
+              "key": "2008",
+              "title": "2008",
+              "count": 0
+            },
+            {
+              "key": "2007",
+              "title": "2007",
+              "count": 0
+            },
+            {
+              "key": "2006",
+              "title": "2006",
+              "count": 0
+            },
+            {
+              "key": "2005",
+              "title": "2005",
+              "count": 0
+            },
+            {
+              "key": "2004",
+              "title": "2004",
+              "count": 0
+            },
+            {
+              "key": "2003",
+              "title": "2003",
+              "count": 0
+            },
+            {
+              "key": "2002",
+              "title": "2002",
+              "count": 0
+            },
+            {
+              "key": "2001",
+              "title": "2001",
+              "count": 0
+            },
+            {
+              "key": "2000",
+              "title": "2000",
+              "count": 0
+            }
+          ],
+          "doNotShowAll": true,
+          "helpText": "label.help.text.year"
+        },
+        {
+          "key": "age_group",
+          "title": "label.filter.agegroup",
+          "queryKey": "age_group",
+          "primary": false,
+          "value": "All age groups",
+          "groupBy": false,
+          "filterType": "radio",
+          "autoCompleteOptions": [
+            {
+              "key": "All age groups",
+              "title": "All age groups",
+              "count": 0
+            },
+            {
+              "key": "Age 15 and older",
+              "title": "Age 15 and older",
+              "count": 0
+            },
+            {
+              "key": "0-4",
+              "title": "0-4",
+              "count": 0
+            },
+            {
+              "key": "0-14",
+              "title": "0-14",
+              "count": 0
+            },
+            {
+              "key": "05-14",
+              "title": "05-14",
+              "count": 0
+            },
+            {
+              "key": "13-24",
+              "title": "13-24",
+              "count": 0
+            },
+            {
+              "key": "15-19",
+              "title": "15-19",
+              "count": 0
+            },
+            {
+              "key": "15-24",
+              "title": "15-24",
+              "count": 0
+            },
+            {
+              "key": "15-39",
+              "title": "15-39",
+              "count": 0
+            },
+            {
+              "key": "20-24",
+              "title": "20-24",
+              "count": 0
+            },
+            {
+              "key": "25-29",
+              "title": "25-29",
+              "count": 0
+            },
+            {
+              "key": "25-34",
+              "title": "25-34",
+              "count": 0
+            },
+            {
+              "key": "30-34",
+              "title": "30-34",
+              "count": 0
+            },
+            {
+              "key": "35-39",
+              "title": "35-39",
+              "count": 0
+            },
+            {
+              "key": "35-44",
+              "title": "35-44",
+              "count": 0
+            },
+            {
+              "key": "40-44",
+              "title": "40-44",
+              "count": 0
+            },
+            {
+              "key": "40-59",
+              "title": "40-59",
+              "count": 0
+            },
+            {
+              "key": "45-54",
+              "title": "45-54",
+              "count": 0
+            },
+            {
+              "key": "55-64",
+              "title": "55-64",
+              "count": 0
+            },
+            {
+              "key": "55+",
+              "title": "55+",
+              "count": 0
+            },
+            {
+              "key": "60+",
+              "title": "60+",
+              "count": 0
+            },
+            {
+              "key": "65+",
+              "title": "65+",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            }
+          ],
+          "doNotShowAll": true,
+          "helpText": "label.help.text.bridged-race.agegroup"
+        },
+        {
+          "key": "race",
+          "title": "label.yrbs.filter.race",
+          "queryKey": "race_ethnicity",
+          "primary": false,
+          "value": "All races/ethnicities",
+          "groupBy": "row",
+          "filterType": "radio",
+          "autoCompleteOptions": [
+            {
+              "key": "All races/ethnicities",
+              "title": "All races/ethnicities",
+              "count": 0
+            },
+            {
+              "key": "American Indian or Alaska Native",
+              "title": "American Indian or Alaska Native",
+              "count": 0
+            },
+            {
+              "key": "Asian",
+              "title": "Asian",
+              "count": 0
+            },
+            {
+              "key": "Black or African American",
+              "title": "Black or African American",
+              "count": 0
+            },
+            {
+              "key": "Hispanic or Latino",
+              "title": "Hispanic or Latino",
+              "count": 0
+            },
+            {
+              "key": "Native Hawaiian or Other Pacific Islander",
+              "title": "Native Hawaiian or Other Pacific Islander",
+              "count": 0
+            },
+            {
+              "key": "White",
+              "title": "White",
+              "count": 0
+            },
+            {
+              "key": "Multiple races",
+              "title": "Multiple races",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            },
+            {
+              "key": "Asian or Pacific Islander",
+              "title": "Asian or Pacific Islander",
+              "count": 0
+            },
+            {
+              "key": "Other",
+              "title": "Other",
+              "count": 0
+            }
+          ],
+          "doNotShowAll": true,
+          "helpText": "label.help.text.race"
+        },
+        {
+          "key": "sex",
+          "title": "label.filter.gender",
+          "queryKey": "sex",
+          "primary": false,
+          "value": "Both sexes",
+          "groupBy": "column",
+          "filterType": "radio",
+          "autoCompleteOptions": [
+            {
+              "key": "Both sexes",
+              "title": "Both sexes",
+              "count": 0
+            },
+            {
+              "key": "Female",
+              "title": "Female",
+              "count": 0
+            },
+            {
+              "key": "Male",
+              "title": "Male",
+              "count": 0
+            }
+          ],
+          "doNotShowAll": true,
+          "helpText": "label.help.text.sex"
+        },
+        {
+          "key": "state",
+          "title": "label.filter.state",
+          "queryKey": "state",
+          "primary": false,
+          "value": "National",
+          "groupBy": false,
+          "filterType": "radio",
+          "displaySearchBox": true,
+          "displaySelectedFirst": true,
+          "autoCompleteOptions": [
+            {
+              "key": "National",
+              "title": "National",
+              "count": 0
+            },
+            {
+              "key": "AL",
+              "title": "Alabama",
+              "count": 0
+            },
+            {
+              "key": "AK",
+              "title": "Alaska",
+              "count": 0
+            },
+            {
+              "key": "AZ",
+              "title": "Arizona",
+              "count": 0
+            },
+            {
+              "key": "AR",
+              "title": "Arkansas",
+              "count": 0
+            },
+            {
+              "key": "CA",
+              "title": "California",
+              "count": 0
+            },
+            {
+              "key": "CO",
+              "title": "Colorado",
+              "count": 0
+            },
+            {
+              "key": "CT",
+              "title": "Connecticut",
+              "count": 0
+            },
+            {
+              "key": "DE",
+              "title": "Delaware",
+              "count": 0
+            },
+            {
+              "key": "DC",
+              "title": "District of Columbia",
+              "count": 0
+            },
+            {
+              "key": "FL",
+              "title": "Florida",
+              "count": 0
+            },
+            {
+              "key": "GA",
+              "title": "Georgia",
+              "count": 0
+            },
+            {
+              "key": "HI",
+              "title": "Hawaii",
+              "count": 0
+            },
+            {
+              "key": "ID",
+              "title": "Idaho",
+              "count": 0
+            },
+            {
+              "key": "IL",
+              "title": "Illinois",
+              "count": 0
+            },
+            {
+              "key": "IN",
+              "title": "Indiana",
+              "count": 0
+            },
+            {
+              "key": "IA",
+              "title": "Iowa",
+              "count": 0
+            },
+            {
+              "key": "KS",
+              "title": "Kansas",
+              "count": 0
+            },
+            {
+              "key": "KY",
+              "title": "Kentucky",
+              "count": 0
+            },
+            {
+              "key": "LA",
+              "title": "Louisiana",
+              "count": 0
+            },
+            {
+              "key": "ME",
+              "title": "Maine",
+              "count": 0
+            },
+            {
+              "key": "MD",
+              "title": "Maryland",
+              "count": 0
+            },
+            {
+              "key": "MA",
+              "title": "Massachusetts",
+              "count": 0
+            },
+            {
+              "key": "MI",
+              "title": "Michigan",
+              "count": 0
+            },
+            {
+              "key": "MN",
+              "title": "Minnesota",
+              "count": 0
+            },
+            {
+              "key": "MS",
+              "title": "Mississippi",
+              "count": 0
+            },
+            {
+              "key": "MO",
+              "title": "Missouri",
+              "count": 0
+            },
+            {
+              "key": "MT",
+              "title": "Montana",
+              "count": 0
+            },
+            {
+              "key": "NE",
+              "title": "Nebraska",
+              "count": 0
+            },
+            {
+              "key": "NV",
+              "title": "Nevada",
+              "count": 0
+            },
+            {
+              "key": "NH",
+              "title": "New Hampshire",
+              "count": 0
+            },
+            {
+              "key": "NJ",
+              "title": "New Jersey",
+              "count": 0
+            },
+            {
+              "key": "NM",
+              "title": "New Mexico",
+              "count": 0
+            },
+            {
+              "key": "NY",
+              "title": "New York",
+              "count": 0
+            },
+            {
+              "key": "NC",
+              "title": "North Carolina",
+              "count": 0
+            },
+            {
+              "key": "ND",
+              "title": "North Dakota",
+              "count": 0
+            },
+            {
+              "key": "OH",
+              "title": "Ohio",
+              "count": 0
+            },
+            {
+              "key": "OK",
+              "title": "Oklahoma",
+              "count": 0
+            },
+            {
+              "key": "OR",
+              "title": "Oregon",
+              "count": 0
+            },
+            {
+              "key": "PA",
+              "title": "Pennsylvania",
+              "count": 0
+            },
+            {
+              "key": "RI",
+              "title": "Rhode Island",
+              "count": 0
+            },
+            {
+              "key": "SC",
+              "title": "South Carolina",
+              "count": 0
+            },
+            {
+              "key": "SD",
+              "title": "South Dakota",
+              "count": 0
+            },
+            {
+              "key": "TN",
+              "title": "Tennessee",
+              "count": 0
+            },
+            {
+              "key": "TX",
+              "title": "Texas",
+              "count": 0
+            },
+            {
+              "key": "UT",
+              "title": "Utah",
+              "count": 0
+            },
+            {
+              "key": "VT",
+              "title": "Vermont",
+              "count": 0
+            },
+            {
+              "key": "VA",
+              "title": "Virginia",
+              "count": 0
+            },
+            {
+              "key": "WA",
+              "title": "Washington",
+              "count": 0
+            },
+            {
+              "key": "WV",
+              "title": "West Virginia",
+              "count": 0
+            },
+            {
+              "key": "WI",
+              "title": "Wisconsin",
+              "count": 0
+            },
+            {
+              "key": "WY",
+              "title": "Wyoming",
+              "count": 0
+            }
+          ],
+          "doNotShowAll": true,
+          "helpText": "label.help.text.natality.state"
+        }
+      ],
+      "showMap": false,
+      "chartAxisLabel": "Cases",
+      "tableView": "tb",
+      "runOnFilterChange": true,
+      "applySuppression": true,
+      "countQueryKey": "cases",
+      "sideFilters": [
+        {
+          "sideFilters": [
+            {
+              "filterGroup": false,
+              "collapse": false,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "current_year",
+                "title": "label.filter.year",
+                "queryKey": "current_year",
+                "primary": false,
+                "value": "2015",
+                "groupBy": false,
+                "filterType": "radio",
+                "autoCompleteOptions": [
+                  {
+                    "key": "2015",
+                    "title": "2015",
+                    "count": 0
+                  },
+                  {
+                    "key": "2014",
+                    "title": "2014",
+                    "count": 0
+                  },
+                  {
+                    "key": "2013",
+                    "title": "2013",
+                    "count": 0
+                  },
+                  {
+                    "key": "2012",
+                    "title": "2012",
+                    "count": 0
+                  },
+                  {
+                    "key": "2011",
+                    "title": "2011",
+                    "count": 0
+                  },
+                  {
+                    "key": "2010",
+                    "title": "2010",
+                    "count": 0
+                  },
+                  {
+                    "key": "2009",
+                    "title": "2009",
+                    "count": 0
+                  },
+                  {
+                    "key": "2008",
+                    "title": "2008",
+                    "count": 0
+                  },
+                  {
+                    "key": "2007",
+                    "title": "2007",
+                    "count": 0
+                  },
+                  {
+                    "key": "2006",
+                    "title": "2006",
+                    "count": 0
+                  },
+                  {
+                    "key": "2005",
+                    "title": "2005",
+                    "count": 0
+                  },
+                  {
+                    "key": "2004",
+                    "title": "2004",
+                    "count": 0
+                  },
+                  {
+                    "key": "2003",
+                    "title": "2003",
+                    "count": 0
+                  },
+                  {
+                    "key": "2002",
+                    "title": "2002",
+                    "count": 0
+                  },
+                  {
+                    "key": "2001",
+                    "title": "2001",
+                    "count": 0
+                  },
+                  {
+                    "key": "2000",
+                    "title": "2000",
+                    "count": 0
+                  }
+                ],
+                "doNotShowAll": true,
+                "helpText": "label.help.text.year"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "sex",
+                "title": "label.filter.gender",
+                "queryKey": "sex",
+                "primary": false,
+                "value": "Both sexes",
+                "groupBy": "column",
+                "filterType": "radio",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Both sexes",
+                    "title": "Both sexes",
+                    "count": 0
+                  },
+                  {
+                    "key": "Female",
+                    "title": "Female",
+                    "count": 0
+                  },
+                  {
+                    "key": "Male",
+                    "title": "Male",
+                    "count": 0
+                  }
+                ],
+                "doNotShowAll": true,
+                "helpText": "label.help.text.sex"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "race",
+                "title": "label.yrbs.filter.race",
+                "queryKey": "race_ethnicity",
+                "primary": false,
+                "value": "All races/ethnicities",
+                "groupBy": "row",
+                "filterType": "radio",
+                "autoCompleteOptions": [
+                  {
+                    "key": "All races/ethnicities",
+                    "title": "All races/ethnicities",
+                    "count": 0
+                  },
+                  {
+                    "key": "American Indian or Alaska Native",
+                    "title": "American Indian or Alaska Native",
+                    "count": 0
+                  },
+                  {
+                    "key": "Asian",
+                    "title": "Asian",
+                    "count": 0
+                  },
+                  {
+                    "key": "Black or African American",
+                    "title": "Black or African American",
+                    "count": 0
+                  },
+                  {
+                    "key": "Hispanic or Latino",
+                    "title": "Hispanic or Latino",
+                    "count": 0
+                  },
+                  {
+                    "key": "Native Hawaiian or Other Pacific Islander",
+                    "title": "Native Hawaiian or Other Pacific Islander",
+                    "count": 0
+                  },
+                  {
+                    "key": "White",
+                    "title": "White",
+                    "count": 0
+                  },
+                  {
+                    "key": "Multiple races",
+                    "title": "Multiple races",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  },
+                  {
+                    "key": "Asian or Pacific Islander",
+                    "title": "Asian or Pacific Islander",
+                    "count": 0
+                  },
+                  {
+                    "key": "Other",
+                    "title": "Other",
+                    "count": 0
+                  }
+                ],
+                "doNotShowAll": true,
+                "helpText": "label.help.text.race"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "age_group",
+                "title": "label.filter.agegroup",
+                "queryKey": "age_group",
+                "primary": false,
+                "value": "All age groups",
+                "groupBy": false,
+                "filterType": "radio",
+                "autoCompleteOptions": [
+                  {
+                    "key": "All age groups",
+                    "title": "All age groups",
+                    "count": 0
+                  },
+                  {
+                    "key": "Age 15 and older",
+                    "title": "Age 15 and older",
+                    "count": 0
+                  },
+                  {
+                    "key": "0-4",
+                    "title": "0-4",
+                    "count": 0
+                  },
+                  {
+                    "key": "0-14",
+                    "title": "0-14",
+                    "count": 0
+                  },
+                  {
+                    "key": "05-14",
+                    "title": "05-14",
+                    "count": 0
+                  },
+                  {
+                    "key": "13-24",
+                    "title": "13-24",
+                    "count": 0
+                  },
+                  {
+                    "key": "15-19",
+                    "title": "15-19",
+                    "count": 0
+                  },
+                  {
+                    "key": "15-24",
+                    "title": "15-24",
+                    "count": 0
+                  },
+                  {
+                    "key": "15-39",
+                    "title": "15-39",
+                    "count": 0
+                  },
+                  {
+                    "key": "20-24",
+                    "title": "20-24",
+                    "count": 0
+                  },
+                  {
+                    "key": "25-29",
+                    "title": "25-29",
+                    "count": 0
+                  },
+                  {
+                    "key": "25-34",
+                    "title": "25-34",
+                    "count": 0
+                  },
+                  {
+                    "key": "30-34",
+                    "title": "30-34",
+                    "count": 0
+                  },
+                  {
+                    "key": "35-39",
+                    "title": "35-39",
+                    "count": 0
+                  },
+                  {
+                    "key": "35-44",
+                    "title": "35-44",
+                    "count": 0
+                  },
+                  {
+                    "key": "40-44",
+                    "title": "40-44",
+                    "count": 0
+                  },
+                  {
+                    "key": "40-59",
+                    "title": "40-59",
+                    "count": 0
+                  },
+                  {
+                    "key": "45-54",
+                    "title": "45-54",
+                    "count": 0
+                  },
+                  {
+                    "key": "55-64",
+                    "title": "55-64",
+                    "count": 0
+                  },
+                  {
+                    "key": "55+",
+                    "title": "55+",
+                    "count": 0
+                  },
+                  {
+                    "key": "60+",
+                    "title": "60+",
+                    "count": 0
+                  },
+                  {
+                    "key": "65+",
+                    "title": "65+",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  }
+                ],
+                "doNotShowAll": true,
+                "helpText": "label.help.text.bridged-race.agegroup"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "state",
+                "title": "label.filter.state",
+                "queryKey": "state",
+                "primary": false,
+                "value": "National",
+                "groupBy": false,
+                "filterType": "radio",
+                "displaySearchBox": true,
+                "displaySelectedFirst": true,
+                "autoCompleteOptions": [
+                  {
+                    "key": "National",
+                    "title": "National",
+                    "count": 0
+                  },
+                  {
+                    "key": "AL",
+                    "title": "Alabama",
+                    "count": 0
+                  },
+                  {
+                    "key": "AK",
+                    "title": "Alaska",
+                    "count": 0
+                  },
+                  {
+                    "key": "AZ",
+                    "title": "Arizona",
+                    "count": 0
+                  },
+                  {
+                    "key": "AR",
+                    "title": "Arkansas",
+                    "count": 0
+                  },
+                  {
+                    "key": "CA",
+                    "title": "California",
+                    "count": 0
+                  },
+                  {
+                    "key": "CO",
+                    "title": "Colorado",
+                    "count": 0
+                  },
+                  {
+                    "key": "CT",
+                    "title": "Connecticut",
+                    "count": 0
+                  },
+                  {
+                    "key": "DE",
+                    "title": "Delaware",
+                    "count": 0
+                  },
+                  {
+                    "key": "DC",
+                    "title": "District of Columbia",
+                    "count": 0
+                  },
+                  {
+                    "key": "FL",
+                    "title": "Florida",
+                    "count": 0
+                  },
+                  {
+                    "key": "GA",
+                    "title": "Georgia",
+                    "count": 0
+                  },
+                  {
+                    "key": "HI",
+                    "title": "Hawaii",
+                    "count": 0
+                  },
+                  {
+                    "key": "ID",
+                    "title": "Idaho",
+                    "count": 0
+                  },
+                  {
+                    "key": "IL",
+                    "title": "Illinois",
+                    "count": 0
+                  },
+                  {
+                    "key": "IN",
+                    "title": "Indiana",
+                    "count": 0
+                  },
+                  {
+                    "key": "IA",
+                    "title": "Iowa",
+                    "count": 0
+                  },
+                  {
+                    "key": "KS",
+                    "title": "Kansas",
+                    "count": 0
+                  },
+                  {
+                    "key": "KY",
+                    "title": "Kentucky",
+                    "count": 0
+                  },
+                  {
+                    "key": "LA",
+                    "title": "Louisiana",
+                    "count": 0
+                  },
+                  {
+                    "key": "ME",
+                    "title": "Maine",
+                    "count": 0
+                  },
+                  {
+                    "key": "MD",
+                    "title": "Maryland",
+                    "count": 0
+                  },
+                  {
+                    "key": "MA",
+                    "title": "Massachusetts",
+                    "count": 0
+                  },
+                  {
+                    "key": "MI",
+                    "title": "Michigan",
+                    "count": 0
+                  },
+                  {
+                    "key": "MN",
+                    "title": "Minnesota",
+                    "count": 0
+                  },
+                  {
+                    "key": "MS",
+                    "title": "Mississippi",
+                    "count": 0
+                  },
+                  {
+                    "key": "MO",
+                    "title": "Missouri",
+                    "count": 0
+                  },
+                  {
+                    "key": "MT",
+                    "title": "Montana",
+                    "count": 0
+                  },
+                  {
+                    "key": "NE",
+                    "title": "Nebraska",
+                    "count": 0
+                  },
+                  {
+                    "key": "NV",
+                    "title": "Nevada",
+                    "count": 0
+                  },
+                  {
+                    "key": "NH",
+                    "title": "New Hampshire",
+                    "count": 0
+                  },
+                  {
+                    "key": "NJ",
+                    "title": "New Jersey",
+                    "count": 0
+                  },
+                  {
+                    "key": "NM",
+                    "title": "New Mexico",
+                    "count": 0
+                  },
+                  {
+                    "key": "NY",
+                    "title": "New York",
+                    "count": 0
+                  },
+                  {
+                    "key": "NC",
+                    "title": "North Carolina",
+                    "count": 0
+                  },
+                  {
+                    "key": "ND",
+                    "title": "North Dakota",
+                    "count": 0
+                  },
+                  {
+                    "key": "OH",
+                    "title": "Ohio",
+                    "count": 0
+                  },
+                  {
+                    "key": "OK",
+                    "title": "Oklahoma",
+                    "count": 0
+                  },
+                  {
+                    "key": "OR",
+                    "title": "Oregon",
+                    "count": 0
+                  },
+                  {
+                    "key": "PA",
+                    "title": "Pennsylvania",
+                    "count": 0
+                  },
+                  {
+                    "key": "RI",
+                    "title": "Rhode Island",
+                    "count": 0
+                  },
+                  {
+                    "key": "SC",
+                    "title": "South Carolina",
+                    "count": 0
+                  },
+                  {
+                    "key": "SD",
+                    "title": "South Dakota",
+                    "count": 0
+                  },
+                  {
+                    "key": "TN",
+                    "title": "Tennessee",
+                    "count": 0
+                  },
+                  {
+                    "key": "TX",
+                    "title": "Texas",
+                    "count": 0
+                  },
+                  {
+                    "key": "UT",
+                    "title": "Utah",
+                    "count": 0
+                  },
+                  {
+                    "key": "VT",
+                    "title": "Vermont",
+                    "count": 0
+                  },
+                  {
+                    "key": "VA",
+                    "title": "Virginia",
+                    "count": 0
+                  },
+                  {
+                    "key": "WA",
+                    "title": "Washington",
+                    "count": 0
+                  },
+                  {
+                    "key": "WV",
+                    "title": "West Virginia",
+                    "count": 0
+                  },
+                  {
+                    "key": "WI",
+                    "title": "Wisconsin",
+                    "count": 0
+                  },
+                  {
+                    "key": "WY",
+                    "title": "Wyoming",
+                    "count": 0
+                  }
+                ],
+                "doNotShowAll": true,
+                "helpText": "label.help.text.natality.state"
+              }
+            }
+          ]
+        }
+      ],
+      "initiated": false
+    },
+    "resultData": {
+      "simple": {
+        "group_table_race": [
+          {
+            "name": "All races/ethnicities",
+            "tb": 38168,
+            "group_table_sex": [
+              {
+                "name": "Both sexes",
+                "tb": 19087
+              },
+              {
+                "name": "Female",
+                "tb": 7648
+              },
+              {
+                "name": "Male",
+                "tb": 11433
+              }
+            ]
+          },
+          {
+            "name": "American Indian or Alaska Native",
+            "tb": 572,
+            "group_table_sex": [
+              {
+                "name": "Both sexes",
+                "tb": 286
+              },
+              {
+                "name": "Female",
+                "tb": 113
+              },
+              {
+                "name": "Male",
+                "tb": 173
+              }
+            ]
+          },
+          {
+            "name": "Asian",
+            "tb": 12688,
+            "group_table_sex": [
+              {
+                "name": "Both sexes",
+                "tb": 6345
+              },
+              {
+                "name": "Female",
+                "tb": 2796
+              },
+              {
+                "name": "Male",
+                "tb": 3547
+              }
+            ]
+          },
+          {
+            "name": "Black or African American",
+            "tb": 7972,
+            "group_table_sex": [
+              {
+                "name": "Both sexes",
+                "tb": 3987
+              },
+              {
+                "name": "Female",
+                "tb": 1595
+              },
+              {
+                "name": "Male",
+                "tb": 2390
+              }
+            ]
+          },
+          {
+            "name": "Hispanic or Latino",
+            "tb": 10760,
+            "group_table_sex": [
+              {
+                "name": "Both sexes",
+                "tb": 5380
+              },
+              {
+                "name": "Female",
+                "tb": 2031
+              },
+              {
+                "name": "Male",
+                "tb": 3349
+              }
+            ]
+          },
+          {
+            "name": "Multiple races",
+            "tb": 664,
+            "group_table_sex": [
+              {
+                "name": "Both sexes",
+                "tb": 333
+              },
+              {
+                "name": "Female",
+                "tb": 135
+              },
+              {
+                "name": "Male",
+                "tb": 196
+              }
+            ]
+          },
+          {
+            "name": "Native Hawaiian or Other Pacific Islander",
+            "tb": 408,
+            "group_table_sex": [
+              {
+                "name": "Both sexes",
+                "tb": 204
+              },
+              {
+                "name": "Female",
+                "tb": 112
+              },
+              {
+                "name": "Male",
+                "tb": 92
+              }
+            ]
+          },
+          {
+            "name": "Unknown",
+            "tb": 104,
+            "group_table_sex": [
+              {
+                "name": "Both sexes",
+                "tb": 52
+              },
+              {
+                "name": "Female",
+                "tb": 26
+              },
+              {
+                "name": "Male",
+                "tb": 26
+              }
+            ]
+          },
+          {
+            "name": "White",
+            "tb": 5000,
+            "group_table_sex": [
+              {
+                "name": "Both sexes",
+                "tb": 2500
+              },
+              {
+                "name": "Female",
+                "tb": 840
+              },
+              {
+                "name": "Male",
+                "tb": 1660
+              }
+            ]
+          }
+        ],
+        "group_count_cases": [],
+        "group_chart_0_sex": [
+          {
+            "name": "Both sexes",
+            "tb": 38174,
+            "group_chart_0_race": [
+              {
+                "name": "All races/ethnicities",
+                "tb": 19087
+              },
+              {
+                "name": "American Indian or Alaska Native",
+                "tb": 286
+              },
+              {
+                "name": "Asian",
+                "tb": 6345
+              },
+              {
+                "name": "Black or African American",
+                "tb": 3987
+              },
+              {
+                "name": "Hispanic or Latino",
+                "tb": 5380
+              },
+              {
+                "name": "Multiple races",
+                "tb": 333
+              },
+              {
+                "name": "Native Hawaiian or Other Pacific Islander",
+                "tb": 204
+              },
+              {
+                "name": "Unknown",
+                "tb": 52
+              },
+              {
+                "name": "White",
+                "tb": 2500
+              }
+            ]
+          },
+          {
+            "name": "Female",
+            "tb": 15296,
+            "group_chart_0_race": [
+              {
+                "name": "All races/ethnicities",
+                "tb": 7648
+              },
+              {
+                "name": "American Indian or Alaska Native",
+                "tb": 113
+              },
+              {
+                "name": "Asian",
+                "tb": 2796
+              },
+              {
+                "name": "Black or African American",
+                "tb": 1595
+              },
+              {
+                "name": "Hispanic or Latino",
+                "tb": 2031
+              },
+              {
+                "name": "Multiple races",
+                "tb": 135
+              },
+              {
+                "name": "Native Hawaiian or Other Pacific Islander",
+                "tb": 112
+              },
+              {
+                "name": "Unknown",
+                "tb": 26
+              },
+              {
+                "name": "White",
+                "tb": 840
+              }
+            ]
+          },
+          {
+            "name": "Male",
+            "tb": 22866,
+            "group_chart_0_race": [
+              {
+                "name": "All races/ethnicities",
+                "tb": 11433
+              },
+              {
+                "name": "American Indian or Alaska Native",
+                "tb": 173
+              },
+              {
+                "name": "Asian",
+                "tb": 3547
+              },
+              {
+                "name": "Black or African American",
+                "tb": 2390
+              },
+              {
+                "name": "Hispanic or Latino",
+                "tb": 3349
+              },
+              {
+                "name": "Multiple races",
+                "tb": 196
+              },
+              {
+                "name": "Native Hawaiian or Other Pacific Islander",
+                "tb": 92
+              },
+              {
+                "name": "Unknown",
+                "tb": 26
+              },
+              {
+                "name": "White",
+                "tb": 1660
+              }
+            ]
+          }
+        ]
+      },
+      "nested": {
+        "table": {
+          "race": [
+            {
+              "name": "All races/ethnicities",
+              "tb": 38168,
+              "sex": [
+                {
+                  "name": "Both sexes",
+                  "tb": 19087,
+                  "pop": 321418820
+                },
+                {
+                  "name": "Female",
+                  "tb": 7648,
+                  "pop": 163189523
+                },
+                {
+                  "name": "Male",
+                  "tb": 11433,
+                  "pop": 158229297
+                }
+              ],
+              "pop": 642837640
+            },
+            {
+              "name": "American Indian or Alaska Native",
+              "tb": 572,
+              "sex": [
+                {
+                  "name": "Both sexes",
+                  "tb": 286,
+                  "pop": 2369834
+                },
+                {
+                  "name": "Female",
+                  "tb": 113,
+                  "pop": 1201860
+                },
+                {
+                  "name": "Male",
+                  "tb": 173,
+                  "pop": 1167974
+                }
+              ],
+              "pop": 4739668
+            },
+            {
+              "name": "Asian",
+              "tb": 12688,
+              "sex": [
+                {
+                  "name": "Both sexes",
+                  "tb": 6345,
+                  "pop": 17416714
+                },
+                {
+                  "name": "Female",
+                  "tb": 2796,
+                  "pop": 9137509
+                },
+                {
+                  "name": "Male",
+                  "tb": 3547,
+                  "pop": 8279205
+                }
+              ],
+              "pop": 34833428
+            },
+            {
+              "name": "Black or African American",
+              "tb": 7972,
+              "sex": [
+                {
+                  "name": "Both sexes",
+                  "tb": 3987,
+                  "pop": 39925949
+                },
+                {
+                  "name": "Female",
+                  "tb": 1595,
+                  "pop": 20848267
+                },
+                {
+                  "name": "Male",
+                  "tb": 2390,
+                  "pop": 19077682
+                }
+              ],
+              "pop": 79851898
+            },
+            {
+              "name": "Hispanic or Latino",
+              "tb": 10760,
+              "sex": [
+                {
+                  "name": "Both sexes",
+                  "tb": 5380,
+                  "pop": 56592793
+                },
+                {
+                  "name": "Female",
+                  "tb": 2031,
+                  "pop": 27989392
+                },
+                {
+                  "name": "Male",
+                  "tb": 3349,
+                  "pop": 28603401
+                }
+              ],
+              "pop": 113185586
+            },
+            {
+              "name": "Multiple races",
+              "tb": 664,
+              "sex": [
+                {
+                  "name": "Both sexes",
+                  "tb": 333,
+                  "pop": 6583036
+                },
+                {
+                  "name": "Female",
+                  "tb": 135,
+                  "pop": 3344173
+                },
+                {
+                  "name": "Male",
+                  "tb": 196,
+                  "pop": 3238863
+                }
+              ],
+              "pop": 13166072
+            },
+            {
+              "name": "Native Hawaiian or Other Pacific Islander",
+              "tb": 408,
+              "sex": [
+                {
+                  "name": "Both sexes",
+                  "tb": 204,
+                  "pop": 559682
+                },
+                {
+                  "name": "Female",
+                  "tb": 112,
+                  "pop": 277465
+                },
+                {
+                  "name": "Male",
+                  "tb": 92,
+                  "pop": 282217
+                }
+              ],
+              "pop": 1119364
+            },
+            {
+              "name": "Unknown",
+              "tb": 104,
+              "sex": [
+                {
+                  "name": "Both sexes",
+                  "tb": 52
+                },
+                {
+                  "name": "Female",
+                  "tb": 26
+                },
+                {
+                  "name": "Male",
+                  "tb": 26
+                }
+              ]
+            },
+            {
+              "name": "White",
+              "tb": 5000,
+              "sex": [
+                {
+                  "name": "Both sexes",
+                  "tb": 2500,
+                  "pop": 197970812
+                },
+                {
+                  "name": "Female",
+                  "tb": 840,
+                  "pop": 100390857
+                },
+                {
+                  "name": "Male",
+                  "tb": 1660,
+                  "pop": 97579955
+                }
+              ],
+              "pop": 395941624
+            }
+          ]
+        },
+        "charts": [
+          {
+            "sex": [
+              {
+                "name": "Both sexes",
+                "tb": 38174,
+                "race": [
+                  {
+                    "name": "All races/ethnicities",
+                    "tb": 19087,
+                    "pop": 321418820
+                  },
+                  {
+                    "name": "American Indian or Alaska Native",
+                    "tb": 286,
+                    "pop": 2369834
+                  },
+                  {
+                    "name": "Asian",
+                    "tb": 6345,
+                    "pop": 17416714
+                  },
+                  {
+                    "name": "Black or African American",
+                    "tb": 3987,
+                    "pop": 39925949
+                  },
+                  {
+                    "name": "Hispanic or Latino",
+                    "tb": 5380,
+                    "pop": 56592793
+                  },
+                  {
+                    "name": "Multiple races",
+                    "tb": 333,
+                    "pop": 6583036
+                  },
+                  {
+                    "name": "Native Hawaiian or Other Pacific Islander",
+                    "tb": 204,
+                    "pop": 559682
+                  },
+                  {
+                    "name": "Unknown",
+                    "tb": 52
+                  },
+                  {
+                    "name": "White",
+                    "tb": 2500,
+                    "pop": 197970812
+                  }
+                ],
+                "pop": 642837640
+              },
+              {
+                "name": "Female",
+                "tb": 15296,
+                "race": [
+                  {
+                    "name": "All races/ethnicities",
+                    "tb": 7648,
+                    "pop": 163189523
+                  },
+                  {
+                    "name": "American Indian or Alaska Native",
+                    "tb": 113,
+                    "pop": 1201860
+                  },
+                  {
+                    "name": "Asian",
+                    "tb": 2796,
+                    "pop": 9137509
+                  },
+                  {
+                    "name": "Black or African American",
+                    "tb": 1595,
+                    "pop": 20848267
+                  },
+                  {
+                    "name": "Hispanic or Latino",
+                    "tb": 2031,
+                    "pop": 27989392
+                  },
+                  {
+                    "name": "Multiple races",
+                    "tb": 135,
+                    "pop": 3344173
+                  },
+                  {
+                    "name": "Native Hawaiian or Other Pacific Islander",
+                    "tb": 112,
+                    "pop": 277465
+                  },
+                  {
+                    "name": "Unknown",
+                    "tb": 26
+                  },
+                  {
+                    "name": "White",
+                    "tb": 840,
+                    "pop": 100390857
+                  }
+                ],
+                "pop": 326379046
+              },
+              {
+                "name": "Male",
+                "tb": 22866,
+                "race": [
+                  {
+                    "name": "All races/ethnicities",
+                    "tb": 11433,
+                    "pop": 158229297
+                  },
+                  {
+                    "name": "American Indian or Alaska Native",
+                    "tb": 173,
+                    "pop": 1167974
+                  },
+                  {
+                    "name": "Asian",
+                    "tb": 3547,
+                    "pop": 8279205
+                  },
+                  {
+                    "name": "Black or African American",
+                    "tb": 2390,
+                    "pop": 19077682
+                  },
+                  {
+                    "name": "Hispanic or Latino",
+                    "tb": 3349,
+                    "pop": 28603401
+                  },
+                  {
+                    "name": "Multiple races",
+                    "tb": 196,
+                    "pop": 3238863
+                  },
+                  {
+                    "name": "Native Hawaiian or Other Pacific Islander",
+                    "tb": 92,
+                    "pop": 282217
+                  },
+                  {
+                    "name": "Unknown",
+                    "tb": 26
+                  },
+                  {
+                    "name": "White",
+                    "tb": 1660,
+                    "pop": 97579955
+                  }
+                ],
+                "pop": 316458594
+              }
+            ]
+          }
+        ],
+        "maps": {
+          "states": [
+            {
+              "name": "National",
+              "tb": 81,
+              "sex": [
+                {
+                  "name": "Both sexes",
+                  "tb": 27
+                },
+                {
+                  "name": "Female",
+                  "tb": 27
+                },
+                {
+                  "name": "Male",
+                  "tb": 27
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "headers": {
+        "rowHeaders": [
+          {
+            "key": "race",
+            "title": "label.yrbs.filter.race",
+            "queryKey": "race_ethnicity",
+            "primary": false,
+            "value": "All races/ethnicities",
+            "groupBy": "row",
+            "filterType": "radio",
+            "autoCompleteOptions": [
+              {
+                "key": "All races/ethnicities",
+                "title": "All races/ethnicities",
+                "count": 0
+              },
+              {
+                "key": "American Indian or Alaska Native",
+                "title": "American Indian or Alaska Native",
+                "count": 0
+              },
+              {
+                "key": "Asian",
+                "title": "Asian",
+                "count": 0
+              },
+              {
+                "key": "Black or African American",
+                "title": "Black or African American",
+                "count": 0
+              },
+              {
+                "key": "Hispanic or Latino",
+                "title": "Hispanic or Latino",
+                "count": 0
+              },
+              {
+                "key": "Native Hawaiian or Other Pacific Islander",
+                "title": "Native Hawaiian or Other Pacific Islander",
+                "count": 0
+              },
+              {
+                "key": "White",
+                "title": "White",
+                "count": 0
+              },
+              {
+                "key": "Multiple races",
+                "title": "Multiple races",
+                "count": 0
+              },
+              {
+                "key": "Unknown",
+                "title": "Unknown",
+                "count": 0
+              },
+              {
+                "key": "Asian or Pacific Islander",
+                "title": "Asian or Pacific Islander",
+                "count": 0
+              },
+              {
+                "key": "Other",
+                "title": "Other",
+                "count": 0
+              }
+            ],
+            "doNotShowAll": true,
+            "helpText": "label.help.text.race"
+          }
+        ],
+        "columnHeaders": [
+          {
+            "key": "sex",
+            "title": "label.filter.gender",
+            "queryKey": "sex",
+            "primary": false,
+            "value": "Both sexes",
+            "groupBy": "column",
+            "filterType": "radio",
+            "autoCompleteOptions": [
+              {
+                "key": "Both sexes",
+                "title": "Both sexes",
+                "count": 0
+              },
+              {
+                "key": "Female",
+                "title": "Female",
+                "count": 0
+              },
+              {
+                "key": "Male",
+                "title": "Male",
+                "count": 0
+              }
+            ],
+            "doNotShowAll": true,
+            "helpText": "label.help.text.sex"
+          }
+        ],
+        "chartHeaders": [
+          {
+            "headers": [
+              {
+                "key": "sex",
+                "title": "label.filter.gender",
+                "queryKey": "sex",
+                "primary": false,
+                "value": "Both sexes",
+                "groupBy": "column",
+                "filterType": "radio",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Both sexes",
+                    "title": "Both sexes",
+                    "count": 0
+                  },
+                  {
+                    "key": "Female",
+                    "title": "Female",
+                    "count": 0
+                  },
+                  {
+                    "key": "Male",
+                    "title": "Male",
+                    "count": 0
+                  }
+                ],
+                "doNotShowAll": true,
+                "helpText": "label.help.text.sex"
+              },
+              {
+                "key": "race",
+                "title": "label.yrbs.filter.race",
+                "queryKey": "race_ethnicity",
+                "primary": false,
+                "value": "All races/ethnicities",
+                "groupBy": "row",
+                "filterType": "radio",
+                "autoCompleteOptions": [
+                  {
+                    "key": "All races/ethnicities",
+                    "title": "All races/ethnicities",
+                    "count": 0
+                  },
+                  {
+                    "key": "American Indian or Alaska Native",
+                    "title": "American Indian or Alaska Native",
+                    "count": 0
+                  },
+                  {
+                    "key": "Asian",
+                    "title": "Asian",
+                    "count": 0
+                  },
+                  {
+                    "key": "Black or African American",
+                    "title": "Black or African American",
+                    "count": 0
+                  },
+                  {
+                    "key": "Hispanic or Latino",
+                    "title": "Hispanic or Latino",
+                    "count": 0
+                  },
+                  {
+                    "key": "Native Hawaiian or Other Pacific Islander",
+                    "title": "Native Hawaiian or Other Pacific Islander",
+                    "count": 0
+                  },
+                  {
+                    "key": "White",
+                    "title": "White",
+                    "count": 0
+                  },
+                  {
+                    "key": "Multiple races",
+                    "title": "Multiple races",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  },
+                  {
+                    "key": "Asian or Pacific Islander",
+                    "title": "Asian or Pacific Islander",
+                    "count": 0
+                  },
+                  {
+                    "key": "Other",
+                    "title": "Other",
+                    "count": 0
+                  }
+                ],
+                "doNotShowAll": true,
+                "helpText": "label.help.text.race"
+              }
+            ],
+            "chartType": "horizontalBar"
+          }
+        ]
+      }
+    },
+    "sideFilterResults": {
+      "data": {
+        "simple": {
+          "current_year": [
+            {
+              "name": "2015",
+              "tb": 19087
+            }
+          ],
+          "race": [
+            {
+              "name": "All races/ethnicities",
+              "tb": 19087
+            }
+          ],
+          "age_group": [
+            {
+              "name": "All age groups",
+              "tb": 19087
+            }
+          ],
+          "sex": [
+            {
+              "name": "Both sexes",
+              "tb": 19087
+            }
+          ],
+          "state": [
+            {
+              "name": "National",
+              "tb": 19087
+            }
+          ],
+          "group_count_cases": []
+        },
+        "nested": {
+          "table": {},
+          "charts": [],
+          "maps": {}
+        }
+      },
+      "pagination": {
+        "total": 3
+      }
+    }
+  },
+  "pagination": {}
+}
