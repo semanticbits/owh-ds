@@ -17,6 +17,7 @@
             HorizontalChart : horizontalChart,
             verticalChart : verticalChart,
             lineChart : lineChart,
+            multiLineChart: multiLineChart,
             showExpandedGraph: showExpandedGraph
         };
         return service;
@@ -477,6 +478,101 @@
             };
 
             return chartData;
+        }
+
+        function multiLineChart (chart, primaryFilter) {
+            return {
+                data: function () {
+                    var series = chart.data.reduce(function (prev, point) {
+                        prev[point.key] = prev[point.key] || [];
+                        prev[point.key].push({ x: point.year, y: point.count });
+                        return prev;
+                    }, {});
+                    return Object.keys(series).map(function (key) {
+                        return {
+                            key: key,
+                            values: series[key],
+                            color: getRandomColor(),
+                            strokeWidth: 2,
+                            classed: 'nvd3-dashed-line'
+                        };
+                    });
+
+                    function getRandomColor () {
+                        var letters = '0123456789ABCDEF';
+                        var color = '#';
+                        for (var i = 0; i < 6; i++ ) {
+                            color += letters[Math.floor(Math.random() * 16)];
+                        }
+                        return color;
+                    }
+                },
+                title: 'label.title.' + chart.headers[0].key + '.' + chart.headers[1].key,
+                options: {
+                    chart: {
+                        type: "lineChart",
+                        height: 250,
+                        width: 300,
+                        margin: {
+                            top: 5,
+                            right: 5,
+                            bottom: 16,
+                            left: 50
+                        },
+                        showMaxMin: false,
+                        showLegend: false,
+                        showControls: false,
+                        showValues: false,
+                        showXAxis: true,
+                        showYAxis: true,
+                        reduceXTicks: false,
+                        legend:{
+                            width: 200,
+                            expanded: true
+                        },
+                        staggerLabels: true,
+                        rotateLabels: 70,
+                        styles: {
+                            classes: {
+                                'with-3d-shadow': true,
+                                'with-transitions': true,
+                                gallery: false
+                            }
+                        },
+                        interactive: true,
+                        x: function (d) { return d.x; },
+                        y: function (d) { return d.y; },
+                        xAxis: {
+                            axisLabelDistance: -20,
+                            axisLabel: "Year",
+                            tickFormat: function (d) {
+                                return null;
+                            }
+                        },
+                        yAxis: {
+                            axisLabelDistance: -20,
+                            axisLabel: primaryFilter.chartAxisLabel,
+                            tickFormat: function (d) {
+                                return null;
+                            }
+                        },
+                        tooltip: {
+                            contentGenerator: function(d) {
+                                var html = "<div class='usa-grid-full'" +
+                                    "<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>" + d.value + "</div>" +
+                                    "<div class='usa-width-one-whole nvtooltip-value'>";
+                                d.series.forEach(function (elem) {
+                                    html += "<i class='fa fa-square' style='color:" + elem.color + "'></i>" +
+                                        "&nbsp;&nbsp;&nbsp;" + elem.key + "&nbsp;&nbsp;&nbsp;"
+                                        + getCount(elem.value, primaryFilter) + "</div>";
+                                });
+                                html += "</div>";
+                                return html;
+                            }
+                        }
+                    }
+                }
+            };
         }
 
         /*Prepare pie chart for single filter*/

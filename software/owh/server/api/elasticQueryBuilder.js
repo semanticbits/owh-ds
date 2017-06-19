@@ -799,7 +799,17 @@ var chartMappings = {
 
     "sex&age_group": "horizontalBar",
     "age_group&race": "horizontalBar",
-    "age_group&state": "horizontalBar"
+    "age_group&state": "horizontalBar",
+
+    "sex&infant_age_at_death": "horizontalStack",
+    "sex&mother_age_5_interval": "horizontalStack",
+    "race&mother_age_5_interval": "horizontalStack",
+    "sex&gestation_recode11": "horizontalStack",
+    "race&gestation_recode11": "horizontalStack",
+    "sex&gestation_recode10": "horizontalStack",
+    "race&gestation_recode10": "horizontalStack",
+    "sex&gestation_weekly": "horizontalStack",
+    "race&gestation_weekly": "horizontalStack"
 };
 
 var prepareMapAggregations = function() {
