@@ -1708,7 +1708,7 @@
                     primary: false, value: [], groupBy: false, type: "label.filter.group.mcd", groupKey:"mcd",
                     autoCompleteOptions: $rootScope.conditionsListICD10, filterType: 'conditions',
                     selectTitle: 'select.label.filter.mcd', updateTitle: 'update.label.filter.mcd',
-                    groupOptions: filters.conditionGroupOptions}
+                    aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions}
             ];
 
             filters.censusFilters = filterUtils.getBridgeDataFilters();
@@ -2797,19 +2797,19 @@
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
                         {
-                           sideFilters: [
-                               {
-                                   filterGroup: false,
-                                   collapse: false,
-                                   allowGrouping: true,
-                                   groupOptions: filters.groupOptions,
-                                   filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'current_year')
-                               },
-                               {
-                                   filterGroup: false, collapse: true, allowGrouping: true,
-                                   groupOptions: filters.groupOptions,
-                                   filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'sex')
-                               },
+                            sideFilters: [
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'current_year')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'sex')
+                                },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
@@ -2820,11 +2820,11 @@
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'age_group')
                                 },
-                               {
-                                   filterGroup: false, collapse: true, allowGrouping: true,
-                                   groupOptions: filters.groupOptions,
-                                   filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'state')
-                               }
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'state')
+                                }
 
                             ]
                         }
