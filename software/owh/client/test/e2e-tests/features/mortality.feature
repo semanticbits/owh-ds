@@ -214,6 +214,7 @@ Scenario: Suppression
   When I select the forward button in browser
   Then Age Group values "20" and ">100" should be displayed on slider
 
+#Age adjusted death rates
 Scenario: Age Adjusted Death Rates
   Given I am on search page
   When the user chooses the option 'Age Adjusted Death Rates'
