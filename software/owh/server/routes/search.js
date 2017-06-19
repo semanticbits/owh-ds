@@ -194,28 +194,20 @@ function search(q) {
             logger.error('Infant Mortality ElasticSearch ', error);
             deferred.reject(error);
         });
-    } else if (preparedQuery.apiQuery.searchFor === 'std') {
+    } else if (preparedQuery.apiQuery.searchFor === 'std' ||
+        preparedQuery.apiQuery.searchFor === 'tb') {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true, searchUtils.getAllOptionValues());
         sideFilterTotalCountQuery = queryBuilder.addCountsToAutoCompleteOptions(q);
         sideFilterTotalCountQuery.countQueryKey = 'cases';
         sideFilterQuery = queryBuilder.buildSearchQuery(sideFilterTotalCountQuery, true);
-        new elasticSearch().aggregateSTDData(sideFilterQuery).then(function (sideFilterResults) {
-            new elasticSearch().aggregateSTDData(finalQuery).then(function (response) {
-                var resData = {};
-                resData.queryJSON = q;
-                resData.resultData = response.data;
-                resData.resultData.headers = preparedQuery.headers;
-                resData.sideFilterResults = sideFilterResults;
-                deferred.resolve(resData);
-            });
-        });
-    } else if (preparedQuery.apiQuery.searchFor === 'tb') {
-        finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true, searchUtils.getAllOptionValues());
-        sideFilterTotalCountQuery = queryBuilder.addCountsToAutoCompleteOptions(q);
-        sideFilterTotalCountQuery.countQueryKey = 'cases';
-        sideFilterQuery = queryBuilder.buildSearchQuery(sideFilterTotalCountQuery, true);
-        new elasticSearch().aggregateTBData(sideFilterQuery).then(function (sideFilterResults) {
-            new elasticSearch().aggregateTBData(finalQuery).then(function (response) {
+        var indexName, indexType;
+        if (preparedQuery.apiQuery.searchFor === 'std') {
+            indexName = 'owh_std'; indexType = 'std';
+        } else if (preparedQuery.apiQuery.searchFor === 'tb') {
+            indexName = 'owh_tb'; indexType = 'tb';
+        }
+        new elasticSearch().aggregateDiseaseData(sideFilterQuery, preparedQuery.apiQuery.searchFor, indexName, indexType).then(function (sideFilterResults) {
+            new elasticSearch().aggregateDiseaseData(finalQuery, preparedQuery.apiQuery.searchFor, indexName, indexType).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
                 resData.resultData = response.data;

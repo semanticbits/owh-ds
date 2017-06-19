@@ -18,10 +18,6 @@ var census_type="census";
 var census_rates_type="census_rates";
 var infant_mortality_index = "owh_infant_mortality";
 var infant_mortality_type = "infant_mortality";
-var std_index = "owh_std";
-var std_type = "std";
-var tb_index = "owh_tb";
-var tb_type = "tb";
 
 //@TODO to work with my local ES DB I changed mapping name to 'queryResults1', revert before check in to 'queryResults'
 var _queryIndex = "owh_querycache";
@@ -275,19 +271,19 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
     return deferred.promise;
 };
 
-ElasticClient.prototype.aggregateSTDData = function (query) {
+ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, indexName, indexType) {
     var self = this;
     var deferred = Q.defer();
     if(query[1]) {
-        logger.debug("STD ES Query: "+ JSON.stringify( query[0]));
-        logger.debug("STD ES Query To Get Population Count: "+ JSON.stringify( query[1]));
+        logger.debug("ES Query for "+ diseaseName+ " :"+ JSON.stringify( query[0]));
+        logger.debug("ES Query for "+ diseaseName+ " to get population count:"+ JSON.stringify( query[1]));
         var promises = [
-            this.executeMultipleESQueries(query[0], std_index, std_type),
+            this.executeMultipleESQueries(query[0], indexName, indexType),
             //Using aggregateCensusDataQuery method to get STD population data
-            this.aggregateCensusDataQuery(query[1], std_index, std_type)
+            this.aggregateCensusDataQuery(query[1], indexName, indexType)
         ];
         Q.all(promises).then( function (resp) {
-            var data = searchUtils.populateDataWithMappings(resp[0], 'std', 'cases');
+            var data = searchUtils.populateDataWithMappings(resp[0], diseaseName, 'cases');
             self.mergeWithCensusData(data, resp[1]);
             deferred.resolve(data);
         }, function (err) {
@@ -296,9 +292,9 @@ ElasticClient.prototype.aggregateSTDData = function (query) {
         });
     }
     else {
-        logger.debug("STD ES Query: "+ JSON.stringify( query[0]));
-        this.executeESQuery(std_index, std_type, query[0]).then(function (response) {
-            var data = searchUtils.populateDataWithMappings(response, 'std', 'cases');
+        logger.debug("ES Query for "+ diseaseName+ " :"+ JSON.stringify( query[0]));
+        this.executeESQuery(indexName, indexType, query[0]).then(function (response) {
+            var data = searchUtils.populateDataWithMappings(response, diseaseName, 'cases');
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
