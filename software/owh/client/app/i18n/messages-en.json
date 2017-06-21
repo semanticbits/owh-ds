@@ -323,7 +323,10 @@
 
   "label.filter.std": "STD",
   "label.filter.tb": "Tuberculosis",
+  "label.filter.aids": "HIV/AIDS",
   "label.filter.disease": "Disease",
+  "label.filter.indicator": "Indicator",
+  "label.filter.transmission": "Transmission",
   "label.title.age_group.race": "Age Group and Race",
   "label.title.sex.age_group": "Sex and Age Group",
   "label.title.age_group.state": "Age Group and State",
@@ -334,5 +337,4 @@
   "label.std.help.text.race.ethnicity": "This field indicates the Race/Ethnicity of the patient",
   "label.std.help.text.age.group": "This field indicates the age group of the patient",
   "label.selected.filters": "Selected Filters"
-
 }
