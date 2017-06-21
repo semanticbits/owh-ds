@@ -54,6 +54,7 @@ before_script:
   - ./node_modules/protractor/bin/webdriver-manager update
   - sleep 1 #give server time to start
 
+group: edge
 language: java
 jdk:
   - oraclejdk8
