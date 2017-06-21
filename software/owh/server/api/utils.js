@@ -448,7 +448,51 @@ function numberWithCommas(number) {
  * @return Side filters All option values
  */
 function getAllOptionValues() {
-    return ["Both sexes", "All races/ethnicities", "All age groups", "National"];
+    return [ "Both sexes", "All races/ethnicities", "All age groups", "National" ];
+}
+
+function getSelectedGroupByOptions (filters) {
+    return filters.reduce(function (selected, filter) {
+        if (!filter.groupBy || filter.key === 'year_of_death') return selected;
+        var options = filter.autoCompleteOptions.map(function (option) {
+            var newOption = {};
+            newOption.key = option.key;
+            newOption.title = option.title;
+            newOption.filter = filter.key;
+            return newOption;
+        });
+        return selected.concat(options);
+    }, []);
+}
+
+function getYearFilter (filters) {
+    var yearFilter = filters.find(function (filter) {
+        return filter.key === 'year_of_death'
+    });
+    if (!yearFilter) return [];
+    if (yearFilter.allChecked) {
+        return yearFilter.autoCompleteOptions.map(function (option) {
+            return option.key;
+        });
+    }
+    return yearFilter.value
+}
+
+function mapAndGroupOptionResults (options, results) {
+    // Group results according to option.key
+    // As in group all the 'race' results together and all the 'sex' results together
+    var mappedOptions = options.map(function (option, index) {
+        option.count = results[index].count;
+        return option;
+    });
+    var groupedOptions = mappedOptions.reduce(function (prev, option) {
+        if (!prev[option.filter]) prev[option.filter] = [];
+        prev[option.filter].push(option);
+        return prev;
+    }, {});
+    return Object.keys(groupedOptions).map(function (key) {
+        return groupedOptions[key];
+    });
 }
 
 module.exports.populateDataWithMappings = populateDataWithMappings;
@@ -457,3 +501,6 @@ module.exports.mergeAgeAdjustedRates = mergeAgeAdjustedRates;
 module.exports.applySuppressions = applySuppressions;
 module.exports.applyYRBSSuppressions = applyYRBSSuppressions;
 module.exports.getAllOptionValues = getAllOptionValues;
+module.exports.getSelectedGroupByOptions = getSelectedGroupByOptions;
+module.exports.getYearFilter = getYearFilter;
+module.exports.mapAndGroupOptionResults = mapAndGroupOptionResults;

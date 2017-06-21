@@ -158,39 +158,56 @@ function search(q) {
 
     } else if (preparedQuery.apiQuery.searchFor === 'infant_mortality') {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
-        sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
-        new elasticSearch().aggregateInfantMortalityData(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
-            new elasticSearch().aggregateInfantMortalityData(finalQuery, isStateSelected).then(function (response) {
-                var resData = {};
-                resData.queryJSON = q;
-                resData.resultData = response.data;
-                resData.resultData.headers = preparedQuery.headers;
-                resData.sideFilterResults = sideFilterResults;
-                deferred.resolve(resData);
-            });
+        var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
+
+        var selectedYears = searchUtils.getYearFilter(q.allFilters);
+        var groupByOptions = searchUtils.getSelectedGroupByOptions(q.allFilters);
+        var options = selectedYears.reduce(function (prev, year) {
+            var clone = JSON.parse(JSON.stringify(groupByOptions));
+            return prev.concat(clone.map(function (option) {
+                option.year = year;
+                return option;
+            }));
+        }, []);
+
+        var es = new elasticSearch();
+        var optionPromises = options.map(function (option) {
+            return es.getCountForYearByFilter(option.year, option.filter, option.key);
         });
-    } else if (preparedQuery.apiQuery.searchFor === 'std') {
+        var promises = [
+            es.aggregateInfantMortalityData(sideFilterQuery, isStateSelected),
+            es.aggregateInfantMortalityData(finalQuery, isStateSelected)
+        ];
+        promises = promises.concat(optionPromises);
+
+        Q.all(promises).spread(function (sideFilterResults, response) {
+            var optionResults = Array.prototype.slice.call(arguments, 2);
+            var lineChartData = searchUtils.mapAndGroupOptionResults(options, optionResults);
+            var resData = {};
+            resData.queryJSON = q;
+            resData.resultData = response.data;
+            resData.resultData.nested.lineCharts = lineChartData;
+            resData.resultData.headers = preparedQuery.headers;
+            resData.sideFilterResults = sideFilterResults;
+            deferred.resolve(resData);
+        }).catch(function (error) {
+            logger.error('Infant Mortality ElasticSearch ', error);
+            deferred.reject(error);
+        });
+    } else if (preparedQuery.apiQuery.searchFor === 'std' ||
+        preparedQuery.apiQuery.searchFor === 'tb') {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true, searchUtils.getAllOptionValues());
         sideFilterTotalCountQuery = queryBuilder.addCountsToAutoCompleteOptions(q);
         sideFilterTotalCountQuery.countQueryKey = 'cases';
         sideFilterQuery = queryBuilder.buildSearchQuery(sideFilterTotalCountQuery, true);
-        new elasticSearch().aggregateSTDData(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
-            new elasticSearch().aggregateSTDData(finalQuery, isStateSelected).then(function (response) {
-                var resData = {};
-                resData.queryJSON = q;
-                resData.resultData = response.data;
-                resData.resultData.headers = preparedQuery.headers;
-                resData.sideFilterResults = sideFilterResults;
-                deferred.resolve(resData);
-            });
-        });
-    } else if (preparedQuery.apiQuery.searchFor === 'tb') {
-        finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true, searchUtils.getAllOptionValues());
-        sideFilterTotalCountQuery = queryBuilder.addCountsToAutoCompleteOptions(q);
-        sideFilterTotalCountQuery.countQueryKey = 'cases';
-        sideFilterQuery = queryBuilder.buildSearchQuery(sideFilterTotalCountQuery, true);
-        new elasticSearch().aggregateTBData(sideFilterQuery).then(function (sideFilterResults) {
-            new elasticSearch().aggregateTBData(finalQuery).then(function (response) {
+        var indexName, indexType;
+        if (preparedQuery.apiQuery.searchFor === 'std') {
+            indexName = 'owh_std'; indexType = 'std';
+        } else if (preparedQuery.apiQuery.searchFor === 'tb') {
+            indexName = 'owh_tb'; indexType = 'tb';
+        }
+        new elasticSearch().aggregateDiseaseData(sideFilterQuery, preparedQuery.apiQuery.searchFor, indexName, indexType, isStateSelected).then(function (sideFilterResults) {
+            new elasticSearch().aggregateDiseaseData(finalQuery, preparedQuery.apiQuery.searchFor, indexName, indexType, isStateSelected).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
                 resData.resultData = response.data;

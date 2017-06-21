@@ -13,15 +13,6 @@
         "4": "HIV diagnoses",
         "5": "HIV deaths",
         "6": "Persons living with diagnosed HIV",
-        "7": "Chlamydia",
-        "8": "Gonorrhea",
-        "9": "Primary and Secondary Syphilis",
-        "14": "Early Latent Syphilis",
-        "3506": "Congenital Syphilis",
-        "10": "Tuberculosis",
-        "11": "Acute Viral Hepatitis  A",
-        "12": "Acute Viral Hepatitis  B",
-        "13": "Acute Viral Hepatitis  C"
       }
     },
     {
@@ -96,6 +87,7 @@
       "type": "map",
       "field": "RACE",
       "mappings": {
+        "0": "All races/ethnicities",
         "1": "American Indian or Alaska Native",
         "2": "Asian",
         "3": "Black or African American",
@@ -112,8 +104,9 @@
       "column": "sex",
       "column_index": 4,
       "type": "map",
-      "field": "RACE",
+      "field": "SEX",
       "mappings": {
+        "0": "Both sexes",
         "1": "Male",
         "2": "Female"
       }
@@ -125,6 +118,8 @@
       "field": "AGEGROUP",
       "mappings": {
         "0": "All age groups 13 and up",
+        "10": "All age groups",
+        "20": "Age 15 and older",
         "30": "0-4",
         "40": "0-14",
         "50": "05-14",
