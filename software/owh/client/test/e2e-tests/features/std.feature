@@ -45,3 +45,7 @@ Feature: STD page
     When user expand visualization
     Then I should not see grouped and stacked controls on expanded visualization
     And labels "Race/Ethnicity" and "Rates" are displayed on expanded visualization
+
+  Scenario: STD suppression
+    When I select "AL" state for "std"
+    Then std data table should suppress results

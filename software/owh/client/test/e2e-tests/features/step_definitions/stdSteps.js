@@ -118,6 +118,40 @@ var stdStepDefinitionsWrapper = function () {
         expect(element(by.cssContainingText('text', 'Grouped')).isPresent()).to.eventually.equal(false);
         return expect(element(by.cssContainingText('text', 'Stacked')).isPresent()).to.eventually.equal(false);
     });
+
+    this.Then(/^std data table should suppress results$/, function (next) {
+        stdPage.getTableRowData(5).then(function(rowData){
+            expect(rowData[0]).to.equals('Native Hawaiian or Other Pacific Islander');
+            //Female
+            expect(rowData[1]).to.contains('Suppressed');
+            expect(rowData[1]).to.contains('1,096');
+            //Male
+            expect(rowData[2]).to.contains('Not Available');
+            expect(rowData[2]).to.contains('Not Applicable');
+            expect(rowData[2]).to.contains('1,168');
+            //Both sexes
+            expect(rowData[3]).to.contains('Suppressed');
+            expect(rowData[3]).to.contains('2,264');
+        });
+        //Unreliable should not display for STD
+        stdPage.getTableRowData(1).then(function(rowData){
+            expect(rowData[0]).to.equals('American Indian or Alaska Native');
+            //Male
+            expect(rowData[2]).to.not.contains('Unreliable');
+        });
+        //Unreliable should not display for STD
+        stdPage.getTableRowData(2).then(function(rowData){
+            expect(rowData[0]).to.equals('Asian');
+            //Male
+            expect(rowData[2]).to.not.contains('Unreliable');
+        }).then(next);
+    });
+
+    this.When(/^I select "([^"]*)" state in disease related views$/, function (arg1, callback) {
+        element.all(by.css('label[for=natality_state_AL]')).then(function(elements, index) {
+            elements[1].click();
+        }).then(next);
+    });
 };
 
 module.exports = stdStepDefinitionsWrapper;
