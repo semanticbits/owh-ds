@@ -279,12 +279,15 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
         logger.debug("ES Query for "+ diseaseName+ " to get population count:"+ JSON.stringify( query[1]));
         var promises = [
             this.executeMultipleESQueries(query[0], indexName, indexType),
+            this.executeMultipleESQueries(query[2], indexName, indexType),
             //Using aggregateCensusDataQuery method to get STD population data
             this.aggregateCensusDataQuery(query[1], indexName, indexType)
         ];
         Q.all(promises).then( function (resp) {
             var data = searchUtils.populateDataWithMappings(resp[0], diseaseName, 'cases');
-            self.mergeWithCensusData(data, resp[1]);
+            var mapData = searchUtils.populateDataWithMappings(resp[1], diseaseName, 'cases');
+            data.data.nested.maps = mapData.data.nested.maps;
+            self.mergeWithCensusData(data, resp[2]);
             isStateSelected && searchUtils.applySuppressions(data, 'std', 4);
             deferred.resolve(data);
         }, function (err) {

@@ -39,7 +39,7 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey) {
                 var dataIndex = Number(keySplits[2]);
                 var aggData = {};
                 // console.log("dataIndex: "+JSON.stringify(data[key].buckets));
-                aggData[dataKey] = populateAggregatedData(data[key].buckets, countKey, 3, true);
+                aggData[dataKey] = populateAggregatedData(data[key].buckets, countKey, 3, true, countQueryKey);
                 // console.log("data");
                 // console.log(dataIndex);
                 // console.log(dataKey);
