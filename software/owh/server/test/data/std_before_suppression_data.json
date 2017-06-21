@@ -130,19 +130,19 @@
         },
         {
           "name": "Unknown",
-          "std": 0,
+          "std": 15506,
           "group_table_sex": [
             {
               "name": "Both sexes",
-              "std": 0
+              "std": 7818
             },
             {
               "name": "Female",
-              "std": 0
+              "std": 5769
             },
             {
               "name": "Male",
-              "std": 0
+              "std": 1919
             }
           ]
         },
@@ -169,7 +169,7 @@
       "group_chart_0_sex": [
         {
           "name": "Both sexes",
-          "std": 44900,
+          "std": 52718,
           "group_chart_0_race": [
             {
               "name": "All races/ethnicities",
@@ -201,7 +201,7 @@
             },
             {
               "name": "Unknown",
-              "std": 0
+              "std": 7818
             },
             {
               "name": "White",
@@ -211,7 +211,7 @@
         },
         {
           "name": "Female",
-          "std": 31579,
+          "std": 37348,
           "group_chart_0_race": [
             {
               "name": "All races/ethnicities",
@@ -243,7 +243,7 @@
             },
             {
               "name": "Unknown",
-              "std": 0
+              "std": 5769
             },
             {
               "name": "White",
@@ -253,7 +253,7 @@
         },
         {
           "name": "Male",
-          "std": 13179,
+          "std": 15098,
           "group_chart_0_race": [
             {
               "name": "All races/ethnicities",
@@ -285,7 +285,7 @@
             },
             {
               "name": "Unknown",
-              "std": 0
+              "std": 1919
             },
             {
               "name": "White",
@@ -454,19 +454,19 @@
           },
           {
             "name": "Unknown",
-            "std": 0,
+            "std": 15506,
             "sex": [
               {
                 "name": "Both sexes",
-                "std": 0
+                "std": 7818
               },
               {
                 "name": "Female",
-                "std": 0
+                "std": 5769
               },
               {
                 "name": "Male",
-                "std": 0
+                "std": 1919
               }
             ]
           },
@@ -499,7 +499,7 @@
           "sex": [
             {
               "name": "Both sexes",
-              "std": 44900,
+              "std": 52718,
               "race": [
                 {
                   "name": "All races/ethnicities",
@@ -538,7 +538,7 @@
                 },
                 {
                   "name": "Unknown",
-                  "std": 0
+                  "std": 7818
                 },
                 {
                   "name": "White",
@@ -550,7 +550,7 @@
             },
             {
               "name": "Female",
-              "std": 31579,
+              "std": 37348,
               "race": [
                 {
                   "name": "All races/ethnicities",
@@ -589,7 +589,7 @@
                 },
                 {
                   "name": "Unknown",
-                  "std": 0
+                  "std": 5769
                 },
                 {
                   "name": "White",
@@ -601,7 +601,7 @@
             },
             {
               "name": "Male",
-              "std": 13179,
+              "std": 15098,
               "race": [
                 {
                   "name": "All races/ethnicities",
@@ -640,7 +640,7 @@
                 },
                 {
                   "name": "Unknown",
-                  "std": 0
+                  "std": 1919
                 },
                 {
                   "name": "White",

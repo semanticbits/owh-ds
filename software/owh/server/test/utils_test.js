@@ -677,6 +677,16 @@ describe("Utils", function(){
        //Cases not available
        expect(result.data.nested.table.race[6].sex[2].std).equal('na');
        expect(result.data.nested.table.race[6].sex[2].pop).equal(1168);
+       //Unknown cases should not be 'Not Available'
+        expect(result.data.nested.table.race[7].name).equal('Unknown');
+        expect(result.data.nested.table.race[7].std).equal(15506);
+        expect(result.data.nested.table.race[7].sex[0].name).equal("Both sexes");
+        expect(result.data.nested.table.race[7].sex[0].std).equal(7818);
+        expect(result.data.nested.table.race[7].sex[1].name).equal("Female");
+        expect(result.data.nested.table.race[7].sex[1].std).equal(5769);
+        expect(result.data.nested.table.race[7].sex[2].name).equal("Male");
+        expect(result.data.nested.table.race[7].sex[2].std).equal(1919);
+
        done();
     });
 });

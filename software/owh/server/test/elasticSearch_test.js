@@ -379,7 +379,7 @@ describe("Elastic Search", function () {
         })
     });
 
-    it.only("Check aggregate std data with final query for suppression", function (done){
+    it("Check aggregate std data with final query for suppression", function (done){
         //Filter by State 'Alabama'
         stdCasesQuery.query.filtered.filter.bool.must[3].bool.should[0].term.state = 'AL';
         var query = [stdCasesQuery, stdPopulationQuery];
