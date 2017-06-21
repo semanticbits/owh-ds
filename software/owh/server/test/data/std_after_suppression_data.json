@@ -305,20 +305,20 @@
               {
                 "name": "Both sexes",
                 "std": 26359,
-                "pop": 318857056
+                "pop": 4849377
               },
               {
                 "name": "Female",
                 "std": 18674,
-                "pop": 161920569
+                "pop": 2499410
               },
               {
                 "name": "Male",
                 "std": 7549,
-                "pop": 156936487
+                "pop": 2349967
               }
             ],
-            "pop": 637714112
+            "pop": 9698754
           },
           {
             "name": "American Indian or Alaska Native",
@@ -327,20 +327,20 @@
               {
                 "name": "Both sexes",
                 "std": 42,
-                "pop": 2002659
+                "pop": 26885
               },
               {
                 "name": "Female",
                 "std": 35,
-                "pop": 1015540
+                "pop": 13714
               },
               {
                 "name": "Male",
                 "std": 7,
-                "pop": 987119
+                "pop": 13171
               }
             ],
-            "pop": 4005318
+            "pop": 53770
           },
           {
             "name": "Asian",
@@ -349,20 +349,20 @@
               {
                 "name": "Both sexes",
                 "std": 62,
-                "pop": 14165657
+                "pop": 63140
               },
               {
                 "name": "Female",
                 "std": 45,
-                "pop": 7441839
+                "pop": 33659
               },
               {
                 "name": "Male",
                 "std": 17,
-                "pop": 6723818
+                "pop": 29481
               }
             ],
-            "pop": 28331314
+            "pop": 126280
           },
           {
             "name": "Black or African American",
@@ -371,20 +371,20 @@
               {
                 "name": "Both sexes",
                 "std": 13367,
-                "pop": 31052236
+                "pop": 1278519
               },
               {
                 "name": "Female",
                 "std": 9096,
-                "pop": 16131777
+                "pop": 683562
               },
               {
                 "name": "Male",
                 "std": 4266,
-                "pop": 14920459
+                "pop": 594957
               }
             ],
-            "pop": 62104472
+            "pop": 2557038
           },
           {
             "name": "Hispanic or Latino",
@@ -393,20 +393,20 @@
               {
                 "name": "Both sexes",
                 "std": 261,
-                "pop": 49668283
+                "pop": 200664
               },
               {
                 "name": "Female",
                 "std": 195,
-                "pop": 24528829
+                "pop": 92468
               },
               {
                 "name": "Male",
                 "std": 66,
-                "pop": 25139454
+                "pop": 108196
               }
             ],
-            "pop": 99336566
+            "pop": 401328
           },
           {
             "name": "Multiple races",
@@ -415,20 +415,20 @@
               {
                 "name": "Both sexes",
                 "std": 43,
-                "pop": 5495862
+                "pop": 68268
               },
               {
                 "name": "Female",
                 "std": 32,
-                "pop": 2789815
+                "pop": 35050
               },
               {
                 "name": "Male",
                 "std": 11,
-                "pop": 2706047
+                "pop": 33218
               }
             ],
-            "pop": 10991724
+            "pop": 136536
           },
           {
             "name": "Native Hawaiian or Other Pacific Islander",
@@ -437,20 +437,20 @@
               {
                 "name": "Both sexes",
                 "std": "suppressed",
-                "pop": 515735
+                "pop": 2264
               },
               {
                 "name": "Female",
                 "std": "suppressed",
-                "pop": 255102
+                "pop": 1096
               },
               {
                 "name": "Male",
                 "std": "na",
-                "pop": 260633
+                "pop": 1168
               }
             ],
-            "pop": 1031470
+            "pop": 4528
           },
           {
             "name": "Unknown",
@@ -477,20 +477,20 @@
               {
                 "name": "Both sexes",
                 "std": 4764,
-                "pop": 168984524
+                "pop": 3209637
               },
               {
                 "name": "Female",
                 "std": 3500,
-                "pop": 85676198
+                "pop": 1639861
               },
               {
                 "name": "Male",
                 "std": 1263,
-                "pop": 83308326
+                "pop": 1569776
               }
             ],
-            "pop": 337969048
+            "pop": 6419274
           }
         ]
       },
@@ -504,37 +504,37 @@
                 {
                   "name": "All races/ethnicities",
                   "std": 26359,
-                  "pop": 318857056
+                  "pop": 4849377
                 },
                 {
                   "name": "American Indian or Alaska Native",
                   "std": 42,
-                  "pop": 2002659
+                  "pop": 26885
                 },
                 {
                   "name": "Asian",
                   "std": 62,
-                  "pop": 14165657
+                  "pop": 63140
                 },
                 {
                   "name": "Black or African American",
                   "std": 13367,
-                  "pop": 31052236
+                  "pop": 1278519
                 },
                 {
                   "name": "Hispanic or Latino",
                   "std": 261,
-                  "pop": 49668283
+                  "pop": 200664
                 },
                 {
                   "name": "Multiple races",
                   "std": 43,
-                  "pop": 5495862
+                  "pop": 68268
                 },
                 {
                   "name": "Native Hawaiian or Other Pacific Islander",
                   "std": 0,
-                  "pop": 515735
+                  "pop": 2264
                 },
                 {
                   "name": "Unknown",
@@ -543,10 +543,10 @@
                 {
                   "name": "White",
                   "std": 4764,
-                  "pop": 168984524
+                  "pop": 3209637
                 }
               ],
-              "pop": 590742012
+              "pop": 9698754
             },
             {
               "name": "Female",
@@ -555,37 +555,37 @@
                 {
                   "name": "All races/ethnicities",
                   "std": 18674,
-                  "pop": 161920569
+                  "pop": 2499410
                 },
                 {
                   "name": "American Indian or Alaska Native",
                   "std": 35,
-                  "pop": 1015540
+                  "pop": 13714
                 },
                 {
                   "name": "Asian",
                   "std": 45,
-                  "pop": 7441839
+                  "pop": 33659
                 },
                 {
                   "name": "Black or African American",
                   "std": 9096,
-                  "pop": 16131777
+                  "pop": 683562
                 },
                 {
                   "name": "Hispanic or Latino",
                   "std": 195,
-                  "pop": 24528829
+                  "pop": 92468
                 },
                 {
                   "name": "Multiple races",
                   "std": 32,
-                  "pop": 2789815
+                  "pop": 35050
                 },
                 {
                   "name": "Native Hawaiian or Other Pacific Islander",
                   "std": 0,
-                  "pop": 255102
+                  "pop": 1096
                 },
                 {
                   "name": "Unknown",
@@ -594,10 +594,10 @@
                 {
                   "name": "White",
                   "std": 3500,
-                  "pop": 85676198
+                  "pop": 1639861
                 }
               ],
-              "pop": 299759669
+              "pop": 4998820
             },
             {
               "name": "Male",
@@ -606,37 +606,37 @@
                 {
                   "name": "All races/ethnicities",
                   "std": 7549,
-                  "pop": 156936487
+                  "pop": 2349967
                 },
                 {
                   "name": "American Indian or Alaska Native",
                   "std": 7,
-                  "pop": 987119
+                  "pop": 13171
                 },
                 {
                   "name": "Asian",
                   "std": 17,
-                  "pop": 6723818
+                  "pop": 29481
                 },
                 {
                   "name": "Black or African American",
                   "std": 4266,
-                  "pop": 14920459
+                  "pop": 594957
                 },
                 {
                   "name": "Hispanic or Latino",
                   "std": 66,
-                  "pop": 25139454
+                  "pop": 108196
                 },
                 {
                   "name": "Multiple races",
                   "std": 11,
-                  "pop": 2706047
+                  "pop": 33218
                 },
                 {
                   "name": "Native Hawaiian or Other Pacific Islander",
                   "std": 0,
-                  "pop": 260633
+                  "pop": 1168
                 },
                 {
                   "name": "Unknown",
@@ -645,10 +645,10 @@
                 {
                   "name": "White",
                   "std": 1263,
-                  "pop": 83308326
+                  "pop": 1569776
                 }
               ],
-              "pop": 290982343
+              "pop": 4699934
             }
           ]
         }

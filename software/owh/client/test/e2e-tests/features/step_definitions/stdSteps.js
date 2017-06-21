@@ -120,17 +120,30 @@ var stdStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^std data table should suppress results$/, function (next) {
-        stdPage.getTableRowData(5).then(function(firstRowData){
-            expect(firstRowData[0]).to.equals('Native Hawaiian or Other Pacific Islander');
+        stdPage.getTableRowData(5).then(function(rowData){
+            expect(rowData[0]).to.equals('Native Hawaiian or Other Pacific Islander');
             //Female
-            expect(firstRowData[1]).to.contains('Suppressed');
-            expect(firstRowData[1]).to.contains('1,096');
+            expect(rowData[1]).to.contains('Suppressed');
+            expect(rowData[1]).to.contains('1,096');
             //Male
-            expect(firstRowData[2]).to.contains('Suppressed');
-            expect(firstRowData[2]).to.contains('1,168');
+            expect(rowData[2]).to.contains('Not Available');
+            expect(rowData[2]).to.contains('Not Applicable');
+            expect(rowData[2]).to.contains('1,168');
             //Both sexes
-            expect(firstRowData[3]).to.contains('Suppressed');
-            expect(firstRowData[3]).to.contains('2,264');
+            expect(rowData[3]).to.contains('Suppressed');
+            expect(rowData[3]).to.contains('2,264');
+        });
+        //Unreliable should not display for STD
+        stdPage.getTableRowData(1).then(function(rowData){
+            expect(rowData[0]).to.equals('American Indian or Alaska Native');
+            //Male
+            expect(rowData[2]).to.not.contains('Unreliable');
+        });
+        //Unreliable should not display for STD
+        stdPage.getTableRowData(2).then(function(rowData){
+            expect(rowData[0]).to.equals('Asian');
+            //Male
+            expect(rowData[2]).to.not.contains('Unreliable');
         }).then(next);
     });
 

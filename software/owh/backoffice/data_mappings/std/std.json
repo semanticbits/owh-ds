@@ -177,6 +177,18 @@
       "column_index": 8,
       "type": "simple",
       "field": "POP"
+    },
+    {
+      "column": "suppression_cases",
+      "column_index": 10,
+      "type": "simple",
+      "field": "SUPPRESSIONCASES"
+    },
+    {
+      "column": "suppression_rate",
+      "column_index": 11,
+      "type": "simple",
+      "field": "SUPPRESSIONRATE"
     }
   ]
 }

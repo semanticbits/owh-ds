@@ -1,5 +1,7 @@
 var searchUtils = require("../api/utils");
 var expect = require("expect.js");
+var stdBeforeSuppressionData = require('./data/std_before_suppression_data.json');
+var stdAfterSuppressionData = require('./data/std_after_suppression_data.json');
 
 describe("Utils", function(){
     it("Populate results with mappings with aggregation data", function(done){
@@ -586,5 +588,23 @@ describe("Utils", function(){
         expect(values[2]).equal("All age groups");
         expect(values[3]).equal("National");
         done();
+    });
+
+    it("Apply suppression rule for STD", function(done){
+       var result = stdBeforeSuppressionData;
+       searchUtils.applySuppressions(result, 'std', 4);
+       expect(result.data.nested.table.race[6].name).equal('Native Hawaiian or Other Pacific Islander');
+       expect(result.data.nested.table.race[6].std).equal('suppressed');
+       expect(result.data.nested.table.race[6].sex[0].name).equal('Both sexes');
+       expect(result.data.nested.table.race[6].sex[0].std).equal('suppressed');
+       expect(result.data.nested.table.race[6].sex[0].pop).equal(2264);
+       expect(result.data.nested.table.race[6].sex[1].name).equal('Female');
+       expect(result.data.nested.table.race[6].sex[1].std).equal('suppressed');
+       expect(result.data.nested.table.race[6].sex[1].pop).equal(1096);
+       expect(result.data.nested.table.race[6].sex[2].name).equal('Male');
+       //Cases not available
+       expect(result.data.nested.table.race[6].sex[2].std).equal('na');
+       expect(result.data.nested.table.race[6].sex[2].pop).equal(1168);
+       done();
     });
 });

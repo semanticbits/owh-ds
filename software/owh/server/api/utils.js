@@ -130,7 +130,11 @@ function suppressCounts (obj, countKey, dataType, suppressKey, maxValue) {
         } else if(obj[countKey] != undefined && obj[countKey] < value) {
             if(dataType == 'maps' || dataType == 'charts') {//for chart and map set suppressed values to 0
                 obj[countKey] = 0;
-            } else {//for table data set to suppressed
+            }
+            else if(countKey === 'std' && obj[countKey] === 0) {
+                obj[countKey] = 'na';
+            }
+            else {//for table data set to suppressed
                 obj[key] = 'suppressed';
             }
         }
