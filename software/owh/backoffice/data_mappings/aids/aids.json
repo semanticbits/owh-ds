@@ -12,7 +12,7 @@
         "3": "Persons living with HIV, stage 3 (AIDS)",
         "4": "HIV diagnoses",
         "5": "HIV deaths",
-        "6": "Persons living with diagnosed HIV",
+        "6": "Persons living with diagnosed HIV"
       }
     },
     {
@@ -170,6 +170,18 @@
       "column_index": 8,
       "type": "simple",
       "field": "POP"
+    },
+    {
+      "column": "suppression_cases",
+      "column_index": 10,
+      "type": "simple",
+      "field": "SUPPRESSIONCASES"
+    },
+    {
+      "column": "suppression_rate",
+      "column_index": 11,
+      "type": "simple",
+      "field": "SUPPRESSIONRATE"
     }
   ]
 }
