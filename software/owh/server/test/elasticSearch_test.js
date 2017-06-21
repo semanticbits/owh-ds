@@ -379,11 +379,11 @@ describe("Elastic Search", function () {
         })
     });
 
-    it("Check aggregate std data with final query for suppression", function (done){
+    it.only("Check aggregate std data with final query for suppression", function (done){
         //Filter by State 'Alabama'
         stdCasesQuery.query.filtered.filter.bool.must[3].bool.should[0].term.state = 'AL';
         var query = [stdCasesQuery, stdPopulationQuery];
-        new elasticSearch().aggregateSTDData(query, true).then(function (resp) {
+        new elasticSearch().aggregateDiseaseData(query, 'std', 'owh_std', 'std', true).then(function (resp) {
             //All races/ethnicities
             expect(resp.data.nested.table.race[0].name).equal(stdSuppressionQueryResp.data.nested.table.race[0].name);
             expect(resp.data.nested.table.race[0].std).equal(stdSuppressionQueryResp.data.nested.table.race[0].std);
