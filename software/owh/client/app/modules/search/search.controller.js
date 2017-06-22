@@ -568,9 +568,6 @@
         }
 
         function getChartTitle(title) {
-            if (!title) {
-                return undefined;
-            }
             var filters = title.split('.');
             filters = filters.slice(2);
             if (filters.length > 1) {
