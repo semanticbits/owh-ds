@@ -76,7 +76,7 @@
                         <div ng-repeat="chartData in startChartData"
                              ng-class="!chartData.isMap || sc.mapOptions.selectedMapSize==='small'?'usa-width-one-third graph-box':'usa-width-one-whole margin-bottom-20'">
                             <!-- Map -->
-                            <div id="chart_us_map" ng-if="chartData.isMap && sc.filters.selectedPrimaryFilter.showMap && sc.filters.selectedPrimaryFilter.maps">
+                            <div id="chart_us_map" ng-if="chartData.isMap && sc.filters.selectedPrimaryFilter.showMap">
                                 <leaflet  lf-center="chartData.usa" markers="chartData.markers" events="chartData.events" geojson="chartData.geojson"
                                           legend="chartData.legend" controls="chartData.controls" defaults="chartData.defaults" tiles=""
                                           height="{{sc.mapOptions.selectedMapSize==='small'?'277px':'480px'}}" width="{{sc.mapOptions.selectedMapSize==='small'?'auto':'100%'}}"></leaflet>

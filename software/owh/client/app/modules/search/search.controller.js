@@ -317,7 +317,7 @@
                 }
             },
             controls: {
-                custom: [new mapExpandControl(), new mapShareControl()]
+                custom: []
             },
             isMap:true
         };
@@ -557,6 +557,8 @@
 
         $scope.$on("leafletDirectiveMap.load", function (event, args) {
             var mapScaleControl = mapService.addScaleControl(sc.filters.selectedPrimaryFilter.mapData);
+            args.leafletObject.addControl(new mapExpandControl());
+            args.leafletObject.addControl(new mapShareControl());
             args.leafletObject.addControl(new mapScaleControl());
         });
 
