@@ -817,7 +817,54 @@
         }
 
         /**
-         * Enables/disables side filters and filter options based on the dataser metadata
+         * If user selects Disease -> 'Congenital Syphilis' then
+         * disable 'Sex', 'Race/Ethnicity' and  'Age Group' filters and
+         * set Sex -> Both Sexes, Race/Ethnicity -> All races/ethnicities, Age Group -> All age groups.
+         * If user selects Sex OR Race/Ethinicity OR Age Group options other than 'Both Sexes' and 'All races/ethnicities' and 'All age groups' then
+         * disable Disease -> 'Congenital Syphilis' option
+         * @param filterName
+         * @param filterValue
+         * @param sideFilters
+         */
+        function refreshDiseaseFilterOptions(filterName, filterValue, sideFilters) {
+            //If user selects Disease -> 'Congenital Syphilis'
+            if (filterName === 'disease' && filterValue === 'Congenital Syphilis') {
+                for (var f = 0; f < sideFilters.length; f++) {
+                    var sFilters = sideFilters[f].filters;
+                    if (sFilters.key === 'sex' || sFilters.key === 'race' || sFilters.key === 'age_group') {
+                        sideFilters[f].disabled = true;
+                        sFilters.value = sFilters.defaultValue;
+                    }
+                }
+            }
+            else {
+                //To capture Sex, Race/Ethnicity, Age Group filter options
+                var filterOptions = [];
+                //Get Disease -> 'Congenital Syphilis' option
+                var congentialSyphilisOpt = sideFilters[0].filters.autoCompleteOptions[4];
+                // Enable disease 'Congenital Syphilis' filter option
+                congentialSyphilisOpt.disabled = false;
+                //Is sex, race/ethnicity, aage_group filter options selected
+                for (var f = 0; f < sideFilters.length; f++) {
+                    sideFilters[f].disabled = false;
+                    var sFilters = sideFilters[f].filters;
+                    if (sFilters.key === 'sex' || sFilters.key === 'race' || sFilters.key === 'age_group') {
+                        filterOptions = filterOptions.concat(sFilters.autoCompleteOptions);
+                    }
+                    filterOptions = $filter('filter')(filterOptions, {key: '!Both sexes'});
+                    filterOptions = $filter('filter')(filterOptions, {key: '!All races/ethnicities'});
+                    filterOptions = $filter('filter')(filterOptions, {key: '!All age groups'});
+                    var found = $filter('filter')(filterOptions, {key: sFilters.value}, true);
+                    if (found.length > 0 && !congentialSyphilisOpt.disabled) {
+                        congentialSyphilisOpt.disabled = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        /**
+         * Enables/disables side filters and filter options based on the dataset metadata
          * @param filter filter to be used for the querying ds metadata
          * @param categories sidefilter categories
          * @param datasetname name of dataset          */
@@ -828,40 +875,50 @@
             });
             var filterName = filter.queryKey;
             var filterValue = filter.value;
-            SearchService.getDsMetadata(datasetname, filterValue ? filterValue.join(',') : null).then(function (response) {
-                var newFilters = response.data;
-                for (var f=0; f < sideFilters.length; f++) {
-                    var fkey = sideFilters[f].filters.queryKey;
-                    if (fkey === 'ethnicity_group' && datasetname == 'deaths') {
-                       fkey = 'hispanic_origin';
-                    }
-                    if (fkey !== filterName) {
-                        if (fkey in newFilters) {
-                            sideFilters[f].disabled = false;
-                            if (newFilters[fkey]) {
-                                var fopts = sideFilters[f].filters.autoCompleteOptions;
-                                for (var opt in fopts) {
-                                    if (newFilters[fkey].indexOf(fopts[opt].key) >= 0) {
-                                        fopts[opt].disabled = false;
-                                    }
-                                    //below condition only disable filters which are not parent(with no child filters) and
-                                    // not found in response metadata.
-                                    else if(!fopts[opt].group && fopts[opt].key != 'Hispanic') {
-                                        fopts[opt].disabled = true;
+            //For STD and HIV-AIDS
+            if(datasetname === 'std' || datasetname === 'aids'){
+                refreshDiseaseFilterOptions(filterName, filterValue, sideFilters);
+            }
+            /**
+             * Get ds metadata based on selected year and enable/disable sidefilters.
+             */
+            else {
+                SearchService.getDsMetadata(datasetname, filterValue ? filterValue.join(',') : null).then(function (response) {
+                    var newFilters = response.data;
+                    for (var f=0; f < sideFilters.length; f++) {
+                        var fkey = sideFilters[f].filters.queryKey;
+                        if (fkey === 'ethnicity_group' && datasetname == 'deaths') {
+                            fkey = 'hispanic_origin';
+                        }
+                        if (fkey !== filterName) {
+                            if (fkey in newFilters) {
+                                sideFilters[f].disabled = false;
+                                if (newFilters[fkey]) {
+                                    var fopts = sideFilters[f].filters.autoCompleteOptions;
+                                    for (var opt in fopts) {
+                                        if (newFilters[fkey].indexOf(fopts[opt].key) >= 0) {
+                                            fopts[opt].disabled = false;
+                                        }
+                                        //below condition only disable filters which are not parent(with no child filters) and
+                                        // not found in response metadata.
+                                        else if(!fopts[opt].group && fopts[opt].key != 'Hispanic') {
+                                            fopts[opt].disabled = true;
+                                        }
                                     }
                                 }
+                            } else {
+                                sideFilters[f].filters.value = [];
+                                sideFilters[f].filters.groupBy = false;
+                                sideFilters[f].disabled = true;
                             }
-                        } else {
-                            sideFilters[f].filters.value = [];
-                            sideFilters[f].filters.groupBy = false;
-                            sideFilters[f].disabled = true;
                         }
                     }
-                }
-            }, function (error) {
-                angular.element(document.getElementById('spindiv')).addClass('ng-hide');
-                console.log(error);
-            });
+                }, function (error) {
+                    angular.element(document.getElementById('spindiv')).addClass('ng-hide');
+                    console.log(error);
+                });
+            }
+
         }
 
         function clone (a) {
