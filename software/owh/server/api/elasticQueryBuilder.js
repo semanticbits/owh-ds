@@ -63,11 +63,6 @@ var prepareAggregationQuery = function(aggregations, countQueryKey) {
                 elasticQuery.aggregations = merge(elasticQuery.aggregations, generateNestedAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_', countQueryKey));
             }
         }
-        if (aggregations['nested']['maps']) {
-            for(var index in aggregations['nested']['maps']) {
-                elasticQuery.aggregations = merge(elasticQuery.aggregations, generateNestedAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_', countQueryKey, true));
-            }
-        }
     }
     console.log(JSON.stringify(elasticQuery));
     return elasticQuery;

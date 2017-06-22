@@ -192,26 +192,42 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
 /**
  * This method is used to get the bridge race data(census) based on passed in query
  */
-ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected){
-    //get tge elasic search client for census index
-    var client = this.getClient(census_index);
+ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected) {
+    var self = this;
     var deferred = Q.defer();
-    //execute the search query
-    client.search({
-        index:census_type,
-        body:query,
-        request_cache:true
-    }).then(function (resp) {
-        //parse the search results
-        var results = searchUtils.populateDataWithMappings(resp, 'bridge_race', 'pop');
-        if (isStateSelected) {
-            searchUtils.applySuppressions(results, 'bridge_race');
-        }
-        deferred.resolve(results);
-    }, function (err) {
-        logger.error(err.message);
-        deferred.reject(err);
-    });
+    if(query[1]) {
+        logger.debug("ES Query for bridge race table and charts: "+ JSON.stringify( query[0]));
+        logger.debug("ES Query for bridge race map: "+ JSON.stringify( query[2]));
+        var promises = [
+            this.executeMultipleESQueries(query[0], census_index, census_type),
+            this.executeMultipleESQueries(query[2], census_index, census_type)
+        ];
+        Q.all(promises).then( function (resp) {
+            var data = searchUtils.populateDataWithMappings(resp[0], 'bridge_race', 'pop');
+            var mapData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop');
+            data.data.nested.maps = mapData.data.nested.maps;
+            if (isStateSelected) {
+                searchUtils.applySuppressions(data, 'bridge_race');
+            }
+            deferred.resolve(data);
+        }, function (err) {
+            logger.error(err.message);
+            deferred.reject(err);
+        });
+    }
+    else {
+        logger.debug("ES Query for side filter counts :"+ JSON.stringify( query[0]));
+        this.executeESQuery(census_index, census_type, query[0]).then(function (response) {
+            var results = searchUtils.populateDataWithMappings(response, 'bridge_race', 'pop');
+            if (isStateSelected) {
+                searchUtils.applySuppressions(results, 'bridge_race');
+            }
+            deferred.resolve(results);
+        }, function (err) {
+            logger.error(err.message);
+            deferred.reject(err);
+        });
+    }
     return deferred.promise;
 };
 
