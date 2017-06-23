@@ -817,8 +817,39 @@
         }
 
         /**
+         * To enable or disable given filter options
+         * @param sideFilters - all side filters
+         * @param givenFilters  - Array of filters which filter options to be disabled or enabled
+         * @param disabled  - boolean to disable or not
+         * @param toBeDisabledFilterOption - Specific filter option which needs to be disable
+         */
+        function enableOrDisableFilterOptions(sideFilters, givenFilters, disabled, toBeDisabledFilterOption){
+            for (var f = 0; f < sideFilters.length; f++) {
+                var sFilters = sideFilters[f].filters;
+                if (givenFilters.indexOf(sFilters.key) >= 0) {
+                    var filterOptions = $filter('filter')(sFilters.autoCompleteOptions, {key: "!"+sFilters.defaultValue});
+                    angular.forEach(filterOptions, function(option){
+                        option.disabled = disabled;
+                    });
+                    //If filter options are disabled, then set filter value to default value
+                    if(disabled){
+                        sFilters.value = sFilters.defaultValue;
+                    }
+                    //else if a specific filter options provided
+                    //Verify any one of given filter options selected then disable given filter option
+                    else if(toBeDisabledFilterOption) {
+                        var found = $filter('filter')(filterOptions, {key: sFilters.value}, true);
+                        if (found.length > 0 && !toBeDisabledFilterOption.disabled) {
+                            toBeDisabledFilterOption.disabled = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        /**
          * If user selects Disease -> 'Congenital Syphilis' then
-         * disable 'Sex', 'Race/Ethnicity' and  'Age Group' filters and
+         * disable 'Sex', 'Race/Ethnicity' and  'Age Group' filter options except 'Both Sexes', 'All races/ethnicities', 'All age groups' and
          * set Sex -> Both Sexes, Race/Ethnicity -> All races/ethnicities, Age Group -> All age groups.
          * If user selects Sex OR Race/Ethinicity OR Age Group options other than 'Both Sexes' and 'All races/ethnicities' and 'All age groups' then
          * disable Disease -> 'Congenital Syphilis' option
@@ -827,39 +858,19 @@
          * @param sideFilters
          */
         function refreshDiseaseFilterOptions(filterName, filterValue, sideFilters) {
+            //To capture Sex, Race/Ethnicity, Age Group filter options
+           // var filterOptions = [];
+            var filters = ['sex', 'race', 'age_group'];
             //If user selects Disease -> 'Congenital Syphilis'
             if (filterName === 'disease' && filterValue === 'Congenital Syphilis') {
-                for (var f = 0; f < sideFilters.length; f++) {
-                    var sFilters = sideFilters[f].filters;
-                    if (sFilters.key === 'sex' || sFilters.key === 'race' || sFilters.key === 'age_group') {
-                        sideFilters[f].disabled = true;
-                        sFilters.value = sFilters.defaultValue;
-                    }
-                }
+                enableOrDisableFilterOptions(sideFilters, filters, true);
             }
             else {
-                //To capture Sex, Race/Ethnicity, Age Group filter options
-                var filterOptions = [];
                 //Get Disease -> 'Congenital Syphilis' option
                 var congentialSyphilisOpt = sideFilters[0].filters.autoCompleteOptions[4];
                 // Enable disease 'Congenital Syphilis' filter option
                 congentialSyphilisOpt.disabled = false;
-                //Is sex, race/ethnicity, aage_group filter options selected
-                for (var f = 0; f < sideFilters.length; f++) {
-                    sideFilters[f].disabled = false;
-                    var sFilters = sideFilters[f].filters;
-                    if (sFilters.key === 'sex' || sFilters.key === 'race' || sFilters.key === 'age_group') {
-                        filterOptions = filterOptions.concat(sFilters.autoCompleteOptions);
-                    }
-                    filterOptions = $filter('filter')(filterOptions, {key: '!Both sexes'});
-                    filterOptions = $filter('filter')(filterOptions, {key: '!All races/ethnicities'});
-                    filterOptions = $filter('filter')(filterOptions, {key: '!All age groups'});
-                    var found = $filter('filter')(filterOptions, {key: sFilters.value}, true);
-                    if (found.length > 0 && !congentialSyphilisOpt.disabled) {
-                        congentialSyphilisOpt.disabled = true;
-                        break;
-                    }
-                }
+                enableOrDisableFilterOptions(sideFilters, filters, false, congentialSyphilisOpt);
             }
         }
 
