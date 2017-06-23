@@ -67,16 +67,22 @@ describe('filterUtils', function(){
             var stdDataFilters= filterUtils.getSTDDataFilters();
             expect(stdDataFilters[0].key).toEqual('current_year');
             expect(stdDataFilters[0].value).toEqual('2015');
+            expect(stdDataFilters[0].helpText).toEqual('label.std.help.text.year');
             expect(stdDataFilters[1].key).toEqual('disease');
             expect(stdDataFilters[1].value).toEqual('Chlamydia');
+            expect(stdDataFilters[1].helpText).toEqual('label.std.help.text.disease');
             expect(stdDataFilters[2].key).toEqual('state');
             expect(stdDataFilters[2].value).toEqual('National');
+            expect(stdDataFilters[2].helpText).toEqual('label.std.help.text.state');
             expect(stdDataFilters[3].key).toEqual('age_group');
             expect(stdDataFilters[3].value).toEqual('All age groups');
+            expect(stdDataFilters[3].helpText).toEqual('label.std.help.text.age.group');
             expect(stdDataFilters[4].key).toEqual('race');
             expect(stdDataFilters[4].value).toEqual('All races/ethnicities');
+            expect(stdDataFilters[4].helpText).toEqual('label.std.help.text.race.ethnicity');
             expect(stdDataFilters[5].key).toEqual('sex');
             expect(stdDataFilters[5].value).toEqual('Both sexes');
+            expect(stdDataFilters[5].helpText).toEqual('label.std.help.text.sex');
         });
 
         it('When I call getAllOptionValues, I should get list of All option values', function(){
