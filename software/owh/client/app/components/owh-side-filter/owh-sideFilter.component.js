@@ -248,14 +248,23 @@
             }
         }
 
-        function clearSelection(filter, resetGroupBy) {
+        function clearSelection(filter, resetGroupBy, propertyKey) {
             if(resetGroupBy) {
                 filter.groupBy = false;
             }
+
             //remove all elements from array
-            filter.selectedNodes.length = 0;
-            filter.selectedValues.length = 0;
-            filter.value.length = 0;
+            if (propertyKey) {
+                filter.selectedNodes[propertyKey].length = 0;
+                filter.selectedValues[propertyKey].length = 0;
+                filter.value[propertyKey].length = 0;
+            }
+            else {
+                filter.selectedNodes.length = 0;
+                filter.selectedValues.length = 0;
+                filter.value.length = 0;
+            }
+
             //  Run the filter call back only if runOnFilterChange is true
             if(sfc.runOnFilterChange) {
                 sfc.onFilter();
