@@ -1,0 +1,145 @@
+<div class="usa-grid-full">
+    <div class="dropdown-content">
+        <div class="usa-grid-full">
+            <div class="height-150 usa-grid-full usa-width-one-whole">
+                <div class="width-1900 margin-right-0">
+                    <div class="usa-width-one-whole">
+                        <div class="arrow-box sol-right-border forward-back">
+                            <i class="arrows material-icons" ng-click="mc.goBackward()">arrow_back</i>
+                            <i class="arrows material-icons" ng-click="mc.goForward()">arrow_forward</i>
+                            <!--<i class="arrow-left" ng-click="mc.goBackward()"></i>
+                            <i class="arrow-right" ng-click="mc.goForward()"></i>-->
+                        </div>
+                        <div class="sol-right-border menu-row usa-width-one-fourth text-left interested-text">
+                            <div class="label-form select" ng-bind="'label.interested.in' | translate"></div>
+                            <div class="black-one-line dropdown-heading" ng-bind="mc.selectedFilter.header">Choose a health topic</div>
+                            <div class="icon-position" ng-click="mc.showCategory()"><i class="fa fa-angle-down font-30 karat"></i></div>
+                        </div>
+                        <div class="sol-right-border menu-row usa-width-one-fourth text-left interested-text">
+                            <!--<div class="label-form select"></div>-->
+                                <ui-select multiple ng-model="mc.selectedFilter.value"
+                                           theme="bootstrap" name="filter" id="filter" class="usa-width-one-whole dashboard-element"
+                                           on-select="mc.groupByFiltersUpdated(true)" on-remove="mc.groupByFiltersUpdated()">
+                                    <ui-select-choices class="ui-select-choices" group-by="'type'" ui-disable-choice="option.disableFilter"
+                                                       repeat="option as option in mc.selectedFilter.allFilters | filter: $select.search">
+                                        <div ng-bind-html="option.title | translate | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                    <ui-select-match class="ui-select-match" allow-clear="true"
+                                                     placeholder='label.show.me | translate'>{{$item.title | translate}}
+                                    </ui-select-match>
+                                </ui-select>
+                            <!--<div class="icon-position"><i class="fa fa-angle-down font-30 karat"></i></div>-->
+                        </div>
+                        <div class="sol-right-border menu-row usa-width-one-fourth text-left interested-text">
+                            <!--<div class="label-form select"></div>-->
+                            <!--<div class="black-one-line dropdown-heading" ng-bind="mc.tableName({filterName: mc.selectedFilter.key, opt: mc.selectedFilter.tableView})">Select categories</div>-->
+                            <select id="tableView" ng-model="mc.selectedShowFilter"
+                                    ng-options="item.title for item in mc.showMeOptions[mc.selectedFilter.key]"
+                                    ng-change="mc.onViewFilter({selectedFilter: mc.selectedShowFilter})"
+                                    class="usa-width-two-thirds add-on-element gray-border margin-0">
+                            </select>
+                            <!--<div class="icon-position"><i class="fa fa-angle-down font-30 karat"></i></div>-->
+                        </div>
+                        <div class="dropdown-content dropdown-submenu" ng-show="mc.displayCategory">
+                            <div class="flex-container">
+                                <div class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter: 'deaths'})">
+                                    <img src="../images/mortality-icon.svg" alt="owh_white_logo" height="100" width="100"/>
+                                    <a class="black-one-line" ng-bind="mc.categoryName({newFilter: 'deaths'})"></a>
+                                </div>
+                                <div class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'mental_health'})">
+                                    <img src="../images/mortality-icon.svg" alt="owh_white_logo" height="100" width="100"/>
+                                    <a class="black-one-line" ng-bind="mc.categoryName({newFilter: 'mental_health'})"></a>
+                                </div>
+                                <div id="bridge-race" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'bridge_race'})">
+                                    <img src="../images/mortality-icon.svg" alt="owh_white_logo" height="100" width="100"/>
+                                    <a class="black-one-line" ng-bind="mc.categoryName({newFilter: 'bridge_race'})"></a>
+                                </div>
+                                <div id="natality" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'natality'})">
+                                    <img src="../images/natality-icon.svg" alt="owh_white_logo" height="100" width="100"/>
+                                    <a class="black-one-line" ng-bind="mc.categoryName({newFilter:'natality'})"></a>
+                                </div>
+                                <div id="preg" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'prams'})">
+                                    <img src="../images/mortality-icon.svg" alt="owh_white_logo" height="100" width="100"/>
+                                    <a class="black-one-line" ng-bind="mc.categoryName({newFilter:'prams'})"></a>
+                                </div>
+                                <div id="behavior" class="picture-holder">
+                                    <img src="../images/health-behavior-prevention-icon.svg" alt="owh_white_logo" height="100" width="100"/>
+                                    <a class="black-one-line">Behavioral Risk Factors</a>
+                                </div>
+                            </div>
+
+                            <div class="flex-container push-left">
+                                <div class="picture-holder">
+                                    <img src="../images/diseases-icon.svg" alt="owh_white_logo" height="100" width="100"/>
+                                    <a class="black-one-line">Cancer Statistics</a>
+                                </div>
+                                <div class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'infant_mortality'})">
+                                    <img src="../images/health-behavior-prevention-icon.svg" alt="owh_white_logo" height="100" width="100"/>
+                                    <a class="black-one-line" ng-bind="mc.categoryName({newFilter:'infant_mortality'})"></a>
+                                </div>
+                                <div class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'tb'})">
+                                    <img src="../images/health-behavior-prevention-icon.svg" alt="owh_white_logo" height="100" width="100"/>
+                                    <a class="black-one-line" ng-bind="mc.categoryName({newFilter:'tb'})"></a>
+                                </div>
+                                <div id="std" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'std'})">
+                                    <img src="../images/health-behavior-prevention-icon.svg" alt="owh_white_logo" height="100" width="100"/>
+                                    <a class="black-one-line" ng-bind="mc.categoryName({newFilter:'std'})"></a>
+                                </div>
+                                <div class="picture-holder">
+                                    <img src="../images/health-behavior-prevention-icon.svg" alt="owh_white_logo" height="100" width="100"/>
+                                    <a class="black-one-line">AIDS/HIV</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<div id="filters" class="dropdown-content dropdown-submenu" ng-show="mc.displayFilter" style="height:700px">
+                        <div class="flex-container">
+                            <div class="picture-holder"
+                                 ng-repeat="filter in mc.selectedFilter.allFilters | filter: search.title"
+                                 ng-click="mc.updateGroupByFilter(filter)">
+                                <a id="select" class="black-one-line" style="white-space: normal;">{{filter.title | translate}}</a>
+                            </div>
+                        </div>
+                    </div>-->
+                        <!--<div id="filters" ng-show="mc.displayFilter" style="overflow-y: auto; height:300px; float:left; background-color:#f9f9f9; position: absolute; right: 800px; top: 60px; z-index:200">
+                            <a ng-repeat="filter in mc.selectedFilter.allFilters | filter: search.title"
+                            ng-click="mc.updateGroupByFilter(filter)">
+                                   {{filter.title | translate}}<br>
+                            </a>
+                        </div>-->
+
+                           <!-- <div class="flex-container">
+                                <div class="picture-holder"
+                                     ng-repeat="filter in mc.selectedFilter.allFilters | filter: search.option"
+                                     ng-click="mc.updateGroupByFilter(filter)">
+                                    <a id="select" class="black-one-line" style="white-space: normal;">{{filter.title | translate}}</a>
+                                </div>
+                            </div>-->
+
+
+
+
+                        <!--<div ng-show="mc.displayTopic" style="overflow-y: auto; height:300px; float:left; background-color:#f9f9f9; position: absolute; right: 300px; top: 60px; z-index:200">
+                            <a ng-repeat="elem in mc.showMeOptions[mc.selectedFilter.key]" ng-click="mc.onViewFilter({selectedFilter: elem})">
+                                {{elem.title}}<br>
+                            </a>
+                        </div>-->
+
+                        <!--<div ng-style="mc.selectedFilter.key == 'prams' ? {'height': '700px'} : {'height': '550px'}"
+                             class="dropdown-content dropdown-submenu" ng-show="mc.displayTopic">
+                            <div class="flex-container">
+                                <div class="picture-holder" ng-repeat="elem in mc.showMeOptions[mc.selectedFilter.key]"
+                                     ng-click="mc.onViewFilter({selectedFilter: elem})">
+                                    <a class="black-one-line">{{elem.title}}</a>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="sol-right-border">
+                            <i class="clear-button fa fa-toggle-left font-30"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

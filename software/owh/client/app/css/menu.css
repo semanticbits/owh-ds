@@ -1,0 +1,160 @@
+.width-1900 {
+    width:1900px;
+}
+
+.arrows {
+    color:black;
+    font-size:25px;
+}
+
+.arrow-box {
+    float:left;
+    height:50px;
+}
+
+.menu-row {
+    padding-left: 10px;
+    margin-right: 0px;
+    height:50px;
+}
+
+.sol-right-border {
+    border-right:1px solid #ccc;
+    right:50px;
+    color: #0e1773;
+}
+
+.font-30 {
+    font-size: 30px;
+}
+
+.label-form {
+    width:80%;
+    float:left;
+}
+
+.icon-position {
+    width:10%;
+    float:right;
+}
+
+.banner-link {
+    height: 80.44px;
+    padding-top: 20px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    position: relative;
+    background-color: #f9f9f9;
+    width: 1710px;
+    height: 70px;
+    left: 1px;
+    margin-bottom: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 90;
+    float: left;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.clear-button {
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.no-padding {
+    padding-bottom: 0;
+}
+
+.height-150 {
+    height:150px;
+}
+
+.picture-holder {
+    width: 165px;
+    height: 155px;
+    float: left;
+    margin-left: 30px;
+    margin-right: 55px;
+    margin-bottom: 10px;
+    text-align: center;
+    align-content: center;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.picture-holder:hover {
+    background: #f9f9f9;
+    border: 2px solid lightgrey;
+}
+
+.height-700 {
+    height: 700px;
+}
+
+.black-one-line {
+    color: black;
+    white-space: nowrap;
+}
+
+.dropdown-heading {
+    float:left;
+    font-size: 11px;
+}
+
+.flex-container {
+    height: 130px;
+    display: table;
+    position: relative;
+    top: 10px;
+}
+
+.dropdown-submenu {
+    position:relative;
+    width:1600px;
+    height:400px;
+    top:12px;
+    left:10px;
+    border-radius: 10px;
+}
+
+.push-left {
+    left: 130px;
+}
+
+.karat {
+    color: skyblue;
+}
+
+.select {
+    width: 30%;
+}
+
+#std {
+    margin-right: 60px;
+    width: 240px
+}
+
+#bridge-race {
+    width:205px;
+}
+
+#natality {
+    width: 145px;
+}
+
+#preg {
+    width:185px;
+}
+
+#behavior {
+    width:185px;
+}

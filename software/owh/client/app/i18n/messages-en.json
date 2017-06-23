@@ -4,7 +4,7 @@
   "label.search": "Search",
   "label.inline.charting": "Inline charting",
   "label.yrbs.question.charts": "YRBS question charts",
-  "label.group.by": "Group by",
+  "label.group.by": "Group by:",
   "label.group.by.tooltip": "Select if you want to see this information as table rows or columns",
   "label.show.more": "+ {{showLength}} more",
   "label.hide.more": "- {{hideLength}} less",
@@ -114,7 +114,7 @@
   "label.yrbs.sexual.orientation": "Sexual Orientation",
   "label.yrbs.sexual.identity": "Sexual Identity",
   "label.yrbs.sexual.contact": "Sex of Sexual Contacts",
-  "label.official.us.gov": "An official website of the United States Government. This site is work in progress and may contain inaccuracies. If you don't find what you need, visit {{qhdos}} or {{cdc}}",
+  "label.official.us.gov": "An official website of the United States Government.",
   "label.site.prototype": "This site is a prototype.",
   "label.learn.more": "Learn more.",
   "label.next.impl": "Work in progress",
@@ -140,8 +140,8 @@
   "label.graph.month":"Month and Deaths",
   "label.filter.mortality":"Detailed Mortality",
   "label.risk.behavior":"Youth Risk Behavior",
-  "label.interested.in":"I'm interested in",
-  "label.show.me":"show me",
+  "label.interested.in":"I'm interested in:",
+  "label.show.me":"Show me:",
   "label.clear":"CLEAR",
   "label.graph.expand.next":"This will be implemented in phase two. User can expand the graph and able to visualize data in detail",
   "label.title.yrbsSex.yrbsRace": "Sex and Race",
@@ -234,7 +234,7 @@
   "label.filter.age_of_mother": "Age of Mother",
 
   "label.help.text.year": "This field indicates year of birth.",
-  "label.help.text.sex": "This field indicates the gender of the child as recorded on the birth certificate.",
+  "label.help.text.sex": "This field indicates the sex of the child as recorded on the birth certificate.",
   "label.help.text.month": "This field indicates month of birth.",
   "label.help.text.week.day": "This field indicates weekday of birth.",
   "label.help.text.gestational.age": "This indicates range of weeks that represents the duration of the pregnancy at the time of birth.",
@@ -270,6 +270,8 @@
   "label.help.text.bridged-race.ethnicity": "This field indicates values of Ethnicities of the population.",
   "label.help.text.bridged-race.state": "This field indicates the State to be included in the data request.",
   "label.help.text.bridged-race.region": "This field indicates the Region to be included in the data request.",
+
+
 
   "label.prams.title": "Pregnancy Risk Assessment Monitoring System",
   "label.prams.filter.year": "Year",
@@ -318,6 +320,11 @@
   "label.help.text.question.obesity.overweight.weight.control": "These questions contain summaries of survey data on weight and obesity.",
   "label.help.text.question.dietary.behaviors": "These questions contain summaries of survey data on dietary behaviors,nutrition, and fat intake.",
   "label.help.text.question.other.health.topics": "These questions contain summaries of survey data related to a question on asthma.",
+
+  "label.help.text.infant_age_at_death": "This field indicates the age of infant at death.",
+  "label.help.text.infantmort.year": "This field indicates year of death.",
+  "label.help.text.infantmort.age.death": "This field indicates the age of infant at death.",
+  "label.help.text.infantmort.ucd": "This field represents the underlying cause of death from the death certificate.",
 
   "label.filter.std": "STD",
   "label.filter.tb": "Tuberculosis",

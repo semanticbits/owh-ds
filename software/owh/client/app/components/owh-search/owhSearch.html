@@ -12,16 +12,16 @@
         </div>
         <div class="usa-width-one-third margin-right-0 by-filter">
             <ui-select multiple ng-model="ots.filters.selectedPrimaryFilter.value"
-                       theme="bootstrap" name="filter" id="filter"
-                       class="usa-width-one-whole dashboard-element"
-                       on-select="ots.groupByFiltersUpdated(true)"
-                       on-remove="ots.groupByFiltersUpdated()">
-                <ui-select-match class="ui-select-match" allow-clear="true"
-                                 placeholder="Click here to type">{{$item.title | translate}}</ui-select-match>
-                <ui-select-choices class="ui-select-choices" group-by="'type'" ui-disable-choice="option.disableFilter"
-                                   repeat="option as option in ots.filters.selectedPrimaryFilter.allFilters | filter: $select.search">
-                    <div ng-bind-html="option.title | translate | highlight: $select.search"></div>
-                </ui-select-choices>
+            theme="bootstrap" name="filter" id="filter"
+            class="usa-width-one-whole dashboard-element"
+            on-select="ots.groupByFiltersUpdated(true)"
+            on-remove="ots.groupByFiltersUpdated()">
+            <ui-select-match class="ui-select-match" allow-clear="true"
+                             placeholder="Click here to type">{{$item.title | translate}}</ui-select-match>
+            <ui-select-choices class="ui-select-choices" group-by="'type'" ui-disable-choice="option.disableFilter"
+                               repeat="option as option in ots.filters.selectedPrimaryFilter.allFilters | filter: $select.search">
+                <div ng-bind-html="option.title | translate | highlight: $select.search"></div>
+            </ui-select-choices>
             </ui-select>
         </div>
         <div class="usa-width-one-fourth margin-right-0" ng-show="ots.filters.selectedPrimaryFilter.key === 'deaths'">

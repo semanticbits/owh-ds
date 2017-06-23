@@ -5,12 +5,12 @@
         .module('owh.services').
         service('filterUtils', filterUtils);
 
-    filterUtils.$inject = ['utilService', '$timeout'];
+    filterUtils.$inject = ['utilService', '$timeout', '$rootScope'];
 
     /**
      * This utility service is used to prepare the OWH search filters.
      */
-    function filterUtils(utilService, $timeout) {
+    function filterUtils(utilService, $timeout, $rootScope) {
         //filter options
         var yearOptions = [
             { "key": "2015", "title": "2015"},
@@ -924,7 +924,7 @@
                 {key: 'year_of_death', title: 'label.filter.year', queryKey:"year_of_death", primary: false, value: ["2014"],
                     defaultGroup:'column', groupBy: false, filterType: "checkbox",
                     // Data only available for 2000-2014
-                    autoCompleteOptions: yearOptions.slice(1), helpText:"label.help.text.year"},
+                    autoCompleteOptions: yearOptions.slice(1), helpText:"label.help.text.infantmort.year"},
 
                 {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'column', filterType: "checkbox",
@@ -977,7 +977,8 @@
                     helpText:"label.help.text.prenatal.care"},
 
                 {key: 'birth_weight', title: 'label.filter.birthWeight', queryKey:"birth_weight_r12", primary: false,
-                    value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: birthWeightR12Options},
+                    value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: birthWeightR12Options,
+                    helpText:"label.help.text.birth.weight"},
 
                 {key: 'birth_plurality', title: 'label.filter.plurality', queryKey:"birth_plurality", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
@@ -1002,8 +1003,16 @@
                 // Location
                 {key: 'state', title: 'label.filter.state', queryKey: 'state', primary: false,
                     value: [], defaultGroup: 'column', groupBy: false, filterType: 'checkbox',
-                    autoCompleteOptions: stateOptions, helpText: 'label.help.text.state'}
-            ]
+                    autoCompleteOptions: stateOptions, helpText: 'label.help.text.state'},
+
+                {key: 'ucd-chapter-10', title: 'label.filter.ucd', queryKey:"ICD_10_code", primary: true,
+                 value: [], defaultGroup:'column', groupBy: false, filterType: 'conditions',
+                 autoCompleteOptions: $rootScope.conditionsListICD10, helpText: 'label.help.text.infantmort.ucd'}
+
+                /*{key: 'mcd-chapter-10', title: 'label.filter.mcd', queryKey:"ICD_10_code", primary: false,
+                    value: [], defaultGroup:'column', groupBy: false, filterType: 'conditions',
+                 autoCompleteOptions: $rootScope.conditionsListICD10, helpText: ''}*/
+            ];
         }
 
         /**
@@ -1091,7 +1100,7 @@
                     doNotShowAll: true,
                     helpText: "label.help.text.sex"
                 }
-                ]
+                ];
 
         }
 
@@ -1169,7 +1178,7 @@
          * @return Side filters All option values
          */
         function getAllOptionValues() {
-            return ["Both sexes", "All races/ethnicities", "All age groups", "National"]
+            return ["Both sexes", "All races/ethnicities", "All age groups", "National"];
         }
 
     }

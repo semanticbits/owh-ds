@@ -31,7 +31,8 @@
             getMixedTable: getMixedTable,
             setFilterGroupBy: setFilterGroupBy,
             getYrbsQuestionsForTopic: getYrbsQuestionsForTopic,
-            getPramsQuestionsForTopics: getPramsQuestionsForTopics
+            getPramsQuestionsForTopics: getPramsQuestionsForTopics,
+            getPrimaryFilterByKey: getPrimaryFilterByKey
 
         };
         return service;
@@ -2040,7 +2041,7 @@
                     ]
                 },
                 {
-                    key: 'mental_health', title: 'label.risk.behavior', primary: true, value:[], header:"Youth risk behavior",
+                    key: 'mental_health', title: 'label.risk.behavior', primary: true, value:[], header:"Youth Risk Behavior",
                     searchResults: searchYRBSResults, dontShowInlineCharting: true,
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total', tableView:'Alcohol and Other Drug Use',
                     chartAxisLabel:'Percentage',
@@ -2834,6 +2835,18 @@
 
             filters.search[1].sideFilters = filters.search[1].basicSideFilters; //Set the default side filters for YRBS to basic
             return filters;
+        }
+
+        function getPrimaryFilterByKey(key) {
+            var allPrimaryFilter = getAllFilters().search;
+            var primaryFilter;
+            for(var i=0; i < allPrimaryFilter.length; i++) {
+                if (allPrimaryFilter[i].key === key) {
+                    primaryFilter = allPrimaryFilter[i];
+                    break;
+                }
+            }
+            return primaryFilter;
         }
 
         /*Show will be implemented in phase two modal*/

@@ -31,10 +31,12 @@ a, a:visited {
 	padding: 0;
 }
 .qh-box {
+	border-radius: 15px;
 	margin-top: 50px;
 	margin-bottom: 50px;
+	margin-left: 40px;
 	background-color: rgba(0,0,0,0.4);
-	padding: 40px 40px 40px 7%;
+	padding: 40px 40px 40px 40px;
 }
 .qh-small-header, .qh-large-header {
 	font-family: 'Merriweather';
@@ -95,6 +97,7 @@ text-align: center;
 	width: 40%;
 }
 }
+
 .qh-header, .usa-width-one-whole.qh-section, .sp-header {
 	transform-style: inherit;
 	position: relative;
@@ -224,6 +227,7 @@ hr.ng-scope {
 	position: relative;
 	transition: all 0.2s linear;
 	right: 0;
+	color: lightskyblue;
 }
 .qh-button:hover i, .dashboard-explore-links:hover i {
 	right: -4px;
@@ -305,9 +309,16 @@ a.custom-link i {
 h4.section-banner-title, .section-banner a.custom-link {
 	position: relative;
 	z-index: 1;
+	color: #833eb0;
 }
+
+.description-text {
+	color:lightskyblue;
+	font-size:18px;
+}
+
 h4.section-banner-title {
-	font-size: 2rem
+	font-size: 2rem;
 }
 .section-banner {
 	position: relative;
@@ -321,7 +332,7 @@ h4.section-banner-title {
 	content: "";
 	width: 100%;
 	height: 100%;
-	background: #833eb0;
+	/*background: #833eb0;*/
 	opacity: 0.8;
 	position: absolute;
 	top: 0;
@@ -421,7 +432,7 @@ h4.section-banner-title {
 	color: #e05c13;
 }
 .diseases .section-banner:after {
-	background: #e05c13
+	/*background: #e05c13*/
 }
 .womens-health h4.category-header, .womens-health .view-all-link .custom-link {
 	color: #663596;
