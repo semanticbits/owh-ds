@@ -18,7 +18,7 @@ describe("Search controller: ", function () {
             $templateCache = _$templateCache_;
             $q = _$q_;
 
-            searchController= $controller('SearchController',{$scope:$scope});
+            searchController= $controller('SearchController',{$scope:$scope, $stateParams:{primaryFilterKey:'deaths'}});
             $httpBackend.whenGET('app/i18n/messages-en.json').respond({ hello: 'World' });
             $httpBackend.whenGET('app/partials/marker-template.html').respond( $templateCache.get('app/partials/marker-template.html'));
             $httpBackend.whenGET('app/partials/home/home.html').respond( $templateCache.get('app/partials/home/home.html'));
@@ -32,6 +32,7 @@ describe("Search controller: ", function () {
             $searchFactory = searchFactory;
             filters = $searchFactory.getAllFilters();
             shareUtilService = $injector.get('shareUtilService');
+            searchController.searchFactory = searchFactory;
         });
     });
 
@@ -39,7 +40,7 @@ describe("Search controller: ", function () {
         var chartUtilService= {
             showExpandedGraph: function(){}
         };
-        var searchController= $controller('SearchController',{$scope:$scope, chartUtilService:chartUtilService});
+        searchController.chartUtilService = chartUtilService;
         searchController.showExpandedGraph([]);
     });
 
@@ -199,8 +200,6 @@ describe("Search controller: ", function () {
     it("downloadCSV should prepare mixedTable and call out to xlsService",inject(function(utilService, xlsService) {
         spyOn(utilService, 'prepareMixedTableData').and.returnValue({});
         spyOn(xlsService, 'exportCSVFromMixedTable');
-        var searchController= $controller('SearchController',{$scope:$scope});
-        searchController.filters = {selectedPrimaryFilter: {data: {}, value: []} };
         searchController.downloadCSV();
 
         expect(xlsService.exportCSVFromMixedTable).toHaveBeenCalled();
@@ -210,7 +209,6 @@ describe("Search controller: ", function () {
     it('downloadCSV should call out with the proper filename', inject(function(utilService, xlsService) {
         spyOn(utilService, 'prepareMixedTableData').and.returnValue({});
         spyOn(xlsService, 'exportCSVFromMixedTable');
-        var searchController= $controller('SearchController',{$scope:$scope});
         searchController.filters = {selectedPrimaryFilter: {data: {}, value: [], header: 'Mortality', allFilters: [
             {
                 key: 'year',
@@ -236,7 +234,6 @@ describe("Search controller: ", function () {
     it('downloadXLS should prepare mixedTable and call out to xlsService', inject(function(utilService, xlsService) {
         spyOn(utilService, 'prepareMixedTableData').and.returnValue({});
         spyOn(xlsService, 'exportXLSFromMixedTable');
-        var searchController= $controller('SearchController',{$scope:$scope});
         searchController.filters = {selectedPrimaryFilter: {data: {}} };
         searchController.downloadXLS();
 
@@ -245,7 +242,6 @@ describe("Search controller: ", function () {
     }));
 
     it('changeViewFilter should set the tableView and call out to search when runOnFilterChange is true', function() {
-        var searchController= $controller('SearchController',{$scope:$scope});
         spyOn(searchController, 'search');
         searchController.filters = {selectedPrimaryFilter: {data: {}, allFilters: [], sideFilters: [], runOnFilterChange:true}};
         searchController.changeViewFilter({key: 'number_of_deaths'});
@@ -255,7 +251,6 @@ describe("Search controller: ", function () {
     });
 
     it('changeViewFilter should set the tableView and does npt call search when runOnFilterChange is false', function() {
-        var searchController= $controller('SearchController',{$scope:$scope});
         spyOn(searchController, 'search');
         searchController.filters = {selectedPrimaryFilter: {data: {}, allFilters: [], sideFilters: [], runOnFilterChange:false}};
         searchController.changeViewFilter({key: 'number_of_deaths'});
@@ -265,7 +260,6 @@ describe("Search controller: ", function () {
     });
 
     it('changeViewFilter should replace ethnicity queryKey and options for crude_death_rates', function() {
-        var searchController= $controller('SearchController',{$scope:$scope});
         spyOn(searchController, 'search');
 
         var ethnicityFilter = {
@@ -302,7 +296,6 @@ describe("Search controller: ", function () {
     });
 
     it('should reset topic filter on changeViewFilter for prams class', function() {
-        var searchController= $controller('SearchController',{$scope:$scope});
         var utilService = $injector.get('utilService');
         var pramsFilters  =filters.search[4];
 
@@ -314,7 +307,6 @@ describe("Search controller: ", function () {
     });
 
     it('should reset question filter on changeViewFilter for prams class', function() {
-        var searchController= $controller('SearchController',{$scope:$scope});
         var utilService = $injector.get('utilService');
         var pramsFilters  =filters.search[4];
 
@@ -326,7 +318,6 @@ describe("Search controller: ", function () {
     });
 
     it('changeViewFilter should disable 2000, 2001, 2002 years for birth_rates', function() {
-        var searchController= $controller('SearchController',{$scope:$scope});
         spyOn(searchController, 'search');
         var filterUtils = $injector.get('filterUtils');
         var utilService = $injector.get('utilService');
@@ -348,7 +339,7 @@ describe("Search controller: ", function () {
     });
 
     it('changeViewFilter should disable 2000, 2001, 2002 years for fertility rates', function() {
-        var searchController= $controller('SearchController',{$scope:$scope});
+
         spyOn(searchController, 'search');
         var filterUtils = $injector.get('filterUtils');
         var utilService = $injector.get('utilService');
@@ -370,7 +361,6 @@ describe("Search controller: ", function () {
     });
 
     it('filterUtilities for yrbs should perform proper functions', function() {
-        var searchController= $controller('SearchController',{$scope:$scope});
         var confidenceIntervalOption = {
             title: 'Confidence Intervals',
             type: 'toggle',
@@ -439,7 +429,6 @@ describe("Search controller: ", function () {
     });
 
     it("search results by queryID", inject(function(searchFactory) {
-         var searchController= $controller('SearchController',{$scope:$scope, searchFactory: searchFactory});
          var utilService = $injector.get('utilService');
          var deferred = $q.defer();
          searchController.filters = filters;
@@ -454,8 +443,7 @@ describe("Search controller: ", function () {
     }));
 
     it('should share image to fb', inject(function () {
-
-        var searchController= $controller('SearchController',{$scope:$scope, shareUtilService: shareUtilService});
+        searchController.shareUtilService = shareUtilService;
         spyOn(shareUtilService, 'shareOnFb');
         searchController.showFbDialog('testIndex', 'Census race estimates', 'X$Tsdfdsf1324345');
         $scope.$apply();
@@ -481,13 +469,6 @@ describe("Search controller: ", function () {
     }));
 
     it('switch to YRBS Basic filter', inject(function(searchFactory) {
-
-        var searchController= $controller('SearchController',
-            {
-                $scope:$scope,
-                searchFactory: searchFactory,
-
-            });
         spyOn(searchController, 'search');
         searchController.filters.selectedPrimaryFilter = searchController.filters.search[1]; //select YRBS
         searchController.switchToYRBSBasic();
@@ -497,14 +478,7 @@ describe("Search controller: ", function () {
 
     }));
 
-    it('switch to YRBS advanced filter', inject(function(searchFactory) {
-
-        var searchController= $controller('SearchController',
-            {
-                $scope:$scope,
-                searchFactory: searchFactory,
-
-            });
+    it('switch to YRBS advanced filter', inject(function() {
         spyOn(searchController, 'search');
         searchController.filters.selectedPrimaryFilter = searchController.filters.search[1]; //select YRBS
         searchController.switchToYRBSAdvanced();
@@ -552,7 +526,6 @@ describe("Search controller: ", function () {
     }));
 
     it("should update prams questions based on change in prams class", inject(function () {
-        searchController.searchFactory = $searchFactory;
         var topicFilter = pramsFilters.sideFilters[0].sideFilters[0];
 
         searchController.filters = {selectedPrimaryFilter: pramsFilters};
@@ -601,7 +574,6 @@ describe("Search controller: ", function () {
     }));
 
     it("should update questions based on change in prams topic", inject(function () {
-        searchController.searchFactory = $searchFactory;
         //select a topic
         var topicFilter = pramsFilters.sideFilters[0].sideFilters[0];
             topicFilter.filters.value = ["cat_39"];
@@ -699,7 +671,7 @@ describe("Search controller: ", function () {
 
     it("On chart view change for std", inject(function(searchFactory) {
         var deferred = $q.defer();
-        var searchController= $controller('SearchController',{$scope:$scope, searchFactory: searchFactory});
+
         var utilService = $injector.get('utilService');
         searchController.filters = filters;
         filters.selectedPrimaryFilter = filters.search[6];
