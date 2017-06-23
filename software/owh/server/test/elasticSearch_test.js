@@ -97,7 +97,7 @@ describe("Elastic Search", function () {
     it("should aggregate bridged-race data by race and gender for 2015", function (){
         var tableQuery = {"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_pop":{"sum":{"field":"pop"}}}},"group_count_pop":{"sum":{"field":"pop"}}}},"group_count_pop":{"sum":{"field":"pop"}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}}}};
         var mapQuery = {"size":0,"aggregations":{"group_maps_0_states":{"terms":{"field":"state","size":0},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_pop":{"sum":{"field":"pop"}}}},"group_count_pop":{"sum":{"field":"pop"}}}},"group_count_pop":{"sum":{"field":"pop"}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}}}};
-        return new elasticSearch().aggregateCensusData([tableQuery, undefined, mapQuery], true).then(function (response) {
+        return new elasticSearch().aggregateCensusData([tableQuery, {}, mapQuery], true).then(function (response) {
             var race = response.data.nested.table.race;
             expect(race[0].name).to.eql("American Indian");
             expect(race[0].bridge_race).to.be(4577853);
