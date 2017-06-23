@@ -415,6 +415,7 @@
                             class="group-option" ng-if="$index < 3 || sideFilter.showAll || ($index < (3+ group.value.length) && group.displaySelectedFirst)">
                             <div ng-if="!option.group && (group.displaySelectedFirst?!sfc.isOptionSelected(option, group.value):true)">
                                <input id="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" name="{{group.queryKey}}" type="radio"
+                                      ng-disabled="sfc.isOptionDisabled(group, option)"
                                       ng-model="group.value" ng-value="option.key" ng-click="sfc.onFilterValueChange(sideFilter, category)">
                                 <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                                        ng-init="title = option.title">

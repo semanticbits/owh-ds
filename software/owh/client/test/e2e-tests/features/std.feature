@@ -31,6 +31,19 @@ Feature: STD page
     When I expand each STD filter
     Then every STD filter must have Radio buttons under then
 
+  Scenario: Congenital Syphilis selected
+    When I look at the sidebar
+    Then user clicks on "+ 2 more" more link for "Disease" filter
+    When  filter "Disease" and option "Congenital Syphilis" selected
+    Then expected filters should be disabled for std and aids-hiv
+
+  Scenario: Race/Ethnicity, Sex, Age Group - any sub option selected
+    When  filter "Disease" and option "Chlamydia" selected
+    Then  filter "Sex" and option "Female" selected
+    And "disease" filter option "Congenital Syphilis" should be disabled for "std"
+    And  filter "Sex" and option "Both sexes" selected
+    And "disease" filter option "Congenital Syphilis" should be enabled for "std"
+
   Scenario: STD Cases visualizations
     When user sees a visualization
     Then labels "Race/Ethnicity" and "Cases" are displayed on minimized visualization
