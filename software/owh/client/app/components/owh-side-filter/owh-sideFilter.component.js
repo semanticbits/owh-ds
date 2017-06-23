@@ -136,7 +136,7 @@
 
         }
 
-        function showModal(selectedFilter, allFilters) {
+        function showModal(selectedFilter, allFilters, propertyKey) {
             angular.forEach(allFilters, function(eachFilter) {
                 if (eachFilter.key !== selectedFilter.key){
                     clearSelection(eachFilter)
@@ -155,7 +155,16 @@
                         mc.codeKey = selectedFilter.key;
                         mc.entityName = selectedFilter.key === 'question' ? 'Question' : 'Cause(s) of Death';
                         mc.modelHeader = selectedFilter.key === 'question' ? 'label.select.question' : 'label.cause.death';
-                        mc.optionValues = selectedFilter.selectedNodes ? selectedFilter.selectedNodes : selectedFilter.selectedValues;
+
+                        if (propertyKey) {
+                            mc.optionValues = (selectedFilter.selectedNodes && selectedFilter.selectedNodes[propertyKey])
+                                ? selectedFilter.selectedNodes[propertyKey]
+                                : (selectedFilter.selectedValues ? selectedFilter.selectedValues[propertyKey] : []);
+                        }
+                        else {
+                            mc.optionValues = selectedFilter.selectedNodes ? selectedFilter.selectedNodes : selectedFilter.selectedValues;
+                        }
+
                         mc.questions = selectedFilter.questions;
                         mc.close = close;
                     }
@@ -166,27 +175,69 @@
                     modal.element.show();
                     modal.close.then(function (result) {
                         //remove all elements from array
-                        if(!selectedFilter.selectedValues || !selectedFilter.selectedNodes) {
-                            //selected nodes and their child nodes, which will be sent to backend for query
-                            selectedFilter.selectedValues = [];
-                            //selected nodes
-                            selectedFilter.selectedNodes = [];
+                        if (propertyKey) {
+                            if (!selectedFilter.selectedValues) {
+                                selectedFilter.selectedValues = {};
+                            }
+
+                            if (!selectedFilter.selectedNodes) {
+                                selectedFilter.selectedNodes = {};
+                            }
+
+                            if (!selectedFilter.selectedValues[propertyKey] || !selectedFilter.selectedNodes[propertyKey]) {
+                                //selected nodes and their child nodes, which will be sent to backend for query
+                                selectedFilter.selectedValues[propertyKey] = [];
+                                //selected nodes
+                                selectedFilter.selectedNodes[propertyKey] = [];
+                            }
+                            selectedFilter.selectedValues[propertyKey].length = 0;
+                            selectedFilter.selectedNodes[propertyKey].length = 0;
+                        } else {
+                            if (!selectedFilter.selectedValues || !selectedFilter.selectedNodes) {
+                                //selected nodes and their child nodes, which will be sent to backend for query
+                                selectedFilter.selectedValues = [];
+                                //selected nodes
+                                selectedFilter.selectedNodes = [];
+                            }
+                            selectedFilter.selectedValues.length = 0;
+                            selectedFilter.selectedNodes.length = 0;
                         }
-                        selectedFilter.selectedValues.length = 0;
-                        selectedFilter.selectedNodes.length = 0;
+
                         //To reflect the selected causes
                         angular.forEach(modal.controller.optionValues, function (eachOption, index) {
                             //get child nodes, if any and add to selected values
                             if (eachOption.childNodes && eachOption.childNodes.length > 0) {
                                 angular.forEach(eachOption.childNodes, function (childNode, index) {
-                                    selectedFilter.selectedValues.push(childNode);
+                                    if (propertyKey) {
+                                        selectedFilter.selectedValues[propertyKey].push(childNode);
+                                    } else {
+                                        selectedFilter.selectedValues.push(childNode);
+                                    }
                                 });
                             } else {
-                                selectedFilter.selectedValues.push(eachOption);
+                                if (propertyKey) {
+                                    selectedFilter.selectedValues[propertyKey].push(eachOption);
+                                } else {
+                                    selectedFilter.selectedValues.push(eachOption);
+                                }
                             }
-                            selectedFilter.selectedNodes.push(eachOption);
+
+                            if (propertyKey) {
+                                selectedFilter.selectedNodes[propertyKey].push(eachOption);
+                            } else {
+                                selectedFilter.selectedNodes.push(eachOption);
+                            }
                         });
-                        selectedFilter.value = utilService.getValuesByKey(selectedFilter.selectedValues, 'id');
+                        if (propertyKey) {
+                            if (!selectedFilter.value || Array.isArray(selectedFilter.value)) {
+                                selectedFilter.value = {};
+                            }
+
+                            selectedFilter.value[propertyKey] = utilService.getValuesByKey(selectedFilter.selectedValues[propertyKey], 'id');
+                        }
+                        else {
+                            selectedFilter.value = utilService.getValuesByKey(selectedFilter.selectedValues, 'id');
+                        }
                         modal.element.hide();
                         //  Run the filter call back only if runOnFilterChange is true
                         if(sfc.runOnFilterChange) {
