@@ -1042,7 +1042,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: stdDiseaseOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.natality.state"
+                    helpText: ""
                 },
 
                 {
@@ -1059,6 +1059,7 @@
                     queryKey: "age_group",
                     primary: false,
                     value: 'All age groups',
+                    defaultValue: 'All age groups',
                     groupBy: false,
                     filterType: 'radio',
                     autoCompleteOptions: diseaseAgeGroupOptions,
@@ -1072,6 +1073,7 @@
                     queryKey: "race_ethnicity",
                     primary: false,
                     value: 'All races/ethnicities',
+                    defaultValue: 'All races/ethnicities',
                     groupBy: "row",
                     filterType: 'radio',
                     autoCompleteOptions: diseaseRaceOptions,
@@ -1085,6 +1087,7 @@
                     queryKey: "sex",
                     primary: false,
                     value: 'Both sexes',
+                    defaultValue: 'Both sexes',
                     groupBy: "column",
                     filterType: 'radio',
                     autoCompleteOptions: diseaseGenderOptions,

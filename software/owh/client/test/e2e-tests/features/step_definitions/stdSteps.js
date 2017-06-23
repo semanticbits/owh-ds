@@ -152,6 +152,23 @@ var stdStepDefinitionsWrapper = function () {
             elements[1].click();
         }).then(next);
     });
+
+    this.Then(/^expected filters should be disabled for std and aids\-hiv$/, function (next) {
+        var allElements = element.all(by.css('.cursor-not-allowed')).all(By.css('.filter-display-name'));
+        allElements.getText().then(function (filters) {
+            filters.forEach(function (filter) {
+                expect(["Sex", "Race/Ethnicity", "Age Groups"]).to.include(filter);
+            });
+        }).then(next);
+    });
+
+    this.Then(/^"([^"]*)" filter option "([^"]*)" should be disabled for "([^"]*)"$/, function (arg1, arg2, arg3) {
+        return expect(element(by.id(arg3+'_'+arg1+'_'+arg2)).getAttribute('disabled')).to.eventually.equal('true');
+    });
+
+    this.Given(/^"([^"]*)" filter option "([^"]*)" should be enabled for "([^"]*)"$/, function (arg1, arg2, arg3) {
+        return expect(element(by.id(arg3+'_'+arg1+'_'+arg2)).getAttribute('disabled')).to.eventually.equal(null);
+    });
 };
 
 module.exports = stdStepDefinitionsWrapper;

@@ -56,7 +56,7 @@ class STDETL (ETL):
 
                 # suppression_cases or suppression_rate are equals to '1' means Data suppressed
                 # so we are setting cases and pop to -1 when data suppressed.
-                if(record['cases'] == 0 and record['suppression_cases'] == '1'):
+                if(record['suppression_cases'] == '1'):
                     record['cases'] = -1
                 if(record['suppression_rate'] == '1'):
                     record['pop'] = -1
