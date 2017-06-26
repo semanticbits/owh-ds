@@ -322,7 +322,9 @@
             isMap:true
         };
 
-        angular.extend(sc.filters.selectedPrimaryFilter.mapData, mapOptions);
+        if (sc.filters.selectedPrimaryFilter.mapData) {
+            angular.extend(sc.filters.selectedPrimaryFilter.mapData, mapOptions);
+        }
 
         function updateCharts() {
             angular.forEach(sc.filters.selectedPrimaryFilter.chartData, function (chartData) {
