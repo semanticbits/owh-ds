@@ -46,8 +46,19 @@ Feature: STD page
     And  filter "Sex" and option "Both sexes" selected
     And "disease" filter option "Congenital Syphilis" should be enabled for "std"
 
+  Scenario: Race/Ethnicity filter should be enabled/disabled on year change
+    When filter "Year" and option "2015" selected
+    Then all side filters should be enabled
+    And user clicks on "+ 13 more" more link for "Year" filter
+    When filter "Year" and option "2006" selected
+    Then filter "Race/Ethnicity" should be disabled
+    When filter "Year" and option "2015" selected
+    Then all side filters should be enabled
+    And the "Race/Ethnicity" filter should be toggled to "Off"
+
   Scenario: STD Cases visualizations
-    When user sees a visualization
+    When  I select groupBy "Row" option for "Race/Ethnicity" filter
+    And user sees a visualization
     Then labels "Race/Ethnicity" and "Cases" are displayed on minimized visualization
     When user expand visualization
     Then I should see grouped and stacked controls on expaned visualization

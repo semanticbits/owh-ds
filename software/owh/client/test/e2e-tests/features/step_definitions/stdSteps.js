@@ -187,6 +187,16 @@ var stdStepDefinitionsWrapper = function () {
     this.Given(/^"([^"]*)" filter option "([^"]*)" should be enabled for "([^"]*)"$/, function (arg1, arg2, arg3) {
         return expect(element(by.id(arg3+'_'+arg1+'_'+arg2)).getAttribute('disabled')).to.eventually.equal(null);
     });
+
+    this.Then(/^all side filters should be enabled$/, function () {
+        return expect(element(by.className('cursor-not-allowed')).isPresent()).to.eventually.equal(false);
+    });
+    this.Then(/^filter "([^"]*)" should be disabled$/, function (arg1, next) {
+        var allElements = element.all(by.css('.cursor-not-allowed')).all(By.css('.filter-display-name'));
+        allElements.getText().then(function (filters) {
+            expect(filters).to.include(arg1);
+        }).then(next);
+    });
 };
 
 module.exports = stdStepDefinitionsWrapper;
