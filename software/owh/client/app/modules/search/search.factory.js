@@ -2761,6 +2761,7 @@
                                    filterGroup: false,
                                    collapse: false,
                                    allowGrouping: true,
+                                   refreshFiltersOnChange: true,
                                    groupOptions: filters.groupOptions,
                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'current_year')
                                },
