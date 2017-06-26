@@ -1030,7 +1030,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseYearOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.year"
+                    helpText: "label.std.help.text.year"
                 },
                 {
                     key: 'disease',
@@ -1042,7 +1042,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: stdDiseaseOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.natality.state"
+                    helpText: "label.std.help.text.disease"
                 },
 
                 {
@@ -1050,7 +1050,7 @@
                     groupBy: false, filterType: 'radio', displaySearchBox: true, displaySelectedFirst: true,
                     autoCompleteOptions: diseaseStateOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.natality.state"
+                    helpText: "label.std.help.text.state"
                 },
 
                 {
@@ -1059,11 +1059,12 @@
                     queryKey: "age_group",
                     primary: false,
                     value: 'All age groups',
+                    defaultValue: 'All age groups',
                     groupBy: false,
                     filterType: 'radio',
                     autoCompleteOptions: diseaseAgeGroupOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.bridged-race.agegroup"
+                    helpText: "label.std.help.text.age.group"
                 },
 
                 {
@@ -1072,11 +1073,12 @@
                     queryKey: "race_ethnicity",
                     primary: false,
                     value: 'All races/ethnicities',
+                    defaultValue: 'All races/ethnicities',
                     groupBy: "row",
                     filterType: 'radio',
                     autoCompleteOptions: diseaseRaceOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.race"
+                    helpText: "label.std.help.text.race.ethnicity"
                 },
 
                 {
@@ -1085,11 +1087,12 @@
                     queryKey: "sex",
                     primary: false,
                     value: 'Both sexes',
+                    defaultValue: 'Both sexes',
                     groupBy: "column",
                     filterType: 'radio',
                     autoCompleteOptions: diseaseGenderOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.sex"
+                    helpText: "label.std.help.text.sex"
                 }
                 ]
 

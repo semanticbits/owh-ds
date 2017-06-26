@@ -304,7 +304,7 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
             var mapData = searchUtils.populateDataWithMappings(resp[1], diseaseName, 'cases');
             data.data.nested.maps = mapData.data.nested.maps;
             self.mergeWithCensusData(data, resp[2]);
-            isStateSelected && searchUtils.applySuppressions(data, 'std', 4);
+            isStateSelected && searchUtils.applySuppressions(data, indexType, 4);
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
