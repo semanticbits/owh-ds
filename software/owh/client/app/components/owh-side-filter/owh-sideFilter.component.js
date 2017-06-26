@@ -19,14 +19,16 @@
             }
         });
 
-    sideFilterController.$inject=['ModalService', 'utilService', 'searchFactory', 'SearchService'];
+    sideFilterController.$inject=['ModalService', 'utilService', 'searchFactory', 'SearchService', '$q'];
 
-    function sideFilterController(ModalService, utilService, searchFactory, SearchService){
+    function sideFilterController(ModalService, utilService, searchFactory, SearchService, $q){
         var sfc = this;
         sfc.getOptionCountPercentage = getOptionCountPercentage;
         sfc.getOptionCount = getOptionCount;
         sfc.showModal = showModal;
+        sfc.showMCDModal = showMCDModal;
         sfc.clearSelection = clearSelection;
+        sfc.clearMCDSelection = clearMCDSelection;
         sfc.updateGroupValue = updateGroupValue;
         sfc.getFilterOrder = getFilterOrder;
         sfc.isVisible = isVisible;
@@ -136,7 +138,8 @@
 
         }
 
-        function showModal(selectedFilter, allFilters, propertyKey) {
+        function showModal(selectedFilter, allFilters) {
+            var deferred = $q.defer();
             angular.forEach(allFilters, function(eachFilter) {
                 if (eachFilter.key !== selectedFilter.key){
                     clearSelection(eachFilter)
@@ -156,14 +159,7 @@
                         mc.entityName = selectedFilter.key === 'question' ? 'Question' : 'Cause(s) of Death';
                         mc.modelHeader = selectedFilter.key === 'question' ? 'label.select.question' : 'label.cause.death';
 
-                        if (propertyKey) {
-                            mc.optionValues = (selectedFilter.selectedNodes && selectedFilter.selectedNodes[propertyKey])
-                                ? selectedFilter.selectedNodes[propertyKey]
-                                : (selectedFilter.selectedValues ? selectedFilter.selectedValues[propertyKey] : []);
-                        }
-                        else {
-                            mc.optionValues = selectedFilter.selectedNodes ? selectedFilter.selectedNodes : selectedFilter.selectedValues;
-                        }
+                        mc.optionValues = selectedFilter.selectedNodes ? selectedFilter.selectedNodes : selectedFilter.selectedValues;
 
                         mc.questions = selectedFilter.questions;
                         mc.close = close;
@@ -175,70 +171,33 @@
                     modal.element.show();
                     modal.close.then(function (result) {
                         //remove all elements from array
-                        if (propertyKey) {
-                            if (!selectedFilter.selectedValues) {
-                                selectedFilter.selectedValues = {};
-                            }
-
-                            if (!selectedFilter.selectedNodes) {
-                                selectedFilter.selectedNodes = {};
-                            }
-
-                            if (!selectedFilter.selectedValues[propertyKey] || !selectedFilter.selectedNodes[propertyKey]) {
-                                //selected nodes and their child nodes, which will be sent to backend for query
-                                selectedFilter.selectedValues[propertyKey] = [];
-                                //selected nodes
-                                selectedFilter.selectedNodes[propertyKey] = [];
-                            }
-                            selectedFilter.selectedValues[propertyKey].length = 0;
-                            selectedFilter.selectedNodes[propertyKey].length = 0;
-                        } else {
-                            if (!selectedFilter.selectedValues || !selectedFilter.selectedNodes) {
-                                //selected nodes and their child nodes, which will be sent to backend for query
-                                selectedFilter.selectedValues = [];
-                                //selected nodes
-                                selectedFilter.selectedNodes = [];
-                            }
-                            selectedFilter.selectedValues.length = 0;
-                            selectedFilter.selectedNodes.length = 0;
+                        if (!selectedFilter.selectedValues || !selectedFilter.selectedNodes) {
+                            //selected nodes and their child nodes, which will be sent to backend for query
+                            selectedFilter.selectedValues = [];
+                            //selected nodes
+                            selectedFilter.selectedNodes = [];
                         }
+                        selectedFilter.selectedValues.length = 0;
+                        selectedFilter.selectedNodes.length = 0;
 
                         //To reflect the selected causes
                         angular.forEach(modal.controller.optionValues, function (eachOption, index) {
                             //get child nodes, if any and add to selected values
                             if (eachOption.childNodes && eachOption.childNodes.length > 0) {
                                 angular.forEach(eachOption.childNodes, function (childNode, index) {
-                                    if (propertyKey) {
-                                        selectedFilter.selectedValues[propertyKey].push(childNode);
-                                    } else {
-                                        selectedFilter.selectedValues.push(childNode);
-                                    }
+                                    selectedFilter.selectedValues.push(childNode);
                                 });
                             } else {
-                                if (propertyKey) {
-                                    selectedFilter.selectedValues[propertyKey].push(eachOption);
-                                } else {
-                                    selectedFilter.selectedValues.push(eachOption);
-                                }
+                                selectedFilter.selectedValues.push(eachOption);
                             }
 
-                            if (propertyKey) {
-                                selectedFilter.selectedNodes[propertyKey].push(eachOption);
-                            } else {
-                                selectedFilter.selectedNodes.push(eachOption);
-                            }
+                            selectedFilter.selectedNodes.push(eachOption);
                         });
-                        if (propertyKey) {
-                            if (!selectedFilter.value || Array.isArray(selectedFilter.value)) {
-                                selectedFilter.value = {};
-                            }
-
-                            selectedFilter.value[propertyKey] = utilService.getValuesByKey(selectedFilter.selectedValues[propertyKey], 'id');
-                        }
-                        else {
-                            selectedFilter.value = utilService.getValuesByKey(selectedFilter.selectedValues, 'id');
-                        }
+                        selectedFilter.value = utilService.getValuesByKey(selectedFilter.selectedValues, 'id');
                         modal.element.hide();
+
+                        deferred.resolve(selectedFilter);
+
                         //  Run the filter call back only if runOnFilterChange is true
                         if(sfc.runOnFilterChange) {
                             sfc.onFilter();
@@ -246,24 +205,60 @@
                     });
                 });
             }
+
+            return deferred.promise;
         }
 
-        function clearSelection(filter, resetGroupBy, propertyKey) {
+        function showMCDModal(selectedFilter, allFilters, propertyKey) {
+            if (!selectedFilter.selectedValues) {
+                selectedFilter.selectedValues = {};
+            }
+
+            if (!selectedFilter.selectedNodes) {
+                selectedFilter.selectedNodes = {};
+            }
+
+            if (!selectedFilter.value) {
+                selectedFilter.value = {};
+            }
+
+            sfc.showModal({
+                key: selectedFilter.key,
+                selectedValues: selectedFilter.selectedValues[propertyKey],
+                selectedNodes: selectedFilter.selectedNodes[propertyKey],
+                value: selectedFilter.value[propertyKey]
+            }, allFilters).then(function (filter) {
+                selectedFilter.selectedValues[propertyKey] = filter.selectedValues;
+                selectedFilter.selectedNodes[propertyKey] = filter.selectedNodes;
+                selectedFilter.value[propertyKey] = filter.value;
+            });
+        }
+
+        function clearSelection(filter, resetGroupBy) {
             if(resetGroupBy) {
                 filter.groupBy = false;
             }
 
             //remove all elements from array
-            if (propertyKey) {
-                filter.selectedNodes[propertyKey].length = 0;
-                filter.selectedValues[propertyKey].length = 0;
-                filter.value[propertyKey].length = 0;
+            filter.selectedNodes.length = 0;
+            filter.selectedValues.length = 0;
+            filter.value.length = 0;
+
+            //  Run the filter call back only if runOnFilterChange is true
+            if(sfc.runOnFilterChange) {
+                sfc.onFilter();
             }
-            else {
-                filter.selectedNodes.length = 0;
-                filter.selectedValues.length = 0;
-                filter.value.length = 0;
+        }
+
+        function clearMCDSelection(filter, resetGroupBy, propertyKey) {
+            if(resetGroupBy) {
+                filter.groupBy = false;
             }
+
+            //remove all elements from array
+            filter.selectedNodes[propertyKey].length = 0;
+            filter.selectedValues[propertyKey].length = 0;
+            filter.value[propertyKey].length = 0;
 
             //  Run the filter call back only if runOnFilterChange is true
             if(sfc.runOnFilterChange) {
@@ -292,7 +287,6 @@
 
             sfc.onFilterValueChange(sideFilter, category);
         }
-
 
         function onFilterValueChange(filter, category){
             //clear values for other filters for exclusive categories

@@ -176,7 +176,7 @@
                             <label for="{{group.key}}" class="custom-label" style="margin-bottom: 0">
                                 <button class="action-button condition-option"
                                         translate="{{group.selectedValues.set1 && group.selectedValues.set1.length > 0 ? group.updateTitle : group.selectTitle}}"
-                                        ng-click="sfc.showModal(group, [group], 'set1')"></button>
+                                        ng-click="sfc.showMCDModal(group, [group], 'set1')"></button>
 
                             </label>
                             <div ng-repeat="selectedValue in group.selectedValues.set1">
@@ -188,13 +188,13 @@
 
                             <div class="ucd-clear" ng-show="group.selectedValues.set1.length > 0 ">
                                 <button class="action-button" translate="label.clear"
-                                        ng-click="sfc.clearSelection(group, true, 'set1')"></button>
+                                        ng-click="sfc.clearMCDSelection(group, true, 'set1')"></button>
                             </div>
                         </li>
                         <!-- MCD filter set 1 -->
-                        </ul>
+                    </ul>
                     <ul class="usa-unstyled-list group-options" ng-if="!group.filterGroup" ng-hide="sideFilter.collapse">
-                        <li style="text-align:center;font-style:italic;font-size:13px;">and</li>
+                        <li style="text-align:center;font-style:italic;font-size:13px;">AND</li>
                     </ul>
                     <ul class="usa-unstyled-list group-options" ng-if="!group.filterGroup" ng-hide="sideFilter.collapse">
                         <!-- MCD filter set 2 -->
@@ -202,7 +202,7 @@
                             <label for="{{group.key}}" class="custom-label" style="margin-bottom: 0">
                                 <button class="action-button condition-option"
                                         translate="{{group.selectedValues.set2 && group.selectedValues.set2.length > 0 ? group.updateTitle : group.selectTitle}}"
-                                        ng-click="sfc.showModal(group, [group], 'set2')"></button>
+                                        ng-click="sfc.showMCDModal(group, [group], 'set2')"></button>
 
                             </label>
                             <div ng-repeat="selectedValue in group.selectedValues.set2">
@@ -214,7 +214,7 @@
 
                             <div class="ucd-clear" ng-show="group.selectedValues.set2.length > 0 ">
                                 <button class="action-button" translate="label.clear"
-                                        ng-click="sfc.clearSelection(group, true, 'set2')"></button>
+                                        ng-click="sfc.clearMCDSelection(group, true, 'set2')"></button>
                             </div>
                         </li>
                         <!-- MCD filter set 2 -->
