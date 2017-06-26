@@ -546,7 +546,7 @@
                             axisLabelDistance: -20,
                             axisLabel: "Year",
                             tickFormat: function (d) {
-                                return null;
+                                return d;
                             }
                         },
                         yAxis: {
@@ -674,7 +674,7 @@
                     expandedChartData.options.chart.showXAxis = true;
                     expandedChartData.options.chart.showYAxis = true;
 
-                    if (eachChartData.options.chart.type !== 'pieChart') {
+                    if (eachChartData.options.chart.type !== 'pieChart' && eachChartData.options.chart.type !== 'lineChart') {
                         expandedChartData.options.chart.xAxis.tickFormat = function (d) {
                             if (isNaN(d)) {
                                 return d;
@@ -732,6 +732,13 @@
                         expandedChartData.options.chart.margin.bottom = 50;
                         expandedChartData.options.chart.xAxis.axisLabelDistance = 5;
                         expandedChartData.options.chart.yAxis.axisLabelDistance = 20;
+
+                        expandedChartData.options.chart.yAxis.tickFormat = function (d) {
+                            if (isNaN(d)) {
+                                return d;
+                            }
+                            return d3.format(',f')(d);
+                        };
                     }
                     allExpandedChartDatas.push(expandedChartData);
                 });

@@ -232,6 +232,8 @@
   "label.filter.infant_mortality.gestation_recode10": "Gestational Age Group 2",
   "label.filter.infant_mortality.gestation_weekly": "Gestational Weekly",
   "label.filter.age_of_mother": "Age of Mother",
+  "label.title.year_of_death.race": "Year of Death and Race",
+  "label.title.year_of_death.sex": "Year of Death and Sex",
 
   "label.help.text.year": "This field indicates year of birth.",
   "label.help.text.sex": "This field indicates the gender of the child as recorded on the birth certificate.",
