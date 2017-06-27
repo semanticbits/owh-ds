@@ -62,3 +62,8 @@ Feature: STD page
   Scenario: STD suppression
     When I select "AL" state for "std"
     Then std data table should suppress results
+
+  Scenario: Age Groups filter options
+    When I look at the sidebar
+    Then user clicks on "+ 8 more" more link for "Age Groups" filter
+    And I see the available options "All age groups|0-14|15-19|20-24|25-29|30-34|35-39|40-44|45-54|55-64|65+" for "Age Groups"

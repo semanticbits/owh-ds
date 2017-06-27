@@ -95,8 +95,7 @@ var stdStepDefinitionsWrapper = function () {
         expect(element(by.id("std_race_Asian")).getAttribute("type")).to.eventually.equal("radio");
         //Age Groups
         expect(element(by.id("std_age_group_All age groups")).getAttribute("type")).to.eventually.equal("radio");
-        expect(element(by.id("std_age_group_Age 15 and older")).getAttribute("type")).to.eventually.equal("radio");
-        expect(element(by.id("std_age_group_0-4")).getAttribute("type")).to.eventually.equal("radio");
+        expect(element(by.id("std_age_group_0-14")).getAttribute("type")).to.eventually.equal("radio");
         //State
         expect(element(by.id("std_state_National")).getAttribute("type")).to.eventually.equal("radio");
         expect(element(by.id("std_state_AL")).getAttribute("type")).to.eventually.equal("radio");
