@@ -12,10 +12,10 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey) {
             }
         },
         pagination: {
-            total: resp.hits.total
+            total: resp? resp.hits.total : 0
         }
     };
-    if(resp.aggregations) {
+    if(resp && resp.aggregations) {
         var data = resp.aggregations;
         Object.keys(data).forEach(function (key) {
             var dataKey = '';
