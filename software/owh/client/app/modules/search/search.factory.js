@@ -106,8 +106,7 @@
                 primaryFilter.headers = tableData.headers;
                 primaryFilter.data = tableData.data;
                 primaryFilter.chartData = prepareChartData(response.data.resultData.headers, response.data.resultData.nested, primaryFilter);
-                primaryFilter.maps = response.data.resultData.nested.maps;
-                mapService.updateStatesDeaths(primaryFilter, primaryFilter.maps, primaryFilter.searchCount, mapOptions);
+                mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
             else if (response.data.queryJSON.key == 'natality') {
                 primaryFilter.data = response.data.resultData.nested.table;
@@ -128,6 +127,7 @@
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
+                mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
             //make sure side filters are in proper order
             angular.forEach(primaryFilter.sideFilters, function (category) {
@@ -2743,8 +2743,8 @@
                 },
                 {
                     key: 'std', title: 'label.filter.std', primary: true, value:[], header:"STD",
-                    allFilters: filters.stdFilters, searchResults: searchSTDResults, showMap: false,
-                    chartAxisLabel:'Cases', tableView:'std',
+                    allFilters: filters.stdFilters, searchResults: searchSTDResults, showMap: true,
+                    mapData:{}, chartAxisLabel:'Cases', tableView:'std',
                     chartViewOptions: filters.diseaseVizGroupOptions, defaultChartView: 'cases',
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
@@ -2793,8 +2793,8 @@
 
                 {
                     key: 'tb', title: 'label.filter.tb', primary: true, value:[], header:"Tuberculosis",
-                    allFilters: filters.tbFilters, searchResults: searchTBResults, showMap: false,
-                    chartAxisLabel:'Cases', tableView:'tb', defaultChartView: 'cases',
+                    allFilters: filters.tbFilters, searchResults: searchTBResults, showMap: true,
+                    mapData:{}, chartAxisLabel:'Cases', tableView:'tb', defaultChartView: 'cases',
                     chartViewOptions: filters.diseaseVizGroupOptions,
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[

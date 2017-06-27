@@ -337,6 +337,7 @@
   "label.std.help.text.state": "This field indicates the State where the STD surveillance data are collected",
   "label.std.help.text.sex": "This field indicates the current sex of the patient",
   "label.std.help.text.race.ethnicity": "This field indicates the Race/Ethnicity of the patient",
-  "label.std.help.text.age.group": "This field indicates the age group of the patient"
+  "label.std.help.text.age.group": "This field indicates the age group of the patient",
+  "label.selected.filters": "Selected Filters"
 
 }

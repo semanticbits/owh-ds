@@ -126,8 +126,8 @@ function search(q) {
         sideFilterTotalCountQuery.countQueryKey = 'pop';
         var sideFilterQuery = queryBuilder.buildSearchQuery(sideFilterTotalCountQuery, true);
 
-        new elasticSearch().aggregateCensusData(sideFilterQuery[0], isStateSelected).then(function (sideFilterResults) {
-            new elasticSearch().aggregateCensusData(finalQuery[0], isStateSelected).then(function (response) {
+        new elasticSearch().aggregateCensusData(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
+            new elasticSearch().aggregateCensusData(finalQuery, isStateSelected).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
                 resData.resultData = response.data;

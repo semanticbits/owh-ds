@@ -32,8 +32,6 @@
 
         var root = document.getElementsByTagName( 'html' )[0]; // '0' to assign the first (and only `HTML` tag)
         root.removeAttribute('class');
-        var mortalityFilter = null;
-        var bridgedRaceFilter = null;
 
         sc.sideMenu = {visible: true};
         sc.mapOptions = {selectedMapSize: 'big'};
@@ -41,16 +39,12 @@
         if($stateParams.selectedFilters == null) {
             sc.filters = searchFactory.getAllFilters();
             sc.filters.primaryFilters = utilService.findAllByKeyAndValue(sc.filters.search, 'primary', true);
-            mortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'deaths');
-            bridgedRaceFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'bridge_race');
             sc.filters.selectedPrimaryFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', $stateParams.primaryFilterKey);
         }
         //If user change filter then we are re routing search call and setting 'selectedFilters' and 'allFilters' params at line
         else {
             sc.filters = $stateParams.allFilters;
             sc.filters.primaryFilters = utilService.findAllByKeyAndValue(sc.filters.search, 'primary', true);
-            mortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'deaths');
-            bridgedRaceFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'bridge_race');
             sc.filters.selectedPrimaryFilter = $stateParams.selectedFilters;
 
         }
@@ -226,7 +220,6 @@
         }
 
         function setDefaults() {
-            sc.filters.selectedPrimaryFilter = mortalityFilter;
             var yearFilter = utilService.findByKeyAndValue(sc.filters.selectedPrimaryFilter.allFilters, 'key', 'year');
             yearFilter.value.push('2015');
 
@@ -363,13 +356,14 @@
                 }
             },
             controls: {
-                custom: [new mapExpandControl(), new mapShareControl()]
+                custom: []
             },
             isMap:true
-        }
-        angular.extend(mortalityFilter.mapData, mapOptions);
+        };
 
-        angular.extend(bridgedRaceFilter.mapData, mapOptions);
+        if (sc.filters.selectedPrimaryFilter.mapData) {
+            angular.extend(sc.filters.selectedPrimaryFilter.mapData, mapOptions);
+        }
 
         function updateCharts() {
             angular.forEach(sc.filters.selectedPrimaryFilter.chartData, function (chartData) {
@@ -604,6 +598,8 @@
 
         $scope.$on("leafletDirectiveMap.load", function (event, args) {
             var mapScaleControl = mapService.addScaleControl(sc.filters.selectedPrimaryFilter.mapData);
+            args.leafletObject.addControl(new mapExpandControl());
+            args.leafletObject.addControl(new mapShareControl());
             args.leafletObject.addControl(new mapScaleControl());
         });
 
