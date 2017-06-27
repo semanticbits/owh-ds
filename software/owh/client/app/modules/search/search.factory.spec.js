@@ -354,7 +354,15 @@ describe('search factory ', function(){
         it('updateFiltersAndData for std response', function(){
             var stdFilters = {primaryFilters: [filters.search[6]]};
             var result = searchFactory.updateFiltersAndData(stdFilters, stdSearchResponse, {'std': {}}, {});
+            console.log('result.primaryFilter.mapData');
+            console.log(JSON.stringify(result.primaryFilter.mapData));
             expect(JSON.stringify(result.primaryFilter.data)).toEqual(JSON.stringify(stdSearchResponse.data.resultData.nested.table));
+            var mapGeoData = result.primaryFilter.mapData.geojson.data;
+            expect(mapGeoData.features[0].properties.abbreviation).toEqual('AR');
+            expect(mapGeoData.features[0].properties.years).toEqual('2015');
+            expect(mapGeoData.features[0].properties.sex[0].name).toEqual('Both sexes');
+            expect(mapGeoData.features[0].properties.sex[1].name).toEqual('Female');
+            expect(mapGeoData.features[0].properties.sex[2].name).toEqual('Male');
         });
 
         it('searchSTDResults', function(){

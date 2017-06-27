@@ -188,6 +188,22 @@ var stdStepDefinitionsWrapper = function () {
         return expect(element(by.id(arg3+'_'+arg1+'_'+arg2)).getAttribute('disabled')).to.eventually.equal(null);
     });
 
+    this.Then(/^I see labels "([^"]*)" and "([^"]*)" are displayed on minimized visualization$/, function (arg1, arg2) {
+        var labelArray = stdPage.getAxisLabelsForMinimizedVisualization(0,1);
+        expect(labelArray[0].getText()).to.eventually.equal(arg1);
+        return expect(labelArray[1].getText()).to.eventually.equal(arg2);
+    });
+
+    this.Then(/^I see labels "([^"]*)" and "([^"]*)" are displayed on expanded visualization$/, function (arg1, arg2) {
+        var labelArray = stdPage.getAxisLabelsForExpandedVisualization(0);
+        expect(labelArray[0].getText()).to.eventually.equal(arg1);
+        return expect(labelArray[1].getText()).to.eventually.equal(arg2);
+    });
+
+    this.Then(/^I close visualization popup$/, function (next) {
+        element(by.css('span[title="Minimize graph"]')).click().then(next);
+    });
+
     this.Then(/^all side filters should be enabled$/, function () {
         return expect(element(by.className('cursor-not-allowed')).isPresent()).to.eventually.equal(false);
     });
