@@ -924,15 +924,15 @@
                 {key: 'year_of_death', title: 'label.filter.year', queryKey:"year_of_death", primary: false, value: ["2014"],
                     defaultGroup:'column', groupBy: false, filterType: "checkbox",
                     // Data only available for 2000-2014
-                    autoCompleteOptions: yearOptions.slice(1), helpText:"label.help.text.year"},
+                    autoCompleteOptions: yearOptions.slice(1), helpText:"label.help.text.infantmort.year"},
 
                 {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'column', filterType: "checkbox",
-                    autoCompleteOptions: genderOptions, helpText:"label.help.text.sex"},
+                    autoCompleteOptions: genderOptions, helpText:"label.help.text.infantmort.sex"},
 
                 {key: 'infant_age_at_death', title: 'label.filter.infant_age_at_death', queryKey: 'infant_age_at_death', primary: false,
                     value: [], defaultGroup: 'column', groupBy: false, filterType: 'checkbox',
-                    autoCompleteOptions: infantDeathAge, helpText: 'label.help.text.infant_age_at_death'},
+                    autoCompleteOptions: infantDeathAge, helpText: 'label.help.text.infantmort.age.death'},
 
                 // Maternal Characteristics
                 {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [],
@@ -945,7 +945,7 @@
 
                 {key: 'mother_age_5_interval', title: 'label.filter.age_of_mother', queryKey:"mother_age_5_interval",
                     primary: false, value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: ageR9Options, helpText:"label.help.text.mother.five.year.age"},
+                    autoCompleteOptions: ageR9Options, helpText:"label.help.text.infantmort.age.group"},
 
                 {key: 'marital_status', title: 'label.filter.maritalStatus', queryKey:"marital_status", primary: false,
                     value: [], defaultGroup:'column', groupBy:false, filterType: "checkbox",
@@ -959,17 +959,17 @@
                 {key: 'gestation_recode11', title: 'label.filter.infant_mortality.gestation_recode11', queryKey:"gestation_recode11",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: gestationalGroup1,
-                    helpText:"label.help.text.gestational.age"},
+                    helpText:"label.help.text.gestational.group.one"},
 
                 {key: 'gestation_recode10', title: 'label.filter.infant_mortality.gestation_recode10', queryKey:"gestation_recode10",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: gestationalGroup2,
-                    helpText:"label.help.text.gestational.age"},
+                    helpText:"label.help.text.gestational.group.two"},
 
                 {key: 'gestation_weekly', title: 'label.filter.infant_mortality.gestation_weekly', queryKey:"gestation_weekly",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: gestationWeekly,
-                    helpText:"label.help.text.gestational.age"},
+                    helpText:"label.help.text.gestational.weekly"},
 
                 {key: 'prenatal_care', title: 'label.filter.monthPrenatalCareBegan', queryKey:"prenatal_care",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
@@ -977,7 +977,8 @@
                     helpText:"label.help.text.prenatal.care"},
 
                 {key: 'birth_weight', title: 'label.filter.birthWeight', queryKey:"birth_weight_r12", primary: false,
-                    value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: birthWeightR12Options},
+                    value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
+                    autoCompleteOptions: birthWeightR12Options, helpText: "label.help.text.birth.weight"},
 
                 {key: 'birth_plurality', title: 'label.filter.plurality', queryKey:"birth_plurality", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",

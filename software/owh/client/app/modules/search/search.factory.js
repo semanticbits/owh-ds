@@ -2721,7 +2721,8 @@
                                         primary: true, value: [], groupBy: false, type:"label.filter.group.ucd", groupKey:"ucd",
                                         autoCompleteOptions: $rootScope.conditionsListICD10, filterType: 'conditions',
                                         selectTitle: 'select.label.filter.ucd', updateTitle: 'update.label.filter.ucd',
-                                        aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions}
+                                        aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions,
+                                        helpText:"label.help.text.infantmort.ucd"}
                                 }
 
                             ]
