@@ -73,7 +73,10 @@ class STDETL (ETL):
         logger.info("*** Processed %s records from std data file", self.metrics.insertCount)
 
     def updateDsMetadata(self):
-        for y in range(2000, 2016):
+        # for 2000 to 2006 years data, Race/Ethnicity column mapping not available for National and State
+        for y in range(2000, 2007):
+            self.loadDataSetMetaData('std', str(y), os.path.join(self.dataDirectory, 'data_mapping', 'std_00_06.json'))
+        for y in range(2007, 2016):
             self.loadDataSetMetaData('std', str(y), os.path.join(self.dataDirectory, 'data_mapping', 'std.json'))
 
     def validate_etl(self):

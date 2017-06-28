@@ -12,10 +12,10 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey) {
             }
         },
         pagination: {
-            total: resp.hits.total
+            total: resp? resp.hits.total : 0
         }
     };
-    if(resp.aggregations) {
+    if(resp && resp.aggregations) {
         var data = resp.aggregations;
         Object.keys(data).forEach(function (key) {
             var dataKey = '';
@@ -39,7 +39,7 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey) {
                 var dataIndex = Number(keySplits[2]);
                 var aggData = {};
                 // console.log("dataIndex: "+JSON.stringify(data[key].buckets));
-                aggData[dataKey] = populateAggregatedData(data[key].buckets, countKey, 3, true);
+                aggData[dataKey] = populateAggregatedData(data[key].buckets, countKey, 3, true, countQueryKey);
                 // console.log("data");
                 // console.log(dataIndex);
                 // console.log(dataKey);
