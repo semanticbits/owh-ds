@@ -271,6 +271,7 @@
   "label.help.text.bridged-race.state": "This field indicates the State to be included in the data request.",
   "label.help.text.bridged-race.region": "This field indicates the Region to be included in the data request.",
 
+  "label.help.text.agegroup" : "This field indicates the age group of the patient",
   "label.prams.title": "Pregnancy Risk Assessment Monitoring System",
   "label.prams.filter.year": "Year",
   "label.prams.filter.topic": "Topic",
@@ -301,8 +302,6 @@
   "label.help.text.prams.state" : "This field indicates the States for which PRAMS data is available",
   "label.help.text.prams.question" : "This field indicates the questions which were developed and tested and ultimately placed on the PRAMS questionnaire",
   "label.help.text.prams.response": "Response",
-
-
   "label.help.text.yrbs.year": "This field indicates year of the Youth Risk Behavior Survey (YRBS).",
   "label.help.text.yrbs.sex": "This field indicates the sex of the students who participated in the YRBS National Survey.",
   "label.help.text.yrbs.race.ethnicity": "This field indicates the Race/Ethnicity of the students who participated in the YRBS National Survey.",
@@ -319,17 +318,16 @@
   "label.help.text.question.dietary.behaviors": "These questions contain summaries of survey data on dietary behaviors,nutrition, and fat intake.",
   "label.help.text.question.other.health.topics": "These questions contain summaries of survey data related to a question on asthma.",
 
+  "label.help.text.tb.state": "This field indicates the State where the TB surveillance data are collected.",
+  "label.help.text.tb.race": "This field indicates the race/ethnicity of the patient.",
+  "label.help.text.tb.sex": "This field indicates the sex of the patient at birth.",
+  "label.help.text.tb.year": "This field indicates year of diagnosis or death.",
+  "label.help.text.state": "This field indicates mother's legal residence at the time of birth.",
+
   "label.filter.std": "STD",
   "label.filter.tb": "Tuberculosis",
   "label.filter.disease": "Disease",
   "label.title.age_group.race": "Age Group and Race",
   "label.title.sex.age_group": "Sex and Age Group",
-  "label.title.age_group.state": "Age Group and State",
-  "label.std.help.text.year": "This field indicates year of diagnosis or death",
-  "label.std.help.text.disease": "This field indicates the type of sexually transmitted disease",
-  "label.std.help.text.state": "This field indicates the State where the STD surveillance data are collected",
-  "label.std.help.text.sex": "This field indicates the current sex of the patient",
-  "label.std.help.text.race.ethnicity": "This field indicates the Race/Ethnicity of the patient",
-  "label.std.help.text.age.group": "This field indicates the age group of the patient"
-
+  "label.title.age_group.state": "Age Group and State"
 }

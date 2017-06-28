@@ -1115,7 +1115,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseYearOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.year"
+                    helpText: "label.help.text.tb.year"
                 },
                 {
                     key: 'age_group',
@@ -1139,7 +1139,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseRaceOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.race"
+                    helpText: "label.help.text.tb.race"
                 },
                 {
                     key: 'sex',
@@ -1151,7 +1151,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseGenderOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.sex"
+                    helpText: "label.help.text.tb.sex"
                 },
                 {
                     key: 'state', title: 'label.filter.state', queryKey: "state",
@@ -1160,7 +1160,7 @@
                     displaySearchBox: true, displaySelectedFirst: true,
                     autoCompleteOptions: diseaseStateOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.natality.state"
+                    helpText: "label.help.text.tb.state"
                 }
             ]
 
