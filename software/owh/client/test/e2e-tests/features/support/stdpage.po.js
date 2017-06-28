@@ -11,6 +11,24 @@ var STDpage = function() {
         return std.owhTable.element(by.id('clusterize-table')).element(by.tagName('tbody')).all(by.tagName('tr')).get(rowNumber).all(by.tagName('td')).getText();
     };
 
+    std.getFilter = function (target_filter) {
+        return element.all(by.className('side-pane-label')).filter(function (category) {
+            return category.element(by.className('filter-display-name')).getText()
+                .then(function (text) {
+                    return text === target_filter;
+                });
+        })
+            .first();
+    };
+    std.getDisabledFilterOptions = function (target_filter) {
+        return std.getFilter(target_filter)
+            .element(by.xpath('..'))
+            .element(by.tagName('ul')).all(by.className('disable-click'))
+            .map(function (label) {
+                return label.getText()
+            });
+    };
+
     std.getAxisLabelsForMinimizedVisualization= function (xIndex, yIndex) {
         //Verify Visualization has 'nv-axislabel' css class for both axis
         //minimized visualization has id starts with '.chart_'

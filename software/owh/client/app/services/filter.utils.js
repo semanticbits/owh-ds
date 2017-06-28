@@ -558,6 +558,19 @@
             {"key": "65+", "title": "65+"},
             {"key": "Unknown", "title": "Unknown"}
         ];
+        var stdAgeGroupOptions = [
+            {"key": "All age groups", "title": "All age groups"},
+            {"key": "0-14", "title": "0-14"},
+            {"key": "15-19", "title": "15-19"},
+            {"key": "20-24", "title": "20-24"},
+            {"key": "25-29", "title": "25-29"},
+            {"key": "30-34", "title": "30-34"},
+            {"key": "35-39", "title": "35-39"},
+            {"key": "40-44", "title": "40-44"},
+            {"key": "45-54", "title": "45-54"},
+            {"key": "55-64", "title": "55-64"},
+            {"key": "65+", "title": "65+"}
+        ];
         var diseaseRaceOptions = [
             {"key": "All races/ethnicities", "title": "All races/ethnicities"},
             {"key": "American Indian or Alaska Native", "title": "American Indian or Alaska Native"},
@@ -1062,7 +1075,7 @@
                     defaultValue: 'All age groups',
                     groupBy: false,
                     filterType: 'radio',
-                    autoCompleteOptions: diseaseAgeGroupOptions,
+                    autoCompleteOptions: stdAgeGroupOptions,
                     doNotShowAll: true,
                     helpText: "label.std.help.text.age.group"
                 },
