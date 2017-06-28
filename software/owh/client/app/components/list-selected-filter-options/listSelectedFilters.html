@@ -1,5 +1,5 @@
 <div class="margin-top-10 selected-filters">
-    <span ng-bind="'label.selected.filters' | translate"></span>:
+    <span ng-bind="'label.selected.filters' | translate" ng-if="lfc.appliedFilters.length>0"></span>
     <span ng-repeat="filter in lfc.appliedFilters | orderBy: lfc.getFilterOrder">
         <span ng-bind="filter.title | translate"></span>:
         <span ng-bind="lfc.getSelectedOptionTitlesOfFilter(filter);"></span>
