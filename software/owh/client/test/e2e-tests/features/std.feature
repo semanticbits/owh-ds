@@ -36,7 +36,7 @@ Feature: STD page
     Then user clicks on "+ 2 more" more link for "Disease" filter
     When filter "Disease" and option "Congenital Syphilis" selected
     Then user clicks on "+ 8 more" more link for "Race/Ethnicity" filter
-    Then user clicks on "+ 20 more" more link for "Age Groups" filter
+    Then user clicks on "+ 8 more" more link for "Age Groups" filter
     Then expected filters should be disabled for std
 
   Scenario: Race/Ethnicity, Sex, Age Group - any sub option selected
@@ -80,5 +80,4 @@ Feature: STD page
 
   Scenario: Age Groups filter options
     When I look at the sidebar
-    Then user clicks on "+ 8 more" more link for "Age Groups" filter
-    And I see the available options "All age groups|0-14|15-19|20-24|25-29|30-34|35-39|40-44|45-54|55-64|65+" for "Age Groups"
+    Then I see the available options "All age groups|0-14|15-19|20-24|25-29|30-34|35-39|40-44|45-54|55-64|65+" for "Age Groups"

@@ -158,7 +158,7 @@ var stdStepDefinitionsWrapper = function () {
         //All Sex filter options except "Both sexes"
         var expectedSexFilters = ["Female", "Male"];
         //All age group options except "All age groups"
-        var expectedAgeGroupFilters = ["Age 15 and older","0-4","0-14","05-14","13-24","15-19","15-24","15-39","20-24","25-29","25-34","30-34","35-39","35-44","40-44","40-59","45-54","55-64","55+","60+","65+","Unknown"];
+        var expectedAgeGroupFilters = ["0-14","15-19","20-24","25-29","30-34","35-39","40-44","45-54","55-64","65+"];
         stdPage.getDisabledFilterOptions("Race/Ethnicity").then(function (options) {
             expect(options.length > 0).equal(true);
             options.forEach(function (option, index) {
