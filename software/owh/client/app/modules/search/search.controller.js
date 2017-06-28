@@ -322,9 +322,15 @@
             isMap:true
         };
 
-        if (sc.filters.selectedPrimaryFilter.mapData) {
-            angular.extend(sc.filters.selectedPrimaryFilter.mapData, mapOptions);
-        }
+        var mortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'deaths');
+        var bridgeRaceFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'bridge_race');
+        var stdFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'std');
+        var tbFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'tb');
+
+        angular.extend(mortalityFilter.mapData, mapOptions);
+        angular.extend(bridgeRaceFilter.mapData, mapOptions);
+        angular.extend(stdFilter.mapData, mapOptions);
+        angular.extend(tbFilter.mapData, mapOptions);
 
         function updateCharts() {
             angular.forEach(sc.filters.selectedPrimaryFilter.chartData, function (chartData) {
@@ -628,6 +634,10 @@
                 sc.filters.selectedPrimaryFilter.defaultChartView = 'cases';
             }
             sc.filters.selectedPrimaryFilter.chartData =searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
+        }
+
+        function prepareMapOptions() {
+
         }
     }
 }());
