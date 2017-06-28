@@ -635,9 +635,5 @@
             }
             sc.filters.selectedPrimaryFilter.chartData =searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
         }
-
-        function prepareMapOptions() {
-
-        }
     }
 }());
