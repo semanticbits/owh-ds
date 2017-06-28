@@ -318,3 +318,16 @@ Scenario: Group by 'State' in age adjusted rate
     And I expand "Underlying Cause of Death" filter section
     When I set "Underlying Cause of Death" filter "Row"
     Then I see data in data table grouped by Underlying Cause of Death and Race
+
+  Scenario: Display selected filters at top
+    Given I am on search page
+    Then I see "Year: 2015" in list of applied filters
+    When I expand "Race" filter section
+    And  user select "American Indian or Alaska Native" option in "Race" filter
+    Then I see "Year: 2015 | Race: American Indian or Alaska Native" in list of applied filters
+
+    When user select "Asian or Pacific Islander" option in "Race" filter
+    Then I see "Year: 2015 | Race: American Indian or Alaska Native, Asian or Pacific Islander" in list of applied filters
+
+    When I deselect "American Indian or Alaska Native" option in "Race" filter
+    Then I see "Year: 2015 | Race: Asian or Pacific Islander" in list of applied filters

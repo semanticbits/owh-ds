@@ -232,6 +232,8 @@
   "label.filter.infant_mortality.gestation_recode10": "Gestational Age Group 2",
   "label.filter.infant_mortality.gestation_weekly": "Gestational Weekly",
   "label.filter.age_of_mother": "Age of Mother",
+  "label.title.year_of_death.race": "Year of Death and Race",
+  "label.title.year_of_death.sex": "Year of Death and Sex",
 
   "label.help.text.year": "This field indicates year of birth.",
   "label.help.text.sex": "This field indicates the gender of the child as recorded on the birth certificate.",
@@ -324,6 +326,13 @@
   "label.filter.disease": "Disease",
   "label.title.age_group.race": "Age Group and Race",
   "label.title.sex.age_group": "Sex and Age Group",
-  "label.title.age_group.state": "Age Group and State"
+  "label.title.age_group.state": "Age Group and State",
+  "label.std.help.text.year": "This field indicates year of diagnosis or death",
+  "label.std.help.text.disease": "This field indicates the type of sexually transmitted disease",
+  "label.std.help.text.state": "This field indicates the State where the STD surveillance data are collected",
+  "label.std.help.text.sex": "This field indicates the current sex of the patient",
+  "label.std.help.text.race.ethnicity": "This field indicates the Race/Ethnicity of the patient",
+  "label.std.help.text.age.group": "This field indicates the age group of the patient",
+  "label.selected.filters": "Selected Filters"
 
 }

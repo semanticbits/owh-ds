@@ -64,14 +64,20 @@
             }
         })();
 
-        function getRateVisibility(deaths, pop) {
-            if(deaths === 'suppressed' || pop === 'suppressed') {
+        function getRateVisibility(count, pop, tableView) {
+            if(count === 'suppressed' || pop === 'suppressed') {
                 return 'suppressed';
             }
-            if(!pop) {
+            //If population value is undefined
+            // OR
+            //If table view is equals to 'std' OR 'tb' OR 'hiv' OR 'disease_rate' and count == 'na'
+            //Then @return 'na'
+            if(!pop || (['std', 'tb', 'hiv', 'disease_rate'].indexOf(tableView) >= 0 && count === 'na')) {
                 return 'na';
             }
-            if(deaths < 20) {
+            //if table view is not equals to 'std' OR 'tb' OR 'hiv' OR 'disease_rate' and count < 20
+            //Basically we are skipping displaying 'unreliable' string for disease related data sets.
+            if(['std', 'tb', 'hiv', 'disease_rate'].indexOf(tableView) < 0 && count < 20) {
                 return 'unreliable';
             }
             return 'visible';
@@ -111,7 +117,7 @@
                                 var rateLabel = { 'crude_death_rates': 'Crude Death Rate', 'age-adjusted_death_rates': 'Age Adjusted Death Rate', 'birth_rates':'Birth Rate', 'fertility_rates':'Fertility Rate' }[otc.tableView] || 'Rate';
                                 cell += '<label class="owh-table__label">' + rateLabel + '</label>';
                             }
-                            var rateVisibility = getRateVisibility(column.title, column.pop);
+                            var rateVisibility = getRateVisibility(column.title, column.pop, otc.tableView);
                             if(otc.tableView === 'age-adjusted_death_rates') {
                                 cell += '<span>' + (column.ageAdjustedRate ? column.ageAdjustedRate : 'Not Available') + '</span>';
                             }
@@ -145,7 +151,10 @@
                             cell += '<span>';
                             if(column.title === 'suppressed') {
                                 cell += 'Suppressed';
-                            } else {
+                            }
+                            else if(column.title === 'na') {
+                                cell += 'Not Available';
+                            }else {
                                 cell += $filter('number')(column.title);
                             }
                             cell += '</span>';

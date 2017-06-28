@@ -67,16 +67,34 @@ describe('filterUtils', function(){
             var stdDataFilters= filterUtils.getSTDDataFilters();
             expect(stdDataFilters[0].key).toEqual('current_year');
             expect(stdDataFilters[0].value).toEqual('2015');
+            expect(stdDataFilters[0].helpText).toEqual('label.std.help.text.year');
             expect(stdDataFilters[1].key).toEqual('disease');
             expect(stdDataFilters[1].value).toEqual('Chlamydia');
+            expect(stdDataFilters[1].helpText).toEqual('label.std.help.text.disease');
             expect(stdDataFilters[2].key).toEqual('state');
             expect(stdDataFilters[2].value).toEqual('National');
+            expect(stdDataFilters[2].helpText).toEqual('label.std.help.text.state');
             expect(stdDataFilters[3].key).toEqual('age_group');
             expect(stdDataFilters[3].value).toEqual('All age groups');
+            expect(stdDataFilters[3].helpText).toEqual('label.std.help.text.age.group');
+            expect(stdDataFilters[3].autoCompleteOptions.length).toEqual(11);
+            expect(stdDataFilters[3].autoCompleteOptions[0].key).toEqual("All age groups");
+            expect(stdDataFilters[3].autoCompleteOptions[1].key).toEqual("0-14");
+            expect(stdDataFilters[3].autoCompleteOptions[2].key).toEqual("15-19");
+            expect(stdDataFilters[3].autoCompleteOptions[3].key).toEqual("20-24");
+            expect(stdDataFilters[3].autoCompleteOptions[4].key).toEqual("25-29");
+            expect(stdDataFilters[3].autoCompleteOptions[5].key).toEqual("30-34");
+            expect(stdDataFilters[3].autoCompleteOptions[6].key).toEqual("35-39");
+            expect(stdDataFilters[3].autoCompleteOptions[7].key).toEqual("40-44");
+            expect(stdDataFilters[3].autoCompleteOptions[8].key).toEqual("45-54");
+            expect(stdDataFilters[3].autoCompleteOptions[9].key).toEqual("55-64");
+            expect(stdDataFilters[3].autoCompleteOptions[10].key).toEqual("65+");
             expect(stdDataFilters[4].key).toEqual('race');
             expect(stdDataFilters[4].value).toEqual('All races/ethnicities');
+            expect(stdDataFilters[4].helpText).toEqual('label.std.help.text.race.ethnicity');
             expect(stdDataFilters[5].key).toEqual('sex');
             expect(stdDataFilters[5].value).toEqual('Both sexes');
+            expect(stdDataFilters[5].helpText).toEqual('label.std.help.text.sex');
         });
 
         it('When I call getAllOptionValues, I should get list of All option values', function(){

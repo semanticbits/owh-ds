@@ -63,11 +63,6 @@ var prepareAggregationQuery = function(aggregations, countQueryKey) {
                 elasticQuery.aggregations = merge(elasticQuery.aggregations, generateNestedAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_', countQueryKey));
             }
         }
-        if (aggregations['nested']['maps']) {
-            for(var index in aggregations['nested']['maps']) {
-                elasticQuery.aggregations = merge(elasticQuery.aggregations, generateNestedAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_', countQueryKey, true));
-            }
-        }
     }
     console.log(JSON.stringify(elasticQuery));
     return elasticQuery;
@@ -207,7 +202,10 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
         censusQuery.query.filtered.query = clonedPrimaryQuery;
         censusQuery.query.filtered.filter = clonedFilterQuery;
     }
-    return [elasticQuery, censusQuery];
+    //prepare query for map
+    var  mapQuery = buildMapQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery);
+
+    return [elasticQuery, censusQuery, mapQuery];
 };
 
 //build top-level bool query
@@ -852,6 +850,42 @@ function addCountsToAutoCompleteOptions(primaryFilter) {
         apiQuery.query = filterQuery;
     //}
     return apiQuery;
+}
+
+/**
+ * This function is used to prepare aggregation query for map
+ * @param aggregations
+ * @param countQueryKey
+ * @param primaryQuery
+ * @param filterQuery
+ * @returns {undefined}
+ */
+function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery) {
+
+    var mapQuery = undefined;
+
+    if (aggregations['nested'] && aggregations['nested']['maps']) {
+        mapQuery = { "size":0, aggregations: {} };
+        //prepare aggregations
+        for(var index in aggregations['nested']['maps']) {
+            mapQuery.aggregations = generateNestedAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_', countQueryKey, true);
+        }
+        //add quey criteria
+        mapQuery.query = {filtered:{}};
+        mapQuery.query.filtered.query = clone(primaryQuery);
+        mapQuery.query.filtered.filter = clone(filterQuery);
+
+        var mustFilters = mapQuery.query.filtered.filter.bool.must;
+        //We need data for all the states to prepare map,
+        //so if user selects any state, remove it from criteria
+        mustFilters.forEach(function(filter, index) {
+            if(filter.bool.should[0].term.state) {
+                mustFilters.splice(index, 1);
+            }
+        });
+    }
+
+    return mapQuery;
 }
 
 module.exports.prepareAggregationQuery = prepareAggregationQuery;

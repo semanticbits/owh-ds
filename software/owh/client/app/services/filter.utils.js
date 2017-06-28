@@ -558,6 +558,19 @@
             {"key": "65+", "title": "65+"},
             {"key": "Unknown", "title": "Unknown"}
         ];
+        var stdAgeGroupOptions = [
+            {"key": "All age groups", "title": "All age groups"},
+            {"key": "0-14", "title": "0-14"},
+            {"key": "15-19", "title": "15-19"},
+            {"key": "20-24", "title": "20-24"},
+            {"key": "25-29", "title": "25-29"},
+            {"key": "30-34", "title": "30-34"},
+            {"key": "35-39", "title": "35-39"},
+            {"key": "40-44", "title": "40-44"},
+            {"key": "45-54", "title": "45-54"},
+            {"key": "55-64", "title": "55-64"},
+            {"key": "65+", "title": "65+"}
+        ];
         var diseaseRaceOptions = [
             {"key": "All races/ethnicities", "title": "All races/ethnicities"},
             {"key": "American Indian or Alaska Native", "title": "American Indian or Alaska Native"},
@@ -1030,7 +1043,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseYearOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.year"
+                    helpText: "label.std.help.text.year"
                 },
                 {
                     key: 'disease',
@@ -1042,7 +1055,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: stdDiseaseOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.natality.state"
+                    helpText: "label.std.help.text.disease"
                 },
 
                 {
@@ -1050,7 +1063,7 @@
                     groupBy: false, filterType: 'radio', displaySearchBox: true, displaySelectedFirst: true,
                     autoCompleteOptions: diseaseStateOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.natality.state"
+                    helpText: "label.std.help.text.state"
                 },
 
                 {
@@ -1059,11 +1072,12 @@
                     queryKey: "age_group",
                     primary: false,
                     value: 'All age groups',
+                    defaultValue: 'All age groups',
                     groupBy: false,
                     filterType: 'radio',
-                    autoCompleteOptions: diseaseAgeGroupOptions,
+                    autoCompleteOptions: stdAgeGroupOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.bridged-race.agegroup"
+                    helpText: "label.std.help.text.age.group"
                 },
 
                 {
@@ -1072,11 +1086,12 @@
                     queryKey: "race_ethnicity",
                     primary: false,
                     value: 'All races/ethnicities',
+                    defaultValue: 'All races/ethnicities',
                     groupBy: "row",
                     filterType: 'radio',
                     autoCompleteOptions: diseaseRaceOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.race"
+                    helpText: "label.std.help.text.race.ethnicity"
                 },
 
                 {
@@ -1085,11 +1100,12 @@
                     queryKey: "sex",
                     primary: false,
                     value: 'Both sexes',
+                    defaultValue: 'Both sexes',
                     groupBy: "column",
                     filterType: 'radio',
                     autoCompleteOptions: diseaseGenderOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.sex"
+                    helpText: "label.std.help.text.sex"
                 }
                 ]
 

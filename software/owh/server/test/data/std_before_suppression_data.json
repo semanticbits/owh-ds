@@ -1,0 +1,683 @@
+{
+  "data": {
+    "simple": {
+      "group_table_race": [
+        {
+          "name": "All races/ethnicities",
+          "std": 52582,
+          "group_table_sex": [
+            {
+              "name": "Both sexes",
+              "std": 26359
+            },
+            {
+              "name": "Female",
+              "std": 18674
+            },
+            {
+              "name": "Male",
+              "std": 7549
+            }
+          ]
+        },
+        {
+          "name": "American Indian or Alaska Native",
+          "std": 84,
+          "group_table_sex": [
+            {
+              "name": "Both sexes",
+              "std": 42
+            },
+            {
+              "name": "Female",
+              "std": 35
+            },
+            {
+              "name": "Male",
+              "std": 7
+            }
+          ]
+        },
+        {
+          "name": "Asian",
+          "std": 124,
+          "group_table_sex": [
+            {
+              "name": "Both sexes",
+              "std": 62
+            },
+            {
+              "name": "Female",
+              "std": 45
+            },
+            {
+              "name": "Male",
+              "std": 17
+            }
+          ]
+        },
+        {
+          "name": "Black or African American",
+          "std": 26729,
+          "group_table_sex": [
+            {
+              "name": "Both sexes",
+              "std": 13367
+            },
+            {
+              "name": "Female",
+              "std": 9096
+            },
+            {
+              "name": "Male",
+              "std": 4266
+            }
+          ]
+        },
+        {
+          "name": "Hispanic or Latino",
+          "std": 522,
+          "group_table_sex": [
+            {
+              "name": "Both sexes",
+              "std": 261
+            },
+            {
+              "name": "Female",
+              "std": 195
+            },
+            {
+              "name": "Male",
+              "std": 66
+            }
+          ]
+        },
+        {
+          "name": "Multiple races",
+          "std": 86,
+          "group_table_sex": [
+            {
+              "name": "Both sexes",
+              "std": 43
+            },
+            {
+              "name": "Female",
+              "std": 32
+            },
+            {
+              "name": "Male",
+              "std": 11
+            }
+          ]
+        },
+        {
+          "name": "Native Hawaiian or Other Pacific Islander",
+          "std": 4,
+          "group_table_sex": [
+            {
+              "name": "Both sexes",
+              "std": 2
+            },
+            {
+              "name": "Female",
+              "std": 2
+            },
+            {
+              "name": "Male",
+              "std": 0
+            }
+          ]
+        },
+        {
+          "name": "Unknown",
+          "std": 15506,
+          "group_table_sex": [
+            {
+              "name": "Both sexes",
+              "std": 7818
+            },
+            {
+              "name": "Female",
+              "std": 5769
+            },
+            {
+              "name": "Male",
+              "std": 1919
+            }
+          ]
+        },
+        {
+          "name": "White",
+          "std": 9527,
+          "group_table_sex": [
+            {
+              "name": "Both sexes",
+              "std": 4764
+            },
+            {
+              "name": "Female",
+              "std": 3500
+            },
+            {
+              "name": "Male",
+              "std": 1263
+            }
+          ]
+        }
+      ],
+      "group_count_cases": [],
+      "group_chart_0_sex": [
+        {
+          "name": "Both sexes",
+          "std": 52718,
+          "group_chart_0_race": [
+            {
+              "name": "All races/ethnicities",
+              "std": 26359
+            },
+            {
+              "name": "American Indian or Alaska Native",
+              "std": 42
+            },
+            {
+              "name": "Asian",
+              "std": 62
+            },
+            {
+              "name": "Black or African American",
+              "std": 13367
+            },
+            {
+              "name": "Hispanic or Latino",
+              "std": 261
+            },
+            {
+              "name": "Multiple races",
+              "std": 43
+            },
+            {
+              "name": "Native Hawaiian or Other Pacific Islander",
+              "std": 2
+            },
+            {
+              "name": "Unknown",
+              "std": 7818
+            },
+            {
+              "name": "White",
+              "std": 4764
+            }
+          ]
+        },
+        {
+          "name": "Female",
+          "std": 37348,
+          "group_chart_0_race": [
+            {
+              "name": "All races/ethnicities",
+              "std": 18674
+            },
+            {
+              "name": "American Indian or Alaska Native",
+              "std": 35
+            },
+            {
+              "name": "Asian",
+              "std": 45
+            },
+            {
+              "name": "Black or African American",
+              "std": 9096
+            },
+            {
+              "name": "Hispanic or Latino",
+              "std": 195
+            },
+            {
+              "name": "Multiple races",
+              "std": 32
+            },
+            {
+              "name": "Native Hawaiian or Other Pacific Islander",
+              "std": 2
+            },
+            {
+              "name": "Unknown",
+              "std": 5769
+            },
+            {
+              "name": "White",
+              "std": 3500
+            }
+          ]
+        },
+        {
+          "name": "Male",
+          "std": 15098,
+          "group_chart_0_race": [
+            {
+              "name": "All races/ethnicities",
+              "std": 7549
+            },
+            {
+              "name": "American Indian or Alaska Native",
+              "std": 7
+            },
+            {
+              "name": "Asian",
+              "std": 17
+            },
+            {
+              "name": "Black or African American",
+              "std": 4266
+            },
+            {
+              "name": "Hispanic or Latino",
+              "std": 66
+            },
+            {
+              "name": "Multiple races",
+              "std": 11
+            },
+            {
+              "name": "Native Hawaiian or Other Pacific Islander",
+              "std": 0
+            },
+            {
+              "name": "Unknown",
+              "std": 1919
+            },
+            {
+              "name": "White",
+              "std": 1263
+            }
+          ]
+        }
+      ]
+    },
+    "nested": {
+      "table": {
+        "race": [
+          {
+            "name": "All races/ethnicities",
+            "std": 52582,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 26359,
+                "pop": 4849377
+              },
+              {
+                "name": "Female",
+                "std": 18674,
+                "pop": 2499410
+              },
+              {
+                "name": "Male",
+                "std": 7549,
+                "pop": 2349967
+              }
+            ],
+            "pop": 9698754
+          },
+          {
+            "name": "American Indian or Alaska Native",
+            "std": 84,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 42,
+                "pop": 26885
+              },
+              {
+                "name": "Female",
+                "std": 35,
+                "pop": 13714
+              },
+              {
+                "name": "Male",
+                "std": 7,
+                "pop": 13171
+              }
+            ],
+            "pop": 53770
+          },
+          {
+            "name": "Asian",
+            "std": 124,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 62,
+                "pop": 63140
+              },
+              {
+                "name": "Female",
+                "std": 45,
+                "pop": 33659
+              },
+              {
+                "name": "Male",
+                "std": 17,
+                "pop": 29481
+              }
+            ],
+            "pop": 126280
+          },
+          {
+            "name": "Black or African American",
+            "std": 26729,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 13367,
+                "pop": 1278519
+              },
+              {
+                "name": "Female",
+                "std": 9096,
+                "pop": 683562
+              },
+              {
+                "name": "Male",
+                "std": 4266,
+                "pop": 594957
+              }
+            ],
+            "pop": 2557038
+          },
+          {
+            "name": "Hispanic or Latino",
+            "std": 522,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 261,
+                "pop": 200664
+              },
+              {
+                "name": "Female",
+                "std": 195,
+                "pop": 92468
+              },
+              {
+                "name": "Male",
+                "std": 66,
+                "pop": 108196
+              }
+            ],
+            "pop": 401328
+          },
+          {
+            "name": "Multiple races",
+            "std": 86,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 43,
+                "pop": 68268
+              },
+              {
+                "name": "Female",
+                "std": 32,
+                "pop": 35050
+              },
+              {
+                "name": "Male",
+                "std": 11,
+                "pop": 33218
+              }
+            ],
+            "pop": 136536
+          },
+          {
+            "name": "Native Hawaiian or Other Pacific Islander",
+            "std": 4,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 2,
+                "pop": 2264
+              },
+              {
+                "name": "Female",
+                "std": 2,
+                "pop": 1096
+              },
+              {
+                "name": "Male",
+                "std": 0,
+                "pop": 1168
+              }
+            ],
+            "pop": 4528
+          },
+          {
+            "name": "Unknown",
+            "std": 15506,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 7818
+              },
+              {
+                "name": "Female",
+                "std": 5769
+              },
+              {
+                "name": "Male",
+                "std": 1919
+              }
+            ]
+          },
+          {
+            "name": "White",
+            "std": 9527,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 4764,
+                "pop": 3209637
+              },
+              {
+                "name": "Female",
+                "std": 3500,
+                "pop": 1639861
+              },
+              {
+                "name": "Male",
+                "std": 1263,
+                "pop": 1569776
+              }
+            ],
+            "pop": 6419274
+          }
+        ]
+      },
+      "charts": [
+        {
+          "sex": [
+            {
+              "name": "Both sexes",
+              "std": 52718,
+              "race": [
+                {
+                  "name": "All races/ethnicities",
+                  "std": 26359,
+                  "pop": 4849377
+                },
+                {
+                  "name": "American Indian or Alaska Native",
+                  "std": 42,
+                  "pop": 26885
+                },
+                {
+                  "name": "Asian",
+                  "std": 62,
+                  "pop": 63140
+                },
+                {
+                  "name": "Black or African American",
+                  "std": 13367,
+                  "pop": 1278519
+                },
+                {
+                  "name": "Hispanic or Latino",
+                  "std": 261,
+                  "pop": 200664
+                },
+                {
+                  "name": "Multiple races",
+                  "std": 43,
+                  "pop": 68268
+                },
+                {
+                  "name": "Native Hawaiian or Other Pacific Islander",
+                  "std": 2,
+                  "pop": 2264
+                },
+                {
+                  "name": "Unknown",
+                  "std": 7818
+                },
+                {
+                  "name": "White",
+                  "std": 4764,
+                  "pop": 3209637
+                }
+              ],
+              "pop": 9698754
+            },
+            {
+              "name": "Female",
+              "std": 37348,
+              "race": [
+                {
+                  "name": "All races/ethnicities",
+                  "std": 18674,
+                  "pop": 2499410
+                },
+                {
+                  "name": "American Indian or Alaska Native",
+                  "std": 35,
+                  "pop": 13714
+                },
+                {
+                  "name": "Asian",
+                  "std": 45,
+                  "pop": 33659
+                },
+                {
+                  "name": "Black or African American",
+                  "std": 9096,
+                  "pop": 683562
+                },
+                {
+                  "name": "Hispanic or Latino",
+                  "std": 195,
+                  "pop": 92468
+                },
+                {
+                  "name": "Multiple races",
+                  "std": 32,
+                  "pop": 35050
+                },
+                {
+                  "name": "Native Hawaiian or Other Pacific Islander",
+                  "std": 2,
+                  "pop": 1096
+                },
+                {
+                  "name": "Unknown",
+                  "std": 5769
+                },
+                {
+                  "name": "White",
+                  "std": 3500,
+                  "pop": 1639861
+                }
+              ],
+              "pop": 4998820
+            },
+            {
+              "name": "Male",
+              "std": 15098,
+              "race": [
+                {
+                  "name": "All races/ethnicities",
+                  "std": 7549,
+                  "pop": 2349967
+                },
+                {
+                  "name": "American Indian or Alaska Native",
+                  "std": 7,
+                  "pop": 13171
+                },
+                {
+                  "name": "Asian",
+                  "std": 17,
+                  "pop": 29481
+                },
+                {
+                  "name": "Black or African American",
+                  "std": 4266,
+                  "pop": 594957
+                },
+                {
+                  "name": "Hispanic or Latino",
+                  "std": 66,
+                  "pop": 108196
+                },
+                {
+                  "name": "Multiple races",
+                  "std": 11,
+                  "pop": 33218
+                },
+                {
+                  "name": "Native Hawaiian or Other Pacific Islander",
+                  "std": 0,
+                  "pop": 1168
+                },
+                {
+                  "name": "Unknown",
+                  "std": 1919
+                },
+                {
+                  "name": "White",
+                  "std": 1263,
+                  "pop": 1569776
+                }
+              ],
+              "pop": 4699934
+            }
+          ]
+        }
+      ],
+      "maps": {
+        "states": [
+          {
+            "name": "AL",
+            "std": 27,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 9
+              },
+              {
+                "name": "Female",
+                "std": 9
+              },
+              {
+                "name": "Male",
+                "std": 9
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "pagination": {
+    "total": 27
+  }
+}

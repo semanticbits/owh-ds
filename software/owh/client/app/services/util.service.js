@@ -817,7 +817,65 @@
         }
 
         /**
-         * Enables/disables side filters and filter options based on the dataser metadata
+         * To enable or disable given filter options
+         * @param sideFilters - all side filters
+         * @param givenFilters  - Array of filters which filter options to be disabled or enabled
+         * @param disabled  - boolean to disable or not
+         * @param toBeDisabledFilterOption - Specific filter option which needs to be disable
+         */
+        function enableOrDisableFilterOptions(sideFilters, givenFilters, disabled, toBeDisabledFilterOption){
+            for (var f = 0; f < sideFilters.length; f++) {
+                var sFilters = sideFilters[f].filters;
+                if (givenFilters.indexOf(sFilters.key) >= 0) {
+                    var filterOptions = $filter('filter')(sFilters.autoCompleteOptions, {key: "!"+sFilters.defaultValue});
+                    angular.forEach(filterOptions, function(option){
+                        option.disabled = disabled;
+                    });
+                    //If filter options are disabled, then set filter value to default value
+                    if(disabled){
+                        sFilters.value = sFilters.defaultValue;
+                    }
+                    //else if a specific filter options provided
+                    //Verify any one of given filter options selected then disable given filter option
+                    else if(toBeDisabledFilterOption) {
+                        var found = $filter('filter')(filterOptions, {key: sFilters.value}, true);
+                        if (found.length > 0 && !toBeDisabledFilterOption.disabled) {
+                            toBeDisabledFilterOption.disabled = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        /**
+         * If user selects Disease -> 'Congenital Syphilis' then
+         * disable 'Sex', 'Race/Ethnicity' and  'Age Group' filter options except 'Both Sexes', 'All races/ethnicities', 'All age groups' and
+         * set Sex -> Both Sexes, Race/Ethnicity -> All races/ethnicities, Age Group -> All age groups.
+         * If user selects Sex OR Race/Ethinicity OR Age Group options other than 'Both Sexes' and 'All races/ethnicities' and 'All age groups' then
+         * disable Disease -> 'Congenital Syphilis' option
+         * @param filterName
+         * @param filterValue
+         * @param sideFilters
+         */
+        function refreshDiseaseFilterOptions(filterName, filterValue, sideFilters) {
+            //To capture Sex, Race/Ethnicity, Age Group filter options
+           // var filterOptions = [];
+            var filters = ['sex', 'race', 'age_group'];
+            //If user selects Disease -> 'Congenital Syphilis'
+            if (filterName === 'disease' && filterValue === 'Congenital Syphilis') {
+                enableOrDisableFilterOptions(sideFilters, filters, true);
+            }
+            else {
+                //Get Disease -> 'Congenital Syphilis' option
+                var congentialSyphilisOpt = sideFilters[0].filters.autoCompleteOptions[4];
+                // Enable disease 'Congenital Syphilis' filter option
+                congentialSyphilisOpt.disabled = false;
+                enableOrDisableFilterOptions(sideFilters, filters, false, congentialSyphilisOpt);
+            }
+        }
+
+        /**
+         * Enables/disables side filters and filter options based on the dataset metadata
          * @param filter filter to be used for the querying ds metadata
          * @param categories sidefilter categories
          * @param datasetname name of dataset          */
@@ -828,40 +886,54 @@
             });
             var filterName = filter.queryKey;
             var filterValue = filter.value;
-            SearchService.getDsMetadata(datasetname, filterValue ? filterValue.join(',') : null).then(function (response) {
-                var newFilters = response.data;
-                for (var f=0; f < sideFilters.length; f++) {
-                    var fkey = sideFilters[f].filters.queryKey;
-                    if (fkey === 'ethnicity_group' && datasetname == 'deaths') {
-                       fkey = 'hispanic_origin';
-                    }
-                    if (fkey !== filterName) {
-                        if (fkey in newFilters) {
-                            sideFilters[f].disabled = false;
-                            if (newFilters[fkey]) {
-                                var fopts = sideFilters[f].filters.autoCompleteOptions;
-                                for (var opt in fopts) {
-                                    if (newFilters[fkey].indexOf(fopts[opt].key) >= 0) {
-                                        fopts[opt].disabled = false;
-                                    }
-                                    //below condition only disable filters which are not parent(with no child filters) and
-                                    // not found in response metadata.
-                                    else if(!fopts[opt].group && fopts[opt].key != 'Hispanic') {
-                                        fopts[opt].disabled = true;
+            //For STD and HIV-AIDS
+            if(filterName === 'disease' && datasetname === 'std'){
+                refreshDiseaseFilterOptions(filterName, filterValue, sideFilters);
+            }
+            /**
+             * Get ds metadata based on selected year and enable/disable sidefilters.
+             */
+            else {
+                var filterValueArray = null;
+                if(filterValue) {
+                    filterValueArray = angular.isArray(filterValue) ? filterValue.join(',') : [filterValue];
+                }
+                SearchService.getDsMetadata(datasetname, filterValueArray).then(function (response) {
+                    var newFilters = response.data;
+                    for (var f=0; f < sideFilters.length; f++) {
+                        var fkey = sideFilters[f].filters.queryKey;
+                        if (fkey === 'ethnicity_group' && datasetname == 'deaths') {
+                            fkey = 'hispanic_origin';
+                        }
+                        if (fkey !== filterName) {
+                            if (fkey in newFilters) {
+                                sideFilters[f].disabled = false;
+                                if (newFilters[fkey]) {
+                                    var fopts = sideFilters[f].filters.autoCompleteOptions;
+                                    for (var opt in fopts) {
+                                        if (newFilters[fkey].indexOf(fopts[opt].key) >= 0) {
+                                            fopts[opt].disabled = false;
+                                        }
+                                        //below condition only disable filters which are not parent(with no child filters) and
+                                        // not found in response metadata.
+                                        else if(!fopts[opt].group && fopts[opt].key != 'Hispanic') {
+                                            fopts[opt].disabled = true;
+                                        }
                                     }
                                 }
+                            } else {
+                                sideFilters[f].filters.value = [];
+                                sideFilters[f].filters.groupBy = false;
+                                sideFilters[f].disabled = true;
                             }
-                        } else {
-                            sideFilters[f].filters.value = [];
-                            sideFilters[f].filters.groupBy = false;
-                            sideFilters[f].disabled = true;
                         }
                     }
-                }
-            }, function (error) {
-                angular.element(document.getElementById('spindiv')).addClass('ng-hide');
-                console.log(error);
-            });
+                }, function (error) {
+                    angular.element(document.getElementById('spindiv')).addClass('ng-hide');
+                    console.log(error);
+                });
+            }
+
         }
 
         function clone (a) {
