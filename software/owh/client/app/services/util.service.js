@@ -887,14 +887,18 @@
             var filterName = filter.queryKey;
             var filterValue = filter.value;
             //For STD and HIV-AIDS
-            if(datasetname === 'std' || datasetname === 'aids'){
+            if(filterName === 'disease' && datasetname === 'std'){
                 refreshDiseaseFilterOptions(filterName, filterValue, sideFilters);
             }
             /**
              * Get ds metadata based on selected year and enable/disable sidefilters.
              */
             else {
-                SearchService.getDsMetadata(datasetname, filterValue ? filterValue.join(',') : null).then(function (response) {
+                var filterValueArray = null;
+                if(filterValue) {
+                    filterValueArray = angular.isArray(filterValue) ? filterValue.join(',') : [filterValue];
+                }
+                SearchService.getDsMetadata(datasetname, filterValueArray).then(function (response) {
                     var newFilters = response.data;
                     for (var f=0; f < sideFilters.length; f++) {
                         var fkey = sideFilters[f].filters.queryKey;
