@@ -32,12 +32,16 @@ class MortalityIndexer (ETL):
     def _process_conditions(self, record, condn_axis, condn_col_prefix):
         condcount = record[condn_axis]
         conditions = []
+        condnheierarchy = []
         for i in range(1,21):
             condcolname = '%s%d' % (condn_col_prefix, i)
             if record[condcolname]:
-                conditions.append(record[condcolname])
+                conditions.append(record[condcolname].upper())
+                parents = self.icd_10_code_mappings.get(record[condcolname].upper())
+                if parents:
+                    condnheierarchy+= parents
             del record[condcolname]
-        record[condn_axis[:-6]] = conditions
+        record[condn_axis[:-6]] = {'code': conditions, 'path' : condnheierarchy}
 
     def perform_etl(self):
         """Perform the mortality ETL"""
