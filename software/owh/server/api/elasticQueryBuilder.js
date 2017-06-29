@@ -174,7 +174,7 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     * If user select groupBy column / row for any filter then this logic will remove 'All' filter from filter query
     * So that data table display all options for that filter
     */
-    if((params.searchFor == 'std' || params.searchFor == 'tb') && params.aggregations['nested'] && params.aggregations['nested']['table']) {
+    if((params.searchFor == 'std' || params.searchFor == 'tb' || params.searchFor == 'aids') && params.aggregations['nested'] && params.aggregations['nested']['table']) {
         params.aggregations['nested']['table'].forEach(function (aggregation) {
             Object.keys(userQuery).forEach(function(key){
                 var eachObject = userQuery[key];

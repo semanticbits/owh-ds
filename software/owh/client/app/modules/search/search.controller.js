@@ -93,7 +93,8 @@
                 'ucd-chapter-10', 'state'],
             "label.prams.title": [],
             "label.filter.std": [],
-            "label.filter.tb": []
+            "label.filter.tb": [],
+            "label.filter.aids": []
         };
 
         sc.optionsGroup = {
@@ -128,6 +129,7 @@
             std:{},
             disease_rate:{},
             tb:{},
+            aids: {},
             mental_health:{},
             natality:{},
             prams:{},
@@ -326,11 +328,13 @@
         var bridgeRaceFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'bridge_race');
         var stdFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'std');
         var tbFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'tb');
+        var aidsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'aids');
 
         angular.extend(mortalityFilter.mapData, mapOptions);
         angular.extend(bridgeRaceFilter.mapData, mapOptions);
         angular.extend(stdFilter.mapData, mapOptions);
         angular.extend(tbFilter.mapData, mapOptions);
+        angular.extend(aidsFilter.mapData, mapOptions);
 
         function updateCharts() {
             angular.forEach(sc.filters.selectedPrimaryFilter.chartData, function (chartData) {
