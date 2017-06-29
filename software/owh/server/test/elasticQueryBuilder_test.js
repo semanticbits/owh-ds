@@ -54,7 +54,6 @@ describe("Build elastic search queries", function(){
         expect(query.aggregations).to.have.property('year');
         expect(query.aggregations).to.have.property('group_table_gender');
         expect(query.aggregations).to.have.property('group_chart_0_gender');
-        expect(query.aggregations).to.have.property('group_maps_0_states');
         expect(query.aggregations.group_table_gender.aggregations).to.have.property('group_table_race');
         expect(query.aggregations.group_table_gender.aggregations.group_table_race.aggregations).to.have.property('group_table_year');
         expect(query.size).to.eql(0);
@@ -67,6 +66,11 @@ describe("Build elastic search queries", function(){
         expect(censusQuery.aggregations.group_table_gender.aggregations.group_table_race.aggregations.group_table_year.aggregations).to.have.property('pop');
         expect(censusQuery.aggregations.group_table_gender.aggregations.group_table_race.aggregations.group_table_year.aggregations.pop.sum.field).to.eql("pop");
         expect(censusQuery.aggregations.group_chart_0_gender.aggregations.group_chart_0_race.aggregations.pop.sum.field).to.eql("pop");
+
+        var mapQuery = result[2];
+        expect(mapQuery.aggregations).to.have.property('group_maps_0_states');
+        expect(mapQuery.aggregations.group_maps_0_states.terms.field).to.eql('state');
+        expect(mapQuery.aggregations.group_maps_0_states.aggregations.group_maps_0_sex.terms.field).to.eql('sex');
         done()
     });
 

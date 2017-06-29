@@ -34,8 +34,10 @@ Feature: STD page
   Scenario: Congenital Syphilis selected
     When I look at the sidebar
     Then user clicks on "+ 2 more" more link for "Disease" filter
-    When  filter "Disease" and option "Congenital Syphilis" selected
-    Then expected filters should be disabled for std and aids-hiv
+    When filter "Disease" and option "Congenital Syphilis" selected
+    Then user clicks on "+ 8 more" more link for "Race/Ethnicity" filter
+    Then user clicks on "+ 8 more" more link for "Age Groups" filter
+    Then expected filters should be disabled for std
 
   Scenario: Race/Ethnicity, Sex, Age Group - any sub option selected
     When  filter "Disease" and option "Chlamydia" selected
@@ -44,21 +46,38 @@ Feature: STD page
     And  filter "Sex" and option "Both sexes" selected
     And "disease" filter option "Congenital Syphilis" should be enabled for "std"
 
+  Scenario: Race/Ethnicity filter should be enabled/disabled on year change
+    When filter "Year" and option "2015" selected
+    Then all side filters should be enabled
+    And user clicks on "+ 13 more" more link for "Year" filter
+    When filter "Year" and option "2006" selected
+    Then filter "Race/Ethnicity" should be disabled
+    When filter "Year" and option "2015" selected
+    Then all side filters should be enabled
+    And the "Race/Ethnicity" filter should be toggled to "Off"
+
   Scenario: STD Cases visualizations
-    When user sees a visualization
-    Then labels "Race/Ethnicity" and "Cases" are displayed on minimized visualization
+    When  I select groupBy "Row" option for "Race/Ethnicity" filter
+    And user sees a visualization
+    Then I see labels "Race/Ethnicity" and "Cases" are displayed on minimized visualization
     When user expand visualization
     Then I should see grouped and stacked controls on expaned visualization
-    And labels "Race/Ethnicity" and "Cases" are displayed on expanded visualization
+    And  I see labels "Race/Ethnicity" and "Cases" are displayed on expanded visualization
+    And I close visualization popup
 
   Scenario: STD Rates visualizations
     When I click on Rate chart view toggle button
     And user sees a visualization
-    Then labels "Race/Ethnicity" and "Rates" are displayed on minimized visualization
+    Then I see labels "Race/Ethnicity" and "Rates" are displayed on minimized visualization
     When user expand visualization
     Then I should not see grouped and stacked controls on expanded visualization
-    And labels "Race/Ethnicity" and "Rates" are displayed on expanded visualization
+    And  I see labels "Race/Ethnicity" and "Rates" are displayed on expanded visualization
+    And I close visualization popup
 
   Scenario: STD suppression
     When I select "AL" state for "std"
     Then std data table should suppress results
+
+  Scenario: Age Groups filter options
+    When I look at the sidebar
+    Then I see the available options "All age groups|0-14|15-19|20-24|25-29|30-34|35-39|40-44|45-54|55-64|65+" for "Age Groups"
