@@ -1071,7 +1071,6 @@ var mortalityStepDefinitionsWrapper = function () {
         mortalityPage.getSelectedFilters().then(function (items, next) {
             items.forEach(function (item) {
                 item.getText().then(function (text) {
-                    console.log(text);
                     expect(selectedFilters).to.contains(text);
                 });
             });

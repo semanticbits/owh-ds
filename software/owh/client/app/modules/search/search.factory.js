@@ -120,7 +120,7 @@
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
             }
             else if (response.data.queryJSON.key == 'std' ||
-                response.data.queryJSON.key == 'tb') {
+                response.data.queryJSON.key == 'tb' || response.data.queryJSON.key === 'aids') {
                 primaryFilter.nestedData = response.data.resultData.nested;
                 primaryFilter.data = response.data.resultData.nested.table;
                 populateSideFilterTotals(primaryFilter, response.data);
@@ -1143,6 +1143,15 @@
             return deferred.promise;
         }
 
+        function searchAIDSResults (primaryFilter, queryID) {
+            var deferred = $q.defer();
+            SearchService.searchResults(primaryFilter, queryID).then(function(response) {
+                updateSideFilterCount(primaryFilter, response.data.sideFilterResults.data.simple);
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+        }
+
         function getAllFilters() {
             //TODO: consider making these available as angular values, split out into separate file
             var filters = {};
@@ -1716,6 +1725,7 @@
             filters.infantMortalityFilters = filterUtils.getInfantMortalityDataFilters();
             filters.stdFilters = filterUtils.getSTDDataFilters();
             filters.tbFilters = filterUtils.getTBDataFilters();
+            filters.aidsFilters = filterUtils.getAIDSFilters();
 
             filters.pramsTopicOptions = [
                 {"key": "cat_45", "title": "Delivery Method"},
@@ -2832,6 +2842,54 @@
                                    filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'state')
                                }
 
+                            ]
+                        }
+                    ]
+                },
+                {
+                    key: 'aids', title: 'label.filter.aids', primary: true, value:[], header:'HIV/AIDS',
+                    allFilters: filters.aidsFilters, searchResults: searchAIDSResults, showMap: false,
+                    mapData: {}, chartAxisLabel: 'Cases', tableView: 'hiv', defaultChartView: 'cases',
+                    chartViewOptions: filters.diseaseVizGroupOptions,
+                    runOnFilterChange: true, applySuppression: true, countQueryKey: 'cases',
+                    sideFilters:[
+                        {
+                            sideFilters: [
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true, groupBy: false,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'disease')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'current_year')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'sex')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'race')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'age_group')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'transmission')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'state')
+                                }
                             ]
                         }
                     ]
