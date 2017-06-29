@@ -455,13 +455,17 @@
         </div>
         <li class="accordion" ng-repeat="util in sfc.utilities">
             <span>
-                <label class="side-pane-label custom-label">
+                <form>
+                    <fieldset>
+                    <legend>
+                        <label class="side-pane-label custom-label">
                     <a href="javascript:void(0)" ng-click="util.collapse = !util.collapse"
                        title="{{util.helpText | translate}}" class="custom-link">
                         <span class="fa" ng-class="util.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
                         <span translate="{{util.title}}"></span>
                     </a>
-                </label>
+                    </label>
+                    </legend>
                 <ul class="owh-side-menu__options-list usa-unstyled-list group-options" ng-hide="util.collapse">
                     <div class="owh-side-menu__utility-option" ng-repeat="option in util.options">
                         <div ng-if="option.type === 'toggle'">
@@ -475,6 +479,8 @@
                         <br ng-if="$index === 0" />
                     </div>
                 </ul>
+                    </fieldset>
+                </form>
             </span>
         </li>
     </ul>

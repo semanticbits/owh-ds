@@ -110,5 +110,35 @@
             }
         };
 
+        oatc.containsSupp = function() {
+            var suppressed = false;
+            for (var i = 0; i < oatc.data.length; i++) {
+                for (var j = 0; j < oatc.listRows(oatc.data[i]).length; j++) {
+                    for (var k = 0; k < oatc.listRows(oatc.data[i])[j].length; k++) {
+                        if (oatc.listRows(oatc.data[i])[j].title.mean == 'suppressed') {
+                            suppressed = true;
+                        }
+                    }
+                }
+            }
+
+            return suppressed;
+        };
+
+        /*oatc.containsSupp = function(category) {
+            var suppressed = false;
+            for (var i = 0; i < oatc.data.length; i++) {
+                for (var j = 0; j < oatc.listRows(category).length; j++) {
+                    for (var k = 0; k < oatc.listRows(category)[j].length; k++) {
+                        if (oatc.listRows(category)[j].title.mean == 'suppressed') {
+                            suppressed = true;
+                        }
+                    }
+                }
+            }
+
+            return suppressed;
+        };*/
+
     }
 }());

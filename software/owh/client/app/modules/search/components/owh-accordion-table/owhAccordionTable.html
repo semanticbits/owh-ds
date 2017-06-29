@@ -41,9 +41,12 @@
         </tr>
         <tr ng-hide="eachCategory.collapse" ng-if="eachCategory.questionsCount > 2">
             <td colspan="100%">
-                <a class="owh-question__show cursor-pointer" ng-if="eachCategory.hide" ng-click="oatc.showMore(eachCategory)" href="javascript:void(0)">Show {{ eachCategory.questionsCount - 2 }} More Questions</a>
+                <a class="owh-question__show cursor-pointer" ng-if="eachCategory.hide" ng-click="oatc.showMore(eachCategory)" href="javascript:void(0)">Show {{ eachCategory.questionsCount - 2 }} More Question(s)</a>
                 <a class="owh-question__show cursor-pointer" ng-if="!eachCategory.hide" ng-click="oatc.showLess(eachCategory)" href="javascript:void(0)">Show Less</a>
             </td>
+        </tr>
+        <tr ng-if="containsSupp()">
+            The percentages may not add up to 100% due to the suppression rule.
         </tr>
     </tbody>
 </table>
