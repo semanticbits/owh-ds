@@ -359,9 +359,9 @@
   "label.help.text.prams.breakouts.hispanic": "This field indicates whether the mother indicates that she is of Hispanic origin" ,
   "label.help.text.prams.breakouts.births": "This field indicates the number of previous live births prior to the index birth for this survey" ,
   "label.help.text.prams.breakouts.wic": "This field indicates whether or not the mother received benefits from the Special Supplemental Nutrition Program for Women, Infants, and Children (WIC) during this pregnancy" ,
-  "label.help.text.prams.breakouts.intend": "This field indicates whether or not this pregnancy was intended as assessed by…..." ,
+  "label.help.text.prams.breakouts.intend": "This field indicates whether or not this pregnancy was intended as assessed by..." ,
   "label.help.text.prams.breakouts.smoked.before": "This field indicates whether or not the mother was a smoker 3 months prior to before pregnancy" ,
-  "label.help.text.prams.breakouts.smoked.last": "This field indicates whether or not the mother was a smoker during pregnancy"
+  "label.help.text.prams.breakouts.smoked.last": "This field indicates whether or not the mother was a smoker during pregnancy",
 
   "label.help.text.rates" : "Crude Rates are expressed as the number of deaths reported each calendar year per 100,000 population. (Crude Rate = Count / Population * 100,000).",
   "label.help.text.deaths" : "The death counts in the data represent deaths that occurred in the 50 United States and the district of Columbia, for the legal place of residence of the decedent.",
