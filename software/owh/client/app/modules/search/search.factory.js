@@ -2844,7 +2844,7 @@
                 },
                 {
                     key: 'aids', title: 'label.filter.aids', primary: true, value:[], header:'HIV/AIDS',
-                    allFilters: filters.aidsFilters, searchResults: searchAIDSResults, showMap: false,
+                    allFilters: filters.aidsFilters, searchResults: searchAIDSResults, showMap: true,
                     mapData: {}, chartAxisLabel: 'Cases', tableView: 'hiv', defaultChartView: 'cases',
                     chartViewOptions: filters.diseaseVizGroupOptions,
                     runOnFilterChange: true, applySuppression: true, countQueryKey: 'cases',
