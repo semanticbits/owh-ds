@@ -121,25 +121,6 @@
         "999": "Unknown"}
     },
     {
-      "column": "race_ethnicity",
-      "column_index": 4,
-      "type": "map",
-      "field": "RACE",
-      "mappings": {
-        "0": "All races/ethnicities",
-        "1": "American Indian or Alaska Native",
-        "2": "Asian",
-        "3": "Black or African American",
-        "4": "Hispanic or Latino",
-        "5": "Native Hawaiian or Other Pacific Islander",
-        "6": "White",
-        "7": "Multiple races",
-        "8": "Unknown",
-        "9": "Asian or Pacific Islander",
-        "10": "Other"
-      }
-    },
-    {
       "column": "sex",
       "column_index": 5,
       "type": "map",

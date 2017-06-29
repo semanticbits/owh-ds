@@ -54,6 +54,12 @@ class STDETL (ETL):
                 else:
                     record['cases'] = 0
 
+                # suppression_cases or suppression_rate are equals to '1' means Data suppressed
+                # so we are setting cases and pop to -1 when data suppressed.
+                if(record['suppression_cases'] == '1'):
+                    record['cases'] = -1
+                if(record['suppression_rate'] == '1'):
+                    record['pop'] = -1
                 record_count += 1
                 self.batchRepository.persist({"index": {"_index": self.config['elastic_search']['index'],
                                                         "_type": self.config['elastic_search']['type'],
@@ -67,7 +73,10 @@ class STDETL (ETL):
         logger.info("*** Processed %s records from std data file", self.metrics.insertCount)
 
     def updateDsMetadata(self):
-        for y in range(2000, 2016):
+        # for 2000 to 2006 years data, Race/Ethnicity column mapping not available for National and State
+        for y in range(2000, 2007):
+            self.loadDataSetMetaData('std', str(y), os.path.join(self.dataDirectory, 'data_mapping', 'std_00_06.json'))
+        for y in range(2007, 2016):
             self.loadDataSetMetaData('std', str(y), os.path.join(self.dataDirectory, 'data_mapping', 'std.json'))
 
     def validate_etl(self):

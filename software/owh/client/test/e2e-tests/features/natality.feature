@@ -1,3 +1,4 @@
+@Natality
 Feature: Natality filters
   As a user
   I want to see the data table upon selection of natality filters
@@ -91,9 +92,9 @@ Feature: Natality filters
 
   Scenario: State filter
     When I expand "State" filter section
-    And  I select "Alaska" state
+    And  I select "AK" state for "natality"
     Then I see data is displayed in data-table for races
-    When I select "Alabama" state
+    When I select "AL" state for "natality"
     And  I select groupBy "Column" option for "State" filter
     Then I see data is grouped by state in data table
 
@@ -101,15 +102,15 @@ Feature: Natality filters
     When I expand "Ethnicity" filter section
     And  I select Puerto Rican ethnicity option
     And  I expand "State" filter section
-    And  I select "Alaska" state
+    And  I select "AK" state for "natality"
     Then I see suppressed cells in data table
 
   Scenario: Birth rates by state
     When I change show me dropdown option to "Birth Rates"
     Then I should see filter type "Birth Rates" selected for show me dropdown
     When I expand "State" filter section
-    And  I select "Alaska" state
-    And  I select "Alabama" state
+    And  I select "AK" state for "natality"
+    And  I select "AL" state for "natality"
     And  I select groupBy "Column" option for "State" filter
     Then I see birth rate for state
 
@@ -117,7 +118,7 @@ Feature: Natality filters
     When I change show me dropdown option to "Fertility Rates"
     Then I should see filter type "Fertility Rates" selected for show me dropdown
     When I expand "State" filter section
-    And  I select "Alaska" state
-    And  I select "Alabama" state
+    And  I select "AK" state for "natality"
+    And  I select "AL" state for "natality"
     And  I select groupBy "Column" option for "State" filter
     Then I see fertility rates for state

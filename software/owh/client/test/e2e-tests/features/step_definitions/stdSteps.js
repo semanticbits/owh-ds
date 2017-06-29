@@ -95,8 +95,7 @@ var stdStepDefinitionsWrapper = function () {
         expect(element(by.id("std_race_Asian")).getAttribute("type")).to.eventually.equal("radio");
         //Age Groups
         expect(element(by.id("std_age_group_All age groups")).getAttribute("type")).to.eventually.equal("radio");
-        expect(element(by.id("std_age_group_Age 15 and older")).getAttribute("type")).to.eventually.equal("radio");
-        expect(element(by.id("std_age_group_0-4")).getAttribute("type")).to.eventually.equal("radio");
+        expect(element(by.id("std_age_group_0-14")).getAttribute("type")).to.eventually.equal("radio");
         //State
         expect(element(by.id("std_state_National")).getAttribute("type")).to.eventually.equal("radio");
         expect(element(by.id("std_state_AL")).getAttribute("type")).to.eventually.equal("radio");
@@ -117,6 +116,101 @@ var stdStepDefinitionsWrapper = function () {
     this.Then(/^I should not see grouped and stacked controls on expanded visualization$/, function () {
         expect(element(by.cssContainingText('text', 'Grouped')).isPresent()).to.eventually.equal(false);
         return expect(element(by.cssContainingText('text', 'Stacked')).isPresent()).to.eventually.equal(false);
+    });
+
+    this.Then(/^std data table should suppress results$/, function (next) {
+        stdPage.getTableRowData(5).then(function(rowData){
+            expect(rowData[0]).to.equals('Native Hawaiian or Other Pacific Islander');
+            //Female
+            expect(rowData[1]).to.contains('Suppressed');
+            expect(rowData[1]).to.contains('1,096');
+            //Male
+            expect(rowData[2]).to.contains('Not Available');
+            expect(rowData[2]).to.contains('Not Applicable');
+            expect(rowData[2]).to.contains('1,168');
+            //Both sexes
+            expect(rowData[3]).to.contains('Suppressed');
+            expect(rowData[3]).to.contains('2,264');
+        });
+        //Unreliable should not display for STD
+        stdPage.getTableRowData(1).then(function(rowData){
+            expect(rowData[0]).to.equals('American Indian or Alaska Native');
+            //Male
+            expect(rowData[2]).to.not.contains('Unreliable');
+        });
+        //Unreliable should not display for STD
+        stdPage.getTableRowData(2).then(function(rowData){
+            expect(rowData[0]).to.equals('Asian');
+            //Male
+            expect(rowData[2]).to.not.contains('Unreliable');
+        }).then(next);
+    });
+
+    this.When(/^I select "([^"]*)" state in disease related views$/, function (arg1, callback) {
+        element.all(by.css('label[for=natality_state_AL]')).then(function(elements, index) {
+            elements[1].click();
+        }).then(next);
+    });
+
+    this.Then(/^expected filters should be disabled for std$/, function (next) {
+        //All race filter options expect "All races/ethnicities"
+        var expectedRaceFilters = ["American Indian or Alaska Native","Asian","Black or African American","Hispanic or Latino","Native Hawaiian or Other Pacific Islander","White","Multiple races","Unknown","Asian or Pacific Islander","Other"];
+        //All Sex filter options except "Both sexes"
+        var expectedSexFilters = ["Female", "Male"];
+        //All age group options except "All age groups"
+        var expectedAgeGroupFilters = ["0-14","15-19","20-24","25-29","30-34","35-39","40-44","45-54","55-64","65+"];
+        stdPage.getDisabledFilterOptions("Race/Ethnicity").then(function (options) {
+            expect(options.length > 0).equal(true);
+            options.forEach(function (option, index) {
+                expect(option).to.equal(expectedRaceFilters[index]);
+            });
+        });
+        stdPage.getDisabledFilterOptions("Sex").then(function (options) {
+            expect(options.length > 0).equal(true);
+            options.forEach(function (option, index) {
+                expect(option).to.equal(expectedSexFilters[index]);
+            });
+        });
+        stdPage.getDisabledFilterOptions("Age Groups").then(function (options) {
+            expect(options.length > 0).equal(true);
+            options.forEach(function (option, index) {
+                expect(option).to.equal(expectedAgeGroupFilters[index]);
+            });
+        }).then(next);
+    });
+
+    this.Then(/^"([^"]*)" filter option "([^"]*)" should be disabled for "([^"]*)"$/, function (arg1, arg2, arg3) {
+        return expect(element(by.id(arg3+'_'+arg1+'_'+arg2)).getAttribute('disabled')).to.eventually.equal('true');
+    });
+
+    this.Given(/^"([^"]*)" filter option "([^"]*)" should be enabled for "([^"]*)"$/, function (arg1, arg2, arg3) {
+        return expect(element(by.id(arg3+'_'+arg1+'_'+arg2)).getAttribute('disabled')).to.eventually.equal(null);
+    });
+
+    this.Then(/^I see labels "([^"]*)" and "([^"]*)" are displayed on minimized visualization$/, function (arg1, arg2) {
+        var labelArray = stdPage.getAxisLabelsForMinimizedVisualization(0,1);
+        expect(labelArray[0].getText()).to.eventually.equal(arg1);
+        return expect(labelArray[1].getText()).to.eventually.equal(arg2);
+    });
+
+    this.Then(/^I see labels "([^"]*)" and "([^"]*)" are displayed on expanded visualization$/, function (arg1, arg2) {
+        var labelArray = stdPage.getAxisLabelsForExpandedVisualization(0);
+        expect(labelArray[0].getText()).to.eventually.equal(arg1);
+        return expect(labelArray[1].getText()).to.eventually.equal(arg2);
+    });
+
+    this.Then(/^I close visualization popup$/, function (next) {
+        element(by.css('span[title="Minimize graph"]')).click().then(next);
+    });
+
+    this.Then(/^all side filters should be enabled$/, function () {
+        return expect(element(by.className('cursor-not-allowed')).isPresent()).to.eventually.equal(false);
+    });
+    this.Then(/^filter "([^"]*)" should be disabled$/, function (arg1, next) {
+        var allElements = element.all(by.css('.cursor-not-allowed')).all(By.css('.filter-display-name'));
+        allElements.getText().then(function (filters) {
+            expect(filters).to.include(arg1);
+        }).then(next);
     });
 };
 

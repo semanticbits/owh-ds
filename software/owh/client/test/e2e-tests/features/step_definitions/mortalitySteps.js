@@ -614,6 +614,10 @@ var mortalityStepDefinitionsWrapper = function () {
         commonPage.getFilterOptionForAFilter(filterType, option).click().then(next);
     });
 
+    this.When(/^I deselect "([^"]*)" option in "([^"]*)" filter$/, function (option, filterType, next) {
+        commonPage.getFilterOptionForAFilter(filterType, option).click().then(next);
+    });
+
     this.Then(/^data table should display right Number of Deaths$/, function (next) {
         mortalityPage.getTableRowData(0).then(function(rowdata){
             expect(rowdata[0]).to.equals('American Indian or Alaska Native');
@@ -1059,6 +1063,16 @@ var mortalityStepDefinitionsWrapper = function () {
         mortalityPage.getDisabledSideFilters().then(function (disabled) {
             enabled.map(function (filter) {
                 expect(disabled).to.not.contain(filter);
+            });
+        }).then(next);
+    });
+
+    this.Then(/^I see "([^"]*)" in list of applied filters$/, function (selectedFilters, next) {
+        mortalityPage.getSelectedFilters().then(function (items, next) {
+            items.forEach(function (item) {
+                item.getText().then(function (text) {
+                    expect(selectedFilters).to.contains(text);
+                });
             });
         }).then(next);
     });

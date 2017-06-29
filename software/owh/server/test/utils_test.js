@@ -1,5 +1,7 @@
 var searchUtils = require("../api/utils");
 var expect = require("expect.js");
+var stdBeforeSuppressionData = require('./data/std_before_suppression_data.json');
+var stdAfterSuppressionData = require('./data/std_after_suppression_data.json');
 
 describe("Utils", function(){
     it("Populate results with mappings with aggregation data", function(done){
@@ -658,5 +660,33 @@ describe("Utils", function(){
             ];
             expect(searchUtils.mapAndGroupOptionResults(options, optionResults)).to.eql(expected)
         });
+    });
+
+    it("Apply suppression rule for STD", function(done){
+       var result = stdBeforeSuppressionData;
+       searchUtils.applySuppressions(result, 'std', 4);
+       expect(result.data.nested.table.race[6].name).equal('Native Hawaiian or Other Pacific Islander');
+       expect(result.data.nested.table.race[6].std).equal('suppressed');
+       expect(result.data.nested.table.race[6].sex[0].name).equal('Both sexes');
+       expect(result.data.nested.table.race[6].sex[0].std).equal('suppressed');
+       expect(result.data.nested.table.race[6].sex[0].pop).equal(2264);
+       expect(result.data.nested.table.race[6].sex[1].name).equal('Female');
+       expect(result.data.nested.table.race[6].sex[1].std).equal('suppressed');
+       expect(result.data.nested.table.race[6].sex[1].pop).equal(1096);
+       expect(result.data.nested.table.race[6].sex[2].name).equal('Male');
+       //Cases not available
+       expect(result.data.nested.table.race[6].sex[2].std).equal('na');
+       expect(result.data.nested.table.race[6].sex[2].pop).equal(1168);
+       //Unknown cases should not be 'Not Available'
+        expect(result.data.nested.table.race[7].name).equal('Unknown');
+        expect(result.data.nested.table.race[7].std).equal(15506);
+        expect(result.data.nested.table.race[7].sex[0].name).equal("Both sexes");
+        expect(result.data.nested.table.race[7].sex[0].std).equal(7818);
+        expect(result.data.nested.table.race[7].sex[1].name).equal("Female");
+        expect(result.data.nested.table.race[7].sex[1].std).equal(5769);
+        expect(result.data.nested.table.race[7].sex[2].name).equal("Male");
+        expect(result.data.nested.table.race[7].sex[2].std).equal(1919);
+
+       done();
     });
 });
