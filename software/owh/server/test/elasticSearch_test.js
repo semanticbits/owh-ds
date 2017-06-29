@@ -1,6 +1,7 @@
 var elasticSearch = require('../models/elasticSearch');
 var expect = require("expect.js");
 var stdCasesQuery = require('./data/std_cases_elastic_query.json');
+var stdMapQuery = require('./data/std_map_query.json');
 var stdPopulationQuery = require('./data/std_population_elastic_query.json');
 var stdSideFilterCountQuery = require('./data/std_sidefilter_count_query.json');
 var stdAggreFinalQueryResp = require('./data/std_aggregate_data_final_query_response.json');
@@ -72,9 +73,31 @@ describe("Elastic Search", function () {
         });
     });
 
+    it("should count bridged-race data for side filters for 2015 ", function (){
+        var query = {"size":0,"aggregations":{"current_year":{"terms":{"field":"current_year","size":0},"aggregations":{"group_count_pop":{"sum":{"field":"pop"}}}},"group_count_pop":{"sum":{"field":"pop"}},"sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_pop":{"sum":{"field":"pop"}}}},"race":{"terms":{"field":"race","size":0},"aggregations":{"group_count_pop":{"sum":{"field":"pop"}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}}}};
+        return new elasticSearch().aggregateCensusData([query], true).then(function (response) {
+            var data = response.data.simple;
+            expect(data.current_year[0].name).to.eql("2015");
+            expect(data.current_year[0].bridge_race).to.eql(321418820);
+
+            expect(data.sex[0].name).to.eql("Female");
+            expect(data.sex[0].bridge_race).to.eql(163189523);
+
+            expect(data.sex[1].name).to.eql("Male");
+            expect(data.sex[1].bridge_race).to.eql(158229297);
+
+            expect(data.race[0].name).to.eql("American Indian");
+            expect(data.race[0].bridge_race).to.eql(4577853);
+
+            expect(data.race[1].name).to.eql("Asian or Pacific Islander");
+            expect(data.race[1].bridge_race).to.eql(20102717);
+        });
+    });
+
     it("should aggregate bridged-race data by race and gender for 2015", function (){
-        var query = {"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_pop":{"sum":{"field":"pop"}}}},"group_count_pop":{"sum":{"field":"pop"}}}},"group_count_pop":{"sum":{"field":"pop"}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}}}};
-        return new elasticSearch().aggregateCensusData(query, true).then(function (response) {
+        var tableQuery = {"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_pop":{"sum":{"field":"pop"}}}},"group_count_pop":{"sum":{"field":"pop"}}}},"group_count_pop":{"sum":{"field":"pop"}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}}}};
+        var mapQuery = {"size":0,"aggregations":{"group_maps_0_states":{"terms":{"field":"state","size":0},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_pop":{"sum":{"field":"pop"}}}},"group_count_pop":{"sum":{"field":"pop"}}}},"group_count_pop":{"sum":{"field":"pop"}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}}}};
+        return new elasticSearch().aggregateCensusData([tableQuery, {}, mapQuery], true).then(function (response) {
             var race = response.data.nested.table.race;
             expect(race[0].name).to.eql("American Indian");
             expect(race[0].bridge_race).to.be(4577853);
@@ -337,7 +360,7 @@ describe("Elastic Search", function () {
     });
 
     it("Check aggregate std data with final query", function (done){
-        var query = [stdCasesQuery, stdPopulationQuery];
+        var query = [stdCasesQuery, stdPopulationQuery, stdMapQuery];
         new elasticSearch().aggregateDiseaseData(query, 'std', 'owh_std', 'std').then(function (resp) {
             //All races/ethnicities
             expect(resp.data.nested.table.race[0].name).equal(stdAggreFinalQueryResp.data.nested.table.race[0].name);
@@ -346,6 +369,16 @@ describe("Elastic Search", function () {
             expect(resp.data.nested.table.race[0].sex[0].name).equal(stdAggreFinalQueryResp.data.nested.table.race[0].sex[0].name);
             expect(resp.data.nested.table.race[0].sex[0].std).equal(stdAggreFinalQueryResp.data.nested.table.race[0].sex[0].std);
             expect(resp.data.nested.table.race[0].sex[0].pop).equal(stdAggreFinalQueryResp.data.nested.table.race[0].sex[0].pop);
+
+            var states = resp.data.nested.maps.states;
+            expect(states[0].name).equal('AK');
+            expect(states[0].sex[0].name).equal('Both sexes');
+            expect(states[0].sex[0].std).equal(11320);
+            expect(states[0].sex[1].name).equal('Female');
+            expect(states[0].sex[1].std).equal(7572);
+            expect(states[0].sex[2].name).equal('Male');
+            expect(states[0].sex[2].std).equal(3742);
+
             done();
         })
     });
@@ -382,7 +415,7 @@ describe("Elastic Search", function () {
     it("Check aggregate std data with final query for suppression", function (done){
         //Filter by State 'Alabama'
         stdCasesQuery.query.filtered.filter.bool.must[3].bool.should[0].term.state = 'AL';
-        var query = [stdCasesQuery, stdPopulationQuery];
+        var query = [stdCasesQuery, stdPopulationQuery, stdMapQuery];
         new elasticSearch().aggregateDiseaseData(query, 'std', 'owh_std', 'std', true).then(function (resp) {
             //All races/ethnicities
             expect(resp.data.nested.table.race[0].name).equal(stdSuppressionQueryResp.data.nested.table.race[0].name);
@@ -416,7 +449,8 @@ describe("Elastic Search", function () {
 
     it("should aggregate tb data by race and sex", function (done){
         var query = [{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"group_count_cases":{"sum":{"field":"cases"}}}},"group_count_cases":{"sum":{"field":"cases"}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"group_count_cases":{"sum":{"field":"cases"}}}},"group_maps_0_states":{"terms":{"field":"state","size":0},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"group_count_cases":{"sum":{"field":"cases"}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"age_group":"All age groups"}}]}},{"bool":{"should":[{"term":{"state":"National"}}]}}]}}}}},
-                    {"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"age_group":"All age groups"}}]}},{"bool":{"should":[{"term":{"state":"National"}}]}}]}}}}}];
+                    {"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"age_group":"All age groups"}}]}},{"bool":{"should":[{"term":{"state":"National"}}]}}]}}}}},
+                    {"size":0,"aggregations":{"group_maps_0_states":{"terms":{"field":"state","size":0},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"group_count_cases":{"sum":{"field":"cases"}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"age_group":"All age groups"}}]}}]}}}}}];
         new elasticSearch().aggregateDiseaseData(query, 'tb', 'owh_tb', 'tb').then(function (resp) {
             //All races/ethnicities
             expect(resp.data.nested.table.race[0].name).equal('All races/ethnicities');
@@ -431,6 +465,17 @@ describe("Elastic Search", function () {
 
             expect(resp.data.nested.table.race[0].sex[2].name).equal('Male');
             expect(resp.data.nested.table.race[0].sex[2].tb).equal(11433);
+
+            //map data
+            var states = resp.data.nested.maps.states;
+            expect(states[1].name).equal('AK');
+            expect(states[1].sex[0].name).equal('Both sexes');
+            expect(states[1].sex[0].tb).equal(199);
+            expect(states[1].sex[1].name).equal('Female');
+            expect(states[1].sex[1].tb).equal(24);
+            expect(states[1].sex[2].name).equal('Male');
+            expect(states[1].sex[2].tb).equal(44);
+
             done();
         })
     });

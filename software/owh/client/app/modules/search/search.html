@@ -64,6 +64,11 @@
             </div>
         </div>
         <div class="owh-search-content usa-width-three-fourths overflow-visible" ng-class="{'owh-search-content--expanded': !sc.sideMenu.visible }">
+
+            <list-selected-filters sort="sc.sort[sc.filters.selectedPrimaryFilter.title]"
+                                   filters="sc.filters.selectedPrimaryFilter.allFilters">
+            </list-selected-filters>
+
             <owh-toggle-switch ng-if="sc.tableView == 'std' || sc.tableView == 'tb' || sc.tableView == 'hiv' || sc.tableView == 'disease_rate'" class="left-float chart-view-toggle"
                                options="sc.filters.selectedPrimaryFilter.chartViewOptions"
                                model="sc.filters.selectedPrimaryFilter.defaultChartView" on-change="sc.onChartViewChange(sc.filters.selectedPrimaryFilter.tableView, sc.filters.selectedPrimaryFilter.key)"
@@ -76,7 +81,7 @@
                         <div ng-repeat="chartData in startChartData"
                              ng-class="!chartData.isMap || sc.mapOptions.selectedMapSize==='small'?'usa-width-one-third graph-box':'usa-width-one-whole margin-bottom-20'">
                             <!-- Map -->
-                            <div id="chart_us_map" ng-if="chartData.isMap && sc.filters.selectedPrimaryFilter.showMap && sc.filters.selectedPrimaryFilter.maps">
+                            <div id="chart_us_map" ng-if="chartData.isMap && sc.filters.selectedPrimaryFilter.showMap">
                                 <leaflet  lf-center="chartData.usa" markers="chartData.markers" events="chartData.events" geojson="chartData.geojson"
                                           legend="chartData.legend" controls="chartData.controls" defaults="chartData.defaults" tiles=""
                                           height="{{sc.mapOptions.selectedMapSize==='small'?'277px':'480px'}}" width="{{sc.mapOptions.selectedMapSize==='small'?'auto':'100%'}}"></leaflet>
@@ -151,7 +156,8 @@
                                sc.filters.selectedPrimaryFilter.key === 'natality' ||
                                sc.filters.selectedPrimaryFilter.key === 'infant_mortality' ||
                                sc.filters.selectedPrimaryFilter.key === 'std' ||
-                               sc.filters.selectedPrimaryFilter.key === 'tb')"
+                               sc.filters.selectedPrimaryFilter.key === 'tb' ||
+                               sc.filters.selectedPrimaryFilter.key === 'aids')"
                                table-view="{{sc.tableView}}"
                                rowspan-threshold="50"></owh-table>
                     <owh-accordion-table headers="sc.tableData.headers" data="sc.tableData.data"

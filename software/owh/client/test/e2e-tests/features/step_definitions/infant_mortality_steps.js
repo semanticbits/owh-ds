@@ -38,7 +38,7 @@ var infantMortalityStepDefinitions = function () {
         }).then(next);
     });
 
-    this.Then(/the values in row "([^"]*)" should be "([^"]*)"$/, function (row, values, next) {
+    this.Then(/^the values in row "([^"]*)" should be "([^"]*)"$/, function (row, values, next) {
         var expected = values.split(', ');
         imp.getTableRowData(row).then(function (row) {
             row.forEach(function (column, index) {

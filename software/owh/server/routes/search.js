@@ -126,8 +126,8 @@ function search(q) {
         sideFilterTotalCountQuery.countQueryKey = 'pop';
         var sideFilterQuery = queryBuilder.buildSearchQuery(sideFilterTotalCountQuery, true);
 
-        new elasticSearch().aggregateCensusData(sideFilterQuery[0], isStateSelected).then(function (sideFilterResults) {
-            new elasticSearch().aggregateCensusData(finalQuery[0], isStateSelected).then(function (response) {
+        new elasticSearch().aggregateCensusData(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
+            new elasticSearch().aggregateCensusData(finalQuery, isStateSelected).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
                 resData.resultData = response.data;
@@ -195,7 +195,8 @@ function search(q) {
             deferred.reject(error);
         });
     } else if (preparedQuery.apiQuery.searchFor === 'std' ||
-        preparedQuery.apiQuery.searchFor === 'tb') {
+        preparedQuery.apiQuery.searchFor === 'tb' ||
+        preparedQuery.apiQuery.searchFor === 'aids') {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true, searchUtils.getAllOptionValues());
         sideFilterTotalCountQuery = queryBuilder.addCountsToAutoCompleteOptions(q);
         sideFilterTotalCountQuery.countQueryKey = 'cases';
@@ -205,6 +206,8 @@ function search(q) {
             indexName = 'owh_std'; indexType = 'std';
         } else if (preparedQuery.apiQuery.searchFor === 'tb') {
             indexName = 'owh_tb'; indexType = 'tb';
+        } else if (preparedQuery.apiQuery.searchFor === 'aids') {
+            indexName = 'owh_aids'; indexType = 'aids';
         }
         new elasticSearch().aggregateDiseaseData(sideFilterQuery, preparedQuery.apiQuery.searchFor, indexName, indexType, isStateSelected).then(function (sideFilterResults) {
             new elasticSearch().aggregateDiseaseData(finalQuery, preparedQuery.apiQuery.searchFor, indexName, indexType, isStateSelected).then(function (response) {

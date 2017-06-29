@@ -105,8 +105,7 @@
                 primaryFilter.headers = tableData.headers;
                 primaryFilter.data = tableData.data;
                 primaryFilter.chartData = prepareChartData(response.data.resultData.headers, response.data.resultData.nested, primaryFilter);
-                primaryFilter.maps = response.data.resultData.nested.maps;
-                mapService.updateStatesDeaths(primaryFilter, primaryFilter.maps, primaryFilter.searchCount, mapOptions);
+                mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
             else if (response.data.queryJSON.key == 'natality') {
                 primaryFilter.data = response.data.resultData.nested.table;
@@ -121,12 +120,13 @@
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
             }
             else if (response.data.queryJSON.key == 'std' ||
-                response.data.queryJSON.key == 'tb') {
+                response.data.queryJSON.key == 'tb' || response.data.queryJSON.key === 'aids') {
                 primaryFilter.nestedData = response.data.resultData.nested;
                 primaryFilter.data = response.data.resultData.nested.table;
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
+                mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
             //make sure side filters are in proper order
             angular.forEach(primaryFilter.sideFilters, function (category) {
@@ -1143,6 +1143,15 @@
             return deferred.promise;
         }
 
+        function searchAIDSResults (primaryFilter, queryID) {
+            var deferred = $q.defer();
+            SearchService.searchResults(primaryFilter, queryID).then(function(response) {
+                updateSideFilterCount(primaryFilter, response.data.sideFilterResults.data.simple);
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+        }
+
         function getAllFilters() {
             //TODO: consider making these available as angular values, split out into separate file
             var filters = {};
@@ -1716,6 +1725,7 @@
             filters.infantMortalityFilters = filterUtils.getInfantMortalityDataFilters();
             filters.stdFilters = filterUtils.getSTDDataFilters();
             filters.tbFilters = filterUtils.getTBDataFilters();
+            filters.aidsFilters = filterUtils.getAIDSFilters();
 
             filters.pramsTopicOptions = [
                 {"key": "cat_45", "title": "Delivery Method"},
@@ -2743,8 +2753,8 @@
                 },
                 {
                     key: 'std', title: 'label.filter.std', primary: true, value:[], header:"STD",
-                    allFilters: filters.stdFilters, searchResults: searchSTDResults, showMap: false,
-                    chartAxisLabel:'Cases', tableView:'std',
+                    allFilters: filters.stdFilters, searchResults: searchSTDResults, showMap: true,
+                    mapData:{}, chartAxisLabel:'Cases', tableView:'std',
                     chartViewOptions: filters.diseaseVizGroupOptions, defaultChartView: 'cases',
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
@@ -2762,6 +2772,7 @@
                                    filterGroup: false,
                                    collapse: false,
                                    allowGrouping: true,
+                                   refreshFiltersOnChange: true,
                                    groupOptions: filters.groupOptions,
                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'current_year')
                                },
@@ -2793,8 +2804,8 @@
 
                 {
                     key: 'tb', title: 'label.filter.tb', primary: true, value:[], header:"Tuberculosis",
-                    allFilters: filters.tbFilters, searchResults: searchTBResults, showMap: false,
-                    chartAxisLabel:'Cases', tableView:'tb', defaultChartView: 'cases',
+                    allFilters: filters.tbFilters, searchResults: searchTBResults, showMap: true,
+                    mapData:{}, chartAxisLabel:'Cases', tableView:'tb', defaultChartView: 'cases',
                     chartViewOptions: filters.diseaseVizGroupOptions,
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
@@ -2828,6 +2839,54 @@
                                    filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'state')
                                }
 
+                            ]
+                        }
+                    ]
+                },
+                {
+                    key: 'aids', title: 'label.filter.aids', primary: true, value:[], header:'HIV/AIDS',
+                    allFilters: filters.aidsFilters, searchResults: searchAIDSResults, showMap: false,
+                    mapData: {}, chartAxisLabel: 'Cases', tableView: 'hiv', defaultChartView: 'cases',
+                    chartViewOptions: filters.diseaseVizGroupOptions,
+                    runOnFilterChange: true, applySuppression: true, countQueryKey: 'cases',
+                    sideFilters:[
+                        {
+                            sideFilters: [
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true, groupBy: false,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'disease')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'current_year')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'sex')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'race')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'age_group')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'transmission')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'state')
+                                }
                             ]
                         }
                     ]

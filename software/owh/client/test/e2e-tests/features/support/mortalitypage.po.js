@@ -123,6 +123,10 @@ var MortalitySearchPage = function() {
                     .getText()
             })
     };
+
+    msp.getSelectedFilters = function () {
+        return element.all(by.repeater("filter in lfc.appliedFilters | orderBy: lfc.getFilterOrder"));
+    };
 };
 
 module.exports = new MortalitySearchPage;

@@ -558,6 +558,19 @@
             {"key": "65+", "title": "65+"},
             {"key": "Unknown", "title": "Unknown"}
         ];
+        var stdAgeGroupOptions = [
+            {"key": "All age groups", "title": "All age groups"},
+            {"key": "0-14", "title": "0-14"},
+            {"key": "15-19", "title": "15-19"},
+            {"key": "20-24", "title": "20-24"},
+            {"key": "25-29", "title": "25-29"},
+            {"key": "30-34", "title": "30-34"},
+            {"key": "35-39", "title": "35-39"},
+            {"key": "40-44", "title": "40-44"},
+            {"key": "45-54", "title": "45-54"},
+            {"key": "55-64", "title": "55-64"},
+            {"key": "65+", "title": "65+"}
+        ];
         var diseaseRaceOptions = [
             {"key": "All races/ethnicities", "title": "All races/ethnicities"},
             {"key": "American Indian or Alaska Native", "title": "American Indian or Alaska Native"},
@@ -584,7 +597,8 @@
             getInfantMortalityDataFilters: getInfantMortalityDataFilters,
             getSTDDataFilters: getSTDDataFilters,
             getAllOptionValues: getAllOptionValues,
-            getTBDataFilters: getTBDataFilters
+            getTBDataFilters: getTBDataFilters,
+            getAIDSFilters: getAIDSFilters
         };
 
         function getBridgeDataFilters() {
@@ -1063,7 +1077,7 @@
                     defaultValue: 'All age groups',
                     groupBy: false,
                     filterType: 'radio',
-                    autoCompleteOptions: diseaseAgeGroupOptions,
+                    autoCompleteOptions: stdAgeGroupOptions,
                     doNotShowAll: true,
                     helpText: "label.std.help.text.age.group"
                 },
@@ -1165,6 +1179,135 @@
                 }
             ]
 
+        }
+
+        function getAIDSFilters () {
+            var aidsDiseaseOptions = [
+                { key: 'HIV, stage 3 (AIDS)', title: 'AIDS Diagnoses' },
+                { key: 'HIV, stage 3 (AIDS) deaths', title: 'AIDS Deaths' },
+                { key: 'Persons living with HIV, stage 3 (AIDS)', title: 'AIDS Prevalence' },
+                { key: 'HIV diagnoses', title: 'HIV Diagnoses' },
+                { key: 'HIV deaths', title: 'HIV Deaths' },
+                { key: 'Persons living with diagnosed HIV', title: 'HIV Prevalence' }
+            ];
+
+            var aidsRaceOptions = [
+                { key: 'All races/ethnicities', title: 'All races/ethnicities' },
+                { key: 'American Indian or Alaska Native', title: 'American Indian/Alaska Native' },
+                { key: 'Asian', title: 'Asian' },
+                { key: 'Black or African American', title: 'Black/African American' },
+                { key: 'Hispanic or Latino', title: 'Hispanic/Latino' },
+                { key: 'Multiple races', title: 'Multiple races' },
+                { key: 'Asian or Pacific Islander', title: 'Native Hawaiian/Other Pacific Islander' },
+                { key: 'White', title: 'White' }
+            ];
+
+            var aidsAgeGroupOptions = [
+                { key: 'All age groups 13 and up', title: 'All age groups' },
+                { key: '13-24', title: '13-24' },
+                { key: '25-34', title: '25-34' },
+                { key: '35-44', title: '35-44' },
+                { key: '45-54', title: '45-54' },
+                { key: '55+', title: '55+' }
+            ];
+
+            var aidsTransmissionOptions = [
+                { key: 'No stratification', title: 'All transmission categories' },
+                { key: 'Heterosexual contact', title: 'Heterosexual contact' },
+                { key: 'Injection drug use', title: 'Injection drug use' },
+                { key: 'Male-to-Male sexual contact', title: 'Male-to-male sexual contact' },
+                { key: 'Male-to-male sexual contact and injection drug use', title: 'Male-to-male sexual contact and injection drug use' },
+                { key: 'Other', title: 'Other' }
+            ];
+
+            return [
+                {
+                    key: 'disease',
+                    title: 'label.filter.indicator',
+                    queryKey: 'disease',
+                    primary: false,
+                    value: 'HIV, stage 3 (AIDS)',
+                    groupBy: false,
+                    filterType: 'radio',
+                    autoCompleteOptions: aidsDiseaseOptions,
+                    doNotShowAll: true,
+                    helpText: 'label.help.text.disease'
+                },
+                {
+                    key: 'state',
+                    title: 'label.filter.state',
+                    queryKey: 'state',
+                    primary: false,
+                    value: 'National',
+                    groupBy: false,
+                    filterType: 'radio',
+                    displaySearchBox: true,
+                    displaySelectedFirst: true,
+                    autoCompleteOptions: diseaseStateOptions,
+                    doNotShowAll: true,
+                    helpText: 'label.help.text.natality.state'
+                },
+                {
+                    key: 'current_year',
+                    title: 'label.filter.year',
+                    queryKey: 'current_year',
+                    primary: false,
+                    value: '2015',
+                    groupBy: false,
+                    filterType: 'radio',
+                    autoCompleteOptions: yearOptions,
+                    doNotShowAll: true,
+                    helpText: 'label.help.text.year'
+                },
+                {
+                    key: 'race',
+                    title: 'label.yrbs.filter.race',
+                    queryKey: 'race_ethnicity',
+                    primary: false,
+                    value: 'All races/ethnicities',
+                    groupBy: 'row',
+                    filterType: 'radio',
+                    autoCompleteOptions: aidsRaceOptions,
+                    doNotShowAll: true,
+                    helpText: 'label.help.text.race'
+                },
+                {
+                    key: 'sex',
+                    title: 'label.filter.gender',
+                    queryKey: "sex",
+                    primary: false,
+                    value: 'Both sexes',
+                    groupBy: 'column',
+                    filterType: 'radio',
+                    autoCompleteOptions: diseaseGenderOptions,
+                    doNotShowAll: true,
+                    helpText: 'label.help.text.sex'
+                },
+                {
+                    key: 'age_group',
+                    title: 'label.filter.agegroup',
+                    queryKey: 'age_group',
+                    primary: false,
+                    value: 'All age groups 13 and up',
+                    groupBy: false,
+                    filterType: 'radio',
+                    autoCompleteOptions: aidsAgeGroupOptions,
+                    doNotShowAll: true,
+                    helpText: 'label.help.text.bridged-race.agegroup'
+                },
+                {
+                    key: 'transmission',
+                    title: 'label.filter.transmission',
+                    queryKey: 'transmission',
+                    primary: false,
+                    value: 'No stratification',
+                    groupBy: false,
+                    filterType: 'radio',
+                    autoCompleteOptions: aidsTransmissionOptions,
+                    doNotShowAll: true,
+                    helpText: 'label.help.text.transmission'
+                }
+            ]
         }
 
         /**
