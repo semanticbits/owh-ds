@@ -1245,7 +1245,7 @@
                     displaySelectedFirst: true,
                     autoCompleteOptions: diseaseStateOptions,
                     doNotShowAll: true,
-                    helpText: 'label.help.text.natality.state'
+                    helpText: 'label.std.help.text.state'
                 },
                 {
                     key: 'current_year',
@@ -1257,7 +1257,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: yearOptions,
                     doNotShowAll: true,
-                    helpText: 'label.help.text.year'
+                    helpText: 'label.help.text.hiv.year'
                 },
                 {
                     key: 'race',
@@ -1269,7 +1269,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: aidsRaceOptions,
                     doNotShowAll: true,
-                    helpText: 'label.help.text.race'
+                    helpText: 'label.std.help.text.race.ethnicity'
                 },
                 {
                     key: 'sex',
@@ -1281,7 +1281,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseGenderOptions,
                     doNotShowAll: true,
-                    helpText: 'label.help.text.sex'
+                    helpText: 'label.help.text.tb.sex'
                 },
                 {
                     key: 'age_group',
@@ -1293,7 +1293,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: aidsAgeGroupOptions,
                     doNotShowAll: true,
-                    helpText: 'label.help.text.bridged-race.agegroup'
+                    helpText: 'label.help.text.hiv.agegroup'
                 },
                 {
                     key: 'transmission',
