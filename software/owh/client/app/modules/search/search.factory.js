@@ -2755,33 +2755,33 @@
                                    filterGroup: false, collapse: true, allowGrouping: true, groupBy: false,
                                    groupOptions: filters.groupOptions,
                                   // refreshFiltersOnChange: true,
-                                   onFilterChange: stdFilterChange,
+                                   onFilterChange: utilService.stdFilterChange,
                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'disease')
                                },
                                {
                                    filterGroup: false,
                                    collapse: false,
                                    allowGrouping: true,
-                                   onFilterChange: stdFilterChange,
+                                   onFilterChange: utilService.stdFilterChange,
                                    groupOptions: filters.groupOptions,
                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'current_year')
                                },
                                {
                                    filterGroup: false, collapse: true, allowGrouping: true,
                                    groupOptions: filters.groupOptions,
-                                   onFilterChange: stdFilterChange,
+                                   onFilterChange: utilService.stdFilterChange,
                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'sex')
                                },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
-                                    onFilterChange: stdFilterChange,
+                                    onFilterChange: utilService.stdFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'race')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
-                                    onFilterChange: stdFilterChange,
+                                    onFilterChange: utilService.stdFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'age_group')
                                 },
                                {
@@ -2872,11 +2872,6 @@
             var filter = utilService.findByKeyAndValue(allFilters,'key', filterValue);
             filter.groupBy = filterGroupType;
         }
-
-        function stdFilterChange(filter, categories) {
-             utilService.stdFilterChange(filter, categories);
-        }
-
     }
 
 }());

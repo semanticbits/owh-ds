@@ -942,21 +942,8 @@
                 }
                 SearchService.getDsMetadata('std', filterValueArray).then(function (response) {
                     refreshFiltersWithDSMetadataResponse(response, sideFilters, 'std', filterName);
-                    //If year value 2007 - 2010
-                    if(['2007', '2008', '2009', '2010'].indexOf(filterValue) >= 0){
-                        //Disable 'State' -> 'National' filter option
-                        //If 'State' value 'National' selected then set it to 'Alabama' otherwise keep value as it is.
-                        //var stateSideFilter = $filter('filter')(sideFilters, {filters : {key: 'state'}});
-                        findByKeyAndValue(stateSideFilter.filters.autoCompleteOptions, 'key', 'National').disabled = true;
-                        if(stateSideFilter.filters.value === 'National') {
-                            stateSideFilter.filters.value = 'AL';
-                        }
-                        if(!stateSideFilter.filters.groupBy){
-                            stateSideFilter.filters.groupBy = 'row';
-                        }
-                    }
-                    //Else if user select year '2000' - '2002' then disabled 'Disease' -> 'Early Latent Syphilis'
-                    else if(['2000', '2001', '2002'].indexOf(filterValue) >= 0) {
+                    //if user select year '2000' - '2002' then disabled 'Disease' -> 'Early Latent Syphilis'
+                    if(['2000', '2001', '2002'].indexOf(filterValue) >= 0) {
                         earlyLatentSyphilis.disabled = true;
                     }
                 }, function (error) {

@@ -354,8 +354,6 @@ describe('search factory ', function(){
         it('updateFiltersAndData for std response', function(){
             var stdFilters = {primaryFilters: [filters.search[6]]};
             var result = searchFactory.updateFiltersAndData(stdFilters, stdSearchResponse, {'std': {}}, {});
-            console.log('result.primaryFilter.mapData');
-            console.log(JSON.stringify(result.primaryFilter.mapData));
             expect(JSON.stringify(result.primaryFilter.data)).toEqual(JSON.stringify(stdSearchResponse.data.resultData.nested.table));
             var mapGeoData = result.primaryFilter.mapData.geojson.data;
             expect(mapGeoData.features[0].properties.abbreviation).toEqual('AR');

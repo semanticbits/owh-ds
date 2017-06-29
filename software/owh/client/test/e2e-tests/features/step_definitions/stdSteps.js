@@ -212,6 +212,10 @@ var stdStepDefinitionsWrapper = function () {
             expect(filters).to.include(arg1);
         }).then(next);
     });
+
+    this.Then(/^the following message should be displayed "([^"]*)" on std page$/, function (arg1) {
+        return expect(element(by.id('std-disclaimer')).getText()).to.eventually.equal(arg1);
+    });
 };
 
 module.exports = stdStepDefinitionsWrapper;
