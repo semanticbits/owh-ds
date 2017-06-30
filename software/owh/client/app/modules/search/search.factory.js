@@ -1949,39 +1949,39 @@
                     }
                 },
                 {key: 'adequacy', title: 'label.prams.filter.adequacy', queryKey:"BOC18",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsAdequacyOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsAdequacyOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.adequacy"},
                 {key: 'birth_weight', title: 'label.prams.filter.birth_weight', queryKey:"BOC1",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsBirthWeightOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsBirthWeightOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.weight"},
                 {key: 'income', title: 'label.prams.filter.income', queryKey:"BOC14",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsIncomeOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsIncomeOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.income"},
                 {key: 'marital_status', title: 'label.prams.filter.marital_status', queryKey:"BOC3",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMaritalStatusOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaritalStatusOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.marital"},
                 {key: 'maternal_age_groupings', title: 'label.prams.filter.maternal_age_groupings', queryKey:"BOC17",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAgeGroupingsOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAgeGroupingsOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.age.one"},
                 {key: 'maternal_age_years', title: 'label.prams.filter.maternal_age_years', queryKey:"BOC16",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAgeYearsOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAgeYearsOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.age.two"},
                 {key: 'maternal_age_3', title: 'label.prams.filter.maternal_age_3', queryKey:"BOC19",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAge3Options, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAge3Options, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.age.three"},
                 {key: 'maternal_age_4', title: 'label.prams.filter.maternal_age_4', queryKey:"BOC4",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAge4Options, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAge4Options, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.age.four"},
                 {key: 'maternal_education', title: 'label.prams.filter.maternal_education', queryKey:"BOC5",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalEducationOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalEducationOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.edu"},
                 {key: 'maternal_race', title: 'label.prams.filter.maternal_race', queryKey:"BOC6",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalRaceOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalRaceOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.race"},
                 {key: 'medicaid', title: 'label.prams.filter.medicaid', queryKey:"BOC9",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMedicaidOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMedicaidOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.medicaid"},
                 {key: 'mother_hispanic', title: 'label.prams.filter.mother_hispanic', queryKey:"BOC8",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMotherHispanicOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMotherHispanicOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.hispanic"},
                 {key: 'previous_births', title: 'label.prams.filter.previous_births', queryKey:"BOC20",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsPreviousBirthsOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsPreviousBirthsOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.births"},
                 {key: 'wic_pregnancy', title: 'label.prams.filter.wic_pregnancy', queryKey:"BOC10",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsWicPregnancyOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsWicPregnancyOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.wic"},
                 {key: 'pregnancy_intendedness', title: 'label.prams.filter.pregnancy_intendedness', queryKey:"BOC11",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsPregnancyIntendednessOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsPregnancyIntendednessOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.intend"},
                 {key: 'smoked_before', title: 'label.prams.filter.smoked_before', queryKey:"BOC12",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsSmokedBeforeOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsSmokedBeforeOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.smoked.before"},
                 {key: 'smoked_last', title: 'label.prams.filter.smoked_last', queryKey:"BOC13",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsSmokedLastOptions, doNotShowAll: false}
+                    filterType: 'radio',autoCompleteOptions: filters.pramsSmokedLastOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.smoked.last"}
             ];
 
             filters.search = [
@@ -2731,7 +2731,8 @@
                                         primary: true, value: [], groupBy: false, type:"label.filter.group.ucd", groupKey:"ucd",
                                         autoCompleteOptions: $rootScope.conditionsListICD10, filterType: 'conditions',
                                         selectTitle: 'select.label.filter.ucd', updateTitle: 'update.label.filter.ucd',
-                                        aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions}
+                                        aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions,
+                                        helpText:"label.help.text.infantmort.ucd"}
                                 }
 
                             ]
