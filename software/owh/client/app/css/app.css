@@ -208,7 +208,7 @@ a.custom-link:focus {
 }
 
 a:focus {
-    background-color: black;
+    background-color: yellow;
 }
 
 a.active-link, a.active-link:hover {
@@ -928,6 +928,7 @@ ul.legend-scale li span {
 .graph-box a, .graph-box a:focus {
     text-decoration: none;
 }
+
 
 /*header*/
 .sp-header {
