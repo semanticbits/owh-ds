@@ -29,4 +29,9 @@ Feature: AIDS/HIV page
     Then user sees a visualization
     And I see labels "Race/Ethnicity" and "Cases" are displayed on minimized visualization
     When user expand visualization
-    And  I see labels "Race/Ethnicity" and "Cases" are displayed on expanded visualization
+    And I see labels "Race/Ethnicity" and "Cases" are displayed on expanded visualization
+    And I close visualization popup
+    When I click on Rate chart view toggle button
+    And I see labels "Race/Ethnicity" and "Rates" are displayed on minimized visualization
+    When user expand visualization
+    And I see labels "Race/Ethnicity" and "Rates" are displayed on expanded visualization
