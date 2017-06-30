@@ -1717,7 +1717,7 @@
                     primary: false, value: [], groupBy: false, type: "label.filter.group.mcd", groupKey:"mcd",
                     autoCompleteOptions: $rootScope.conditionsListICD10, filterType: 'conditions',
                     selectTitle: 'select.label.filter.mcd', updateTitle: 'update.label.filter.mcd',
-                    aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions}
+                    aggregationKey:"record_axis_condn.path", groupOptions: filters.conditionGroupOptions}
             ];
 
             filters.censusFilters = filterUtils.getBridgeDataFilters();
