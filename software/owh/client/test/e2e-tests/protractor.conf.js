@@ -24,6 +24,7 @@ exports.config = {
       'features/step_definitions/infant_mortality_steps.js',
       'features/step_definitions/stdSteps.js',
       'features/step_definitions/tbSteps.js',
+      'features/step_definitions/aidsSteps.js',
       'features/support/hook.js'
     ],
       format: 'pretty'

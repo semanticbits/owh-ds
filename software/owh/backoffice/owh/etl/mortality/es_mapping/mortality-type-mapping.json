@@ -51,13 +51,19 @@
         "type":"string"
       },
       "entity_axis_condn": {
-        "type":"string", "index":"not_analyzed"
+        "properties": {
+          "code":{ "type": "string", "index":"not_analyzed"},
+          "path":{ "type": "string", "index":"not_analyzed"}
+        }
       },
       "record_axis_condn_count":{
         "type":"string"
       },
       "record_axis_condn": {
-        "type":"string", "index":"not_analyzed"
+        "properties": {
+          "code":{ "type": "string", "index":"not_analyzed"},
+          "path":{ "type": "string", "index":"not_analyzed"}
+        }
       },
       "race": {
         "type":"string", "index":"not_analyzed"
