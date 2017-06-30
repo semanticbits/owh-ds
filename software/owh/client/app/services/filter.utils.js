@@ -656,8 +656,8 @@
                 {key:'65-69 years', title:'65 - 69 years', min: 65, max: 69},
                 {key:'70-74 years', title:'70 - 74 years', min: 70, max: 74},
                 {key:'75-79 years', title:'75 - 79 years', min: 75, max: 79},
-                {key:'80-84 years',title:'80 - 84 years', min: 80, max: 84},
-                {key:'85-105 years',title:'85+ years', min: 85, max: 105}
+                {key:'80-84 years', title:'80 - 84 years', min: 80, max: 84},
+                {key:'85+ years', title:'85+ years', min: 85, max: 105}
             ];
 
             var ageSliderOptions =  {
