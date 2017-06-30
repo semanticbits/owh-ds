@@ -8,7 +8,6 @@
         <div ng-repeat="category in sfc.filters"
              ng-init="categoryKey = category.category"
              class="category-{{$index}}">
-
             <div class="padding-top-20 bold-class grey-text filter-category"
                  ng-if="categoryKey" ng-bind="categoryKey">
             </div>
@@ -42,6 +41,7 @@
                             <span class="fa" ng-class="{'fa-times': group.groupBy}"></span>
                         </a>-->
                     </label>
+
                     <ul class="usa-unstyled-list group-options" ng-if="group.filterGroup" ng-hide="sideFilter.collapse">
                         <li ng-repeat="eachFilter in group.filters" class="group-option" ng-show="$index < 3 || sideFilter.showAll">
                             <input type="checkbox" ng-model="eachFilter.groupBy" id="{{eachFilter.key}}">
@@ -290,16 +290,15 @@
                             <div ng-if="option.group" ng-init="option.collapse = true" class="owh-side-menu__group-option">
                                 <input id="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" name="{{group.queryKey}}" type="checkbox"
                                        checklist-model="group.value" checklist-value="option.key" ng-disabled="sfc.isOptionDisabled(group, option)" ng-click="sfc.filterGroup(option, group)">
-                                <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
+                                        <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                                        ng-init="title = option.title">
-                                    <a href="javascript:void(0)" ng-click="option.collapse = !option.collapse" class="custom-link ">
-                                        <span class="fa" ng-class="option.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
+                                    <a id="Hispanic" href="javascript:void(0)" title="option.title" ng-click="option.collapse = !option.collapse" class="custom-link ">
+                                        <span class="fa" ng-class="option.collapse ? 'fa-chevron-right':'fa-chevron-down'"></span>
                                         <!--<span translate="{{group.title}}"></span>-->
                                     </a>
                                     <span class="count-label" translate="{{title}}"></span>
                                     <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts" ng-bind="option.count | number"></span>
                                 </label>
-
                                 <ul class="owh-side-menu__sub-category-options" ng-hide="option.collapse" ng-init="option.collapse = !sfc.isSubOptionSelected(group, option)">
                                     <li ng-repeat="subOption in option.options"
                                         class="group-option">
