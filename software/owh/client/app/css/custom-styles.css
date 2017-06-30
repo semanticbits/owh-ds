@@ -1007,3 +1007,11 @@ ul.custom-nav-tabs {
 	margin-bottom: 10px;
 	margin-top: 10px;
 }
+
+.selected-filters {
+	background-size: 2.6rem;
+}
+
+.selected-filters div.usa-alert-body {
+	padding-left: 2.6rem;
+}
