@@ -533,7 +533,7 @@
             else {
                 var count = data[countKey];
                 var columnData = prepareMixedTableColumnData(columnHeaders, data, countKey, count, calculatePercentage, secondaryCountKeys);
-                if(typeof data[countKey] !== 'undefined' && countKey != 'std' && countKey != 'tb') {
+                if(typeof data[countKey] !== 'undefined' && countKey != 'std' && countKey != 'tb' && countKey !== 'aids') {
                     columnData.push(prepareCountCell(count, data, countKey, totalCount, calculatePercentage, secondaryCountKeys, true));
                 }
                 tableData.push(columnData);
