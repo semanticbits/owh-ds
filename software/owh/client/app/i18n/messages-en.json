@@ -363,16 +363,16 @@
   "label.help.text.prams.breakouts.smoked.before": "This field indicates whether or not the mother was a smoker 3 months prior to before pregnancy." ,
   "label.help.text.prams.breakouts.smoked.last": "This field indicates whether or not the mother was a smoker during pregnancy.",
 
-  "label.help.text.rates": "Crude Rates are expressed as the number of deaths reported each calendar year per 100,000 population. (Crude Rate = Count / Population * 100,000).",
-  "label.help.text.deaths": "The death counts in the data represent deaths that occurred in the 50 United States and the district of Columbia, for the legal place of residence of the decedent.",
-  "label.help.text.pop": "The population estimates are bridged-race estimates based on Bureau of the Census estimates of total U.S., State, and county resident populations.",
-
   "label.std.help.text.year": "This field indicates year of diagnosis or death.",
   "label.std.help.text.disease": "This field indicates the type of sexually transmitted disease.",
   "label.std.help.text.state": "This field indicates the State where the STD surveillance data are collected.",
   "label.std.help.text.sex": "This field indicates the current sex of the patient.",
   "label.std.help.text.race.ethnicity": "This field indicates the Race/Ethnicity of the patient.",
   "label.std.help.text.age.group": "This field indicates the age group of the patient.",
-  "label.selected.filters": "Selected Filters"
+  "label.selected.filters": "Selected Filters",
+
+  "label.help.text.rate": "Crude Rates are expressed as the number of deaths reported each calendar year per 100,000 population. (Crude Rate = Count / Population * 100,000).",
+  "label.help.text.deaths": "The death counts in the data represent deaths that occurred in the 50 United States and the district of Columbia, for the legal place of residence of the decedent.",
+  "label.help.text.pop": "The population estimates are bridged-race estimates based on Bureau of the Census estimates of total U.S., State, and county resident populations."
 
 }

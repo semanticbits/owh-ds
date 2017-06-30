@@ -115,7 +115,7 @@
                             cell += '<div id="crudeRateDiv" class="owh-table__left-col ' + (row.length > 5 ? 'usa-width-one-half' : 'usa-width-one-third') + '">';
                             if(rowIndex === 0) {
                                 var rateLabel = { 'crude_death_rates': 'Crude Death Rate', 'age-adjusted_death_rates': 'Age Adjusted Death Rate', 'birth_rates':'Birth Rate', 'fertility_rates':'Fertility Rate' }[otc.tableView] || 'Rate';
-                                cell += '<label class="owh-table__label">' + rateLabel + '</label>';
+                                cell += '<label class="owh-table__label" title="Crude Rates are expressed as the number of deaths reported each calendar year per 100,000 population. (Crude Rate = Count / Population * 100,000).">' + rateLabel + '</label>';
                             }
                             var rateVisibility = getRateVisibility(column.title, column.pop, otc.tableView);
                             if(otc.tableView === 'age-adjusted_death_rates') {
@@ -145,7 +145,7 @@
                                     cell += '<label class="owh-table__label">Cases</label>';
                                 }
                                 else {
-                                    cell += '<label class="owh-table__label">Deaths</label>';
+                                    cell += '<label class="owh-table__label" title="The death counts in the data represent deaths that occurred in the 50 United States and the district of Columbia, for the legal place of residence of the decedent.">Deaths</label>';
                                 }
                             }
                             cell += '<span>';
@@ -165,7 +165,7 @@
                                     cell += '<label class="owh-table__label">Female Population</label>';
                                 }
                                 else {
-                                    cell += '<label class="owh-table__label">Population</label>';
+                                    cell += '<label class="owh-table__label" title="The population estimates are bridged-race estimates based on Bureau of the Census estimates of total U.S., State, and county resident populations.">Population</label>';
                                 }
                             }
                             if(otc.tableView !== 'age-adjusted_death_rates') {
