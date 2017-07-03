@@ -117,13 +117,8 @@
                                 var rateLabel = { 'crude_death_rates': 'Crude Death Rate', 'age-adjusted_death_rates': 'Age Adjusted Death Rate', 'birth_rates':'Birth Rate', 'fertility_rates':'Fertility Rate' }[otc.tableView] || 'Rate';
                                 var tooltip = { 'crude_death_rates': $translate.instant('label.help.text.rate'),
                                         'age-adjusted_death_rates': $translate.instant('label.help.text.rate')}[otc.tableView] || 'Rate';
-                                if (rateLabel === 'Crude Death Rate' || rateLabel === 'Age Adjusted Death Rate') {
-                                    cell += '<label class="owh-table__label" title="'+tooltip+'">' + rateLabel + '</label>';
-                                }
 
-                                else {
-                                    cell += '<label class="owh-table__label">' + rateLabel + '</label>';
-                                }
+                                cell += '<label class="owh-table__label" title="'+tooltip+'">' + rateLabel + '</label>';
 
                             }
                             var rateVisibility = getRateVisibility(column.title, column.pop, otc.tableView);
