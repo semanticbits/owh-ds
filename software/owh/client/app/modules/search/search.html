@@ -69,7 +69,7 @@
                                    filters="sc.filters.selectedPrimaryFilter.allFilters">
             </list-selected-filters>
 
-            <owh-toggle-switch ng-if="sc.tableView == 'std' || sc.tableView == 'tb' || sc.tableView == 'hiv' || sc.tableView == 'disease_rate'" class="left-float chart-view-toggle"
+            <owh-toggle-switch ng-if="sc.tableView == 'std' || sc.tableView == 'tb' || sc.tableView == 'aids' || sc.tableView == 'disease_rate'" class="left-float chart-view-toggle"
                                options="sc.filters.selectedPrimaryFilter.chartViewOptions"
                                model="sc.filters.selectedPrimaryFilter.defaultChartView" on-change="sc.onChartViewChange(sc.filters.selectedPrimaryFilter.tableView, sc.filters.selectedPrimaryFilter.key)"
                                tooltip="{{'label.group.by.tooltip' | translate}}">

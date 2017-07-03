@@ -27,7 +27,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on Show \# More under the questions in any category$/, function (next) {
-        element(by.cssContainingText('a', 'Show 19 More')).click()
+        element(by.cssContainingText('a', 'Show 19 More Questions')).click()
             .then(next);
     });
 
