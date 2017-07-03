@@ -2765,30 +2765,34 @@
                                {
                                    filterGroup: false, collapse: true, allowGrouping: true, groupBy: false,
                                    groupOptions: filters.groupOptions,
-                                   refreshFiltersOnChange: true,
+                                  // refreshFiltersOnChange: true,
+                                   onFilterChange: utilService.stdFilterChange,
                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'disease')
                                },
                                {
                                    filterGroup: false,
                                    collapse: false,
                                    allowGrouping: true,
-                                   refreshFiltersOnChange: true,
+                                   onFilterChange: utilService.stdFilterChange,
                                    groupOptions: filters.groupOptions,
                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'current_year')
                                },
                                {
                                    filterGroup: false, collapse: true, allowGrouping: true,
                                    groupOptions: filters.groupOptions,
+                                   onFilterChange: utilService.stdFilterChange,
                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'sex')
                                },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.stdFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'race')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.stdFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'age_group')
                                 },
                                {
@@ -2845,8 +2849,8 @@
                 },
                 {
                     key: 'aids', title: 'label.filter.aids', primary: true, value:[], header:'HIV/AIDS',
-                    allFilters: filters.aidsFilters, searchResults: searchAIDSResults, showMap: false,
-                    mapData: {}, chartAxisLabel: 'Cases', tableView: 'hiv', defaultChartView: 'cases',
+                    allFilters: filters.aidsFilters, searchResults: searchAIDSResults, showMap: true,
+                    mapData: {}, chartAxisLabel: 'Cases', tableView: 'aids', defaultChartView: 'cases',
                     chartViewOptions: filters.diseaseVizGroupOptions,
                     runOnFilterChange: true, applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
@@ -2927,7 +2931,6 @@
             var filter = utilService.findByKeyAndValue(allFilters,'key', filterValue);
             filter.groupBy = filterGroupType;
         }
-
     }
 
 }());

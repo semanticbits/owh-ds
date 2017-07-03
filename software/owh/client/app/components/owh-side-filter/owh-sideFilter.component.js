@@ -302,6 +302,7 @@
             if (filter.refreshFiltersOnChange){
                 utilService.refreshFilterAndOptions(filter.filters, sfc.filters, sfc.primaryKey);
             }
+            filter.onFilterChange && filter.onFilterChange(filter.filters, sfc.filters);
             // Run the filter call back only if runOnFilterChange is true
             if(sfc.runOnFilterChange) {
                 sfc.onFilter();
