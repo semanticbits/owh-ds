@@ -694,6 +694,15 @@ select.gray-border {
 	top: -5px;
 	font-size: 24px;
 	color: #974bc2;
+	right: 35px;
+	display: inline-block;
+	cursor: pointer;
+}
+.graph-box .text-center.margin-top-5 a:last-of-type {
+	position: absolute;
+	top: -5px;
+	font-size: 24px;
+	color: #974bc2;
 	right: 5px;
 	display: inline-block;
 	cursor: pointer;
@@ -702,8 +711,8 @@ select.gray-border {
 	color: #974bc2;
 }
 .graph-box .text-center.margin-top-5 a:first-of-type {
-	right: 35px;
-	top: -6px
+	right: 65px;
+	top: -6px;
 }
 table th, table td {
 	border: none;

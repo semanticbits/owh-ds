@@ -8,9 +8,22 @@
 
     function shareUtilService(SearchService, $q, $filter) {
         var service = {
-            shareOnFb: shareOnFb
+            shareOnFb: shareOnFb,
+            exportChart: exportChart
         };
         return service;
+
+
+        function exportChart(chart, title) {
+            getBase64ForSvg(chart).then(function(response){
+                    var link = document.createElement("a");
+                    var now = new Date();
+                    link.download = title+'_'+ $filter('date')(now,'yyyyMMdd-hhmmss')+'.png';
+                    link.href = response.replace("image/png", "image/octet-stream");
+                    document.body.appendChild(link);
+                    link.click();
+            });
+        }
 
         function shareOnFb(svgIndex, title, section, description, data) {
             section = section ? section : 'Mortality';

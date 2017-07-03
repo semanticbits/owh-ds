@@ -758,6 +758,10 @@
                     eg.primaryFilters = primaryFilters;
                     eg.selectedQuestion = selectedQuestion;
                     eg.close = close;
+                    eg.export = function (svgIndex, title) {
+                        shareUtilService.exportChart(svgIndex, title);
+                    };
+
                     eg.showFbDialog = function(svgIndex, title, section, description) {
                         shareUtilService.shareOnFb(svgIndex, title, section, description);
                     };
