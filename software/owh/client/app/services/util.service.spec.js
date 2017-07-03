@@ -514,7 +514,7 @@ describe('utilService', function(){
         expect(filters[3].filters.autoCompleteOptions[1].disabled).toBeFalsy();
     }));
 
-    it('refresh disease filter options for STD', inject(function(filterUtils){
+    it('STD: Disease filter option "Congenital Syphilis" on change', inject(function(filterUtils){
         var filters = {};
         filters.groupOptions = [
             {key:'column',title:'Column', tooltip:'Select to view as columns on data table'},
@@ -559,7 +559,7 @@ describe('utilService', function(){
         var categories = [filters];
 
         //with default filter optoins
-        utils.refreshFilterAndOptions({ queryKey: "disease", value: "Chlamydia"}, categories, 'std');
+        utils.stdFilterChange({ queryKey: "disease", value: "Chlamydia"}, categories);
         //Disease -> Congenital Syphilis should not be disable by default
         expect(filters.sideFilters[0].filters.autoCompleteOptions[4].disabled).toBeFalsy();
         //Sex
@@ -591,7 +591,7 @@ describe('utilService', function(){
         });
 
         //When user select Disease -> Congenital Syphilis, then Sex, Race/Ethnicity and Age Group filters should be disabled
-        utils.refreshFilterAndOptions({ queryKey: "disease", value: "Congenital Syphilis"}, categories, 'std');
+        utils.stdFilterChange({ queryKey: "disease", value: "Congenital Syphilis"}, categories);
         //Sex
         angular.forEach(filters.sideFilters[2].filters.autoCompleteOptions, function(option, index){
             if(index == 0){
@@ -621,7 +621,7 @@ describe('utilService', function(){
         });
 
         //When user select Disease -> Chlamydia, then Sex, Race/Ethnicity and Age Group filters should be enabled
-        utils.refreshFilterAndOptions({ queryKey: "disease", value: "Chlamydia"}, categories, 'std');
+        utils.stdFilterChange({ queryKey: "disease", value: "Chlamydia"}, categories);
         //Sex
         angular.forEach(filters.sideFilters[2].filters.autoCompleteOptions, function(option, index){
             if(index == 0){
@@ -651,22 +651,19 @@ describe('utilService', function(){
         });
 
         //When user select Sex -> Female then Disease -> Congenital Syphilis option should be disabled
-        filters.sideFilters[2].filters.value = 'Female';
-        utils.refreshFilterAndOptions({ queryKey: "disease", value: "Chlamydia"}, categories, 'std');
+        utils.stdFilterChange({ queryKey: "sex", value: "Female"}, categories);
         //Disease -> Congenital Syphilis should be disabled
         expect(filters.sideFilters[0].filters.autoCompleteOptions[4].disabled).toBeTruthy();
 
 
         //When user select Race/Ethinicity -> Asian then Disease -> Congenital Syphilis option should be disabled
-        filters.sideFilters[3].filters.value = 'Asian';
-        utils.refreshFilterAndOptions({ queryKey: "disease", value: "Chlamydia"}, categories, 'std');
+        utils.stdFilterChange({ queryKey: "race", value: "Asian"}, categories);
         //Disease -> Congenital Syphilis should be disabled
         expect(filters.sideFilters[0].filters.autoCompleteOptions[4].disabled).toBeTruthy();
 
 
         //When user select Age group -> 0-4 then Disease -> Congenital Syphilis option should be disabled
-        filters.sideFilters[4].filters.value = '0-4';
-        utils.refreshFilterAndOptions({ queryKey: "disease", value: "Chlamydia"}, categories, 'std');
+        utils.stdFilterChange({ queryKey: "age_group", value: "0-14"}, categories);
         //Disease -> Congenital Syphilis should be disabled
         expect(filters.sideFilters[0].filters.autoCompleteOptions[4].disabled).toBeTruthy();
 
@@ -719,7 +716,7 @@ describe('utilService', function(){
         var categories = [filters];
        spyOn(SearchService, 'getDsMetadata').and.returnValue(deferred.promise);
         //For year 2015
-        utils.refreshFilterAndOptions({queryKey: "year", value: "2015"}, categories, 'std');
+        utils.stdFilterChange({queryKey: "current_year", value: "2015"}, categories);
         expect(SearchService.getDsMetadata).toHaveBeenCalledWith("std",["2015"]);
         deferred.resolve({"status":"OK","data":{"current_year":null,"suppression_cases":null,"pop":null,"disease":["Acute Viral Hepatitis  A","Tuberculosis","Acute Viral Hepatitis  C","Acute Viral Hepatitis  B","Early Latent Syphilis","Congenital Syphilis","HIV, stage 3 (AIDS)","Persons living with HIV, stage 3 (AIDS)","HIV, stage 3 (AIDS) deaths","HIV deaths","HIV diagnoses","Chlamydia","Persons living with diagnosed HIV","Primary and Secondary Syphilis","Gonorrhea"],"sex":["Male","Both sexes","Female"],"race_ethnicity":["Other","American Indian or Alaska Native","All races/ethnicities","Black or African American","Asian","Native Hawaiian or Other Pacific Islander","Hispanic or Latino","Multiple races","White","Asian or Pacific Islander","Unknown"],"cases":null,"suppression_rate":null},"pagination":{}});
         $scope.$apply();
@@ -774,12 +771,70 @@ describe('utilService', function(){
         var categories = [filters];
         spyOn(SearchService, 'getDsMetadata').and.returnValue(deferred.promise);
         //For year 2016
-        utils.refreshFilterAndOptions({queryKey: "year", value: "2006"}, categories, 'std');
+        utils.stdFilterChange({queryKey: "current_year", value: "2006"}, categories);
         expect(SearchService.getDsMetadata).toHaveBeenCalledWith("std",["2006"]);
         deferred.resolve({"status":"OK","data":{"disease":["Acute Viral Hepatitis  A","Tuberculosis","Acute Viral Hepatitis  C","Acute Viral Hepatitis  B","Early Latent Syphilis","Congenital Syphilis","HIV, stage 3 (AIDS)","Persons living with HIV, stage 3 (AIDS)","HIV, stage 3 (AIDS) deaths","HIV deaths","HIV diagnoses","Chlamydia","Persons living with diagnosed HIV","Primary and Secondary Syphilis","Gonorrhea"],"suppression_cases":null,"sex":["Male","Both sexes","Female"],"suppression_rate":null},"pagination":{}});
         $scope.$apply();
         //Race/Ethnicity filter should be disabled
         expect(filters.sideFilters[3].disabled).toBeTruthy();
     }));
+
+    it('STD: Disease filter option "Early Latent Syphilis" on change', inject(function(filterUtils, $filter) {
+        var filters = {};
+        filters.groupOptions = [
+            {key: 'column', title: 'Column', tooltip: 'Select to view as columns on data table'},
+            {key: 'row', title: 'Row', tooltip: 'Select to view as rows on data table'},
+            {key: false, title: 'Off', tooltip: 'Select to hide on data table'}
+        ];
+        filters.sideFilters = [
+            {
+                filterGroup: false, collapse: true, allowGrouping: true, groupBy: false,
+                groupOptions: filters.groupOptions,
+                refreshFiltersOnChange: true,
+                filters: utils.findByKeyAndValue(filterUtils.getSTDDataFilters(), 'key', 'disease')
+            },
+            {
+                filterGroup: false,
+                collapse: false,
+                allowGrouping: true,
+                groupOptions: filters.groupOptions,
+                filters: utils.findByKeyAndValue(filterUtils.getSTDDataFilters(), 'key', 'current_year')
+            },
+            {
+                filterGroup: false, collapse: true, allowGrouping: true,
+                groupOptions: filters.groupOptions,
+                filters: utils.findByKeyAndValue(filterUtils.getSTDDataFilters(), 'key', 'sex')
+            },
+            {
+                filterGroup: false, collapse: true, allowGrouping: true,
+                groupOptions: filters.groupOptions,
+                filters: utils.findByKeyAndValue(filterUtils.getSTDDataFilters(), 'key', 'race')
+            },
+            {
+                filterGroup: false, collapse: true, allowGrouping: true,
+                groupOptions: filters.groupOptions,
+                filters: utils.findByKeyAndValue(filterUtils.getSTDDataFilters(), 'key', 'age_group')
+            },
+            {
+                filterGroup: false, collapse: true, allowGrouping: true,
+                groupOptions: filters.groupOptions,
+                filters: utils.findByKeyAndValue(filterUtils.getSTDDataFilters(), 'key', 'state')
+            }
+        ];
+        var categories = [filters];
+        //if user select 'Disease' -> 'Early Latent Syphilis'
+        //Then disabled year 2000, 2001, 2002
+        utils.stdFilterChange({queryKey: "disease", value: "Early Latent Syphilis"}, categories);
+        var yearSideFilter = $filter('filter')(filters.sideFilters, {filters : {key: 'year'}})[0];
+        var year_2000 = utils.findByKeyAndValue(yearSideFilter.filters.autoCompleteOptions, 'key', '2000');
+        var year_2001 = utils.findByKeyAndValue(yearSideFilter.filters.autoCompleteOptions, 'key', '2001');
+        var year_2002 = utils.findByKeyAndValue(yearSideFilter.filters.autoCompleteOptions, 'key', '2002');
+        expect(year_2000.disabled).toBeTruthy();
+        expect(year_2001.disabled).toBeTruthy();
+        expect(year_2002.disabled).toBeTruthy();
+    }));
+
+
+
 
 });

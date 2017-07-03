@@ -1041,6 +1041,7 @@
                     queryKey: "current_year",
                     primary: false,
                     value: "2015",
+                    defaultValue: "2015",
                     groupBy: false,
                     filterType: 'radio',
                     autoCompleteOptions: diseaseYearOptions,
@@ -1053,6 +1054,7 @@
                     queryKey: "disease",
                     primary: false,
                     value: 'Chlamydia',
+                    defaultValue: "Chlamydia",
                     groupBy: false,
                     filterType: 'radio',
                     autoCompleteOptions: stdDiseaseOptions,
@@ -1061,7 +1063,8 @@
                 },
 
                 {
-                    key: 'state', title: 'label.filter.state', queryKey: "state", primary: false, value: 'National',
+                    key: 'state', title: 'label.filter.state', queryKey: "state", primary: false,
+                    value: 'National', defaultValue: "National",
                     groupBy: false, filterType: 'radio', displaySearchBox: true, displaySelectedFirst: true,
                     autoCompleteOptions: diseaseStateOptions,
                     doNotShowAll: true,
