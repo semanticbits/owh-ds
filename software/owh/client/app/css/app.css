@@ -203,12 +203,19 @@ a.custom-link, a.custom-link:hover {
     display: inline-block;
     color: inherit;
 }
-a.custom-link:focus {
-    box-shadow: none;
+
+a:focus, a:hover {
+    /*background-color: blue;*/
+    background-color: lightskyblue;
 }
 
-a:focus {
-    background-color: yellow;
+a.custom-link:focus {
+    box-shadow: none;
+    background-color: lightskyblue;
+}
+
+a.custom-link:hover {
+    background-color: lightskyblue;
 }
 
 a.active-link, a.active-link:hover {
