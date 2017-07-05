@@ -265,7 +265,7 @@
                                 <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                                        ng-init="title = option.title">
                                     <span class="count-label" translate="{{title}}"></span>
-                                    <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts && option.count != 'suppressed'" ng-bind="option.count | number"></span>
+                                    <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts && option.count != 'suppressed'">{{option.count | number}}</span>
                                     <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts && option.count === 'suppressed'">Suppressed</span>
                                 </label>
                             </div>
