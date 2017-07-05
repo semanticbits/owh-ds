@@ -394,9 +394,29 @@ function buildAPIQuery(primaryFilter) {
                 headers.columnHeaders.push(eachFilter);
             }
         }
-        var eachFilterQuery = buildFilterQuery(eachFilter);
-        if(eachFilterQuery) {
-            apiQuery.query[eachFilter.queryKey] = eachFilterQuery;
+
+        if (eachFilter.key === 'mcd-chapter-10') {
+            var set1Filter = clone(eachFilter);
+            var set2Filter = clone(eachFilter);
+
+            set1Filter.value = set1Filter.value.set1 || [];
+            set2Filter.value = set2Filter.value.set2 || [];
+
+            var set1FilterQuery = buildFilterQuery(set1Filter);
+            if (set1FilterQuery) {
+                apiQuery.query[set1Filter.queryKey + ".set1"] = set1FilterQuery;
+            }
+
+            var set2FilterQuery = buildFilterQuery(set2Filter);
+            if (set2FilterQuery) {
+                apiQuery.query[set2Filter.queryKey + ".set2"] = set2FilterQuery;
+            }
+        }
+        else {
+            var eachFilterQuery = buildFilterQuery(eachFilter);
+            if(eachFilterQuery) {
+                apiQuery.query[eachFilter.queryKey] = eachFilterQuery;
+            }
         }
     });
     if (primaryFilter.key === 'prams') {
@@ -491,11 +511,6 @@ function buildFilterQuery(filter) {
 }
 
 function getFilterQuery(filter) {
-    // For now we are taking only one of the two sets, real implementation of the two sets will come with task OWH-1125
-    if (filter.key === 'mcd-chapter-10') {
-        filter.value = (filter.value.set1 && filter.value.set1.length > 0) ? filter.value.set1 : filter.value.set2;
-    }
-
     return {
         key: filter.key,
         queryKey: filter.aggregationKey ? filter.aggregationKey : filter.queryKey,
