@@ -2,7 +2,7 @@
     <div class="usa-grid-full usa-width-one-whole">
         <div class="usa-width-two-third margin-right-0 margin-left-10" >
             <div>
-                <div class="left-float text-right interested-text" ng-bind="'label.interested.in' | translate"></div>
+                <label for="interestedIn"><div class="left-float text-right interested-text" ng-bind="'label.interested.in' | translate"></div></label>
                 <select id="interestedIn" ng-model="ots.filters.selectedPrimaryFilter"
                         ng-options="primaryFilter.title | translate for primaryFilter in ots.filters.primaryFilters"
                         ng-change="ots.onPrimaryFilter({newFilter: ots.filters.selectedPrimaryFilter})"
@@ -20,41 +20,41 @@
                                  placeholder="Click here to type">{{$item.title | translate}}</ui-select-match>
                 <ui-select-choices class="ui-select-choices" group-by="'type'" ui-disable-choice="option.disableFilter"
                                    repeat="option as option in ots.filters.selectedPrimaryFilter.allFilters | filter: $select.search">
-                    <div ng-bind-html="option.title | translate | highlight: $select.search"></div>
+                    <div ng-bind-html="option.title | translate | highlight: $select.search" tabindex="1"></div>
                 </ui-select-choices>
             </ui-select>
         </div>
         <div class="usa-width-one-fourth margin-right-0" ng-show="ots.filters.selectedPrimaryFilter.key === 'deaths'">
-            <div class="usa-width-one-fourth show-me-text" ng-bind="'label.show.me' | translate"></div>
+            <label for="showMeDropDown"><div class="usa-width-one-fourth show-me-text" ng-bind="'label.show.me' | translate"></div></label>
             <select id="showMeDropDown" ng-model="ots.selectedShowFilter"
                     ng-change="ots.onViewFilter({selectedFilter: ots.selectedShowFilter})"
                     ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.deaths"
                     class="usa-width-two-thirds add-on-element gray-border margin-0"></select>
         </div>
         <div class="usa-width-one-fourth margin-right-0" ng-show="ots.filters.selectedPrimaryFilter.key === 'natality'">
-            <div class="usa-width-one-fourth show-me-text" ng-bind="'label.show.me' | translate"></div>
-            <select ng-model="ots.selectedShowFilter"
+            <label for="natalityDropDown"><div class="usa-width-one-fourth show-me-text" ng-bind="'label.show.me' | translate"></div></label>
+            <select id="natalityDropDown" ng-model="ots.selectedShowFilter"
                     ng-change="ots.onViewFilter({selectedFilter: ots.selectedShowFilter})"
                     ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.natality"
                     class="usa-width-two-thirds add-on-element gray-border margin-0"></select>
         </div>
         <div class="usa-width-one-fourth margin-right-0" ng-show="ots.filters.selectedPrimaryFilter.key === 'prams'">
-            <div class="usa-width-one-fourth show-me-text" ng-bind="'label.prams.class' | translate" title="{{'label.help.text.prams.class' | translate}}"></div>
-            <select ng-model="ots.selectedShowFilter"
+            <label for="pramsDropDown"><div class="usa-width-one-fourth show-me-text" ng-bind="'label.prams.class' | translate" title="{{'label.help.text.prams.class' | translate}}"></div></label>
+            <select id="pramsDropDown" ng-model="ots.selectedShowFilter"
                     ng-change="ots.onViewFilter({selectedFilter: ots.selectedShowFilter})"
                     ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.prams"
                     class="usa-width-two-thirds add-on-element gray-border margin-0"></select>
         </div>
         <div class="usa-width-one-fourth margin-right-0" ng-show="ots.filters.selectedPrimaryFilter.key === 'mental_health'">
-            <div class="usa-width-one-fourth show-me-text" ng-bind="'label.yrbs.healthtopics' | translate" title="{{'label.yrbs.healthtopics' | translate}}"></div>
-            <select ng-model="ots.selectedShowFilter"
+            <label for="yrbsDropDown"><div class="usa-width-one-fourth show-me-text" ng-bind="'label.yrbs.healthtopics' | translate" title="{{'label.yrbs.healthtopics' | translate}}"></div></label>
+            <select id="yrbsDropDown" ng-model="ots.selectedShowFilter"
                     ng-change="ots.onViewFilter({selectedFilter: ots.selectedShowFilter})"
                     ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.mental_health"
                     class="usa-width-two-thirds add-on-element gray-border margin-0"></select>
         </div>
         <div class="forward-back">
-            <button class="action-button condition-option ng-scope"  ng-click="ots.goBackward();" title="Previous Query"><span class="fa fa-chevron-left" ng-class="fa-chevron-left"></span></button>
-            <button class="action-button condition-option ng-scope"  ng-click="ots.goForward();" title="Next Query"><span class="fa fa-chevron-right" ng-class="fa-chevron-right"></span></button>
+            <button class="action-button condition-option ng-scope"  ng-click="ots.goBackward();" title="Previous Query">Back <span class="fa fa-chevron-left" ng-class="fa-chevron-left"></span></button>
+            <button class="action-button condition-option ng-scope"  ng-click="ots.goForward();" title="Next Query">Next <span class="fa fa-chevron-right" ng-class="fa-chevron-right"></span></button>
         </div>
         <!--<owh-bookmark table-view="ots.tableView"></owh-bookmark>-->
     </div>
