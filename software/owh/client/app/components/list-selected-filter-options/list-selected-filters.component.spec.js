@@ -50,4 +50,12 @@ describe('listSelectedFilters component: ', function() {
         var options = ctrl.getSelectedOptionTitlesOfFilter(filters[1]);
         expect(options).toEqual('Female');
     }));
+
+    it('should exclude question filter from selected filters', inject(function () {
+        var filters = [{"key":"question","title":"label.filter.question","value":["qn43"],"filterType":"radio","autoCompleteOptions":[{"key":"qn43","title":"Question-1"},{"key":"qn44","title":"Question-2"}]}];
+        var sortOrder = ['topic', 'question'];
+        var bindings = {filters:filters, sort: sortOrder};
+        var ctrl = $componentController('listSelectedFilters', null, bindings);
+        expect(ctrl.appliedFilters).toEqual([]);
+    }));
 });
