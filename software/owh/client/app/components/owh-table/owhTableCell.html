@@ -14,12 +14,12 @@
             </div>
             <div id="curdeDeathsPopuDiv" ng-class="{true: 'usa-width-one-half', false: 'usa-width-one-third'}[otcc.row.length > 5]">
                 <div>
-                    <label ng-if="otcc.rowIndex === 0" class="owh-table__label">Deaths</label>
+                    <label title="{{'label.help.text.deaths' | translate}}" ng-if="otcc.rowIndex === 0" class="owh-table__label">Deaths</label>
                     <span ng-if="otcc.cell.title !== 'suppressed'">{{ otcc.cell.title | number }}</span>
                     <span ng-if="otcc.cell.title === 'suppressed'">Suppressed</span>
                 </div>
                 <div ng-if="otcc.tableView === 'crude_death_rates'">
-                    <label ng-if="otcc.rowIndex === 0" class="owh-table__label">Population</label>
+                    <label title="{{'label.help.text.pop' | translate}}" ng-if="otcc.rowIndex === 0" class="owh-table__label">Population</label>
                     <span ng-if="otcc.cell.pop">{{ otcc.cell.pop | number }}</span>
                     <span ng-if="!otcc.cell.pop">Not Available</span>
                 </div>
