@@ -10,21 +10,21 @@ var AidsPage = function () {
     this.getFilter = function (target_filter) {
         return element.all(by.cssContainingText('.side-pane-label', target_filter))
             .first()
-    }
+    };
 
     this.expandFilter = function (target_filter) {
         return this.getFilter(target_filter)
             .all(by.tagName('a'))
             .first()
             .click();
-    }
+    };
 
     this.clickMoreOptionsForFilter = function (target_filter) {
         return this.getFilter(target_filter)
             .element(by.xpath('..'))
             .element(by.className('more-options'))
             .click();
-    }
+    };
 
     this.getOptionsForFilter = function (target_filter) {
         return this.getFilter(target_filter)
@@ -34,12 +34,12 @@ var AidsPage = function () {
             .map(function (el) {
                 return el.getText();
             });
-    }
+    };
 
     // Table
     this.owhTable = function () {
       return element(by.tagName('owh-table'));
-    }
+    };
 
     this.getTableHeaders = function () {
         return this.owhTable()
