@@ -45,7 +45,7 @@ var generateCensusAggregationQuery = function( aggQuery, groupByKeyStart ) {
     return query;
 };
 
-var prepareAggregationQuery = function(aggregations, countQueryKey) {
+var prepareAggregationQuery = function(aggregations, countQueryKey, datasetName) {
     var elasticQuery = {};
     elasticQuery.aggregations = {};
     //build array for
@@ -58,7 +58,7 @@ var prepareAggregationQuery = function(aggregations, countQueryKey) {
         if (aggregations['nested']['table'] && aggregations['nested']['table'].length > 0) {
             elasticQuery.aggregations = merge(elasticQuery.aggregations, generateNestedAggQuery(aggregations['nested']['table'], 'group_table_', countQueryKey));
         }
-        if (aggregations['nested']['charts']) {
+        if (datasetName != 'std' && aggregations['nested']['charts']) {
             for(var index in aggregations['nested']['charts']) {
                 elasticQuery.aggregations = merge(elasticQuery.aggregations, generateNestedAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_', countQueryKey));
             }
@@ -154,10 +154,11 @@ function getCasesSumQuery() {
 var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     var userQuery = params.query ? params.query : {};
     var elasticQuery = {};
+    var  searchQueryArray = [];
     var censusQuery = undefined;
     if ( isAggregation ){
         elasticQuery.size = 0;
-        elasticQuery = merge(elasticQuery, prepareAggregationQuery(params.aggregations, params.countQueryKey));
+        elasticQuery = merge(elasticQuery, prepareAggregationQuery(params.aggregations, params.countQueryKey, params.searchFor));
         if(params.aggregations['nested'] && params.aggregations['nested']['table']){
             censusQuery = prepareCensusAggregationQuery(params.aggregations);
         }
@@ -204,8 +205,14 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     }
     //prepare query for map
     var  mapQuery = buildMapQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery);
-
-    return [elasticQuery, censusQuery, mapQuery];
+    searchQueryArray.push(elasticQuery);
+    searchQueryArray.push(censusQuery);
+    searchQueryArray.push(mapQuery);
+    //Prepare chart query for disease datasets 'std', 'tb' and 'aids'.
+    if(params.searchFor == 'std' || params.searchFor == 'tb' || params.searchFor == 'aids') {
+        searchQueryArray.push(buildChartQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery));
+    }
+    return searchQueryArray;
 };
 
 //build top-level bool query
@@ -882,6 +889,66 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery) {
 
     return mapQuery;
 }
+
+/**
+ * This function is used to prepare aggregation query for chart
+ * @param aggregations
+ * @param countQueryKey
+ * @param primaryQuery
+ * @param filterQuery
+ * @returns {undefined}
+ */
+function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery) {
+    var charQueryArray = [];
+    //filter and it's 'All' value map
+    var filterAllValueMap = {"sex":"Both sexes", "race_ethnicity": "All races/ethnicities", "age_group": "All age groups", "state": "National"};
+    if (aggregations['nested'] && aggregations['nested']['charts']) {
+        //Get selected aggregation query keys
+        var selectedFilterKeys = [];
+        aggregations['nested']['charts'].forEach(function(eachChart){
+            eachChart.forEach(function(eachFilter){
+                if(selectedFilterKeys.indexOf(eachFilter.queryKey) < 0 ) {
+                    selectedFilterKeys.push(eachFilter.queryKey);
+                }
+            })
+        });
+        //Prepare aggregation query
+       for(var index in aggregations['nested']['charts']) {
+           var chartQuery = { "size":0, aggregations: {} };
+           var filterKeys = clone(selectedFilterKeys);
+           //for each aggregation prepare one chart query
+           chartQuery.aggregations = generateNestedAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_', countQueryKey, true);
+           //add query criteria
+           chartQuery.query = {filtered:{}};
+           chartQuery.query.filtered.query = clone(primaryQuery);
+           chartQuery.query.filtered.filter = clone(filterQuery);
+           //For each aggregation find out what are the keys that are not included in aggregation and add a boolean filter query for that key
+           //For example if user selected three filters 'sex', 'race' and 'age_group' then we will have three aggregation queries
+           // 1. sex and race aggregation  -> for this aggregation query we add 'age_group -> All age groups' boolean filter
+           // 2. sex and age_group -> for this aggregation query we add 'race -> All races/ethinicities' boolean filter
+           // 3. age_group and race -> for this aggregation query we add 'sex -> Both sexes' boolean filter
+           aggregations['nested']['charts'][index].forEach(function(eachFilter){
+               var filterIndex = filterKeys.indexOf(eachFilter.queryKey);
+               filterKeys.splice(filterIndex, 1);
+           });
+           var mustFilters = chartQuery.query.filtered.filter.bool.must;
+           filterKeys.forEach(function(eachKey){
+               //If filter value available meaning if filter is 'sex', 'race', 'ageGroup' or 'state'
+               if(filterAllValueMap[eachKey]) {
+                   var boolQuery = buildBoolQuery(eachKey, [filterAllValueMap[eachKey]]);
+                   if (!isEmptyObject(boolQuery)) {
+                       mustFilters.push(boolQuery);
+                   }
+               }
+           });
+
+           charQueryArray.push(chartQuery);
+       }
+    }
+
+    return charQueryArray;
+}
+
 
 module.exports.prepareAggregationQuery = prepareAggregationQuery;
 module.exports.buildSearchQuery = buildSearchQuery;
