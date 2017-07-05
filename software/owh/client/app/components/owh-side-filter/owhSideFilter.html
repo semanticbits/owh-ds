@@ -290,13 +290,12 @@
                             <div ng-if="option.group" ng-init="option.collapse = true" class="owh-side-menu__group-option">
                                 <input id="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" name="{{group.queryKey}}" type="checkbox"
                                        checklist-model="group.value" checklist-value="option.key" ng-disabled="sfc.isOptionDisabled(group, option)" ng-click="sfc.filterGroup(option, group)">
-                                        <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
-                                       ng-init="title = option.title">
-                                    <a id="Hispanic" href="javascript:void(0)" title="option.title" ng-click="option.collapse = !option.collapse" class="custom-link ">
+                                <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label" ng-init="title = option.title">
+                                    <a id="Hispanic" href="javascript:void(0)" title="option.title" ng-click="option.collapse = !option.collapse" class="custom-link">
                                         <span class="fa" ng-class="option.collapse ? 'fa-chevron-right':'fa-chevron-down'"></span>
                                         <!--<span translate="{{group.title}}"></span>-->
+                                        <span class="count-label" translate="{{title}}"></span>
                                     </a>
-                                    <span class="count-label" translate="{{title}}"></span>
                                     <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts" ng-bind="option.count | number"></span>
                                 </label>
                                 <ul class="owh-side-menu__sub-category-options" ng-hide="option.collapse" ng-init="option.collapse = !sfc.isSubOptionSelected(group, option)">
@@ -454,9 +453,6 @@
         </div>
         <li class="accordion" ng-repeat="util in sfc.utilities">
             <span>
-                <form>
-                    <fieldset>
-                    <legend>
                         <label class="side-pane-label custom-label">
                     <a href="javascript:void(0)" ng-click="util.collapse = !util.collapse"
                        title="{{util.helpText | translate}}" class="custom-link">
@@ -464,7 +460,6 @@
                         <span translate="{{util.title}}"></span>
                     </a>
                     </label>
-                    </legend>
                 <ul class="owh-side-menu__options-list usa-unstyled-list group-options" ng-hide="util.collapse">
                     <div class="owh-side-menu__utility-option" ng-repeat="option in util.options">
                         <div ng-if="option.type === 'toggle'">
@@ -478,8 +473,6 @@
                         <br ng-if="$index === 0" />
                     </div>
                 </ul>
-                    </fieldset>
-                </form>
             </span>
         </li>
     </ul>
