@@ -370,7 +370,7 @@
   "label.std.help.text.race.ethnicity": "This field indicates the Race/Ethnicity of the patient.",
   "label.std.help.text.age.group": "This field indicates the age group of the patient.",
   "label.selected.filters": "Selected Filters:",
-  "label.std.national.data.available.for.few.years.statement": "National data is not available for any disease for the years 2007-2010.",
+  "label.std.national.data.available.for.few.years.statement": "National data are not available for any disease for the years 2007-2010.",
 
   "label.help.text.disease": "This field indicates diagnosis and prevalence of deaths of AIDS/HIV.",
   "label.help.text.hiv.year": "This field indicates year of diagnosis or death. For persons living with diagnosed HIV, year refers to the end of the queried calendar year.",

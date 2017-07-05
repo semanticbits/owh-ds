@@ -933,12 +933,19 @@ function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery)
            });
            var mustFilters = chartQuery.query.filtered.filter.bool.must;
            filterKeys.forEach(function(eachKey){
-               //If filter value available meaning if filter is 'sex', 'race', 'ageGroup' or 'state'
-               if(filterAllValueMap[eachKey]) {
-                   var boolQuery = buildBoolQuery(eachKey, [filterAllValueMap[eachKey]]);
-                   if (!isEmptyObject(boolQuery)) {
-                       mustFilters.push(boolQuery);
+               var isFilterQueryPresent = false;
+               //check if 'eachKey' already present in must filter
+               //That means if user selected other than 'sex -> Both sexes', 'race -> All races/ethnicities', 'age_group -> All age groups' and 'state -> National' filters then 'isKeyPresent' set to 'true'
+               for(var i in mustFilters){
+                   if(mustFilters[i].bool.should[0].term[eachKey] != undefined) {
+                       isFilterQueryPresent = true;
+                       break;
                    }
+               }
+               //If filter value available meaning if filter is 'sex', 'race', 'ageGroup' or 'state'
+               if(!isFilterQueryPresent && filterAllValueMap[eachKey]) {
+                   var boolQuery = buildBoolQuery(eachKey, [filterAllValueMap[eachKey]]);
+                   !isEmptyObject(boolQuery) && mustFilters.push(boolQuery);
                }
            });
 
