@@ -58,7 +58,7 @@ var prepareAggregationQuery = function(aggregations, countQueryKey, datasetName)
         if (aggregations['nested']['table'] && aggregations['nested']['table'].length > 0) {
             elasticQuery.aggregations = merge(elasticQuery.aggregations, generateNestedAggQuery(aggregations['nested']['table'], 'group_table_', countQueryKey));
         }
-        if (datasetName != 'std' && aggregations['nested']['charts']) {
+        if (datasetName != 'std' && datasetName != 'tb' && datasetName != 'aids' && aggregations['nested']['charts']) {
             for(var index in aggregations['nested']['charts']) {
                 elasticQuery.aggregations = merge(elasticQuery.aggregations, generateNestedAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_', countQueryKey));
             }
