@@ -103,7 +103,7 @@ var stdStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on Rate chart view toggle button$/, function (next) {
-         element(by.cssContainingText('span', 'Rate')).click()
+         element(by.cssContainingText('span', 'Rates')).click()
              .then(next);
     });
 
