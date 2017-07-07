@@ -3,12 +3,13 @@
 /*group of common test goes here as describe*/
 describe('utilService', function(){
     var utils, list, tableData, multipleColumnsTableData, noColumnsTableData, noRowsTableData,
-        multipleColumnsTableDataWithUnmatchedColumns, singleValuedTableData, $q, $scope;
+        multipleColumnsTableDataWithUnmatchedColumns, singleValuedTableData, $q, $scope, filterUtils;
 
     beforeEach(module('owh'));
 
     beforeEach(inject(function ($injector,_$rootScope_, _$state_, _$q_) {
         utils = $injector.get('utilService');
+        filterUtils = $injector.get('filterUtils');
         $q = _$q_;
         $scope= _$rootScope_.$new();
         var $httpBackend = $injector.get('$httpBackend');
@@ -834,7 +835,50 @@ describe('utilService', function(){
         expect(year_2002.disabled).toBeTruthy();
     }));
 
+    it('Aids: Should disable the proper disease filters when 2000 is selected', function () {
+        var mockFilters = {};
+        mockFilters.sideFilters = [
+            {
+                filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'disease')
+            },
+            {
+                filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'current_year')
+            }
+        ];
+        utils.aidsFilterChange({ key: 'current_year', value: '2000' }, [mockFilters]);
+        expect(utils.findByKeyAndValue(mockFilters.sideFilters[0].filters.autoCompleteOptions, 'key', 'HIV diagnoses').disabled).toBeTruthy();
+        expect(utils.findByKeyAndValue(mockFilters.sideFilters[0].filters.autoCompleteOptions, 'key', 'HIV deaths').disabled).toBeTruthy();
+        expect(utils.findByKeyAndValue(mockFilters.sideFilters[0].filters.autoCompleteOptions, 'key', 'Persons living with diagnosed HIV').disabled).toBeTruthy();
+    });
 
+    it('Aids: Should disable the proper year filters when HIV, stage 3 (AIDS) deaths is selected', function () {
+        var mockFilters = {};
+        mockFilters.sideFilters = [
+            {
+                filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'disease')
+            },
+            {
+                filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'current_year')
+            }
+        ];
+        utils.aidsFilterChange({ key: 'disease', value: 'HIV, stage 3 (AIDS) deaths' }, [mockFilters]);
+        expect(utils.findByKeyAndValue(mockFilters.sideFilters[1].filters.autoCompleteOptions, 'key', '2015').disabled).toBeTruthy();
+    });
 
-
+    it('Aids: Should disable the proper year filters when HIV deaths is selected', function () {
+        var mockFilters = {};
+        mockFilters.sideFilters = [
+            {
+                filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'disease')
+            },
+            {
+                filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'current_year')
+            }
+        ];
+        utils.aidsFilterChange({ key: 'disease', value: 'HIV deaths' }, [mockFilters]);
+        expect(utils.findByKeyAndValue(mockFilters.sideFilters[1].filters.autoCompleteOptions, 'key', '2015').disabled).toBeTruthy();
+        expect(utils.findByKeyAndValue(mockFilters.sideFilters[1].filters.autoCompleteOptions, 'key', '2000').disabled).toBeTruthy();
+        expect(utils.findByKeyAndValue(mockFilters.sideFilters[1].filters.autoCompleteOptions, 'key', '2005').disabled).toBeTruthy();
+        expect(utils.findByKeyAndValue(mockFilters.sideFilters[1].filters.autoCompleteOptions, 'key', '2003').disabled).toBeTruthy();
+    });
 });
