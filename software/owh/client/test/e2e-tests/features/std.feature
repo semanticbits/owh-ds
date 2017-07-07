@@ -101,4 +101,4 @@ Feature: STD page
   Scenario: Select year between 2007 - 2010
     When filter "Year" and option "2007" selected
     Then all side filters should be enabled
-    And the following message should be displayed "National data is not available for any disease for the years 2007-2010." on std page
+    And the following message should be displayed "National data are not available for any disease for the years 2007-2010." on std page
