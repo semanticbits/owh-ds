@@ -112,9 +112,9 @@
             <!--More visualization-->
             <div class="usa-width-one-whole" ng-show="sc.filters.selectedPrimaryFilter.chartData.length > 0">
                 <div class="usa-width-one-whole more-graph-select">
-                    <span ng-bind="'label.visualization.more.one' | translate"></span>
+                    <span class="dark-link" ng-bind="'label.visualization.more.one' | translate"></span>
                     <a href="javascript:void(0)" ng-click="sc.showPhaseTwoGraphs('label.graph.impl.next')">Build one</a>
-                    <span ng-bind="'label.visualization.more.two' | translate"></span>
+                    <span class="dark-link" ng-bind="'label.visualization.more.two' | translate"></span>
                 </div>
             </div>
             <!--More visualization-->
@@ -147,9 +147,9 @@
                             <img alt="Export to Excel" src="images/xls.png"/>
                         </a>
                     </div>
-                    <p id="death-rate-disclaimer" class="disclaimer" ng-if="sc.tableView === 'crude_death_rates'" ng-bind=" 'label.crude.death.rates.statement' | translate"></p>
-                    <p id="birth-rate-disclaimer" class="disclaimer" ng-if="sc.tableView === 'birth_rates'" ng-bind=" 'label.crude.brith.rates.statement' | translate"></p>
-                    <p id="std-disclaimer" class="disclaimer" ng-if="sc.tableView === 'std' || sc.tableView === 'disease_rate'" ng-bind=" 'label.std.national.data.available.for.few.years.statement' | translate"></p>
+                    <p id="death-rate-disclaimer" class="dark-link" ng-if="sc.tableView === 'crude_death_rates'" ng-bind=" 'label.crude.death.rates.statement' | translate"></p>
+                    <p id="birth-rate-disclaimer" class="dark-link" ng-if="sc.tableView === 'birth_rates'" ng-bind=" 'label.crude.brith.rates.statement' | translate"></p>
+                    <p id="std-disclaimer" class="dark-link" ng-if="sc.tableView === 'std' || sc.tableView === 'disease_rate'" ng-bind=" 'label.std.national.data.available.for.few.years.statement' | translate"></p>
                     <owh-table table-data="sc.tableData"
                                show-percentage="sc.tableData.calculatePercentage"
                                ng-if="(sc.filters.selectedPrimaryFilter.headers && sc.filters.selectedPrimaryFilter.key === 'deaths' ||
