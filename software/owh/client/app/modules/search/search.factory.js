@@ -1229,7 +1229,7 @@
 
             filters.diseaseVizGroupOptions = [
                 {key:'cases',title:'Cases', tooltip:'Select to view as cases on charts'},
-                {key:'rate',title:'Rate', tooltip:'Select to view as rates on charts'}
+                {key:'rate',title:'Rates', tooltip:'Select to view as rates on charts'}
             ];
 
             filters.allowInlineCharting = false;

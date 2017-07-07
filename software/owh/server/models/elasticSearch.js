@@ -293,17 +293,40 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
     if(query[1]) {
         logger.debug("ES Query for "+ diseaseName+ " :"+ JSON.stringify( query[0]));
         logger.debug("ES Query for "+ diseaseName+ " to get population count:"+ JSON.stringify( query[1]));
+        logger.debug("ES Query for "+ diseaseName+ " Map Query:"+ JSON.stringify( query[2]));
+        logger.debug("ES Query for "+ diseaseName+ " Chart Query Array :"+ JSON.stringify( query[3]));
         var promises = [
-            this.executeMultipleESQueries(query[0], indexName, indexType),
-            this.executeMultipleESQueries(query[2], indexName, indexType),
-            //Using aggregateCensusDataQuery method to get STD population data
-            this.aggregateCensusDataQuery(query[1], indexName, indexType)
+            this.executeESQuery(indexName, indexType, query[0]),
+            this.executeESQuery(indexName, indexType, query[2])
         ];
+        //Add all population queries to promise
+        query[1].forEach(function(eachQuery){
+            //Using aggregateCensusDataQuery method to get STD population data
+            promises.push(self.aggregateCensusDataQuery(eachQuery, indexName, indexType));
+        });
+        //Add all chart queries to promise
+        query[3].forEach(function(chartQuery){
+            promises.push(self.executeESQuery(indexName, indexType, chartQuery));
+        });
         Q.all(promises).then( function (resp) {
             var data = searchUtils.populateDataWithMappings(resp[0], diseaseName, 'cases');
             var mapData = searchUtils.populateDataWithMappings(resp[1], diseaseName, 'cases');
+            //get each chart query response and populate data with mappings
+            for(i=0; i< query[3].length; i++ ){
+                //chart response index depends on population query array length
+                var respIndex = i + 3 + (query[1].length-1);
+                var chartData = searchUtils.populateDataWithMappings(resp[respIndex], diseaseName, 'cases');
+                data.data.nested.charts.push(chartData.data.nested.charts[i]);
+            }
             data.data.nested.maps = mapData.data.nested.maps;
-            self.mergeWithCensusData(data, resp[2]);
+            //merge all population queries and call mergeWithCensusData method
+            var populationResponse;
+            for(i=0; i< query[1].length; i++) {
+                //Merging all population response
+                //When i == 0 prepare 'populationResponse' and then merge 'x.data.nested.charts' into 'populationResponse' variable
+                i == 0 ? populationResponse = resp[i+2] : populationResponse.data.nested.charts.push(resp[i + 2].data.nested.charts[i-1]);
+            }
+            self.mergeWithCensusData(data, populationResponse);
             isStateSelected && searchUtils.applySuppressions(data, indexType, 4);
             deferred.resolve(data);
         }, function (err) {
