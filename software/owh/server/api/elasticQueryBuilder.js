@@ -209,7 +209,7 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     //Prepare chart query for disease datasets 'std', 'tb' and 'aids'.
     if(params.searchFor == 'std' || params.searchFor == 'tb' || params.searchFor == 'aids') {
         var charQueryArray = buildChartQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, censusQuery);
-        //chart 'Rates' query
+        //'Population' query
         searchQueryArray.push(charQueryArray[0]);
         searchQueryArray.push(mapQuery);
         //Chart 'Cases' query
@@ -899,17 +899,19 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery) {
 }
 
 /**
- * This function is used to prepare aggregation query for chart
+ * This buildChartQuery method prepares population query for each chart and prepares cases query for each chart
+ * For each chart aggregation add appropriate filters to avoid adding 'All' values[Ex: Both sexes, 'All age groups' etc...]
  * @param aggregations
  * @param countQueryKey
  * @param primaryQuery
  * @param filterQuery
- * @param tableRatesQuery
- * @returns {undefined}
+ * @param censusQuery
+ * @returns List of 'Population query' and 'Cases query'
  */
-function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery, tableRatesQuery) {
-    var charQueryArray = [];
-    var censusCharQueryArray = tableRatesQuery ? [tableRatesQuery] : tableRatesQuery;
+function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery, censusQuery) {
+    var chartCasesQueryArray = [];
+    //censusQuery value could be 'undefined' or population query with table aggregation
+    var chartPopulationQueryArray = censusQuery ? [censusQuery] : censusQuery;
     //filter and it's 'All' value map
     var filterAllValueMap = {"sex":"Both sexes", "race_ethnicity": "All races/ethnicities", "age_group": "All age groups", "state": "National"};
     if (aggregations['nested'] && aggregations['nested']['charts']) {
@@ -941,6 +943,7 @@ function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery,
                var filterIndex = filterKeys.indexOf(eachFilter.queryKey);
                filterKeys.splice(filterIndex, 1);
            });
+           //Get mustFilter to add filter query
            var mustFilters = chartCasesQuery.query.filtered.filter.bool.must;
            filterKeys.forEach(function(eachKey){
                var isFilterQueryPresent = false;
@@ -958,22 +961,20 @@ function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery,
                    !isEmptyObject(boolQuery) && mustFilters.push(boolQuery);
                }
            });
-           charQueryArray.push(chartCasesQuery);
-           //To prepare population query
-           if(tableRatesQuery) {
-               var chartRatesQuery = { "size":0, aggregations: {} };
-               chartRatesQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_');
-               //add query criteria to chart rates query
-               chartRatesQuery.query = {filtered:{}};
-               chartRatesQuery.query.filtered.query = clone(primaryQuery);
-               chartRatesQuery.query.filtered.filter = clone(filterQuery);
-               chartRatesQuery.query.filtered.filter.bool.must = mustFilters;
-               censusCharQueryArray.push(chartRatesQuery);
+           //Add prepared each chart query to array
+           chartCasesQueryArray.push(chartCasesQuery);
+           //If censusQuery has table aggregation then prepare population query for each chart also
+           if(censusQuery) {
+               var populationQuery = { "size":0, aggregations: {} };
+               populationQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_');
+               //chart filter query for population  is same as chart cases query
+               populationQuery.query = chartCasesQuery.query;
+               chartPopulationQueryArray.push(populationQuery);
            }
        }
     }
-
-    return [censusCharQueryArray, charQueryArray];
+    //List of 'Population query' and 'Cases query'
+    return [chartPopulationQueryArray, chartCasesQueryArray];
 }
 
 

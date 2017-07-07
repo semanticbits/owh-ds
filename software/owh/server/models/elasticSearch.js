@@ -296,17 +296,17 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
         logger.debug("ES Query for "+ diseaseName+ " Map Query:"+ JSON.stringify( query[2]));
         logger.debug("ES Query for "+ diseaseName+ " Chart Query Array :"+ JSON.stringify( query[3]));
         var promises = [
-            this.executeMultipleESQueries(query[0], indexName, indexType),
-            this.executeMultipleESQueries(query[2], indexName, indexType)
+            this.executeESQuery(indexName, indexType, query[0]),
+            this.executeESQuery(indexName, indexType, query[2])
         ];
-        //Add population queries
-        query[1].forEach(function(chartRatesQuery){
+        //Add all population queries to promise
+        query[1].forEach(function(eachQuery){
             //Using aggregateCensusDataQuery method to get STD population data
-            promises.push(self.aggregateCensusDataQuery(chartRatesQuery, indexName, indexType));
+            promises.push(self.aggregateCensusDataQuery(eachQuery, indexName, indexType));
         });
         //Add all chart queries to promise
         query[3].forEach(function(chartQuery){
-            promises.push(self.executeMultipleESQueries(chartQuery, indexName, indexType));
+            promises.push(self.executeESQuery(indexName, indexType, chartQuery));
         });
         Q.all(promises).then( function (resp) {
             var data = searchUtils.populateDataWithMappings(resp[0], diseaseName, 'cases');
@@ -322,6 +322,8 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
             //merge all population queries and call mergeWithCensusData method
             var populationResponse;
             for(i=0; i< query[1].length; i++) {
+                //Merging all population response
+                //When i == 0 prepare 'populationResponse' and then merge 'x.data.nested.charts' into 'populationResponse' variable
                 i == 0 ? populationResponse = resp[i+2] : populationResponse.data.nested.charts.push(resp[i + 2].data.nested.charts[i-1]);
             }
             self.mergeWithCensusData(data, populationResponse);
