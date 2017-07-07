@@ -398,14 +398,17 @@ describe("Elastic Search", function () {
             expect(resp.data.nested.charts[0].age_group[16].name).equal("All age groups");
             expect(resp.data.nested.charts[0].age_group[16].race[0].name).equal("All races/ethnicities");
             expect(resp.data.nested.charts[0].age_group[16].race[0].std).equal(1526658);
+            expect(resp.data.nested.charts[0].age_group[16].race[0].pop).equal(318857056);
             //Chart 1 -> sex vs age_group
             expect(resp.data.nested.charts[1].sex[0].name).equal("Both sexes");
             expect(resp.data.nested.charts[1].sex[0].age_group[16].name).equal("All age groups");
             expect(resp.data.nested.charts[1].sex[0].age_group[16].std).equal(1526658);
+            expect(resp.data.nested.charts[1].sex[0].age_group[16].pop).equal(318857056);
             //Chart 2 -> sex vs race
             expect(resp.data.nested.charts[2].sex[0].name).equal("Both sexes");
             expect(resp.data.nested.charts[2].sex[0].race[0].name).equal("All races/ethnicities");
             expect(resp.data.nested.charts[2].sex[0].race[0].std).equal(1526658);
+            expect(resp.data.nested.charts[2].sex[0].race[0].pop).equal(318857056);
             done();
         })
     });
@@ -477,8 +480,8 @@ describe("Elastic Search", function () {
 
     it("should aggregate tb data by race and sex", function (done){
         var query = [{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"group_count_cases":{"sum":{"field":"cases"}}}},"group_count_cases":{"sum":{"field":"cases"}},"group_maps_0_states":{"terms":{"field":"state","size":0},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"group_count_cases":{"sum":{"field":"cases"}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"age_group":"All age groups"}}]}},{"bool":{"should":[{"term":{"state":"National"}}]}}]}}}}},
-                     {"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"age_group":"All age groups"}}]}},{"bool":{"should":[{"term":{"state":"National"}}]}}]}}}}},
-                     {"size":0,"aggregations":{"group_maps_0_states":{"terms":{"field":"state","size":0},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"group_count_cases":{"sum":{"field":"cases"}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"age_group":"All age groups"}}]}}]}}}}}];
+            [{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"age_group":"All age groups"}}]}},{"bool":{"should":[{"term":{"state":"National"}}]}}]}}}}},{"size":0,"aggregations":{"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"age_group":"All age groups"}}]}},{"bool":{"should":[{"term":{"state":"National"}}]}}]}}}}}],
+            {"size":0,"aggregations":{"group_maps_0_states":{"terms":{"field":"state","size":0},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"group_count_cases":{"sum":{"field":"cases"}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"age_group":"All age groups"}}]}}]}}}}}];
         query.push(diseaseChartQuery);
         new elasticSearch().aggregateDiseaseData(query, 'tb', 'owh_tb', 'tb').then(function (resp) {
             //All races/ethnicities
@@ -539,14 +542,17 @@ describe("Elastic Search", function () {
             expect(resp.data.nested.charts[0].age_group[18].name).equal("All age groups");
             expect(resp.data.nested.charts[0].age_group[18].race[0].name).equal("All races/ethnicities");
             expect(resp.data.nested.charts[0].age_group[18].race[0].tb).equal(19087);
+            expect(resp.data.nested.charts[0].age_group[18].race[0].pop).equal(321418820);
             //Chart 1 -> sex vs age_group
             expect(resp.data.nested.charts[1].sex[0].name).equal("Both sexes");
             expect(resp.data.nested.charts[1].sex[0].race[0].name).equal("All races/ethnicities");
             expect(resp.data.nested.charts[1].sex[0].race[0].tb).equal(19087);
+            expect(resp.data.nested.charts[1].sex[0].race[0].pop).equal(321418820);
             //Chart 2 -> sex vs race
             expect(resp.data.nested.charts[2].sex[0].name).equal("Both sexes");
             expect(resp.data.nested.charts[2].sex[0].age_group[18].name).equal("All age groups");
             expect(resp.data.nested.charts[2].sex[0].age_group[18].tb).equal(19087);
+            expect(resp.data.nested.charts[2].sex[0].age_group[18].pop).equal(321418820);
             done();
         })
     });
@@ -562,14 +568,17 @@ describe("Elastic Search", function () {
             expect(resp.data.nested.charts[0].age_group[0].name).equal("All age groups 13 and up");
             expect(resp.data.nested.charts[0].age_group[0].race[0].name).equal("All races/ethnicities");
             expect(resp.data.nested.charts[0].age_group[0].race[0].aids).equal(18274);
+            expect(resp.data.nested.charts[0].age_group[0].race[0].pop).equal(268671725);
             //Chart 1 -> sex vs age_group
             expect(resp.data.nested.charts[1].sex[0].name).equal("Both sexes");
             expect(resp.data.nested.charts[1].sex[0].age_group[0].name).equal("All age groups 13 and up");
             expect(resp.data.nested.charts[1].sex[0].age_group[0].aids).equal(18274);
+            expect(resp.data.nested.charts[1].sex[0].age_group[0].pop).equal(268671725);
             //Chart 2 -> sex vs race
             expect(resp.data.nested.charts[2].sex[0].name).equal("Both sexes");
             expect(resp.data.nested.charts[2].sex[0].race[0].name).equal("All races/ethnicities");
             expect(resp.data.nested.charts[2].sex[0].race[0].aids).equal(18274);
+            expect(resp.data.nested.charts[2].sex[0].race[0].pop).equal(268671725);
             done();
         })
     });

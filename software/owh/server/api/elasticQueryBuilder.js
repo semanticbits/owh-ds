@@ -1,14 +1,14 @@
 const util = require('util');
 var merge = require('merge');
 
-var prepareCensusAggregationQuery = function(aggregations) {
+var prepareCensusAggregationQuery = function(aggregations, datasetName) {
     var censusQuery = { size: 0};
     censusQuery.aggregations = {};
     if (aggregations['nested']) {
         if (aggregations['nested']['table'] && aggregations['nested']['table'].length > 0) {
             censusQuery.aggregations = merge(censusQuery.aggregations, generateNestedCensusAggQuery(aggregations['nested']['table'], 'group_table_'));
         }
-      if (aggregations['nested']['charts']) {
+      if (datasetName != 'std' && datasetName != 'tb' && datasetName != 'aids' &&  aggregations['nested']['charts']) {
             for(var index in aggregations['nested']['charts']) {
                 censusQuery.aggregations = merge(censusQuery.aggregations, generateNestedCensusAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_'));
             }
@@ -160,7 +160,7 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
         elasticQuery.size = 0;
         elasticQuery = merge(elasticQuery, prepareAggregationQuery(params.aggregations, params.countQueryKey, params.searchFor));
         if(params.aggregations['nested'] && params.aggregations['nested']['table']){
-            censusQuery = prepareCensusAggregationQuery(params.aggregations);
+            censusQuery = prepareCensusAggregationQuery(params.aggregations , params.searchFor);
         }
 
     } else {
@@ -206,12 +206,20 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     //prepare query for map
     var  mapQuery = buildMapQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery);
     searchQueryArray.push(elasticQuery);
-    searchQueryArray.push(censusQuery);
-    searchQueryArray.push(mapQuery);
     //Prepare chart query for disease datasets 'std', 'tb' and 'aids'.
     if(params.searchFor == 'std' || params.searchFor == 'tb' || params.searchFor == 'aids') {
-        searchQueryArray.push(buildChartQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery));
+        var charQueryArray = buildChartQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, censusQuery);
+        //chart 'Rates' query
+        searchQueryArray.push(charQueryArray[0]);
+        searchQueryArray.push(mapQuery);
+        //Chart 'Cases' query
+        searchQueryArray.push(charQueryArray[1]);
     }
+    else {
+        searchQueryArray.push(censusQuery);
+        searchQueryArray.push(mapQuery);
+    }
+
     return searchQueryArray;
 };
 
@@ -896,10 +904,12 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery) {
  * @param countQueryKey
  * @param primaryQuery
  * @param filterQuery
+ * @param tableRatesQuery
  * @returns {undefined}
  */
-function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery) {
+function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery, tableRatesQuery) {
     var charQueryArray = [];
+    var censusCharQueryArray = tableRatesQuery ? [tableRatesQuery] : tableRatesQuery;
     //filter and it's 'All' value map
     var filterAllValueMap = {"sex":"Both sexes", "race_ethnicity": "All races/ethnicities", "age_group": "All age groups", "state": "National"};
     if (aggregations['nested'] && aggregations['nested']['charts']) {
@@ -914,14 +924,14 @@ function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery)
         });
         //Prepare aggregation query
        for(var index in aggregations['nested']['charts']) {
-           var chartQuery = { "size":0, aggregations: {} };
+           var chartCasesQuery = { "size":0, aggregations: {} };
            var filterKeys = clone(selectedFilterKeys);
            //for each aggregation prepare one chart query
-           chartQuery.aggregations = generateNestedAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_', countQueryKey, true);
-           //add query criteria
-           chartQuery.query = {filtered:{}};
-           chartQuery.query.filtered.query = clone(primaryQuery);
-           chartQuery.query.filtered.filter = clone(filterQuery);
+           chartCasesQuery.aggregations = generateNestedAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_', countQueryKey, true);
+           //add query criteria to chart cases query
+           chartCasesQuery.query = {filtered:{}};
+           chartCasesQuery.query.filtered.query = clone(primaryQuery);
+           chartCasesQuery.query.filtered.filter = clone(filterQuery);
            //For each aggregation find out what are the keys that are not included in aggregation and add a boolean filter query for that key
            //For example if user selected three filters 'sex', 'race' and 'age_group' then we will have three aggregation queries
            // 1. sex and race aggregation  -> for this aggregation query we add 'age_group -> All age groups' boolean filter
@@ -931,7 +941,7 @@ function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery)
                var filterIndex = filterKeys.indexOf(eachFilter.queryKey);
                filterKeys.splice(filterIndex, 1);
            });
-           var mustFilters = chartQuery.query.filtered.filter.bool.must;
+           var mustFilters = chartCasesQuery.query.filtered.filter.bool.must;
            filterKeys.forEach(function(eachKey){
                var isFilterQueryPresent = false;
                //check if 'eachKey' already present in must filter
@@ -948,12 +958,22 @@ function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery)
                    !isEmptyObject(boolQuery) && mustFilters.push(boolQuery);
                }
            });
-
-           charQueryArray.push(chartQuery);
+           charQueryArray.push(chartCasesQuery);
+           //To prepare population query
+           if(tableRatesQuery) {
+               var chartRatesQuery = { "size":0, aggregations: {} };
+               chartRatesQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_');
+               //add query criteria to chart rates query
+               chartRatesQuery.query = {filtered:{}};
+               chartRatesQuery.query.filtered.query = clone(primaryQuery);
+               chartRatesQuery.query.filtered.filter = clone(filterQuery);
+               chartRatesQuery.query.filtered.filter.bool.must = mustFilters;
+               censusCharQueryArray.push(chartRatesQuery);
+           }
        }
     }
 
-    return charQueryArray;
+    return [censusCharQueryArray, charQueryArray];
 }
 
 

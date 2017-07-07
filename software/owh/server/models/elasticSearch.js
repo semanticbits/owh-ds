@@ -297,10 +297,13 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
         logger.debug("ES Query for "+ diseaseName+ " Chart Query Array :"+ JSON.stringify( query[3]));
         var promises = [
             this.executeMultipleESQueries(query[0], indexName, indexType),
-            this.executeMultipleESQueries(query[2], indexName, indexType),
-            //Using aggregateCensusDataQuery method to get STD population data
-            this.aggregateCensusDataQuery(query[1], indexName, indexType)
+            this.executeMultipleESQueries(query[2], indexName, indexType)
         ];
+        //Add population queries
+        query[1].forEach(function(chartRatesQuery){
+            //Using aggregateCensusDataQuery method to get STD population data
+            promises.push(self.aggregateCensusDataQuery(chartRatesQuery, indexName, indexType));
+        });
         //Add all chart queries to promise
         query[3].forEach(function(chartQuery){
             promises.push(self.executeMultipleESQueries(chartQuery, indexName, indexType));
@@ -310,11 +313,18 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
             var mapData = searchUtils.populateDataWithMappings(resp[1], diseaseName, 'cases');
             //get each chart query response and populate data with mappings
             for(i=0; i< query[3].length; i++ ){
-                var chartData = searchUtils.populateDataWithMappings(resp[i+3], diseaseName, 'cases');
+                //chart response index depends on population query array length
+                var respIndex = i + 3 + (query[1].length-1);
+                var chartData = searchUtils.populateDataWithMappings(resp[respIndex], diseaseName, 'cases');
                 data.data.nested.charts.push(chartData.data.nested.charts[i]);
             }
             data.data.nested.maps = mapData.data.nested.maps;
-            self.mergeWithCensusData(data, resp[2]);
+            //merge all population queries and call mergeWithCensusData method
+            var populationResponse;
+            for(i=0; i< query[1].length; i++) {
+                i == 0 ? populationResponse = resp[i+2] : populationResponse.data.nested.charts.push(resp[i + 2].data.nested.charts[i-1]);
+            }
+            self.mergeWithCensusData(data, populationResponse);
             isStateSelected && searchUtils.applySuppressions(data, indexType, 4);
             deferred.resolve(data);
         }, function (err) {
