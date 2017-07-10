@@ -1,15 +1,15 @@
 var AidsPage = function () {
 
     // All filters
-    this.getFilters = function (target_category) {
+    this.getFilters = function () {
         return element.all(by.className('filter-display-name'))
-            .getText()
+            .getText();
     };
 
     // Single filter actions
     this.getFilter = function (target_filter) {
         return element.all(by.cssContainingText('.side-pane-label', target_filter))
-            .first()
+            .first();
     };
 
     this.expandFilter = function (target_filter) {
@@ -30,7 +30,7 @@ var AidsPage = function () {
         return this.getFilter(target_filter)
             .element(by.xpath('..'))
             .element(by.tagName('ul'))
-            .all(by.className('count-label'))
+            .all(by.className('custom-label'))
             .map(function (el) {
                 return el.getText();
             });

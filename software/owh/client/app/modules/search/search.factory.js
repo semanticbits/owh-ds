@@ -2864,11 +2864,13 @@
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true, groupBy: false,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.aidsFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'disease')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.aidsFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'current_year')
                                 },
                                 {
