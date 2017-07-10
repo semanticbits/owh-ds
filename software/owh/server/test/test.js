@@ -12,7 +12,7 @@ describe('ElasticClient', function(){
         var mergedData = {"data":{"nested":{"table":{"group_table_race":[{"name":"1","deaths":2106697,"undefined":[{"name":"F","deaths":1079109, "pop":6666},{"name":"M","deaths":1027588,"pop":5555 }]},{"name":"2","deaths":291706,"undefined":[{"name":"F","deaths":143448, "pop":4444},{"name":"M","deaths":148258, "pop":3333}]}]}}}};
         var es = new elasticSearch();
 
-        es.mergeWithCensusData(mort, census);
+        es.mergeWithCensusData(mort, census, 'pop');
         expect(JSON.stringify(mort)).equal(JSON.stringify(mergedData));
         done();
     });

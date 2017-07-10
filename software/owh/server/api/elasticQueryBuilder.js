@@ -194,6 +194,13 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     if(censusQuery) {
         var clonedUserQuery = clone(userQuery);
         if (clonedUserQuery['ICD_10_code']) delete clonedUserQuery['ICD_10_code'];
+        if (clonedUserQuery['ICD_130_code']) delete clonedUserQuery['ICD_130_code'];
+        if (clonedUserQuery['infant_age_at_death']) delete clonedUserQuery['infant_age_at_death'];
+        if(clonedUserQuery['year_of_death']) {
+            //Infant mortality index has column 'year_of_death', should match with natality index column in Elastic Search
+            //So that we can query natality index for Birth counts.
+            clonedUserQuery['year_of_death'].queryKey = 'current_year';
+        }
         var clonedPrimaryQuery = buildTopLevelBoolQuery(groupByPrimary(clonedUserQuery, true), true);
         var clonedFilterQuery = buildTopLevelBoolQuery(groupByPrimary(clonedUserQuery, false), false);
 
