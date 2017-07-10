@@ -42,7 +42,8 @@
             refreshFilterAndOptions: refreshFilterAndOptions,
             findFilterByKeyAndValue: findFilterByKeyAndValue,
             isFilterApplied: isFilterApplied,
-            stdFilterChange: stdFilterChange
+            stdFilterChange: stdFilterChange,
+            aidsFilterChange: aidsFilterChange
         };
 
         return service;
@@ -977,6 +978,41 @@
                 congenitalSyphilisOption.disabled = filterValue != filter.defaultValue;
             }
 
+        }
+
+        function aidsFilterChange (filter, categories) {
+            var yearFilter = categories[0].sideFilters.filter(function (sideFilter) {
+               return sideFilter.filters.key === 'current_year';
+            })[0];
+            var diseaseFilter = categories[0].sideFilters.filter(function (sideFilter) {
+                return sideFilter.filters.key === 'disease';
+            })[0];
+            var disabledFilterCombinations = {
+                'HIV, stage 3 (AIDS) deaths': [ '2015' ],
+                'Persons living with HIV, stage 3 (AIDS)': [ '2015' ],
+                'HIV diagnoses': [ '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007' ],
+                'HIV deaths': [ '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2015' ],
+                'Persons living with diagnosed HIV': [ '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2015' ],
+                '2015': [ 'HIV, stage 3 (AIDS) deaths', 'Persons living with HIV, stage 3 (AIDS)', 'HIV deaths', 'Persons living with diagnosed HIV' ],
+                '2007': [ 'HIV diagnoses', 'HIV deaths', 'Persons living with diagnosed HIV' ],
+                '2006': [ 'HIV diagnoses', 'HIV deaths', 'Persons living with diagnosed HIV' ],
+                '2005': [ 'HIV diagnoses', 'HIV deaths', 'Persons living with diagnosed HIV' ],
+                '2004': [ 'HIV diagnoses', 'HIV deaths', 'Persons living with diagnosed HIV' ],
+                '2003': [ 'HIV diagnoses', 'HIV deaths', 'Persons living with diagnosed HIV' ],
+                '2002': [ 'HIV diagnoses', 'HIV deaths', 'Persons living with diagnosed HIV' ],
+                '2001': [ 'HIV diagnoses', 'HIV deaths', 'Persons living with diagnosed HIV' ],
+                '2000': [ 'HIV diagnoses', 'HIV deaths', 'Persons living with diagnosed HIV' ]
+            };
+            var disabledOptions = disabledFilterCombinations[filter.value];
+            if (filter.key === 'disease') {
+                yearFilter.filters.autoCompleteOptions.forEach(function (option) {
+                    option.disabled = disabledOptions && disabledOptions.indexOf(option.key) !== -1;
+                });
+            } else if (filter.key === 'current_year') {
+                diseaseFilter.filters.autoCompleteOptions.forEach(function (option) {
+                    option.disabled = disabledOptions && disabledOptions.indexOf(option.key) !== -1;
+                });
+            }
         }
     }
 }());
