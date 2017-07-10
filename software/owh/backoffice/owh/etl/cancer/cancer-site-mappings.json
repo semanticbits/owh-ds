@@ -1,4 +1,5 @@
 {
+  "_comment": "This path hierarchy was built based on the revised SEER recodes by NCI. Please refer: https://seer.cancer.gov/siterecode/icdo3_dwhoheme/index.html. Also refer CDC page: https://wonder.cdc.gov/wonder/help/CancerMort-v2013.html#Cancer Sites",
   "20010-20100":[
     "20010-20100",
     "0"
@@ -521,15 +522,15 @@
     "37000",
     "0"
   ],
-  "92":[
-    "92"
+  "Breast-InSitu":[
+    "Breast-InSitu"
   ],
   "Breast-InSitu-Female":[
     "Breast-InSitu-Female",
-    "92"
+    "Breast-InSitu"
   ],
   "Breast-InSitu-Male":[
     "Breast-InSitu-Male",
-    "92"
+    "Breast-InSitu"
   ]
 }

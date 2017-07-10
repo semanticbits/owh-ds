@@ -215,7 +215,7 @@
   },
   {
     "text":"Male and Female Breast",
-    "id":"46",
+    "id":"26000",
     "children":[
       {
         "text":"Female Breast",
@@ -437,7 +437,7 @@
   },
   {
     "text":"In situ breast cancer",
-    "id":"92",
+    "id":"Breast-InSitu",
     "children":[
       {
         "text":"Female Breast, In Situ",

@@ -26,7 +26,7 @@ class CancerIncidentETL (ETL):
 
     def process_cancer_sites(self, record):
         # to separate male/female In situ breast cancer sites
-        if record['cancer_site'] == '92':
+        if record['cancer_site'] == 'Breast-InSitu':
             if record['sex'] == 'Male':
                 record['cancer_site'] = 'Breast-InSitu-Male'
             else:
