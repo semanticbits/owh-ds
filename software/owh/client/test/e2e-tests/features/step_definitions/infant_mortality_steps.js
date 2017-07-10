@@ -42,7 +42,7 @@ var infantMortalityStepDefinitions = function () {
         var expected = values.split(', ');
         imp.getTableRowData(row).then(function (row) {
             row.forEach(function (column, index) {
-               expect(column).to.equal(expected[index]);
+               expect(column).to.contains(expected[index]);
             });
         }).then(next);
     });

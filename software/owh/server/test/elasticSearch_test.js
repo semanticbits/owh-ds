@@ -583,4 +583,37 @@ describe("Elastic Search", function () {
         })
     });
 
+    it("Check aggregate infant mortality data with birth query", function (){
+        var query = [{"size":0,"aggregations":{"year_of_death":{"terms":{"field":"year_of_death","size":0}},"sex":{"terms":{"field":"sex","size":0}},"infant_age_at_death":{"terms":{"field":"infant_age_at_death","size":0}},"race":{"terms":{"field":"race","size":0}},"hispanic_origin":{"terms":{"field":"hispanic_origin","size":0}},"mother_age_5_interval":{"terms":{"field":"mother_age_5_interval","size":0}},"marital_status":{"terms":{"field":"marital_status","size":0}},"mother_education":{"terms":{"field":"mother_education","size":0}},"gestation_recode11":{"terms":{"field":"gestation_recode11","size":0}},"gestation_recode10":{"terms":{"field":"gestation_recode10","size":0}},"gestation_weekly":{"terms":{"field":"gestation_weekly","size":0}},"prenatal_care":{"terms":{"field":"prenatal_care","size":0}},"birth_weight":{"terms":{"field":"birth_weight_r12","size":0}},"birth_plurality":{"terms":{"field":"birth_plurality","size":0}},"live_birth":{"terms":{"field":"live_birth","size":0}},"birth_place":{"terms":{"field":"birth_place","size":0}},"delivery_method":{"terms":{"field":"delivery_method","size":0}},"medical_attendant":{"terms":{"field":"medical_attendant","size":0}},"ucd-chapter-10":{"terms":{"field":"ICD_10_code.path","size":0}},"state":{"terms":{"field":"state","size":0}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"year_of_death":"2014"}}]}}]}}}}},null,null];
+        new elasticSearch().aggregateInfantMortalityData(query).then(function (resp) {
+            var  data = resp.data.simple;
+            expect(data[0].name).equal('American Indian / Alaskan Native');
+            expect(data[0].infant_mortality).eqal(340);
+            expect(data[0].pop).eqal(44928);
+            var  nestedData = data[0].sex;
+            expect(nestedData[0].name).equal('Female');
+            expect(nestedData[0].infant_mortality).equal(146);
+            expect(nestedData[0].pop).equal(22120);
+            expect(nestedData[1].name).equal('Male');
+            expect(nestedData[1].infant_mortality).equal(194);
+            expect(nestedData[1].pop).equal(22808);
+            expect(data[1].name).equal('Asian / Pacific Islander');
+            expect(data[1].infant_mortality).eqal(1080);
+            expect(data[1].pop).eqal(282723);
+            done();
+        })
+    });
+
+    it("Check aggregate infant mortality data for sidefilter query", function (){
+        var query = [{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"year_of_death":"2014"}}]}}]}}}}},{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2014"}}]}}]}}}}},{"size":0,"aggregations":{"group_maps_0_states":{"terms":{"field":"state","size":0},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"year_of_death":"2014"}}]}}]}}}}}];
+        new elasticSearch().aggregateInfantMortalityData(query).then(function (resp) {
+            var  simple = resp.data.simple;
+            expect(simple.race[0].name).equal('White');
+            expect(simple.race[0].infant_mortality).equal(14821);
+            expect(simple.sex[0].name).equal('Male');
+            expect(simple.sex[0].infant_mortality).equal(12799);
+            done();
+        })
+    });
+
 });
