@@ -271,6 +271,18 @@
   "label.help.text.bridged-race.state": "This field indicates the State to be included in the data request.",
   "label.help.text.bridged-race.region": "This field indicates the Region to be included in the data request.",
 
+  "label.help.text.mortality.year": "This field indicates the year of occurrence of death.",
+  "label.help.text.mortality.sex": "This field indicates the sex of the deceased.",
+  "label.help.text.mortality.race": "This field indicates the race of the deceased.",
+  "label.help.text.mortality.ethnicity": "This field indicates the ethnicity of the deceased.",
+  "label.help.text.mortality.age": "This field contains values for age or age range.",
+  "label.help.text.mortality.autopsy": "This field indicates whether or not an autopsy was performed.",
+  "label.help.text.mortality.pod": "This field indicates the place of death.",
+  "label.help.text.mortality.day": "This field indicates the day of the week of occurrence of death.",
+  "label.help.text.mortality.month": "This field indicates the month of occurrence of death.",
+  "label.help.text.mortality.ucd": "This field indicates the underlying cause of death from the death certificate.  The disease or injury which initiated the train of morbid events leading directly to death, or the circumstances of the accident or violence which produced the fatal injury.",
+  "label.help.text.mortality.mcd": "This field indicates the multiple causes of death from the death certificate. Multiple causes of death including not only the underlying cause but also immediate cause of death and all other intermediate and contributory conditions entered by the certifying physician.",
+
   "label.help.text.agegroup" : "This field indicates the age group of the patient.",
   "label.prams.title": "Pregnancy Risk Assessment Monitoring System",
   "label.prams.filter.year": "Year",
