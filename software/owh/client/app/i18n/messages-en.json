@@ -143,7 +143,7 @@
   "label.interested.in": "I'm interested in",
   "label.show.me": "show me",
   "label.clear": "CLEAR",
-  "label.graph.expand.next": "This will be implemented in phase two. User can expand the graph and able to visualize data in detail",
+  "label.graph.expand.next": "This will be implemented in phase two. User can expand the graph and able to visualize data in detail.",
   "label.title.yrbsSex.yrbsRace": "Sex and Race",
   "label.graph.expanded": "Graph expanded view",
   "label.graph.yrbsGrade": "Grade",
@@ -245,7 +245,7 @@
   "label.help.text.live.birth.order": "This field indicates the mother's total number of live births, including this birth.",
   "label.help.text.birth.place": "This field indicates the place of birth.",
   "label.help.text.delivery.method": "This field indicates whether the baby was born by Cesarean section or vaginal birth.",
-  "label.help.text.medical.attendant": "This field indicates the attendant(MD,DO,CNM) at the time of birth.",
+  "label.help.text.medical.attendant": "This field indicates the attendant (MD,DO,CNM) at the time of birth.",
   "label.help.text.race": "This field indicates the race of the mother.",
   "label.help.text.ethnicity": "This field indicates the Hispanic ethnicity of the mother.",
   "label.help.text.marital.status": "This field indicates the marital status of the mother as recorded on the birth certificate.",
@@ -334,7 +334,7 @@
   "label.help.text.infant_age_at_death": "This field indicates the age of infant at death.",
   "label.help.text.infantmort.year": "This field indicates year of death.",
   "label.help.text.infantmort.age.death": "This field indicates the age of infant at death.",
-  "label.help.text.infantmort.sex": "This field indicates the sex of the child at birth.",
+  "label.help.text.infantmort.sex": "This field indicates the sex of the child as recorded on the birth certificate.",
   "label.help.text.infantmort.ucd": "This field represents the underlying cause of death from the death certificate.",
   "label.help.text.infantmort.age.group": "This field indicates the age group of the mother at the time of birth.",
   "label.help.text.gestational.group.one": "This indicates range of weeks that represents the duration of the pregnancy at the time of birth.  10 age groups: Under 20 weeks; 20-27 weeks; 28-31 weeks; 32-35 weeks; 36 weeks; 37-39 weeks; 40 weeks; 41 weeks; 42 weeks or more; Unknown.",
@@ -347,12 +347,12 @@
   "label.help.text.prams.breakouts.marital": "This field indicates the marital status of the mother." ,
 
   "label.help.text.rate": "Crude Rates are expressed as the number of deaths reported each calendar year per 100,000 population. (Crude Rate = Count / Population * 100,000).",
-  "label.help.text.prams.breakouts.age.one": "This field indicates the mother’s age: Age < 18, Age 18 - 24, Age 25 - 29, Age 30 - 44, Age 45+",
-  "label.help.text.prams.breakouts.age.two": "This field indicates the mother’s age: Age 18-44",
-  "label.help.text.prams.breakouts.age.three": "This field indicates the mother’s age: <20, 20-29, 30+ yrs",
-  "label.help.text.prams.breakouts.age.four": "This field indicates the mother’s age: <20 yrs, 20-24yrs, 25-34yrs, 35+ yrs",
+  "label.help.text.prams.breakouts.age.one": "This field indicates the mother's age: Age < 18, Age 18 - 24, Age 25 - 29, Age 30 - 44, Age 45+",
+  "label.help.text.prams.breakouts.age.two": "This field indicates the mother's age: Age 18-44.",
+  "label.help.text.prams.breakouts.age.three": "This field indicates the mother's age: <20, 20-29, 30+ yrs.",
+  "label.help.text.prams.breakouts.age.four": "This field indicates the mother's age: <20 yrs, 20-24yrs, 25-34yrs, 35+ yrs.",
   "label.help.text.prams.breakouts.edu": "This field indicates the number of years of mother’s education.",
-  "label.help.text.prams.breakouts.race": "This field indicates the mother’s race/ethnicity.",
+  "label.help.text.prams.breakouts.race": "This field indicates the mother's race/ethnicity.",
   "label.help.text.prams.breakouts.medicaid": "This field indicates whether or not the mother was a Medicaid recipient.",
   "label.help.text.prams.breakouts.hispanic": "This field indicates whether the mother indicates that she is of Hispanic origin.",
   "label.help.text.prams.breakouts.births": "This field indicates the number of previous live births prior to the index birth for this survey.",
@@ -375,6 +375,6 @@
   "label.help.text.disease": "This field indicates diagnosis and prevalence of deaths of AIDS/HIV.",
   "label.help.text.hiv.year": "This field indicates year of diagnosis or death. For persons living with diagnosed HIV, year refers to the end of the queried calendar year.",
   "label.help.text.hiv.agegroup": "This field indicates the age group of the patient. HIV surveillance data include adults and adolescents only (persons aged 13 years and older).",
-  "label.help.text.transmission": "This field indicates the classification of cases that summarizes a person’s possible HIV risk factor."
+  "label.help.text.transmission": "This field indicates the classification of cases that summarizes a person's possible HIV risk factor."
 
 }
