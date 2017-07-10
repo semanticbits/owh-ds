@@ -17,7 +17,7 @@ class CancerIncidentETL (ETL):
         self._load_childhood_cancer_mappings()
 
     def _load_cancer_site_mappings(self):
-        with open(os.path.join(os.path.dirname(__file__),"es_mapping/cancer-site-mappings.json")) as jf:
+        with open(os.path.join(os.path.dirname(__file__),"../cancer-site-mappings.json")) as jf:
             self.cancer_site_mappings = json.load(jf, encoding="utf8")
 
     def _load_childhood_cancer_mappings(self):

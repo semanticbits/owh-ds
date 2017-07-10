@@ -1,6 +1,6 @@
 data_file:
   # when local_directory is set the data files will processed from this local directory and AWS properties will be ignored
-  local_directory: '/home/ashok/projects/OWH/cancer/data'
+  local_directory: ''
   # AWS S3 bucket information, when local_directory peroperty is not specified above, the ETL will try to download the data files
   # from the directory in the AWS S3 bucket specified below
   aws_access_key_id: 'aws access key'
@@ -8,8 +8,8 @@ data_file:
   aws_s3_bucket_name: 'owh-data'
   aws_s3_directory: 'datasets/cancer_population'
 elastic_search:
-  host: search-owh-pvycvnc3j4indht5inuqi7pebe.us-east-1.es.amazonaws.com
-  port: 80
+  host: 127.0.0.0
+  port: 9200
   bulk_load_size: 10000
   index: owh_cancer_population
   type: cancer_population

@@ -16,11 +16,10 @@ class CancerMortalityETL (ETL):
         self._load_cancer_site_mappings()
 
     def _load_cancer_site_mappings(self):
-        with open(os.path.join(os.path.dirname(__file__),"es_mapping/cancer-site-mappings.json")) as jf:
+        with open(os.path.join(os.path.dirname(__file__),"../cancer-site-mappings.json")) as jf:
             self.cancer_site_mappings = json.load(jf, encoding="utf8")
 
     def process_cancer_sites(self, record):
-        print record['cancer_site']
         if record['cancer_site'] == '26000':# to separate male/female breast cancer sites
             if record['sex'] == 'Male':
                 record['cancer_site'] = '26000-Male'
