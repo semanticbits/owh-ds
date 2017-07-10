@@ -49,6 +49,6 @@ Feature: Infant Mortality filters
   Scenario: Infant Mortality Table Data Suppression for Alaska in 2000
     When I select the option "2000" for "Year" and the option "Alaska" for "State"
     Then the values in row "0" should be "Black or African American, Not Available, Suppressed, Suppressed"
-    And the values in row "1" should be "White, Not Available, 20, 37"
+    And the values in row "1" should be "White, 17, 20, 37"
     And the values in row "2" should be "Hawaiian, Not Available, Suppressed, Suppressed"
     And the values in row "3" should be "Other Asian, Suppressed, Not Available, Suppressed"
