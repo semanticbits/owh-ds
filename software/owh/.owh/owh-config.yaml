@@ -6,7 +6,7 @@ default:
     queryUrl: ''
     questionsUrl: ''
   wonder:
-    url: 'http://54.242.94.197/wonder/'
+    url: 'http://54.242.94.197/wonder'
     apix_project: ''
     apix_token: ''
   logging:

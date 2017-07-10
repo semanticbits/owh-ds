@@ -120,9 +120,9 @@ function wonder(dbID) {
  * @param req
  * @return promise
  */
-function requestWonder(dbID, req) {
+function requestWonder(req) {
     var defer = q.defer();
-    request.post({url: config.wonder.url + dbID, form: {request_xml: req}}, function (error, response, body) {
+    request.post({url: config.wonder.url, form: {request_xml: req}}, function (error, response, body) {
         result = {};
         if (!error && body.indexOf('Processing Error') == -1) {
             result = processWONDERResponse(body);
@@ -201,7 +201,7 @@ wonder.prototype.invokeWONDER = function (query){
             });
         }
         reqArray.forEach(function(req){
-            promises.push(requestWonder(dbID, req));
+            promises.push(requestWonder(req));
         });
     }
     q.all(promises).then( function (respArray) {
