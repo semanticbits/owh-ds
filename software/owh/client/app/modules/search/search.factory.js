@@ -2208,7 +2208,7 @@
                 {
                     key: 'natality', title: 'label.filter.natality', primary: true, value:[], header:"Natality",
                     allFilters: filters.natalityFilters, searchResults: searchNatality, dontShowInlineCharting: true,
-                    chartAxisLabel:'Population', countLabel: 'Total',  countQueryKey: 'pop', tableView:'number_of_births',
+                    chartAxisLabel:'Births', countLabel: 'Total',  countQueryKey: 'pop', tableView:'number_of_births',
                     runOnFilterChange: true, applySuppression:true,
                     birthAndFertilityRatesDisabledYears: ['2000', '2001', '2002'],
                     sideFilters:[
