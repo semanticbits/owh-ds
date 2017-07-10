@@ -1,3 +1,4 @@
+@AIDS
 Feature: AIDS/HIV page
   As a User
   I want to see the data table upon selection of filters
