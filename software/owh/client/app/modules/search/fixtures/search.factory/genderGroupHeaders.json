@@ -28,7 +28,8 @@
           "deathsPercentage": 50.19
         }
       ],
-      "defaultGroup": "column"
+      "defaultGroup": "column",
+      "helpText":"label.help.text.mortality.sex"
     }
   ],
   "chartHeaders": []
