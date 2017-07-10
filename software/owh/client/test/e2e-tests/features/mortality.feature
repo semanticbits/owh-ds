@@ -91,7 +91,7 @@ Scenario: Quick visualizations
 Scenario: Help Message above the quick visualization pane
   Given I am on search page
   When the user chooses the option 'Death Rates'
-  Then the following message should be displayed stating that population data is being retrieved from Census "Population details from NCHS Bridged-Race Estimates are used to calculate Death Rates (per 100,000)"
+  Then the following message should be displayed stating that population data is being retrieved from Census "Population details from NCHS Bridged-Race Estimates are used to calculate Death Rates (per 100,000)."
 
 Scenario: Years are supposed to be in descending order
   Given I am on search page

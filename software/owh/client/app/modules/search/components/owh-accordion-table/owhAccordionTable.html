@@ -7,7 +7,7 @@
     <tbody class="owh-question__table" ng-repeat="eachCategory in oatc.data | filter: oatc.filterCategory">
         <tr class="owh-question__title-row" ng-if="eachCategory.questions.length > 0">
             <td class="owh-question__title" colspan="100%" title="{{ oatc.qCategoryHelpTextMap[eachCategory.title] |  translate }}">
-                <a class="owh-question__expand cursor-pointer" ng-if="!eachCategory.collapse" ng-click="oatc.collapseRow(eachCategory)" >
+                <a id="question_{{$index}}" class="owh-question__expand cursor-pointer" ng-if="!eachCategory.collapse" ng-click="oatc.collapseRow(eachCategory)">
                     <span class="fa fa-chevron-down" title="Collapse category"></span>
                 </a>
                 <a class="owh-question__expand cursor-pointer" ng-if="eachCategory.collapse" ng-click="oatc.expandRow(eachCategory)">
@@ -41,7 +41,7 @@
         </tr>
         <tr ng-hide="eachCategory.collapse" ng-if="eachCategory.questionsCount > 2">
             <td colspan="100%">
-                <a class="owh-question__show cursor-pointer" ng-if="eachCategory.hide" ng-click="oatc.showMore(eachCategory)" href="javascript:void(0)">Show {{ eachCategory.questionsCount - 2 }} More Questions</a>
+                <a class="owh-question__show cursor-pointer" ng-if="eachCategory.hide" ng-click="oatc.showMore(eachCategory)" href="javascript:void(0)">Show {{ eachCategory.questionsCount - 2 }} More Question(s)</a>
                 <a class="owh-question__show cursor-pointer" ng-if="!eachCategory.hide" ng-click="oatc.showLess(eachCategory)" href="javascript:void(0)">Show Less</a>
             </td>
         </tr>

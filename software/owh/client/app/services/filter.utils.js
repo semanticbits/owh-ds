@@ -1145,7 +1145,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseAgeGroupOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.bridged-race.agegroup"
+                    helpText: "label.std.help.text.age.group"
                 },
                 {
                     key: 'race',
@@ -1187,11 +1187,11 @@
         function getAIDSFilters () {
             var aidsDiseaseOptions = [
                 { key: 'HIV, stage 3 (AIDS)', title: 'AIDS Diagnoses' },
-                { key: 'HIV, stage 3 (AIDS) deaths', title: 'AIDS Deaths' },
-                { key: 'Persons living with HIV, stage 3 (AIDS)', title: 'AIDS Prevalence' },
+                { key: 'HIV, stage 3 (AIDS) deaths', title: 'AIDS Deaths', disabled: true },
+                { key: 'Persons living with HIV, stage 3 (AIDS)', title: 'AIDS Prevalence', disabled: true },
                 { key: 'HIV diagnoses', title: 'HIV Diagnoses' },
-                { key: 'HIV deaths', title: 'HIV Deaths' },
-                { key: 'Persons living with diagnosed HIV', title: 'HIV Prevalence' }
+                { key: 'HIV deaths', title: 'HIV Deaths', disabled: true },
+                { key: 'Persons living with diagnosed HIV', title: 'HIV Prevalence', disabled: true }
             ];
 
             var aidsRaceOptions = [
@@ -1248,7 +1248,7 @@
                     displaySelectedFirst: true,
                     autoCompleteOptions: diseaseStateOptions,
                     doNotShowAll: true,
-                    helpText: 'label.help.text.natality.state'
+                    helpText: 'label.std.help.text.state'
                 },
                 {
                     key: 'current_year',
@@ -1260,7 +1260,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: yearOptions,
                     doNotShowAll: true,
-                    helpText: 'label.help.text.year'
+                    helpText: 'label.help.text.hiv.year'
                 },
                 {
                     key: 'race',
@@ -1272,7 +1272,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: aidsRaceOptions,
                     doNotShowAll: true,
-                    helpText: 'label.help.text.race'
+                    helpText: 'label.std.help.text.race.ethnicity'
                 },
                 {
                     key: 'sex',
@@ -1284,7 +1284,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseGenderOptions,
                     doNotShowAll: true,
-                    helpText: 'label.help.text.sex'
+                    helpText: 'label.help.text.tb.sex'
                 },
                 {
                     key: 'age_group',
@@ -1296,7 +1296,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: aidsAgeGroupOptions,
                     doNotShowAll: true,
-                    helpText: 'label.help.text.bridged-race.agegroup'
+                    helpText: 'label.help.text.hiv.agegroup'
                 },
                 {
                     key: 'transmission',
