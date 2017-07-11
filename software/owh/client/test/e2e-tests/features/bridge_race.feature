@@ -62,6 +62,7 @@ Feature: Bridge race filters
     Then I see two export menus displayed
     When I click on the export as PNG
     Then I see a PNG file is downloaded
+    When I hover on the export chart button
     When I click on the export as PDF
     Then I see a PDF file is downloaded
     When I click on collapse button
