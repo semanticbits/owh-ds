@@ -6,7 +6,7 @@
 
     chartUtilService.$inject = ['$dateParser', '$filter', '$translate','utilService', 'ModalService'];
 
-    function chartUtilService( $dateParser, $filter, $translate, utilService, ModalService ) {
+    function chartUtilService($dateParser, $filter, $translate, utilService, ModalService) {
         var service = {
             horizontalStack: horizontalStack,
             verticalStack: verticalStack,
@@ -85,6 +85,7 @@
 
         /*Multi Bar Horizontal Chart*/
         function horizontalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip) {
+
             postFixToTooltip = postFixToTooltip ? postFixToTooltip : '';
             var chartData = {
                 data: [],
@@ -250,7 +251,11 @@
                             if(eachSecondaryData &&  eachSecondaryData[primaryFilter.key]) {
                                 value = getValueFromData(primaryFilter, eachSecondaryData);
                             }
-                            primaryDataObj.values.push({"label":secondaryOption.title, "value": value});
+
+                            if (value != 0) {
+                                primaryDataObj.values.push({"label":secondaryOption.title, "value": value});
+                            }
+
                         });
                         multiChartBarData.push(primaryDataObj);
                     }else{
@@ -259,6 +264,7 @@
                                 { label : secondaryOption.title, value : 0 }
                             );
                         });
+
                         multiChartBarData.push(primaryDataObj);
                     }
                 });
