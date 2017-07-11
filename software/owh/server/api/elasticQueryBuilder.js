@@ -194,6 +194,13 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     if(censusQuery) {
         var clonedUserQuery = clone(userQuery);
         if (clonedUserQuery['ICD_10_code']) delete clonedUserQuery['ICD_10_code'];
+        if (clonedUserQuery['ICD_130_code']) delete clonedUserQuery['ICD_130_code'];
+        if (clonedUserQuery['infant_age_at_death']) delete clonedUserQuery['infant_age_at_death'];
+        if(clonedUserQuery['year_of_death']) {
+            //Infant mortality index has column 'year_of_death', should match with natality index column in Elastic Search
+            //So that we can query natality index for Birth counts.
+            clonedUserQuery['year_of_death'].queryKey = 'current_year';
+        }
         var clonedPrimaryQuery = buildTopLevelBoolQuery(groupByPrimary(clonedUserQuery, true), true);
         var clonedFilterQuery = buildTopLevelBoolQuery(groupByPrimary(clonedUserQuery, false), false);
 
@@ -409,9 +416,29 @@ function buildAPIQuery(primaryFilter) {
                 headers.columnHeaders.push(eachFilter);
             }
         }
-        var eachFilterQuery = buildFilterQuery(eachFilter);
-        if(eachFilterQuery) {
-            apiQuery.query[eachFilter.queryKey] = eachFilterQuery;
+
+        if (eachFilter.key === 'mcd-chapter-10') {
+            var set1Filter = clone(eachFilter);
+            var set2Filter = clone(eachFilter);
+
+            set1Filter.value = set1Filter.value.set1 || [];
+            set2Filter.value = set2Filter.value.set2 || [];
+
+            var set1FilterQuery = buildFilterQuery(set1Filter);
+            if (set1FilterQuery) {
+                apiQuery.query[set1Filter.queryKey + ".set1"] = set1FilterQuery;
+            }
+
+            var set2FilterQuery = buildFilterQuery(set2Filter);
+            if (set2FilterQuery) {
+                apiQuery.query[set2Filter.queryKey + ".set2"] = set2FilterQuery;
+            }
+        }
+        else {
+            var eachFilterQuery = buildFilterQuery(eachFilter);
+            if(eachFilterQuery) {
+                apiQuery.query[eachFilter.queryKey] = eachFilterQuery;
+            }
         }
     });
     if (primaryFilter.key === 'prams') {
