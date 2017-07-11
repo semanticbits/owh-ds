@@ -1,0 +1,452 @@
+[
+  {
+    "text": "Oral Cavity and Pharynx",
+    "id": "20010-20100",
+    "children":[
+      {
+        "text": "Lip",
+        "id":"20010"
+      },
+      {
+        "text": "Tongue",
+        "id":"20020"
+      },
+      {
+        "text": "Salivary Gland",
+        "id":"20030"
+      },
+      {
+        "text": "Floor of Mouth",
+        "id":"20040"
+      },
+      {
+        "text": "Gum and Other Mouth",
+        "id":"20050"
+      },
+      {
+        "text": "Nasopharynx",
+        "id":"20060"
+      },
+      {
+        "text": "Tonsil",
+        "id":"20070"
+      },
+      {
+        "text": "Oropharynx",
+        "id":"20080"
+      },
+      {
+        "text": "Hypopharynx",
+        "id":"20090"
+      },
+      {
+        "text": "Other Oral Cavity and Pharynx",
+        "id":"20100"
+      }
+    ]
+  },
+  {
+    "text":"Digestive System",
+    "id": "21010-21130",
+    "children":[
+      {
+        "text":"Esophagus",
+        "id":"21010"
+      },
+      {
+        "text":"Stomach",
+        "id":"21020"
+      },
+      {
+        "text":"Small Intestine",
+        "id":"21030"
+      },
+      {
+        "text":"Colon and Rectum",
+        "id":"21041-21052",
+        "children":[
+          {
+            "text":"Colon excluding Rectum",
+            "id":"21041-21049",
+            "children":[
+              {
+                "text":"Cecum",
+                "id":"21041"
+              },
+              {
+                "text":"Appendix",
+                "id":"21042"
+              },
+              {
+                "text":"Ascending Colon",
+                "id":"21043"
+              },
+              {
+                "text":"Hepatic Flexure",
+                "id":"21044"
+              },
+              {
+                "text":"Transverse Colon",
+                "id":"21045"},
+              {
+                "text":"Splenic Flexure",
+                "id":"21046"
+              },
+              {
+                "text":"Descending Colon",
+                "id":"21047"
+              },
+              {
+                "text":"Sigmoid Colon",
+                "id":"21048"},
+              {
+                "text":"Large Intestine, NOS",
+                "id":"21049"
+              }
+            ]
+          },
+          {
+            "text":"Rectum and Rectosigmoid Junction",
+            "id":"21051-21052",
+            "children":[
+              {
+                "text": "Rectosigmoid Junction",
+                "id":"21051"
+              },
+              {
+                "text": "Rectum",
+                "id":"21052"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "text":"Anus, Anal Canal and Anorectum",
+        "id":"21060"
+      },
+      {
+        "text":"Liver and Intrahepatic Bile Duc",
+        "id":"21071-21072",
+        "children":[
+          {
+            "text":"Liver",
+            "id":"21071"
+          },
+          {
+            "text":"Intrahepatic Bile Duct",
+            "id":"21072"
+          }
+        ]
+      },
+      {
+        "text":"Gallbladder",
+        "id":"21080"
+      },
+      {
+        "text":"Other Biliary",
+        "id":"21090"
+      },
+      {
+        "text":"Pancreas",
+        "id":"21100"
+      },
+      {
+        "text":"Retroperitoneum",
+        "id":"21110"
+      },
+      {
+        "text":"Peritoneum, Omentum and Mesentery",
+        "id":"21120"
+      },
+      {
+        "text":"Other Digestive Organs",
+        "id":"21130"
+      }
+    ]
+  },
+  {
+    "text": "Respiratory System",
+    "id": "22010-22060",
+    "children":[
+      {
+        "text":"Nose, Nasal Cavity and Middle Ear",
+        "id":"22010"
+      },
+      {
+        "text":"Larynx",
+        "id":"22020"
+      },
+      {
+        "text":"Lung and Bronchus",
+        "id":"22030"
+      },
+      {
+        "text":"Pleura",
+        "id":"22050"
+      },
+      {
+        "text":"Trachea, Mediastinum and Other Respiratory Organs",
+        "id":"22060"
+      }
+    ]
+  },
+  {
+    "text":"Bones and Joints",
+    "id":"23000"
+  },
+  {
+    "text":"Soft Tissue including Heart",
+    "id":"24000"
+  },
+  {
+    "text":"Skin excluding Basal and Squamous",
+    "id":"25010-25020",
+    "children":[
+      {
+        "text":"Melanoma of the Skin",
+        "id":"25010"
+      },
+      {
+        "text":"Other Non-Epithelial Skin",
+        "id":"25020"
+      }
+    ]
+  },
+  {
+    "text":"Male and Female Breast",
+    "id":"26000",
+    "children":[
+      {
+        "text":"Female Breast",
+        "id":"26000-Female"
+      },
+      {
+        "text":"Male Breast",
+        "id":"26000-Male"
+      }
+    ]
+  },
+  {
+    "text":"Female Genital System",
+    "id":"27010-27070",
+    "children":[
+      {
+        "text":"Cervix Uteri",
+        "id":"27010"
+      },
+      {
+        "text":"Corpus Uteri",
+        "id":"27020"
+      },
+      {
+        "text":"Uterus, NOS",
+        "id":"27030"
+      },
+      {
+        "text":"Ovary",
+        "id":"27040"
+      },
+      {
+        "text":"Vagina",
+        "id":"27050"
+      },
+      {
+        "text":"Vulva",
+        "id":"27060"
+      },
+      {
+        "text":"Other Female Genital Organs",
+        "id":"27070"
+      }
+    ]
+  },
+  {
+    "text":"Male Genital System",
+    "id":"28010-28040",
+    "children":[
+      {
+        "text":"Prostate",
+        "id":"28010"
+      },
+      {
+        "text":"Testis",
+        "id":"28020"
+      },
+      {
+        "text":"Penis",
+        "id":"28030"
+      },
+      {
+        "text":"Other Male Genital Organs",
+        "id":"28040"
+      }
+    ]
+  },
+  {
+    "text":"Urinary System",
+    "id":"29010-29040",
+    "children":[
+      {
+        "text":"Urinary Bladder, invasive and in situ",
+        "id":"29010"
+      },
+      {
+        "text":"Kidney and Renal Pelvis",
+        "id":"29020"
+      },
+      {
+        "text":"Ureter",
+        "id":"29030"
+      },
+      {
+        "text":"Other Urinary Organs",
+        "id":"29040"
+      }
+    ]
+  },
+  {
+    "text":"Eye and Orbit",
+    "id":"30000"
+  },
+  {
+    "text":"Brain and Other Nervous System",
+    "id":"31010-31040",
+    "children":[
+      {
+        "text":"Brain",
+        "id":"31010"
+      },
+      {
+        "text":"Cranial Nerves Other Nervous System",
+        "id":"31040"
+      }
+    ]
+  },
+  {
+    "text":"Endocrine System",
+    "id":"32010-32020",
+    "children":[
+      {
+        "text":"Thyroid",
+        "id":"32010"
+      },
+      {
+        "text":"Other Endocrine including Thymus",
+        "id":"32020"
+      }
+    ]
+  },
+  {
+    "text":"Lymphomas",
+    "id":"33011-33042",
+    "children":[
+      {
+        "text":"Hodgkin Lymphoma",
+        "id":"33011-33012",
+        "children":[
+          {
+            "text":"Hodgkin - Nodal",
+            "id":"33011"
+          },
+          {
+            "text":"Hodgkin - Extranodal",
+            "id":"33012"
+          }
+        ]
+      },
+      {
+        "text":"Non-Hodgkin Lymphoma",
+        "id":"33041-33042",
+        "children":[
+          {
+            "text":"NHL – Nodal",
+            "id":"33041"
+          },
+          {
+            "text":"NHL – Extranodal",
+            "id":"33042"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "text":"Myeloma",
+    "id":"34000"
+  },
+  {
+    "text":"Leukemias",
+    "id":"35011-35043",
+    "children":[
+      {
+        "text":"Acute Lymphocytic Leukemia",
+        "id":"35011"
+      },
+      {
+        "text":"Chronic Lymphocytic Leukemia",
+        "id":"35012"
+      },
+      {
+        "text":"Acute Myeloid Leukemia",
+        "id":"35021"
+      },
+      {
+        "text":"Chronic Myeloid Leukemia",
+        "id":"35022"
+      },
+      {
+        "text":"Other Leukemias",
+        "id":"35041-35043",
+        "children": [
+          {
+            "text":"Other Lymphocytic Leukemia",
+            "id":"35013"
+          },
+          {
+            "text":"Acute Monocytic Leukemia",
+            "id":"35031"
+          },
+          {
+            "text":"Other Acute Leukemia",
+            "id":"35041"
+          },
+          {
+            "text":"Aleukemic, Subleukemic and NOS",
+            "id":"35043"
+          },
+          {
+            "text":"Other Myeloid/Monocytic Leukemia",
+            "id":"35023"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "text":"Mesothelioma",
+    "id":"36010"
+  },
+  {
+    "text":"Kaposi Sarcoma",
+    "id":"36020"
+  },
+  {
+    "text":"Miscellaneous",
+    "id":"37000"
+  },
+  {
+    "text":"In situ breast cancer",
+    "id":"Breast-InSitu",
+    "children":[
+      {
+        "text":"Female Breast, In Situ",
+        "id":"Breast-InSitu-Female"
+      },
+      {
+        "text":"Female Breast, In Situ",
+        "id":"Male Breast, In Situ"
+      }
+    ]
+  }
+]

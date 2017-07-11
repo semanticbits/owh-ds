@@ -1719,10 +1719,11 @@
 
                 /*Multiple Cause of death*/
                 {key: 'mcd-chapter-10', title: 'label.filter.mcd', queryKey:"ICD_10_code",
-                    primary: false, value: [], groupBy: false, type: "label.filter.group.mcd", groupKey:"mcd",
+                    primary: false, value: { 'set1': [], 'set2': [] }, groupBy: false, type: "label.filter.group.mcd", groupKey:"mcd",
                     autoCompleteOptions: $rootScope.conditionsListICD10, filterType: 'conditions',
                     selectTitle: 'select.label.filter.mcd', updateTitle: 'update.label.filter.mcd',
-                    groupOptions: filters.conditionGroupOptions, helpText: 'label.help.text.mortality.mcd'}
+                    aggregationKey: "ICD_10_code.path", groupOptions: filters.conditionGroupOptions,
+                    helpText: 'label.help.text.mortality.mcd'}
             ];
 
             filters.censusFilters = filterUtils.getBridgeDataFilters();
