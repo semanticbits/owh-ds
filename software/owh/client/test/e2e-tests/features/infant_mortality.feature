@@ -1,3 +1,4 @@
+@Infant
 Feature: Infant Mortality filters
   As a user
   I want to see the data table upon selection of natality filters
@@ -20,10 +21,18 @@ Feature: Infant Mortality filters
 
   Scenario: Infant Mortality Default Table Data for 2014
     Then the default headers of the table should be "Race, Female, Male, Number of Infant Deaths"
-    And the values in row "0" should be "American Indian / Alaskan Native, 146 (42.9%), 194 (57.1%), 340"
-    And the values in row "1" should be "Asian / Pacific Islander, 480 (44.4%), 600 (55.6%), 1,080"
-    And the values in row "2" should be "Black or African American, 3,082 (45.3%), 3,727 (54.7%), 6,809"
-    And the values in row "3" should be "White, 6,543 (44.1%), 8,278 (55.9%), 14,821"
+    And the values in row "0" should be "American Indian / Alaskan Native, 146, 194, 340"
+    And the values in row "0" should be "American Indian / Alaskan Native, 22,120, 22,808, 44,928"
+    And the values in row "0" should be "American Indian / Alaskan Native, 6.6, 8.5, 7.6"
+    And the values in row "1" should be "Asian / Pacific Islander, 480, 600, 1,080"
+    And the values in row "1" should be "Asian / Pacific Islander, 137,076, 145,647, 282,723"
+    And the values in row "1" should be "Asian / Pacific Islander, 3.5, 4.1, 3.8"
+    And the values in row "2" should be "Black or African American, 3,082, 3,727, 6,809"
+    And the values in row "2" should be "Black or African American, 315,741, 324,821, 640,562"
+    And the values in row "2" should be "Black or African American, 9.8, 11.5, 10.6"
+    And the values in row "3" should be "White, 6,543, 8,278, 14,821"
+    And the values in row "3" should be "White, 1,472,438, 1,547,425, 3,019,863"
+    And the values in row "3" should be "White, 4.4, 5.3, 4.9"
 
   Scenario: Infant Mortality Race Options for 2014
     When I click on the "Race" filter and expand all available options
@@ -40,6 +49,6 @@ Feature: Infant Mortality filters
   Scenario: Infant Mortality Table Data Suppression for Alaska in 2000
     When I select the option "2000" for "Year" and the option "Alaska" for "State"
     Then the values in row "0" should be "Black or African American, Not Available, Suppressed, Suppressed"
-    And the values in row "1" should be "White, Unreliable, 20 (54.1%), 37"
+    And the values in row "1" should be "White, 17, 20, 37"
     And the values in row "2" should be "Hawaiian, Not Available, Suppressed, Suppressed"
     And the values in row "3" should be "Other Asian, Suppressed, Not Available, Suppressed"
