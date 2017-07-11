@@ -27,7 +27,6 @@
         sc.switchToYRBSAdvanced = switchToYRBSAdvanced;
         sc.showFbDialog = showFbDialog;
         sc.onChartViewChange = onChartViewChange;
-        sc.exportGraph = exportGraph;
 
         var root = document.getElementsByTagName( 'html' )[0]; // '0' to assign the first (and only `HTML` tag)
         root.removeAttribute('class');
@@ -578,11 +577,6 @@
         /*Show expanded graphs with whole set of features*/
         function showExpandedGraph(chartData, tableView) {
             chartUtilService.showExpandedGraph([chartData], tableView);
-        }
-
-        // Export the graph as PNG
-        function exportGraph(chartName, title) {
-            shareUtilService.exportChart(chartName, title);
         }
 
         function getChartTitle(title) {

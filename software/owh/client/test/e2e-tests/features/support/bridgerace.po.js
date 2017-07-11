@@ -13,6 +13,7 @@ var BridgeRaceSearchPage = function() {
     brs.expandGraphLink = element(by.css('a[name=expand_graph]'));
     brs.collapseGraphLink = element(by.name('close'));
     brs.stateOptionsLink = element(by.partialLinkText('State'));
+    brs.exportGraphLink = element(by.css('.dropbtn'));
 
     brs.getSelectedFilterOptions = function() {
         return element(by.css('.ui-select-match')).all(by.css('.ui-select-match-item')).getText();
@@ -61,6 +62,10 @@ var BridgeRaceSearchPage = function() {
         return element(by.name('expand_graph')).isPresent();
     };
 
+    brs.isExportBtnDisplayed = function () {
+        return element.all(by.name('export')).last().isPresent();
+    };
+
     brs.isFBShareBtnDisplayed = function () {
         return element(by.name('share_fb')).isPresent();
     };
@@ -84,6 +89,9 @@ var BridgeRaceSearchPage = function() {
     brs.selectFilterSwitch = function(filter, switchType) {
         return element(by.cssContainingText('a', filter)).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('a', switchType));
     };
+
+    brs.exportPNG = element(by.name('exportpng'));
+    brs.exportPDF = element(by.name('exportpdf'));
 };
 
 module.exports = new BridgeRaceSearchPage;
