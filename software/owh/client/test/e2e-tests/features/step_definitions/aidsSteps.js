@@ -27,7 +27,7 @@ var aidsStepDefinitions = function () {
         var expected = expected_options.split(', ');
         aidsPage.getOptionsForFilter(filter).then(function (options) {
             options.forEach(function (option, index) {
-                expect(option).to.equal(expected[index]);
+                expect(option).to.contain(expected[index]);
             });
         }).then(next);
     });

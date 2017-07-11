@@ -416,9 +416,29 @@ function buildAPIQuery(primaryFilter) {
                 headers.columnHeaders.push(eachFilter);
             }
         }
-        var eachFilterQuery = buildFilterQuery(eachFilter);
-        if(eachFilterQuery) {
-            apiQuery.query[eachFilter.queryKey] = eachFilterQuery;
+
+        if (eachFilter.key === 'mcd-chapter-10') {
+            var set1Filter = clone(eachFilter);
+            var set2Filter = clone(eachFilter);
+
+            set1Filter.value = set1Filter.value.set1 || [];
+            set2Filter.value = set2Filter.value.set2 || [];
+
+            var set1FilterQuery = buildFilterQuery(set1Filter);
+            if (set1FilterQuery) {
+                apiQuery.query[set1Filter.queryKey + ".set1"] = set1FilterQuery;
+            }
+
+            var set2FilterQuery = buildFilterQuery(set2Filter);
+            if (set2FilterQuery) {
+                apiQuery.query[set2Filter.queryKey + ".set2"] = set2FilterQuery;
+            }
+        }
+        else {
+            var eachFilterQuery = buildFilterQuery(eachFilter);
+            if(eachFilterQuery) {
+                apiQuery.query[eachFilter.queryKey] = eachFilterQuery;
+            }
         }
     });
     if (primaryFilter.key === 'prams') {

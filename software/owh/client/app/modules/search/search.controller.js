@@ -637,7 +637,7 @@
                 sc.filters.selectedPrimaryFilter.chartAxisLabel = 'Cases';
                 sc.filters.selectedPrimaryFilter.defaultChartView = 'cases';
             }
-            sc.filters.selectedPrimaryFilter.chartData =searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
+            sc.filters.selectedPrimaryFilter.chartData = searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
         }
     }
 }());

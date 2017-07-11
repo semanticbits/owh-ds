@@ -23,7 +23,9 @@ class DataFileParser:
             self.columnconfigs = self.dataconfig['columns']
 
         if (self.dataconfig['datafiletype'] == 'csv'):
-            self.filereader = CSVFileReader(datafile)
+            self.filereader = CSVFileReader(datafile, ',')
+        elif (self.dataconfig['datafiletype'] == 'tsv'):
+            self.filereader = CSVFileReader(datafile, '\t')
         elif (self.dataconfig['datafiletype'] == 'fwf'):
             self.filereader = FixedWidthFileReader(datafile)
 
@@ -126,8 +128,8 @@ class CSVFileReader (DataFileReader):
     """
         Reader for CSV file
     """
-    def __init__(self, datafile):
-        self.csvreader = csv.reader(open(datafile, 'rb'))
+    def __init__(self, datafile, delimiter):
+        self.csvreader = csv.reader(open(datafile, 'rb'), delimiter = delimiter)
 
     def nextLine(self):
         try:
