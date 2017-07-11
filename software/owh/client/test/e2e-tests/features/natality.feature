@@ -69,6 +69,7 @@ Feature: Natality filters
 
   Scenario: 5- Year Age Group
     Then I expand "5-Year Age Groups" filter section
+    And I expand "+ 3 more" filter section
     And I should see "5-Year Age Groups" options under Mother Age category for 5-Year age group
     Then I select "Year" value "2003"
     And I un-select "Year" value "2015"
@@ -78,6 +79,7 @@ Feature: Natality filters
 
   Scenario: 1- Year Age Group
     Then I expand "1-Year Age Groups" filter section
+    And I expand "+ 27 more" filter section
     And I should see "1-Year Age Groups" options under Mother Age category for 1-Year age group
     Then I select "Year" value "2003"
     And I un-select "Year" value "2015"
