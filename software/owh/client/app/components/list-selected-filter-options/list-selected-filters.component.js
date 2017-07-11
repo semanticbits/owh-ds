@@ -30,7 +30,7 @@
         function getAppliedFilters() {
             var appliedFilters = [];
             angular.forEach(lfc.filters, function(filter){
-                filter.value.length > 0 && appliedFilters.push(filter)
+                (filter.value.length > 0 && filter.key != 'question') && appliedFilters.push(filter)
             });
             return appliedFilters;
         }

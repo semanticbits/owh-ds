@@ -103,7 +103,7 @@ var stdStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on Rate chart view toggle button$/, function (next) {
-         element(by.cssContainingText('span', 'Rate')).click()
+         element(by.cssContainingText('span', 'Rates')).click()
              .then(next);
     });
 
@@ -211,6 +211,10 @@ var stdStepDefinitionsWrapper = function () {
         allElements.getText().then(function (filters) {
             expect(filters).to.include(arg1);
         }).then(next);
+    });
+
+    this.Then(/^the following message should be displayed "([^"]*)" on std page$/, function (arg1) {
+        return expect(element(by.id('std-disclaimer')).getText()).to.eventually.equal(arg1);
     });
 };
 

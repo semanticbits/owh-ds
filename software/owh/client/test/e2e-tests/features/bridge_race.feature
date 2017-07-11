@@ -83,3 +83,7 @@ Feature: Bridge race filters
   Scenario: Percentages
     When I click the "Hide" button
     Then I should not see percentages
+
+  Scenario: Age group 85+ years groupings
+    When I set "Age Groups" filter "Row"
+    Then I see data in data table for 85+ years age group

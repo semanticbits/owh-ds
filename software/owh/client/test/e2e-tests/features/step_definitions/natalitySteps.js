@@ -154,7 +154,7 @@ var natalityStepsDefinitionWrapper = function () {
     });
 
     this.Then(/^I should see a Birth rate statement above data table in natality page$/, function () {
-        return expect(natalityPage.birthRateDisclaimer.getText()).to.eventually.equal("Population details from NCHS Bridged Race Estimates are used to calculate Birth Rates (per 100,000)");
+        return expect(natalityPage.birthRateDisclaimer.getText()).to.eventually.equal("Population details from NCHS Bridged Race Estimates are used to calculate Birth Rates (per 100,000).");
     });
 
     this.When(/^I see "([^"]*)" category in the sidebar$/, function (arg1, next) {

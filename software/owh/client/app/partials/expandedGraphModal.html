@@ -21,7 +21,7 @@
                 <li ng-repeat="chartType in eg.chartTypes"
                     ng-class="{'active':eg.activeTab? eg.activeTab == eg.getChartName(chartType): $index==0}">
                     <a href="#" ng-click="eg.getYrbsChartData(chartType);"
-                       ng-bind="eg.getChartName(chartType);"></a>
+                       ng-bind="eg.getChartName(chartType);">Expand Graph</a>
                 </li>
             </ul>
 
@@ -30,7 +30,7 @@
                     <div class="text-center margin-top-5" ng-if="eg.chartData.length > 1">
                         <span ng-bind="eachChartData.title | translate" class="graph-title"></span>
                         <a name="share" class="font-20 cursor-pointer" ng-click="eg.showFbDialog('chart_expanded_'+$index, eachChartData.title, 'YRBS by', eg.graphTitle)">
-                            &nbsp; <span class="fa purple-icon fa-share-alt" title="{{'label.share.on.fb' | translate}}"></span>
+                            &nbsp; Share on Facebook<span class="fa purple-icon fa-share-alt" title="{{'label.share.on.fb' | translate}}"></span>
                         </a>
                     </div>
                     <nvd3 id="chart_expanded_{{$index}}" options='eachChartData.options' data='eachChartData.data'></nvd3>

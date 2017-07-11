@@ -196,6 +196,24 @@ var BridgeRaceStepDefinitionsWrapper = function () {
         });
     });
 
+    this.Then(/^I see data in data table for (\d+)\+ years age group$/, function (arg1, next) {
+        bridgeRacePage.getTableCellData(17,0).then(function(data){
+            expect(data).to.contains('85+ years');
+            //Female
+            bridgeRacePage.getTableCellData(17,1).then(function(data){
+                expect(data).to.contains('20,022 (63.9%)');
+            });
+            //Male
+            bridgeRacePage.getTableCellData(17,2).then(function(data){
+                expect(data).to.contains('11,308 (36.1%)');
+            });
+            //Total
+            bridgeRacePage.getTableCellData(17,3).then(function(data){
+                expect(data).to.contains('31,330');
+            });
+        }).then(next);
+    });
+
     this.Then(/^I see export chart button$/, function (next) {
         bridgeRacePage.isExportBtnDisplayed().then(function(value) {
             expect(value).to.equal(true);
@@ -227,7 +245,7 @@ var BridgeRaceStepDefinitionsWrapper = function () {
 
     this.Then(/^I see a PNG file is downloaded$/, function (next) {
         // dont see a way to test this on selemium using javascript, so this is a NOOP test for now.
-       next();
+        next();
     });
 
     this.When(/^I click on the export as PDF/, function () {

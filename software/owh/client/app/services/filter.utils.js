@@ -657,8 +657,8 @@
                 {key:'65-69 years', title:'65 - 69 years', min: 65, max: 69},
                 {key:'70-74 years', title:'70 - 74 years', min: 70, max: 74},
                 {key:'75-79 years', title:'75 - 79 years', min: 75, max: 79},
-                {key:'80-84 years',title:'80 - 84 years', min: 80, max: 84},
-                {key:'85-105 years',title:'85+ years', min: 85, max: 105}
+                {key:'80-84 years', title:'80 - 84 years', min: 80, max: 84},
+                {key:'85+ years', title:'85+ years', min: 85, max: 105}
             ];
 
             var ageSliderOptions =  {
@@ -938,15 +938,15 @@
                 {key: 'year_of_death', title: 'label.filter.year', queryKey:"year_of_death", primary: false, value: ["2014"],
                     defaultGroup:'column', groupBy: false, filterType: "checkbox",
                     // Data only available for 2000-2014
-                    autoCompleteOptions: yearOptions.slice(1), helpText:"label.help.text.year"},
+                    autoCompleteOptions: yearOptions.slice(1), helpText:"label.help.text.infantmort.year"},
 
                 {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'column', filterType: "checkbox",
-                    autoCompleteOptions: genderOptions, helpText:"label.help.text.sex"},
+                    autoCompleteOptions: genderOptions, helpText:"label.help.text.infantmort.sex"},
 
                 {key: 'infant_age_at_death', title: 'label.filter.infant_age_at_death', queryKey: 'infant_age_at_death', primary: false,
                     value: [], defaultGroup: 'column', groupBy: false, filterType: 'checkbox',
-                    autoCompleteOptions: infantDeathAge, helpText: 'label.help.text.infant_age_at_death'},
+                    autoCompleteOptions: infantDeathAge, helpText: 'label.help.text.infantmort.age.death'},
 
                 // Maternal Characteristics
                 {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [],
@@ -959,7 +959,7 @@
 
                 {key: 'mother_age_5_interval', title: 'label.filter.age_of_mother', queryKey:"mother_age_5_interval",
                     primary: false, value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: ageR9Options, helpText:"label.help.text.mother.five.year.age"},
+                    autoCompleteOptions: ageR9Options, helpText:"label.help.text.infantmort.age.group"},
 
                 {key: 'marital_status', title: 'label.filter.maritalStatus', queryKey:"marital_status", primary: false,
                     value: [], defaultGroup:'column', groupBy:false, filterType: "checkbox",
@@ -973,17 +973,17 @@
                 {key: 'gestation_recode11', title: 'label.filter.infant_mortality.gestation_recode11', queryKey:"gestation_recode11",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: gestationalGroup1,
-                    helpText:"label.help.text.gestational.age"},
+                    helpText:"label.help.text.gestational.group.one"},
 
                 {key: 'gestation_recode10', title: 'label.filter.infant_mortality.gestation_recode10', queryKey:"gestation_recode10",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: gestationalGroup2,
-                    helpText:"label.help.text.gestational.age"},
+                    helpText:"label.help.text.gestational.group.two"},
 
                 {key: 'gestation_weekly', title: 'label.filter.infant_mortality.gestation_weekly', queryKey:"gestation_weekly",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: gestationWeekly,
-                    helpText:"label.help.text.gestational.age"},
+                    helpText:"label.help.text.gestational.weekly"},
 
                 {key: 'prenatal_care', title: 'label.filter.monthPrenatalCareBegan', queryKey:"prenatal_care",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
@@ -991,7 +991,8 @@
                     helpText:"label.help.text.prenatal.care"},
 
                 {key: 'birth_weight', title: 'label.filter.birthWeight', queryKey:"birth_weight_r12", primary: false,
-                    value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: birthWeightR12Options},
+                    value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
+                    autoCompleteOptions: birthWeightR12Options, helpText: "label.help.text.birth.weight"},
 
                 {key: 'birth_plurality', title: 'label.filter.plurality', queryKey:"birth_plurality", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
@@ -1040,6 +1041,7 @@
                     queryKey: "current_year",
                     primary: false,
                     value: "2015",
+                    defaultValue: "2015",
                     groupBy: false,
                     filterType: 'radio',
                     autoCompleteOptions: diseaseYearOptions,
@@ -1052,6 +1054,7 @@
                     queryKey: "disease",
                     primary: false,
                     value: 'Chlamydia',
+                    defaultValue: "Chlamydia",
                     groupBy: false,
                     filterType: 'radio',
                     autoCompleteOptions: stdDiseaseOptions,
@@ -1060,7 +1063,8 @@
                 },
 
                 {
-                    key: 'state', title: 'label.filter.state', queryKey: "state", primary: false, value: 'National',
+                    key: 'state', title: 'label.filter.state', queryKey: "state", primary: false,
+                    value: 'National', defaultValue: "National",
                     groupBy: false, filterType: 'radio', displaySearchBox: true, displaySelectedFirst: true,
                     autoCompleteOptions: diseaseStateOptions,
                     doNotShowAll: true,
@@ -1129,7 +1133,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseYearOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.year"
+                    helpText: "label.help.text.tb.year"
                 },
                 {
                     key: 'age_group',
@@ -1141,7 +1145,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseAgeGroupOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.bridged-race.agegroup"
+                    helpText: "label.std.help.text.age.group"
                 },
                 {
                     key: 'race',
@@ -1153,7 +1157,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseRaceOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.race"
+                    helpText: "label.help.text.tb.race"
                 },
                 {
                     key: 'sex',
@@ -1165,7 +1169,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseGenderOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.sex"
+                    helpText: "label.help.text.tb.sex"
                 },
                 {
                     key: 'state', title: 'label.filter.state', queryKey: "state",
@@ -1174,7 +1178,7 @@
                     displaySearchBox: true, displaySelectedFirst: true,
                     autoCompleteOptions: diseaseStateOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.natality.state"
+                    helpText: "label.help.text.tb.state"
                 }
             ]
 
@@ -1183,11 +1187,11 @@
         function getAIDSFilters () {
             var aidsDiseaseOptions = [
                 { key: 'HIV, stage 3 (AIDS)', title: 'AIDS Diagnoses' },
-                { key: 'HIV, stage 3 (AIDS) deaths', title: 'AIDS Deaths' },
-                { key: 'Persons living with HIV, stage 3 (AIDS)', title: 'AIDS Prevalence' },
+                { key: 'HIV, stage 3 (AIDS) deaths', title: 'AIDS Deaths', disabled: true },
+                { key: 'Persons living with HIV, stage 3 (AIDS)', title: 'AIDS Prevalence', disabled: true },
                 { key: 'HIV diagnoses', title: 'HIV Diagnoses' },
-                { key: 'HIV deaths', title: 'HIV Deaths' },
-                { key: 'Persons living with diagnosed HIV', title: 'HIV Prevalence' }
+                { key: 'HIV deaths', title: 'HIV Deaths', disabled: true },
+                { key: 'Persons living with diagnosed HIV', title: 'HIV Prevalence', disabled: true }
             ];
 
             var aidsRaceOptions = [
@@ -1244,7 +1248,7 @@
                     displaySelectedFirst: true,
                     autoCompleteOptions: diseaseStateOptions,
                     doNotShowAll: true,
-                    helpText: 'label.help.text.natality.state'
+                    helpText: 'label.std.help.text.state'
                 },
                 {
                     key: 'current_year',
@@ -1256,7 +1260,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: yearOptions,
                     doNotShowAll: true,
-                    helpText: 'label.help.text.year'
+                    helpText: 'label.help.text.hiv.year'
                 },
                 {
                     key: 'race',
@@ -1268,7 +1272,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: aidsRaceOptions,
                     doNotShowAll: true,
-                    helpText: 'label.help.text.race'
+                    helpText: 'label.std.help.text.race.ethnicity'
                 },
                 {
                     key: 'sex',
@@ -1280,7 +1284,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseGenderOptions,
                     doNotShowAll: true,
-                    helpText: 'label.help.text.sex'
+                    helpText: 'label.help.text.tb.sex'
                 },
                 {
                     key: 'age_group',
@@ -1292,7 +1296,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: aidsAgeGroupOptions,
                     doNotShowAll: true,
-                    helpText: 'label.help.text.bridged-race.agegroup'
+                    helpText: 'label.help.text.hiv.agegroup'
                 },
                 {
                     key: 'transmission',

@@ -69,7 +69,7 @@
                                    filters="sc.filters.selectedPrimaryFilter.allFilters">
             </list-selected-filters>
 
-            <owh-toggle-switch ng-if="sc.tableView == 'std' || sc.tableView == 'tb' || sc.tableView == 'hiv' || sc.tableView == 'disease_rate'" class="left-float chart-view-toggle"
+            <owh-toggle-switch ng-if="sc.tableView == 'std' || sc.tableView == 'tb' || sc.tableView == 'aids' || sc.tableView == 'disease_rate'" class="left-float chart-view-toggle"
                                options="sc.filters.selectedPrimaryFilter.chartViewOptions"
                                model="sc.filters.selectedPrimaryFilter.defaultChartView" on-change="sc.onChartViewChange(sc.filters.selectedPrimaryFilter.tableView, sc.filters.selectedPrimaryFilter.key)"
                                tooltip="{{'label.group.by.tooltip' | translate}}">
@@ -92,11 +92,11 @@
                             <div ng-if="!chartData.isMap">
                                 <div class="text-center margin-top-5" >
                                     <span ng-bind="sc.getChartTitle(chartData.title)" class="graph-title"></span>
-                                    <a name="share_fb" ng-click="sc.showFbDialog('chart_'+parentIndex+'_'+$index, chartData.title)"
+                                    <a title="Facebook" aria-label="Share on Facebook" name="share_fb" ng-click="sc.showFbDialog('chart_'+parentIndex+'_'+$index, chartData.title)"
                                        class="cursor-pointer" href="javascript:void(0);">
                                         &nbsp; <span class="fa fa-share-alt" title="{{'label.share.on.fb' | translate}}"></span>
                                     </a>
-                                    <a name="expand_graph" ng-click="sc.showExpandedGraph(chartData, sc.filters.selectedPrimaryFilter.tableView)" class="cursor-pointer" href="javascript:void(0)">
+                                    <a title="Graph" aria-label="Expand Graph" name="expand_graph" ng-click="sc.showExpandedGraph(chartData, sc.filters.selectedPrimaryFilter.tableView)" class="cursor-pointer" href="javascript:void(0)">
                                         &nbsp;<span class="fa fa-expand" title="Expand graph"></span>
                                     </a>
                                 </div>
@@ -112,9 +112,9 @@
             <!--More visualization-->
             <div class="usa-width-one-whole" ng-show="sc.filters.selectedPrimaryFilter.chartData.length > 0">
                 <div class="usa-width-one-whole more-graph-select">
-                    <span ng-bind="'label.visualization.more.one' | translate"></span>
+                    <span class="dark-link" ng-bind="'label.visualization.more.one' | translate"></span>
                     <a href="javascript:void(0)" ng-click="sc.showPhaseTwoGraphs('label.graph.impl.next')">Build one</a>
-                    <span ng-bind="'label.visualization.more.two' | translate"></span>
+                    <span class="dark-link" ng-bind="'label.visualization.more.two' | translate"></span>
                 </div>
             </div>
             <!--More visualization-->
@@ -147,8 +147,9 @@
                             <img alt="Export to Excel" src="images/xls.png"/>
                         </a>
                     </div>
-                    <p id="death-rate-disclaimer" class="disclaimer" ng-if="sc.tableView === 'crude_death_rates'" ng-bind=" 'label.crude.death.rates.statement' | translate"></p>
-                    <p id="birth-rate-disclaimer" class="disclaimer" ng-if="sc.tableView === 'birth_rates'" ng-bind=" 'label.crude.brith.rates.statement' | translate"></p>
+                    <p id="death-rate-disclaimer" class="dark-link" ng-if="sc.tableView === 'crude_death_rates'" ng-bind=" 'label.crude.death.rates.statement' | translate"></p>
+                    <p id="birth-rate-disclaimer" class="dark-link" ng-if="sc.tableView === 'birth_rates'" ng-bind=" 'label.crude.brith.rates.statement' | translate"></p>
+                    <p id="std-disclaimer" class="dark-link" ng-if="sc.tableView === 'std' || sc.tableView === 'disease_rate'" ng-bind=" 'label.std.national.data.available.for.few.years.statement' | translate"></p>
                     <owh-table table-data="sc.tableData"
                                show-percentage="sc.tableData.calculatePercentage"
                                ng-if="(sc.filters.selectedPrimaryFilter.headers && sc.filters.selectedPrimaryFilter.key === 'deaths' ||

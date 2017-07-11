@@ -16,10 +16,12 @@ html.parallax body {
 body {
 	font-size: 1.6rem;
 }
+
 a, button {
 	text-decoration: none !important;
 	transition: all 0.2s linear;
 }
+
 a, a:visited {
 	color: #974bc2;
 }
@@ -27,6 +29,11 @@ a, a:visited {
 	outline: 0 !important;
 	box-shadow: none !important;
 }
+
+/*.dark-link {
+	color:#484a4b;
+}*/
+
 .usa-grid {
 	padding: 0;
 }
@@ -466,6 +473,11 @@ h4.section-banner-title {
 .footer-h4 {
 	line-height: 2em
 }
+
+.footer ul > li > a {
+	color: #484a4b;
+}
+
 .footer ul > li > a:hover {
 	color: #974bc2;
 }
@@ -764,7 +776,6 @@ table thead {
 .custom-label .pull-right {
 	font-family: Merriweather;
 	font-size: 12px;
-	color: #999;
 }
 .custom-modal-body {
 	padding: 15px !important;
@@ -1015,6 +1026,10 @@ ul.custom-nav-tabs {
 .chart-view-toggle {
 	margin-bottom: 10px;
 	margin-top: 10px;
+}
+
+.dark-link {
+    color: #515151;
 }
 
 .dropbtn {

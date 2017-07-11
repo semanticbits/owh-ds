@@ -31,6 +31,10 @@ var BridgeRaceSearchPage = function() {
       return brs.owhTable.element(by.id('clusterize-table')).element(by.tagName('tbody')).all(by.tagName('tr')).get(rowNumber).all(by.tagName('td')).getText();
     };
 
+    brs.getTableCellData = function(row, column) {
+        return brs.owhTable.element(by.id('clusterize-table')).element(by.tagName('tbody')).all(by.tagName('tr')).get(row).all(by.tagName('td')).get(column).getText();
+    };
+
     brs.getSubFiltersOfAFilter = function(filterType) {
         return element(by.cssContainingText('a', filterType)).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul')).all(by.tagName('li'));
     };
