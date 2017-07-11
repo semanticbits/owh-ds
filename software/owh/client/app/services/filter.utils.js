@@ -1145,7 +1145,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseAgeGroupOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.bridged-race.agegroup"
+                    helpText: "label.std.help.text.age.group"
                 },
                 {
                     key: 'race',
