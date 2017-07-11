@@ -1,3 +1,4 @@
+@Census
 Feature: Bridge race filters
   As a user
   I want to see the data table upon selection of Bridged-Race filters
@@ -46,13 +47,27 @@ Feature: Bridge race filters
     #And I see an Expand button on the top right corner
     #And I see an share button on the top right corner
 
+  #Scenario: Export chart
+    #And I see export chart button
+    #When I click on export chart button
+    #Then The chart is downloaded
+
   Scenario: Expand/collapse chart
     When I clicks on the expand button
     Then I see expanded graph in modal dialog
     And  I see expand button is changed to collapse button
+    And I see export chart button
+    When I hover on the export chart button
+    Then I see two export menus displayed
+    When I click on the export as PNG
+    Then I see a PNG file is downloaded
+    When I hover on the export chart button
+    When I click on the export as PDF
+    Then I see a PDF file is downloaded
     When I click on collapse button
     Then I see graph is collapsed
     And I see an Expand button on the top right corner
+
 
  # Scenario: Show line graph
  #   When I remove default filters
