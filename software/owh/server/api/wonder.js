@@ -8,7 +8,7 @@ var config = require('../config/config');
 
 var wonderParamCodeMap = {
     'race': {
-        "key": 'D76.V8',
+        "key": 'D77.V8',
         "values": {
             "White": '2106-3',
             "Black": '2054-5',
@@ -18,38 +18,37 @@ var wonderParamCodeMap = {
         }
     },
     'gender': {
-        "key": 'D76.V7',
+        "key": 'D77.V7',
         "values": {
             "Female": 'F',
             "Male": 'M',
         }
     },
     'hispanicOrigin': {
-        'key': 'D76.V17',
+        'key': 'D77.V17',
         'values': {
             'Hispanic': '2135-2',
             'Non-Hispanic': '2186-2'
         }
     },
-    'year':'D76.V1',// Use this mapping for filtering param
-    'year-group':'D76.V1-level1', // Use this mapping for grouping param
-    'agegroup':'D76.V51',
-    'weekday':'D76.V24',
+    'year':'D77.V1',// Use this mapping for filtering param
+    'year-group':'D77.V1-level1', // Use this mapping for grouping param
+    'agegroup':'D77.V51',
+    'weekday':'D77.V24',
     'autopsy': {
-        "key": 'D76.V20',
+        "key": 'D77.V20',
         "values": {
             'Yes': 'Y',
             'No': 'N',
             'Unknown': 'U'
         }
     },
-    'placeofdeath':'D76.V21',
-    'month':'D76.V1-level2',
-    'ucd-chapter-10':'D76.V2',
-    'mcd-chapter-10':'D77.V13',
-    'state-group':'D76.V9-level1', // Use this mapping for grouping param
+    'placeofdeath':'D77.V21',
+    'month':'D77.V1-level2',
+    'ucd-chapter-10':'D77.V2',
+    'state-group':'D77.V9-level1', // Use this mapping for grouping param
     'state': { // Use this for filtering param
-        "key":'D76.V9',
+        "key":'D77.V9',
         "values":{
             "AL":"01",
             "AK":"02",
@@ -309,54 +308,92 @@ function addGroupParams(wreq, groups){
 
 function addFilterParams (wreq, query){
     // Add mandatory advanced filter options
-    addParamToWONDERReq(wreq,'V_D76.V19', '*All*');
-    addParamToWONDERReq(wreq,'V_D76.V5', '*All*');
+    addParamToWONDERReq(wreq,'V_D77.V19', '*All*');
+    addParamToWONDERReq(wreq,'V_D77.V5', '*All*');
+
+    var mcdSet1 = [], mcdSet2 = [];
+
     var statefound = false;
     if(query){
         for (var k in query){
-            if(query[k].key == 'state'){
-                statefound = true;
+            var key = query[k].key;
+            if (key === 'mcd-chapter-10') {
+                logger.debug("Adding filter for '" + k + "' with query <<" + JSON.stringify(query[k]) + ">>");
+                var pusher = function () {
+                    var values = [];
+                    query[k].value.forEach(function (value) {
+                        values.push(value);
+                    });
+
+                    return values;
+                };
+
+                switch (query[k].set) {
+                    case 'set1':
+                        mcdSet1 = pusher();;
+                        break;
+
+                    case 'set2':
+                        mcdSet2 = pusher();;
+                        break;
+                }
             }
-            p = wonderParamCodeMap[query[k].key];
-            v = query[k].value;
-            //make sure values are replaced by proper keys
-            if(typeof p === 'object') {
-                if (Array.isArray(v)) {
-                    for (var i = 0; i < v.length; i++) {
-                        if (p.values[v[i]] !== undefined) {
-                            v[i] = p.values[v[i]];
+            else {
+                if (key == 'state') {
+                    statefound = true;
+                }
+                p = wonderParamCodeMap[key];
+                v = query[k].value;
+                //make sure values are replaced by proper keys
+                if(typeof p === 'object') {
+                    if (Array.isArray(v)) {
+                        for (var i = 0; i < v.length; i++) {
+                            if (p.values[v[i]] !== undefined) {
+                                v[i] = p.values[v[i]];
+                            }
+                        }
+                    } else {
+                        if (p[v] !== undefined) {
+                            v = p[v];
                         }
                     }
-                } else {
-                    if (p[v] !== undefined) {
-                        v = p[v];
-                    }
+                    p = p['key'];
                 }
-                p = p['key'];
-            }
 
-            addParamToWONDERReq(wreq,'F_'+p, v);
+                addParamToWONDERReq(wreq,'F_'+p, v);
+            }
         }
     }
     if(!statefound){
         // If state filter is not selected then add mandatory state filter
-        addParamToWONDERReq(wreq,'F_D76.V9', '*All*');
+        addParamToWONDERReq(wreq,'F_D77.V9', '*All*');
     }
+
+    if (mcdSet1.length < 1) {
+        mcdSet1 = [''];
+    }
+
+    if (mcdSet2.length < 1) {
+        mcdSet2 = [''];
+    }
+
+    addParamToWONDERReq(wreq, 'V_D77.V13', mcdSet1);
+    addParamToWONDERReq(wreq, 'V_D77.V13_AND', mcdSet2);
 };
 
 function addMeasures(wreq) {
     // Even though we dont need the first 3, it is mandatory for WONDER
-    addParamToWONDERReq(wreq,'M_1', 'D76.M1');
-    addParamToWONDERReq(wreq,'M_2', 'D76.M2');
-    addParamToWONDERReq(wreq,'M_3', 'D76.M3');
+    addParamToWONDERReq(wreq,'M_1', 'D77.M1');
+    addParamToWONDERReq(wreq,'M_2', 'D77.M2');
+    addParamToWONDERReq(wreq,'M_3', 'D77.M3');
 
     // M4 is standard age adjusted rate
-    addParamToWONDERReq(wreq,'M_4', 'D76.M4');
+    addParamToWONDERReq(wreq,'M_4', 'D77.M4');
 };
-
 
 function addOptionParams(wreq){
     addParamToWONDERReq(wreq,'O_V10_fmode', 'freg');
+    addParamToWONDERReq(wreq, 'O_V13_fmode', 'fadv');
     addParamToWONDERReq(wreq,'O_V1_fmode', 'freg');
     addParamToWONDERReq(wreq,'O_V27_fmode', 'freg');
     addParamToWONDERReq(wreq,'O_V2_fmode', 'freg');
@@ -366,24 +403,24 @@ function addOptionParams(wreq){
     addParamToWONDERReq(wreq,'O_V17_fmode', 'freg');
     addParamToWONDERReq(wreq,'O_aar', 'aar_std');
     addParamToWONDERReq(wreq,'O_aar_pop', '0000');
-    addParamToWONDERReq(wreq,'O_age', 'D76.V5'); // Age adjusted rate by 10 year interval
+    addParamToWONDERReq(wreq,'O_age', 'D77.V5'); // Age adjusted rate by 10 year interval
     addParamToWONDERReq(wreq,'O_javascript', 'off');
-    addParamToWONDERReq(wreq,'O_location', 'D76.V9');
+    addParamToWONDERReq(wreq,'O_location', 'D77.V9');
     addParamToWONDERReq(wreq,'O_precision', '1');
     addParamToWONDERReq(wreq,'O_rate_per', '100000');
     addParamToWONDERReq(wreq,'O_show_totals', 'true');
-    addParamToWONDERReq(wreq,'O_ucd', 'D76.V2');
-    addParamToWONDERReq(wreq,'O_urban', 'D76.V19');
+    addParamToWONDERReq(wreq,'O_ucd', 'D77.V2');
+    addParamToWONDERReq(wreq, 'O_mcd', 'D77.V13');
+    addParamToWONDERReq(wreq,'O_urban', 'D77.V19');
     addParamToWONDERReq(wreq,'O_all_labels', 'true');
 }
-
 
 function addParamToWONDERReq(request, paramname, paramvalue) {
     var param = request.ele('parameter');
     param.ele('name', paramname);
     if(Array.isArray(paramvalue)) {
         for (var i = 0; i<paramvalue.length; i++){
-            if(paramvalue[i]) {
+            if(paramvalue[i] || paramvalue[i] === '') {
                 param.ele('value', paramvalue[i]);
             }
         }

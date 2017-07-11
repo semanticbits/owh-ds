@@ -419,11 +419,13 @@ function buildAPIQuery(primaryFilter) {
 
             var set1FilterQuery = buildFilterQuery(set1Filter);
             if (set1FilterQuery) {
+                set1FilterQuery.set = "set1";
                 apiQuery.query[set1Filter.queryKey + ".set1"] = set1FilterQuery;
             }
 
             var set2FilterQuery = buildFilterQuery(set2Filter);
             if (set2FilterQuery) {
+                set2FilterQuery.set = "set2";
                 apiQuery.query[set2Filter.queryKey + ".set2"] = set2FilterQuery;
             }
         }
