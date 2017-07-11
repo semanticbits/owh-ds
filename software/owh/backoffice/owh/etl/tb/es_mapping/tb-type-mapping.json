@@ -11,9 +11,6 @@
       "race_ethnicity": {
         "type": "string", "index": "not_analyzed"
       },
-      "disease": {
-        "type": "string", "index": "not_analyzed"
-      },
       "state": {
         "type": "string", "index": "not_analyzed"
       },

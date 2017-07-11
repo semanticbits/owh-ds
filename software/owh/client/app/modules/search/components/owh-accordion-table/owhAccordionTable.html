@@ -7,14 +7,14 @@
     <tbody class="owh-question__table" ng-repeat="eachCategory in oatc.data | filter: oatc.filterCategory">
         <tr class="owh-question__title-row" ng-if="eachCategory.questions.length > 0">
             <td class="owh-question__title" colspan="100%" title="{{ oatc.qCategoryHelpTextMap[eachCategory.title] |  translate }}">
-                <a class="owh-question__expand cursor-pointer" ng-if="!eachCategory.collapse" ng-click="oatc.collapseRow(eachCategory)">
+                <a id="question_{{$index}}" class="owh-question__expand cursor-pointer" ng-if="!eachCategory.collapse" ng-click="oatc.collapseRow(eachCategory)">
                     <span class="fa fa-chevron-down" title="Collapse category"></span>
                 </a>
                 <a class="owh-question__expand cursor-pointer" ng-if="eachCategory.collapse" ng-click="oatc.expandRow(eachCategory)">
                     <span class="fa fa-chevron-right" title="Collapse category"></span>
                 </a>
-                {{ eachCategory.title }} <a class="owh-question__show-only" ng-if="oatc.categoryFilter==null" ng-click="oatc.showOnly(eachCategory);">Show only this category</a>
-                <a class="owh-question__show-only" ng-if="oatc.categoryFilter!=null" ng-click="oatc.showOnly(null);">Show all categories</a>
+                {{ eachCategory.title }} <a class="owh-question__show-only" ng-if="oatc.categoryFilter==null" ng-click="oatc.showOnly(eachCategory);" href="javascript:void(0)">Show only this category</a>
+                    <a class="owh-question__show-only" ng-if="oatc.categoryFilter!=null" ng-click="oatc.showOnly(null);" href="javascript:void(0)">Show all categories</a>
             </td>
         </tr>
         <tr class="owh-question__question" ng-repeat="eachRow in oatc.listRows(eachCategory)" ng-hide="$index >= eachCategory.rowsToShow && eachCategory.hide || eachCategory.collapse">
@@ -41,8 +41,8 @@
         </tr>
         <tr ng-hide="eachCategory.collapse" ng-if="eachCategory.questionsCount > 2">
             <td colspan="100%">
-                <a class="owh-question__show cursor-pointer" ng-if="eachCategory.hide" ng-click="oatc.showMore(eachCategory)">Show {{ eachCategory.questionsCount - 2 }} More</a>
-                <a class="owh-question__show cursor-pointer" ng-if="!eachCategory.hide" ng-click="oatc.showLess(eachCategory)">Show Less</a>
+                <a class="owh-question__show cursor-pointer" ng-if="eachCategory.hide" ng-click="oatc.showMore(eachCategory)" href="javascript:void(0)">Show {{ eachCategory.questionsCount - 2 }} More Question(s)</a>
+                <a class="owh-question__show cursor-pointer" ng-if="!eachCategory.hide" ng-click="oatc.showLess(eachCategory)" href="javascript:void(0)">Show Less</a>
             </td>
         </tr>
     </tbody>

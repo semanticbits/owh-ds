@@ -18,10 +18,6 @@ var census_type="census";
 var census_rates_type="census_rates";
 var infant_mortality_index = "owh_infant_mortality";
 var infant_mortality_type = "infant_mortality";
-var std_index = "owh_std";
-var std_type = "std";
-var tb_index = "owh_tb";
-var tb_type = "tb";
 
 //@TODO to work with my local ES DB I changed mapping name to 'queryResults1', revert before check in to 'queryResults'
 var _queryIndex = "owh_querycache";
@@ -196,26 +192,42 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
 /**
  * This method is used to get the bridge race data(census) based on passed in query
  */
-ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected){
-    //get tge elasic search client for census index
-    var client = this.getClient(census_index);
+ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected) {
+    var self = this;
     var deferred = Q.defer();
-    //execute the search query
-    client.search({
-        index:census_type,
-        body:query,
-        request_cache:true
-    }).then(function (resp) {
-        //parse the search results
-        var results = searchUtils.populateDataWithMappings(resp, 'bridge_race', 'pop');
-        if (isStateSelected) {
-            searchUtils.applySuppressions(results, 'bridge_race');
-        }
-        deferred.resolve(results);
-    }, function (err) {
-        logger.error(err.message);
-        deferred.reject(err);
-    });
+    if(query[1]) {
+        logger.debug("ES Query for bridge race table and charts: "+ JSON.stringify( query[0]));
+        logger.debug("ES Query for bridge race map: "+ JSON.stringify( query[2]));
+        var promises = [
+            this.executeMultipleESQueries(query[0], census_index, census_type),
+            this.executeMultipleESQueries(query[2], census_index, census_type)
+        ];
+        Q.all(promises).then( function (resp) {
+            var data = searchUtils.populateDataWithMappings(resp[0], 'bridge_race', 'pop');
+            var mapData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop');
+            data.data.nested.maps = mapData.data.nested.maps;
+            if (isStateSelected) {
+                searchUtils.applySuppressions(data, 'bridge_race');
+            }
+            deferred.resolve(data);
+        }, function (err) {
+            logger.error(err.message);
+            deferred.reject(err);
+        });
+    }
+    else {
+        logger.debug("ES Query for side filter counts :"+ JSON.stringify( query[0]));
+        this.executeESQuery(census_index, census_type, query[0]).then(function (response) {
+            var results = searchUtils.populateDataWithMappings(response, 'bridge_race', 'pop');
+            if (isStateSelected) {
+                searchUtils.applySuppressions(results, 'bridge_race');
+            }
+            deferred.resolve(results);
+        }, function (err) {
+            logger.error(err.message);
+            deferred.reject(err);
+        });
+    }
     return deferred.promise;
 };
 
@@ -260,7 +272,6 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected)
 };
 
 ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateSelected) {
-    var client = this.getClient(infant_mortality_index);
     var deferred = Q.defer();
     if (query[0]) {
         this.executeESQuery(infant_mortality_index, infant_mortality_type, query[0])
@@ -276,20 +287,47 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
     return deferred.promise;
 };
 
-ElasticClient.prototype.aggregateSTDData = function (query) {
+ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, indexName, indexType, isStateSelected) {
     var self = this;
     var deferred = Q.defer();
     if(query[1]) {
-        logger.debug("STD ES Query: "+ JSON.stringify( query[0]));
-        logger.debug("STD ES Query To Get Population Count: "+ JSON.stringify( query[1]));
+        logger.debug("ES Query for "+ diseaseName+ " :"+ JSON.stringify( query[0]));
+        logger.debug("ES Query for "+ diseaseName+ " to get population count:"+ JSON.stringify( query[1]));
+        logger.debug("ES Query for "+ diseaseName+ " Map Query:"+ JSON.stringify( query[2]));
+        logger.debug("ES Query for "+ diseaseName+ " Chart Query Array :"+ JSON.stringify( query[3]));
         var promises = [
-            this.executeMultipleESQueries(query[0], std_index, std_type),
-            //Using aggregateCensusDataQuery method to get STD population data
-            this.aggregateCensusDataQuery(query[1], std_index, std_type)
+            this.executeESQuery(indexName, indexType, query[0]),
+            this.executeESQuery(indexName, indexType, query[2])
         ];
+        //Add all population queries to promise
+        query[1].forEach(function(eachQuery){
+            //Using aggregateCensusDataQuery method to get STD population data
+            promises.push(self.aggregateCensusDataQuery(eachQuery, indexName, indexType));
+        });
+        //Add all chart queries to promise
+        query[3].forEach(function(chartQuery){
+            promises.push(self.executeESQuery(indexName, indexType, chartQuery));
+        });
         Q.all(promises).then( function (resp) {
-            var data = searchUtils.populateDataWithMappings(resp[0], 'std', 'cases');
-            self.mergeWithCensusData(data, resp[1]);
+            var data = searchUtils.populateDataWithMappings(resp[0], diseaseName, 'cases');
+            var mapData = searchUtils.populateDataWithMappings(resp[1], diseaseName, 'cases');
+            //get each chart query response and populate data with mappings
+            for(i=0; i< query[3].length; i++ ){
+                //chart response index depends on population query array length
+                var respIndex = i + 3 + (query[1].length-1);
+                var chartData = searchUtils.populateDataWithMappings(resp[respIndex], diseaseName, 'cases');
+                data.data.nested.charts.push(chartData.data.nested.charts[i]);
+            }
+            data.data.nested.maps = mapData.data.nested.maps;
+            //merge all population queries and call mergeWithCensusData method
+            var populationResponse;
+            for(i=0; i< query[1].length; i++) {
+                //Merging all population response
+                //When i == 0 prepare 'populationResponse' and then merge 'x.data.nested.charts' into 'populationResponse' variable
+                i == 0 ? populationResponse = resp[i+2] : populationResponse.data.nested.charts.push(resp[i + 2].data.nested.charts[i-1]);
+            }
+            self.mergeWithCensusData(data, populationResponse);
+            isStateSelected && searchUtils.applySuppressions(data, indexType, 4);
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
@@ -297,42 +335,9 @@ ElasticClient.prototype.aggregateSTDData = function (query) {
         });
     }
     else {
-        logger.debug("STD ES Query: "+ JSON.stringify( query[0]));
-        this.executeESQuery(std_index, std_type, query[0]).then(function (response) {
-            var data = searchUtils.populateDataWithMappings(response, 'std', 'cases');
-            deferred.resolve(data);
-        }, function (err) {
-            logger.error(err.message);
-            deferred.reject(err);
-        });
-    }
-    return deferred.promise;
-};
-
-ElasticClient.prototype.aggregateTBData = function (query) {
-    var self = this;
-    var deferred = Q.defer();
-    if(query[1]) {
-        logger.debug("TB ES Query: "+ JSON.stringify( query[0]));
-        logger.debug("TB ES Query To Get Population Count: "+ JSON.stringify( query[1]));
-        var promises = [
-            this.executeMultipleESQueries(query[0], tb_index, tb_type),
-            //Using aggregateCensusDataQuery method to get STD population data
-            this.aggregateCensusDataQuery(query[1], tb_index, tb_type)
-        ];
-        Q.all(promises).then( function (resp) {
-            var data = searchUtils.populateDataWithMappings(resp[0], 'tb', 'cases');
-            self.mergeWithCensusData(data, resp[1]);
-            deferred.resolve(data);
-        }, function (err) {
-            logger.error(err.message);
-            deferred.reject(err);
-        });
-    }
-    else {
-        logger.debug("TB ES Query: "+ JSON.stringify( query[0]));
-        this.executeESQuery(tb_index, tb_type, query[0]).then(function (response) {
-            var data = searchUtils.populateDataWithMappings(response, 'tb', 'cases');
+        logger.debug("ES Query for "+ diseaseName+ " :"+ JSON.stringify( query[0]));
+        this.executeESQuery(indexName, indexType, query[0]).then(function (response) {
+            var data = searchUtils.populateDataWithMappings(response, diseaseName, 'cases');
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
@@ -417,5 +422,29 @@ ElasticClient.prototype.getDsMetadata = function (dataset, years) {
     return deferred.promise;
 };
 
+ElasticClient.prototype.getCountForYearByFilter = function (year, filter, option) {
+    var client = this.getClient();
+    var target = {};
+    target[filter] = option;
+    return client.count({
+        index: infant_mortality_index,
+        type: infant_mortality_type,
+        body: {
+            query: {
+                bool: {
+                    must: [
+                        { match: { 'year_of_death': year } },
+                        { match: target }
+                    ]
+                }
+            }
+        }
+    }).then(function (data) {
+        return data;
+    }).catch(function (error) {
+        logger.error('Failed to get count for ', filter, ' ', error);
+        return error;
+    });
+};
 
 module.exports = ElasticClient;

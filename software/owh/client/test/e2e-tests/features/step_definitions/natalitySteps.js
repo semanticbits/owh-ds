@@ -154,7 +154,7 @@ var natalityStepsDefinitionWrapper = function () {
     });
 
     this.Then(/^I should see a Birth rate statement above data table in natality page$/, function () {
-        return expect(natalityPage.birthRateDisclaimer.getText()).to.eventually.equal("Population details from NCHS Bridged Race Estimates are used to calculate Birth Rates (per 100,000)");
+        return expect(natalityPage.birthRateDisclaimer.getText()).to.eventually.equal("Population details from NCHS Bridged Race Estimates are used to calculate Birth Rates (per 100,000).");
     });
 
     this.When(/^I see "([^"]*)" category in the sidebar$/, function (arg1, next) {
@@ -264,16 +264,10 @@ var natalityStepsDefinitionWrapper = function () {
         });
     });
 
-    this.When(/^I select "([^"]*)" state$/, function (state, next) {
-        if (state == 'Alabama') {
-            element.all(by.css('label[for=natality_state_AL]')).then(function(elements, index) {
+    this.When(/^I select "([^"]*)" state for "([^"]*)"$/, function (state, type, next) {
+        element.all(by.css('label[for='+type+'_state_'+state+']')).then(function(elements) {
                 elements[1].click();
-            }).then(next);
-        } else if (state == 'Alaska') {
-            element.all(by.css('label[for=natality_state_AK]')).then(function(elements, index) {
-                elements[1].click();
-            }).then(next);
-        }
+        }).then(next);
     });
 
     this.Then(/^I see data is displayed in data\-table for races$/, function (next) {

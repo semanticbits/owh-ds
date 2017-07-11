@@ -2,15 +2,6 @@
   "datafiletype": "csv",
   "columns": [
     {
-      "column": "disease",
-      "column_index": 0,
-      "type": "map",
-      "field": "DISEASE",
-      "mappings": {
-        "10": "Tuberculosis"
-      }
-    },
-    {
       "column": "current_year",
       "column_index": 1,
       "type": "simple",
@@ -163,6 +154,18 @@
       "column_index": 8,
       "type": "simple",
       "field": "POP"
+    },
+    {
+      "column": "suppression_cases",
+      "column_index": 10,
+      "type": "simple",
+      "field": "SUPPRESSIONCASES"
+    },
+    {
+      "column": "suppression_rate",
+      "column_index": 11,
+      "type": "simple",
+      "field": "SUPPRESSIONRATE"
     }
   ]
 }

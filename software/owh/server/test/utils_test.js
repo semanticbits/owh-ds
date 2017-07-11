@@ -1,5 +1,7 @@
 var searchUtils = require("../api/utils");
 var expect = require("expect.js");
+var stdBeforeSuppressionData = require('./data/std_before_suppression_data.json');
+var stdAfterSuppressionData = require('./data/std_after_suppression_data.json');
 
 describe("Utils", function(){
     it("Populate results with mappings with aggregation data", function(done){
@@ -586,5 +588,105 @@ describe("Utils", function(){
         expect(values[2]).equal("All age groups");
         expect(values[3]).equal("National");
         done();
+    });
+
+    describe('.getSelectedGroupByOptions', function () {
+        it('should return a list of options', function () {
+            var mock = [
+                { key: 'year_of_death', groupBy: 'row', autoCompleteOptions: [{ key: '2015', title: '2015' }, { key: '2014', title: '2014' }] },
+                { key: 'sex', groupBy: 'column', autoCompleteOptions: [{ key: 'Male', title: 'Male'}, { key: 'Female', title: 'Female' }] },
+                { key: 'race', groupBy: false, autoCompleteOptions: [{ key: 'White', title: 'White'}, { key: 'Black', title: 'Black' }] }
+            ];
+            var expected = [{ filter: 'sex', key: 'Male', title: 'Male' }, { filter: 'sex', key: 'Female', title: 'Female' }];
+            expect(searchUtils.getSelectedGroupByOptions(mock)).to.eql(expected);
+        });
+
+        it('should not return the year_of_death filter', function () {
+            var mock = [{ key: 'year_of_death', groupBy: 'row', autoCompleteOptions: [{ key: '2015', title: '2015' }, { key: '2014', title: '2014' }] }];
+            expect(searchUtils.getSelectedGroupByOptions(mock)).to.be.empty();
+        });
+
+        it('should not return filters that have the groupBy property set to false', function () {
+            var mock =  [{ key: 'race', groupBy: false, autoCompleteOptions: [{ key: 'White', title: 'White'}, { key: 'Black', title: 'Black' }] }];
+            expect(searchUtils.getSelectedGroupByOptions(mock)).to.be.empty();
+        });
+    });
+
+    describe('.getYearFilter', function () {
+        it('should return a list of years', function () {
+            var mock = [
+               { key: 'year_of_death', autoCompleteOptions: [{ key: '2015', title: '2015' }, { key: '2014', title: '2014' }], allChecked: false, value: [ '2014' ] },
+               { key: 'sex', autoCompleteOptions: [{ key: 'Male', title: 'Male'}, { key: 'Female', title: 'Female' }], allChecked: false }
+            ];
+            var expected = [ '2014' ];
+            expect(searchUtils.getYearFilter(mock)).to.eql(expected);
+        });
+
+        it('should not return any other filter', function () {
+            var mock = [{ key: 'sex', autoCompleteOptions: [{ key: 'Male', title: 'Male'}, { key: 'Female', title: 'Female' }], allChecked: false }];
+            expect(searchUtils.getYearFilter(mock)).to.be.empty();
+        });
+
+        it('should return all autoCompleteOptions when allChecked is true', function () {
+            var mock = [{ key: 'year_of_death', autoCompleteOptions: [{ key: '2015', title: '2015' }, { key: '2014', title: '2014' }], allChecked: true, value: [] }];
+            var expected = [ '2015', '2014' ];
+            expect(searchUtils.getYearFilter(mock)).to.eql(expected);
+        });
+    });
+
+    describe('.mapAndGroupOptionResults', function () {
+        it('should return a list of options grouped by their keys', function () {
+            var options = [
+                { key: 'Female', title: 'Female', filter: 'sex', year: '2014' },
+                { key: 'Male', title: 'Male', filter: 'sex', year: '2014' },
+                { key: 'American Indian / Alaskan Native', title: 'American Indian / Alaskan Native', filter: 'race', year: '2014' },
+                { key: 'Asian / Pacific Islander', title: 'Asian / Pacific Islander', filter: 'race', year: '2014' }
+            ];
+            var optionResults = [
+                { count: 10251, _shards: { total: 5, successful: 5, failed: 0 } },
+                { count: 12799, _shards: { total: 5, successful: 5, failed: 0 } },
+                { count: 340, _shards: { total: 5, successful: 5, failed: 0 } },
+                { count: 1080, _shards: { total: 5, successful: 5, failed: 0 } }
+            ];
+            var expected = [
+                [
+                    { key: 'Female', title: 'Female', filter: 'sex', year: '2014', count: 10251 },
+                    { key: 'Male', title: 'Male', filter: 'sex', year: '2014', count: 12799 }
+                ],
+                [
+                    { key: 'American Indian / Alaskan Native', title: 'American Indian / Alaskan Native', filter: 'race', year: '2014', count: 340 },
+                    { key: 'Asian / Pacific Islander', title: 'Asian / Pacific Islander', filter: 'race', year: '2014', count: 1080 }
+                ]
+            ];
+            expect(searchUtils.mapAndGroupOptionResults(options, optionResults)).to.eql(expected)
+        });
+    });
+
+    it("Apply suppression rule for STD", function(done){
+       var result = stdBeforeSuppressionData;
+       searchUtils.applySuppressions(result, 'std', 4);
+       expect(result.data.nested.table.race[6].name).equal('Native Hawaiian or Other Pacific Islander');
+       expect(result.data.nested.table.race[6].std).equal('suppressed');
+       expect(result.data.nested.table.race[6].sex[0].name).equal('Both sexes');
+       expect(result.data.nested.table.race[6].sex[0].std).equal('suppressed');
+       expect(result.data.nested.table.race[6].sex[0].pop).equal(2264);
+       expect(result.data.nested.table.race[6].sex[1].name).equal('Female');
+       expect(result.data.nested.table.race[6].sex[1].std).equal('suppressed');
+       expect(result.data.nested.table.race[6].sex[1].pop).equal(1096);
+       expect(result.data.nested.table.race[6].sex[2].name).equal('Male');
+       //Cases not available
+       expect(result.data.nested.table.race[6].sex[2].std).equal('na');
+       expect(result.data.nested.table.race[6].sex[2].pop).equal(1168);
+       //Unknown cases should not be 'Not Available'
+        expect(result.data.nested.table.race[7].name).equal('Unknown');
+        expect(result.data.nested.table.race[7].std).equal(15506);
+        expect(result.data.nested.table.race[7].sex[0].name).equal("Both sexes");
+        expect(result.data.nested.table.race[7].sex[0].std).equal(7818);
+        expect(result.data.nested.table.race[7].sex[1].name).equal("Female");
+        expect(result.data.nested.table.race[7].sex[1].std).equal(5769);
+        expect(result.data.nested.table.race[7].sex[2].name).equal("Male");
+        expect(result.data.nested.table.race[7].sex[2].std).equal(1919);
+
+       done();
     });
 });

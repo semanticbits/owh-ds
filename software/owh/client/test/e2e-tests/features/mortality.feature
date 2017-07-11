@@ -91,7 +91,7 @@ Scenario: Quick visualizations
 Scenario: Help Message above the quick visualization pane
   Given I am on search page
   When the user chooses the option 'Death Rates'
-  Then the following message should be displayed stating that population data is being retrieved from Census "Population details from NCHS Bridged-Race Estimates are used to calculate Death Rates (per 100,000)"
+  Then the following message should be displayed stating that population data is being retrieved from Census "Population details from NCHS Bridged-Race Estimates are used to calculate Death Rates (per 100,000)."
 
 Scenario: Years are supposed to be in descending order
   Given I am on search page
@@ -214,6 +214,7 @@ Scenario: Suppression
   When I select the forward button in browser
   Then Age Group values "20" and ">100" should be displayed on slider
 
+#Age adjusted death rates
 Scenario: Age Adjusted Death Rates
   Given I am on search page
   When the user chooses the option 'Age Adjusted Death Rates'
@@ -317,3 +318,16 @@ Scenario: Group by 'State' in age adjusted rate
     And I expand "Underlying Cause of Death" filter section
     When I set "Underlying Cause of Death" filter "Row"
     Then I see data in data table grouped by Underlying Cause of Death and Race
+
+  Scenario: Display selected filters at top
+    Given I am on search page
+    Then I see "Year: 2015" in list of applied filters
+    When I expand "Race" filter section
+    And  user select "American Indian or Alaska Native" option in "Race" filter
+    Then I see "Year: 2015 | Race: American Indian or Alaska Native" in list of applied filters
+
+    When user select "Asian or Pacific Islander" option in "Race" filter
+    Then I see "Year: 2015 | Race: American Indian or Alaska Native, Asian or Pacific Islander" in list of applied filters
+
+    When I deselect "American Indian or Alaska Native" option in "Race" filter
+    Then I see "Year: 2015 | Race: Asian or Pacific Islander" in list of applied filters

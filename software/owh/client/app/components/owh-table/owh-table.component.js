@@ -13,8 +13,8 @@
                 rowspanThreshold: '<'
             }
         });
-    OWHTableController.$inject = ['$scope', '$rootScope', '$filter', '$timeout'];
-    function OWHTableController($scope, $rootScope, $filter, $timeout) {
+    OWHTableController.$inject = ['$scope', '$rootScope', '$filter', '$timeout', '$translate'];
+    function OWHTableController($scope, $rootScope, $filter, $timeout, $translate) {
         var otc = this;
         otc.compileTable = compileTable;
 
@@ -64,14 +64,20 @@
             }
         })();
 
-        function getRateVisibility(deaths, pop) {
-            if(deaths === 'suppressed' || pop === 'suppressed') {
+        function getRateVisibility(count, pop, tableView) {
+            if(count === 'suppressed' || pop === 'suppressed') {
                 return 'suppressed';
             }
-            if(!pop) {
+            //If population value is undefined
+            // OR
+            //If table view is equals to 'std' OR 'tb' OR 'aids' OR 'disease_rate' and count == 'na'
+            //Then @return 'na'
+            if(!pop || (['std', 'tb', 'aids', 'disease_rate'].indexOf(tableView) >= 0 && count === 'na')) {
                 return 'na';
             }
-            if(deaths < 20) {
+            //if table view is not equals to 'std' OR 'tb' OR 'aids' OR 'disease_rate' and count < 20
+            //Basically we are skipping displaying 'unreliable' string for disease related data sets.
+            if(['std', 'tb', 'aids', 'disease_rate'].indexOf(tableView) < 0 && count < 20) {
                 return 'unreliable';
             }
             return 'visible';
@@ -105,13 +111,17 @@
                     if(column.isCount) {
                         cell += '<label class="custom-label owh-table__cell-content">';
                             cell += '<div>';
-                        if(['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates', 'std', 'tb', 'hiv', 'disease_rate'].indexOf(otc.tableView) >= 0) {
+                        if(['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates', 'std', 'tb', 'aids', 'disease_rate'].indexOf(otc.tableView) >= 0) {
                             cell += '<div id="crudeRateDiv" class="owh-table__left-col ' + (row.length > 5 ? 'usa-width-one-half' : 'usa-width-one-third') + '">';
                             if(rowIndex === 0) {
                                 var rateLabel = { 'crude_death_rates': 'Crude Death Rate', 'age-adjusted_death_rates': 'Age Adjusted Death Rate', 'birth_rates':'Birth Rate', 'fertility_rates':'Fertility Rate' }[otc.tableView] || 'Rate';
-                                cell += '<label class="owh-table__label">' + rateLabel + '</label>';
+                                var tooltip = { 'crude_death_rates': $translate.instant('label.help.text.rate'),
+                                        'age-adjusted_death_rates': $translate.instant('label.help.text.rate')}[otc.tableView] || 'Rate';
+
+                                cell += '<label class="owh-table__label" title="'+tooltip+'">' + rateLabel + '</label>';
+
                             }
-                            var rateVisibility = getRateVisibility(column.title, column.pop);
+                            var rateVisibility = getRateVisibility(column.title, column.pop, otc.tableView);
                             if(otc.tableView === 'age-adjusted_death_rates') {
                                 cell += '<span>' + (column.ageAdjustedRate ? column.ageAdjustedRate : 'Not Available') + '</span>';
                             }
@@ -135,17 +145,21 @@
                                 if(otc.tableView === 'birth_rates' || otc.tableView === 'fertility_rates') {
                                     cell += '<label class="owh-table__label">Births</label>';
                                 }
-                                else if(otc.tableView === 'std' || otc.tableView === 'tb' || otc.tableView === 'hiv' || otc.tableView === 'disease_rate') {
+                                else if(otc.tableView === 'std' || otc.tableView === 'tb' || otc.tableView === 'aids' || otc.tableView === 'disease_rate') {
                                     cell += '<label class="owh-table__label">Cases</label>';
                                 }
                                 else {
-                                    cell += '<label class="owh-table__label">Deaths</label>';
+                                    var deaths = $translate.instant('label.help.text.deaths');
+                                    cell += '<label class="owh-table__label" title="'+deaths+'">Deaths</label>';
                                 }
                             }
                             cell += '<span>';
                             if(column.title === 'suppressed') {
                                 cell += 'Suppressed';
-                            } else {
+                            }
+                            else if(column.title === 'na') {
+                                cell += 'Not Available';
+                            }else {
                                 cell += $filter('number')(column.title);
                             }
                             cell += '</span>';
@@ -156,7 +170,8 @@
                                     cell += '<label class="owh-table__label">Female Population</label>';
                                 }
                                 else {
-                                    cell += '<label class="owh-table__label">Population</label>';
+                                    var pop = $translate.instant('label.help.text.pop');
+                                    cell += '<label class="owh-table__label" title="'+pop+'">Population</label>';
                                 }
                             }
                             if(otc.tableView !== 'age-adjusted_death_rates') {

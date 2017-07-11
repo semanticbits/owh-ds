@@ -19,14 +19,16 @@
             }
         });
 
-    sideFilterController.$inject=['ModalService', 'utilService', 'searchFactory', 'SearchService'];
+    sideFilterController.$inject=['ModalService', 'utilService', 'searchFactory', 'SearchService', '$q'];
 
-    function sideFilterController(ModalService, utilService, searchFactory, SearchService){
+    function sideFilterController(ModalService, utilService, searchFactory, SearchService, $q){
         var sfc = this;
         sfc.getOptionCountPercentage = getOptionCountPercentage;
         sfc.getOptionCount = getOptionCount;
         sfc.showModal = showModal;
+        sfc.showMCDModal = showMCDModal;
         sfc.clearSelection = clearSelection;
+        sfc.clearMCDSelection = clearMCDSelection;
         sfc.updateGroupValue = updateGroupValue;
         sfc.getFilterOrder = getFilterOrder;
         sfc.isVisible = isVisible;
@@ -137,6 +139,7 @@
         }
 
         function showModal(selectedFilter, allFilters) {
+            var deferred = $q.defer();
             angular.forEach(allFilters, function(eachFilter) {
                 if (eachFilter.key !== selectedFilter.key){
                     clearSelection(eachFilter)
@@ -155,7 +158,9 @@
                         mc.codeKey = selectedFilter.key;
                         mc.entityName = selectedFilter.key === 'question' ? 'Question' : 'Cause(s) of Death';
                         mc.modelHeader = selectedFilter.key === 'question' ? 'label.select.question' : 'label.cause.death';
+
                         mc.optionValues = selectedFilter.selectedNodes ? selectedFilter.selectedNodes : selectedFilter.selectedValues;
+
                         mc.questions = selectedFilter.questions;
                         mc.close = close;
                     }
@@ -166,7 +171,7 @@
                     modal.element.show();
                     modal.close.then(function (result) {
                         //remove all elements from array
-                        if(!selectedFilter.selectedValues || !selectedFilter.selectedNodes) {
+                        if (!selectedFilter.selectedValues || !selectedFilter.selectedNodes) {
                             //selected nodes and their child nodes, which will be sent to backend for query
                             selectedFilter.selectedValues = [];
                             //selected nodes
@@ -174,6 +179,7 @@
                         }
                         selectedFilter.selectedValues.length = 0;
                         selectedFilter.selectedNodes.length = 0;
+
                         //To reflect the selected causes
                         angular.forEach(modal.controller.optionValues, function (eachOption, index) {
                             //get child nodes, if any and add to selected values
@@ -184,10 +190,14 @@
                             } else {
                                 selectedFilter.selectedValues.push(eachOption);
                             }
+
                             selectedFilter.selectedNodes.push(eachOption);
                         });
                         selectedFilter.value = utilService.getValuesByKey(selectedFilter.selectedValues, 'id');
                         modal.element.hide();
+
+                        deferred.resolve(selectedFilter);
+
                         //  Run the filter call back only if runOnFilterChange is true
                         if(sfc.runOnFilterChange) {
                             sfc.onFilter();
@@ -195,16 +205,61 @@
                     });
                 });
             }
+
+            return deferred.promise;
+        }
+
+        function showMCDModal(selectedFilter, allFilters, propertyKey) {
+            if (!selectedFilter.selectedValues) {
+                selectedFilter.selectedValues = {};
+            }
+
+            if (!selectedFilter.selectedNodes) {
+                selectedFilter.selectedNodes = {};
+            }
+
+            if (!selectedFilter.value) {
+                selectedFilter.value = {};
+            }
+
+            sfc.showModal({
+                key: selectedFilter.key,
+                selectedValues: selectedFilter.selectedValues[propertyKey],
+                selectedNodes: selectedFilter.selectedNodes[propertyKey],
+                value: selectedFilter.value[propertyKey]
+            }, allFilters).then(function (filter) {
+                selectedFilter.selectedValues[propertyKey] = filter.selectedValues;
+                selectedFilter.selectedNodes[propertyKey] = filter.selectedNodes;
+                selectedFilter.value[propertyKey] = filter.value;
+            });
         }
 
         function clearSelection(filter, resetGroupBy) {
             if(resetGroupBy) {
                 filter.groupBy = false;
             }
+
             //remove all elements from array
             filter.selectedNodes.length = 0;
             filter.selectedValues.length = 0;
             filter.value.length = 0;
+
+            //  Run the filter call back only if runOnFilterChange is true
+            if(sfc.runOnFilterChange) {
+                sfc.onFilter();
+            }
+        }
+
+        function clearMCDSelection(filter, resetGroupBy, propertyKey) {
+            if(resetGroupBy) {
+                filter.groupBy = false;
+            }
+
+            //remove all elements from array
+            filter.selectedNodes[propertyKey].length = 0;
+            filter.selectedValues[propertyKey].length = 0;
+            filter.value[propertyKey].length = 0;
+
             //  Run the filter call back only if runOnFilterChange is true
             if(sfc.runOnFilterChange) {
                 sfc.onFilter();
@@ -233,7 +288,6 @@
             sfc.onFilterValueChange(sideFilter, category);
         }
 
-
         function onFilterValueChange(filter, category){
             //clear values for other filters for exclusive categories
             if(category != undefined && category.exclusive) {
@@ -248,6 +302,7 @@
             if (filter.refreshFiltersOnChange){
                 utilService.refreshFilterAndOptions(filter.filters, sfc.filters, sfc.primaryKey);
             }
+            filter.onFilterChange && filter.onFilterChange(filter.filters, sfc.filters);
             // Run the filter call back only if runOnFilterChange is true
             if(sfc.runOnFilterChange) {
                 sfc.onFilter();

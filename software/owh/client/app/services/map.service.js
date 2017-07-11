@@ -29,17 +29,11 @@
             angular.forEach($rootScope.states.features, function(feature){
                 var state = utilService.findByKeyAndValue(data.states, 'name', feature.properties.abbreviation);
                 if (utilService.isValueNotEmpty(state)){
-                    if(primaryFilter.key === 'deaths') {
-                        stateDeathTotals.push(state['deaths']);
-                    }
-                    if(primaryFilter.key === 'bridge_race') {
-                        stateDeathTotals.push(state['bridge_race']);
-                    }
-                    feature.properties.years = years;
+                    stateDeathTotals.push(state[primaryFilter.key]);
+                    feature.properties.years = angular.isArray(years)? years.join(', ') : years;
                     feature.properties.totalCount = state['deaths']; /*+ (Math.floor((Math.random()*10)+1))*100000;*/
                     feature.properties.sex = state.sex;
-                    feature.properties['bridge_race'] = state['bridge_race'];
-                    feature.properties['deaths'] = state['deaths'];
+                    feature.properties[primaryFilter.key] =  state[primaryFilter.key];
                 }
             });
             var minMaxValueObj = utilService.getMinAndMaxValue(stateDeathTotals);
@@ -85,7 +79,7 @@
             var ranges = utilService.generateMapLegendRanges(primaryFilter.mapData.mapMinValue,
                 primaryFilter.mapData.mapMaxValue);
             return function style(feature) {
-                var total = feature.properties['bridge_race'] || feature.properties['deaths'];
+                var total = feature.properties[primaryFilter.key];
                 return {
                     fillColor: getColor(total, ranges),
                     weight: 0.8,

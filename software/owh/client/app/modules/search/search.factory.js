@@ -105,8 +105,7 @@
                 primaryFilter.headers = tableData.headers;
                 primaryFilter.data = tableData.data;
                 primaryFilter.chartData = prepareChartData(response.data.resultData.headers, response.data.resultData.nested, primaryFilter);
-                primaryFilter.maps = response.data.resultData.nested.maps;
-                mapService.updateStatesDeaths(primaryFilter, primaryFilter.maps, primaryFilter.searchCount, mapOptions);
+                mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
             else if (response.data.queryJSON.key == 'natality') {
                 primaryFilter.data = response.data.resultData.nested.table;
@@ -116,18 +115,18 @@
             }
             else if (primaryFilter.key === 'infant_mortality') {
                 primaryFilter.data = response.data.resultData.nested.table;
-                tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 populateSideFilterTotals(primaryFilter, response.data);
-                primaryFilter.headers = tableData.headers;
-                primaryFilter.data = tableData.data;
+                primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
+                tableData = getMixedTable(primaryFilter, groupOptions, tableView);
             }
             else if (response.data.queryJSON.key == 'std' ||
-                response.data.queryJSON.key == 'tb') {
+                response.data.queryJSON.key == 'tb' || response.data.queryJSON.key === 'aids') {
                 primaryFilter.nestedData = response.data.resultData.nested;
                 primaryFilter.data = response.data.resultData.nested.table;
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
+                mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
             //make sure side filters are in proper order
             angular.forEach(primaryFilter.sideFilters, function (category) {
@@ -691,9 +690,28 @@
             }
             //When user selects more than one filter
             if( headers.chartHeaders.length > 0 ) {
-                angular.forEach(headers.chartHeaders, function(eachChartHeaders, index) {
-                    chartData.push(chartUtilService[eachChartHeaders.chartType](eachChartHeaders.headers[0], eachChartHeaders.headers[1],
-                        nestedData.charts[index], primaryFilter));
+                var allOtherCharts = [];
+                var multiLineCharts = headers.chartHeaders.reduce(function (prev, header) {
+                    if (header.chartType !== 'multiLineChart') {
+                        allOtherCharts.push(header);
+                        return prev;
+                    }
+                    return prev.concat(header);
+                }, []).map(function (chart) {
+                    chart.data = nestedData.lineCharts.reduce(function (prev, curr) {
+                        if (prev) return prev;
+                        if (curr[0].filter === chart.headers[0].key || curr[0].filter === chart.headers[1].key) return curr;
+                        return null;
+                    }, null);
+                    return chart;
+                });
+
+                multiLineCharts.forEach(function (chart) {
+                    chartData.push(chartUtilService.multiLineChart(chart, primaryFilter));
+                });
+
+                angular.forEach(allOtherCharts, function(eachChartHeaders, index) {
+                    chartData.push(chartUtilService[eachChartHeaders.chartType](eachChartHeaders.headers[0], eachChartHeaders.headers[1], nestedData.charts[index], primaryFilter));
                 });
             }else if( ( headers.rowHeaders.length + headers.columnHeaders.length ) === 1 ) {
                 var data = nestedData.table;
@@ -1125,6 +1143,15 @@
             return deferred.promise;
         }
 
+        function searchAIDSResults (primaryFilter, queryID) {
+            var deferred = $q.defer();
+            SearchService.searchResults(primaryFilter, queryID).then(function(response) {
+                updateSideFilterCount(primaryFilter, response.data.sideFilterResults.data.simple);
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+        }
+
         function getAllFilters() {
             //TODO: consider making these available as angular values, split out into separate file
             var filters = {};
@@ -1202,7 +1229,7 @@
 
             filters.diseaseVizGroupOptions = [
                 {key:'cases',title:'Cases', tooltip:'Select to view as cases on charts'},
-                {key:'rate',title:'Rate', tooltip:'Select to view as rates on charts'}
+                {key:'rate',title:'Rates', tooltip:'Select to view as rates on charts'}
             ];
 
             filters.allowInlineCharting = false;
@@ -1640,57 +1667,63 @@
                 {key: 'agegroup', title: 'label.filter.agegroup', queryKey:"age_5_interval",
                     primary: false, value: [], groupBy: false, type:"label.filter.group.demographics",
                     filterType: 'slider', autoCompleteOptions: filters.ageOptions, showChart: true,
-                    sliderOptions: filters.ageSliderOptions, sliderValue: '-5;105', timer: undefined, defaultGroup:"row"},
+                    sliderOptions: filters.ageSliderOptions, sliderValue: '-5;105', timer: undefined, defaultGroup:"row",
+                    helpText: 'label.help.text.mortality.age'},
                 {key: 'hispanicOrigin', title: 'label.filter.hispanicOrigin', queryKey:"hispanic_origin",
                     primary: false, value: [], groupBy: false, type:"label.filter.group.demographics",
-                    filterType: 'checkbox',autoCompleteOptions: filters.hispanicOptions, defaultGroup:"row"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.hispanicOptions, defaultGroup:"row", helpText: 'label.help.text.mortality.ethnicity'},
                 {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [], groupBy: 'row',
                     type:"label.filter.group.demographics", showChart: true, defaultGroup:"column",
-                    filterType: 'checkbox',autoCompleteOptions: filters.races},
+                    filterType: 'checkbox',autoCompleteOptions: filters.races, helpText: 'label.help.text.mortality.race'},
                 {key: 'gender', title: 'label.filter.gender', queryKey:"sex", primary: false, value:  [], groupBy: 'column',
                     type:"label.filter.group.demographics", groupByDefault: 'column', showChart: true,
-                    filterType: 'checkbox',autoCompleteOptions: filters.genderOptions, defaultGroup:"column"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.genderOptions, defaultGroup:"column", helpText: 'label.help.text.mortality.sex'},
 
 
                 /*Year and Month*/
                 //TODO: consider setting default selected years elsewhere
                 {key: 'year', title: 'label.filter.year', queryKey:"current_year",primary: false, value: [],
-                    groupBy: false,type:"label.filter.group.year.month",
-                    filterType: 'checkbox',autoCompleteOptions: filters.yearOptions,defaultGroup:"row"},
+                    groupBy: false, type:"label.filter.group.year.month", filterType: 'checkbox',
+                    autoCompleteOptions: filters.yearOptions,defaultGroup:"row", helpText: 'label.help.text.mortality.year'},
                 {key: 'month', title: 'label.filter.month', queryKey:"month_of_death", primary: false, value: [],
                     groupBy: false,type:"label.filter.group.year.month", defaultGroup:"row",
-                    filterType: 'checkbox',autoCompleteOptions: filters.modOptions},
+                    filterType: 'checkbox',autoCompleteOptions: filters.modOptions, helpText: 'label.help.text.mortality.month'},
 
 
                 /*Weekday, Autopsy, Place of Death */
                 {key: 'weekday', title: 'label.filter.weekday', queryKey:"week_of_death",
                     primary: false, value:  [], groupBy: false,type:"label.filter.group.weekday.autopsy.pod",
-                    filterType: 'checkbox',autoCompleteOptions: filters.weekday, defaultGroup:"row"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.weekday, defaultGroup:"row",
+                    helpText: 'label.help.text.mortality.day'},
                 {key: 'autopsy', title: 'label.filter.autopsy', queryKey:"autopsy",
                     primary: false, value: [], groupBy: false,type:"label.filter.group.weekday.autopsy.pod",
-                    filterType: 'checkbox',autoCompleteOptions: filters.autopsy, defaultGroup:"row"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.autopsy, defaultGroup:"row",
+                    helpText: 'label.help.text.mortality.autopsy'},
                 {key: 'placeofdeath', title: 'label.filter.pod', queryKey:"place_of_death",
                     primary: false, value:  [], groupBy: false,type:"label.filter.group.weekday.autopsy.pod",
-                    filterType: 'checkbox',autoCompleteOptions: filters.podOptions, defaultGroup:"row"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.podOptions, defaultGroup:"row",
+                    helpText: 'label.help.text.mortality.pod'},
 
                 {key: 'state', title: 'label.filter.state', queryKey:"state", primary: false, value:  [],
                     groupBy: false, type:"label.filter.group.location", filterType: 'checkbox',
                     autoCompleteOptions: filters.stateOptions, defaultGroup:"column",
-                    displaySearchBox:true, displaySelectedFirst:true},
+                    displaySearchBox:true, displaySelectedFirst:true, helpText: ''},
 
                 /*Underlying Cause of Death*/
                 {key: 'ucd-chapter-10', title: 'label.filter.ucd', queryKey:"ICD_10_code",
                     primary: true, value: [], groupBy: false, type:"label.filter.group.ucd", groupKey:"ucd",
                     autoCompleteOptions: $rootScope.conditionsListICD10, filterType: 'conditions',
                     selectTitle: 'select.label.filter.ucd', updateTitle: 'update.label.filter.ucd',
-                    aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions},
+                    aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions,
+                    helpText: 'label.help.text.mortality.ucd'},
 
                 /*Multiple Cause of death*/
                 {key: 'mcd-chapter-10', title: 'label.filter.mcd', queryKey:"ICD_10_code",
-                    primary: false, value: [], groupBy: false, type: "label.filter.group.mcd", groupKey:"mcd",
+                    primary: false, value: { 'set1': [], 'set2': [] }, groupBy: false, type: "label.filter.group.mcd", groupKey:"mcd",
                     autoCompleteOptions: $rootScope.conditionsListICD10, filterType: 'conditions',
                     selectTitle: 'select.label.filter.mcd', updateTitle: 'update.label.filter.mcd',
-                    groupOptions: filters.conditionGroupOptions}
+                    aggregationKey: "ICD_10_code.path", groupOptions: filters.conditionGroupOptions,
+                    helpText: 'label.help.text.mortality.mcd'}
             ];
 
             filters.censusFilters = filterUtils.getBridgeDataFilters();
@@ -1698,6 +1731,7 @@
             filters.infantMortalityFilters = filterUtils.getInfantMortalityDataFilters();
             filters.stdFilters = filterUtils.getSTDDataFilters();
             filters.tbFilters = filterUtils.getTBDataFilters();
+            filters.aidsFilters = filterUtils.getAIDSFilters();
 
             filters.pramsTopicOptions = [
                 {"key": "cat_45", "title": "Delivery Method"},
@@ -1921,39 +1955,39 @@
                     }
                 },
                 {key: 'adequacy', title: 'label.prams.filter.adequacy', queryKey:"BOC18",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsAdequacyOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsAdequacyOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.adequacy"},
                 {key: 'birth_weight', title: 'label.prams.filter.birth_weight', queryKey:"BOC1",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsBirthWeightOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsBirthWeightOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.weight"},
                 {key: 'income', title: 'label.prams.filter.income', queryKey:"BOC14",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsIncomeOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsIncomeOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.income"},
                 {key: 'marital_status', title: 'label.prams.filter.marital_status', queryKey:"BOC3",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMaritalStatusOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaritalStatusOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.marital"},
                 {key: 'maternal_age_groupings', title: 'label.prams.filter.maternal_age_groupings', queryKey:"BOC17",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAgeGroupingsOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAgeGroupingsOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.age.one"},
                 {key: 'maternal_age_years', title: 'label.prams.filter.maternal_age_years', queryKey:"BOC16",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAgeYearsOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAgeYearsOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.age.two"},
                 {key: 'maternal_age_3', title: 'label.prams.filter.maternal_age_3', queryKey:"BOC19",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAge3Options, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAge3Options, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.age.three"},
                 {key: 'maternal_age_4', title: 'label.prams.filter.maternal_age_4', queryKey:"BOC4",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAge4Options, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAge4Options, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.age.four"},
                 {key: 'maternal_education', title: 'label.prams.filter.maternal_education', queryKey:"BOC5",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalEducationOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalEducationOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.edu"},
                 {key: 'maternal_race', title: 'label.prams.filter.maternal_race', queryKey:"BOC6",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalRaceOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMaternalRaceOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.race"},
                 {key: 'medicaid', title: 'label.prams.filter.medicaid', queryKey:"BOC9",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMedicaidOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMedicaidOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.medicaid"},
                 {key: 'mother_hispanic', title: 'label.prams.filter.mother_hispanic', queryKey:"BOC8",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsMotherHispanicOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsMotherHispanicOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.hispanic"},
                 {key: 'previous_births', title: 'label.prams.filter.previous_births', queryKey:"BOC20",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsPreviousBirthsOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsPreviousBirthsOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.births"},
                 {key: 'wic_pregnancy', title: 'label.prams.filter.wic_pregnancy', queryKey:"BOC10",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsWicPregnancyOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsWicPregnancyOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.wic"},
                 {key: 'pregnancy_intendedness', title: 'label.prams.filter.pregnancy_intendedness', queryKey:"BOC11",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsPregnancyIntendednessOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsPregnancyIntendednessOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.intend"},
                 {key: 'smoked_before', title: 'label.prams.filter.smoked_before', queryKey:"BOC12",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsSmokedBeforeOptions, doNotShowAll: false},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsSmokedBeforeOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.smoked.before"},
                 {key: 'smoked_last', title: 'label.prams.filter.smoked_last', queryKey:"BOC13",primary: false, value: [], groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsSmokedLastOptions, doNotShowAll: false}
+                    filterType: 'radio',autoCompleteOptions: filters.pramsSmokedLastOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.smoked.last"}
             ];
 
             filters.search = [
@@ -2180,7 +2214,7 @@
                 {
                     key: 'natality', title: 'label.filter.natality', primary: true, value:[], header:"Natality",
                     allFilters: filters.natalityFilters, searchResults: searchNatality, dontShowInlineCharting: true,
-                    chartAxisLabel:'Population', countLabel: 'Total',  countQueryKey: 'pop', tableView:'number_of_births',
+                    chartAxisLabel:'Births', countLabel: 'Total',  countQueryKey: 'pop', tableView:'number_of_births',
                     runOnFilterChange: true, applySuppression:true,
                     birthAndFertilityRatesDisabledYears: ['2000', '2001', '2002'],
                     sideFilters:[
@@ -2550,7 +2584,7 @@
                 {
                     key: 'infant_mortality', title: 'label.filter.infant_mortality', primary: true, value: [], header: 'Infant Mortality',
                     allFilters: filters.infantMortalityFilters, searchResults: searchInfantMortality, showMap: false,
-                    chartAxisLabel: 'Infant Death', countLabel: 'Number of Infant Deaths', tableView: 'number_of_infant_deaths',
+                    chartAxisLabel: 'Number of Infant Deaths', countLabel: 'Number of Infant Deaths', tableView: 'number_of_infant_deaths',
                     runOnFilterChange: true, applySuppression: true,
                     sideFilters:[
                         {
@@ -2703,7 +2737,8 @@
                                         primary: true, value: [], groupBy: false, type:"label.filter.group.ucd", groupKey:"ucd",
                                         autoCompleteOptions: $rootScope.conditionsListICD10, filterType: 'conditions',
                                         selectTitle: 'select.label.filter.ucd', updateTitle: 'update.label.filter.ucd',
-                                        aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions}
+                                        aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions,
+                                        helpText:"label.help.text.infantmort.ucd"}
                                 }
 
                             ]
@@ -2724,8 +2759,8 @@
                 },
                 {
                     key: 'std', title: 'label.filter.std', primary: true, value:[], header:"STD",
-                    allFilters: filters.stdFilters, searchResults: searchSTDResults, showMap: false,
-                    chartAxisLabel:'Cases', tableView:'std',
+                    allFilters: filters.stdFilters, searchResults: searchSTDResults, showMap: true,
+                    mapData:{}, chartAxisLabel:'Cases', tableView:'std',
                     chartViewOptions: filters.diseaseVizGroupOptions, defaultChartView: 'cases',
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
@@ -2736,28 +2771,34 @@
                                {
                                    filterGroup: false, collapse: true, allowGrouping: true, groupBy: false,
                                    groupOptions: filters.groupOptions,
+                                  // refreshFiltersOnChange: true,
+                                   onFilterChange: utilService.stdFilterChange,
                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'disease')
                                },
                                {
                                    filterGroup: false,
                                    collapse: false,
                                    allowGrouping: true,
+                                   onFilterChange: utilService.stdFilterChange,
                                    groupOptions: filters.groupOptions,
                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'current_year')
                                },
                                {
                                    filterGroup: false, collapse: true, allowGrouping: true,
                                    groupOptions: filters.groupOptions,
+                                   onFilterChange: utilService.stdFilterChange,
                                    filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'sex')
                                },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.stdFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'race')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.stdFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.stdFilters, 'key', 'age_group')
                                 },
                                {
@@ -2773,8 +2814,8 @@
 
                 {
                     key: 'tb', title: 'label.filter.tb', primary: true, value:[], header:"Tuberculosis",
-                    allFilters: filters.tbFilters, searchResults: searchTBResults, showMap: false,
-                    chartAxisLabel:'Cases', tableView:'tb', defaultChartView: 'cases',
+                    allFilters: filters.tbFilters, searchResults: searchTBResults, showMap: true,
+                    mapData:{}, chartAxisLabel:'Cases', tableView:'tb', defaultChartView: 'cases',
                     chartViewOptions: filters.diseaseVizGroupOptions,
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
@@ -2808,6 +2849,56 @@
                                    filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'state')
                                }
 
+                            ]
+                        }
+                    ]
+                },
+                {
+                    key: 'aids', title: 'label.filter.aids', primary: true, value:[], header:'HIV/AIDS',
+                    allFilters: filters.aidsFilters, searchResults: searchAIDSResults, showMap: true,
+                    mapData: {}, chartAxisLabel: 'Cases', tableView: 'aids', defaultChartView: 'cases',
+                    chartViewOptions: filters.diseaseVizGroupOptions,
+                    runOnFilterChange: true, applySuppression: true, countQueryKey: 'cases',
+                    sideFilters:[
+                        {
+                            sideFilters: [
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true, groupBy: false,
+                                    groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.aidsFilterChange,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'disease')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.aidsFilterChange,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'current_year')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'sex')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'race')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'age_group')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'transmission')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'state')
+                                }
                             ]
                         }
                     ]
@@ -2848,7 +2939,6 @@
             var filter = utilService.findByKeyAndValue(allFilters,'key', filterValue);
             filter.groupBy = filterGroupType;
         }
-
     }
 
 }());

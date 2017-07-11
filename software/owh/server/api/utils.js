@@ -12,10 +12,10 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey) {
             }
         },
         pagination: {
-            total: resp.hits.total
+            total: resp? resp.hits.total : 0
         }
     };
-    if(resp.aggregations) {
+    if(resp && resp.aggregations) {
         var data = resp.aggregations;
         Object.keys(data).forEach(function (key) {
             var dataKey = '';
@@ -39,7 +39,7 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey) {
                 var dataIndex = Number(keySplits[2]);
                 var aggData = {};
                 // console.log("dataIndex: "+JSON.stringify(data[key].buckets));
-                aggData[dataKey] = populateAggregatedData(data[key].buckets, countKey, 3, true);
+                aggData[dataKey] = populateAggregatedData(data[key].buckets, countKey, 3, true, countQueryKey);
                 // console.log("data");
                 // console.log(dataIndex);
                 // console.log(dataKey);
@@ -130,7 +130,11 @@ function suppressCounts (obj, countKey, dataType, suppressKey, maxValue) {
         } else if(obj[countKey] != undefined && obj[countKey] < value) {
             if(dataType == 'maps' || dataType == 'charts') {//for chart and map set suppressed values to 0
                 obj[countKey] = 0;
-            } else {//for table data set to suppressed
+            }
+            else if(countKey === 'std' && obj[countKey] === 0) {
+                obj[countKey] = 'na';
+            }
+            else {//for table data set to suppressed
                 obj[key] = 'suppressed';
             }
         }
@@ -185,10 +189,10 @@ function suppressTotalCounts (obj, countKey, dataType, suppressKey) {
  * @param obj
  * @param countKey
  */
-function applySuppressions(obj, countKey) {
+function applySuppressions(obj, countKey, maxValue) {
     var dataType;
-    suppressCounts(obj.data, countKey, dataType);
-    suppressTotalCounts(obj.data, countKey, dataType);
+    suppressCounts(obj.data, countKey, dataType, null, maxValue);
+    suppressTotalCounts(obj.data, countKey, dataType, null, maxValue);
 }
 
 /**
@@ -444,7 +448,51 @@ function numberWithCommas(number) {
  * @return Side filters All option values
  */
 function getAllOptionValues() {
-    return ["Both sexes", "All races/ethnicities", "All age groups", "National"];
+    return [ "Both sexes", "All races/ethnicities", "All age groups", "National" ];
+}
+
+function getSelectedGroupByOptions (filters) {
+    return filters.reduce(function (selected, filter) {
+        if (!filter.groupBy || filter.key === 'year_of_death') return selected;
+        var options = filter.autoCompleteOptions.map(function (option) {
+            var newOption = {};
+            newOption.key = option.key;
+            newOption.title = option.title;
+            newOption.filter = filter.key;
+            return newOption;
+        });
+        return selected.concat(options);
+    }, []);
+}
+
+function getYearFilter (filters) {
+    var yearFilter = filters.find(function (filter) {
+        return filter.key === 'year_of_death'
+    });
+    if (!yearFilter) return [];
+    if (yearFilter.allChecked) {
+        return yearFilter.autoCompleteOptions.map(function (option) {
+            return option.key;
+        });
+    }
+    return yearFilter.value
+}
+
+function mapAndGroupOptionResults (options, results) {
+    // Group results according to option.key
+    // As in group all the 'race' results together and all the 'sex' results together
+    var mappedOptions = options.map(function (option, index) {
+        option.count = results[index].count;
+        return option;
+    });
+    var groupedOptions = mappedOptions.reduce(function (prev, option) {
+        if (!prev[option.filter]) prev[option.filter] = [];
+        prev[option.filter].push(option);
+        return prev;
+    }, {});
+    return Object.keys(groupedOptions).map(function (key) {
+        return groupedOptions[key];
+    });
 }
 
 module.exports.populateDataWithMappings = populateDataWithMappings;
@@ -453,3 +501,6 @@ module.exports.mergeAgeAdjustedRates = mergeAgeAdjustedRates;
 module.exports.applySuppressions = applySuppressions;
 module.exports.applyYRBSSuppressions = applyYRBSSuppressions;
 module.exports.getAllOptionValues = getAllOptionValues;
+module.exports.getSelectedGroupByOptions = getSelectedGroupByOptions;
+module.exports.getYearFilter = getYearFilter;
+module.exports.mapAndGroupOptionResults = mapAndGroupOptionResults;

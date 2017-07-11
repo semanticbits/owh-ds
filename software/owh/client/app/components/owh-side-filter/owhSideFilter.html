@@ -8,7 +8,6 @@
         <div ng-repeat="category in sfc.filters"
              ng-init="categoryKey = category.category"
              class="category-{{$index}}">
-
             <div class="padding-top-20 bold-class grey-text filter-category"
                  ng-if="categoryKey" ng-bind="categoryKey">
             </div>
@@ -42,6 +41,7 @@
                             <span class="fa" ng-class="{'fa-times': group.groupBy}"></span>
                         </a>-->
                     </label>
+
                     <ul class="usa-unstyled-list group-options" ng-if="group.filterGroup" ng-hide="sideFilter.collapse">
                         <li ng-repeat="eachFilter in group.filters" class="group-option" ng-show="$index < 3 || sideFilter.showAll">
                             <input type="checkbox" ng-model="eachFilter.groupBy" id="{{eachFilter.key}}">
@@ -63,16 +63,15 @@
 
                         <!--Age group filter -->
                         <li>
-                            <input type="text" ng-model="group.sliderValue" id="{{group.key}}_slider" slider ng-init="group.sliderOptions.search = sfc.onFilter" options="group.sliderOptions"/>
+                            <input type="text" ng-model="group.sliderValue" title="Age Group Slider" id="{{group.key}}_slider" slider ng-init="group.sliderOptions.search = sfc.onFilter" options="group.sliderOptions"/>
                         </li>
                     </ul>
                 </span>
                 <!--end slider filter-->
 
-
-                <!-- conditions filter -->
+                <!-- UCD conditions filter -->
                 <span ng-class="{'disabled-filter': !sfc.isVisible(sideFilter)}"
-                      ng-if="group.filterType === 'conditions' && ( group.key === 'ucd-chapter-10' || group.key === 'mcd-chapter-10')">
+                      ng-if="group.filterType === 'conditions' && ( group.key === 'ucd-chapter-10')">
                     <label class="side-pane-label custom-label">
                         <div class="sidebar-chevron left-float padding-left-5">
                             <span class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
@@ -109,7 +108,7 @@
                     </ul>
                     <ul class="usa-unstyled-list group-options" ng-if="!group.filterGroup" ng-hide="sideFilter.collapse">
 
-                        <!--UCD & MCD filters-->
+                        <!--UCD filters-->
                         <li class="group-option" >
                            <label for="{{group.key}}" class="custom-label" style="margin-bottom: 0">
                                 <button class="action-button condition-option"
@@ -129,11 +128,99 @@
                                           ng-click="sfc.clearSelection(group, true)"></button>
                                 </div>
                         </li>
-                        <!-- UCD & MCD filters-->
+                        <!--UCD filters-->
                     </ul>
                 </span>
-                <!-- end conditions filter -->
+                <!-- end UCD conditions filter -->
 
+                <!-- MCD conditions filter -->
+                <span ng-class="{'disabled-filter': !sfc.isVisible(sideFilter)}"
+                      ng-if="group.filterType === 'conditions' && ( group.key === 'mcd-chapter-10')">
+                    <label class="side-pane-label custom-label">
+                        <div class="sidebar-chevron left-float padding-left-5">
+                            <span class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
+                        </div>
+                        <div class="left-float sidebar-filter-label">
+                            <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
+                               title="{{group.helpText | translate}}" class="custom-link">
+                                <span translate="{{group.title}}" class="filter-display-name"></span>
+                            </a>
+                        </div>
+                        <owh-toggle-switch ng-if="sideFilter.allowGrouping" class="right-float sidebar-switch"
+                                           options="sideFilter.filters.groupOptions"
+                                           model="group.groupBy" on-change="sfc.runOnFilterChange && sfc.onFilter()"
+                                           tooltip="{{'label.group.by.tooltip' | translate}}">
+                        </owh-toggle-switch>
+                        <div class="clearfix"></div>
+                    </label>
+                    <ul class="usa-unstyled-list group-options" ng-if="group.filterGroup" ng-hide="sideFilter.collapse">
+                        <li ng-repeat="eachFilter in group.filters" class="group-option" ng-show="$index < 3 || sideFilter.showAll">
+                            <input type="checkbox" ng-model="eachFilter.groupBy" id="{{eachFilter.key}}">
+                            <label for="{{eachFilter.key}}" class="custom-label">
+                                <span translate="{{eachFilter.title}}"></span>
+                                <span class="pull-right" ng-bind="eachFilter.autoCompleteOptions[0].count | number"></span>
+                            </label>
+                        </li>
+                        <li class="group-option more-options" ng-if="group.filters.length > 3">
+                            <a ng-show="!sideFilter.showAll" class="custom-link" translate="label.show.more"
+                               translate-values="{showLength: group.filters.length - 3}"
+                               ng-click="sideFilter.showAll = !sideFilter.showAll" href="javascript:void(0)"></a>
+                            <a ng-show="sideFilter.showAll" class="custom-link" translate="label.hide.more"
+                               translate-values="{hideLength: group.filters.length - 3}"
+                               ng-click="sideFilter.showAll = !sideFilter.showAll" href="javascript:void(0)"></a>
+                        </li>
+                    </ul>
+                    <ul class="usa-unstyled-list group-options" ng-if="!group.filterGroup" ng-hide="sideFilter.collapse">
+                        <!-- MCD filter set 1 -->
+                        <li class="group-option">
+                            <label for="{{group.key}}" class="custom-label" style="margin-bottom: 0">
+                                <button class="action-button condition-option"
+                                        translate="{{group.selectedValues.set1 && group.selectedValues.set1.length > 0 ? group.updateTitle : group.selectTitle}}"
+                                        ng-click="sfc.showMCDModal(group, [group], 'set1')"></button>
+
+                            </label>
+                            <div ng-repeat="selectedValue in group.selectedValues.set1">
+                                <span style="font-size: 13px" ng-bind="selectedValue.text"></span>
+                            </div>
+                            <div ng-if="!group.selectedValues.set1 || group.selectedValues.set1.length === 0" style="margin-bottom: 20px">
+                                <span style="font-size: 13px">All</span>
+                            </div>
+
+                            <div class="ucd-clear" ng-show="group.selectedValues.set1.length > 0 ">
+                                <button class="action-button" translate="label.clear"
+                                        ng-click="sfc.clearMCDSelection(group, true, 'set1')"></button>
+                            </div>
+                        </li>
+                        <!-- MCD filter set 1 -->
+                    </ul>
+                    <ul class="usa-unstyled-list group-options" ng-if="!group.filterGroup" ng-hide="sideFilter.collapse">
+                        <li style="text-align:center;font-style:italic;font-size:13px;">AND</li>
+                    </ul>
+                    <ul class="usa-unstyled-list group-options" ng-if="!group.filterGroup" ng-hide="sideFilter.collapse">
+                        <!-- MCD filter set 2 -->
+                        <li class="group-option">
+                            <label for="{{group.key}}" class="custom-label" style="margin-bottom: 0">
+                                <button class="action-button condition-option"
+                                        translate="{{group.selectedValues.set2 && group.selectedValues.set2.length > 0 ? group.updateTitle : group.selectTitle}}"
+                                        ng-click="sfc.showMCDModal(group, [group], 'set2')"></button>
+
+                            </label>
+                            <div ng-repeat="selectedValue in group.selectedValues.set2">
+                                <span style="font-size: 13px" ng-bind="selectedValue.text"></span>
+                            </div>
+                            <div ng-if="!group.selectedValues.set2 || group.selectedValues.set2.length === 0" style="margin-bottom: 20px">
+                                <span style="font-size: 13px">All</span>
+                            </div>
+
+                            <div class="ucd-clear" ng-show="group.selectedValues.set2.length > 0 ">
+                                <button class="action-button" translate="label.clear"
+                                        ng-click="sfc.clearMCDSelection(group, true, 'set2')"></button>
+                            </div>
+                        </li>
+                        <!-- MCD filter set 2 -->
+                    </ul>
+                </span>
+                <!-- end MCD conditions filter -->
 
                 <!-- tree filter -->
                 <span ng-class="{'disabled-filter': !sfc.isVisible(sideFilter)}" ng-if="group.filterType === 'tree'">
@@ -239,7 +326,7 @@
                     <ul class="usa-unstyled-list group-options" ng-if="!group.filterGroup" ng-hide="sideFilter.collapse">
                         <!-- Display search box -->
                         <li class="group-option padding-right-10" ng-show="group.displaySearchBox">
-                            <input ng-model="search.title" type="text" class="filter-search-box" placeholder="Start typing to find">
+                            <input ng-model="search.title" type="text" class="filter-search-box" placeholder="Start typing to find" title="State">
                             <span ng-show="search.title" class="cursor-pointer clear-text-icon fa fa-remove" ng-click="search.title =''"></span>
                         </li>
 
@@ -265,7 +352,7 @@
                                 <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                                        ng-init="title = option.title">
                                     <span class="count-label" translate="{{title}}"></span>
-                                    <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts && option.count != 'suppressed'" ng-bind="option.count | number"></span>
+                                    <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts && option.count != 'suppressed'">{{option.count | number}}</span>
                                     <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts && option.count === 'suppressed'">Suppressed</span>
                                 </label>
                             </div>
@@ -290,16 +377,14 @@
                             <div ng-if="option.group" ng-init="option.collapse = true" class="owh-side-menu__group-option">
                                 <input id="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" name="{{group.queryKey}}" type="checkbox"
                                        checklist-model="group.value" checklist-value="option.key" ng-disabled="sfc.isOptionDisabled(group, option)" ng-click="sfc.filterGroup(option, group)">
-                                <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
-                                       ng-init="title = option.title">
-                                    <a href="javascript:void(0)" ng-click="option.collapse = !option.collapse" class="custom-link ">
-                                        <span class="fa" ng-class="option.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
+                                <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label" ng-init="title = option.title">
+                                    <a id="Hispanic" href="javascript:void(0)" title="option.title" ng-click="option.collapse = !option.collapse" class="custom-link">
+                                        <span class="fa" ng-class="option.collapse ? 'fa-chevron-right':'fa-chevron-down'"></span>
                                         <!--<span translate="{{group.title}}"></span>-->
+                                        <span class="count-label" translate="{{title}}"></span>
                                     </a>
-                                    <span class="count-label" translate="{{title}}"></span>
                                     <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts" ng-bind="option.count | number"></span>
                                 </label>
-
                                 <ul class="owh-side-menu__sub-category-options" ng-hide="option.collapse" ng-init="option.collapse = !sfc.isSubOptionSelected(group, option)">
                                     <li ng-repeat="subOption in option.options"
                                         class="group-option">
@@ -379,7 +464,7 @@
                     <ul class="usa-unstyled-list group-options" ng-if="!group.filterGroup" ng-hide="sideFilter.collapse">
                         <!-- Display search box -->
                         <li class="group-option padding-right-10" ng-show="group.displaySearchBox">
-                            <input ng-model="search.title" type="text" class="filter-search-box" placeholder="Start typing to find">
+                            <input ng-model="search.title" type="text" class="filter-search-box" placeholder="Start typing to find" title="State">
                             <span ng-show="search.title" class="cursor-pointer clear-text-icon fa fa-remove" ng-click="search.title =''"></span>
                         </li>
 
@@ -415,10 +500,11 @@
                             class="group-option" ng-if="$index < 3 || sideFilter.showAll || ($index < (3+ group.value.length) && group.displaySelectedFirst)">
                             <div ng-if="!option.group && (group.displaySelectedFirst?!sfc.isOptionSelected(option, group.value):true)">
                                <input id="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" name="{{group.queryKey}}" type="radio"
+                                      ng-disabled="sfc.isOptionDisabled(group, option)"
                                       ng-model="group.value" ng-value="option.key" ng-click="sfc.onFilterValueChange(sideFilter, category)">
                                 <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                                        ng-init="title = option.title">
-                                    <span class="count-label" translate="{{title}}"></span>
+                                    <span ng-class="option.disabled?'disable-click':'count-label'" translate="{{title}}"></span>
                                     <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts" ng-bind="option.count | number"></span>
                                 </label>
                             </div>
@@ -454,13 +540,13 @@
         </div>
         <li class="accordion" ng-repeat="util in sfc.utilities">
             <span>
-                <label class="side-pane-label custom-label">
+                        <label class="side-pane-label custom-label">
                     <a href="javascript:void(0)" ng-click="util.collapse = !util.collapse"
                        title="{{util.helpText | translate}}" class="custom-link">
                         <span class="fa" ng-class="util.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
                         <span translate="{{util.title}}"></span>
                     </a>
-                </label>
+                    </label>
                 <ul class="owh-side-menu__options-list usa-unstyled-list group-options" ng-hide="util.collapse">
                     <div class="owh-side-menu__utility-option" ng-repeat="option in util.options">
                         <div ng-if="option.type === 'toggle'">

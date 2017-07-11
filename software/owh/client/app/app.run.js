@@ -298,9 +298,33 @@
             "current_year&region":"verticalBar",
             "sex&age_group": "horizontalBar",
             "age_group&race": "horizontalBar",
-            "age_group&state": "horizontalBar"
+            "age_group&state": "horizontalBar",
 
-
+            // Infant Mortality
+            "year_of_death&sex": "multiLineChart",
+            "year_of_death&race": "multiLineChart",
+            "year_of_death&ethnicity": "multiLineChart",
+            "year_of_death&marital_status": "multiLineChart",
+            "year_of_death&mother_age": "multiLineChart",
+            "year_of_death&mother_education": "mulitLineChart",
+            "year_of_death&gestation_recode1": "multiLineChart",
+            "year_of_death&prenatal_care": "horizontalStack",
+            "year_of_death&birth_weight": "mulitLineChart",
+            "year_of_death&birth_plurality": "mulitLineChart",
+            "year_of_death&live_birth": "mulitLineChart",
+            "year_of_death&birth_place": "mulitLineChart",
+            "year_of_death&delivery_method": "mulitLineChart",
+            "year_of_death&medical_attendant": "mulitLineChart",
+            "year_of_death&ucd": "mulitLineChart",
+            "sex&infant_age_at_death": "horizontalBar",
+            "sex&mother_age_5_interval": "horizontalBar",
+            "race&mother_age_5_interval": "horizontalBar",
+            "sex&gestation_recode11": "horizontalBar",
+            "race&gestation_recode11": "horizontalBar",
+            "sex&gestation_recode10": "horizontalBar",
+            "race&gestation_recode10": "horizontalBar",
+            "sex&gestation_weekly": "horizontalBar",
+            "race&gestation_weekly": "horizontalBar"
         };
 
         $http.get("app/partials/marker-template.html").success(function(content, status) {
