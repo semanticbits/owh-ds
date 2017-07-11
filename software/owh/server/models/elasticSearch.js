@@ -148,7 +148,8 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
         logger.debug("Census ES Query: "+ JSON.stringify( query[1]));
         var promises = [
             this.executeMultipleESQueries(query[0], mortality_index, mortality_type),
-            this.aggregateCensusDataQuery(query[1], census_rates_index, census_rates_type)
+            this.aggregateCensusDataQuery(query[1], census_rates_index, census_rates_type),
+            this.executeMultipleESQueries(query[2], mortality_index, mortality_type)
         ];
         if(query.wonderQuery) {
             logger.debug("Wonder Query: "+ JSON.stringify(query.wonderQuery));
@@ -156,6 +157,8 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
         }
         Q.all(promises).then( function (respArray) {
             var data = searchUtils.populateDataWithMappings(respArray[0], 'deaths');
+            var mapData = searchUtils.populateDataWithMappings(respArray[2], 'deaths');
+            data.data.nested.maps = mapData.data.nested.maps;
             self.mergeWithCensusData(data, respArray[1]);
             if(query.wonderQuery) {
                 searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[2].table);

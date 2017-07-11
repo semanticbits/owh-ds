@@ -31,7 +31,6 @@
                 if (utilService.isValueNotEmpty(state)){
                     stateDeathTotals.push(state[primaryFilter.key]);
                     feature.properties.years = angular.isArray(years)? years.join(', ') : years;
-                    feature.properties.totalCount = state['deaths']; /*+ (Math.floor((Math.random()*10)+1))*100000;*/
                     feature.properties.sex = state.sex;
                     feature.properties[primaryFilter.key] =  state[primaryFilter.key];
                 }
