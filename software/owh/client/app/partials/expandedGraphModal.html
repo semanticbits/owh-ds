@@ -9,7 +9,7 @@
                     <a name="share" class="cursor-pointer" ng-click="eg.showFbDialog('chart_expanded_0',  eg.graphTitle)">&nbsp; <span class="fa purple-icon fa-share-alt" title="Share on facebook"></span></a>
                 </span>
                 <span style="float: right" ng-if="eg.chartData.length === 1">
-                    <owh-export-chart chart="'chart_expanded_0'", title="eg.graphTitle | translate"/>
+                    <owh-export-chart chart="'chart_expanded_0'", charttitle="eg.graphTitle | translate"/>
                 </span>
                 <!--<span style="float: right" ng-if="eg.chartData.length === 1"><a class="cursor-pointer" name="export" ng-click="eg.export('chart_expanded_0', eg.graphTitle | translate, 'PNG')"><span class="fa purple-icon fa-download" title="Export graph as PNG"></span></a></span>-->
             </div>

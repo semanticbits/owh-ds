@@ -29,7 +29,7 @@ describe('Export chart component: ', function() {
 
 
     it('should export chart', inject(function ($httpBackend, $location) {
-        var ctrl = $componentController('owhExportChart', null, {chart:'chart_0', title:'chart title'});
+        var ctrl = $componentController('owhExportChart', null, {chart:'chart_0', charttitle:'chart title'});
         var expChart = spyOn(shareUtilService, 'exportChart');
         ctrl.exportChart('PDF');
         expect(expChart).toHaveBeenCalledWith('chart_0', 'chart title', 'PDF');

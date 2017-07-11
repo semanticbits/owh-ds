@@ -8,14 +8,14 @@
         controllerAs: 'ec',
         bindings: {
             chart: '<',
-            title: '<'
+            charttitle: '<'
         }
     });
     ExportChartController.$inject = ['shareUtilService'];
     function ExportChartController(shareUtilService) {
         var ec = this;
         ec.exportChart = function(format) {
-            shareUtilService.exportChart(ec.chart, ec.title, format)
+            shareUtilService.exportChart(ec.chart, ec.charttitle, format)
         };
     }
 
