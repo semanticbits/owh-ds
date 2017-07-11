@@ -560,4 +560,17 @@ describe("Build elastic search queries", function(){
         quesFilter.value = [];
         done();
     });
+
+    it("Build search query for infant mortality index", function(done){
+        var params = {"searchFor":"infant_mortality","query":{"year_of_death":{"key":"year_of_death","queryKey":"year_of_death","value":["2014"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":0},{"key":"sex","queryKey":"sex","size":0}],"charts":[[{"key":"sex","queryKey":"sex","size":0},{"key":"race","queryKey":"race","size":0}]],"maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}}};
+        var resultQuery = elasticQueryBuilder.buildSearchQuery(params, true);
+       //Make sure main query has year column querykey equals to 'year_of_death'
+        expect(resultQuery[0].query.filtered.filter.bool.must[0].bool.should[0].term.year_of_death).to.not.eql(undefined);
+        expect(resultQuery[0].query.filtered.filter.bool.must[0].bool.should[0].term.year_of_death).to.eql('2014');
+        //Make sure census query has year column querykey equals to 'current_year' to get birth counts from natality index
+        expect(resultQuery[1].query.filtered.filter.bool.must[0].bool.should[0].term.current_year).to.not.eql(undefined);
+        expect(resultQuery[1].query.filtered.filter.bool.must[0].bool.should[0].term.current_year).to.eql('2014');
+        done();
+    });
+
 });

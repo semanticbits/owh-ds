@@ -111,7 +111,7 @@
                     if(column.isCount) {
                         cell += '<label class="custom-label owh-table__cell-content">';
                             cell += '<div>';
-                        if(['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates', 'std', 'tb', 'aids', 'disease_rate'].indexOf(otc.tableView) >= 0) {
+                        if(['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates', 'std', 'tb', 'aids', 'disease_rate', 'number_of_infant_deaths'].indexOf(otc.tableView) >= 0) {
                             cell += '<div id="crudeRateDiv" class="owh-table__left-col ' + (row.length > 5 ? 'usa-width-one-half' : 'usa-width-one-third') + '">';
                             if(rowIndex === 0) {
                                 var rateLabel = { 'crude_death_rates': 'Crude Death Rate', 'age-adjusted_death_rates': 'Age Adjusted Death Rate', 'birth_rates':'Birth Rate', 'fertility_rates':'Fertility Rate' }[otc.tableView] || 'Rate';
@@ -128,8 +128,10 @@
                             else {
                                 cell += '<span>'
                                 if(rateVisibility === 'visible') {
-                                    cell += $filter('number')(column.title / column.pop * 100000, 1);
-                                } else if (rateVisibility === 'suppressed') {
+                                    var per = otc.tableView === 'number_of_infant_deaths' ? 1000 : 100000 ;
+                                    cell += $filter('number')(column.title / column.pop * per, 1);
+                                }
+                                else if (rateVisibility === 'suppressed') {
                                     cell += 'Suppressed';
                                 } else if (rateVisibility === 'na') {
                                     cell += 'Not Applicable'
@@ -168,6 +170,9 @@
                             if(rowIndex === 0) {
                                 if(otc.tableView == 'fertility_rates') {
                                     cell += '<label class="owh-table__label">Female Population</label>';
+                                }
+                                else if(otc.tableView == 'number_of_infant_deaths') {
+                                    cell += '<label class="owh-table__label">Births</label>';
                                 }
                                 else {
                                     var pop = $translate.instant('label.help.text.pop');

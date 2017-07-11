@@ -1707,7 +1707,7 @@
                 {key: 'state', title: 'label.filter.state', queryKey:"state", primary: false, value:  [],
                     groupBy: false, type:"label.filter.group.location", filterType: 'checkbox',
                     autoCompleteOptions: filters.stateOptions, defaultGroup:"column",
-                    displaySearchBox:true, displaySelectedFirst:true, helpText: ''},
+                    displaySearchBox:true, displaySelectedFirst:true, helpText: 'label.help.text.mortality.state'},
 
                 /*Underlying Cause of Death*/
                 {key: 'ucd-chapter-10', title: 'label.filter.ucd', queryKey:"ICD_10_code",
