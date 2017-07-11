@@ -706,6 +706,15 @@ select.gray-border {
 	top: -5px;
 	font-size: 24px;
 	color: #974bc2;
+	right: 35px;
+	display: inline-block;
+	cursor: pointer;
+}
+.graph-box .text-center.margin-top-5 a:last-of-type {
+	position: absolute;
+	top: -5px;
+	font-size: 24px;
+	color: #974bc2;
 	right: 5px;
 	display: inline-block;
 	cursor: pointer;
@@ -715,7 +724,7 @@ select.gray-border {
 }
 .graph-box .text-center.margin-top-5 a:first-of-type {
 	right: 35px;
-	top: -6px
+	top: -6px;
 }
 table th, table td {
 	border: none;
@@ -1020,5 +1029,45 @@ ul.custom-nav-tabs {
 }
 
 .dark-link {
-	color: #515151;
+    color: #515151;
+}
+
+.dropbtn {
+	border: none;
+	cursor: pointer;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color:  #974bc2;
+	padding: 5px 5px;
+	text-decoration: none;
+	display: block;
+	font-size: 12px;
+}
+
+.dropdown-content a:hover {
+	background-color: #f1f1f1;
+	color: #974bc2;
+}
+
+.dropdown:hover{
+	background-color:  #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
 }
