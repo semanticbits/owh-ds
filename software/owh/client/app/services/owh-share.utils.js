@@ -82,9 +82,9 @@
             image.src = imgSrc;
             var deferred = $q.defer();
             image.onload = function() {
-                canvas.width = (image.width + 100);
-                canvas.height = image.height;
-                canvas.getContext("2d").drawImage(image,0,0);
+                canvas.width = (image.width+50);
+                canvas.height = image.height+50;
+                canvas.getContext("2d").drawImage(image,20,20);
                 if (canvas.msToBlob) { //for IE
                     try {
                         deferred.resolve(canvas.msToBlob());

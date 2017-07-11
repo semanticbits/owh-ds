@@ -52,7 +52,6 @@ Feature: Bridge race filters
     #When I click on export chart button
     #Then The chart is downloaded
 
-  @Only
   Scenario: Expand/collapse chart
     When I clicks on the expand button
     Then I see expanded graph in modal dialog
