@@ -8,9 +8,36 @@
 
     function shareUtilService(SearchService, $q, $filter) {
         var service = {
-            shareOnFb: shareOnFb
+            shareOnFb: shareOnFb,
+            exportChart: exportChart
         };
         return service;
+
+
+        /**
+         * Exports chart as PDF or PNG
+         * @param chart
+         * @param title
+         * @param format
+         */
+        function exportChart(chart, title, format) {
+            getBase64ForSvg(chart).then(function(response){
+                var filename =  title + '_' + $filter('date')(new Date(), 'yyyyMMdd-hhmmss');
+                if(format == 'PNG') {
+                    var link = document.createElement("a");
+                    link.download = filename + '.png';
+                    link.href = response.replace("image/png", "image/octet-stream");
+                    document.body.appendChild(link);
+                    link.click();
+
+                }else {
+                    var doc = new jsPDF('l');
+                    doc.text(30, 25, title);
+                    doc.addImage(response, 'PNG', 60, 30);
+                    doc.save(filename + '.pdf');
+                }
+            });
+        }
 
         function shareOnFb(svgIndex, title, section, description, data) {
             section = section ? section : 'Mortality';
@@ -51,16 +78,22 @@
             var imgSrc = 'data:image/svg+xml;base64,'+ btoa(html);
             var canvas = document.createElement('canvas');
 
-            var image = new Image;
+            var image = new Image();
             image.src = imgSrc;
             var deferred = $q.defer();
             image.onload = function() {
-                canvas.width = (image.width + 100);
-                canvas.height = image.height;
-                var context = canvas.getContext("2d");
-                context.drawImage(image, 0, 0);
-                var canvasdata = canvas.toDataURL("image/png");
-                deferred.resolve(canvasdata);
+                canvas.width = (image.width+50);
+                canvas.height = image.height+50;
+                canvas.getContext("2d").drawImage(image,20,20);
+                if (canvas.msToBlob) { //for IE
+                    try {
+                        deferred.resolve(canvas.msToBlob());
+                    }catch (err){
+                        console.log('"Exception on canvas.msToBlob');
+                    }
+                }else{ //for other browsers
+                    deferred.resolve(canvas.toDataURL("image/png"));
+                }
             };
             return deferred.promise;
         }

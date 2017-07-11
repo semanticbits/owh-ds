@@ -32,7 +32,8 @@
     "angular-nvd3": "^1.0.7",
     "js-xlsx": "~0.8.0",
     "file-saver": "~1.3.2",
-    "clusterize": "~0.17.2"
+    "clusterize": "~0.17.2",
+    "jspdf": "^1.3.4"
   },
   "resolutions": {
     "angular": "~1.5.5"
