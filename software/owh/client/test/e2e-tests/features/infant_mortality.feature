@@ -28,12 +28,12 @@ Feature: Infant Mortality filters
 
   Scenario: Infant Mortality Default Table Data for 2014
     Then the default headers of the table should be "Race, Female, Male, Number of Infant Deaths"
-    And the values in row "0" should be "American Indian / Alaskan Native, 146, 194, 340"
-    And the values in row "0" should be "American Indian / Alaskan Native, 22,120, 22,808, 44,928"
-    And the values in row "0" should be "American Indian / Alaskan Native, 6.6, 8.5, 7.6"
-    And the values in row "1" should be "Asian / Pacific Islander, 480, 600, 1,080"
-    And the values in row "1" should be "Asian / Pacific Islander, 137,076, 145,647, 282,723"
-    And the values in row "1" should be "Asian / Pacific Islander, 3.5, 4.1, 3.8"
+    And the values in row "0" should be "American Indian or Alaska Native, 146, 194, 340"
+    And the values in row "0" should be "American Indian or Alaska Native, 22,120, 22,808, 44,928"
+    And the values in row "0" should be "American Indian or Alaska Native, 6.6, 8.5, 7.6"
+    And the values in row "1" should be "Asian or Pacific Islander, 480, 600, 1,080"
+    And the values in row "1" should be "Asian or Pacific Islander, 137,076, 145,647, 282,723"
+    And the values in row "1" should be "Asian or Pacific Islander, 3.5, 4.1, 3.8"
     And the values in row "2" should be "Black or African American, 3,082, 3,727, 6,809"
     And the values in row "2" should be "Black or African American, 315,741, 324,821, 640,562"
     And the values in row "2" should be "Black or African American, 9.8, 11.5, 10.6"
@@ -43,8 +43,7 @@ Feature: Infant Mortality filters
 
   Scenario: Infant Mortality Race Options for 2014
     When I click on the "Race" filter and expand all available options
-    Then I see the available options "American Indian / Alaskan Native|Asian / Pacific Islander|Black or African American|White" for "Race"
-    And I see the disabled options "Chinese|Japanese|Hawaiian|Filipino|Other Asian" for "Race"
+    Then I see the available options "American Indian or Alaska Native|Asian or Pacific Islander|Black or African American|White" for "Race"
 
   Scenario: Infant Mortality Education Options for 2014
     When I click to show all filters for "Maternal Characteristics"
@@ -55,7 +54,9 @@ Feature: Infant Mortality filters
 
   Scenario: Infant Mortality Table Data Suppression for Alaska in 2000
     When I select the option "2000" for "Year" and the option "Alaska" for "State"
-    Then the values in row "0" should be "Black or African American, Not Available, Suppressed, Suppressed"
-    And the values in row "1" should be "White, 17, 20, 37"
-    And the values in row "2" should be "Hawaiian, Not Available, Suppressed, Suppressed"
-    And the values in row "3" should be "Other Asian, Suppressed, Not Available, Suppressed"
+    Then the values in row "0" should be "American Indian or Alaska Native, Suppressed, 21, Suppressed"
+    And the values in row "1" should be "Asian or Pacific Islander, Suppressed, Suppressed, Suppressed"
+    And the values in row "2" should be "Black or African American, Not Available, Suppressed, Suppressed"
+    And the values in row "3" should be "White, 17, 20, 37"
+    And the values in row "3" should be "White, 3,102, 3,262, 6,364"
+    And the values in row "3" should be "White, Unreliable, 6.1, 5.8"
