@@ -178,7 +178,7 @@
                     seriesDataObj["key"] = primaryFilter.chartAxisLabel;
                     //collect series values
                     var question = data.question[0];
-                    if(primaryFilter.key === 'prams') {
+                    if(primaryFilter.key === 'prams' || primaryFilter.key === 'mental_health') {
                         var questionArray = [];
                         angular.forEach(data.question, function(pramsQuestion) {
                             if(pramsQuestion.name === primaryFilter.allFilters[4].value[0]) {
@@ -206,7 +206,7 @@
                     angular.forEach(utilService.getSelectedAutoCompleteOptions(filter1), function (primaryOption,index) {
                         var seriesDataObj = {};
                         var question = data.question[0];
-                        if(primaryFilter.key === 'prams') {
+                        if(primaryFilter.key === 'prams' || primaryFilter.key === 'mental_health') {
                             question = data.question[1][0];
                             angular.forEach(data.question[1], function(response) {
                                 if(typeof response === 'object') {
