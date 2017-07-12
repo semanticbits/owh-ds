@@ -205,12 +205,12 @@ a.custom-link, a.custom-link:hover {
 }
 
 a:focus {
-    border: 1px gray solid;
+    border: 1px lightgray dashed;
 }
 
 a.custom-link:focus {
     box-shadow: none;
-    border: 1px gray solid;
+    border: 1px lightgray dashed;
 }
 
 a.active-link, a.active-link:hover {
