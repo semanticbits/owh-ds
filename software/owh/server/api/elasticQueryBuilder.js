@@ -1,14 +1,14 @@
 const util = require('util');
 var merge = require('merge');
 
-var prepareCensusAggregationQuery = function(aggregations) {
+var prepareCensusAggregationQuery = function(aggregations, datasetName) {
     var censusQuery = { size: 0};
     censusQuery.aggregations = {};
     if (aggregations['nested']) {
         if (aggregations['nested']['table'] && aggregations['nested']['table'].length > 0) {
             censusQuery.aggregations = merge(censusQuery.aggregations, generateNestedCensusAggQuery(aggregations['nested']['table'], 'group_table_'));
         }
-      if (aggregations['nested']['charts']) {
+      if (datasetName != 'std' && datasetName != 'tb' && datasetName != 'aids' &&  aggregations['nested']['charts']) {
             for(var index in aggregations['nested']['charts']) {
                 censusQuery.aggregations = merge(censusQuery.aggregations, generateNestedCensusAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_'));
             }
@@ -45,7 +45,7 @@ var generateCensusAggregationQuery = function( aggQuery, groupByKeyStart ) {
     return query;
 };
 
-var prepareAggregationQuery = function(aggregations, countQueryKey) {
+var prepareAggregationQuery = function(aggregations, countQueryKey, datasetName) {
     var elasticQuery = {};
     elasticQuery.aggregations = {};
     //build array for
@@ -58,7 +58,7 @@ var prepareAggregationQuery = function(aggregations, countQueryKey) {
         if (aggregations['nested']['table'] && aggregations['nested']['table'].length > 0) {
             elasticQuery.aggregations = merge(elasticQuery.aggregations, generateNestedAggQuery(aggregations['nested']['table'], 'group_table_', countQueryKey));
         }
-        if (aggregations['nested']['charts']) {
+        if (datasetName != 'std' && datasetName != 'tb' && datasetName != 'aids' && aggregations['nested']['charts']) {
             for(var index in aggregations['nested']['charts']) {
                 elasticQuery.aggregations = merge(elasticQuery.aggregations, generateNestedAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_', countQueryKey));
             }
@@ -154,12 +154,13 @@ function getCasesSumQuery() {
 var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     var userQuery = params.query ? params.query : {};
     var elasticQuery = {};
+    var  searchQueryArray = [];
     var censusQuery = undefined;
     if ( isAggregation ){
         elasticQuery.size = 0;
-        elasticQuery = merge(elasticQuery, prepareAggregationQuery(params.aggregations, params.countQueryKey));
+        elasticQuery = merge(elasticQuery, prepareAggregationQuery(params.aggregations, params.countQueryKey, params.searchFor));
         if(params.aggregations['nested'] && params.aggregations['nested']['table']){
-            censusQuery = prepareCensusAggregationQuery(params.aggregations);
+            censusQuery = prepareCensusAggregationQuery(params.aggregations , params.searchFor);
         }
 
     } else {
@@ -193,6 +194,13 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     if(censusQuery) {
         var clonedUserQuery = clone(userQuery);
         if (clonedUserQuery['ICD_10_code']) delete clonedUserQuery['ICD_10_code'];
+        if (clonedUserQuery['ICD_130_code']) delete clonedUserQuery['ICD_130_code'];
+        if (clonedUserQuery['infant_age_at_death']) delete clonedUserQuery['infant_age_at_death'];
+        if(clonedUserQuery['year_of_death']) {
+            //Infant mortality index has column 'year_of_death', should match with natality index column in Elastic Search
+            //So that we can query natality index for Birth counts.
+            clonedUserQuery['year_of_death'].queryKey = 'current_year';
+        }
         var clonedPrimaryQuery = buildTopLevelBoolQuery(groupByPrimary(clonedUserQuery, true), true);
         var clonedFilterQuery = buildTopLevelBoolQuery(groupByPrimary(clonedUserQuery, false), false);
 
@@ -204,8 +212,22 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     }
     //prepare query for map
     var  mapQuery = buildMapQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery);
+    searchQueryArray.push(elasticQuery);
+    //Prepare chart query for disease datasets 'std', 'tb' and 'aids'.
+    if(params.searchFor == 'std' || params.searchFor == 'tb' || params.searchFor == 'aids') {
+        var charQueryArray = buildChartQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, censusQuery);
+        //'Population' query
+        searchQueryArray.push(charQueryArray[0]);
+        searchQueryArray.push(mapQuery);
+        //Chart 'Cases' query
+        searchQueryArray.push(charQueryArray[1]);
+    }
+    else {
+        searchQueryArray.push(censusQuery);
+        searchQueryArray.push(mapQuery);
+    }
 
-    return [elasticQuery, censusQuery, mapQuery];
+    return searchQueryArray;
 };
 
 //build top-level bool query
@@ -394,9 +416,29 @@ function buildAPIQuery(primaryFilter) {
                 headers.columnHeaders.push(eachFilter);
             }
         }
-        var eachFilterQuery = buildFilterQuery(eachFilter);
-        if(eachFilterQuery) {
-            apiQuery.query[eachFilter.queryKey] = eachFilterQuery;
+
+        if (eachFilter.key === 'mcd-chapter-10') {
+            var set1Filter = clone(eachFilter);
+            var set2Filter = clone(eachFilter);
+
+            set1Filter.value = set1Filter.value.set1 || [];
+            set2Filter.value = set2Filter.value.set2 || [];
+
+            var set1FilterQuery = buildFilterQuery(set1Filter);
+            if (set1FilterQuery) {
+                apiQuery.query[set1Filter.queryKey + ".set1"] = set1FilterQuery;
+            }
+
+            var set2FilterQuery = buildFilterQuery(set2Filter);
+            if (set2FilterQuery) {
+                apiQuery.query[set2Filter.queryKey + ".set2"] = set2FilterQuery;
+            }
+        }
+        else {
+            var eachFilterQuery = buildFilterQuery(eachFilter);
+            if(eachFilterQuery) {
+                apiQuery.query[eachFilter.queryKey] = eachFilterQuery;
+            }
         }
     });
     if (primaryFilter.key === 'prams') {
@@ -882,6 +924,86 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery) {
 
     return mapQuery;
 }
+
+/**
+ * This buildChartQuery method prepares population query for each chart and prepares cases query for each chart
+ * For each chart aggregation add appropriate filters to avoid adding 'All' values[Ex: Both sexes, 'All age groups' etc...]
+ * @param aggregations
+ * @param countQueryKey
+ * @param primaryQuery
+ * @param filterQuery
+ * @param censusQuery
+ * @returns List of 'Population query' and 'Cases query'
+ */
+function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery, censusQuery) {
+    var chartCasesQueryArray = [];
+    //censusQuery value could be 'undefined' or population query with table aggregation
+    var chartPopulationQueryArray = censusQuery ? [censusQuery] : censusQuery;
+    //filter and it's 'All' value map
+    var filterAllValueMap = {"sex":"Both sexes", "race_ethnicity": "All races/ethnicities", "age_group": "All age groups", "state": "National"};
+    if (aggregations['nested'] && aggregations['nested']['charts']) {
+        //Get selected aggregation query keys
+        var selectedFilterKeys = [];
+        aggregations['nested']['charts'].forEach(function(eachChart){
+            eachChart.forEach(function(eachFilter){
+                if(selectedFilterKeys.indexOf(eachFilter.queryKey) < 0 ) {
+                    selectedFilterKeys.push(eachFilter.queryKey);
+                }
+            })
+        });
+        //Prepare aggregation query
+       for(var index in aggregations['nested']['charts']) {
+           var chartCasesQuery = { "size":0, aggregations: {} };
+           var filterKeys = clone(selectedFilterKeys);
+           //for each aggregation prepare one chart query
+           chartCasesQuery.aggregations = generateNestedAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_', countQueryKey, true);
+           //add query criteria to chart cases query
+           chartCasesQuery.query = {filtered:{}};
+           chartCasesQuery.query.filtered.query = clone(primaryQuery);
+           chartCasesQuery.query.filtered.filter = clone(filterQuery);
+           //For each aggregation find out what are the keys that are not included in aggregation and add a boolean filter query for that key
+           //For example if user selected three filters 'sex', 'race' and 'age_group' then we will have three aggregation queries
+           // 1. sex and race aggregation  -> for this aggregation query we add 'age_group -> All age groups' boolean filter
+           // 2. sex and age_group -> for this aggregation query we add 'race -> All races/ethinicities' boolean filter
+           // 3. age_group and race -> for this aggregation query we add 'sex -> Both sexes' boolean filter
+           aggregations['nested']['charts'][index].forEach(function(eachFilter){
+               var filterIndex = filterKeys.indexOf(eachFilter.queryKey);
+               filterKeys.splice(filterIndex, 1);
+           });
+           //Get mustFilter to add filter query
+           var mustFilters = chartCasesQuery.query.filtered.filter.bool.must;
+           filterKeys.forEach(function(eachKey){
+               var isFilterQueryPresent = false;
+               //check if 'eachKey' already present in must filter
+               //That means if user selected other than 'sex -> Both sexes', 'race -> All races/ethnicities', 'age_group -> All age groups' and 'state -> National' filters then 'isKeyPresent' set to 'true'
+               for(var i in mustFilters){
+                   if(mustFilters[i].bool.should[0].term[eachKey] != undefined) {
+                       isFilterQueryPresent = true;
+                       break;
+                   }
+               }
+               //If filter value available meaning if filter is 'sex', 'race', 'ageGroup' or 'state'
+               if(!isFilterQueryPresent && filterAllValueMap[eachKey]) {
+                   var boolQuery = buildBoolQuery(eachKey, [filterAllValueMap[eachKey]]);
+                   !isEmptyObject(boolQuery) && mustFilters.push(boolQuery);
+               }
+           });
+           //Add prepared each chart query to array
+           chartCasesQueryArray.push(chartCasesQuery);
+           //If censusQuery has table aggregation then prepare population query for each chart also
+           if(censusQuery) {
+               var populationQuery = { "size":0, aggregations: {} };
+               populationQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_');
+               //chart filter query for population  is same as chart cases query
+               populationQuery.query = chartCasesQuery.query;
+               chartPopulationQueryArray.push(populationQuery);
+           }
+       }
+    }
+    //List of 'Population query' and 'Cases query'
+    return [chartPopulationQueryArray, chartCasesQueryArray];
+}
+
 
 module.exports.prepareAggregationQuery = prepareAggregationQuery;
 module.exports.buildSearchQuery = buildSearchQuery;

@@ -115,7 +115,7 @@
             for (var i = 0; i < oatc.data.length; i++) {
                 for (var j = 0; j < oatc.listRows(oatc.data[i]).length; j++) {
                     for (var k = 0; k < oatc.listRows(oatc.data[i])[j].length; k++) {
-                        if (oatc.listRows(oatc.data[i])[j].title.mean == 'suppressed') {
+                        if (oatc.listRows(oatc.data[i])[j].title.mean === 'suppressed') {
                             suppressed = true;
                         }
                     }

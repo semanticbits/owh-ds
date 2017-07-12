@@ -81,3 +81,24 @@ Feature: STD page
   Scenario: Age Groups filter options
     When I look at the sidebar
     Then I see the available options "All age groups|0-14|15-19|20-24|25-29|30-34|35-39|40-44|45-54|55-64|65+" for "Age Groups"
+
+  Scenario: Select disease 'Early Latent Syphilis'
+    When filter "Disease" and option "Early Latent Syphilis" selected
+    Then "current_year" filter option "2000" should be disabled for "std"
+    And "current_year" filter option "2001" should be disabled for "std"
+    And "current_year" filter option "2002" should be disabled for "std"
+
+  Scenario: Select year between 2000 - 20002
+    When filter "Disease" and option "Chlamydia" selected
+    Then "current_year" filter option "2000" should be enabled for "std"
+    And "current_year" filter option "2001" should be enabled for "std"
+    And "current_year" filter option "2002" should be enabled for "std"
+    When filter "Year" and option "2000" selected
+    Then "disease" filter option "Early Latent Syphilis" should be disabled for "std"
+    When filter "Year" and option "2015" selected
+    Then "disease" filter option "Early Latent Syphilis" should be enabled for "std"
+
+  Scenario: Select year between 2007 - 2010
+    When filter "Year" and option "2007" selected
+    Then all side filters should be enabled
+    And the following message should be displayed "National data are not available for any disease for the years 2007-2010." on std page

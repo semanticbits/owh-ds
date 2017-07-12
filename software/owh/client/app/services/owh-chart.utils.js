@@ -105,7 +105,7 @@
                         showValues: false,
                         showXAxis:true,
                         showYAxis:true,
-                        stacked: stacked,
+                        stacked: stacked && primaryFilter.tableView && primaryFilter.tableView.indexOf('rate') < 0,
                         "duration": 500,
                         x: function(d){return d.label;},
                         y: function(d){return d.value;},
@@ -664,7 +664,7 @@
                     expandedChartData.options.chart.width = 750;
                     expandedChartData.options.chart.showLegend = true;
                     //If Rates selected then not enabling controls(grouped, stacked) for expanded visualizations and default view set to grouped.
-                    if(tableView === 'disease_rate') {
+                    if(tableView && tableView.indexOf('rate') >= 0) {
                         expandedChartData.options.chart.stacked = false;
                     }
                     else {
@@ -758,6 +758,10 @@
                     eg.primaryFilters = primaryFilters;
                     eg.selectedQuestion = selectedQuestion;
                     eg.close = close;
+                    eg.export = function (svgIndex, title, format) {
+                        shareUtilService.exportChart(svgIndex, title, format);
+                    };
+
                     eg.showFbDialog = function(svgIndex, title, section, description) {
                         shareUtilService.shareOnFb(svgIndex, title, section, description);
                     };

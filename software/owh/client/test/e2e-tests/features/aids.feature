@@ -1,3 +1,4 @@
+@AIDS
 Feature: AIDS/HIV page
   As a User
   I want to see the data table upon selection of filters
@@ -24,3 +25,14 @@ Feature: AIDS/HIV page
   Scenario: Data table defaults
     Then On the aids page, I should see the data table with the headers "Race/Ethnicity, Female, Male, Both sexes"
     Then On the aids page, the values in table should match
+
+  Scenario: AIDS/HIV Visualizations
+    Then user sees a visualization
+    And I see labels "Race/Ethnicity" and "Cases" are displayed on minimized visualization
+    When user expand visualization
+    And I see labels "Race/Ethnicity" and "Cases" are displayed on expanded visualization
+    And I close visualization popup
+    When I click on Rate chart view toggle button
+    And I see labels "Race/Ethnicity" and "Rates" are displayed on minimized visualization
+    When user expand visualization
+    And I see labels "Race/Ethnicity" and "Rates" are displayed on expanded visualization
