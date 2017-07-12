@@ -12,6 +12,13 @@ Feature: Infant Mortality filters
     When I change 'I'm interested in' dropdown value to "Infant Mortality"
     Then I should see filter type "Infant Mortality" selected
 
+  Scenario: Quick visualizations
+    When I see the quick visualizations
+    Then labels "Race" and "Number of Infant Deaths" are displayed on minimized visualization
+    When user expand visualization
+    Then I should see grouped and stacked controls on expaned visualization
+    And I close visualization popup
+
   Scenario: Infant Mortality Side Filters and Defaults
     Then I should see "4" categories in the sidebar
     And the categories should be "Infant Characteristics, Maternal Characteristics, Birth Characteristics, Location"

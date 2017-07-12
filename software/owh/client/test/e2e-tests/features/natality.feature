@@ -46,7 +46,8 @@ Feature: Natality filters
     And user sees a visualization
     Then labels "State" and "Birth Rates" are displayed on minimized visualization
     When user expand visualization
-    Then labels "State" and "Birth Rates" are displayed on expanded visualization
+    Then I should not see grouped and stacked controls on expanded visualization
+    And labels "State" and "Birth Rates" are displayed on expanded visualization
 
   Scenario: Fertility rates - Disable filters when show me filter value changes
     When I change show me dropdown option to "Fertility Rates"
@@ -61,7 +62,8 @@ Feature: Natality filters
     And user sees a visualization
     Then labels "State" and "Fertility Rates" are displayed on minimized visualization
     When user expand visualization
-    Then labels "State" and "Fertility Rates" are displayed on expanded visualization
+    Then I should not see grouped and stacked controls on expanded visualization
+    And labels "State" and "Fertility Rates" are displayed on expanded visualization
 
   Scenario: Filter Name and Location
     When I see "Mother's Age" category in the sidebar

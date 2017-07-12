@@ -16,7 +16,8 @@ Scenario: Axis labels
   When user sees a visualization
   Then labels are displayed on both the axes for minimized visualization
   When user expand visualization
-  Then labels are displayed on both the axes for expanded visualization
+  Then I should see grouped and stacked controls on expaned visualization
+  And labels are displayed on both the axes for expanded visualization
 
 Scenario: Side filter collapse
   Given I am on search page
@@ -179,7 +180,8 @@ Scenario: Crude Death rates population count should match with CDC for year 2000
   When user sees a visualization
   Then labels "Race" and "Crude Death Rates" are displayed on minimized visualization
   When user expand visualization
-  Then labels "Race" and "Crude Death Rates" are displayed on expanded visualization
+  Then I should not see grouped and stacked controls on expanded visualization
+  And labels "Race" and "Crude Death Rates" are displayed on expanded visualization
   And user clicks on "+ 13 more" more link for "Year" filter
   Then I select "Year" value "2000"
   And I un-select "Year" value "2015"
@@ -222,7 +224,8 @@ Scenario: Age Adjusted Death Rates
   When user sees a visualization
   Then labels "Race" and "Age Adjusted Death Rates" are displayed on minimized visualization
   When user expand visualization
-  Then labels "Race" and "Age Adjusted Death Rates" are displayed on expanded visualization
+  Then I should not see grouped and stacked controls on expanded visualization
+  And labels "Race" and "Age Adjusted Death Rates" are displayed on expanded visualization
   When I update criteria in filter option with row "Ethnicity"
   Then table should display Hispanic groups for Age Adjusted Death Rates
   When I expand "Underlying Cause of Death" filter section
