@@ -575,7 +575,8 @@
         });
 
         /*Show expanded graphs with whole set of features*/
-        function showExpandedGraph(chartData, tableView) {
+        function showExpandedGraph(chartData) {
+            var tableView = sc.filters.selectedPrimaryFilter.chartView || sc.filters.selectedPrimaryFilter.tableView;
             chartUtilService.showExpandedGraph([chartData], tableView);
         }
 
