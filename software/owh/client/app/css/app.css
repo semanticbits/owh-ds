@@ -1171,8 +1171,8 @@ ul.legend-scale li span {
 
 #clusterize-table {
     max-height: 900px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y: visible;
+    overflow-x: visible;
 }
 
 #clusterize-table table {
