@@ -1229,13 +1229,13 @@
             ];
 
             filters.diseaseVizGroupOptions = [
-                {key:'cases', title:'Cases', tooltip:'Select to view as cases on charts'},
-                {key:'disease_rate', title:'Rates', tooltip:'Select to view as rates on charts'}
+                {key:'cases', title:'Cases', axisLabel:'Cases', tooltip:'Select to view as cases on charts'},
+                {key:'disease_rate', title:'Rates', axisLabel:'Rates', tooltip:'Select to view as rates on charts'}
             ];
 
             filters.deathsRateGroupOptions = [
-                {key:'death',title:'Deaths', tooltip:'Select to view as deaths on charts'},
-                {key:'infant_death_rate',title:'Rates', tooltip:'Select to view as rates on charts'}
+                {key:'death',title:'Deaths', axisLabel:'Number of Infant Deaths', tooltip:'Select to view as deaths on charts'},
+                {key:'infant_death_rate',title:'Rates', axisLabel:'Rates', tooltip:'Select to view as rates on charts'}
             ];
 
             filters.allowInlineCharting = false;

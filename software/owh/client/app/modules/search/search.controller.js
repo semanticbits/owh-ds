@@ -626,7 +626,7 @@
         function onChartViewChange(chartView) {
             var selectedPrimaryFilter = sc.filters.selectedPrimaryFilter;
             var chartOption = utilService.findByKeyAndValue(selectedPrimaryFilter.chartViewOptions, 'key', chartView);
-            selectedPrimaryFilter.chartAxisLabel = chartOption.title;
+            selectedPrimaryFilter.chartAxisLabel = chartOption.axisLabel;
             selectedPrimaryFilter.chartView = chartOption.key;
             selectedPrimaryFilter.chartData = searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
         }
