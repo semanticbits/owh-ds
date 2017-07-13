@@ -519,7 +519,7 @@
                 eachFilter.getPercent = true;
                 chartFilters.push(eachFilter);
             });
-
+            copiedPrimaryFilter.isChartorMapQuery = true;
             var deferred = $q.defer();
             //calculate query hash
             generateHashCode(copiedPrimaryFilter).then(function (hash) {
