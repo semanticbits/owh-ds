@@ -45,8 +45,12 @@
          * @returns {Number}
          */
         function getValueFromData(filter, data) {
-            if(filter.tableView == "crude_death_rates" || filter.tableView == "birth_rates" || filter.tableView == "fertility_rates" || filter.tableView == "disease_rate") {
+            if(filter.tableView == "crude_death_rates" || filter.tableView == "birth_rates"
+                || filter.tableView == "fertility_rates" || filter.chartView == "disease_rate") {
                 return data['pop'] ? Math.round(data[filter.key] / data['pop'] * 1000000) / 10 : 0;
+            }
+            else if(filter.chartView == "infant_death_rate") {
+                return data['pop'] ? $filter('number')(data[filter.key] / data['pop'] * 1000, 1): 0;
             }
             else if(data['ageAdjustedRate'] && filter.tableView == "age-adjusted_death_rates"){
                 var ageAdjustedRate = parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));

@@ -115,6 +115,7 @@
             }
             else if (primaryFilter.key === 'infant_mortality') {
                 primaryFilter.data = response.data.resultData.nested.table;
+                primaryFilter.nestedData = response.data.resultData.nested;
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
@@ -1228,8 +1229,13 @@
             ];
 
             filters.diseaseVizGroupOptions = [
-                {key:'cases',title:'Cases', tooltip:'Select to view as cases on charts'},
-                {key:'rate',title:'Rates', tooltip:'Select to view as rates on charts'}
+                {key:'cases', title:'Cases', tooltip:'Select to view as cases on charts'},
+                {key:'disease_rate', title:'Rates', tooltip:'Select to view as rates on charts'}
+            ];
+
+            filters.deathsRateGroupOptions = [
+                {key:'death',title:'Deaths', tooltip:'Select to view as deaths on charts'},
+                {key:'infant_death_rate',title:'Rates', tooltip:'Select to view as rates on charts'}
             ];
 
             filters.allowInlineCharting = false;
@@ -2585,7 +2591,8 @@
                     key: 'infant_mortality', title: 'label.filter.infant_mortality', primary: true, value: [], header: 'Infant Mortality',
                     allFilters: filters.infantMortalityFilters, searchResults: searchInfantMortality, showMap: false,
                     chartAxisLabel: 'Number of Infant Deaths', countLabel: 'Number of Infant Deaths', tableView: 'number_of_infant_deaths',
-                    runOnFilterChange: true, applySuppression: true,
+                    runOnFilterChange: true, applySuppression: true, chartView: 'death',
+                    chartViewOptions:filters.deathsRateGroupOptions,
                     sideFilters:[
                         {
                             category: 'Infant Characteristics',
@@ -2761,7 +2768,7 @@
                     key: 'std', title: 'label.filter.std', primary: true, value:[], header:"STD",
                     allFilters: filters.stdFilters, searchResults: searchSTDResults, showMap: true,
                     mapData:{}, chartAxisLabel:'Cases', tableView:'std',
-                    chartViewOptions: filters.diseaseVizGroupOptions, defaultChartView: 'cases',
+                    chartViewOptions: filters.diseaseVizGroupOptions, chartView: 'cases',
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
                         {
@@ -2815,7 +2822,7 @@
                 {
                     key: 'tb', title: 'label.filter.tb', primary: true, value:[], header:"Tuberculosis",
                     allFilters: filters.tbFilters, searchResults: searchTBResults, showMap: true,
-                    mapData:{}, chartAxisLabel:'Cases', tableView:'tb', defaultChartView: 'cases',
+                    mapData:{}, chartAxisLabel:'Cases', tableView:'tb', chartView: 'cases',
                     chartViewOptions: filters.diseaseVizGroupOptions,
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
@@ -2856,7 +2863,7 @@
                 {
                     key: 'aids', title: 'label.filter.aids', primary: true, value:[], header:'HIV/AIDS',
                     allFilters: filters.aidsFilters, searchResults: searchAIDSResults, showMap: true,
-                    mapData: {}, chartAxisLabel: 'Cases', tableView: 'aids', defaultChartView: 'cases',
+                    mapData: {}, chartAxisLabel: 'Cases', tableView: 'aids', chartView: 'cases',
                     chartViewOptions: filters.diseaseVizGroupOptions,
                     runOnFilterChange: true, applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
