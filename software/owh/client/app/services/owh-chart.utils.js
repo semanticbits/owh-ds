@@ -247,12 +247,11 @@
                     if(eachPrimaryData && eachPrimaryData[filter2.key]) {
                         angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2) , function (secondaryOption,j) {
                             var eachSecondaryData = utilService.findByKeyAndValue(eachPrimaryData[filter2.key], 'name', secondaryOption.key);
-                            var value = 0;
-                            if(eachSecondaryData &&  eachSecondaryData[primaryFilter.key]) {
+                            var value = undefined;
+                            if(eachSecondaryData) {
                                 value = getValueFromData(primaryFilter, eachSecondaryData);
                             }
-
-                            if (value != 0) {
+                            if (value !== undefined) {
                                 primaryDataObj.values.push({"label":secondaryOption.title, "value": value});
                             }
 

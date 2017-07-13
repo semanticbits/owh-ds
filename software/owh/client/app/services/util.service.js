@@ -43,7 +43,8 @@
             findFilterByKeyAndValue: findFilterByKeyAndValue,
             isFilterApplied: isFilterApplied,
             stdFilterChange: stdFilterChange,
-            aidsFilterChange: aidsFilterChange
+            aidsFilterChange: aidsFilterChange,
+            isOptionDisabled: isOptionDisabled
         };
 
         return service;
@@ -838,6 +839,24 @@
                     }
                 }
             }
+        }
+
+        function isOptionDisabled(group, option) {
+            if(group.key === 'hispanicOrigin') {
+                //check if unknown is selected
+                if(group.value && group.value.indexOf('Unknown') >= 0) {
+                    //if unknown is selected then disable all other hispanic options
+                    if(option.key !== 'Unknown') {
+                        return true;
+                    }
+                } else {
+                    //else, if other option is selected disable unknown
+                    if(group.value && group.value.length > 0 && option.key === 'Unknown') {
+                        return true;
+                    }
+                }
+            }
+            return false || option.disabled;
         }
 
         /**
