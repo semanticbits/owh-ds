@@ -2884,26 +2884,31 @@
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.aidsFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'sex')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.aidsFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'race')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.aidsFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'age_group')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.aidsFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'transmission')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.aidsFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'state')
                                 }
                             ]
