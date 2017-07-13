@@ -400,8 +400,13 @@ function buildAPIQuery(primaryFilter) {
     }
 
     // For YRBS query capture the basisc/advanced search view
-    if(primaryFilter.key === 'mental_health' && primaryFilter.showBasicSearchSideMenu) {
-        apiQuery.yrbsBasic =  true;
+    if(primaryFilter.key === 'mental_health'){
+        if(primaryFilter.showBasicSearchSideMenu) {
+            apiQuery.yrbsBasic = true;
+        }
+        if(primaryFilter.isChartorMapQuery) {
+            apiQuery.isChartorMapQuery = true;
+        }
     }
     var sortedFilters = sortByKey(clone(primaryFilter.allFilters), getAutoCompleteOptionsLength);
     sortedFilters.forEach  (function(eachFilter) {

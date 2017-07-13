@@ -476,23 +476,29 @@
             var chartTypes = [];
 
             //collect all chart combinations
+            // Disabling combination charts for now, see OWH-1363
             selectedFilters.forEach( function(selectedPrimaryFilter) {
-                selectedFilters.forEach( function(selectedSecondaryFilter) {
-                    var chartType;
-                    //for single filter
-                    if (selectedPrimaryFilter === selectedSecondaryFilter) {
-                        chartType = chartMappings[selectedPrimaryFilter.key];
-                        if(chartType) {
-                            chartTypes.push([selectedPrimaryFilter.key]);
-                        }
-                    } else {//for combinations of two filters
-                        chartType = chartMappings[selectedPrimaryFilter.key + '&' + selectedSecondaryFilter.key];
-                        if(chartType) {
-                            chartTypes.push([selectedPrimaryFilter.key, selectedSecondaryFilter.key]);
-                        }
-                    }
-                });
+                //var chartType = chartMappings[selectedPrimaryFilter.key];
+                chartTypes.push([selectedPrimaryFilter.key]);
             });
+            // selectedFilters.forEach( function(selectedPrimaryFilter) {
+            //     selectedFilters.forEach( function(selectedSecondaryFilter) {
+            //         var chartType;
+            //         //for single filter
+            //         if (selectedPrimaryFilter === selectedSecondaryFilter) {
+            //             chartType = chartMappings[selectedPrimaryFilter.key];
+            //             if(chartType) {
+            //                 chartTypes.push([selectedPrimaryFilter.key]);
+            //             }
+            //         } else {//for combinations of two filters
+            //             chartType = chartMappings[selectedPrimaryFilter.key + '&' + selectedSecondaryFilter.key];
+            //             if(chartType) {
+            //                 chartTypes.push([selectedPrimaryFilter.key, selectedSecondaryFilter.key]);
+            //             }
+            //         }
+            //     });
+            // });
+            // Disabling combination charts for now, see OWH-1363
 
             //reset all grouping combinations
             utilService.updateAllByKeyAndValue(copiedPrimaryFilter.allFilters, 'groupBy', false);
@@ -514,7 +520,7 @@
                 eachFilter.getPercent = true;
                 chartFilters.push(eachFilter);
             });
-
+            copiedPrimaryFilter.isChartorMapQuery = true;
             var deferred = $q.defer();
             //calculate query hash
             generateHashCode(copiedPrimaryFilter).then(function (hash) {
