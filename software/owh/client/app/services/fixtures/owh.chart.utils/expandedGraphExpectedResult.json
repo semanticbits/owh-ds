@@ -65,7 +65,6 @@
         "showValues": true,
         "showXAxis": true,
         "showYAxis": true,
-        "stacked": true,
         "duration": 500,
         "xAxis": {
           "axisLabelDistance":120,
