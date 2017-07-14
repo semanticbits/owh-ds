@@ -55,8 +55,23 @@ Feature: Infant Mortality filters
   Scenario: Infant Mortality Table Data Suppression for Alaska in 2000
     When I select the option "2000" for "Year" and the option "Alaska" for "State"
     Then the values in row "0" should be "American Indian or Alaska Native, Suppressed, 21, Suppressed"
+    Then the values in row "0" should be "American Indian or Alaska Native, 1,190, 1,319, 2,509"
     And the values in row "1" should be "Asian or Pacific Islander, Suppressed, Suppressed, Suppressed"
-    And the values in row "2" should be "Black or African American, Not Available, Suppressed, Suppressed"
+    And the values in row "1" should be "Asian or Pacific Islander, 313, 326, 639"
+    And the values in row "2" should be "Black or African American, Suppressed, Suppressed, Suppressed"
+    And the values in row "2" should be "Black or African American, 215, 247, 462"
     And the values in row "3" should be "White, 17, 20, 37"
     And the values in row "3" should be "White, 3,102, 3,262, 6,364"
     And the values in row "3" should be "White, Unreliable, 6.1, 5.8"
+
+  Scenario: Infant Mortality Table Data with only 'Female'
+    When I select the option "2000" for "Year" and the option "Alaska" for "State"
+    And I expand "Sex" filter section
+    And filter "Sex" and option "Female" selected
+    Then the values in row "0" should be "American Indian or Alaska Native, Suppressed, Suppressed"
+    Then the values in row "0" should be "American Indian or Alaska Native, 1,190, 1,190"
+    And the values in row "1" should be "Asian or Pacific Islander, Suppressed, Suppressed"
+    And the values in row "1" should be "Asian or Pacific Islander, 313, 313"
+    And the values in row "2" should be "White, 17, 17"
+    And the values in row "2" should be "White, 215, 215"
+    And the values in row "2" should be "White, Unreliable, Unreliable"
