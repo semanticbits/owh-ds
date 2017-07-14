@@ -204,12 +204,14 @@ a.custom-link, a.custom-link:hover {
     display: inline-block;
     color: inherit;
 }
-a.custom-link:focus {
-    box-shadow: none;
-}
 
 a:focus {
-    background-color: yellow;
+    border: 1px lightgray dashed;
+}
+
+a.custom-link:focus {
+    box-shadow: none;
+    border: 1px lightgray dashed;
 }
 
 a.active-link, a.active-link:hover {
@@ -225,6 +227,7 @@ a.active-link.selected {
 }
 a.active-link.selected:focus {
     box-shadow: none;
+    border: 1px gray solid;
 }
 a.active-link:first-child {
     border-right: none;
@@ -277,6 +280,9 @@ ul.usa-unstyled-list.group-options li.group-option input[type="radio"] + label::
     width: 1.5rem;
     height: 1.5rem;
 }
+
+
+
 .cursor-pointer {
     cursor: pointer;
 }
