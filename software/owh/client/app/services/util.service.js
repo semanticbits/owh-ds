@@ -550,6 +550,7 @@
                 title = count;
             }
 
+            //should add commas
             title = $filter('number')(title);
 
             var cell = {
@@ -560,6 +561,7 @@
                 colspan: 1
             };
 
+            //should add percentages
             cell.percentage = $filter('number')(cell.percentage, 1);
 
             if(bold) {
