@@ -256,12 +256,12 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     //the rates, deaths and population for "Asian or Pacific Islander" in 'Death Rates' view are "153.8", "170" and "110,561"
-    this.Then(/^the rates, deaths and population for "([^"]*)" "([^"]*)" in 'Death Rates' view are "([^"]*)", "([^"]*)" and "([^"]*)"$/, function (sex, race, rate, deaths, population, next) {
+    this.Then(/^the rates, deaths and population for "([^"]*)" "([^"]*)" in 'Death Rates' view are "([^"]*)", "([^"]*)" and "([^"]*)"$/, function (columnText, rowText, rate, deaths, population, next) {
         //By default 2015 year is selected
         var firstRow = false;
         mortalityPage.getTableDataByRowFilterAndColumnHeaderText(function (row, index) {
             return row.all(by.tagName('td')).get(0).getText().then(function (text) {
-                if (text === race) {
+                if (text === rowText) {
                     firstRow = index === 0;
                     return true;
                 }
@@ -269,7 +269,7 @@ var mortalityStepDefinitionsWrapper = function () {
                     return false;
                 }
             });
-        }, sex).then(function (text) {
+        }, columnText).then(function (text) {
             if (firstRow) {
                 expect(text).to.equal("Crude Death Rate\n" + rate + "\n" + "Deaths\n" + deaths + "\n" + "Population\n" + population);
             }
