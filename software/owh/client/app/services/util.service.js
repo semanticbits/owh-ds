@@ -545,9 +545,13 @@
 
         function prepareCountCell(count, data, countKey, totalCount, calculatePercentage, secondaryCountKeys, bold) {
             var title = Number(count);
+
             if(isNaN(title)) {
                 title = count;
             }
+
+            title = $filter('number')(title);
+
             var cell = {
                 title: title,
                 percentage: (calculatePercentage && !isNaN(totalCount)) ? (Number(data[countKey]) / totalCount) * 100 : undefined,
@@ -555,6 +559,9 @@
                 rowspan: 1,
                 colspan: 1
             };
+
+            cell.percentage = $filter('number')(cell.percentage, 1);
+
             if(bold) {
                 cell['isBold'] = true;
             }

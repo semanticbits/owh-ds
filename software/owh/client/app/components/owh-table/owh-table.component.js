@@ -207,7 +207,7 @@
                             } else if(column.title === 'Not Available') {
                                 cell += '<span>Not Available</span>';
                             } else {
-                                cell += '<span class="count-value">' + $filter('number')(column.title) + '</span>';
+                                cell += '<span class="count-value">' + column.title + '</span>';
                                 if(colIndex !== row.length - 1 && column.percentage  > 0 && otc.showPercentage) {
                                     cell += '<span class="count-value"> (' + $filter('number')(column.percentage, 1) + '%)</span>';
                                 }
