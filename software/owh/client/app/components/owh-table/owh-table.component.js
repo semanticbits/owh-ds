@@ -129,6 +129,7 @@
                                 cell += '<span>'
                                 if(rateVisibility === 'visible') {
                                     var per = otc.tableView === 'number_of_infant_deaths' ? 1000 : 100000 ;
+                                    column.pop = $filter('number')(column.pop);
                                     cell += $filter('number')(column.title / column.pop * per, 1);
                                 }
                                 else if (rateVisibility === 'suppressed') {
@@ -162,7 +163,7 @@
                             else if(column.title === 'na') {
                                 cell += 'Not Available';
                             }else {
-                                cell += $filter('number')(column.title);
+                                cell += column.title;
                             }
                             cell += '</span>';
                             cell += '</div>';
@@ -209,7 +210,7 @@
                             } else {
                                 cell += '<span class="count-value">' + column.title + '</span>';
                                 if(colIndex !== row.length - 1 && column.percentage  > 0 && otc.showPercentage) {
-                                    cell += '<span class="count-value"> (' + $filter('number')(column.percentage, 1) + '%)</span>';
+                                    cell += '<span class="count-value"> (' + column.percentage + '%)</span>';
                                 }
                             }
                         } else if (otc.tableView === 'number_of_infant_deaths') {
@@ -219,7 +220,7 @@
                                 if (isNaN(parseInt(count))) return count;
                                 var result = '<span class="count-value">' + $filter('number')(count) + '</span>';
                                 if (colIndex !== row.length - 1 && column.percentage  > 0) {
-                                    result += '<span class="count-value"> (' + $filter('number')(column.percentage, 1) + '%)</span>';
+                                    result += '<span class="count-value"> (' + column.percentage + '%)</span>';
                                 }
                                 return result;
                             })(column.title);
