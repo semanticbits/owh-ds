@@ -202,7 +202,7 @@ function suppressCounts (obj, countKey, dataType, suppressKey, maxValue) {
             });
         } else if(obj[countKey] != undefined && obj[countKey] < value) {
             if(dataType == 'maps' || dataType == 'charts') {//for chart and map set suppressed values to 0
-                obj[countKey] = 0;
+                obj[key] = 0;
             }
             else if(countKey === 'std' && obj[countKey] === 0) {
                 obj[countKey] = 'na';
@@ -275,8 +275,11 @@ function applySuppressions(obj, countKey, maxValue) {
  * @param suppressKey
  * @param isSexFiltersSelected
  */
-function applyYRBSSuppressions(obj, countKey, suppressKey, isSexFiltersSelected ) {
+function applyYRBSSuppressions(obj, countKey, suppressKey, isSexFiltersSelected, isChartorMapQuery ) {
     var dataType;
+    if(isChartorMapQuery){
+        dataType = 'charts';
+    }
     var maxValue = isSexFiltersSelected ? 30 : 100;
     suppressCounts(obj.data, countKey, dataType, suppressKey, maxValue);
     suppressTotalCounts(obj.data, countKey, dataType, suppressKey);

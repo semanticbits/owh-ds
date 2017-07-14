@@ -19,6 +19,14 @@ Feature: Infant Mortality filters
     Then I should see grouped and stacked controls on expaned visualization
     And I close visualization popup
 
+  Scenario: Deaths/Rates visualizations switch
+    When I click on Rate chart view toggle button
+    And user sees a visualization
+    Then labels "Race" and "Rates" are displayed on minimized visualization
+    When I click on Deaths chart view toggle button
+    And user sees a visualization
+    Then labels "Race" and "Number of Infant Deaths" are displayed on minimized visualization
+
   Scenario: Infant Mortality Side Filters and Defaults
     Then I should see "4" categories in the sidebar
     And the categories should be "Infant Characteristics, Maternal Characteristics, Birth Characteristics, Location"

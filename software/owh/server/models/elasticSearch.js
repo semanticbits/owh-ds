@@ -155,7 +155,7 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
         ];
         if(query.wonderQuery) {
             logger.debug("Wonder Query: "+ JSON.stringify(query.wonderQuery));
-            promises.push(new wonder('D76').invokeWONDER(query.wonderQuery));
+            promises.push(new wonder('D77').invokeWONDER(query.wonderQuery));
         }
         Q.all(promises).then( function (respArray) {
             var data = searchUtils.populateDataWithMappings(respArray[0], 'deaths');
