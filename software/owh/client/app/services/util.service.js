@@ -43,7 +43,8 @@
             findFilterByKeyAndValue: findFilterByKeyAndValue,
             isFilterApplied: isFilterApplied,
             stdFilterChange: stdFilterChange,
-            aidsFilterChange: aidsFilterChange
+            aidsFilterChange: aidsFilterChange,
+            tbFilterChange: tbFilterChange
         };
 
         return service;
@@ -980,6 +981,51 @@
 
         }
 
+        /**
+         * This function gets called on TB filter change
+         * Enable/Disable filters based on selected filter
+         * @param filter
+         * @param categories
+         */
+        function tbFilterChange(filter, categories) {
+            var filters = [];
+            angular.forEach(categories, function (category) {
+                filters = filters.concat(category.sideFilters);
+            });
+            var stateFilter = $filter('filter')(filters, {filters : {key: 'state'}})[0];
+            if(stateFilter.filters.value != 'National') {
+                var demographicFilters = ['sex', 'race', 'age_group'];
+                var activeFilters = filters.reduce(function (active, filter) {
+                    var isRestrictedFilter = !!~demographicFilters.indexOf(filter.filters.key);
+                    var isUnrestrictedValue = !!~['Both sexes', 'All races/ethnicities', 'All age groups'].indexOf(filter.filters.value);
+                    if (isRestrictedFilter && !isUnrestrictedValue) {
+                        active.push(filter.filters.key);
+                    }
+                    return active;
+                }, []);
+                if (activeFilters.length >= 1) {
+                    // Disable remaining demographic filters
+                    demographicFilters.filter(function (demoFilter) {
+                        return !~activeFilters.indexOf(demoFilter)
+                    }).forEach(function (remainingFilter) {
+                        filters.forEach(function (sideFilter) {
+                            if(sideFilter.filters.key === remainingFilter) {
+                                sideFilter.disabled = true;
+                                sideFilter.filters.groupBy = false;
+                            }
+                        });
+                    })
+                } else {
+                    // Enable all demographic filters
+                    demographicFilters.forEach(function (demoFilter) {
+                        filters.filter(function (sideFilter) {
+                            return sideFilter.filters.key === demoFilter;
+                        })[0].disabled = false;
+                    })
+                }
+            }
+        }
+
         function aidsFilterChange (filter, categories) {
             var filters = categories[0].sideFilters;
             // Year and Indicator filter restrictions
@@ -1043,6 +1089,10 @@
                     })[0].disabled = false;
                 })
             }
+        }
+
+        function disableFiltersExcluding(filters, excludedFilters) {
+
         }
     }
 }());
