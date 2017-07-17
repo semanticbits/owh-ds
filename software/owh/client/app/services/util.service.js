@@ -550,17 +550,14 @@
                 title = count;
             }
 
-            title = $filter('number')(title);
-
             var cell = {
-                title: title,
-                percentage: (calculatePercentage && !isNaN(totalCount)) ? (Number(data[countKey]) / totalCount) * 100 : undefined,
+                title: $filter('number')(title),
+                count: title,
+                percentage: $filter('number')((calculatePercentage && !isNaN(totalCount)) ? (Number(data[countKey]) / totalCount) * 100 : undefined, 1),
                 isCount: true,
                 rowspan: 1,
                 colspan: 1
             };
-
-            cell.percentage = $filter('number')(cell.percentage, 1);
 
             if(bold) {
                 cell['isBold'] = true;
@@ -584,15 +581,20 @@
                 colspan: colspan - 1,
                 isBold: true
             });
+
             var total = data[countKey];
+
+
             var cell = {
-                title: total,
-                percentage: total / totalCount * 100,
+                title: $filter('number')(total),
+                count: total,
+                percentage: $filter('number')(total / totalCount * 100, 1),
                 isCount: true,
                 rowspan: 1,
                 colspan: 1,
                 isBold: true
             }
+
             if(secondaryCountKeys) {
                 angular.forEach(secondaryCountKeys, function(secondaryCountKey) {
                     var secondaryCount = data[secondaryCountKey];
