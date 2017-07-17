@@ -13,8 +13,8 @@
                 <a class="owh-question__expand cursor-pointer" ng-if="eachCategory.collapse" ng-click="oatc.expandRow(eachCategory)">
                     <span class="fa fa-chevron-right" title="Collapse category"></span>
                 </a>
-                {{ eachCategory.title }}
-                    <a class="owh-question__show-only" ng-if="oatc.categoryFilter!=null" ng-click="oatc.showOnly(null);" href="javascript:void(0)">Show all categories</a>
+                {{ eachCategory.title }} <a class="owh-question__show-only" ng-if="oatc.primaryKey == 'prams' && oatc.categoryFilter==null" ng-click="oatc.showOnly(eachCategory);" href="javascript:void(0)">Show only this category</a>
+                <a class="owh-question__show-only" ng-if="oatc.primaryKey == 'prams' && oatc.categoryFilter!=null" ng-click="oatc.showOnly(null);" href="javascript:void(0)">Show all categories</a>
             </td>
         </tr>
         <tr class="owh-question__question" ng-repeat="eachRow in oatc.listRows(eachCategory)" ng-hide="$index >= eachCategory.rowsToShow && eachCategory.hide || eachCategory.collapse">
