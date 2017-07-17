@@ -5,6 +5,7 @@
             <thead>
             <tr ng-repeat="eachHeaderRow in otc.tableData.headers">
                 <th ng-repeat="eachHeader in eachHeaderRow" ng-bind="eachHeader.title" colspan="{{eachHeader.colspan}}" rowspan="{{eachHeader.rowspan}}" ng-class="{'text-right': eachHeader.isCount && eachHeader.colspan <= 3}"></th>
+                <th ng-if="otc.tableView != 'number_of_deaths'" ng-bind="eachHeader.title" colspan="{{eachHeader.colspan}}" rowspan="{{eachHeader.rowspan}}" ng-class="{'text-right': eachHeader.isCount && eachHeader.colspan <= 3}"></th>
             </tr>
             </thead>
         </table>
