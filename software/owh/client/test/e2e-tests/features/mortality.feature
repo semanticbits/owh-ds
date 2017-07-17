@@ -274,7 +274,7 @@ Scenario Outline: Non applicable filters disabled in cude and age adjusted rate
   Examples:
     | showMeFilter              |   filterOptions |
     |  "Crude Death Rates"        | "Autopsy,Place of Death,Weekday,Month,Multiple Causes of Death" |
-    |  "Age Adjusted Death Rates" | "Age Groups,Autopsy,Place of Death,Weekday,Month,Multiple Causes of Death" |
+    |  "Age Adjusted Death Rates" | "Age Groups,Autopsy,Place of Death,Weekday,Month" |
 
 Scenario: Group by 'State' in age adjusted rate
     When I update criteria in filter options with off "Sex"
