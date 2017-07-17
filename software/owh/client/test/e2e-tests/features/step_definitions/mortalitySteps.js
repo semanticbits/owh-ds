@@ -1046,12 +1046,12 @@ var mortalityStepDefinitionsWrapper = function () {
                 expect(data).to.contains('295 (46.8%)');
             });
 
-            mortalityPage.getTableRowDataCells(2).then(function (elements) {
+            mortalityPage.getTableRowDataCells(5).then(function (elements) {
                 expect(elements[0].getText()).to.eventually.equal('Intestinal infectious diseases(A00-A09)');
-                mortalityPage.getTableCellData(2,1).then(function(data){
+                mortalityPage.getTableCellData(5,1).then(function(data){
                     expect(data).to.contains('American Indian or Alaska Native');
                 });
-                mortalityPage.getTableCellData(2,2).then(function(data){
+                mortalityPage.getTableCellData(5,2).then(function(data){
                     expect(data).to.contains('38 (55.9%)');
                 });
             });
