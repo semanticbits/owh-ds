@@ -18,6 +18,8 @@ var census_type="census";
 var census_rates_type="census_rates";
 var infant_mortality_index = "owh_infant_mortality";
 var infant_mortality_type = "infant_mortality";
+var cancer_incident_index = "owh_cancer_incident";
+var cancer_type = "cancer_incident";
 
 //@TODO to work with my local ES DB I changed mapping name to 'queryResults1', revert before check in to 'queryResults'
 var _queryIndex = "owh_querycache";
@@ -468,6 +470,16 @@ ElasticClient.prototype.getCountForYearByFilter = function (year, filter, option
         logger.error('Failed to get count for ', filter, ' ', error);
         return error;
     });
+};
+
+ElasticClient.prototype.aggregateCancerData = function (query) {
+    var deferred = Q.defer();
+    this.executeESQuery(cancer_incident_index, cancer_type, query[0]).then(function (resp) {
+        deferred.resolve(searchUtils.populateDataWithMappings(resp, 'cancer_incident'));
+    }).catch(function (error) {
+        deferred.reject(error)
+    });
+    return deferred.promise;
 };
 
 module.exports = ElasticClient;
