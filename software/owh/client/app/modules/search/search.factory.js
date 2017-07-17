@@ -31,7 +31,8 @@
             getMixedTable: getMixedTable,
             setFilterGroupBy: setFilterGroupBy,
             getYrbsQuestionsForTopic: getYrbsQuestionsForTopic,
-            getPramsQuestionsForTopics: getPramsQuestionsForTopics
+            getQuestionsByTopics: getQuestionsByTopics,
+            getQuestionsByDataset: getQuestionsByDataset
 
         };
         return service;
@@ -82,12 +83,14 @@
                 var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question')
                 questionFilter.questions = getYrbsQuestionsForTopic(tableView);
             }
-            else if (primaryFilter.key === 'prams') {
+            else if (primaryFilter.key === 'prams' ||
+                primaryFilter.key === 'brfss') {
                 primaryFilter.data = response.data.resultData.table;
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 tableData.headers[0].splice(1, 0, {colspan: 1, rowspan: tableData.headers.length, title: "Response", helpText: $filter('translate')('label.help.text.prams.response')});
                 primaryFilter.headers = buildQueryForYRBS(primaryFilter, true).headers;
-                tableData.data = categorizeQuestions(tableData.data, $rootScope.pramsQuestions);
+                var questions = getQuestionsByDataset(primaryFilter.key);
+                tableData.data = categorizeQuestions(tableData.data, questions);
                 primaryFilter.showBasicSearchSideMenu = response.data.queryJSON.showBasicSearchSideMenu;
                 primaryFilter.runOnFilterChange = response.data.queryJSON.runOnFilterChange;
                 if(response.data.queryJSON) {
@@ -96,7 +99,7 @@
                 //update questions based on topics
                 var topics = groupOptions[tableView].topic;
                 var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question')
-                questionFilter.questions = getPramsQuestionsForTopics(topics);
+                questionFilter.questions = getQuestionsByTopics(topics, questions);
             }
             else if (primaryFilter.key === 'bridge_race') {
                 primaryFilter.data = response.data.resultData.nested.table;
@@ -149,13 +152,26 @@
          * Update prams questions based on topics
          * @param topics
          */
-        function getPramsQuestionsForTopics(topics) {
+        function getQuestionsByTopics(topics, questionList) {
             var questions = [];
             angular.forEach(topics, function (topic) {
-                var ques = utilService.findByKeyAndValue($rootScope.pramsQuestions, 'id', topic);
+                var ques = utilService.findByKeyAndValue(questionList, 'id', topic);
                 questions.push(ques);
             });
             return questions;
+        }
+
+        /**
+         * Get the questions based on current data-set
+         * @param dataset -> name of data-set
+         */
+        function getQuestionsByDataset(dataset) {
+            if (dataset === 'prams') {
+                return $rootScope.pramsQuestions
+            } else if (dataset === 'brfss') {
+                return $rootScope.brfsQuestions
+            }
+            return [];
         }
 
         /**
@@ -207,7 +223,8 @@
         function getMixedTable(selectedFilter, groupOptions, tableView){
             var file = selectedFilter.data ? selectedFilter.data : {};
 
-            if(selectedFilter.key === 'prams' || selectedFilter.key == 'mental_health') {
+            if(selectedFilter.key === 'prams' || selectedFilter.key === 'brfss'
+                || selectedFilter.key == 'mental_health') {
                 var questions = [];
                 angular.forEach(file.question, function(question) {
                     angular.forEach(question, function(response, key) {
@@ -412,11 +429,17 @@
             return deferred.promise;
         }
 
+        function searchBRFSResults( primaryFilter, queryID ) {
+            var deferred = $q.defer();
+            queryYRBSAPI(primaryFilter, queryID ).then(function(response){
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+        }
+
         //Query YRBS API
         function queryYRBSAPI( primaryFilter, queryID ) {
             var deferred = $q.defer();
-            var apiQuery = buildQueryForYRBS(primaryFilter, true);
-            var headers = apiQuery.headers;
             SearchService.searchResults(primaryFilter, queryID).then(function(response) {
                 deferred.resolve(response);
             });
@@ -1744,6 +1767,9 @@
             filters.stdFilters = filterUtils.getSTDDataFilters();
             filters.tbFilters = filterUtils.getTBDataFilters();
             filters.aidsFilters = filterUtils.getAIDSFilters();
+            filters.brfsFilters = filterUtils.getBRFSSFilters();
+
+            filters.brfsTopicOptions = filterUtils.getBrfsTopics();
 
             filters.pramsTopicOptions = [
                 {"key": "cat_45", "title": "Delivery Method"},
@@ -2587,6 +2613,76 @@
                                 {
                                     filterGroup: false, collapse: false, allowGrouping: false,
                                     filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'smoked_last')
+                                }
+                            ]
+
+                        }
+                    ]
+                },
+                {
+                    key: 'brfss', title: 'label.brfss.title', primary: true, value:[],
+                    header:"Behavioral Risk Factor Surveillance System",
+                    searchResults: searchPRAMSResults, dontShowInlineCharting: true,
+                    additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total',
+                    tableView:'alcohol_consumption',  chartAxisLabel:'Percentage',
+                    showBasicSearchSideMenu: true, runOnFilterChange: true,
+                    allFilters: filters.brfsFilters,
+                    sideFilters:[
+                        {
+
+                            sideFilters: [
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: false,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'topic')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'year')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'state')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'question')
+                                }
+                            ]
+                        },
+                        {
+                            category: 'Breakout',
+                            exclusive: true,
+                            sideFilters: [
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'sex')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'race')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'age_group')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'education')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'income')
                                 }
                             ]
 

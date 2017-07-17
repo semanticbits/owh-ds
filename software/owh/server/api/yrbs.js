@@ -5,6 +5,7 @@ var request = require('request');
 var searchUtils = require('../api/utils');
 var cahcedQuestions = null;
 var cachedPramsQuestions = null;
+var cachedBRFSQuestions = null;
 function yrbs() {
 }
 
@@ -75,7 +76,8 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
     }
 
 
-    // Grouping needs to be always in the following order Sex (sex), Grade (grade), Race (race) and  Year (year), state (sitecode)
+    // Grouping needs to be always in the following order Sex (sex), Grade (grade),
+    // Race (race) and  Year (year), state (sitecode)
     var sortedKeys = [];
     if(aggrsKeys.indexOf('sex') >= 0){
         sortedKeys.push('sex');
@@ -126,8 +128,11 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
                     qry += 'd=yrbss&' // yrbs dataset
                 } else if(apiQuery.searchFor === 'prams') {
                     qry += 'd=prams&' // yrbs dataset
+                } else if(apiQuery.searchFor === 'brfss') {
+                    qry += 'd=brfss&' // yrbs dataset
                 }
-                if(apiQuery.yrbsBasic || apiQuery.searchFor === 'prams'){
+                if(apiQuery.yrbsBasic || apiQuery.searchFor === 'prams'
+                    || apiQuery.searchFor === 'brfss'){
                     qry +='s=1&';
                 }
                 qry += 'q=' + selectedQs[i]; // Question param
@@ -355,13 +360,13 @@ yrbs.prototype.getYRBSQuestionsTree = function () {
  * Get questions for PRAMS
  * @returns {*\promise}
  */
-yrbs.prototype.getPramsQuestionsTree = function () {
+    yrbs.prototype.getPramsQuestionsTree = function () {
     var deferred = Q.defer();
     if(cachedPramsQuestions) {
         logger.info("Returning cached PRAMS questions");
         deferred.resolve(cachedPramsQuestions);
     } else {
-        invokeYRBS(config.yrbs.questionsUrl + '/v2?d=prams').then(function(response) {
+        invokeYRBS(config.yrbs.questionsUrl + '?d=prams').then(function(response) {
             logger.info("Getting PRAMS questions from YRBS service");
             var data = prepareQuestionTree(response.questions, true);
             // Cache the result only if it is valid
@@ -369,6 +374,29 @@ yrbs.prototype.getPramsQuestionsTree = function () {
                 cachedPramsQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
             }
             deferred.resolve(cachedPramsQuestions);
+        });
+    }
+    return deferred.promise;
+};
+
+/**
+ * Get questions for BRFS
+ * @returns {*\promise}
+ */
+yrbs.prototype.getBRFSQuestionsTree = function () {
+    var deferred = Q.defer();
+    if(cachedBRFSQuestions) {
+        logger.info("Returning cached BRFS questions");
+        deferred.resolve(cachedBRFSQuestions);
+    } else {
+        invokeYRBS(config.yrbs.questionsUrl + '?d=brfss').then(function(response) {
+            logger.info("Getting BRFS questions from stats service");
+            var data = prepareQuestionTree(response.questions, true);
+            // Cache the result only if it is valid
+            if (data.questionsList.length > 0) {
+                cachedBRFSQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
+            }
+            deferred.resolve(cachedBRFSQuestions);
         });
     }
     return deferred.promise;
@@ -400,9 +428,6 @@ function prepareQuestionTree(questions,  prams) {
     for (var qKey in questions) {
         var quesObj = questions[qKey];
         var qCategory = quesObj.topic;
-        if(prams) {
-            qCategory = quesObj.subtopic;
-        }
         if (qCategory && qCategoryMap[qCategory] == undefined) {
             qCategoryMap[qCategory] = {id: 'cat_' + catCount, text: qCategory, children: []};
             catCount = catCount + 1;

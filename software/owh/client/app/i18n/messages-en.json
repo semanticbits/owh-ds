@@ -309,6 +309,18 @@
   "label.prams.filter.smoked_before": "Smoked 3 months before pregnancy",
   "label.prams.filter.smoked_last": "Smoked last 3 months of pregnancy",
 
+  "label.brfss.title": "Behavioral Risk Factor Surveillance System",
+  "label.brfss.select.question": "Select Questions",
+  "label.brfss.update.question": "Update Questions",
+  "label.brfss.filter.question": "Question",
+  "label.brfss.filter.race_ethnicity": "Race/Ethnicity",
+  "label.brfss.filter.state": "State",
+  "label.brfss.filter.topic": "Topic",
+  "label.filter.age_group": "Age group",
+  "label.filter.education.attained": "Education Attained",
+  "label.filter.household.income": "Household Income",
+  "label.filter.variance": "Variance",
+
   "label.help.text.prams.class" : "This field indicates that the Class by which the system indexes its variables for selection as the outcome variable in requested analyses.",
   "label.help.text.prams.topic" : "Topics addressed in the PRAMS core questionnaire include barriers to and content of prenatal care, obstetric history, maternal use of alcohol and cigarettes, physical abuse, contraception, economic status, maternal stress, and early infant development and health status.",
   "label.help.text.prams.year" : "This field indicates the Year for which PRAMS data is available.",

@@ -448,7 +448,7 @@ function buildAPIQuery(primaryFilter) {
             }
         }
     });
-    if (primaryFilter.key === 'prams') {
+    if (primaryFilter.key === 'prams' || primaryFilter.key === 'brfss') {
         getPramsQueryForAllYearsAndQuestions(primaryFilter, apiQuery)
     }
     apiQuery.aggregations.nested.table = rowAggregations.concat(columnAggregations);

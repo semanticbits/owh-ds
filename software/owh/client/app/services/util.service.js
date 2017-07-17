@@ -438,8 +438,8 @@
                 var eachHeaderData = data[eachHeader.key];
                 angular.forEach(eachHeader.autoCompleteOptions, function(matchedOption, index) {
 
-                    var key = (countKey === 'mental_health' || countKey === 'prams')?matchedOption.qkey:matchedOption.key;
-                    if(countKey === 'prams' || countKey === 'mental_health') {
+                    var key = (countKey === 'mental_health' || countKey === 'prams' || countKey === 'brfss')?matchedOption.qkey:matchedOption.key;
+                    if(countKey === 'prams' || countKey === 'brfss' || countKey === 'mental_health') {
                         var eachData = findAllByKeyAndValue(eachHeaderData, 'name', key);
                         if(eachData.length === 0) {
                             return;
