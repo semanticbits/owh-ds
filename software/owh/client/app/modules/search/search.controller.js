@@ -166,7 +166,7 @@
         //add availablefilter for birth_rates
         sc.availableFilters = {
             'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'state', 'ucd-chapter-10'],
-            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state', 'ucd-chapter-10'],
+            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state', 'ucd-chapter-10', 'mcd-chapter-10'],
             'birth_rates': ['current_year', 'race', 'state'],
             'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval', 'state']
         };
@@ -575,7 +575,8 @@
         });
 
         /*Show expanded graphs with whole set of features*/
-        function showExpandedGraph(chartData, tableView) {
+        function showExpandedGraph(chartData) {
+            var tableView = sc.filters.selectedPrimaryFilter.chartView || sc.filters.selectedPrimaryFilter.tableView;
             chartUtilService.showExpandedGraph([chartData], tableView);
         }
 
@@ -623,21 +624,12 @@
          * To change Visualizations data based on selected view.
          * @param tableView
          */
-        function onChartViewChange(tableView, key) {
-            if(tableView === key) {
-                sc.filters.selectedPrimaryFilter.tableView = 'disease_rate';
-                sc.filters.selectedPrimaryFilter.chartAxisLabel = 'Rates';
-                sc.filters.selectedPrimaryFilter.defaultChartView = 'rate';
-            }
-            /**
-             * 'disease_rate' is a common tableview for STD, TB and HIV
-             */
-            else if(tableView === 'disease_rate') {
-                sc.filters.selectedPrimaryFilter.tableView = key;
-                sc.filters.selectedPrimaryFilter.chartAxisLabel = 'Cases';
-                sc.filters.selectedPrimaryFilter.defaultChartView = 'cases';
-            }
-            sc.filters.selectedPrimaryFilter.chartData = searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
+        function onChartViewChange(chartView) {
+            var selectedPrimaryFilter = sc.filters.selectedPrimaryFilter;
+            var chartOption = utilService.findByKeyAndValue(selectedPrimaryFilter.chartViewOptions, 'key', chartView);
+            selectedPrimaryFilter.chartAxisLabel = chartOption.axisLabel;
+            selectedPrimaryFilter.chartView = chartOption.key;
+            selectedPrimaryFilter.chartData = searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
         }
     }
 }());
