@@ -12,7 +12,6 @@ var merge = require('merge');
  * @param countKey
  */
 function addMissingFilterOptions(filter, aggResults, countKey) {
-    //var aggregationObject = {};
     function updateMissingOptions(eachOption) {
         var isOptionAvailable = false;
         aggResults.forEach(function (eachAggOption) {
