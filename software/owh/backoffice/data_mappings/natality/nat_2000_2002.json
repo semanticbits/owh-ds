@@ -92,7 +92,7 @@
       }
     },
     {
-      "column": "lmp_gestation_recode10",
+      "column": "gestational_age_r10",
       "type": "map",
       "start": 185,
       "stop": 186,
