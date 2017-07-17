@@ -1038,21 +1038,21 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^I see data in data table grouped by Underlying Cause of Death and Race$/, function (next) {
         mortalityPage.getTableRowDataCells(0).then(function (elements) {
-            expect(elements[0].getText()).to.eventually.equal('4-Aminophenol derivatives (Y45.5)');
+            expect(elements[0].getText()).to.eventually.equal('Certain infectious and parasitic diseases(A00-B99)');
             mortalityPage.getTableCellData(0,1).then(function(data){
-                expect(data).to.contains('White');
+                expect(data).to.contains('American Indian or Alaska Native');
             });
             mortalityPage.getTableCellData(0,2).then(function(data){
-                expect(data).to.contains('1 (100.0%)');
+                expect(data).to.contains('295 (46.8%)');
             });
 
             mortalityPage.getTableRowDataCells(2).then(function (elements) {
-                expect(elements[0].getText()).to.eventually.equal('Abdomen - Malignant neoplasms (C76.2)');
+                expect(elements[0].getText()).to.eventually.equal('Intestinal infectious diseases(A00-A09)');
                 mortalityPage.getTableCellData(2,1).then(function(data){
                     expect(data).to.contains('American Indian or Alaska Native');
                 });
                 mortalityPage.getTableCellData(2,2).then(function(data){
-                    expect(data).to.contains('3 (100.0%)');
+                    expect(data).to.contains('38 (55.9%)');
                 });
             });
         }).then(next);

@@ -26,7 +26,7 @@ class ICDETL (ETL):
         if (addToTree):
             self.conditiontree.append(record)
         self.conditionhierarchy[record['id']] = record['path']
-        self.conditionlist.append({'id':record['id'], 'text':record['text']})
+        self.conditionlist.append({'key':record['id'], 'title':record['text']})
 
     def perform_etl(self):
         """Perform the ICD10 ETL"""
