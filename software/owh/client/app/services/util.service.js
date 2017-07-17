@@ -581,10 +581,7 @@
                 colspan: colspan - 1,
                 isBold: true
             });
-
             var total = data[countKey];
-
-
             var cell = {
                 title: $filter('number')(total),
                 count: total,
@@ -594,7 +591,6 @@
                 colspan: 1,
                 isBold: true
             }
-
             if(secondaryCountKeys) {
                 angular.forEach(secondaryCountKeys, function(secondaryCountKey) {
                     var secondaryCount = data[secondaryCountKey];
