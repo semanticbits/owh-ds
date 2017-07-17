@@ -990,15 +990,15 @@ var mortalityStepDefinitionsWrapper = function () {
             expect(elements[0].getText()).to.eventually.equal('Non-Hispanic');
             expect(elements[1].getText()).to.eventually.equal('American Indian or Alaska Native');
             expect(elements[2].getText()).to.eventually.contains('Age Adjusted Death Rate');
-            expect(elements[2].getText()).to.eventually.contains('3.4');
-            expect(elements[3].getText()).to.eventually.contains('3.6');
-            expect(elements[4].getText()).to.eventually.contains('3.5');
+            expect(elements[2].getText()).to.eventually.contains('22.4');
+            expect(elements[3].getText()).to.eventually.contains('28.1');
+            expect(elements[4].getText()).to.eventually.contains('25.1');
         });
         mortalityPage.getTableRowDataCells(1).then(function (elements) {
             expect(elements[0].getText()).to.eventually.equal('Asian or Pacific Islander');
-            expect(elements[1].getText()).to.eventually.contains('2.7');
-            expect(elements[2].getText()).to.eventually.contains('3.2');
-            expect(elements[3].getText()).to.eventually.contains('3.0');
+            expect(elements[1].getText()).to.eventually.contains('8.0');
+            expect(elements[2].getText()).to.eventually.contains('12.4');
+            expect(elements[3].getText()).to.eventually.contains('9.9');
         }).then(next);
     });
 
