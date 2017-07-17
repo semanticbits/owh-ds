@@ -344,14 +344,14 @@ Scenario: Group by 'State' in age adjusted rate
     And I select State "CT"
     Then the rates, deaths and population for "Female" "Asian or Pacific Islander" in 'Death Rates' view are "153.8", "170" and "110,561"
 
-  Scenario: Filtering on State- Rate
+  Scenario: Row grouping on State filter in Death Rates
     Given I am on search page
     When I choose the option "Death Rates"
     And I select groupBy "Off" option for "Race" filter
     And I select groupBy "Row" option for "State" filter
     Then the rates, deaths and population for "Male" "Colorado" in 'Death Rates' view are "681.2", "18,690" and "2,743,763"
 
-  Scenario: Filtering on State- Rate
+  Scenario: Column grouping on State filter in Death Rates
     Given I am on search page
     When I choose the option "Death Rates"
     And I select groupBy "Off" option for "Sex" filter
