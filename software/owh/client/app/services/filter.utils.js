@@ -1473,7 +1473,7 @@
                 {
                     key: 'state', title: 'label.brfss.filter.state',
                     queryKey:"sitecode",primary: false, value: [],
-                    groupBy: 'column', filterType: 'radio',
+                    groupBy: 'column', filterType: 'checkbox',
                     autoCompleteOptions: stateOptions,
                     doNotShowAll: false, helpText: ""
                 },

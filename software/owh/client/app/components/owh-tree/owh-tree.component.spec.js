@@ -27,6 +27,7 @@ describe('owhTree component: ', function() {
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 1111111111111111}});
         $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
 
     });
 

@@ -40,6 +40,7 @@ describe('utilService', function(){
         $httpBackend.whenGET('/getFBAppID').respond({});
         $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('app/modules/home/home.html').respond({data: { }});
     }));
 

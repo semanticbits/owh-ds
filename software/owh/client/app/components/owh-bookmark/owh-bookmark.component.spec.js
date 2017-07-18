@@ -30,6 +30,7 @@ describe('bookmark component: ', function() {
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 11111}});
         $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
     });
 
 
