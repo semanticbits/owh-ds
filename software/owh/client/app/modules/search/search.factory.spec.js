@@ -38,6 +38,7 @@ describe('search factory ', function(){
         questionsTreeJson = __fixtures__['app/modules/search/fixtures/search.factory/questionsTree'];
         $httpBackend.whenGET('/yrbsQuestionsTree').respond(questionsTreeJson);
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
         $rootScope.questionsList = questionsTreeJson.questionsList;
         filters = searchFactory.getAllFilters();
         filters.primaryFilters = utils.findAllByKeyAndValue(filters.search, 'primary', true);
