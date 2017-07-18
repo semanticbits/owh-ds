@@ -588,8 +588,8 @@ describe("Elastic Search", function () {
         new elasticSearch().aggregateInfantMortalityData(query).then(function (resp) {
             var  data = resp.data.simple;
             expect(data[0].name).equal('American Indian / Alaskan Native');
-            expect(data[0].infant_mortality).eqal(340);
-            expect(data[0].pop).eqal(44928);
+            expect(data[0].infant_mortality).equal(340);
+            expect(data[0].pop).equal(44928);
             var  nestedData = data[0].sex;
             expect(nestedData[0].name).equal('Female');
             expect(nestedData[0].infant_mortality).equal(146);
@@ -598,8 +598,8 @@ describe("Elastic Search", function () {
             expect(nestedData[1].infant_mortality).equal(194);
             expect(nestedData[1].pop).equal(22808);
             expect(data[1].name).equal('Asian / Pacific Islander');
-            expect(data[1].infant_mortality).eqal(1080);
-            expect(data[1].pop).eqal(282723);
+            expect(data[1].infant_mortality).equal(1080);
+            expect(data[1].pop).equal(282723);
             done();
         })
     });
@@ -612,6 +612,42 @@ describe("Elastic Search", function () {
             expect(simple.race[0].infant_mortality).equal(14821);
             expect(simple.sex[0].name).equal('Male');
             expect(simple.sex[0].infant_mortality).equal(12799);
+            done();
+        })
+    });
+
+    it("Check aggregate infant mortality data with birth query - selected 'All' option and data not available for few options", function (done){
+        //user selected year '2000', state 'AK' and Race on 'Row' and 'Sex' on 'Column'
+        var query = [{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"year_of_death":"2000"}}]}},{"bool":{"should":[{"term":{"state":"AK"}}]}}]}}}}},{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2000"}}]}},{"bool":{"should":[{"term":{"state":"AK"}}]}}]}}}}},{"size":0,"aggregations":{"group_maps_0_states":{"terms":{"field":"state","size":0},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"year_of_death":"2000"}}]}}]}}}}}];
+        var allSelectedOptions = {"sex":{"options":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"selectedValues":[]},"race":{"options":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Asian or Pacific Islander","title":"Asian or Pacific Islander","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}],"selectedValues":[]}};
+        new elasticSearch().aggregateInfantMortalityData(query, false, allSelectedOptions).then(function (resp) {
+            var  data = resp.data.nested.table.race;
+            //Black -> Female should have infant_mortality value zero
+            expect(data[2].name).equal('Black');
+            expect(data[2].infant_mortality).equal(1);
+            expect(data[2].pop).equal(462);
+            var  nestedData2 = data[2].sex;
+            expect(nestedData2[0].name).equal('Female');
+            expect(nestedData2[0].infant_mortality).equal(0);
+            expect(nestedData2[0].pop).equal(215);
+            expect(nestedData2[1].name).equal('Male');
+            expect(nestedData2[1].infant_mortality).equal(1);
+            expect(nestedData2[1].pop).equal(247);
+            done();
+        })
+    });
+
+    it("Check aggregate infant mortality data with birth query - selected specific option and data not available for selected options", function (done){
+        //user selected year '2000', state 'AK' and Race on 'Row' and 'Sex' on 'Column'
+        var query = [{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"sex":"Female"}}]}},{"bool":{"should":[{"term":{"year_of_death":"2000"}}]}},{"bool":{"should":[{"term":{"state":"AK"}}]}}]}}}}},{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"sex":"Female"}}]}},{"bool":{"should":[{"term":{"current_year":"2000"}}]}},{"bool":{"should":[{"term":{"state":"AK"}}]}}]}}}}},{"size":0,"aggregations":{"group_maps_0_states":{"terms":{"field":"state","size":0},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"sex":"Female"}}]}},{"bool":{"should":[{"term":{"year_of_death":"2000"}}]}}]}}}}}];
+        var allSelectedOptions = {"sex":{"options":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"selectedValues":["Female"]},"race":{"options":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Asian or Pacific Islander","title":"Asian or Pacific Islander","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}],"selectedValues":[]}};
+        new elasticSearch().aggregateInfantMortalityData(query, false, allSelectedOptions).then(function (resp) {
+            var  data = resp.data.nested.table.race;
+            //Black race should not be available in results
+            expect(data.length).equal(3);
+            expect(data[0].name).equal('American Indian or Alaska Native');
+            expect(data[1].name).equal('Asian or Pacific Islander');
+            expect(data[2].name).equal('White');
             done();
         })
     });
