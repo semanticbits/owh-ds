@@ -10,7 +10,8 @@
                 tableData: '<',
                 showPercentage: '<',
                 tableView: '@',
-                rowspanThreshold: '<'
+                rowspanThreshold: '<',
+                primaryKey: '<'
             }
         });
     OWHTableController.$inject = ['$scope', '$rootScope', '$filter', '$timeout', '$translate'];
