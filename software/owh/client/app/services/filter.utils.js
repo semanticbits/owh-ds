@@ -1370,8 +1370,8 @@
                 {"key": "EDUCA4", "title": "College graduate"}
             ];
             var genderOptions = [
-                {"key": "SEX1", "title": "Male"},
-                {"key": "SEX1", "title": "Female"}
+                {"key": "Male", "title": "Male"},
+                {"key": "Female", "title": "Female"}
             ];
             var incomeOptions = [
                 {"key": "INCOME1", "title": "Less than $15,000"},
@@ -1382,14 +1382,14 @@
             ];
 
             var raceOptions = [
-                {"key": "RACE1", "title": "White, non-Hispanic"},
-                {"key": "RACE2", "title": "Black, non-Hispanic"},
-                {"key": "RACE03", "title": "American Indian or Alaskan Native, non-Hispanic"},
-                {"key": "RACE04", "title": "Asian, non-Hispanic"},
-                {"key": "RACE05", "title": "Native Hawaiian or other Pacific Islander, non-Hispanic"},
-                {"key": "RACE4", "title": "Other, non-Hispanic"},
-                {"key": "RACE5", "title": "Multiracial, non-Hispanic"},
-                {"key": "RACE3", "title": "Hispanic"}
+                {"key": "White, non-Hispanic", "title": "White, non-Hispanic"},
+                {"key": "Black, non-Hispanic", "title": "Black, non-Hispanic"},
+                {"key": "American Indian or Alaskan Native, non-Hispanic", "title": "American Indian or Alaskan Native, non-Hispanic"},
+                {"key": "Asian, non-Hispanic", "title": "Asian, non-Hispanic"},
+                {"key": "Native Hawaiian or other Pacific Islander, non-Hispanic", "title": "Native Hawaiian or other Pacific Islander, non-Hispanic"},
+                {"key": "Other, non-Hispanic", "title": "Other, non-Hispanic"},
+                {"key": "Multiracial, non-Hispanic", "title": "Multiracial, non-Hispanic"},
+                {"key": "Hispanic", "title": "Hispanic"}
             ];
 
             var stateOptions = [
@@ -1456,12 +1456,12 @@
                     queryKey:"year", primary: false,
                     value: ['2015'], groupBy: false,
                     filterType: 'radio', autoCompleteOptions: yearOptions,
-                    doNotShowAll: false, helpText: ""
+                    doNotShowAll: true, helpText: ""
                 },
                 {
                     key: 'sex',
                     title: 'label.filter.gender',
-                    queryKey: "sex",
+                    queryKey: "gender",
                     primary: false,
                     value: [],
                     groupBy: false,

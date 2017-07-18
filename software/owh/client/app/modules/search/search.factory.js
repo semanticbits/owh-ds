@@ -2621,7 +2621,6 @@
                 },
                 {
                     key: 'brfss', title: 'label.brfss.title', primary: true, value:[],
-                    header:"Behavioral Risk Factor Surveillance System",
                     searchResults: searchPRAMSResults, dontShowInlineCharting: true,
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total',
                     tableView:'alcohol_consumption',  chartAxisLabel:'Percentage',
