@@ -851,18 +851,6 @@
         }
         function getInfantMortalityDataFilters () {
 
-            var im_raceOptions = [
-                { key: "American Indian / Alaskan Native", title: "American Indian / Alaskan Native" },
-                { key: "Asian / Pacific Islander", title: "Asian / Pacific Islander" },
-                { key: "Black", title: "Black or African American" },
-                { key: "White", title: "White" },
-                { key: "Chinese", title: "Chinese" },
-                { key: "Japanese", title: "Japanese" },
-                { key: "Hawaiian", title: "Hawaiian" },
-                { key: "Filipino", title: "Filipino" },
-                { key: "Other Asian", title: "Other Asian"}
-            ];
-
             var infantDeathAge = [
                 { key: "Under 1 hour", title: "Under 1 hour" },
                 { key: "1-23 hours", title: "1-23 hours" },
@@ -951,7 +939,7 @@
                 // Maternal Characteristics
                 {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'row', filterType: "checkbox",
-                    autoCompleteOptions: im_raceOptions, helpText:"label.help.text.race"},
+                    autoCompleteOptions: raceOptions, helpText:"label.help.text.race"},
 
                 {key: 'hispanic_origin', title: 'label.filter.hispanicOrigin', queryKey:"hispanic_origin",
                     primary: false, value: [], defaultGroup:'row', groupBy: false, filterType: "checkbox",

@@ -334,3 +334,26 @@ Scenario: Group by 'State' in age adjusted rate
 
     When I deselect "American Indian or Alaska Native" option in "Race" filter
     Then I see "Year: 2015 | Race: Asian or Pacific Islander" in list of applied filters
+
+  Scenario: State filter in Death Rates
+    Given I am on search page
+    When the user chooses the option 'Death Rates'
+    And user expands state filter
+    Then user clicks on "+ 48 more" more link for "State" filter
+    When I select State "DC"
+    And I select State "CT"
+    Then the rates, deaths and population for "Female" "Asian or Pacific Islander" in 'Death Rates' view are "153.8", "170" and "110,561"
+
+  Scenario: Row grouping on State filter in Death Rates
+    Given I am on search page
+    When I choose the option "Death Rates"
+    And I select groupBy "Off" option for "Race" filter
+    And I select groupBy "Row" option for "State" filter
+    Then the rates, deaths and population for "Male" "Colorado" in 'Death Rates' view are "681.2", "18,690" and "2,743,763"
+
+  Scenario: Column grouping on State filter in Death Rates
+    Given I am on search page
+    When I choose the option "Death Rates"
+    And I select groupBy "Off" option for "Sex" filter
+    And I select groupBy "Column" option for "State" filter
+    Then the rates, deaths and population for "Delaware" "Black or African American" in 'Death Rates' view are "664.0", "1,474" and "221,986"

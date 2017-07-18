@@ -1,8 +1,57 @@
 var Aggregation = require('../models/aggregation');
 var merge = require('merge');
 
-var populateDataWithMappings = function(resp, countKey, countQueryKey) {
-    var result = {
+/**
+ * To add missing filter option to results data
+ * ElasticSearch match query returns only available options
+ * For example if sex -> male records available then results only have 'Male' data not 'Female' data
+ * So we are adding missing 'Female' data (like this {name:'Female', countkey: 0})]
+ * countkey could be anything 'infant_mortality', 'deaths' etc..
+ * @param filter
+ * @param aggResults
+ * @param countKey
+ */
+function addMissingFilterOptions(filter, aggResults, countKey) {
+    function updateMissingOptions(eachOption) {
+        var isOptionAvailable = false;
+        aggResults.forEach(function (eachAggOption) {
+            if (eachAggOption.name === eachOption) {
+                isOptionAvailable = true;
+            }
+        });
+        //Adding missing options
+        //For example {name:'Female', countKey: 0 } or {name:'White', countKey: 0 }
+        if (!isOptionAvailable) {
+            var missingOption = {};
+            missingOption["name"] = eachOption;
+            missingOption[countKey] = 0;
+            aggResults.push(missingOption);
+        }
+    }
+
+    /**
+     * If filter options length and result options length not equal that means some options are missing
+     * Then only we will call updateMissingOptions method to add missing options
+     */
+    if (filter.options.length > 0 && aggResults.length > 0 && filter.options.length != aggResults.length) {
+        //If user selected other than 'All' option for a filter
+        if(filter.selectedValues.length > 0) {
+            //Then add missing option if it is in selectedValues
+            filter.selectedValues.forEach(function(eachSelectedOption){
+                updateMissingOptions(eachSelectedOption);
+            });
+        }
+        else {
+            //if user selected 'All' option for a filter then add all missing options
+            filter.options.forEach(function (eachOption) {
+                updateMissingOptions(eachOption.key);
+            });
+        }
+    }
+}
+
+var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelectedFilterOptions) {
+  var result = {
         data: {
             simple: {},
             nested: {
@@ -22,7 +71,7 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey) {
             if (key.indexOf('group_table_') > -1) {
                 var groupKeyRegex = /group_table_/;
                 dataKey = key.split(groupKeyRegex)[1];
-                result.data.nested.table[dataKey] = populateAggregatedData(data[key].buckets, countKey, 1, undefined, countQueryKey, groupKeyRegex);
+                result.data.nested.table[dataKey] = populateAggregatedData(data[key].buckets, countKey, 1, undefined, countQueryKey, groupKeyRegex, dataKey, allSelectedFilterOptions);
             }
             if (key.indexOf('group_chart_') > -1) {
                 var keySplits = key.split("_");
@@ -54,7 +103,7 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey) {
     return result;
 };
 
-var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQueryKey, regex) {
+var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQueryKey, regex, dataKey, allSelectedFilterOptions) {
     var result = [];
     for(var index in buckets) {
         // console.log(buckets[index]);
@@ -86,16 +135,39 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
                 //if you want to split group key by regex
                 if (regex && (regex.test('group_table_') || regex.test('group_chart_'))) {
                     aggregation[innerObjKey.split(regex)[1]] =  populateAggregatedData(buckets[index][innerObjKey].buckets,
-                        countKey, splitIndex, map, countQueryKey, regex);
+                        countKey, splitIndex, map, countQueryKey, regex, innerObjKey.split(regex)[1], allSelectedFilterOptions);
                 } else {//by default split group key by underscore and retrieve key based on index
                     //adding slice and join because some keys are delimited by underscore so need to be reconstructed
                     aggregation[innerObjKey.split("_").slice(splitIndex).join('_')] =  populateAggregatedData(buckets[index][innerObjKey].buckets, countKey, splitIndex, map, countQueryKey);
                 }
 
             }
-
             result.push(aggregation);
         }
+    }
+
+    /*
+    * To add missing filter option to results data
+    * ElasticSearch match query returns only available options
+    * For example if sex -> male records available then results only have 'Male' data not 'Female' data
+    * So we are adding missing 'Female' data (like this {name:'Female', countkey: 0})]
+    * Here we are adding missing options for 'Infant_mortality' only
+    **/
+    if(countKey == 'infant_mortality' && regex && regex.test('group_table_') && allSelectedFilterOptions && allSelectedFilterOptions[dataKey] != undefined) {
+        var hasNestedAggObject = false;
+        /**
+         * Checking if results has nested objects, if yes ignore addMissingFilterOptions call
+         * For example [{"name":"White","countKey":xx,"sex":[{"name":"Female","countKey":xx}]},{"name":"American Indian or Alaska Native","countKey":xxxx,"sex":[{..}, {..}]}...}]
+         */
+        result.forEach(function (eachAggOption) {
+            for ( var key in eachAggOption ) {
+                if (typeof eachAggOption[key] === 'object' && eachAggOption[key][0].hasOwnProperty(countKey)) {
+                    hasNestedAggObject = true;
+                    return;
+                }
+            }
+        });
+        !hasNestedAggObject && addMissingFilterOptions(allSelectedFilterOptions[dataKey], result, countKey);
     }
     return result;
 };
@@ -498,6 +570,24 @@ function mapAndGroupOptionResults (options, results) {
     });
 }
 
+/**
+ * To get all selected filter options
+ * @param q
+ * @return all filter options ex: {{'sex':['Female', 'Male']}, {'race':[......]} ... }
+ */
+function getAllSelectedFilterOptions(q, apiQuery) {
+    var allOptions = {};
+    q.value.forEach(function(eachValue){
+        //Ex: 'sex', 'race' etc..
+        allOptions[eachValue.key] = {"options": [], 'selectedValues': apiQuery[eachValue.key]?apiQuery[eachValue.key].value:[]};
+        eachValue.autoCompleteOptions.forEach(function(eachOption){
+            //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
+            allOptions[eachValue.key].options.push(eachOption);
+        });
+    });
+    return allOptions;
+}
+
 module.exports.populateDataWithMappings = populateDataWithMappings;
 module.exports.populateYRBSData = populateYRBSData;
 module.exports.mergeAgeAdjustedRates = mergeAgeAdjustedRates;
@@ -507,3 +597,4 @@ module.exports.getAllOptionValues = getAllOptionValues;
 module.exports.getSelectedGroupByOptions = getSelectedGroupByOptions;
 module.exports.getYearFilter = getYearFilter;
 module.exports.mapAndGroupOptionResults = mapAndGroupOptionResults;
+module.exports.getAllSelectedFilterOptions = getAllSelectedFilterOptions;
