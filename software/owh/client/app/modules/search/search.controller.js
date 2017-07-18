@@ -326,12 +326,14 @@
 
         var mortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'deaths');
         var bridgeRaceFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'bridge_race');
+        var infantMortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'infant_mortality');
         var stdFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'std');
         var tbFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'tb');
         var aidsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'aids');
 
         angular.extend(mortalityFilter.mapData, mapOptions);
         angular.extend(bridgeRaceFilter.mapData, mapOptions);
+        angular.extend(infantMortalityFilter.mapData, mapOptions)
         angular.extend(stdFilter.mapData, mapOptions);
         angular.extend(tbFilter.mapData, mapOptions);
         angular.extend(aidsFilter.mapData, mapOptions);

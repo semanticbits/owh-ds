@@ -119,6 +119,7 @@
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
+                mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
             else if (response.data.queryJSON.key == 'std' ||
                 response.data.queryJSON.key == 'tb' || response.data.queryJSON.key === 'aids') {
@@ -2595,7 +2596,7 @@
                 },
                 {
                     key: 'infant_mortality', title: 'label.filter.infant_mortality', primary: true, value: [], header: 'Infant Mortality',
-                    allFilters: filters.infantMortalityFilters, searchResults: searchInfantMortality, showMap: false,
+                    allFilters: filters.infantMortalityFilters, searchResults: searchInfantMortality, showMap: true, mapData:{},
                     chartAxisLabel: 'Number of Infant Deaths', countLabel: 'Number of Infant Deaths', tableView: 'number_of_infant_deaths',
                     runOnFilterChange: true, applySuppression: true, chartView: 'death',
                     chartViewOptions:filters.deathsRateGroupOptions,
