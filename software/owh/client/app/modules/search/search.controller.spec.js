@@ -27,6 +27,7 @@ describe("Search controller: ", function () {
             $httpBackend.whenGET('/yrbsQuestionsTree').respond({});
             $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
             $httpBackend.whenGET('app/modules/home/home.html').respond({});
+            $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
             searchResultsResponse = __fixtures__['app/modules/search/fixtures/search.factory/searchResultsResponse'];
             pramsFilters = __fixtures__['app/modules/search/fixtures/search.controller/pramsFilters'];
             $searchFactory = searchFactory;
@@ -677,13 +678,11 @@ describe("Search controller: ", function () {
         filters.selectedPrimaryFilter = filters.search[6];
         filters.primaryFilters = utilService.findAllByKeyAndValue(searchController.filters.search, 'primary', true);
         spyOn(searchFactory, 'prepareChartData').and.returnValue(deferred.promise);
-        searchController.onChartViewChange('std', filters.selectedPrimaryFilter.key);
-        expect(searchController.filters.selectedPrimaryFilter.tableView).toEqual('disease_rate');
+        searchController.onChartViewChange('disease_rate');
         expect(searchController.filters.selectedPrimaryFilter.chartAxisLabel).toEqual('Rates');
-        expect(searchController.filters.selectedPrimaryFilter.defaultChartView).toEqual('rate');
-        searchController.onChartViewChange('disease_rate', filters.selectedPrimaryFilter.key);
-        expect(searchController.filters.selectedPrimaryFilter.tableView).toEqual('std');
+        expect(searchController.filters.selectedPrimaryFilter.chartView).toEqual('disease_rate');
+        searchController.onChartViewChange('cases');
         expect(searchController.filters.selectedPrimaryFilter.chartAxisLabel).toEqual('Cases');
-        expect(searchController.filters.selectedPrimaryFilter.defaultChartView).toEqual('cases');
+        expect(searchController.filters.selectedPrimaryFilter.chartView).toEqual('cases');
     }));
 });

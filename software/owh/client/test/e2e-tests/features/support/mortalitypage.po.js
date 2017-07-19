@@ -71,6 +71,14 @@ var MortalitySearchPage = function() {
         return msp.owhTable.element(by.id('clusterize-table')).element(by.tagName('tbody')).all(by.tagName('tr')).get(rowNumber).all(by.tagName('td')).getText();
     };
 
+    msp.getTableDataByRowFilterAndColumnHeaderText = function (rowFilter, headerCellText) {
+        return msp.owhTable.element(by.tagName('table')).element(by.tagName('thead')).all(by.tagName('th')).getText().then(function (cells) {
+            var columnIndex = cells.indexOf(headerCellText);
+
+            return msp.owhTable.element(by.id('clusterize-table')).element(by.tagName('tbody')).all(by.tagName('tr')).filter(rowFilter).all(by.tagName('td')).get(columnIndex).getText();
+        });
+    };
+
     msp.getTableCellData = function(row, column) {
         return msp.owhTable.element(by.id('clusterize-table')).element(by.tagName('tbody')).all(by.tagName('tr')).get(row).all(by.tagName('td')).get(column).getText();
     };

@@ -93,6 +93,12 @@ var infantMortalityStepDefinitions = function () {
             return imp.clickOptionForFilter(filter_2, filter_2_option);
         });
     });
+
+
+    this.When(/^I click on Deaths chart view toggle button$/, function (next) {
+        element(by.cssContainingText('span', 'Deaths')).click()
+            .then(next);
+    });
 };
 
 module.exports = infantMortalityStepDefinitions;

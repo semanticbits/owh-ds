@@ -41,6 +41,7 @@ describe('utilService', function(){
         $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('app/modules/home/home.html').respond({data: { }});
+        $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
     }));
 
     it('test utils isValueNotEmpty for undefined', function () {
@@ -835,50 +836,71 @@ describe('utilService', function(){
         expect(year_2002.disabled).toBeTruthy();
     }));
 
-    it('Aids: Should disable the proper disease filters when 2000 is selected', function () {
-        var mockFilters = {};
-        mockFilters.sideFilters = [
-            {
-                filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'disease')
-            },
-            {
-                filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'current_year')
-            }
-        ];
-        utils.aidsFilterChange({ key: 'current_year', value: '2000' }, [mockFilters]);
-        expect(utils.findByKeyAndValue(mockFilters.sideFilters[0].filters.autoCompleteOptions, 'key', 'HIV diagnoses').disabled).toBeTruthy();
-        expect(utils.findByKeyAndValue(mockFilters.sideFilters[0].filters.autoCompleteOptions, 'key', 'HIV deaths').disabled).toBeTruthy();
-        expect(utils.findByKeyAndValue(mockFilters.sideFilters[0].filters.autoCompleteOptions, 'key', 'Persons living with diagnosed HIV').disabled).toBeTruthy();
-    });
+    describe('Aids Filter Change:', function () {
+        var mockFilters;
 
-    it('Aids: Should disable the proper year filters when HIV, stage 3 (AIDS) deaths is selected', function () {
-        var mockFilters = {};
-        mockFilters.sideFilters = [
-            {
-                filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'disease')
-            },
-            {
-                filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'current_year')
-            }
-        ];
-        utils.aidsFilterChange({ key: 'disease', value: 'HIV, stage 3 (AIDS) deaths' }, [mockFilters]);
-        expect(utils.findByKeyAndValue(mockFilters.sideFilters[1].filters.autoCompleteOptions, 'key', '2015').disabled).toBeTruthy();
-    });
+        beforeEach(function () {
+           mockFilters = {};
+           mockFilters.sideFilters = [
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'disease')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'current_year')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'sex')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'race')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'age_group')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'transmission')
+               }
+           ]
+        });
 
-    it('Aids: Should disable the proper year filters when HIV deaths is selected', function () {
-        var mockFilters = {};
-        mockFilters.sideFilters = [
-            {
-                filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'disease')
-            },
-            {
-                filters: utils.findByKeyAndValue(filterUtils.getAIDSFilters(), 'key', 'current_year')
-            }
-        ];
-        utils.aidsFilterChange({ key: 'disease', value: 'HIV deaths' }, [mockFilters]);
-        expect(utils.findByKeyAndValue(mockFilters.sideFilters[1].filters.autoCompleteOptions, 'key', '2015').disabled).toBeTruthy();
-        expect(utils.findByKeyAndValue(mockFilters.sideFilters[1].filters.autoCompleteOptions, 'key', '2000').disabled).toBeTruthy();
-        expect(utils.findByKeyAndValue(mockFilters.sideFilters[1].filters.autoCompleteOptions, 'key', '2005').disabled).toBeTruthy();
-        expect(utils.findByKeyAndValue(mockFilters.sideFilters[1].filters.autoCompleteOptions, 'key', '2003').disabled).toBeTruthy();
+        afterEach(function () {
+            mockFilters = null;
+        });
+
+        it('Should disable the proper disease filters when 2000 is selected', function () {
+            utils.aidsFilterChange({ key: 'current_year', value: '2000' }, [mockFilters]);
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[0].filters.autoCompleteOptions, 'key', 'HIV diagnoses').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[0].filters.autoCompleteOptions, 'key', 'HIV deaths').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[0].filters.autoCompleteOptions, 'key', 'Persons living with diagnosed HIV').disabled).toBeTruthy();
+        });
+
+        it('Should disable the proper year filters when HIV, stage 3 (AIDS) deaths is selected', function () {
+            utils.aidsFilterChange({ key: 'disease', value: 'HIV, stage 3 (AIDS) deaths' }, [mockFilters]);
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[1].filters.autoCompleteOptions, 'key', '2015').disabled).toBeTruthy();
+        });
+
+        it('Should disable the proper year filters when HIV deaths is selected', function () {
+            utils.aidsFilterChange({ key: 'disease', value: 'HIV deaths' }, [mockFilters]);
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[1].filters.autoCompleteOptions, 'key', '2015').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[1].filters.autoCompleteOptions, 'key', '2000').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[1].filters.autoCompleteOptions, 'key', '2005').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[1].filters.autoCompleteOptions, 'key', '2003').disabled).toBeTruthy();
+        });
+
+        it('Should enable all demographic filters when less than two demographic filter values are selected', function () {
+            mockFilters.sideFilters[2].filters.value = 'Female';
+            utils.aidsFilterChange(mockFilters.sideFilters[2], [mockFilters]);
+            expect(mockFilters.sideFilters[3].disabled).toBeFalsy();
+            expect(mockFilters.sideFilters[4].disabled).toBeFalsy();
+            expect(mockFilters.sideFilters[5].disabled).toBeFalsy();
+        });
+
+        it('Should disable all remaining demographic filters when two demographic filter values are selected', function () {
+            mockFilters.sideFilters[2].filters.value = 'Female';
+            mockFilters.sideFilters[3].filters.value = 'American Indian or Alaska Native';
+            utils.aidsFilterChange(mockFilters.sideFilters[3], [mockFilters]);
+            expect(mockFilters.sideFilters[4].disabled).toBeTruthy();
+            expect(mockFilters.sideFilters[5].disabled).toBeTruthy();
+        });
     });
 });

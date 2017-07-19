@@ -46,7 +46,8 @@ Feature: Natality filters
     And user sees a visualization
     Then labels "State" and "Birth Rates" are displayed on minimized visualization
     When user expand visualization
-    Then labels "State" and "Birth Rates" are displayed on expanded visualization
+    Then I should not see grouped and stacked controls on expanded visualization
+    And labels "State" and "Birth Rates" are displayed on expanded visualization
 
   Scenario: Fertility rates - Disable filters when show me filter value changes
     When I change show me dropdown option to "Fertility Rates"
@@ -61,7 +62,8 @@ Feature: Natality filters
     And user sees a visualization
     Then labels "State" and "Fertility Rates" are displayed on minimized visualization
     When user expand visualization
-    Then labels "State" and "Fertility Rates" are displayed on expanded visualization
+    Then I should not see grouped and stacked controls on expanded visualization
+    And labels "State" and "Fertility Rates" are displayed on expanded visualization
 
   Scenario: Filter Name and Location
     When I see "Mother's Age" category in the sidebar
@@ -69,6 +71,7 @@ Feature: Natality filters
 
   Scenario: 5- Year Age Group
     Then I expand "5-Year Age Groups" filter section
+    And I expand "+ 3 more" filter section
     And I should see "5-Year Age Groups" options under Mother Age category for 5-Year age group
     Then I select "Year" value "2003"
     And I un-select "Year" value "2015"
@@ -78,6 +81,7 @@ Feature: Natality filters
 
   Scenario: 1- Year Age Group
     Then I expand "1-Year Age Groups" filter section
+    And I expand "+ 27 more" filter section
     And I should see "1-Year Age Groups" options under Mother Age category for 1-Year age group
     Then I select "Year" value "2003"
     And I un-select "Year" value "2015"

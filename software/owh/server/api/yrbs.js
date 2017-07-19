@@ -48,7 +48,7 @@ yrbs.prototype.invokeYRBSService = function(apiQuery){
             }
         });
         if(apiQuery.searchFor == 'mental_health') {
-            searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexualOrientationSelected);
+            searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexualOrientationSelected, apiQuery.isChartorMapQuery);
         }
         deferred.resolve(data);
     }, function (error) {
@@ -412,7 +412,15 @@ function prepareQuestionTree(questions,  prams) {
             var question = {text:quesObj.question +"("+quesObj.description+")", id:qKey};
             qCategoryMap[qCategory].children.push(question);
             //capture all questions into questionsList
-            questionsList.push({key : quesObj.question, qkey : qKey, title : quesObj.question +"("+quesObj.description+")"});
+
+            if (quesObj.description) {
+                questionsList.push({key : quesObj.question, qkey : qKey, title : quesObj.question + "("+quesObj.description+")"});
+            }
+
+            else {
+                questionsList.push({key : quesObj.question, qkey : qKey, title : quesObj.question});
+            }
+
         } else if(prams) {
             //skip duplicate question keys
             if(questionKeys.indexOf(qKey) >= 0) {

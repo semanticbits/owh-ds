@@ -981,10 +981,12 @@
         }
 
         function aidsFilterChange (filter, categories) {
-            var yearFilter = categories[0].sideFilters.filter(function (sideFilter) {
+            var filters = categories[0].sideFilters;
+            // Year and Indicator filter restrictions
+            var yearFilter = filters.filter(function (sideFilter) {
                return sideFilter.filters.key === 'current_year';
             })[0];
-            var diseaseFilter = categories[0].sideFilters.filter(function (sideFilter) {
+            var diseaseFilter = filters.filter(function (sideFilter) {
                 return sideFilter.filters.key === 'disease';
             })[0];
             var disabledFilterCombinations = {
@@ -1012,6 +1014,34 @@
                 diseaseFilter.filters.autoCompleteOptions.forEach(function (option) {
                     option.disabled = disabledOptions && disabledOptions.indexOf(option.key) !== -1;
                 });
+            }
+
+            // Demographic filter restrictions
+            var demographicFilters = ['sex', 'race', 'age_group', 'transmission'];
+            var activeFilters = filters.reduce(function (active, filter) {
+                var restrictedFilters = !!~demographicFilters.indexOf(filter.filters.key);
+                var unrestrictedValues = !!~['Both sexes', 'All races/ethnicities', 'All age groups 13 and up', 'No stratification'].indexOf(filter.filters.value);
+                if (restrictedFilters && !unrestrictedValues) {
+                    active.push(filter.filters.key);
+                }
+                return active;
+            }, []);
+            if (activeFilters.length >= 2) {
+                // Disable remaining demographic filters
+                demographicFilters.filter(function (demoFilter) {
+                    return !~activeFilters.indexOf(demoFilter)
+                }).forEach(function (remainingFilter) {
+                    filters.filter(function (sideFilter) {
+                        return sideFilter.filters.key === remainingFilter;
+                    })[0].disabled = true;
+                })
+            } else {
+                // Enable all demographic filters
+                demographicFilters.forEach(function (demoFilter) {
+                    filters.filter(function (sideFilter) {
+                        return sideFilter.filters.key === demoFilter;
+                    })[0].disabled = false;
+                })
             }
         }
     }
