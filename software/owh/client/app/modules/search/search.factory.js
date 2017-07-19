@@ -1251,6 +1251,14 @@
                             confidenceIntervalOption
                         ]
                     }
+                ],
+                'brfss' : [
+                    {
+                        title: 'Variance',
+                        options: [
+                            confidenceIntervalOption
+                        ]
+                    }
                 ]
             };
             filters.groupOptions = [
