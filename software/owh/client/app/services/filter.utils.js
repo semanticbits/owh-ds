@@ -1332,42 +1332,42 @@
             ];
 
             var ageGroupOptions = [
-                {"key": "AGE01", "title": "Age 18-24"},
-                {"key": "AGE02", "title": "Age 25-34"},
-                {"key": "AGE03", "title": "Age 35-44"},
-                {"key": "AGE04", "title": "Age 45-54"},
-                {"key": "AGE05", "title": "Age 55-64"},
-                {"key": "AGE06", "title": "Age 40-49"},
-                {"key": "AGE07", "title": "Age 50-59"},
-                {"key": "AGE08", "title": "Age 60-64"},
-                {"key": "AGE09", "title": "Age 65+"},
-                {"key": "AGE10", "title": "Age 65-74"},
-                {"key": "AGE11", "title": "Age 75+"},
-                {"key": "AGE12", "title": "Age 21-30"},
-                {"key": "AGE13", "title": "Age 31-40"},
-                {"key": "AGE14", "title": "Age 41-50"},
-                {"key": "AGE15", "title": "Age 51-60"},
-                {"key": "AGE16", "title": "Age 61-65"},
-                {"key": "AGE17", "title": "Age 60-69"},
-                {"key": "AGE18", "title": "Age 70-74"},
-                {"key": "AGE19", "title": "Age 70-75"}
+                {"key": "18-24", "title": "Age 18-24"},
+                {"key": "25-34", "title": "Age 25-34"},
+                {"key": "35-44", "title": "Age 35-44"},
+                {"key": "45-54", "title": "Age 45-54"},
+                {"key": "55-64", "title": "Age 55-64"},
+                {"key": "40-49", "title": "Age 40-49"},
+                {"key": "50-59", "title": "Age 50-59"},
+                {"key": "60-64", "title": "Age 60-64"},
+                {"key": "65+", "title": "Age 65+"},
+                {"key": "65-74", "title": "Age 65-74"},
+                {"key": "75+", "title": "Age 75+"},
+                {"key": "21-30", "title": "Age 21-30"},
+                {"key": "31-40", "title": "Age 31-40"},
+                {"key": "41-50", "title": "Age 41-50"},
+                {"key": "51-60", "title": "Age 51-60"},
+                {"key": "61-65", "title": "Age 61-65"},
+                {"key": "60-69", "title": "Age 60-69"},
+                {"key": "70-74", "title": "Age 70-74"},
+                {"key": "70-75", "title": "Age 70-75"}
             ];
             var educationOptions = [
-                {"key": "EDUCA1", "title": "Less than H.S."},
-                {"key": "EDUCA2", "title": "H.S. or G.E.D."},
-                {"key": "EDUCA3", "title": "Some post-H.S."},
-                {"key": "EDUCA4", "title": "College graduate"}
+                {"key": "Less than H.S.", "title": "Less than H.S."},
+                {"key": "H.S. or G.E.D.", "title": "H.S. or G.E.D."},
+                {"key": "Some post-H.S.", "title": "Some post-H.S."},
+                {"key": "College graduate", "title": "College graduate"}
             ];
             var genderOptions = [
                 {"key": "Male", "title": "Male"},
                 {"key": "Female", "title": "Female"}
             ];
             var incomeOptions = [
-                {"key": "INCOME1", "title": "Less than $15,000"},
-                {"key": "INCOME2", "title": "$15,000-$24,999"},
-                {"key": "INCOME3", "title": "$25,000-$34,999"},
-                {"key": "INCOME4", "title": "$35,000-$49,999"},
-                {"key": "INCOME5", "title": "$50,000+"}
+                {"key": "Less than $15,000", "title": "Less than $15,000"},
+                {"key": "$15,000-$24,999", "title": "$15,000-$24,999"},
+                {"key": "$25,000-$34,999", "title": "$25,000-$34,999"},
+                {"key": "$35,000-$49,999", "title": "$35,000-$49,999"},
+                {"key": "$50,000+", "title": "$50,000+"}
             ];
 
             var raceOptions = [
