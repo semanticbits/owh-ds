@@ -289,8 +289,8 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
         Q.all(promises).then( function (resp) {
             var data = searchUtils.populateDataWithMappings(resp[0], 'infant_mortality', undefined, allSelectedFilterOptions);
             var mapData = searchUtils.populateDataWithMappings(resp[1], 'infant_mortality', undefined, allSelectedFilterOptions);
-            self.mergeWithCensusData(data, resp[1], 'doc_count');
             data.data.nested.maps = mapData.data.nested.maps;
+            self.mergeWithCensusData(data, resp[1], 'doc_count');
             isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');
             deferred.resolve(data);
         }, function (err) {
