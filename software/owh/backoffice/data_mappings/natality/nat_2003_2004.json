@@ -603,7 +603,7 @@
     },
     {
       "type": "map",
-      "column": "lmp_gestation_weekly",
+      "column": "gestation_weekly",
       "start": 451,
       "stop": 452,
       "field": "LMP Gestation - Detail in Weeks",
@@ -644,7 +644,7 @@
     },
     {
       "type": "range",
-      "column": "lmp_gestation_recode11",
+      "column": "gestation_recode11",
       "start": 451,
       "stop": 452,
       "field": "LMP Gestational Age Group2",
@@ -664,7 +664,7 @@
     },
     {
       "type": "map",
-      "column": "lmp_gestation_recode10",
+      "column": "gestation_recode10",
       "start": 453,
       "stop": 454,
       "field": "LMP Gestational Age Group1",

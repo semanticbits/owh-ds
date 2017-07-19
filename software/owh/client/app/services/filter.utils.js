@@ -549,6 +549,68 @@
             {"key": "Male", "title": "Male"}
         ];
 
+        var gestationalGroup1 = [
+            { key: "Under 20 weeks", title: "Under 20 weeks" },
+            { key: "20 - 27 weeks", title: "20 - 27 weeks" },
+            { key: "28 - 31 weeks", title: "28 - 31 weeks" },
+            { key: "32 - 33 weeks", title: "32 - 33 weeks" },
+            { key: "34 - 36 weeks", title: "34 - 36 weeks" },
+            { key: "37 - 38 weeks", title: "37 - 38 weeks" },
+            { key: "39 weeks", title: "39 weeks" },
+            { key: "40 weeks", title: "40 weeks" },
+            { key: "41 weeks", title: "41 weeks" },
+            { key: "42 weeks and over", title: "42 weeks and over" },
+            { key: "Unknown", title: "Unknown" }
+        ];
+
+        var gestationalGroup2 = [
+            { key: "Under 20 weeks" , title: "Under 20 weeks" },
+            { key: "20 - 27 weeks" , title: "20 - 27 weeks" },
+            { key: "28 - 31 weeks" , title: "28 - 31 weeks" },
+            { key: "32 - 35 weeks" , title: "32 - 35 weeks" },
+            { key: "36 weeks" , title: "36 weeks" },
+            { key: "37 - 39 weeks" , title: "37 - 39 weeks" },
+            { key: "40 weeks" , title: "40 weeks" },
+            { key: "41 weeks" , title: "41 weeks" },
+            { key: "42 weeks and over" , title: "42 weeks and over" },
+            { key: "Not stated" , title: "Not stated" }
+        ];
+
+        var gestationWeekly = [
+            { key: "17 weeks", title: "17 weeks" },
+            { key: "18 weeks", title: "18 weeks" },
+            { key: "19 weeks", title: "19 weeks" },
+            { key: "20 weeks", title: "20 weeks" },
+            { key: "21 weeks", title: "21 weeks" },
+            { key: "22 weeks", title: "22 weeks" },
+            { key: "23 weeks", title: "23 weeks" },
+            { key: "24 weeks", title: "24 weeks" },
+            { key: "25 weeks", title: "25 weeks" },
+            { key: "26 weeks", title: "26 weeks" },
+            { key: "27 weeks", title: "27 weeks" },
+            { key: "28 weeks", title: "28 weeks" },
+            { key: "29 weeks", title: "29 weeks" },
+            { key: "30 weeks", title: "30 weeks" },
+            { key: "31 weeks", title: "31 weeks" },
+            { key: "32 weeks", title: "32 weeks" },
+            { key: "33 weeks", title: "33 weeks" },
+            { key: "34 weeks", title: "34 weeks" },
+            { key: "35 weeks", title: "35 weeks" },
+            { key: "36 weeks", title: "36 weeks" },
+            { key: "37 weeks", title: "37 weeks" },
+            { key: "38 weeks", title: "38 weeks" },
+            { key: "39 weeks", title: "39 weeks" },
+            { key: "40 weeks", title: "40 weeks" },
+            { key: "41 weeks", title: "41 weeks" },
+            { key: "42 weeks", title: "42 weeks" },
+            { key: "43 weeks", title: "43 weeks" },
+            { key: "44 weeks", title: "44 weeks" },
+            { key: "45 weeks", title: "45 weeks" },
+            { key: "46 weeks", title: "46 weeks" },
+            { key: "47 weeks", title: "47 weeks" },
+            { key: "Unknown", title: "Unknown"}
+        ];
+
         return {
             getBridgeDataFilters: getBridgeDataFilters,
             getNatalityDataFilters: getNatalityDataFilters,
@@ -771,12 +833,7 @@
                 {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [], defaultGroup:'column', groupBy: 'column',
                     filterType: "checkbox", autoCompleteOptions: genderOptions, helpText:"label.help.text.sex"},
 
-                {key: 'gestational_age_r10', title: 'label.filter.gestational.birth.age', queryKey:"gestational_age_r10",
-                    primary: false, value: [], defaultGroup:'column', groupBy: false,
-                    filterType: "checkbox", autoCompleteOptions: gestationalAgeAtBirth,
-                    helpText:"label.help.text.gestational.age"},
-
-                {key: 'prenatal_care', title: 'label.filter.monthPrenatalCareBegan', queryKey:"prenatal_care",
+               {key: 'prenatal_care', title: 'label.filter.monthPrenatalCareBegan', queryKey:"prenatal_care",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: prenatalCareMonthOptions,
                     helpText:"label.help.text.prenatal.care"},
@@ -844,7 +901,22 @@
 
                 {key: 'tobacco_use', title: 'label.filter.tobacco.use', queryKey:"tobacco_use", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: tobaccoOptions, helpText:"label.help.text.tobacco.use"}
+                    autoCompleteOptions: tobaccoOptions, helpText:"label.help.text.tobacco.use"},
+
+                {key: 'gestation_recode11', title: 'label.filter.natality.gestation_recode11', queryKey:"gestation_recode11",
+                    primary: false, value: [], defaultGroup:'column', groupBy: false,
+                    filterType: "checkbox", autoCompleteOptions: gestationalGroup2,
+                    helpText:"label.help.text.gestational.group.two"},
+
+                {key: 'gestation_recode10', title: 'label.filter.natality.gestation_recode10', queryKey:"gestation_recode10",
+                    primary: false, value: [], defaultGroup:'column', groupBy: false,
+                    filterType: "checkbox", autoCompleteOptions: gestationalGroup1,
+                    helpText:"label.help.text.gestational.group.one"},
+
+                {key: 'gestation_weekly', title: 'label.filter.natality.gestation_weekly', queryKey:"gestation_weekly",
+                    primary: false, value: [], defaultGroup:'column', groupBy: false,
+                    filterType: "checkbox", autoCompleteOptions: gestationWeekly,
+                    helpText:"label.help.text.gestational.weekly"}
             ];
 
             return natalityFilters;
@@ -857,68 +929,6 @@
                 { key: "1-6 days", title: "1-6 days" },
                 { key: "7-27 days", title: "7-27 days" },
                 { key: "28 days and over", title: "28 days and over" }
-            ];
-
-            var gestationalGroup1 = [
-                { key: "Under 20 weeks", title: "Under 20 weeks" },
-                { key: "20 - 27 weeks", title: "20 - 27 weeks" },
-                { key: "28 - 31 weeks", title: "28 - 31 weeks" },
-                { key: "32 - 33 weeks", title: "32 - 33 weeks" },
-                { key: "34 - 36 weeks", title: "34 - 36 weeks" },
-                { key: "37 - 38 weeks", title: "37 - 38 weeks" },
-                { key: "39 weeks", title: "39 weeks" },
-                { key: "40 weeks", title: "40 weeks" },
-                { key: "41 weeks", title: "41 weeks" },
-                { key: "42 weeks and over", title: "42 weeks and over" },
-                { key: "Unknown", title: "Unknown" }
-            ];
-
-            var gestationalGroup2 = [
-              { key: "Under 20 weeks" , title: "Under 20 weeks" },
-              { key: "20 - 27 weeks" , title: "20 - 27 weeks" },
-              { key: "28 - 31 weeks" , title: "28 - 31 weeks" },
-              { key: "32 - 35 weeks" , title: "32 - 35 weeks" },
-              { key: "36 weeks" , title: "36 weeks" },
-              { key: "37 - 39 weeks" , title: "37 - 39 weeks" },
-              { key: "40 weeks" , title: "40 weeks" },
-              { key: "41 weeks" , title: "41 weeks" },
-              { key: "42 weeks and over" , title: "42 weeks and over" },
-              { key: "Not stated" , title: "Not stated" }
-            ];
-
-            var gestationWeekly = [
-              { key: "17 weeks", title: "17 weeks" },
-              { key: "18 weeks", title: "18 weeks" },
-              { key: "19 weeks", title: "19 weeks" },
-              { key: "20 weeks", title: "20 weeks" },
-              { key: "21 weeks", title: "21 weeks" },
-              { key: "22 weeks", title: "22 weeks" },
-              { key: "23 weeks", title: "23 weeks" },
-              { key: "24 weeks", title: "24 weeks" },
-              { key: "25 weeks", title: "25 weeks" },
-              { key: "26 weeks", title: "26 weeks" },
-              { key: "27 weeks", title: "27 weeks" },
-              { key: "28 weeks", title: "28 weeks" },
-              { key: "29 weeks", title: "29 weeks" },
-              { key: "30 weeks", title: "30 weeks" },
-              { key: "31 weeks", title: "31 weeks" },
-              { key: "32 weeks", title: "32 weeks" },
-              { key: "33 weeks", title: "33 weeks" },
-              { key: "34 weeks", title: "34 weeks" },
-              { key: "35 weeks", title: "35 weeks" },
-              { key: "36 weeks", title: "36 weeks" },
-              { key: "37 weeks", title: "37 weeks" },
-              { key: "38 weeks", title: "38 weeks" },
-              { key: "39 weeks", title: "39 weeks" },
-              { key: "40 weeks", title: "40 weeks" },
-              { key: "41 weeks", title: "41 weeks" },
-              { key: "42 weeks", title: "42 weeks" },
-              { key: "43 weeks", title: "43 weeks" },
-              { key: "44 weeks", title: "44 weeks" },
-              { key: "45 weeks", title: "45 weeks" },
-              { key: "46 weeks", title: "46 weeks" },
-              { key: "47 weeks", title: "47 weeks" },
-              { key: "Unknown", title: "Unknown"}
             ];
 
             return [
