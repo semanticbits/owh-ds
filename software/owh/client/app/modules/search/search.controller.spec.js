@@ -648,6 +648,25 @@ describe("Search controller: ", function () {
         expect(JSON.stringify(searchController.filters.pramsFilters[4].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.pramsQuestionsList));
     }));
 
+    it("should listen for brfsQuestionsLoaded event", inject(function () {
+
+        $rootScope.brfsQuestionsList = [
+            {
+                "text": "Ever told you that you have a form of depression?",
+                "id": "ADDEPEV2"
+            },
+            {
+                "text": "What is your age?",
+                "id": "AGE"
+            }
+        ];
+        searchController.filters = {brfsFilters: [{"key": "question", autoCompleteOptions:[]}]};
+
+        $rootScope.$broadcast('brfsQuestionsLoaded', $rootScope.brfsQuestionsList);
+        //should collect questions from selected topic of a class only
+        expect(JSON.stringify(searchController.filters.brfsFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.brfsQuestionsList));
+    }));
+
     it("should listen for yrbsQuestionsLoadded event", inject(function () {
 
         $rootScope.questionsList = [

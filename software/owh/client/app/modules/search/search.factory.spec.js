@@ -385,6 +385,47 @@ describe('search factory ', function(){
 
     });
 
+    describe('BRFSS search ->', function() {
+        var response;
+        beforeAll(function() {
+            response = __fixtures__['app/modules/search/fixtures/search.factory/brfsFilterResponse'];
+        });
+        beforeEach(function() {
+            deferred = $q.defer();
+        });
+        it('updateFiltersAndData for std response', function(){
+            var groupOptions = {
+                alcohol_consumption: {
+                    "topic": ['cat_12', 'cat_48', 'cat_51', 'cat_52']
+                }
+            };
+            var brfsFilters = {primaryFilters: [filters.search[10]]};
+            spyOn(utils, 'getValuesByKeyIncludingKeyAndValue').and.returnValue([]);
+
+            var result = searchFactory.updateFiltersAndData(brfsFilters, response, groupOptions);
+
+            expect(JSON.stringify(result.primaryFilter.data.question)).toEqual(JSON.stringify(response.data.resultData.table.question));
+            expect(result.primaryFilter.allFilters[8].questions.length).toEqual(groupOptions.alcohol_consumption.topic.length);
+        });
+
+        it('searchBRFSSResults', function(){
+            var deferredResults = $q.defer();
+
+            primaryFilter = filters.search[10];
+            filters.selectedPrimaryFilter = primaryFilter;
+
+            spyOn(searchService, 'searchResults').and.returnValue(deferredResults.promise);
+
+            primaryFilter.searchResults(primaryFilter, '35343dsfvvcxvsd').then(function(result) {
+                expect(JSON.stringify(result.data.resultData.table)).toEqual(JSON.stringify(response.data.resultData.table));
+            });
+
+            deferredResults.resolve(response);
+            $scope.$apply()
+
+        });
+    });
+
     describe('test with mortality data', function () {
         beforeAll(function() {
             primaryFilter = filters.search[0];

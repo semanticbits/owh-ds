@@ -171,12 +171,13 @@
          * @param dataset -> name of data-set
          */
         function getQuestionsByDataset(dataset) {
+            var questions = [];
             if (dataset === 'prams') {
-                return $rootScope.pramsQuestions
+                questions = $rootScope.pramsQuestions;
             } else if (dataset === 'brfss') {
-                return $rootScope.brfsQuestions
+                questions = $rootScope.brfsQuestions;
             }
-            return [];
+            return questions;
         }
 
         /**
@@ -2643,74 +2644,6 @@
                     ]
                 },
                 {
-                    key: 'brfss', title: 'label.brfss.title', primary: true, value:[],
-                    searchResults: searchPRAMSResults, dontShowInlineCharting: true,
-                    additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total',
-                    tableView:'alcohol_consumption',  chartAxisLabel:'Percentage',
-                    showBasicSearchSideMenu: true, runOnFilterChange: true,
-                    allFilters: filters.brfsFilters,
-                    sideFilters:[
-                        {
-
-                            sideFilters: [
-                                {
-                                    filterGroup: false,
-                                    collapse: false,
-                                    allowGrouping: false,
-                                    dontShowCounts: true,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'topic')
-                                },
-                                {
-                                    filterGroup: false,
-                                    collapse: false,
-                                    allowGrouping: false,
-                                    dontShowCounts: true,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'year')
-                                },
-                                {
-                                    filterGroup: false,
-                                    collapse: false,
-                                    allowGrouping: true,
-                                    groupOptions: filters.columnGroupOptions,
-                                    dontShowCounts: true,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'state')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'question')
-                                }
-                            ]
-                        },
-                        {
-                            category: 'Breakout',
-                            exclusive: true,
-                            sideFilters: [
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'sex')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'race')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'age_group')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'education')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'income')
-                                }
-                            ]
-
-                        }
-                    ]
-                },
-                {
                     key: 'infant_mortality', title: 'label.filter.infant_mortality', primary: true, value: [], header: 'Infant Mortality',
                     allFilters: filters.infantMortalityFilters, searchResults: searchInfantMortality, showMap: false,
                     chartAxisLabel: 'Number of Infant Deaths', countLabel: 'Number of Infant Deaths', tableView: 'number_of_infant_deaths',
@@ -3083,7 +3016,75 @@
                             ]
                         }
                     ]
-                }
+                },
+                {
+                    key: 'brfss', title: 'label.brfss.title', primary: true, value:[],
+                    searchResults: searchBRFSResults, dontShowInlineCharting: true,
+                    additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total',
+                    tableView:'alcohol_consumption',  chartAxisLabel:'Percentage',
+                    showBasicSearchSideMenu: true, runOnFilterChange: true,
+                    allFilters: filters.brfsFilters,
+                    sideFilters:[
+                        {
+
+                            sideFilters: [
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: false,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'topic')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: false,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'year')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'state')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'question')
+                                }
+                            ]
+                        },
+                        {
+                            category: 'Breakout',
+                            exclusive: true,
+                            sideFilters: [
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'sex')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'race')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'age_group')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'education')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'income')
+                                }
+                            ]
+
+                        }
+                    ]
+                },
             ];
 
             filters.search[1].sideFilters = filters.search[1].basicSideFilters; //Set the default side filters for YRBS to basic
