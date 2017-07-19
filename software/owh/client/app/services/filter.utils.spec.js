@@ -121,4 +121,16 @@ describe('filterUtils', function(){
             expect(stdDataFilters[5].key).toEqual('transmission');
         });
     });
+
+    describe('getCancerIncidenceFilters', function () {
+        it('should have keys for current_year, sex, race, hispanic_origin, age_group, site, state', function () {
+            var actual = filterUtils.getCancerIncidenceFilters().map(function (filter) {
+                return filter.key;
+            });
+            var expected = [ 'current_year', 'sex', 'race', 'hispanic_origin', 'age_group', 'site', 'state' ];
+            expected.forEach(function (key) {
+                expect(actual).toContain(key);
+            });
+        });
+    });
 });

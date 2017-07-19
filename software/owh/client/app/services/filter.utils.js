@@ -649,6 +649,43 @@
             { key: "Unknown", title: "Unknown"}
         ];
 
+        var cancerRaceOptions = [
+            { key: 'White', title: 'White' },
+            { key: 'Black', title: 'Black' },
+            { key: 'American Indian/Alaska Native', title: 'American Indian/Alaska Native' },
+            { key: 'Asian or Pacific Islander', title: 'Asian or Pacific Islander' },
+            { key: 'Unknown', title: 'Unknown' }
+        ];
+
+        var cancerHispanicOptions = [
+            { key: 'Non-Hispanic', title: 'Non-Hispanic' },
+            { key: 'Hispanic', title: 'Hispanic' },
+            { key: 'Invalid', title: 'Invalid' },
+            { key: 'Unknown', title: 'Unknown' }
+        ];
+
+        var cancerAgeGroups = [
+            { key: '00 years', title: '00 years' },
+            { key: '01-04 years', title: '01-04 years' },
+            { key: '05-09 years', title: '05-09 years' },
+            { key: '10-14 years', title: '10-14 years' },
+            { key: '15-19 years', title: '15-19 years' },
+            { key: '20-24 years', title: '20-24 years' },
+            { key: '25-29 years', title: '25-29 years' },
+            { key: '30-34 years', title: '30-34 years' },
+            { key: '35-39 years', title: '35-39 years' },
+            { key: '40-44 years', title: '40-44 years' },
+            { key: '45-49 years', title: '45-49 years' },
+            { key: '50-54 years', title: '50-54 years' },
+            { key: '55-59 years', title: '55-59 years' },
+            { key: '60-64 years', title: '60-64 years' },
+            { key: '65-69 years', title: '65-69 years' },
+            { key: '70-74 years', title: '70-74 years' },
+            { key: '75-79 years', title: '75-79 years' },
+            { key: '80-84 years', title: '80-84 years' },
+            { key: '85+ years', title: '85+ years' }
+        ];
+
         return {
             getBridgeDataFilters: getBridgeDataFilters,
             getNatalityDataFilters: getNatalityDataFilters,
@@ -657,7 +694,8 @@
             getAllOptionValues: getAllOptionValues,
             getTBDataFilters: getTBDataFilters,
             getAIDSFilters: getAIDSFilters,
-            getCancerFilters: getCancerFilters
+            cancerIncidenceFilters: cancerIncidenceFilters,
+            cancerMortalityFilters: cancerMortalityFilters
         };
 
         function getBridgeDataFilters() {
@@ -1334,44 +1372,7 @@
             return ["Both sexes", "All races/ethnicities", "All age groups", "National", "No stratification"]
         }
 
-        function getCancerFilters () {
-
-            var cancerRaceOptions = [
-                { key: 'White', title: 'White' },
-                { key: 'Black', title: 'Black' },
-                { key: 'American Indian/Alaska Native', title: 'American Indian/Alaska Native' },
-                { key: 'Asian or Pacific Islander', title: 'Asian or Pacific Islander' },
-                { key: 'Unknown', title: 'Unknown' }
-            ];
-
-            var cancerHispanicOptions = [
-                { key: 'Non-Hispanic', title: 'Non-Hispanic' },
-                { key: 'Hispanic', title: 'Hispanic' },
-                { key: 'Invalid', title: 'Invalid' }
-            ];
-
-            var cancerAgeGroups = [
-                { key: '00 years', title: '00 years' },
-                { key: '01-04 years', title: '01-04 years' },
-                { key: '05-09 years', title: '05-09 years' },
-                { key: '10-14 years', title: '10-14 years' },
-                { key: '15-19 years', title: '15-19 years' },
-                { key: '20-24 years', title: '20-24 years' },
-                { key: '25-29 years', title: '25-29 years' },
-                { key: '30-34 years', title: '30-34 years' },
-                { key: '35-39 years', title: '35-39 years' },
-                { key: '40-44 years', title: '40-44 years' },
-                { key: '45-49 years', title: '45-49 years' },
-                { key: '50-54 years', title: '50-54 years' },
-                { key: '55-59 years', title: '55-59 years' },
-                { key: '60-64 years', title: '60-64 years' },
-                { key: '65-69 years', title: '65-69 years' },
-                { key: '70-74 years', title: '70-74 years' },
-                { key: '75-79 years', title: '75-79 years' },
-                { key: '80-84 years', title: '80-84 years' },
-                { key: '85+ years', title: '85+ years' }
-            ];
-
+        function cancerIncidenceFilters () {
             return [
                 {
                     key: 'current_year',
@@ -1381,10 +1382,10 @@
                     value: [ '2014' ],
                     groupBy: false,
                     filterType: 'checkbox',
-                    autoCompleteOptions: yearOptions,
+                    autoCompleteOptions: yearOptions.slice(1),
                     doNotShowAll: true,
-                    defaultGroup:'column',
-                    helpText: 'label.help.text.cancer.year'
+                    defaultGroup: 'column',
+                    helpText: 'label.help.text.cancer_incidence.year'
                 },
                 {
                     key: 'sex',
@@ -1395,8 +1396,8 @@
                     groupBy: 'column',
                     filterType: 'checkbox',
                     autoCompleteOptions: genderOptions,
-                    defaultGroup:'column',
-                    helpText: 'label.help.text.tb.sex'
+                    defaultGroup: 'column',
+                    helpText: 'label.help.text.cancer_incidence.sex'
                 },
                 {
                     key: 'race',
@@ -1407,8 +1408,8 @@
                     groupBy: 'row',
                     filterType: 'checkbox',
                     autoCompleteOptions: cancerRaceOptions,
-                    defaultGroup:'column',
-                    helpText:"label.help.text.race"
+                    defaultGroup: 'column',
+                    helpText: 'label.help.text.cancer_incidence.race'
                 },
                 {
                     key: 'hispanic_origin',
@@ -1419,8 +1420,8 @@
                     groupBy: false,
                     filterType: 'checkbox',
                     autoCompleteOptions: cancerHispanicOptions,
-                    defaultGroup:'column',
-                    helpText: 'label.help.text.ethnicity'
+                    defaultGroup: 'column',
+                    helpText: 'label.help.text.cancer_incidence.hispanic_origin'
                 },
                 {
                     key: 'age_group',
@@ -1431,8 +1432,8 @@
                     groupBy: false,
                     filterType: 'checkbox',
                     autoCompleteOptions: cancerAgeGroups,
-                    defaultGroup:'column',
-                    helpText: 'label.help.text.bridged-race.agegroup'
+                    defaultGroup: 'column',
+                    helpText: 'label.help.text.cancer_incidence.age_group'
                 },
                 {
                     key: 'site',
@@ -1448,7 +1449,7 @@
                     tree: cancerService.getSites(),
                     aggregationKey: 'cancer_site.path',
                     defaultGroup:'row',
-                    helpText: 'label.help.text.cancer_sites'
+                    helpText: 'label.help.text.cancer_incidence.cancer_site'
                 },
                 {
                     key: 'childhood_cancer',
@@ -1476,7 +1477,96 @@
                     filterType: 'checkbox',
                     autoCompleteOptions: stateOptions,
                     defaultGroup:'column',
-                    helpText: 'label.help.text.cancer.state'
+                    helpText: 'label.help.text.cancer_incidence.state'
+                }
+            ]
+        }
+
+        function cancerMortalityFilters () {
+            return [
+                {
+                    key: 'current_year',
+                    title: 'label.filter.year',
+                    queryKey: 'current_year',
+                    primary: false,
+                    value: [ '2014' ],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: yearOptions.slice(1),
+                    doNotShowAll: true,
+                    helpText: 'label.help.text.cancer_mortality.year'
+                },
+                {
+                    key: 'sex',
+                    title: 'label.filter.gender',
+                    queryKey: 'sex',
+                    primary: false,
+                    value: [],
+                    groupBy: 'column',
+                    filterType: 'checkbox',
+                    autoCompleteOptions: genderOptions,
+                    helpText: 'label.help.text.cancer_mortality.sex'
+                },
+                {
+                    key: 'race',
+                    title: 'label.filter.race',
+                    queryKey: 'race',
+                    primary: false,
+                    value: [],
+                    groupBy: 'row',
+                    filterType: 'checkbox',
+                    autoCompleteOptions: cancerRaceOptions.slice(0, -1),
+                    helpText: 'label.help.text.cancer_mortality.race'
+                },
+                {
+                    key: 'hispanic_origin',
+                    title: 'label.filter.hispanicOrigin',
+                    queryKey: 'hispanic_origin',
+                    primary: false,
+                    value: [],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: cancerHispanicOptions.slice(0, 2).concat(cancerHispanicOptions.slice(-1)),
+                    helpText: 'label.help.text.cancer_mortality.hispanic_origin'
+                },
+                {
+                    key: 'age_group',
+                    title: 'label.filter.agegroup',
+                    queryKey: 'age_group',
+                    primary: false,
+                    value: [],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: cancerAgeGroups,
+                    helpText: 'label.help.text.cancer_mortality.age_group'
+                },
+                {
+                    key: 'site',
+                    title: 'label.filter.cancer_site',
+                    queryKey: 'cancer_site',
+                    primary: false,
+                    value: [],
+                    groupBy: false,
+                    filterType: 'site',
+                    selectTitle: 'label.cancer_site.select',
+                    updateTitle: 'label.cancer_site.update',
+                    autoCompleteOptions: cancerService.getList(),
+                    tree: cancerService.getSites(),
+                    aggregationKey: 'cancer_site.path',
+                    defaultGroup:'row',
+                    helpText: 'label.help.text.cancer_mortality.cancer_site'
+                },
+                {
+                    key: 'state',
+                    title: 'label.filter.state',
+                    queryKey: 'state',
+                    primary: 'false',
+                    value: [],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: stateOptions,
+                    doNotShowAll: true,
+                    helpText: 'label.help.text.cancer_mortality.state'
                 }
             ]
         }
