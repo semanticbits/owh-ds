@@ -394,5 +394,14 @@
   "label.help.text.transmission": "This field indicates the classification of cases that summarizes a person's possible HIV risk factor.",
 
   "label.filter.cancer_incident": "Cancer Incidence",
-  "label.filter.cancer_site": "Cancer Site"
+  "label.filter.cancer_site": "Cancer Site",
+  "label.help.text.cancer_incidence.year": "This field indicates the year of diagnosis",
+  "label.help.text.cancer_incidence.sex": "This field indicates the sex of the patient",
+  "label.help.text.cancer_incidence.race": "This field indicates the race of the patient",
+  "label.help.text.cancer_incidence.hispanic_origin": "This field indicates the ethnicity of the patient",
+  "label.help.text.cancer_incidence.age_group": "This field indicates the age group of the patient",
+  "label.help.text.cancer_incidence.cancer_site": "This field indicates the primary cancer site that is the organ of origin within the body where a given cancer occurs in an individual",
+  "label.help.text.cancer_incidence.childhood_cancers": "This field indicates the childhood cancer that are usually studied in children who are less than age 20",
+  "label.help.text.cancer_incidence.state": "This field indicates the State of patient's residence at the time the case was submitted to the registry"
+
 }
