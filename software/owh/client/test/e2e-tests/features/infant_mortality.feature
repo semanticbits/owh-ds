@@ -14,7 +14,7 @@ Feature: Infant Mortality filters
 
   Scenario: Quick visualizations
     When I see the quick visualizations
-    Then labels "Race" and "Number of Infant Deaths" are displayed on minimized visualization
+    Then I see label "Race" and "Number of Infant Deaths" are displayed on minimized visualization
     When user expand visualization
     Then I should see grouped and stacked controls on expaned visualization
     And I close visualization popup
@@ -22,10 +22,10 @@ Feature: Infant Mortality filters
   Scenario: Deaths/Rates visualizations switch
     When I click on Rate chart view toggle button
     And user sees a visualization
-    Then labels "Race" and "Rates" are displayed on minimized visualization
+    Then I see label "Race" and "Rates" are displayed on minimized visualization
     When I click on Deaths chart view toggle button
     And user sees a visualization
-    Then labels "Race" and "Number of Infant Deaths" are displayed on minimized visualization
+    Then I see label "Race" and "Number of Infant Deaths" are displayed on minimized visualization
 
   Scenario: Infant Mortality Side Filters and Defaults
     Then I should see "4" categories in the sidebar
