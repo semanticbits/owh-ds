@@ -2268,6 +2268,13 @@
                                     collapse: true,
                                     allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'gestational_age_r10')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'prenatal_care')
                                 },
                                 {

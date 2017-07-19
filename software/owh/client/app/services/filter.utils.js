@@ -832,8 +832,11 @@
 
                 {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [], defaultGroup:'column', groupBy: 'column',
                     filterType: "checkbox", autoCompleteOptions: genderOptions, helpText:"label.help.text.sex"},
-
-               {key: 'prenatal_care', title: 'label.filter.monthPrenatalCareBegan', queryKey:"prenatal_care",
+                {key: 'gestational_age_r10', title: 'label.filter.gestational.birth.age', queryKey:"gestational_age_r10",
+                    primary: false, value: [], defaultGroup:'column', groupBy: false,
+                    filterType: "checkbox", autoCompleteOptions: gestationalAgeAtBirth,
+                    helpText:"label.help.text.gestational.age"},
+                {key: 'prenatal_care', title: 'label.filter.monthPrenatalCareBegan', queryKey:"prenatal_care",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: prenatalCareMonthOptions,
                     helpText:"label.help.text.prenatal.care"},
