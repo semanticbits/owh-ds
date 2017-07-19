@@ -2514,7 +2514,7 @@
                 {
                     key: 'prams', title: 'label.prams.title', primary: true, value:[], header:"Pregnancy Risk Assessment",
                     searchResults: invokeStatsService, dontShowInlineCharting: true,
-                    additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total', tableView:'delivery',
+                    additionalHeaders:filters.yrbsAdditionalHeaders, tableView:'delivery',
                     chartAxisLabel:'Percentage',
                     showBasicSearchSideMenu: true, runOnFilterChange: true, allFilters: filters.pramsFilters, // Default to basic filter
                     sideFilters:[
@@ -3004,7 +3004,7 @@
                 {
                     key: 'brfss', title: 'label.brfss.title', primary: true, value:[],
                     searchResults: invokeStatsService, dontShowInlineCharting: true,
-                    additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total',
+                    additionalHeaders:filters.yrbsAdditionalHeaders,
                     tableView:'alcohol_consumption',  chartAxisLabel:'Percentage',
                     showBasicSearchSideMenu: true, runOnFilterChange: true,
                     allFilters: filters.brfsFilters,
