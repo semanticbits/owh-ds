@@ -566,12 +566,12 @@ describe('search factory ', function(){
             expect(primaryFilter.allFilters).toEqual(filters.yrbsBasicFilters);
         });
 
-        it('searchYRBSResults', function () {
+        it('invokeStatsService for yrbs', function () {
             var result = searchFactory.updateFiltersAndData(filters, yrbsResponse, {'mental_health': {}}, 'mental_health');
             expect(JSON.stringify(result.primaryFilter.data)).toEqual(JSON.stringify(yrbsResponse.data.resultData.table));
         });
 
-        it('searchYRBSResults with only one row group having no value', function () {
+        it('invokeStatsService for yrbs with only one row group having no value', function () {
             var raceFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'yrbsRace');
             raceFilter.groupBy = 'row';
             raceFilter.value = '';
@@ -583,7 +583,7 @@ describe('search factory ', function(){
             raceFilter.value = ['all-races-ethnicities'];
         });
 
-        it('searchYRBSResults with only one row and one column group', function () {
+        it('invokeStatsService for yrbs with only one row and one column group', function () {
             var genderFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'yrbsSex');
             genderFilter.groupBy = 'column';
 
@@ -593,7 +593,7 @@ describe('search factory ', function(){
             genderFilter.groupBy = false;
         });
 
-        it('searchYRBSResults with only one row and one column group with out all value', function () {
+        it('invokeStatsService for yrbs with only one row and one column group with out all value', function () {
             var genderFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'yrbsSex');
             genderFilter.groupBy = 'column';
 

@@ -22,7 +22,7 @@
             removeDisabledFilters: removeDisabledFilters,
             getQueryResults: getQueryResults,
             prepareChartData: prepareChartData,
-            searchYRBSResults: searchYRBSResults,
+            invokeStatsService: invokeStatsService,
             buildQueryForYRBS: buildQueryForYRBS,
             prepareMortalityResults: prepareMortalityResults,
             prepareQuestionChart: prepareQuestionChart,
@@ -418,33 +418,17 @@
             }
         }
 
-        //Search for YRBS data
-        function searchYRBSResults( primaryFilter, queryID ) {
+        //Fetch the survey data from stats service
+        function invokeStatsService( primaryFilter, queryID ) {
             var deferred = $q.defer();
-            queryYRBSAPI(primaryFilter, queryID ).then(function(response){
+            queryStatsAPI(primaryFilter, queryID ).then(function(response){
                 deferred.resolve(response);
             });
             return deferred.promise;
         }
 
-        function searchPRAMSResults( primaryFilter, queryID ) {
-            var deferred = $q.defer();
-            queryYRBSAPI(primaryFilter, queryID ).then(function(response){
-                deferred.resolve(response);
-            });
-            return deferred.promise;
-        }
-
-        function searchBRFSResults( primaryFilter, queryID ) {
-            var deferred = $q.defer();
-            queryYRBSAPI(primaryFilter, queryID ).then(function(response){
-                deferred.resolve(response);
-            });
-            return deferred.promise;
-        }
-
-        //Query YRBS API
-        function queryYRBSAPI( primaryFilter, queryID ) {
+        //Query Stats API
+        function queryStatsAPI( primaryFilter, queryID ) {
             var deferred = $q.defer();
             SearchService.searchResults(primaryFilter, queryID).then(function(response) {
                 deferred.resolve(response);
@@ -2119,7 +2103,7 @@
                 },
                 {
                     key: 'mental_health', title: 'label.risk.behavior', primary: true, value:[], header:"Youth risk behavior",
-                    searchResults: searchYRBSResults, dontShowInlineCharting: true,
+                    searchResults: invokeStatsService, dontShowInlineCharting: true,
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total', tableView:'Alcohol and Other Drug Use',
                     chartAxisLabel:'Percentage',
                     showBasicSearchSideMenu: true, runOnFilterChange: true, allFilters: filters.yrbsBasicFilters, // Default to basic filter
@@ -2529,7 +2513,7 @@
                 },
                 {
                     key: 'prams', title: 'label.prams.title', primary: true, value:[], header:"Pregnancy Risk Assessment",
-                    searchResults: searchPRAMSResults, dontShowInlineCharting: true,
+                    searchResults: invokeStatsService, dontShowInlineCharting: true,
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total', tableView:'delivery',
                     chartAxisLabel:'Percentage',
                     showBasicSearchSideMenu: true, runOnFilterChange: true, allFilters: filters.pramsFilters, // Default to basic filter
@@ -3019,7 +3003,7 @@
                 },
                 {
                     key: 'brfss', title: 'label.brfss.title', primary: true, value:[],
-                    searchResults: searchBRFSResults, dontShowInlineCharting: true,
+                    searchResults: invokeStatsService, dontShowInlineCharting: true,
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total',
                     tableView:'alcohol_consumption',  chartAxisLabel:'Percentage',
                     showBasicSearchSideMenu: true, runOnFilterChange: true,
