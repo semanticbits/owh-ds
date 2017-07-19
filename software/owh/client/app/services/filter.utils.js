@@ -557,7 +557,7 @@
             getAllOptionValues: getAllOptionValues,
             getTBDataFilters: getTBDataFilters,
             getAIDSFilters: getAIDSFilters,
-            getCancerFilters: getCancerFilters
+            getCancerIncidenceFilters: getCancerIncidenceFilters
         };
 
         function getBridgeDataFilters() {
@@ -1311,7 +1311,7 @@
             return ["Both sexes", "All races/ethnicities", "All age groups", "National"]
         }
 
-        function getCancerFilters () {
+        function getCancerIncidenceFilters () {
 
             var cancerRaceOptions = [
                 { key: 'White', title: 'White' },
@@ -1444,8 +1444,8 @@
                     filterType: 'checkbox',
                     autoCompleteOptions: yearOptions,
                     doNotShowAll: true,
-                    defaultGroup:'column',
-                    helpText: 'label.help.text.cancer.year'
+                    defaultGroup: 'column',
+                    helpText: 'label.help.text.cancer_incidence.year'
                 },
                 {
                     key: 'sex',
@@ -1456,8 +1456,8 @@
                     groupBy: 'column',
                     filterType: 'checkbox',
                     autoCompleteOptions: genderOptions,
-                    defaultGroup:'column',
-                    helpText: 'label.help.text.tb.sex'
+                    defaultGroup: 'column',
+                    helpText: 'label.help.text.cancer_incidence.sex'
                 },
                 {
                     key: 'race',
@@ -1468,8 +1468,8 @@
                     groupBy: 'row',
                     filterType: 'checkbox',
                     autoCompleteOptions: cancerRaceOptions,
-                    defaultGroup:'column',
-                    helpText:"label.help.text.race"
+                    defaultGroup: 'column',
+                    helpText: 'label.help.text.cancer_incidence.race'
                 },
                 {
                     key: 'hispanic_origin',
@@ -1480,8 +1480,8 @@
                     groupBy: false,
                     filterType: 'checkbox',
                     autoCompleteOptions: cancerHispanicOptions,
-                    defaultGroup:'column',
-                    helpText: 'label.help.text.ethnicity'
+                    defaultGroup: 'column',
+                    helpText: 'label.help.text.cancer_incidence.hispanic_origin'
                 },
                 {
                     key: 'age_group',
@@ -1492,8 +1492,8 @@
                     groupBy: false,
                     filterType: 'checkbox',
                     autoCompleteOptions: cancerAgeGroups,
-                    defaultGroup:'column',
-                    helpText: 'label.help.text.bridged-race.agegroup'
+                    defaultGroup: 'column',
+                    helpText: 'label.help.text.cancer_incidence.age_group'
                 },
                 {
                     key: 'site',
@@ -1504,8 +1504,8 @@
                     groupBy: false,
                     filterType: 'checkbox',
                     autoCompleteOptions: cancerSites,
-                    defaultGroup:'column',
-                    helpText: 'label.help.text.cancer_sites'
+                    defaultGroup: 'column',
+                    helpText: 'label.help.text.cancer_incidence.cancer_site'
                 },
                 {
                     key: 'state',
@@ -1517,8 +1517,8 @@
                     filterType: 'checkbox',
                     autoCompleteOptions: stateOptions,
                     doNotShowAll: true,
-                    defaultGroup:'column',
-                    helpText: 'label.help.text.cancer.state'
+                    defaultGroup: 'column',
+                    helpText: 'label.help.text.cancer_incidence.state'
                 }
             ]
         }

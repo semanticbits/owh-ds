@@ -1758,7 +1758,7 @@
             filters.stdFilters = filterUtils.getSTDDataFilters();
             filters.tbFilters = filterUtils.getTBDataFilters();
             filters.aidsFilters = filterUtils.getAIDSFilters();
-            filters.cancerFilters = filterUtils.getCancerFilters();
+            filters.cancerFilters = filterUtils.getCancerIncidenceFilters();
 
             filters.pramsTopicOptions = [
                 {"key": "cat_45", "title": "Delivery Method"},
