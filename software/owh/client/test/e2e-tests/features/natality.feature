@@ -44,7 +44,7 @@ Feature: Natality filters
     And the data table must show Births, Population and Birth Rates
     When  I select groupBy "Row" option for "State" filter
     And user sees a visualization
-    Then labels "State" and "Birth Rates" are displayed on minimized visualization
+    Then I see label "State" and "Birth Rates" are displayed on minimized visualization
     When user expand visualization
     Then I should not see grouped and stacked controls on expanded visualization
     And labels "State" and "Birth Rates" are displayed on expanded visualization
@@ -60,7 +60,7 @@ Feature: Natality filters
     Then the data table should display values filtered by age selected
     When  I select groupBy "Row" option for "State" filter
     And user sees a visualization
-    Then labels "State" and "Fertility Rates" are displayed on minimized visualization
+    Then I see label "State" and "Fertility Rates" are displayed on minimized visualization
     When user expand visualization
     Then I should not see grouped and stacked controls on expanded visualization
     And labels "State" and "Fertility Rates" are displayed on expanded visualization
