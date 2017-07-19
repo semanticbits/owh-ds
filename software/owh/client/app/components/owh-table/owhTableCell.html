@@ -33,7 +33,7 @@
         <div ng-if="otcc.tableView === 'number_of_deaths'">
             <span ng-if="otcc.cell.title !== 'suppressed'" ng-bind="otcc.cell.title | number" class="count-value"></span>
             <span ng-if="otcc.cell.title === 'suppressed'">Suppressed</span>
-            <span ng-show="otcc.colIndex != otcc.row.length - 1 && otcc.cell.percentage != undefined && otcc.cell.title !== 'suppressed' && otcc.cell.title !== 0" class="count-value">({{otcc.cell.percentage | number : 1}}%)</span>
+            <span ng-show="otcc.colIndex != otcc.row.length - 1 && otcc.cell.percentage != undefined && otcc.cell.title !== 'suppressed' && otcc.cell.title !== 0" class="count-value" title="Row Percentage">({{otcc.cell.percentage | number : 1}}%#)</span>
         </div>
 
         <!--display cell data for bridge race-->
