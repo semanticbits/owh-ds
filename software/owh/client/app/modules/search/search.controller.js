@@ -116,7 +116,8 @@
             "label.brfss.title": [],
             "label.filter.std": [],
             "label.filter.tb": [],
-            "label.filter.aids": []
+            "label.filter.aids": [],
+            "label.filter.cancer_incident": []
         };
 
         sc.optionsGroup = {
@@ -152,6 +153,7 @@
             disease_rate:{},
             tb:{},
             aids: {},
+            cancer_incident: {},
             mental_health:{},
             natality:{},
             prams:{},

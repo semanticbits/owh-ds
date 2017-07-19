@@ -36,6 +36,10 @@ var generateNestedCensusAggQuery = function(aggregations, groupByKeyStart) {
 var generateCensusAggregationQuery = function( aggQuery, groupByKeyStart ) {
     groupByKeyStart = groupByKeyStart ? groupByKeyStart : '';
     var query = {};
+    //To handle infant_mortality year filter
+    if(aggQuery.queryKey == 'year_of_death'){
+        aggQuery.queryKey = 'current_year';
+    }
     query[ groupByKeyStart + aggQuery.key] = {
         "terms": {
             "field": aggQuery.queryKey,
