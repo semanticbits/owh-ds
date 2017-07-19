@@ -220,7 +220,22 @@ function search(q) {
                 deferred.resolve(resData);
             });
         });
-    }
+    } else if (preparedQuery.apiQuery.searchFor === 'cancer_incident') {
+        finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
+        var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
+        var es = new elasticSearch();
+        Q.all([
+            es.aggregateCancerData(sideFilterQuery, isStateSelected),
+            es.aggregateCancerData(finalQuery, isStateSelected)
+        ]).spread(function (sideFilterResults, results) {
+            var resData = {};
+            resData.queryJSON = q;
+            resData.resultData = results.data;
+            resData.resultData.headers = preparedQuery.headers;
+            resData.sideFilterResults = sideFilterResults;
+            deferred.resolve(resData);
+        });
+    };
     return  deferred.promise;
 };
 
