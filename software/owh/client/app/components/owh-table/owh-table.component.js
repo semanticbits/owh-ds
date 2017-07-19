@@ -219,7 +219,7 @@
                                 if (isNaN(parseInt(count))) return count;
                                 var result = '<span class="count-value">' + $filter('number')(count) + '</span>';
                                 if (colIndex !== row.length - 1 && column.percentage  > 0) {
-                                    result += '<span class="count-value" title="Row Percentage"> (' + $filter('number')(column.percentage, 1) + '%@)</span>';
+                                    result += '<span class="count-value" title="Row Percentage"> (' + $filter('number')(column.percentage, 1) + '%)</span>';
                                 }
                                 return result;
                             })(column.title);
