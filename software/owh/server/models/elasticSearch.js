@@ -285,13 +285,15 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
     if(query[1]) {
         logger.debug("Infant Mortality ES Query: "+ JSON.stringify( query[0]));
         logger.debug("Census Rates ES Query: "+ JSON.stringify( query[1]));
+        logger.debug("Map ES Query: "+ JSON.stringify( query[2]));
         var promises = [
             this.executeESQuery(infant_mortality_index, infant_mortality_type, query[0]),
-            this.aggregateCensusDataQuery(query[1], natality_index, natality_type, 'doc_count')
+            this.aggregateCensusDataQuery(query[1], natality_index, natality_type, 'doc_count'),
+            this.executeESQuery(infant_mortality_index, infant_mortality_type, query[2])
         ];
         Q.all(promises).then( function (resp) {
             var data = searchUtils.populateDataWithMappings(resp[0], 'infant_mortality', undefined, allSelectedFilterOptions);
-            var mapData = searchUtils.populateDataWithMappings(resp[1], 'infant_mortality', undefined, allSelectedFilterOptions);
+            var mapData = searchUtils.populateDataWithMappings(resp[2], 'infant_mortality', undefined, allSelectedFilterOptions);
             data.data.nested.maps = mapData.data.nested.maps;
             self.mergeWithCensusData(data, resp[1], 'doc_count');
             isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');

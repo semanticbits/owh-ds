@@ -115,10 +115,10 @@
             }
             else if (primaryFilter.key === 'infant_mortality') {
                 primaryFilter.data = response.data.resultData.nested.table;
-                primaryFilter.nestedData = response.data.resultData.nested;
+                primaryFilter.searchCount = response.pagination.total;
+                tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
-                tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
             else if (response.data.queryJSON.key == 'std' ||
@@ -128,6 +128,10 @@
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
+                populateSideFilterTotals(primaryFilter, response.data);
+                primaryFilter.headers = tableData.headers;
+                primaryFilter.data = tableData.data;
+                primaryFilter.chartData = prepareChartData(response.data.resultData.headers, response.data.resultData.nested, primaryFilter);
                 mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
             else if (response.data.queryJSON.key  === 'cancer_incident') {
