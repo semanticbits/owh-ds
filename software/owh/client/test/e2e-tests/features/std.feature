@@ -23,8 +23,20 @@ Feature: STD page
     When I look at the STD data table
     Then I see the Rates, Population and Cases as outputs in the STD data table
 
+  Scenario: One filter on groupBy 'Row' should display totals
+    When  I select groupBy "Off" option for "Sex" filter
+    Then the default headers of the table should be "Race/Ethnicity, Number of Cases"
+    And the values in row "0" should be "All races/ethnicities, 1,526,658"
+    And the values in row "0" should be "All races/ethnicities, 318,857,056"
+    And the values in row "0" should be "All races/ethnicities, 478.8"
+    And the values in row "1" should be "American Indian or Alaska Native, 13,113"
+    And the values in row "1" should be "American Indian or Alaska Native, 2,002,659"
+    And the values in row "1" should be "American Indian or Alaska Native, 654.8"
+
+
   Scenario: Filter order
-    When I look at the sidebar
+    When  I select groupBy "Column" option for "Sex" filter
+    And I look at the sidebar
     Then filters should be in this order "Disease, Year, Sex, Race/Ethnicity, Age Groups, State"
 
   Scenario: Radio Buttons

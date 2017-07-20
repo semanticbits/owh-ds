@@ -26,7 +26,18 @@ Feature: AIDS/HIV page
     Then On the aids page, I should see the data table with the headers "Race/Ethnicity, Female, Male, Both sexes"
     Then On the aids page, the values in table should match
 
+  Scenario: One filter on groupBy 'Row' should display totals
+    When  I select groupBy "Off" option for "Sex" filter
+    Then the default headers of the table should be "Race/Ethnicity, Number of Cases"
+    And the values in row "0" should be "All races/ethnicities, 18,274"
+    And the values in row "0" should be "All races/ethnicities, 268,671,725"
+    And the values in row "0" should be "All races/ethnicities, 6.8"
+    And the values in row "1" should be "American Indian/Alaska Native, 96"
+    And the values in row "1" should be "American Indian/Alaska Native, 1,920,921"
+    And the values in row "1" should be "American Indian/Alaska Native, 5.0"
+
   Scenario: AIDS/HIV Visualizations
+    When  I select groupBy "Column" option for "Sex" filter
     Then user sees a visualization
     And I see labels "Race/Ethnicity" and "Cases" are displayed on minimized visualization
     When user expand visualization

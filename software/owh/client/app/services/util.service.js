@@ -344,7 +344,7 @@
                 tableHeaders = colHeaders.headers;
             }
             tableHeaders[0] = rowHeaders.concat(tableHeaders[0]);
-            if(rowHeaders.length > 0 && countLabel) {
+            if(rowHeaders.length > 0 && countLabel && (countLabel != 'Number of Cases' || colHeaders.headers.length == 0)) {
                 tableHeaders[0].push({
                     title: countLabel,
                     colspan: 1,
@@ -535,7 +535,7 @@
             else {
                 var count = data[countKey];
                 var columnData = prepareMixedTableColumnData(columnHeaders, data, countKey, count, calculatePercentage, secondaryCountKeys);
-                if(typeof data[countKey] !== 'undefined' && countKey != 'std' && countKey != 'tb' && countKey !== 'aids') {
+                if(typeof data[countKey] !== 'undefined' && (columnHeaders.length == 0 || (countKey != 'std' && countKey != 'tb' && countKey !== 'aids'))){
                     columnData.push(prepareCountCell(count, data, countKey, totalCount, calculatePercentage, secondaryCountKeys, true));
                 }
                 tableData.push(columnData);
