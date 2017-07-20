@@ -45,8 +45,12 @@
          * @returns {Number}
          */
         function getValueFromData(filter, data) {
-            if(filter.tableView == "crude_death_rates" || filter.tableView == "birth_rates" || filter.tableView == "fertility_rates" || filter.tableView == "disease_rate") {
+            if(filter.tableView == "crude_death_rates" || filter.tableView == "birth_rates"
+                || filter.tableView == "fertility_rates" || filter.chartView == "disease_rate") {
                 return data['pop'] ? Math.round(data[filter.key] / data['pop'] * 1000000) / 10 : 0;
+            }
+            else if(filter.chartView == "infant_death_rate") {
+                return data['pop'] ? $filter('number')(data[filter.key] / data['pop'] * 1000, 1): 0;
             }
             else if(data['ageAdjustedRate'] && filter.tableView == "age-adjusted_death_rates"){
                 var ageAdjustedRate = parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));
@@ -105,7 +109,7 @@
                         showValues: false,
                         showXAxis:true,
                         showYAxis:true,
-                        stacked: stacked,
+                        stacked: stacked && primaryFilter.tableView && primaryFilter.tableView.indexOf('rate') < 0,
                         "duration": 500,
                         x: function(d){return d.label;},
                         y: function(d){return d.value;},
@@ -178,42 +182,35 @@
                     seriesDataObj["key"] = primaryFilter.chartAxisLabel;
                     //collect series values
                     var question = data.question[0];
-                    if(primaryFilter.key === 'prams') {
-                        var questionArray = [];
-                        angular.forEach(data.question, function(pramsQuestion) {
-                            if(pramsQuestion.name === primaryFilter.allFilters[4].value[0]) {
-                                question = pramsQuestion;
-                            }
-                        });
-                        // question = data.question[1][0];
-                        // questionArray = question[0];
-                        angular.forEach(question, function(response, responseKey) {
-                            if(typeof response === 'object' && responseKey != -1) {
-                                question = response;
-                                var seriesDataObj = {};
-                                seriesDataObj["key"] = primaryFilter.chartAxisLabel;
-                                seriesDataObj["key"] += ' - ' + responseKey;
-                                seriesDataObj["values"] = getBarValues(question[filter1.queryKey], filter1);
-                                multiChartBarData.push(seriesDataObj);
-                            }
-                        });
-                    } else {
-                        seriesDataObj["values"] = getBarValues(question[filter1.queryKey], filter1);
-                        multiChartBarData.push(seriesDataObj);
-                    }
+                    var questionArray = [];
+                    angular.forEach(data.question, function(pramsQuestion) {
+                        if(pramsQuestion.name === primaryFilter.allFilters[4].value[0]) {
+                            question = pramsQuestion;
+                        }
+                    });
+
+                    angular.forEach(question, function(response, responseKey) {
+                        if(typeof response === 'object' && responseKey != -1) {
+                            question = response;
+                            var seriesDataObj = {};
+                            seriesDataObj["key"] = primaryFilter.chartAxisLabel;
+                            seriesDataObj["key"] += ' - ' + responseKey;
+                            seriesDataObj["values"] = getBarValues(question[filter1.queryKey], filter1);
+                            multiChartBarData.push(seriesDataObj);
+                        }
+                    });
+
 
                 } else {//for two filters
                     angular.forEach(utilService.getSelectedAutoCompleteOptions(filter1), function (primaryOption,index) {
                         var seriesDataObj = {};
                         var question = data.question[0];
-                        if(primaryFilter.key === 'prams') {
-                            question = data.question[1][0];
-                            angular.forEach(data.question[1], function(response) {
-                                if(typeof response === 'object') {
-                                    question = response;
-                                }
-                            });
-                        }
+                        question = data.question[1][0];
+                        angular.forEach(data.question[1], function(response) {
+                            if(typeof response === 'object') {
+                                question = response;
+                            }
+                        });
                         var eachPrimaryData = utilService.findByKeyAndValue(question[filter1.queryKey], 'name', primaryOption.key);
                         if(!eachPrimaryData) {
                             return;
@@ -546,7 +543,7 @@
                             axisLabelDistance: -20,
                             axisLabel: "Year",
                             tickFormat: function (d) {
-                                return null;
+                                return d;
                             }
                         },
                         yAxis: {
@@ -664,7 +661,7 @@
                     expandedChartData.options.chart.width = 750;
                     expandedChartData.options.chart.showLegend = true;
                     //If Rates selected then not enabling controls(grouped, stacked) for expanded visualizations and default view set to grouped.
-                    if(tableView === 'disease_rate') {
+                    if(tableView && tableView.indexOf('rate') >= 0) {
                         expandedChartData.options.chart.stacked = false;
                     }
                     else {
@@ -674,7 +671,7 @@
                     expandedChartData.options.chart.showXAxis = true;
                     expandedChartData.options.chart.showYAxis = true;
 
-                    if (eachChartData.options.chart.type !== 'pieChart') {
+                    if (eachChartData.options.chart.type !== 'pieChart' && eachChartData.options.chart.type !== 'lineChart') {
                         expandedChartData.options.chart.xAxis.tickFormat = function (d) {
                             if (isNaN(d)) {
                                 return d;
@@ -732,6 +729,13 @@
                         expandedChartData.options.chart.margin.bottom = 50;
                         expandedChartData.options.chart.xAxis.axisLabelDistance = 5;
                         expandedChartData.options.chart.yAxis.axisLabelDistance = 20;
+
+                        expandedChartData.options.chart.yAxis.tickFormat = function (d) {
+                            if (isNaN(d)) {
+                                return d;
+                            }
+                            return d3.format(',f')(d);
+                        };
                     }
                     allExpandedChartDatas.push(expandedChartData);
                 });
@@ -751,6 +755,10 @@
                     eg.primaryFilters = primaryFilters;
                     eg.selectedQuestion = selectedQuestion;
                     eg.close = close;
+                    eg.export = function (svgIndex, title, format) {
+                        shareUtilService.exportChart(svgIndex, title, format);
+                    };
+
                     eg.showFbDialog = function(svgIndex, title, section, description) {
                         shareUtilService.shareOnFb(svgIndex, title, section, description);
                     };

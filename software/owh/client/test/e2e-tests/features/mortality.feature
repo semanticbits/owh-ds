@@ -16,7 +16,8 @@ Scenario: Axis labels
   When user sees a visualization
   Then labels are displayed on both the axes for minimized visualization
   When user expand visualization
-  Then labels are displayed on both the axes for expanded visualization
+  Then I should see grouped and stacked controls on expaned visualization
+  And labels are displayed on both the axes for expanded visualization
 
 Scenario: Side filter collapse
   Given I am on search page
@@ -91,7 +92,7 @@ Scenario: Quick visualizations
 Scenario: Help Message above the quick visualization pane
   Given I am on search page
   When the user chooses the option 'Death Rates'
-  Then the following message should be displayed stating that population data is being retrieved from Census "Population details from NCHS Bridged-Race Estimates are used to calculate Death Rates (per 100,000)"
+  Then the following message should be displayed stating that population data is being retrieved from Census "Population details from NCHS Bridged-Race Estimates are used to calculate Death Rates (per 100,000)."
 
 Scenario: Years are supposed to be in descending order
   Given I am on search page
@@ -179,7 +180,8 @@ Scenario: Crude Death rates population count should match with CDC for year 2000
   When user sees a visualization
   Then labels "Race" and "Crude Death Rates" are displayed on minimized visualization
   When user expand visualization
-  Then labels "Race" and "Crude Death Rates" are displayed on expanded visualization
+  Then I should not see grouped and stacked controls on expanded visualization
+  And labels "Race" and "Crude Death Rates" are displayed on expanded visualization
   And user clicks on "+ 13 more" more link for "Year" filter
   Then I select "Year" value "2000"
   And I un-select "Year" value "2015"
@@ -222,7 +224,8 @@ Scenario: Age Adjusted Death Rates
   When user sees a visualization
   Then labels "Race" and "Age Adjusted Death Rates" are displayed on minimized visualization
   When user expand visualization
-  Then labels "Race" and "Age Adjusted Death Rates" are displayed on expanded visualization
+  Then I should not see grouped and stacked controls on expanded visualization
+  And labels "Race" and "Age Adjusted Death Rates" are displayed on expanded visualization
   When I update criteria in filter option with row "Ethnicity"
   Then table should display Hispanic groups for Age Adjusted Death Rates
   When I expand "Underlying Cause of Death" filter section
@@ -271,7 +274,7 @@ Scenario Outline: Non applicable filters disabled in cude and age adjusted rate
   Examples:
     | showMeFilter              |   filterOptions |
     |  "Crude Death Rates"        | "Autopsy,Place of Death,Weekday,Month,Multiple Causes of Death" |
-    |  "Age Adjusted Death Rates" | "Age Groups,Autopsy,Place of Death,Weekday,Month,Multiple Causes of Death" |
+    |  "Age Adjusted Death Rates" | "Age Groups,Autopsy,Place of Death,Weekday,Month" |
 
 Scenario: Group by 'State' in age adjusted rate
     When I update criteria in filter options with off "Sex"
@@ -331,3 +334,26 @@ Scenario: Group by 'State' in age adjusted rate
 
     When I deselect "American Indian or Alaska Native" option in "Race" filter
     Then I see "Year: 2015 | Race: Asian or Pacific Islander" in list of applied filters
+
+  Scenario: State filter in Death Rates
+    Given I am on search page
+    When the user chooses the option 'Death Rates'
+    And user expands state filter
+    Then user clicks on "+ 48 more" more link for "State" filter
+    When I select State "DC"
+    And I select State "CT"
+    Then the rates, deaths and population for "Female" "Asian or Pacific Islander" in 'Death Rates' view are "153.8", "170" and "110,561"
+
+  Scenario: Row grouping on State filter in Death Rates
+    Given I am on search page
+    When I choose the option "Death Rates"
+    And I select groupBy "Off" option for "Race" filter
+    And I select groupBy "Row" option for "State" filter
+    Then the rates, deaths and population for "Male" "Colorado" in 'Death Rates' view are "681.2", "18,690" and "2,743,763"
+
+  Scenario: Column grouping on State filter in Death Rates
+    Given I am on search page
+    When I choose the option "Death Rates"
+    And I select groupBy "Off" option for "Sex" filter
+    And I select groupBy "Column" option for "State" filter
+    Then the rates, deaths and population for "Delaware" "Black or African American" in 'Death Rates' view are "664.0", "1,474" and "221,986"

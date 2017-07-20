@@ -58,6 +58,7 @@ describe('OWH Side filter component: ', function() {
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 1111111111111111}});
         $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
 
         function searchResultsFn() {
 
@@ -160,6 +161,35 @@ describe('OWH Side filter component: ', function() {
         expect(elementVisible).toBeFalsy();
     });
 
+    it("Should show tree modal on selecting mcd filters set 1", function () {
+        var allFilters = [
+            {
+                key: 'mcd-chapter-10', title: 'label.filter.mcd', queryKey: "ICD_10_code.path",
+                primary: false, value: { 'set1': [], 'set2': [] }, groupBy: false, type: "label.filter.group.mcd", groupKey: "mcd",
+                autoCompleteOptions: [], filterType: 'conditions', selectTitle: 'select.label.filter.mcd', updateTitle: 'update.label.filter.mcd',
+                aggregationKey: "ICD_10_code.path", groupOptions: filters.conditionGroupOptions,
+                selectedValues: { set1: [{ id: "disease1", text: "disease1" }], set2: [] }, selectedNodes: { set1: [], set2: [] }
+            }
+        ];
+
+        var selectedFilter = allFilters[0];
+        var bindings = { filters: filters, onFilter: function () { } };
+        var ctrl = $componentController('owhSideFilter', { $scope: $scope }, bindings);
+        expect(ctrl).toBeDefined();
+
+        ctrl.showMCDModal(selectedFilter, allFilters, 'set1');
+
+        var modalCtrl = controllerProvider(givenModalDefaults.controller, { $scope: $scope, close: closeDeferred.promise });
+        modalCtrl.element = givenModalDefaults.element;
+        modalCtrl.controller = modalCtrl;
+        modalCtrl.optionValues = [{ id: "disease1", text: "disease1" }, { id: "disease2", text: "disease2" }];
+        thenFunction(modalCtrl);
+
+        expect(elementVisible).toBeTruthy();
+        closeDeferred.resolve({});
+        $scope.$apply();
+        expect(elementVisible).toBeFalsy();
+    });
 
     it("Should show tree modal on selecting YRBS Question filters", function() {
         var allFilters = [

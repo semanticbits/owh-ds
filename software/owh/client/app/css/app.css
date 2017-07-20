@@ -149,6 +149,7 @@ td .inline-bar {
     float: left;
 }
 .count-value, .count-label {
+    color: #4c4c4c;
     margin-top: 2px;
     position: relative;
     z-index: 1;
@@ -225,9 +226,16 @@ a.custom-link, a.custom-link:hover {
     display: inline-block;
     color: inherit;
 }
+
+a:focus {
+    border: 1px lightgray dashed;
+}
+
 a.custom-link:focus {
     box-shadow: none;
+    border: 1px lightgray dashed;
 }
+
 a.active-link, a.active-link:hover {
     color: #582C83;
     font-size: 1.2rem;
@@ -241,6 +249,7 @@ a.active-link.selected {
 }
 a.active-link.selected:focus {
     box-shadow: none;
+    border: 1px gray solid;
 }
 a.active-link:first-child {
     border-right: none;
@@ -293,6 +302,9 @@ ul.usa-unstyled-list.group-options li.group-option input[type="radio"] + label::
     width: 1.5rem;
     height: 1.5rem;
 }
+
+
+
 .cursor-pointer {
     cursor: pointer;
     color:white;
@@ -860,6 +872,9 @@ ul.legend-scale li span {
     color: #582C83;
     border-radius: 3px;
 }
+.qh-button:active {
+    background: black;
+}
 .qh-section {
     padding:30px 0;
     background-color: #ba83d8;
@@ -944,6 +959,7 @@ ul.legend-scale li span {
 .graph-box a, .graph-box a:focus {
     text-decoration: none;
 }
+
 
 /*header*/
 .sp-header {
@@ -1163,7 +1179,7 @@ ul.legend-scale li span {
 .owh-table__label {
     margin-top: 0;
     font-size: 12px;
-    color: #B6B6B6;
+    color: #595959;
     font-weight: normal;
 }
 
@@ -1255,4 +1271,28 @@ ul.legend-scale li span {
     width: 110px;
     margin-right: 10px;
 
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }

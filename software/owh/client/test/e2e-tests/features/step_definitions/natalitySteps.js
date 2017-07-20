@@ -154,7 +154,7 @@ var natalityStepsDefinitionWrapper = function () {
     });
 
     this.Then(/^I should see a Birth rate statement above data table in natality page$/, function () {
-        return expect(natalityPage.birthRateDisclaimer.getText()).to.eventually.equal("Population details from NCHS Bridged Race Estimates are used to calculate Birth Rates (per 100,000)");
+        return expect(natalityPage.birthRateDisclaimer.getText()).to.eventually.equal("Population details from NCHS Bridged Race Estimates are used to calculate Birth Rates (per 100,000).");
     });
 
     this.When(/^I see "([^"]*)" category in the sidebar$/, function (arg1, next) {
@@ -166,10 +166,15 @@ var natalityStepsDefinitionWrapper = function () {
 
     this.Then(/^I should see "([^"]*)" options under Mother Age category for 5-Year age group$/, function (arg1, next) {
         natalityPage.getOptions(arg1).then(function(elements) {
+            //We have a two extra <li> to display search box and to show more filter link
+            expect(elements.length).to.equal(9);
             expect(elements[1].getText()).to.eventually.contains('All');
-            expect(elements[2].getText()).to.eventually.contains('Under 15 years');
-            expect(elements[3].getText()).to.eventually.contains('15-19 years');
-            expect(elements[4].getText()).to.eventually.contains('20-24 years');
+            expect(elements[2].getText()).to.eventually.contains('15-19 years');
+            expect(elements[3].getText()).to.eventually.contains('20-24 years');
+            expect(elements[4].getText()).to.eventually.contains('25-29 years');
+            expect(elements[5].getText()).to.eventually.contains('30-34 years');
+            expect(elements[6].getText()).to.eventually.contains('35-39 years');
+            expect(elements[7].getText()).to.eventually.contains('40-44 years');
         }).then(next);
     });
 
@@ -195,10 +200,39 @@ var natalityStepsDefinitionWrapper = function () {
 
     this.Then(/^I should see "([^"]*)" options under Mother Age category for 1\-Year age group$/, function (arg1, next) {
         natalityPage.getOptions(arg1).then(function(elements) {
+            //We have a two extra <li> to display search box and to show more filter link
+            expect(elements.length).to.equal(33);
             expect(elements[1].getText()).to.eventually.contains('All');
-            expect(elements[2].getText()).to.eventually.contains('Under 15 years');
-            expect(elements[3].getText()).to.eventually.contains('15 years');
-            expect(elements[4].getText()).to.eventually.contains('16 years');
+            expect(elements[2].getText()).to.eventually.contains('15 years');
+            expect(elements[3].getText()).to.eventually.contains('16 years');
+            expect(elements[4].getText()).to.eventually.contains('17 years');
+            expect(elements[5].getText()).to.eventually.contains('18 years');
+            expect(elements[6].getText()).to.eventually.contains('19 years');
+            expect(elements[7].getText()).to.eventually.contains('20 years');
+            expect(elements[8].getText()).to.eventually.contains('21 years');
+            expect(elements[9].getText()).to.eventually.contains('22 years');
+            expect(elements[10].getText()).to.eventually.contains('23 years');
+            expect(elements[11].getText()).to.eventually.contains('24 years');
+            expect(elements[12].getText()).to.eventually.contains('25 years');
+            expect(elements[13].getText()).to.eventually.contains('26 years');
+            expect(elements[14].getText()).to.eventually.contains('27 years');
+            expect(elements[15].getText()).to.eventually.contains('28 years');
+            expect(elements[16].getText()).to.eventually.contains('29 years');
+            expect(elements[17].getText()).to.eventually.contains('30 years');
+            expect(elements[18].getText()).to.eventually.contains('31 years');
+            expect(elements[19].getText()).to.eventually.contains('32 years');
+            expect(elements[20].getText()).to.eventually.contains('33 years');
+            expect(elements[21].getText()).to.eventually.contains('34 years');
+            expect(elements[22].getText()).to.eventually.contains('35 years');
+            expect(elements[23].getText()).to.eventually.contains('36 years');
+            expect(elements[24].getText()).to.eventually.contains('37 years');
+            expect(elements[25].getText()).to.eventually.contains('38 years');
+            expect(elements[26].getText()).to.eventually.contains('39 years');
+            expect(elements[27].getText()).to.eventually.contains('40 years');
+            expect(elements[28].getText()).to.eventually.contains('41 years');
+            expect(elements[29].getText()).to.eventually.contains('42 years');
+            expect(elements[30].getText()).to.eventually.contains('43 years');
+            expect(elements[31].getText()).to.eventually.contains('44 years');
         }).then(next);
     });
 

@@ -597,7 +597,9 @@
             getInfantMortalityDataFilters: getInfantMortalityDataFilters,
             getSTDDataFilters: getSTDDataFilters,
             getAllOptionValues: getAllOptionValues,
-            getTBDataFilters: getTBDataFilters
+            getTBDataFilters: getTBDataFilters,
+            getAIDSFilters: getAIDSFilters,
+            getCancerFilters: getCancerFilters
         };
 
         function getBridgeDataFilters() {
@@ -656,8 +658,8 @@
                 {key:'65-69 years', title:'65 - 69 years', min: 65, max: 69},
                 {key:'70-74 years', title:'70 - 74 years', min: 70, max: 74},
                 {key:'75-79 years', title:'75 - 79 years', min: 75, max: 79},
-                {key:'80-84 years',title:'80 - 84 years', min: 80, max: 84},
-                {key:'85-105 years',title:'85+ years', min: 85, max: 105}
+                {key:'80-84 years', title:'80 - 84 years', min: 80, max: 84},
+                {key:'85+ years', title:'85+ years', min: 85, max: 105}
             ];
 
             var ageSliderOptions =  {
@@ -730,6 +732,48 @@
         }
 
         function getNatalityDataFilters() {
+
+            var natatityMothersAge1YearInterval =  [
+                { "key": "15 years", "title": "15 years" },
+                { "key": "16 years", "title": "16 years" },
+                { "key": "17 years", "title": "17 years" },
+                { "key": "18 years", "title": "18 years" },
+                { "key": "19 years", "title": "19 years" },
+                { "key": "20 years", "title": "20 years" },
+                { "key": "21 years", "title": "21 years" },
+                { "key": "22 years", "title": "22 years" },
+                { "key": "23 years", "title": "23 years" },
+                { "key": "24 years", "title": "24 years" },
+                { "key": "25 years", "title": "25 years" },
+                { "key": "26 years", "title": "26 years" },
+                { "key": "27 years", "title": "27 years" },
+                { "key": "28 years", "title": "28 years" },
+                { "key": "29 years", "title": "29 years" },
+                { "key": "30 years", "title": "30 years" },
+                { "key": "31 years", "title": "31 years" },
+                { "key": "32 years", "title": "32 years" },
+                { "key": "33 years", "title": "33 years" },
+                { "key": "34 years", "title": "34 years" },
+                { "key": "35 years", "title": "35 years" },
+                { "key": "36 years", "title": "36 years" },
+                { "key": "37 years", "title": "37 years" },
+                { "key": "38 years", "title": "38 years" },
+                { "key": "39 years", "title": "39 years" },
+                { "key": "40 years", "title": "40 years" },
+                { "key": "41 years", "title": "41 years" },
+                { "key": "42 years", "title": "42 years" },
+                { "key": "43 years", "title": "43 years" },
+                { "key": "44 years", "title": "44 years" }
+            ];
+
+            var natatityMothersAge5YearInterval =  [
+                { "key": "15-19 years", "title": "15-19 years" },
+                { "key": "20-24 years", "title": "20-24 years" },
+                { "key": "25-29 years", "title": "25-29 years" },
+                { "key": "30-34 years", "title": "30-34 years" },
+                { "key": "35-39 years", "title": "35-39 years" },
+                { "key": "40-44 years", "title": "40-44 years" }
+            ];
             //prepare filter definitions
             var natalityFilters = [
                 {key: 'hispanic_origin', title: 'label.filter.hispanicOrigin', queryKey:"hispanic_origin",
@@ -741,10 +785,10 @@
 
                 {key: 'mother_age_1year_interval', title: 'label.chart.mother_age.single.year.group', queryKey:"mother_age_1year_interval", primary: false, value: [],
                     defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: singleYearAgeOptions, helpText:"label.help.text.mother.one.year.age"},
+                    autoCompleteOptions: natatityMothersAge1YearInterval, helpText:"label.help.text.mother.one.year.age"},
 
                 {key: 'mother_age_5year_interval', title: 'label.chart.mother_age.five.year.group', queryKey:"mother_age_5year_interval", primary: false, value: [],
-                    defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: ageR9Options, helpText:"label.help.text.mother.five.year.age"},
+                    defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: natatityMothersAge5YearInterval, helpText:"label.help.text.mother.five.year.age"},
 
                 {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'row', filterType: "checkbox",
@@ -941,16 +985,16 @@
 
                 {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'column', filterType: "checkbox",
-                    autoCompleteOptions: genderOptions, helpText:"label.help.text.sex"},
+                    autoCompleteOptions: genderOptions, helpText:"label.help.text.infantmort.sex"},
 
                 {key: 'infant_age_at_death', title: 'label.filter.infant_age_at_death', queryKey: 'infant_age_at_death', primary: false,
                     value: [], defaultGroup: 'column', groupBy: false, filterType: 'checkbox',
-                    autoCompleteOptions: infantDeathAge, helpText: 'label.help.text.infant_age_at_death'},
+                    autoCompleteOptions: infantDeathAge, helpText: 'label.help.text.infantmort.age.death'},
 
                 // Maternal Characteristics
                 {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'row', filterType: "checkbox",
-                    autoCompleteOptions: im_raceOptions, helpText:"label.help.text.race"},
+                    autoCompleteOptions: raceOptions, helpText:"label.help.text.race"},
 
                 {key: 'hispanic_origin', title: 'label.filter.hispanicOrigin', queryKey:"hispanic_origin",
                     primary: false, value: [], defaultGroup:'row', groupBy: false, filterType: "checkbox",
@@ -958,7 +1002,7 @@
 
                 {key: 'mother_age_5_interval', title: 'label.filter.age_of_mother', queryKey:"mother_age_5_interval",
                     primary: false, value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: ageR9Options, helpText:"label.help.text.mother.five.year.age"},
+                    autoCompleteOptions: ageR9Options, helpText:"label.help.text.infantmort.age.group"},
 
                 {key: 'marital_status', title: 'label.filter.maritalStatus', queryKey:"marital_status", primary: false,
                     value: [], defaultGroup:'column', groupBy:false, filterType: "checkbox",
@@ -972,17 +1016,17 @@
                 {key: 'gestation_recode11', title: 'label.filter.infant_mortality.gestation_recode11', queryKey:"gestation_recode11",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: gestationalGroup1,
-                    helpText:"label.help.text.gestational.age"},
+                    helpText:"label.help.text.gestational.group.one"},
 
                 {key: 'gestation_recode10', title: 'label.filter.infant_mortality.gestation_recode10', queryKey:"gestation_recode10",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: gestationalGroup2,
-                    helpText:"label.help.text.gestational.age"},
+                    helpText:"label.help.text.gestational.group.two"},
 
                 {key: 'gestation_weekly', title: 'label.filter.infant_mortality.gestation_weekly', queryKey:"gestation_weekly",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: gestationWeekly,
-                    helpText:"label.help.text.gestational.age"},
+                    helpText:"label.help.text.gestational.weekly"},
 
                 {key: 'prenatal_care', title: 'label.filter.monthPrenatalCareBegan', queryKey:"prenatal_care",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
@@ -990,8 +1034,8 @@
                     helpText:"label.help.text.prenatal.care"},
 
                 {key: 'birth_weight', title: 'label.filter.birthWeight', queryKey:"birth_weight_r12", primary: false,
-                    value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: birthWeightR12Options,
-                    helpText:"label.help.text.birth.weight"},
+                    value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
+                    autoCompleteOptions: birthWeightR12Options, helpText: "label.help.text.birth.weight"},
 
                 {key: 'birth_plurality', title: 'label.filter.plurality', queryKey:"birth_plurality", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
@@ -1016,16 +1060,8 @@
                 // Location
                 {key: 'state', title: 'label.filter.state', queryKey: 'state', primary: false,
                     value: [], defaultGroup: 'column', groupBy: false, filterType: 'checkbox',
-                    autoCompleteOptions: stateOptions, helpText: 'label.help.text.state'},
-
-                {key: 'ucd-chapter-10', title: 'label.filter.ucd', queryKey:"ICD_10_code", primary: true,
-                 value: [], defaultGroup:'column', groupBy: false, filterType: 'conditions',
-                 autoCompleteOptions: $rootScope.conditionsListICD10, helpText: 'label.help.text.infantmort.ucd'}
-
-                /*{key: 'mcd-chapter-10', title: 'label.filter.mcd', queryKey:"ICD_10_code", primary: false,
-                    value: [], defaultGroup:'column', groupBy: false, filterType: 'conditions',
-                 autoCompleteOptions: $rootScope.conditionsListICD10, helpText: ''}*/
-            ];
+                    autoCompleteOptions: stateOptions, helpText: 'label.help.text.state'}
+            ]
         }
 
         /**
@@ -1048,6 +1084,7 @@
                     queryKey: "current_year",
                     primary: false,
                     value: "2015",
+                    defaultValue: "2015",
                     groupBy: false,
                     filterType: 'radio',
                     autoCompleteOptions: diseaseYearOptions,
@@ -1060,6 +1097,7 @@
                     queryKey: "disease",
                     primary: false,
                     value: 'Chlamydia',
+                    defaultValue: "Chlamydia",
                     groupBy: false,
                     filterType: 'radio',
                     autoCompleteOptions: stdDiseaseOptions,
@@ -1068,7 +1106,8 @@
                 },
 
                 {
-                    key: 'state', title: 'label.filter.state', queryKey: "state", primary: false, value: 'National',
+                    key: 'state', title: 'label.filter.state', queryKey: "state", primary: false,
+                    value: 'National', defaultValue: "National",
                     groupBy: false, filterType: 'radio', displaySearchBox: true, displaySelectedFirst: true,
                     autoCompleteOptions: diseaseStateOptions,
                     doNotShowAll: true,
@@ -1116,7 +1155,7 @@
                     doNotShowAll: true,
                     helpText: "label.std.help.text.sex"
                 }
-                ];
+                ]
 
         }
 
@@ -1137,7 +1176,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseYearOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.year"
+                    helpText: "label.help.text.tb.year"
                 },
                 {
                     key: 'age_group',
@@ -1149,7 +1188,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseAgeGroupOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.bridged-race.agegroup"
+                    helpText: "label.std.help.text.age.group"
                 },
                 {
                     key: 'race',
@@ -1161,7 +1200,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseRaceOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.race"
+                    helpText: "label.help.text.tb.race"
                 },
                 {
                     key: 'sex',
@@ -1173,7 +1212,7 @@
                     filterType: 'radio',
                     autoCompleteOptions: diseaseGenderOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.sex"
+                    helpText: "label.help.text.tb.sex"
                 },
                 {
                     key: 'state', title: 'label.filter.state', queryKey: "state",
@@ -1182,10 +1221,139 @@
                     displaySearchBox: true, displaySelectedFirst: true,
                     autoCompleteOptions: diseaseStateOptions,
                     doNotShowAll: true,
-                    helpText: "label.help.text.natality.state"
+                    helpText: "label.help.text.tb.state"
                 }
             ]
 
+        }
+
+        function getAIDSFilters () {
+            var aidsDiseaseOptions = [
+                { key: 'HIV, stage 3 (AIDS)', title: 'AIDS Diagnoses' },
+                { key: 'HIV, stage 3 (AIDS) deaths', title: 'AIDS Deaths', disabled: true },
+                { key: 'Persons living with HIV, stage 3 (AIDS)', title: 'AIDS Prevalence', disabled: true },
+                { key: 'HIV diagnoses', title: 'HIV Diagnoses' },
+                { key: 'HIV deaths', title: 'HIV Deaths', disabled: true },
+                { key: 'Persons living with diagnosed HIV', title: 'HIV Prevalence', disabled: true }
+            ];
+
+            var aidsRaceOptions = [
+                { key: 'All races/ethnicities', title: 'All races/ethnicities' },
+                { key: 'American Indian or Alaska Native', title: 'American Indian/Alaska Native' },
+                { key: 'Asian', title: 'Asian' },
+                { key: 'Black or African American', title: 'Black/African American' },
+                { key: 'Hispanic or Latino', title: 'Hispanic/Latino' },
+                { key: 'Multiple races', title: 'Multiple races' },
+                { key: 'Asian or Pacific Islander', title: 'Native Hawaiian/Other Pacific Islander' },
+                { key: 'White', title: 'White' }
+            ];
+
+            var aidsAgeGroupOptions = [
+                { key: 'All age groups 13 and up', title: 'All age groups' },
+                { key: '13-24', title: '13-24' },
+                { key: '25-34', title: '25-34' },
+                { key: '35-44', title: '35-44' },
+                { key: '45-54', title: '45-54' },
+                { key: '55+', title: '55+' }
+            ];
+
+            var aidsTransmissionOptions = [
+                { key: 'No stratification', title: 'All transmission categories' },
+                { key: 'Heterosexual contact', title: 'Heterosexual contact' },
+                { key: 'Injection drug use', title: 'Injection drug use' },
+                { key: 'Male-to-Male sexual contact', title: 'Male-to-male sexual contact' },
+                { key: 'Male-to-male sexual contact and injection drug use', title: 'Male-to-male sexual contact and injection drug use' },
+                { key: 'Other', title: 'Other' }
+            ];
+
+            return [
+                {
+                    key: 'disease',
+                    title: 'label.filter.indicator',
+                    queryKey: 'disease',
+                    primary: false,
+                    value: 'HIV, stage 3 (AIDS)',
+                    groupBy: false,
+                    filterType: 'radio',
+                    autoCompleteOptions: aidsDiseaseOptions,
+                    doNotShowAll: true,
+                    helpText: 'label.help.text.disease'
+                },
+                {
+                    key: 'state',
+                    title: 'label.filter.state',
+                    queryKey: 'state',
+                    primary: false,
+                    value: 'National',
+                    groupBy: false,
+                    filterType: 'radio',
+                    displaySearchBox: true,
+                    displaySelectedFirst: true,
+                    autoCompleteOptions: diseaseStateOptions,
+                    doNotShowAll: true,
+                    helpText: 'label.std.help.text.state'
+                },
+                {
+                    key: 'current_year',
+                    title: 'label.filter.year',
+                    queryKey: 'current_year',
+                    primary: false,
+                    value: '2015',
+                    groupBy: false,
+                    filterType: 'radio',
+                    autoCompleteOptions: yearOptions,
+                    doNotShowAll: true,
+                    helpText: 'label.help.text.hiv.year'
+                },
+                {
+                    key: 'race',
+                    title: 'label.yrbs.filter.race',
+                    queryKey: 'race_ethnicity',
+                    primary: false,
+                    value: 'All races/ethnicities',
+                    groupBy: 'row',
+                    filterType: 'radio',
+                    autoCompleteOptions: aidsRaceOptions,
+                    doNotShowAll: true,
+                    helpText: 'label.std.help.text.race.ethnicity'
+                },
+                {
+                    key: 'sex',
+                    title: 'label.filter.gender',
+                    queryKey: "sex",
+                    primary: false,
+                    value: 'Both sexes',
+                    groupBy: 'column',
+                    filterType: 'radio',
+                    autoCompleteOptions: diseaseGenderOptions,
+                    doNotShowAll: true,
+                    helpText: 'label.help.text.tb.sex'
+                },
+                {
+                    key: 'age_group',
+                    title: 'label.filter.agegroup',
+                    queryKey: 'age_group',
+                    primary: false,
+                    value: 'All age groups 13 and up',
+                    groupBy: false,
+                    filterType: 'radio',
+                    autoCompleteOptions: aidsAgeGroupOptions,
+                    doNotShowAll: true,
+                    helpText: 'label.help.text.hiv.agegroup'
+                },
+                {
+                    key: 'transmission',
+                    title: 'label.filter.transmission',
+                    queryKey: 'transmission',
+                    primary: false,
+                    value: 'No stratification',
+                    groupBy: false,
+                    filterType: 'radio',
+                    autoCompleteOptions: aidsTransmissionOptions,
+                    doNotShowAll: true,
+                    helpText: 'label.help.text.transmission'
+                }
+            ]
         }
 
         /**
@@ -1194,9 +1362,220 @@
          * @return Side filters All option values
          */
         function getAllOptionValues() {
-            return ["Both sexes", "All races/ethnicities", "All age groups", "National"];
+            return ["Both sexes", "All races/ethnicities", "All age groups", "National"]
         }
 
+        function getCancerFilters () {
+
+            var cancerRaceOptions = [
+                { key: 'White', title: 'White' },
+                { key: 'Black', title: 'Black' },
+                { key: 'American Indian/Alaska Native', title: 'American Indian/Alaska Native' },
+                { key: 'Asian or Pacific Islander', title: 'Asian or Pacific Islander' },
+                { key: 'Unknown', title: 'Unknown' }
+            ];
+
+            var cancerHispanicOptions = [
+                { key: 'Non-Hispanic', title: 'Non-Hispanic' },
+                { key: 'Hispanic', title: 'Hispanic' },
+                { key: 'Invalid', title: 'Invalid' }
+            ];
+
+            var cancerAgeGroups = [
+                { key: '00 years', title: '00 years' },
+                { key: '01-04 years', title: '01-04 years' },
+                { key: '05-09 years', title: '05-09 years' },
+                { key: '10-14 years', title: '10-14 years' },
+                { key: '15-19 years', title: '15-19 years' },
+                { key: '20-24 years', title: '20-24 years' },
+                { key: '25-29 years', title: '25-29 years' },
+                { key: '30-34 years', title: '30-34 years' },
+                { key: '35-39 years', title: '35-39 years' },
+                { key: '40-44 years', title: '40-44 years' },
+                { key: '45-49 years', title: '45-49 years' },
+                { key: '50-54 years', title: '50-54 years' },
+                { key: '55-59 years', title: '55-59 years' },
+                { key: '60-64 years', title: '60-64 years' },
+                { key: '65-69 years', title: '65-69 years' },
+                { key: '70-74 years', title: '70-74 years' },
+                { key: '75-79 years', title: '75-79 years' },
+                { key: '80-84 years', title: '80-84 years' },
+                { key: '85+ years', title: '85+ years' }
+            ];
+
+            var cancerSites = [
+                { key: '20010', title: '20010' },
+                { key: '20020', title: '20020' },
+                { key: '20030', title: '20030' },
+                { key: '20040', title: '20040' },
+                { key: '20050', title: '20050' },
+                { key: '20060', title: '20060' },
+                { key: '20070', title: '20070' },
+                { key: '20080', title: '20080' },
+                { key: '20090', title: '20090' },
+                { key: '20100', title: '20100' },
+                { key: '21010', title: '21010' },
+                { key: '21020', title: '21020' },
+                { key: '21030', title: '21030' },
+                { key: '21041', title: '21041' },
+                { key: '21042', title: '21042' },
+                { key: '21043', title: '21043' },
+                { key: '21044', title: '21044' },
+                { key: '21045', title: '21045' },
+                { key: '21046', title: '21046' },
+                { key: '21047', title: '21047' },
+                { key: '21048', title: '21048' },
+                { key: '21049', title: '21049' },
+                { key: '21051', title: '21051' },
+                { key: '21052', title: '21052' },
+                { key: '21060', title: '21060' },
+                { key: '21071', title: '21071' },
+                { key: '21072', title: '21072' },
+                { key: '21080', title: '21080' },
+                { key: '21090', title: '21090' },
+                { key: '21100', title: '21100' },
+                { key: '21110', title: '21110' },
+                { key: '21120', title: '21120' },
+                { key: '21130', title: '21130' },
+                { key: '22010', title: '22010' },
+                { key: '22020', title: '22020' },
+                { key: '22030', title: '22030' },
+                { key: '22050', title: '22050' },
+                { key: '22060', title: '22060' },
+                { key: '23000', title: '23000' },
+                { key: '24000', title: '24000' },
+                { key: '25010', title: '25010' },
+                { key: '25020', title: '25020' },
+                { key: '26000', title: '26000' },
+                { key: '27010', title: '27010' },
+                { key: '27020', title: '27020' },
+                { key: '27030', title: '27030' },
+                { key: '27040', title: '27040' },
+                { key: '27050', title: '27050' },
+                { key: '27060', title: '27060' },
+                { key: '27070', title: '27070' },
+                { key: '28010', title: '28010' },
+                { key: '28020', title: '28020' },
+                { key: '28030', title: '28030' },
+                { key: '28040', title: '28040' },
+                { key: '29010', title: '29010' },
+                { key: '29020', title: '29020' },
+                { key: '29030', title: '29030' },
+                { key: '29040', title: '29040' },
+                { key: '30000', title: '30000' },
+                { key: '31010', title: '31010' },
+                { key: '31040', title: '31040' },
+                { key: '32010', title: '32010' },
+                { key: '32020', title: '32020' },
+                { key: '33011', title: '33011' },
+                { key: '33012', title: '33012' },
+                { key: '33041', title: '33041' },
+                { key: '33042', title: '33042' },
+                { key: '34000', title: '34000' },
+                { key: '35011', title: '35011' },
+                { key: '35012', title: '35012' },
+                { key: '35013', title: '35013' },
+                { key: '35021', title: '35021' },
+                { key: '35031', title: '35031' },
+                { key: '35022', title: '35022' },
+                { key: '35041', title: '35041' },
+                { key: '35043', title: '35043' },
+                { key: '36010', title: '36010' },
+                { key: '36020', title: '36020' },
+                { key: '35023', title: '35023' },
+                { key: '37000', title: '37000' },
+                { key: 'Breast-InSitu', title: 'Breast-InSitu' }
+            ];
+
+            return [
+                {
+                    key: 'current_year',
+                    title: 'label.filter.year',
+                    queryKey: 'current_year',
+                    primary: false,
+                    value: [ '2014' ],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: yearOptions,
+                    doNotShowAll: true,
+                    defaultGroup:'column',
+                    helpText: 'label.help.text.cancer.year'
+                },
+                {
+                    key: 'sex',
+                    title: 'label.filter.gender',
+                    queryKey: 'sex',
+                    primary: false,
+                    value: [],
+                    groupBy: 'column',
+                    filterType: 'checkbox',
+                    autoCompleteOptions: genderOptions,
+                    defaultGroup:'column',
+                    helpText: 'label.help.text.tb.sex'
+                },
+                {
+                    key: 'race',
+                    title: 'label.filter.race',
+                    queryKey: 'race',
+                    primary: false,
+                    value: [],
+                    groupBy: 'row',
+                    filterType: 'checkbox',
+                    autoCompleteOptions: cancerRaceOptions,
+                    defaultGroup:'column',
+                    helpText:"label.help.text.race"
+                },
+                {
+                    key: 'hispanic_origin',
+                    title: 'label.filter.hispanicOrigin',
+                    queryKey: 'hispanic_origin',
+                    primary: false,
+                    value: [],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: cancerHispanicOptions,
+                    defaultGroup:'column',
+                    helpText: 'label.help.text.ethnicity'
+                },
+                {
+                    key: 'age_group',
+                    title: 'label.filter.agegroup',
+                    queryKey: 'age_group',
+                    primary: false,
+                    value: [],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: cancerAgeGroups,
+                    defaultGroup:'column',
+                    helpText: 'label.help.text.bridged-race.agegroup'
+                },
+                {
+                    key: 'site',
+                    title: 'label.filter.cancer_site',
+                    queryKey: 'cancer_site',
+                    primary: false,
+                    value: [],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: cancerSites,
+                    defaultGroup:'column',
+                    helpText: 'label.help.text.cancer_sites'
+                },
+                {
+                    key: 'state',
+                    title: 'label.filter.state',
+                    queryKey: 'state',
+                    primary: 'false',
+                    value: [],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: stateOptions,
+                    doNotShowAll: true,
+                    defaultGroup:'column',
+                    helpText: 'label.help.text.cancer.state'
+                }
+            ]
+        }
     }
 
 }());

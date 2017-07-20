@@ -51,8 +51,8 @@ var MortalitySearchPage = function() {
     msp.getAxisLabelsForMinimizedVisualization= function () {
         //Verify Visualization has 'nv-axislabel' css class for both axis
         //minimized visualization has id starts with '.chart_'
-        var axis_x_label = element(by.id('chart_0_0')).element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-x.nv-axis')).element(by.css('.nv-axislabel'));
-        var axis_y_label = element(by.id('chart_0_0')).element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-y.nv-axis')).element(by.css('.nv-axislabel'));
+        var axis_x_label = element(by.id('chart_0_1')).element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-x.nv-axis')).element(by.css('.nv-axislabel'));
+        var axis_y_label = element(by.id('chart_0_1')).element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-y.nv-axis')).element(by.css('.nv-axislabel'));
         return [axis_x_label, axis_y_label];
     };
     msp.getAxisLabelsForExpandedVisualization= function () {
@@ -69,6 +69,14 @@ var MortalitySearchPage = function() {
     };
     msp.getTableRowData = function(rowNumber) {
         return msp.owhTable.element(by.id('clusterize-table')).element(by.tagName('tbody')).all(by.tagName('tr')).get(rowNumber).all(by.tagName('td')).getText();
+    };
+
+    msp.getTableDataByRowFilterAndColumnHeaderText = function (rowFilter, headerCellText) {
+        return msp.owhTable.element(by.tagName('table')).element(by.tagName('thead')).all(by.tagName('th')).getText().then(function (cells) {
+            var columnIndex = cells.indexOf(headerCellText);
+
+            return msp.owhTable.element(by.id('clusterize-table')).element(by.tagName('tbody')).all(by.tagName('tr')).filter(rowFilter).all(by.tagName('td')).get(columnIndex).getText();
+        });
     };
 
     msp.getTableCellData = function(row, column) {

@@ -5,6 +5,9 @@ var pramsFilters = require('./prams_filters.json');
 var stdCasesQuery = require('./data/std_cases_elastic_query.json');
 var stdPopulationQuery = require('./data/std_population_elastic_query.json');
 var stdSideFilterCountQuery = require('./data/std_sidefilter_count_query.json');
+var stdApiQueryWithMultipleFilters = require('./data/std_apiQuery_with_multiple_filters.json');
+var tbApiQueryWithMultipleFilters = require('./data/tb_apiQuery_with_multiple_filters.json');
+var aidsApiQueryWithMultipleFilters = require('./data/aids_apiQuery_with_multiple_filters.json');
 
 describe("Build elastic search queries", function(){
      it("Build search query with empty query and aggregations", function(done){
@@ -309,7 +312,83 @@ describe("Build elastic search queries", function(){
         done()
     });
 
-     it("getGroupQuery returns query with size 0", function(done){
+    it("Build search query for std with multiple filters ", function(done){
+        var allOptionValues = ["Both sexes", "All races/ethnicities", "All age groups", "National"];
+        var resultQuery = elasticQueryBuilder.buildSearchQuery(stdApiQueryWithMultipleFilters, true, allOptionValues);
+        //Make sure main query don't have chart aggregation query
+        expect(resultQuery[0].aggregations.group_chart_0_age_group).to.eql(undefined);
+        //Chart query should have aggregations for selected filters
+        expect(resultQuery[3].length).to.eql(3);
+        //group_chart_0_age_group
+        expect(resultQuery[3][0].aggregations.group_chart_0_age_group).to.not.eql(undefined);
+        expect(resultQuery[3][0].aggregations.group_chart_0_age_group.terms.field).to.eql('age_group');
+        expect(resultQuery[3][0].aggregations.group_chart_0_age_group.aggregations.group_chart_0_race).to.not.eql(undefined);
+        expect(resultQuery[3][0].aggregations.group_chart_0_age_group.aggregations.group_chart_0_race.terms.field).to.eql('race_ethnicity');
+        //group_chart_1_sex
+        expect(resultQuery[3][1].aggregations.group_chart_1_sex).to.not.eql(undefined);
+        expect(resultQuery[3][1].aggregations.group_chart_1_sex.terms.field).to.eql('sex');
+        expect(resultQuery[3][1].aggregations.group_chart_1_sex.aggregations.group_chart_1_age_group).to.not.eql(undefined);
+        expect(resultQuery[3][1].aggregations.group_chart_1_sex.aggregations.group_chart_1_age_group.terms.field).to.eql('age_group');
+        //group_chart_2_sex
+        expect(resultQuery[3][2].aggregations.group_chart_2_sex).to.not.eql(undefined);
+        expect(resultQuery[3][2].aggregations.group_chart_2_sex.terms.field).to.eql('sex');
+        expect(resultQuery[3][2].aggregations.group_chart_2_sex.aggregations.group_chart_2_race).to.not.eql(undefined);
+        expect(resultQuery[3][2].aggregations.group_chart_2_sex.aggregations.group_chart_2_race.terms.field).to.eql('race_ethnicity');
+        done();
+    });
+
+    it("Build search query for tb with multiple filters ", function(done){
+        var allOptionValues = ["Both sexes", "All races/ethnicities", "All age groups", "National"];
+        var resultQuery = elasticQueryBuilder.buildSearchQuery(tbApiQueryWithMultipleFilters, true, allOptionValues);
+        //Make sure main query don't have chart aggregation query
+        expect(resultQuery[0].aggregations.group_chart_0_age_group).to.eql(undefined);
+        //Chart query should have aggregations for selected filters
+        expect(resultQuery[3].length).to.eql(3);
+        //group_chart_0_age_group
+        expect(resultQuery[3][0].aggregations.group_chart_0_age_group).to.not.eql(undefined);
+        expect(resultQuery[3][0].aggregations.group_chart_0_age_group.terms.field).to.eql('age_group');
+        expect(resultQuery[3][0].aggregations.group_chart_0_age_group.aggregations.group_chart_0_race).to.not.eql(undefined);
+        expect(resultQuery[3][0].aggregations.group_chart_0_age_group.aggregations.group_chart_0_race.terms.field).to.eql('race_ethnicity');
+        //group_chart_1_sex
+        expect(resultQuery[3][1].aggregations.group_chart_1_sex).to.not.eql(undefined);
+        expect(resultQuery[3][1].aggregations.group_chart_1_sex.terms.field).to.eql('sex');
+        expect(resultQuery[3][1].aggregations.group_chart_1_sex.aggregations.group_chart_1_race).to.not.eql(undefined);
+        expect(resultQuery[3][1].aggregations.group_chart_1_sex.aggregations.group_chart_1_race.terms.field).to.eql('race_ethnicity');
+        //group_chart_2_sex
+        expect(resultQuery[3][2].aggregations.group_chart_2_sex).to.not.eql(undefined);
+        expect(resultQuery[3][2].aggregations.group_chart_2_sex.terms.field).to.eql('sex');
+        expect(resultQuery[3][2].aggregations.group_chart_2_sex.aggregations.group_chart_2_age_group).to.not.eql(undefined);
+        expect(resultQuery[3][2].aggregations.group_chart_2_sex.aggregations.group_chart_2_age_group.terms.field).to.eql('age_group');
+        done();
+    });
+
+    it("Build search query for aids with multiple filters ", function(done){
+        var allOptionValues = ["Both sexes", "All races/ethnicities", "All age groups", "National"];
+        var resultQuery = elasticQueryBuilder.buildSearchQuery(aidsApiQueryWithMultipleFilters, true, allOptionValues);
+        //Make sure main query don't have chart aggregation query
+        expect(resultQuery[0].aggregations.group_chart_0_age_group).to.eql(undefined);
+        //Chart query should have aggregations for selected filters
+        expect(resultQuery[3].length).to.eql(3);
+        //group_chart_0_age_group
+        expect(resultQuery[3][0].aggregations.group_chart_0_age_group).to.not.eql(undefined);
+        expect(resultQuery[3][0].aggregations.group_chart_0_age_group.terms.field).to.eql('age_group');
+        expect(resultQuery[3][0].aggregations.group_chart_0_age_group.aggregations.group_chart_0_race).to.not.eql(undefined);
+        expect(resultQuery[3][0].aggregations.group_chart_0_age_group.aggregations.group_chart_0_race.terms.field).to.eql('race_ethnicity');
+        //group_chart_1_sex
+        expect(resultQuery[3][1].aggregations.group_chart_1_sex).to.not.eql(undefined);
+        expect(resultQuery[3][1].aggregations.group_chart_1_sex.terms.field).to.eql('sex');
+        expect(resultQuery[3][1].aggregations.group_chart_1_sex.aggregations.group_chart_1_age_group).to.not.eql(undefined);
+        expect(resultQuery[3][1].aggregations.group_chart_1_sex.aggregations.group_chart_1_age_group.terms.field).to.eql('age_group');
+        //group_chart_2_sex
+        expect(resultQuery[3][2].aggregations.group_chart_2_sex).to.not.eql(undefined);
+        expect(resultQuery[3][2].aggregations.group_chart_2_sex.terms.field).to.eql('sex');
+        expect(resultQuery[3][2].aggregations.group_chart_2_sex.aggregations.group_chart_2_race).to.not.eql(undefined);
+        expect(resultQuery[3][2].aggregations.group_chart_2_sex.aggregations.group_chart_2_race.terms.field).to.eql('race_ethnicity');
+        done();
+    });
+
+
+    it("getGroupQuery returns query with size 0", function(done){
         var filter = {"key":"year","queryKey": "current_year","value":"2014","primary":false};
         var query = elasticQueryBuilder.getGroupQuery(filter);
         expect(JSON.stringify(query)).to.eql(JSON.stringify({key: "year", queryKey: "current_year", getPercent: undefined, size: 0}));
@@ -481,4 +560,17 @@ describe("Build elastic search queries", function(){
         quesFilter.value = [];
         done();
     });
+
+    it("Build search query for infant mortality index", function(done){
+        var params = {"searchFor":"infant_mortality","query":{"year_of_death":{"key":"year_of_death","queryKey":"year_of_death","value":["2014"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":0},{"key":"sex","queryKey":"sex","size":0}],"charts":[[{"key":"sex","queryKey":"sex","size":0},{"key":"race","queryKey":"race","size":0}]],"maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}}};
+        var resultQuery = elasticQueryBuilder.buildSearchQuery(params, true);
+       //Make sure main query has year column querykey equals to 'year_of_death'
+        expect(resultQuery[0].query.filtered.filter.bool.must[0].bool.should[0].term.year_of_death).to.not.eql(undefined);
+        expect(resultQuery[0].query.filtered.filter.bool.must[0].bool.should[0].term.year_of_death).to.eql('2014');
+        //Make sure census query has year column querykey equals to 'current_year' to get birth counts from natality index
+        expect(resultQuery[1].query.filtered.filter.bool.must[0].bool.should[0].term.current_year).to.not.eql(undefined);
+        expect(resultQuery[1].query.filtered.filter.bool.must[0].bool.should[0].term.current_year).to.eql('2014');
+        done();
+    });
+
 });

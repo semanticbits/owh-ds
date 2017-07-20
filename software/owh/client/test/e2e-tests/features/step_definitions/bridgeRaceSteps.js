@@ -195,6 +195,67 @@ var BridgeRaceStepDefinitionsWrapper = function () {
             expect(row[3]).to.equal('4,577,853');
         });
     });
+
+    this.Then(/^I see data in data table for (\d+)\+ years age group$/, function (arg1, next) {
+        bridgeRacePage.getTableCellData(17,0).then(function(data){
+            expect(data).to.contains('85+ years');
+            //Female
+            bridgeRacePage.getTableCellData(17,1).then(function(data){
+                expect(data).to.contains('20,022 (63.9%)');
+            });
+            //Male
+            bridgeRacePage.getTableCellData(17,2).then(function(data){
+                expect(data).to.contains('11,308 (36.1%)');
+            });
+            //Total
+            bridgeRacePage.getTableCellData(17,3).then(function(data){
+                expect(data).to.contains('31,330');
+            });
+        }).then(next);
+    });
+
+    this.Then(/^I see export chart button$/, function (next) {
+        bridgeRacePage.isExportBtnDisplayed().then(function(value) {
+            expect(value).to.equal(true);
+        }).then(next);
+    });
+
+    this.When(/^I click on export chart button$/, function (next) {
+        expect(bridgeRacePage.exportPNG.isPresent()).to.eventually.equal(true);
+        return expect(bridgeRacePage.exportPNG.isPresent()).to.eventually.equal(true);
+    });
+
+    this.Then(/^The chart is downloaded$/, function (next) {
+        expect(page.response_headers['Content-Disposition']).to.equal('"filename=\"Sex and Race\"');
+    });
+
+    this.When(/^I hover on the export chart button$/, function () {
+        // browser.actions().mouseMove(element(by.css('.dropbtn'))).perform();
+        return browser.actions().mouseMove(bridgeRacePage.exportGraphLink).perform();
+    });
+
+    this.Then(/^I see two export menus displayed$/, function () {
+        expect(bridgeRacePage.exportPNG.isPresent()).to.eventually.equal(true);
+        return expect(bridgeRacePage.exportPDF.isPresent()).to.eventually.equal(true);
+    });
+
+    this.When(/^I click on the export as PNG$/, function () {
+        return bridgeRacePage.exportPNG.click();
+    });
+
+    this.Then(/^I see a PNG file is downloaded$/, function (next) {
+        // dont see a way to test this on selemium using javascript, so this is a NOOP test for now.
+        next();
+    });
+
+    this.When(/^I click on the export as PDF/, function () {
+        return bridgeRacePage.exportPDF.click();
+    });
+
+    this.Then(/^I see a PDF file is downloaded$/, function (next) {
+        // dont see a way to test this on selemium using javascript, so this is a NOOP test for now.
+        next();
+    });
 };
 
 module.exports = BridgeRaceStepDefinitionsWrapper;
