@@ -1,5 +1,4 @@
 <div class="usa-grid-full">
-    <div class="dropdown-content">
         <div class="usa-grid-full">
             <div class="height-150 usa-grid-full usa-width-one-whole">
                 <div class="width-1900 margin-right-0">
@@ -10,10 +9,10 @@
                             <!--<i class="arrow-left" ng-click="mc.goBackward()"></i>
                             <i class="arrow-right" ng-click="mc.goForward()"></i>-->
                         </div>
-                        <div class="sol-right-border menu-row usa-width-one-fourth text-left interested-text">
+                        <div class="sol-right-border menu-row usa-width-one-fourth text-left interested-text" ng-click="mc.showCategory()">
                             <div class="label-form select" ng-bind="'label.interested.in' | translate"></div>
                             <div class="black-one-line dropdown-heading" ng-bind="mc.selectedFilter.header">Choose a health topic</div>
-                            <div class="icon-position" ng-click="mc.showCategory()"><i class="fa fa-angle-down font-30 karat"></i></div>
+                            <div class="icon-position"><i class="fa fa-angle-down font-30 karat"></i></div>
                         </div>
                         <div class="sol-right-border menu-row usa-width-one-fourth text-left interested-text">
                             <!--<div class="label-form select"></div>-->
@@ -25,7 +24,7 @@
                                         <div ng-bind-html="option.title | translate | highlight: $select.search"></div>
                                     </ui-select-choices>
                                     <ui-select-match class="ui-select-match" allow-clear="true"
-                                                     placeholder='label.show.me | translate'>{{$item.title | translate}}
+                                                     placeholder="'label.show.me' | translate">{{$item.title | translate}}
                                     </ui-select-match>
                                 </ui-select>
                             <!--<div class="icon-position"><i class="fa fa-angle-down font-30 karat"></i></div>-->
@@ -40,7 +39,7 @@
                             </select>
                             <!--<div class="icon-position"><i class="fa fa-angle-down font-30 karat"></i></div>-->
                         </div>
-                        <div class="dropdown-content dropdown-submenu" ng-show="mc.displayCategory">
+                        <div class="dropdown-submenu" ng-show="mc.displayCategory" style="z-index:999; background-color:#f9f9f9; top: 60px; left:10px">
                             <div class="flex-container">
                                 <div class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter: 'deaths'})">
                                     <img src="../images/mortality-icon.svg" alt="owh_white_logo" height="100" width="100"/>
@@ -141,5 +140,4 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>

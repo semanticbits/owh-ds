@@ -31,12 +31,11 @@
                 </div>
             </div>
         </div>
-        {{sc.filters.selectedPrimaryFilter.searchResults}}
-    <owh-menu selected-filter ="sc.filters.selectedPrimaryFilter" show-me-options="sc.showMeOptions"
-              search-results="sc.filters.selectedPrimaryFilter.searchResults(sc.filters.selectedPrimaryFilter)"
-              on-primary-filter="sc.changePrimaryFilter(newFilter)" category-name="sc.getSearchFilter(newFilter)"
-              on-view-filter="sc.changeViewFilter(selectedFilter)" table-name="sc.getOptionName(filterName, opt)">
-    </owh-menu>
+        <owh-menu selected-filter ="sc.filters.selectedPrimaryFilter" show-me-options="sc.showMeOptions"
+                  search-results="sc.filters.selectedPrimaryFilter.searchResults(sc.filters.selectedPrimaryFilter)"
+                  on-primary-filter="sc.changePrimaryFilter(newFilter)" category-name="sc.getSearchFilter(newFilter)"
+                  on-view-filter="sc.changeViewFilter(selectedFilter)" table-name="sc.getOptionName(filterName, opt)">
+        </owh-menu>
 </div>
 </div>
 

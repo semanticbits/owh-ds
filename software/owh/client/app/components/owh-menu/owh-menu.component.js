@@ -69,8 +69,6 @@
 
         function showCategory() {
             mc.displayCategory = !mc.displayCategory;
-            mc.displayTopic = false;
-            mc.displayFilter = false;
         }
 
         function showFilter() {
