@@ -573,7 +573,7 @@
             { key: "40 weeks" , title: "40 weeks" },
             { key: "41 weeks" , title: "41 weeks" },
             { key: "42 weeks and over" , title: "42 weeks and over" },
-            { key: "Not stated" , title: "Not stated" }
+            { key: "Unknown" , title: "Unknown" }
         ];
 
         var gestationWeekly = [
@@ -908,12 +908,12 @@
 
                 {key: 'gestation_recode11', title: 'label.filter.natality.gestation_recode11', queryKey:"gestation_recode11",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
-                    filterType: "checkbox", autoCompleteOptions: gestationalGroup2,
+                    filterType: "checkbox", autoCompleteOptions: gestationalGroup1,
                     helpText:"label.help.text.gestational.group.two"},
 
                 {key: 'gestation_recode10', title: 'label.filter.natality.gestation_recode10', queryKey:"gestation_recode10",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
-                    filterType: "checkbox", autoCompleteOptions: gestationalGroup1,
+                    filterType: "checkbox", autoCompleteOptions: gestationalGroup2,
                     helpText:"label.help.text.gestational.group.one"},
 
                 {key: 'gestation_weekly', title: 'label.filter.natality.gestation_weekly', queryKey:"gestation_weekly",
