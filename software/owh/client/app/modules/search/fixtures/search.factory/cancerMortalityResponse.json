@@ -1,0 +1,2821 @@
+{
+  "status": "OK",
+  "data": {
+    "queryJSON": {
+      "key": "cancer_mortality",
+      "title": "label.filter.cancer_mortality",
+      "primary": true,
+      "value": [],
+      "header": "Cancer Deaths",
+      "allFilters": [
+        {
+          "key": "current_year",
+          "title": "label.filter.year",
+          "queryKey": "current_year",
+          "primary": false,
+          "value": [
+            "2014"
+          ],
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "2014",
+              "title": "2014",
+              "count": 0
+            },
+            {
+              "key": "2013",
+              "title": "2013",
+              "count": 0
+            },
+            {
+              "key": "2012",
+              "title": "2012",
+              "count": 0
+            },
+            {
+              "key": "2011",
+              "title": "2011",
+              "count": 0
+            },
+            {
+              "key": "2010",
+              "title": "2010",
+              "count": 0
+            },
+            {
+              "key": "2009",
+              "title": "2009",
+              "count": 0
+            },
+            {
+              "key": "2008",
+              "title": "2008",
+              "count": 0
+            },
+            {
+              "key": "2007",
+              "title": "2007",
+              "count": 0
+            },
+            {
+              "key": "2006",
+              "title": "2006",
+              "count": 0
+            },
+            {
+              "key": "2005",
+              "title": "2005",
+              "count": 0
+            },
+            {
+              "key": "2004",
+              "title": "2004",
+              "count": 0
+            },
+            {
+              "key": "2003",
+              "title": "2003",
+              "count": 0
+            },
+            {
+              "key": "2002",
+              "title": "2002",
+              "count": 0
+            },
+            {
+              "key": "2001",
+              "title": "2001",
+              "count": 0
+            },
+            {
+              "key": "2000",
+              "title": "2000",
+              "count": 0
+            }
+          ],
+          "doNotShowAll": true,
+          "helpText": "label.help.text.cancer_incidence.year"
+        },
+        {
+          "key": "sex",
+          "title": "label.filter.gender",
+          "queryKey": "sex",
+          "primary": false,
+          "value": [],
+          "groupBy": "column",
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Female",
+              "title": "Female",
+              "count": 0
+            },
+            {
+              "key": "Male",
+              "title": "Male",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.cancer_incidence.sex",
+          "allChecked": true
+        },
+        {
+          "key": "race",
+          "title": "label.filter.race",
+          "queryKey": "race",
+          "primary": false,
+          "value": [],
+          "groupBy": "row",
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "White",
+              "title": "White",
+              "count": 0
+            },
+            {
+              "key": "Black",
+              "title": "Black",
+              "count": 0
+            },
+            {
+              "key": "American Indian/Alaska Native",
+              "title": "American Indian/Alaska Native",
+              "count": 0
+            },
+            {
+              "key": "Asian or Pacific Islander",
+              "title": "Asian or Pacific Islander",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.cancer_incidence.race",
+          "allChecked": true
+        },
+        {
+          "key": "hispanic_origin",
+          "title": "label.filter.hispanicOrigin",
+          "queryKey": "hispanic_origin",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Non-Hispanic",
+              "title": "Non-Hispanic",
+              "count": 0
+            },
+            {
+              "key": "Hispanic",
+              "title": "Hispanic",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.cancer_incidence.hispanic_origin",
+          "allChecked": true
+        },
+        {
+          "key": "age_group",
+          "title": "label.filter.agegroup",
+          "queryKey": "age_group",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "00 years",
+              "title": "00 years",
+              "count": 0
+            },
+            {
+              "key": "01-04 years",
+              "title": "01-04 years",
+              "count": 0
+            },
+            {
+              "key": "05-09 years",
+              "title": "05-09 years",
+              "count": 0
+            },
+            {
+              "key": "10-14 years",
+              "title": "10-14 years",
+              "count": 0
+            },
+            {
+              "key": "15-19 years",
+              "title": "15-19 years",
+              "count": 0
+            },
+            {
+              "key": "20-24 years",
+              "title": "20-24 years",
+              "count": 0
+            },
+            {
+              "key": "25-29 years",
+              "title": "25-29 years",
+              "count": 0
+            },
+            {
+              "key": "30-34 years",
+              "title": "30-34 years",
+              "count": 0
+            },
+            {
+              "key": "35-39 years",
+              "title": "35-39 years",
+              "count": 0
+            },
+            {
+              "key": "40-44 years",
+              "title": "40-44 years",
+              "count": 0
+            },
+            {
+              "key": "45-49 years",
+              "title": "45-49 years",
+              "count": 0
+            },
+            {
+              "key": "50-54 years",
+              "title": "50-54 years",
+              "count": 0
+            },
+            {
+              "key": "55-59 years",
+              "title": "55-59 years",
+              "count": 0
+            },
+            {
+              "key": "60-64 years",
+              "title": "60-64 years",
+              "count": 0
+            },
+            {
+              "key": "65-69 years",
+              "title": "65-69 years",
+              "count": 0
+            },
+            {
+              "key": "70-74 years",
+              "title": "70-74 years",
+              "count": 0
+            },
+            {
+              "key": "75-79 years",
+              "title": "75-79 years",
+              "count": 0
+            },
+            {
+              "key": "80-84 years",
+              "title": "80-84 years",
+              "count": 0
+            },
+            {
+              "key": "85+ years",
+              "title": "85+ years",
+              "count": 0
+            },
+            {
+              "key": "Invalid value(s)",
+              "title": "Invalid value(s)",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.cancer_incidence.age_group",
+          "allChecked": true
+        },
+        {
+          "key": "site",
+          "title": "label.filter.cancer_site",
+          "queryKey": "cancer_site",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "20010",
+              "title": "20010",
+              "count": 0
+            },
+            {
+              "key": "20020",
+              "title": "20020",
+              "count": 0
+            },
+            {
+              "key": "20030",
+              "title": "20030",
+              "count": 0
+            },
+            {
+              "key": "20040",
+              "title": "20040",
+              "count": 0
+            },
+            {
+              "key": "20050",
+              "title": "20050",
+              "count": 0
+            },
+            {
+              "key": "20060",
+              "title": "20060",
+              "count": 0
+            },
+            {
+              "key": "20070",
+              "title": "20070",
+              "count": 0
+            },
+            {
+              "key": "20080",
+              "title": "20080",
+              "count": 0
+            },
+            {
+              "key": "20090",
+              "title": "20090",
+              "count": 0
+            },
+            {
+              "key": "20100",
+              "title": "20100",
+              "count": 0
+            },
+            {
+              "key": "21010",
+              "title": "21010",
+              "count": 0
+            },
+            {
+              "key": "21020",
+              "title": "21020",
+              "count": 0
+            },
+            {
+              "key": "21030",
+              "title": "21030",
+              "count": 0
+            },
+            {
+              "key": "21041",
+              "title": "21041",
+              "count": 0
+            },
+            {
+              "key": "21042",
+              "title": "21042",
+              "count": 0
+            },
+            {
+              "key": "21043",
+              "title": "21043",
+              "count": 0
+            },
+            {
+              "key": "21044",
+              "title": "21044",
+              "count": 0
+            },
+            {
+              "key": "21045",
+              "title": "21045",
+              "count": 0
+            },
+            {
+              "key": "21046",
+              "title": "21046",
+              "count": 0
+            },
+            {
+              "key": "21047",
+              "title": "21047",
+              "count": 0
+            },
+            {
+              "key": "21048",
+              "title": "21048",
+              "count": 0
+            },
+            {
+              "key": "21049",
+              "title": "21049",
+              "count": 0
+            },
+            {
+              "key": "21051",
+              "title": "21051",
+              "count": 0
+            },
+            {
+              "key": "21052",
+              "title": "21052",
+              "count": 0
+            },
+            {
+              "key": "21060",
+              "title": "21060",
+              "count": 0
+            },
+            {
+              "key": "21071",
+              "title": "21071",
+              "count": 0
+            },
+            {
+              "key": "21072",
+              "title": "21072",
+              "count": 0
+            },
+            {
+              "key": "21080",
+              "title": "21080",
+              "count": 0
+            },
+            {
+              "key": "21090",
+              "title": "21090",
+              "count": 0
+            },
+            {
+              "key": "21100",
+              "title": "21100",
+              "count": 0
+            },
+            {
+              "key": "21110",
+              "title": "21110",
+              "count": 0
+            },
+            {
+              "key": "21120",
+              "title": "21120",
+              "count": 0
+            },
+            {
+              "key": "21130",
+              "title": "21130",
+              "count": 0
+            },
+            {
+              "key": "22010",
+              "title": "22010",
+              "count": 0
+            },
+            {
+              "key": "22020",
+              "title": "22020",
+              "count": 0
+            },
+            {
+              "key": "22030",
+              "title": "22030",
+              "count": 0
+            },
+            {
+              "key": "22050",
+              "title": "22050",
+              "count": 0
+            },
+            {
+              "key": "22060",
+              "title": "22060",
+              "count": 0
+            },
+            {
+              "key": "23000",
+              "title": "23000",
+              "count": 0
+            },
+            {
+              "key": "24000",
+              "title": "24000",
+              "count": 0
+            },
+            {
+              "key": "25010",
+              "title": "25010",
+              "count": 0
+            },
+            {
+              "key": "25020",
+              "title": "25020",
+              "count": 0
+            },
+            {
+              "key": "26000",
+              "title": "26000",
+              "count": 0
+            },
+            {
+              "key": "27010",
+              "title": "27010",
+              "count": 0
+            },
+            {
+              "key": "27020",
+              "title": "27020",
+              "count": 0
+            },
+            {
+              "key": "27030",
+              "title": "27030",
+              "count": 0
+            },
+            {
+              "key": "27040",
+              "title": "27040",
+              "count": 0
+            },
+            {
+              "key": "27050",
+              "title": "27050",
+              "count": 0
+            },
+            {
+              "key": "27060",
+              "title": "27060",
+              "count": 0
+            },
+            {
+              "key": "27070",
+              "title": "27070",
+              "count": 0
+            },
+            {
+              "key": "28010",
+              "title": "28010",
+              "count": 0
+            },
+            {
+              "key": "28020",
+              "title": "28020",
+              "count": 0
+            },
+            {
+              "key": "28030",
+              "title": "28030",
+              "count": 0
+            },
+            {
+              "key": "28040",
+              "title": "28040",
+              "count": 0
+            },
+            {
+              "key": "29010",
+              "title": "29010",
+              "count": 0
+            },
+            {
+              "key": "29020",
+              "title": "29020",
+              "count": 0
+            },
+            {
+              "key": "29030",
+              "title": "29030",
+              "count": 0
+            },
+            {
+              "key": "29040",
+              "title": "29040",
+              "count": 0
+            },
+            {
+              "key": "30000",
+              "title": "30000",
+              "count": 0
+            },
+            {
+              "key": "31010",
+              "title": "31010",
+              "count": 0
+            },
+            {
+              "key": "31040",
+              "title": "31040",
+              "count": 0
+            },
+            {
+              "key": "32010",
+              "title": "32010",
+              "count": 0
+            },
+            {
+              "key": "32020",
+              "title": "32020",
+              "count": 0
+            },
+            {
+              "key": "33011",
+              "title": "33011",
+              "count": 0
+            },
+            {
+              "key": "33012",
+              "title": "33012",
+              "count": 0
+            },
+            {
+              "key": "33041",
+              "title": "33041",
+              "count": 0
+            },
+            {
+              "key": "33042",
+              "title": "33042",
+              "count": 0
+            },
+            {
+              "key": "34000",
+              "title": "34000",
+              "count": 0
+            },
+            {
+              "key": "35011",
+              "title": "35011",
+              "count": 0
+            },
+            {
+              "key": "35012",
+              "title": "35012",
+              "count": 0
+            },
+            {
+              "key": "35013",
+              "title": "35013",
+              "count": 0
+            },
+            {
+              "key": "35021",
+              "title": "35021",
+              "count": 0
+            },
+            {
+              "key": "35031",
+              "title": "35031",
+              "count": 0
+            },
+            {
+              "key": "35022",
+              "title": "35022",
+              "count": 0
+            },
+            {
+              "key": "35041",
+              "title": "35041",
+              "count": 0
+            },
+            {
+              "key": "35043",
+              "title": "35043",
+              "count": 0
+            },
+            {
+              "key": "36010",
+              "title": "36010",
+              "count": 0
+            },
+            {
+              "key": "36020",
+              "title": "36020",
+              "count": 0
+            },
+            {
+              "key": "35023",
+              "title": "35023",
+              "count": 0
+            },
+            {
+              "key": "37000",
+              "title": "37000",
+              "count": 0
+            },
+            {
+              "key": "Breast-InSitu",
+              "title": "Breast-InSitu",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.cancer_incidence.cancer_site",
+          "allChecked": true
+        },
+        {
+          "key": "state",
+          "title": "label.filter.state",
+          "queryKey": "state",
+          "primary": "false",
+          "value": [],
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "AL",
+              "title": "Alabama",
+              "count": 0
+            },
+            {
+              "key": "AK",
+              "title": "Alaska",
+              "count": 0
+            },
+            {
+              "key": "AZ",
+              "title": "Arizona",
+              "count": 0
+            },
+            {
+              "key": "AR",
+              "title": "Arkansas",
+              "count": 0
+            },
+            {
+              "key": "CA",
+              "title": "California",
+              "count": 0
+            },
+            {
+              "key": "CO",
+              "title": "Colorado",
+              "count": 0
+            },
+            {
+              "key": "CT",
+              "title": "Connecticut",
+              "count": 0
+            },
+            {
+              "key": "DE",
+              "title": "Delaware",
+              "count": 0
+            },
+            {
+              "key": "DC",
+              "title": "District of Columbia",
+              "count": 0
+            },
+            {
+              "key": "FL",
+              "title": "Florida",
+              "count": 0
+            },
+            {
+              "key": "GA",
+              "title": "Georgia",
+              "count": 0
+            },
+            {
+              "key": "HI",
+              "title": "Hawaii",
+              "count": 0
+            },
+            {
+              "key": "ID",
+              "title": "Idaho",
+              "count": 0
+            },
+            {
+              "key": "IL",
+              "title": "Illinois",
+              "count": 0
+            },
+            {
+              "key": "IN",
+              "title": "Indiana",
+              "count": 0
+            },
+            {
+              "key": "IA",
+              "title": "Iowa",
+              "count": 0
+            },
+            {
+              "key": "KS",
+              "title": "Kansas",
+              "count": 0
+            },
+            {
+              "key": "KY",
+              "title": "Kentucky",
+              "count": 0
+            },
+            {
+              "key": "LA",
+              "title": "Louisiana",
+              "count": 0
+            },
+            {
+              "key": "ME",
+              "title": "Maine",
+              "count": 0
+            },
+            {
+              "key": "MD",
+              "title": "Maryland",
+              "count": 0
+            },
+            {
+              "key": "MA",
+              "title": "Massachusetts",
+              "count": 0
+            },
+            {
+              "key": "MI",
+              "title": "Michigan",
+              "count": 0
+            },
+            {
+              "key": "MN",
+              "title": "Minnesota",
+              "count": 0
+            },
+            {
+              "key": "MS",
+              "title": "Mississippi",
+              "count": 0
+            },
+            {
+              "key": "MO",
+              "title": "Missouri",
+              "count": 0
+            },
+            {
+              "key": "MT",
+              "title": "Montana",
+              "count": 0
+            },
+            {
+              "key": "NE",
+              "title": "Nebraska",
+              "count": 0
+            },
+            {
+              "key": "NV",
+              "title": "Nevada",
+              "count": 0
+            },
+            {
+              "key": "NH",
+              "title": "New Hampshire",
+              "count": 0
+            },
+            {
+              "key": "NJ",
+              "title": "New Jersey",
+              "count": 0
+            },
+            {
+              "key": "NM",
+              "title": "New Mexico",
+              "count": 0
+            },
+            {
+              "key": "NY",
+              "title": "New York",
+              "count": 0
+            },
+            {
+              "key": "NC",
+              "title": "North Carolina",
+              "count": 0
+            },
+            {
+              "key": "ND",
+              "title": "North Dakota",
+              "count": 0
+            },
+            {
+              "key": "OH",
+              "title": "Ohio",
+              "count": 0
+            },
+            {
+              "key": "OK",
+              "title": "Oklahoma",
+              "count": 0
+            },
+            {
+              "key": "OR",
+              "title": "Oregon",
+              "count": 0
+            },
+            {
+              "key": "PA",
+              "title": "Pennsylvania",
+              "count": 0
+            },
+            {
+              "key": "RI",
+              "title": "Rhode Island",
+              "count": 0
+            },
+            {
+              "key": "SC",
+              "title": "South Carolina",
+              "count": 0
+            },
+            {
+              "key": "SD",
+              "title": "South Dakota",
+              "count": 0
+            },
+            {
+              "key": "TN",
+              "title": "Tennessee",
+              "count": 0
+            },
+            {
+              "key": "TX",
+              "title": "Texas",
+              "count": 0
+            },
+            {
+              "key": "UT",
+              "title": "Utah",
+              "count": 0
+            },
+            {
+              "key": "VT",
+              "title": "Vermont",
+              "count": 0
+            },
+            {
+              "key": "VA",
+              "title": "Virginia",
+              "count": 0
+            },
+            {
+              "key": "WA",
+              "title": "Washington",
+              "count": 0
+            },
+            {
+              "key": "WV",
+              "title": "West Virginia",
+              "count": 0
+            },
+            {
+              "key": "WI",
+              "title": "Wisconsin",
+              "count": 0
+            },
+            {
+              "key": "WY",
+              "title": "Wyoming",
+              "count": 0
+            }
+          ],
+          "doNotShowAll": true,
+          "helpText": "label.help.text.cancer_incidence.state"
+        }
+      ],
+      "showMap": false,
+      "countLabel": "Total Deaths",
+      "mapData": {},
+      "chartAxisLabel": "Deaths",
+      "tableView": "cancer_mortality",
+      "runOnFilterChange": true,
+      "sideFilters": [
+        {
+          "sideFilters": [
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "current_year",
+                "title": "label.filter.year",
+                "queryKey": "current_year",
+                "primary": false,
+                "value": [
+                  "2014"
+                ],
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "2014",
+                    "title": "2014",
+                    "count": 0
+                  },
+                  {
+                    "key": "2013",
+                    "title": "2013",
+                    "count": 0
+                  },
+                  {
+                    "key": "2012",
+                    "title": "2012",
+                    "count": 0
+                  },
+                  {
+                    "key": "2011",
+                    "title": "2011",
+                    "count": 0
+                  },
+                  {
+                    "key": "2010",
+                    "title": "2010",
+                    "count": 0
+                  },
+                  {
+                    "key": "2009",
+                    "title": "2009",
+                    "count": 0
+                  },
+                  {
+                    "key": "2008",
+                    "title": "2008",
+                    "count": 0
+                  },
+                  {
+                    "key": "2007",
+                    "title": "2007",
+                    "count": 0
+                  },
+                  {
+                    "key": "2006",
+                    "title": "2006",
+                    "count": 0
+                  },
+                  {
+                    "key": "2005",
+                    "title": "2005",
+                    "count": 0
+                  },
+                  {
+                    "key": "2004",
+                    "title": "2004",
+                    "count": 0
+                  },
+                  {
+                    "key": "2003",
+                    "title": "2003",
+                    "count": 0
+                  },
+                  {
+                    "key": "2002",
+                    "title": "2002",
+                    "count": 0
+                  },
+                  {
+                    "key": "2001",
+                    "title": "2001",
+                    "count": 0
+                  },
+                  {
+                    "key": "2000",
+                    "title": "2000",
+                    "count": 0
+                  }
+                ],
+                "doNotShowAll": true,
+                "helpText": "label.help.text.cancer_incidence.year"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "sex",
+                "title": "label.filter.gender",
+                "queryKey": "sex",
+                "primary": false,
+                "value": [],
+                "groupBy": "column",
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Female",
+                    "title": "Female",
+                    "count": 0
+                  },
+                  {
+                    "key": "Male",
+                    "title": "Male",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.cancer_incidence.sex",
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "race",
+                "title": "label.filter.race",
+                "queryKey": "race",
+                "primary": false,
+                "value": [],
+                "groupBy": "row",
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "White",
+                    "title": "White",
+                    "count": 0
+                  },
+                  {
+                    "key": "Black",
+                    "title": "Black",
+                    "count": 0
+                  },
+                  {
+                    "key": "American Indian/Alaska Native",
+                    "title": "American Indian/Alaska Native",
+                    "count": 0
+                  },
+                  {
+                    "key": "Asian or Pacific Islander",
+                    "title": "Asian or Pacific Islander",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.cancer_incidence.race",
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "hispanic_origin",
+                "title": "label.filter.hispanicOrigin",
+                "queryKey": "hispanic_origin",
+                "primary": false,
+                "value": [],
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Non-Hispanic",
+                    "title": "Non-Hispanic",
+                    "count": 0
+                  },
+                  {
+                    "key": "Hispanic",
+                    "title": "Hispanic",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.cancer_incidence.hispanic_origin",
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "age_group",
+                "title": "label.filter.agegroup",
+                "queryKey": "age_group",
+                "primary": false,
+                "value": [],
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "00 years",
+                    "title": "00 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "01-04 years",
+                    "title": "01-04 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "05-09 years",
+                    "title": "05-09 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "10-14 years",
+                    "title": "10-14 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "15-19 years",
+                    "title": "15-19 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "20-24 years",
+                    "title": "20-24 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "25-29 years",
+                    "title": "25-29 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "30-34 years",
+                    "title": "30-34 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "35-39 years",
+                    "title": "35-39 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "40-44 years",
+                    "title": "40-44 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "45-49 years",
+                    "title": "45-49 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "50-54 years",
+                    "title": "50-54 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "55-59 years",
+                    "title": "55-59 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "60-64 years",
+                    "title": "60-64 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "65-69 years",
+                    "title": "65-69 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "70-74 years",
+                    "title": "70-74 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "75-79 years",
+                    "title": "75-79 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "80-84 years",
+                    "title": "80-84 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "85+ years",
+                    "title": "85+ years",
+                    "count": 0
+                  },
+                  {
+                    "key": "Invalid value(s)",
+                    "title": "Invalid value(s)",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.cancer_incidence.age_group",
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "site",
+                "title": "label.filter.cancer_site",
+                "queryKey": "cancer_site",
+                "primary": false,
+                "value": [],
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "20010",
+                    "title": "20010",
+                    "count": 0
+                  },
+                  {
+                    "key": "20020",
+                    "title": "20020",
+                    "count": 0
+                  },
+                  {
+                    "key": "20030",
+                    "title": "20030",
+                    "count": 0
+                  },
+                  {
+                    "key": "20040",
+                    "title": "20040",
+                    "count": 0
+                  },
+                  {
+                    "key": "20050",
+                    "title": "20050",
+                    "count": 0
+                  },
+                  {
+                    "key": "20060",
+                    "title": "20060",
+                    "count": 0
+                  },
+                  {
+                    "key": "20070",
+                    "title": "20070",
+                    "count": 0
+                  },
+                  {
+                    "key": "20080",
+                    "title": "20080",
+                    "count": 0
+                  },
+                  {
+                    "key": "20090",
+                    "title": "20090",
+                    "count": 0
+                  },
+                  {
+                    "key": "20100",
+                    "title": "20100",
+                    "count": 0
+                  },
+                  {
+                    "key": "21010",
+                    "title": "21010",
+                    "count": 0
+                  },
+                  {
+                    "key": "21020",
+                    "title": "21020",
+                    "count": 0
+                  },
+                  {
+                    "key": "21030",
+                    "title": "21030",
+                    "count": 0
+                  },
+                  {
+                    "key": "21041",
+                    "title": "21041",
+                    "count": 0
+                  },
+                  {
+                    "key": "21042",
+                    "title": "21042",
+                    "count": 0
+                  },
+                  {
+                    "key": "21043",
+                    "title": "21043",
+                    "count": 0
+                  },
+                  {
+                    "key": "21044",
+                    "title": "21044",
+                    "count": 0
+                  },
+                  {
+                    "key": "21045",
+                    "title": "21045",
+                    "count": 0
+                  },
+                  {
+                    "key": "21046",
+                    "title": "21046",
+                    "count": 0
+                  },
+                  {
+                    "key": "21047",
+                    "title": "21047",
+                    "count": 0
+                  },
+                  {
+                    "key": "21048",
+                    "title": "21048",
+                    "count": 0
+                  },
+                  {
+                    "key": "21049",
+                    "title": "21049",
+                    "count": 0
+                  },
+                  {
+                    "key": "21051",
+                    "title": "21051",
+                    "count": 0
+                  },
+                  {
+                    "key": "21052",
+                    "title": "21052",
+                    "count": 0
+                  },
+                  {
+                    "key": "21060",
+                    "title": "21060",
+                    "count": 0
+                  },
+                  {
+                    "key": "21071",
+                    "title": "21071",
+                    "count": 0
+                  },
+                  {
+                    "key": "21072",
+                    "title": "21072",
+                    "count": 0
+                  },
+                  {
+                    "key": "21080",
+                    "title": "21080",
+                    "count": 0
+                  },
+                  {
+                    "key": "21090",
+                    "title": "21090",
+                    "count": 0
+                  },
+                  {
+                    "key": "21100",
+                    "title": "21100",
+                    "count": 0
+                  },
+                  {
+                    "key": "21110",
+                    "title": "21110",
+                    "count": 0
+                  },
+                  {
+                    "key": "21120",
+                    "title": "21120",
+                    "count": 0
+                  },
+                  {
+                    "key": "21130",
+                    "title": "21130",
+                    "count": 0
+                  },
+                  {
+                    "key": "22010",
+                    "title": "22010",
+                    "count": 0
+                  },
+                  {
+                    "key": "22020",
+                    "title": "22020",
+                    "count": 0
+                  },
+                  {
+                    "key": "22030",
+                    "title": "22030",
+                    "count": 0
+                  },
+                  {
+                    "key": "22050",
+                    "title": "22050",
+                    "count": 0
+                  },
+                  {
+                    "key": "22060",
+                    "title": "22060",
+                    "count": 0
+                  },
+                  {
+                    "key": "23000",
+                    "title": "23000",
+                    "count": 0
+                  },
+                  {
+                    "key": "24000",
+                    "title": "24000",
+                    "count": 0
+                  },
+                  {
+                    "key": "25010",
+                    "title": "25010",
+                    "count": 0
+                  },
+                  {
+                    "key": "25020",
+                    "title": "25020",
+                    "count": 0
+                  },
+                  {
+                    "key": "26000",
+                    "title": "26000",
+                    "count": 0
+                  },
+                  {
+                    "key": "27010",
+                    "title": "27010",
+                    "count": 0
+                  },
+                  {
+                    "key": "27020",
+                    "title": "27020",
+                    "count": 0
+                  },
+                  {
+                    "key": "27030",
+                    "title": "27030",
+                    "count": 0
+                  },
+                  {
+                    "key": "27040",
+                    "title": "27040",
+                    "count": 0
+                  },
+                  {
+                    "key": "27050",
+                    "title": "27050",
+                    "count": 0
+                  },
+                  {
+                    "key": "27060",
+                    "title": "27060",
+                    "count": 0
+                  },
+                  {
+                    "key": "27070",
+                    "title": "27070",
+                    "count": 0
+                  },
+                  {
+                    "key": "28010",
+                    "title": "28010",
+                    "count": 0
+                  },
+                  {
+                    "key": "28020",
+                    "title": "28020",
+                    "count": 0
+                  },
+                  {
+                    "key": "28030",
+                    "title": "28030",
+                    "count": 0
+                  },
+                  {
+                    "key": "28040",
+                    "title": "28040",
+                    "count": 0
+                  },
+                  {
+                    "key": "29010",
+                    "title": "29010",
+                    "count": 0
+                  },
+                  {
+                    "key": "29020",
+                    "title": "29020",
+                    "count": 0
+                  },
+                  {
+                    "key": "29030",
+                    "title": "29030",
+                    "count": 0
+                  },
+                  {
+                    "key": "29040",
+                    "title": "29040",
+                    "count": 0
+                  },
+                  {
+                    "key": "30000",
+                    "title": "30000",
+                    "count": 0
+                  },
+                  {
+                    "key": "31010",
+                    "title": "31010",
+                    "count": 0
+                  },
+                  {
+                    "key": "31040",
+                    "title": "31040",
+                    "count": 0
+                  },
+                  {
+                    "key": "32010",
+                    "title": "32010",
+                    "count": 0
+                  },
+                  {
+                    "key": "32020",
+                    "title": "32020",
+                    "count": 0
+                  },
+                  {
+                    "key": "33011",
+                    "title": "33011",
+                    "count": 0
+                  },
+                  {
+                    "key": "33012",
+                    "title": "33012",
+                    "count": 0
+                  },
+                  {
+                    "key": "33041",
+                    "title": "33041",
+                    "count": 0
+                  },
+                  {
+                    "key": "33042",
+                    "title": "33042",
+                    "count": 0
+                  },
+                  {
+                    "key": "34000",
+                    "title": "34000",
+                    "count": 0
+                  },
+                  {
+                    "key": "35011",
+                    "title": "35011",
+                    "count": 0
+                  },
+                  {
+                    "key": "35012",
+                    "title": "35012",
+                    "count": 0
+                  },
+                  {
+                    "key": "35013",
+                    "title": "35013",
+                    "count": 0
+                  },
+                  {
+                    "key": "35021",
+                    "title": "35021",
+                    "count": 0
+                  },
+                  {
+                    "key": "35031",
+                    "title": "35031",
+                    "count": 0
+                  },
+                  {
+                    "key": "35022",
+                    "title": "35022",
+                    "count": 0
+                  },
+                  {
+                    "key": "35041",
+                    "title": "35041",
+                    "count": 0
+                  },
+                  {
+                    "key": "35043",
+                    "title": "35043",
+                    "count": 0
+                  },
+                  {
+                    "key": "36010",
+                    "title": "36010",
+                    "count": 0
+                  },
+                  {
+                    "key": "36020",
+                    "title": "36020",
+                    "count": 0
+                  },
+                  {
+                    "key": "35023",
+                    "title": "35023",
+                    "count": 0
+                  },
+                  {
+                    "key": "37000",
+                    "title": "37000",
+                    "count": 0
+                  },
+                  {
+                    "key": "Breast-InSitu",
+                    "title": "Breast-InSitu",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.cancer_incidence.cancer_site",
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "state",
+                "title": "label.filter.state",
+                "queryKey": "state",
+                "primary": "false",
+                "value": [],
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "AL",
+                    "title": "Alabama",
+                    "count": 0
+                  },
+                  {
+                    "key": "AK",
+                    "title": "Alaska",
+                    "count": 0
+                  },
+                  {
+                    "key": "AZ",
+                    "title": "Arizona",
+                    "count": 0
+                  },
+                  {
+                    "key": "AR",
+                    "title": "Arkansas",
+                    "count": 0
+                  },
+                  {
+                    "key": "CA",
+                    "title": "California",
+                    "count": 0
+                  },
+                  {
+                    "key": "CO",
+                    "title": "Colorado",
+                    "count": 0
+                  },
+                  {
+                    "key": "CT",
+                    "title": "Connecticut",
+                    "count": 0
+                  },
+                  {
+                    "key": "DE",
+                    "title": "Delaware",
+                    "count": 0
+                  },
+                  {
+                    "key": "DC",
+                    "title": "District of Columbia",
+                    "count": 0
+                  },
+                  {
+                    "key": "FL",
+                    "title": "Florida",
+                    "count": 0
+                  },
+                  {
+                    "key": "GA",
+                    "title": "Georgia",
+                    "count": 0
+                  },
+                  {
+                    "key": "HI",
+                    "title": "Hawaii",
+                    "count": 0
+                  },
+                  {
+                    "key": "ID",
+                    "title": "Idaho",
+                    "count": 0
+                  },
+                  {
+                    "key": "IL",
+                    "title": "Illinois",
+                    "count": 0
+                  },
+                  {
+                    "key": "IN",
+                    "title": "Indiana",
+                    "count": 0
+                  },
+                  {
+                    "key": "IA",
+                    "title": "Iowa",
+                    "count": 0
+                  },
+                  {
+                    "key": "KS",
+                    "title": "Kansas",
+                    "count": 0
+                  },
+                  {
+                    "key": "KY",
+                    "title": "Kentucky",
+                    "count": 0
+                  },
+                  {
+                    "key": "LA",
+                    "title": "Louisiana",
+                    "count": 0
+                  },
+                  {
+                    "key": "ME",
+                    "title": "Maine",
+                    "count": 0
+                  },
+                  {
+                    "key": "MD",
+                    "title": "Maryland",
+                    "count": 0
+                  },
+                  {
+                    "key": "MA",
+                    "title": "Massachusetts",
+                    "count": 0
+                  },
+                  {
+                    "key": "MI",
+                    "title": "Michigan",
+                    "count": 0
+                  },
+                  {
+                    "key": "MN",
+                    "title": "Minnesota",
+                    "count": 0
+                  },
+                  {
+                    "key": "MS",
+                    "title": "Mississippi",
+                    "count": 0
+                  },
+                  {
+                    "key": "MO",
+                    "title": "Missouri",
+                    "count": 0
+                  },
+                  {
+                    "key": "MT",
+                    "title": "Montana",
+                    "count": 0
+                  },
+                  {
+                    "key": "NE",
+                    "title": "Nebraska",
+                    "count": 0
+                  },
+                  {
+                    "key": "NV",
+                    "title": "Nevada",
+                    "count": 0
+                  },
+                  {
+                    "key": "NH",
+                    "title": "New Hampshire",
+                    "count": 0
+                  },
+                  {
+                    "key": "NJ",
+                    "title": "New Jersey",
+                    "count": 0
+                  },
+                  {
+                    "key": "NM",
+                    "title": "New Mexico",
+                    "count": 0
+                  },
+                  {
+                    "key": "NY",
+                    "title": "New York",
+                    "count": 0
+                  },
+                  {
+                    "key": "NC",
+                    "title": "North Carolina",
+                    "count": 0
+                  },
+                  {
+                    "key": "ND",
+                    "title": "North Dakota",
+                    "count": 0
+                  },
+                  {
+                    "key": "OH",
+                    "title": "Ohio",
+                    "count": 0
+                  },
+                  {
+                    "key": "OK",
+                    "title": "Oklahoma",
+                    "count": 0
+                  },
+                  {
+                    "key": "OR",
+                    "title": "Oregon",
+                    "count": 0
+                  },
+                  {
+                    "key": "PA",
+                    "title": "Pennsylvania",
+                    "count": 0
+                  },
+                  {
+                    "key": "RI",
+                    "title": "Rhode Island",
+                    "count": 0
+                  },
+                  {
+                    "key": "SC",
+                    "title": "South Carolina",
+                    "count": 0
+                  },
+                  {
+                    "key": "SD",
+                    "title": "South Dakota",
+                    "count": 0
+                  },
+                  {
+                    "key": "TN",
+                    "title": "Tennessee",
+                    "count": 0
+                  },
+                  {
+                    "key": "TX",
+                    "title": "Texas",
+                    "count": 0
+                  },
+                  {
+                    "key": "UT",
+                    "title": "Utah",
+                    "count": 0
+                  },
+                  {
+                    "key": "VT",
+                    "title": "Vermont",
+                    "count": 0
+                  },
+                  {
+                    "key": "VA",
+                    "title": "Virginia",
+                    "count": 0
+                  },
+                  {
+                    "key": "WA",
+                    "title": "Washington",
+                    "count": 0
+                  },
+                  {
+                    "key": "WV",
+                    "title": "West Virginia",
+                    "count": 0
+                  },
+                  {
+                    "key": "WI",
+                    "title": "Wisconsin",
+                    "count": 0
+                  },
+                  {
+                    "key": "WY",
+                    "title": "Wyoming",
+                    "count": 0
+                  }
+                ],
+                "doNotShowAll": true,
+                "helpText": "label.help.text.cancer_incidence.state"
+              }
+            }
+          ]
+        }
+      ],
+      "initiated": false
+    },
+    "resultData": {
+      "simple": {
+        "group_table_race": [
+          {
+            "name": "White",
+            "cancer_mortality": 507958,
+            "group_table_sex": [
+              {
+                "name": "Male",
+                "cancer_mortality": 268912
+              },
+              {
+                "name": "Female",
+                "cancer_mortality": 239046
+              }
+            ]
+          },
+          {
+            "name": "Black",
+            "cancer_mortality": 69494,
+            "group_table_sex": [
+              {
+                "name": "Male",
+                "cancer_mortality": 35312
+              },
+              {
+                "name": "Female",
+                "cancer_mortality": 34182
+              }
+            ]
+          },
+          {
+            "name": "Asian or Pacific Islander",
+            "cancer_mortality": 16529,
+            "group_table_sex": [
+              {
+                "name": "Male",
+                "cancer_mortality": 8375
+              },
+              {
+                "name": "Female",
+                "cancer_mortality": 8154
+              }
+            ]
+          },
+          {
+            "name": "American Indian/Alaska Native",
+            "cancer_mortality": 3153,
+            "group_table_sex": [
+              {
+                "name": "Male",
+                "cancer_mortality": 1727
+              },
+              {
+                "name": "Female",
+                "cancer_mortality": 1426
+              }
+            ]
+          }
+        ],
+        "group_chart_0_sex": [
+          {
+            "name": "Male",
+            "cancer_mortality": 314326,
+            "group_chart_0_race": [
+              {
+                "name": "White",
+                "cancer_mortality": 268912
+              },
+              {
+                "name": "Black",
+                "cancer_mortality": 35312
+              },
+              {
+                "name": "Asian or Pacific Islander",
+                "cancer_mortality": 8375
+              },
+              {
+                "name": "American Indian/Alaska Native",
+                "cancer_mortality": 1727
+              }
+            ]
+          },
+          {
+            "name": "Female",
+            "cancer_mortality": 282808,
+            "group_chart_0_race": [
+              {
+                "name": "White",
+                "cancer_mortality": 239046
+              },
+              {
+                "name": "Black",
+                "cancer_mortality": 34182
+              },
+              {
+                "name": "Asian or Pacific Islander",
+                "cancer_mortality": 8154
+              },
+              {
+                "name": "American Indian/Alaska Native",
+                "cancer_mortality": 1426
+              }
+            ]
+          }
+        ]
+      },
+      "nested": {
+        "table": {
+          "race": [
+            {
+              "name": "White",
+              "cancer_mortality": 507958,
+              "sex": [
+                {
+                  "name": "Male",
+                  "cancer_mortality": 268912
+                },
+                {
+                  "name": "Female",
+                  "cancer_mortality": 239046
+                }
+              ]
+            },
+            {
+              "name": "Black",
+              "cancer_mortality": 69494,
+              "sex": [
+                {
+                  "name": "Male",
+                  "cancer_mortality": 35312
+                },
+                {
+                  "name": "Female",
+                  "cancer_mortality": 34182
+                }
+              ]
+            },
+            {
+              "name": "Asian or Pacific Islander",
+              "cancer_mortality": 16529,
+              "sex": [
+                {
+                  "name": "Male",
+                  "cancer_mortality": 8375
+                },
+                {
+                  "name": "Female",
+                  "cancer_mortality": 8154
+                }
+              ]
+            },
+            {
+              "name": "American Indian/Alaska Native",
+              "cancer_mortality": 3153,
+              "sex": [
+                {
+                  "name": "Male",
+                  "cancer_mortality": 1727
+                },
+                {
+                  "name": "Female",
+                  "cancer_mortality": 1426
+                }
+              ]
+            }
+          ]
+        },
+        "charts": [
+          {
+            "sex": [
+              {
+                "name": "Male",
+                "cancer_mortality": 314326,
+                "race": [
+                  {
+                    "name": "White",
+                    "cancer_mortality": 268912
+                  },
+                  {
+                    "name": "Black",
+                    "cancer_mortality": 35312
+                  },
+                  {
+                    "name": "Asian or Pacific Islander",
+                    "cancer_mortality": 8375
+                  },
+                  {
+                    "name": "American Indian/Alaska Native",
+                    "cancer_mortality": 1727
+                  }
+                ]
+              },
+              {
+                "name": "Female",
+                "cancer_mortality": 282808,
+                "race": [
+                  {
+                    "name": "White",
+                    "cancer_mortality": 239046
+                  },
+                  {
+                    "name": "Black",
+                    "cancer_mortality": 34182
+                  },
+                  {
+                    "name": "Asian or Pacific Islander",
+                    "cancer_mortality": 8154
+                  },
+                  {
+                    "name": "American Indian/Alaska Native",
+                    "cancer_mortality": 1426
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "maps": {}
+      },
+      "headers": {
+        "rowHeaders": [
+          {
+            "key": "race",
+            "title": "label.filter.race",
+            "queryKey": "race",
+            "primary": false,
+            "value": [],
+            "groupBy": "row",
+            "filterType": "checkbox",
+            "autoCompleteOptions": [
+              {
+                "key": "White",
+                "title": "White",
+                "count": 0
+              },
+              {
+                "key": "Black",
+                "title": "Black",
+                "count": 0
+              },
+              {
+                "key": "American Indian/Alaska Native",
+                "title": "American Indian/Alaska Native",
+                "count": 0
+              },
+              {
+                "key": "Asian or Pacific Islander",
+                "title": "Asian or Pacific Islander",
+                "count": 0
+              }
+            ],
+            "helpText": "label.help.text.cancer_incidence.race",
+            "allChecked": true
+          }
+        ],
+        "columnHeaders": [
+          {
+            "key": "sex",
+            "title": "label.filter.gender",
+            "queryKey": "sex",
+            "primary": false,
+            "value": [],
+            "groupBy": "column",
+            "filterType": "checkbox",
+            "autoCompleteOptions": [
+              {
+                "key": "Female",
+                "title": "Female",
+                "count": 0
+              },
+              {
+                "key": "Male",
+                "title": "Male",
+                "count": 0
+              }
+            ],
+            "helpText": "label.help.text.cancer_incidence.sex",
+            "allChecked": true
+          }
+        ],
+        "chartHeaders": [
+          {
+            "headers": [
+              {
+                "key": "sex",
+                "title": "label.filter.gender",
+                "queryKey": "sex",
+                "primary": false,
+                "value": [],
+                "groupBy": "column",
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Female",
+                    "title": "Female",
+                    "count": 0
+                  },
+                  {
+                    "key": "Male",
+                    "title": "Male",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.cancer_incidence.sex",
+                "allChecked": true
+              },
+              {
+                "key": "race",
+                "title": "label.filter.race",
+                "queryKey": "race",
+                "primary": false,
+                "value": [],
+                "groupBy": "row",
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "White",
+                    "title": "White",
+                    "count": 0
+                  },
+                  {
+                    "key": "Black",
+                    "title": "Black",
+                    "count": 0
+                  },
+                  {
+                    "key": "American Indian/Alaska Native",
+                    "title": "American Indian/Alaska Native",
+                    "count": 0
+                  },
+                  {
+                    "key": "Asian or Pacific Islander",
+                    "title": "Asian or Pacific Islander",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.cancer_incidence.race",
+                "allChecked": true
+              }
+            ],
+            "chartType": "horizontalBar"
+          }
+        ]
+      }
+    },
+    "sideFilterResults": {
+      "data": {
+        "simple": {
+          "site": [],
+          "current_year": [
+            {
+              "name": "2014",
+              "cancer_mortality": 597134
+            }
+          ],
+          "race": [
+            {
+              "name": "White",
+              "cancer_mortality": 507958
+            },
+            {
+              "name": "Black",
+              "cancer_mortality": 69494
+            },
+            {
+              "name": "Asian or Pacific Islander",
+              "cancer_mortality": 16529
+            },
+            {
+              "name": "American Indian/Alaska Native",
+              "cancer_mortality": 3153
+            }
+          ],
+          "age_group": [
+            {
+              "name": "85+ years",
+              "cancer_mortality": 101609
+            },
+            {
+              "name": "70-74 years",
+              "cancer_mortality": 82081
+            },
+            {
+              "name": "75-79 years",
+              "cancer_mortality": 79954
+            },
+            {
+              "name": "65-69 years",
+              "cancer_mortality": 78576
+            },
+            {
+              "name": "80-84 years",
+              "cancer_mortality": 75587
+            },
+            {
+              "name": "60-64 years",
+              "cancer_mortality": 65868
+            },
+            {
+              "name": "55-59 years",
+              "cancer_mortality": 50322
+            },
+            {
+              "name": "50-54 years",
+              "cancer_mortality": 30563
+            },
+            {
+              "name": "45-49 years",
+              "cancer_mortality": 14681
+            },
+            {
+              "name": "40-44 years",
+              "cancer_mortality": 7471
+            },
+            {
+              "name": "35-39 years",
+              "cancer_mortality": 3927
+            },
+            {
+              "name": "30-34 years",
+              "cancer_mortality": 2281
+            },
+            {
+              "name": "25-29 years",
+              "cancer_mortality": 1392
+            },
+            {
+              "name": "20-24 years",
+              "cancer_mortality": 968
+            },
+            {
+              "name": "15-19 years",
+              "cancer_mortality": 619
+            },
+            {
+              "name": "05-09 years",
+              "cancer_mortality": 439
+            },
+            {
+              "name": "10-14 years",
+              "cancer_mortality": 421
+            },
+            {
+              "name": "01-04 years",
+              "cancer_mortality": 322
+            },
+            {
+              "name": "00 years",
+              "cancer_mortality": 53
+            }
+          ],
+          "sex": [
+            {
+              "name": "Male",
+              "cancer_mortality": 314326
+            },
+            {
+              "name": "Female",
+              "cancer_mortality": 282808
+            }
+          ],
+          "state": [
+            {
+              "name": "CA",
+              "cancer_mortality": 58410
+            },
+            {
+              "name": "FL",
+              "cancer_mortality": 43212
+            },
+            {
+              "name": "TX",
+              "cancer_mortality": 38847
+            },
+            {
+              "name": "NY",
+              "cancer_mortality": 35388
+            },
+            {
+              "name": "PA",
+              "cancer_mortality": 28688
+            },
+            {
+              "name": "OH",
+              "cancer_mortality": 25433
+            },
+            {
+              "name": "IL",
+              "cancer_mortality": 24501
+            },
+            {
+              "name": "MI",
+              "cancer_mortality": 21169
+            },
+            {
+              "name": "NC",
+              "cancer_mortality": 19342
+            },
+            {
+              "name": "GA",
+              "cancer_mortality": 16684
+            },
+            {
+              "name": "NJ",
+              "cancer_mortality": 16591
+            },
+            {
+              "name": "VA",
+              "cancer_mortality": 14749
+            },
+            {
+              "name": "TN",
+              "cancer_mortality": 14172
+            },
+            {
+              "name": "IN",
+              "cancer_mortality": 13519
+            },
+            {
+              "name": "MO",
+              "cancer_mortality": 13067
+            },
+            {
+              "name": "MA",
+              "cancer_mortality": 12787
+            },
+            {
+              "name": "WA",
+              "cancer_mortality": 12205
+            },
+            {
+              "name": "AZ",
+              "cancer_mortality": 11455
+            },
+            {
+              "name": "WI",
+              "cancer_mortality": 11393
+            },
+            {
+              "name": "MD",
+              "cancer_mortality": 10759
+            },
+            {
+              "name": "AL",
+              "cancer_mortality": 10286
+            },
+            {
+              "name": "KY",
+              "cancer_mortality": 10263
+            },
+            {
+              "name": "SC",
+              "cancer_mortality": 9930
+            },
+            {
+              "name": "MN",
+              "cancer_mortality": 9649
+            },
+            {
+              "name": "LA",
+              "cancer_mortality": 9455
+            },
+            {
+              "name": "OK",
+              "cancer_mortality": 7934
+            },
+            {
+              "name": "OR",
+              "cancer_mortality": 7863
+            },
+            {
+              "name": "CO",
+              "cancer_mortality": 7405
+            },
+            {
+              "name": "CT",
+              "cancer_mortality": 6621
+            },
+            {
+              "name": "AR",
+              "cancer_mortality": 6546
+            },
+            {
+              "name": "MS",
+              "cancer_mortality": 6534
+            },
+            {
+              "name": "IA",
+              "cancer_mortality": 6504
+            },
+            {
+              "name": "KS",
+              "cancer_mortality": 5587
+            },
+            {
+              "name": "NV",
+              "cancer_mortality": 5015
+            },
+            {
+              "name": "WV",
+              "cancer_mortality": 4880
+            },
+            {
+              "name": "NM",
+              "cancer_mortality": 3477
+            },
+            {
+              "name": "NE",
+              "cancer_mortality": 3459
+            },
+            {
+              "name": "ME",
+              "cancer_mortality": 3209
+            },
+            {
+              "name": "UT",
+              "cancer_mortality": 3042
+            },
+            {
+              "name": "ID",
+              "cancer_mortality": 2794
+            },
+            {
+              "name": "NH",
+              "cancer_mortality": 2698
+            },
+            {
+              "name": "HI",
+              "cancer_mortality": 2493
+            },
+            {
+              "name": "RI",
+              "cancer_mortality": 2242
+            },
+            {
+              "name": "MT",
+              "cancer_mortality": 2066
+            },
+            {
+              "name": "DE",
+              "cancer_mortality": 1972
+            },
+            {
+              "name": "SD",
+              "cancer_mortality": 1698
+            },
+            {
+              "name": "VT",
+              "cancer_mortality": 1379
+            },
+            {
+              "name": "ND",
+              "cancer_mortality": 1304
+            },
+            {
+              "name": "DC",
+              "cancer_mortality": 1116
+            },
+            {
+              "name": "AK",
+              "cancer_mortality": 972
+            },
+            {
+              "name": "WY",
+              "cancer_mortality": 922
+            }
+          ],
+          "hispanic_origin": [
+            {
+              "name": "Non-Hispanic",
+              "cancer_mortality": 553664
+            },
+            {
+              "name": "Hispanic",
+              "cancer_mortality": 36504
+            },
+            {
+              "name": "Unknown",
+              "cancer_mortality": 6966
+            }
+          ]
+        },
+        "nested": {
+          "table": {},
+          "charts": [],
+          "maps": {}
+        }
+      },
+      "pagination": {
+        "total": 597134
+      }
+    }
+  },
+  "pagination": {}
+}

@@ -737,4 +737,16 @@ describe('search factory ', function(){
             expect(result.primaryFilter.data).toEqual(response.data.resultData.nested.table);
         });
     });
+
+    describe('updateFilterAndData with Cancer Mortality data', function () {
+        var response;
+        beforeEach(function () {
+            response = __fixtures__['app/modules/search/fixtures/search.factory/cancerMortalityResponse'];
+        });
+        it('Should attach result data to the primary filter', function () {
+            var mock = { primaryFilters: [ filters.search[10] ] };
+            var result = searchFactory.updateFiltersAndData(mock, response, { cancer_incident: {} }, {});
+            expect(result.primaryFilter.data).toEqual(response.data.resultData.nested.table);
+        });
+    });
 });

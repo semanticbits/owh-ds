@@ -95,7 +95,8 @@
             "label.filter.std": [],
             "label.filter.tb": [],
             "label.filter.aids": [],
-            "label.filter.cancer_incident": []
+            "label.filter.cancer_incident": [],
+            "label.filter.cancer_mortality": []
         };
 
         sc.optionsGroup = {
@@ -132,6 +133,7 @@
             tb:{},
             aids: {},
             cancer_incident: {},
+            cancer_mortality: {},
             mental_health:{},
             natality:{},
             prams:{},

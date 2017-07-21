@@ -549,6 +549,127 @@
             {"key": "Male", "title": "Male"}
         ];
 
+        var cancerRaceOptions = [
+            { key: 'White', title: 'White' },
+            { key: 'Black', title: 'Black' },
+            { key: 'American Indian/Alaska Native', title: 'American Indian/Alaska Native' },
+            { key: 'Asian or Pacific Islander', title: 'Asian or Pacific Islander' },
+            { key: 'Unknown', title: 'Unknown' }
+        ];
+
+        var cancerHispanicOptions = [
+            { key: 'Non-Hispanic', title: 'Non-Hispanic' },
+            { key: 'Hispanic', title: 'Hispanic' },
+            { key: 'Invalid', title: 'Invalid' }
+        ];
+
+        var cancerAgeGroups = [
+            { key: '00 years', title: '00 years' },
+            { key: '01-04 years', title: '01-04 years' },
+            { key: '05-09 years', title: '05-09 years' },
+            { key: '10-14 years', title: '10-14 years' },
+            { key: '15-19 years', title: '15-19 years' },
+            { key: '20-24 years', title: '20-24 years' },
+            { key: '25-29 years', title: '25-29 years' },
+            { key: '30-34 years', title: '30-34 years' },
+            { key: '35-39 years', title: '35-39 years' },
+            { key: '40-44 years', title: '40-44 years' },
+            { key: '45-49 years', title: '45-49 years' },
+            { key: '50-54 years', title: '50-54 years' },
+            { key: '55-59 years', title: '55-59 years' },
+            { key: '60-64 years', title: '60-64 years' },
+            { key: '65-69 years', title: '65-69 years' },
+            { key: '70-74 years', title: '70-74 years' },
+            { key: '75-79 years', title: '75-79 years' },
+            { key: '80-84 years', title: '80-84 years' },
+            { key: '85+ years', title: '85+ years' },
+            { key: 'Invalid value(s)', title: 'Invalid value(s)' }
+        ];
+
+        var cancerSites = [
+            { key: '20010', title: '20010' },
+            { key: '20020', title: '20020' },
+            { key: '20030', title: '20030' },
+            { key: '20040', title: '20040' },
+            { key: '20050', title: '20050' },
+            { key: '20060', title: '20060' },
+            { key: '20070', title: '20070' },
+            { key: '20080', title: '20080' },
+            { key: '20090', title: '20090' },
+            { key: '20100', title: '20100' },
+            { key: '21010', title: '21010' },
+            { key: '21020', title: '21020' },
+            { key: '21030', title: '21030' },
+            { key: '21041', title: '21041' },
+            { key: '21042', title: '21042' },
+            { key: '21043', title: '21043' },
+            { key: '21044', title: '21044' },
+            { key: '21045', title: '21045' },
+            { key: '21046', title: '21046' },
+            { key: '21047', title: '21047' },
+            { key: '21048', title: '21048' },
+            { key: '21049', title: '21049' },
+            { key: '21051', title: '21051' },
+            { key: '21052', title: '21052' },
+            { key: '21060', title: '21060' },
+            { key: '21071', title: '21071' },
+            { key: '21072', title: '21072' },
+            { key: '21080', title: '21080' },
+            { key: '21090', title: '21090' },
+            { key: '21100', title: '21100' },
+            { key: '21110', title: '21110' },
+            { key: '21120', title: '21120' },
+            { key: '21130', title: '21130' },
+            { key: '22010', title: '22010' },
+            { key: '22020', title: '22020' },
+            { key: '22030', title: '22030' },
+            { key: '22050', title: '22050' },
+            { key: '22060', title: '22060' },
+            { key: '23000', title: '23000' },
+            { key: '24000', title: '24000' },
+            { key: '25010', title: '25010' },
+            { key: '25020', title: '25020' },
+            { key: '26000', title: '26000' },
+            { key: '27010', title: '27010' },
+            { key: '27020', title: '27020' },
+            { key: '27030', title: '27030' },
+            { key: '27040', title: '27040' },
+            { key: '27050', title: '27050' },
+            { key: '27060', title: '27060' },
+            { key: '27070', title: '27070' },
+            { key: '28010', title: '28010' },
+            { key: '28020', title: '28020' },
+            { key: '28030', title: '28030' },
+            { key: '28040', title: '28040' },
+            { key: '29010', title: '29010' },
+            { key: '29020', title: '29020' },
+            { key: '29030', title: '29030' },
+            { key: '29040', title: '29040' },
+            { key: '30000', title: '30000' },
+            { key: '31010', title: '31010' },
+            { key: '31040', title: '31040' },
+            { key: '32010', title: '32010' },
+            { key: '32020', title: '32020' },
+            { key: '33011', title: '33011' },
+            { key: '33012', title: '33012' },
+            { key: '33041', title: '33041' },
+            { key: '33042', title: '33042' },
+            { key: '34000', title: '34000' },
+            { key: '35011', title: '35011' },
+            { key: '35012', title: '35012' },
+            { key: '35013', title: '35013' },
+            { key: '35021', title: '35021' },
+            { key: '35031', title: '35031' },
+            { key: '35022', title: '35022' },
+            { key: '35041', title: '35041' },
+            { key: '35043', title: '35043' },
+            { key: '36010', title: '36010' },
+            { key: '36020', title: '36020' },
+            { key: '35023', title: '35023' },
+            { key: '37000', title: '37000' },
+            { key: 'Breast-InSitu', title: 'Breast-InSitu' }
+        ];
+
         return {
             getBridgeDataFilters: getBridgeDataFilters,
             getNatalityDataFilters: getNatalityDataFilters,
@@ -557,7 +678,8 @@
             getAllOptionValues: getAllOptionValues,
             getTBDataFilters: getTBDataFilters,
             getAIDSFilters: getAIDSFilters,
-            getCancerIncidenceFilters: getCancerIncidenceFilters
+            getCancerIncidenceFilters: getCancerIncidenceFilters,
+            getCancerMortalityFilters: getCancerMortalityFilters
         };
 
         function getBridgeDataFilters() {
@@ -1312,127 +1434,6 @@
         }
 
         function getCancerIncidenceFilters () {
-
-            var cancerRaceOptions = [
-                { key: 'White', title: 'White' },
-                { key: 'Black', title: 'Black' },
-                { key: 'American Indian/Alaska Native', title: 'American Indian/Alaska Native' },
-                { key: 'Asian or Pacific Islander', title: 'Asian or Pacific Islander' },
-                { key: 'Unknown', title: 'Unknown' }
-            ];
-
-            var cancerHispanicOptions = [
-                { key: 'Non-Hispanic', title: 'Non-Hispanic' },
-                { key: 'Hispanic', title: 'Hispanic' },
-                { key: 'Invalid', title: 'Invalid' }
-            ];
-
-            var cancerAgeGroups = [
-                { key: '00 years', title: '00 years' },
-                { key: '01-04 years', title: '01-04 years' },
-                { key: '05-09 years', title: '05-09 years' },
-                { key: '10-14 years', title: '10-14 years' },
-                { key: '15-19 years', title: '15-19 years' },
-                { key: '20-24 years', title: '20-24 years' },
-                { key: '25-29 years', title: '25-29 years' },
-                { key: '30-34 years', title: '30-34 years' },
-                { key: '35-39 years', title: '35-39 years' },
-                { key: '40-44 years', title: '40-44 years' },
-                { key: '45-49 years', title: '45-49 years' },
-                { key: '50-54 years', title: '50-54 years' },
-                { key: '55-59 years', title: '55-59 years' },
-                { key: '60-64 years', title: '60-64 years' },
-                { key: '65-69 years', title: '65-69 years' },
-                { key: '70-74 years', title: '70-74 years' },
-                { key: '75-79 years', title: '75-79 years' },
-                { key: '80-84 years', title: '80-84 years' },
-                { key: '85+ years', title: '85+ years' }
-            ];
-
-            var cancerSites = [
-                { key: '20010', title: '20010' },
-                { key: '20020', title: '20020' },
-                { key: '20030', title: '20030' },
-                { key: '20040', title: '20040' },
-                { key: '20050', title: '20050' },
-                { key: '20060', title: '20060' },
-                { key: '20070', title: '20070' },
-                { key: '20080', title: '20080' },
-                { key: '20090', title: '20090' },
-                { key: '20100', title: '20100' },
-                { key: '21010', title: '21010' },
-                { key: '21020', title: '21020' },
-                { key: '21030', title: '21030' },
-                { key: '21041', title: '21041' },
-                { key: '21042', title: '21042' },
-                { key: '21043', title: '21043' },
-                { key: '21044', title: '21044' },
-                { key: '21045', title: '21045' },
-                { key: '21046', title: '21046' },
-                { key: '21047', title: '21047' },
-                { key: '21048', title: '21048' },
-                { key: '21049', title: '21049' },
-                { key: '21051', title: '21051' },
-                { key: '21052', title: '21052' },
-                { key: '21060', title: '21060' },
-                { key: '21071', title: '21071' },
-                { key: '21072', title: '21072' },
-                { key: '21080', title: '21080' },
-                { key: '21090', title: '21090' },
-                { key: '21100', title: '21100' },
-                { key: '21110', title: '21110' },
-                { key: '21120', title: '21120' },
-                { key: '21130', title: '21130' },
-                { key: '22010', title: '22010' },
-                { key: '22020', title: '22020' },
-                { key: '22030', title: '22030' },
-                { key: '22050', title: '22050' },
-                { key: '22060', title: '22060' },
-                { key: '23000', title: '23000' },
-                { key: '24000', title: '24000' },
-                { key: '25010', title: '25010' },
-                { key: '25020', title: '25020' },
-                { key: '26000', title: '26000' },
-                { key: '27010', title: '27010' },
-                { key: '27020', title: '27020' },
-                { key: '27030', title: '27030' },
-                { key: '27040', title: '27040' },
-                { key: '27050', title: '27050' },
-                { key: '27060', title: '27060' },
-                { key: '27070', title: '27070' },
-                { key: '28010', title: '28010' },
-                { key: '28020', title: '28020' },
-                { key: '28030', title: '28030' },
-                { key: '28040', title: '28040' },
-                { key: '29010', title: '29010' },
-                { key: '29020', title: '29020' },
-                { key: '29030', title: '29030' },
-                { key: '29040', title: '29040' },
-                { key: '30000', title: '30000' },
-                { key: '31010', title: '31010' },
-                { key: '31040', title: '31040' },
-                { key: '32010', title: '32010' },
-                { key: '32020', title: '32020' },
-                { key: '33011', title: '33011' },
-                { key: '33012', title: '33012' },
-                { key: '33041', title: '33041' },
-                { key: '33042', title: '33042' },
-                { key: '34000', title: '34000' },
-                { key: '35011', title: '35011' },
-                { key: '35012', title: '35012' },
-                { key: '35013', title: '35013' },
-                { key: '35021', title: '35021' },
-                { key: '35031', title: '35031' },
-                { key: '35022', title: '35022' },
-                { key: '35041', title: '35041' },
-                { key: '35043', title: '35043' },
-                { key: '36010', title: '36010' },
-                { key: '36020', title: '36020' },
-                { key: '35023', title: '35023' },
-                { key: '37000', title: '37000' },
-                { key: 'Breast-InSitu', title: 'Breast-InSitu' }
-            ];
-
             return [
                 {
                     key: 'current_year',
@@ -1442,7 +1443,7 @@
                     value: [ '2014' ],
                     groupBy: false,
                     filterType: 'checkbox',
-                    autoCompleteOptions: yearOptions,
+                    autoCompleteOptions: yearOptions.slice(1),
                     doNotShowAll: true,
                     defaultGroup: 'column',
                     helpText: 'label.help.text.cancer_incidence.year'
@@ -1491,7 +1492,7 @@
                     value: [],
                     groupBy: false,
                     filterType: 'checkbox',
-                    autoCompleteOptions: cancerAgeGroups,
+                    autoCompleteOptions: cancerAgeGroups.slice(0, -1),
                     defaultGroup: 'column',
                     helpText: 'label.help.text.cancer_incidence.age_group'
                 },
@@ -1518,6 +1519,97 @@
                     autoCompleteOptions: stateOptions,
                     doNotShowAll: true,
                     defaultGroup: 'column',
+                    helpText: 'label.help.text.cancer_incidence.state'
+                }
+            ]
+        }
+
+        function getCancerMortalityFilters () {
+
+            var cancerMortalityHispanicOptions = [
+                { key: 'Non-Hispanic', title: 'Non-Hispanic' },
+                { key: 'Hispanic', title: 'Hispanic' },
+                { key: 'Unknown', title: 'Unknown' }
+            ];
+
+            return [
+                {
+                    key: 'current_year',
+                    title: 'label.filter.year',
+                    queryKey: 'current_year',
+                    primary: false,
+                    value: [ '2014' ],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: yearOptions.slice(1),
+                    doNotShowAll: true,
+                    helpText: 'label.help.text.cancer_incidence.year'
+                },
+                {
+                    key: 'sex',
+                    title: 'label.filter.gender',
+                    queryKey: 'sex',
+                    primary: false,
+                    value: [],
+                    groupBy: 'column',
+                    filterType: 'checkbox',
+                    autoCompleteOptions: genderOptions,
+                    helpText: 'label.help.text.cancer_incidence.sex'
+                },
+                {
+                    key: 'race',
+                    title: 'label.filter.race',
+                    queryKey: 'race',
+                    primary: false,
+                    value: [],
+                    groupBy: 'row',
+                    filterType: 'checkbox',
+                    autoCompleteOptions: cancerRaceOptions.slice(0, -1),
+                    helpText: 'label.help.text.cancer_incidence.race'
+                },
+                {
+                    key: 'hispanic_origin',
+                    title: 'label.filter.hispanicOrigin',
+                    queryKey: 'hispanic_origin',
+                    primary: false,
+                    value: [],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: cancerMortalityHispanicOptions,
+                    helpText: 'label.help.text.cancer_incidence.hispanic_origin'
+                },
+                {
+                    key: 'age_group',
+                    title: 'label.filter.agegroup',
+                    queryKey: 'age_group',
+                    primary: false,
+                    value: [],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: cancerAgeGroups,
+                    helpText: 'label.help.text.cancer_incidence.age_group'
+                },
+                {
+                    key: 'site',
+                    title: 'label.filter.cancer_site',
+                    queryKey: 'cancer_site',
+                    primary: false,
+                    value: [],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: cancerSites,
+                    helpText: 'label.help.text.cancer_incidence.cancer_site'
+                },
+                {
+                    key: 'state',
+                    title: 'label.filter.state',
+                    queryKey: 'state',
+                    primary: 'false',
+                    value: [],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: stateOptions,
+                    doNotShowAll: true,
                     helpText: 'label.help.text.cancer_incidence.state'
                 }
             ]
