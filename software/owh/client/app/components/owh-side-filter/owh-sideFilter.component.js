@@ -297,6 +297,7 @@
                         sideFilter.filters.groupBy = false;
                     }
                 });
+                filter.filters.groupBy = "column";
             }
             // Update the filter options if refreshFiltersOnChange is true
             if (filter.refreshFiltersOnChange){

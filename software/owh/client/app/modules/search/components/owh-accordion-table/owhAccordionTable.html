@@ -17,7 +17,13 @@
             </thead>
             <tbody ng-repeat="eachRow in oatc.listRows(topic)">
                 <tr ng-if="eachRow[0].title">
-                   <td colspan="100%">{{eachRow[0].title}}</td>
+                   <td colspan="100%">
+                       <span class="chart-icon cursor-pointer {{eachRow[0].iconClass}}"
+                             id="{{eachRow[0].qkey}}"
+                             ng-if="eachRow[0].iconClass && oatc.showCharts"
+                             ng-click="eachRow[0].onIconClick(eachRow[0])"></span> &nbsp;&nbsp;
+                       <span ng-bind="eachRow[0].title"></span>
+                   </td>
                 </tr>
                 <tr class="owh-question__question"  ng-hide="$index >= topic.rowsToShow && topic.hide">
                     <td ng-repeat="eachColumn in eachRow" colspan="{{ eachColumn.colspan }}"
@@ -25,9 +31,10 @@
                         ng-if="!eachColumn.key">
                         <div class="owh-question__content" ng-class="{'text-right': $index > 0}">
                             <span ng-if="!eachColumn.title.mean" ng-bind-html="eachColumn.title"></span>
-                            <div ng-if="eachColumn.title.mean" title="% of Yes responses">
-                                {{eachColumn.title.mean == 'suppressed' ? 'Suppressed' : eachColumn.title.mean}}
-                                <div ng-if="oatc.showCi && eachColumn.title.mean != 'suppressed'" title="Confidence interval">
+                            <div ng-if="eachColumn.title.mean">
+                                {{eachColumn.title.mean == 'suppressed' ? 'Suppressed' : eachColumn.title.mean + '%'}}
+                                <div ng-if="oatc.showCi && eachColumn.title.mean != 'suppressed'"
+                                     title="Confidence interval">
                                     <br/><br/>
                                     ({{eachColumn.title.ci_l}}-{{eachColumn.title.ci_u}})
                                 </div>
@@ -36,10 +43,6 @@
                                     {{eachColumn.title.count}}
                                 </div>
                             </div>
-
-                            <span class="chart-icon cursor-pointer {{eachColumn.iconClass}}" id="{{eachColumn.qkey}}"
-                                  ng-if="eachColumn.iconClass && oatc.showCharts"
-                                  ng-click="eachColumn.onIconClick(eachColumn)"></span>
                         </div>
                     </td>
                 </tr>

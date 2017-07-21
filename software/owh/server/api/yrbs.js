@@ -82,6 +82,9 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
     if(aggrsKeys.indexOf('sex') >= 0){
         sortedKeys.push('sex');
     }
+    if(aggrsKeys.indexOf('gender') >= 0){
+        sortedKeys.push('gender');
+    }
     if(aggrsKeys.indexOf('grade') >= 0){
         sortedKeys.push('grade');
     }
@@ -93,6 +96,14 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
     }
     if(aggrsKeys.indexOf('race') >= 0){
         sortedKeys.push('race');
+    }
+    if(aggrsKeys.indexOf('age_group') >= 0){
+        sortedKeys.push('age_group');
+    }
+    if(aggrsKeys.indexOf('education') >= 0){
+        sortedKeys.push('education');
+    }if(aggrsKeys.indexOf('income') >= 0){
+        sortedKeys.push('income');
     }
     if(aggrsKeys.indexOf('year') >= 0){
         sortedKeys.push('year');
@@ -203,6 +214,9 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
             if ('sex' in r) {
                 cell = getResultCell(cell, 'sex', r.sex);
             }
+            if ('gender' in r) {
+                cell = getResultCell(cell, 'gender', r.gender);
+            }
             if ('grade' in r) {
                 cell = getResultCell(cell, 'grade', r.grade);
             }
@@ -215,6 +229,18 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
             }
             if ('race' in r) {
                 cell = getResultCell(cell, 'race', r.race);
+            }
+
+            if ('age_group' in r) {
+                cell = getResultCell(cell, 'education', r.age_group);
+            }
+
+            if ('education' in r) {
+                cell = getResultCell(cell, 'education', r.education);
+            }
+
+            if ('income' in r) {
+                cell = getResultCell(cell, 'income', r.income);
             }
 
             // Prams filters

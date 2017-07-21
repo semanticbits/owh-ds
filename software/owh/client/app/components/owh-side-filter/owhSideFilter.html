@@ -30,7 +30,7 @@
                         </div>
                         <owh-toggle-switch ng-if="sideFilter.allowGrouping" class="right-float sidebar-switch"
                                            options="sideFilter.groupOptions ? sideFilter.groupOptions : sfc.groupOptions"
-                                           model="group.groupBy" on-change="sfc.onFilterValueChange(sideFilter)"
+                                           model="group.groupBy" on-change="sfc.onFilterValueChange(sideFilter, category)"
                                            tooltip="{{'label.group.by.tooltip' | translate}}">
                         </owh-toggle-switch>
                         <div class="clearfix"></div>
@@ -433,7 +433,7 @@
                         <owh-toggle-switch ng-if="sideFilter.allowGrouping"
                                            class="right-float sidebar-switch"
                                            options="sideFilter.groupOptions ? sideFilter.groupOptions : sfc.groupOptions"
-                                           model="group.groupBy" on-change="sfc.onFilterValueChange(sideFilter)"
+                                           model="group.groupBy" on-change="sfc.onFilterValueChange(sideFilter, category)"
                                            tooltip="{{'label.group.by.tooltip' | translate}}">
                         </owh-toggle-switch>
                         <div class="clearfix"></div>
