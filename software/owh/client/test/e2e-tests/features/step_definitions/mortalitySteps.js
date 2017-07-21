@@ -226,7 +226,8 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I change 'I'm interested in' dropdown value to "([^"]*)"$/, function (arg1, next) {
-        mortalityPage.interestedInSelectBox.element(by.cssContainingText('option', arg1)).click()
+        element(by.id('interestedIn')).click();
+        mortalityPage.interestedInDropdown.element(by.cssContainingText('a', arg1)).click()
             .then(next);
     });
 

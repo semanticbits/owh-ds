@@ -1,11 +1,11 @@
 var CommonPage = function() {
     var cp = this;
-    cp.backButton = element(by.css('button[title="Previous Query"]'));
-    cp.forwardButton = element(by.css('button[title="Next Query"]'));
-    cp.interestedInSelectBox = element(by.id('interestedIn'));
+    cp.backButton = element(by.css('i[title="backArrow"]'));
+    cp.forwardButton = element(by.css('i[title="forwardArrow"]'));
+    cp.interestedInSelectBox = element(by.id('selectedPrimaryFilterDiv'));
 
     cp.getSelectedFilterType = function() {
-        return cp.interestedInSelectBox.$('option:checked').getText();
+        return cp.interestedInSelectBox.getText();
     };
 
     cp.getFilterByType = function (type) {

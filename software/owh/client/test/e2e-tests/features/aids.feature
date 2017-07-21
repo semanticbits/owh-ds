@@ -7,7 +7,7 @@ Feature: AIDS/HIV page
   Background: Access AIDS/HIV page
     When I am at home page
     And  I click on Explore button in Health Information Gateway section
-    Then I should get search page with default filter type "Mortality"
+    Then I should get search page with default filter type "Detailed Mortality"
     When I change 'I'm interested in' dropdown value to "HIV/AIDS"
     Then I should see filter type "HIV/AIDS" selected
 

@@ -17,7 +17,8 @@ var MortalitySearchPage = function() {
     msp.placeOfDeathOptionsLink = element(by.partialLinkText('Place of Death'));
     msp.raceOption2Link = element(by.cssContainingText('label', 'White'));
     msp.raceOption2 = element(by.cssContainingText('a', 'Race')).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul')).all(by.tagName('li')).get(3);
-    msp.interestedInSelectBox = element(by.id('interestedIn'));
+    msp.interestedInSelectBox = element(by.id('selectedPrimaryFilterDiv'));
+    msp.interestedInDropdown = element(by.className('dropdown-submenu'));
     msp.deathRatesOption = element(by.cssContainingText('option', 'Crude Death Rates'));
     msp.ageRatesOption = element(by.cssContainingText('option', 'Age Adjusted Death Rates'));
     msp.creduDeathRatesOption = element(by.cssContainingText('option', 'Crude Death Rates'));
@@ -34,8 +35,7 @@ var MortalitySearchPage = function() {
     msp.bookmarkButton = element(by.cssContainingText('a', 'Bookmark this Search'));
 
     msp.getSelectedFilterType = function() {
-       //return msp.interestedInSelectBox.$('option:checked').getText();
-        return element(by.partialLinkText('Mortality')).click();
+       return msp.interestedInSelectBox.getText();
     };
 
     msp.getByTypeSelectedFilters = function() {

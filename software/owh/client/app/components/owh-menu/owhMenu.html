@@ -4,14 +4,14 @@
                 <div class="width-1900 margin-right-0">
                     <div class="usa-width-one-whole">
                         <div class="arrow-box sol-right-border forward-back">
-                            <i class="arrows material-icons" ng-click="mc.goBackward()">arrow_back</i>
-                            <i class="arrows material-icons" ng-click="mc.goForward()">arrow_forward</i>
+                            <i title="backArrow" class="arrows material-icons" ng-click="mc.goBackward()">arrow_back</i>
+                            <i title="forwardArray" class="arrows material-icons" ng-click="mc.goForward()">arrow_forward</i>
                             <!--<i class="arrow-left" ng-click="mc.goBackward()"></i>
                             <i class="arrow-right" ng-click="mc.goForward()"></i>-->
                         </div>
                         <div id="interestedIn" class="sol-right-border menu-row usa-width-one-fourth text-left interested-text" ng-click="mc.showCategory()">
                             <div class="label-form select margin-right-10" ng-bind="'label.interested.in' | translate"></div>
-                            <div class="black-one-line dropdown-heading" ng-bind="mc.selectedFilter.header">Choose a health topic</div>
+                            <div id="selectedPrimaryFilterDiv" class="black-one-line dropdown-heading" ng-bind="mc.selectedFilter.header"></div>
                             <div class="icon-position"><i class="fa fa-angle-down font-30 karat"></i></div>
                         </div>
                         <div class="sol-right-border menu-row usa-width-one-fourth text-left interested-text">
@@ -42,15 +42,15 @@
                         </div>
                         <div class="dropdown-submenu" ng-show="mc.displayCategory">
                             <div class="flex-container">
-                                <div class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter: 'deaths'})">
+                                <div id="deaths" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter: 'deaths'})">
                                     <img src="../images/mortality-icon.svg" alt="owh_white_logo" height="100" width="100"/>
                                     <a class="black-one-line" ng-bind="mc.categoryName({newFilter: 'deaths'})"></a>
                                 </div>
-                                <div class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'mental_health'})">
+                                <div id="mental_health" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'mental_health'})">
                                     <img src="../images/mortality-icon.svg" alt="owh_white_logo" height="100" width="100"/>
                                     <a class="black-one-line" ng-bind="mc.categoryName({newFilter: 'mental_health'})"></a>
                                 </div>
-                                <div id="bridge-race" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'bridge_race'})">
+                                <div id="bridge_race" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'bridge_race'})">
                                     <img src="../images/mortality-icon.svg" alt="owh_white_logo" height="100" width="100"/>
                                     <a class="black-one-line" ng-bind="mc.categoryName({newFilter: 'bridge_race'})"></a>
                                 </div>
@@ -58,7 +58,7 @@
                                     <img src="../images/natality-icon.svg" alt="owh_white_logo" height="100" width="100"/>
                                     <a class="black-one-line" ng-bind="mc.categoryName({newFilter:'natality'})"></a>
                                 </div>
-                                <div id="preg" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'prams'})">
+                                <div id="prams" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'prams'})">
                                     <img src="../images/mortality-icon.svg" alt="owh_white_logo" height="100" width="100"/>
                                     <a class="black-one-line" ng-bind="mc.categoryName({newFilter:'prams'})"></a>
                                 </div>
@@ -77,7 +77,7 @@
                                     <img src="../images/health-behavior-prevention-icon.svg" alt="owh_white_logo" height="100" width="100"/>
                                     <a class="black-one-line"  ng-bind="mc.categoryName({newFilter:'infant_mortality'})"></a>
                                 </div>
-                                <div class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'tb'})">
+                                <div id="tb" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'tb'})">
                                     <img src="../images/health-behavior-prevention-icon.svg" alt="owh_white_logo" height="100" width="100"/>
                                     <a class="black-one-line" ng-bind="mc.categoryName({newFilter:'tb'})"></a>
                                 </div>
@@ -85,7 +85,7 @@
                                     <img src="../images/health-behavior-prevention-icon.svg" alt="owh_white_logo" height="100" width="100"/>
                                     <a class="black-one-line" ng-bind="mc.categoryName({newFilter:'std'})"></a>
                                 </div>
-                                <div class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'aids'})">
+                                <div id="aids" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'aids'})">
                                     <img src="../images/health-behavior-prevention-icon.svg" alt="owh_white_logo" height="100" width="100"/>
                                     <a class="black-one-line" ng-bind="mc.categoryName({newFilter:'aids'})"></a>
                                 </div>
