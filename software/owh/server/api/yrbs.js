@@ -232,7 +232,7 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
             }
 
             if ('age_group' in r) {
-                cell = getResultCell(cell, 'education', r.age_group);
+                cell = getResultCell(cell, 'age_group', r.age_group);
             }
 
             if ('education' in r) {
@@ -372,7 +372,7 @@ yrbs.prototype.getYRBSQuestionsTree = function () {
     } else {
         invokeYRBS(config.yrbs.questionsUrl + '?d=yrbss').then(function (response) {
             logger.info("Getting questions from yrbs service");
-            var data = prepareQuestionTree(response, false);
+            var data = prepareQuestionTree(response.questions, false);
             if (data.questionsList.length > 0) {
                 cahcedQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
             }

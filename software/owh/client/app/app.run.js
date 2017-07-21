@@ -356,19 +356,18 @@
         * Get YRBS questions dynamically
         * For now we are loading only 2015(hardcoded)
         * */
-        /*API.getYRBSQuestionsTree().$promise.then(function(response){
+        API.getYRBSQuestionsTree().$promise.then(function(response){
             $rootScope.questions = response.data.questionTree;
             $rootScope.questionsList = response.data.questionsList;
             $rootScope.$broadcast("yrbsQuestionsLoadded");
-
         }).catch(function(error){
             console.log(" Failed to get YRBS questions from stats service ", error);
-        });*/
+        });
 
         /*
             Get PRAMS questions
          */
-        /*API.getPRAMSQuestionsTree().$promise.then(function(response){
+        API.getPRAMSQuestionsTree().$promise.then(function(response){
             console.log('prams questions response', response);
             $rootScope.pramsQuestions = response.data.questionTree;
             $rootScope.pramsQuestionsList = response.data.questionsList;
@@ -376,7 +375,7 @@
 
         }).catch(function(error){
             console.log(" Failed to get PRAMS questions from stats service ", error);
-        });*/
+        });
 
         /*
             Get BRFS questions
