@@ -385,6 +385,12 @@
                         filter.autoCompleteOptions = sc.filters.hispanicOptions;
                     }
                 }
+                else if(selectedFilter.key === 'fertility_rates' && filter.key === 'mother_age_1year_interval') {
+                    filter.value = utilService.removeValuesFromArray(filter.value, filter.disableAgeOptions);
+                }
+                else if(selectedFilter.key === 'fertility_rates' && filter.key === 'mother_age_5year_interval') {
+                    filter.value = utilService.removeValuesFromArray(filter.value, filter.disableAgeOptions);
+                }
             });
             angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters, function(category) {
                 angular.forEach(category.sideFilters, function(filter) {
