@@ -121,9 +121,13 @@
     position:relative;
     width:1600px;
     height:400px;
-    top:12px;
-    left:10px;
+    /*top:12px;
+    left:10px;*/
     border-radius: 10px;
+    z-index:999;
+    background-color:#f9f9f9;
+    top: 60px;
+    left:10px;
 }
 
 .push-left {

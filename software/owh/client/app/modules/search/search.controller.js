@@ -27,8 +27,7 @@
         sc.switchToYRBSAdvanced = switchToYRBSAdvanced;
         sc.showFbDialog = showFbDialog;
         sc.onChartViewChange = onChartViewChange;
-        sc.getSearchFilter = getSearchFilter;
-        sc.getOptionName = getOptionName;
+        sc.findNameByKeyAndValue = findNameByKeyAndValue;
 
         var root = document.getElementsByTagName( 'html' )[0]; // '0' to assign the first (and only `HTML` tag)
         root.removeAttribute('class');
@@ -185,42 +184,6 @@
             sc.filters.selectedPrimaryFilter = searchFactory.getPrimaryFilterByKey(newFilter);
             sc.tableView = sc.filters.selectedPrimaryFilter.tableView;
             sc.search(true);
-        }
-
-        function getSearchFilter(filterName) {
-            return searchFactory.getPrimaryFilterByKey(filterName).header;
-        }
-
-        function getOptionName(filterName, opt) {
-            var i;
-
-            if (filterName == "prams") {
-                for (i = 0; i < sc.showMeOptions.prams.length; i++) {
-                    if (sc.showMeOptions.prams[i].key == opt) {
-                        return sc.showMeOptions.prams[i];
-                    }
-                }
-            }
-
-            else if (filterName == "natality") {
-                for (i = 0; i < sc.showMeOptions.natality.length; i++) {
-                    if (sc.showMeOptions.natality[i].key == opt) {
-                        return sc.showMeOptions.natality[i];
-                    }
-                }
-            }
-
-            else if (filterName == "deaths") {
-                for (i = 0; i < sc.showMeOptions.deaths.length; i++) {
-                    if (sc.showMeOptions.deaths[i].key == opt) {
-                        return sc.showMeOptions.deaths[i];
-                    }
-                }
-            }
-
-            else {
-                return null;
-            }
         }
 
         function setDefaults() {
@@ -671,6 +634,10 @@
             selectedPrimaryFilter.chartAxisLabel = chartOption.axisLabel;
             selectedPrimaryFilter.chartView = chartOption.key;
             selectedPrimaryFilter.chartData = searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
+        }
+
+        function findNameByKeyAndValue(key) {
+            return utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', key).header;
         }
     }
 }());

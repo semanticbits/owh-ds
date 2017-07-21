@@ -16,16 +16,16 @@
                     </div>
                     <div class="pull-right">
                         <div class="banner-link cursor-pointer pull-left">
-                            <a id="home" class="home-link margin-left-10 margin-right-20"><i class="fa fa-home margin-right-10"></i>Home</a>
+                            <a id="home" class="color-white margin-left-10 margin-right-20"><i class="fa fa-home margin-right-10"></i>Home</a>
                         </div>
                         <div class="banner-link dropdown cursor-pointer pull-left">
-                            <a id="explore" class="home-link margin-left-20 margin-right-20"><i class="fa fa-compass margin-right-10"></i>Explore</a>
+                            <a id="explore" class="color-white margin-left-20 margin-right-20"><i class="fa fa-compass margin-right-10"></i>Explore</a>
                         </div>
                         <div class="banner-link cursor-pointer pull-left">
-                            <a id="about" class="home-link margin-left-20 margin-right-20"><i class="fa fa-info margin-right-10"></i>About</a>
+                            <a id="about" class="color-white margin-left-20 margin-right-20"><i class="fa fa-info margin-right-10"></i>About</a>
                         </div>
                         <div class="banner-link cursor-pointer pull-left">
-                            <a id="help" class="home-link margin-left-10 margin-right-20"><i class="fa fa-question-circle-o margin-right-10"></i>Help</a>
+                            <a id="help" class="color-white margin-left-10 margin-right-20"><i class="fa fa-question-circle-o margin-right-10"></i>Help</a>
                         </div>
                     </div>
                 </div>
@@ -33,8 +33,8 @@
         </div>
         <owh-menu selected-filter ="sc.filters.selectedPrimaryFilter" show-me-options="sc.showMeOptions"
                   search-results="sc.filters.selectedPrimaryFilter.searchResults(sc.filters.selectedPrimaryFilter)"
-                  on-primary-filter="sc.changePrimaryFilter(newFilter)" category-name="sc.getSearchFilter(newFilter)"
-                  on-view-filter="sc.changeViewFilter(selectedFilter)" table-name="sc.getOptionName(filterName, opt)">
+                  on-primary-filter="sc.changePrimaryFilter(newFilter)" category-name="sc.findNameByKeyAndValue(newFilter)"
+                  on-view-filter="sc.changeViewFilter(selectedFilter)">
         </owh-menu>
 </div>
 </div>
