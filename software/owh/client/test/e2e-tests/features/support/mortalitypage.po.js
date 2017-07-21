@@ -22,7 +22,7 @@ var MortalitySearchPage = function() {
     msp.ageRatesOption = element(by.cssContainingText('option', 'Age Adjusted Death Rates'));
     msp.creduDeathRatesOption = element(by.cssContainingText('option', 'Crude Death Rates'));
     msp.tableViewDropdown = element(by.model('ots.selectedShowFilter'));
-    msp.mainSearch = element(by.tagName('owh-search'));
+    msp.mainSearch = element(by.tagName('owh-menu'));
     msp.deathRateDisclaimer = element(by.id('death-rate-disclaimer'));
     msp.ethnicityHispanicOption = element(by.id('deaths_hispanicOrigin_Hispanic')).element(by.xpath('..'));
     msp.ethnicityDominicanOption = element(by.id('deaths_hispanicOrigin_Dominican')).element(by.xpath('..'));
@@ -34,7 +34,8 @@ var MortalitySearchPage = function() {
     msp.bookmarkButton = element(by.cssContainingText('a', 'Bookmark this Search'));
 
     msp.getSelectedFilterType = function() {
-       return msp.interestedInSelectBox.$('option:checked').getText();
+       //return msp.interestedInSelectBox.$('option:checked').getText();
+        return element(by.partialLinkText('Mortality')).click();
     };
 
     msp.getByTypeSelectedFilters = function() {
