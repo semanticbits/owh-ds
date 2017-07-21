@@ -663,10 +663,10 @@
       }
     },
     {
-      "type": "map",
+      "type": "range",
       "column": "gestation_recode10",
-      "start": 453,
-      "stop": 454,
+      "start": 451,
+      "stop": 452,
       "field": "LMP Gestational Age Group1",
       "mappings": {
         "17-19": "Under 20 weeks",
