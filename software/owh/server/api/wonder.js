@@ -46,6 +46,8 @@ var wonderParamCodeMap = {
     'placeofdeath':'D77.V21',
     'month':'D77.V1-level2',
     'ucd-chapter-10':'D77.V2',
+    'ucd-chapter-10-group':'D77.V2-level3', // Need to confirm if this grouping at this level is what we want
+    'mcd-chapter-10-group':'D77.V13-level3', // Need to confirm if this grouping at this level is what we want
     'state-group':'D77.V9-level1', // Use this mapping for grouping param
     'state': { // Use this for filtering param
         "key":'D77.V9',
