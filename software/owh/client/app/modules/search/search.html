@@ -153,15 +153,15 @@
                     <p id="death-rate-disclaimer" class="dark-link" ng-if="sc.tableView === 'crude_death_rates'" ng-bind=" 'label.crude.death.rates.statement' | translate"></p>
                     <p id="birth-rate-disclaimer" class="dark-link" ng-if="sc.tableView === 'birth_rates'" ng-bind=" 'label.crude.brith.rates.statement' | translate"></p>
                     <p id="std-disclaimer" class="dark-link" ng-if="sc.tableView === 'std' || sc.tableView === 'disease_rate'" ng-bind=" 'label.std.national.data.available.for.few.years.statement' | translate"></p>
-                    <owh-table table-data="sc.tableData"
-                               show-percentage="sc.tableData.calculatePercentage"
+                    <owh-table table-data="sc.tableData" show-percentage="sc.tableData.calculatePercentage"
                                ng-if="(sc.filters.selectedPrimaryFilter.headers && sc.filters.selectedPrimaryFilter.key === 'deaths' ||
                                sc.filters.selectedPrimaryFilter.key === 'bridge_race' ||
                                sc.filters.selectedPrimaryFilter.key === 'natality' ||
                                sc.filters.selectedPrimaryFilter.key === 'infant_mortality' ||
                                sc.filters.selectedPrimaryFilter.key === 'std' ||
                                sc.filters.selectedPrimaryFilter.key === 'tb' ||
-                               sc.filters.selectedPrimaryFilter.key === 'aids')"
+                               sc.filters.selectedPrimaryFilter.key === 'aids' ||
+                               sc.filters.selectedPrimaryFilter.key === 'cancer_incident')"
                                table-view="{{sc.tableView}}"
                                rowspan-threshold="50"></owh-table>
                     <owh-accordion-table headers="sc.tableData.headers" data="sc.tableData.data"

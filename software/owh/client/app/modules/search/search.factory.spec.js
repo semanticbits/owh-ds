@@ -38,6 +38,7 @@ describe('search factory ', function(){
         questionsTreeJson = __fixtures__['app/modules/search/fixtures/search.factory/questionsTree'];
         $httpBackend.whenGET('/yrbsQuestionsTree').respond(questionsTreeJson);
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
         $rootScope.questionsList = questionsTreeJson.questionsList;
         filters = searchFactory.getAllFilters();
         filters.primaryFilters = utils.findAllByKeyAndValue(filters.search, 'primary', true);
@@ -722,6 +723,18 @@ describe('search factory ', function(){
             var result = searchFactory.updateFiltersAndData(filters, response, groupOptions);
             expect(JSON.stringify(result.primaryFilter.data.question)).toEqual(JSON.stringify(response.data.resultData.table.question));
             expect(result.primaryFilter.allFilters[3].questions.length).toEqual(groupOptions.delivery.topic.length);
+        });
+    });
+
+    describe('updateFilterAndData with Cancer Incidence data', function () {
+        var response;
+        beforeEach(function () {
+            response = __fixtures__['app/modules/search/fixtures/search.factory/cancerIncidenceResponse'];
+        });
+        it('Should attach result data to the primary filter', function () {
+            var mock = { primaryFilters: [ filters.search[9] ] };
+            var result = searchFactory.updateFiltersAndData(mock, response, { cancer_incident: {} }, {});
+            expect(result.primaryFilter.data).toEqual(response.data.resultData.nested.table);
         });
     });
 });

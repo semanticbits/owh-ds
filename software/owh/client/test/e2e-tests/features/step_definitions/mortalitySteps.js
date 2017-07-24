@@ -1014,15 +1014,15 @@ var mortalityStepDefinitionsWrapper = function () {
             expect(elements[0].getText()).to.eventually.equal('Non-Hispanic');
             expect(elements[1].getText()).to.eventually.equal('American Indian or Alaska Native');
             expect(elements[2].getText()).to.eventually.contains('Age Adjusted Death Rate');
-            expect(elements[2].getText()).to.eventually.contains('3.4');
-            expect(elements[3].getText()).to.eventually.contains('3.6');
-            expect(elements[4].getText()).to.eventually.contains('3.5');
+            expect(elements[2].getText()).to.eventually.contains('22.4');
+            expect(elements[3].getText()).to.eventually.contains('28.1');
+            expect(elements[4].getText()).to.eventually.contains('25.1');
         });
         mortalityPage.getTableRowDataCells(1).then(function (elements) {
             expect(elements[0].getText()).to.eventually.equal('Asian or Pacific Islander');
-            expect(elements[1].getText()).to.eventually.contains('2.7');
-            expect(elements[2].getText()).to.eventually.contains('3.2');
-            expect(elements[3].getText()).to.eventually.contains('3.0');
+            expect(elements[1].getText()).to.eventually.contains('8.0');
+            expect(elements[2].getText()).to.eventually.contains('12.4');
+            expect(elements[3].getText()).to.eventually.contains('9.9');
         }).then(next);
     });
 
@@ -1062,21 +1062,21 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^I see data in data table grouped by Underlying Cause of Death and Race$/, function (next) {
         mortalityPage.getTableRowDataCells(0).then(function (elements) {
-            expect(elements[0].getText()).to.eventually.equal('4-Aminophenol derivatives (Y45.5)');
+            expect(elements[0].getText()).to.eventually.equal('Certain infectious and parasitic diseases(A00-B99)');
             mortalityPage.getTableCellData(0,1).then(function(data){
-                expect(data).to.contains('White');
+                expect(data).to.contains('American Indian or Alaska Native');
             });
             mortalityPage.getTableCellData(0,2).then(function(data){
-                expect(data).to.contains('1 (100.0%)');
+                expect(data).to.contains('295 (46.8%)');
             });
 
-            mortalityPage.getTableRowDataCells(2).then(function (elements) {
-                expect(elements[0].getText()).to.eventually.equal('Abdomen - Malignant neoplasms (C76.2)');
-                mortalityPage.getTableCellData(2,1).then(function(data){
+            mortalityPage.getTableRowDataCells(5).then(function (elements) {
+                expect(elements[0].getText()).to.eventually.equal('Intestinal infectious diseases(A00-A09)');
+                mortalityPage.getTableCellData(5,1).then(function(data){
                     expect(data).to.contains('American Indian or Alaska Native');
                 });
-                mortalityPage.getTableCellData(2,2).then(function(data){
-                    expect(data).to.contains('3 (100.0%)');
+                mortalityPage.getTableCellData(5,2).then(function(data){
+                    expect(data).to.contains('38 (55.9%)');
                 });
             });
         }).then(next);
