@@ -903,5 +903,22 @@ describe('utilService', function(){
             expect(mockFilters.sideFilters[4].disabled).toBeTruthy();
             expect(mockFilters.sideFilters[5].disabled).toBeTruthy();
         });
+
+        it('should reset all groupings to off on brfssFilterChange and put current filter to column', function () {
+            var filter = {"key":"state","title":"label.brfss.filter.state","queryKey":"sitecode","primary":false,"value":["AL"],"groupBy":"column","filterType":"radio","autoCompleteOptions":[{"key":"AL","title":"Alabama","$$hashKey":"object:4162","count":0},{"key":"AK","title":"Alaska","$$hashKey":"object:4163","count":0},{"key":"AZB","title":"Arizona","$$hashKey":"object:4164","count":0}],"doNotShowAll":false,"helpText":"","$$hashKey":"object:3824"};
+            var categories = [
+                {"sideFilters":[{"filterGroup":false,"collapse":false,"allowGrouping":false,"dontShowCounts":true,"filters":{"key":"year","title":"label.filter.year","queryKey":"year","primary":false,"value":["2015"],"groupBy":false,"filterType":"radio","autoCompleteOptions":[{"key":"2015","title":"2015","$$hashKey":"object:4083","count":0},{"key":"2014","title":"2014","$$hashKey":"object:4084","count":0}],"doNotShowAll":true,"helpText":"","$$hashKey":"object:3822"},"$$hashKey":"object:3847"},{"filterGroup":false,"collapse":false,"allowGrouping":true,"groupOptions":[{"key":"column","title":"Column","tooltip":"Select to view as columns on data table","$$hashKey":"object:4467"},{"key":false,"title":"Off","tooltip":"Select to hide on data table","$$hashKey":"object:4468"}],"dontShowCounts":true,"filters":{"key":"state","title":"label.brfss.filter.state","queryKey":"sitecode","primary":false,"value":["AL"],"groupBy":false,"filterType":"radio","autoCompleteOptions":[{"key":"AL","title":"Alabama","$$hashKey":"object:4162","count":0},{"key":"AK","title":"Alaska","$$hashKey":"object:4163","count":0}],"doNotShowAll":false,"helpText":"","$$hashKey":"object:3824"},"$$hashKey":"object:3848"}],"$$hashKey":"object:3839"},
+                {"category":"Breakout","sideFilters":[{"filterGroup":false,"collapse":false,"allowGrouping":true,"groupOptions":[{"key":"column","title":"Column","tooltip":"Select to view as columns on data table","$$hashKey":"object:4467"},{"key":false,"title":"Off","tooltip":"Select to hide on data table","$$hashKey":"object:4468"}],"filters":{"key":"sex","title":"label.filter.gender","queryKey":"gender","primary":false,"value":[],"groupBy":false,"filterType":"radio","autoCompleteOptions":[{"key":"Male","title":"Male","$$hashKey":"object:4362","count":0},{"key":"Female","title":"Female","$$hashKey":"object:4363","count":0}],"doNotShowAll":false,"helpText":"","$$hashKey":"object:3823"},"$$hashKey":"object:4339"},{"filterGroup":false,"collapse":false,"allowGrouping":true,"groupOptions":[{"key":"column","title":"Column","tooltip":"Select to view as columns on data table","$$hashKey":"object:4467"},{"key":false,"title":"Off","tooltip":"Select to hide on data table","$$hashKey":"object:4468"}],"filters":{"key":"race","title":"label.brfss.filter.race_ethnicity","queryKey":"race","primary":false,"value":[],"groupBy":"column","filterType":"radio","autoCompleteOptions":[{"key":"White, non-Hispanic","title":"White, non-Hispanic","$$hashKey":"object:4392","count":0},{"key":"Black, non-Hispanic","title":"Black, non-Hispanic","$$hashKey":"object:4393","count":0}],"doNotShowAll":false,"helpText":"","$$hashKey":"object:3825"},"$$hashKey":"object:4340"}],"$$hashKey":"object:3840"}
+            ];
+
+            //before onchange
+            var stateFilter = categories[0].sideFilters[1];
+            expect(stateFilter.filters.groupBy).toEqual(false);
+
+            utils.brfsFilterChange(filter, categories);
+            //after onchange
+            expect(stateFilter.filters.groupBy).toEqual("column");
+
+        });
     });
 });

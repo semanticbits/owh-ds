@@ -43,7 +43,8 @@
             findFilterByKeyAndValue: findFilterByKeyAndValue,
             isFilterApplied: isFilterApplied,
             stdFilterChange: stdFilterChange,
-            aidsFilterChange: aidsFilterChange
+            aidsFilterChange: aidsFilterChange,
+            brfsFilterChange: brfsFilterChange
         };
 
         return service;
@@ -1043,6 +1044,28 @@
                     })[0].disabled = false;
                 })
             }
+        }
+
+        /**
+         * On BRFSS filter change, perform the actions
+         * @param filter
+         * @param categories
+         */
+        function brfsFilterChange(filter, categories) {
+            var sideFilters = [];
+            angular.forEach(categories, function (category) {
+                sideFilters = sideFilters.concat(category.sideFilters);
+            });
+            angular.forEach(sideFilters, function (sideFilter) {
+                if(filter.key !== sideFilter.filters.key && sideFilter.allowGrouping) {
+                    if (sideFilter.key !== 'state') {
+                        sideFilter.filters.value = [];
+                    }
+                    sideFilter.filters.groupBy = false;
+                } else if (sideFilter.groupOptions && !sideFilter.filters.groupBy) {
+                    sideFilter.filters.groupBy = "column";
+                }
+            });
         }
     }
 }());
