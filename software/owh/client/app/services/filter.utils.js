@@ -1110,6 +1110,11 @@
          * @return TB side filters array
          */
         function getTBDataFilters() {
+            var countryOfBirth =  [
+                {key: '', title: 'All countries of birth'},
+                {key: 'Foreign-born', title: 'Foreign-born'},
+                {key: 'US-born', title: 'US-born'}
+            ];
 
             return [
                 {
@@ -1168,6 +1173,14 @@
                     autoCompleteOptions: diseaseStateOptions,
                     doNotShowAll: true,
                     helpText: "label.help.text.tb.state"
+                },
+                {
+                    key: 'transmission', title: 'label.tb.filter.countryOfBirth', queryKey: "transmission",
+                    primary: false, value: '',
+                    groupBy: false, filterType: 'radio',
+                    autoCompleteOptions: countryOfBirth,
+                    doNotShowAll: true,
+                    helpText: "label.help.text.tb.countryOfBirth"
                 }
             ]
 
