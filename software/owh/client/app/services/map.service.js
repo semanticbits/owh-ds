@@ -50,7 +50,10 @@
         }
 
         function getSelectedYears(primaryFilter) {
-            var yearFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'current_year') || utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year');
+            var yearFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'current_year') ||
+                utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year') ||
+                utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year_of_death');
+
             if (yearFilter) {
                 return utilService.isValueNotEmpty(yearFilter.value) ? yearFilter.value : utilService.getValuesByKey(yearFilter.autoCompleteOptions, 'title');
             }

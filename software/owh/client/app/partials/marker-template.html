@@ -14,11 +14,11 @@
         </div>
         <div class="usa-width-one-whole margin-top-5 padding-top-5 border-top-default padding-bottom-10">
             <div class="usa-width-two-thirds marker-label">
-                <span ng-if="tableView === 'deaths'">Total Deaths</span>
+                <span ng-if="tableView === 'deaths'  || tableView === 'infant_mortality'">Total Deaths</span>
                 <span ng-if="tableView === 'bridge_race'">Total</span>
             </div>
             <div class="usa-width-one-third" ng-if="tableView === 'deaths'
-            || tableView === 'bridge_race'">
+            || tableView === 'bridge_race'  || tableView === 'infant_mortality'">
                 <span>{{properties[tableView] | number}}</span>
             </div>
         </div>
