@@ -77,7 +77,7 @@ var natalityStepsDefinitionWrapper = function () {
         var allElements = element.all(by.css('cursor-not-allowed')).all(by.css('custom-link'));
         allElements.getText().then(function (filters) {
             filters.forEach(function (filter) {
-                expect(["Month","Weekday", "Sex", "Gestational Age at Birth","Month Prenatal Care Began","Birth Weight","Birth Weight 4","Birth Weight 12","Plurality or Multiple Birth","Live Birth Order","Birth Place","Delivery Method","Medical Attendant","Ethinicity","Marital Status", "Education", "1-Year Age Groups", "5-Year Age Groups",
+                expect(["Month","Weekday", "Sex", "Gestational Age at Birth", "LMP Gestational Age 10", "LMP Gestational Age 11", "LMP Gestational Age Weekly", "Month Prenatal Care Began","Birth Weight","Birth Weight 4","Birth Weight 12","Plurality or Multiple Birth","Live Birth Order","Birth Place","Delivery Method","Medical Attendant","Ethinicity","Marital Status", "Education", "1-Year Age Groups", "5-Year Age Groups",
                     "Anemia","Cardiac Disease","Chronic Hypertension","Diabetes","Eclampsia","Hydramnios / Oligohydramnios","Incompetent Cervix","Lung disease","Pregnancy-associated Hypertension","Tobacco Use"]).to.include(filter);
             });
         }).then(next);
@@ -147,7 +147,7 @@ var natalityStepsDefinitionWrapper = function () {
         var allElements = element.all(by.css('cursor-not-allowed')).all(by.css('custom-link'));
         allElements.getText().then(function (filters) {
             filters.forEach(function (filter) {
-                expect(["Month","Weekday", "Sex", "Gestational Age at Birth","Month Prenatal Care Began","Birth Weight","Birth Weight 4","Birth Weight 12","Plurality or Multiple Birth","Live Birth Order","Birth Place","Delivery Method","Medical Attendant","Ethinicity","Marital Status","Age of Mother","Education",
+                expect(["Month","Weekday", "Sex", "Gestational Age at Birth", "LMP Gestational Age 10", "LMP Gestational Age 11", "LMP Gestational Age Weekly", "Month Prenatal Care Began","Birth Weight","Birth Weight 4","Birth Weight 12","Plurality or Multiple Birth","Live Birth Order","Birth Place","Delivery Method","Medical Attendant","Ethinicity","Marital Status","Age of Mother","Education",
                     "Anemia","Cardiac Disease","Chronic Hypertension","Diabetes","Eclampsia","Hydramnios / Oligohydramnios","Incompetent Cervix","Lung disease","Pregnancy-associated Hypertension","Tobacco Use"]).to.include(filter);
             });
         }).then(next);
