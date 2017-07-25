@@ -202,7 +202,7 @@
                 });
             });
             if(refreshFiltersOnChange) {
-                utilService.refreshFilterAndOptions(allFilters, primaryFilter.sideFilters, primaryFilter.key);
+                utilService.refreshFilterAndOptions(allFilters, primaryFilter.sideFilters, primaryFilter.key, primaryFilter.tableView);
             }
         }
 

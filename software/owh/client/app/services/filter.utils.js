@@ -95,6 +95,45 @@
             { "key": "Non-Hispanic Other Races", "title": "Non-Hispanic Other Races" },
             { "key": "Origin unknown or not stated", "title": "Origin unknown or not stated" }
         ];
+        var singleYearAgeOptions =  [
+            { "key": "Under 15 years", "title": "Under 15 years" },
+            { "key": "15 years", "title": "15 years" },
+            { "key": "16 years", "title": "16 years" },
+            { "key": "17 years", "title": "17 years" },
+            { "key": "18 years", "title": "18 years" },
+            { "key": "19 years", "title": "19 years" },
+            { "key": "20 years", "title": "20 years" },
+            { "key": "21 years", "title": "21 years" },
+            { "key": "22 years", "title": "22 years" },
+            { "key": "23 years", "title": "23 years" },
+            { "key": "24 years", "title": "24 years" },
+            { "key": "25 years", "title": "25 years" },
+            { "key": "26 years", "title": "26 years" },
+            { "key": "27 years", "title": "27 years" },
+            { "key": "28 years", "title": "28 years" },
+            { "key": "29 years", "title": "29 years" },
+            { "key": "30 years", "title": "30 years" },
+            { "key": "31 years", "title": "31 years" },
+            { "key": "32 years", "title": "32 years" },
+            { "key": "33 years", "title": "33 years" },
+            { "key": "34 years", "title": "34 years" },
+            { "key": "35 years", "title": "35 years" },
+            { "key": "36 years", "title": "36 years" },
+            { "key": "37 years", "title": "37 years" },
+            { "key": "38 years", "title": "38 years" },
+            { "key": "39 years", "title": "39 years" },
+            { "key": "40 years", "title": "40 years" },
+            { "key": "41 years", "title": "41 years" },
+            { "key": "42 years", "title": "42 years" },
+            { "key": "43 years", "title": "43 years" },
+            { "key": "44 years", "title": "44 years" },
+            { "key": "45 years", "title": "45 years" },
+            { "key": "46 years", "title": "46 years" },
+            { "key": "47 years", "title": "47 years" },
+            { "key": "48 years", "title": "48 years" },
+            { "key": "49 years", "title": "49 years" },
+            { "key": "50-54 years", "title": "50 years and over"}
+        ];
         var ageR9Options =  [
             { "key": "Under 15 years", "title": "Under 15 years" },
             { "key": "15-19 years", "title": "15-19 years" },
@@ -752,48 +791,6 @@
         }
 
         function getNatalityDataFilters() {
-
-            var natatityMothersAge1YearInterval =  [
-                { "key": "15 years", "title": "15 years" },
-                { "key": "16 years", "title": "16 years" },
-                { "key": "17 years", "title": "17 years" },
-                { "key": "18 years", "title": "18 years" },
-                { "key": "19 years", "title": "19 years" },
-                { "key": "20 years", "title": "20 years" },
-                { "key": "21 years", "title": "21 years" },
-                { "key": "22 years", "title": "22 years" },
-                { "key": "23 years", "title": "23 years" },
-                { "key": "24 years", "title": "24 years" },
-                { "key": "25 years", "title": "25 years" },
-                { "key": "26 years", "title": "26 years" },
-                { "key": "27 years", "title": "27 years" },
-                { "key": "28 years", "title": "28 years" },
-                { "key": "29 years", "title": "29 years" },
-                { "key": "30 years", "title": "30 years" },
-                { "key": "31 years", "title": "31 years" },
-                { "key": "32 years", "title": "32 years" },
-                { "key": "33 years", "title": "33 years" },
-                { "key": "34 years", "title": "34 years" },
-                { "key": "35 years", "title": "35 years" },
-                { "key": "36 years", "title": "36 years" },
-                { "key": "37 years", "title": "37 years" },
-                { "key": "38 years", "title": "38 years" },
-                { "key": "39 years", "title": "39 years" },
-                { "key": "40 years", "title": "40 years" },
-                { "key": "41 years", "title": "41 years" },
-                { "key": "42 years", "title": "42 years" },
-                { "key": "43 years", "title": "43 years" },
-                { "key": "44 years", "title": "44 years" }
-            ];
-
-            var natatityMothersAge5YearInterval =  [
-                { "key": "15-19 years", "title": "15-19 years" },
-                { "key": "20-24 years", "title": "20-24 years" },
-                { "key": "25-29 years", "title": "25-29 years" },
-                { "key": "30-34 years", "title": "30-34 years" },
-                { "key": "35-39 years", "title": "35-39 years" },
-                { "key": "40-44 years", "title": "40-44 years" }
-            ];
             //prepare filter definitions
             var natalityFilters = [
                 {key: 'hispanic_origin', title: 'label.filter.hispanicOrigin', queryKey:"hispanic_origin",
@@ -805,10 +802,11 @@
 
                 {key: 'mother_age_1year_interval', title: 'label.chart.mother_age.single.year.group', queryKey:"mother_age_1year_interval", primary: false, value: [],
                     defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: natatityMothersAge1YearInterval, helpText:"label.help.text.mother.one.year.age"},
+                    autoCompleteOptions: singleYearAgeOptions, helpText:"label.help.text.mother.one.year.age", disableAgeOptions: ["Under 15 years", "45 years", "46 years", "47 years", "48 years", "49 years", "50-54 years"]},
 
                 {key: 'mother_age_5year_interval', title: 'label.chart.mother_age.five.year.group', queryKey:"mother_age_5year_interval", primary: false, value: [],
-                    defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: natatityMothersAge5YearInterval, helpText:"label.help.text.mother.five.year.age"},
+                    defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: ageR9Options,
+                    helpText:"label.help.text.mother.five.year.age", disableAgeOptions: ["Under 15 years", "45-49 years", "50-54 years" ]},
 
                 {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'row', filterType: "checkbox",
