@@ -2636,6 +2636,27 @@
                                     allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'medical_attendant')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'gestation_recode11')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'gestation_recode10')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'gestation_weekly')
                                 }
                             ]
                         },

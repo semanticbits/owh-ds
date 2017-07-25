@@ -19,7 +19,7 @@ Feature: Natality filters
     Then I see "Year" as first option in sidebar filters
     And  I see the data table with race, female, male and total table headers
     And I see population count for "2015" option
-    Then I expand "+ 12 more filters" filter section
+    Then I expand "+ 15 more filters" filter section
     And I expand "+ 2 more filters" filter section
     And I expand "+ 8 more filters" filter section
     And I see expected filters should be disabled in natality page for number for births
@@ -30,7 +30,7 @@ Feature: Natality filters
     And  I see 2 filters visible
     And  I see show more filters link
     When I click on show more filters link
-    Then I see 14 filters visible
+    Then I see 17 filters visible
     And  I see show more filters link changed to show less filters
     When I click on show less filters
     Then I see 2 filters visible

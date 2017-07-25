@@ -465,7 +465,7 @@ function prepareQuestionTree(questions,  prams) {
             //capture all questions into questionsList
 
             if (quesObj.description) {
-                questionsList.push({key : quesObj.question, qkey : qKey, title : quesObj.question + "("+quesObj.description+")"});
+                questionsList.push({key : quesObj.question, qkey : qKey, title : quesObj.question +"("+quesObj.description+")"});
             }
 
             else {
