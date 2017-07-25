@@ -212,10 +212,9 @@ Scenario: Suppression
   Then Age Group values "20" and ">100" should be displayed on slider
   And mortality data table should display results for Age Group
   When I select the back button in browser
-  #Back and Forward functionality not working for age groups filter
-  #Then Age Group values "Not stated" and ">100" should be displayed on slider
-  #When I select the forward button in browser
-  #Then Age Group values "20" and ">100" should be displayed on slider
+  Then Age Group values "Not stated" and ">100" should be displayed on slider
+  When I select the forward button in browser
+  Then Age Group values "20" and ">100" should be displayed on slider
 
 #Age adjusted death rates
 Scenario: Age Adjusted Death Rates
