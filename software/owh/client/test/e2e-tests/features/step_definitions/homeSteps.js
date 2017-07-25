@@ -66,5 +66,15 @@ var homeStepDefinitionsWrapper = function () {
             expect(appName).to.equal(arg1)
         }).then(next);
     });
+
+    this.Then(/^footer should have "([^"]*)" links$/, function (arg1, next) {
+        var links = arg1.split(',');
+        var allElements =  element.all(by.className('footer-li'));
+        allElements.getText().then(function (filters) {
+            filters.forEach(function (filter, index) {
+                expect(filter).to.contains(links[index]);
+            });
+        }).then(next);
+    });
 };
 module.exports = homeStepDefinitionsWrapper;
