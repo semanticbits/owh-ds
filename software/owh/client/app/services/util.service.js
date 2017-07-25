@@ -1053,19 +1053,26 @@
          */
         function brfsFilterChange(filter, categories) {
             var sideFilters = [];
-            angular.forEach(categories, function (category) {
-                sideFilters = sideFilters.concat(category.sideFilters);
-            });
-            angular.forEach(sideFilters, function (sideFilter) {
-                if(filter.key !== sideFilter.filters.key && sideFilter.allowGrouping) {
-                    if (sideFilter.key !== 'state') {
-                        sideFilter.filters.value = [];
+            if((filter.value.length > 0 && filter.key !== 'state' )
+                || filter.groupBy) {
+                angular.forEach(categories, function (category) {
+                    sideFilters = sideFilters.concat(category.sideFilters);
+                });
+                angular.forEach(sideFilters, function (sideFilter) {
+                    if (filter.key === sideFilter.filters.key) {
+                        if (!sideFilter.filters.groupBy) {
+                            sideFilter.filters.groupBy = "column";
+                        }
+                    } else if(sideFilter.allowGrouping) {
+                        if (sideFilter.filters.key !== 'state') {
+                            sideFilter.filters.value = [];
+                        }
+                        if (sideFilter.filters.groupBy === 'column') {
+                            sideFilter.filters.groupBy = false;
+                        }
                     }
-                    sideFilter.filters.groupBy = false;
-                } else if (sideFilter.groupOptions && !sideFilter.filters.groupBy) {
-                    sideFilter.filters.groupBy = "column";
-                }
-            });
+                });
+            }
         }
     }
 }());

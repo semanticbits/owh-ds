@@ -2178,7 +2178,7 @@
             filters.brfsStateOptions = [
                 { "key": "AL", "title": "Alabama" },
                 { "key": "AK", "title": "Alaska" },
-                { "key": "AZB", "title": "Arizona" },
+                { "key": "AZ", "title": "Arizona" },
                 { "key": "AR", "title": "Arkansas" },
                 { "key": "CA", "title": "California" },
                 { "key": "CO", "title": "Colorado" },
@@ -3369,7 +3369,7 @@
 
                         }
                     ]
-                },
+                }
             ];
 
             filters.search[1].sideFilters = filters.search[1].basicSideFilters; //Set the default side filters for YRBS to basic
