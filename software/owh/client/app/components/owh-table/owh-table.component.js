@@ -129,7 +129,7 @@
                                 cell += '<span>'
                                 if(rateVisibility === 'visible') {
                                     var per = otc.tableView === 'number_of_infant_deaths' ? 1000 : 100000 ;
-                                    cell += $filter('number')(column.title / column.pop * per, 1);
+                                    cell += $filter('number')(column.count / column.pop * per, 1);
                                 }
                                 else if (rateVisibility === 'suppressed') {
                                     cell += 'Suppressed';
@@ -182,7 +182,7 @@
                             if(otc.tableView !== 'age-adjusted_death_rates') {
                                 cell += '<span>';
                                 if(column.pop) {
-                                    cell += column.pop;
+                                    cell += $filter('number')(column.pop);
                                 } else {
                                     cell += 'Not Available';
                                 }
