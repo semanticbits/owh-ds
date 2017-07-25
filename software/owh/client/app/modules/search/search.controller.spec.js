@@ -361,6 +361,31 @@ describe("Search controller: ", function () {
         });
     });
 
+    it('changeViewFilter method call with one year age filters for fertility rates view', function() {
+        spyOn(searchController, 'search');
+        var filterUtils = $injector.get('filterUtils');
+        var utilService = $injector.get('utilService');
+        var oneyearAgeFilter = utilService.findByKeyAndValue(filterUtils.getNatalityDataFilters(), 'key', 'mother_age_1year_interval')
+        oneyearAgeFilter.value = ["Under 15 years", "15 years", "44 years", "45 years"];
+        searchController.filters = {selectedPrimaryFilter: {tableView:'fertility_rates', data: {}, allFilters: [oneyearAgeFilter], sideFilters: []}};
+        searchController.changeViewFilter({key: 'fertility_rates'});
+        expect(oneyearAgeFilter.value.length).toEqual(2);
+        expect(oneyearAgeFilter.value[0]).toEqual("15 years");
+        expect(oneyearAgeFilter.value[1]).toEqual("44 years");
+    });
+
+    it('changeViewFilter method call with five year age filters for fertility rates view', function() {
+        spyOn(searchController, 'search');
+        var filterUtils = $injector.get('filterUtils');
+        var utilService = $injector.get('utilService');
+        var fiveyearAgeFilter = utilService.findByKeyAndValue(filterUtils.getNatalityDataFilters(), 'key', 'mother_age_5year_interval')
+        fiveyearAgeFilter.value = ["Under 15 years", "20-24 years", "45-49 years"];
+        searchController.filters = {selectedPrimaryFilter: {tableView:'fertility_rates', data: {}, allFilters: [fiveyearAgeFilter], sideFilters: []}};
+        searchController.changeViewFilter({key: 'fertility_rates'});
+        expect(fiveyearAgeFilter.value.length).toEqual(1);
+        expect(fiveyearAgeFilter.value[0]).toEqual("20-24 years");
+    });
+
     it('filterUtilities for yrbs should perform proper functions', function() {
         var confidenceIntervalOption = {
             title: 'Confidence Intervals',
