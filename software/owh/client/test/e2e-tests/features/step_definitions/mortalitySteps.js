@@ -281,7 +281,7 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^dropdown is in the main search bar$/, function () {
-        return expect(mortalityPage.mainSearch.element(by.model('ots.selectedShowFilter')).isPresent()).to.eventually.equal(true);
+        return expect(mortalityPage.mainSearch.element(by.className('dropdown-submenu')).isPresent()).to.eventually.equal(true);
     });
 
     this.Then(/^the Percentages should have a one decimal precision$/, function (next) {
@@ -407,7 +407,7 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^all Hispanic child options should be checked$/, function (next) {
-        commonPage.getAllOptionsForFilter('Ethnicity').then(function(elements) {
+        commonPage.getAllOptionsForFilter('Hispanic').then(function(elements) {
             for(var i = 3; i < 14; i++) {
                 expect(elements[i].element(by.tagName('input')).isSelected()).to.eventually.equal(true);
             }

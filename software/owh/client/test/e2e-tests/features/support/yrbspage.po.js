@@ -1,7 +1,7 @@
 var YRBSSearchPage = function() {
     var ysp = this;
 
-    ysp.yrbsOption = element(by.cssContainingText('option', 'Youth Risk Behavior'));
+    ysp.yrbsOption = element(by.cssContainingText('a', 'Youth Risk Behavior'));
     ysp.sideFilterUnOrderedList = element(by.css('.side-filters'));
     //ysp.selectQuestionsButton = element(by.cssContainingText('button', 'Select Questions'));
     ysp.updateQuestionsButton = element(by.cssContainingText('button', 'Update Questions'));
@@ -61,7 +61,7 @@ var YRBSSearchPage = function() {
     };
 
     ysp.getSelectedTopic = function () {
-        return element(by.css('select[ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.mental_health"]')).$('[selected]');
+        return element(by.id('tableView')).$('[selected]');
     };
 };
 

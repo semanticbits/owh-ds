@@ -11,6 +11,7 @@ var yrbsStepDefinitionsWrapper = function () {
     var commonPage = require('../support/commonpage.po');
 
     this.When(/^I select YRBS as primary filter$/, function (next) {
+        commonPage.interestedInSelectBox.click();
         yrbsPage.yrbsOption.click().then(next);
     });
 
@@ -708,7 +709,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I see "([^"]*)" filter on the top of the page$/, function (arg1, next) {
-        element.all(by.css('select[ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.mental_health"]')).then(function (element){
+        element.all(by.css('select[ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.mental_health]"')).then(function (element){
             expect(element.length).to.equal(1);
            expect(element[0].isPresent()).to.eventually.equal(true);
         }).then(next());
