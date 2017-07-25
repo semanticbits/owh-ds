@@ -391,6 +391,8 @@
   "label.help.text.disease": "This field indicates diagnosis and prevalence of deaths of AIDS/HIV.",
   "label.help.text.hiv.year": "This field indicates year of diagnosis or death. For persons living with diagnosed HIV, year refers to the end of the queried calendar year.",
   "label.help.text.hiv.agegroup": "This field indicates the age group of the patient. HIV surveillance data include adults and adolescents only (persons aged 13 years and older).",
-  "label.help.text.transmission": "This field indicates the classification of cases that summarizes a person's possible HIV risk factor."
+  "label.help.text.transmission": "This field indicates the classification of cases that summarizes a person's possible HIV risk factor.",
 
+  "label.filter.cancer_incident": "Cancer Incidence",
+  "label.filter.cancer_site": "Cancer Site"
 }
