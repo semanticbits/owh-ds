@@ -3,6 +3,7 @@ var CommonPage = function() {
     cp.backButton = element(by.css('i[title="backArrow"]'));
     cp.forwardButton = element(by.css('i[title="forwardArrow"]'));
     cp.interestedInSelectBox = element(by.id('selectedPrimaryFilterDiv'));
+    cp.secondaryMenu = element(by.className('dropdown-submenu'));
 
     cp.getSelectedFilterType = function() {
         return cp.interestedInSelectBox.getText();
@@ -54,7 +55,7 @@ var CommonPage = function() {
     
     cp.getShowMoreFilterOptionsLinkFor = function (filterType, linkText) {
         return cp.getFilterOptionContainerForFilter(filterType).element(by.cssContainingText('a', linkText));
-    }
+    };
 };
 
 module.exports = new CommonPage;
