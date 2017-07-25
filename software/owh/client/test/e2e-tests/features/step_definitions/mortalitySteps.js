@@ -231,6 +231,15 @@ var mortalityStepDefinitionsWrapper = function () {
             .then(next);
     });
 
+    this.When(/^I change 'I'm interested in' dropdown$/, function (next) {
+        element(by.id('interestedIn')).click().then(next);
+    });
+
+    this.When(/^I click on "([^"]*)" dataset$/, function (arg1, next) {
+        mortalityPage.interestedInDropdown.element(by.cssContainingText('a', arg1)).click()
+            .then(next);
+    });
+
     this.Then(/^I should be redirected to YRBS page$/, function () {
         //for first time yrbs page takes time to load but from second time page should load quickly
         //so changed sleep time from 60000 to 300 seconds
