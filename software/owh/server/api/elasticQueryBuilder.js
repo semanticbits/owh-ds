@@ -951,7 +951,7 @@ function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery,
     //censusQuery value could be 'undefined' or population query with table aggregation
     var chartPopulationQueryArray = censusQuery ? [censusQuery] : censusQuery;
     //filter and it's 'All' value map
-    var filterAllValueMap = {"sex":"Both sexes", "race_ethnicity": "All races/ethnicities", "age_group": "All age groups", "state": "National"};
+    var filterAllValueMap = {"sex":"Both sexes", "race_ethnicity": "All races/ethnicities", "age_group": "All age groups", "state": "National", "transmission": "No stratification"};
     if (aggregations['nested'] && aggregations['nested']['charts']) {
         //Get selected aggregation query keys
         var selectedFilterKeys = [];

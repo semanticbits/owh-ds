@@ -1111,7 +1111,7 @@
          */
         function getTBDataFilters() {
             var countryOfBirth =  [
-                {key: '', title: 'All countries of birth'},
+                {key: 'No stratification', title: 'All countries of birth'},
                 {key: 'Foreign-born', title: 'Foreign-born'},
                 {key: 'US-born', title: 'US-born'}
             ];
@@ -1176,7 +1176,7 @@
                 },
                 {
                     key: 'transmission', title: 'label.tb.filter.countryOfBirth', queryKey: "transmission",
-                    primary: false, value: '',
+                    primary: false, value: 'No stratification',
                     groupBy: false, filterType: 'radio',
                     autoCompleteOptions: countryOfBirth,
                     doNotShowAll: true,
@@ -1321,7 +1321,7 @@
          * @return Side filters All option values
          */
         function getAllOptionValues() {
-            return ["Both sexes", "All races/ethnicities", "All age groups", "National"]
+            return ["Both sexes", "All races/ethnicities", "All age groups", "National", "No stratification"]
         }
 
         function getCancerFilters () {

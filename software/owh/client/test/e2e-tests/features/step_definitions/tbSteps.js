@@ -22,39 +22,39 @@ var tbStepDefinitionsWrapper = function () {
             expect(firstRowData[0]).to.equals('All races/ethnicities');
             //Female
             expect(firstRowData[1]).to.contains('Rate');
-            expect(firstRowData[1]).to.contains('4.7');
+            expect(firstRowData[1]).to.contains('2.3');
             expect(firstRowData[1]).to.contains('Cases');
-            expect(firstRowData[1]).to.contains('7,648');
+            expect(firstRowData[1]).to.contains('3,827');
             expect(firstRowData[1]).to.contains('Population');
             expect(firstRowData[1]).to.contains('163,189,523');
             //Male
             expect(firstRowData[2]).to.contains('Rate');
-            expect(firstRowData[2]).to.contains('7.2');
+            expect(firstRowData[2]).to.contains('3.6');
             expect(firstRowData[2]).to.contains('Cases');
-            expect(firstRowData[2]).to.contains('11,433');
+            expect(firstRowData[2]).to.contains('5,724');
             expect(firstRowData[2]).to.contains('Population');
             expect(firstRowData[2]).to.contains('158,229,297');
             //Both sexes
             expect(firstRowData[3]).to.contains('Rate');
-            expect(firstRowData[3]).to.contains('5.9');
+            expect(firstRowData[3]).to.contains('3.0');
             expect(firstRowData[3]).to.contains('Cases');
-            expect(firstRowData[3]).to.contains('19,087');
+            expect(firstRowData[3]).to.contains('9,554');
             expect(firstRowData[3]).to.contains('Population');
             expect(firstRowData[3]).to.contains('321,418,820');
         });
         tbPage.getTableRowData(1).then(function(firstRowData){
             expect(firstRowData[0]).to.equals('American Indian or Alaska Native');
             //Female
-            expect(firstRowData[1]).to.contains('9.4');
-            expect(firstRowData[1]).to.contains('113');
+            expect(firstRowData[1]).to.contains('4.7');
+            expect(firstRowData[1]).to.contains('57');
             expect(firstRowData[1]).to.contains('1,201,860');
             //Male
-            expect(firstRowData[2]).to.contains('14.8');
-            expect(firstRowData[2]).to.contains('173');
+            expect(firstRowData[2]).to.contains('7.5');
+            expect(firstRowData[2]).to.contains('88');
             expect(firstRowData[2]).to.contains('1,167,974');
             //Both sexes
-            expect(firstRowData[3]).to.contains('12.1');
-            expect(firstRowData[3]).to.contains('286');
+            expect(firstRowData[3]).to.contains('6.1');
+            expect(firstRowData[3]).to.contains('145');
             expect(firstRowData[3]).to.contains('2,369,834');
         }).then(next);
     });
@@ -91,7 +91,7 @@ var tbStepDefinitionsWrapper = function () {
         expect(element(by.id("tb_age_group_Age 15 and older")).getAttribute("type")).to.eventually.equal("radio");
         expect(element(by.id("tb_age_group_0-4")).getAttribute("type")).to.eventually.equal("radio");
         //Transmission
-        expect(element(by.id("tb_transmission_")).getAttribute("type")).to.eventually.equal("radio");
+        expect(element(by.id("tb_transmission_No stratification")).getAttribute("type")).to.eventually.equal("radio");
         expect(element(by.id("tb_transmission_Foreign-born")).getAttribute("type")).to.eventually.equal("radio");
         expect(element(by.id("tb_transmission_US-born")).getAttribute("type")).to.eventually.equal("radio");
         //State
@@ -102,31 +102,47 @@ var tbStepDefinitionsWrapper = function () {
 
     this.Then(/^I see country of birth results on data table$/, function (next) {
         tbPage.getTableRowData(0).then(function(rowData){
-            expect(rowData[0]).to.equals('Foreign-born');
+            expect(rowData[0]).to.equals('All countries of birth');
             expect(rowData[1]).to.equals('All races/ethnicities');
             //Female
             expect(rowData[2]).to.contains('Rate');
-            expect(rowData[2]).to.contains('Not Applicable');
+            expect(rowData[2]).to.contains('2.3');
             expect(rowData[2]).to.contains('Cases');
-            expect(rowData[2]).to.contains('2,680');
+            expect(rowData[2]).to.contains('3,827');
             expect(rowData[2]).to.contains('Population');
-            expect(rowData[2]).to.contains('Not Available');
+            expect(rowData[2]).to.contains('163,189,523');
             //Male
             expect(rowData[3]).to.contains('Rate');
-            expect(rowData[3]).to.contains('Not Applicable');
+            expect(rowData[3]).to.contains('3.6');
             expect(rowData[3]).to.contains('Cases');
-            expect(rowData[3]).to.contains('3,665');
+            expect(rowData[3]).to.contains('5,724');
             expect(rowData[3]).to.contains('Population');
-            expect(rowData[3]).to.contains('Not Available');
+            expect(rowData[3]).to.contains('158,229,297');
             //Both sexes
             expect(rowData[4]).to.contains('Rate');
-            expect(rowData[4]).to.contains('Not Applicable');
+            expect(rowData[4]).to.contains('3.0');
             expect(rowData[4]).to.contains('Cases');
-            expect(rowData[4]).to.contains('6,347');
+            expect(rowData[4]).to.contains('9,554');
             expect(rowData[4]).to.contains('Population');
+            expect(rowData[4]).to.contains('321,418,820');
+        });
+        tbPage.getTableRowData(9).then(function(rowData){
+            expect(rowData[0]).to.equals('Foreign-born');
+            expect(rowData[1]).to.equals('All races/ethnicities');
+            //Female
+            expect(rowData[2]).to.contains('Not Applicable');
+            expect(rowData[2]).to.contains('2,680');
+            expect(rowData[2]).to.contains('Not Available');
+            //Male
+            expect(rowData[3]).to.contains('Not Applicable');
+            expect(rowData[3]).to.contains('3,665');
+            expect(rowData[3]).to.contains('Not Available');
+            //Both sexes
+            expect(rowData[4]).to.contains('Not Applicable');
+            expect(rowData[4]).to.contains('6,347');
             expect(rowData[4]).to.contains('Not Available');
         });
-        tbPage.getTableRowData(1).then(function(rowData){
+        tbPage.getTableRowData(10).then(function(rowData){
             expect(rowData[0]).to.equals('American Indian or Alaska Native');
             //Female
             expect(rowData[1]).to.contains('Suppressed');
@@ -138,7 +154,7 @@ var tbStepDefinitionsWrapper = function () {
             expect(rowData[3]).to.contains('Suppressed');
             expect(rowData[3]).to.contains('Not Available');
         });
-        tbPage.getTableRowData(2).then(function(rowData){
+        tbPage.getTableRowData(11).then(function(rowData){
             expect(rowData[0]).to.equals('Asian');
             //Female
             expect(rowData[1]).to.contains('1,333');
@@ -153,7 +169,7 @@ var tbStepDefinitionsWrapper = function () {
             expect(rowData[3]).to.contains('Not Available');
             expect(rowData[3]).to.contains('Not Applicable');
         });
-        tbPage.getTableRowData(9).then(function(rowData){
+        tbPage.getTableRowData(18).then(function(rowData){
             expect(rowData[0]).to.equals('US-born');
             expect(rowData[1]).to.equals('All races/ethnicities');
             //Female
@@ -169,7 +185,7 @@ var tbStepDefinitionsWrapper = function () {
             expect(rowData[4]).to.contains('3,186');
             expect(rowData[4]).to.contains('Not Available');
         });
-        tbPage.getTableRowData(10).then(function(rowData){
+        tbPage.getTableRowData(19).then(function(rowData){
             expect(rowData[0]).to.equals('American Indian or Alaska Native');
             //Female
             expect(rowData[1]).to.contains('55');
