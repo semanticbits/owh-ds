@@ -36,6 +36,10 @@ var generateNestedCensusAggQuery = function(aggregations, groupByKeyStart) {
 var generateCensusAggregationQuery = function( aggQuery, groupByKeyStart ) {
     groupByKeyStart = groupByKeyStart ? groupByKeyStart : '';
     var query = {};
+    //To handle infant_mortality year filter
+    if(aggQuery.queryKey == 'year_of_death'){
+        aggQuery.queryKey = 'current_year';
+    }
     query[ groupByKeyStart + aggQuery.key] = {
         "terms": {
             "field": aggQuery.queryKey,
@@ -400,8 +404,13 @@ function buildAPIQuery(primaryFilter) {
     }
 
     // For YRBS query capture the basisc/advanced search view
-    if(primaryFilter.key === 'mental_health' && primaryFilter.showBasicSearchSideMenu) {
-        apiQuery.yrbsBasic =  true;
+    if(primaryFilter.key === 'mental_health'){
+        if(primaryFilter.showBasicSearchSideMenu) {
+            apiQuery.yrbsBasic = true;
+        }
+        if(primaryFilter.isChartorMapQuery) {
+            apiQuery.isChartorMapQuery = true;
+        }
     }
     var sortedFilters = sortByKey(clone(primaryFilter.allFilters), getAutoCompleteOptionsLength);
     sortedFilters.forEach  (function(eachFilter) {
@@ -426,11 +435,13 @@ function buildAPIQuery(primaryFilter) {
 
             var set1FilterQuery = buildFilterQuery(set1Filter);
             if (set1FilterQuery) {
+                set1FilterQuery.set = "set1";
                 apiQuery.query[set1Filter.queryKey + ".set1"] = set1FilterQuery;
             }
 
             var set2FilterQuery = buildFilterQuery(set2Filter);
             if (set2FilterQuery) {
+                set2FilterQuery.set = "set2";
                 apiQuery.query[set2Filter.queryKey + ".set2"] = set2FilterQuery;
             }
         }

@@ -95,7 +95,6 @@
             { "key": "Non-Hispanic Other Races", "title": "Non-Hispanic Other Races" },
             { "key": "Origin unknown or not stated", "title": "Origin unknown or not stated" }
         ];
-
         var singleYearAgeOptions =  [
             { "key": "Under 15 years", "title": "Under 15 years" },
             { "key": "15 years", "title": "15 years" },
@@ -135,8 +134,6 @@
             { "key": "49 years", "title": "49 years" },
             { "key": "50-54 years", "title": "50 years and over"}
         ];
-
-
         var ageR9Options =  [
             { "key": "Under 15 years", "title": "Under 15 years" },
             { "key": "15-19 years", "title": "15-19 years" },
@@ -591,6 +588,68 @@
             {"key": "Male", "title": "Male"}
         ];
 
+        var gestationalGroup1 = [
+            { key: "Under 20 weeks", title: "Under 20 weeks" },
+            { key: "20 - 27 weeks", title: "20 - 27 weeks" },
+            { key: "28 - 31 weeks", title: "28 - 31 weeks" },
+            { key: "32 - 33 weeks", title: "32 - 33 weeks" },
+            { key: "34 - 36 weeks", title: "34 - 36 weeks" },
+            { key: "37 - 38 weeks", title: "37 - 38 weeks" },
+            { key: "39 weeks", title: "39 weeks" },
+            { key: "40 weeks", title: "40 weeks" },
+            { key: "41 weeks", title: "41 weeks" },
+            { key: "42 weeks and over", title: "42 weeks and over" },
+            { key: "Unknown", title: "Unknown" }
+        ];
+
+        var gestationalGroup2 = [
+            { key: "Under 20 weeks" , title: "Under 20 weeks" },
+            { key: "20 - 27 weeks" , title: "20 - 27 weeks" },
+            { key: "28 - 31 weeks" , title: "28 - 31 weeks" },
+            { key: "32 - 35 weeks" , title: "32 - 35 weeks" },
+            { key: "36 weeks" , title: "36 weeks" },
+            { key: "37 - 39 weeks" , title: "37 - 39 weeks" },
+            { key: "40 weeks" , title: "40 weeks" },
+            { key: "41 weeks" , title: "41 weeks" },
+            { key: "42 weeks and over" , title: "42 weeks and over" },
+            { key: "Unknown" , title: "Unknown" }
+        ];
+
+        var gestationWeekly = [
+            { key: "17 weeks", title: "17 weeks" },
+            { key: "18 weeks", title: "18 weeks" },
+            { key: "19 weeks", title: "19 weeks" },
+            { key: "20 weeks", title: "20 weeks" },
+            { key: "21 weeks", title: "21 weeks" },
+            { key: "22 weeks", title: "22 weeks" },
+            { key: "23 weeks", title: "23 weeks" },
+            { key: "24 weeks", title: "24 weeks" },
+            { key: "25 weeks", title: "25 weeks" },
+            { key: "26 weeks", title: "26 weeks" },
+            { key: "27 weeks", title: "27 weeks" },
+            { key: "28 weeks", title: "28 weeks" },
+            { key: "29 weeks", title: "29 weeks" },
+            { key: "30 weeks", title: "30 weeks" },
+            { key: "31 weeks", title: "31 weeks" },
+            { key: "32 weeks", title: "32 weeks" },
+            { key: "33 weeks", title: "33 weeks" },
+            { key: "34 weeks", title: "34 weeks" },
+            { key: "35 weeks", title: "35 weeks" },
+            { key: "36 weeks", title: "36 weeks" },
+            { key: "37 weeks", title: "37 weeks" },
+            { key: "38 weeks", title: "38 weeks" },
+            { key: "39 weeks", title: "39 weeks" },
+            { key: "40 weeks", title: "40 weeks" },
+            { key: "41 weeks", title: "41 weeks" },
+            { key: "42 weeks", title: "42 weeks" },
+            { key: "43 weeks", title: "43 weeks" },
+            { key: "44 weeks", title: "44 weeks" },
+            { key: "45 weeks", title: "45 weeks" },
+            { key: "46 weeks", title: "46 weeks" },
+            { key: "47 weeks", title: "47 weeks" },
+            { key: "Unknown", title: "Unknown"}
+        ];
+
         return {
             getBridgeDataFilters: getBridgeDataFilters,
             getNatalityDataFilters: getNatalityDataFilters,
@@ -598,7 +657,8 @@
             getSTDDataFilters: getSTDDataFilters,
             getAllOptionValues: getAllOptionValues,
             getTBDataFilters: getTBDataFilters,
-            getAIDSFilters: getAIDSFilters
+            getAIDSFilters: getAIDSFilters,
+            getCancerFilters: getCancerFilters
         };
 
         function getBridgeDataFilters() {
@@ -742,10 +802,11 @@
 
                 {key: 'mother_age_1year_interval', title: 'label.chart.mother_age.single.year.group', queryKey:"mother_age_1year_interval", primary: false, value: [],
                     defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: singleYearAgeOptions, helpText:"label.help.text.mother.one.year.age"},
+                    autoCompleteOptions: singleYearAgeOptions, helpText:"label.help.text.mother.one.year.age", disableAgeOptions: ["Under 15 years", "45 years", "46 years", "47 years", "48 years", "49 years", "50-54 years"]},
 
                 {key: 'mother_age_5year_interval', title: 'label.chart.mother_age.five.year.group', queryKey:"mother_age_5year_interval", primary: false, value: [],
-                    defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: ageR9Options, helpText:"label.help.text.mother.five.year.age"},
+                    defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: ageR9Options,
+                    helpText:"label.help.text.mother.five.year.age", disableAgeOptions: ["Under 15 years", "45-49 years", "50-54 years" ]},
 
                 {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'row', filterType: "checkbox",
@@ -770,12 +831,10 @@
 
                 {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [], defaultGroup:'column', groupBy: 'column',
                     filterType: "checkbox", autoCompleteOptions: genderOptions, helpText:"label.help.text.sex"},
-
                 {key: 'gestational_age_r10', title: 'label.filter.gestational.birth.age', queryKey:"gestational_age_r10",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: gestationalAgeAtBirth,
                     helpText:"label.help.text.gestational.age"},
-
                 {key: 'prenatal_care', title: 'label.filter.monthPrenatalCareBegan', queryKey:"prenatal_care",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: prenatalCareMonthOptions,
@@ -844,24 +903,27 @@
 
                 {key: 'tobacco_use', title: 'label.filter.tobacco.use', queryKey:"tobacco_use", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: tobaccoOptions, helpText:"label.help.text.tobacco.use"}
+                    autoCompleteOptions: tobaccoOptions, helpText:"label.help.text.tobacco.use"},
+
+                {key: 'gestation_recode11', title: 'label.filter.natality.gestation_recode11', queryKey:"gestation_recode11",
+                    primary: false, value: [], defaultGroup:'column', groupBy: false,
+                    filterType: "checkbox", autoCompleteOptions: gestationalGroup1,
+                    helpText:"label.help.text.gestational.group.two"},
+
+                {key: 'gestation_recode10', title: 'label.filter.natality.gestation_recode10', queryKey:"gestation_recode10",
+                    primary: false, value: [], defaultGroup:'column', groupBy: false,
+                    filterType: "checkbox", autoCompleteOptions: gestationalGroup2,
+                    helpText:"label.help.text.gestational.group.one"},
+
+                {key: 'gestation_weekly', title: 'label.filter.natality.gestation_weekly', queryKey:"gestation_weekly",
+                    primary: false, value: [], defaultGroup:'column', groupBy: false,
+                    filterType: "checkbox", autoCompleteOptions: gestationWeekly,
+                    helpText:"label.help.text.gestational.weekly"}
             ];
 
             return natalityFilters;
         }
         function getInfantMortalityDataFilters () {
-
-            var im_raceOptions = [
-                { key: "American Indian / Alaskan Native", title: "American Indian / Alaskan Native" },
-                { key: "Asian / Pacific Islander", title: "Asian / Pacific Islander" },
-                { key: "Black", title: "Black or African American" },
-                { key: "White", title: "White" },
-                { key: "Chinese", title: "Chinese" },
-                { key: "Japanese", title: "Japanese" },
-                { key: "Hawaiian", title: "Hawaiian" },
-                { key: "Filipino", title: "Filipino" },
-                { key: "Other Asian", title: "Other Asian"}
-            ];
 
             var infantDeathAge = [
                 { key: "Under 1 hour", title: "Under 1 hour" },
@@ -869,68 +931,6 @@
                 { key: "1-6 days", title: "1-6 days" },
                 { key: "7-27 days", title: "7-27 days" },
                 { key: "28 days and over", title: "28 days and over" }
-            ];
-
-            var gestationalGroup1 = [
-                { key: "Under 20 weeks", title: "Under 20 weeks" },
-                { key: "20 - 27 weeks", title: "20 - 27 weeks" },
-                { key: "28 - 31 weeks", title: "28 - 31 weeks" },
-                { key: "32 - 33 weeks", title: "32 - 33 weeks" },
-                { key: "34 - 36 weeks", title: "34 - 36 weeks" },
-                { key: "37 - 38 weeks", title: "37 - 38 weeks" },
-                { key: "39 weeks", title: "39 weeks" },
-                { key: "40 weeks", title: "40 weeks" },
-                { key: "41 weeks", title: "41 weeks" },
-                { key: "42 weeks and over", title: "42 weeks and over" },
-                { key: "Unknown", title: "Unknown" }
-            ];
-
-            var gestationalGroup2 = [
-              { key: "Under 20 weeks" , title: "Under 20 weeks" },
-              { key: "20 - 27 weeks" , title: "20 - 27 weeks" },
-              { key: "28 - 31 weeks" , title: "28 - 31 weeks" },
-              { key: "32 - 35 weeks" , title: "32 - 35 weeks" },
-              { key: "36 weeks" , title: "36 weeks" },
-              { key: "37 - 39 weeks" , title: "37 - 39 weeks" },
-              { key: "40 weeks" , title: "40 weeks" },
-              { key: "41 weeks" , title: "41 weeks" },
-              { key: "42 weeks and over" , title: "42 weeks and over" },
-              { key: "Not stated" , title: "Not stated" }
-            ];
-
-            var gestationWeekly = [
-              { key: "17 weeks", title: "17 weeks" },
-              { key: "18 weeks", title: "18 weeks" },
-              { key: "19 weeks", title: "19 weeks" },
-              { key: "20 weeks", title: "20 weeks" },
-              { key: "21 weeks", title: "21 weeks" },
-              { key: "22 weeks", title: "22 weeks" },
-              { key: "23 weeks", title: "23 weeks" },
-              { key: "24 weeks", title: "24 weeks" },
-              { key: "25 weeks", title: "25 weeks" },
-              { key: "26 weeks", title: "26 weeks" },
-              { key: "27 weeks", title: "27 weeks" },
-              { key: "28 weeks", title: "28 weeks" },
-              { key: "29 weeks", title: "29 weeks" },
-              { key: "30 weeks", title: "30 weeks" },
-              { key: "31 weeks", title: "31 weeks" },
-              { key: "32 weeks", title: "32 weeks" },
-              { key: "33 weeks", title: "33 weeks" },
-              { key: "34 weeks", title: "34 weeks" },
-              { key: "35 weeks", title: "35 weeks" },
-              { key: "36 weeks", title: "36 weeks" },
-              { key: "37 weeks", title: "37 weeks" },
-              { key: "38 weeks", title: "38 weeks" },
-              { key: "39 weeks", title: "39 weeks" },
-              { key: "40 weeks", title: "40 weeks" },
-              { key: "41 weeks", title: "41 weeks" },
-              { key: "42 weeks", title: "42 weeks" },
-              { key: "43 weeks", title: "43 weeks" },
-              { key: "44 weeks", title: "44 weeks" },
-              { key: "45 weeks", title: "45 weeks" },
-              { key: "46 weeks", title: "46 weeks" },
-              { key: "47 weeks", title: "47 weeks" },
-              { key: "Unknown", title: "Unknown"}
             ];
 
             return [
@@ -951,7 +951,7 @@
                 // Maternal Characteristics
                 {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'row', filterType: "checkbox",
-                    autoCompleteOptions: im_raceOptions, helpText:"label.help.text.race"},
+                    autoCompleteOptions: raceOptions, helpText:"label.help.text.race"},
 
                 {key: 'hispanic_origin', title: 'label.filter.hispanicOrigin', queryKey:"hispanic_origin",
                     primary: false, value: [], defaultGroup:'row', groupBy: false, filterType: "checkbox",
@@ -1322,6 +1322,217 @@
             return ["Both sexes", "All races/ethnicities", "All age groups", "National"]
         }
 
+        function getCancerFilters () {
+
+            var cancerRaceOptions = [
+                { key: 'White', title: 'White' },
+                { key: 'Black', title: 'Black' },
+                { key: 'American Indian/Alaska Native', title: 'American Indian/Alaska Native' },
+                { key: 'Asian or Pacific Islander', title: 'Asian or Pacific Islander' },
+                { key: 'Unknown', title: 'Unknown' }
+            ];
+
+            var cancerHispanicOptions = [
+                { key: 'Non-Hispanic', title: 'Non-Hispanic' },
+                { key: 'Hispanic', title: 'Hispanic' },
+                { key: 'Invalid', title: 'Invalid' }
+            ];
+
+            var cancerAgeGroups = [
+                { key: '00 years', title: '00 years' },
+                { key: '01-04 years', title: '01-04 years' },
+                { key: '05-09 years', title: '05-09 years' },
+                { key: '10-14 years', title: '10-14 years' },
+                { key: '15-19 years', title: '15-19 years' },
+                { key: '20-24 years', title: '20-24 years' },
+                { key: '25-29 years', title: '25-29 years' },
+                { key: '30-34 years', title: '30-34 years' },
+                { key: '35-39 years', title: '35-39 years' },
+                { key: '40-44 years', title: '40-44 years' },
+                { key: '45-49 years', title: '45-49 years' },
+                { key: '50-54 years', title: '50-54 years' },
+                { key: '55-59 years', title: '55-59 years' },
+                { key: '60-64 years', title: '60-64 years' },
+                { key: '65-69 years', title: '65-69 years' },
+                { key: '70-74 years', title: '70-74 years' },
+                { key: '75-79 years', title: '75-79 years' },
+                { key: '80-84 years', title: '80-84 years' },
+                { key: '85+ years', title: '85+ years' }
+            ];
+
+            var cancerSites = [
+                { key: '20010', title: '20010' },
+                { key: '20020', title: '20020' },
+                { key: '20030', title: '20030' },
+                { key: '20040', title: '20040' },
+                { key: '20050', title: '20050' },
+                { key: '20060', title: '20060' },
+                { key: '20070', title: '20070' },
+                { key: '20080', title: '20080' },
+                { key: '20090', title: '20090' },
+                { key: '20100', title: '20100' },
+                { key: '21010', title: '21010' },
+                { key: '21020', title: '21020' },
+                { key: '21030', title: '21030' },
+                { key: '21041', title: '21041' },
+                { key: '21042', title: '21042' },
+                { key: '21043', title: '21043' },
+                { key: '21044', title: '21044' },
+                { key: '21045', title: '21045' },
+                { key: '21046', title: '21046' },
+                { key: '21047', title: '21047' },
+                { key: '21048', title: '21048' },
+                { key: '21049', title: '21049' },
+                { key: '21051', title: '21051' },
+                { key: '21052', title: '21052' },
+                { key: '21060', title: '21060' },
+                { key: '21071', title: '21071' },
+                { key: '21072', title: '21072' },
+                { key: '21080', title: '21080' },
+                { key: '21090', title: '21090' },
+                { key: '21100', title: '21100' },
+                { key: '21110', title: '21110' },
+                { key: '21120', title: '21120' },
+                { key: '21130', title: '21130' },
+                { key: '22010', title: '22010' },
+                { key: '22020', title: '22020' },
+                { key: '22030', title: '22030' },
+                { key: '22050', title: '22050' },
+                { key: '22060', title: '22060' },
+                { key: '23000', title: '23000' },
+                { key: '24000', title: '24000' },
+                { key: '25010', title: '25010' },
+                { key: '25020', title: '25020' },
+                { key: '26000', title: '26000' },
+                { key: '27010', title: '27010' },
+                { key: '27020', title: '27020' },
+                { key: '27030', title: '27030' },
+                { key: '27040', title: '27040' },
+                { key: '27050', title: '27050' },
+                { key: '27060', title: '27060' },
+                { key: '27070', title: '27070' },
+                { key: '28010', title: '28010' },
+                { key: '28020', title: '28020' },
+                { key: '28030', title: '28030' },
+                { key: '28040', title: '28040' },
+                { key: '29010', title: '29010' },
+                { key: '29020', title: '29020' },
+                { key: '29030', title: '29030' },
+                { key: '29040', title: '29040' },
+                { key: '30000', title: '30000' },
+                { key: '31010', title: '31010' },
+                { key: '31040', title: '31040' },
+                { key: '32010', title: '32010' },
+                { key: '32020', title: '32020' },
+                { key: '33011', title: '33011' },
+                { key: '33012', title: '33012' },
+                { key: '33041', title: '33041' },
+                { key: '33042', title: '33042' },
+                { key: '34000', title: '34000' },
+                { key: '35011', title: '35011' },
+                { key: '35012', title: '35012' },
+                { key: '35013', title: '35013' },
+                { key: '35021', title: '35021' },
+                { key: '35031', title: '35031' },
+                { key: '35022', title: '35022' },
+                { key: '35041', title: '35041' },
+                { key: '35043', title: '35043' },
+                { key: '36010', title: '36010' },
+                { key: '36020', title: '36020' },
+                { key: '35023', title: '35023' },
+                { key: '37000', title: '37000' },
+                { key: 'Breast-InSitu', title: 'Breast-InSitu' }
+            ];
+
+            return [
+                {
+                    key: 'current_year',
+                    title: 'label.filter.year',
+                    queryKey: 'current_year',
+                    primary: false,
+                    value: [ '2014' ],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: yearOptions,
+                    doNotShowAll: true,
+                    defaultGroup:'column',
+                    helpText: 'label.help.text.cancer.year'
+                },
+                {
+                    key: 'sex',
+                    title: 'label.filter.gender',
+                    queryKey: 'sex',
+                    primary: false,
+                    value: [],
+                    groupBy: 'column',
+                    filterType: 'checkbox',
+                    autoCompleteOptions: genderOptions,
+                    defaultGroup:'column',
+                    helpText: 'label.help.text.tb.sex'
+                },
+                {
+                    key: 'race',
+                    title: 'label.filter.race',
+                    queryKey: 'race',
+                    primary: false,
+                    value: [],
+                    groupBy: 'row',
+                    filterType: 'checkbox',
+                    autoCompleteOptions: cancerRaceOptions,
+                    defaultGroup:'column',
+                    helpText:"label.help.text.race"
+                },
+                {
+                    key: 'hispanic_origin',
+                    title: 'label.filter.hispanicOrigin',
+                    queryKey: 'hispanic_origin',
+                    primary: false,
+                    value: [],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: cancerHispanicOptions,
+                    defaultGroup:'column',
+                    helpText: 'label.help.text.ethnicity'
+                },
+                {
+                    key: 'age_group',
+                    title: 'label.filter.agegroup',
+                    queryKey: 'age_group',
+                    primary: false,
+                    value: [],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: cancerAgeGroups,
+                    defaultGroup:'column',
+                    helpText: 'label.help.text.bridged-race.agegroup'
+                },
+                {
+                    key: 'site',
+                    title: 'label.filter.cancer_site',
+                    queryKey: 'cancer_site',
+                    primary: false,
+                    value: [],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: cancerSites,
+                    defaultGroup:'column',
+                    helpText: 'label.help.text.cancer_sites'
+                },
+                {
+                    key: 'state',
+                    title: 'label.filter.state',
+                    queryKey: 'state',
+                    primary: 'false',
+                    value: [],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: stateOptions,
+                    doNotShowAll: true,
+                    defaultGroup:'column',
+                    helpText: 'label.help.text.cancer.state'
+                }
+            ]
+        }
     }
 
 }());

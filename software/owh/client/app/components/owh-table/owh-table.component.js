@@ -129,9 +129,7 @@
                                 cell += '<span>'
                                 if(rateVisibility === 'visible') {
                                     var per = otc.tableView === 'number_of_infant_deaths' ? 1000 : 100000 ;
-                                    cell += $filter('number')(column.count / column.pop * per, 1);
-                                    column.pop = $filter('number')(column.pop);
-                                    //cell += column.title / column.pop * per;
+                                    cell += $filter('number')(column.title / column.pop * per, 1);
                                 }
                                 else if (rateVisibility === 'suppressed') {
                                     cell += 'Suppressed';
@@ -203,7 +201,7 @@
 
 
                         } else if(otc.tableView === 'number_of_deaths' || otc.tableView === 'bridge_race'
-                            || otc.tableView === 'number_of_births') {
+                            || otc.tableView === 'number_of_births' || otc.tableView === 'cancer_incident') {
                             if(column.title === 'suppressed') {
                                 cell += '<span>Suppressed</span>';
                             } else if(column.title === 'Not Available') {

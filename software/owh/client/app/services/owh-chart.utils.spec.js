@@ -93,6 +93,7 @@ describe('chart utils', function(){
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 1111111111111111}});
         $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
     }));
 
     it('test chart utils horizontalStack', function () {
@@ -139,6 +140,22 @@ describe('chart utils', function(){
         primaryFilter.tableView = 'crude_death_rates';
         var result = chartUtils.horizontalBar(filter1, filter2, censusRatesData, primaryFilter);
         expect(JSON.stringify(result)).toEqual(JSON.stringify(horizontalBarExpectedResultForCurdeDeathRates));
+    });
+
+    it('test chart utils horizontalBar for infant death rates', function () {
+        var filter1 = {"key":"sex","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"defaultGroup":"column","groupBy":"column","filterType":"checkbox","autoCompleteOptions":[{"key":"Female","title":"Female","count":0,"infant_mortality":10251},{"key":"Male","title":"Male","count":0,"infant_mortality":12799}],"helpText":"label.help.text.infantmort.sex","allChecked":true};
+        var filter2 = {"key":"race","title":"label.filter.race","queryKey":"race","primary":false,"value":[],"defaultGroup":"column","groupBy":"row","filterType":"checkbox","autoCompleteOptions":[{"key":"American Indian / Alaskan Native","title":"American Indian / Alaskan Native","count":0,"infant_mortality":340},{"key":"Asian / Pacific Islander","title":"Asian / Pacific Islander","count":0,"infant_mortality":1080},{"key":"Black","title":"Black or African American","count":0,"infant_mortality":6809},{"key":"White","title":"White","count":0,"infant_mortality":14821},{"key":"Chinese","title":"Chinese","count":0,"infant_mortality":0},{"key":"Japanese","title":"Japanese","count":0,"infant_mortality":0},{"key":"Hawaiian","title":"Hawaiian","count":0,"infant_mortality":0},{"key":"Filipino","title":"Filipino","count":0,"infant_mortality":0},{"key":"Other Asian","title":"Other Asian","count":0,"infant_mortality":0}],"helpText":"label.help.text.race","allChecked":true};
+        var data = {"sex":[{"name":"Female","infant_mortality":10251,"race":[{"name":"American Indian / Alaskan Native","infant_mortality":146,"pop":22120},{"name":"Asian / Pacific Islander","infant_mortality":480,"pop":137076},{"name":"Black","infant_mortality":3082,"pop":315741},{"name":"White","infant_mortality":6543,"pop":1472438}],"pop":1947375},{"name":"Male","infant_mortality":12799,"race":[{"name":"American Indian / Alaskan Native","infant_mortality":194,"pop":22808},{"name":"Asian / Pacific Islander","infant_mortality":600,"pop":145647},{"name":"Black","infant_mortality":3727,"pop":324821},{"name":"White","infant_mortality":8278,"pop":1547425}],"pop":2040701}]};
+        var primaryFilter = {"key":"infant_mortality","title":"label.filter.infant_mortality","primary":true,"header":"Infant Mortality","showMap":false,"chartAxisLabel":"Rates","countLabel":"Number of Infant Deaths","tableView":"number_of_infant_deaths","runOnFilterChange":true,"applySuppression":true,"chartView":"infant_death_rate","chartViewOptions":[{"key":"death","title":"Deaths","tooltip":"Select to view as deaths on charts","$$hashKey":"object:4475"},{"key":"infant_death_rate","title":"Rates","tooltip":"Select to view as rates on charts","$$hashKey":"object:4476"}],"$$hashKey":"object:1207","initiated":true,"headers":{"chartHeaders":[{"headers":[{"key":"sex","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"defaultGroup":"column","groupBy":"column","filterType":"checkbox","autoCompleteOptions":[{"key":"Female","title":"Female","count":0,"infant_mortality":10251},{"key":"Male","title":"Male","count":0,"infant_mortality":12799}],"helpText":"label.help.text.infantmort.sex","allChecked":true},{"key":"race","title":"label.filter.race","queryKey":"race","primary":false,"value":[],"defaultGroup":"column","groupBy":"row","filterType":"checkbox","autoCompleteOptions":[{"key":"American Indian / Alaskan Native","title":"American Indian / Alaskan Native","count":0,"infant_mortality":340},{"key":"Asian / Pacific Islander","title":"Asian / Pacific Islander","count":0,"infant_mortality":1080},{"key":"Black","title":"Black or African American","count":0,"infant_mortality":6809},{"key":"White","title":"White","count":0,"infant_mortality":14821},{"key":"Chinese","title":"Chinese","count":0,"infant_mortality":0},{"key":"Japanese","title":"Japanese","count":0,"infant_mortality":0},{"key":"Hawaiian","title":"Hawaiian","count":0,"infant_mortality":0},{"key":"Filipino","title":"Filipino","count":0,"infant_mortality":0},{"key":"Other Asian","title":"Other Asian","count":0,"infant_mortality":0}],"helpText":"label.help.text.race","allChecked":true}],"chartType":"horizontalBar"}]},"count":23050};
+
+        var result = chartUtils.horizontalBar(filter1, filter2, data, primaryFilter);
+        var barData = result.data[0].values;
+        expect(barData[0].label).toEqual('American Indian / Alaskan Native');
+        expect(barData[0].value).toEqual('6.6');
+
+        expect(barData[1].label).toEqual('Asian / Pacific Islander');
+        expect(barData[1].value).toEqual('3.5');
+
     });
 
     it('test chart horizontalBar for PRAMS single filter', function () {
