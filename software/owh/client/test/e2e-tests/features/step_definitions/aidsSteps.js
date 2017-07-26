@@ -59,7 +59,7 @@ var aidsStepDefinitions = function () {
     });
 
     this.Then(/^I see menu appears with data\-sets options$/, function () {
-        expect(commonPage.secondaryMenu.isDisplayed()).to.eventually.equal(true);
+       return expect(commonPage.secondaryMenu.isDisplayed()).to.eventually.equal(true);
     });
 
     this.When(/^I click on Aids dataset$/, function (next) {

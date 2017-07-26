@@ -43,6 +43,10 @@
                         </div>
                         <div class="dropdown-submenu" ng-show="mc.displayCategory">
                             <div class="flex-container pull-left">
+                                <div id="aids" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'aids'})">
+                                    <img src="../images/health-behavior-prevention-icon.svg" alt="owh_white_logo" height="100" width="100"/>
+                                    <a class="black-one-line" ng-bind="mc.categoryName({newFilter:'aids'})"></a>
+                                </div>
                                 <div id="deaths" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter: 'deaths'})">
                                     <img src="../images/mortality-icon.svg" alt="owh_white_logo" height="100" width="100"/>
                                     <a class="black-one-line" ng-bind="mc.categoryName({newFilter: 'deaths'})"></a>
@@ -85,10 +89,6 @@
                                 <div id="std" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'std'})">
                                     <img src="../images/health-behavior-prevention-icon.svg" alt="owh_white_logo" height="100" width="100"/>
                                     <a class="black-one-line" ng-bind="mc.categoryName({newFilter:'std'})"></a>
-                                </div>
-                                <div id="aids" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'aids'})">
-                                    <img src="../images/health-behavior-prevention-icon.svg" alt="owh_white_logo" height="100" width="100"/>
-                                    <a class="black-one-line" ng-bind="mc.categoryName({newFilter:'aids'})"></a>
                                 </div>
                             </div>
                         </div>
