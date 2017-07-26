@@ -26,6 +26,7 @@
         mc.displayCategory = false;
         mc.showMenu = showMenu;
         mc.showCategory = showCategory;
+        mc.changeFilter = changeFilter;
         mc.goForward = goForward;
         mc.goBackward = goBackward;
         mc.updateGroupByFilter = updateGroupByFilter;
@@ -115,6 +116,10 @@
             if(mc.selectedFilter.initiated) {
                 mc.searchResults({});
             }
+        }
+        function changeFilter(filterKey) {
+            mc.displayMenu = false;
+            mc.onPrimaryFilter({newFilter:filterKey})
         }
     }
 }());
