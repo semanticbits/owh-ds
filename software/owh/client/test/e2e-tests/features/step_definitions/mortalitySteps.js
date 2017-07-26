@@ -23,7 +23,7 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.When(/^user expand visualization$/, function (next) {
-        mortalityPage.expandVisualizationLink[0].click()
+        mortalityPage.expandVisualizationLink.click()
             .then(next);
     });
 
