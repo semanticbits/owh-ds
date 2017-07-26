@@ -85,6 +85,10 @@
         function getCellFromJson(cellJson, convertNumbers) {
             var cell = {v: cellJson.title };
 
+            if (cell.v % 1 == 0) {
+                cell.z = XLSX.SSF._table[3];
+            }
+
             if(typeof cell.v === 'number') cell.t = 'n';
             else if(typeof cell.v === 'boolean') cell.t = 'b';
             else if(cell.v instanceof Date) {
@@ -98,9 +102,6 @@
                     var numberValue = parseFloat(cell.v.replace(',', ''));
 
                     if(!isNaN(numberValue) && !cell.v.match(/[a-z]/i)) {
-                        if (numberValue >= 1000) {
-                            cell.z = XLSX.SSF._table[3];
-                        }
                         cell.v = numberValue;
                         cell.t = 'n';
                     }
