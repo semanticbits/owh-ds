@@ -1,20 +1,18 @@
 <div class="usa-grid-full">
         <div class="usa-grid-full">
-            <div class="height-150 usa-grid-full usa-width-one-whole">
-                <div class="width-1900 margin-right-0">
+            <div class="usa-grid-full usa-width-one-whole">
+                <div class="margin-right-0">
                     <div class="usa-width-one-whole">
-                        <div class="arrow-box sol-right-border forward-back">
+                        <div class="width-5-percentile arrow-box sol-right-border forward-back">
                             <i title="backArrow" class="arrows material-icons" ng-click="mc.goBackward()">arrow_back</i>
                             <i title="forwardArrow" class="arrows material-icons" ng-click="mc.goForward()">arrow_forward</i>
-                            <!--<i class="arrow-left" ng-click="mc.goBackward()"></i>
-                            <i class="arrow-right" ng-click="mc.goForward()"></i>-->
                         </div>
-                        <div id="interestedIn" class="sol-right-border menu-row usa-width-one-fourth text-left interested-text" ng-click="mc.showCategory()">
+                        <div id="interestedIn" class="width-30-percentile  pull-left sol-right-border text-left interested-text" ng-click="mc.showCategory()">
                             <div class="label-form select margin-right-10" ng-bind="'label.interested.in' | translate"></div>
                             <div id="selectedPrimaryFilterDiv" class="black-one-line dropdown-heading" ng-bind="mc.selectedFilter.header"></div>
                             <div class="icon-position"><i class="fa fa-angle-down font-30 karat"></i></div>
                         </div>
-                        <div class="sol-right-border menu-row usa-width-one-fourth text-left interested-text">
+                        <div class="width-30-percentile pull-left sol-right-border text-left interested-text">
                             <div class="label-form select" ng-bind="'label.by' | translate"></div>
                                 <ui-select multiple ng-model="mc.selectedFilter.value"
                                            theme="bootstrap" name="filter" id="filter" class="pull-right usa-width-one-whole dashboard-element"
@@ -29,7 +27,7 @@
                                 </ui-select>
                             <!--<div class="icon-position"><i class="fa fa-angle-down font-30 karat"></i></div>-->
                         </div>
-                        <div class="sol-right-border menu-row usa-width-one-fourth text-left interested-text">
+                        <div class="width-25-percentile  pull-left sol-right-border  text-left interested-text">
                             <div class="label-form select" ng-bind="'label.show.me' | translate" ng-show="mc.showMeOptions[mc.selectedFilter.key]"></div>
                             <!--<div class="label-form select"></div>-->
                             <!--<div class="black-one-line dropdown-heading" ng-bind="mc.tableName({filterName: mc.selectedFilter.key, opt: mc.selectedFilter.tableView})">Select categories</div>-->
@@ -40,8 +38,11 @@
                             </select>
                             <!--<div class="icon-position"><i class="fa fa-angle-down font-30 karat"></i></div>-->
                         </div>
+                        <div class="pull-right width-5-percentile" style="margin-right: 10px;">
+                            <i class="clear-button fa fa-toggle-left font-30"></i>
+                        </div>
                         <div class="dropdown-submenu" ng-show="mc.displayCategory">
-                            <div class="flex-container">
+                            <div class="flex-container pull-left">
                                 <div id="deaths" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter: 'deaths'})">
                                     <img src="../images/mortality-icon.svg" alt="owh_white_logo" height="100" width="100"/>
                                     <a class="black-one-line" ng-bind="mc.categoryName({newFilter: 'deaths'})"></a>
@@ -134,9 +135,6 @@
                                 </div>
                             </div>
                         </div>-->
-                        <div class="sol-right-border">
-                            <i class="clear-button fa fa-toggle-left font-30"></i>
-                        </div>
                     </div>
                 </div>
             </div>

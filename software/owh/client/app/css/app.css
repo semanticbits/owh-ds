@@ -1254,7 +1254,6 @@ ul.legend-scale li span {
 
 .forward-back {
     float: right;
-    width: 110px;
     margin-right: 10px;
 
 }
@@ -1285,4 +1284,14 @@ ul.legend-scale li span {
 
 .color-black {
     color:black;
+}
+
+.width-5-percentile {
+    width:5%;
+}
+.width-30-percentile {
+    width:30%;
+}
+.width-25-percentile {
+    width:25%;
 }
