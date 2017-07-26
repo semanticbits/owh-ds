@@ -98,9 +98,10 @@
                     var numberValue = parseFloat(cell.v.replace(',', ''));
 
                     if(!isNaN(numberValue) && !cell.v.match(/[a-z]/i)) {
-                        //if (numberValue >= 1000)
-                            cell.v =  XLSX.SSF._table[3];
-                        //cell.v = numberValue;
+                        if (numberValue >= 1000) {
+                            cell.z = XLSX.SSF._table[3];
+                        }
+                        cell.v = numberValue;
                         cell.t = 'n';
                     }
                 }
