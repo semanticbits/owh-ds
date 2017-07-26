@@ -42,7 +42,7 @@
                             <i class="clear-button fa fa-toggle-left font-30"></i>
                         </div>
                         <div class="dropdown-submenu" ng-show="mc.displayCategory">
-                            <div class="flex-container pull-left">
+                            <div class="flex-container pull-left" style="text-align: center">
                                 <div id="deaths" class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter: 'deaths'})">
                                     <img src="../images/mortality-icon.svg" alt="owh_white_logo" height="100" width="100"/>
                                     <a class="black-one-line" ng-bind="mc.categoryName({newFilter: 'deaths'})"></a>
@@ -67,9 +67,6 @@
                                     <img src="../images/health-behavior-prevention-icon.svg" alt="owh_white_logo" height="100" width="100"/>
                                     <a class="black-one-line">Behavioral Risk Factors</a>
                                 </div>
-                            </div>
-
-                            <div class="flex-container push-left">
                                 <div class="picture-holder" ng-click="mc.onPrimaryFilter({newFilter:'cancer_incident'})">
                                     <img src="../images/diseases-icon.svg" alt="owh_white_logo" height="100" width="100"/>
                                     <a class="black-one-line" ng-bind="mc.categoryName({newFilter:'cancer_incident'})"></a>
