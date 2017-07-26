@@ -1071,3 +1071,83 @@ ul.custom-nav-tabs {
 .dropdown:hover .dropdown-content {
 	display: block;
 }
+/*Co-Branded Header css starts*/
+.co-branded-header {
+	background-color: #185394;
+	font-size: 14px;
+	text-align: center;
+}
+.co-branded-logo {
+	float: left;
+}
+.co-branded-logo >  a, a:visited {
+	display: block;
+	width: 160px;
+	height: 40px;
+	text-indent: -1000em;
+	z-index: 2000;
+	background: url(https://www.hhs.gov/utilities/cbh/images/logo.png) no-repeat;
+}
+.co-branded-row {
+	max-width: 940px;
+	height: 40px;
+	box-sizing: border-box;
+	margin: 0 auto;
+}
+.co-branded-site-name {
+	display: inline-block;
+	position: relative;
+	padding-top: 12px;
+	color: #d4eefc;
+}
+.co-branded-explore-close {
+	float: right;
+	padding-top: 10px;
+	text-align: right;
+}
+.co-branded-explore-shown {
+	display: inline-block;
+	float: right;
+	padding-top: 10px;
+	text-align: right;
+}
+.co-branded-anchor, .co-branded-anchor:hover, .co-branded-anchor:visited {
+	color: #fff;
+	text-decoration: none;
+}
+.co-branded-menus {
+	background-color: #f1f1f1;
+	height: 44px;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+.co-branded-menu-block {
+	display: inline-block;
+	width: 25%;
+	max-width: 235px;
+	height: 44px;
+	box-sizing: border-box;
+	padding-top: 12px;
+	margin-right: -3px;
+}
+.co-branded-anchor > img {
+	position: relative;
+	margin-left: 5px;
+}
+.co-branded-menus > .about-hhs {
+	background-color: #185493;
+}
+.co-branded-menus > .program-services {
+	background-color: #c94747;
+}
+.co-branded-menus > .grants-contracts {
+	background-color: #77508e;
+}
+.co-branded-menus > .laws-regulations {
+	background-color: #19826e;
+}
+/*Co-Branded Header css ends*/
