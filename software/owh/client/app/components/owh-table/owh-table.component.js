@@ -209,7 +209,7 @@
                             } else {
                                 cell += '<span class="count-value">' + $filter('number')(column.title) + '</span>';
                                 if(colIndex !== row.length - 1 && column.percentage  > 0 && otc.showPercentage) {
-                                    cell += '<span class="count-value" title="Row Percentage"> (' + $filter('number')(column.percentage, 1) + '%)</span>';
+                                    cell += '<span class="count-value" title="Row Percentage"> (' + column.percentage + '%)</span>';
                                 }
                             }
                         } else if (otc.tableView === 'number_of_infant_deaths') {
@@ -219,7 +219,7 @@
                                 if (isNaN(parseInt(count))) return count;
                                 var result = '<span class="count-value">' + $filter('number')(count) + '</span>';
                                 if (colIndex !== row.length - 1 && column.percentage  > 0) {
-                                    result += '<span class="count-value" title="Row Percentage"> (' + $filter('number')(column.percentage, 1) + '%)</span>';
+                                    result += '<span class="count-value" title="Row Percentage"> (' + column.percentage + '%)</span>';
                                 }
                                 return result;
                             })(column.title);
