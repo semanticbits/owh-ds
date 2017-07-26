@@ -17,7 +17,6 @@ Feature: AIDS/HIV page
     Then On the aids page, I should see the filters "Indicator, Year, Sex, Race/Ethnicity, Age Groups, Transmission, State" in order
     When On the aids page, I expand the "Indicator" filter
     Then On the aids page, I should see "AIDS Diagnoses, AIDS Deaths, AIDS Prevalence, HIV Diagnoses, HIV Deaths, HIV Prevalence" options for "Indicator" filter
-    When On the aids page, I expand the "Race/Ethnicity" filter
     Then On the aids page, I should see "All races/ethnicities, American Indian/Alaska Native, Asian, Black/African American, Hispanic/Latino, Multiple races, Native Hawaiian/Other Pacific Islander, White" options for "Race/Ethnicity" filter
     When On the aids page, I expand the "Age Groups" filter
     Then On the aids page, I should see "All age groups, 13-24, 25-34, 35-44, 45-54, 55+" options for "Age Groups" filter

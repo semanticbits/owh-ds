@@ -23,7 +23,7 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.When(/^user expand visualization$/, function (next) {
-        mortalityPage.expandVisualizationLink.click()
+        mortalityPage.expandVisualizationLink[0].click()
             .then(next);
     });
 
@@ -236,7 +236,7 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on "([^"]*)" dataset$/, function (arg1, next) {
-        mortalityPage.interestedInDropdown.element(by.cssContainingText('a', arg1)).click()
+        element(by.cssContainingText('a', arg1)).click()
             .then(next);
     });
 
