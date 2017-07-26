@@ -28,10 +28,10 @@
                             <!--<div class="icon-position"><i class="fa fa-angle-down font-30 karat"></i></div>-->
                         </div>
                         <div class="width-25-percentile  pull-left sol-right-border  text-left interested-text">
-                            <div class="label-form select" ng-bind="'label.show.me' | translate" ng-show="mc.showMeOptions[mc.selectedFilter.key]"></div>
+                            <div class="label-form select" ng-bind="'label.show.me' | translate" ng-if="mc.showMeOptions[mc.selectedFilter.key]"></div>
                             <!--<div class="label-form select"></div>-->
                             <!--<div class="black-one-line dropdown-heading" ng-bind="mc.tableName({filterName: mc.selectedFilter.key, opt: mc.selectedFilter.tableView})">Select categories</div>-->
-                            <select id="tableView" ng-model="mc.selectedShowFilter" ng-show="mc.showMeOptions[mc.selectedFilter.key]"
+                            <select id="tableView" ng-model="mc.selectedShowFilter" ng-if="mc.showMeOptions[mc.selectedFilter.key]"
                                     ng-options="item.title for item in mc.showMeOptions[mc.selectedFilter.key]"
                                     ng-change="mc.onViewFilter({selectedFilter: mc.selectedShowFilter})"
                                     class="usa-width-two-thirds add-on-element gray-border margin-0">
@@ -89,49 +89,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!--<div id="filters" class="dropdown-content dropdown-submenu" ng-show="mc.displayFilter" style="height:700px">
-                        <div class="flex-container">
-                            <div class="picture-holder"
-                                 ng-repeat="filter in mc.selectedFilter.allFilters | filter: search.title"
-                                 ng-click="mc.updateGroupByFilter(filter)">
-                                <a id="select" class="black-one-line" style="white-space: normal;">{{filter.title | translate}}</a>
-                            </div>
-                        </div>
-                    </div>-->
-                        <!--<div id="filters" ng-show="mc.displayFilter" style="overflow-y: auto; height:300px; float:left; background-color:#f9f9f9; position: absolute; right: 800px; top: 60px; z-index:200">
-                            <a ng-repeat="filter in mc.selectedFilter.allFilters | filter: search.title"
-                            ng-click="mc.updateGroupByFilter(filter)">
-                                   {{filter.title | translate}}<br>
-                            </a>
-                        </div>-->
-
-                           <!-- <div class="flex-container">
-                                <div class="picture-holder"
-                                     ng-repeat="filter in mc.selectedFilter.allFilters | filter: search.option"
-                                     ng-click="mc.updateGroupByFilter(filter)">
-                                    <a id="select" class="black-one-line" style="white-space: normal;">{{filter.title | translate}}</a>
-                                </div>
-                            </div>-->
-
-
-
-
-                        <!--<div ng-show="mc.displayTopic" style="overflow-y: auto; height:300px; float:left; background-color:#f9f9f9; position: absolute; right: 300px; top: 60px; z-index:200">
-                            <a ng-repeat="elem in mc.showMeOptions[mc.selectedFilter.key]" ng-click="mc.onViewFilter({selectedFilter: elem})">
-                                {{elem.title}}<br>
-                            </a>
-                        </div>-->
-
-                        <!--<div ng-style="mc.selectedFilter.key == 'prams' ? {'height': '700px'} : {'height': '550px'}"
-                             class="dropdown-content dropdown-submenu" ng-show="mc.displayTopic">
-                            <div class="flex-container">
-                                <div class="picture-holder" ng-repeat="elem in mc.showMeOptions[mc.selectedFilter.key]"
-                                     ng-click="mc.onViewFilter({selectedFilter: elem})">
-                                    <a class="black-one-line">{{elem.title}}</a>
-                                </div>
-                            </div>
-                        </div>-->
                     </div>
                 </div>
             </div>

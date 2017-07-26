@@ -23,14 +23,9 @@
 
     function MenuController($scope, $log, $q, $timeout, utilService) {
         var mc = this;
-        mc.displayMenu = false;
-        mc.displayTopic = false;
         mc.displayCategory = false;
-        mc.displayFilter = false;
         mc.showMenu = showMenu;
-        mc.showTopic = showTopic;
         mc.showCategory = showCategory;
-        mc.showFilter = showFilter;
         mc.goForward = goForward;
         mc.goBackward = goBackward;
         mc.updateGroupByFilter = updateGroupByFilter;
@@ -56,25 +51,13 @@
                     mc.selectedShowFilter = filter;
                 }
             });
-        }
+        };
         function showMenu() {
             mc.displayMenu = !mc.displayMenu;
         }
 
-        function showTopic() {
-            mc.displayTopic = !mc.displayTopic;
-            mc.displayCategory = false;
-            mc.displayFilter = false;
-        }
-
         function showCategory() {
             mc.displayCategory = !mc.displayCategory;
-        }
-
-        function showFilter() {
-            mc.displayFilter = !mc.displayFilter;
-            mc.displayCategory = false;
-            mc.displayTopic = false;
         }
 
         function goForward() {
