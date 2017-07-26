@@ -26,6 +26,11 @@ var cancerIncidenceStepDefinitions = function () {
         }).then(next);
     });
 
+    this.Then(/On the cancer incidence page, the visiualization is displayed/, function (next) {
+        cancerIncidencePage.isVisualizationDisplayed().then(function (value) {
+            expect(value).to.be.true;
+        }).then(next);
+    });
 };
 
 module.exports = cancerIncidenceStepDefinitions;
