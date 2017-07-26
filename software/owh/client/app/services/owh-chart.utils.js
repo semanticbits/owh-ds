@@ -254,15 +254,15 @@
 
                         });
                         multiChartBarData.push(primaryDataObj);
-                    }else{
-                        /*angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2), function (secondaryOption,j) {
+                    } /*else{
+                        angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2), function (secondaryOption,j) {
                             primaryDataObj.values.push(
                                 { label : secondaryOption.title, value : 0 }
                             );
                         });
 
-                        multiChartBarData.push(primaryDataObj);*/
-                    }
+                        multiChartBarData.push(primaryDataObj);
+                    }*/
                 });
             }
 
