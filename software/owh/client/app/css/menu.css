@@ -105,13 +105,14 @@
 }
 
 .dropdown-submenu {
-    position:relative;
+    position:absolute;
     width:90%;
     height:400px;
     border-radius: 10px;
     z-index:999;
-    background-color:#f9f9f9;
-    top: 60px;
+    background-color:#fff;
+    box-shadow: -1px 2px 2px #888888;
+    top: 28%;
     left:50px;
 }
 
