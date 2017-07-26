@@ -254,15 +254,7 @@
 
                         });
                         multiChartBarData.push(primaryDataObj);
-                    } /*else{
-                        angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2), function (secondaryOption,j) {
-                            primaryDataObj.values.push(
-                                { label : secondaryOption.title, value : 0 }
-                            );
-                        });
-
-                        multiChartBarData.push(primaryDataObj);
-                    }*/
+                    }
                 });
             }
 
@@ -374,13 +366,6 @@
 
                         });
                         multiBarChartData.push(primaryObj);
-                    }else{
-                        /*angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2), function (secondaryOption,j) {
-                            primaryObj.values.push(
-                                { x : secondaryOption.title, y : 0 }
-                            );
-                        });
-                        multiBarChartData.push(primaryObj);*/
                     }
                 });
             }
