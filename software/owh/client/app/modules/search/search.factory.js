@@ -133,6 +133,7 @@
                 primaryFilter.data = response.data.resultData.nested.table;
                 populateSideFilterTotals(primaryFilter, response.data);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
+                primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
             }
             //make sure side filters are in proper order
             angular.forEach(primaryFilter.sideFilters, function (category) {
@@ -202,7 +203,7 @@
                 });
             });
             if(refreshFiltersOnChange) {
-                utilService.refreshFilterAndOptions(allFilters, primaryFilter.sideFilters, primaryFilter.key);
+                utilService.refreshFilterAndOptions(allFilters, primaryFilter.sideFilters, primaryFilter.key, primaryFilter.tableView);
             }
         }
 
@@ -2347,6 +2348,27 @@
                                     allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'medical_attendant')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'gestation_recode11')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'gestation_recode10')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'gestation_weekly')
                                 }
                             ]
                         },

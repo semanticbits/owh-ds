@@ -43,7 +43,8 @@
             findFilterByKeyAndValue: findFilterByKeyAndValue,
             isFilterApplied: isFilterApplied,
             stdFilterChange: stdFilterChange,
-            aidsFilterChange: aidsFilterChange
+            aidsFilterChange: aidsFilterChange,
+            removeValuesFromArray: removeValuesFromArray
         };
 
         return service;
@@ -885,12 +886,28 @@
             }
         }
 
+
+        /**
+         * Remove multiple values from given array
+         * @param listOfValues - array of values
+         * @param removeFilterOptions - array of values to remove
+         * @return {T[]}
+         */
+        function removeValuesFromArray(listOfValues, removeFilterOptions) {
+            angular.forEach(removeFilterOptions, function(eachValue) {
+                listOfValues = ($filter('filter')(listOfValues, "!"+eachValue));
+            });
+            return listOfValues;
+        }
+
         /**
          * Enables/disables side filters and filter options based on the dataset metadata
-         * @param filter filter to be used for the querying ds metadata
-         * @param categories sidefilter categories
-         * @param datasetname name of dataset          */
-        function refreshFilterAndOptions(filter, categories, datasetname) {
+         * @param filter - filter to be used for the querying ds metadata
+         * @param categories - categories sidefilter categories
+         * @param datasetname - name of dataset
+         * @param tableView - current page table view value
+         */
+        function refreshFilterAndOptions(filter, categories, datasetname, tableView) {
             var sideFilters = [];
             angular.forEach(categories, function (category) {
                 sideFilters = sideFilters.concat(category.sideFilters);
@@ -903,6 +920,26 @@
             }
             SearchService.getDsMetadata(datasetname, filterValueArray).then(function (response) {
                 refreshFiltersWithDSMetadataResponse(response, sideFilters, datasetname, filterName);
+                //if natality -> fertility_rates then disable ages <15 and >44 in Age of Mother filters
+                if(tableView === "fertility_rates") {
+                    //find "Mother's Age" category
+                    var motherAgeCategory = findByKeyAndValue(categories, "category", "Mother's Age");
+                    var oneYearAgeSideFilter = motherAgeCategory.sideFilters[0];
+                    var fiveYearAgeSideFilter = motherAgeCategory.sideFilters[1];
+                    oneYearAgeSideFilter.filters.value = removeValuesFromArray(oneYearAgeSideFilter.filters.value, oneYearAgeSideFilter.filters.disableAgeOptions);
+                    fiveYearAgeSideFilter.filters.value = removeValuesFromArray(fiveYearAgeSideFilter.filters.value, fiveYearAgeSideFilter.filters.disableAgeOptions);
+                    //Disable one year age filter options
+                    angular.forEach(oneYearAgeSideFilter.filters.disableAgeOptions, function(eachAgeOption){
+                        var sideFilterOption = findByKeyAndValue(oneYearAgeSideFilter.filters.autoCompleteOptions, 'key', eachAgeOption);
+                        sideFilterOption.disabled = true;
+                    });
+                    //Disable five year age filter options
+                    angular.forEach(fiveYearAgeSideFilter.filters.disableAgeOptions, function(eachAgeOption){
+                        var sideFilterOption = findByKeyAndValue(fiveYearAgeSideFilter.filters.autoCompleteOptions, 'key', eachAgeOption);
+                        sideFilterOption.disabled = true;
+                    });
+
+                }
             }, function (error) {
                 angular.element(document.getElementById('spindiv')).addClass('ng-hide');
                 console.log(error);
