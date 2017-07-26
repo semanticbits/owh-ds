@@ -44,7 +44,7 @@
             isFilterApplied: isFilterApplied,
             stdFilterChange: stdFilterChange,
             aidsFilterChange: aidsFilterChange,
-            isOptionDisabled: isOptionDisabled
+            removeValuesFromArray: removeValuesFromArray
         };
 
         return service;
@@ -841,24 +841,6 @@
             }
         }
 
-        function isOptionDisabled(group, option) {
-            if(group.key === 'hispanicOrigin') {
-                //check if unknown is selected
-                if(group.value && group.value.indexOf('Unknown') >= 0) {
-                    //if unknown is selected then disable all other hispanic options
-                    if(option.key !== 'Unknown') {
-                        return true;
-                    }
-                } else {
-                    //else, if other option is selected disable unknown
-                    if(group.value && group.value.length > 0 && option.key === 'Unknown') {
-                        return true;
-                    }
-                }
-            }
-            return false || option.disabled;
-        }
-
         /**
          * Enable or disable filter options based on DS metadata response
          * @param response
@@ -904,12 +886,28 @@
             }
         }
 
+
+        /**
+         * Remove multiple values from given array
+         * @param listOfValues - array of values
+         * @param removeFilterOptions - array of values to remove
+         * @return {T[]}
+         */
+        function removeValuesFromArray(listOfValues, removeFilterOptions) {
+            angular.forEach(removeFilterOptions, function(eachValue) {
+                listOfValues = ($filter('filter')(listOfValues, "!"+eachValue));
+            });
+            return listOfValues;
+        }
+
         /**
          * Enables/disables side filters and filter options based on the dataset metadata
-         * @param filter filter to be used for the querying ds metadata
-         * @param categories sidefilter categories
-         * @param datasetname name of dataset          */
-        function refreshFilterAndOptions(filter, categories, datasetname) {
+         * @param filter - filter to be used for the querying ds metadata
+         * @param categories - categories sidefilter categories
+         * @param datasetname - name of dataset
+         * @param tableView - current page table view value
+         */
+        function refreshFilterAndOptions(filter, categories, datasetname, tableView) {
             var sideFilters = [];
             angular.forEach(categories, function (category) {
                 sideFilters = sideFilters.concat(category.sideFilters);
@@ -922,6 +920,26 @@
             }
             SearchService.getDsMetadata(datasetname, filterValueArray).then(function (response) {
                 refreshFiltersWithDSMetadataResponse(response, sideFilters, datasetname, filterName);
+                //if natality -> fertility_rates then disable ages <15 and >44 in Age of Mother filters
+                if(tableView === "fertility_rates") {
+                    //find "Mother's Age" category
+                    var motherAgeCategory = findByKeyAndValue(categories, "category", "Mother's Age");
+                    var oneYearAgeSideFilter = motherAgeCategory.sideFilters[0];
+                    var fiveYearAgeSideFilter = motherAgeCategory.sideFilters[1];
+                    oneYearAgeSideFilter.filters.value = removeValuesFromArray(oneYearAgeSideFilter.filters.value, oneYearAgeSideFilter.filters.disableAgeOptions);
+                    fiveYearAgeSideFilter.filters.value = removeValuesFromArray(fiveYearAgeSideFilter.filters.value, fiveYearAgeSideFilter.filters.disableAgeOptions);
+                    //Disable one year age filter options
+                    angular.forEach(oneYearAgeSideFilter.filters.disableAgeOptions, function(eachAgeOption){
+                        var sideFilterOption = findByKeyAndValue(oneYearAgeSideFilter.filters.autoCompleteOptions, 'key', eachAgeOption);
+                        sideFilterOption.disabled = true;
+                    });
+                    //Disable five year age filter options
+                    angular.forEach(fiveYearAgeSideFilter.filters.disableAgeOptions, function(eachAgeOption){
+                        var sideFilterOption = findByKeyAndValue(fiveYearAgeSideFilter.filters.autoCompleteOptions, 'key', eachAgeOption);
+                        sideFilterOption.disabled = true;
+                    });
+
+                }
             }, function (error) {
                 angular.element(document.getElementById('spindiv')).addClass('ng-hide');
                 console.log(error);
@@ -1000,10 +1018,12 @@
         }
 
         function aidsFilterChange (filter, categories) {
-            var yearFilter = categories[0].sideFilters.filter(function (sideFilter) {
+            var filters = categories[0].sideFilters;
+            // Year and Indicator filter restrictions
+            var yearFilter = filters.filter(function (sideFilter) {
                return sideFilter.filters.key === 'current_year';
             })[0];
-            var diseaseFilter = categories[0].sideFilters.filter(function (sideFilter) {
+            var diseaseFilter = filters.filter(function (sideFilter) {
                 return sideFilter.filters.key === 'disease';
             })[0];
             var disabledFilterCombinations = {
@@ -1031,6 +1051,34 @@
                 diseaseFilter.filters.autoCompleteOptions.forEach(function (option) {
                     option.disabled = disabledOptions && disabledOptions.indexOf(option.key) !== -1;
                 });
+            }
+
+            // Demographic filter restrictions
+            var demographicFilters = ['sex', 'race', 'age_group', 'transmission'];
+            var activeFilters = filters.reduce(function (active, filter) {
+                var restrictedFilters = !!~demographicFilters.indexOf(filter.filters.key);
+                var unrestrictedValues = !!~['Both sexes', 'All races/ethnicities', 'All age groups 13 and up', 'No stratification'].indexOf(filter.filters.value);
+                if (restrictedFilters && !unrestrictedValues) {
+                    active.push(filter.filters.key);
+                }
+                return active;
+            }, []);
+            if (activeFilters.length >= 2) {
+                // Disable remaining demographic filters
+                demographicFilters.filter(function (demoFilter) {
+                    return !~activeFilters.indexOf(demoFilter)
+                }).forEach(function (remainingFilter) {
+                    filters.filter(function (sideFilter) {
+                        return sideFilter.filters.key === remainingFilter;
+                    })[0].disabled = true;
+                })
+            } else {
+                // Enable all demographic filters
+                demographicFilters.forEach(function (demoFilter) {
+                    filters.filter(function (sideFilter) {
+                        return sideFilter.filters.key === demoFilter;
+                    })[0].disabled = false;
+                })
             }
         }
     }

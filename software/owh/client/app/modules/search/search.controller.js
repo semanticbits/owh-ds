@@ -81,7 +81,7 @@
             "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'ucd-chapter-10', 'mcd-chapter-10'],
             "label.risk.behavior": ['year', 'yrbsSex', 'yrbsRace', 'yrbsGrade', 'sexid', 'sexpart', 'yrbsState', 'question'],
             "label.census.bridge.race.pop.estimate": ['current_year', 'sex', 'race', 'ethnicity', 'agegroup', 'state'],
-            "label.filter.natality": ['current_year', 'month', 'weekday', 'sex', 'gestational_age_r10', 'prenatal_care',
+            "label.filter.natality": ['current_year', 'month', 'weekday', 'sex', 'gestational_age_r10', 'gestation_recode10', 'gestation_recode11', 'gestation_weekly', 'prenatal_care',
                 'birth_weight', 'birth_weight_r4', 'birth_weight_r12', 'birth_plurality', 'live_birth', 'birth_place',
                 'delivery_method', 'medical_attendant', 'race', 'hispanic_origin', 'marital_status',
                 'mother_education', 'mother_age_1year_interval', 'mother_age_5year_interval',
@@ -94,7 +94,8 @@
             "label.prams.title": [],
             "label.filter.std": [],
             "label.filter.tb": [],
-            "label.filter.aids": []
+            "label.filter.aids": [],
+            "label.filter.cancer_incident": []
         };
 
         sc.optionsGroup = {
@@ -130,6 +131,7 @@
             disease_rate:{},
             tb:{},
             aids: {},
+            cancer_incident: {},
             mental_health:{},
             natality:{},
             prams:{},
@@ -166,7 +168,7 @@
         //add availablefilter for birth_rates
         sc.availableFilters = {
             'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'state', 'ucd-chapter-10'],
-            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state', 'ucd-chapter-10'],
+            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state', 'ucd-chapter-10', 'mcd-chapter-10'],
             'birth_rates': ['current_year', 'race', 'state'],
             'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval', 'state']
         };
@@ -383,6 +385,12 @@
                         filter.autoCompleteOptions = sc.filters.hispanicOptions;
                     }
                 }
+                else if(selectedFilter.key === 'fertility_rates' && filter.key === 'mother_age_1year_interval') {
+                    filter.value = utilService.removeValuesFromArray(filter.value, filter.disableAgeOptions);
+                }
+                else if(selectedFilter.key === 'fertility_rates' && filter.key === 'mother_age_5year_interval') {
+                    filter.value = utilService.removeValuesFromArray(filter.value, filter.disableAgeOptions);
+                }
             });
             angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters, function(category) {
                 angular.forEach(category.sideFilters, function(filter) {
@@ -575,7 +583,8 @@
         });
 
         /*Show expanded graphs with whole set of features*/
-        function showExpandedGraph(chartData, tableView) {
+        function showExpandedGraph(chartData) {
+            var tableView = sc.filters.selectedPrimaryFilter.chartView || sc.filters.selectedPrimaryFilter.tableView;
             chartUtilService.showExpandedGraph([chartData], tableView);
         }
 
@@ -623,21 +632,12 @@
          * To change Visualizations data based on selected view.
          * @param tableView
          */
-        function onChartViewChange(tableView, key) {
-            if(tableView === key) {
-                sc.filters.selectedPrimaryFilter.tableView = 'disease_rate';
-                sc.filters.selectedPrimaryFilter.chartAxisLabel = 'Rates';
-                sc.filters.selectedPrimaryFilter.defaultChartView = 'rate';
-            }
-            /**
-             * 'disease_rate' is a common tableview for STD, TB and HIV
-             */
-            else if(tableView === 'disease_rate') {
-                sc.filters.selectedPrimaryFilter.tableView = key;
-                sc.filters.selectedPrimaryFilter.chartAxisLabel = 'Cases';
-                sc.filters.selectedPrimaryFilter.defaultChartView = 'cases';
-            }
-            sc.filters.selectedPrimaryFilter.chartData = searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
+        function onChartViewChange(chartView) {
+            var selectedPrimaryFilter = sc.filters.selectedPrimaryFilter;
+            var chartOption = utilService.findByKeyAndValue(selectedPrimaryFilter.chartViewOptions, 'key', chartView);
+            selectedPrimaryFilter.chartAxisLabel = chartOption.axisLabel;
+            selectedPrimaryFilter.chartView = chartOption.key;
+            selectedPrimaryFilter.chartData = searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
         }
     }
 }());

@@ -10,7 +10,7 @@ describe("WONDER API", function () {
     var w;
     this.timeout(60000);
     beforeEach( function () {
-        w = new wonder('D76');
+        w = new wonder('D77');
     });
 
     it("invoke wonder API default query (group by 2)", function (done){

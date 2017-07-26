@@ -19,7 +19,7 @@ Feature: Natality filters
     Then I see "Year" as first option in sidebar filters
     And  I see the data table with race, female, male and total table headers
     And I see population count for "2015" option
-    Then I expand "+ 12 more filters" filter section
+    Then I expand "+ 15 more filters" filter section
     And I expand "+ 2 more filters" filter section
     And I expand "+ 8 more filters" filter section
     And I see expected filters should be disabled in natality page for number for births
@@ -30,7 +30,7 @@ Feature: Natality filters
     And  I see 2 filters visible
     And  I see show more filters link
     When I click on show more filters link
-    Then I see 14 filters visible
+    Then I see 17 filters visible
     And  I see show more filters link changed to show less filters
     When I click on show less filters
     Then I see 2 filters visible
@@ -44,9 +44,10 @@ Feature: Natality filters
     And the data table must show Births, Population and Birth Rates
     When  I select groupBy "Row" option for "State" filter
     And user sees a visualization
-    Then labels "State" and "Birth Rates" are displayed on minimized visualization
+    Then I see label "State" and "Birth Rates" are displayed on minimized visualization
     When user expand visualization
-    Then labels "State" and "Birth Rates" are displayed on expanded visualization
+    Then I should not see grouped and stacked controls on expanded visualization
+    And labels "State" and "Birth Rates" are displayed on expanded visualization
 
   Scenario: Fertility rates - Disable filters when show me filter value changes
     When I change show me dropdown option to "Fertility Rates"
@@ -54,14 +55,20 @@ Feature: Natality filters
     And I see expected filters should be disabled for Fertility Rates
     And years "2000", "2001", "2002" should be disabled for Year filter
     And the data table must show Births, Female Population and Birth Rates
+    When I expand "1-Year Age Groups" filter section
+    And I expand "+ 34 more" filter section
+    Then age group filter options should be disabled for "1-Year Age Groups" filter
     When I expand "5-Year Age Groups" filter section
+    And I expand "+ 6 more" filter section
+    Then age group filter options should be disabled for "5-Year Age Groups" filter
     And  filter "5-Year Age Groups" and option "15-19 years" selected
     Then the data table should display values filtered by age selected
     When  I select groupBy "Row" option for "State" filter
     And user sees a visualization
-    Then labels "State" and "Fertility Rates" are displayed on minimized visualization
+    Then I see label "State" and "Fertility Rates" are displayed on minimized visualization
     When user expand visualization
-    Then labels "State" and "Fertility Rates" are displayed on expanded visualization
+    Then I should not see grouped and stacked controls on expanded visualization
+    And labels "State" and "Fertility Rates" are displayed on expanded visualization
 
   Scenario: Filter Name and Location
     When I see "Mother's Age" category in the sidebar
@@ -69,6 +76,7 @@ Feature: Natality filters
 
   Scenario: 5- Year Age Group
     Then I expand "5-Year Age Groups" filter section
+    And I expand "+ 6 more" filter section
     And I should see "5-Year Age Groups" options under Mother Age category for 5-Year age group
     Then I select "Year" value "2003"
     And I un-select "Year" value "2015"
@@ -78,6 +86,7 @@ Feature: Natality filters
 
   Scenario: 1- Year Age Group
     Then I expand "1-Year Age Groups" filter section
+    And I expand "+ 34 more" filter section
     And I should see "1-Year Age Groups" options under Mother Age category for 1-Year age group
     Then I select "Year" value "2003"
     And I un-select "Year" value "2015"

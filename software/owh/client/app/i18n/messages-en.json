@@ -174,7 +174,7 @@
   "label.graph.current_year": "Yearly July 1st Estimates",
   "label.graph.state": "State",
   "label.bookmark.search": "Bookmark this Search",
-  "label.share.on.fb": "Share on facebook",
+  "label.share.on.fb": "Share on Facebook",
   "label.chart.gender": "Sex",
   "label.chart.race": "Race",
   "label.chart.agegroup": "Age Group",
@@ -231,6 +231,9 @@
   "label.filter.infant_mortality.gestation_recode11": "Gestational Age Group 1",
   "label.filter.infant_mortality.gestation_recode10": "Gestational Age Group 2",
   "label.filter.infant_mortality.gestation_weekly": "Gestational Weekly",
+  "label.filter.natality.gestation_recode11": "LMP Gestational Age 11",
+  "label.filter.natality.gestation_recode10": "LMP Gestational Age 10",
+  "label.filter.natality.gestation_weekly": "LMP Gestational Age Weekly",
   "label.filter.age_of_mother": "Age of Mother",
   "label.title.year_of_death.race": "Year of Death and Race",
   "label.title.year_of_death.sex": "Year of Death and Sex",
@@ -388,6 +391,8 @@
   "label.help.text.disease": "This field indicates diagnosis and prevalence of deaths of AIDS/HIV.",
   "label.help.text.hiv.year": "This field indicates year of diagnosis or death. For persons living with diagnosed HIV, year refers to the end of the queried calendar year.",
   "label.help.text.hiv.agegroup": "This field indicates the age group of the patient. HIV surveillance data include adults and adolescents only (persons aged 13 years and older).",
-  "label.help.text.transmission": "This field indicates the classification of cases that summarizes a person's possible HIV risk factor."
+  "label.help.text.transmission": "This field indicates the classification of cases that summarizes a person's possible HIV risk factor.",
 
+  "label.filter.cancer_incident": "Cancer Incidence",
+  "label.filter.cancer_site": "Cancer Site"
 }

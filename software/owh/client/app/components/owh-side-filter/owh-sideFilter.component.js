@@ -40,7 +40,7 @@
         sfc.onFilterValueChange = onFilterValueChange;
 
         sfc.$onChanges = function(changes) {
-            if(changes.filters.currentValue) {
+            if(changes.filters && changes.filters.currentValue) {
                 angular.forEach(changes.filters.currentValue, function(category) {
                     angular.forEach(category.sideFilters, function(filter) {
                         //iterate through filter options and add counts

@@ -18,6 +18,8 @@ var census_type="census";
 var census_rates_type="census_rates";
 var infant_mortality_index = "owh_infant_mortality";
 var infant_mortality_type = "infant_mortality";
+var cancer_incident_index = "owh_cancer_incident";
+var cancer_type = "cancer_incident";
 
 //@TODO to work with my local ES DB I changed mapping name to 'queryResults1', revert before check in to 'queryResults'
 var _queryIndex = "owh_querycache";
@@ -53,10 +55,10 @@ ElasticClient.prototype.getClient = function(database) {
 
 };
 
-ElasticClient.prototype.aggregateCensusDataQuery = function(query, index, type){
+ElasticClient.prototype.aggregateCensusDataQuery = function(query, index, type, countkey){
     var deferred = Q.defer();
     this.executeESQuery(index, type, query).then(function (resp) {
-        deferred.resolve(searchUtils.populateDataWithMappings(resp, 'pop'));
+        deferred.resolve(searchUtils.populateDataWithMappings(resp, countkey));
     });
     return deferred.promise;
 };
@@ -103,12 +105,13 @@ ElasticClient.prototype.executeMultipleESQueries = function(query, index, type){
     return deferred.promise;
 };
 
-ElasticClient.prototype.mergeWithCensusData = function(data, censusData){
-    mergeCensusRecursively(data.data.nested.table, censusData.data.nested.table);
-    mergeCensusRecursively(data.data.nested.charts, censusData.data.nested.charts);
+ElasticClient.prototype.mergeWithCensusData = function(data, censusData, countKey){
+    mergeCensusRecursively(data.data.nested.table, censusData.data.nested.table, countKey);
+    mergeCensusRecursively(data.data.nested.charts, censusData.data.nested.charts, countKey);
 };
 
-function mergeCensusRecursively(mort, census) {
+
+function mergeCensusRecursively(mort, census, countKey) {
     // sort arrays by name, before merging, so that the values for the matching
     var sortFn = function (a, b){
         if (a.name > b.name) { return 1; }
@@ -124,8 +127,10 @@ function mergeCensusRecursively(mort, census) {
         census.sort(sortFn);
     }
 
-    if(census && census.pop && typeof census.pop === 'number') {
-        mort.pop = census.pop;
+    if(census && census[countKey] && typeof census[countKey] === 'number') {
+        //For 'population' and 'births'(for infrant mortality) we are using 'pop' variable only
+        // so that no need change logic in UI to display 'population'/'births' and rates
+        mort.pop = census[countKey];
     }
     if(typeof mort === 'string' || typeof mort === 'number') {
         return;
@@ -134,7 +139,7 @@ function mergeCensusRecursively(mort, census) {
     if(census) {
         for (var prop in mort) {
             if(!mort.hasOwnProperty(prop)) continue;
-            mergeCensusRecursively(mort[prop], census[prop]);
+            mergeCensusRecursively(mort[prop], census[prop], countKey);
         }
     }
 }
@@ -148,20 +153,23 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
         logger.debug("Census ES Query: "+ JSON.stringify( query[1]));
         var promises = [
             this.executeMultipleESQueries(query[0], mortality_index, mortality_type),
-            this.aggregateCensusDataQuery(query[1], census_rates_index, census_rates_type)
+            this.aggregateCensusDataQuery(query[1], census_rates_index, census_rates_type, 'pop'),
+            this.executeMultipleESQueries(query[2], mortality_index, mortality_type)
         ];
         if(query.wonderQuery) {
             logger.debug("Wonder Query: "+ JSON.stringify(query.wonderQuery));
-            promises.push(new wonder('D76').invokeWONDER(query.wonderQuery));
+            promises.push(new wonder('D77').invokeWONDER(query.wonderQuery));
         }
         Q.all(promises).then( function (respArray) {
             var data = searchUtils.populateDataWithMappings(respArray[0], 'deaths');
-            self.mergeWithCensusData(data, respArray[1]);
+            var mapData = searchUtils.populateDataWithMappings(respArray[2], 'deaths');
+            data.data.nested.maps = mapData.data.nested.maps;
+            self.mergeWithCensusData(data, respArray[1], 'pop');
             if(query.wonderQuery) {
-                searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[2].table);
+                searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[3].table);
                 //Loop through charts array and merge age ajusted rates from response
                 data.data.nested.charts.forEach(function(chart, index){
-                    searchUtils.mergeAgeAdjustedRates(chart, respArray[2].charts[index]);
+                    searchUtils.mergeAgeAdjustedRates(chart, respArray[3].charts[index]);
                 });
             }
             if (isStateSelected) {
@@ -243,12 +251,12 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected)
         logger.debug("Census Rates ES Query: "+ JSON.stringify( query[1]));
         var promises = [
             this.executeMultipleESQueries(query[0], natality_index, natality_type),
-            this.aggregateCensusDataQuery(query[1], census_rates_index, census_rates_type)
+            this.aggregateCensusDataQuery(query[1], census_rates_index, census_rates_type, 'pop')
         ];
         Q.all(promises).then( function (resp) {
 
             var data = searchUtils.populateDataWithMappings(resp[0], 'natality');
-            self.mergeWithCensusData(data, resp[1]);
+            self.mergeWithCensusData(data, resp[1], 'pop');
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'natality');
             }
@@ -271,12 +279,32 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected)
     return deferred.promise;
 };
 
-ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateSelected) {
+ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateSelected, allSelectedFilterOptions) {
+    var self = this;
     var deferred = Q.defer();
-    if (query[0]) {
+    if(query[1]) {
+        logger.debug("Infant Mortality ES Query: "+ JSON.stringify( query[0]));
+        logger.debug("Census Rates ES Query: "+ JSON.stringify( query[1]));
+        var promises = [
+            this.executeESQuery(infant_mortality_index, infant_mortality_type, query[0]),
+            this.aggregateCensusDataQuery(query[1], natality_index, natality_type, 'doc_count')
+        ];
+        Q.all(promises).then( function (resp) {
+            var data = searchUtils.populateDataWithMappings(resp[0], 'infant_mortality', undefined, allSelectedFilterOptions);
+            self.mergeWithCensusData(data, resp[1], 'doc_count');
+            isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');
+            deferred.resolve(data);
+        }, function (err) {
+            logger.error(err.message);
+            deferred.reject(err);
+        });
+
+    }
+    else {
+        logger.debug("Infant Mortality ES Query: "+ JSON.stringify( query[0]));
         this.executeESQuery(infant_mortality_index, infant_mortality_type, query[0])
             .then(function (response) {
-                var data = searchUtils.populateDataWithMappings(response, 'infant_mortality');
+                var data = searchUtils.populateDataWithMappings(response, 'infant_mortality', allSelectedFilterOptions);
                 isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');
                 deferred.resolve(data);
             }, function (error) {
@@ -302,7 +330,7 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
         //Add all population queries to promise
         query[1].forEach(function(eachQuery){
             //Using aggregateCensusDataQuery method to get STD population data
-            promises.push(self.aggregateCensusDataQuery(eachQuery, indexName, indexType));
+            promises.push(self.aggregateCensusDataQuery(eachQuery, indexName, indexType, 'pop'));
         });
         //Add all chart queries to promise
         query[3].forEach(function(chartQuery){
@@ -326,7 +354,7 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
                 //When i == 0 prepare 'populationResponse' and then merge 'x.data.nested.charts' into 'populationResponse' variable
                 i == 0 ? populationResponse = resp[i+2] : populationResponse.data.nested.charts.push(resp[i + 2].data.nested.charts[i-1]);
             }
-            self.mergeWithCensusData(data, populationResponse);
+            self.mergeWithCensusData(data, populationResponse, 'pop');
             isStateSelected && searchUtils.applySuppressions(data, indexType, 4);
             deferred.resolve(data);
         }, function (err) {
@@ -445,6 +473,16 @@ ElasticClient.prototype.getCountForYearByFilter = function (year, filter, option
         logger.error('Failed to get count for ', filter, ' ', error);
         return error;
     });
+};
+
+ElasticClient.prototype.aggregateCancerData = function (query) {
+    var deferred = Q.defer();
+    this.executeESQuery(cancer_incident_index, cancer_type, query[0]).then(function (resp) {
+        deferred.resolve(searchUtils.populateDataWithMappings(resp, 'cancer_incident'));
+    }).catch(function (error) {
+        deferred.reject(error)
+    });
+    return deferred.promise;
 };
 
 module.exports = ElasticClient;
