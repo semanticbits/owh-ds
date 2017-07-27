@@ -219,7 +219,7 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     searchQueryArray.push(elasticQuery);
     //Prepare chart query for disease datasets 'std', 'tb' and 'aids'.
     if(params.searchFor == 'std' || params.searchFor == 'tb' || params.searchFor == 'aids') {
-        var charQueryArray = buildChartQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, censusQuery);
+        var charQueryArray = buildChartQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, censusQuery, params.searchFor);
         //'Population' query
         searchQueryArray.push(charQueryArray[0]);
         searchQueryArray.push(mapQuery);
@@ -946,7 +946,7 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery) {
  * @param censusQuery
  * @returns List of 'Population query' and 'Cases query'
  */
-function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery, censusQuery) {
+function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery, censusQuery, datasetName) {
     var chartCasesQueryArray = [];
     //censusQuery value could be 'undefined' or population query with table aggregation
     var chartPopulationQueryArray = censusQuery ? [censusQuery] : censusQuery;
@@ -981,6 +981,12 @@ function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery,
                var filterIndex = filterKeys.indexOf(eachFilter.queryKey);
                filterKeys.splice(filterIndex, 1);
            });
+           /**
+            * For TB and AIDS charts
+            * Transmission don't have chartType so add 'transmission' to filterKey so that if user select 'No stratification' for 'transmission' then
+            * we can add filter query for 'transmission'
+            */
+           (datasetName === 'tb' || datasetName === 'aids') && filterKeys.push("transmission");
            //Get mustFilter to add filter query
            var mustFilters = chartCasesQuery.query.filtered.filter.bool.must;
            filterKeys.forEach(function(eachKey){
