@@ -89,6 +89,11 @@
                 cell.z = XLSX.SSF._table[3];
             }
 
+            else {
+                XLSX.SSF._table[164] = '#.0';
+                cell.z = XLSX.SSF._table[164];
+            }
+
             if(typeof cell.v === 'number') cell.t = 'n';
             else if(typeof cell.v === 'boolean') cell.t = 'b';
             else if(cell.v instanceof Date) {

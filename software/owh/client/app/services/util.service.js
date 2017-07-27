@@ -551,7 +551,7 @@
             }
             var cell = {
                 title: title,
-                percentage: $filter('number')((calculatePercentage && !isNaN(totalCount)) ? (Number(data[countKey]) / totalCount) * 100 : undefined, 1),
+                percentage: (calculatePercentage && !isNaN(totalCount)) ? (Number(data[countKey]) / totalCount) * 100 : undefined,
                 isCount: true,
                 rowspan: 1,
                 colspan: 1
@@ -581,7 +581,7 @@
             var total = data[countKey];
             var cell = {
                 title: total,
-                percentage: $filter('number')(total / totalCount * 100, 1),
+                percentage: total / totalCount * 100,
                 isCount: true,
                 rowspan: 1,
                 colspan: 1,
