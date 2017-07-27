@@ -241,13 +241,16 @@
                         primaryDataObj[primaryFilter.key] = getValueFromData(primaryFilter, eachPrimaryData);
                     }
                     if(eachPrimaryData && eachPrimaryData[filter2.key]) {
-                        angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2) , function (secondaryOption,j) {
-                            var eachSecondaryData = utilService.findByKeyAndValue(eachPrimaryData[filter2.key], 'name', secondaryOption.key);
-                            var value = 0;
-                            if(eachSecondaryData &&  eachSecondaryData[primaryFilter.key]) {
-                                value = getValueFromData(primaryFilter, eachSecondaryData);
+                        angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2), function (secondaryOption, j) {
+                            if (!secondaryOption.disabled) {
+                                var eachSecondaryData = utilService.findByKeyAndValue(eachPrimaryData[filter2.key], 'name', secondaryOption.key);
+                                var value = 0;
+                                if (eachSecondaryData && eachSecondaryData[primaryFilter.key])
+                                {
+                                    value = getValueFromData(primaryFilter, eachSecondaryData);
+                                }
+                                primaryDataObj.values.push({ "label": secondaryOption.title, "value": value });
                             }
-                            primaryDataObj.values.push({"label":secondaryOption.title, "value": value});
                         });
                         multiChartBarData.push(primaryDataObj);
                     }else{
