@@ -119,7 +119,6 @@ describe('filterUtils', function(){
             expect(stdDataFilters[4].key).toEqual('state');
             expect(stdDataFilters[4].value).toEqual('National');
             expect(stdDataFilters[5].key).toEqual('transmission');
-            expect(stdDataFilters[4].value).toEqual('');
         });
     });
 });
