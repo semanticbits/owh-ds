@@ -151,11 +151,11 @@ var mortalityStepDefinitionsWrapper = function () {
          return false;
      });
  */
-    this.When(/^I see the results$/, function (next) {
-        expect(mortalityPage.owhTable.isPresent()).to.eventually.equal(true);
-        mortalityPage.getTableHeaders().then(function(value) {
+    this.When(/^I see the results$/, function () {
+        return expect(mortalityPage.owhTable.isPresent()).to.eventually.equal(true);
+        /*mortalityPage.getTableHeaders().then(function(value) {
             expect(value).to.contains('Number of Deaths');
-        }).then(next);
+        }).then(next);*/
     });
 
     this.Then(/^an option to show\/hide percentages is displayed$/, function () {
@@ -181,11 +181,11 @@ var mortalityStepDefinitionsWrapper = function () {
         return false;
     });*/
 
-    this.When(/^I look at the table results$/, function (next) {
-        expect(mortalityPage.owhTable.isPresent()).to.eventually.equal(true);
-        mortalityPage.getTableHeaders().then(function(value) {
+    this.When(/^I look at the table results$/, function () {
+        return expect(mortalityPage.owhTable.isPresent()).to.eventually.equal(true);
+        /*mortalityPage.getTableHeaders().then(function(value) {
             expect(value).to.contains('Number of Deaths');
-        }).then(next);
+        }).then(next);*/
     });
 
     this.When(/^percentage option is enabled$/, function (next) {

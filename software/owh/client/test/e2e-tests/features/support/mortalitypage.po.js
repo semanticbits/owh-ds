@@ -59,8 +59,10 @@ var MortalitySearchPage = function() {
     msp.getAxisLabelsForExpandedVisualization= function () {
         //Verify Visualization has 'nv-axislabel' css class for both axis
         //expanded visualization has id starts with '.chart_expanded_'
-        var axis_x_label = element(by.id('chart_expanded_0')).element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-x.nv-axis')).element(by.css('.nv-axislabel'));
-        var axis_y_label = element(by.id('chart_expanded_0')).element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-y.nv-axis')).element(by.css('.nv-axislabel'));
+        var chart = element(by.id('chart_expanded_0'));
+        browser.executeScript("arguments[0].scrollIntoView();", chart);
+        var axis_x_label = chart.element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-x.nv-axis')).element(by.css('.nv-axislabel'));
+        var axis_y_label = chart.element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-y.nv-axis')).element(by.css('.nv-axislabel'));
         return [axis_x_label, axis_y_label]
     };
     msp.getTableHeaders = function() {
