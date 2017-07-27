@@ -133,11 +133,6 @@
       "field": "TRANSMISSION",
       "mappings": {
         "0": "No stratification",
-        "1": "Male-to-Male sexual contact",
-        "2": "Injection drug use",
-        "3": "Male-to-male sexual contact and injection drug use",
-        "4": "Heterosexual contact",
-        "5": "Other",
         "6": "US-born",
         "7": "Foreign-born"
       }
