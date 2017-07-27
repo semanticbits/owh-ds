@@ -62,9 +62,13 @@ var aidsStepDefinitions = function () {
        return expect(commonPage.secondaryMenu.isDisplayed()).to.eventually.equal(true);
     });
 
-    this.When(/^I click on Aids dataset$/, function (next) {
-        element(by.id('aids')).click()
-            .then(next);
+    this.When(/^I click on Aids dataset$/, function () {
+        /*element(by.id('aids')).click()
+            .then(next);*/
+
+        var elm = element(by.id('aids'));
+        return browser.executeScript("arguments[0].click();", elm);
+        //elm.click().next(next);
     });
 };
 
