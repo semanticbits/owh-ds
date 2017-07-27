@@ -56,6 +56,12 @@ var aidsStepDefinitions = function () {
             }).then(next);
         });
     });
+
+    this.Then(/^I see labels "([^"]*)" and "([^"]*)" are displayed on minimized visualization$/, function (arg1, arg2) {
+        var labelArray = aidsPage.getAxisLabelsForMinimizedVisualization(0,1);
+        expect(labelArray[0].getText()).to.eventually.equal(arg1);
+        return expect(labelArray[1].getText()).to.eventually.equal(arg2);
+    });
 };
 
 module.exports = aidsStepDefinitions;

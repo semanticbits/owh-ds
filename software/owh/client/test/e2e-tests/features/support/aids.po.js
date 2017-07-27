@@ -59,6 +59,15 @@ var AidsPage = function () {
             .all(by.tagName('td'))
             .getText();
     };
+
+    this.getAxisLabelsForMinimizedVisualization= function (xIndex, yIndex) {
+        //Verify Visualization has 'nv-axislabel' css class for both axis
+        //minimized visualization has id starts with '.chart_'
+        var chartId= 'chart_'+xIndex+'_'+yIndex;
+        var axis_x_label = element(by.id(chartId)).element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-x.nv-axis')).element(by.css('.nv-axislabel'));
+        var axis_y_label = element(by.id(chartId)).element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-y.nv-axis')).element(by.css('.nv-axislabel'));
+        return [axis_x_label, axis_y_label];
+    };
 };
 
 module.exports = new AidsPage;

@@ -186,6 +186,12 @@ var natalityStepsDefinitionWrapper = function () {
             .then(next);
     });
 
+    this.Then(/^I see label "([^"]*)" and "([^"]*)" are displayed on minimized visualization$/, function (arg1, arg2) {
+        var labelArray = imp.getAxisLabelsForMinimizedVisualization(0,1);
+        expect(labelArray[0].getText()).to.eventually.equal(arg1);
+        return expect(labelArray[1].getText()).to.eventually.equal(arg2);
+    });
+
     this.Then(/^data table should display right values for 5\-Year age filter$/, function (next) {
         natalityPage.getTableRowData(0).then(function(rowdata) {
             //Race
