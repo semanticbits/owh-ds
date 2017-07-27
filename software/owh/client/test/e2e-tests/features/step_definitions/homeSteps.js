@@ -61,12 +61,5 @@ var homeStepDefinitionsWrapper = function () {
     this.When(/^I am at search page$/, function () {
         return browser.get("/search");
     });
-
-    this.Then(/^I see the name of application as "([^"]*)"$/, function (arg1, next) {
-        browser.sleep(10000);
-        homePage.getOWHAppName().then(function(appName){
-            expect(appName).to.equal(arg1)
-        }).then(next);
-    });
 };
 module.exports = homeStepDefinitionsWrapper;
