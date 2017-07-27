@@ -112,11 +112,8 @@ var mortalityStepDefinitionsWrapper = function () {
         }).then(next);
     });
 
-    this.When(/^I see the data table$/, function (next) {
-        expect(mortalityPage.owhTable.isPresent()).to.eventually.equal(true);
-        mortalityPage.getTableHeaders().then(function(value) {
-            expect(value).to.contains('Number of Deaths');
-        }).then(next);
+    this.When(/^I see the data table$/, function () {
+        return expect(mortalityPage.owhTable.isPresent()).to.eventually.equal(true);
     });
 
     this.Then(/^percentages are displayed in the same column\/cell in parenthesis$/, function (next) {

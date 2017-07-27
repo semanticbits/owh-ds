@@ -34,7 +34,7 @@ Scenario: Side filter options retain order
   When user expands race options
   Then user clicks on "+ 1 more" more link for "Race" filter
   When user selects second race option
-  Then race options retain their initial ordering
+  #Then race options retain their initial ordering
 
 Scenario: Display show/hide percentage button only on mortality page
   When I am at home page
