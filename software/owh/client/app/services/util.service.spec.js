@@ -41,6 +41,7 @@ describe('utilService', function(){
         $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('app/modules/home/home.html').respond({data: { }});
+        $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
     }));
 
     it('test utils isValueNotEmpty for undefined', function () {
@@ -513,6 +514,206 @@ describe('utilService', function(){
         expect(filters[3].filters.autoCompleteOptions[0].disabled).toBeFalsy();
         //Non-Hispanic
         expect(filters[3].filters.autoCompleteOptions[1].disabled).toBeFalsy();
+    }));
+
+    it("refresh filter options when user selected one year age filter options", inject(function(SearchService) {
+        var deferred = $q.defer();
+        var singleYearAgeOptions =  [
+            { "key": "Under 15 years", "title": "Under 15 years" },
+            { "key": "15 years", "title": "15 years" },
+            { "key": "16 years", "title": "16 years" },
+            { "key": "17 years", "title": "17 years" },
+            { "key": "18 years", "title": "18 years" },
+            { "key": "19 years", "title": "19 years" },
+            { "key": "20 years", "title": "20 years" },
+            { "key": "21 years", "title": "21 years" },
+            { "key": "22 years", "title": "22 years" },
+            { "key": "23 years", "title": "23 years" },
+            { "key": "24 years", "title": "24 years" },
+            { "key": "25 years", "title": "25 years" },
+            { "key": "26 years", "title": "26 years" },
+            { "key": "27 years", "title": "27 years" },
+            { "key": "28 years", "title": "28 years" },
+            { "key": "29 years", "title": "29 years" },
+            { "key": "30 years", "title": "30 years" },
+            { "key": "31 years", "title": "31 years" },
+            { "key": "32 years", "title": "32 years" },
+            { "key": "33 years", "title": "33 years" },
+            { "key": "34 years", "title": "34 years" },
+            { "key": "35 years", "title": "35 years" },
+            { "key": "36 years", "title": "36 years" },
+            { "key": "37 years", "title": "37 years" },
+            { "key": "38 years", "title": "38 years" },
+            { "key": "39 years", "title": "39 years" },
+            { "key": "40 years", "title": "40 years" },
+            { "key": "41 years", "title": "41 years" },
+            { "key": "42 years", "title": "42 years" },
+            { "key": "43 years", "title": "43 years" },
+            { "key": "44 years", "title": "44 years" },
+            { "key": "45 years", "title": "45 years" },
+            { "key": "46 years", "title": "46 years" },
+            { "key": "47 years", "title": "47 years" },
+            { "key": "48 years", "title": "48 years" },
+            { "key": "49 years", "title": "49 years" },
+            { "key": "50-54 years", "title": "50 years and over"}
+        ];
+        var ageR9Options =  [
+            { "key": "Under 15 years", "title": "Under 15 years" },
+            { "key": "15-19 years", "title": "15-19 years" },
+            { "key": "20-24 years", "title": "20-24 years" },
+            { "key": "25-29 years", "title": "25-29 years" },
+            { "key": "30-34 years", "title": "30-34 years" },
+            { "key": "35-39 years", "title": "35-39 years" },
+            { "key": "40-44 years", "title": "40-44 years" },
+            { "key": "45-49 years", "title": "45-49 years" },
+            { "key": "50-54 years", "title": "50 years and over" }
+        ];
+        var filters= [
+            {
+                filterGroup: false,
+                collapse: true,
+                allowGrouping: true,
+                filters:   {key: 'mother_age_1year_interval', title: 'label.chart.mother_age.single.year.group', queryKey:"mother_age_1year_interval", primary: false, value: ["Under 15 years", "15 years", "44 years", "45 years"],
+                    defaultGroup:'column', groupBy: false, filterType: "checkbox",
+                    autoCompleteOptions: singleYearAgeOptions, helpText:"label.help.text.mother.one.year.age", disableAgeOptions: ["Under 15 years", "45 years", "46 years", "47 years", "48 years", "49 years", "50-54 years"]},
+
+            },
+            {
+                filterGroup: false,
+                collapse: true,
+                allowGrouping: true,
+                filters: {key: 'mother_age_5year_interval', title: 'label.chart.mother_age.five.year.group', queryKey:"mother_age_5year_interval", primary: false, value: [],
+                    defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: ageR9Options,
+                    helpText:"label.help.text.mother.five.year.age", disableAgeOptions: ["Under 15 years", "45-49 years", "50-54 years" ]},
+
+            }
+        ];
+        var categories = [{category: "Mother's Age", "sideFilters":filters}];
+        spyOn(SearchService, 'getDsMetadata').and.returnValue(deferred.promise);
+
+        utils.refreshFilterAndOptions({ queryKey: "mother_age_1year_interval", value: ["Under 15 years", "15 years", "44 years", "45 years"]}, categories, 'natality', 'fertility_rates');
+        expect(SearchService.getDsMetadata).toHaveBeenCalledWith("natality", "Under 15 years,15 years,44 years,45 years");
+        deferred.resolve({"status":"OK","data":{}});
+        $scope.$apply();
+        //'Under 15 years' and '45 years' should be removed from value array
+        expect(filters[0].filters.value.length).toEqual(2);
+        expect(filters[0].filters.value[0]).toEqual("15 years");
+        expect(filters[0].filters.value[1]).toEqual("44 years");
+        //<15 and > 44 filters should be disabled
+        expect(filters[0].filters.autoCompleteOptions[0].key).toEqual("Under 15 years");
+        expect(filters[0].filters.autoCompleteOptions[0].disabled).toBeTruthy();
+        expect(filters[0].filters.autoCompleteOptions[1].key).toEqual("15 years");
+        expect(filters[0].filters.autoCompleteOptions[1].disabled).toBeFalsy();
+        expect(filters[0].filters.autoCompleteOptions[30].key).toEqual("44 years");
+        expect(filters[0].filters.autoCompleteOptions[30].disabled).toBeFalsy();
+        expect(filters[0].filters.autoCompleteOptions[31].key).toEqual("45 years");
+        expect(filters[0].filters.autoCompleteOptions[31].disabled).toBeTruthy();
+        expect(filters[0].filters.autoCompleteOptions[32].key).toEqual("46 years");
+        expect(filters[0].filters.autoCompleteOptions[32].disabled).toBeTruthy();
+        expect(filters[0].filters.autoCompleteOptions[33].key).toEqual("47 years");
+        expect(filters[0].filters.autoCompleteOptions[33].disabled).toBeTruthy();
+        expect(filters[0].filters.autoCompleteOptions[34].key).toEqual("48 years");
+        expect(filters[0].filters.autoCompleteOptions[34].disabled).toBeTruthy();
+        expect(filters[0].filters.autoCompleteOptions[35].key).toEqual("49 years");
+        expect(filters[0].filters.autoCompleteOptions[35].disabled).toBeTruthy();
+        expect(filters[0].filters.autoCompleteOptions[36].key).toEqual("50-54 years");
+        expect(filters[0].filters.autoCompleteOptions[36].disabled).toBeTruthy();
+
+    }));
+
+    it("refresh filter options when user selected five year age filter options", inject(function(SearchService) {
+        var deferred = $q.defer();
+        var singleYearAgeOptions =  [
+            { "key": "Under 15 years", "title": "Under 15 years" },
+            { "key": "15 years", "title": "15 years" },
+            { "key": "16 years", "title": "16 years" },
+            { "key": "17 years", "title": "17 years" },
+            { "key": "18 years", "title": "18 years" },
+            { "key": "19 years", "title": "19 years" },
+            { "key": "20 years", "title": "20 years" },
+            { "key": "21 years", "title": "21 years" },
+            { "key": "22 years", "title": "22 years" },
+            { "key": "23 years", "title": "23 years" },
+            { "key": "24 years", "title": "24 years" },
+            { "key": "25 years", "title": "25 years" },
+            { "key": "26 years", "title": "26 years" },
+            { "key": "27 years", "title": "27 years" },
+            { "key": "28 years", "title": "28 years" },
+            { "key": "29 years", "title": "29 years" },
+            { "key": "30 years", "title": "30 years" },
+            { "key": "31 years", "title": "31 years" },
+            { "key": "32 years", "title": "32 years" },
+            { "key": "33 years", "title": "33 years" },
+            { "key": "34 years", "title": "34 years" },
+            { "key": "35 years", "title": "35 years" },
+            { "key": "36 years", "title": "36 years" },
+            { "key": "37 years", "title": "37 years" },
+            { "key": "38 years", "title": "38 years" },
+            { "key": "39 years", "title": "39 years" },
+            { "key": "40 years", "title": "40 years" },
+            { "key": "41 years", "title": "41 years" },
+            { "key": "42 years", "title": "42 years" },
+            { "key": "43 years", "title": "43 years" },
+            { "key": "44 years", "title": "44 years" },
+            { "key": "45 years", "title": "45 years" },
+            { "key": "46 years", "title": "46 years" },
+            { "key": "47 years", "title": "47 years" },
+            { "key": "48 years", "title": "48 years" },
+            { "key": "49 years", "title": "49 years" },
+            { "key": "50-54 years", "title": "50 years and over"}
+        ];
+        var ageR9Options =  [
+            { "key": "Under 15 years", "title": "Under 15 years" },
+            { "key": "15-19 years", "title": "15-19 years" },
+            { "key": "20-24 years", "title": "20-24 years" },
+            { "key": "25-29 years", "title": "25-29 years" },
+            { "key": "30-34 years", "title": "30-34 years" },
+            { "key": "35-39 years", "title": "35-39 years" },
+            { "key": "40-44 years", "title": "40-44 years" },
+            { "key": "45-49 years", "title": "45-49 years" },
+            { "key": "50-54 years", "title": "50 years and over" }
+        ];
+        var filters= [
+            {
+                filterGroup: false,
+                collapse: true,
+                allowGrouping: true,
+                filters:   {key: 'mother_age_1year_interval', title: 'label.chart.mother_age.single.year.group', queryKey:"mother_age_1year_interval", primary: false, value: [],
+                    defaultGroup:'column', groupBy: false, filterType: "checkbox",
+                    autoCompleteOptions: singleYearAgeOptions, helpText:"label.help.text.mother.one.year.age", disableAgeOptions: ["Under 15 years", "45 years", "46 years", "47 years", "48 years", "49 years", "50-54 years"]},
+
+            },
+            {
+                filterGroup: false,
+                collapse: true,
+                allowGrouping: true,
+                filters: {key: 'mother_age_5year_interval', title: 'label.chart.mother_age.five.year.group', queryKey:"mother_age_5year_interval", primary: false, value: ["Under 15 years", "20-24 years", "45-49 years"],
+                    defaultGroup:'column', groupBy: false, filterType: "checkbox", autoCompleteOptions: ageR9Options,
+                    helpText:"label.help.text.mother.five.year.age", disableAgeOptions: ["Under 15 years", "45-49 years", "50-54 years" ]},
+
+            }
+        ];
+        var categories = [{category: "Mother's Age", "sideFilters":filters}];
+        spyOn(SearchService, 'getDsMetadata').and.returnValue(deferred.promise);
+
+        utils.refreshFilterAndOptions({ queryKey: "mother_age_5year_interval", value: ["Under 15 years", "20-24 years", "45-49 years"]}, categories, 'natality', 'fertility_rates');
+        expect(SearchService.getDsMetadata).toHaveBeenCalledWith("natality", "Under 15 years,20-24 years,45-49 years");
+        deferred.resolve({"status":"OK","data":{}});
+        $scope.$apply();
+        //'Under 15 years' and '45 years' should be removed from value array
+        expect(filters[1].filters.value.length).toEqual(1);
+        expect(filters[1].filters.value[0]).toEqual("20-24 years");
+        //<15 and > 44 filters should be disabled
+        expect(filters[1].filters.autoCompleteOptions[0].key).toEqual("Under 15 years");
+        expect(filters[1].filters.autoCompleteOptions[0].disabled).toBeTruthy();
+        expect(filters[1].filters.autoCompleteOptions[1].key).toEqual("15-19 years");
+        expect(filters[1].filters.autoCompleteOptions[1].disabled).toBeFalsy();
+        expect(filters[1].filters.autoCompleteOptions[6].key).toEqual("40-44 years");
+        expect(filters[1].filters.autoCompleteOptions[6].disabled).toBeFalsy();
+        expect(filters[1].filters.autoCompleteOptions[7].key).toEqual("45-49 years");
+        expect(filters[1].filters.autoCompleteOptions[7].disabled).toBeTruthy();
+        expect(filters[1].filters.autoCompleteOptions[8].key).toEqual("50-54 years");
+        expect(filters[1].filters.autoCompleteOptions[8].disabled).toBeTruthy();
     }));
 
     it('STD: Disease filter option "Congenital Syphilis" on change', inject(function(filterUtils){
