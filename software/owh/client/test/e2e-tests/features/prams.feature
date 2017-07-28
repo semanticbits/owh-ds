@@ -11,12 +11,12 @@ Feature: PRAMS filters
     Then I see 'By' filter pre-selected with State and Question
     And  I see state data displayed in data table
 
-  Scenario: Visualizations
-    When I click on "Show 3 More Question(s)" questions link
-    And  I click on chart icon for 'Indicator of whether delivery was paid for by insurance purchased directly question'
-    Then I see chart being displayed for "Indicator of whether delivery was paid for by insurance purchased directly" question
-    And  I see axis labels for chart- state and Percentage
-    And  I close chart dialog
+#  Scenario: Visualizations
+#    When I click on "Show 3 More Question(s)" questions link
+#    And  I click on chart icon for 'Indicator of whether delivery was paid for by insurance purchased directly question'
+#    Then I see chart being displayed for "Indicator of whether delivery was paid for by insurance purchased directly" question
+#    And  I see axis labels for chart- state and Percentage
+#    And  I close chart dialog
 
   Scenario: Topic filter
     Given I am on search page
