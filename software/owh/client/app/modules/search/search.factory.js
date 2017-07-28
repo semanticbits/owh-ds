@@ -31,8 +31,7 @@
             getMixedTable: getMixedTable,
             setFilterGroupBy: setFilterGroupBy,
             getYrbsQuestionsForTopic: getYrbsQuestionsForTopic,
-            getPramsQuestionsForTopics: getPramsQuestionsForTopics
-
+            getPramsQuestionsForTopics: getPramsQuestionsForTopics,
         };
         return service;
 
@@ -2892,6 +2891,11 @@
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'age_group')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'transmission')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
