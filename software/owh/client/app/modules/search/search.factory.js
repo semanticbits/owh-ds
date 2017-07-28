@@ -2896,6 +2896,11 @@
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'transmission')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'state')
                                 }
 
