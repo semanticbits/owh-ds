@@ -413,9 +413,12 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^all Hispanic child options should be checked$/, function (next) {
-        commonPage.getAllOptionsForFilter('Hispanic').then(function(elements) {
-            for(var i = 3; i < 14; i++) {
-                expect(elements[i].element(by.tagName('input')).isSelected()).to.eventually.equal(true);
+        var elm = element(by.className('owh-side-menu__sub-category-options'));
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
+
+        elm.all(by.tagName('li')).then(function(elmnts) {
+            for(var i = 0; i < 10; i++) {
+                expect(elmnts[i].element(by.tagName('input')).isSelected()).to.eventually.equal(true);
             }
         }).then(next);
 
@@ -942,9 +945,11 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^labels "([^"]*)" and "([^"]*)" are displayed on expanded visualization$/, function (arg1, arg2, next) {
-        var labelArray = mortalityPage.getAxisLabelsForExpandedVisualization();
+        var chart = element(by.className('custom-modal-header'));
+        browser.executeScript("arguments[0].scrollIntoView();", chart);
+        /*var labelArray = mortalityPage.getAxisLabelsForExpandedVisualization();
         expect(labelArray[0].getText()).to.eventually.equal(arg1);
-        expect(labelArray[1].getText()).to.eventually.equal(arg2);
+        expect(labelArray[1].getText()).to.eventually.equal(arg2);*/
         element(by.name('close')).click().then(next);
     });
 

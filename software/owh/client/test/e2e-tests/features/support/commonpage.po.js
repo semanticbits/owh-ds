@@ -10,7 +10,9 @@ var CommonPage = function() {
     };
 
     cp.getFilterByType = function (type) {
-        return element(by.cssContainingText('div.sidebar-filter-label', type))
+        var elm = element(by.cssContainingText('div.sidebar-filter-label', type));
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
+        return element(by.cssContainingText('div.sidebar-filter-label', type));
     };
 
     cp.getSwitchForFilterType = function (type) {

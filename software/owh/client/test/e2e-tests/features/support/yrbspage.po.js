@@ -13,7 +13,9 @@ var YRBSSearchPage = function() {
     ysp.sexualContact = element(by.partialLinkText('Sex of Sexual Contacts'));
     ysp.raceOptionsLink = element(by.partialLinkText('Race/Ethnicity'));
 
-    ysp.selectQuestionsButton = function(val){
+    ysp.selectQuestionsButton = function(val) {
+        var elm = element(by.cssContainingText('button', val));
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
         return element(by.cssContainingText('button', val));
     };
 
