@@ -12,6 +12,13 @@ Scenario: Access mortality page
   And  I click on Explore button in Health Information Gateway section
   Then I should get search page with default filter type "Detailed Mortality"
 
+Scenario: Co-Branded header
+  Then I see text on Co-Branded header
+  When I click on "Explore HHS"
+  Then Co-Branded menus should be displayed
+  When I click on "Close"
+  Then Co-Branded menus should be hidden
+
 Scenario: Axis labels
   When user sees a visualization
   Then labels are displayed on both the axes for minimized visualization
