@@ -1123,6 +1123,11 @@
          * @return TB side filters array
          */
         function getTBDataFilters() {
+            var countryOfBirth =  [
+                {key: 'No stratification', title: 'All countries of birth'},
+                {key: 'Foreign-born', title: 'Foreign-born'},
+                {key: 'US-born', title: 'US-born'}
+            ];
 
             return [
                 {
@@ -1181,6 +1186,14 @@
                     autoCompleteOptions: diseaseStateOptions,
                     doNotShowAll: true,
                     helpText: "label.help.text.tb.state"
+                },
+                {
+                    key: 'transmission', title: 'label.tb.filter.countryOfBirth', queryKey: "transmission",
+                    primary: false, value: 'No stratification',
+                    groupBy: false, filterType: 'radio',
+                    autoCompleteOptions: countryOfBirth,
+                    doNotShowAll: true,
+                    helpText: "label.help.text.tb.countryOfBirth"
                 }
             ]
 
@@ -1321,7 +1334,7 @@
          * @return Side filters All option values
          */
         function getAllOptionValues() {
-            return ["Both sexes", "All races/ethnicities", "All age groups", "National"]
+            return ["Both sexes", "All races/ethnicities", "All age groups", "National", "No stratification"]
         }
 
         function getCancerFilters () {

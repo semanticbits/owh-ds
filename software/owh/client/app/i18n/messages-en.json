@@ -346,6 +346,8 @@
   "label.help.text.tb.sex": "This field indicates the sex of the patient at birth.",
   "label.help.text.tb.year": "This field indicates year of diagnosis or death.",
   "label.help.text.state": "This field indicates mother's legal residence at the time of birth.",
+  "label.help.text.tb.countryOfBirth": "This field indicates the country of birth of the patient",
+  "label.tb.filter.countryOfBirth": "Country of Birth",
 
   "label.filter.tb": "Tuberculosis",
   "label.filter.aids": "HIV/AIDS",
