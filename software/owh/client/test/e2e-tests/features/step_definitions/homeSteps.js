@@ -61,5 +61,42 @@ var homeStepDefinitionsWrapper = function () {
     this.When(/^I am at search page$/, function () {
         return browser.get("/search");
     });
+
+    this.Then(/^I see the name of application as "([^"]*)"$/, function (arg1, next) {
+        browser.sleep(10000);
+        homePage.getOWHAppName().then(function(appName){
+            expect(appName).to.equal(arg1)
+        }).then(next);
+    });
+
+    this.Then(/^I see text on Co\-Branded header$/, function () {
+        expect(element(by.cssContainingText('a', "HHS.gov")).isDisplayed()).to.eventually.equal(true);
+        expect(element(by.cssContainingText('a', "U.S. Department of Health & Human Services")).isDisplayed()).to.eventually.equal(true);
+        return expect(element(by.cssContainingText('a', "Explore HHS")).isDisplayed()).to.eventually.equal(true);
+    });
+
+    this.Then(/^Co\-Branded menus should be displayed$/, function () {
+        expect(element(by.cssContainingText('a', "About HHS")).isDisplayed()).to.eventually.equal(true);
+        expect(element(by.cssContainingText('a', "Programs & Services")).isDisplayed()).to.eventually.equal(true);
+        expect(element(by.cssContainingText('a', "Grants & Contracts")).isDisplayed()).to.eventually.equal(true);
+        return expect(element(by.cssContainingText('a', "Laws & Regulations")).isDisplayed()).to.eventually.equal(true);
+    });
+
+    this.Then(/^Co\-Branded menus should be hidden$/, function () {
+        expect(element(by.cssContainingText('a', "About HHS")).isDisplayed()).to.eventually.equal(false);
+        expect(element(by.cssContainingText('a', "Programs & Services")).isDisplayed()).to.eventually.equal(false);
+        expect(element(by.cssContainingText('a', "Grants & Contracts")).isDisplayed()).to.eventually.equal(false);
+        return expect(element(by.cssContainingText('a', "Laws & Regulations")).isDisplayed()).to.eventually.equal(false);
+    });
+
+    this.Then(/^footer should have "([^"]*)" links$/, function (arg1, next) {
+        var links = arg1.split(',');
+        var allElements =  element.all(by.className('footer-li'));
+        allElements.getText().then(function (filters) {
+            filters.forEach(function (filter, index) {
+                expect(filter).to.contains(links[index]);
+            });
+        }).then(next);
+    });
 };
 module.exports = homeStepDefinitionsWrapper;
