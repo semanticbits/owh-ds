@@ -2966,7 +2966,7 @@
                 },
                 {
                     key: 'cancer_incident', title: 'label.filter.cancer_incident', primary: true, value: [], header: 'Cancer Incidence',
-                    allFilters: filters.cancerFilters, searchResults: searchCancerResults, showMap: false, countLabel: 'Total Incidences',
+                    allFilters: filters.cancerFilters, searchResults: searchCancerResults, showMap: false, countLabel: 'Total Incidence',
                     mapData: {}, chartAxisLabel: 'Incidence', tableView: 'cancer_incident', runOnFilterChange: true,
                     sideFilters: [
                         {
@@ -2998,7 +2998,7 @@
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
-                                    groupOptions: filters.groupOptions,
+                                    groupOptions: filters.conditionGroupOptions,
                                     filters: utilService.findByKeyAndValue(filters.cancerFilters, 'key', 'site')
                                 },
                                 {

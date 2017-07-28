@@ -40,5 +40,15 @@
             <div id="question" should-apply="tc.ac()" js-tree="tc.treeConfig" ng-model="tc.questions"
                  tree="tc.treeInstance" tree-events-obj="tc.treeEventsObj"></div>
         </div>
+            <div class="usa-width-one-whole" ng-if="tc.codeKey === 'site'">
+            <div
+                id="cancer_site"
+                should-apply="tc.ac()"
+                js-tree="tc.treeConfig"
+                ng-model="tc.tree"
+                tree="tc.treeInstance"
+                tree-events-obj="tc.treeEventsObj">
+            </div>
+        </div>
     </div>
 </div>

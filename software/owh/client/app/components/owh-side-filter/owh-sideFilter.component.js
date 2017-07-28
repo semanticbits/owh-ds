@@ -114,7 +114,7 @@
                         }
                     }
             }
-            
+
         }
 
         function getOptionCountPercentage(option) {
@@ -145,7 +145,7 @@
                     clearSelection(eachFilter)
                 }
             });
-            var showTree = selectedFilter.key === 'ucd-chapter-10' || selectedFilter.key === 'mcd-chapter-10' || selectedFilter.key === 'question';
+            var showTree = selectedFilter.key === 'ucd-chapter-10' || selectedFilter.key === 'mcd-chapter-10' || selectedFilter.key === 'question' || selectedFilter.key === 'site';
             if(!showTree) {
                 searchFactory.showPhaseTwoModal('label.mcd.impl.next');
             }else {
@@ -156,12 +156,14 @@
                     controller: function ($scope, close) {
                         var mc = this;
                         mc.codeKey = selectedFilter.key;
-                        mc.entityName = selectedFilter.key === 'question' ? 'Question' : 'Cause(s) of Death';
-                        mc.modelHeader = selectedFilter.key === 'question' ? 'label.select.question' : 'label.cause.death';
+
+                        mc.entityName = { question: 'Question', 'ucd-chapter-10': 'Cause(s) of Death', 'mcd-chapter-10': 'Cause(s) of Death', site: 'cancer site(s)' }[selectedFilter.key];
+                        mc.modelHeader = { question: 'label.select.question', 'ucd-chapter-10': 'label.cause.death', 'mcd-chapter-10': 'label.cause.death', site: 'label.select.cancer_site' }[selectedFilter.key];
 
                         mc.optionValues = selectedFilter.selectedNodes ? selectedFilter.selectedNodes : selectedFilter.selectedValues;
 
                         mc.questions = selectedFilter.questions;
+                        mc.tree = selectedFilter.tree;
                         mc.close = close;
                     }
                 }).then(function (modal) {

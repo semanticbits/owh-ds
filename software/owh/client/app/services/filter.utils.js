@@ -5,12 +5,12 @@
         .module('owh.services').
         service('filterUtils', filterUtils);
 
-    filterUtils.$inject = ['utilService', '$timeout'];
+    filterUtils.$inject = ['utilService', '$timeout', 'cancerSiteService'];
 
     /**
      * This utility service is used to prepare the OWH search filters.
      */
-    function filterUtils(utilService, $timeout) {
+    function filterUtils(utilService, $timeout, cancerSiteService) {
         //filter options
         var yearOptions = [
             { "key": "2015", "title": "2015"},
@@ -1525,9 +1525,13 @@
                     primary: false,
                     value: [],
                     groupBy: false,
-                    filterType: 'checkbox',
-                    autoCompleteOptions: cancerSites,
-                    defaultGroup:'column',
+                    filterType: 'site',
+                    selectTitle: 'label.cancer_site.select',
+                    updateTitle: 'label.cancer_site.update',
+                    autoCompleteOptions: cancerSiteService.getList(),
+                    tree: cancerSiteService.getSites(),
+                    aggregationKey: 'cancer_site.path',
+                    defaultGroup:'row',
                     helpText: 'label.help.text.cancer_sites'
                 },
                 {

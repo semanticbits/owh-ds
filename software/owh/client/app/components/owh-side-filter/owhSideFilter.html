@@ -222,6 +222,50 @@
                 </span>
                 <!-- end MCD conditions filter -->
 
+                <!-- Cancer Site filter -->
+                <span ng-class="{ 'disabled-filter': !sfc.isVisible(sideFilter) }" ng-if="group.filterType === 'site'">
+                    <label class="side-pane-label custom-label">
+                        <div class="sidebar-chevron left-float padding-left-5">
+                            <span class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
+                        </div>
+                        <div class="left-float sidebar-filter-label">
+                            <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse" title="{{group.helpText | translate}}" class="custom-link">
+                                <span translate="{{ group.title }}" class="filter-display-name"></span>
+                            </a>
+                        </div>
+                        <owh-toggle-switch
+                            ng-if="sideFilter.allowGrouping"
+                            class="right-float sidebar-switch"
+                            options="sideFilter.groupOptions"
+                            model="group.groupBy"
+                            on-change="sfc.runOnFilterChange && sfc.onFilter()"
+                            tooltip="{{'label.group.by.tooltip' | translate}}">
+                        </owh-toggle-switch>
+                        <div class="clearfix"></div>
+                    </label>
+                    <ul class="usa-unstyled-list group-options" ng-hide="sideFilter.collapse">
+                        <li class="group-option">
+                            <label for="{{group.key}}" class="custom-label" style="margin-bottom: 0">
+                                <button
+                                    class="action-button condition-option"
+                                    translate="{{group.selectedValues && group.selectedValues.length > 0 ? group.updateTitle : group.selectTitle}}"
+                                    ng-click="sfc.showModal(group, [group])">
+                                </button>
+                            </label>
+                            <div ng-repeat="selectedValue in group.selectedValues" >
+                                <span style="font-size: 13px" ng-bind="selectedValue.text"></span>
+                            </div>
+                            <div ng-if="!group.selectedValues || group.selectedValues.length === 0" style="margin-bottom: 20px">
+                                <span style="font-size: 13px">All</span>
+                            </div>
+                            <div class="ucd-clear" ng-show="group.selectedValues.length > 0 ">
+                                <button class="action-button" translate="label.clear" ng-click="sfc.clearSelection(group, true)"></button>
+                            </div>
+                        </li>
+                    </ul>
+                </span>
+                <!-- end Cancer Site filter -->
+
                 <!-- tree filter -->
                 <span ng-class="{'disabled-filter': !sfc.isVisible(sideFilter)}" ng-if="group.filterType === 'tree'">
                     <label class="side-pane-label custom-label">
