@@ -577,9 +577,7 @@
             {"key": "Native Hawaiian or Other Pacific Islander", "title": "Native Hawaiian or Other Pacific Islander"},
             {"key": "White", "title": "White"},
             {"key": "Multiple races", "title": "Multiple races"},
-            {"key": "Unknown", "title": "Unknown"},
-            {"key": "Asian or Pacific Islander", "title": "Asian or Pacific Islander"},
-            {"key": "Other", "title": "Other"}
+            {"key": "Unknown", "title": "Unknown"}
 
         ];
         var diseaseGenderOptions = [
