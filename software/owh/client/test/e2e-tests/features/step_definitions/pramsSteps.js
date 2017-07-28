@@ -9,10 +9,6 @@ var PRAMSStepDefinitionsWrapper = function () {
     this.setDefaultTimeout(600000);
     var pramsPage = require('../support/prams.po');
 
-    this.When(/^I select PRAMS as primary filter$/, function (next) {
-        pramsPage.pramsOption.click().then(next);
-    });
-
     this.Then(/^I see 'By' filter pre\-selected with State and Question$/, function () {
         var ele = element(by.css('span.ui-select-match'));
         return expect(ele.getText()).to.eventually.equal(' ×\nState\n ×\nQuestion');
@@ -55,7 +51,9 @@ var PRAMSStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on chart icon for 'Indicator of whether delivery was paid for by insurance purchased directly question'$/, function (next) {
-        element(by.id('qn366')).click().then(next)
+        var chartIcon = element(by.id('qn366'));
+        browser.executeScript("arguments[0].scrollIntoView();", chartIcon);
+        chartIcon.click().then(next)
     });
 
     this.Then(/^I see chart being displayed for "([^"]*)" question$/, function (text, next) {
