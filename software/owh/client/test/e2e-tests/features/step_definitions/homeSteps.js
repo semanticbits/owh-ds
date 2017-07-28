@@ -86,5 +86,15 @@ var homeStepDefinitionsWrapper = function () {
         expect(element(by.cssContainingText('a', "Grants & Contracts")).isDisplayed()).to.eventually.equal(false);
         return expect(element(by.cssContainingText('a', "Laws & Regulations")).isDisplayed()).to.eventually.equal(false);
     });
+
+    this.Then(/^footer should have "([^"]*)" links$/, function (arg1, next) {
+        var links = arg1.split(',');
+        var allElements =  element.all(by.className('footer-li'));
+        allElements.getText().then(function (filters) {
+            filters.forEach(function (filter, index) {
+                expect(filter).to.contains(links[index]);
+            });
+        }).then(next);
+    });
 };
 module.exports = homeStepDefinitionsWrapper;

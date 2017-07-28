@@ -41,3 +41,7 @@ Scenario: Co-Branded header
   Then Co-Branded menus should be displayed
   When I click on "Close"
   Then Co-Branded menus should be hidden
+
+Scenario: Footer links
+  When I am at home page
+  Then footer should have "Contact HHS,Privacy Policy,FIOA,Viewers & Players,Womenshealth.gov,HHS.gov,USA.gov" links
