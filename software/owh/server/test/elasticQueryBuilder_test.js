@@ -362,8 +362,26 @@ describe("Build elastic search queries", function(){
         done();
     });
 
+    it("Build search query for tb with country of birth filters ", function(done){
+        var allOptionValues = ["Both sexes", "All races/ethnicities", "All age groups", "National", "No stratification"];
+        var queryWithCountryOfBirth = {"searchFor":"tb","countQueryKey":"cases","query":{"sex":{"key":"sex","queryKey":"sex","value":"Both sexes","primary":false},"transmission":{"key":"transmission","queryKey":"transmission","value":"No stratification","primary":false},"race_ethnicity":{"key":"race","queryKey":"race_ethnicity","value":"All races/ethnicities","primary":false},"current_year":{"key":"current_year","queryKey":"current_year","value":"2015","primary":false},"age_group":{"key":"age_group","queryKey":"age_group","value":"All age groups","primary":false},"state":{"key":"state","queryKey":"state","value":"National","primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"transmission","queryKey":"transmission","size":0},{"key":"race","queryKey":"race_ethnicity","size":0},{"key":"sex","queryKey":"sex","size":0}],"charts":[[{"key":"sex","queryKey":"sex","size":0},{"key":"race","queryKey":"race_ethnicity","size":0}]],"maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}}};
+        var resultQuery = elasticQueryBuilder.buildSearchQuery(queryWithCountryOfBirth, true, allOptionValues);
+        //Make sure main query don't have chart aggregation query
+        expect(resultQuery[0].aggregations.group_chart_0_age_group).to.eql(undefined);
+        //Chart query should have aggregations for selected filters
+        expect(resultQuery[3].length).to.eql(1);
+        //group_chart_0_sex
+        expect(resultQuery[3][0].aggregations.group_chart_0_sex).to.not.eql(undefined);
+        expect(resultQuery[3][0].aggregations.group_chart_0_sex.terms.field).to.eql('sex');
+        expect(resultQuery[3][0].aggregations.group_chart_0_sex.aggregations.group_chart_0_race).to.not.eql(undefined);
+        expect(resultQuery[3][0].aggregations.group_chart_0_sex.aggregations.group_chart_0_race.terms.field).to.eql('race_ethnicity');
+        //Make sure transmission filter present in query
+        expect(resultQuery[3][0].query.filtered.filter.bool.must[3].bool.should[0].term.transmission).to.eql("No stratification");
+        done();
+    });
+
     it("Build search query for aids with multiple filters ", function(done){
-        var allOptionValues = ["Both sexes", "All races/ethnicities", "All age groups", "National"];
+        var allOptionValues = ["Both sexes", "All races/ethnicities", "All age groups", "National", "No stratification"];
         var resultQuery = elasticQueryBuilder.buildSearchQuery(aidsApiQueryWithMultipleFilters, true, allOptionValues);
         //Make sure main query don't have chart aggregation query
         expect(resultQuery[0].aggregations.group_chart_0_age_group).to.eql(undefined);
@@ -384,6 +402,35 @@ describe("Build elastic search queries", function(){
         expect(resultQuery[3][2].aggregations.group_chart_2_sex.terms.field).to.eql('sex');
         expect(resultQuery[3][2].aggregations.group_chart_2_sex.aggregations.group_chart_2_race).to.not.eql(undefined);
         expect(resultQuery[3][2].aggregations.group_chart_2_sex.aggregations.group_chart_2_race.terms.field).to.eql('race_ethnicity');
+        done();
+    });
+
+    it("Build search query for aids with transmission filters ", function(done){
+        var allOptionValues = ["Both sexes", "All races/ethnicities", "All age groups", "National", "No stratification"];
+        var queryWithTransmission = {"searchFor":"aids","countQueryKey":"cases","query":{"sex":{"key":"sex","queryKey":"sex","value":"Both sexes","primary":false},"disease":{"key":"disease","queryKey":"disease","value":"HIV, stage 3 (AIDS)","primary":false},"age_group":{"key":"age_group","queryKey":"age_group","value":"All age groups 13 and up","primary":false},"transmission":{"key":"transmission","queryKey":"transmission","value":"No stratification","primary":false},"race_ethnicity":{"key":"race","queryKey":"race_ethnicity","value":"All races/ethnicities","primary":false},"current_year":{"key":"current_year","queryKey":"current_year","value":"2015","primary":false},"state":{"key":"state","queryKey":"state","value":"National","primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"transmission","queryKey":"transmission","size":0},{"key":"race","queryKey":"race_ethnicity","size":0},{"key":"state","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}],"charts":[[{"key":"race","queryKey":"race_ethnicity","size":0},{"key":"state","queryKey":"state","size":0}],[{"key":"sex","queryKey":"sex","size":0},{"key":"race","queryKey":"race_ethnicity","size":0}],[{"key":"sex","queryKey":"sex","size":0},{"key":"state","queryKey":"state","size":0}]],"maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}}};
+        var resultQuery = elasticQueryBuilder.buildSearchQuery(queryWithTransmission, true, allOptionValues);
+        //Make sure main query don't have chart aggregation query
+        expect(resultQuery[0].aggregations.group_chart_0_age_group).to.eql(undefined);
+        //Chart query should have aggregations for selected filters
+        expect(resultQuery[3].length).to.eql(3);
+        //group_chart_0_race
+        expect(resultQuery[3][0].aggregations.group_chart_0_race).to.not.eql(undefined);
+        expect(resultQuery[3][0].aggregations.group_chart_0_race.terms.field).to.eql('race_ethnicity');
+        expect(resultQuery[3][0].aggregations.group_chart_0_race.aggregations.group_chart_0_state).to.not.eql(undefined);
+        expect(resultQuery[3][0].aggregations.group_chart_0_race.aggregations.group_chart_0_state.terms.field).to.eql('state');
+        expect(resultQuery[3][0].query.filtered.filter.bool.must[4].bool.should[0].term.transmission).to.eql('No stratification');
+        //group_chart_1_sex
+        expect(resultQuery[3][1].aggregations.group_chart_1_sex).to.not.eql(undefined);
+        expect(resultQuery[3][1].aggregations.group_chart_1_sex.terms.field).to.eql('sex');
+        expect(resultQuery[3][1].aggregations.group_chart_1_sex.aggregations.group_chart_1_race).to.not.eql(undefined);
+        expect(resultQuery[3][1].aggregations.group_chart_1_sex.aggregations.group_chart_1_race.terms.field).to.eql('race_ethnicity');
+        expect(resultQuery[3][0].query.filtered.filter.bool.must[4].bool.should[0].term.transmission).to.eql('No stratification');
+        //group_chart_2_sex
+        expect(resultQuery[3][2].aggregations.group_chart_2_sex).to.not.eql(undefined);
+        expect(resultQuery[3][2].aggregations.group_chart_2_sex.terms.field).to.eql('sex');
+        expect(resultQuery[3][2].aggregations.group_chart_2_sex.aggregations.group_chart_2_state).to.not.eql(undefined);
+        expect(resultQuery[3][2].aggregations.group_chart_2_sex.aggregations.group_chart_2_state.terms.field).to.eql('state');
+        expect(resultQuery[3][0].query.filtered.filter.bool.must[4].bool.should[0].term.transmission).to.eql('No stratification');
         done();
     });
 
