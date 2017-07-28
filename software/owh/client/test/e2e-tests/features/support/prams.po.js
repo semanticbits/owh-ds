@@ -30,6 +30,8 @@ var PRAMSSearchPage = function() {
     };
 
     prams.getQuestionTree = function () {
+        var elm = element(by.id('modal-close'));
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
         return element.all(by.css('li[aria-expanded=false] a'));
     };
 };
