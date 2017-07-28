@@ -1014,6 +1014,8 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I select a cause and click on the Filter Selected Cause\(s\) of Death\(s\) button$/, function (next) {
+        var elm = element(by.id('modal-close'));
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
         var until = protractor.ExpectedConditions;
         browser.wait(until.presenceOf(element(by.className('jstree-checkbox'))), 10000, 'Element taking too long to appear in the DOM');
         element(by.className('jstree-checkbox')).click();
