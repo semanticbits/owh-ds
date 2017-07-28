@@ -1,3 +1,4 @@
+@Home
 Feature: Home page
   As a user
   I should be able to access home page
@@ -32,3 +33,15 @@ Scenario: Banner
   Then gray banner on top reads "An official website of the United States Government. This site is work in progress and may contain inaccuracies. If you don't find what you need, visit this site or CDC Wonder."
   When I am at search page
   Then gray banner on top reads "An official website of the United States Government. This site is work in progress and may contain inaccuracies. If you don't find what you need, visit this site or CDC Wonder."
+
+Scenario: Co-Branded header
+  When I am at home page
+  Then I see text on Co-Branded header
+  When I click on "Explore HHS"
+  Then Co-Branded menus should be displayed
+  When I click on "Close"
+  Then Co-Branded menus should be hidden
+
+Scenario: Footer links
+  When I am at home page
+  Then footer should have "Contact HHS,Privacy Policy,FIOA,Viewers & Players,Womenshealth.gov,HHS.gov,USA.gov" links

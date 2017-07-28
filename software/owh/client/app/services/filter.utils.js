@@ -552,8 +552,7 @@
             {"key": "55-64", "title": "55-64"},
             {"key": "55+", "title": "55+"},
             {"key": "60+", "title": "60+"},
-            {"key": "65+", "title": "65+"},
-            {"key": "Unknown", "title": "Unknown"}
+            {"key": "65+", "title": "65+"}
         ];
         var stdAgeGroupOptions = [
             {"key": "All age groups", "title": "All age groups"},
@@ -577,9 +576,7 @@
             {"key": "Native Hawaiian or Other Pacific Islander", "title": "Native Hawaiian or Other Pacific Islander"},
             {"key": "White", "title": "White"},
             {"key": "Multiple races", "title": "Multiple races"},
-            {"key": "Unknown", "title": "Unknown"},
-            {"key": "Asian or Pacific Islander", "title": "Asian or Pacific Islander"},
-            {"key": "Other", "title": "Other"}
+            {"key": "Unknown", "title": "Unknown"}
 
         ];
         var diseaseGenderOptions = [

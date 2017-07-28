@@ -31,8 +31,7 @@
             getMixedTable: getMixedTable,
             setFilterGroupBy: setFilterGroupBy,
             getYrbsQuestionsForTopic: getYrbsQuestionsForTopic,
-            getPramsQuestionsForTopics: getPramsQuestionsForTopics
-
+            getPramsQuestionsForTopics: getPramsQuestionsForTopics,
         };
         return service;
 
