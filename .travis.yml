@@ -69,10 +69,10 @@ script:
   - npm start > /dev/null &
   - sleep 10
   - cd ../client
-  - ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Yrbs,@PRAMS
-  - ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Natality,@Mortality,@Infant
-  - ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Home,@Common,@CancerIncidence
-  - ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Census,@AIDS,@STD,@TB
+  #- ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Yrbs,@PRAMS
+  #- ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Natality,@Mortality,@Infant
+  #- ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Home,@Common,@CancerIncidence
+  #- ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Census,@AIDS,@STD,@TB
 
 after_success:
   - cd ..

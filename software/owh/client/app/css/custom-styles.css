@@ -1347,7 +1347,10 @@ ul.custom-nav-tabs {
 /*Co-Branded Header css ends*/
 
 .contentOwnership {
-	margin-left: 20px;
+	float: right;
+	margin-right: 20px;
+	color: rgba(255,255,255,0.5);
+	font-size: 9px;
 }
 
 .error-404-main-div {
@@ -1368,6 +1371,9 @@ ul.custom-nav-tabs {
 .error-404-msg p{
 	font-size: 14px;
 }
-.hig-formerly-msg {
-	margin-left: 22px;
+.hig-formerly-msg span{
+	margin-right: 101px;
+	float: right;
+	color: rgba(255,255,255,0.5);
+	font-size: 9px;
 }
