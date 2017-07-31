@@ -36,16 +36,11 @@
 
         mc.$onChanges = function() {
             var filters = [];
-            if(mc.selectedFilter.key === 'prams') {
-                filters = mc.showMeOptions.prams;
-            }
-            else if(['number_of_deaths', 'crude_death_rates', 'age-adjusted_death_rates'].indexOf(mc.selectedFilter.tableView) !== -1) {
+            if(['number_of_deaths', 'crude_death_rates',
+                    'age-adjusted_death_rates'].indexOf(mc.selectedFilter.tableView) !== -1) {
                 filters = mc.showMeOptions.deaths;
-            }
-            else if (mc.selectedFilter.key === 'natality'){
-                filters = mc.showMeOptions.natality;
-            } else if (mc.selectedFilter.key === 'mental_health'){
-                filters = mc.showMeOptions.mental_health;
+            } else {
+                filters = mc.showMeOptions[mc.selectedFilter.key];
             }
             angular.forEach(filters, function(filter) {
                 if(filter.key === mc.selectedFilter.tableView) {

@@ -63,7 +63,10 @@ var YRBSSearchPage = function() {
     };
 
     ysp.getSelectedTopic = function () {
-        return element(by.id('tableView')).$('[selected]');
+        var elm = element(by.css('#tableView'));
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
+        return element(by.css('#tableView option:selected'));
+        //return element(by.id('tableView')).$('[selected]');
     };
 };
 
