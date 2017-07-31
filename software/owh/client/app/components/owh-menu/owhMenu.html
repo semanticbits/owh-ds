@@ -29,14 +29,14 @@
                         </div>
                         <div class="width-25-percentile  pull-left sol-right-border  text-left interested-text">
                             <div class="label-form select" ng-if="mc.selectedFilter.key === 'mental_health'">
-                                <span ng-bind="'label.yrbs.healthtopics' | translate" ng-if="mc.showMeOptions[mc.selectedFilter.key]"></span>
+                                <label for="tableView" ng-bind="'label.yrbs.healthtopics' | translate" ng-if="mc.showMeOptions[mc.selectedFilter.key]"></label>
                             </div>
                             <div class="label-form select" ng-if="mc.selectedFilter.key === 'prams'">
-                                <span ng-bind="'label.prams.class' | translate" ng-if="mc.showMeOptions[mc.selectedFilter.key]"></span>
+                                <label for="tableView" ng-bind="'label.prams.class' | translate" ng-if="mc.showMeOptions[mc.selectedFilter.key]"></label>
                             </div>
                             <div class="label-form select" ng-if="mc.selectedFilter.key !== 'mental_health'
                                                                 && mc.selectedFilter.key !== 'prams'">
-                                <span ng-bind="'label.show.me' | translate" ng-if="mc.showMeOptions[mc.selectedFilter.key]"></span>
+                                <label for="tableView" ng-bind="'label.show.me' | translate" ng-if="mc.showMeOptions[mc.selectedFilter.key]"></label>
                             </div>
                             <!--<div class="label-form select"></div>-->
                             <!--<div class="black-one-line dropdown-heading" ng-bind="mc.tableName({filterName: mc.selectedFilter.key, opt: mc.selectedFilter.tableView})">Select categories</div>-->
