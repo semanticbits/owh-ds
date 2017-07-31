@@ -1,3 +1,4 @@
+@Common
 Feature: Common functionality
   As a I view and update filters to view results for my searches
   I want to be able to go back few steps by the 'browser back button' and 'in-application back button' and undo the recently selected filters one at a time
@@ -48,3 +49,9 @@ Scenario: In-application forward and backward buttons
   When I select the forward button in application
   Then I should get search page with default filter type "Bridged-Race Population Estimates"
   #And the results page (yrbs data table) should be refreshed to reflect "Ethnicity" filter with option "Non Hispanic"
+
+Scenario: Access mortality page
+  When I am at home page
+  And I hit wrong url
+  Then I should see error page
+

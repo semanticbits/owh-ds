@@ -1151,3 +1151,30 @@ ul.custom-nav-tabs {
 	background-color: #19826e;
 }
 /*Co-Branded Header css ends*/
+
+.contentOwnership {
+	color: #555;
+	margin-left: 6px;
+}
+
+.error-404-main-div {
+	margin-left: 340px;
+	color: #555;
+}
+.error-msg-h1 {
+	font-size: 100px;
+}
+.error-404-msg {
+	margin-top: -100px;
+}
+.error-404-msg h6{
+	text-transform: none;
+	font-size: 14px;
+	font-weight: bold;
+}
+.error-404-msg p{
+	font-size: 14px;
+}
+.hig-formerly-msg {
+	margin-left: 47px;
+}
