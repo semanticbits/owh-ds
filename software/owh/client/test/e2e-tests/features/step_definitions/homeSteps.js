@@ -96,5 +96,9 @@ var homeStepDefinitionsWrapper = function () {
             });
         }).then(next);
     });
+
+    this.Then(/^I see content ownership statement "([^"]*)"$/, function (arg1) {
+        return expect(element(by.className("contentOwnership")).getText()).to.eventually.contains(arg1);
+    });
 };
 module.exports = homeStepDefinitionsWrapper;
