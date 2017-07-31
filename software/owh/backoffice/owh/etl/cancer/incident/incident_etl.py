@@ -100,7 +100,7 @@ class CancerIncidentETL (ETL):
 
     def updateDsMetadata(self):
         for y in range(2000, 2014):
-            self.loadDataSetMetaData('cancer_incident', str(y), os.path.join(self.dataDirectory, 'data_mapping', 'incidence.json'))
+            self.loadDataSetMetaData('cancer_incident', str(y), os.path.join(self.dataDirectory, 'data_mapping', 'incident.json'))
 
     def validate_etl(self):
         """ Validate the ETL"""

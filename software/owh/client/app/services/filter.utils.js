@@ -1537,7 +1537,7 @@
                     groupBy: false,
                     filterType: 'checkbox',
                     autoCompleteOptions: stateOptions,
-                    doNotShowAll: true,
+                    doNotShowAll: false,
                     defaultGroup:'column',
                     helpText: 'label.help.text.cancer.state'
                 }
