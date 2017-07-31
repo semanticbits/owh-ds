@@ -17,12 +17,13 @@ var MortalitySearchPage = function() {
     msp.placeOfDeathOptionsLink = element(by.partialLinkText('Place of Death'));
     msp.raceOption2Link = element(by.cssContainingText('label', 'White'));
     msp.raceOption2 = element(by.cssContainingText('a', 'Race')).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul')).all(by.tagName('li')).get(3);
-    msp.interestedInSelectBox = element(by.id('interestedIn'));
+    msp.interestedInSelectBox = element(by.id('selectedPrimaryFilterDiv'));
+    msp.interestedInDropdown = element(by.className('dropdown-submenu'));
     msp.deathRatesOption = element(by.cssContainingText('option', 'Crude Death Rates'));
     msp.ageRatesOption = element(by.cssContainingText('option', 'Age Adjusted Death Rates'));
     msp.creduDeathRatesOption = element(by.cssContainingText('option', 'Crude Death Rates'));
     msp.tableViewDropdown = element(by.model('ots.selectedShowFilter'));
-    msp.mainSearch = element(by.tagName('owh-search'));
+    msp.mainSearch = element(by.tagName('owh-menu'));
     msp.deathRateDisclaimer = element(by.id('death-rate-disclaimer'));
     msp.ethnicityHispanicOption = element(by.id('deaths_hispanicOrigin_Hispanic')).element(by.xpath('..'));
     msp.ethnicityDominicanOption = element(by.id('deaths_hispanicOrigin_Dominican')).element(by.xpath('..'));
@@ -34,7 +35,7 @@ var MortalitySearchPage = function() {
     msp.bookmarkButton = element(by.cssContainingText('a', 'Bookmark this Search'));
 
     msp.getSelectedFilterType = function() {
-       return msp.interestedInSelectBox.$('option:checked').getText();
+       return msp.interestedInSelectBox.getText();
     };
 
     msp.getByTypeSelectedFilters = function() {
@@ -58,8 +59,10 @@ var MortalitySearchPage = function() {
     msp.getAxisLabelsForExpandedVisualization= function () {
         //Verify Visualization has 'nv-axislabel' css class for both axis
         //expanded visualization has id starts with '.chart_expanded_'
-        var axis_x_label = element(by.id('chart_expanded_0')).element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-x.nv-axis')).element(by.css('.nv-axislabel'));
-        var axis_y_label = element(by.id('chart_expanded_0')).element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-y.nv-axis')).element(by.css('.nv-axislabel'));
+        var chart = element(by.id('chart_expanded_0'));
+        browser.executeScript("arguments[0].scrollIntoView();", chart);
+        var axis_x_label = chart.element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-x.nv-axis')).element(by.css('.nv-axislabel'));
+        var axis_y_label = chart.element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-y.nv-axis')).element(by.css('.nv-axislabel'));
         return [axis_x_label, axis_y_label]
     };
     msp.getTableHeaders = function() {

@@ -95,6 +95,7 @@
             { "key": "Non-Hispanic Other Races", "title": "Non-Hispanic Other Races" },
             { "key": "Origin unknown or not stated", "title": "Origin unknown or not stated" }
         ];
+
         var singleYearAgeOptions =  [
             { "key": "Under 15 years", "title": "Under 15 years" },
             { "key": "15 years", "title": "15 years" },
@@ -134,6 +135,7 @@
             { "key": "49 years", "title": "49 years" },
             { "key": "50-54 years", "title": "50 years and over"}
         ];
+
         var ageR9Options =  [
             { "key": "Under 15 years", "title": "Under 15 years" },
             { "key": "15-19 years", "title": "15-19 years" },

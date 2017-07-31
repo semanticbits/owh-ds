@@ -32,7 +32,9 @@ var homeStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I should get search page with default filter type "([^"]*)"$/, function (arg1) {
-        return expect(mortalityPage.getSelectedFilterType()).to.eventually.equal(arg1);
+        mortalityPage.getSelectedFilterType().then(function (text) {
+            return expect(text).to.equal(arg1);
+        })
     });
 
     this.When(/^I click on explore button in Birth card under womens health section$/, function (next) {
@@ -88,8 +90,10 @@ var homeStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^footer should have "([^"]*)" links$/, function (arg1, next) {
+        var footer = element(by.className('footer'));
+        browser.executeScript("arguments[0].scrollIntoView();", footer);
         var links = arg1.split(',');
-        var allElements =  element.all(by.className('footer-li'));
+        var allElements =  element.all(by.className('ft-link'));
         allElements.getText().then(function (filters) {
             filters.forEach(function (filter, index) {
                 expect(filter).to.contains(links[index]);

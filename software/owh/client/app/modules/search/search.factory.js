@@ -32,6 +32,8 @@
             setFilterGroupBy: setFilterGroupBy,
             getYrbsQuestionsForTopic: getYrbsQuestionsForTopic,
             getPramsQuestionsForTopics: getPramsQuestionsForTopics,
+            getPrimaryFilterByKey: getPrimaryFilterByKey
+
         };
         return service;
 
@@ -2019,7 +2021,7 @@
 
             filters.search = [
                 {
-                    key: 'deaths', title: 'label.filter.mortality', primary: true, value: [], header:"Mortality",
+                    key: 'deaths', title: 'label.filter.mortality', primary: true, value: [], header:"Detailed Mortality",
                     allFilters: filters.allMortalityFilters, searchResults: searchMortalityResults, showMap: true,
                     chartAxisLabel:'Deaths', countLabel: 'Number of Deaths', mapData:{}, tableView:'number_of_deaths',
                     runOnFilterChange: true, applySuppression:true,
@@ -2083,7 +2085,7 @@
                     ]
                 },
                 {
-                    key: 'mental_health', title: 'label.risk.behavior', primary: true, value:[], header:"Youth risk behavior",
+                    key: 'mental_health', title: 'label.risk.behavior', primary: true, value:[], header:"Youth Risk Behavior",
                     searchResults: searchYRBSResults, dontShowInlineCharting: true,
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total', tableView:'Alcohol and Other Drug Use',
                     chartAxisLabel:'Percentage',
@@ -2923,19 +2925,19 @@
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'disease')
                                 },
                                 {
-                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filterGroup: false, collapse: false, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     onFilterChange: utilService.aidsFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'current_year')
                                 },
                                 {
-                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filterGroup: false, collapse: false, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     onFilterChange: utilService.aidsFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'sex')
                                 },
                                 {
-                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filterGroup: false, collapse: false, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     onFilterChange: utilService.aidsFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'race')
@@ -3012,6 +3014,18 @@
 
             filters.search[1].sideFilters = filters.search[1].basicSideFilters; //Set the default side filters for YRBS to basic
             return filters;
+        }
+
+        function getPrimaryFilterByKey(key) {
+            var allPrimaryFilter = getAllFilters().search;
+            var primaryFilter;
+            for(var i=0; i < allPrimaryFilter.length; i++) {
+                if (allPrimaryFilter[i].key === key) {
+                    primaryFilter = allPrimaryFilter[i];
+                    break;
+                }
+            }
+            return primaryFilter;
         }
 
         /*Show will be implemented in phase two modal*/

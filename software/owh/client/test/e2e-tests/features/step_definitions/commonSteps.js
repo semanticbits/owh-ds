@@ -82,7 +82,9 @@ var commonStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I should see filter type "([^"]*)" selected$/, function (arg) {
-        return expect(commonPage.getSelectedFilterType()).to.eventually.equal(arg);
+        commonPage.getSelectedFilterType().then(function (text) {
+            return expect(text).to.equal(arg);
+        })
     });
 
     this.When(/^I hit wrong url$/, function () {

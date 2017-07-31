@@ -8,14 +8,15 @@ Feature: AIDS/HIV page
     When I am at home page
     And  I click on Explore button in Health Information Gateway section
     Then I should get search page with default filter type "Detailed Mortality"
-    When I change 'I'm interested in' dropdown value to "HIV/AIDS"
+    When I change 'I'm interested in' dropdown
+    Then I see menu appears with data-sets options
+    And I click on Aids dataset
     Then I should see filter type "HIV/AIDS" selected
 
   Scenario: Available filter options and filter order
     Then On the aids page, I should see the filters "Indicator, Year, Sex, Race/Ethnicity, Age Groups, Transmission, State" in order
     When On the aids page, I expand the "Indicator" filter
     Then On the aids page, I should see "AIDS Diagnoses, AIDS Deaths, AIDS Prevalence, HIV Diagnoses, HIV Deaths, HIV Prevalence" options for "Indicator" filter
-    When On the aids page, I expand the "Race/Ethnicity" filter
     Then On the aids page, I should see "All races/ethnicities, American Indian/Alaska Native, Asian, Black/African American, Hispanic/Latino, Multiple races, Native Hawaiian/Other Pacific Islander, White" options for "Race/Ethnicity" filter
     When On the aids page, I expand the "Age Groups" filter
     Then On the aids page, I should see "All age groups, 13-24, 25-34, 35-44, 45-54, 55+" options for "Age Groups" filter
