@@ -85,6 +85,17 @@ var commonStepDefinitionsWrapper = function () {
         commonPage.getSelectedFilterType().then(function (text) {
             return expect(text).to.equal(arg);
         })
-});
+    });
+
+    this.When(/^I hit wrong url$/, function () {
+        return browser.get("/wrongURL");
+    });
+
+    this.Then(/^I should see error page$/, function () {
+        expect(element(by.className("error-msg-h1")).getText()).to.eventually.equal("Oops!");
+        expect(element(by.className("error-404-msg")).getText()).to.eventually.contains("We can't seem to find the page you're looking for.");
+        expect(element(by.className("error-404-msg")).getText()).to.eventually.contains("Error code: 404");
+        return expect(element(by.className("error-404-msg")).getText()).to.eventually.contains("Here are some helpful links instead:");
+    });
 };
 module.exports = commonStepDefinitionsWrapper;

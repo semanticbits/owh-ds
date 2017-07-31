@@ -1,4 +1,4 @@
-@Prams
+@PRAMS
 Feature: PRAMS filters
   As a user
   I want to see the data table upon selection of PRAMS filters

@@ -100,5 +100,13 @@ var homeStepDefinitionsWrapper = function () {
             });
         }).then(next);
     });
+
+    this.Then(/^I see content ownership statement "([^"]*)"$/, function (arg1) {
+        return expect(element(by.className("contentOwnership")).getText()).to.eventually.contains(arg1);
+    });
+
+    this.Then(/^I see "([^"]*)" msg on footer$/, function (arg1) {
+        return expect(element(by.className("hig-formerly-msg")).getText()).to.eventually.contains(arg1);
+    });
 };
 module.exports = homeStepDefinitionsWrapper;
