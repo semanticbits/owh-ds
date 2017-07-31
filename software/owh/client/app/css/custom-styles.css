@@ -13,20 +13,14 @@ html.parallax body {
 	overflow-y: scroll;
 	overflow-x: hidden;
 }*/
-body {
-	font-size: 1.6rem;
-}
-html {
+
+body, html {
 	height: 100%;
-	overflow: hidden;
+	min-height: 100%;
 }
 
 body {
-	perspective: 1px;
-	transform-style: preserve-3d;
-	height: 100vh;
-	overflow-y: scroll;
-	overflow-x: scroll;
+	font-size: 1.6rem;
 }
 
 .header-bar {
@@ -34,24 +28,40 @@ body {
 	position: relative;
 }
 
-.hero-banner {
-	position: relative;
-	padding: 50px;
-	height: 400px;
-	width: 100vw;
-	box-sizing: border-box;
-	transform-style: inherit;
-	background: linear-gradient(45deg, #ac6aa3 0%, #57cbf5 100%);
 
+.home-banner {
+	height: 400px;
+}
+.hero-bg {
+	background-position: center -100px;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	height: 100%;
+	width: 100%;
+	background-image: url('/../images/hero-bg.png');
+	position: relative;
 }
 
-.hero-banner:before {
-	content: "";
+.hero-bg:after {
+	content: '';
+	background: linear-gradient(45deg, #ac6aa3 0%, #57cbf5 100%);
+	opacity: 1;
 	position: absolute;
-	top: 0;
-	bottom: 0;
+	top:0;
 	left:0;
 	right:0;
+	height: 100%;
+	width:100%;
+	mix-blend-mode: overlay;
+}
+
+.hero-container {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+	padding: 50px;
 }
 
 .intro {
@@ -99,16 +109,7 @@ body {
 	transform: translateX(5px);
 }
 
-.hero-banner:before {
-	background-image: url(/../images/hero-bg.png);
-	transform: translateZ(-1px) scale(3);
-	z-index: 0;
-	top: -50%;
-	width: 100%;
-	background-size: 67%;
-	mix-blend-mode: overlay;
-	left: 50%;
-}
+
 a, button {
 	text-decoration: none !important;
 	transition: all 0.2s linear;
@@ -300,7 +301,7 @@ transform:scale(1.3);
 	display: flex;
 	align-items:center;
 	padding: 0;
-	box-shadow: 0 -1px 0 rgba(255,255,255,0.3) inset, 0 0 20px rgba(0,0,0,0.5);
+	box-shadow: 0 1px 0 rgba(255,255,255,0.3) inset, 0 -1px 0 rgba(255,255,255,0.3) inset, 0 10px 20px rgba(0,0,0,0.3);
 }
 
 .logo-container {
@@ -1210,9 +1211,6 @@ ul.custom-nav-tabs {
 	margin-left:-50px;
 	width: 24% !important;
 }
-.interested-in-filter {
-	width: 28% !important;
-}
 
 /*Custom tab css*/
 
@@ -1312,7 +1310,7 @@ ul.custom-nav-tabs {
 	text-decoration: none;
 }
 .co-branded-menus {
-	background: url(https://www.hhs.gov/utilities/cbh/images/cbh-bg.gif) #e9eaeb 0px -40px;
+	background: #104784; /*url(https://www.hhs.gov/utilities/cbh/images/cbh-bg.gif) #e9eaeb 0px -40px;*/
 	height: 44px;
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
