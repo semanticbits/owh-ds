@@ -9,7 +9,15 @@ exports.config = {
   frameworkPath: require.resolve('protractor-cucumber-framework'),
 
   specs: [
-    'features/*.feature'
+    'features/aids.feature',
+    'features/bridge_race.feature',
+    'features/common.feature',
+    'features/home.feature',
+    'features/infant_mortality.feature',
+    'features/mortality.feature',
+    'features/natality.feature',
+    'features/std.feature',
+    'features/tb.feature'
   ],
   cucumberOpts: {
     // require step definitions
