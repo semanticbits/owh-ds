@@ -1270,6 +1270,8 @@ ul.custom-nav-tabs {
 	background-color: #185394;
 	font-size: 14px;
 	text-align: center;
+	z-index: 1;
+	position: relative;
 }
 .co-branded-logo {
 	float: left;

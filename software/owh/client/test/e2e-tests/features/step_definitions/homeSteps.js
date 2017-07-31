@@ -91,7 +91,7 @@ var homeStepDefinitionsWrapper = function () {
 
     this.Then(/^footer should have "([^"]*)" links$/, function (arg1, next) {
         var links = arg1.split(',');
-        var allElements =  element.all(by.className('footer-li'));
+        var allElements =  element.all(by.css('.footer-link li a'));
         allElements.getText().then(function (filters) {
             filters.forEach(function (filter, index) {
                 expect(filter).to.contains(links[index]);
