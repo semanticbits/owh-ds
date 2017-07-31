@@ -99,6 +99,7 @@ Feature: Natality filters
     When I click the "Hide" option
     Then the percentages should be hidden
 
+
   Scenario: State filter
     When I expand "State" filter section
     And  I select "AK" state for "natality"
