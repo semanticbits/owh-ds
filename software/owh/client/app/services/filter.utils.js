@@ -5,12 +5,12 @@
         .module('owh.services').
         service('filterUtils', filterUtils);
 
-    filterUtils.$inject = ['utilService', '$timeout', 'cancerSiteService'];
+    filterUtils.$inject = ['utilService', '$timeout', 'cancerService'];
 
     /**
      * This utility service is used to prepare the OWH search filters.
      */
-    function filterUtils(utilService, $timeout, cancerSiteService) {
+    function filterUtils(utilService, $timeout, cancerService) {
         //filter options
         var yearOptions = [
             { "key": "2015", "title": "2015"},
@@ -1372,90 +1372,6 @@
                 { key: '85+ years', title: '85+ years' }
             ];
 
-            var cancerSites = [
-                { key: '20010', title: '20010' },
-                { key: '20020', title: '20020' },
-                { key: '20030', title: '20030' },
-                { key: '20040', title: '20040' },
-                { key: '20050', title: '20050' },
-                { key: '20060', title: '20060' },
-                { key: '20070', title: '20070' },
-                { key: '20080', title: '20080' },
-                { key: '20090', title: '20090' },
-                { key: '20100', title: '20100' },
-                { key: '21010', title: '21010' },
-                { key: '21020', title: '21020' },
-                { key: '21030', title: '21030' },
-                { key: '21041', title: '21041' },
-                { key: '21042', title: '21042' },
-                { key: '21043', title: '21043' },
-                { key: '21044', title: '21044' },
-                { key: '21045', title: '21045' },
-                { key: '21046', title: '21046' },
-                { key: '21047', title: '21047' },
-                { key: '21048', title: '21048' },
-                { key: '21049', title: '21049' },
-                { key: '21051', title: '21051' },
-                { key: '21052', title: '21052' },
-                { key: '21060', title: '21060' },
-                { key: '21071', title: '21071' },
-                { key: '21072', title: '21072' },
-                { key: '21080', title: '21080' },
-                { key: '21090', title: '21090' },
-                { key: '21100', title: '21100' },
-                { key: '21110', title: '21110' },
-                { key: '21120', title: '21120' },
-                { key: '21130', title: '21130' },
-                { key: '22010', title: '22010' },
-                { key: '22020', title: '22020' },
-                { key: '22030', title: '22030' },
-                { key: '22050', title: '22050' },
-                { key: '22060', title: '22060' },
-                { key: '23000', title: '23000' },
-                { key: '24000', title: '24000' },
-                { key: '25010', title: '25010' },
-                { key: '25020', title: '25020' },
-                { key: '26000', title: '26000' },
-                { key: '27010', title: '27010' },
-                { key: '27020', title: '27020' },
-                { key: '27030', title: '27030' },
-                { key: '27040', title: '27040' },
-                { key: '27050', title: '27050' },
-                { key: '27060', title: '27060' },
-                { key: '27070', title: '27070' },
-                { key: '28010', title: '28010' },
-                { key: '28020', title: '28020' },
-                { key: '28030', title: '28030' },
-                { key: '28040', title: '28040' },
-                { key: '29010', title: '29010' },
-                { key: '29020', title: '29020' },
-                { key: '29030', title: '29030' },
-                { key: '29040', title: '29040' },
-                { key: '30000', title: '30000' },
-                { key: '31010', title: '31010' },
-                { key: '31040', title: '31040' },
-                { key: '32010', title: '32010' },
-                { key: '32020', title: '32020' },
-                { key: '33011', title: '33011' },
-                { key: '33012', title: '33012' },
-                { key: '33041', title: '33041' },
-                { key: '33042', title: '33042' },
-                { key: '34000', title: '34000' },
-                { key: '35011', title: '35011' },
-                { key: '35012', title: '35012' },
-                { key: '35013', title: '35013' },
-                { key: '35021', title: '35021' },
-                { key: '35031', title: '35031' },
-                { key: '35022', title: '35022' },
-                { key: '35041', title: '35041' },
-                { key: '35043', title: '35043' },
-                { key: '36010', title: '36010' },
-                { key: '36020', title: '36020' },
-                { key: '35023', title: '35023' },
-                { key: '37000', title: '37000' },
-                { key: 'Breast-InSitu', title: 'Breast-InSitu' }
-            ];
-
             return [
                 {
                     key: 'current_year',
@@ -1528,11 +1444,27 @@
                     filterType: 'site',
                     selectTitle: 'label.cancer_site.select',
                     updateTitle: 'label.cancer_site.update',
-                    autoCompleteOptions: cancerSiteService.getList(),
-                    tree: cancerSiteService.getSites(),
+                    autoCompleteOptions: cancerService.getList(),
+                    tree: cancerService.getSites(),
                     aggregationKey: 'cancer_site.path',
                     defaultGroup:'row',
                     helpText: 'label.help.text.cancer_sites'
+                },
+                {
+                    key: 'childhood_cancer',
+                    title: 'label.filter.childhood_cancer',
+                    queryKey: 'childhood_cancer',
+                    primary: false,
+                    value: [],
+                    groupBy: false,
+                    filterType: 'site',
+                    selectTitle: 'label.childhood_cancer.select',
+                    updateTitle: 'label.childhood_cancer.update',
+                    autoCompleteOptions: cancerService.getChildhoodCancersList(),
+                    tree: cancerService.getChildhoodCancers(),
+                    aggregationKey: 'childhood_cancer.path',
+                    defaultGroup:'row',
+                    helpText: 'label.help.text.childhood_cancer'
                 },
                 {
                     key: 'state',
@@ -1543,7 +1475,6 @@
                     groupBy: false,
                     filterType: 'checkbox',
                     autoCompleteOptions: stateOptions,
-                    doNotShowAll: true,
                     defaultGroup:'column',
                     helpText: 'label.help.text.cancer.state'
                 }

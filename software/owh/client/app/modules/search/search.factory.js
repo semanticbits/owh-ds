@@ -3003,6 +3003,11 @@
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.conditionGroupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerFilters, 'key', 'childhood_cancer')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.cancerFilters, 'key', 'state')
                                 }

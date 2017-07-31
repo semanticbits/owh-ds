@@ -145,7 +145,11 @@
                     clearSelection(eachFilter)
                 }
             });
-            var showTree = selectedFilter.key === 'ucd-chapter-10' || selectedFilter.key === 'mcd-chapter-10' || selectedFilter.key === 'question' || selectedFilter.key === 'site';
+            var showTree = selectedFilter.key === 'ucd-chapter-10' ||
+                           selectedFilter.key === 'mcd-chapter-10' ||
+                           selectedFilter.key === 'question' ||
+                           selectedFilter.key === 'site' ||
+                           selectedFilter.key === 'childhood_cancer';
             if(!showTree) {
                 searchFactory.showPhaseTwoModal('label.mcd.impl.next');
             }else {
@@ -157,8 +161,21 @@
                         var mc = this;
                         mc.codeKey = selectedFilter.key;
 
-                        mc.entityName = { question: 'Question', 'ucd-chapter-10': 'Cause(s) of Death', 'mcd-chapter-10': 'Cause(s) of Death', site: 'cancer site(s)' }[selectedFilter.key];
-                        mc.modelHeader = { question: 'label.select.question', 'ucd-chapter-10': 'label.cause.death', 'mcd-chapter-10': 'label.cause.death', site: 'label.select.cancer_site' }[selectedFilter.key];
+                        mc.entityName = {
+                            question: 'Question',
+                            'ucd-chapter-10': 'Cause(s) of Death',
+                            'mcd-chapter-10': 'Cause(s) of Death',
+                            site: 'cancer site(s)',
+                            'childhood_cancer': 'childhood cancer(s)'
+                        }[selectedFilter.key];
+
+                        mc.modelHeader = {
+                            question: 'label.select.question',
+                            'ucd-chapter-10': 'label.cause.death',
+                            'mcd-chapter-10': 'label.cause.death',
+                            site: 'label.select.cancer_site',
+                            'childhood_cancer': 'label.select.childhood_cancer'
+                        }[selectedFilter.key];
 
                         mc.optionValues = selectedFilter.selectedNodes ? selectedFilter.selectedNodes : selectedFilter.selectedValues;
 
