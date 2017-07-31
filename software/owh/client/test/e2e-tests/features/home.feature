@@ -45,5 +45,5 @@ Scenario: Co-Branded header
 Scenario: Footer links
   When I am at home page
   Then footer should have "Contact OWH,Privacy Policy,FIOA,Viewers & Players,Womenshealth.gov,HHS.gov,USA.gov" links
-  And I see content ownership statement "Content created by Office on Women's Health and last reviewed on 7/28/2017"
+  And I see content ownership statement "Content created by Office on Women's Health. Content last reviewed on 7/28/2017"
   And I see "Formerly Quick Health Data Online" msg on footer
