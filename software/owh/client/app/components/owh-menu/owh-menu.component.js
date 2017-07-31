@@ -7,7 +7,6 @@
             controller: MenuController,
             controllerAs: 'mc',
             bindings:{
-                filters: '=',
                 showMeOptions: '<',
                 onPrimaryFilter:'&',
                 onViewFilter:'&',

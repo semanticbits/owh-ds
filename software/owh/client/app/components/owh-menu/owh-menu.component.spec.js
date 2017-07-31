@@ -69,29 +69,26 @@ describe('OWH menu component: ', function() {
         expect(back).toHaveBeenCalled();
     });
 
-    /*it('Should show phase two impl', inject(function ($httpBackend, $location) {
-        var showMeOptions = {
-            deaths: [{key: 'crude_death_rates', title: 'Crude Death Rates'}]
-        };
-        var bindings = {showFilters:showMeOptions, tableView: 'crude_death_rates', selectedShowFilter:showMeOptions.deaths[0].key};
-        var ctrl = $componentController('owhSearch', null, bindings);
-        ctrl.$onChanges();
-        expect(ctrl).toBeDefined();
-        ctrl.phaseTwoImpl();
-        expect(ctrl.selectedShowFilter.key).toEqual("crude_death_rates");
-    }));
+    it("should updateGroupByFilter", function () {
+        var searchResults =  jasmine.createSpy('searchResults');
+        var filter = {groupBy:false, defaultGroup:'column'};
+        var bindings = { searchResults:searchResults, tableView: 'crude_death_rates' };
+        var ctrl = $componentController('owhMenu', null, bindings);
+        ctrl.updateGroupByFilter(filter);
+        expect(filter.groupBy).toEqual("column");
 
-    it('Should not show phase two popup for deaths', inject(function ($httpBackend, $location) {
-        var showMeOptions = {
-            deaths: [{key: 'number_of_deaths', title: 'Number of Deaths'}]
-        };
-        var bindings = {showFilters:showMeOptions, tableView: 'number_of_deaths'};
-        var ctrl = $componentController('owhSearch', null, bindings);
-        ctrl.$onChanges();
-        expect(ctrl).toBeDefined();
-        ctrl.phaseTwoImpl();
-        expect(ctrl.selectedShowFilter.key).toEqual("number_of_deaths");
-    }));
+        ctrl.updateGroupByFilter(filter);
+        expect(filter.groupBy).toEqual(false);
+
+    });
+
+    it("should updateGroupByFilter", function () {
+        var onPrimaryFilter =  jasmine.createSpy('onPrimaryFilter');
+        var bindings = { onPrimaryFilter:onPrimaryFilter, tableView: 'crude_death_rates' };
+        var ctrl = $componentController('owhMenu', null, bindings);
+        ctrl.changeFilter();
+        expect(onPrimaryFilter).toHaveBeenCalled();
+    });
 
     it('Should call groupByFiltersUpdated function', inject(function ($httpBackend, $location) {
         var searchResults =  jasmine.createSpy('searchResults');
@@ -105,68 +102,28 @@ describe('OWH menu component: ', function() {
                 autoCompleteOptions: [], defaultGroup:"row"}
         ];
 
-        var filters= {selectedPrimaryFilter: {
-            key: 'deaths', title: 'label.filter.mortality', primary: true, value: [allMortalityFilters[0]], header:"Mortality",
-            allFilters: allMortalityFilters, searchResults: [], showMap:true,
-            countLabel: 'Number of Deaths', mapData:{}, initiated:true }
-        };
-
         var showMeOptions = {
             deaths: [{key: 'crude_death_rates', title: 'Crude Death Rates'}]
         };
+        var filters= {selectedPrimaryFilter: {
+            key: 'deaths', title: 'label.filter.mortality', primary: true, value: [allMortalityFilters[0]], header:"Mortality",
+            allFilters: allMortalityFilters, searchResults: [], showMap:true,
+            countLabel: 'Number of Deaths', mapData:{}, initiated:true ,
+            tableView:'number_of_deaths'}
+        };
 
 
-        var bindings = {showFilters:showMeOptions, filters:filters, searchResults:searchResults, tableView: 'crude_death_rates' };
-        var ctrl = $componentController('owhSearch', null, bindings);
+        var bindings = { showMeOptions:showMeOptions, selectedFilter:filters.selectedPrimaryFilter,
+            searchResults:searchResults, tableView: 'crude_death_rates' };
+        var ctrl = $componentController('owhMenu', null, bindings);
         ctrl.$onChanges();
         expect(ctrl).toBeDefined();
         ctrl.groupByFiltersUpdated(true);
         expect(searchResults).toHaveBeenCalled();
-        expect(ctrl.selectedShowFilter.key).toEqual("crude_death_rates");
+
+       var titles = ctrl.getSelectedFilterTitles();
+
+        expect(titles[0]).toEqual('label.filter.agegroup');
+        expect(titles[1]).toEqual('label.filter.hispanicOrigin');
     }));
-
-    it('Should call groupByFiltersUpdated function with added false', inject(function ($httpBackend, $location) {
-        var searchResults =  jasmine.createSpy('searchResults');
-        var allMortalityFilters = [
-            {key: 'agegroup', title: 'label.filter.agegroup', queryKey:"age_5_interval",
-                primary: false, value: [], groupBy: false, type:"label.filter.group.demographics",
-                filterType: 'slider', autoCompleteOptions: [], showChart: true,
-                sliderOptions: [], sliderValue: '-5;105', timer: undefined, defaultGroup:"row"},
-            {key: 'hispanicOrigin', title: 'label.filter.hispanicOrigin', queryKey:"hispanic_origin",
-                primary: false, value: [], groupBy: false, type:"label.filter.group.demographics",
-                autoCompleteOptions: [], defaultGroup:"row"}
-        ];
-
-        var filters= {selectedPrimaryFilter: {
-            key: 'deaths', title: 'label.filter.mortality', primary: true, value: [allMortalityFilters[0]], header:"Mortality",
-            allFilters: allMortalityFilters, searchResults: [], showMap:true,
-            countLabel: 'Number of Deaths', mapData:{}, initiated:false }
-        };
-
-        var showMeOptions = {
-            deaths: [{key: 'crude_death_rates', title: 'Crude Death Rates'}]
-        };
-        var bindings = {showFilters:showMeOptions, filters:filters, searchResults:searchResults, tableView: 'crude_death_rates' };
-        var ctrl = $componentController('owhSearch', null, bindings);
-        ctrl.$onChanges();
-        expect(ctrl).toBeDefined();
-        ctrl.groupByFiltersUpdated(false);
-        expect(ctrl.selectedShowFilter.key).toEqual("crude_death_rates");
-
-    }));
-
-
-    it("goForward", function () {
-        var fwd = spyOn(history, 'forward');
-        var ctrl = $componentController('owhSearch', null, {});
-        ctrl.goForward();
-        expect(fwd).toHaveBeenCalled();
-    });
-
-    it("goBackward", function () {
-        var back = spyOn(history, 'back');
-        var ctrl = $componentController('owhSearch', null, {});
-        ctrl.goBackward();
-        expect(back).toHaveBeenCalled();
-    });*/
 });
