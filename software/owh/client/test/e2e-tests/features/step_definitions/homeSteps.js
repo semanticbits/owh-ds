@@ -90,6 +90,8 @@ var homeStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^footer should have "([^"]*)" links$/, function (arg1, next) {
+        var footer = element(by.className('footer'));
+        browser.executeScript("arguments[0].scrollIntoView();", footer);
         var links = arg1.split(',');
         var allElements =  element.all(by.className('ft-link'));
         allElements.getText().then(function (filters) {
