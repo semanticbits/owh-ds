@@ -87,6 +87,7 @@ var BridgeRaceSearchPage = function() {
     };
 
     brs.collapseGraph = function () {
+        browser.executeScript("arguments[0].scrollIntoView();", brs.collapseGraphLink);
         return brs.collapseGraphLink.click();
     };
 

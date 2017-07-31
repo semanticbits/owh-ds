@@ -243,15 +243,16 @@
                     }
                     if(eachPrimaryData && eachPrimaryData[filter2.key]) {
                         angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2) , function (secondaryOption,j) {
-                            var eachSecondaryData = utilService.findByKeyAndValue(eachPrimaryData[filter2.key], 'name', secondaryOption.key);
-                            var value = undefined;
-                            if(eachSecondaryData) {
-                                value = getValueFromData(primaryFilter, eachSecondaryData);
+                            if (!secondaryOption.disabled) {
+                                var eachSecondaryData = utilService.findByKeyAndValue(eachPrimaryData[filter2.key], 'name', secondaryOption.key);
+                                var value = undefined;
+                                if (eachSecondaryData) {
+                                    value = getValueFromData(primaryFilter, eachSecondaryData);
+                                }
+                                if (value !== undefined) {
+                                    primaryDataObj.values.push({ "label": secondaryOption.title, "value": value });
+                                }
                             }
-                            if (value !== undefined) {
-                                primaryDataObj.values.push({"label":secondaryOption.title, "value": value});
-                            }
-
                         });
                         multiChartBarData.push(primaryDataObj);
                     }
@@ -643,6 +644,31 @@
             return chartData;
         }
 
+        function countBars(data) {
+            var count = 0;
+            for (var i = 0; i < data.length; i++) {
+                if (Array.isArray(data[i].values)) {
+                    count += countBars(data[i].values);
+                }
+                else {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        function countStackedBars(data) {
+            var count = 0;
+            for (var i = 0; i < data.length; i++) {
+                if (Array.isArray(data[i].values)) {
+                    count = Math.max(count, countBars(data[i].values));
+                }
+            }
+
+            return Math.max(count, data.length);
+        }
+
         /*Show expanded graphs with whole set of features*/
         function showExpandedGraph(chartData, tableView, graphTitle, graphSubTitle,
                                    chartTypes, primaryFilters, selectedQuestion) {
@@ -654,10 +680,21 @@
                 var allExpandedChartDatas = [];
                 graphTitle = graphTitle ? graphTitle : (chartData.length > 1? 'label.graph.expanded': chartData[0].title);
                 angular.forEach(chartData, function(eachChartData) {
+                    var barsCount = eachChartData.options.chart.stacked ? countStackedBars(eachChartData.data) : countBars(eachChartData.data);
+
                     var expandedChartData = angular.copy(eachChartData);
                     /*Update chartData options*/
+
                     expandedChartData.options.chart.height = 500;
                     expandedChartData.options.chart.width = 750;
+
+                    if (eachChartData.options.chart.type === "multiBarChart") {
+                        expandedChartData.options.chart.width = Math.max(750, barsCount * 15);
+                    }
+                    else if (eachChartData.options.chart.type === "multiBarHorizontalChart") {
+                        expandedChartData.options.chart.height = Math.max(500, barsCount * 15);
+                    }
+
                     expandedChartData.options.chart.showLegend = true;
                     //If Rates selected then not enabling controls(grouped, stacked) for expanded visualizations and default view set to grouped.
                     if(tableView && tableView.indexOf('rate') >= 0) {

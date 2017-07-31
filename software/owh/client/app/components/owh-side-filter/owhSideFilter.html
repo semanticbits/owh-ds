@@ -15,7 +15,7 @@
             <li class="accordion" ng-repeat="sideFilter in category.sideFilters | orderBy: sfc.getFilterOrder"
                 ng-class="{'cursor-not-allowed disabled-filter': !sfc.isVisible(sideFilter) || sideFilter.disabled }"
                 ng-init="group = (sideFilter.filterGroup ? sideFilter : sideFilter.filters)"
-                ng-if="!categoryKey || $index < 2 || sfc.filters.selectedPrimaryFilter['cat'+$parent.$index]">
+                ng-if="!categoryKey || $index < 2 || sfc.filters.selectedPrimaryFilter['cat' + $parent.$index]">
 
                 <span ng-class="{'disabled-filter': !sfc.isVisible(sideFilter) || sideFilter.disabled }" ng-if="group.filterType === 'slider'">
                     <label class="side-pane-label custom-label">

@@ -11,6 +11,7 @@ var yrbsStepDefinitionsWrapper = function () {
     var commonPage = require('../support/commonpage.po');
 
     this.When(/^I select YRBS as primary filter$/, function (next) {
+        commonPage.interestedInSelectBox.click();
         yrbsPage.yrbsOption.click().then(next);
     });
 
@@ -708,9 +709,9 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I see "([^"]*)" filter on the top of the page$/, function (arg1, next) {
-        element.all(by.css('select[ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.mental_health"]')).then(function (element){
-            expect(element.length).to.equal(1);
-           expect(element[0].isPresent()).to.eventually.equal(true);
+        element.all(by.css('#tableView')).then(function (elmt){
+           expect(elmt.length).to.equal(1);
+           expect(elmt[0].isPresent()).to.eventually.equal(true);
         }).then(next());
     });
 
@@ -719,10 +720,10 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I see only "([^"]*)" category in the result table$/, function (arg1) {
-        yrbsPage.getCategoryBars().then(function(elements) {
-            expect(elements.length).to.equal(1);
-            expect(elements[0].isDisplayed()).to.eventually.equal(true);
-            return expect(elements[0].getText()).to.eventually.equal(arg1);
+        yrbsPage.getCategoryBars().then(function(elmt) {
+            expect(elmt.length).to.equal(1);
+            expect(elmt[0].isDisplayed()).to.eventually.equal(true);
+            return expect(elmt[0].getText()).to.eventually.equal(arg1);
         });
     });
 
