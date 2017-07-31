@@ -96,7 +96,8 @@
             "label.filter.std": [],
             "label.filter.tb": [],
             "label.filter.aids": [],
-            "label.filter.cancer_incident": []
+            "label.filter.cancer_incident": [],
+            "label.filter.cancer_mortality": []
         };
 
         sc.optionsGroup = {
@@ -133,6 +134,7 @@
             tb:{},
             aids: {},
             cancer_incident: {},
+            cancer_mortality: {},
             mental_health:{},
             natality:{},
             prams:{},
@@ -333,12 +335,16 @@
         var stdFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'std');
         var tbFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'tb');
         var aidsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'aids');
+        var cancerIncidenceFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'cancer_incident');
+        var cancerMortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'cancer_mortality');
 
         angular.extend(mortalityFilter.mapData, mapOptions);
         angular.extend(bridgeRaceFilter.mapData, mapOptions);
         angular.extend(stdFilter.mapData, mapOptions);
         angular.extend(tbFilter.mapData, mapOptions);
         angular.extend(aidsFilter.mapData, mapOptions);
+        angular.extend(cancerIncidenceFilter.mapData, mapOptions);
+        angular.extend(cancerMortalityFilter.mapData, mapOptions);
 
         function updateCharts() {
             angular.forEach(sc.filters.selectedPrimaryFilter.chartData, function (chartData) {

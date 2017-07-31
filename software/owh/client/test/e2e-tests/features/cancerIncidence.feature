@@ -20,4 +20,4 @@ Scenario: Data table defaults
     Then On the cancer incidence page, the values in row "4" should be "Unknown, 21,459 (44.9%), 26,316 (55.1%), 47,775"
 
 Scenario: Cancer Incidence charts
-    Then On the cancer incidence page, the visiualization is displayed
+    Then On the cancer incidence page, the visualization is displayed
