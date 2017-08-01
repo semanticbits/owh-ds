@@ -1,0 +1,21 @@
+<div class="usa-grid">
+    <ng-include src="'app/partials/disclaimer.html'"></ng-include>
+    <ng-include src="'app/partials/topBanner.html'"></ng-include>
+</div>
+
+<div class="usa-grid">
+    <hr>
+    Filtering Options
+    <div ng-bind="dsc.getFilterInfo().title">
+        <hr>
+    </div>
+</div>
+
+<div class="usa-grid">
+    <button ng-click="$state.go('search')">Explore Dataset</button>
+    How Rates Are Calculated
+</div>
+
+
+
+<owh-footer></owh-footer>
