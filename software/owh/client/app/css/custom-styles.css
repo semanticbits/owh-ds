@@ -1347,9 +1347,10 @@ ul.custom-nav-tabs {
 /*Co-Branded Header css ends*/
 
 .contentOwnership {
-	float: right;
-	margin-right: 20px;
-	color: rgba(255,255,255,0.5);
+	text-align: right;
+	font-size: 9px;
+}
+.contentOwnership span {
 	font-size: 9px;
 }
 
