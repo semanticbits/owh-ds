@@ -1315,7 +1315,7 @@ ul.custom-nav-tabs {
 	text-decoration: none;
 }
 .co-branded-menus {
-	background: #104784; /*url(https://www.hhs.gov/utilities/cbh/images/cbh-bg.gif) #e9eaeb 0px -40px;*/
+	background: url(https://www.hhs.gov/utilities/cbh/images/cbh-bg.gif) #e9eaeb 0px -40px;
 	height: 44px;
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
