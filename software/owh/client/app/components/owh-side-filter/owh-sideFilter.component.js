@@ -280,7 +280,7 @@
                 if ( group.allChecked === false ) {
                     // When All is unchecked, select all other values
                     angular.forEach(group.autoCompleteOptions, function(option){
-                        group.value.push(option.key)
+                        group.value.push(option.key);
                     });
                 } else {
                     // When All is selected, unselect individual values

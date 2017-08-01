@@ -26,9 +26,12 @@
                 controller: 'SearchController',
                 controllerAs: 'sc',
                 params: {primaryFilterKey: 'deaths', allFilters: null, selectedFilters: null, tableView: 'number_of_deaths', cacheQuery: false}
+        }).state('404',  {
+            url:'/404',
+            templateUrl: '404.html'
         });
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/404');
 
         // configures staticFilesLoader
         $translateProvider.useStaticFilesLoader({

@@ -1,0 +1,27 @@
+<div class="usa-grid">
+    <ng-include src="'app/partials/disclaimer.html'"></ng-include>
+    <ng-include src="'app/partials/coBrandedHeader.html'"></ng-include>
+</div>
+<div class="usa-grid-full">
+    <div class="usa-width-one-whole sp-header">
+        <div class="usa-width-one-sixth sp-icon-div cursor-pointer">
+            <img ui-sref="home" src="../images/owh-logo-white.svg" alt="owh_white_logo" height="60" width="200"/>
+        </div>
+        <div class="usa-width-one-third cursor-pointer">
+            <img ui-sref="home" src="../images/hig-logo-white.svg" alt="HIG Logo" height="60" width="300"/>
+        </div>
+    </div>
+</div>
+<div class="usa-grid-full error-404-main-div">
+    <div class="usa-width-one-half error-404-msg">
+        <h1 class="error-msg-h1">Oops!</h1>
+        <h2>We can't seem to find the page you're looking for.</h2>
+        <h6>Error code: 404</h6>
+        <p>Here are some helpful links instead:</p>
+        <ul>
+            <li><a ui-sref="home">Home</a></li>
+        </ul>
+    </div>
+    <div class="usa-width-one-half"></div>
+</div>
+<owh-footer></owh-footer>

@@ -1,7 +1,6 @@
 var PRAMSSearchPage = function() {
     var prams = this;
 
-    prams.pramsOption = element(by.cssContainingText('option', 'Pregnancy Risk Assessment Monitoring System'));
     prams.dataTable = element(by.className('owh-data-table'));
 
     prams.getSelectedPramsClass = function () {
@@ -31,6 +30,8 @@ var PRAMSSearchPage = function() {
     };
 
     prams.getQuestionTree = function () {
+        var elm = element(by.id('modal-close'));
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
         return element.all(by.css('li[aria-expanded=false] a'));
     };
 };
