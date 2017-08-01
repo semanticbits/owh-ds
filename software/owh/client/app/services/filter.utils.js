@@ -5,12 +5,12 @@
         .module('owh.services').
         service('filterUtils', filterUtils);
 
-    filterUtils.$inject = ['utilService', '$timeout', '$rootScope'];
+    filterUtils.$inject = ['utilService', '$timeout'];
 
     /**
      * This utility service is used to prepare the OWH search filters.
      */
-    function filterUtils(utilService, $timeout, $rootScope) {
+    function filterUtils(utilService, $timeout) {
         //filter options
         var yearOptions = [
             { "key": "2015", "title": "2015"},
