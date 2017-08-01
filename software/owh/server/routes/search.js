@@ -220,13 +220,13 @@ function search(q) {
                 deferred.resolve(resData);
             });
         });
-    } else if (preparedQuery.apiQuery.searchFor === 'cancer_incident') {
+    } else if (preparedQuery.apiQuery.searchFor === 'cancer_incident' || preparedQuery.apiQuery.searchFor === 'cancer_mortality') {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
         var es = new elasticSearch();
         Q.all([
-            es.aggregateCancerData(sideFilterQuery, isStateSelected),
-            es.aggregateCancerData(finalQuery, isStateSelected)
+            es.aggregateCancerData(sideFilterQuery, preparedQuery.apiQuery.searchFor),
+            es.aggregateCancerData(finalQuery, preparedQuery.apiQuery.searchFor)
         ]).spread(function (sideFilterResults, results) {
             var resData = {};
             resData.queryJSON = q;
@@ -240,4 +240,3 @@ function search(q) {
 };
 
 module.exports = searchRouter;
-

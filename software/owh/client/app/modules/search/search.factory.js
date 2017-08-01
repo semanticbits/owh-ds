@@ -130,11 +130,12 @@
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
-            else if (response.data.queryJSON.key  === 'cancer_incident') {
+            else if (response.data.queryJSON.key  === 'cancer_incident' || response.data.queryJSON.key  === 'cancer_mortality') {
                 primaryFilter.data = response.data.resultData.nested.table;
                 populateSideFilterTotals(primaryFilter, response.data);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
+                mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
             //make sure side filters are in proper order
             angular.forEach(primaryFilter.sideFilters, function (category) {
@@ -1760,7 +1761,8 @@
             filters.stdFilters = filterUtils.getSTDDataFilters();
             filters.tbFilters = filterUtils.getTBDataFilters();
             filters.aidsFilters = filterUtils.getAIDSFilters();
-            filters.cancerFilters = filterUtils.getCancerFilters();
+            filters.cancerIncidenceFilters = filterUtils.cancerIncidenceFilters();
+            filters.cancerMortalityFilters = filterUtils.cancerMortalityFilters();
 
             filters.pramsTopicOptions = [
                 {"key": "cat_45", "title": "Delivery Method"},
@@ -2966,7 +2968,7 @@
                 },
                 {
                     key: 'cancer_incident', title: 'label.filter.cancer_incident', primary: true, value: [], header: 'Cancer Incidence',
-                    allFilters: filters.cancerFilters, searchResults: searchCancerResults, showMap: false, countLabel: 'Total Incidences',
+                    allFilters: filters.cancerIncidenceFilters, searchResults: searchCancerResults, showMap: true, countLabel: 'Total Incidence',
                     mapData: {}, chartAxisLabel: 'Incidence', tableView: 'cancer_incident', runOnFilterChange: true,
                     sideFilters: [
                         {
@@ -2974,37 +2976,88 @@
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
-                                    filters: utilService.findByKeyAndValue(filters.cancerFilters, 'key', 'current_year')
+                                    filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'current_year')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
-                                    filters: utilService.findByKeyAndValue(filters.cancerFilters, 'key', 'sex')
+                                    filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'sex')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
-                                    filters: utilService.findByKeyAndValue(filters.cancerFilters, 'key', 'race')
+                                    filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'race')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
-                                    filters: utilService.findByKeyAndValue(filters.cancerFilters, 'key', 'hispanic_origin')
+                                    filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'hispanic_origin')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
-                                    filters: utilService.findByKeyAndValue(filters.cancerFilters, 'key', 'age_group')
+                                    filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'age_group')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.conditionGroupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'site')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.conditionGroupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'childhood_cancer')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
-                                    filters: utilService.findByKeyAndValue(filters.cancerFilters, 'key', 'site')
+                                    filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'state')
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    key: 'cancer_mortality', title: 'label.filter.cancer_mortality', primary: true, value: [], header: 'Cancer Mortality',
+                    allFilters: filters.cancerMortalityFilters, searchResults: searchCancerResults, showMap: true, countLabel: 'Total Deaths',
+                    mapData: {}, chartAxisLabel: 'Deaths', tableView: 'cancer_mortality', runOnFilterChange: true,
+                    sideFilters: [
+                        {
+                            sideFilters: [
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'current_year')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
-                                    filters: utilService.findByKeyAndValue(filters.cancerFilters, 'key', 'state')
+                                    filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'sex')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'race')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'hispanic_origin')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'age_group')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.conditionGroupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'site')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'state')
                                 }
                             ]
                         }
