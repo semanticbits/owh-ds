@@ -1090,8 +1090,7 @@
          */
         function brfsFilterChange(filter, categories) {
             var sideFilters = [];
-            if((filter.value.length > 0 && filter.key !== 'state' )
-                || filter.groupBy) {
+            if(filter.value.length > 0 || filter.groupBy) {
                 angular.forEach(categories, function (category) {
                     sideFilters = sideFilters.concat(category.sideFilters);
                 });
