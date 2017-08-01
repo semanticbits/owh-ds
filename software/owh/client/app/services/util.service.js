@@ -1064,10 +1064,9 @@
                             sideFilter.filters.groupBy = "column";
                         }
                     } else if(sideFilter.allowGrouping) {
-                        if (sideFilter.filters.key !== 'state') {
+                        if (sideFilter.filters.key !== 'state'
+                            && sideFilter.filters.groupBy === 'column') {
                             sideFilter.filters.value = [];
-                        }
-                        if (sideFilter.filters.groupBy === 'column') {
                             sideFilter.filters.groupBy = false;
                         }
                     }

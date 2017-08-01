@@ -3323,7 +3323,6 @@
                                     allowGrouping: true,
                                     groupOptions: filters.columnGroupOptions,
                                     dontShowCounts: true,
-                                    onFilterChange: utilService.brfsFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'state')
                                 },
                                 {
