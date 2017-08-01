@@ -1,7 +1,7 @@
 var YRBSSearchPage = function() {
     var ysp = this;
 
-    ysp.yrbsOption = element(by.cssContainingText('option', 'Youth Risk Behavior'));
+    ysp.yrbsOption = element(by.cssContainingText('a', 'Youth Risk Behavior'));
     ysp.sideFilterUnOrderedList = element(by.css('.side-filters'));
     //ysp.selectQuestionsButton = element(by.cssContainingText('button', 'Select Questions'));
     ysp.updateQuestionsButton = element(by.cssContainingText('button', 'Update Questions'));
@@ -13,7 +13,9 @@ var YRBSSearchPage = function() {
     ysp.sexualContact = element(by.partialLinkText('Sex of Sexual Contacts'));
     ysp.raceOptionsLink = element(by.partialLinkText('Race/Ethnicity'));
 
-    ysp.selectQuestionsButton = function(val){
+    ysp.selectQuestionsButton = function(val) {
+        var elm = element(by.cssContainingText('button', val));
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
         return element(by.cssContainingText('button', val));
     };
 
@@ -61,7 +63,10 @@ var YRBSSearchPage = function() {
     };
 
     ysp.getSelectedTopic = function () {
-        return element(by.css('select[ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.mental_health"]')).$('[selected]');
+        var elm = element(by.css('#tableView'));
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
+        return element(by.css('#tableView option:selected'));
+        //return element(by.id('tableView')).$('[selected]');
     };
 };
 

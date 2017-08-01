@@ -8,12 +8,12 @@ Feature: As a User
 
   Scenario: Access YRBS page from home page
     Given I am on search page
-    When I select YRBS as primary filter
+    When I change 'I'm interested in' dropdown value to "Youth Risk Behavior"
     Then I should get search page with default filter type "Youth Risk Behavior"
 
   Scenario: Accesss YRBS from search page
     Given I am on search page
-    When I select YRBS as primary filter
+    When I change 'I'm interested in' dropdown value to "Youth Risk Behavior"
     Then the default filter pre-selected should be Race
     And side menu slides back into view
 
@@ -45,7 +45,7 @@ Feature: As a User
 
   Scenario: show chart for each question
    Given I am on search page
-   When I select YRBS as primary filter
+    When I change 'I'm interested in' dropdown value to "Youth Risk Behavior"
    #Then each question should have chart icon displayed
 
   Scenario: sort order
@@ -141,7 +141,7 @@ Feature: As a User
 
   Scenario: Check/un-check questions
     Given I am on search page
-    When I select YRBS as primary filter
+    When I change 'I'm interested in' dropdown value to "Youth Risk Behavior"
     And  I click on "Select Questions" button
     When I expand one of the nodes
     Then I see checkboxes for the questions in a tree
@@ -153,7 +153,7 @@ Feature: As a User
 
   Scenario: Browser back button
     Given I am on search page
-    When I select YRBS as primary filter
+    When I change 'I'm interested in' dropdown value to "Youth Risk Behavior"
     Then I should get search page with default filter type "Youth Risk Behavior"
     When I expand "Race/Ethnicity" filter section
     And  filter "Race/Ethnicity" and option "Asian" selected
@@ -189,7 +189,7 @@ Feature: As a User
 
   Scenario: Bookmark Advanced and Basic search
     Given I am on search page
-    When I select YRBS as primary filter
+    When I change 'I'm interested in' dropdown value to "Youth Risk Behavior"
     Then I should get search page with default filter type "Youth Risk Behavior"
     When I see a link "Switch to Advanced Search" at the top of the sidebar
     And I expand "Race/Ethnicity" filter section
@@ -211,7 +211,7 @@ Feature: As a User
 
   Scenario: Select only 'State' filter as column
     Given I am on search page
-    When I select YRBS as primary filter
+    When I change 'I'm interested in' dropdown value to "Youth Risk Behavior"
     Then I should get search page with default filter type "Youth Risk Behavior"
     When I click on "Select Questions" button
     And I select a few questions and clicks on the Add Selected Question(s) button
@@ -243,7 +243,7 @@ Feature: As a User
 
   Scenario: Show/Hide Confidence Intervals for variance filter - YRBS Basic Search
     Given I am on search page
-    When I select YRBS as primary filter
+    When I change 'I'm interested in' dropdown value to "Youth Risk Behavior"
     Then I should get search page with default filter type "Youth Risk Behavior"
     When I click on Confidence Intervals option's "Show" button
     Then "Show" button for Confidence Intervals should be remain selected

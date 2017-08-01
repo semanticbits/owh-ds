@@ -55,7 +55,12 @@ Feature: Natality filters
     And I see expected filters should be disabled for Fertility Rates
     And years "2000", "2001", "2002" should be disabled for Year filter
     And the data table must show Births, Female Population and Birth Rates
+    When I expand "1-Year Age Groups" filter section
+    And I expand "+ 34 more" filter section
+    Then age group filter options should be disabled for "1-Year Age Groups" filter
     When I expand "5-Year Age Groups" filter section
+    And I expand "+ 6 more" filter section
+    Then age group filter options should be disabled for "5-Year Age Groups" filter
     And  filter "5-Year Age Groups" and option "15-19 years" selected
     Then the data table should display values filtered by age selected
     When  I select groupBy "Row" option for "State" filter
@@ -71,7 +76,7 @@ Feature: Natality filters
 
   Scenario: 5- Year Age Group
     Then I expand "5-Year Age Groups" filter section
-    And I expand "+ 3 more" filter section
+    And I expand "+ 6 more" filter section
     And I should see "5-Year Age Groups" options under Mother Age category for 5-Year age group
     Then I select "Year" value "2003"
     And I un-select "Year" value "2015"
@@ -81,7 +86,7 @@ Feature: Natality filters
 
   Scenario: 1- Year Age Group
     Then I expand "1-Year Age Groups" filter section
-    And I expand "+ 27 more" filter section
+    And I expand "+ 34 more" filter section
     And I should see "1-Year Age Groups" options under Mother Age category for 1-Year age group
     Then I select "Year" value "2003"
     And I un-select "Year" value "2015"

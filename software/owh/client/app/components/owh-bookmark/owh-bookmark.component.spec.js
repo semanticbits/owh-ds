@@ -25,6 +25,7 @@ describe('bookmark component: ', function() {
         $templateCache.put('app/components/owh-bookmark/bookmark.html', 'app/components/owh-bookmark/bookmark.html');
 
         $httpBackend.whenGET('app/i18n/messages-en.json').respond({ hello: 'World' });
+        $httpBackend.whenGET('404.html').respond( $templateCache.get('404.html'));
         $httpBackend.whenGET('app/partials/marker-template.html').respond( $templateCache.get('app/partials/marker-template.html'));
         $httpBackend.whenGET('app/components/owh-bookmark/bookmark.html').respond( $templateCache.get('app/components/owh-bookmark/bookmark.html'));
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 11111}});

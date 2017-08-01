@@ -85,6 +85,15 @@
         function getCellFromJson(cellJson, convertNumbers) {
             var cell = {v: cellJson.title };
 
+            if (cell.v % 1 == 0) {
+                cell.z = XLSX.SSF._table[3];
+            }
+
+            else {
+                XLSX.SSF._table[164] = '#.0';
+                cell.z = XLSX.SSF._table[164];
+            }
+
             if(typeof cell.v === 'number') cell.t = 'n';
             else if(typeof cell.v === 'boolean') cell.t = 'b';
             else if(cell.v instanceof Date) {
@@ -96,6 +105,7 @@
                 if(convertNumbers) {
                     //check if string is parsable as integer and make sure doesn't contain letters
                     var numberValue = parseFloat(cell.v.replace(',', ''));
+
                     if(!isNaN(numberValue) && !cell.v.match(/[a-z]/i)) {
                         cell.v = numberValue;
                         cell.t = 'n';

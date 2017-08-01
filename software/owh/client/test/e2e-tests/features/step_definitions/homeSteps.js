@@ -32,7 +32,9 @@ var homeStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I should get search page with default filter type "([^"]*)"$/, function (arg1) {
-        return expect(mortalityPage.getSelectedFilterType()).to.eventually.equal(arg1);
+        mortalityPage.getSelectedFilterType().then(function (text) {
+            return expect(text).to.equal(arg1);
+        })
     });
 
     this.When(/^I click on explore button in Birth card under womens health section$/, function (next) {
@@ -65,6 +67,46 @@ var homeStepDefinitionsWrapper = function () {
         homePage.getOWHAppName().then(function(appName){
             expect(appName).to.equal(arg1)
         }).then(next);
+    });
+
+    this.Then(/^I see text on Co\-Branded header$/, function () {
+        expect(element(by.cssContainingText('a', "HHS.gov")).isDisplayed()).to.eventually.equal(true);
+        expect(element(by.cssContainingText('a', "U.S. Department of Health & Human Services")).isDisplayed()).to.eventually.equal(true);
+        return expect(element(by.cssContainingText('a', "Explore HHS")).isDisplayed()).to.eventually.equal(true);
+    });
+
+    this.Then(/^Co\-Branded menus should be displayed$/, function () {
+        expect(element(by.cssContainingText('a', "About HHS")).isDisplayed()).to.eventually.equal(true);
+        expect(element(by.cssContainingText('a', "Programs & Services")).isDisplayed()).to.eventually.equal(true);
+        expect(element(by.cssContainingText('a', "Grants & Contracts")).isDisplayed()).to.eventually.equal(true);
+        return expect(element(by.cssContainingText('a', "Laws & Regulations")).isDisplayed()).to.eventually.equal(true);
+    });
+
+    this.Then(/^Co\-Branded menus should be hidden$/, function () {
+        expect(element(by.cssContainingText('a', "About HHS")).isDisplayed()).to.eventually.equal(false);
+        expect(element(by.cssContainingText('a', "Programs & Services")).isDisplayed()).to.eventually.equal(false);
+        expect(element(by.cssContainingText('a', "Grants & Contracts")).isDisplayed()).to.eventually.equal(false);
+        return expect(element(by.cssContainingText('a', "Laws & Regulations")).isDisplayed()).to.eventually.equal(false);
+    });
+
+    this.Then(/^footer should have "([^"]*)" links$/, function (arg1, next) {
+        var footer = element(by.className('footer'));
+        browser.executeScript("arguments[0].scrollIntoView();", footer);
+        var links = arg1.split(',');
+        var allElements =  element.all(by.className('ft-link'));
+        allElements.getText().then(function (filters) {
+            filters.forEach(function (filter, index) {
+                expect(filter).to.contains(links[index]);
+            });
+        }).then(next);
+    });
+
+    this.Then(/^I see content ownership statement "([^"]*)"$/, function (arg1) {
+        return expect(element(by.className("contentOwnership")).getText()).to.eventually.contains(arg1);
+    });
+
+    this.Then(/^I see "([^"]*)" msg on footer$/, function (arg1) {
+        return expect(element(by.className("hig-formerly-msg")).getText()).to.eventually.contains(arg1);
     });
 };
 module.exports = homeStepDefinitionsWrapper;

@@ -523,7 +523,7 @@ function numberWithCommas(number) {
  * @return Side filters All option values
  */
 function getAllOptionValues() {
-    return [ "Both sexes", "All races/ethnicities", "All age groups", "National" ];
+    return [ "Both sexes", "All races/ethnicities", "All age groups", "National", "No stratification" ];
 }
 
 function getSelectedGroupByOptions (filters) {
