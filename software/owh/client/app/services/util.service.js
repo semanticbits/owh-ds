@@ -1100,12 +1100,10 @@
                         if (!sideFilter.filters.groupBy) {
                             sideFilter.filters.groupBy = "column";
                         }
-                    } else if(sideFilter.allowGrouping) {
-                        if (sideFilter.filters.key !== 'state'
+                    } else if(sideFilter.allowGrouping && sideFilter.filters.key !== 'state'
                             && sideFilter.filters.groupBy === 'column') {
-                            sideFilter.filters.value = [];
-                            sideFilter.filters.groupBy = false;
-                        }
+                        sideFilter.filters.value = [];
+                        sideFilter.filters.groupBy = false;
                     }
                 });
             }
