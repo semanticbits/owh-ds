@@ -1162,11 +1162,12 @@ ul.legend-scale li span {
 }
 
 /* owh-table */
-.owh-table__label {
+.owh-table-span {
     margin-top: 0;
     font-size: 12px;
     color: #595959;
     font-weight: normal;
+    display: block;
 }
 
 .owh-table__cell-content {
