@@ -742,7 +742,7 @@ input[type="checkbox"]+label::before {
 input[type="radio"]+label::before {
 	border-radius: 100%;
 }
-label.side-pane-label.custom-label a.custom-link i {
+div.side-pane-div.custom-div a.custom-link i {
 	font-size: 16px;
 	vertical-align: -1px;
 	margin-left: 3px;
@@ -750,7 +750,7 @@ label.side-pane-label.custom-label a.custom-link i {
 	color: #999;
 	width: 20px;
 }
-label.side-pane-label.custom-label i {
+div.side-pane-div.custom-div i {
 	font-size: 16px;
 	vertical-align: -1px;
 	margin-left: 3px;
@@ -798,6 +798,9 @@ ul.usa-unstyled-list.group-options li.group-option {
 	margin-left: 10px;
 }
 label.custom-label {
+	margin-bottom: 0 !important
+}
+div.custom-div {
 	margin-bottom: 0 !important
 }
 .usa-sidenav-list.side-filters li .inline-bar {
@@ -1363,6 +1366,11 @@ ul.custom-nav-tabs {
 	margin-left: 340px;
 	color: #555;
 }
+
+.error-404-hyperlink, error-404-hyperlink:visited {
+	color: #974bc2 !important;
+}
+
 .error-msg-h1 {
 	font-size: 100px;
 }
