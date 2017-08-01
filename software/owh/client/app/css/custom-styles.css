@@ -75,7 +75,7 @@ body {
 
 .intro h1 {
 	margin: 0 0 20px 0;
-	font-size: 24px;
+	font-size: 22px;
 	color: #431a64;
 }
 
@@ -85,7 +85,8 @@ body {
 }
 
 .intro .usa-button-secondary {
-	background: #009ddd;
+	/*background: #009ddd;*/
+	background: #0071b9;
 	padding: 10px 35px 10px 40px;
 	border-radius: 100px;
 	text-transform: uppercase;
@@ -210,7 +211,8 @@ opacity:0
 	transition: all 0.2s linear;
 	top: 50%;
 	transform:translateY(-50%) scale(1.3);
-	color: #00adef;
+	/*color: #00adef;*/
+	color: #0071b9;
 }
 .section .section-banner-description:hover i {
 	transform: translateX(5px) translateY(-50%) scale(1.3);
@@ -297,7 +299,8 @@ transform:scale(1.3);
 	overflow: hidden;
 }
 .sp-header {
-	background-image: linear-gradient(135deg, #745097 0%, #9958a3 25%, #582c83 100%);
+	/*background-image: linear-gradient(135deg, #402665 0%, #582c83 25%, #402665 100%);*/
+	background: #582c83;
 	display: flex;
 	align-items:center;
 	padding: 0;
@@ -346,7 +349,7 @@ transform:scale(1.3);
 }
 
 .sp-header .menu-nav a:hover, .sp-header .menu-nav a.active, .sp-header .menu-nav a.active:hover {
-	background: rgba(255,255,255,0.1);
+	/*background: rgba(255,255,255,0.1);*/
 	color: white;
 }
 
@@ -530,7 +533,8 @@ h4.section-banner-title, .section-banner a.custom-link {
 }
 
 .description-text {
-	color:#009ddd;
+	/*color:#009ddd;*/
+	color:#0071b9;
 	font-size:18px;
 	font-weight:bold;
 	transition: all 0.2s linear;
@@ -1281,6 +1285,7 @@ ul.custom-nav-tabs {
 	text-indent: -1000em;
 	z-index: 2000;
 	background: url(https://www.hhs.gov/utilities/cbh/images/logo.png) no-repeat;
+	color: white;
 }
 .co-branded-row {
 	max-width: 940px;
@@ -1310,7 +1315,7 @@ ul.custom-nav-tabs {
 	text-decoration: none;
 }
 .co-branded-menus {
-	background: #104784; /*url(https://www.hhs.gov/utilities/cbh/images/cbh-bg.gif) #e9eaeb 0px -40px;*/
+	background: url(https://www.hhs.gov/utilities/cbh/images/cbh-bg.gif) #e9eaeb 0px -40px;
 	height: 44px;
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
@@ -1347,9 +1352,10 @@ ul.custom-nav-tabs {
 /*Co-Branded Header css ends*/
 
 .contentOwnership {
-	float: right;
-	margin-right: 20px;
-	color: rgba(255,255,255,0.5);
+	text-align: right;
+	font-size: 9px;
+}
+.contentOwnership span {
 	font-size: 9px;
 }
 
