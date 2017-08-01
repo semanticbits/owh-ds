@@ -77,8 +77,12 @@
                 <span class="icon-label">Behavioral Risk Factors</span>
             </li>
             <li ng-click="mc.changeFilter('cancer_incident')">
-                <img src="../images/icons/disease-icon.svg" alt="Cancer"/>
+                <img src="../images/icons/disease-icon.svg" alt="Cancer Incidence"/>
                 <span class="icon-label" ng-bind="mc.categoryName({newFilter:'cancer_incident'})"></span>
+            </li>
+            <li ng-click="mc.changeFilter('cancer_mortality')">
+                <img src="../images/icons/disease-icon.svg" alt="Cancer Mortality"/>
+                <span class="icon-label" ng-bind="mc.categoryName({newFilter:'cancer_mortality'})"></span>
             </li>
             <li ng-click="mc.changeFilter('infant_mortality')">
                 <img src="../images/icons/infant-mortality-icon.svg" alt="Infant Mortality"/>

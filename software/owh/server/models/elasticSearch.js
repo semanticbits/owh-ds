@@ -19,7 +19,9 @@ var census_rates_type="census_rates";
 var infant_mortality_index = "owh_infant_mortality";
 var infant_mortality_type = "infant_mortality";
 var cancer_incident_index = "owh_cancer_incident";
-var cancer_type = "cancer_incident";
+var cancer_incident_type = "cancer_incident";
+var cancer_mortality_index = "owh_cancer_mortality";
+var cancer_mortality_type = "cancer_mortality";
 
 //@TODO to work with my local ES DB I changed mapping name to 'queryResults1', revert before check in to 'queryResults'
 var _queryIndex = "owh_querycache";
@@ -475,14 +477,24 @@ ElasticClient.prototype.getCountForYearByFilter = function (year, filter, option
     });
 };
 
-ElasticClient.prototype.aggregateCancerData = function (query) {
-    var deferred = Q.defer();
-    this.executeESQuery(cancer_incident_index, cancer_type, query[0]).then(function (resp) {
-        deferred.resolve(searchUtils.populateDataWithMappings(resp, 'cancer_incident'));
+ElasticClient.prototype.aggregateCancerData = function (query, cancer_index) {
+    var index = cancer_index === cancer_incident_type ? cancer_incident_index : cancer_mortality_index;
+    var type = cancer_index === cancer_incident_type ? cancer_incident_type : cancer_mortality_type;
+
+    var promises = [ this.executeESQuery(index, type, query[0]) ];
+    if (query[2]) promises.push(this.executeESQuery(index, type, query[2]));
+
+    return Q.all(promises).spread(function (queryResponse, mapResponse) {
+        var data = searchUtils.populateDataWithMappings(queryResponse, type);
+        if (mapResponse) {
+          var mapData = searchUtils.populateDataWithMappings(mapResponse, type);
+          data.data.nested.maps = mapData.data.nested.maps;
+        }
+        return data;
     }).catch(function (error) {
-        deferred.reject(error)
+        logger.debug('Error fetching cancer data', error);
+        return error
     });
-    return deferred.promise;
 };
 
 module.exports = ElasticClient;

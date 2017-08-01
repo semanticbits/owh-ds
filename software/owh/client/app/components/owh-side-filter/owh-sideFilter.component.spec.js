@@ -220,6 +220,27 @@ describe('OWH Side filter component: ', function() {
         expect(JSON.stringify(selectedFilter.selectedValues)).toEqual(JSON.stringify([{"id":"qn1","text":"test ques1"},{"id":"qn2","text":"test ques2"},{"id":"Q2","text":"Question 2"}]))
     });
 
+    it('Should show tree modal on selecting Cancer Site filter', function () {
+        var allFilters = [{ key: 'site', selectedValues:[], selectedNodes:[] }];
+        var selectedFilter = allFilters[0];
+        var bindings = { filters : filters, onFilter: function(){} };
+        var ctrl = $componentController( 'owhSideFilter', { $scope: $scope}, bindings);
+        expect(ctrl).toBeDefined();
+
+        ctrl.showModal(selectedFilter, allFilters);
+
+        var modalCtrl = controllerProvider(givenModalDefaults.controller, { $scope: $scope, close: closeDeferred.promise });
+        modalCtrl.element = givenModalDefaults.element;
+        modalCtrl.controller = modalCtrl;
+        modalCtrl.optionValues = [{ id: "site1", text: "Site 1", childNodes: [{ id: "site1.1", text:"Site 1.1" }, { id: "site1.2", text: "Site 1.2"}] }, { id: "site1.3", text: "Site 1.3" }];
+        thenFunction(modalCtrl);
+        expect(elementVisible).toBeTruthy();
+        closeDeferred.resolve({});
+        $scope.$apply();
+        expect(elementVisible).toBeFalsy();
+        expect(JSON.stringify(selectedFilter.selectedNodes)).toEqual(JSON.stringify(modalCtrl.optionValues))
+        expect(JSON.stringify(selectedFilter.selectedValues)).toEqual(JSON.stringify([{ id: "site1.1", text:"Site 1.1" }, { id: "site1.2", text: "Site 1.2"}, { id: "site1.3", text: "Site 1.3" }]))
+    });
 
     it("Should show next phase implementation popup on selecting other filters", function() {
         var allFilters = [ { filterGroup: false, collapse: false, allowGrouping: true, groupBy:false,
