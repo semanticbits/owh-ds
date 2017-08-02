@@ -340,7 +340,7 @@
   "label.help.text.infantmort.age.death": "This field indicates the age of infant at death.",
   "label.help.text.infantmort.ucd": "This field represents the underlying cause of death from the death certificate.",
 
-  "label.filter.std": "Sexually Transmitted Diseases",
+  "label.filter.std": "Sexually Transmitted Diseases/Infections",
   "label.help.text.tb.state": "This field indicates the State where the TB surveillance data are collected.",
   "label.help.text.tb.race": "This field indicates the race/ethnicity of the patient.",
   "label.help.text.tb.sex": "This field indicates the sex of the patient at birth.",
