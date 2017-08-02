@@ -341,8 +341,19 @@ transform:scale(1.3);
 	padding: 25px;
 	display: flex;
 	align-items: center;
+	position: relative;
 }
-
+.sp-header .menu-nav a.active:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 25px;
+	right: 20px;
+	width: auto;
+	height: 5px;
+	background: #7edef3;
+	
+}
 
 .sp-header .menu-nav a .material-icons {
 	width: 24px;
@@ -386,39 +397,11 @@ transform:scale(1.3);
 	margin-right: .3rem;
 	vertical-align: -2px;
 }
-.usa-width-one-whole.qh-section {
-	position: relative;
-	color: white;
-	padding: 80px;
+.flex-container {
+	display: flex !important;
 }
-.usa-width-one-whole.qh-section {
-	background-image: url(../images/custom/purple-bg.jpg);
-	background-size: cover;
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	background-position: center center;
-	overflow: hidden;
-}
-.usa-width-one-whole.qh-section .usa-width-one-half:first-child {
-	position: relative;
-}
-.usa-width-one-whole.qh-section .usa-width-one-half:first-child:after {
-	content: "";
-	background-image: url(../images/custom/icon-bubbles.svg);
-	position: absolute;
-	top: 75%;
-	left: 75%;
-	width: 115%;
-	height: 410px;
-	transform: translateZ(.1px) scale(.75) translateX(-94%) translateY(-35%) rotate(2deg);
-	background-size: 100%;
-	background-repeat: no-repeat;
-	background-position: center center;
-}
-.qh-section-header {
-	font-size: 25px;
-	font-family: Merriweather;
-	font-weight: bold;
+.flex-grow {
+	flex-grow: 1;
 }
 .qh-section .padding-left-30 {
 	padding-left: 0;
@@ -742,7 +725,7 @@ input[type="checkbox"]+label::before {
 input[type="radio"]+label::before {
 	border-radius: 100%;
 }
-label.side-pane-label.custom-label a.custom-link i {
+div.side-pane-div.custom-div a.custom-link i {
 	font-size: 16px;
 	vertical-align: -1px;
 	margin-left: 3px;
@@ -750,7 +733,7 @@ label.side-pane-label.custom-label a.custom-link i {
 	color: #999;
 	width: 20px;
 }
-label.side-pane-label.custom-label i {
+div.side-pane-div.custom-div i {
 	font-size: 16px;
 	vertical-align: -1px;
 	margin-left: 3px;
@@ -798,6 +781,9 @@ ul.usa-unstyled-list.group-options li.group-option {
 	margin-left: 10px;
 }
 label.custom-label {
+	margin-bottom: 0 !important
+}
+div.custom-div {
 	margin-bottom: 0 !important
 }
 .usa-sidenav-list.side-filters li .inline-bar {
@@ -1211,11 +1197,6 @@ ul.custom-nav-tabs {
 	cursor: not-allowed;
 }
 
-.by-filter {
-	margin-left:-50px;
-	width: 24% !important;
-}
-
 /*Custom tab css*/
 
 /*chart view toggle*/
@@ -1363,6 +1344,11 @@ ul.custom-nav-tabs {
 	margin-left: 340px;
 	color: #555;
 }
+
+.error-404-hyperlink, error-404-hyperlink:visited {
+	color: #974bc2 !important;
+}
+
 .error-msg-h1 {
 	font-size: 100px;
 }

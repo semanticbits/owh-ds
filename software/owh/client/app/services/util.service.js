@@ -1057,7 +1057,7 @@
             var demographicFilters = ['sex', 'race', 'age_group', 'transmission'];
             var activeFilters = filters.reduce(function (active, filter) {
                 var restrictedFilters = !!~demographicFilters.indexOf(filter.filters.key);
-                var unrestrictedValues = !!~['Both sexes', 'All races/ethnicities', 'All age groups 13 and up', 'No stratification'].indexOf(filter.filters.value);
+                var unrestrictedValues = !!~['Both sexes', 'All races/ethnicities', 'All age groups', 'No stratification'].indexOf(filter.filters.value);
                 if (restrictedFilters && !unrestrictedValues) {
                     active.push(filter.filters.key);
                 }
