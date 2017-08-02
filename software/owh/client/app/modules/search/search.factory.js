@@ -2974,7 +2974,7 @@
                         {
                             sideFilters: [
                                 {
-                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filterGroup: false, collapse: false, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'current_year')
                                 },
@@ -3025,7 +3025,7 @@
                         {
                             sideFilters: [
                                 {
-                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filterGroup: false, collapse: false, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'current_year')
                                 },
