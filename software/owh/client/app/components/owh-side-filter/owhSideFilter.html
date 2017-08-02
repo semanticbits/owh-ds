@@ -224,7 +224,7 @@
 
                 <!-- Cancer Site filter -->
                 <span ng-class="{ 'disabled-filter': !sfc.isVisible(sideFilter) }" ng-if="group.filterType === 'site'">
-                    <label class="side-pane-label custom-label">
+                    <div class="side-pane-label custom-div">
                         <div class="sidebar-chevron left-float padding-left-5">
                             <span class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
                         </div>
@@ -242,16 +242,16 @@
                             tooltip="{{'label.group.by.tooltip' | translate}}">
                         </owh-toggle-switch>
                         <div class="clearfix"></div>
-                    </label>
+                    </div>
                     <ul class="usa-unstyled-list group-options" ng-hide="sideFilter.collapse">
                         <li class="group-option">
-                            <label for="{{group.key}}" class="custom-label" style="margin-bottom: 0">
+                            <div for="{{group.key}}" class="custom-label" style="margin-bottom: 0">
                                 <button
                                     class="action-button condition-option"
                                     translate="{{group.selectedValues && group.selectedValues.length > 0 ? group.updateTitle : group.selectTitle}}"
                                     ng-click="sfc.showModal(group, [group])">
                                 </button>
-                            </label>
+                            </div>
                             <div ng-repeat="selectedValue in group.selectedValues" >
                                 <span style="font-size: 13px" ng-bind="selectedValue.text"></span>
                             </div>
