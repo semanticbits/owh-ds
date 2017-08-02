@@ -47,3 +47,4 @@ Feature: TB page
   Scenario: GroupBy Country of Birth
     When  I select groupBy "Row" option for "Country of Birth" filter
     Then I see country of birth results on data table
+

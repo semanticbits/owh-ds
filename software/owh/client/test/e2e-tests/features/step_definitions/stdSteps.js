@@ -108,6 +108,8 @@ var stdStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I should see grouped and stacked controls on expaned visualization$/, function () {
+        var ele = element(by.id('chart_expanded_0'));
+        browser.executeScript("arguments[0].scrollIntoView();", ele);
         expect(element(by.className('nv-controlsWrap ')).isPresent()).to.eventually.equal(true);
         expect(element(by.cssContainingText('text', 'Grouped')).isDisplayed()).to.eventually.equal(true);
         return expect(element(by.cssContainingText('text', 'Stacked')).isDisplayed()).to.eventually.equal(true);
@@ -200,7 +202,9 @@ var stdStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I close visualization popup$/, function (next) {
-        element(by.css('span[title="Minimize graph"]')).click().then(next);
+        var elm = element(by.css('span[title="Minimize graph"]'));
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
+        elm.click().then(next);
     });
 
     this.Then(/^all side filters should be enabled$/, function () {

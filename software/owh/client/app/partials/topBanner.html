@@ -1,0 +1,24 @@
+<div class="usa-grid-full header-bar">
+    <div class="sp-header">
+        <div class="logo-container cursor-pointer">
+            <img class="owh-logo" ui-sref="home" src="../images/owh-logo-white.svg" alt="owh_white_logo"/>
+            <div class="logo-divider"></div>
+            <img class="hig-logo" ui-sref="home" src="../images/hig-logo-white.svg" alt="HIG Logo" />
+        </div>
+        <ul class="menu-nav">
+            <li class="banner-link cursor-pointer">
+                <a id="home" ui-sref="home" ng-class="{active:$root.$state.current.name === 'home'}"><i class="material-icons margin-right-10">home</i>Home</a>
+            </li>
+            <li class="banner-link cursor-pointer">
+                <a ng-click="redirectToMortalityPage()" id="explore"
+                   ng-class="{active:$root.$state.current.name === 'search'}"><i class="material-icons margin-right-10">explore</i>Explore</a>
+            </li>
+            <!--<li class="banner-link cursor-pointer">
+                <a id="about" class=""><i class="material-icons margin-right-10">information</i>About</a>
+            </li>
+            <li class="banner-link cursor-pointer">
+                <a id="help" class=""><i class="material-icons margin-right-10">help_circle</i>Help</a>
+            </li> -->
+         </ul>
+    </div>
+</div>

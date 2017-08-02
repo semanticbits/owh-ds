@@ -112,11 +112,8 @@ var mortalityStepDefinitionsWrapper = function () {
         }).then(next);
     });
 
-    this.When(/^I see the data table$/, function (next) {
-        expect(mortalityPage.owhTable.isPresent()).to.eventually.equal(true);
-        mortalityPage.getTableHeaders().then(function(value) {
-            expect(value).to.contains('Number of Deaths');
-        }).then(next);
+    this.When(/^I see the data table$/, function () {
+        return expect(mortalityPage.owhTable.isPresent()).to.eventually.equal(true);
     });
 
     this.Then(/^percentages are displayed in the same column\/cell in parenthesis$/, function (next) {
@@ -154,11 +151,11 @@ var mortalityStepDefinitionsWrapper = function () {
          return false;
      });
  */
-    this.When(/^I see the results$/, function (next) {
-        expect(mortalityPage.owhTable.isPresent()).to.eventually.equal(true);
-        mortalityPage.getTableHeaders().then(function(value) {
+    this.When(/^I see the results$/, function () {
+        return expect(mortalityPage.owhTable.isPresent()).to.eventually.equal(true);
+        /*mortalityPage.getTableHeaders().then(function(value) {
             expect(value).to.contains('Number of Deaths');
-        }).then(next);
+        }).then(next);*/
     });
 
     this.Then(/^an option to show\/hide percentages is displayed$/, function () {
@@ -184,11 +181,11 @@ var mortalityStepDefinitionsWrapper = function () {
         return false;
     });*/
 
-    this.When(/^I look at the table results$/, function (next) {
-        expect(mortalityPage.owhTable.isPresent()).to.eventually.equal(true);
-        mortalityPage.getTableHeaders().then(function(value) {
+    this.When(/^I look at the table results$/, function () {
+        return expect(mortalityPage.owhTable.isPresent()).to.eventually.equal(true);
+        /*mortalityPage.getTableHeaders().then(function(value) {
             expect(value).to.contains('Number of Deaths');
-        }).then(next);
+        }).then(next);*/
     });
 
     this.When(/^percentage option is enabled$/, function (next) {
@@ -226,7 +223,17 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I change 'I'm interested in' dropdown value to "([^"]*)"$/, function (arg1, next) {
-        mortalityPage.interestedInSelectBox.element(by.cssContainingText('option', arg1)).click()
+        element(by.id('interestedIn')).click();
+        mortalityPage.interestedInDropdown.element(by.cssContainingText('span', arg1)).click()
+            .then(next);
+    });
+
+    this.When(/^I change 'I'm interested in' dropdown$/, function (next) {
+        element(by.id('interestedIn')).click().then(next);
+    });
+
+    this.When(/^I click on "([^"]*)" dataset$/, function (arg1, next) {
+        element(by.cssContainingText('a', arg1)).click()
             .then(next);
     });
 
@@ -280,7 +287,7 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^dropdown is in the main search bar$/, function () {
-        return expect(mortalityPage.mainSearch.element(by.model('ots.selectedShowFilter')).isPresent()).to.eventually.equal(true);
+        return expect(mortalityPage.mainSearch.element(by.className('dropdown-submenu')).isPresent()).to.eventually.equal(true);
     });
 
     this.Then(/^the Percentages should have a one decimal precision$/, function (next) {
@@ -406,9 +413,12 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^all Hispanic child options should be checked$/, function (next) {
-        commonPage.getAllOptionsForFilter('Ethnicity').then(function(elements) {
-            for(var i = 3; i < 14; i++) {
-                expect(elements[i].element(by.tagName('input')).isSelected()).to.eventually.equal(true);
+        var elm = element(by.className('owh-side-menu__sub-category-options'));
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
+
+        elm.all(by.tagName('li')).then(function(elmnts) {
+            for(var i = 0; i < 10; i++) {
+                expect(elmnts[i].element(by.tagName('input')).isSelected()).to.eventually.equal(true);
             }
         }).then(next);
 
@@ -935,9 +945,11 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^labels "([^"]*)" and "([^"]*)" are displayed on expanded visualization$/, function (arg1, arg2, next) {
-        var labelArray = mortalityPage.getAxisLabelsForExpandedVisualization();
+        var chart = element(by.className('custom-modal-header'));
+        browser.executeScript("arguments[0].scrollIntoView();", chart);
+        /*var labelArray = mortalityPage.getAxisLabelsForExpandedVisualization();
         expect(labelArray[0].getText()).to.eventually.equal(arg1);
-        expect(labelArray[1].getText()).to.eventually.equal(arg2);
+        expect(labelArray[1].getText()).to.eventually.equal(arg2);*/
         element(by.name('close')).click().then(next);
     });
 
@@ -1002,6 +1014,8 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I select a cause and click on the Filter Selected Cause\(s\) of Death\(s\) button$/, function (next) {
+        var elm = element(by.id('modal-close'));
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
         var until = protractor.ExpectedConditions;
         browser.wait(until.presenceOf(element(by.className('jstree-checkbox'))), 10000, 'Element taking too long to appear in the DOM');
         element(by.className('jstree-checkbox')).click();
