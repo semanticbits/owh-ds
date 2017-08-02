@@ -30,7 +30,7 @@
                 url:'/description',
                 templateUrl: 'app/modules/description/description.html',
                 controller: 'DescriptionController',
-                controllerAs: 'dsc'
+                controllerAs: 'dsc',
                 params: {primaryFilterKey: 'deaths', allFilters: null, selectedFilters: null, tableView: 'number_of_deaths', cacheQuery: false},
                 onEnter: function () {
                     $('html, body').animate({ scrollTop: -10000 }, 100);
