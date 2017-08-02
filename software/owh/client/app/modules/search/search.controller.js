@@ -28,6 +28,9 @@
         sc.showFbDialog = showFbDialog;
         sc.onChartViewChange = onChartViewChange;
         sc.findNameByKeyAndValue = findNameByKeyAndValue;
+        $scope.redirectToMortalityPage = function(){
+           sc.changePrimaryFilter('deaths');
+        };
 
         var root = document.getElementsByTagName( 'html' )[0]; // '0' to assign the first (and only `HTML` tag)
         root.removeAttribute('class');
