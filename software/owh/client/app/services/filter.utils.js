@@ -1218,7 +1218,7 @@
             ];
 
             var aidsAgeGroupOptions = [
-                { key: 'All age groups 13 and up', title: 'All age groups' },
+                { key: 'All age groups', title: 'Ages 13 years and older' },
                 { key: '13-24', title: '13-24' },
                 { key: '25-34', title: '25-34' },
                 { key: '35-44', title: '35-44' },
@@ -1303,7 +1303,7 @@
                     title: 'label.filter.agegroup',
                     queryKey: 'age_group',
                     primary: false,
-                    value: 'All age groups 13 and up',
+                    value: 'All age groups',
                     groupBy: false,
                     filterType: 'radio',
                     autoCompleteOptions: aidsAgeGroupOptions,
