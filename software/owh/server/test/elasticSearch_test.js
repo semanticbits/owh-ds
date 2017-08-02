@@ -601,13 +601,13 @@ describe("Elastic Search", function () {
         var query = [casesQuery, PopulationQuery, mapQuery, chartQuery];
         new elasticSearch().aggregateDiseaseData(query, 'aids', 'owh_aids', 'aids').then(function (resp) {
             //Chart 0 -> age_group vs race
-            expect(resp.data.nested.charts[0].age_group[0].name).equal("All age groups 13 and up");
+            expect(resp.data.nested.charts[0].age_group[0].name).equal("All age groups");
             expect(resp.data.nested.charts[0].age_group[0].race[0].name).equal("All races/ethnicities");
             expect(resp.data.nested.charts[0].age_group[0].race[0].aids).equal(18274);
             expect(resp.data.nested.charts[0].age_group[0].race[0].pop).equal(268671725);
             //Chart 1 -> sex vs age_group
             expect(resp.data.nested.charts[1].sex[0].name).equal("Both sexes");
-            expect(resp.data.nested.charts[1].sex[0].age_group[0].name).equal("All age groups 13 and up");
+            expect(resp.data.nested.charts[1].sex[0].age_group[0].name).equal("All age groups");
             expect(resp.data.nested.charts[1].sex[0].age_group[0].aids).equal(18274);
             expect(resp.data.nested.charts[1].sex[0].age_group[0].pop).equal(268671725);
             //Chart 2 -> sex vs race

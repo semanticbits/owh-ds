@@ -42,7 +42,7 @@
 
 .set-h3 {
     position: relative;
-    bottom: -17px;
+    bottom: -15px;
     background: #f3f4f4;
     padding: 0 15px;
     margin: 0px;
@@ -1162,11 +1162,12 @@ ul.legend-scale li span {
 }
 
 /* owh-table */
-.owh-table__label {
+.owh-table-span {
     margin-top: 0;
     font-size: 12px;
     color: #595959;
     font-weight: normal;
+    display: block;
 }
 
 .owh-table__cell-content {

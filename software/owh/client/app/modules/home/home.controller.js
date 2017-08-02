@@ -3,9 +3,9 @@
         .module('owh.home')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'searchFactory'];
+    HomeController.$inject = ['$scope', 'searchFactory', '$state'];
 
-    function HomeController($scope, searchFactory) {
+    function HomeController($scope, searchFactory, $state) {
         var hc = this;
         hc.showPhaseTwoWarningModal = showPhaseTwoWarningModal;
         hc.toggleSlideUp = toggleSlideUp;
@@ -23,6 +23,10 @@
 
         function toggleSlideDown(id) {
             jQuery('#' + id).slideDown();
+        }
+
+        $scope.redirectToMortalityPage = function(){
+            $state.go('search');
         }
     }
 }());

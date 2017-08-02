@@ -73,7 +73,7 @@
                   "should": [
                     {
                       "term": {
-                        "age_group": "All age groups 13 and up"
+                        "age_group": "All age groups"
                       }
                     }
                   ]
@@ -178,7 +178,7 @@
                     "should": [
                       {
                         "term": {
-                          "age_group": "All age groups 13 and up"
+                          "age_group": "All age groups"
                         }
                       }
                     ]
@@ -274,7 +274,7 @@
                     "should": [
                       {
                         "term": {
-                          "age_group": "All age groups 13 and up"
+                          "age_group": "All age groups"
                         }
                       }
                     ]
@@ -381,7 +381,7 @@
                     "should": [
                       {
                         "term": {
-                          "age_group": "All age groups 13 and up"
+                          "age_group": "All age groups"
                         }
                       }
                     ]
@@ -488,7 +488,7 @@
                     "should": [
                       {
                         "term": {
-                          "age_group": "All age groups 13 and up"
+                          "age_group": "All age groups"
                         }
                       }
                     ]
@@ -595,7 +595,7 @@
                   "should": [
                     {
                       "term": {
-                        "age_group": "All age groups 13 and up"
+                        "age_group": "All age groups"
                       }
                     }
                   ]
@@ -691,7 +691,7 @@
                     "should": [
                       {
                         "term": {
-                          "age_group": "All age groups 13 and up"
+                          "age_group": "All age groups"
                         }
                       }
                     ]
@@ -808,7 +808,7 @@
                     "should": [
                       {
                         "term": {
-                          "age_group": "All age groups 13 and up"
+                          "age_group": "All age groups"
                         }
                       }
                     ]
@@ -925,7 +925,7 @@
                     "should": [
                       {
                         "term": {
-                          "age_group": "All age groups 13 and up"
+                          "age_group": "All age groups"
                         }
                       }
                     ]
