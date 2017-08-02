@@ -116,6 +116,7 @@
       "column_index": 5,
       "type": "map",
       "field": "AGEGROUP",
+      "comment": " '0' mapping is for 'All age groups 13 and up' to make similar to 'std' and 'tb' and avoid code complications changed to 'All age groups'",
       "mappings": {
         "0": "All age groups",
         "30": "0-4",
