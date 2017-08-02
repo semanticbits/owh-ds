@@ -7,10 +7,11 @@
         </div>
         <ul class="menu-nav">
             <li class="banner-link cursor-pointer">
-                <a id="home" ui-sref="home" class="active"><i class="material-icons margin-right-10">home</i>Home</a>
+                <a id="home" ui-sref="home" ng-class="{active:$root.$state.current.name === 'home'}"><i class="material-icons margin-right-10">home</i>Home</a>
             </li>
             <li class="banner-link cursor-pointer">
-                <a ng-click="redirectToMortalityPage()" id="explore" class=""><i class="material-icons margin-right-10">explore</i>Explore</a>
+                <a ng-click="redirectToMortalityPage()" id="explore"
+                   ng-class="{active:$root.$state.current.name === 'search'}"><i class="material-icons margin-right-10">explore</i>Explore</a>
             </li>
             <!--<li class="banner-link cursor-pointer">
                 <a id="about" class=""><i class="material-icons margin-right-10">information</i>About</a>
