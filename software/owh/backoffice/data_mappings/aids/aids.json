@@ -117,9 +117,7 @@
       "type": "map",
       "field": "AGEGROUP",
       "mappings": {
-        "0": "All age groups 13 and up",
-        "10": "All age groups",
-        "20": "Age 15 and older",
+        "0": "All age groups",
         "30": "0-4",
         "40": "0-14",
         "50": "05-14",
