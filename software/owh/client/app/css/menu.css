@@ -29,7 +29,7 @@
 
 .interested-in-filter i {
     font-size:28px;
-    color: #aaa;
+    color: rgba(0, 0, 0, 0.48);
 }
 
 .dropdown {
@@ -198,7 +198,7 @@
 }
 .primary-filter-bar .forward-back i {
     cursor: pointer;
-    color: #aaa;
+    color: rgba(0, 0, 0, 0.48);
     transition: all 0.2s linear;
     padding:5px;
     font-size: 28px;
