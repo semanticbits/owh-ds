@@ -32,7 +32,7 @@ Feature: TB page
   Scenario: Filter order
     When  I select groupBy "Column" option for "Sex" filter
     And I look at the sidebar
-    Then filters should be in this order "Year, Sex, Race/Ethnicity, Age Groups, State"
+    Then filters should be in this order "Year, Sex, Race/Ethnicity, Age Groups, Country of Birth, State"
 
   Scenario: Radio Buttons
     When I expand each TB filter
@@ -54,3 +54,8 @@ Feature: TB page
     Then I should not see grouped and stacked controls on expanded visualization
     And  I see labels "Race/Ethnicity" and "Rates" are displayed on expanded visualization
     And I close visualization popup
+
+  Scenario: GroupBy Country of Birth
+    When  I select groupBy "Row" option for "Country of Birth" filter
+    Then I see country of birth results on data table
+

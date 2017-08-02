@@ -3,12 +3,12 @@
         .module('owh.search')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$scope', 'ModalService', 'utilService', 'searchFactory', '$rootScope',
-        '$templateCache', '$compile', '$q', '$filter', 'leafletData', '$timeout', 'chartUtilService', 'shareUtilService',
+    SearchController.$inject = ['$scope', 'utilService', 'searchFactory', '$rootScope',
+        '$templateCache', '$compile', '$filter', 'leafletData', '$timeout', 'chartUtilService', 'shareUtilService',
         '$stateParams', '$state', 'xlsService', '$window', 'mapService'];
 
-    function SearchController($scope, ModalService, utilService, searchFactory, $rootScope,
-                                 $templateCache, $compile, $q, $filter, leafletData, $timeout, chartUtilService,
+    function SearchController($scope, utilService, searchFactory, $rootScope,
+                                 $templateCache, $compile, $filter, leafletData, $timeout, chartUtilService,
                                  shareUtilService, $stateParams, $state, xlsService, $window, mapService) {
 
         var sc = this;
@@ -27,6 +27,10 @@
         sc.switchToYRBSAdvanced = switchToYRBSAdvanced;
         sc.showFbDialog = showFbDialog;
         sc.onChartViewChange = onChartViewChange;
+        sc.findNameByKeyAndValue = findNameByKeyAndValue;
+        $scope.redirectToMortalityPage = function(){
+           sc.changePrimaryFilter('deaths');
+        };
 
         var root = document.getElementsByTagName( 'html' )[0]; // '0' to assign the first (and only `HTML` tag)
         root.removeAttribute('class');
@@ -81,7 +85,7 @@
             "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'ucd-chapter-10', 'mcd-chapter-10'],
             "label.risk.behavior": ['year', 'yrbsSex', 'yrbsRace', 'yrbsGrade', 'sexid', 'sexpart', 'yrbsState', 'question'],
             "label.census.bridge.race.pop.estimate": ['current_year', 'sex', 'race', 'ethnicity', 'agegroup', 'state'],
-            "label.filter.natality": ['current_year', 'month', 'weekday', 'sex', 'gestational_age_r10', 'prenatal_care',
+            "label.filter.natality": ['current_year', 'month', 'weekday', 'sex', 'gestational_age_r10', 'gestation_recode10', 'gestation_recode11', 'gestation_weekly', 'prenatal_care',
                 'birth_weight', 'birth_weight_r4', 'birth_weight_r12', 'birth_plurality', 'live_birth', 'birth_place',
                 'delivery_method', 'medical_attendant', 'race', 'hispanic_origin', 'marital_status',
                 'mother_education', 'mother_age_1year_interval', 'mother_age_5year_interval',
@@ -162,7 +166,7 @@
             insurance_medicaid_services: {
                 "topic": ['cat_32', 'cat_21', 'cat_44']
             }
-            
+
         };
         //show certain filters for different table views
         //add availablefilter for birth_rates
@@ -176,12 +180,13 @@
         sc.tableView = $stateParams.tableView ? $stateParams.tableView : sc.showMeOptions.deaths[0].key;
         //this flags whether to cache the incoming filter query
         sc.cacheQuery = $stateParams.cacheQuery;
+        sc.tableName = null;
 
         function changePrimaryFilter(newFilter) {
             sc.tableData = {};
-            sc.filters.selectedPrimaryFilter = newFilter;
-            sc.tableView = newFilter.tableView;
-            search(true);
+            sc.filters.selectedPrimaryFilter = searchFactory.getPrimaryFilterByKey(newFilter);
+            sc.tableView = sc.filters.selectedPrimaryFilter.tableView;
+            sc.search(true);
         }
 
         function setDefaults() {
@@ -353,7 +358,7 @@
         //fit leaflet map to container
         $timeout(function(){
             leafletData.getMap().then(function(map) {
-                map.invalidateSize()
+                map.invalidateSize();
             });
         }, 1700);
 
@@ -384,6 +389,12 @@
                         filter.queryKey = 'hispanic_origin';
                         filter.autoCompleteOptions = sc.filters.hispanicOptions;
                     }
+                }
+                else if(selectedFilter.key === 'fertility_rates' && filter.key === 'mother_age_1year_interval') {
+                    filter.value = utilService.removeValuesFromArray(filter.value, filter.disableAgeOptions);
+                }
+                else if(selectedFilter.key === 'fertility_rates' && filter.key === 'mother_age_5year_interval') {
+                    filter.value = utilService.removeValuesFromArray(filter.value, filter.disableAgeOptions);
                 }
             });
             angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters, function(category) {
@@ -632,6 +643,10 @@
             selectedPrimaryFilter.chartAxisLabel = chartOption.axisLabel;
             selectedPrimaryFilter.chartView = chartOption.key;
             selectedPrimaryFilter.chartData = searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
+        }
+
+        function findNameByKeyAndValue(key) {
+            return utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', key).header;
         }
     }
 }());

@@ -47,7 +47,7 @@ Feature: STD page
     When I look at the sidebar
     Then user clicks on "+ 2 more" more link for "Disease" filter
     When filter "Disease" and option "Congenital Syphilis" selected
-    Then user clicks on "+ 8 more" more link for "Race/Ethnicity" filter
+    Then user clicks on "+ 6 more" more link for "Race/Ethnicity" filter
     Then user clicks on "+ 8 more" more link for "Age Groups" filter
     Then expected filters should be disabled for std
 

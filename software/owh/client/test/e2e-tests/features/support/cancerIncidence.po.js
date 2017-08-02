@@ -23,6 +23,10 @@ var CancerIncidencePage = function () {
             .all(by.tagName('td'))
             .getText();
     };
+
+    this.isVisualizationDisplayed = function () {
+        return element(by.css('.nvd3-svg')).isPresent() && element(by.css('.nv-y.nv-axis')).isPresent() && element(by.css('.nv-x.nv-axis')).isPresent();
+    };
 };
 
 module.exports = new CancerIncidencePage;

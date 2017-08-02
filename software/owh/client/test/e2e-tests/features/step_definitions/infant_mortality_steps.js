@@ -62,7 +62,7 @@ var infantMortalityStepDefinitions = function () {
         }).then(next);
     });
 
-    this.Then(/^I see label "([^"]*)" and "([^"]*)" are displayed on minimized visualization"$/, function (arg1, arg2) {
+    this.Then(/^I see label "([^"]*)" and "([^"]*)" are displayed on minimized visualization$/, function (arg1, arg2) {
         var labelArray = imp.getAxisLabelsForMinimizedVisualization(0,0);
         expect(labelArray[0].getText()).to.eventually.equal(arg1);
         return expect(labelArray[1].getText()).to.eventually.equal(arg2);

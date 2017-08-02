@@ -25,10 +25,16 @@
                 templateUrl: 'app/modules/search/search.html',
                 controller: 'SearchController',
                 controllerAs: 'sc',
-                params: {primaryFilterKey: 'deaths', allFilters: null, selectedFilters: null, tableView: 'number_of_deaths', cacheQuery: false}
+                params: {primaryFilterKey: 'deaths', allFilters: null, selectedFilters: null, tableView: 'number_of_deaths', cacheQuery: false},
+                onEnter: function () {
+                    $('html, body').animate({ scrollTop: -10000 }, 100);
+                }
+        }).state('404',  {
+            url:'/404',
+            templateUrl: '404.html'
         });
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/404');
 
         // configures staticFilesLoader
         $translateProvider.useStaticFilesLoader({

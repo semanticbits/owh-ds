@@ -231,6 +231,7 @@ var BridgeRaceStepDefinitionsWrapper = function () {
 
     this.When(/^I hover on the export chart button$/, function () {
         // browser.actions().mouseMove(element(by.css('.dropbtn'))).perform();
+        browser.executeScript("arguments[0].scrollIntoView();", bridgeRacePage.exportGraphLink);
         return browser.actions().mouseMove(bridgeRacePage.exportGraphLink).perform();
     });
 
@@ -249,6 +250,7 @@ var BridgeRaceStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on the export as PDF/, function () {
+        browser.executeScript("arguments[0].scrollIntoView();", bridgeRacePage.exportPDF );
         return bridgeRacePage.exportPDF.click();
     });
 
