@@ -3,19 +3,41 @@
     <ng-include src="'app/partials/topBanner.html'"></ng-include>
 </div>
 
-<div class="usa-grid">
-    <hr>
-    Filtering Options
-    <div ng-bind="dsc.getFilterInfo().title">
+<div class="usa-grid" ng-init="dataset = dc.getDataSetDetails('natality')">
+    <div style="width: 50%; border: solid 1px; padding: 30px; margin: 50px 10px 10px 100px; border-radius: 10px" class="usa-grid pull-left">
+        <div style="font-size:35px" class="purple-text"><img ng-src="{{dataset.image}}" alt="{{dataset.title | translate}}" height="125" width="125"/>{{dataset.title | translate}}</div>
         <hr>
+        <h2 class="purple-text">About This Dataset</h2>
+        <div ng-bind="label.data.dsc.natality | translate"></div>
+        <h3>Data Suppression:</h3>
+        <div ng-bind="dataset.suppression | translate"></div>
+        <hr>
+        <h3 style="color:rebeccapurple">Filtering Options ({{dataset.filters.length}})</h3><br>
+        <div ng-repeat="filter in dataset.filters" class="padding-bottom-30 margin-bottom-30 padding-top-5">
+            <hr ng-show="$index != 0">
+            <div class="pull-left margin-right-30" style="width: 20%">
+                <b ng-show="$index == 0">Filter<hr></b><br>
+                {{filter.name}}
+            </div>
+            <b ng-show="$index == 0">Description<hr></b><br>
+            <div class="pull-left" style="width: 80%">
+                {{filter.dsc | translate}}
+            </div>
+        </div>
+    </div>
+
+    <div style="width: 35%;margin-right: 10px;" class="usa-grid" ng-init="dataset = dc.getDataSetDetails('natality')">
+        <button ng-click="$state.go('search')" style="border-radius: 10px">Explore Dataset <i class="arrows material-icons" style="color: white;">arrow_forward</i></button>
+        <hr>
+        Years Available: {{dataset.yrsAvail}}
+        <hr>
+        Source(s): {{dataset.source | translate}}
+        <hr>
+        Topics: {{dataset.topics}}
+        <hr>
+        <a style="color: dodgerblue;">How Rates Are Calculated ></a>
     </div>
 </div>
-
-<div class="usa-grid">
-    <button ng-click="$state.go('search')">Explore Dataset</button>
-    How Rates Are Calculated
-</div>
-
 
 
 <owh-footer></owh-footer>
