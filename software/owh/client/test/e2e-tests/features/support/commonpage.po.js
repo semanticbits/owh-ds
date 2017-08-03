@@ -1,7 +1,7 @@
 var CommonPage = function() {
     var cp = this;
-    cp.backButton = element(by.css('i[title="backArrow"]'));
-    cp.forwardButton = element(by.css('i[title="forwardArrow"]'));
+    cp.backButton = element(by.css('i[title="Previous query"]'));
+    cp.forwardButton = element(by.css('i[title="Next query"]'));
     cp.interestedInSelectBox = element(by.id('selectedPrimaryFilterDiv'));
     cp.secondaryMenu = element(by.className('dropdown-submenu'));
 
@@ -37,7 +37,7 @@ var CommonPage = function() {
 
     cp.getFilterOptionContainerForFilter = function (filterType) {
         var filter = cp.getFilterByType(filterType);
-        return filter.element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul'))
+        return filter.element(by.xpath('ancestor::span')).element(by.tagName('ul'))
     };
 
     cp.getAllOptionsForFilter = function (filterType) {

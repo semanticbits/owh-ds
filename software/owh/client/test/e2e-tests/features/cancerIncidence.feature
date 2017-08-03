@@ -4,7 +4,7 @@ Feature: Cancer Incidence page
     I want to see the data table upon selection of filters
     So that I can see the results of the filter options
 
-Background: Access Cancer Incidence page
+Scenario: Access Cancer Incidence page
     When I am at home page
     And  I click on Explore button in Health Information Gateway section
     Then I should get search page with default filter type "Detailed Mortality"
