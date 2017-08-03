@@ -226,3 +226,20 @@
 .select {
     width: 30%;
 }
+
+.about-nav {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.about-nav li {
+    margin: 0;
+    display: flex;
+    padding: 15px;
+}
+.about-nav li.active {
+    border-bottom: 3px solid #7fceee;
+}

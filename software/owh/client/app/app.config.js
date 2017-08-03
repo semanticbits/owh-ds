@@ -29,6 +29,11 @@
                 onEnter: function () {
                     $('html, body').animate({ scrollTop: -10000 }, 100);
                 }
+        }).state('about',  {
+            url:'/about',
+            templateUrl: 'app/modules/about/about.html',
+            controller: 'AboutController',
+            controllerAs: 'ac'
         }).state('404',  {
             url:'/404',
             templateUrl: '404.html'

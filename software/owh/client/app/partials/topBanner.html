@@ -13,12 +13,13 @@
                 <a ng-click="redirectToMortalityPage()" id="explore"
                    ng-class="{active:$root.$state.current.name === 'search'}"><i class="material-icons margin-right-10">explore</i>Explore</a>
             </li>
-            <!--<li class="banner-link cursor-pointer">
-                <a id="about" class=""><i class="material-icons margin-right-10">information</i>About</a>
-            </li>
             <li class="banner-link cursor-pointer">
+                <a id="about" ui-sref="about"
+                   ng-class="{active:$root.$state.current.name === 'about'}"><i class="material-icons margin-right-10">information</i>About</a>
+            </li>
+            <!--<li class="banner-link cursor-pointer">
                 <a id="help" class=""><i class="material-icons margin-right-10">help_circle</i>Help</a>
-            </li> -->
+            </li>-->
          </ul>
     </div>
 </div>

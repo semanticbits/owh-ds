@@ -1,0 +1,61 @@
+<div class="usa-grid">
+    <ng-include src="'app/partials/disclaimer.html'"></ng-include>
+    <ng-include src="'app/partials/coBrandedHeader.html'"></ng-include>
+    <ng-include src="'app/partials/topBanner.html'"></ng-include>
+</div>
+
+<div class="data-sets" style="padding: 20px;">
+    <div class="intro">
+        <div class="usa-grid">
+            <div class="usa-width-one-whole">
+                <h1 style="margin: 0 0 20px 0; font-size: 22px; color: #431a64;">About the Health Information Gateway</h1>
+                <div>
+                    The factors contributing to overall health are wide-reaching and often surprising, yet understanding them can be critical.This interactive site makes available state and country wide health data so that researchers, students, policy makers, grant writers and men and women across the country can fully explore the key issues and concerns of health
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="usa-grid">
+            <ul class="usa-width-one-whole about-nav" style="margin-top: 20px;">
+                <li class="usa-width-one-half border-right-default active">Explorer by Dataset</li>
+                <li class="usa-width-one-half">Explorer by Topic</li>
+            </ul>
+            <br/>
+            <br/>
+            <div id="datasetDiv" style="margin-top: 70px;">
+                <div ng-repeat="num in ac.itrRange(2)">
+                    <div class="usa-width-one-half">
+                        <div class="usa-width-one-sixth">
+                            <img src="../images/icons/{{ac.dataSets[num].icon}}" alt="{{ac.dataSets[num].label}}"/>
+                        </div>
+                        <div class="usa-width-five-sixths">
+                            <h5 ng-bind="ac.dataSets[num].label"></h5>
+                            <div ng-bind="ac.dataSets[num].description"></div>
+                            <div style="color: #0071b9;background-color: white"
+                                 ng-click="ac.gotoAbout(ac.dataSets[num].datasetKey)">
+                                <span>LEARN MORE </span><i class="material-icons">chevron_right</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="usa-width-one-half" ng-if="ac.dataSets[num+1]">
+                        <div class="usa-width-one-sixth">
+                            <img ng-src="../images/icons/{{ac.dataSets[num+1].icon}}" alt="{{ac.dataSets[num+1].label}}"/>
+                        </div>
+                        <div class="usa-width-five-sixths">
+                            <h5 ng-bind="ac.dataSets[num+1].label"></h5>
+                            <div ng-bind="ac.dataSets[num+1].description"></div>
+                            <div style="color: #0071b9;background-color: white"
+                                 ng-click="ac.gotoAbout(ac.dataSets[num+1].datasetKey)">
+                                <span>LEARN MORE</span><i class="material-icons">chevron_right</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="topicsDiv" style="margin-top: 30px;">
+            </div>
+        </div>
+    </div>
+    <ng-include src="'app/partials/contentOwnerShip.html'"></ng-include>
+</div>
+<owh-footer></owh-footer>
