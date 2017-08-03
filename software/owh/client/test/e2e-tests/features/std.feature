@@ -8,7 +8,9 @@ Feature: STD page
     When I am at home page
     And  I click on Explore button in Health Information Gateway section
     Then I should get search page with default filter type "Detailed Mortality"
-    When I change 'I'm interested in' dropdown value to "STD"
+    When I change 'I'm interested in' dropdown
+    Then I see menu appears with data-sets options
+    And I click on "STD" dataset menu
     Then I should see filter type "STD" selected
     And I expand "Disease" filter section
     And filter "Chlamydia" under STD "disease" should be a "radio"

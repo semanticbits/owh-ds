@@ -10,7 +10,7 @@ Feature: AIDS/HIV page
     Then I should get search page with default filter type "Detailed Mortality"
     When I change 'I'm interested in' dropdown
     Then I see menu appears with data-sets options
-    And I click on Aids dataset
+    And I click on "HIV/AIDS" dataset menu
     Then I should see filter type "HIV/AIDS" selected
 
   Scenario: Available filter options and filter order

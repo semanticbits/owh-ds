@@ -37,7 +37,7 @@ var CommonPage = function() {
 
     cp.getFilterOptionContainerForFilter = function (filterType) {
         var filter = cp.getFilterByType(filterType);
-        return filter.element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul'))
+        return filter.element(by.xpath('ancestor::span')).element(by.tagName('ul'))
     };
 
     cp.getAllOptionsForFilter = function (filterType) {

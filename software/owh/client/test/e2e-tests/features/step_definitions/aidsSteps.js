@@ -62,8 +62,8 @@ var aidsStepDefinitions = function () {
        return expect(commonPage.secondaryMenu.isDisplayed()).to.eventually.equal(true);
     });
 
-    this.When(/^I click on Aids dataset$/, function () {
-        element(by.cssContainingText('span', 'HIV/AIDS')).click();
+    this.When(/^I click on "([^"]*)" dataset menu$/, function (arg1) {
+        element(by.cssContainingText('span', arg1)).click();
     });
 };
 

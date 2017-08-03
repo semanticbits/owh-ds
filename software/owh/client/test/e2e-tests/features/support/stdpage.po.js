@@ -12,7 +12,7 @@ var STDpage = function() {
     };
 
     std.getFilter = function (target_filter) {
-        return element.all(by.className('side-pane-label')).filter(function (category) {
+        return element.all(by.className('side-pane-div')).filter(function (category) {
             return category.element(by.className('filter-display-name')).getText()
                 .then(function (text) {
                     return text === target_filter;
