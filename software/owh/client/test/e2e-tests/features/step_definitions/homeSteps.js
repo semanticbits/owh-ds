@@ -106,7 +106,10 @@ var homeStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I see "([^"]*)" msg on footer$/, function (arg1, next) {
-        expect(element(by.className(".usa-text-small")).getText()).to.eventually.contains(arg1);
+        var elms = element.all(by.className("usa-text-small"));
+        elms.getText().then(function (textList) {
+            expect(textList[1]).to.contains(arg1);
+        }).then(next);
     });
 };
 module.exports = homeStepDefinitionsWrapper;
