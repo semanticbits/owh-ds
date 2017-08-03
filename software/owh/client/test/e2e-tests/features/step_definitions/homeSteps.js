@@ -90,10 +90,10 @@ var homeStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^footer should have "([^"]*)" links$/, function (arg1, next) {
-        var footer = element(by.className('footer'));
+        var footer = element(by.className('footer-link'));
         browser.executeScript("arguments[0].scrollIntoView();", footer);
         var links = arg1.split(',');
-        var allElements =  element.all(by.className('ft-link'));
+        var allElements =  footer.all(by.className('ft-link'));
         allElements.getText().then(function (filters) {
             filters.forEach(function (filter, index) {
                 expect(filter).to.contains(links[index]);
