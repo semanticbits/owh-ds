@@ -27,9 +27,9 @@
     font-size:15px;
 }
 
-.icon-position {
-    width:10%;
-    float:right;
+.interested-in-filter i {
+    font-size:28px;
+    color: rgba(0, 0, 0, 0.48);
 }
 
 .dropdown {
@@ -91,12 +91,15 @@
     white-space: nowrap;
 }
 
-.dropdown-heading {
-    float:left;
-    font-size: 15px;
+.label {
+    font-weight:bold;
 }
 
-.flex-container {
+.label label {
+    margin: 0;
+}
+
+.dropdown-submenu .flex-container {
     display: flex;
     position: relative;
     align-items: stretch;
@@ -112,11 +115,12 @@
     z-index: 999;
     background-color: #fff;
     box-shadow: 0 3px 8px rgba(0,0,0,.1);
-    top: 79px;
+    top: 61px;
     left: 20px;
     right: 20px;
     border: 1px solid #ccc;
     border-top: none;
+    padding: 10px 0;
 }
 
 
@@ -145,14 +149,68 @@
     line-height: 19px;
 }
 
+.dropdown-submenu .flex-container li img {
+    width: 150px;
+    margin: 0 auto;
+}
+
 .primary-filter-bar {
-    display: flex;
-    align-items: center;
     background: white;
     z-index: 2;
     position: relative;
 }
 
+.primary-filter-bar > div[class^="usa-width-"], .primary-filter-bar > div[class*="usa-width-"] {
+    padding-right: 20px;
+}
+
+@media(min-width: 1201px) {
+
+    .primary-filter-bar {
+        display: flex;
+        align-items: stretch;
+        background: white;
+        z-index: 2;
+        position: relative;
+        min-height: 60px;
+    }
+    .primary-filter-bar > div[class^="usa-width-"], .primary-filter-bar > div[class*="usa-width-"] {
+        display: flex !important;
+        align-items: center;
+        border-right: 1px solid #ccc;
+    }
+
+    .forward-back {
+        justify-content: center;
+    }
+}
+
+@media(max-width: 1201px) and (min-width: 600px) {
+    .forward-back {
+        width: auto !important;
+    }
+
+
+}
+
+    .primary-filter-bar .forward-back {
+    padding-right: 0 !important;
+}
+.primary-filter-bar .forward-back i {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.48);
+    transition: all 0.2s linear;
+    padding:5px;
+    font-size: 28px;
+}
+
+.primary-filter-bar .forward-back i:hover {
+    color: #00a0e0;
+}
+
+.border-none {
+    border: none !important;
+}
 .interested-in-filter {
     cursor: pointer;
 }
