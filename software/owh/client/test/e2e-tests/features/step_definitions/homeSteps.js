@@ -105,8 +105,10 @@ var homeStepDefinitionsWrapper = function () {
         return expect(element(by.className("contentOwnership")).getText()).to.eventually.contains(arg1);
     });
 
-    this.Then(/^I see "([^"]*)" msg on footer$/, function (arg1) {
-        return expect(element(by.className("hig-formerly-msg")).element(by.tagName('span')).getText()).to.eventually.contains(arg1);
+    this.Then(/^I see "([^"]*)" msg on footer$/, function (arg1, next) {
+        element(by.className("hig-formerly-msg")).getText().then(function(text) {
+            expect(text).to.contains(arg1);
+        }).then(next);
     });
 };
 module.exports = homeStepDefinitionsWrapper;
