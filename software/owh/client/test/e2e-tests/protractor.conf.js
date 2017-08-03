@@ -26,6 +26,7 @@ exports.config = {
       'features/step_definitions/tbSteps.js',
       'features/step_definitions/aidsSteps.js',
       'features/step_definitions/cancerIncidenceSteps.js',
+      'features/step_definitions/cancerMortalitySteps.js',
       'features/support/hook.js'
     ],
       format: 'pretty'

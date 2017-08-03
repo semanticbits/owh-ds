@@ -340,7 +340,7 @@
   "label.help.text.infantmort.age.death": "This field indicates the age of infant at death.",
   "label.help.text.infantmort.ucd": "This field represents the underlying cause of death from the death certificate.",
 
-  "label.filter.std": "STD",
+  "label.filter.std": "Sexually Transmitted Diseases/Infections",
   "label.help.text.tb.state": "This field indicates the State where the TB surveillance data are collected.",
   "label.help.text.tb.race": "This field indicates the race/ethnicity of the patient.",
   "label.help.text.tb.sex": "This field indicates the sex of the patient at birth.",
@@ -399,9 +399,6 @@
   "label.help.text.hiv.agegroup": "This field indicates the age group of the patient. HIV surveillance data include adults and adolescents only (persons aged 13 years and older).",
   "label.help.text.transmission": "This field indicates the classification of cases that summarizes a person's possible HIV risk factor.",
 
-  "label.filter.cancer_incident": "Cancer Incidence",
-  "label.filter.cancer_site": "Cancer Site",
-
   "label.health.behaviors": "Health Behaviors and Prevention",
   "label.health.behaviors.dsc": "Find out which health issues are important in measuring the nation’s overall well-being",
   "label.births.family": "Births and Family Planning",
@@ -430,5 +427,32 @@
   "label.std.dsc": "Search STD case reports for women in order to gain insight on disease incidence rates, the number of cases reported, and which STDs most commonly affect women.",
   "label.tb.dsc": "Browse information on reported cases of TB across the country and how it impacts specific states.",
   "label.mortality.dsc.two": "Browse detailed information regarding mortality and population counts in the United States, across groupings of race, gender and age. Data are based on death certificates for U.S residents.",
-  "label.infant.mortality.dsc": "View meaningful statistics on infant mortality and the various factors, such as maternal ethnicity and county of residence, that can potentially contribute to such an occurrence."
+  "label.infant.mortality.dsc": "View meaningful statistics on infant mortality and the various factors, such as maternal ethnicity and county of residence, that can potentially contribute to such an occurrence.",
+
+  "label.filter.cancer_incident": "Cancer Incidence",
+  "label.filter.cancer_site": "Cancer Site",
+  "label.cancer_site.select": "Select Cancer Site",
+  "label.cancer_site.update": "Update Cancer Site",
+  "label.select.cancer_site": "Select cancer site",
+  "label.filter.childhood_cancer": "Childhood Cancer",
+  "label.select.childhood_cancer": "Select childhood cancer type",
+  "label.childhood_cancer.select": "Select Cancer Type",
+  "label.childhood_cancer.update": "Update Cancer Type",
+  "label.help.text.cancer_incidence.year": "This field indicates the year of diagnosis.",
+  "label.help.text.cancer_incidence.sex": "This field indicates the sex of the patient.",
+  "label.help.text.cancer_incidence.race": "This field indicates the race of the patient.",
+  "label.help.text.cancer_incidence.hispanic_origin": "This field indicates the ethnicity of the patient.",
+  "label.help.text.cancer_incidence.age_group": "This field indicates the age group of the patient.",
+  "label.help.text.cancer_incidence.cancer_site": "This field indicates the primary cancer site that is the organ of origin within the body where a given cancer occurs in an individual.",
+  "label.help.text.cancer_incidence.childhood_cancers": "This field indicates the childhood cancer that are usually studied in children who are less than age 20.",
+  "label.help.text.cancer_incidence.state": "This field indicates the State of patient's residence at the time the case was submitted to the registry.",
+
+  "label.filter.cancer_mortality": "Cancer Mortality",
+  "label.help.text.cancer_mortality.year": "This field indicates the year of death.",
+  "label.help.text.cancer_mortality.sex": "This field indicates the sex of the deceased.",
+  "label.help.text.cancer_mortality.race": "Race This field indicates the race of the deceased.",
+  "label.help.text.cancer_mortality.hispanic_origin": "Ethnicity This field indicates the ethnicity of the deceased.",
+  "label.help.text.cancer_mortality.age_group": "Age Group This field indicates the age group of the deceased.",
+  "label.help.text.cancer_mortality.cancer_site": "This field indicates the primary cancer site that is the organ of origin within the body where a given cancer occurs in an individual.",
+  "label.help.text.cancer_mortality.state": "State This field indicates the State of patient's residence at the time the case was submitted to the registry."
 }

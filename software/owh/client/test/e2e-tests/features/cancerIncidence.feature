@@ -12,7 +12,7 @@ Scenario: Access Cancer Incidence page
     Then I should see filter type "Cancer Incidence" selected
 
 Scenario: Data table defaults
-    Then On the cancer incidence page, I should see the data table with the headers "Race, Female, Male, Total Incidences"
+    Then On the cancer incidence page, I should see the data table with the headers "Race, Female, Male, Total Incidence"
     Then On the cancer incidence page, the values in row "0" should be "White, 705,033 (51.7%), 659,262 (48.3%), 1,364,295"
     Then On the cancer incidence page, the values in row "1" should be "Black, 94,161 (52.2%), 86,149 (47.8%), 180,310"
     Then On the cancer incidence page, the values in row "2" should be "American Indian/Alaska Native, 4,963 (53.3%), 4,354 (46.7%), 9,317"
@@ -20,4 +20,4 @@ Scenario: Data table defaults
     Then On the cancer incidence page, the values in row "4" should be "Unknown, 21,459 (44.9%), 26,316 (55.1%), 47,775"
 
 Scenario: Cancer Incidence charts
-    Then On the cancer incidence page, the visiualization is displayed
+    Then On the cancer incidence page, the visualization is displayed
