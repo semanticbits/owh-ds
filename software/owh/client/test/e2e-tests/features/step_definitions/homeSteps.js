@@ -106,9 +106,7 @@ var homeStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I see "([^"]*)" msg on footer$/, function (arg1, next) {
-        element(by.className("hig-formerly-msg")).getText().then(function(text) {
-            expect(text).to.contains(arg1);
-        }).then(next);
+        expect(element(by.className(".usa-text-small")).getText()).to.eventually.contains(arg1);
     });
 };
 module.exports = homeStepDefinitionsWrapper;
