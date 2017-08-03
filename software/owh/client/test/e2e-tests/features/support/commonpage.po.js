@@ -1,7 +1,7 @@
 var CommonPage = function() {
     var cp = this;
-    cp.backButton = element(by.css('i[title="backArrow"]'));
-    cp.forwardButton = element(by.css('i[title="forwardArrow"]'));
+    cp.backButton = element(by.css('i[title="Previous query"]'));
+    cp.forwardButton = element(by.css('i[title="Next query"]'));
     cp.interestedInSelectBox = element(by.id('selectedPrimaryFilterDiv'));
     cp.secondaryMenu = element(by.className('dropdown-submenu'));
 

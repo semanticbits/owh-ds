@@ -220,8 +220,9 @@ Feature: As a User
     Then I should see records for states
 
   Scenario: Sexual Identity and Sex of Sexual contact filter for only 2015 year
-    Given I am on yrbs advanced search page
-    When I select "Year" value "2013"
+    When I see a link "Switch to Advanced Search" at the top of the sidebar
+    And I click on the "Switch to Advanced Search" link
+    And I select "Year" value "2013"
     Then I see Sexual identity and Sexual contact filter disabled
 
   #YRBS service returning 'Internal Server Error' for feq questions and state combinations
