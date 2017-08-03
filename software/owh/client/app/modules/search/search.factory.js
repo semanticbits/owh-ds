@@ -3098,7 +3098,7 @@
                     ]
                 },
                 {
-                    key: 'std', title: 'label.filter.std', primary: true, value:[], header:"STD",
+                    key: 'std', title: 'label.filter.std', primary: true, value: [], header:"Sexually Transmitted Diseases/Infections",
                     allFilters: filters.stdFilters, searchResults: searchSTDResults, showMap: true,
                     mapData:{}, chartAxisLabel:'Cases', tableView:'std',
                     chartViewOptions: filters.diseaseVizGroupOptions, chartView: 'cases',

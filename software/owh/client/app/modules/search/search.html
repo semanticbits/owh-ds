@@ -9,7 +9,7 @@
         <owh-menu selected-filter ="sc.filters.selectedPrimaryFilter" show-me-options="sc.showMeOptions"
                   search-results="sc.filters.selectedPrimaryFilter.searchResults(sc.filters.selectedPrimaryFilter)"
                   on-primary-filter="sc.changePrimaryFilter(newFilter)" category-name="sc.findNameByKeyAndValue(newFilter)"
-                  on-view-filter="sc.changeViewFilter(selectedFilter)">
+                  on-view-filter="selectedFilter && sc.changeViewFilter(selectedFilter)">
         </owh-menu>
 </div>
 </div>

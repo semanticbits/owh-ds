@@ -63,12 +63,7 @@ var aidsStepDefinitions = function () {
     });
 
     this.When(/^I click on Aids dataset$/, function () {
-        /*element(by.id('aids')).click()
-            .then(next);*/
-
-        var elm = element(by.id('aids'));
-        return browser.executeScript("arguments[0].click();", elm);
-        //elm.click().next(next);
+        element(by.cssContainingText('span', 'HIV/AIDS')).click();
     });
 };
 
