@@ -1,8 +1,8 @@
 FROM node:4.5.0-wheezy
 
 RUN mkdir -p /usr/local/owh
-WORKDIR /usr/local/owh
-COPY /usr/local/owh/software/owh /usr/local/owh
+WORKDIR /usr/local/owh/software/owh
+COPY . /usr/local/owh
 RUN npm install -g bower
 RUN npm install -g nodemon
 RUN chmod 777 /usr/local/owh/scripts/*.sh
