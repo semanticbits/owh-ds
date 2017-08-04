@@ -158,8 +158,9 @@ function search(q) {
 
     } else if (preparedQuery.apiQuery.searchFor === 'infant_mortality') {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
+        //Get all selected filter options
+        var allSelectedFilterOptions = searchUtils.getAllSelectedFilterOptions(q, preparedQuery.apiQuery.query);
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
-
         var selectedYears = searchUtils.getYearFilter(q.allFilters);
         var groupByOptions = searchUtils.getSelectedGroupByOptions(q.allFilters);
         var options = selectedYears.reduce(function (prev, year) {
@@ -175,8 +176,8 @@ function search(q) {
             return es.getCountForYearByFilter(option.year, option.filter, option.key);
         });
         var promises = [
-            es.aggregateInfantMortalityData(sideFilterQuery, isStateSelected),
-            es.aggregateInfantMortalityData(finalQuery, isStateSelected)
+            es.aggregateInfantMortalityData(sideFilterQuery, isStateSelected, allSelectedFilterOptions),
+            es.aggregateInfantMortalityData(finalQuery, isStateSelected, allSelectedFilterOptions)
         ];
         promises = promises.concat(optionPromises);
 
@@ -219,9 +220,23 @@ function search(q) {
                 deferred.resolve(resData);
             });
         });
-    }
+    } else if (preparedQuery.apiQuery.searchFor === 'cancer_incident' || preparedQuery.apiQuery.searchFor === 'cancer_mortality') {
+        finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
+        var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
+        var es = new elasticSearch();
+        Q.all([
+            es.aggregateCancerData(sideFilterQuery, preparedQuery.apiQuery.searchFor),
+            es.aggregateCancerData(finalQuery, preparedQuery.apiQuery.searchFor)
+        ]).spread(function (sideFilterResults, results) {
+            var resData = {};
+            resData.queryJSON = q;
+            resData.resultData = results.data;
+            resData.resultData.headers = preparedQuery.headers;
+            resData.sideFilterResults = sideFilterResults;
+            deferred.resolve(resData);
+        });
+    };
     return  deferred.promise;
 };
 
 module.exports = searchRouter;
-

@@ -31,7 +31,8 @@
             getMixedTable: getMixedTable,
             setFilterGroupBy: setFilterGroupBy,
             getYrbsQuestionsForTopic: getYrbsQuestionsForTopic,
-            getPramsQuestionsForTopics: getPramsQuestionsForTopics
+            getPramsQuestionsForTopics: getPramsQuestionsForTopics,
+            getPrimaryFilterByKey: getPrimaryFilterByKey
 
         };
         return service;
@@ -115,6 +116,7 @@
             }
             else if (primaryFilter.key === 'infant_mortality') {
                 primaryFilter.data = response.data.resultData.nested.table;
+                primaryFilter.nestedData = response.data.resultData.nested;
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
@@ -126,6 +128,13 @@
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
+                mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
+            }
+            else if (response.data.queryJSON.key  === 'cancer_incident' || response.data.queryJSON.key  === 'cancer_mortality') {
+                primaryFilter.data = response.data.resultData.nested.table;
+                populateSideFilterTotals(primaryFilter, response.data);
+                tableData = getMixedTable(primaryFilter, groupOptions, tableView);
+                primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
             //make sure side filters are in proper order
@@ -196,7 +205,7 @@
                 });
             });
             if(refreshFiltersOnChange) {
-                utilService.refreshFilterAndOptions(allFilters, primaryFilter.sideFilters, primaryFilter.key);
+                utilService.refreshFilterAndOptions(allFilters, primaryFilter.sideFilters, primaryFilter.key, primaryFilter.tableView);
             }
         }
 
@@ -475,23 +484,29 @@
             var chartTypes = [];
 
             //collect all chart combinations
+            // Disabling combination charts for now, see OWH-1363
             selectedFilters.forEach( function(selectedPrimaryFilter) {
-                selectedFilters.forEach( function(selectedSecondaryFilter) {
-                    var chartType;
-                    //for single filter
-                    if (selectedPrimaryFilter === selectedSecondaryFilter) {
-                        chartType = chartMappings[selectedPrimaryFilter.key];
-                        if(chartType) {
-                            chartTypes.push([selectedPrimaryFilter.key]);
-                        }
-                    } else {//for combinations of two filters
-                        chartType = chartMappings[selectedPrimaryFilter.key + '&' + selectedSecondaryFilter.key];
-                        if(chartType) {
-                            chartTypes.push([selectedPrimaryFilter.key, selectedSecondaryFilter.key]);
-                        }
-                    }
-                });
+                //var chartType = chartMappings[selectedPrimaryFilter.key];
+                chartTypes.push([selectedPrimaryFilter.key]);
             });
+            // selectedFilters.forEach( function(selectedPrimaryFilter) {
+            //     selectedFilters.forEach( function(selectedSecondaryFilter) {
+            //         var chartType;
+            //         //for single filter
+            //         if (selectedPrimaryFilter === selectedSecondaryFilter) {
+            //             chartType = chartMappings[selectedPrimaryFilter.key];
+            //             if(chartType) {
+            //                 chartTypes.push([selectedPrimaryFilter.key]);
+            //             }
+            //         } else {//for combinations of two filters
+            //             chartType = chartMappings[selectedPrimaryFilter.key + '&' + selectedSecondaryFilter.key];
+            //             if(chartType) {
+            //                 chartTypes.push([selectedPrimaryFilter.key, selectedSecondaryFilter.key]);
+            //             }
+            //         }
+            //     });
+            // });
+            // Disabling combination charts for now, see OWH-1363
 
             //reset all grouping combinations
             utilService.updateAllByKeyAndValue(copiedPrimaryFilter.allFilters, 'groupBy', false);
@@ -513,7 +528,7 @@
                 eachFilter.getPercent = true;
                 chartFilters.push(eachFilter);
             });
-
+            copiedPrimaryFilter.isChartorMapQuery = true;
             var deferred = $q.defer();
             //calculate query hash
             generateHashCode(copiedPrimaryFilter).then(function (hash) {
@@ -1152,6 +1167,15 @@
             return deferred.promise;
         }
 
+        function searchCancerResults (primaryFilter, queryID) {
+            var deferred = $q.defer();
+            SearchService.searchResults(primaryFilter, queryID).then(function(response) {
+                updateSideFilterCount(primaryFilter, response.data.sideFilterResults.data.simple);
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+        }
+
         function getAllFilters() {
             //TODO: consider making these available as angular values, split out into separate file
             var filters = {};
@@ -1228,8 +1252,13 @@
             ];
 
             filters.diseaseVizGroupOptions = [
-                {key:'cases',title:'Cases', tooltip:'Select to view as cases on charts'},
-                {key:'rate',title:'Rates', tooltip:'Select to view as rates on charts'}
+                {key:'cases', title:'Cases', axisLabel:'Cases', tooltip:'Select to view as cases on charts'},
+                {key:'disease_rate', title:'Rates', axisLabel:'Rates', tooltip:'Select to view as rates on charts'}
+            ];
+
+            filters.deathsRateGroupOptions = [
+                {key:'death',title:'Deaths', axisLabel:'Number of Infant Deaths', tooltip:'Select to view as deaths on charts'},
+                {key:'infant_death_rate',title:'Rates', axisLabel:'Rates', tooltip:'Select to view as rates on charts'}
             ];
 
             filters.allowInlineCharting = false;
@@ -1722,7 +1751,7 @@
                     primary: false, value: { 'set1': [], 'set2': [] }, groupBy: false, type: "label.filter.group.mcd", groupKey:"mcd",
                     autoCompleteOptions: $rootScope.conditionsListICD10, filterType: 'conditions',
                     selectTitle: 'select.label.filter.mcd', updateTitle: 'update.label.filter.mcd',
-                    aggregationKey: "ICD_10_code.path", groupOptions: filters.conditionGroupOptions,
+                    aggregationKey: "record_axis_condn.path", groupOptions: filters.conditionGroupOptions,
                     helpText: 'label.help.text.mortality.mcd'}
             ];
 
@@ -1732,6 +1761,8 @@
             filters.stdFilters = filterUtils.getSTDDataFilters();
             filters.tbFilters = filterUtils.getTBDataFilters();
             filters.aidsFilters = filterUtils.getAIDSFilters();
+            filters.cancerIncidenceFilters = filterUtils.cancerIncidenceFilters();
+            filters.cancerMortalityFilters = filterUtils.cancerMortalityFilters();
 
             filters.pramsTopicOptions = [
                 {"key": "cat_45", "title": "Delivery Method"},
@@ -1992,8 +2023,8 @@
 
             filters.search = [
                 {
-                    key: 'deaths', title: 'label.filter.mortality', primary: true, value: [], header:"Mortality",
-                    allFilters: filters.allMortalityFilters, searchResults: searchMortalityResults, showMap: false,
+                    key: 'deaths', title: 'label.filter.mortality', primary: true, value: [], header:"Detailed Mortality",
+                    allFilters: filters.allMortalityFilters, searchResults: searchMortalityResults, showMap: true,
                     chartAxisLabel:'Deaths', countLabel: 'Number of Deaths', mapData:{}, tableView:'number_of_deaths',
                     runOnFilterChange: true, applySuppression:true,
                     sideFilters:[
@@ -2056,7 +2087,7 @@
                     ]
                 },
                 {
-                    key: 'mental_health', title: 'label.risk.behavior', primary: true, value:[], header:"Youth risk behavior",
+                    key: 'mental_health', title: 'label.risk.behavior', primary: true, value:[], header:"Youth Risk Behavior",
                     searchResults: searchYRBSResults, dontShowInlineCharting: true,
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total', tableView:'Alcohol and Other Drug Use',
                     chartAxisLabel:'Percentage',
@@ -2320,6 +2351,27 @@
                                     allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'medical_attendant')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'gestation_recode11')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'gestation_recode10')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'gestation_weekly')
                                 }
                             ]
                         },
@@ -2585,7 +2637,8 @@
                     key: 'infant_mortality', title: 'label.filter.infant_mortality', primary: true, value: [], header: 'Infant Mortality',
                     allFilters: filters.infantMortalityFilters, searchResults: searchInfantMortality, showMap: false,
                     chartAxisLabel: 'Number of Infant Deaths', countLabel: 'Number of Infant Deaths', tableView: 'number_of_infant_deaths',
-                    runOnFilterChange: true, applySuppression: true,
+                    runOnFilterChange: true, applySuppression: true, chartView: 'death',
+                    chartViewOptions:filters.deathsRateGroupOptions,
                     sideFilters:[
                         {
                             category: 'Infant Characteristics',
@@ -2758,10 +2811,10 @@
                     ]
                 },
                 {
-                    key: 'std', title: 'label.filter.std', primary: true, value:[], header:"STD",
+                    key: 'std', title: 'label.filter.std', primary: true, value: [], header:"Sexually Transmitted Diseases/Infections",
                     allFilters: filters.stdFilters, searchResults: searchSTDResults, showMap: true,
-                    mapData:{}, chartAxisLabel:'Cases', tableView:'std',
-                    chartViewOptions: filters.diseaseVizGroupOptions, defaultChartView: 'cases',
+                    mapData:{}, chartAxisLabel:'Cases', tableView:'std', countLabel: 'Number of Cases',
+                    chartViewOptions: filters.diseaseVizGroupOptions, chartView: 'cases',
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
                         {
@@ -2815,24 +2868,24 @@
                 {
                     key: 'tb', title: 'label.filter.tb', primary: true, value:[], header:"Tuberculosis",
                     allFilters: filters.tbFilters, searchResults: searchTBResults, showMap: true,
-                    mapData:{}, chartAxisLabel:'Cases', tableView:'tb', defaultChartView: 'cases',
+                    mapData:{}, chartAxisLabel:'Cases', tableView:'tb', chartView: 'cases', countLabel: 'Number of Cases',
                     chartViewOptions: filters.diseaseVizGroupOptions,
                     runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
                         {
-                           sideFilters: [
-                               {
-                                   filterGroup: false,
-                                   collapse: false,
-                                   allowGrouping: true,
-                                   groupOptions: filters.groupOptions,
-                                   filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'current_year')
-                               },
-                               {
-                                   filterGroup: false, collapse: true, allowGrouping: true,
-                                   groupOptions: filters.groupOptions,
-                                   filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'sex')
-                               },
+                            sideFilters: [
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'current_year')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'sex')
+                                },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
@@ -2843,11 +2896,16 @@
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'age_group')
                                 },
-                               {
-                                   filterGroup: false, collapse: true, allowGrouping: true,
-                                   groupOptions: filters.groupOptions,
-                                   filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'state')
-                               }
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'transmission')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'state')
+                                }
 
                             ]
                         }
@@ -2856,7 +2914,7 @@
                 {
                     key: 'aids', title: 'label.filter.aids', primary: true, value:[], header:'HIV/AIDS',
                     allFilters: filters.aidsFilters, searchResults: searchAIDSResults, showMap: true,
-                    mapData: {}, chartAxisLabel: 'Cases', tableView: 'aids', defaultChartView: 'cases',
+                    mapData: {}, chartAxisLabel: 'Cases', tableView: 'aids', chartView: 'cases', countLabel: 'Number of Cases',
                     chartViewOptions: filters.diseaseVizGroupOptions,
                     runOnFilterChange: true, applySuppression: true, countQueryKey: 'cases',
                     sideFilters:[
@@ -2869,19 +2927,19 @@
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'disease')
                                 },
                                 {
-                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filterGroup: false, collapse: false, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     onFilterChange: utilService.aidsFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'current_year')
                                 },
                                 {
-                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filterGroup: false, collapse: false, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     onFilterChange: utilService.aidsFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'sex')
                                 },
                                 {
-                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filterGroup: false, collapse: false, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     onFilterChange: utilService.aidsFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'race')
@@ -2907,11 +2965,120 @@
                             ]
                         }
                     ]
+                },
+                {
+                    key: 'cancer_incident', title: 'label.filter.cancer_incident', primary: true, value: [], header: 'Cancer Incidence',
+                    allFilters: filters.cancerIncidenceFilters, searchResults: searchCancerResults, showMap: true, countLabel: 'Total Incidence',
+                    mapData: {}, chartAxisLabel: 'Incidence', tableView: 'cancer_incident', runOnFilterChange: true,
+                    sideFilters: [
+                        {
+                            sideFilters: [
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'current_year')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'sex')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'race')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'hispanic_origin')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'age_group')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.conditionGroupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'site')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.conditionGroupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'childhood_cancer')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'state')
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    key: 'cancer_mortality', title: 'label.filter.cancer_mortality', primary: true, value: [], header: 'Cancer Mortality',
+                    allFilters: filters.cancerMortalityFilters, searchResults: searchCancerResults, showMap: true, countLabel: 'Total Deaths',
+                    mapData: {}, chartAxisLabel: 'Deaths', tableView: 'cancer_mortality', runOnFilterChange: true,
+                    sideFilters: [
+                        {
+                            sideFilters: [
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'current_year')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'sex')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'race')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'hispanic_origin')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'age_group')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.conditionGroupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'site')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'state')
+                                }
+                            ]
+                        }
+                    ]
                 }
             ];
 
             filters.search[1].sideFilters = filters.search[1].basicSideFilters; //Set the default side filters for YRBS to basic
             return filters;
+        }
+
+        function getPrimaryFilterByKey(key) {
+            var allPrimaryFilter = getAllFilters().search;
+            var primaryFilter;
+            for(var i=0; i < allPrimaryFilter.length; i++) {
+                if (allPrimaryFilter[i].key === key) {
+                    primaryFilter = allPrimaryFilter[i];
+                    break;
+                }
+            }
+            return primaryFilter;
         }
 
         /*Show will be implemented in phase two modal*/

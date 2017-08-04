@@ -4,6 +4,7 @@ chai.use(chaiAsPromised);
 var expect = chai.expect;
 
 var aidsPage = require('../support/aids.po');
+var commonPage = require('../support/commonpage.po');
 
 var aidsStepDefinitions = function () {
     this.setDefaultTimeout(600000);
@@ -55,6 +56,14 @@ var aidsStepDefinitions = function () {
                 });
             }).then(next);
         });
+    });
+
+    this.Then(/^I see menu appears with data\-sets options$/, function () {
+       return expect(commonPage.secondaryMenu.isDisplayed()).to.eventually.equal(true);
+    });
+
+    this.When(/^I click on "([^"]*)" dataset menu$/, function (arg1) {
+        element(by.cssContainingText('span', arg1)).click();
     });
 };
 

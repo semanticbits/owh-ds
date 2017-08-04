@@ -6,7 +6,7 @@
 
     chartUtilService.$inject = ['$dateParser', '$filter', '$translate','utilService', 'ModalService'];
 
-    function chartUtilService( $dateParser, $filter, $translate, utilService, ModalService ) {
+    function chartUtilService($dateParser, $filter, $translate, utilService, ModalService) {
         var service = {
             horizontalStack: horizontalStack,
             verticalStack: verticalStack,
@@ -45,8 +45,12 @@
          * @returns {Number}
          */
         function getValueFromData(filter, data) {
-            if(filter.tableView == "crude_death_rates" || filter.tableView == "birth_rates" || filter.tableView == "fertility_rates" || filter.tableView == "disease_rate") {
+            if(filter.tableView == "crude_death_rates" || filter.tableView == "birth_rates"
+                || filter.tableView == "fertility_rates" || filter.chartView == "disease_rate") {
                 return data['pop'] ? Math.round(data[filter.key] / data['pop'] * 1000000) / 10 : 0;
+            }
+            else if(filter.chartView == "infant_death_rate") {
+                return data['pop'] ? $filter('number')(data[filter.key] / data['pop'] * 1000, 1): 0;
             }
             else if(data['ageAdjustedRate'] && filter.tableView == "age-adjusted_death_rates"){
                 var ageAdjustedRate = parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));
@@ -85,6 +89,7 @@
 
         /*Multi Bar Horizontal Chart*/
         function horizontalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip) {
+
             postFixToTooltip = postFixToTooltip ? postFixToTooltip : '';
             var chartData = {
                 data: [],
@@ -178,42 +183,35 @@
                     seriesDataObj["key"] = primaryFilter.chartAxisLabel;
                     //collect series values
                     var question = data.question[0];
-                    if(primaryFilter.key === 'prams') {
-                        var questionArray = [];
-                        angular.forEach(data.question, function(pramsQuestion) {
-                            if(pramsQuestion.name === primaryFilter.allFilters[4].value[0]) {
-                                question = pramsQuestion;
-                            }
-                        });
-                        // question = data.question[1][0];
-                        // questionArray = question[0];
-                        angular.forEach(question, function(response, responseKey) {
-                            if(typeof response === 'object' && responseKey != -1) {
-                                question = response;
-                                var seriesDataObj = {};
-                                seriesDataObj["key"] = primaryFilter.chartAxisLabel;
-                                seriesDataObj["key"] += ' - ' + responseKey;
-                                seriesDataObj["values"] = getBarValues(question[filter1.queryKey], filter1);
-                                multiChartBarData.push(seriesDataObj);
-                            }
-                        });
-                    } else {
-                        seriesDataObj["values"] = getBarValues(question[filter1.queryKey], filter1);
-                        multiChartBarData.push(seriesDataObj);
-                    }
+                    var questionArray = [];
+                    angular.forEach(data.question, function(pramsQuestion) {
+                        if(pramsQuestion.name === primaryFilter.allFilters[4].value[0]) {
+                            question = pramsQuestion;
+                        }
+                    });
+
+                    angular.forEach(question, function(response, responseKey) {
+                        if(typeof response === 'object' && responseKey != -1) {
+                            question = response;
+                            var seriesDataObj = {};
+                            seriesDataObj["key"] = primaryFilter.chartAxisLabel;
+                            seriesDataObj["key"] += ' - ' + responseKey;
+                            seriesDataObj["values"] = getBarValues(question[filter1.queryKey], filter1);
+                            multiChartBarData.push(seriesDataObj);
+                        }
+                    });
+
 
                 } else {//for two filters
                     angular.forEach(utilService.getSelectedAutoCompleteOptions(filter1), function (primaryOption,index) {
                         var seriesDataObj = {};
                         var question = data.question[0];
-                        if(primaryFilter.key === 'prams') {
-                            question = data.question[1][0];
-                            angular.forEach(data.question[1], function(response) {
-                                if(typeof response === 'object') {
-                                    question = response;
-                                }
-                            });
-                        }
+                        question = data.question[1][0];
+                        angular.forEach(data.question[1], function(response) {
+                            if(typeof response === 'object') {
+                                question = response;
+                            }
+                        });
                         var eachPrimaryData = utilService.findByKeyAndValue(question[filter1.queryKey], 'name', primaryOption.key);
                         if(!eachPrimaryData) {
                             return;
@@ -245,19 +243,16 @@
                     }
                     if(eachPrimaryData && eachPrimaryData[filter2.key]) {
                         angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2) , function (secondaryOption,j) {
-                            var eachSecondaryData = utilService.findByKeyAndValue(eachPrimaryData[filter2.key], 'name', secondaryOption.key);
-                            var value = 0;
-                            if(eachSecondaryData &&  eachSecondaryData[primaryFilter.key]) {
-                                value = getValueFromData(primaryFilter, eachSecondaryData);
+                            if (!secondaryOption.disabled) {
+                                var eachSecondaryData = utilService.findByKeyAndValue(eachPrimaryData[filter2.key], 'name', secondaryOption.key);
+                                var value = undefined;
+                                if (eachSecondaryData) {
+                                    value = getValueFromData(primaryFilter, eachSecondaryData);
+                                }
+                                if (value !== undefined) {
+                                    primaryDataObj.values.push({ "label": secondaryOption.title, "value": value });
+                                }
                             }
-                            primaryDataObj.values.push({"label":secondaryOption.title, "value": value});
-                        });
-                        multiChartBarData.push(primaryDataObj);
-                    }else{
-                        angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2), function (secondaryOption,j) {
-                            primaryDataObj.values.push(
-                                { label : secondaryOption.title, value : 0 }
-                            );
                         });
                         multiChartBarData.push(primaryDataObj);
                     }
@@ -359,20 +354,17 @@
                         var secondaryArrayData = utilService.sortByKey(eachPrimaryData[filter2.key], 'name');
                         angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2), function (secondaryOption,j) {
                             var eachSecondaryData = utilService.findByKeyAndValue(secondaryArrayData, 'name', secondaryOption.key);
-                            var yAxisValue = 0;
+                            var yAxisValue = undefined;
                             if(eachSecondaryData &&  eachSecondaryData[primaryFilter.key]) {
                                 yAxisValue =  getValueFromData(primaryFilter, eachSecondaryData);
                             }
-                            primaryObj.values.push(
-                                { x : secondaryOption.title, y : yAxisValue }
-                            );
-                        });
-                        multiBarChartData.push(primaryObj);
-                    }else{
-                        angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2), function (secondaryOption,j) {
-                            primaryObj.values.push(
-                                { x : secondaryOption.title, y : 0 }
-                            );
+
+                            if (yAxisValue !== undefined) {
+                                primaryObj.values.push(
+                                    { x : secondaryOption.title, y : yAxisValue }
+                                );
+                            }
+
                         });
                         multiBarChartData.push(primaryObj);
                     }
@@ -458,11 +450,13 @@
                 var lineData = [];
                 angular.forEach(utilService.getSelectedAutoCompleteOptions(filter), function(eachOption) {
                     var eachRow = utilService.findByKeyAndValue(data, 'name', eachOption.key);
-                    var yAxisValue = 0;
+                    var yAxisValue = undefined;
                     if(eachRow) {
                         yAxisValue =  getValueFromData(primaryFilter, eachRow);
                     }
-                    lineData.push({x: eachOption.title, y: yAxisValue});
+                    if (yAxisValue !== undefined) {
+                        lineData.push({x: eachOption.title, y: yAxisValue});
+                    }
                 });
 
                 //Line chart data should be sent as an array of series objects.
@@ -638,13 +632,41 @@
             };
             angular.forEach(utilService.getSelectedAutoCompleteOptions(filter), function(eachOption) {
                 var eachRow = utilService.findByKeyAndValue(data, 'name', eachOption.key);
-                var value = 0;
+                var value = undefined;
                 if(eachRow) {
                     value =  getValueFromData(primaryFilter, eachRow);
                 }
-                chartData.data.push({label: eachOption.title, value: value});
+
+                if (value !== undefined) {
+                    chartData.data.push({label: eachOption.title, value: value});
+                }
             });
             return chartData;
+        }
+
+        function countBars(data) {
+            var count = 0;
+            for (var i = 0; i < data.length; i++) {
+                if (Array.isArray(data[i].values)) {
+                    count += countBars(data[i].values);
+                }
+                else {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        function countStackedBars(data) {
+            var count = 0;
+            for (var i = 0; i < data.length; i++) {
+                if (Array.isArray(data[i].values)) {
+                    count = Math.max(count, countBars(data[i].values));
+                }
+            }
+
+            return Math.max(count, data.length);
         }
 
         /*Show expanded graphs with whole set of features*/
@@ -658,10 +680,21 @@
                 var allExpandedChartDatas = [];
                 graphTitle = graphTitle ? graphTitle : (chartData.length > 1? 'label.graph.expanded': chartData[0].title);
                 angular.forEach(chartData, function(eachChartData) {
+                    var barsCount = eachChartData.options.chart.stacked ? countStackedBars(eachChartData.data) : countBars(eachChartData.data);
+
                     var expandedChartData = angular.copy(eachChartData);
                     /*Update chartData options*/
+
                     expandedChartData.options.chart.height = 500;
                     expandedChartData.options.chart.width = 750;
+
+                    if (eachChartData.options.chart.type === "multiBarChart") {
+                        expandedChartData.options.chart.width = Math.max(750, barsCount * 15);
+                    }
+                    else if (eachChartData.options.chart.type === "multiBarHorizontalChart") {
+                        expandedChartData.options.chart.height = Math.max(500, barsCount * 15);
+                    }
+
                     expandedChartData.options.chart.showLegend = true;
                     //If Rates selected then not enabling controls(grouped, stacked) for expanded visualizations and default view set to grouped.
                     if(tableView && tableView.indexOf('rate') >= 0) {

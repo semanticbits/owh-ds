@@ -689,4 +689,79 @@ describe("Utils", function(){
 
        done();
     });
+
+    it('add missing options for aggregation results using populateDataWithMappings method', function(done){
+        //In this response Race 'Black' has no 'Female' data.
+        var resp = {"hits":{"total":69,"max_score":0,"hits":[]},"aggregations":{"group_table_race":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"White","doc_count":37,"group_table_sex":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Male","doc_count":20},{"key":"Female","doc_count":17}]}},{"key":"American Indian or Alaska Native","doc_count":29,"group_table_sex":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Male","doc_count":21},{"key":"Female","doc_count":8}]}},{"key":"Asian or Pacific Islander","doc_count":2,"group_table_sex":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Female","doc_count":1},{"key":"Male","doc_count":1}]}},{"key":"Black","doc_count":1,"group_table_sex":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Male","doc_count":1}]}}]}}};
+        var countKey = "infant_mortality";
+        var countQueryKey = undefined;
+        var allSelectedFilterOptions = {"sex":{"options":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"selectedValues":[]},"race":{"options":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Asian or Pacific Islander","title":"Asian or Pacific Islander","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}],"selectedValues":[]}};
+        var result = searchUtils.populateDataWithMappings(resp, countKey, countQueryKey, allSelectedFilterOptions);
+        //Results should have 'Female' option added for 'Balck' race
+        expect(result.data.nested.table.race[3].name).to.equal('Black');
+        expect(result.data.nested.table.race[3].sex).to.not.equal(undefined);
+        expect(result.data.nested.table.race[3].sex[0].name).to.equal('Male');
+        expect(result.data.nested.table.race[3].sex[0].infant_mortality).to.equal(1);
+        expect(result.data.nested.table.race[3].sex[1].name).to.equal('Female');
+        expect(result.data.nested.table.race[3].sex[1].infant_mortality).to.equal(0);
+        done();
+    });
+
+    it('add missing options -  if user selected only one filter option and data not available for that option', function(done){
+        //In this response 'Race' -> 'Black' not available because user put 'Race' on 'Column' and 'Sex' on 'Row' and selected 'Female' option
+        //But for Race 'Black' Female data not available, so we should not show 'Race' -> 'Balck' row on data table.
+       var resp = {"hits":{"total":26,"max_score":0,"hits":[]},"aggregations":{"group_table_race":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"White","doc_count":17,"group_table_sex":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Female","doc_count":17}]}},{"key":"American Indian or Alaska Native","doc_count":8,"group_table_sex":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Female","doc_count":8}]}},{"key":"Asian or Pacific Islander","doc_count":1,"group_table_sex":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Female","doc_count":1}]}}]}}};
+       var countKey = "infant_mortality";
+       var countQueryKey = undefined;
+       var allSelectedFilterOptions = {"sex":{"options":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"selectedValues":["Female"]},"race":{"options":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Asian or Pacific Islander","title":"Asian or Pacific Islander","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}],"selectedValues":[]}};
+        var result = searchUtils.populateDataWithMappings(resp, countKey, countQueryKey, allSelectedFilterOptions);
+        //Results should have 'Female' option added for 'Balck' race
+        expect(result.data.nested.table.race[2].name).to.equal('Asian or Pacific Islander');
+        expect(result.data.nested.table.race[2].sex).to.not.equal(undefined);
+        expect(result.data.nested.table.race[2].sex[0].name).to.equal('Female');
+        expect(result.data.nested.table.race[2].sex[0].infant_mortality).to.equal(1);
+        expect(result.data.nested.table.race[2].sex[1]).to.equal(undefined);
+        //Balck race not available
+        expect(result.data.nested.table.race[3]).to.equal(undefined);
+        done();
+    });
+
+    it("get all selected filter options - when user selected 'All' filter option", function(done){
+        var query = {"value": [{"key":"sex","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"defaultGroup":"column","groupBy":"column","filterType":"checkbox","autoCompleteOptions":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"helpText":"label.help.text.infantmort.sex","allChecked":true},{"key":"race","title":"label.filter.race","queryKey":"race","primary":false,"value":[],"defaultGroup":"column","groupBy":"row","filterType":"checkbox","autoCompleteOptions":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Asian or Pacific Islander","title":"Asian or Pacific Islander","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}],"helpText":"label.help.text.race","allChecked":true}]};
+        var apiQuery = {"year_of_death":{"key":"year_of_death","queryKey":"year_of_death","value":["2000"],"primary":false},"state":{"key":"state","queryKey":"state","value":["AK"],"primary":false}};
+       var allOptions = searchUtils.getAllSelectedFilterOptions(query, apiQuery);
+        expect(allOptions.sex).to.not.equal(undefined);
+        expect(allOptions.sex.selectedValues.length).to.equal(0);
+        expect(allOptions.sex.options.length).to.equal(2);
+        expect(allOptions.sex.options[0].key).to.equal('Female');
+        expect(allOptions.sex.options[1].key).to.equal('Male');
+        expect(allOptions.race).to.not.equal(undefined);
+        expect(allOptions.race.selectedValues.length).to.equal(0);
+        expect(allOptions.race.options.length).to.equal(4);
+        expect(allOptions.race.options[0].key).to.equal('American Indian or Alaska Native');
+        expect(allOptions.race.options[1].key).to.equal('Asian or Pacific Islander');
+        expect(allOptions.race.options[2].key).to.equal('Black');
+        expect(allOptions.race.options[3].key).to.equal('White');
+        done();
+    });
+
+    it("get all selected filter options - when user selected other than 'All' option", function(done){
+        var query = {"value": [{"key":"sex","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"defaultGroup":"column","groupBy":"column","filterType":"checkbox","autoCompleteOptions":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"helpText":"label.help.text.infantmort.sex","allChecked":true},{"key":"race","title":"label.filter.race","queryKey":"race","primary":false,"value":[],"defaultGroup":"column","groupBy":"row","filterType":"checkbox","autoCompleteOptions":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Asian or Pacific Islander","title":"Asian or Pacific Islander","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}],"helpText":"label.help.text.race","allChecked":true}]};
+        var apiQuery = {"sex":{"key":"sex","queryKey":"sex","value":["Female"],"primary":false},"year_of_death":{"key":"year_of_death","queryKey":"year_of_death","value":["2000"],"primary":false},"state":{"key":"state","queryKey":"state","value":["AK"],"primary":false}};
+        var allOptions = searchUtils.getAllSelectedFilterOptions(query, apiQuery);
+        expect(allOptions.sex).to.not.equal(undefined);
+        expect(allOptions.sex.selectedValues.length).to.equal(1);
+        expect(allOptions.sex.selectedValues[0]).to.equal('Female');
+        expect(allOptions.sex.options.length).to.equal(2);
+        expect(allOptions.sex.options[0].key).to.equal('Female');
+        expect(allOptions.sex.options[1].key).to.equal('Male');
+        expect(allOptions.race).to.not.equal(undefined);
+        expect(allOptions.race.selectedValues.length).to.equal(0);
+        expect(allOptions.race.options.length).to.equal(4);
+        expect(allOptions.race.options[0].key).to.equal('American Indian or Alaska Native');
+        expect(allOptions.race.options[1].key).to.equal('Asian or Pacific Islander');
+        expect(allOptions.race.options[2].key).to.equal('Black');
+        expect(allOptions.race.options[3].key).to.equal('White');
+        done();
+    });
 });

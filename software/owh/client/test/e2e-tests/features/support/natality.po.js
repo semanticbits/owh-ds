@@ -26,7 +26,7 @@ var NatalitySearchPage = function () {
     };
 
     nsp.getOptions = function(filterType) {
-        return element(by.cssContainingText('a', filterType)).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul')).all(by.tagName('li'));
+        return element(by.cssContainingText('a', filterType)).element(by.xpath('ancestor::span')).element(by.tagName('ul')).all(by.tagName('li'));
     };
 
     nsp.selectSideFilter = function(filterType, viewType) {

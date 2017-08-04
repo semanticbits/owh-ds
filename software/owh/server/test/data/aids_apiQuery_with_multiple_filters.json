@@ -17,7 +17,7 @@
     "age_group": {
       "key": "age_group",
       "queryKey": "age_group",
-      "value": "All age groups 13 and up",
+      "value": "All age groups",
       "primary": false
     },
     "transmission": {

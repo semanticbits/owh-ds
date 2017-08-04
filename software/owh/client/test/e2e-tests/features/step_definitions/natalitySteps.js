@@ -72,12 +72,10 @@ var natalityStepsDefinitionWrapper = function () {
     this.Then(/^I see expected filters should be disabled for Birth Rates$/, function (next) {
         //Expand all filters
         element(by.className('show-more-0')).click();
-        element(by.className('show-more-1')).click();
-        element(by.className('show-more-3')).click();
         var allElements = element.all(by.css('cursor-not-allowed')).all(by.css('custom-link'));
         allElements.getText().then(function (filters) {
             filters.forEach(function (filter) {
-                expect(["Month","Weekday", "Sex", "Gestational Age at Birth","Month Prenatal Care Began","Birth Weight","Birth Weight 4","Birth Weight 12","Plurality or Multiple Birth","Live Birth Order","Birth Place","Delivery Method","Medical Attendant","Ethinicity","Marital Status", "Education", "1-Year Age Groups", "5-Year Age Groups",
+                expect(["Month","Weekday", "Sex", "Gestational Age at Birth", "LMP Gestational Age 10", "LMP Gestational Age 11", "LMP Gestational Age Weekly", "Month Prenatal Care Began","Birth Weight","Birth Weight 4","Birth Weight 12","Plurality or Multiple Birth","Live Birth Order","Birth Place","Delivery Method","Medical Attendant","Ethinicity","Marital Status", "Education", "1-Year Age Groups", "5-Year Age Groups",
                     "Anemia","Cardiac Disease","Chronic Hypertension","Diabetes","Eclampsia","Hydramnios / Oligohydramnios","Incompetent Cervix","Lung disease","Pregnancy-associated Hypertension","Tobacco Use"]).to.include(filter);
             });
         }).then(next);
@@ -141,13 +139,10 @@ var natalityStepsDefinitionWrapper = function () {
     });
 
     this.Then(/^I see expected filters should be disabled for Fertility Rates$/, function (next) {
-        element(by.className('show-more-0')).click();
-        element(by.className('show-more-1')).click();
-        element(by.className('show-more-3')).click();
         var allElements = element.all(by.css('cursor-not-allowed')).all(by.css('custom-link'));
         allElements.getText().then(function (filters) {
             filters.forEach(function (filter) {
-                expect(["Month","Weekday", "Sex", "Gestational Age at Birth","Month Prenatal Care Began","Birth Weight","Birth Weight 4","Birth Weight 12","Plurality or Multiple Birth","Live Birth Order","Birth Place","Delivery Method","Medical Attendant","Ethinicity","Marital Status","Age of Mother","Education",
+                expect(["Month","Weekday", "Sex", "Gestational Age at Birth", "LMP Gestational Age 10", "LMP Gestational Age 11", "LMP Gestational Age Weekly", "Month Prenatal Care Began","Birth Weight","Birth Weight 4","Birth Weight 12","Plurality or Multiple Birth","Live Birth Order","Birth Place","Delivery Method","Medical Attendant","Ethinicity","Marital Status","Age of Mother","Education",
                     "Anemia","Cardiac Disease","Chronic Hypertension","Diabetes","Eclampsia","Hydramnios / Oligohydramnios","Incompetent Cervix","Lung disease","Pregnancy-associated Hypertension","Tobacco Use"]).to.include(filter);
             });
         }).then(next);
@@ -166,10 +161,18 @@ var natalityStepsDefinitionWrapper = function () {
 
     this.Then(/^I should see "([^"]*)" options under Mother Age category for 5-Year age group$/, function (arg1, next) {
         natalityPage.getOptions(arg1).then(function(elements) {
+            //We have a two extra <li> to display search box and to show more filter link
+            expect(elements.length).to.equal(12);
             expect(elements[1].getText()).to.eventually.contains('All');
             expect(elements[2].getText()).to.eventually.contains('Under 15 years');
             expect(elements[3].getText()).to.eventually.contains('15-19 years');
             expect(elements[4].getText()).to.eventually.contains('20-24 years');
+            expect(elements[5].getText()).to.eventually.contains('25-29 years');
+            expect(elements[6].getText()).to.eventually.contains('30-34 years');
+            expect(elements[7].getText()).to.eventually.contains('35-39 years');
+            expect(elements[8].getText()).to.eventually.contains('40-44 years');
+            expect(elements[9].getText()).to.eventually.contains('45-49 years');
+            expect(elements[10].getText()).to.eventually.contains('50 years and over');
         }).then(next);
     });
 
@@ -195,10 +198,46 @@ var natalityStepsDefinitionWrapper = function () {
 
     this.Then(/^I should see "([^"]*)" options under Mother Age category for 1\-Year age group$/, function (arg1, next) {
         natalityPage.getOptions(arg1).then(function(elements) {
+            //We have a two extra <li> to display search box and to show more filter link
+            expect(elements.length).to.equal(40);
             expect(elements[1].getText()).to.eventually.contains('All');
             expect(elements[2].getText()).to.eventually.contains('Under 15 years');
             expect(elements[3].getText()).to.eventually.contains('15 years');
             expect(elements[4].getText()).to.eventually.contains('16 years');
+            expect(elements[5].getText()).to.eventually.contains('17 years');
+            expect(elements[6].getText()).to.eventually.contains('18 years');
+            expect(elements[7].getText()).to.eventually.contains('19 years');
+            expect(elements[8].getText()).to.eventually.contains('20 years');
+            expect(elements[9].getText()).to.eventually.contains('21 years');
+            expect(elements[10].getText()).to.eventually.contains('22 years');
+            expect(elements[11].getText()).to.eventually.contains('23 years');
+            expect(elements[12].getText()).to.eventually.contains('24 years');
+            expect(elements[13].getText()).to.eventually.contains('25 years');
+            expect(elements[14].getText()).to.eventually.contains('26 years');
+            expect(elements[15].getText()).to.eventually.contains('27 years');
+            expect(elements[16].getText()).to.eventually.contains('28 years');
+            expect(elements[17].getText()).to.eventually.contains('29 years');
+            expect(elements[18].getText()).to.eventually.contains('30 years');
+            expect(elements[19].getText()).to.eventually.contains('31 years');
+            expect(elements[20].getText()).to.eventually.contains('32 years');
+            expect(elements[21].getText()).to.eventually.contains('33 years');
+            expect(elements[22].getText()).to.eventually.contains('34 years');
+            expect(elements[23].getText()).to.eventually.contains('35 years');
+            expect(elements[24].getText()).to.eventually.contains('36 years');
+            expect(elements[25].getText()).to.eventually.contains('37 years');
+            expect(elements[26].getText()).to.eventually.contains('38 years');
+            expect(elements[27].getText()).to.eventually.contains('39 years');
+            expect(elements[28].getText()).to.eventually.contains('40 years');
+            expect(elements[29].getText()).to.eventually.contains('41 years');
+            expect(elements[30].getText()).to.eventually.contains('42 years');
+            expect(elements[31].getText()).to.eventually.contains('43 years');
+            expect(elements[32].getText()).to.eventually.contains('44 years');
+            expect(elements[33].getText()).to.eventually.contains('45 years');
+            expect(elements[34].getText()).to.eventually.contains('46 years');
+            expect(elements[35].getText()).to.eventually.contains('47 years');
+            expect(elements[36].getText()).to.eventually.contains('48 years');
+            expect(elements[37].getText()).to.eventually.contains('49 years');
+            expect(elements[38].getText()).to.eventually.contains('50 years and over');
         }).then(next);
     });
 
@@ -307,11 +346,11 @@ var natalityStepsDefinitionWrapper = function () {
         natalityPage.getTableCellData(0,2).then(function(data){
             expect(data).to.contains('Suppressed');
         });
-        natalityPage.getTableCellData(2,1).then(function(data){
-            expect(data).to.contains('Suppressed');
+        natalityPage.getTableCellData(1,1).then(function(data){
+            expect(data).to.contains('13');
         });
-        natalityPage.getTableCellData(2,2).then(function(data){
-            expect(data).to.equal('11');
+        natalityPage.getTableCellData(1,2).then(function(data){
+            expect(data).to.equal('Suppressed');
         }).then(next);
     });
 
@@ -348,6 +387,33 @@ var natalityStepsDefinitionWrapper = function () {
             expect(firstRowData[1]).to.contains('6,043.0');
             expect(firstRowData[1]).to.contains('1,193');
             expect(firstRowData[1]).to.contains('19,742')
+        }).then(next);
+    });
+
+
+    this.Then(/^age group filter options should be disabled for "([^"]*)" filter$/, function (arg1) {
+        var disableOptions = [];
+        var enableOption = "";
+        var id = "";
+        if(arg1 == '1-Year Age Groups'){
+            disableOptions = ["Under 15 years", "45 years", "46 years", "47 years", "48 years", "49 years", "50-54 years"];
+            id = "natality_mother_age_1year_interval_";
+            enableOption = "15 years";
+        }
+         else if(arg1 == '5-Year Age Groups'){
+            disableOptions = ["Under 15 years", "45-49 years", "50-54 years"];
+            id = "natality_mother_age_5year_interval_";
+            enableOption = "15-19 years"
+         }
+        disableOptions.forEach(function(age){
+            expect(element(by.id(id+age)).getAttribute("disabled")).to.eventually.equal('true');
+        });
+        return expect(element(by.id(id+enableOption)).getAttribute("disabled")).to.eventually.equal(null);
+    });
+
+    this.Then(/^I select All for State$/, function (next) {
+        element.all(by.css('label[for=state_all]')).then(function(elements) {
+            elements[0].click();
         }).then(next);
     });
 };

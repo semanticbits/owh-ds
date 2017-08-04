@@ -1,35 +1,17 @@
 <div class="usa-grid">
     <ng-include src="'app/partials/disclaimer.html'"></ng-include>
+    <ng-include src="'app/partials/coBrandedHeader.html'"></ng-include>
+    <ng-include src="'app/partials/topBanner.html'"></ng-include>
 </div>
-<!--Search banner-->
-<div class="usa-grid-full">
-    <div class="usa-width-one-whole sp-header">
-        <div class="usa-width-one-sixth sp-icon-div cursor-pointer">
-            <img ui-sref="home" src="../images/owh-logo-white.svg" alt="owh_white_logo" height="60" width="200"/>
-        </div>
-        <div class="usa-width-one-third cursor-pointer">
-            <img ui-sref="home" src="../images/hig-logo-white.svg" alt="HIG Logo" height="60" width="300"/>
-        </div>
-    </div>
-</div>
-<!--Search banner-->
 
 <div class="usa-grid-full">
     <div class="usa-grid">
-        <!-- @TODO add sc.queryID -->
-        <div class="usa-width-one-whole margin-top-30 margin-bottom-30">
-            <div class="usa-grid-full usa-width-one-whole">
-                <owh-search filters="sc.filters" show-filters="sc.showMeOptions"
-                            search-results="sc.filters.selectedPrimaryFilter.searchResults(sc.filters.selectedPrimaryFilter)"
-                            on-view-filter="sc.changeViewFilter(selectedFilter)"
-                            on-primary-filter="sc.changePrimaryFilter(newFilter)"
-                            table-view="{{ sc.tableView }}"></owh-search>
-            </div>
-        </div>
-    </div>
-    <!--<div class="usa-width-one-whole padding-top-10">
-        <leaflet lf-center="usa" markers="markers" events="events" geojson="geojson" defaults="defaults" width="650px" height="480px"></leaflet>
-    </div>-->
+        <owh-menu selected-filter ="sc.filters.selectedPrimaryFilter" show-me-options="sc.showMeOptions"
+                  search-results="sc.filters.selectedPrimaryFilter.searchResults(sc.filters.selectedPrimaryFilter)"
+                  on-primary-filter="sc.changePrimaryFilter(newFilter)" category-name="sc.findNameByKeyAndValue(newFilter)"
+                  on-view-filter="selectedFilter && sc.changeViewFilter(selectedFilter)">
+        </owh-menu>
+</div>
 </div>
 
 <div class="usa-grid border-top-default" ng-class="{'allow-inline-charting': sc.filters.allowInlineCharting}">
@@ -69,9 +51,11 @@
                                    filters="sc.filters.selectedPrimaryFilter.allFilters">
             </list-selected-filters>
 
-            <owh-toggle-switch ng-if="sc.tableView == 'std' || sc.tableView == 'tb' || sc.tableView == 'aids' || sc.tableView == 'disease_rate'" class="left-float chart-view-toggle"
+            <owh-toggle-switch ng-if="sc.filters.selectedPrimaryFilter.chartView"
+                               class="left-float chart-view-toggle"
                                options="sc.filters.selectedPrimaryFilter.chartViewOptions"
-                               model="sc.filters.selectedPrimaryFilter.defaultChartView" on-change="sc.onChartViewChange(sc.filters.selectedPrimaryFilter.tableView, sc.filters.selectedPrimaryFilter.key)"
+                               model="sc.filters.selectedPrimaryFilter.chartView"
+                               on-change="sc.onChartViewChange(sc.filters.selectedPrimaryFilter.chartView)"
                                tooltip="{{'label.group.by.tooltip' | translate}}">
             </owh-toggle-switch>
             <!--Charts-->
@@ -96,7 +80,8 @@
                                        class="cursor-pointer" href="javascript:void(0);">
                                         &nbsp; <span class="fa fa-share-alt" title="{{'label.share.on.fb' | translate}}"></span>
                                     </a>
-                                    <a title="Graph" aria-label="Expand Graph" name="expand_graph" ng-click="sc.showExpandedGraph(chartData, sc.filters.selectedPrimaryFilter.tableView)" class="cursor-pointer" href="javascript:void(0)">
+                                    <a title="Graph" aria-label="Expand Graph" name="expand_graph"
+                                       ng-click="sc.showExpandedGraph(chartData)" class="cursor-pointer" href="javascript:void(0)">
                                         &nbsp;<span class="fa fa-expand" title="Expand graph"></span>
                                     </a>
                                 </div>
@@ -108,16 +93,6 @@
                 </div>
             </div>
             <!--Charts-->
-
-            <!--More visualization-->
-            <div class="usa-width-one-whole" ng-show="sc.filters.selectedPrimaryFilter.chartData.length > 0">
-                <div class="usa-width-one-whole more-graph-select">
-                    <span class="dark-link" ng-bind="'label.visualization.more.one' | translate"></span>
-                    <a href="javascript:void(0)" ng-click="sc.showPhaseTwoGraphs('label.graph.impl.next')">Build one</a>
-                    <span class="dark-link" ng-bind="'label.visualization.more.two' | translate"></span>
-                </div>
-            </div>
-            <!--More visualization-->
 
             <!--Table-->
             <div class="usa-grid-full">
@@ -150,15 +125,16 @@
                     <p id="death-rate-disclaimer" class="dark-link" ng-if="sc.tableView === 'crude_death_rates'" ng-bind=" 'label.crude.death.rates.statement' | translate"></p>
                     <p id="birth-rate-disclaimer" class="dark-link" ng-if="sc.tableView === 'birth_rates'" ng-bind=" 'label.crude.brith.rates.statement' | translate"></p>
                     <p id="std-disclaimer" class="dark-link" ng-if="sc.tableView === 'std' || sc.tableView === 'disease_rate'" ng-bind=" 'label.std.national.data.available.for.few.years.statement' | translate"></p>
-                    <owh-table table-data="sc.tableData"
-                               show-percentage="sc.tableData.calculatePercentage"
+                    <owh-table table-data="sc.tableData" show-percentage="sc.tableData.calculatePercentage"
                                ng-if="(sc.filters.selectedPrimaryFilter.headers && sc.filters.selectedPrimaryFilter.key === 'deaths' ||
                                sc.filters.selectedPrimaryFilter.key === 'bridge_race' ||
                                sc.filters.selectedPrimaryFilter.key === 'natality' ||
                                sc.filters.selectedPrimaryFilter.key === 'infant_mortality' ||
                                sc.filters.selectedPrimaryFilter.key === 'std' ||
                                sc.filters.selectedPrimaryFilter.key === 'tb' ||
-                               sc.filters.selectedPrimaryFilter.key === 'aids')"
+                               sc.filters.selectedPrimaryFilter.key === 'aids' ||
+                               sc.filters.selectedPrimaryFilter.key === 'cancer_incident' ||
+                               sc.filters.selectedPrimaryFilter.key === 'cancer_mortality')"
                                table-view="{{sc.tableView}}"
                                rowspan-threshold="50"></owh-table>
                     <owh-accordion-table headers="sc.tableData.headers" data="sc.tableData.data"
@@ -174,6 +150,7 @@
             <!--Table-->
         </div>
     </div>
+    <ng-include src="'app/partials/contentOwnerShip.html'"></ng-include>
 </div>
 
 <div class="usa-grid-full">

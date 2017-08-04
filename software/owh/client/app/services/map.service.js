@@ -14,7 +14,8 @@
             addShareControl: addShareControl,
             addScaleControl: addScaleControl,
             highlightFeature: highlightFeature,
-            resetHighlight: resetHighlight
+            resetHighlight: resetHighlight,
+            setInitialView: setInitialView
         };
         return service;
 
@@ -30,7 +31,6 @@
                 if (utilService.isValueNotEmpty(state)){
                     stateDeathTotals.push(state[primaryFilter.key]);
                     feature.properties.years = angular.isArray(years)? years.join(', ') : years;
-                    feature.properties.totalCount = state['deaths']; /*+ (Math.floor((Math.random()*10)+1))*100000;*/
                     feature.properties.sex = state.sex;
                     feature.properties[primaryFilter.key] =  state[primaryFilter.key];
                 }
@@ -47,11 +47,10 @@
                 },
                 mapTotalCount: totalCount
             });
-
         }
 
         function getSelectedYears(primaryFilter) {
-            var yearFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'current_year');
+            var yearFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'current_year') || utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year');
             if (yearFilter) {
                 return utilService.isValueNotEmpty(yearFilter.value) ? yearFilter.value : utilService.getValuesByKey(yearFilter.autoCompleteOptions, 'title');
             }
@@ -243,5 +242,11 @@
             }
         }
 
+        function setInitialView () {
+            leafletData.getMap().then(function (map) {
+               map.setView(new L.LatLng(38, 14), 3);
+                $timeout(function(){ map.invalidateSize()}, 100);
+            });
+        }
     }
 }());
