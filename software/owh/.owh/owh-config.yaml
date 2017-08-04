@@ -1,10 +1,10 @@
 # Default config
 default: 
   elastic_search:
-    url: 'http://localhost:9200/'
+    url: 'http://54.242.94.197/esdev'
   yrbs:
-    queryUrl: ''
-    questionsUrl: ''
+    queryUrl: 'http://54.86.112.54:7777'
+    questionsUrl: 'http://54.86.112.54:7777/questions'
   wonder:
     url: 'http://54.242.94.197/wonder/'
     apix_project: ''
