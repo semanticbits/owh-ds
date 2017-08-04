@@ -188,12 +188,12 @@ var BridgeRaceStepDefinitionsWrapper = function () {
         bridgeRacePage.hidePecentageButton.click().then(next)
     });
 
-    this.Then(/^I should not see percentages$/, function () {
-        return bridgeRacePage.getTableRowData(0).then(function (row) {
+    this.Then(/^I should not see percentages$/, function (next) {
+        bridgeRacePage.getTableRowData(0).then(function (row) {
             expect(row[1]).to.equal('2,279,263');
             expect(row[2]).to.equal('2,298,590');
             expect(row[3]).to.equal('4,577,853');
-        });
+        }).then(next);
     });
 
     this.Then(/^I see data in data table for (\d+)\+ years age group$/, function (arg1, next) {
