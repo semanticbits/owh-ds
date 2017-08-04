@@ -1,6 +1,7 @@
 FROM node:4.5.0-wheezy
 
 RUN mkdir -p /usr/local/owh
+RUN mkdir -p /usr/local/owh/.owh/logs
 WORKDIR /usr/local/owh/software/owh
 COPY . /usr/local/owh
 RUN npm install -g bower
