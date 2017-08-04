@@ -1,4 +1,6 @@
-<table class="owh-data-table">
+<div class="table-container">
+
+ <table class="owh-data-table">
     <thead>
         <tr ng-repeat="eachHeaderRow in oatc.headers">
             <th ng-repeat="eachHeader in eachHeaderRow" ng-bind="eachHeader.title" colspan="{{eachHeader.colspan}}" rowspan="{{eachHeader.rowspan}}" title="{{eachHeader.helpText}}"></th>
@@ -47,3 +49,4 @@
         </tr>
     </tbody>
 </table>
+</div>

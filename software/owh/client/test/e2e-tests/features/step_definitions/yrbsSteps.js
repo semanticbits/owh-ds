@@ -418,12 +418,12 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I see hide filter button in yrbs page$/, function (next) {
-        browser.actions().mouseMove(element(by.cssContainingText('a', "<< Hide Filters"))).perform()
+        browser.actions().mouseMove(element(by.cssContainingText('a', "Hide Filters"))).perform()
             .then(next);
     });
 
     this.When(/^I click hide filter button in yrbs page$/, function (next) {
-        element(by.cssContainingText('span', "<< Hide Filters")).click()
+        element(by.cssContainingText('span', "Hide Filters")).click()
             .then(next);
     });
 
