@@ -246,7 +246,7 @@
                 },
                  mental_health: {
                     key:"mental_health",
-                    title: 'The YRBS includes national',
+                    title: 'Youth Risk Behavior Surveillance System (YRBSS)',
                     image: 'yrbss-icon.svg',
                     yrsAvail: '2000-2015',
                     topics: "Diabetes, Alcohol and Other Drug Use, Obesity, Overweight and Weight Control, Dietary Behaviors, Physical Activity, Sexual Behavior, Tobacco Use, Unintentional Injury and Violence, Health and Nutrition, Youth Risk",
