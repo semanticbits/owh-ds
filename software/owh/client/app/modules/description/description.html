@@ -3,39 +3,48 @@
     <ng-include src="'app/partials/topBanner.html'"></ng-include>
 </div>
 
-<div class="usa-grid" ng-init="dataset = dc.getDataSetDetails('natality')">
-    <div style="width: 50%; border: solid 1px; padding: 30px; margin: 50px 10px 10px 100px; border-radius: 10px" class="usa-grid pull-left">
-        <div style="font-size:35px" class="purple-text"><img ng-src="{{dataset.image}}" alt="{{dataset.title | translate}}" height="125" width="125"/>{{dataset.title | translate}}</div>
-        <hr>
-        <h2 class="purple-text">About This Dataset</h2>
-        <div ng-bind="label.data.dsc.natality | translate"></div>
-        <h3>Data Suppression:</h3>
-        <div ng-bind="dataset.suppression | translate"></div>
-        <hr>
-        <h3 style="color:rebeccapurple">Filtering Options ({{dataset.filters.length}})</h3><br>
-        <div ng-repeat="filter in dataset.filters" class="padding-bottom-30 margin-bottom-30 padding-top-5">
-            <hr ng-show="$index != 0">
-            <div class="pull-left margin-right-30" style="width: 20%">
-                <b ng-show="$index == 0">Filter<hr></b><br>
-                {{filter.name}}
+<div class="data-sets" style="padding: 30px;">
+    <div class="usa-grid" ng-init="dataset = dc.getDataSetDetails()">
+        <div class="usa-width-three-fourths intro">
+            <div class="thin-border-bottom">
+                <img ng-src="{{'../images/icons/'+ dataset.image}}" alt="{{dataset.title}}"
+                     height="80"/>
+                <span class="font-20 dark-purple-text" ng-bind="dataset.title"></span>
             </div>
-            <b ng-show="$index == 0">Description<hr></b><br>
-            <div class="pull-left" style="width: 80%">
-                {{filter.dsc | translate}}
+            <h4 style="color: #663596">About This Dataset</h4>
+            <div ng-bind="dataset.dataDescription"></div>
+            <div ng-if="dataset.suppression">
+                <h5>Data Suppression:</h5>
+                <div ng-bind-html="dataset.suppression"></div>
+            </div>
+            <hr>
+            <h4 class="dark-purple-text">Filtering Options ({{dataset.filters.length}})</h4><br>
+            <div class="thin-border-bottom usa-width-one-whole padding-bottom-10">
+                <div class="usa-width-one-fourth">
+                    <b>Filter</b>
+                </div>
+                <div class="usa-width-three-fourths">
+                    <b>Description</b>
+                </div>
+            </div>
+            <div ng-repeat="filter in dataset.filters"
+                 class="thin-border-bottom usa-width-one-whole padding-top-10 padding-bottom-10">
+                <div class="usa-width-one-fourth" ng-bind="filter.name"></div>
+                <div class="usa-width-three-fourths" ng-bind="filter.description"></div>
             </div>
         </div>
-    </div>
-
-    <div style="width: 35%;margin-right: 10px;" class="usa-grid" ng-init="dataset = dc.getDataSetDetails('natality')">
-        <button ng-click="$state.go('search')" style="border-radius: 10px">Explore Dataset <i class="arrows material-icons" style="color: white;">arrow_forward</i></button>
-        <hr>
-        Years Available: {{dataset.yrsAvail}}
-        <hr>
-        Source(s): {{dataset.source | translate}}
-        <hr>
-        Topics: {{dataset.topics}}
-        <hr>
-        <a style="color: dodgerblue;">How Rates Are Calculated ></a>
+        <div class="usa-width-one-fourth">
+            <a ui-sref="search" class="explore-dataset-btn"
+               href="#">EXPLORE DATASET<i class="material-icons">arrow_forward</i> </a>
+            <hr>
+            <span class="bold-class">Years Available: </span> {{dataset.yrsAvail}}
+            <hr>
+            <span class="bold-class">Source(s): </span><span ng-bind-html="dataset.source"></span>
+            <hr>
+            <span class="bold-class">Topics: </span>{{dataset.topics}}
+            <hr>
+            <a class="description-text">How Rates Are Calculated ></a>
+        </div>
     </div>
 </div>
 

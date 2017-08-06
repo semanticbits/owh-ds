@@ -84,7 +84,7 @@ body {
 	font-style: italic;
 }
 
-.intro .usa-button-secondary {
+.intro .usa-button-secondary, .explore-dataset-btn {
 	/*background: #009ddd;*/
 	background: #0071b9;
 	padding: 10px 35px 10px 40px;
@@ -96,7 +96,7 @@ body {
 	display: inline-block;
 }
 
-.intro .usa-button-secondary i {
+.intro .usa-button-secondary i, .explore-dataset-btn i {
 	vertical-align: -7px;
 	transition: all 0.2s linear;
 	margin-left: 6px;
@@ -969,6 +969,11 @@ table thead {
 .thin-border-top {
 	border-top: 1px solid #e2e3e3 !important;
 }
+
+.thin-border-bottom {
+	border-bottom: 1px solid #DDDDDD;
+}
+
 .action-button {
 	background-color: #833eb0;
 	border-radius: 4px;
