@@ -79,6 +79,20 @@
                             "</ol>"
                         },
                         {
+                            isRateInfo:true,
+                            question:"How are Birth Rates and Fertility Rates calculated?",
+                            answer:"Birth rates are calculated as the number of births divided by total population in the given year(s). When the numerator is sub-set by mother's race, location, or year of birth, then the same sub-set for race, location and year applies to the denominator population. If the data are sub-set by any other variable, then birth rates and denominator data are not available.<br/>Note:" +
+                            "<ol>" +
+                            "<li>Birth rates are available for the Natality data beginning in year 2003.</li>" +
+                            "<li>Birth rates are only available for the total population, or for mother's race, mother's place of residence and the year of birth. If data are grouped by any other variable, or limited for any other variable, then birth rates are not calculated.</li>" +
+                            "</ol>" +
+                            "Fertility rates are calculated as the number of births divided by the number of females age 15 - 44 years old in the given year(s). When the numerator is sub-set by mother's age, mother's race, location, or year of birth, then the same sub-set for age, race, location and year applies to the denominator population. If data are sub-set by any other variable, then fertility rates and denominator data are not available.<br/>Note:" +
+                            "<ol>" +
+                            "<li>Fertility rates are available for the Natality data since year 2003.</li>" +
+                            "<li>Fertility rates are only available for the total population, or for mother's age, mother's race, mother's place of residence and the year of birth. If data are grouped by any other variable, or limited for any other variable, then fertility rates are not calculated. Comparable denominator data are not available for the other variables.</li>" +
+                            "</ol>"
+                        },
+                        {
                             question:"What are the Assurance of Confidentiality constraints for the data?",
                             answer:"Data reports for years 1989 and later must meet the NCHS data use restrictions. Vital statistics data are suppressed due to confidentiality constraints, in order to protect personal privacy." +
                             "<ol>" +
@@ -129,7 +143,19 @@
                             "<li>The archive population estimates for years 2001 - 2009 are postcensal estimates of the July 1 resident population.</li>" +
                             "<li>The 2011 - 2015 population estimates are postcensal estimates of the July 1 resident population.</li>" +
                             "</ol>" +
-                            "Note that these estimates are based on bridged-race categories. The population estimates are by geographic unit (total United States, State, and county), year, race (white, black, other races), sex, and age group (13 age groups). To permit the calculation of infant mortality rates, NCHS live-birth data are included on the file."
+                            "Note that these estimates are based on bridged-race categories. The population estimates are by geographic unit (total United States, State, and county), year, race (white, black, other races), sex, and age group (13 age groups). To permit the calculation of infant mortality rates, NCHS live-birth data are included on the file.<br/><br/>"
+                        },
+                        {
+                            isRateInfo:true,
+                            question:"How are Age Adjusted Rates calculated?",
+                            answer:"<p>Age-adjusted death rates are weighted averages of the age-specific death rates, where the weights represent a fixed population by age. They are used to compare relative mortality risk among groups and over time. An age-adjusted rate represents the rate that would have existed had the age-specific rates of the particular year prevailed in a population whose age distribution was the same as that of the fixed population. Age-adjusted rates should be viewed as relative indexes rather than as direct or actual measures of mortality risk. The rates of almost all causes of death vary by age. Age adjustment is a technique for &quot;removing&quot; the effects of age from crude rates, so as to allow meaningful comparisons across populations with different underlying age structures. For example, comparing the crude rate of heart disease in Florida to that of California is misleading, because the relatively older population in Florida will lead to a higher crude death rate, even if the age-specific rates of heart disease in Florida and California are the same. For such a comparison, age-adjusted rates are preferable. Age-adjusted rates should be viewed as relative indexes rather than as direct or actual measures of mortality risk.</p>" +
+                            "<p>The National Center for Health Statistics (NCHS) age-adjusts death rates using the direct method. That is, by applying age-specific death rates (Ri) to the U.S. standard population age distribution.</p>" +
+                            "<p>R' = S i ( Psi / Ps ) Ri</p>where <b>Psi</b> is the standard population for age group <b>i</b> and <b>Ps</b> is the total U.S. standard population (all ages combined).<br/><br/>"
+                        },
+                        {
+                            question:"How are Crude Rates calculated? ",
+                            answer:"Crude Rates are expressed as the number of deaths reported each calendar year per the factor you select. The default factor is per 100,000 population, reporting the death rate per 100,000 persons." +
+                            "<p>Crude Rate = Count / Population * 100,000</p>"
                         },
                         {
                             question:"What are the suppression rules for Crude Death Rates?",
@@ -194,6 +220,28 @@
                         {name: "Cancer sites", description: "This field indicates the primary cancer site that is the organ of origin within the body where a given cancer occurs in an individual"},
                         {name: "Childhood Cancers", description: "This field indicates the childhood cancer that are usually studied in children who are less than age 20"},
                         {name: "State", description: "This field indicates the State of patient's residence at the time the case was submitted to the registry"}
+                    ],
+                    additionalInfo:[
+                        {
+                            question:"What are the population sources?",
+                            answer:"The population estimates are a slight modification of the annual time series of July 1 county population estimates (by age, sex, race, and Hispanic origin) produced by the Population Estimates Program of the U.S. Bureau of the Census (Census Bureau) with support from the National Cancer Institute (NCI) through an interagency agreement.<br/><br/>"
+                        },
+                        {
+                            isRateInfo:true,
+                            question:"What are Age-adjusted rates? How are they calculated?",
+                            answer:"An age-adjusted rate is a weighted average of the age-specific (crude) rates, where the weights are the proportions of persons in the corresponding age groups of a standard million population. The potential confounding effect of age is reduced when comparing age-adjusted rates computed using the same standard million population.<br/>The age-adjusted rate is calculated by multiplying the age-specific rate for each age group by the corresponding weight from the specified standard population, then summing across all age groups, and then multiplying this result by 100,000." +
+                            "<p>Age-Adjusted Rate = (Sum of (Each Age Specific Rate * Each Standard Population Weight))*100,000</p>" +
+                            "The age-specific rate is the number of incidents for a given age group, divided by the population of that age group." +
+                            "<p>Age Specific Rate = Number of incidents in age group/Population of Age Group</p>" +
+                            "The &quot;standard population weight&quot; for an age group is calculated by dividing the population for the age group by the sum of the populations for all of the age groups in the query." +
+                            "<p>Standard Population Weight = Population for age group/Sum of populations for all age groups</p>"
+                        },
+                        {
+                            question:"What are Crude Rates? How are they calculated?",
+                            answer:"Crude Rates are expressed as the number of cases reported each calendar year per 100,000 population." +
+                            "<p>Crude Rate = Count / Population * 100,000</p>" +
+                            "<p>The population estimates for the denominators of incidence rates are race-specific (all races, white, black, and Asian/ Pacific Islander) and sex-specific county population estimates aggregated to the state or metropolitan area level.</p>"
+                        }
                     ]
                 },
                 std: {
@@ -215,6 +263,13 @@
                         {name: "Sex", description: "This field indicates the current sex of the patient"},
                         {name: "Race/Ethnicity", description: "This field indicates the Race/Ethnicity of the patient"},
                         {name: "Age Group", description: "This field indicates the age group of the patient"}
+                    ],
+                    additionalInfo:[
+                        {
+                            isRateInfo:true,
+                            question:"How are Rates calculated?",
+                            answer:"Each rate was calculated by dividing the number of STD cases for the calendar year by the population for that calendar year and then multiplying the number by 100,000."
+                        }
                     ]
                 },
                 tb: {
@@ -236,6 +291,13 @@
                         {name: "Race/Ethnicity", description: "This field indicates the Race/Ethnicity of the patient"},
                         {name: "Age Group", description: "This field indicates the age group of the patient"},
                         {name: "Country of Birth", description: "This field indicates the country of birth of the patient"}
+                    ],
+                    additionalInfo:[
+                        {
+                            isRateInfo:true,
+                            question:"How are Rates calculated?",
+                            answer:"TB Rates are expressed as the number of cases reported each calendar year per 100,000 populations."
+                        }
                     ]
                 },
                 aids: {
@@ -283,6 +345,7 @@
                             "<p>Data have been statistically adjusted to account for missing transmission category.</p>"
                         },
                         {
+                            isRateInfo:true,
                             question:"How are Rates calculated?",
                             answer:"Rates per 100,000 population were calculated for" +
                             "<ol>" +
@@ -336,6 +399,14 @@
                         {name: "State", description: "This field indicates mother's legal residence at the time of birth"},
                         {name: "Census Regions", description: "This field indicates the mother’s place of legal residence at the time of death. The United States is split into 4 Census Regions: Northeast, Midwest, South and West. Census Divisions are multi-state groups, sub-sets of Census Regions. You can group by Census Division, or select any combination of individual Census Divisions"},
                         {name: "HHS Regions", description: "This field indicates the mother’s place of legal residence at the time of death. The Department of Health and Human Services (HHS) groups the 50 states, the District of Columbia, and the U.S. territories into ten reporting regions, referred to as the HHS regions. Any number of locations can be specified here."}
+                    ],
+                    additionalInfo:[
+                        {
+                            isRateInfo:true,
+                            question:"How are Rates calculated?",
+                            answer:"This represents the rates for deaths of children under 1 year of age, occurring within the United States to U.S. residents" +
+                            "<p>Rates = (Counts of deaths of children under 1 year of age) / Live births (age under 365 days) to a mother who is a resident of the United States</p>"
+                        }
                     ]
                 },
                  mental_health: {
@@ -367,11 +438,11 @@
                      additionalInfo:[
                          {
                              question:"Why are results not available for every state?",
-                             answer:"Results are not available from every state for several reasons. First, three states (Minnesota, Oregon, and Washington) do not participate in the YRBSS. Second, some states that do participate do not achieve a high enough overall response rate to receive weighted results. Therefore, their results are not posted on the CDC web site and CDC does not distribute their data."
+                             answer:"Results are not available from every state for several reasons. First, three states (Minnesota, Oregon, and Washington) do not participate in the YRBSS. Second, some states that do participate do not achieve a high enough overall response rate to receive weighted results. Therefore, their results are not posted on the CDC web site and CDC does not distribute their data.<br/><br/>"
                          },
                          {
                              question:"Are students required to participate in YRBSS?",
-                             answer:"No. YRBS’s supported by CDC are always a voluntary activity for states, large urban school districts, schools, and students."
+                             answer:"No. YRBS’s supported by CDC are always a voluntary activity for states, large urban school districts, schools, and students.<br/><br/>"
                          },
                          {
                              question:"How are the YRBSS results used?",
@@ -398,7 +469,7 @@
                     additionalInfo:[
                         {
                             question:"What is the purpose of PRAMS?",
-                            answer:"The purpose of PRAMS is to find out why some babies are born healthy and others are not. The survey asks new mothers questions about their pregnancy and their new baby. The questions give us important information about the mother and the baby and help us learn why some babies are born healthy and others are not."
+                            answer:"The purpose of PRAMS is to find out why some babies are born healthy and others are not. The survey asks new mothers questions about their pregnancy and their new baby. The questions give us important information about the mother and the baby and help us learn why some babies are born healthy and others are not.<br/><br/>"
                         },
                         {
                             question:"Why is PRAMS important?",
@@ -431,7 +502,12 @@
         };
 
         function getDataSetDetails() {
-            return dc.datasetInfo[$stateParams.dataSetKey]
+            var datasetKey = $stateParams.dataSetKey;
+            if ($stateParams.dataSetKey == 'cancer_incident'
+                || $stateParams.dataSetKey == 'cancer_mortality') {
+                datasetKey = 'cancer';
+            }
+            return dc.datasetInfo[datasetKey]
         }
     }
 }());
