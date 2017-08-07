@@ -54,6 +54,41 @@
                         {name: "State", description: "This field indicates mother's legal residence recorded on the birth certificate"},
                         {name: "Census Regions", description: "The United States is split into 4 Census Regions: Northeast, Midwest, South and West. Census Divisions are multi-state groups, sub-sets of Census Regions. You can group by Census Division, or select any combination of individual Census Divisions."},
                         {name: "HHS Regions", description: "The Department of Health and Human Services (HHS) groups the 50 states, the District of Columbia, and the U.S. territories into ten reporting regions, referred to as the HHS regions. Any number of locations can be specified here."}
+                    ],
+                    additionalInfo:[
+                        {
+                            question:"What are the population sources?",
+                            answer:"The current population sources for calculating birth and fertility rates come from these sources:" +
+                            "<ol>" +
+                            "<li>Rates for year 2015:  the July 1st, 2015 (Vintage 2015) postcensal bridged-race estimates of the resident population, released by NCHS on June 28, 2016.</li>" +
+                            "<li>Rates for year 2014:  the July 1st, 2014 (Vintage 2014) postcensal bridged-race estimates of the resident population, released by NCHS on June 30, 2015.</li>" +
+                            "<li>Rates for year 2013:  the July 1st, 2013 (Vintage 2013) postcensal bridged-race estimates of the resident population, released by NCHS on June 26, 2014.</li>" +
+                            "<li>Rates for year 2012:  the July 1st, 2012 (Vintage 2012) postcensal bridged-race estimates of the resident population, released by NCHS on June 13, 2013.</li>" +
+                            "<li>Rates for year 2011:  the July 1st, 2011 (Vintage 2011) postcensal bridged-race estimates of the resident population, released by NCHS on July 18, 2012.</li>" +
+                            "<li>Rates for year 2010:  the April 1st, 2010 bridged-race Census counts for year 2010, released by NCHS on November 17, 2011.</li>" +
+                            "<li>Rates for years 2003-2009:  the July 1st revised intercensal estimates of the resident population, released by NCHS on October 26, 2012</li>" +
+                            "</ol>"
+                        },
+                        {
+                            question:"What is the difference between the various Birth Weight filters?",
+                            answer:"Infant's weight at birth is available in 3 sets of categories, through 8165 grams, or Not stated:" +
+                            "<ol>" +
+                            "<li>Birth Weight: 100 gram increments</li>" +
+                            "<li>Birth Weight 12: 12 groups in 500 gram increments</li>" +
+                            "<li>Birth Weight 14: 14 groups in 250 gram increments</li>" +
+                            "</ol>"
+                        },
+                        {
+                            question:"What are the Assurance of Confidentiality constraints for the data?",
+                            answer:"Data reports for years 1989 and later must meet the NCHS data use restrictions. Vital statistics data are suppressed due to confidentiality constraints, in order to protect personal privacy." +
+                            "<ol>" +
+                            "<li>The term <i>Suppressed</i> replaces sub-national births counts, birth rates and fertility rates, when the figure represents zero to nine (0-9) persons.	Corresponding population denominator data are also suppressed when the figure represents fewer than ten persons.</li>" +
+                            "<li>Totals and sub-totals are suppressed when the value falls within scope of the suppression criteria, or when the summary value includes a single suppressed figure, in order to prevent the inadvertent disclosure of suppressed values.</li>" +
+                            "<li>The confidentiality constraints are established by the original data providers. For more information, please contact the data providers.</li>" +
+                            "<li>Natality data for the United States are limited to births occurring within the United States to U.S. residents and nonresidents. Births to non-residents of the United State are excluded from all tabulations by place of residence. Births occurring to U.S. citizens outside the United States are not included.</li>" +
+                            "<li>All Natality data are reported in conformance to the reporting criteria of the mother's place of residence, rather than the actual criteria on the birth certificate issued by the reporting area of occurrence. For example, if a baby was born in Texas to a mother legally residing in California, then only those data items reported by California are included in the data set. The original Natality 2004 public use dataset includes data fields from the birth certificate, with an associated reporting flag for each field to indicate whether the mother's place of residence reports this item.</li>" +
+                            "</ol>"
+                        }
                     ]
                 },
                 deaths: {
@@ -84,6 +119,37 @@
                         {name: "State", description: "This field indicates the person's place of legal residence at the time of death"},
                         {name: "Census Regions", description: "The United States is split into 4 Census Regions: Northeast, Midwest, South and West. Census Divisions are multi-state groups, sub-sets of Census Regions. You can group by Census Division, or select any combination of individual Census Divisions"},
                         {name: "HHS Regions", description: "The Department of Health and Human Services (HHS) groups the 50 states, the District of Columbia, and the U.S. territories into ten reporting regions, referred to as the HHS regions. Any number of locations can be specified here."}
+                    ],
+                    additionalInfo:[
+                        {
+                            question:"What are the population sources?",
+                            answer:"<ol>" +
+                            "<li>The year 2000 and year 2010 populations are April 1 modified census counts.</li>" +
+                            "<li>The 2001 through 2009 population estimates are revised intercensal estimates of the July 1 resident population, based on the year 2000 and year 2010 census counts (released by NCHS on 10/26/2012).</li>" +
+                            "<li>The archive population estimates for years 2001 - 2009 are postcensal estimates of the July 1 resident population.</li>" +
+                            "<li>The 2011 - 2015 population estimates are postcensal estimates of the July 1 resident population.</li>" +
+                            "</ol>" +
+                            "Note that these estimates are based on bridged-race categories. The population estimates are by geographic unit (total United States, State, and county), year, race (white, black, other races), sex, and age group (13 age groups). To permit the calculation of infant mortality rates, NCHS live-birth data are included on the file."
+                        },
+                        {
+                            question:"What are the suppression rules for Crude Death Rates?",
+                            answer:"Infant's weight at birth is available in 3 sets of categories, through 8165 grams, or Not stated:" +
+                            "<ol>" +
+                            "<li>Rates for small populations should be interpreted with caution.</li>" +
+                            "<li>Rates are suppressed for sub-national data representing zero to nine (0-9) deaths. Corresponding sub-national denominator population figures are also suppressed when the population represents fewer than 10 persons.</li>" +
+                            "<li>Rates are marked as <i>unreliable</i> when the death count is less than 20.</li>" +
+                            "<li>Rates are marked as <i>not applicable</i> when the population denominator figure is unavailable, such as persons of not stated or unknown age or Hispanic origin.</li>" +
+                            "</ol>"
+                        },
+                        {
+                            question:"What are the suppression rules for Age Adjusted Death Rates?",
+                            answer:"<ol>" +
+                            "<li>Rates are suppressed for sub-national data representing zero to nine (0-9) deaths. Corresponding sub-national denominator population figures are also suppressed when the population represents fewer than 10 persons.</li>" +
+                            "<li>Rates are marked as unreliable when the death count is less than 20.</li>" +
+                            "<li>Rates are marked as not applicable when the denominator population figure is unavailable, such as not stated or unknown age or ethnicity.</li>" +
+                            "<li>Deaths of persons with not stated or unknown age are not included in the calculation of age-adjusted rates.</li>" +
+                            "</ol>"
+                        }
                     ]
                 },
                 bridge_race: {
@@ -201,6 +267,34 @@
                         {name: "Race/Ethnicity", description: "This field indicates the Race/Ethnicity of the patient"},
                         {name: "Age Group", description: "This field indicates the age group of the patient. HIV surveillance data include adults and adolescents only (persons aged 13 years and older)"},
                         {name: "Transmission Category", description: "This field indicates the classification of cases that summarizes a person’s possible HIV risk factor"}
+                    ],
+                    additionalInfo:[
+                        {
+                            question:"Can I get more information on AIDS/HIV age groups?",
+                            answer:"The data source only includes data for adults and adolescents (i.e., persons aged 13 years and older). When comparing HIV data with STD and/or TB data, the HIV age group remains ages 13–24. For diagnosis data, age is based on the person’s age at diagnosis (HIV infection or stage 3 [AIDS]). For data on persons living with diagnosed HIV infection or stage 3 (AIDS), the age is based on the person’s age as of December 31 of the queried year. For HIV or AIDS death data, age is based on the person’s age at the time of death. Ten-year age groups are used with HIV surveillance data to ensure data security and confidentiality."
+                        },
+                        {
+                            question:"What is Transmission Category?",
+                            answer:"Transmission category is the term for the classification of cases that summarizes a person’s possible HIV risk factors; the summary classification results from selecting, from the presumed hierarchical order of probability, the one risk factor most likely to have resulted in HIV transmission. The exception is men who had sexual contact with other men and injected drugs; this group makes up a separate transmission category." +
+                            "<p>Persons whose transmission category is classified as male-to-male sexual contact include men who report sexual contact with other men (i.e., homosexual contact) and men who report sexual contact with both men and women (i.e., bisexual contact).</p>" +
+                            "<p>Persons whose transmission category is classified as injection drug use (IDU) are persons who injected non-prescribed drugs.</p>"+
+                            "<p>Persons whose transmission category is classified as heterosexual contact are persons who have ever had specific heterosexual contact with a person known to have, or to be at high risk for, HIV infection (e.g., a person who injects drugs). </p>"+
+                            "<p>All other transmission categories have been collapsed into “Other.” The “Other” transmission category includes: hemophilia, blood transfusion, perinatal exposure, and risk factor not reported or not identified.</p>"+
+                            "<p>Data have been statistically adjusted to account for missing transmission category.</p>"
+                        },
+                        {
+                            question:"How are Rates calculated?",
+                            answer:"Rates per 100,000 population were calculated for" +
+                            "<ol>" +
+                            "<li>The numbers of diagnoses of HIV infection and the numbers of infections classified as stage 3 (AIDS)</li>" +
+                            "<li>The numbers of deaths of persons with diagnosed HIV infection and deaths of persons with infection classified as stage 3 (AIDS)</li>" +
+                            "<li>The numbers of persons living with diagnosed HIV infection and persons living with infection classified as stage 3 (AIDS).</li>" +
+                            "</ol>"
+                        },
+                        {
+                            question:"What are the  population sources?",
+                            answer:"The population denominators used to compute the rates for the 50 states, the District of Columbia were based on the Vintage 2009 postcensal estimates file (for the years 2000 to 2009) and the Vintage 2015 file (for years 2010 to 2015) from the U.S. Census Bureau. The denominators used for calculating age-, sex-, and race/ethnicity-specific rates were computed by applying the appropriate vintage estimates for age, sex, and race/ethnicity for the 50 states and the District of Columbia."
+                        }
                     ]
                 },
                 infant_mortality: {
@@ -269,7 +363,21 @@
                         {name: "Obesity, Overweight, and Weight Control", description: "These questions contain summaries of survey data on weight and obesity"},
                         {name: "Dietary Behaviors", description: "These questions contain summaries of survey data on dietary behaviors,nutrition, and fat intake"},
                         {name: "Other health topics", description: "These questions contain summaries of survey data related to a question on asthma"},
-                    ]
+                    ],
+                     additionalInfo:[
+                         {
+                             question:"Why are results not available for every state?",
+                             answer:"Results are not available from every state for several reasons. First, three states (Minnesota, Oregon, and Washington) do not participate in the YRBSS. Second, some states that do participate do not achieve a high enough overall response rate to receive weighted results. Therefore, their results are not posted on the CDC web site and CDC does not distribute their data."
+                         },
+                         {
+                             question:"Are students required to participate in YRBSS?",
+                             answer:"No. YRBS’s supported by CDC are always a voluntary activity for states, large urban school districts, schools, and students."
+                         },
+                         {
+                             question:"How are the YRBSS results used?",
+                             answer:"State, territorial, tribal government, and local agencies and nongovernmental organizations use YRBSS data to set and track progress toward meeting school health and health promotion program goals, support modification of school health curricula or other programs, support new legislation and policies that promote health, and seek funding and other support for new initiatives. CDC and other federal agencies routinely use YRBSS data to assess trends in priority health behaviors among high school students, monitor progress toward achieving national health objectives, and evaluate the contribution of broad prevention efforts in schools and other settings toward helping the nation reduce health risk behaviors among youth."
+                         }
+                     ]
                 },
                 prams: {
                     key:"prams",
@@ -286,6 +394,35 @@
                         {name: "Year", description: "This field indicates the Year of the PRAMS survey"},
                         {name: "Location- State", description: "This field indicates the States for which PRAMS data is available"},
                         {name: "Question", description: "This field indicates the questions which were developed and tested and ultimately placed on the PRAMS questionnaire"},
+                    ],
+                    additionalInfo:[
+                        {
+                            question:"What is the purpose of PRAMS?",
+                            answer:"The purpose of PRAMS is to find out why some babies are born healthy and others are not. The survey asks new mothers questions about their pregnancy and their new baby. The questions give us important information about the mother and the baby and help us learn why some babies are born healthy and others are not."
+                        },
+                        {
+                            question:"Why is PRAMS important?",
+                            answer:"<ol>" +
+                            "<li>PRAMS provides data for state health officials to use to improve the health of mothers and infants.</li>" +
+                            "<li>PRAMS allows CDC and the states to monitor changes in maternal and child health indicators (e.g., unintended pregnancy, prenatal care, breastfeeding, smoking, drinking, infant health).</li>" +
+                            "<li>PRAMS enhances information from birth certificates used to plan and review state maternal and infant health programs.</li>" +
+                            "<li>The PRAMS sample is chosen from all women who had a live birth recently, so findings can be applied to the state’s entire population of women who have recently delivered a live-born infant.</li>" +
+                            "<li>PRAMS not only provides state-specific data but also allows comparisons among participating states because the same data collection methods are used in all states.</li>" +
+                            "</ol>"
+                        },
+                        {
+                            question:"How are PRAMS data used?",
+                            answer:"PRAMS provides data not available from other sources about pregnancy and the first few months after birth. These data can be used to identify groups of women and infants at high risk for health problems, to monitor changes in health status, and to measure progress towards goals in improving the health of mothers and infants. PRAMS data are used by:" +
+                            "<ol>" +
+                            "<li>Researchers to investigate emerging issues in the field of maternal and child health.</li>" +
+                            "<li>State and local governments to plan and review programs and policies aimed at reducing health problems among mothers and babies.</li>" +
+                            "<li>State agencies to identify other agencies that have important contributions to make in planning maternal and infant health programs and to develop partnerships with those agencies.</li>" +
+                            "</ol>"
+                        },
+                        {
+                            question:"What does PRAMS do with the information?",
+                            answer:"The information collected from the mothers is used to develop health programs and policies; help doctors and nurses improve care; and make better use of health resources."
+                        }
                     ]
                 }
         };
