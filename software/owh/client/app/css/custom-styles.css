@@ -106,7 +106,8 @@ body {
 }
 
 
-.intro .usa-button-secondary:hover, .explore-dataset-btn:hover {
+.intro .usa-button-secondary:hover,
+.explore-dataset-btn:hover, .explore-dataset-btn:focus {
 	background: #9958a3;
 }
 .intro .usa-button-secondary:hover i , .explore-dataset-btn:hover i {

@@ -8,6 +8,7 @@
     function DescriptionController($scope, $state, $stateParams) {
         var dc = this;
         dc.getDataSetDetails = getDataSetDetails;
+        dc.scrollToElement = scrollToElement;
 
         dc.datasetInfo = {
                 natality: {
@@ -19,6 +20,7 @@
                     dataDescription:"This dataset has counts and rates of births occurring within the United States to U.S. residents and nonresidents. State and county are defined by the mother's place of residence recorded on the birth certificate. Data elements include demographics, and maternal risk factors. Population is Live Births in United States.",
                     suppression:"Vital statistics data are suppressed due to confidentiality constraints, in order to protect personal privacy. All sub-national data representing zero to nine (0-9) births are suppressed. Corresponding population denominator data are also suppressed when the figure represents fewer than ten persons.",
                     source: "The Natality data set is provided by the U.S. Department of Health and Human Services (US HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS).",
+                    isRateCalculation: true,
                     filters: [
                         {name: "Births", description: "The birth counts in the data represent births that occurred in the 50 United States and the district of Columbia, for the legal place of residence of the decedent."},
                         {name: "Birth Rates", description: "Birth rates are calculated as the number of births divided by total population in the given year(s)."},
@@ -114,6 +116,7 @@
                     dataDescription: 'The mortality data are based on death certificates for U.S. residents. Each death certificate identifies a single underlying cause of death and demographic data. The number of deaths, crude death rates or age-adjusted death rates, and 95% confidence intervals and standard errors for death rates can be obtained by place of residence (total U.S., region, and state), age group (single-year-of age, 5-year age groups, 10-year age groups), race (4 groups), Hispanic ethnicity, gender, year, cause-of-death (4-digit ICD-10 code or group of codes), injury intent and injury mechanism, drug/alcohol induced causes. Data are also available for place of death, month and week day of death, and whether an autopsy was performed.',
                     suppression: 'Vital statistics data are suppressed due to confidentiality constraints, in order to protect personal privacy. As of May 23, 2011, all sub-national data representing zero to nine (0-9) deaths or births are suppressed. Corresponding sub-national denominator population figures are also suppressed when the population represents fewer than ten persons.',
                     source: 'The Detailed Mortality data are compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative; the data set is produced by the U.S. Department of Health and Human Services (US HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS), Division of Vital Statistics (DVS), Mortality Statistics Branch.',
+                    isRateCalculation: true,
                     filters: [
                         {name: "Deaths", description: "The death counts in the data represent deaths that occurred in the 50 United States and the district of Columbia, for the legal place of residence of the decedent."},
                         {name: "Crude Death Rates", description: "Crude Rates are expressed as the number of deaths reported each calendar year per the factor you select. The default factor is per 100,000 population, reporting the death rate per 100,000 persons."},
@@ -211,6 +214,7 @@
                     "ul><li>The Centers for Disease Control and Prevention National Program of Cancer Registries (NPCR)</li>" +
                     "<li>The National Cancer Institute Surveillance, Epidemiology and End Results (SEER) program.</li>" +
                     "</ul>",
+                    isRateCalculation: true,
                     filters: [
                         {name: "Year", description: "This field indicates the year of diagnosis or death"},
                         {name: "Sex", description: "This field indicates the sex of the patient"},
@@ -253,6 +257,7 @@
                     dataDescription: "STD morbidity data presented in this report are compiled from a combination of data reported on standardized hard copy reporting forms and electronic data received through the National Electronic Tele­communications System for Surveillance (NETSS) for diagnosis years 2000 through 2015.",
                     suppression: "For STD data, the data suppression rule is applied when the numerator for a given state is 3 or less. When suppressed, data are only displayed by state totals and breakdown by demographic characteristics is not permitted.",
                     source: "The CDC collects, analyzes, and disseminates surveillance data on STD diagnoses. The NCHHSTP AtlasPlus presents chlamydia, gonorrhea, congenital syphilis, and primary and secondary syphilis case report data submitted from all 50 states, the District of Columbia for the years 2000 to 2015 and early latent syphilis case report data for 2003-2015. STD data are presented by disease, year of diagnosis, reporting area (state or territory), age group, race/ethnicity, and sex.",
+                    isRateCalculation: true,
                     filters: [
                         {name: "Cases", description: "Cases of a given STD refer to confirmed diagnoses during a given time period"},
                         {name: "Rates", description: "Each rate was calculated by dividing the number of cases for the calendar year by the population for that calendar year and then multiplying the number by 100,000."},
@@ -281,6 +286,7 @@
                     dataDescription: "TB data are presented by year of disease confirmation, reporting area (state/territory or county), age group, race/ethnicity, sex, and whether or not the patient was born in the United States. The most common site of infection is the lung, but other organs may be involved. Nationally notifiable TB surveillance data are collected and compiled from reports sent to CDC’s Division of TB Elimination by the TB control programs and health departments in all 50 states, the District of Columbia, U.S. dependencies and possessions, and independent nations in free association with the United States.",
                     suppression: "Data are not suppressed at the state level; TB data can be viewed in aggregate format or one-way stratifications (i.e., by age group, sex, race/ethnicity, or country of birth [U.S.-born or foreign-born]).",
                     source: "The CDC collects, analyzes, and disseminates surveillance data on newly reported cases of tuberculosis (TB) disease in the United States. The Atlas presents TB case report data submitted from all 50 states, the District of Columbia for the years 2000 to 2015.",
+                    isRateCalculation: true,
                     filters: [
                         {name: "Cases", description: "A case of TB is described as a chronic bacterial infection caused by Mycobacterium tuberculosis, usually characterized pathologically by the formation of granulomas"},
                         {name: "Rates", description: "Rates are expressed as the number of cases reported each calendar year per 100,000 populations."},
@@ -316,6 +322,7 @@
                     "<li>Two-way demographic/transmission category stratifications for New Hampshire are queried.</li>" +
                     "</ol>Also, data are suppressed or aggregated to preclude arithmetic calculation of a suppressed cell.",
                     source: "CDC collects, analyzes, and disseminates surveillance data on diagnoses of HIV infection; these data are the nation’s source of information on HIV in the United States. Numbers and rates and presented based on the date of diagnosis of HIV infection and infection classified as stage 3 (AIDS) (from the beginning of the epidemic through December 31, 2015; reported as of June 30, 2016).",
+                    isRateCalculation: true,
                     filters: [
                         {name: "Deaths", description: "Persons reported to the national HIV surveillance system are assumed alive unless their deaths have been reported to CDC by state/local HIV surveillance programs."},
                         {name: "Prevalence", description: "(Persons Living with Diagnosed HIV Infection or infection classified as stage 3 (AIDS)): The data reflect persons living with diagnosed HIV infection at the end of each year during 2008–2014, or persons living with infection ever classified as stage 3 (AIDS) at the end of each year during 2000–2014"},
@@ -374,6 +381,7 @@
                     "<li>About <i>Unreliable</i> rates representing fewer than 20 deaths: Rates are flagged as Unreliable when there are fewer than 20 deaths in the numerator, because the figure does not meet the NCHS standard of reliability or precision.</li>" +
                     "</ul>",
                     source: "The Linked Birth/Infant Death Records data are compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative; the data are produced by the U.S. Department of Health and Human Services (US HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS).",
+                    isRateCalculation: true,
                     filters: [
                         {name: "Deaths", description: "This represents the counts of deaths of children under 1 year of age, occurring within the United States to U.S. residents"},
                         {name: "Births", description: "This represents live births and infant (age under 365 days) deaths to maternal residents of the United States"},
@@ -497,6 +505,12 @@
                     ]
                 }
         };
+
+        function scrollToElement(eleClazz) {
+            if (eleClazz) {
+                angular.element('html,body').animate({ scrollTop: $("." + eleClazz).offset().top}, 'slow');
+            }
+        }
         $scope.redirectToMortalityPage = function() {
             $state.go('search');
         };

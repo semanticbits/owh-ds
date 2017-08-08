@@ -11,7 +11,7 @@
                      height="80"/>
                 <span class="font-20 dark-purple-text dataset-name" ng-bind="dataset.title"></span>
             </div>
-            <h4 class="dark-purple-text">About This Dataset</h4>
+            <h4 class="dark-purple-text" ng-bind="'label.documentation.about.dataset' | translate"></h4>
             <div ng-bind="dataset.dataDescription"></div>
             <div ng-if="dataset.suppression">
                 <h5>Data Suppression:</h5>
@@ -59,7 +59,9 @@
             <hr>
             <span class="bold-class">Topics: </span>{{dataset.topics}}
             <hr>
-            <a class="description-text" href="#">How Rates Are Calculated ></a>
+            <a class="description-text" ng-if="dataset.isRateCalculation"
+               ng-click="dc.scrollToElement('rate-info-section')"
+               href="#">How Rates Are Calculated ></a>
         </div>
     </div>
 </div>
