@@ -8,14 +8,16 @@
         controllerAs: 'ec',
         bindings: {
             chart: '<',
-            charttitle: '<'
+            charttitle: '<',
+            chartdata: '<',
+            selectedfilterstxt: '<'
         }
     });
     ExportChartController.$inject = ['shareUtilService'];
     function ExportChartController(shareUtilService) {
         var ec = this;
         ec.exportChart = function(format) {
-            shareUtilService.exportChart(ec.chart, ec.charttitle, format)
+            shareUtilService.exportChart(ec.chart, ec.charttitle, format, ec.chartdata[0],ec.selectedfilterstxt);
         };
     }
 

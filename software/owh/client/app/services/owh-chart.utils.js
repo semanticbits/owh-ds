@@ -671,8 +671,8 @@
 
         /*Show expanded graphs with whole set of features*/
         function showExpandedGraph(chartData, tableView, graphTitle, graphSubTitle,
-                                   chartTypes, primaryFilters, selectedQuestion) {
-
+                                   chartTypes, primaryFilters, selectedQuestion, selectedFiltersTxt ) {
+            
             /**
              * Update chart dimensions and data
              */
@@ -791,8 +791,9 @@
                     eg.primaryFilters = primaryFilters;
                     eg.selectedQuestion = selectedQuestion;
                     eg.close = close;
-                    eg.export = function (svgIndex, title, format) {
-                        shareUtilService.exportChart(svgIndex, title, format);
+                    eg.selectedFiltersTxt = selectedFiltersTxt;
+                    eg.export = function (svgIndex, title, format, selectedFiltersTxt) {
+                        shareUtilService.exportChart(svgIndex, title, format, selectedFiltersTxt);
                     };
 
                     eg.showFbDialog = function(svgIndex, title, section, description) {

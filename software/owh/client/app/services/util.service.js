@@ -44,7 +44,8 @@
             isFilterApplied: isFilterApplied,
             stdFilterChange: stdFilterChange,
             aidsFilterChange: aidsFilterChange,
-            removeValuesFromArray: removeValuesFromArray
+            removeValuesFromArray: removeValuesFromArray,
+            getSelectedFiltersText: getSelectedFiltersText
         };
 
         return service;
@@ -1081,5 +1082,36 @@
                 })
             }
         }
+
+        function getSelectedFiltersText(filters, sortlist){
+            var appliedFilters = [];
+            var filterText = ''
+            filters.forEach(function(filter){
+                (filter.value.length > 0 && filter.key != 'question') && appliedFilters.push(filter);
+            });
+
+            appliedFilters.sort(function (a, b) {
+                return (sortlist.indexOf(a.key) - sortlist.indexOf(b.key));
+            });
+
+            appliedFilters.forEach(function (f) {
+                filterText += ($filter('translate')(f.title) + ': ')
+                var options = [];
+                //filters options with checkboxes
+                if (angular.isArray(f.value)) {
+                    f.value.forEach(function (optionKey) {
+                        var option = findByKeyAndValue(f.autoCompleteOptions, 'key', optionKey);
+                        options.push(option.title);
+                    });
+                } else {//for filters with radios
+                    var option = findByKeyAndValue(f.autoCompleteOptions, 'key', f.value);
+                    options.push(option.title);
+                }
+                filterText += options.join(', ');
+                filterText += '| '
+            });
+            return filterText.substring(0, filterText.length -2);
+        }
+
     }
 }());
