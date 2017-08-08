@@ -1,7 +1,7 @@
 <aside>
     <div align="center" ng-if="!sfc.runOnFilterChange">
         <hr/>
-        <button class="action-button condition-option ng-scope" ng-click="sfc.onFilter();" title="{{'label.run.query.title' | translate}}">{{'label.run.query' | translate}}</button>
+        <button class="action-button condition-option ng-scope buttonFocus" ng-click="sfc.onFilter();" title="{{'label.run.query.title' | translate}}">{{'label.run.query' | translate}}</button>
     </div>
     <ul class="usa-sidenav-list side-filters">
         <!--iterate over filter by category-->
@@ -111,7 +111,7 @@
                         <!--UCD filters-->
                         <li class="group-option" >
                            <div for="{{group.key}}" class="custom-label" style="margin-bottom: 0">
-                                <button class="action-button condition-option"
+                                <button class="action-button condition-option buttonFocus"
                                         translate="{{group.selectedValues && group.selectedValues.length > 0 ? group.updateTitle : group.selectTitle}}"
                                         ng-click="sfc.showModal(group, [group])"></button>
 
@@ -124,7 +124,7 @@
                                 </div>
 
                               <div class="ucd-clear" ng-show="group.selectedValues.length > 0 ">
-                                  <button class="action-button" translate="label.clear"
+                                  <button class="action-button buttonFocus" translate="label.clear"
                                           ng-click="sfc.clearSelection(group, true)"></button>
                                 </div>
                         </li>
@@ -174,7 +174,7 @@
                         <!-- MCD filter set 1 -->
                         <li class="group-option">
                             <div for="{{group.key}}" class="custom-label" style="margin-bottom: 0">
-                                <button class="action-button condition-option"
+                                <button class="action-button condition-option buttonFocus"
                                         translate="{{group.selectedValues.set1 && group.selectedValues.set1.length > 0 ? group.updateTitle : group.selectTitle}}"
                                         ng-click="sfc.showMCDModal(group, [group], 'set1')"></button>
 
@@ -187,7 +187,7 @@
                             </div>
 
                             <div class="ucd-clear" ng-show="group.selectedValues.set1.length > 0 ">
-                                <button class="action-button" translate="label.clear"
+                                <button class="action-button buttonFocus" translate="label.clear"
                                         ng-click="sfc.clearMCDSelection(group, true, 'set1')"></button>
                             </div>
                         </li>
@@ -200,7 +200,7 @@
                         <!-- MCD filter set 2 -->
                         <li class="group-option">
                             <div for="{{group.key}}" class="custom-label" style="margin-bottom: 0">
-                                <button class="action-button condition-option"
+                                <button class="action-button condition-option buttonFocus"
                                         translate="{{group.selectedValues.set2 && group.selectedValues.set2.length > 0 ? group.updateTitle : group.selectTitle}}"
                                         ng-click="sfc.showMCDModal(group, [group], 'set2')"></button>
 
@@ -213,7 +213,7 @@
                             </div>
 
                             <div class="ucd-clear" ng-show="group.selectedValues.set2.length > 0 ">
-                                <button class="action-button" translate="label.clear"
+                                <button class="action-button buttonFocus" translate="label.clear"
                                         ng-click="sfc.clearMCDSelection(group, true, 'set2')"></button>
                             </div>
                         </li>
@@ -247,7 +247,7 @@
                         <li class="group-option">
                             <div for="{{group.key}}" class="custom-label" style="margin-bottom: 0">
                                 <button
-                                    class="action-button condition-option"
+                                    class="action-button condition-option buttonFocus"
                                     translate="{{group.selectedValues && group.selectedValues.length > 0 ? group.updateTitle : group.selectTitle}}"
                                     ng-click="sfc.showModal(group, [group])">
                                 </button>
@@ -259,7 +259,7 @@
                                 <span style="font-size: 13px">All</span>
                             </div>
                             <div class="ucd-clear" ng-show="group.selectedValues.length > 0 ">
-                                <button class="action-button" translate="label.clear" ng-click="sfc.clearSelection(group, true)"></button>
+                                <button class="action-button buttonFocus" translate="label.clear" ng-click="sfc.clearSelection(group, true)"></button>
                             </div>
                         </li>
                     </ul>
@@ -309,7 +309,7 @@
                             <!--<input id="{{option.key}}" type="radio" ng-model="group.value" ng-value="option.key"
                                    ng-click="sfc.showModal(option.key, option.value, group.autoCompleteOptions)">-->
                             <div for="{{group.key}}" class="custom-label" style="margin-bottom: 0">
-                                <button class="action-button condition-option" translate="{{group.selectedNodes && group.selectedNodes.length > 0 ? group.updateTitle : group.selectTitle}}"
+                                <button class="action-button condition-option buttonFocus" translate="{{group.selectedNodes && group.selectedNodes.length > 0 ? group.updateTitle : group.selectTitle}}"
                                         ng-click="sfc.showModal(group, [group])"></button>
                             </div>
                             <div class="">
@@ -321,7 +321,7 @@
                                 </div>
                             </div>
                             <div class="ucd-clear" ng-show="group.selectedNodes.length > 0 ">
-                                <button class="action-button" translate="label.clear"
+                                <button class="action-button buttonFocus" translate="label.clear"
                                         ng-click="sfc.clearSelection(group)"></button>
                             </div>
                         </li>
@@ -516,7 +516,7 @@
                         <!-- show All --->
                         <li class="group-option" ng-if="!group.doNotShowAll"
                             ng-class="{'thin-border-top': (group.value.length > 0 && group.displaySelectedFirst)}">
-                            <input id="{{group.queryKey}}_all" name="{{group.queryKey}}" type="radio" ng-checked="!group.value" value=""
+                            <input id="{{group.queryKey}}_all" name="{{group.queryKey}}" type="radio" class="inputFocus" ng-checked="!group.value" value=""
                                    ng-model="group.value" ng-click="sfc.onFilterValueChange(sideFilter, category)">
                             <label for="{{group.queryKey}}_all" class="custom-label">
                                 <span>All</span>
@@ -528,7 +528,7 @@
                             ng-if="group.displaySelectedFirst"
                             class="group-option">
                             <div ng-show="!option.group && sfc.isOptionSelected(option, group.value)">
-                                   <input id="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" name="{{group.queryKey}}" type="radio"
+                                   <input id="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" name="{{group.queryKey}}" type="radio" class="inputFocus"
                                           ng-model="group.value" ng-value="option.key" ng-click="sfc.onFilterValueChange(sideFilter, category)">
                                 <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                                        ng-init="title = option.title">
@@ -544,7 +544,7 @@
                             class="group-option" ng-if="$index < 3 || sideFilter.showAll || ($index < (3+ group.value.length) && group.displaySelectedFirst)">
                             <div ng-if="!option.group && (group.displaySelectedFirst?!sfc.isOptionSelected(option, group.value):true)">
                                <input id="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" name="{{group.queryKey}}" type="radio"
-                                      ng-disabled="sfc.isOptionDisabled(group, option)"
+                                      ng-disabled="sfc.isOptionDisabled(group, option)" class="inputFocus"
                                       ng-model="group.value" ng-value="option.key" ng-click="sfc.onFilterValueChange(sideFilter, category)">
                                 <label for="{{sfc.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                                        ng-init="title = option.title">
