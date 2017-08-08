@@ -36,4 +36,8 @@ describe("Description Controller: ", function(){
         descriptionController = $controller('DescriptionController',{ $scope:scope, $stateParams: {dataSetKey:'deaths'}});
         scope.redirectToMortalityPage();
     });
+
+    it("Should scrollToElement", function() {
+        descriptionController.scrollToElement();
+    });
 });
