@@ -5,7 +5,7 @@ Feature: Bridge race filters
   So that I can see the results of the filter options
   and I can quickly visualize and analyze the data
 
-  Background: Access Bridged-Race Population estimates page
+  Scenario: Access Bridged-Race Population estimates page
     When I am at home page
     And  I click on Explore button in Health Information Gateway section
     Then I should get search page with default filter type "Detailed Mortality"
@@ -40,17 +40,28 @@ Feature: Bridge race filters
     Then I see sex filter options disappeared
 
   Scenario: View axis labels & data elements for chart
-    When I see a visualization
+    When I set "Yearly July 1st Estimates" filter "Off"
+    And  filter "Yearly July 1st Estimates" and option "2015" selected
+    And I see a visualization
     Then I see data element and values are plotted on both the axes
     And I see chart heading appears on the top
     #And I see an axis labels are displayed on the graph
     #And I see an Expand button on the top right corner
     #And I see an share button on the top right corner
 
-  #Scenario: Export chart
-    #And I see export chart button
-    #When I click on export chart button
-    #Then The chart is downloaded
+  Scenario: State filter search box
+    When I expands the State filter
+    Then I see the search box
+    #When I begins to type a state name "alas" in the search box
+    #Then I see results dynamically populate with the states matching the "alas"
+
+  Scenario: Percentages
+    When I click the "Hide" button
+    Then I should not see percentages
+
+  Scenario: Age group 85+ years groupings
+    When I set "Age Groups" filter "Row"
+    Then I see data in data table for 85+ years age group
 
   Scenario: Expand/collapse chart
     When I clicks on the expand button
@@ -68,22 +79,3 @@ Feature: Bridge race filters
     Then I see graph is collapsed
     And I see an Expand button on the top right corner
 
-
- # Scenario: Show line graph
- #   When I remove default filters
-  #  And I select year filter
- #   Then I should see line graph
-
-  Scenario: State filter search box
-    When I expands the State filter
-    Then I see the search box
-    #When I begins to type a state name "alas" in the search box
-    #Then I see results dynamically populate with the states matching the "alas"
-
-  Scenario: Percentages
-    When I click the "Hide" button
-    Then I should not see percentages
-
-  Scenario: Age group 85+ years groupings
-    When I set "Age Groups" filter "Row"
-    Then I see data in data table for 85+ years age group

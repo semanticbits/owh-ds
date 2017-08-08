@@ -72,8 +72,6 @@ var natalityStepsDefinitionWrapper = function () {
     this.Then(/^I see expected filters should be disabled for Birth Rates$/, function (next) {
         //Expand all filters
         element(by.className('show-more-0')).click();
-        element(by.className('show-more-1')).click();
-        element(by.className('show-more-3')).click();
         var allElements = element.all(by.css('cursor-not-allowed')).all(by.css('custom-link'));
         allElements.getText().then(function (filters) {
             filters.forEach(function (filter) {
@@ -141,9 +139,6 @@ var natalityStepsDefinitionWrapper = function () {
     });
 
     this.Then(/^I see expected filters should be disabled for Fertility Rates$/, function (next) {
-        element(by.className('show-more-0')).click();
-        element(by.className('show-more-1')).click();
-        element(by.className('show-more-3')).click();
         var allElements = element.all(by.css('cursor-not-allowed')).all(by.css('custom-link'));
         allElements.getText().then(function (filters) {
             filters.forEach(function (filter) {
@@ -351,11 +346,11 @@ var natalityStepsDefinitionWrapper = function () {
         natalityPage.getTableCellData(0,2).then(function(data){
             expect(data).to.contains('Suppressed');
         });
-        natalityPage.getTableCellData(2,1).then(function(data){
-            expect(data).to.contains('Suppressed');
+        natalityPage.getTableCellData(1,1).then(function(data){
+            expect(data).to.contains('13');
         });
-        natalityPage.getTableCellData(2,2).then(function(data){
-            expect(data).to.equal('11');
+        natalityPage.getTableCellData(1,2).then(function(data){
+            expect(data).to.equal('Suppressed');
         }).then(next);
     });
 
@@ -414,6 +409,12 @@ var natalityStepsDefinitionWrapper = function () {
             expect(element(by.id(id+age)).getAttribute("disabled")).to.eventually.equal('true');
         });
         return expect(element(by.id(id+enableOption)).getAttribute("disabled")).to.eventually.equal(null);
+    });
+
+    this.Then(/^I select All for State$/, function (next) {
+        element.all(by.css('label[for=state_all]')).then(function(elements) {
+            elements[0].click();
+        }).then(next);
     });
 };
 
