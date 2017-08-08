@@ -1,10 +1,10 @@
 data_file:
   # when local_directory is set the data files will processed from this local directory and AWS properties will be ignored
-  #local_directory: ''
+  local_directory: ''
   # AWS S3 bucket information, when local_directory peroperty is not specified above, the ETL will try to download the data files
   # from the directory in the AWS S3 bucket specified below
-  aws_access_key_id: 'AKIAJS6IDG3MS7W6SOYQ'
-  aws_secret_access_key: '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'
+  aws_access_key_id: 'aws access key'
+  aws_secret_access_key: 'aws secret key'
   aws_s3_bucket_name: 'owh-data'
   aws_s3_directory: 'datasets/std'
 elastic_search:
