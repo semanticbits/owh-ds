@@ -3,6 +3,7 @@
     <ng-include src="'app/partials/coBrandedHeader.html'"></ng-include>
     <ng-include src="'app/partials/topBanner.html'"></ng-include>
 </div>
+<!--Search banner-->
 
 <div class="usa-grid-full">
     <div class="usa-grid">
@@ -47,9 +48,17 @@
         </div>
         <div class="owh-search-content usa-width-three-fourths overflow-visible" ng-class="{'owh-search-content--expanded': !sc.sideMenu.visible }">
 
-            <list-selected-filters sort="sc.sort[sc.filters.selectedPrimaryFilter.title]"
-                                   filters="sc.filters.selectedPrimaryFilter.allFilters">
-            </list-selected-filters>
+            <div class="usa-grid">
+                <div class="usa-width-five-sixths">
+                    <list-selected-filters sort="sc.sort[sc.filters.selectedPrimaryFilter.title]"
+                                           filters="sc.filters.selectedPrimaryFilter.allFilters">
+                    </list-selected-filters>
+                </div>
+                <div class="usa-width-one-sixth margin-top-10">
+                    <a id="data_doc_link" ng-click="$state.go('description', {dataSetKey: sc.filters.selectedPrimaryFilter.key})"
+                       href="#">Data Documentation</a>
+                </div>
+            </div>
 
             <owh-toggle-switch ng-if="sc.filters.selectedPrimaryFilter.chartView"
                                class="left-float chart-view-toggle"
@@ -93,6 +102,17 @@
                 </div>
             </div>
             <!--Charts-->
+
+            <!--More visualization-->
+            <div class="usa-width-one-whole" ng-show="sc.filters.selectedPrimaryFilter.chartData.length > 0">
+                <div class="usa-width-one-whole more-graph-select">
+                    <span class="dark-link" ng-bind="'label.visualization.more.one' | translate"></span>
+                    <a href="javascript:void(0)" ng-click="sc.showPhaseTwoGraphs('label.graph.impl.next')">Build one</a>
+                    <span class="dark-link" ng-bind="'label.visualization.more.two' | translate"></span>
+                </div>
+                <a ng-click="$state.go('description', {dataSetKey: sc.filters.selectedPrimaryFilter.key})" href="#">Data Documentation</a>
+            </div>
+            <!--More visualization-->
 
             <!--Table-->
             <div class="usa-grid-full">
