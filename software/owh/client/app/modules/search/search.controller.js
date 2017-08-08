@@ -596,7 +596,7 @@
         /*Show expanded graphs with whole set of features*/
         function showExpandedGraph(chartData) {
             var tableView = sc.filters.selectedPrimaryFilter.chartView || sc.filters.selectedPrimaryFilter.tableView;
-            chartUtilService.showExpandedGraph([chartData], tableView,null, null, null, null, null, utilService.getSelectedFiltersText(sc.filters.selectedPrimaryFilter.allFilters, sc.sort[sc.filters.selectedPrimaryFilter.title]));
+            chartUtilService.showExpandedGraph([chartData], tableView,null, null, null, sc.filters.selectedPrimaryFilter, null, utilService.getSelectedFiltersText(sc.filters.selectedPrimaryFilter.allFilters, sc.sort[sc.filters.selectedPrimaryFilter.title]));
         }
 
         function getChartTitle(title) {

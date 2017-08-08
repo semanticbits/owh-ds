@@ -10,14 +10,15 @@
             chart: '<',
             charttitle: '<',
             chartdata: '<',
-            selectedfilterstxt: '<'
+            selectedfilterstxt: '<',
+            primaryfilters: '<'
         }
     });
     ExportChartController.$inject = ['shareUtilService'];
     function ExportChartController(shareUtilService) {
         var ec = this;
         ec.exportChart = function(format) {
-            shareUtilService.exportChart(ec.chart, ec.charttitle, format, ec.chartdata[0],ec.selectedfilterstxt);
+            shareUtilService.exportChart(ec.chart, ec.charttitle, format, ec.chartdata[0],ec.primaryfilters, ec.selectedfilterstxt);
         };
     }
 

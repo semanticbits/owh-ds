@@ -93,6 +93,7 @@
             postFixToTooltip = postFixToTooltip ? postFixToTooltip : '';
             var chartData = {
                 data: [],
+                dataset: primaryFilter.key,
                 title: "label.title."+filter1.key+"."+filter2.key,
                 options: {
                     "chart": {
@@ -268,6 +269,7 @@
 
             var chartData = {
                 data: [],
+                dataset: primaryFilter.key,
                 title: "label.title."+filter1.key+"."+filter2.key,
                 options: {
                     "chart": {
@@ -378,6 +380,7 @@
 
             var chartData = {
                 data: [],
+                dataset: primaryFilter.key,
                 title: "label.graph."+filter.key,
                 options: {
                     "chart": {
@@ -501,6 +504,7 @@
                         return color;
                     }
                 },
+                dataset: primaryFilter.key,
                 title: 'label.title.' + chart.headers[0].key + '.' + chart.headers[1].key,
                 options: {
                     chart: {
@@ -576,6 +580,7 @@
             var color = d3.scale.category20();
             var chartData = {
                 data: [],
+                dataset: primaryFilter.key,
                 title: "label.graph."+filter.key,
                 options: {
                     chart: {
@@ -792,9 +797,6 @@
                     eg.selectedQuestion = selectedQuestion;
                     eg.close = close;
                     eg.selectedFiltersTxt = selectedFiltersTxt;
-                    eg.export = function (svgIndex, title, format, selectedFiltersTxt) {
-                        shareUtilService.exportChart(svgIndex, title, format, selectedFiltersTxt);
-                    };
 
                     eg.showFbDialog = function(svgIndex, title, section, description) {
                         shareUtilService.shareOnFb(svgIndex, title, section, description);
