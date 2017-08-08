@@ -979,6 +979,9 @@ ul.legend-scale li span {
 .purple-text {
     color: #976dcb;
 }
+.dark-purple-text {
+    color: #663596;
+}
 
 .purple-icon {
     color: #a175d5;
@@ -1185,8 +1188,8 @@ ul.legend-scale li span {
 
 #clusterize-table {
     max-height: 900px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y: visible;
+    overflow-x: visible;
 }
 
 #clusterize-table table {
