@@ -283,6 +283,19 @@ function applyYRBSSuppressions(obj, countKey, suppressKey, isSexFiltersSelected,
     suppressCounts(obj.data, countKey, dataType, suppressKey, maxValue);
     suppressTotalCounts(obj.data, countKey, dataType, suppressKey);
 };
+
+/**
+ * This function is used to suppress the state totals when it reaches to specified value
+ * @param stateData
+ */
+function suppressStateTotals(stateData, key, minVal) {
+    stateData.forEach(function (data) {
+        if (data[key] < minVal) {
+            data[key] = 'suppressed';
+        }
+    })
+}
+
 var sumBucketProperty = function(bucket, key) {
     var sum = 0;
     for(var i = 0; i < bucket.buckets.length; i++) {
@@ -598,3 +611,4 @@ module.exports.getSelectedGroupByOptions = getSelectedGroupByOptions;
 module.exports.getYearFilter = getYearFilter;
 module.exports.mapAndGroupOptionResults = mapAndGroupOptionResults;
 module.exports.getAllSelectedFilterOptions = getAllSelectedFilterOptions;
+module.exports.suppressStateTotals = suppressStateTotals;

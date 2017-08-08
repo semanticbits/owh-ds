@@ -189,7 +189,10 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
             var data = searchUtils.populateDataWithMappings(resp, 'deaths');
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'deaths');
+            } else if (data.data.simple.state) {
+                searchUtils.suppressStateTotals(data.data.simple.state, 'deaths', 10);
             }
+
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
@@ -272,6 +275,12 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected)
         logger.debug("Natality ES Query: "+ JSON.stringify( query[0]));
         this.executeESQuery(natality_index, natality_type, query[0]).then(function (resp) {;
             var data = searchUtils.populateDataWithMappings(resp, 'natality');
+            if (isStateSelected) {
+                searchUtils.applySuppressions(data, 'natality');
+            } else if (data.data.simple.state) {
+                searchUtils.suppressStateTotals(data.data.simple.state, 'natality', 10);
+            }
+
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
