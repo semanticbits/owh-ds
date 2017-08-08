@@ -12,13 +12,13 @@
                 groupOptions: "<",
                 runOnFilterChange: "<",
                 onFilter: "&",
-                onFilterChange: "&"
+                onFilterValueChange: "&"
             }
         });
 
-    sideFilterItemController.$inject = ['ModalService', 'utilService', 'searchFactory', 'SearchService', '$q', '$scope'];
+    sideFilterItemController.$inject = ['ModalService', 'utilService', 'searchFactory', 'SearchService', '$q'];
 
-    function sideFilterItemController(ModalService, utilService, searchFactory, SearchService, $q, $scope) {
+    function sideFilterItemController(ModalService, utilService, searchFactory, SearchService, $q) {
         var sfic = this;
         sfic.showModal = showModal;
         sfic.showMCDModal = showMCDModal;
@@ -31,7 +31,6 @@
         sfic.isOptionDisabled = isOptionDisabled;
         sfic.isOptionSelected = isOptionSelected;
         sfic.getShowHideOptionCount = getShowHideOptionCount;
-        sfic.onFilterValueChange = onFilterValueChange;
 
         function isOptionDisabled(group, option) {
             if (group.key === 'hispanicOrigin') {
@@ -266,10 +265,6 @@
             }
 
             sfic.onFilterValueChange(sideFilter, category);
-        }
-
-        function onFilterValueChange(filter, category) {
-            sfic.onFilterChange()(filter, category);
         }
 
         function isVisible(filter) {
