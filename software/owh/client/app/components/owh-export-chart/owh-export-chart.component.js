@@ -18,7 +18,7 @@
     function ExportChartController(shareUtilService) {
         var ec = this;
         ec.exportChart = function(format) {
-            shareUtilService.exportChart(ec.chart, ec.charttitle, format, ec.chartdata[0],ec.primaryfilters, ec.selectedfilterstxt);
+            shareUtilService.exportChart(ec.chart, ec.charttitle, format, ec.chartdata[0], ec.primaryfilters, ec.selectedfilterstxt);
         };
     }
 

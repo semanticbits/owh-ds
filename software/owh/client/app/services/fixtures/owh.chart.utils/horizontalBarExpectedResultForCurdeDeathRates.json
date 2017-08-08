@@ -47,6 +47,7 @@
       "deaths": 868
     }
   ],
+  "dataset":"deaths",
   "title": "label.title.gender.race",
   "options": {
     "chart": {
