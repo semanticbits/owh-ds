@@ -226,3 +226,6 @@
 .select {
     width: 30%;
 }
+.dropdown-submenu .flex-container li:focus {
+    border: 1px lightgray dashed;
+}

@@ -208,6 +208,10 @@ opacity:0
 	background: #f0f9fd;
 }
 
+.section .section-banner-description:focus {
+	background: #f0f9fd;
+}
+
 .section .section-banner-description i {
 	position: absolute;
 	right:15px;
@@ -1376,4 +1380,12 @@ ul.custom-nav-tabs {
 	float: right;
 	color: rgba(255,255,255,0.5);
 	font-size: 9px;
+}
+
+div.hero-container > div >  a:focus {
+	background: #974bc2;
+}
+
+div.interested-in-filter:focus {
+	border: 1px lightgray dashed;
 }
