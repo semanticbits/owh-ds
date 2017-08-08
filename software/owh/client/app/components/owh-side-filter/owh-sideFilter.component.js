@@ -23,20 +23,8 @@
 
     function sideFilterController(ModalService, utilService, searchFactory, SearchService, $q){
         var sfc = this;
-        sfc.getOptionCountPercentage = getOptionCountPercentage;
-        sfc.getOptionCount = getOptionCount;
-        sfc.showModal = showModal;
-        sfc.showMCDModal = showMCDModal;
-        sfc.clearSelection = clearSelection;
-        sfc.clearMCDSelection = clearMCDSelection;
-        sfc.updateGroupValue = updateGroupValue;
         sfc.getFilterOrder = getFilterOrder;
         sfc.isVisible = isVisible;
-        sfc.isSubOptionSelected = isSubOptionSelected;
-        sfc.filterGroup = filterGroup;
-        sfc.isOptionDisabled = isOptionDisabled;
-        sfc.isOptionSelected = isOptionSelected;
-        sfc.getShowHideOptionCount = getShowHideOptionCount;
         sfc.onFilterValueChange = onFilterValueChange;
 
         sfc.$onChanges = function(changes) {
@@ -102,21 +90,6 @@
             });
         }
 
-        function isSubOptionSelected(group, option) {
-            if(!group.value){
-                    return false;
-            }else {
-                   for(var i = 0; i < group.value.length; i++) {
-                        for(var j = 0; j < option.options.length; j++) {
-                            if(group.value[i] === option.options[j].key) {
-                                return true;
-                            }
-                        }
-                    }
-            }
-
-        }
-
         function getOptionCountPercentage(option) {
             var countKey = sfc.primaryKey;
             var countPercentKey = countKey + 'Percentage';
@@ -136,182 +109,6 @@
                 return option && option[countKey] ? option[countKey] : 0
             }
 
-        }
-
-        function showModal(selectedFilter, allFilters) {
-            var deferred = $q.defer();
-            angular.forEach(allFilters, function(eachFilter) {
-                if (eachFilter.key !== selectedFilter.key){
-                    clearSelection(eachFilter)
-                }
-            });
-            var showTree = selectedFilter.key === 'ucd-chapter-10' ||
-                           selectedFilter.key === 'mcd-chapter-10' ||
-                           selectedFilter.key === 'question' ||
-                           selectedFilter.key === 'site' ||
-                           selectedFilter.key === 'childhood_cancer';
-            if(!showTree) {
-                searchFactory.showPhaseTwoModal('label.mcd.impl.next');
-            }else {
-                // Just provide a template url, a controller and call 'showModal'.
-                ModalService.showModal({
-                    templateUrl: "app/partials/owhModal.html",
-                    controllerAs: 'mc',
-                    controller: function ($scope, close) {
-                        var mc = this;
-                        mc.codeKey = selectedFilter.key;
-
-                        mc.entityName = {
-                            question: 'Question',
-                            'ucd-chapter-10': 'Cause(s) of Death',
-                            'mcd-chapter-10': 'Cause(s) of Death',
-                            site: 'cancer site(s)',
-                            'childhood_cancer': 'childhood cancer(s)'
-                        }[selectedFilter.key];
-
-                        mc.modelHeader = {
-                            question: 'label.select.question',
-                            'ucd-chapter-10': 'label.cause.death',
-                            'mcd-chapter-10': 'label.cause.death',
-                            site: 'label.select.cancer_site',
-                            'childhood_cancer': 'label.select.childhood_cancer'
-                        }[selectedFilter.key];
-
-                        mc.optionValues = selectedFilter.selectedNodes ? selectedFilter.selectedNodes : selectedFilter.selectedValues;
-
-                        mc.questions = selectedFilter.questions;
-                        mc.tree = selectedFilter.tree;
-                        mc.close = close;
-                    }
-                }).then(function (modal) {
-                    // The modal object has the element built, if this is a bootstrap modal
-                    // you can call 'modal' to show it, if it's a custom modal just show or hide
-                    // it as you need to.
-                    modal.element.show();
-                    modal.close.then(function (result) {
-                        if (result) {
-                            //remove all elements from array
-                            if (!selectedFilter.selectedValues || !selectedFilter.selectedNodes) {
-                                //selected nodes and their child nodes, which will be sent to backend for query
-                                selectedFilter.selectedValues = [];
-                                //selected nodes
-                                selectedFilter.selectedNodes = [];
-                            }
-                            selectedFilter.selectedValues.length = 0;
-                            selectedFilter.selectedNodes.length = 0;
-
-                            //To reflect the selected causes
-                            angular.forEach(modal.controller.optionValues, function (eachOption, index) {
-                                //get child nodes, if any and add to selected values
-                                if (eachOption.childNodes && eachOption.childNodes.length > 0) {
-                                    angular.forEach(eachOption.childNodes, function (childNode, index) {
-                                        selectedFilter.selectedValues.push(childNode);
-                                    });
-                                } else {
-                                    selectedFilter.selectedValues.push(eachOption);
-                                }
-
-                                selectedFilter.selectedNodes.push(eachOption);
-                            });
-                            selectedFilter.value = utilService.getValuesByKey(selectedFilter.selectedValues, 'id');
-                            modal.element.hide();
-
-                            deferred.resolve(selectedFilter);
-
-                            //  Run the filter call back only if runOnFilterChange is true
-                            if(sfc.runOnFilterChange) {
-                                sfc.onFilter();
-                            }
-                        }
-                        else {
-                            deferred.resolve(null);
-                        }
-                    });
-                });
-            }
-
-            return deferred.promise;
-        }
-
-        function showMCDModal(selectedFilter, allFilters, propertyKey) {
-            if (!selectedFilter.selectedValues) {
-                selectedFilter.selectedValues = {};
-            }
-
-            if (!selectedFilter.selectedNodes) {
-                selectedFilter.selectedNodes = {};
-            }
-
-            if (!selectedFilter.value) {
-                selectedFilter.value = {};
-            }
-
-            sfc.showModal({
-                key: selectedFilter.key,
-                selectedValues: selectedFilter.selectedValues[propertyKey],
-                selectedNodes: selectedFilter.selectedNodes[propertyKey],
-                value: selectedFilter.value[propertyKey]
-            }, allFilters).then(function (filter) {
-                if (filter) {
-                    selectedFilter.selectedValues[propertyKey] = filter.selectedValues;
-                    selectedFilter.selectedNodes[propertyKey] = filter.selectedNodes;
-                    selectedFilter.value[propertyKey] = filter.value;
-                }
-            });
-        }
-
-        function clearSelection(filter, resetGroupBy) {
-            if(resetGroupBy) {
-                filter.groupBy = false;
-            }
-
-            //remove all elements from array
-            filter.selectedNodes.length = 0;
-            filter.selectedValues.length = 0;
-            filter.value.length = 0;
-
-            //  Run the filter call back only if runOnFilterChange is true
-            if(sfc.runOnFilterChange) {
-                sfc.onFilter();
-            }
-        }
-
-        function clearMCDSelection(filter, resetGroupBy, propertyKey) {
-            if(resetGroupBy) {
-                filter.groupBy = false;
-            }
-
-            //remove all elements from array
-            filter.selectedNodes[propertyKey].length = 0;
-            filter.selectedValues[propertyKey].length = 0;
-            filter.value[propertyKey].length = 0;
-
-            //  Run the filter call back only if runOnFilterChange is true
-            if(sfc.runOnFilterChange) {
-                sfc.onFilter();
-            }
-        }
-
-        //remove all elements from array for all select
-        function updateGroupValue(sideFilter, category) {
-            var group = sideFilter.filterGroup ? sideFilter : sideFilter.filters;
-            if(group.filterType === 'checkbox'){
-                if ( group.allChecked === false ) {
-                    // When All is unchecked, select all other values
-                    angular.forEach(group.autoCompleteOptions, function(option){
-                        group.value.push(option.key);
-                    });
-                } else {
-                    // When All is selected, unselect individual values
-                    group.value.length = 0;
-                }
-            }else {
-                if (group.allChecked === true) {
-                    group.value = '';
-                }
-            }
-
-            sfc.onFilterValueChange(sideFilter, category);
         }
 
         function onFilterValueChange(filter, category){
