@@ -456,6 +456,8 @@
   "label.help.text.cancer_mortality.cancer_site": "This field indicates the primary cancer site that is the organ of origin within the body where a given cancer occurs in an individual.",
   "label.help.text.cancer_mortality.state": "State This field indicates the State of patient's residence at the time the case was submitted to the registry.",
 
+  "label.documentation.about.dataset": "About This Dataset",
+
   "datadoc.datasource.deaths": "The Detailed Mortality data are compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative; the data set is produced by the U.S. Department of Health and Human Services (US DHHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS), Division of Vital Statistics (DVS), Mortality Statistics Branch.",
   "datadoc.citation.deaths": "Health Information Gateway, Office on Women's Health, HHS, 5/26/2017.",
   "datadoc.notes.deaths": "The mortality data are based on information from all death certificates filed in the fifty states and the District of Columbia. Deaths of non-residents (e.g. non-resident aliens, nationals living abroad, residents of Puerto Rico, Guam, the Virgin Islands, and other territories of the U.S.) and fatal deaths are excluded. Mortality data from the death certificates are coded by the states and provided to NCHS through the Vital Statistics Cooperative Program or coded by NCHS from copies of the original death certificates provided to NCHS by the State registration Offices.",
