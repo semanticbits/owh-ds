@@ -74,10 +74,9 @@
             else if (primaryFilter.key === 'mental_health') {
                 primaryFilter.data = response.data.resultData.table;
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
-                tableData.headers[0].splice(1, 0, {colspan: 1, rowspan: tableData.headers.length, title: "Response", helpText: $filter('translate')('label.help.text.prams.response')});
                 primaryFilter.headers = buildQueryForYRBS(primaryFilter, true).headers;
                 tableData.data = categorizeQuestions(tableData.data, $rootScope.questions);
-                primaryFilter.showBasicSearchSideMenu = response.data.queryJSON.showBasicSearchSideMenu;
+               primaryFilter.showBasicSearchSideMenu = response.data.queryJSON.showBasicSearchSideMenu;
                 primaryFilter.runOnFilterChange = response.data.queryJSON.runOnFilterChange;
                 //update questions based on selected
                 var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question')
@@ -86,7 +85,6 @@
             else if (primaryFilter.key === 'prams') {
                 primaryFilter.data = response.data.resultData.table;
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
-                tableData.headers[0].splice(1, 0, {colspan: 1, rowspan: tableData.headers.length, title: "Response", helpText: $filter('translate')('label.help.text.prams.response')});
                 primaryFilter.headers = buildQueryForYRBS(primaryFilter, true).headers;
                 tableData.data = categorizeQuestions(tableData.data, $rootScope.pramsQuestions);
                 primaryFilter.showBasicSearchSideMenu = response.data.queryJSON.showBasicSearchSideMenu;
@@ -103,8 +101,6 @@
                 primaryFilter.data = response.data.resultData.nested.table;
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 populateSideFilterTotals(primaryFilter, response.data);
-                primaryFilter.headers = tableData.headers;
-                primaryFilter.data = tableData.data;
                 primaryFilter.chartData = prepareChartData(response.data.resultData.headers, response.data.resultData.nested, primaryFilter);
                 mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
@@ -240,11 +236,17 @@
             var countKey = selectedFilter.key;
             var countLabel = selectedFilter.countLabel;
             var totalCount = selectedFilter.count;
-            var calculatePercentage = true;
+            var calculatePercentage = selectedFilter.key === 'prams' || selectedFilter.key == 'mental_health' ? false : true;
             var calculateRowTotal = selectedFilter.calculateRowTotal;
             var secondaryCountKeys = ['pop', 'ageAdjustedRate', 'standardPop'];
 
-            return utilService.prepareMixedTableData(headers, file, countKey, totalCount, countLabel, calculatePercentage, calculateRowTotal, secondaryCountKeys, filterUtils.getAllOptionValues());
+            var tableData = utilService.prepareMixedTableData(headers, file, countKey, totalCount, countLabel, calculatePercentage, calculateRowTotal, secondaryCountKeys, filterUtils.getAllOptionValues());
+
+            if (selectedFilter.key === 'prams' || selectedFilter.key == 'mental_health') {
+                tableData.headers[0].splice(1, 0, { colspan: 1, rowspan: tableData.headers.length, title: "Response", helpText: $filter('translate')('label.help.text.prams.response') });
+            }
+
+            return tableData;
         }
 
         //takes mixedTable and returns categories array for use with owhAccordionTable
