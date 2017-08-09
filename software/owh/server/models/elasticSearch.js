@@ -318,6 +318,10 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
                 var data = searchUtils.populateDataWithMappings(response, 'infant_mortality', allSelectedFilterOptions);
                 isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');
                 deferred.resolve(data);
+                if (data.data.simple.state) {
+                    console.log(JSON.stringify(data.data.simple.state));
+                    searchUtils.suppressStateTotals(data.data.simple.state, 'infant_mortality', 10);
+                }
             }, function (error) {
                 logger.error(error.message);
                 deferred.reject(error);

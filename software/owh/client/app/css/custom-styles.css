@@ -1390,3 +1390,12 @@ div.hero-container > div >  a:focus {
 div.interested-in-filter:focus {
 	border: 1px lightgray dashed;
 }
+
+/**
+* Conditional CSS for IE 8+.
+*/
+@media screen\0 {
+	.hero-bg:after {
+		opacity: 0.5 !important;
+	}
+}
