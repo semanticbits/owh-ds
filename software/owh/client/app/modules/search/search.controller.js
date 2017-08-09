@@ -79,11 +79,7 @@
                 {key: 'Sexual Behaviors', title: 'Sexual Behaviors'},
                 {key: 'Tobacco Use', title: 'Tobacco Use'},
                 {key: 'Unintentional Injuries and Violence', title: 'Unintentional Injuries and Violence'},
-                {key: 'Other Health Topics', title: 'Other Health Topics'}],
-            cancer_incident: [
-                {key: 'cancer_incident', title: 'Cancer Incidents'},
-                {key: 'age_adjusted_cancer_rates', title: 'Age Adjusted Cancer Rates'}
-                ]
+                {key: 'Other Health Topics', title: 'Other Health Topics'}]
         };
         sc.sort = {
             "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'ucd-chapter-10', 'mcd-chapter-10'],
@@ -141,7 +137,6 @@
             tb:{},
             aids: {},
             cancer_incident: {},
-            age_adjusted_cancer_rates: {},
             cancer_mortality: {},
             mental_health:{},
             natality:{},
@@ -181,8 +176,7 @@
             'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'state', 'ucd-chapter-10'],
             'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state', 'ucd-chapter-10', 'mcd-chapter-10'],
             'birth_rates': ['current_year', 'race', 'state'],
-            'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval', 'state'],
-            'age_adjusted_cancer_rates': ['current_year', 'sex', 'race', 'hispanic_origin', 'age_group', 'site', 'childhood_cancer', 'state']
+            'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval', 'state']
         };
         sc.queryID = $stateParams.queryID;
         sc.tableView = $stateParams.tableView ? $stateParams.tableView : sc.showMeOptions.deaths[0].key;
