@@ -7,103 +7,193 @@ var q = require('q');
 var config = require('../config/config');
 
 var wonderParamCodeMap = {
-    'race': {
-        "key": 'D77.V8',
-        "values": {
-            "White": '2106-3',
-            "Black": '2054-5',
-            "American Indian": '1002-5',
-            "Asian or Pacific Islander": 'A-PI',
-            "Other (Puerto Rico only)": false
+
+    "D77": {
+        'race': {
+            "key": 'D77.V8',
+            "values": {
+                "White": '2106-3',
+                "Black": '2054-5',
+                "American Indian": '1002-5',
+                "Asian or Pacific Islander": 'A-PI',
+                "Other (Puerto Rico only)": false
+            }
+        },
+        'gender': {
+            "key": 'D77.V7',
+            "values": {
+                "Female": 'F',
+                "Male": 'M',
+            }
+        },
+        'hispanicOrigin': {
+            'key': 'D77.V17',
+            'values': {
+                'Hispanic': '2135-2',
+                'Non-Hispanic': '2186-2'
+            }
+        },
+        'year': 'D77.V1',// Use this mapping for filtering param
+        'year-group': 'D77.V1-level1', // Use this mapping for grouping param
+        'agegroup': 'D77.V51',
+        'weekday': 'D77.V24',
+        'autopsy': {
+            "key": 'D77.V20',
+            "values": {
+                'Yes': 'Y',
+                'No': 'N',
+                'Unknown': 'U'
+            }
+        },
+        'placeofdeath': 'D77.V21',
+        'month': 'D77.V1-level2',
+        'ucd-chapter-10': 'D77.V2',
+        'state-group': 'D77.V9-level1', // Use this mapping for grouping param
+        'state': { // Use this for filtering param
+            "key": 'D77.V9',
+            "values": {
+                "AL": "01",
+                "AK": "02",
+                "AZ": "04",
+                "AR": "05",
+                "CA": "06",
+                "CO": "08",
+                "CT": "09",
+                "DE": "10",
+                "DC": "11",
+                "FL": "12",
+                "GA": "13",
+                "HI": "15",
+                "ID": "16",
+                "IL": "17",
+                "IN": "18",
+                "IA": "19",
+                "KS": "20",
+                "KY": "21",
+                "LA": "22",
+                "ME": "23",
+                "MD": "24",
+                "MA": "25",
+                "MI": "26",
+                "MN": "27",
+                "MS": "28",
+                "MO": "29",
+                "MT": "30",
+                "NE": "31",
+                "NV": "32",
+                "NH": "33",
+                "NJ": "34",
+                "NM": "35",
+                "NY": "36",
+                "NC": "37",
+                "ND": "38",
+                "OH": "39",
+                "OK": "40",
+                "OR": "41",
+                "PA": "42",
+                "RI": "44",
+                "SC": "45",
+                "SD": "46",
+                "TN": "47",
+                "TX": "48",
+                "UT": "49",
+                "VT": "50",
+                "VA": "51",
+                "WA": "53",
+                "WV": "54",
+                "WI": "55",
+                "WY": "56"
+            }
         }
     },
-    'gender': {
-        "key": 'D77.V7',
-        "values": {
-            "Female": 'F',
-            "Male": 'M',
-        }
-    },
-    'hispanicOrigin': {
-        'key': 'D77.V17',
-        'values': {
-            'Hispanic': '2135-2',
-            'Non-Hispanic': '2186-2'
-        }
-    },
-    'year':'D77.V1',// Use this mapping for filtering param
-    'year-group':'D77.V1-level1', // Use this mapping for grouping param
-    'agegroup':'D77.V51',
-    'weekday':'D77.V24',
-    'autopsy': {
-        "key": 'D77.V20',
-        "values": {
-            'Yes': 'Y',
-            'No': 'N',
-            'Unknown': 'U'
-        }
-    },
-    'placeofdeath':'D77.V21',
-    'month':'D77.V1-level2',
-    'ucd-chapter-10':'D77.V2',
-    'state-group':'D77.V9-level1', // Use this mapping for grouping param
-    'state': { // Use this for filtering param
-        "key":'D77.V9',
-        "values":{
-            "AL":"01",
-            "AK":"02",
-            "AZ":"04",
-            "AR":"05",
-            "CA":"06",
-            "CO":"08",
-            "CT":"09",
-            "DE":"10",
-            "DC":"11",
-            "FL":"12",
-            "GA":"13",
-            "HI":"15",
-            "ID":"16",
-            "IL":"17",
-            "IN":"18",
-            "IA":"19",
-            "KS":"20",
-            "KY":"21",
-            "LA":"22",
-            "ME":"23",
-            "MD":"24",
-            "MA":"25",
-            "MI":"26",
-            "MN":"27",
-            "MS":"28",
-            "MO":"29",
-            "MT":"30",
-            "NE":"31",
-            "NV":"32",
-            "NH":"33",
-            "NJ":"34",
-            "NM":"35",
-            "NY":"36",
-            "NC":"37",
-            "ND":"38",
-            "OH":"39",
-            "OK":"40",
-            "OR":"41",
-            "PA":"42",
-            "RI":"44",
-            "SC":"45",
-            "SD":"46",
-            "TN":"47",
-            "TX":"48",
-            "UT":"49",
-            "VT":"50",
-            "VA":"51",
-            "WA":"53",
-            "WV":"54",
-            "WI":"55",
-            "WY":"56"
+    "D121": {
+        'race': {
+            "key": 'D121.V4',
+            "values": {
+                "American Indian/Alaska Native": '1002-5',
+                "Asian or Pacific Islander": 'A-PI',
+                "Black": '2054-5',
+                "White": '2106-3',
+                "Unknown": '2131-1'
+            }
+        },
+        'sex': {
+            "key": 'D77.V7',
+            "values": {
+                "Female": 'F',
+                "Male": 'M'
+            }
+        },
+        'hispanic_origin': {
+            'key': 'D121.V6',
+            'values': {
+                'Hispanic': '2135-2',
+                'Non-Hispanic': '2186-5',
+                'Unknown': 'UNK'  //Check what is invalid ?
+            }
+        },
+        'current_year': 'D121.V1',// Use this mapping for filtering param
+        'age_group': 'D121.V5',
+        'site': 'D121.V8',
+        'childhood_cancer': 'D121.V7',
+        'state': { // Use this for filtering param
+            "key": 'D121.V2',
+            "values": {
+                "AL": "01",
+                "AK": "02",
+                "AZ": "04",
+                "AR": "05",
+                "CA": "06",
+                "CO": "08",
+                "CT": "09",
+                "DE": "10",
+                "DC": "11",
+                "FL": "12",
+                "GA": "13",
+                "HI": "15",
+                "ID": "16",
+                "IL": "17",
+                "IN": "18",
+                "IA": "19",
+                "KS": "20",
+                "KY": "21",
+                "LA": "22",
+                "ME": "23",
+                "MD": "24",
+                "MA": "25",
+                "MI": "26",
+                "MN": "27",
+                "MS": "28",
+                "MO": "29",
+                "MT": "30",
+                "NE": "31",
+                "NV": "32",
+                "NH": "33",
+                "NJ": "34",
+                "NM": "35",
+                "NY": "36",
+                "NC": "37",
+                "ND": "38",
+                "OH": "39",
+                "OK": "40",
+                "OR": "41",
+                "PA": "42",
+                "RI": "44",
+                "SC": "45",
+                "SD": "46",
+                "TN": "47",
+                "TX": "48",
+                "UT": "49",
+                "VT": "50",
+                "VA": "51",
+                "WA": "53",
+                "WV": "54",
+                "WI": "55",
+                "WY": "56"
+            }
         }
     }
-}
+};
 
 /**
  * Init wonder API with dataset id
@@ -193,10 +283,10 @@ wonder.prototype.invokeWONDER = function (query){
         defer.resolve({});
     }else {
         var reqArray = [];
-        reqArray.push(createWONDERRquest(query.query, query.aggregations.nested.table));
+        reqArray.push(createWONDERRquest(query.query, query.aggregations.nested.table, dbID));
         if(query.aggregations.nested.charts) {
             query.aggregations.nested.charts.forEach(function (chart) {
-                reqArray.push(createWONDERRquest(query.query, chart));
+                reqArray.push(createWONDERRquest(query.query, chart, dbID));
             });
         }
         reqArray.forEach(function(req){
@@ -271,32 +361,33 @@ function processWONDERResponse(response){
  * Create a WONDER request from the HIG query
  * @param filter HIG filters from the UI
  * @param groupParams
+ * @param dbID
  * @returns WONDER request
  */
-function createWONDERRquest(filter, groupParams){
+function createWONDERRquest(filter, groupParams, dbID){
     var request = xmlbuilder.create('request-parameters', {version: '1.0', encoding: 'UTF-8'});
     addParamToWONDERReq(request, 'accept_datause_restrictions', 'true');
     addParamToWONDERReq(request,'apix_project',config.wonder.apix_project);
     addParamToWONDERReq(request,'apix_token', config.wonder.apix_token);
     request.com("Measures");
-    addMeasures(request);
+    addMeasures(request, dbID);
     request.com("Groups");
-    addGroupParams(request, groupParams);
+    addGroupParams(request, groupParams, dbID);
     request.com("Filters");
-    addFilterParams(request, filter);
+    addFilterParams(request, filter, dbID);
     request.com("Options");
-    addOptionParams(request);
+    addOptionParams(request, dbID);
     var reqStr = request.end({pretty:true});
     //logger.info("WONDER Request:",reqStr);
     return reqStr;
 };
 
-function addGroupParams(wreq, groups){
+function addGroupParams(wreq, groups, dbID){
     if(groups){
         for (var i =1; i <= groups.length; i++){
-            var gParam = wonderParamCodeMap[groups[i-1].key+'-group'];
+            var gParam = wonderParamCodeMap[dbID][groups[i-1].key+'-group'];
             if(!gParam ){
-                gParam = wonderParamCodeMap[groups[i-1].key];
+                gParam = wonderParamCodeMap[dbID][groups[i-1].key];
             }
             if(typeof gParam === 'object') {
                 gParam = gParam['key'];
@@ -306,10 +397,17 @@ function addGroupParams(wreq, groups){
     }
 };
 
-function addFilterParams (wreq, query){
-    // Add mandatory advanced filter options
-    addParamToWONDERReq(wreq,'V_D77.V19', '*All*');
-    addParamToWONDERReq(wreq,'V_D77.V5', '*All*');
+function addFilterParams (wreq, query, dbID){
+
+    if(dbID === "D121") {
+        // Add mandatory advanced filter options
+        addParamToWONDERReq(wreq,'V_D121.V8', '*All*');
+    }
+    else {
+        // Add mandatory advanced filter options
+        addParamToWONDERReq(wreq,'V_D77.V19', '*All*');
+        addParamToWONDERReq(wreq,'V_D77.V5', '*All*');
+    }
 
     var mcdSet1 = [], mcdSet2 = [];
 
@@ -342,7 +440,7 @@ function addFilterParams (wreq, query){
                 if (key == 'state') {
                     statefound = true;
                 }
-                p = wonderParamCodeMap[key];
+                p = wonderParamCodeMap[dbID][key];
                 v = query[k].value;
                 //make sure values are replaced by proper keys
                 if(typeof p === 'object') {
@@ -366,7 +464,12 @@ function addFilterParams (wreq, query){
     }
     if(!statefound){
         // If state filter is not selected then add mandatory state filter
-        addParamToWONDERReq(wreq,'F_D77.V9', '*All*');
+        if(dbID === "D121") {
+            addParamToWONDERReq(wreq, 'F_D121.V2', '*All*');
+        }
+        else {
+          addParamToWONDERReq(wreq, 'F_D77.V9', '*All*');
+        }
     }
 
     if (mcdSet1.length < 1) {
@@ -377,42 +480,64 @@ function addFilterParams (wreq, query){
         mcdSet2 = [''];
     }
 
-    addParamToWONDERReq(wreq, 'V_D77.V13', mcdSet1);
-    addParamToWONDERReq(wreq, 'V_D77.V13_AND', mcdSet2);
+    if(dbID !== "D121") {
+        addParamToWONDERReq(wreq, 'V_D77.V13', mcdSet1);
+        addParamToWONDERReq(wreq, 'V_D77.V13_AND', mcdSet2);
+    }
 };
 
-function addMeasures(wreq) {
-    // Even though we dont need the first 3, it is mandatory for WONDER
-    addParamToWONDERReq(wreq,'M_1', 'D77.M1');
-    addParamToWONDERReq(wreq,'M_2', 'D77.M2');
-    addParamToWONDERReq(wreq,'M_3', 'D77.M3');
+function addMeasures(wreq, dbID) {
+    if(dbID === "D121") {
+        // Even though we don't need this, it is mandatory for WONDER
+        addParamToWONDERReq(wreq, 'M_1', 'D121.M1');
+        // M30 is standard age adjusted rate
+        addParamToWONDERReq(wreq, 'M_30', 'D121.M30');
+    }
+    else {
+        // Even though we dont need the first 3, it is mandatory for WONDER
+        addParamToWONDERReq(wreq, 'M_1', 'D77.M1');
+        addParamToWONDERReq(wreq, 'M_2', 'D77.M2');
+        addParamToWONDERReq(wreq, 'M_3', 'D77.M3');
 
-    // M4 is standard age adjusted rate
-    addParamToWONDERReq(wreq,'M_4', 'D77.M4');
+        // M4 is standard age adjusted rate
+        addParamToWONDERReq(wreq, 'M_4', 'D77.M4');
+    }
 };
 
-function addOptionParams(wreq){
-    addParamToWONDERReq(wreq,'O_V10_fmode', 'freg');
-    addParamToWONDERReq(wreq, 'O_V13_fmode', 'fadv');
-    addParamToWONDERReq(wreq,'O_V1_fmode', 'freg');
-    addParamToWONDERReq(wreq,'O_V27_fmode', 'freg');
-    addParamToWONDERReq(wreq,'O_V2_fmode', 'freg');
-    addParamToWONDERReq(wreq,'O_V9_fmode', 'freg');
-    addParamToWONDERReq(wreq,'O_V7_fmode', 'freg');
-    addParamToWONDERReq(wreq,'O_V8_fmode', 'freg');
-    addParamToWONDERReq(wreq,'O_V17_fmode', 'freg');
-    addParamToWONDERReq(wreq,'O_aar', 'aar_std');
-    addParamToWONDERReq(wreq,'O_aar_pop', '0000');
-    addParamToWONDERReq(wreq,'O_age', 'D77.V5'); // Age adjusted rate by 10 year interval
-    addParamToWONDERReq(wreq,'O_javascript', 'off');
-    addParamToWONDERReq(wreq,'O_location', 'D77.V9');
-    addParamToWONDERReq(wreq,'O_precision', '1');
-    addParamToWONDERReq(wreq,'O_rate_per', '100000');
-    addParamToWONDERReq(wreq,'O_show_totals', 'true');
-    addParamToWONDERReq(wreq,'O_ucd', 'D77.V2');
-    addParamToWONDERReq(wreq, 'O_mcd', 'D77.V13');
-    addParamToWONDERReq(wreq,'O_urban', 'D77.V19');
-    addParamToWONDERReq(wreq,'O_all_labels', 'true');
+function addOptionParams(wreq, dbID){
+    if(dbID === "D121") {
+
+        addParamToWONDERReq(wreq, 'O_age', 'D121.V5'); // Age adjusted rate by 10 year interval
+        addParamToWONDERReq(wreq, 'O_javascript', 'off');
+        addParamToWONDERReq(wreq, 'O_location', 'D121.V2');
+        addParamToWONDERReq(wreq, 'O_precision', '1');
+        addParamToWONDERReq(wreq, 'O_rate_per', '100000');
+        addParamToWONDERReq(wreq, 'O_show_totals', 'true');
+        addParamToWONDERReq(wreq, 'O_all_labels', 'true');
+    }
+    else {
+        addParamToWONDERReq(wreq, 'O_V10_fmode', 'freg');
+        addParamToWONDERReq(wreq, 'O_V13_fmode', 'fadv');
+        addParamToWONDERReq(wreq, 'O_V1_fmode', 'freg');
+        addParamToWONDERReq(wreq, 'O_V27_fmode', 'freg');
+        addParamToWONDERReq(wreq, 'O_V2_fmode', 'freg');
+        addParamToWONDERReq(wreq, 'O_V9_fmode', 'freg');
+        addParamToWONDERReq(wreq, 'O_V7_fmode', 'freg');
+        addParamToWONDERReq(wreq, 'O_V8_fmode', 'freg');
+        addParamToWONDERReq(wreq, 'O_V17_fmode', 'freg');
+        addParamToWONDERReq(wreq, 'O_aar', 'aar_std');
+        addParamToWONDERReq(wreq, 'O_aar_pop', '0000');
+        addParamToWONDERReq(wreq, 'O_age', 'D77.V5'); // Age adjusted rate by 10 year interval
+        addParamToWONDERReq(wreq, 'O_javascript', 'off');
+        addParamToWONDERReq(wreq, 'O_location', 'D77.V9');
+        addParamToWONDERReq(wreq, 'O_precision', '1');
+        addParamToWONDERReq(wreq, 'O_rate_per', '100000');
+        addParamToWONDERReq(wreq, 'O_show_totals', 'true');
+        addParamToWONDERReq(wreq, 'O_ucd', 'D77.V2');
+        addParamToWONDERReq(wreq, 'O_mcd', 'D77.V13');
+        addParamToWONDERReq(wreq, 'O_urban', 'D77.V19');
+        addParamToWONDERReq(wreq, 'O_all_labels', 'true');
+    }
 }
 
 function addParamToWONDERReq(request, paramname, paramvalue) {
@@ -448,15 +573,6 @@ function findChildElementByName(node, name){
     for (child in node){
         if(child === name){
             return  node[child];
-        }
-    }
-}
-
-function getGroupAttributes(query){
-    var groups = []
-    if(query.aggregations.nested.table){
-        for (var i =1; i <= query.aggregations.nested.table.length; i++){
-            groups.push(wonderParamCodeMap[query.aggregations.nested.table[i-1].key]);
         }
     }
 }
