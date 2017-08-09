@@ -82,6 +82,9 @@
                 case "fertility_rates":
                     return "Fertility Rates";
                     break;
+                case "age_adjusted_cancer_rates":
+                    return "Age Adjusted Cancer Rates";
+                    break;
                 default:
                     return chartLabel;
             }

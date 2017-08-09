@@ -4,7 +4,7 @@
         <table id="headers-table" class="owh-data-table">
             <thead>
             <tr ng-repeat="eachHeaderRow in otc.tableData.headers">
-                <th ng-repeat="eachHeader in eachHeaderRow" ng-bind="($last && (otc.tableData.headers.length == 1 || eachHeader.rowspan != 1) && (otc.tableView == 'crude_death_rates' || otc.tableView == 'age-adjusted_death_rates')) ? 'Total' : eachHeader.title" colspan="{{eachHeader.colspan}}" rowspan="{{eachHeader.rowspan}}" ng-class="{'text-right': eachHeader.isCount && eachHeader.colspan <= 3}"></th>
+                <th ng-repeat="eachHeader in eachHeaderRow" ng-bind="($last && (otc.tableData.headers.length == 1 || eachHeader.rowspan != 1) && (otc.tableView == 'crude_death_rates' || otc.tableView == 'age-adjusted_death_rates' || otc.tableView == 'age_adjusted_cancer_rates')) ? 'Total' : eachHeader.title" colspan="{{eachHeader.colspan}}" rowspan="{{eachHeader.rowspan}}" ng-class="{'text-right': eachHeader.isCount && eachHeader.colspan <= 3}"></th>
                 <!--<th ng-repeat="eachHeader in eachHeaderRow"  colspan="{{eachHeader.colspan}}" rowspan="{{eachHeader.rowspan}}" ng-class="{'text-right': eachHeader.isCount && eachHeader.colspan <= 3}"></th>-->
             </tr>
             </thead>

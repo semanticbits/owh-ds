@@ -223,6 +223,9 @@ function search(q) {
     } else if (preparedQuery.apiQuery.searchFor === 'cancer_incident' || preparedQuery.apiQuery.searchFor === 'cancer_mortality') {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
+        if(q.tableView == 'age_adjusted_cancer_rates') {
+            finalQuery.wonderQuery = preparedQuery.apiQuery;
+        }
         var es = new elasticSearch();
         Q.all([
             es.aggregateCancerData(sideFilterQuery, preparedQuery.apiQuery.searchFor),
