@@ -1,26 +1,36 @@
 <div class="usa-grid-full" style="width: 550px;">
     <div class="usa-width-one-whole">
+
         <div class="usa-width-one-whole marker-popup-header" ng-bind="properties.name"></div>
-        <div class="usa-width-one-whole margin-top-10">
-            <div class="usa-width-two-thirds marker-label">Year(s)</div>
-            <div class="usa-width-one-third marker-years">{{properties.years}}</div>
-        </div>
-        <div class="usa-width-one-whole margin-top-5" ng-repeat="eachCat in properties.sex">
-            <div class="usa-width-two-thirds marker-label" ng-bind="eachCat.name | GenderTitle"></div>
-            <div class="usa-width-one-third">
-                <span ng-if="eachCat.deaths !== 'suppressed'" ng-bind="eachCat[tableView] | number"></span>
-                <span ng-if="eachCat.deaths === 'suppressed'">Suppressed</span>
+        <div ng-if="properties.sex">
+            <div class="usa-width-one-whole margin-top-10">
+                <div class="usa-width-two-thirds marker-label">Year(s)</div>
+                <div class="usa-width-one-third marker-years">{{properties.years}}</div>
             </div>
-        </div>
-        <div class="usa-width-one-whole margin-top-5 padding-top-5 border-top-default padding-bottom-10">
-            <div class="usa-width-two-thirds marker-label">
-                <span ng-if="tableView === 'deaths'">Total Deaths</span>
-                <span ng-if="tableView === 'bridge_race'">Total</span>
+            <div class="usa-width-one-whole margin-top-5" ng-repeat="eachCat in properties.sex">
+                <div class="usa-width-two-thirds marker-label" ng-bind="eachCat.name | GenderTitle"></div>
+                <div class="usa-width-one-third">
+                    <span ng-if="eachCat[tableView] !== 'suppressed'"
+                          ng-bind="eachCat[tableView] | number"></span>
+                    <span ng-if="eachCat[tableView] === 'suppressed'">Suppressed</span>
+                    <span ng-if="!eachCat[tableView] || eachCat[tableView] == 'na'"
+                          ng-bind="'label.not.available' | translate"></span>
+                </div>
             </div>
-            <div class="usa-width-one-third" ng-if="tableView === 'deaths'
+            <div class="usa-width-one-whole margin-top-5 padding-top-5 border-top-default padding-bottom-10">
+                <div class="usa-width-two-thirds marker-label">
+                    <span ng-if="tableView === 'deaths'">Total Deaths</span>
+                    <span ng-if="tableView === 'bridge_race'">Total</span>
+                </div>
+                <div class="usa-width-one-third" ng-if="tableView === 'deaths'
             || tableView === 'bridge_race'">
-                <span>{{properties[tableView] | number}}</span>
+                    <span ng-if="properties[tableView] === 'suppressed'">Suppressed</span>
+                    <span ng-if="properties[tableView] !== 'suppressed'">{{properties[tableView] | number}}</span>
+                </div>
             </div>
+        </div>
+        <div ng-if="!properties.years" class="margin-top-20">
+            Data not available
         </div>
     </div>
 </div>

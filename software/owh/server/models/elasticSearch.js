@@ -176,6 +176,8 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
             }
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'deaths');
+            } else {
+                searchUtils.applySuppressions(mapData, 'deaths');
             }
             deferred.resolve(data);
         }, function (err) {
@@ -221,6 +223,8 @@ ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected) {
             data.data.nested.maps = mapData.data.nested.maps;
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'bridge_race');
+            } else {
+                searchUtils.applySuppressions(mapData, 'bridge_race');
             }
             deferred.resolve(data);
         }, function (err) {
@@ -370,7 +374,11 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
                 i == 0 ? populationResponse = resp[i+2] : populationResponse.data.nested.charts.push(resp[i + 2].data.nested.charts[i-1]);
             }
             self.mergeWithCensusData(data, populationResponse, 'pop');
-            isStateSelected && searchUtils.applySuppressions(data, indexType, 4);
+            if (isStateSelected) {
+                searchUtils.applySuppressions(data, indexType, 4)
+            } else {
+                searchUtils.applySuppressions(mapData, indexType, 4)
+            }
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);

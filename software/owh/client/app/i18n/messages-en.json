@@ -456,5 +456,6 @@
   "label.help.text.cancer_mortality.cancer_site": "This field indicates the primary cancer site that is the organ of origin within the body where a given cancer occurs in an individual.",
   "label.help.text.cancer_mortality.state": "State This field indicates the State of patient's residence at the time the case was submitted to the registry.",
 
-  "label.documentation.about.dataset": "About This Dataset"
+  "label.documentation.about.dataset": "About This Dataset",
+  "label.not.available": "Not Available"
 }
