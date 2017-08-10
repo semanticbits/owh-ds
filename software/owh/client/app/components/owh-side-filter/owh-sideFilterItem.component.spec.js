@@ -418,9 +418,11 @@ describe('OWH Side filter item component: ', function () {
         var bindings = { filters: filters, onFilter: function () { }, onFilterValueChange: function () { } };
         bindings.filters.selectedPrimaryFilter.runOnFilterChange = false;
         var ctrl = $componentController('owhSideFilterItem', { $scope: $scope }, bindings);
+        ctrl.filter = { filters: { value: [] } };
+
         spyOn(ctrl, 'onFilter');
 
-        ctrl.updateGroupValue({ filters: { value: [] } }, { exclusive: false });
+        ctrl.updateGroupValue();
 
         expect(ctrl.onFilter).not.toHaveBeenCalled();
     });
