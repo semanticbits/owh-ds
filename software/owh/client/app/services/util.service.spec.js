@@ -348,6 +348,7 @@ describe('utilService', function(){
 
 
     it('refreshFilterAndOptions options should set filter option correctly - without category property ', inject(function(SearchService) {
+
         var deferred = $q.defer();
         var filters= [
             {
@@ -715,6 +716,43 @@ describe('utilService', function(){
         expect(filters[1].filters.autoCompleteOptions[8].key).toEqual("50-54 years");
         expect(filters[1].filters.autoCompleteOptions[8].disabled).toBeTruthy();
     }));
+
+    it('Should generate appropriate selected filters text', function () {
+        var filters= [
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:"row",
+                key: 'year', title: 'label.filter.year', queryKey:"year", primary: false, value: ['2000', '2014'],
+                type:"label.filter.group.year", showChart: true, defaultGroup:"column",
+                autoCompleteOptions: [{key:'2000','title':'2000'},{key:'2010','title':'2010'},{key:'2014','title':'2014'}]
+            },
+            {
+                filterGroup: false, collapse: true, allowGrouping: true,groupBy:true,
+                key: 'gender', title: 'label.filter.gender', queryKey:"sex", primary: false, value: ['M'],
+                type:"label.filter.group.demographics", groupByDefault: 'column', showChart: true,
+                autoCompleteOptions: [
+                    {key:'F',title:'Female'},
+                    {key:'M',title:'Male'}
+                ], defaultGroup:"column"
+
+            },
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:false,
+                key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: ['White', 'Asian'],
+                type:"label.filter.group.demographics", showChart: true, defaultGroup:"column",
+                autoCompleteOptions: [{key:'White','title':'White'},{key:'Black','title':'Black'},{key:'Asian','title':'Asian'}]
+            },
+
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:false,
+                key: 'ethnicity', title: 'label.filter.ethnicity', queryKey:"ethnicity", primary: false, value: [],
+                type:"label.filter.group.ethnicity", showChart: true, defaultGroup:"column",
+                autoCompleteOptions: [{key:'Hispanic','title':'Hispanic'},{key:'Non-Hispanic','title':'Non-Hispanic'}]
+            }
+        ];
+        var sort  = ['year', 'race', 'gender','ethnicity'];
+
+        expect(utils.getSelectedFiltersText(filters, sort)).toEqual ('label.filter.year: 2000, 2014| label.filter.race: White, Asian| label.filter.gender: Male');
+    });
 
     it('STD: Disease filter option "Congenital Syphilis" on change', inject(function(filterUtils){
         var filters = {};
@@ -1102,5 +1140,7 @@ describe('utilService', function(){
             expect(mockFilters.sideFilters[4].disabled).toBeTruthy();
             expect(mockFilters.sideFilters[5].disabled).toBeTruthy();
         });
+
     });
+
 });

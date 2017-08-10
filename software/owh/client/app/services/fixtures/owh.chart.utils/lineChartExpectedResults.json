@@ -1,4 +1,5 @@
 {
+  "dataset":"deaths",
   "title": "label.graph.current_year",
   "options": {
     "chart": {

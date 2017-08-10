@@ -69,7 +69,7 @@ Feature: Bridge race filters
     And  I see expand button is changed to collapse button
     And I see export chart button
     When I hover on the export chart button
-    Then I see two export menus displayed
+    Then I see three export menus displayed
     When I click on the export as PNG
     Then I see a PNG file is downloaded
     When I hover on the export chart button
