@@ -174,13 +174,13 @@ class ETL :
             if(record['state'] in ['CT', 'ME', 'MA', 'NH', 'RI', 'VT', 'NJ', 'NY', 'PA']):
                 record['census_region'] = "CENS-R1"
             #Census Region 2: Midwest
-            if(record['state'] in ['IL', 'IN', 'MI', 'OH', 'WI', 'IA', 'KS', 'MN', 'MO', 'NE', 'ND', 'SD']):
+            elif(record['state'] in ['IL', 'IN', 'MI', 'OH', 'WI', 'IA', 'KS', 'MN', 'MO', 'NE', 'ND', 'SD']):
                 record['census_region'] = "CENS-R2"
             #Census Region 3: South
-            if(record['state'] in ['DE', 'DC', 'FL', 'GA', 'MD', 'NC', 'SC', 'VA', 'WV', 'AL', 'KY', 'MS', 'TN', 'AR', 'LA', 'OK', 'TX']):
+            elif(record['state'] in ['DE', 'DC', 'FL', 'GA', 'MD', 'NC', 'SC', 'VA', 'WV', 'AL', 'KY', 'MS', 'TN', 'AR', 'LA', 'OK', 'TX']):
                 record['census_region'] = "CENS-R3"
             #Census Region 4: West
-            if(record['state'] in ['AZ', 'CO', 'ID', 'MT', 'NV', 'NM', 'UT', 'WY', 'AK', 'CA', 'HI', 'OR', 'WA']):
+            elif(record['state'] in ['AZ', 'CO', 'ID', 'MT', 'NV', 'NM', 'UT', 'WY', 'AK', 'CA', 'HI', 'OR', 'WA']):
                 record['census_region'] = "CENS-R4"
 
 
@@ -188,28 +188,28 @@ class ETL :
             if(record['state'] in ['CT', 'ME', 'MA', 'NH', 'RI', 'VT']):
                 record['census_division'] = "CENS-D1"
             #Division 2: Middle Atlantic
-            if(record['state'] in ['NJ', 'NY', 'PA']):
+            elif(record['state'] in ['NJ', 'NY', 'PA']):
                 record['census_division'] = "CENS-D2"
             #Division 3: East North Central
-            if(record['state'] in ['IL', 'IN', 'MI', 'OH', 'WI']):
+            elif(record['state'] in ['IL', 'IN', 'MI', 'OH', 'WI']):
                 record['census_division'] = "CENS-D3"
             #Division 4: West North Central
-            if(record['state'] in ['IA', 'KS', 'MN', 'MO', 'NE', 'ND', 'SD']):
+            elif(record['state'] in ['IA', 'KS', 'MN', 'MO', 'NE', 'ND', 'SD']):
                 record['census_division'] = "CENS-D4"
             #Division 5: South Atlantic
-            if(record['state'] in ['DE', 'DC', 'FL', 'GA', 'MD', 'NC', 'SC', 'VA', 'WV']):
+            elif(record['state'] in ['DE', 'DC', 'FL', 'GA', 'MD', 'NC', 'SC', 'VA', 'WV']):
                 record['census_division'] = "CENS-D5"
             #Division 6: East South Central
-            if(record['state'] in ['AL', 'KY', 'MS', 'TN']):
+            elif(record['state'] in ['AL', 'KY', 'MS', 'TN']):
                 record['census_division'] = "CENS-D6"
             #Division 7: West South Central
-            if(record['state'] in ['AR', 'LA', 'OK', 'TX']):
+            elif(record['state'] in ['AR', 'LA', 'OK', 'TX']):
                 record['census_division'] = "CENS-D7"
             #Division 8: Mountain
-            if(record['state'] in ['AZ', 'CO', 'ID', 'MT', 'NV', 'NM', 'UT', 'WY']):
+            elif(record['state'] in ['AZ', 'CO', 'ID', 'MT', 'NV', 'NM', 'UT', 'WY']):
                 record['census_division'] = "CENS-D8"
             #Division 9: Pacific
-            if(record['state'] in ['AK', 'CA', 'HI', 'OR', 'WA']):
+            elif(record['state'] in ['AK', 'CA', 'HI', 'OR', 'WA']):
                 record['census_division'] = "CENS-D9"
 
 
@@ -217,31 +217,31 @@ class ETL :
             if(record['state'] in ['CT', 'ME', 'MA', 'NH', 'RI', 'VT']):
                 record['hhs_region'] = "HHS-1"
             #HHS Region 2
-            if(record['state'] in ['NJ', 'NY']):
+            elif(record['state'] in ['NJ', 'NY']):
                 record['hhs_region'] = "HHS-2"
             #HHS Region 3
-            if(record['state'] in ['DE', 'DC', 'MD', 'PA', 'VA', 'WV']):
+            elif(record['state'] in ['DE', 'DC', 'MD', 'PA', 'VA', 'WV']):
                 record['hhs_region'] = "HHS-3"
             #HHS Region 4
-            if(record['state'] in ['AL', 'FL', 'GA', 'KY', 'MS', 'NC', 'SC', 'TN']):
+            elif(record['state'] in ['AL', 'FL', 'GA', 'KY', 'MS', 'NC', 'SC', 'TN']):
                 record['hhs_region'] = "HHS-4"
             #HHS Region 5
-            if(record['state'] in ['IL', 'IN', 'MI', 'MN', 'OH', 'WI']):
+            elif(record['state'] in ['IL', 'IN', 'MI', 'MN', 'OH', 'WI']):
                 record['hhs_region'] = "HHS-5"
             #HHS Region 6
-            if(record['state'] in ['AR', 'LA', 'NM', 'OK', 'TX']):
+            elif(record['state'] in ['AR', 'LA', 'NM', 'OK', 'TX']):
                 record['hhs_region'] = "HHS-6"
             #HHS Region 7
-            if(record['state'] in ['IA', 'KS', 'MO', 'NE']):
+            elif(record['state'] in ['IA', 'KS', 'MO', 'NE']):
                 record['hhs_region'] = "HHS-7"
             #HHS Region 8
-            if(record['state'] in ['CO', 'MT', 'ND', 'SD', 'UT', 'WY']):
+            elif(record['state'] in ['CO', 'MT', 'ND', 'SD', 'UT', 'WY']):
                 record['hhs_region'] = "HHS-8"
             #HHS Region 9
-            if(record['state'] in ['AZ', 'CA', 'HI', 'NV']):
+            elif(record['state'] in ['AZ', 'CA', 'HI', 'NV']):
                 record['hhs_region'] = "HHS-9"
             #HHS Region 10
-            if(record['state'] in ['AK', 'ID', 'OR', 'WA']):
+            elif(record['state'] in ['AK', 'ID', 'OR', 'WA']):
                 record['hhs_region'] = "HHS-10"
 
     def execute(self):
