@@ -42,7 +42,7 @@
             <select id="tableView" ng-model="mc.selectedShowFilter" ng-if="mc.showMeOptions[mc.selectedFilter.key]"
                     ng-options="item.title for item in mc.showMeOptions[mc.selectedFilter.key]"
                     ng-change="mc.onViewFilter({selectedFilter: mc.selectedShowFilter})"
-                    class="usa-width-two-thirds add-on-element gray-border margin-0">
+                    class="usa-width-two-thirds add-on-element gray-border margin-0 tableViewDropDown">
             </select>
         <!--<div class="icon-position"><i class="fa fa-angle-down font-30 karat"></i></div>-->
     </div>
