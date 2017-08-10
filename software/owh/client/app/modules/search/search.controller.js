@@ -82,7 +82,7 @@
                 {key: 'Other Health Topics', title: 'Other Health Topics'}]
         };
         sc.sort = {
-            "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'ucd-chapter-10', 'mcd-chapter-10'],
+            "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'census-region', 'hhs-region', 'ucd-chapter-10', 'mcd-chapter-10'],
             "label.risk.behavior": ['year', 'yrbsSex', 'yrbsRace', 'yrbsGrade', 'sexid', 'sexpart', 'yrbsState', 'question'],
             "label.census.bridge.race.pop.estimate": ['current_year', 'sex', 'race', 'ethnicity', 'agegroup', 'state'],
             "label.filter.natality": ['current_year', 'month', 'weekday', 'sex', 'gestational_age_r10', 'gestation_recode10', 'gestation_recode11', 'gestation_weekly', 'prenatal_care',

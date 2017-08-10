@@ -183,23 +183,28 @@
             var refreshFiltersOnChange = false;
             //populate side filters based on cached query filters
             angular.forEach(updatedSideFilters, function (category, catIndex) {
+                var localCategory = primaryFilter.sideFilters[catIndex];
+                if(category.selectedFilter) {
+                    localCategory.selectedFilter = category.selectedFilter;
+                }
+
                 angular.forEach(category.sideFilters, function(filter, index) {
-                    if(primaryFilter.sideFilters[catIndex]) {
-                        refreshFiltersOnChange = refreshFiltersOnChange || primaryFilter.sideFilters[catIndex].sideFilters[index].refreshFiltersOnChange;
+                    if (localCategory) {
+                        refreshFiltersOnChange = refreshFiltersOnChange || localCategory.sideFilters[index].refreshFiltersOnChange;
                     }
-                    primaryFilter.sideFilters[catIndex].sideFilters[index].filters.value = filter.filters.value;
-                    primaryFilter.sideFilters[catIndex].sideFilters[index].filters.groupBy = filter.filters.groupBy;
+                    localCategory.sideFilters[index].filters.value = filter.filters.value;
+                    localCategory.sideFilters[index].filters.groupBy = filter.filters.groupBy;
 
                     if (filter.filters.filterType === 'slider') {
-                        primaryFilter.sideFilters[catIndex].sideFilters[index].filters.sliderValue = filter.filters.sliderValue;
+                        localCategory.sideFilters[index].filters.sliderValue = filter.filters.sliderValue;
                     }
 
                     if (filter.filters.selectedNodes != undefined) {
-                        primaryFilter.sideFilters[catIndex].sideFilters[index].filters.selectedNodes = filter.filters.selectedNodes;
+                        localCategory.sideFilters[index].filters.selectedNodes = filter.filters.selectedNodes;
                     }
                     //To un-select selected nodes when user go back from current page
-                    else if (primaryFilter.sideFilters[catIndex].sideFilters[index].filters.selectedNodes != undefined) {
-                        primaryFilter.sideFilters[catIndex].sideFilters[index].filters.selectedNodes.length = 0;
+                    else if (localCategory.sideFilters[index].filters.selectedNodes != undefined) {
+                        localCategory.sideFilters[index].filters.selectedNodes.length = 0;
                     }
                     addOrFilterToPrimaryFilterValue(filter.filters, primaryFilter);
                 });
@@ -1380,6 +1385,26 @@
                 { "key": "WY", "title": "Wyoming" }
             ];
 
+            filters.censusRegionOptions = [
+                { "key": "CENS-R1", "title": "Census Region 1: Northeast" },
+                { "key": "CENS-R2", "title": "Census Region 2: Midwest" },
+                { "key": "CENS-R3", "title": "Census Region 3: South" },
+                { "key": "CENS-R4", "title": "Census Region 4: West" }
+            ];
+
+            filters.hhsOptions = [
+                { "key": "HHS1", "title": "HHS Region #1  CT, ME, MA, NH, RI, VT" },
+                { "key": "HHS2", "title": "HHS Region #2  NJ, NY" },
+                { "key": "HHS3", "title": "HHS Region #3  DE, DC, MD, PA, VA, WV" },
+                { "key": "HHS4", "title": "HHS Region #4  AL, FL, GA, KY, MS, NC, SC, TN" },
+                { "key": "HHS5", "title": "HHS Region #5  IL, IN, MI, MN, OH, WI" },
+                { "key": "HHS6", "title": "HHS Region #6  AR, LA, NM, OK, TX" },
+                { "key": "HHS7", "title": "HHS Region #7  IA, KS, MO, NE" },
+                { "key": "HHS8", "title": "HHS Region #8  CO, MT, ND, SD, UT, WY" },
+                { "key": "HHS9", "title": "HHS Region #9  AZ, CA, HI, NV" },
+                { "key": "HHS10", "title": "HHS Region #10  AK, ID, OR, WA" }
+            ];
+
             filters.ageOptions = [
                 {key:'0-4years',title:'0 - 4 years', min: 1, max: 5},
                 {key:'5-9years',title:'5 - 9 years', min: 6, max: 10},
@@ -1737,6 +1762,18 @@
                     groupBy: false, type:"label.filter.group.location", filterType: 'checkbox',
                     autoCompleteOptions: filters.stateOptions, defaultGroup:"column",
                     displaySearchBox:true, displaySelectedFirst:true, helpText: 'label.help.text.mortality.state'},
+                {
+                    key: 'census-region', title: 'label.filter.censusRegion', queryKey: "state", primary: false, value: [],
+                    groupBy: false, type: "label.filter.group.location", filterType: 'checkbox',
+                    autoCompleteOptions: filters.censusRegionOptions, defaultGroup: "column",
+                    displaySearchBox: true, displaySelectedFirst: true, helpText: 'label.help.text.mortality.state'
+                },
+                {
+                    key: 'hhs-region', title: 'label.filter.HHSRegion', queryKey: "state", primary: false, value: [],
+                    groupBy: false, type: "label.filter.group.location", filterType: 'checkbox',
+                    autoCompleteOptions: filters.hhsOptions, defaultGroup: "column",
+                    displaySearchBox: true, displaySelectedFirst: true, helpText: 'label.help.text.mortality.state'
+                },
 
                 /*Underlying Cause of Death*/
                 {key: 'ucd-chapter-10', title: 'label.filter.ucd', queryKey:"ICD_10_code",
@@ -2069,11 +2106,31 @@
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'month')
-                                },
+                                }
+                            ]
+                        },
+                        {
+                            category: "region",
+                            exclusive: true,
+                            ui: "tabbed",
+                            selectedFilter: "state", // defaulting to state
+                            sideFilters: [
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'state')
                                 },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'census-region')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'hhs-region')
+                                }
+                            ]
+                        },
+                        {
+                            sideFilters: [
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'ucd-chapter-10')

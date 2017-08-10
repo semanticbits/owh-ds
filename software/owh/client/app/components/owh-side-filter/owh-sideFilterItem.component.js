@@ -7,7 +7,6 @@
             controller: sideFilterItemController,
             controllerAs: 'sfic',
             bindings: {
-                category: "<",
                 filter: "<",
                 groupOptions: "<",
                 runOnFilterChange: "<",
@@ -246,8 +245,8 @@
         }
 
         //remove all elements from array for all select
-        function updateGroupValue(sideFilter, category) {
-            var group = sideFilter.filterGroup ? sideFilter : sideFilter.filters;
+        function updateGroupValue() {
+            var group = sfic.filter.filterGroup ? sfic.filter : sfic.filter.filters;
             if (group.filterType === 'checkbox') {
                 if (group.allChecked === false) {
                     // When All is unchecked, select all other values
@@ -264,7 +263,7 @@
                 }
             }
 
-            sfic.onFilterValueChange(sideFilter, category);
+            sfic.onFilterValueChange();
         }
 
         function isVisible(filter) {

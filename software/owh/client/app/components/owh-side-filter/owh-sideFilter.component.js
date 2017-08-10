@@ -26,6 +26,7 @@
         sfc.getFilterOrder = getFilterOrder;
         sfc.isVisible = isVisible;
         sfc.onFilterValueChange = onFilterValueChange;
+        sfc.changeSelectedFilter = changeSelectedFilter;
 
         sfc.$onChanges = function(changes) {
             if(changes.filters && changes.filters.currentValue) {
@@ -171,6 +172,15 @@
                 }
             }
             return cnt?cnt:0;
+        }
+
+        function changeSelectedFilter(filter, category) {
+            category.selectedFilter = filter.filters.key;
+
+            // If the category is exclusive, we would need to re-run the query
+            if (category.exclusive) {
+                sfc.onFilterValueChange(filter, category);
+            }
         }
     }
 }());
