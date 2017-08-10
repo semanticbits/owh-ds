@@ -1763,13 +1763,13 @@
                     autoCompleteOptions: filters.stateOptions, defaultGroup:"column",
                     displaySearchBox:true, displaySelectedFirst:true, helpText: 'label.help.text.mortality.state'},
                 {
-                    key: 'census-region', title: 'label.filter.censusRegion', queryKey: "state", primary: false, value: [],
+                    key: 'census-region', title: 'label.filter.censusRegion', queryKey: "census_region", primary: false, value: [],
                     groupBy: false, type: "label.filter.group.location", filterType: 'checkbox',
                     autoCompleteOptions: filters.censusRegionOptions, defaultGroup: "column",
                     displaySearchBox: true, displaySelectedFirst: true, helpText: 'label.help.text.mortality.state'
                 },
                 {
-                    key: 'hhs-region', title: 'label.filter.HHSRegion', queryKey: "state", primary: false, value: [],
+                    key: 'hhs-region', title: 'label.filter.HHSRegion', queryKey: "hhs_region", primary: false, value: [],
                     groupBy: false, type: "label.filter.group.location", filterType: 'checkbox',
                     autoCompleteOptions: filters.hhsOptions, defaultGroup: "column",
                     displaySearchBox: true, displaySelectedFirst: true, helpText: 'label.help.text.mortality.state'
