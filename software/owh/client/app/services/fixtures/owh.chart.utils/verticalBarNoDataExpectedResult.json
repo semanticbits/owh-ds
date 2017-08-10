@@ -1,5 +1,6 @@
 {
   "data": [],
+  "dataset":"deaths",
   "title": "label.title.gender.race",
   "options": {
     "chart": {

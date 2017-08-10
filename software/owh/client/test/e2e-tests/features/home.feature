@@ -30,9 +30,9 @@ Scenario: Access search page with filter type YRBS
 
 Scenario: Banner
   When I am at home page
-  Then gray banner on top reads "An official website of the United States Government. This site is work in progress and may contain inaccuracies. If you don't find what you need, visit this site or CDC Wonder."
+  Then gray banner on top reads "An official website of the United States Government. This site is work in progress and may contain inaccuracies. If you don't find what you need, visit CDC Wonder."
   When I am at search page
-  Then gray banner on top reads "An official website of the United States Government. This site is work in progress and may contain inaccuracies. If you don't find what you need, visit this site or CDC Wonder."
+  Then gray banner on top reads "An official website of the United States Government. This site is work in progress and may contain inaccuracies. If you don't find what you need, visit CDC Wonder."
 
 Scenario: Co-Branded header
   When I am at home page

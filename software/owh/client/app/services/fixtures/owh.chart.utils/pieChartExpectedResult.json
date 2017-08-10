@@ -17,6 +17,7 @@
       "value": 2241350
     }
   ],
+  "dataset":"deaths",
   "title": "label.graph.race",
   "options": {
     "chart": {

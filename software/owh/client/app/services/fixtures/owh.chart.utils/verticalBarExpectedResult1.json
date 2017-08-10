@@ -45,6 +45,7 @@
       "color": "#009aff"
     }
   ],
+  "dataset":"deaths",
   "title": "label.title.gender.race",
   "options": {
     "chart": {
