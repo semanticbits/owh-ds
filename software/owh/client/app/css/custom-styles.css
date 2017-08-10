@@ -83,8 +83,11 @@ body {
 	font-weight: normal;
 	font-style: italic;
 }
+.explore-dataset-btn{
+	color: #FFFFFF !important;
+}
 
-.intro .usa-button-secondary {
+.intro .usa-button-secondary, .explore-dataset-btn {
 	/*background: #009ddd;*/
 	background: #0071b9;
 	padding: 10px 35px 10px 40px;
@@ -96,17 +99,18 @@ body {
 	display: inline-block;
 }
 
-.intro .usa-button-secondary i {
+.intro .usa-button-secondary i, .explore-dataset-btn i {
 	vertical-align: -7px;
 	transition: all 0.2s linear;
 	margin-left: 6px;
 }
 
 
-.intro .usa-button-secondary:hover {
+.intro .usa-button-secondary:hover,
+.explore-dataset-btn:hover, .explore-dataset-btn:focus {
 	background: #9958a3;
 }
-.intro .usa-button-secondary:hover i {
+.intro .usa-button-secondary:hover i , .explore-dataset-btn:hover i {
 	transform: translateX(5px);
 }
 
@@ -973,6 +977,11 @@ table thead {
 .thin-border-top {
 	border-top: 1px solid #e2e3e3 !important;
 }
+
+.thin-border-bottom {
+	border-bottom: 1px solid #DDDDDD;
+}
+
 .action-button {
 	background-color: #833eb0;
 	border-radius: 4px;

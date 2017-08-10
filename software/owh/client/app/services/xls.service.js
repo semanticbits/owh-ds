@@ -83,7 +83,7 @@
         }
 
         function getCellFromJson(cellJson, convertNumbers) {
-            var cell = {v: cellJson.title };
+            var cell = {v: !(cellJson.title && cellJson.title.mean) ? cellJson.title : cellJson.title.mean };
 
             if (cell.v % 1 == 0) {
                 cell.z = XLSX.SSF._table[3];

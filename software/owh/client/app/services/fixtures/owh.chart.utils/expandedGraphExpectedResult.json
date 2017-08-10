@@ -48,6 +48,7 @@
         "deaths": 1331232
       }
     ],
+    "dataset":"deaths",
     "title": "label.title.yrbsSex.yrbsRace",
     "options": {
       "chart": {
@@ -100,6 +101,7 @@
         "value": 2241350
       }
     ],
+    "dataset":"deaths",
     "title": "label.graph.yrbsGrade",
     "options": {
       "chart": {

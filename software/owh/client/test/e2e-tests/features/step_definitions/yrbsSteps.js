@@ -298,6 +298,7 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I select a few questions and clicks on the Add Selected Question\(s\) button$/, function (next) {
+        browser.executeScript("arguments[0].scrollIntoView();", element(by.id('custom-modal')));
         element(by.className('jstree-anchor')).click();
         yrbsPage.addSelectedQuestionsButton.click()
             .then(next);

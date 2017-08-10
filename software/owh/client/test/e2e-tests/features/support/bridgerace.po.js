@@ -97,6 +97,7 @@ var BridgeRaceSearchPage = function() {
 
     brs.exportPNG = element(by.name('exportpng'));
     brs.exportPDF = element(by.name('exportpdf'));
+    brs.exportPPT = element(by.name('exportppt'));
 };
 
 module.exports = new BridgeRaceSearchPage;

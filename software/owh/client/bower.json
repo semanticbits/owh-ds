@@ -33,9 +33,11 @@
     "js-xlsx": "~0.8.0",
     "file-saver": "~1.3.2",
     "clusterize": "~0.17.2",
-    "jspdf": "^1.3.4"
+    "jspdf": "^1.3.4",
+    "pptxgenjs": "pptxgen#1.6.1"
   },
   "resolutions": {
-    "angular": "~1.5.5"
+    "angular": "~1.5.5",
+    "jquery": "~2.1.4"
   }
 }
