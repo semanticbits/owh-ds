@@ -53,7 +53,8 @@ class NatalityETL (ETL):
                     continue
 
                 del record['residence']
-
+                #prepare region data
+                self.loadRegionData('Natality', record)
                 record_count += 1
                 self.batchRepository.persist({"index": {"_index": self.config['elastic_search']['index'],
                                                         "_type": self.config['elastic_search']['type'],

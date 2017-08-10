@@ -54,6 +54,8 @@ class CensusETL (ETL):
                      stateAggregatedRecods = {}
 
                 for row in record:
+                    #prepare region data
+                    self.loadRegionData('Census', row)
                     aggkey = '{:4s}{:1s}{:1s}{:1s}{:2s}'.format(row['current_year'],row['sex'],row['race'],row['ethnicity_group'],row['age'])
                     # if the key is not yet in the aggdata, add the key and data, else aggr population
                     if not stateAggregatedRecods.has_key(aggkey):

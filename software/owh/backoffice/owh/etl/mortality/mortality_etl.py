@@ -104,6 +104,8 @@ class MortalityIndexer (ETL):
                     record['ethnicity_group'] = 'Hispanic'
 
                 self._check_blanks(record)
+                #prepare region data
+                self.loadRegionData('DetailMortality', record)
                 self.batchRepository.persist({"index": {"_index": self.config['elastic_search']['index'], "_type": self.config['elastic_search']['type'], "_id": recordCount}})
                 self.batchRepository.persist(record)
 
