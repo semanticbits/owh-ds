@@ -457,7 +457,7 @@
   "label.help.text.cancer_mortality.state": "State This field indicates the State of patient's residence at the time the case was submitted to the registry.",
   "label.documentation.about.dataset": "About This Dataset",
   "label.not.available": "Not Available",
-  "label.data.not.available": "Data not available"
+  "label.data.not.available": "Data not available",
 
   "datadoc.datasource.deaths": "The Detailed Mortality data are compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative; the data set is produced by the U.S. Department of Health and Human Services (US DHHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS), Division of Vital Statistics (DVS), Mortality Statistics Branch.",
   "datadoc.citation.deaths": "Health Information Gateway, Office on Women's Health, HHS, 5/26/2017.",
