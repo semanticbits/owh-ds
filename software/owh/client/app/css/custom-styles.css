@@ -1391,6 +1391,28 @@ div.interested-in-filter:focus {
 	border: 1px lightgray dashed;
 }
 
+select.tableViewDropDown:focus {
+	border: 1px lightgray dashed;
+}
+.cdcWonderLink {
+	color: #974bc2 !important;
+}
+.cdcWonderLink:hover {
+	color: #4c2c92 !important;
+}
+.buttonFocus:focus {
+	background: #582C83;
+}
+.chart-icon:focus {
+	border: 1px lightgray dashed;
+}
+.disableFocus {
+	tab-index: -1;
+}
+.groupByLinks:focus {
+	border: 1px dodgerblue dashed !important;
+}
+
 /**
 * Conditional CSS for IE 8+.
 */

@@ -451,7 +451,7 @@
 
             prepareQuestionChart(primaryFilter, question).then(function (response) {
                 chartUtilService.showExpandedGraph([response.chartData], null, question.title,
-                    null, response.chartTypes, primaryFilter, question);
+                    null, response.chartTypes, primaryFilter, question, utilService.getSelectedFiltersText(primaryFilter.allFilters, []));
             });
 
         }

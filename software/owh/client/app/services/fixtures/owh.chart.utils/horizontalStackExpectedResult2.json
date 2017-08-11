@@ -217,6 +217,8 @@
       "deaths": 2241350
     }
   ],
+
+  "dataset":"deaths",
   "title": "label.title.race.hispanicOrigin",
   "options": {
     "chart": {
