@@ -30,10 +30,10 @@
                 var state = utilService.findByKeyAndValue(data.states, 'name', feature.properties.abbreviation);
                 if (utilService.isValueNotEmpty(state)){
                     stateDeathTotals.push(state[primaryFilter.key]);
-                    feature.properties.years = angular.isArray(years)? years.join(', ') : years;
                     feature.properties.sex = state.sex;
                     feature.properties[primaryFilter.key] =  state[primaryFilter.key];
                 }
+                feature.properties.years = angular.isArray(years)? years.join(', ') : years;
             });
             var minMaxValueObj = utilService.getMinAndMaxValue(stateDeathTotals);
             angular.extend(primaryFilter.mapData, {

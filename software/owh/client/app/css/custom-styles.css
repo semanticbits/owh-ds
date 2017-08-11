@@ -1412,3 +1412,12 @@ select.tableViewDropDown:focus {
 .groupByLinks:focus {
 	border: 1px dodgerblue dashed !important;
 }
+
+/**
+* Conditional CSS for IE 8+.
+*/
+@media screen\0 {
+	.hero-bg:after {
+		opacity: 0.5 !important;
+	}
+}
