@@ -1,25 +1,28 @@
 <div id="custom-modal">
     <div id="overlay">
         <div class="custom-modal-header">
+            <div>
                 <span ng-class="{'small-model-title': eg.chartData.length > 1}" ng-bind=" eg.graphTitle| translate"></span>
-
-            <div class="modal-header-actions">
-                <span class="margin-right-10" ng-if="eg.chartData.length === 1">
-                    <a name="share" class="cursor-pointer" ng-click="eg.showFbDialog('chart_expanded_0',  eg.graphTitle)">
-                        <i class="material-icons" title="Share on facebook">share</i></a>
+                <span style="float: right" ng-if="eg.chartData.length > 1">
+                    <a class="cursor-pointer" name="close"  href="javascript:void(0);" ng-click="eg.close()">
+                        <span class="fa fa-times" title="Close graph"></span>
+                    </a>
                 </span>
-                <span class="margin-right-10" ng-if="eg.chartData.length === 1">
-                    <owh-export-chart chart="'chart_expanded_0'", charttitle="eg.graphTitle | translate"/>
+                <span style="float: right" ng-if="eg.chartData.length === 1">
+                    <a name="close" href="javascript:void(0);" class="cursor-pointer" ng-click="eg.close()">
+                        <span class="fa purple-icon fa-compress" title="Minimize graph"></span>
+                    </a>
                 </span>
-                <span class="margin-right-10" ng-if="eg.chartData.length > 1">
-                    <a class="cursor-pointer" name="close" ng-click="eg.close()"><i class="material-icons" title="Close graph">close</i></a>
+                <span style="float:right" class="margin-right-20" ng-if="eg.chartData.length === 1">
+                    <a name="share" class="cursor-pointer" href="javascript:void(0);" ng-click="eg.showFbDialog('chart_expanded_0',  eg.graphTitle)">
+                        &nbsp; <span class="fa purple-icon fa-share-alt" title="Share on facebook"></span>
+                    </a>
                 </span>
-                <span class="margin-right-10" ng-if="eg.chartData.length === 1">
-                    <a name="close" class="cursor-pointer" ng-click="eg.close()"><i class="material-icons minimize" title="Minimize graph">fullscreen_exit</i></a>
+                <span style="float: right" ng-if="eg.chartData.length === 1">
+                    <owh-export-chart chart="'chart_expanded_0'", charttitle="eg.graphTitle | translate" chartdata=eg.chartData primaryFilters=eg.primaryFilters selectedfilterstxt=eg.selectedFiltersTxt/>
                 </span>
-
-            </div>
                 <!--<span style="float: right" ng-if="eg.chartData.length === 1"><a class="cursor-pointer" name="export" ng-click="eg.export('chart_expanded_0', eg.graphTitle | translate, 'PNG')"><span class="fa purple-icon fa-download" title="Export graph as PNG"></span></a></span>-->
+            </div>
             <div ng-bind="eg.graphSubTitle"></div>
         </div>
         <div class="custom-modal-body usa-grid">
@@ -36,9 +39,9 @@
                 <div class="usa-width-one-whole" ng-repeat="eachChartData in eg.chartData">
                     <div class="text-center margin-top-5" ng-if="eg.chartData.length > 1">
                         <span ng-bind="eachChartData.title | translate" class="graph-title"></span>
-                        <a name="share" class="font-20 cursor-pointer" ng-click="eg.showFbDialog('chart_expanded_'+$index, eachChartData.title, 'YRBS by', eg.graphTitle)">
-                            Share on Facebook<i class="material-icons" title="{{'label.share.on.fb' | translate}}">share</i>
-
+                        <a name="share" class="font-20 cursor-pointer" href="javascript:void(0);" ng-click="eg.showFbDialog('chart_expanded_'+$index, eachChartData.title, 'YRBS by', eg.graphTitle)">
+                            &nbsp; Share on Facebook
+                            <i class="material-icons" title="{{'label.share.on.fb' | translate}}">share</i>
                         </a>
                     </div>
                     <nvd3 id="chart_expanded_{{$index}}" options='eachChartData.options' data='eachChartData.data'></nvd3>

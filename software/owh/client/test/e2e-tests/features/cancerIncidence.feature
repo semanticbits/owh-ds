@@ -17,7 +17,7 @@ Scenario: Data table defaults
     Then On the cancer incidence page, the values in row "1" should be "Black, 94,161 (52.2%), 86,149 (47.8%), 180,310"
     Then On the cancer incidence page, the values in row "2" should be "American Indian/Alaska Native, 4,963 (53.3%), 4,354 (46.7%), 9,317"
     Then On the cancer incidence page, the values in row "3" should be "Asian or Pacific Islander, 31,423 (59.1%), 21,718 (40.9%), 53,141"
-    Then On the cancer incidence page, the values in row "4" should be "Unknown, 21,459 (44.9%), 26,316 (55.1%), 47,775"
+    Then On the cancer incidence page, the values in row "4" should be "Unknown, 13,550 (42.8%), 18,102 (57.2%), 31,652"
 
 Scenario: Cancer Incidence charts
     Then On the cancer incidence page, the visualization is displayed

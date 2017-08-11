@@ -3,6 +3,7 @@
     <ng-include src="'app/partials/coBrandedHeader.html'"></ng-include>
     <ng-include src="'app/partials/topBanner.html'"></ng-include>
 </div>
+<!--Search banner-->
 
 <div class="usa-grid-full">
     <div class="usa-grid">
@@ -49,9 +50,13 @@
             <a class="owh-side-menu__handle--collapsed cursor-pointer" ng-hide="sc.sideMenu.visible" ng-click="sc.sideMenu.visible = !sc.sideMenu.visible; sc.updateCharts()" href="javascript:void(0)">
                 Show Filters
             </a>
-            <list-selected-filters sort="sc.sort[sc.filters.selectedPrimaryFilter.title]"
-                                   filters="sc.filters.selectedPrimaryFilter.allFilters" class="flex-grow">
-            </list-selected-filters>
+                <list-selected-filters sort="sc.sort[sc.filters.selectedPrimaryFilter.title]"
+                                       filters="sc.filters.selectedPrimaryFilter.allFilters" class="flex-grow">
+                </list-selected-filters>
+                <div class="usa-width-one-sixth margin-top-10 thin-border-bottom">
+                    <a id="data_doc_link" ng-click="$state.go('description', {dataSetKey: sc.filters.selectedPrimaryFilter.key})"
+                       href="#">Data Documentation</a>
+                </div>
             </div>
 
             <owh-toggle-switch ng-if="sc.filters.selectedPrimaryFilter.chartView"
@@ -64,10 +69,11 @@
             <!--Charts-->
 
             <div class="usa-grid-full owh-search-content">
+                <!-- TODO: enable this
                 <ul class="owh-search-content-tabs flex-container">
                     <li class="menu-tab active"><span class="link">Charts & Graphs</span></li>
                     <li class="menu-tab"><span class="link">Data Table</span></li>
-                </ul>
+                </ul>-->
                 <div class="usa-width-one-whole margin-top-50">
                     <div ng-repeat="startChartData in sc.filters.selectedPrimaryFilter.chartData" ng-init="parentIndex = $index">
                         <div ng-repeat="chartData in startChartData"
@@ -102,6 +108,17 @@
                     </div>
                 </div>
             <!--Charts-->
+
+            <!--More visualization-->
+            <div class="usa-width-one-whole" ng-show="sc.filters.selectedPrimaryFilter.chartData.length > 0">
+                <div class="usa-width-one-whole more-graph-select">
+                    <span class="dark-link" ng-bind="'label.visualization.more.one' | translate"></span>
+                    <a href="javascript:void(0)" ng-click="sc.showPhaseTwoGraphs('label.graph.impl.next')">Build one</a>
+                    <span class="dark-link" ng-bind="'label.visualization.more.two' | translate"></span>
+                </div>
+                <a ng-click="$state.go('description', {dataSetKey: sc.filters.selectedPrimaryFilter.key})" href="#">Data Documentation</a>
+            </div>
+            <!--More visualization-->
 
             <!--Table-->
                 <div class="usa-width-one-whole overflow-visible">
@@ -154,6 +171,7 @@
                     </owh-accordion-table>
                 </div>
             <!--Table-->
+        </div>
         </div>
     </div>
 </div>

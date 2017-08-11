@@ -213,6 +213,7 @@
       ]
     }
   ],
+  "dataset":"deaths",
   "title": "label.title.race.hispanicOrigin",
   "options": {
     "chart": {

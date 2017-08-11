@@ -235,9 +235,10 @@ var BridgeRaceStepDefinitionsWrapper = function () {
         return browser.actions().mouseMove(bridgeRacePage.exportGraphLink).perform();
     });
 
-    this.Then(/^I see two export menus displayed$/, function () {
+    this.Then(/^I see three export menus displayed$/, function () {
         expect(bridgeRacePage.exportPNG.isPresent()).to.eventually.equal(true);
-        return expect(bridgeRacePage.exportPDF.isPresent()).to.eventually.equal(true);
+        expect(bridgeRacePage.exportPDF.isPresent()).to.eventually.equal(true);
+        return expect(bridgeRacePage.exportPPT.isPresent()).to.eventually.equal(true)
     });
 
     this.When(/^I click on the export as PNG$/, function () {
@@ -255,6 +256,16 @@ var BridgeRaceStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I see a PDF file is downloaded$/, function (next) {
+        // dont see a way to test this on selemium using javascript, so this is a NOOP test for now.
+        next();
+    });
+
+    this.When(/^I click on the export as PPT/, function () {
+        browser.executeScript("arguments[0].scrollIntoView();", bridgeRacePage.exportPPT );
+        return bridgeRacePage.exportPPT.click();
+    });
+
+    this.Then(/^I see a PPT file is downloaded$/, function (next) {
         // dont see a way to test this on selemium using javascript, so this is a NOOP test for now.
         next();
     });

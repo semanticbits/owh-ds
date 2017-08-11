@@ -234,7 +234,7 @@ a.custom-link, a.custom-link:hover {
 }
 
 a:focus {
-    /*border: 1px lightgray dashed;*/
+    border: 1px lightgray dashed;
 }
 
 a.custom-link:focus {
@@ -989,6 +989,9 @@ ul.legend-scale li span {
 .purple-text {
     color: #976dcb;
 }
+.dark-purple-text {
+    color: #663596;
+}
 
 .purple-icon {
     color: #a175d5;
@@ -1264,6 +1267,12 @@ ul.legend-scale li span {
     overflow-x: hidden;
     border-bottom: 1px solid #ccc;
 }
+
+/*#clusterize-table {*/
+    /*max-height: 900px;*/
+    /*overflow-y: visible;*/
+    /*overflow-x: visible;*/
+/*}*/
 
 #clusterize-table table {
     margin-top: 0;

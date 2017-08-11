@@ -104,8 +104,11 @@ body {
 	font-weight: normal;
 	font-style: italic;
 }
+.explore-dataset-btn{
+	color: #FFFFFF !important;
+}
 
-.intro .usa-button-secondary {
+.intro .usa-button-secondary, .explore-dataset-btn {
 	/*background: #009ddd;*/
 	background: #2381ca;
 	padding: 10px 30px 10px 40px;
@@ -117,17 +120,18 @@ body {
 	display: inline-block;
 }
 
-.intro .usa-button-secondary i {
+.intro .usa-button-secondary i, .explore-dataset-btn i {
 	vertical-align: -7px;
 	transition: all 0.2s linear;
 	margin-left: 10px;
 }
 
 
-.intro .usa-button-secondary:hover {
+.intro .usa-button-secondary:hover,
+.explore-dataset-btn:hover, .explore-dataset-btn:focus {
 	background: #9958a3;
 }
-.intro .usa-button-secondary:hover i {
+.intro .usa-button-secondary:hover i , .explore-dataset-btn:hover i {
 	transform: translateX(5px);
 }
 
@@ -234,6 +238,10 @@ opacity:0
 }
 
 .section .section-banner-description:hover {
+	background: #f0f9fd;
+}
+
+.section .section-banner-description:focus {
 	background: #f0f9fd;
 }
 
@@ -1235,6 +1243,11 @@ table th, table td {
 .thin-border-top {
 	border-top: 1px solid #e2e3e3 !important;
 }
+
+.thin-border-bottom {
+	border-bottom: 1px solid #DDDDDD;
+}
+
 .action-button {
 	background-color: #915dc3;
 	border-radius: 100px;
@@ -1687,4 +1700,43 @@ ul.custom-nav-tabs {
 	font-size: 12px;
 	font-style: italic;
 	line-height:12px;
+}
+
+div.hero-container > div >  a:focus {
+	background: #974bc2;
+}
+
+div.interested-in-filter:focus {
+	border: 1px lightgray dashed;
+}
+
+select.tableViewDropDown:focus {
+	border: 1px lightgray dashed;
+}
+.cdcWonderLink {
+	color: #974bc2 !important;
+}
+.cdcWonderLink:hover {
+	color: #4c2c92 !important;
+}
+.buttonFocus:focus {
+	background: #582C83;
+}
+.chart-icon:focus {
+	border: 1px lightgray dashed;
+}
+.disableFocus {
+	tab-index: -1;
+}
+.groupByLinks:focus {
+	border: 1px dodgerblue dashed !important;
+}
+
+/**
+* Conditional CSS for IE 8+.
+*/
+@media screen\0 {
+	.hero-bg:after {
+		opacity: 0.5 !important;
+	}
 }
