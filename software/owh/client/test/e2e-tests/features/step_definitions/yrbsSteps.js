@@ -364,7 +364,9 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on the "([^"]*)" link$/, function (arg1, next) {
-         if(arg1 == 'Switch to Basic Search'){
+        var elm = element(by.cssContainingText('span', arg1));
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
+        if(arg1 == 'Switch to Basic Search'){
              element(by.cssContainingText('span', arg1)).click().then(next);
          }
          else if(arg1 == 'Switch to Advanced Search'){
