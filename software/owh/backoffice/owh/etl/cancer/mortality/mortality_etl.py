@@ -62,7 +62,7 @@ class CancerMortalityETL (ETL):
 
                 self.process_cancer_sites(record)
                 #prepare region data
-                self.loadRegionData('CancerMortality', record)
+                self.loadRegionData(record)
                 record_count += 1
                 self.batchRepository.persist({"index": {"_index": self.config['elastic_search']['index'],
                                                         "_type": self.config['elastic_search']['type'],

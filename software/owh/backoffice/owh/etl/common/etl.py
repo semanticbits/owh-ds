@@ -164,85 +164,74 @@ class ETL :
                  for col in config['columns']:
                      self.insertDsMetadataRecord(datasetname, year,col,list(set(m[col] for m in config['mappings'].values())))
 
+         #insert region metadata record
+         if (datasetname in ['deaths', 'natality', 'bridge_race', 'cancer_incident', 'cancer_mortality', 'infant_mortality']):
+            self.insertDsMetadataRecord(datasetname, year,'census_region',None)
+            self.insertDsMetadataRecord(datasetname, year,'hhs_region',None)
+            self.insertDsMetadataRecord(datasetname, year,'census_division',None)
          self.batchRepository.flush()
          self.refresh_index()
 
-    def loadRegionData(self, dataSetName, record):
+    def loadRegionData(self, record):
         """ To load Census Region and HHS Region data """
-        if (dataSetName in ['DetailMortality', 'Natality', 'Census', 'CancerIncident', 'CancerMortality', 'InfantMortality'] and record['state']):
-            #Census Region 1: Northeast
-            if(record['state'] in ['CT', 'ME', 'MA', 'NH', 'RI', 'VT', 'NJ', 'NY', 'PA']):
-                record['census_region'] = "CENS-R1"
-            #Census Region 2: Midwest
-            elif(record['state'] in ['IL', 'IN', 'MI', 'OH', 'WI', 'IA', 'KS', 'MN', 'MO', 'NE', 'ND', 'SD']):
-                record['census_region'] = "CENS-R2"
-            #Census Region 3: South
-            elif(record['state'] in ['DE', 'DC', 'FL', 'GA', 'MD', 'NC', 'SC', 'VA', 'WV', 'AL', 'KY', 'MS', 'TN', 'AR', 'LA', 'OK', 'TX']):
-                record['census_region'] = "CENS-R3"
-            #Census Region 4: West
-            elif(record['state'] in ['AZ', 'CO', 'ID', 'MT', 'NV', 'NM', 'UT', 'WY', 'AK', 'CA', 'HI', 'OR', 'WA']):
-                record['census_region'] = "CENS-R4"
+        #constructing a map with states and regions/divisions
+        stateRegionDictionary = {}
+        stateRegionDictionary['CT'] = {'census_region': "CENS-R1", 'census_division': "CENS-D1", 'hhs_region':"HHS-1"}
+        stateRegionDictionary['ME'] = {'census_region': "CENS-R1", 'census_division': "CENS-D1", 'hhs_region':"HHS-1"}
+        stateRegionDictionary['MA'] = {'census_region': "CENS-R1", 'census_division': "CENS-D1", 'hhs_region':"HHS-1"}
+        stateRegionDictionary['NH'] = {'census_region': "CENS-R1", 'census_division': "CENS-D1", 'hhs_region':"HHS-1"}
+        stateRegionDictionary['RI'] = {'census_region': "CENS-R1", 'census_division': "CENS-D1", 'hhs_region':"HHS-1"}
+        stateRegionDictionary['VT'] = {'census_region': "CENS-R1", 'census_division': "CENS-D1", 'hhs_region':"HHS-1"}
+        stateRegionDictionary['NJ'] = {'census_region': "CENS-R1", 'census_division': "CENS-D2", 'hhs_region':"HHS-2"}
+        stateRegionDictionary['NY'] = {'census_region': "CENS-R1", 'census_division': "CENS-D2", 'hhs_region':"HHS-2"}
+        stateRegionDictionary['PA'] = {'census_region': "CENS-R1", 'census_division': "CENS-D2", 'hhs_region':"HHS-3"}
 
+        stateRegionDictionary['IL'] = {'census_region': "CENS-R2", 'census_division': "CENS-D3", 'hhs_region':"HHS-5"}
+        stateRegionDictionary['IN'] = {'census_region': "CENS-R2", 'census_division': "CENS-D3", 'hhs_region':"HHS-5"}
+        stateRegionDictionary['MI'] = {'census_region': "CENS-R2", 'census_division': "CENS-D3", 'hhs_region':"HHS-5"}
+        stateRegionDictionary['OH'] = {'census_region': "CENS-R2", 'census_division': "CENS-D3", 'hhs_region':"HHS-5"}
+        stateRegionDictionary['WI'] = {'census_region': "CENS-R2", 'census_division': "CENS-D3", 'hhs_region':"HHS-5"}
+        stateRegionDictionary['IA'] = {'census_region': "CENS-R2", 'census_division': "CENS-D4", 'hhs_region':"HHS-7"}
+        stateRegionDictionary['KS'] = {'census_region': "CENS-R2", 'census_division': "CENS-D4", 'hhs_region':"HHS-7"}
+        stateRegionDictionary['MN'] = {'census_region': "CENS-R2", 'census_division': "CENS-D4", 'hhs_region':"HHS-5"}
+        stateRegionDictionary['MO'] = {'census_region': "CENS-R2", 'census_division': "CENS-D4", 'hhs_region':"HHS-7"}
+        stateRegionDictionary['NE'] = {'census_region': "CENS-R2", 'census_division': "CENS-D4", 'hhs_region':"HHS-7"}
+        stateRegionDictionary['ND'] = {'census_region': "CENS-R2", 'census_division': "CENS-D4", 'hhs_region':"HHS-8"}
+        stateRegionDictionary['SD'] = {'census_region': "CENS-R2", 'census_division': "CENS-D4", 'hhs_region':"HHS-8"}
 
-            #Division 1: New England
-            if(record['state'] in ['CT', 'ME', 'MA', 'NH', 'RI', 'VT']):
-                record['census_division'] = "CENS-D1"
-            #Division 2: Middle Atlantic
-            elif(record['state'] in ['NJ', 'NY', 'PA']):
-                record['census_division'] = "CENS-D2"
-            #Division 3: East North Central
-            elif(record['state'] in ['IL', 'IN', 'MI', 'OH', 'WI']):
-                record['census_division'] = "CENS-D3"
-            #Division 4: West North Central
-            elif(record['state'] in ['IA', 'KS', 'MN', 'MO', 'NE', 'ND', 'SD']):
-                record['census_division'] = "CENS-D4"
-            #Division 5: South Atlantic
-            elif(record['state'] in ['DE', 'DC', 'FL', 'GA', 'MD', 'NC', 'SC', 'VA', 'WV']):
-                record['census_division'] = "CENS-D5"
-            #Division 6: East South Central
-            elif(record['state'] in ['AL', 'KY', 'MS', 'TN']):
-                record['census_division'] = "CENS-D6"
-            #Division 7: West South Central
-            elif(record['state'] in ['AR', 'LA', 'OK', 'TX']):
-                record['census_division'] = "CENS-D7"
-            #Division 8: Mountain
-            elif(record['state'] in ['AZ', 'CO', 'ID', 'MT', 'NV', 'NM', 'UT', 'WY']):
-                record['census_division'] = "CENS-D8"
-            #Division 9: Pacific
-            elif(record['state'] in ['AK', 'CA', 'HI', 'OR', 'WA']):
-                record['census_division'] = "CENS-D9"
+        stateRegionDictionary['DE'] = {'census_region': "CENS-R3", 'census_division': "CENS-D5", 'hhs_region':"HHS-3"}
+        stateRegionDictionary['DC'] = {'census_region': "CENS-R3", 'census_division': "CENS-D5", 'hhs_region':"HHS-3"}
+        stateRegionDictionary['FL'] = {'census_region': "CENS-R3", 'census_division': "CENS-D5", 'hhs_region':"HHS-4"}
+        stateRegionDictionary['GA'] = {'census_region': "CENS-R3", 'census_division': "CENS-D5", 'hhs_region':"HHS-4"}
+        stateRegionDictionary['MD'] = {'census_region': "CENS-R3", 'census_division': "CENS-D5", 'hhs_region':"HHS-3"}
+        stateRegionDictionary['NC'] = {'census_region': "CENS-R3", 'census_division': "CENS-D5", 'hhs_region':"HHS-4"}
+        stateRegionDictionary['SC'] = {'census_region': "CENS-R3", 'census_division': "CENS-D5", 'hhs_region':"HHS-4"}
+        stateRegionDictionary['VA'] = {'census_region': "CENS-R3", 'census_division': "CENS-D5", 'hhs_region':"HHS-3"}
+        stateRegionDictionary['WV'] = {'census_region': "CENS-R3", 'census_division': "CENS-D5", 'hhs_region':"HHS-3"}
+        stateRegionDictionary['AL'] = {'census_region': "CENS-R3", 'census_division': "CENS-D6", 'hhs_region':"HHS-4"}
+        stateRegionDictionary['KY'] = {'census_region': "CENS-R3", 'census_division': "CENS-D6", 'hhs_region':"HHS-4"}
+        stateRegionDictionary['MS'] = {'census_region': "CENS-R3", 'census_division': "CENS-D6", 'hhs_region':"HHS-4"}
+        stateRegionDictionary['TN'] = {'census_region': "CENS-R3", 'census_division': "CENS-D6", 'hhs_region':"HHS-4"}
+        stateRegionDictionary['AR'] = {'census_region': "CENS-R3", 'census_division': "CENS-D7", 'hhs_region':"HHS-6"}
+        stateRegionDictionary['LA'] = {'census_region': "CENS-R3", 'census_division': "CENS-D7", 'hhs_region':"HHS-6"}
+        stateRegionDictionary['OK'] = {'census_region': "CENS-R3", 'census_division': "CENS-D7", 'hhs_region':"HHS-6"}
+        stateRegionDictionary['TX'] = {'census_region': "CENS-R3", 'census_division': "CENS-D7", 'hhs_region':"HHS-6"}
 
-
-            #HHS Region 1
-            if(record['state'] in ['CT', 'ME', 'MA', 'NH', 'RI', 'VT']):
-                record['hhs_region'] = "HHS-1"
-            #HHS Region 2
-            elif(record['state'] in ['NJ', 'NY']):
-                record['hhs_region'] = "HHS-2"
-            #HHS Region 3
-            elif(record['state'] in ['DE', 'DC', 'MD', 'PA', 'VA', 'WV']):
-                record['hhs_region'] = "HHS-3"
-            #HHS Region 4
-            elif(record['state'] in ['AL', 'FL', 'GA', 'KY', 'MS', 'NC', 'SC', 'TN']):
-                record['hhs_region'] = "HHS-4"
-            #HHS Region 5
-            elif(record['state'] in ['IL', 'IN', 'MI', 'MN', 'OH', 'WI']):
-                record['hhs_region'] = "HHS-5"
-            #HHS Region 6
-            elif(record['state'] in ['AR', 'LA', 'NM', 'OK', 'TX']):
-                record['hhs_region'] = "HHS-6"
-            #HHS Region 7
-            elif(record['state'] in ['IA', 'KS', 'MO', 'NE']):
-                record['hhs_region'] = "HHS-7"
-            #HHS Region 8
-            elif(record['state'] in ['CO', 'MT', 'ND', 'SD', 'UT', 'WY']):
-                record['hhs_region'] = "HHS-8"
-            #HHS Region 9
-            elif(record['state'] in ['AZ', 'CA', 'HI', 'NV']):
-                record['hhs_region'] = "HHS-9"
-            #HHS Region 10
-            elif(record['state'] in ['AK', 'ID', 'OR', 'WA']):
-                record['hhs_region'] = "HHS-10"
+        stateRegionDictionary['AZ'] = {'census_region': "CENS-R4", 'census_division': "CENS-D8", 'hhs_region':"HHS-9"}
+        stateRegionDictionary['CO'] = {'census_region': "CENS-R4", 'census_division': "CENS-D8", 'hhs_region':"HHS-8"}
+        stateRegionDictionary['ID'] = {'census_region': "CENS-R4", 'census_division': "CENS-D8", 'hhs_region':"HHS-10"}
+        stateRegionDictionary['MT'] = {'census_region': "CENS-R4", 'census_division': "CENS-D8", 'hhs_region':"HHS-8"}
+        stateRegionDictionary['NV'] = {'census_region': "CENS-R4", 'census_division': "CENS-D8", 'hhs_region':"HHS-9"}
+        stateRegionDictionary['NM'] = {'census_region': "CENS-R4", 'census_division': "CENS-D8", 'hhs_region':"HHS-6"}
+        stateRegionDictionary['UT'] = {'census_region': "CENS-R4", 'census_division': "CENS-D8", 'hhs_region':"HHS-8"}
+        stateRegionDictionary['WY'] = {'census_region': "CENS-R4", 'census_division': "CENS-D8", 'hhs_region':"HHS-8"}
+        stateRegionDictionary['AK'] = {'census_region': "CENS-R4", 'census_division': "CENS-D9", 'hhs_region':"HHS-10"}
+        stateRegionDictionary['CA'] = {'census_region': "CENS-R4", 'census_division': "CENS-D9", 'hhs_region':"HHS-9"}
+        stateRegionDictionary['HI'] = {'census_region': "CENS-R4", 'census_division': "CENS-D9", 'hhs_region':"HHS-9"}
+        stateRegionDictionary['OR'] = {'census_region': "CENS-R4", 'census_division': "CENS-D9", 'hhs_region':"HHS-10"}
+        stateRegionDictionary['WA'] = {'census_region': "CENS-R4", 'census_division': "CENS-D9", 'hhs_region':"HHS-10"}
+        if ('state' in record):
+            record.update(stateRegionDictionary[record['state']])
 
     def execute(self):
         """Execute the ETL process"""

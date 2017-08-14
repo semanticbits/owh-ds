@@ -105,7 +105,7 @@ class MortalityIndexer (ETL):
 
                 self._check_blanks(record)
                 #prepare region data
-                self.loadRegionData('DetailMortality', record)
+                self.loadRegionData(record)
                 self.batchRepository.persist({"index": {"_index": self.config['elastic_search']['index'], "_type": self.config['elastic_search']['type'], "_id": recordCount}})
                 self.batchRepository.persist(record)
 
