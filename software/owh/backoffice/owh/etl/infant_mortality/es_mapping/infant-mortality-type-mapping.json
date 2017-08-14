@@ -70,6 +70,15 @@
       },
       "ICD_130_code": {
           "type":"string", "index":"not_analyzed"
+      },
+      "census_region": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "hhs_region": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "census_division": {
+        "type":"string", "index":"not_analyzed"
       }
     }
   }
