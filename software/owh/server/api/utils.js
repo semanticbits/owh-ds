@@ -200,7 +200,7 @@ function suppressCounts (obj, countKey, dataType, suppressKey, maxValue) {
                 suppressCounts(arrObj, countKey, dataType, suppressKey, maxValue);
             });
         } else if(obj[countKey] != undefined && obj[countKey] < value) {
-            if(dataType == 'maps' || dataType == 'charts') {//for chart and map set suppressed values to 0
+            if(dataType == 'charts') {//for chart and map set suppressed values to 0
                 obj[key] = 0;
             }
             else if(countKey === 'std' && obj[countKey] === 0) {
@@ -244,7 +244,7 @@ function suppressTotalCounts (obj, countKey, dataType, suppressKey) {
         } else if (obj[property].constructor === Array) {
             obj[property].forEach(function(arrObj) {
                 if (obj[countKey] && JSON.stringify(obj).indexOf('suppressed') != -1 ) {
-                    if(dataType == 'maps' || dataType == 'charts') {//for chart and map set suppressed values to 0
+                    if(dataType == 'charts') {//for chart and map set suppressed values to 0
                         obj[countKey] = 0;
                     } else {//for table data set to suppressed
                         obj[key] = 'suppressed';
@@ -283,6 +283,19 @@ function applyYRBSSuppressions(obj, countKey, suppressKey, isSexFiltersSelected,
     suppressCounts(obj.data, countKey, dataType, suppressKey, maxValue);
     suppressTotalCounts(obj.data, countKey, dataType, suppressKey);
 };
+
+/**
+ * This function is used to suppress the state totals when it reaches to specified value
+ * @param stateData
+ */
+function suppressStateTotals(stateData, key, minVal) {
+    stateData.forEach(function (data) {
+        if (data[key] < minVal) {
+            data[key] = 'suppressed';
+        }
+    })
+}
+
 var sumBucketProperty = function(bucket, key) {
     var sum = 0;
     for(var i = 0; i < bucket.buckets.length; i++) {
@@ -598,3 +611,4 @@ module.exports.getSelectedGroupByOptions = getSelectedGroupByOptions;
 module.exports.getYearFilter = getYearFilter;
 module.exports.mapAndGroupOptionResults = mapAndGroupOptionResults;
 module.exports.getAllSelectedFilterOptions = getAllSelectedFilterOptions;
+module.exports.suppressStateTotals = suppressStateTotals;
