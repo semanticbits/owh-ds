@@ -31,7 +31,7 @@
                 </a>
             </div>
             <a class="owh-side-menu__handle cursor-pointer" ng-click="sc.sideMenu.visible = false; sc.updateCharts()" href="javascript:void(0)">
-                Hide Filters
+                HIDE FILTERS
             </a>
             <div class="sort-by side-filter-padding">
                 <owh-side-filter filters="sc.filters.selectedPrimaryFilter.sideFilters"
@@ -48,7 +48,7 @@
         <div class="owh-search-content-container usa-width-three-fourths" ng-class="{'owh-search-content--expanded': !sc.sideMenu.visible }">
             <div class="flex-container">
             <a class="owh-side-menu__handle--collapsed cursor-pointer" ng-hide="sc.sideMenu.visible" ng-click="sc.sideMenu.visible = !sc.sideMenu.visible; sc.updateCharts()" href="javascript:void(0)">
-                Show Filters
+                SHOW FILTERS
             </a>
                 <list-selected-filters sort="sc.sort[sc.filters.selectedPrimaryFilter.title]"
                                        filters="sc.filters.selectedPrimaryFilter.allFilters" class="flex-grow">
