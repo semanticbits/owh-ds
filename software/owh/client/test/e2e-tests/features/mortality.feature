@@ -134,8 +134,12 @@ Scenario: Check box- Hispanic Sub Categories
 
 Scenario: Side filter total suppression
   Given I am on search page
-  When user shows more year filters
-  And user filters by year 2015
+  And I expand "Race" filter section
+  And I expand "State" filter section
+  And  user select "American Indian or Alaska Native" option in "Race" filter
+  And user clicks on "+ 48 more" more link for "State" filter
+  Then I see count for few states are suppressed
+
   #And user expands sex options
   #When user expands ethnicity filter
   #And user groups ethnicity by row

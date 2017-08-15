@@ -18,7 +18,8 @@ Feature: AIDS/HIV page
     When On the aids page, I expand the "Indicator" filter
     Then On the aids page, I should see "AIDS Diagnoses, AIDS Deaths, AIDS Prevalence, HIV Diagnoses, HIV Deaths, HIV Prevalence" options for "Indicator" filter
     Then On the aids page, I should see "All races/ethnicities, American Indian/Alaska Native, Asian, Black/African American, Hispanic/Latino, Multiple races, Native Hawaiian/Other Pacific Islander, White" options for "Race/Ethnicity" filter
-    When On the aids page, I expand the "Age Groups" filter
+    #When On the aids page, I expand the "Age Groups" filter
+    When I expand "Age Groups" filter section
     Then On the aids page, I should see "Ages 13 years and older, 13-24, 25-34, 35-44, 45-54, 55+" options for "Age Groups" filter
     When On the aids page, I expand the "Transmission" filter
     Then On the aids page, I should see "All transmission categories, Heterosexual contact, Injection drug use, Male-to-male sexual contact, Male-to-male sexual contact and injection drug use, Other" options for "Transmission" filter

@@ -58,6 +58,10 @@ var CommonPage = function() {
     cp.getShowMoreFilterOptionsLinkFor = function (filterType, linkText) {
         return cp.getFilterOptionContainerForFilter(filterType).element(by.cssContainingText('a', linkText));
     };
+
+    cp.scrollToElement = function(elm) {
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
+    };
 };
 
 module.exports = new CommonPage;

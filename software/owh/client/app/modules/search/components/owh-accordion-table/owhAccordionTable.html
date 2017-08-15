@@ -1,4 +1,6 @@
-<table class="owh-data-table">
+<div class="table-container">
+
+ <table class="owh-data-table">
     <thead>
         <tr ng-repeat="eachHeaderRow in oatc.headers">
             <th ng-repeat="eachHeader in eachHeaderRow" ng-bind="eachHeader.title" colspan="{{eachHeader.colspan}}" rowspan="{{eachHeader.rowspan}}" title="{{eachHeader.helpText}}"></th>
@@ -7,10 +9,10 @@
     <tbody class="owh-question__table" ng-repeat="eachCategory in oatc.data | filter: oatc.filterCategory">
         <tr class="owh-question__title-row" ng-if="eachCategory.questions.length > 0">
             <td class="owh-question__title" colspan="100%" title="{{ oatc.qCategoryHelpTextMap[eachCategory.title] |  translate }}">
-                <a id="question_{{$index}}" class="owh-question__expand cursor-pointer" ng-if="!eachCategory.collapse" ng-click="oatc.collapseRow(eachCategory)">
+                <a id="question_{{$index}}" href="javascript:void(0)" class="owh-question__expand cursor-pointer" ng-if="!eachCategory.collapse" ng-click="oatc.collapseRow(eachCategory)">
                     <span class="fa fa-chevron-down" title="Collapse category"></span>
                 </a>
-                <a class="owh-question__expand cursor-pointer" ng-if="eachCategory.collapse" ng-click="oatc.expandRow(eachCategory)">
+                <a class="owh-question__expand cursor-pointer" href="javascript:void(0)" ng-if="eachCategory.collapse" ng-click="oatc.expandRow(eachCategory)">
                     <span class="fa fa-chevron-right" title="Collapse category"></span>
                 </a>
                 {{ eachCategory.title }} <a class="owh-question__show-only" ng-if="oatc.categoryFilter==null" ng-click="oatc.showOnly(eachCategory);" href="javascript:void(0)">Show only this category</a>
@@ -47,3 +49,4 @@
         </tr>
     </tbody>
 </table>
+</div>
