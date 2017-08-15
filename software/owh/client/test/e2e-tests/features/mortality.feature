@@ -249,12 +249,10 @@ Scenario: Filer 'Multiple Causes of Deaths' should be displayed
   Given I am on search page
   When user sees side filter
   Then filter "Multiple Causes of Death" should be displayed
+  When I expand "Multiple Causes of Death" filter section
+  And I set "Multiple Causes of Death" filter "Row"
+  Then I see Multiple Causes of Deaths in datatable
 
-Scenario: Data should be right aligned
-  Given I am on search page
-  When I update criteria in filter options with column "Autopsy"
-  When I update criteria in filter option with row "Sex"
-  Then data should be right aligned in table
 
 Scenario: Non-Hispanic should have total in the side filter
   Given I am on search page
