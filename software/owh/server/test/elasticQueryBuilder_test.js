@@ -74,6 +74,7 @@ describe("Build elastic search queries", function(){
         expect(mapQuery.aggregations).to.have.property('group_maps_0_states');
         expect(mapQuery.aggregations.group_maps_0_states.terms.field).to.eql('state');
         expect(mapQuery.aggregations.group_maps_0_states.aggregations.group_maps_0_sex.terms.field).to.eql('sex');
+        expect(mapQuery.aggregations.group_maps_0_states.aggregations.group_maps_0_sex.aggregations.pop.sum.field).to.eql('pop');
         done()
     });
 

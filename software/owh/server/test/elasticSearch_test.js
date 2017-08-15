@@ -317,21 +317,55 @@ describe("Elastic Search", function () {
                 }
             }
         },
-            {"size":0,
-                "aggregations":{
-                    "group_maps_0_states":{
-                        "terms":{"field":"state","size":0},
-                        "aggregations":{
-                            "group_maps_0_sex":{
-                                "terms":{"field":"sex","size":0}
+            {
+                "size": 0,
+                "aggregations": {
+                    "group_maps_0_states": {
+                        "terms": {
+                            "field": "state",
+                            "size": 0
+                        },
+                        "aggregations": {
+                            "group_maps_0_sex": {
+                                "terms": {
+                                    "field": "sex",
+                                    "size": 0
+                                },
+                                "aggregations": {
+                                    "pop": {
+                                        "sum": {
+                                            "field": "pop"
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
                 },
-                "query":{
-                    "filtered":{
-                        "query":{"bool":{"must":[]}},
-                        "filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}
+                "query": {
+                    "filtered": {
+                        "query": {
+                            "bool": {
+                                "must": []
+                            }
+                        },
+                        "filter": {
+                            "bool": {
+                                "must": [
+                                    {
+                                        "bool": {
+                                            "should": [
+                                                {
+                                                    "term": {
+                                                        "current_year": "2015"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
                     }
                 }
             }
@@ -397,6 +431,7 @@ describe("Elastic Search", function () {
         new elasticSearch().aggregateDeaths(query).then(function (resp) {
             var  tableData = resp.data.nested.table.race;
             var chartsData = resp.data.nested.charts[0].gender;
+            var mapData = resp.data.nested.maps;
             expect(tableData[0].name).equal('American Indian');
             expect(tableData[0].deaths).equal(19016);
             expect(tableData[0].ageAdjustedRate).equal("596.9");
@@ -425,10 +460,90 @@ describe("Elastic Search", function () {
             expect(nestedChartData[0].ageAdjustedRate).equal("511.3");
             expect(nestedChartData[0].pop).equal(2279263);
             expect(nestedChartData[0].standardPop).equal(2279263);
+            //Map data
+            expect(mapData.states[0].name).equal('AK');
+            expect(mapData.states[0].deaths).equal(4316);
+            expect(mapData.states[0].standardPop).equal(738432);
+            expect(mapData.states[0].ageAdjustedRate).equal('747.4');
+
+            expect(mapData.states[27].name).equal('NC');
+            expect(mapData.states[27].deaths).equal(89133);
+            expect(mapData.states[27].standardPop).equal(10042802);
+            expect(mapData.states[27].ageAdjustedRate).equal('789.9');
             done();
         });
     });
 
+    it("Get population data for map query - crude death rates", function(done) {
+        var query = [
+            {
+                "size": 0,
+                "aggregations": {
+                    "group_table_state": {
+                        "terms": {"field": "state", "size": 0},
+                        "aggregations": {"group_table_gender": {"terms": {"field": "sex", "size": 0}}}
+                    }
+                },
+                "query": {
+                    "filtered": {
+                        "query": {"bool": {"must": []}},
+                        "filter": {"bool": {"must": [{"bool": {"should": [{"term": {"current_year": "2015"}}]}}]}}
+                    }
+                }
+            },
+            {
+                "size": 0,
+                "aggregations": {
+                    "group_table_state": {
+                        "terms": {"field": "state", "size": 0},
+                        "aggregations": {
+                            "group_table_gender": {
+                                "terms": {"field": "sex", "size": 0},
+                                "aggregations": {"pop": {"sum": {"field": "pop"}}}
+                            }
+                        }
+                    }
+                },
+                "query": {
+                    "filtered": {
+                        "query": {"bool": {"must": []}},
+                        "filter": {"bool": {"must": [{"bool": {"should": [{"term": {"current_year": "2015"}}]}}]}}
+                    }
+                }
+            },
+            {
+                "size": 0,
+                "aggregations": {
+                    "group_maps_0_states": {
+                        "terms": {"field": "state", "size": 0},
+                        "aggregations": {
+                            "group_maps_0_sex": {
+                                "terms": {"field": "sex", "size": 0},
+                                "aggregations": {"pop": {"sum": {"field": "pop"}}}
+                            }
+                        }
+                    }
+                },
+                "query": {
+                    "filtered": {
+                        "query": {"bool": {"must": []}},
+                        "filter": {"bool": {"must": [{"bool": {"should": [{"term": {"current_year": "2015"}}]}}]}}
+                    }
+                }
+            }
+        ];
+        new elasticSearch().aggregateDeaths(query).then(function (resp) {
+            var mapData = resp.data.nested.maps;
+            expect(mapData.states[0].name).equal('AK');
+            expect(mapData.states[0].deaths).equal(4316);
+            expect(mapData.states[0].pop).equal(738432);
+
+            expect(mapData.states[1].name).equal('AL');
+            expect(mapData.states[1].deaths).equal(51909);
+            expect(mapData.states[1].pop).equal(4858979);
+            done();
+        });
+    });
     it("Check aggregate std data with final query", function (done){
         var query = [stdCasesQuery, stdPopulationQuery, stdMapQuery, diseaseChartQuery];
         new elasticSearch().aggregateDiseaseData(query, 'std', 'owh_std', 'std').then(function (resp) {
