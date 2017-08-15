@@ -38,7 +38,7 @@
             <div class="pull-left">
                 <a href="#" class="dark-purple-text" ng-click="dc.showAllMeasures = false" ng-if="dc.showAllMeasures">Show less...</a></div>
 
-            <div class="usa-width-one-whole margin-top-10" ng-if="dataset.additionalInfo">
+            <div class="usa-width-one-whole margin-top-10 additional-info" ng-if="dataset.additionalInfo">
                 <h4 class="dark-purple-text">Additional Information:</h4>
                 <div ng-repeat="info in dataset.additionalInfo">
                     <div ng-class="{'rate-info-section': info.isRateInfo == true}"

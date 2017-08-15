@@ -1710,6 +1710,23 @@ div.interested-in-filter:focus {
 	border: 1px lightgray dashed;
 }
 
+.additional-info ul {
+	list-style: inherit;
+	padding-left: 0;
+	margin-left: 20px;
+	margin-top: 0;
+}
+
+.additional-info ul li {
+	list-style-type: disc;
+	padding-left: 0;
+	display: list-item;
+}
+
+.additional-info ul li:before, .additional-info ul li:after {
+	display: none;
+}
+
 select.tableViewDropDown:focus {
 	border: 1px lightgray dashed;
 }
