@@ -39,8 +39,8 @@ Scenario: Side filter collapse
 Scenario: Side filter options retain order
   Given I am on search page
   When user expands race options
-  Then user clicks on "+ 1 more" more link for "Race" filter
-  When user selects second race option
+  And user clicks on "+ 1 more" more link
+  And user selects second race option
   #Then race options retain their initial ordering
 
 Scenario: Display show/hide percentage button only on mortality page

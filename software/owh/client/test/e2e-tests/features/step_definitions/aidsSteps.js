@@ -18,10 +18,8 @@ var aidsStepDefinitions = function () {
         }).then(next);
     });
 
-    this.When(/^On the aids page, I expand the "([^"]*)" filter$/, function (filter) {
-        return aidsPage.expandFilter(filter).then(function () {
-            return aidsPage.clickMoreOptionsForFilter(filter);
-        });
+    this.When(/^On the aids page, I expand the "([^"]*)" filter$/, function (filter, next) {
+        aidsPage.getElementContainingText(filter).click().then(next);
     });
 
     this.Then(/^On the aids page, I should see "([^"]*)" options for "([^"]*)" filter$/, function (expected_options, filter, next) {

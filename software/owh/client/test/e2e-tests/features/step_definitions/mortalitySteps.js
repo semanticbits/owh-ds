@@ -1121,5 +1121,12 @@ var mortalityStepDefinitionsWrapper = function () {
             expect(elements[62].getInnerHtml()).to.eventually.equal('Suppressed');
         }).then(next);
     });
+
+    this.When(/^user clicks on "([^"]*)" more link$/, function (arg1, next) {
+        var elm = element(by.cssContainingText('a', arg1));
+        commonPage.scrollToElement(elm);
+        elm.click().then(next);
+    });
+
 };
 module.exports = mortalityStepDefinitionsWrapper;
