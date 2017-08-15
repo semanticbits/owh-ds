@@ -316,7 +316,7 @@
             legend: {},
             defaults: {
                 tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
-                scrollWheelZoom: true,
+                scrollWheelZoom: false,
                 minZoom: 3,
                 maxZoom: 5
             },

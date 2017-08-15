@@ -203,7 +203,7 @@ var yrbsStepDefinitionsWrapper = function () {
 
     this.Then(/^race filter should be labeled Race\/Ethnicity$/, function (next) {
         element(by.tagName('owh-side-filter')).all(by.className('accordion')).then(function(elements) {
-            expect(elements[2].element(by.tagName('a')).getText()).to.eventually.equal('Race/Ethnicity');
+            expect(elements[2].element(by.tagName('a')).getText()).to.eventually.contain('Race/Ethnicity');
         }).then(next);
     });
 
@@ -364,12 +364,9 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on the "([^"]*)" link$/, function (arg1, next) {
-         if(arg1 == 'Switch to Basic Search'){
-             element(by.cssContainingText('span', arg1)).click().then(next);
-         }
-         else if(arg1 == 'Switch to Advanced Search'){
-             element(by.cssContainingText('span', arg1)).click().then(next);
-         }
+        var elm = element(by.cssContainingText('span', arg1));
+        commonPage.scrollToElement(elm);
+        elm.click().then(next);
     });
 
     this.Then(/^the sidebar switches to an Advanced Search mode$/, function () {
@@ -419,12 +416,12 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I see hide filter button in yrbs page$/, function (next) {
-        browser.actions().mouseMove(element(by.cssContainingText('a', "<< Hide Filters"))).perform()
+        browser.actions().mouseMove(element(by.cssContainingText('a', "HIDE FILTERS"))).perform()
             .then(next);
     });
 
     this.When(/^I click hide filter button in yrbs page$/, function (next) {
-        element(by.cssContainingText('span', "<< Hide Filters")).click()
+        element(by.cssContainingText('a', "HIDE FILTERS")).click()
             .then(next);
     });
 
@@ -434,7 +431,9 @@ var yrbsStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I set "([^"]*)" filter "([^"]*)"$/, function (filter1, viewType1, next) {
-        element(by.cssContainingText('div.sidebar-filter-label', filter1)).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('span', viewType1)).click()
+        var elm = element(by.cssContainingText('div.sidebar-filter-label', filter1)).element(By.xpath('following-sibling::owh-toggle-switch')).element(by.cssContainingText('span', viewType1));
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
+        elm.click()
             .then(next);
     });
 
