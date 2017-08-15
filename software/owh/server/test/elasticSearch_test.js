@@ -151,7 +151,7 @@ describe("Elastic Search", function () {
         });
     });
 
-    it.only("should fetch metadata for 2015", function (){
+    it("should fetch metadata for 2015", function (){
         var natalityMetadata = require('./data/natality_matadata.json');
         var sortFn = function (a, b){
             if (a._source.filter_name > b._source.filter_name) { return 1; }
@@ -159,9 +159,6 @@ describe("Elastic Search", function () {
             return 0;
         };
         return new elasticSearch().getDsMetadata('natality', ['2015']).then(function (response) {
-            console.log('********************************************************************************');
-            console.log(JSON.stringify(response));
-            console.log('********************************************************************************');
             var resultsFromMetaData = response.hits.hits.sort(sortFn);
             var natalityResults = natalityMetadata.sort(sortFn);
             resultsFromMetaData.forEach(function(filter, index){
