@@ -2872,7 +2872,7 @@
                     allFilters: filters.tbFilters, searchResults: searchTBResults, showMap: true,
                     mapData:{}, chartAxisLabel:'Cases', tableView:'tb', chartView: 'cases', countLabel: 'Number of Cases',
                     chartViewOptions: filters.diseaseVizGroupOptions,
-                    runOnFilterChange: true,  applySuppression: true, countQueryKey: 'cases',
+                    runOnFilterChange: true,  applySuppression: false, countQueryKey: 'cases',
                     sideFilters:[
                         {
                             sideFilters: [
