@@ -372,7 +372,7 @@ function findFilterByKeyAndValue(a, key, value) {
  */
 function isFilterApplied(a) {
     if (a) {
-        return a.value.length > 0;
+        return a.value.length > 0 || a.groupBy;
     }
     return false;
 }
