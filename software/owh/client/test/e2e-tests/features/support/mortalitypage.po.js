@@ -4,8 +4,8 @@ var MortalitySearchPage = function() {
     msp.chartDataDiv = element(by.repeater('chartData in startChartData'));
     msp.expandVisualizationLink = element(by.css('a[name=expand_graph]'));
     msp.sideMenu = element(by.className('owh-side-menu'));
-    msp.hideFiltersBtn = element(by.cssContainingText('a', '<< Hide Filters'));
-    msp.showFiltersBtn = element(by.cssContainingText('a', 'Show Filters >>'));
+    msp.hideFiltersBtn = element(by.cssContainingText('a', 'HIDE FILTERS'));
+    msp.showFiltersBtn = element(by.cssContainingText('a', 'SHOW FILTERS'));
     msp.owhTable = element(by.tagName('owh-table'));
     msp.showOrHidePecentageDiv = element(by.id('togglePercentage'));
     msp.showPecentageButton = element(by.id('togglePercentage')).element(by.cssContainingText('a', 'Show'));

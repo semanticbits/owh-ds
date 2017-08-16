@@ -94,6 +94,21 @@ describe("Elastic Search", function () {
         });
     });
 
+    it('should suppress mortality state counts if it falls below 10', function () {
+      var query = [{"size":0,"aggregations":{"year":{"terms":{"field":"current_year","size":0}},"race":{"terms":{"field":"race","size":0}},"gender":{"terms":{"field":"sex","size":0}},"state":{"terms":{"field":"state","size":0}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"race":"American Indian"}}]}},{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}}}}];
+        new elasticSearch().aggregateDeaths(query).then(function (results) {
+            var stateData = results.simple.state;
+            expect(stateData[48].name).to.be('VT');
+            expect(stateData[48].deaths).to.be(10);
+
+            expect(stateData[49].name).to.be('WV');
+            expect(stateData[49].deaths).to.equal('suppressed');
+
+            expect(stateData[50].name).to.be('NH');
+            expect(stateData[50].deaths).to.equal('suppressed');
+        });
+    });
+
     it("should count bridged-race data for side filters for 2015 ", function (){
         var query = {"size":0,"aggregations":{"current_year":{"terms":{"field":"current_year","size":0},"aggregations":{"group_count_pop":{"sum":{"field":"pop"}}}},"group_count_pop":{"sum":{"field":"pop"}},"sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_pop":{"sum":{"field":"pop"}}}},"race":{"terms":{"field":"race","size":0},"aggregations":{"group_count_pop":{"sum":{"field":"pop"}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}}}};
         return new elasticSearch().aggregateCensusData([query], true).then(function (response) {
@@ -136,7 +151,7 @@ describe("Elastic Search", function () {
         });
     });
 
-    it("should fetch metadata for 2015", function (){
+    it.only("should fetch metadata for 2015", function (){
         var natalityMetadata = require('./data/natality_matadata.json');
         var sortFn = function (a, b){
             if (a._source.filter_name > b._source.filter_name) { return 1; }
@@ -144,6 +159,9 @@ describe("Elastic Search", function () {
             return 0;
         };
         return new elasticSearch().getDsMetadata('natality', ['2015']).then(function (response) {
+            console.log('********************************************************************************');
+            console.log(JSON.stringify(response));
+            console.log('********************************************************************************');
             var resultsFromMetaData = response.hits.hits.sort(sortFn);
             var natalityResults = natalityMetadata.sort(sortFn);
             resultsFromMetaData.forEach(function(filter, index){
@@ -179,6 +197,21 @@ describe("Elastic Search", function () {
             var genderData = data[2].sex;
             expect(genderData[0].natality).equal('suppressed');
             expect(genderData[1].natality).equal(11);
+        });
+    });
+
+    it('should suppress natality state counts if it falls below 10', function () {
+        var query = [{"size":0,"aggregations":{"current_year":{"terms":{"field":"current_year","size":0}},"mother_age_1year_interval":{"terms":{"field":"mother_age_1year_interval","size":0}},"state":{"terms":{"field":"state","size":0}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"mother_age_1year_interval":"Under 15 years"}}]}}]}}}}}];
+        new elasticSearch().aggregateNatalityData(query).then(function (results) {
+            var stateData = results.simple.state;
+            expect(stateData[41].name).to.be('CT');
+            expect(stateData[41].deaths).to.be(101);
+
+            expect(stateData[49].name).to.be('WV');
+            expect(stateData[49].deaths).to.equal('suppressed');
+
+            expect(stateData[50].name).to.be('NH');
+            expect(stateData[50].deaths).to.equal('suppressed');
         });
     });
 
@@ -686,6 +719,21 @@ describe("Elastic Search", function () {
             expect(data[2].name).equal('White');
             done();
         })
+    });
+
+    it('should suppress infant mortality state counts if it falls below 10', function () {
+
+        var query = [{"size":0,"aggregations":{"year_of_death":{"terms":{"field":"year_of_death","size":0}},"sex":{"terms":{"field":"sex","size":0}},"race":{"terms":{"field":"race","size":0}},"state":{"terms":{"field":"state","size":0}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"race":"American Indian or Alaska Native"}}]}},{"bool":{"should":[{"term":{"year_of_death":"2001"}}]}}]}}}}}];
+
+        new elasticSearch().aggregateInfantMortalityData(query).then(function (results) {
+            var stateData = results.simple.state;
+
+            expect(stateData[12].name).to.be('CO');
+            expect(stateData[12].deaths).to.equal('suppressed');
+
+            expect(stateData[13].name).to.be('FL');
+            expect(stateData[13].deaths).to.equal('suppressed');
+        });
     });
 
     it('should merge populations into mortality response', function(done){

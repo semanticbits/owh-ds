@@ -59,6 +59,10 @@ var AidsPage = function () {
             .all(by.tagName('td'))
             .getText();
     };
+
+    this.getElementContainingText = function (text) {
+        return element(by.partialLinkText(text));
+    };
 };
 
 module.exports = new AidsPage;
