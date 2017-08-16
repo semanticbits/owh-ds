@@ -354,7 +354,7 @@
             </li>
 
             <!--Check box filter-->
-            <!-- show All --->
+            <!-- show All -->
             <li class="group-option" ng-if="!group.doNotShowAll"
                 ng-class="{'thin-border-top': (group.value.length > 0 && group.displaySelectedFirst)}">
                 <input type="checkbox" id="{{group.queryKey}}_all" name="{{group.queryKey}}_all" ng-checked="group.value.length === 0"
@@ -401,7 +401,7 @@
                     <input id="{{sfic.primaryKey}}_{{group.key}}_{{option.key}}" name="{{group.queryKey}}" type="checkbox"
                            checklist-model="group.value" checklist-value="option.key" ng-disabled="sfic.isOptionDisabled(group, option)" ng-click="sfic.filterGroup(option, group)">
                     <label for="{{sfic.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label" ng-init="title = option.title">
-                        <a id="Hispanic" href="javascript:void(0)" title="option.title" ng-click="option.collapse = !option.collapse" class="custom-link">
+                        <a href="javascript:void(0)" title="{{option.title}}" ng-click="option.collapse = !option.collapse" class="custom-link">
                             <span class="fa" ng-class="option.collapse ? 'fa-chevron-right':'fa-chevron-down'"></span>
                             <!--<span translate="{{group.title}}"></span>-->
                             <span class="count-label" translate="{{title}}"></span>

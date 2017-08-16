@@ -566,19 +566,7 @@
                 var filter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', key);
                 if (filter) {
                     if (filter.autoCompleteOptions) {
-                        angular.forEach(filter.autoCompleteOptions, function (option) {
-                            var optionData = utilService.findByKeyAndValue(eachFilterData, 'name', option.key);
-                            if (optionData) {
-                                option[primaryFilter.key] = optionData[primaryFilter.key];
-                                option['count'] = optionData[primaryFilter.key];
-                                option[primaryFilter.key + 'Percentage'] = 0;
-                                option[primaryFilter.key + 'Percentage'] = Number(((optionData[primaryFilter.key] / primaryFilter.count) * 100).toFixed(2));
-                            } else {
-                                option[primaryFilter.key] = 0;
-                                option['count'] = 0;
-                                option[primaryFilter.key + 'Percentage'] = 0;
-                            }
-                        });
+                        populateSideFilterTotalsOption(filter.autoCompleteOptions, eachFilterData, primaryFilter);
                     } else {
                         var autoCompleteOptions = [];
                         angular.forEach(eachFilterData, function (eachData) {
@@ -596,6 +584,26 @@
             });
         }
 
+        function populateSideFilterTotalsOption(autoCompleteOptions, filterData, primaryFilter) {
+            angular.forEach(autoCompleteOptions, function (option) {
+                if (option.group) {
+                    populateSideFilterTotalsOption(option.options, filterData, primaryFilter);
+                }
+                else {
+                    var optionData = utilService.findByKeyAndValue(filterData, 'name', option.key);
+                    if (optionData) {
+                        option[primaryFilter.key] = optionData[primaryFilter.key];
+                        option['count'] = optionData[primaryFilter.key];
+                        option[primaryFilter.key + 'Percentage'] = 0;
+                        option[primaryFilter.key + 'Percentage'] = Number(((optionData[primaryFilter.key] / primaryFilter.count) * 100).toFixed(2));
+                    } else {
+                        option[primaryFilter.key] = 0;
+                        option['count'] = 0;
+                        option[primaryFilter.key + 'Percentage'] = 0;
+                    }
+                }
+            });
+        }
 
         function prepareMortalityResults(primaryFilter, response) {
             var ucd10Filter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'ucd-chapter-10');
@@ -1388,23 +1396,90 @@
             ];
 
             filters.censusRegionOptions = [
-                { "key": "CENS-R1", "title": "Census Region 1: Northeast" },
-                { "key": "CENS-R2", "title": "Census Region 2: Midwest" },
-                { "key": "CENS-R3", "title": "Census Region 3: South" },
-                { "key": "CENS-R4", "title": "Census Region 4: West" }
+                {
+                    key: "CENS-R1",
+                    title: "Census Region 1: Northeast",
+                    group: true,
+                    options: [
+                        {
+                            key: "CENS-D1",
+                            title: "Division 1: New England",
+                        },
+                        {
+                            key: "CENS-D2",
+                            title: "Division 2: Middle Atlantic",
+                        },
+                    ]
+                },
+                {
+                    key: "CENS-R2",
+                    title: "Census Region 2: Midwest",
+                    group: true,
+                    options: [
+                        {
+                            key: "CENS-D3",
+                            title: "Division 3: East North Central",
+                            parentFilterOptionKey: "CENS-R2",
+                        },
+                        {
+                            key: "CENS-D4",
+                            title: "Division 4: West North Central",
+                            parentFilterOptionKey: "CENS-R2",
+                        },
+                    ]
+                },
+                {
+                    key: "CENS-R3",
+                    title: "Census Region 3: South",
+                    group: true,
+                    options: [
+                        {
+                            key: "CENS-D5",
+                            title: "Division 5: South Atlantic",
+                            parentFilterOptionKey: "CENS-R3",
+                        },
+                        {
+                            key: "CENS-D6",
+                            title: "Division 6: East South Central",
+                            parentFilterOptionKey: "CENS-R3",
+                        },
+                        {
+                            key: "CENS-D7",
+                            title: "Division 7: West South Central",
+                            parentFilterOptionKey: "CENS-R3",
+                        },
+                    ]
+                },
+                {
+                    key: "CENS-R4",
+                    title: "Census Region 4: West",
+                    group: true,
+                    options: [
+                        {
+                            key: "CENS-D8",
+                            title: "Division 8: Mountain",
+                            parentFilterOptionKey: "CENS-R4",
+                        },
+                        {
+                            key: "CENS-D9",
+                            title: "Division 9: Pacific",
+                            parentFilterOptionKey: "CENS-R4",
+                        },
+                    ]
+                },
             ];
 
             filters.hhsOptions = [
-                { "key": "HHS1", "title": "HHS Region #1  CT, ME, MA, NH, RI, VT" },
-                { "key": "HHS2", "title": "HHS Region #2  NJ, NY" },
-                { "key": "HHS3", "title": "HHS Region #3  DE, DC, MD, PA, VA, WV" },
-                { "key": "HHS4", "title": "HHS Region #4  AL, FL, GA, KY, MS, NC, SC, TN" },
-                { "key": "HHS5", "title": "HHS Region #5  IL, IN, MI, MN, OH, WI" },
-                { "key": "HHS6", "title": "HHS Region #6  AR, LA, NM, OK, TX" },
-                { "key": "HHS7", "title": "HHS Region #7  IA, KS, MO, NE" },
-                { "key": "HHS8", "title": "HHS Region #8  CO, MT, ND, SD, UT, WY" },
-                { "key": "HHS9", "title": "HHS Region #9  AZ, CA, HI, NV" },
-                { "key": "HHS10", "title": "HHS Region #10  AK, ID, OR, WA" }
+                { "key": "HHS-1", "title": "HHS Region #1  CT, ME, MA, NH, RI, VT" },
+                { "key": "HHS-2", "title": "HHS Region #2  NJ, NY" },
+                { "key": "HHS-3", "title": "HHS Region #3  DE, DC, MD, PA, VA, WV" },
+                { "key": "HHS-4", "title": "HHS Region #4  AL, FL, GA, KY, MS, NC, SC, TN" },
+                { "key": "HHS-5", "title": "HHS Region #5  IL, IN, MI, MN, OH, WI" },
+                { "key": "HHS-6", "title": "HHS Region #6  AR, LA, NM, OK, TX" },
+                { "key": "HHS-7", "title": "HHS Region #7  IA, KS, MO, NE" },
+                { "key": "HHS-8", "title": "HHS Region #8  CO, MT, ND, SD, UT, WY" },
+                { "key": "HHS-9", "title": "HHS Region #9  AZ, CA, HI, NV" },
+                { "key": "HHS-10", "title": "HHS Region #10  AK, ID, OR, WA" }
             ];
 
             filters.ageOptions = [
@@ -1765,7 +1840,7 @@
                     autoCompleteOptions: filters.stateOptions, defaultGroup:"column",
                     displaySearchBox:true, displaySelectedFirst:true, helpText: 'label.help.text.mortality.state'},
                 {
-                    key: 'census-region', title: 'label.filter.censusRegion', queryKey: "census_region", primary: false, value: [],
+                    key: 'census-region', title: 'label.filter.censusRegion', queryKey: "census_region|census_division", primary: false, value: [],
                     groupBy: false, type: "label.filter.group.location", filterType: 'checkbox',
                     autoCompleteOptions: filters.censusRegionOptions, defaultGroup: "column",
                     displaySearchBox: true, displaySelectedFirst: true, helpText: 'label.help.text.mortality.state'
@@ -2112,7 +2187,6 @@
                             ]
                         },
                         {
-                            category: "region",
                             exclusive: true,
                             ui: "tabbed",
                             selectedFilter: "state", // defaulting to state
