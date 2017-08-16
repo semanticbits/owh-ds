@@ -419,7 +419,7 @@ function buildAPIQuery(primaryFilter) {
             var splitFilters = [eachFilter];
             var splitGroupQueries = [eachGroupQuery];
 
-            if (eachGroupQuery.queryKey.indexOf('|') >= 0) {
+            if (eachFilter.queryType === "compound") {
                 var secondGroupQuery = clone(eachGroupQuery);
 
                 var secondFilter = clone(eachFilter);
@@ -431,7 +431,7 @@ function buildAPIQuery(primaryFilter) {
                 });
                 secondFilter.autoCompleteOptions = secondOptions;
 
-                var split = eachGroupQuery.queryKey.split('|');
+                var split = eachFilter.queryKeys;
 
                 eachFilter.key += "|" + split[0];
                 eachGroupQuery.key += "|" + split[0];

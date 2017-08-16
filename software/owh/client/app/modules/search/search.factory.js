@@ -231,6 +231,10 @@
                 file = {question: questions};
             }
             var headers = selectedFilter.headers ? selectedFilter.headers : {columnHeaders: [], rowHeaders: []};
+
+            headers.rowHeaders = updateSplitHeaders(headers.rowHeaders);
+            headers.columnHeaders = updateSplitHeaders(headers.columnHeaders);
+            
             //make sure row/column headers are in proper order
             angular.forEach(headers.rowHeaders, function(header) {
                 sortAutoCompleteOptions(header, groupOptions[tableView]);
@@ -252,6 +256,41 @@
             }
 
             return tableData;
+        }
+
+        function updateSplitHeaders(headers) {
+            headers = utilService.clone(headers);
+            var newHeaders = [];
+            angular.forEach(headers, function (header, index) {
+                if (header.queryType === "compound") {
+                    var newHeader = utilService.clone(header);
+                    var queryKeys = header.queryKeys;
+                    var titles = header.titles;
+
+                    header.key += "|" + queryKeys[0];
+                    header.queryKey = queryKeys[0];
+                    header.title = titles[0];
+
+                    newHeader.key += "|" + queryKeys[1];
+                    newHeader.queryKey = queryKeys[1];
+                    newHeader.title = titles[1];
+                    var subOptions = [];
+                    angular.forEach(newHeader.autoCompleteOptions, function (option) {
+                        angular.forEach(option.options, function (subOption) {
+                            subOptions.push(subOption);
+                        });
+                    });
+                    newHeader.autoCompleteOptions = subOptions;
+
+                    newHeaders.push({ index: index + 1, header: newHeader });
+                }
+            });
+
+            angular.forEach(newHeaders, function (newHeader) {
+                headers.splice(newHeader.index, 0, newHeader.header);
+            });
+
+            return headers;
         }
 
         //takes mixedTable and returns categories array for use with owhAccordionTable
@@ -1841,6 +1880,7 @@
                     displaySearchBox:true, displaySelectedFirst:true, helpText: 'label.help.text.mortality.state'},
                 {
                     key: 'census-region', title: 'label.filter.censusRegion', queryKey: "census_region|census_division", primary: false, value: [],
+                    queryType: "compound", titles: ['label.filter.censusRegion','label.filter.censusDivision'], queryKeys: ["census_region", "census_division"],
                     groupBy: false, type: "label.filter.group.location", filterType: 'checkbox',
                     autoCompleteOptions: filters.censusRegionOptions, defaultGroup: "column",
                     displaySearchBox: true, displaySelectedFirst: true, helpText: 'label.help.text.mortality.state'
