@@ -18,6 +18,7 @@
             findByKey: findByKey,
             sortByKey: sortByKey,
             findByKeyAndValue: findByKeyAndValue,
+            findByKeyAndValueRecursive: findByKeyAndValueRecursive,
             findIndexByKeyAndValue: findIndexByKeyAndValue,
             findAllByKeyAndValue: findAllByKeyAndValue,
             findAllNotContainsKeyAndValue: findAllNotContainsKeyAndValue,
@@ -96,6 +97,31 @@
                     if ( a[i][key] && a[i][key] === value ) {return a[i];}
                 }
             }
+            return null;
+        }
+
+        /**
+         * Finds and returns the first object in array of objects by using the key and value
+         * @param array
+         * @param key
+         * @param value
+         * @param childProperty
+         * @returns {*}
+         */
+        function findByKeyAndValueRecursive(array, key, value, childProperty) {
+            if (array) {
+                for (var i = 0; i < array.length; i++) {
+                    if (array[i][key] && array[i][key] === value) {
+                        return array[i];
+                    }
+
+                    if (childProperty && array[i][childProperty]) {
+                        var result = findByKeyAndValueRecursive(array[i][childProperty], key, value, childProperty);
+                        if (result) return result;
+                    }
+                }
+            }
+
             return null;
         }
 
