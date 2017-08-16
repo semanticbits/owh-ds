@@ -853,6 +853,7 @@
             var newFilters = response.data;
             for (var f = 0; f < sideFilters.length; f++) {
                 var fkey = sideFilters[f].filters.queryKey;
+                if (fkey.indexOf('|') >= 0) fkey = fkey.split('|')[1];
                 if (fkey === 'ethnicity_group' && datasetname == 'deaths') {
                     fkey = 'hispanic_origin';
                 }
