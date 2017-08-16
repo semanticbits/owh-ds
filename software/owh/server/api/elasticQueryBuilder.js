@@ -581,7 +581,7 @@ function buildFilterQuery(filter) {
 function getFilterQuery(filter) {
     return {
         key: filter.key,
-        queryKey: filter.aggregationKey ? filter.aggregationKey : filter.queryKey,
+        queryKey: filter.queryType === 'compound' ? filter.queryKeys[1] : (filter.aggregationKey ? filter.aggregationKey : filter.queryKey),
         value: filter.value,
         primary: filter.primary
     };
