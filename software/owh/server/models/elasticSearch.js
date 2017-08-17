@@ -176,6 +176,8 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
             }
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'deaths');
+            } else {
+                searchUtils.applySuppressions(mapData, 'deaths');
             }
             deferred.resolve(data);
         }, function (err) {
@@ -189,7 +191,10 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
             var data = searchUtils.populateDataWithMappings(resp, 'deaths');
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'deaths');
+            } else if (data.data.simple.state) {
+                searchUtils.suppressStateTotals(data.data.simple.state, 'deaths', 10);
             }
+
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
@@ -218,6 +223,8 @@ ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected) {
             data.data.nested.maps = mapData.data.nested.maps;
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'bridge_race');
+            } else {
+                searchUtils.applySuppressions(mapData, 'bridge_race');
             }
             deferred.resolve(data);
         }, function (err) {
@@ -272,6 +279,12 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected)
         logger.debug("Natality ES Query: "+ JSON.stringify( query[0]));
         this.executeESQuery(natality_index, natality_type, query[0]).then(function (resp) {;
             var data = searchUtils.populateDataWithMappings(resp, 'natality');
+            if (isStateSelected) {
+                searchUtils.applySuppressions(data, 'natality');
+            } else if (data.data.simple.state) {
+                searchUtils.suppressStateTotals(data.data.simple.state, 'natality', 10);
+            }
+
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
@@ -309,6 +322,9 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
                 var data = searchUtils.populateDataWithMappings(response, 'infant_mortality', allSelectedFilterOptions);
                 isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');
                 deferred.resolve(data);
+                if (data.data.simple.state) {
+                    searchUtils.suppressStateTotals(data.data.simple.state, 'infant_mortality', 10);
+                }
             }, function (error) {
                 logger.error(error.message);
                 deferred.reject(error);
@@ -357,7 +373,11 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
                 i == 0 ? populationResponse = resp[i+2] : populationResponse.data.nested.charts.push(resp[i + 2].data.nested.charts[i-1]);
             }
             self.mergeWithCensusData(data, populationResponse, 'pop');
-            isStateSelected && searchUtils.applySuppressions(data, indexType, 4);
+            if (isStateSelected) {
+                searchUtils.applySuppressions(data, indexType, 4)
+            } else {
+                searchUtils.applySuppressions(mapData, indexType, 4)
+            }
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);

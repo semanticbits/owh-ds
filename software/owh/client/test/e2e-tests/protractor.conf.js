@@ -27,7 +27,6 @@ exports.config = {
       'features/step_definitions/aidsSteps.js',
       'features/step_definitions/cancerIncidenceSteps.js',
       'features/step_definitions/cancerMortalitySteps.js',
-      'features/step_definitions/cancerMortalitySteps.js',
       'features/step_definitions/dataDocumentationSteps.js',
       'features/support/hook.js'
     ],

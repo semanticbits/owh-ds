@@ -1115,5 +1115,18 @@ var mortalityStepDefinitionsWrapper = function () {
         }).then(next);
     });
 
+    this.Then(/^I see count for few states are suppressed$/, function (next) {
+        mortalityPage.getSideFilterTotals().then(function(elements) {
+            expect(elements[41].getInnerHtml()).to.eventually.equal('Suppressed');
+            expect(elements[62].getInnerHtml()).to.eventually.equal('Suppressed');
+        }).then(next);
+    });
+
+    this.When(/^user clicks on "([^"]*)" more link$/, function (arg1, next) {
+        var elm = element(by.cssContainingText('a', arg1));
+        commonPage.scrollToElement(elm);
+        elm.click().then(next);
+    });
+
 };
 module.exports = mortalityStepDefinitionsWrapper;

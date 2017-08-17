@@ -23,6 +23,7 @@
     function MenuController($scope, $log, $q, $timeout, utilService) {
         var mc = this;
         mc.displayCategory = false;
+        mc.isMenuOpen = false;
         mc.showMenu = showMenu;
         mc.showCategory = showCategory;
         mc.changeFilter = changeFilter;
@@ -52,6 +53,7 @@
         }
 
         function showCategory() {
+            mc.isMenuOpen = !mc.isMenuOpen
             mc.displayCategory = !mc.displayCategory;
         }
 

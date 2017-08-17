@@ -764,4 +764,17 @@ describe("Utils", function(){
         expect(allOptions.race.options[3].key).to.equal('White');
         done();
     });
+
+    it('should suppress state counts when it comes down to specified value', function (done) {
+        var stateData = [{"name":"CA","deaths":10},{"name":"TX","deaths":11},{"name":"FL","deaths":5},{"name":"OH","deaths":431},{"name":"IL","deaths":430},{"name":"PA","deaths":420},{"name":"TN","deaths":6}];
+
+        searchUtils.suppressStateTotals(stateData, 'deaths', 10);
+
+        //10 & above should not be suppressed
+        expect(stateData[0]['deaths']).to.equal(10);
+        expect(stateData[1]['deaths']).to.equal(11);
+        //FL count is 5 < 10, should be suppressed
+        expect(stateData[2]['deaths']).to.equal('suppressed');
+        done();
+    })
 });

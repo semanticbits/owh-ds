@@ -1,7 +1,8 @@
 <aside>
-    <div align="center" ng-if="!sfc.runOnFilterChange">
-        <hr/>
-        <button class="action-button condition-option ng-scope buttonFocus" ng-click="sfc.onFilter();" title="{{'label.run.query.title' | translate}}">{{'label.run.query' | translate}}</button>
+    <div class="margin-top-20" align="center" ng-if="!sfc.runOnFilterChange">
+        <button class="action-button condition-option ng-scope buttonFocus" ng-click="sfc.onFilter();"
+                title="{{'label.run.query.title' | translate}}">{{'label.run.query' | translate}}
+        </button>
     </div>
     <ul class="usa-sidenav-list side-filters">
         <!--iterate over filter by category-->
@@ -71,7 +72,7 @@
                                                on-change="option.onChange(option.value, option)">
                             </owh-toggle-switch>
                         </div>
-                        <br ng-if="$index === 0" />
+                        <br ng-if="$index === 0"/>
                     </div>
                 </ul>
             </span>
