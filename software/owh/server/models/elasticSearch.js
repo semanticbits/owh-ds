@@ -373,10 +373,12 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
                 i == 0 ? populationResponse = resp[i+2] : populationResponse.data.nested.charts.push(resp[i + 2].data.nested.charts[i-1]);
             }
             self.mergeWithCensusData(data, populationResponse, 'pop');
-            if (isStateSelected) {
-                searchUtils.applySuppressions(data, indexType, 4)
-            } else {
-                searchUtils.applySuppressions(mapData, indexType, 4)
+            if (diseaseName !== 'tb') {
+                if (isStateSelected) {
+                    searchUtils.applySuppressions(data, indexType, 4)
+                } else {
+                    searchUtils.applySuppressions(mapData, indexType, 4)
+                }
             }
             deferred.resolve(data);
         }, function (err) {

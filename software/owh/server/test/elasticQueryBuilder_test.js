@@ -521,9 +521,14 @@ describe("Build elastic search queries", function(){
         var isFilterApplied = elasticQueryBuilder.isFilterApplied(filter);
         expect(isFilterApplied).to.eql(true);
 
+        //check if filter applied, when it put on row/column
+        filter.groupBy = 'row';
+        isFilterApplied = elasticQueryBuilder.isFilterApplied(filter);
+        expect(isFilterApplied).to.eql(true);
+
         //not applied
         filter = {"queryKey":"state","key":"state","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]};
-        var isFilterApplied = elasticQueryBuilder.isFilterApplied(filter);
+        isFilterApplied = elasticQueryBuilder.isFilterApplied(filter);
         expect(isFilterApplied).to.eql(false);
         done();
     });
