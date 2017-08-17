@@ -1883,7 +1883,7 @@
                     queryType: "compound", titles: ['label.filter.censusRegion','label.filter.censusDivision'], queryKeys: ["census_region", "census_division"],
                     groupBy: false, type: "label.filter.group.location", filterType: 'checkbox',
                     autoCompleteOptions: filters.censusRegionOptions, defaultGroup: "column",
-                    displaySearchBox: true, displaySelectedFirst: true, helpText: 'label.help.text.mortality.state'
+                    displaySearchBox: true, displaySelectedFirst: false, helpText: 'label.help.text.mortality.state'
                 },
                 {
                     key: 'hhs-region', title: 'label.filter.HHSRegion', queryKey: "hhs_region", primary: false, value: [],
