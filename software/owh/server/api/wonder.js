@@ -102,7 +102,12 @@ var wonderParamCodeMap = {
             "WI":"55",
             "WY":"56"
         }
-    }
+    },
+    'census-region': 'D77.V10',
+    'census-region|census_region-group':'D77.V10-level1',
+    'census-region|census_division-group':'D77.V10-level2',
+    'hhs-region': 'D77.V27',
+    'hhs-region-group': 'D77.V27-level1',
 }
 
 /**
