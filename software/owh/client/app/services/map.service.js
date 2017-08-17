@@ -96,18 +96,22 @@
                     position: 'topright'
                 },
                 onAdd: function (map) {
-                    var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom fa fa-expand fa-2x purple-icon');
+                    var container = L.DomUtil.create('i', 'leaflet-bar leaflet-control leaflet-control-custom material-icons fullscreen-exit-icon-purple purple-icon');
+                    container.innerHTML = "fullscreen_exit";
+                    //container.append(L.DomUtil.create('i', 'material-icons fullscreen-exit-icon-purple purple-icon'));
                     container.onclick = function (event) {
                         if (mapOptions.selectedMapSize === "small") {
                             mapOptions.selectedMapSize = "big";
                             resizeUSAMap(true, primaryFilter);
-                            angular.element(container).removeClass('fa-expand');
-                            angular.element(container).addClass('fa-compress');
+                            container.innerHTML = "fullscreen_exit";
+                            angular.element(container).removeClass('fullscreen-icon-purple');
+                            angular.element(container).addClass('fullscreen-exit-icon-purple');
                         } else if (mapOptions.selectedMapSize === "big") {
                             mapOptions.selectedMapSize = "small";
                             resizeUSAMap(false, primaryFilter);
-                            angular.element(container).removeClass('fa-compress');
-                            angular.element(container).addClass('fa-expand');
+                            container.innerHTML = "fullscreen";
+                            angular.element(container).removeClass('fullscreen-exit-icon-purple');
+                            angular.element(container).addClass('fullscreen-icon-purple');
                         }
                     };
                     return container;
@@ -135,7 +139,8 @@
                     position: 'topright'
                 },
                 onAdd: function (map) {
-                    var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom fa fa-share-alt fa-2x purple-icon');
+                    var container = L.DomUtil.create('i', 'leaflet-bar leaflet-control leaflet-control-custom material-icons share-icon-purple purple-icon');
+                    container.innerHTML = "share";
                     container.title = $translate.instant('label.share.on.fb');
                     container.onclick = function (event) {
                         angular.element(document.getElementById('spindiv')).removeClass('ng-hide');
