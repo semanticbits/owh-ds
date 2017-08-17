@@ -133,7 +133,7 @@ function requestWonder(dbID, req) {
             logger.debug("Age adjusted rates: " + JSON.stringify(result));
             defer.resolve(result);
         } else {
-            logger.error("WONDER Error: " + (error ? error : body));
+            logger.error("WONDER Error: " + (error ? error : body) + "\nRequest: " + JSON.stringify(req));
             defer.reject('Error invoking WONDER API');
         }
     }, function (error) {
@@ -344,6 +344,8 @@ function addFilterParams (wreq, query){
                 }
             }
             else {
+                if (key.indexOf('|') >= 0) key = key.split('|')[0];
+
                 if (key === 'state') {
                     locationFilter = 'D77.V9';
                 }
