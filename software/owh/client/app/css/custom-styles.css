@@ -1731,6 +1731,32 @@ select.tableViewDropDown:focus {
     border: 1px dodgerblue dashed !important;
 }
 
+ul.filter-group {
+    flex-grow: 1;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    border-bottom: 1px #ccc solid;
+}
+
+ul.filter-group li {
+    border-bottom: 5px transparent solid;
+}
+
+ul.filter-group li.selected {
+    border-bottom-color: #0080d1;
+}
+
+ul.filter-group li a {
+    padding: 8px;
+    font-size: 1.4rem;
+}
+
+ul.filter-group li.selected a {
+    color: #0080d1;
+}
+
 /**
 * Conditional CSS for IE 8+.
 */
