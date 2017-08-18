@@ -521,12 +521,12 @@
         //builds marker popup.
         sc.mapPopup = L.popup({autoPan:false, closeButton:false});
         sc.currentFeature = {};
-        function buildMarkerPopup(lat, lng, properties, map, tableView, markerPosition) {
+        function buildMarkerPopup(lat, lng, properties, map, key, markerPosition) {
             var childScope = $scope.$new();
             childScope.lat = lat;
             childScope.lng = lng;
             childScope.properties = properties;
-            childScope.tableView = tableView;
+            childScope.key = key;
             var ele = angular.element('<div></div>');
             ele.html($templateCache.get('app/partials/marker-template.html'));
             var compileEle = $compile(ele.contents())(childScope);

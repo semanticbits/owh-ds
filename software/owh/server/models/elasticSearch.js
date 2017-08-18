@@ -153,10 +153,13 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
     if(query[1]){
         logger.debug("Mortality ES Query: "+ JSON.stringify( query[0]));
         logger.debug("Census ES Query: "+ JSON.stringify( query[1]));
+        logger.debug("Map ES Query: "+ JSON.stringify( query[2]));
         var promises = [
             this.executeMultipleESQueries(query[0], mortality_index, mortality_type),
             this.aggregateCensusDataQuery(query[1], census_rates_index, census_rates_type, 'pop'),
-            this.executeMultipleESQueries(query[2], mortality_index, mortality_type)
+            this.executeMultipleESQueries(query[2], mortality_index, mortality_type),
+            //To get population count for MAP
+            this.aggregateCensusDataQuery(query[2], census_rates_index, census_rates_type, 'pop')
         ];
         if(query.wonderQuery) {
             logger.debug("Wonder Query: "+ JSON.stringify(query.wonderQuery));
@@ -167,12 +170,15 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
             var mapData = searchUtils.populateDataWithMappings(respArray[2], 'deaths');
             data.data.nested.maps = mapData.data.nested.maps;
             self.mergeWithCensusData(data, respArray[1], 'pop');
+            mergeCensusRecursively(data.data.nested.maps, respArray[3].data.nested.maps, 'pop');
             if(query.wonderQuery) {
-                searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[3].table);
+                searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[4].table);
                 //Loop through charts array and merge age ajusted rates from response
                 data.data.nested.charts.forEach(function(chart, index){
-                    searchUtils.mergeAgeAdjustedRates(chart, respArray[3].charts[index]);
+                    searchUtils.mergeAgeAdjustedRates(chart, respArray[4].charts[index]);
                 });
+                //Merge Age Adjusted results for Map
+                searchUtils.mergeAgeAdjustedRates(data.data.nested.maps, respArray[4].maps);
             }
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'deaths');

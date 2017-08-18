@@ -777,4 +777,130 @@ describe("Utils", function(){
         expect(stateData[2]['deaths']).to.equal('suppressed');
         done();
     })
+
+    describe('.isFilterApplied', function () {
+        it('should return a boolean', function () {
+            expect(searchUtils.isFilterApplied({ value: [], groupBy: false })).to.be.a('boolean');
+        });
+
+        it('should return true when there is a value', function () {
+            expect(searchUtils.isFilterApplied({ value: [ '2014' ], groupBy: false })).to.be.ok();
+        });
+
+        it('should return true when groupBy is truthy', function () {
+            expect(searchUtils.isFilterApplied({ value: [], groupBy: 'row' })).to.be.ok();
+        });
+
+        it('should work when value is not an array', function () {
+            expect(searchUtils.isFilterApplied({ value: '', groupBy: false })).to.not.be.ok();
+            expect(searchUtils.isFilterApplied({ value: '2014', groupBy: false })).to.be.ok();
+        });
+    });
+
+    describe('.findAllAppliedFilters', function () {
+        var mock
+        before(function () {
+            mock = [
+              { key: 'current_year', value: [ '2015' ], groupBy: false },
+              { key: 'state', value: [], groupBy: false },
+              { key: 'race', value: [], groupBy: 'row' },
+              { key: 'sex', value: [], groupBy: 'column' }
+            ]
+        });
+
+        it('should return an array', function () {
+            expect(searchUtils.findAllAppliedFilters(mock)).to.be.a('array');
+        });
+
+        it('should return the keys of applied filters', function () {
+            expect(searchUtils.findAllAppliedFilters(mock)).to.eql([ 'race', 'sex' ]);
+        });
+
+        it('should ignore the current_year and state filters', function () {
+            expect(searchUtils.findAllAppliedFilters(mock.slice(0, 2))).to.be.empty();
+        });
+    });
+
+    describe('.recursivelySuppressOptions', function () {
+        it('should change each of the countKey values to suppressed', function () {
+            var mock = { filter: [{ name: 'option 1', countKey: 1234 }, { name: 'option 2', countKey: 12345 }] }
+            searchUtils.recursivelySuppressOptions(mock, 'countKey', 'suppressed');
+            mock.filter.map(function (option) {
+              expect(option.countKey).to.eql('suppressed');
+            });
+        });
+
+        it('should work with deeply nested trees', function () {
+            var mock = { filter1: [{ name: 'option', countKey: 1234, filter2: [{ name: 'option2', countKey: 123 }, { name: 'option3', countKey: 234 }] }] };
+            searchUtils.recursivelySuppressOptions(mock, 'countKey', 'suppressed');
+            expect(mock.filter1[0].countKey).to.eql('suppressed');
+            expect(mock.filter1[0].filter2[0].countKey).to.eql('suppressed');
+            expect(mock.filter1[0].filter2[1].countKey).to.eql('suppressed');
+        });
+
+        it('should leave unmatching properties untouched', function () {
+            var mock = { filter1: [{ name: 'option', filter2: [{ name: 'option2' }, { name: 'option3' }] }] };
+            searchUtils.recursivelySuppressOptions(mock, 'countKey', 'suppressed');
+            expect(mock).to.eql(mock);
+        });
+
+        it('should change the countKey value to the suppressionValue', function () {
+            var mock = { filter1: [{ name: 'option', countKey: 1234, filter2: [{ name: 'option2', countKey: 123 }, { name: 'option3', countKey: 234 }] }] };
+            searchUtils.recursivelySuppressOptions(mock, 'countKey', 'suppressed value')
+            expect(mock.filter1[0].countKey).to.eql('suppressed value');
+            expect(mock.filter1[0].filter2[0].countKey).to.eql('suppressed value');
+            expect(mock.filter1[0].filter2[1].countKey).to.eql('suppressed value');
+        });
+    });
+
+    describe('.searchTree', function () {
+        it('should change the value of countKey to suppressed when options match rule and leave unmatched portions unchanged', function () {
+            var mock = { filter1: [{ name: 'option', countKey: 1234, filter2: [{ name: 'option2', countKey: 123 }, { name: 'option3', countKey: 234 }] }] };
+            var rule = [ 'option', 'option2' ];
+            searchUtils.searchTree(mock, rule, { countKey: 'countKey', suppressionValue: 'suppressed' }, []);
+            expect(mock.filter1[0].filter2[0].countKey).to.eql('suppressed');
+            expect(mock.filter1[0].filter2[1].countKey).to.eql(234);
+        });
+
+        it('should not change the value of countKey when rule does not match', function () {
+            var mock = { filter1: [{ name: 'option', countKey: 1234, filter2: [{ name: 'option2', countKey: 123 }, { name: 'option3', countKey: 234 }] }] };
+            var rule = [ 'option', 'non-option' ];
+            searchUtils.searchTree(mock, rule, { countKey: 'countKey', suppressionValue: 'suppressed' }, []);
+            expect(mock).to.eql(mock);
+        });
+
+        it('should suppress all options within the tree once a match is found', function () {
+            var mock = { filter1: [{ name: 'option', countKey: 1234, filter2: [{ name: 'option2', countKey: 123 }, { name: 'option3', countKey: 234 }] }] };
+            var rule = [ 'option' ];
+            searchUtils.searchTree(mock, rule, { countKey: 'countKey', suppressionValue: 'suppressed' }, []);
+            expect(mock.filter1[0].countKey).to.eql('suppressed');
+            expect(mock.filter1[0].filter2[0].countKey).to.eql('suppressed');
+            expect(mock.filter1[0].filter2[1].countKey).to.eql('suppressed');
+        });
+    });
+
+    describe('.createCancerIncidenceSuppressionRules', function () {
+        it('should return an array', function () {
+            expect(searchUtils.createCancerIncidenceSuppressionRules()).to.be.a('array');
+        });
+
+        it('should contain pairs of values', function () {
+            searchUtils.createCancerIncidenceSuppressionRules().forEach(function (rule) {
+                expect(rule).to.have.length(2);
+            });
+        });
+    });
+
+    describe('.applyCustomSuppressions', function () {
+        it('should suppress the countKey value in each chart and the table', function () {
+            var data = {
+              table: { filter1: [{ name: 'option', countKey: 1234, filter2: [{ name: 'option2', countKey: 123 }, { name: 'option3', countKey: 234 }] }] },
+              charts: [{ filter1: [{ name: 'option', countKey: 1234, filter2: [{ name: 'option2', countKey: 123 }, { name: 'option3', countKey: 234 }] }] }]
+            };
+            var rules = [[ 'option', 'option2']];
+            searchUtils.applyCustomSuppressions(data, rules, 'countKey');
+            expect(data.table.filter1[0].filter2[0].countKey).to.eql('suppressed');
+            expect(data.charts[0].filter1[0].filter2[0].countKey).to.eql(0);
+        });
+    });
 });
