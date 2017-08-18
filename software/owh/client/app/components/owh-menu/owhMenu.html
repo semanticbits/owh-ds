@@ -1,9 +1,9 @@
 <div class="primary-filter-bar usa-grid">
     <div class="usa-width-one-twelfth forward-back text-center">
-        <a href="javascript:void(0)" ng-click="mc.goBackward()"><i title="Previous query" class="arrows material-icons cursor-pointer" >arrow_back</i></a>
-        <a href="javascript:void(0)" ng-click="mc.goForward()"><i title="Next query" class="arrows material-icons cursor-pointer">arrow_forward</i></a>
+        <a href="javascript:void(0)" ng-click="mc.goBackward()"><i title="Previous query" class="arrows material-icons cursor-pointer arrow-backward-black" >arrow_back</i></a>
+        <a href="javascript:void(0)" ng-click="mc.goForward()"><i title="Next query" class="arrows material-icons cursor-pointer arrow-forward-black">arrow_forward</i></a>
     </div>
-    <div id="interestedIn" class="usa-width-one-third interested-in-filter" ng-class="{'menu-open':mc.isMenuOpen}"
+    <div id="interestedIn" class="usa-width- interested-in-filter" ng-class="{'menu-open':mc.isMenuOpen}"
          ng-click="mc.showCategory()">
             <div class="label margin-right-10" ng-bind="'label.interested.in' | translate"></div>
 
@@ -11,9 +11,9 @@
                 <img src="../images/icons/bridged-race-icon.svg">
                 <span ng-bind="mc.selectedFilter.header"></span>
             </div>
-            <i class="material-icons">keyboard_arrow_down</i>
+            <i class="material-icons keyboard-arrow-down-black">keyboard_arrow_down</i>
     </div>
-    <div class="usa-width-one-third by-filter">
+    <div class="usa-width- by-filter">
             <div class="label margin-right-10" ng-bind="'label.by' | translate"></div>
             <ui-select multiple ng-model="mc.selectedFilter.value"
                        theme="bootstrap" name="filter" id="filter" class="flex-grow"
@@ -28,7 +28,7 @@
             </ui-select>
         <!--<div class="icon-position"><i class="fa fa-angle-down font-30 karat"></i></div>-->
     </div>
-    <div class="usa-width-one-fourth alt-filter border-none">
+    <div class="usa-width- alt-filter border-none">
             <div class="label margin-right-10" ng-if="mc.selectedFilter.key === 'mental_health'">
                 <label for="tableView" ng-bind="'label.yrbs.healthtopics' | translate"
                       ng-if="mc.showMeOptions[mc.selectedFilter.key]"></label>
@@ -49,7 +49,7 @@
             </select>
         <!--<div class="icon-position"><i class="fa fa-angle-down font-30 karat"></i></div>-->
     </div>
-    <div class="refresh"><i class="material-icons" title="Reset">refresh</i></div>
+    <div class="refresh"><i class="material-icons refresh-icon-black" title="Reset Filters">refresh</i></div>
    <!-- <div class="pull-right width-5-percentile" style="margin-right: 10px;">
         <i class="clear-button fa fa-toggle-left font-30"></i>
     </div>-->
@@ -81,11 +81,11 @@
                 <span class="icon-label">Behavioral Risk Factors</span>
             </li>
             <li ng-click="mc.changeFilter('cancer_incident')">
-                <img src="../images/icons/disease-icon.svg" alt="Cancer Incidence"/>
+                <img src="../images/icons/cancer-incidence-icon.svg" alt="Cancer Incidence"/>
                 <span class="icon-label" ng-bind="mc.categoryName({newFilter:'cancer_incident'})"></span>
             </li>
             <li ng-click="mc.changeFilter('cancer_mortality')">
-                <img src="../images/icons/disease-icon.svg" alt="Cancer Mortality"/>
+                <img src="../images/icons/cancer-mortality-icon.svg" alt="Cancer Mortality"/>
                 <span class="icon-label" ng-bind="mc.categoryName({newFilter:'cancer_mortality'})"></span>
             </li>
             <li ng-click="mc.changeFilter('infant_mortality')">

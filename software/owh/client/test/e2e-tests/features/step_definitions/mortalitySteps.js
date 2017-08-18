@@ -1128,6 +1128,22 @@ var mortalityStepDefinitionsWrapper = function () {
         elm.click().then(next);
     });
 
+    this.Then(/^I see suppressed data in data table$/, function (next) {
+        mortalityPage.getTableRowData(7).then(function(rowdata) {
+            //race
+            expect(rowdata[0]).to.contains('American Indian or Alaska Native');
+            //state
+            expect(rowdata[1]).to.contains('Delaware');
+            //10 should not be suppressed
+            expect(rowdata[2]).to.contains(10);
+            // value < 10 should be suppressed
+            expect(rowdata[3]).to.contains('Suppressed');
+            //total should be suppressed
+            expect(rowdata[4]).to.contains('Suppressed');
+        }).then(next);
+    });
+
+
     this.Then(/^I see Multiple Causes of Deaths in datatable$/, function (next) {
         mortalityPage.getTableRowDataCells(0).then(function (elements) {
             expect(elements[0].getText()).to.eventually.equal('I00-I99');
