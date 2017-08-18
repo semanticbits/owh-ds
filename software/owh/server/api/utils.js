@@ -114,7 +114,7 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
             aggregation[countKey] = aggregation[countKey];
             var innerObjKey = isValueHasGroupData(buckets[index]);
             // take from pop.value instead of doc_count for census data
-            if(countKey === 'pop') {
+            if(countKey === 'pop' || countKey === 'cancer_population') {
                 aggregation = {name: buckets[index]['key']};
                 if(buckets[index]['pop']) {
                     aggregation[countKey] = buckets[index]['pop'].value;
@@ -671,6 +671,36 @@ function applyCustomSuppressions (data, rules, countKey) {
     });
 }
 
+function attachPopulation (root, popTree, path) {
+    if (path.length) root.pop = findMatchingProp(popTree, path) || 'n/a';
+    for (var property in root) {
+        if (Array.isArray(root[property])) {
+            root[property].forEach(function (option) {
+              attachPopulation(option, popTree, path.concat([property, option.name]));
+            })
+        }
+    }
+}
+
+function findMatchingProp (tree, path) {
+  for (var i = 0; i < path.length; i += 2) {
+    var matching = findMatchingOption(tree[path[i]], path[i + 1]);
+    if (matching) {
+      tree = matching;
+    } else {
+      break;
+    }
+  }
+  return tree && tree['cancer_population'];
+}
+
+function findMatchingOption (options, target) {
+  return options.reduce(function (prev, curr) {
+    if (curr.name === target) return curr;
+    return prev;
+  }, null);
+}
+
 module.exports.populateDataWithMappings = populateDataWithMappings;
 module.exports.populateYRBSData = populateYRBSData;
 module.exports.mergeAgeAdjustedRates = mergeAgeAdjustedRates;
@@ -688,3 +718,6 @@ module.exports.recursivelySuppressOptions = recursivelySuppressOptions;
 module.exports.searchTree = searchTree;
 module.exports.createCancerIncidenceSuppressionRules = createCancerIncidenceSuppressionRules;
 module.exports.applyCustomSuppressions = applyCustomSuppressions;
+module.exports.attachPopulation = attachPopulation;
+module.exports.findMatchingProp = findMatchingProp;
+module.exports.findMatchingOption = findMatchingOption;

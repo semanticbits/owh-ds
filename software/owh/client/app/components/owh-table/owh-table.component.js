@@ -150,6 +150,9 @@
                                 else if(otc.tableView === 'std' || otc.tableView === 'tb' || otc.tableView === 'aids' || otc.tableView === 'disease_rate') {
                                     cell += '<span class="owh-table-span">Cases</span>';
                                 }
+                                else if(otc.tableView === 'crude_cancer_incidence_rates') {
+                                    cell += '<span class="owh-table-span">Incidence</span>';
+                                }
                                 else {
                                     var deaths = $translate.instant('label.help.text.deaths');
                                     cell += '<span class="owh-table-span" title="'+deaths+'">Deaths</span>';
