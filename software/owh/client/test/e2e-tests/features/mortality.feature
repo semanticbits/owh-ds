@@ -372,3 +372,8 @@ Scenario: Group by 'State' in age adjusted rate
     And I select groupBy "Off" option for "Sex" filter
     And I select groupBy "Column" option for "State" filter
     Then the rates, deaths and population for "Delaware" "Black or African American" in 'Death Rates' view are "664.0", "1,474" and "221,986"
+
+  Scenario: Suppression when user groups data by state
+    Given I am on search page
+    When I set "State" filter "Row"
+    Then I see suppressed data in data table

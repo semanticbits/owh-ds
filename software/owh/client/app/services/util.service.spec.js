@@ -101,9 +101,13 @@ describe('utilService', function(){
         var isFilterApplied = utils.isFilterApplied(filter);
         expect(isFilterApplied).toEqual(true);
 
+        filter = {"key":"state","value":["AK"], groupBy:'row', "autoCompleteOptions":[{"key":"AL"},{"key":"AK"}]};
+        isFilterApplied = utils.isFilterApplied(filter);
+        expect(isFilterApplied).toEqual(true);
+
         //not applied
-        filter = {"key":"state","value":[],"autoCompleteOptions":[{"key":"AL"},{"key":"AK"}]};
-        var isFilterApplied = utils.isFilterApplied(filter);
+        filter = {"key":"state","value":[], groupBy:false, "autoCompleteOptions":[{"key":"AL"},{"key":"AK"}]};
+        isFilterApplied = utils.isFilterApplied(filter);
         expect(isFilterApplied).toEqual(false);
     });
 

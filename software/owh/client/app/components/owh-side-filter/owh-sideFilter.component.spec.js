@@ -135,7 +135,7 @@ describe('OWH Side filter component: ', function() {
         var allFilters = [
             { key: 'question', title: 'label.yrbs.filter.question', queryKey:"question.path", aggregationKey:"question.key",
                 primary: false, value: [], groupBy: 'row', filterType: 'tree', autoCompleteOptions: [], donotshowOnSearch:true,
-                selectTitle: 'select.label.yrbs.filter.question', iconClass: 'fa fa-pie-chart purple-text', selectedValues :[], selectedNodes:[]
+                selectTitle: 'select.label.yrbs.filter.question', iconClass: 'purple-text', selectedValues :[], selectedNodes:[]
             },
             { key: 'ucd-chapter-10', title: 'label.filter.ucd.icd.chapter', queryKey:"ICD_10_code.path",
                 primary: true, value: [], groupBy: false, type:"label.filter.group.ucd", groupKey:"ucd",
@@ -195,7 +195,7 @@ describe('OWH Side filter component: ', function() {
         var allFilters = [
             { key: 'question', title: 'label.yrbs.filter.question', queryKey:"question.path", aggregationKey:"question.key",
                 primary: false, value: [], groupBy: 'row', filterType: 'tree', autoCompleteOptions: [], donotshowOnSearch:true,
-                selectTitle: 'select.label.yrbs.filter.question', iconClass: 'fa fa-pie-chart purple-text',
+                selectTitle: 'select.label.yrbs.filter.question', iconClass: 'purple-text',
                 selectedValues:[], selectedNodes:[]
             }
         ];
