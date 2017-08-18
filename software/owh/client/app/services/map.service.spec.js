@@ -141,6 +141,7 @@ describe('mapService', function(){
             expect($rootScope.states.features.length).not.toBeUndefined();
             expect($rootScope.states.features[0].properties.name).toEqual("Arkansas");
             expect($rootScope.states.features[0].properties.abbreviation).toEqual("AR");
+            expect($rootScope.states.features[0].properties.rate).toEqual(1061.6);
             expect($rootScope.states.features[0].properties.sex[0].name).toEqual("Female");
             expect($rootScope.states.features[0].properties.sex[0].deaths).toEqual(15304);
             expect($rootScope.states.features[0].properties.sex[0].pop).toEqual(1515348);
@@ -162,6 +163,7 @@ describe('mapService', function(){
             expect($rootScope.states.features.length).not.toBeUndefined();
             expect($rootScope.states.features[0].properties.name).toEqual("Arkansas");
             expect($rootScope.states.features[0].properties.abbreviation).toEqual("AR");
+            expect($rootScope.states.features[0].properties.rate).toEqual('901.8');
             expect($rootScope.states.features[0].properties.sex[0].name).toEqual("Female");
             expect($rootScope.states.features[0].properties.sex[0].deaths).toEqual(15304);
             expect($rootScope.states.features[0].properties.sex[0].pop).toEqual(1515348);

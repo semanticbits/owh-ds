@@ -24,6 +24,7 @@ var wonderParamCodeMap = {
             "Male": 'M',
         }
     },
+    //Map wonder query has 'sex' as filed name so added this entry to get right key 'D77.V7' for sex
     'sex': {
         "key": 'D77.V7',
         "values": {
@@ -54,6 +55,7 @@ var wonderParamCodeMap = {
     'month':'D77.V1-level2',
     'ucd-chapter-10':'D77.V2',
     'state-group':'D77.V9-level1', // Use this mapping for grouping param
+    //Map wonder query has 'states' as filed name so added this entry to get right key 'D77.V9-level1' for states
     'states-group':'D77.V9-level1', // Use this mapping for grouping param
     'state': { // Use this for filtering param
         "key":'D77.V9',
