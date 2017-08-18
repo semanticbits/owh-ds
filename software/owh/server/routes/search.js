@@ -230,6 +230,13 @@ function search(q) {
         ]).spread(function (sideFilterResults, results) {
             var resData = {};
             resData.queryJSON = q;
+            searchUtils.applySuppressions(results, preparedQuery.apiQuery.searchFor, 16);
+            var isStateFilterApplied = searchUtils.isFilterApplied(stateFilter);
+            var appliedFilters = searchUtils.findAllAppliedFilters(q.allFilters);
+            if (preparedQuery.apiQuery.searchFor === 'cancer_incident' && isStateFilterApplied && appliedFilters.length) {
+                var rules = searchUtils.createCancerIncidenceSuppressionRules()
+                searchUtils.applyCustomSuppressions(results.data.nested, rules, preparedQuery.apiQuery.searchFor);
+            }
             resData.resultData = results.data;
             resData.resultData.headers = preparedQuery.headers;
             resData.sideFilterResults = sideFilterResults;
