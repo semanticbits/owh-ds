@@ -151,7 +151,7 @@ describe("Elastic Search", function () {
         });
     });
 
-    it.only("should fetch metadata for 2015", function (){
+    it("should fetch metadata for 2015", function (){
         var natalityMetadata = require('./data/natality_matadata.json');
         var sortFn = function (a, b){
             if (a._source.filter_name > b._source.filter_name) { return 1; }

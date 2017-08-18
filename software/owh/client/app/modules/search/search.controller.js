@@ -553,7 +553,7 @@
 
                     if(markerPosition.y < 180) {
                         //change position if popup does not fit into map-container
-                        popup.options.offset = new L.Point(10, popupHeight + 110);
+                        popup.options.offset = new L.Point(10, popupHeight + 170);
                         angular.element('#chart_us_map').addClass('reverse-popup')
                     } else {
                         //revert position
@@ -588,8 +588,8 @@
 
         $scope.$on("leafletDirectiveMap.load", function (event, args) {
             var mapScaleControl = mapService.addScaleControl(sc.filters.selectedPrimaryFilter.mapData);
-            args.leafletObject.addControl(new mapExpandControl());
             args.leafletObject.addControl(new mapShareControl());
+            args.leafletObject.addControl(new mapExpandControl());
             args.leafletObject.addControl(new mapScaleControl());
         });
 

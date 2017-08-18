@@ -3,19 +3,14 @@
         <div class="custom-modal-header">
             <div>
                 <span ng-class="{'small-model-title': eg.chartData.length > 1}" ng-bind=" eg.graphTitle| translate"></span>
-                <span style="float: right" ng-if="eg.chartData.length > 1">
-                    <a class="cursor-pointer" name="close"  href="javascript:void(0);" ng-click="eg.close()">
-                        <span class="fa fa-times" title="Close graph"></span>
-                    </a>
-                </span>
                 <span style="float: right" ng-if="eg.chartData.length === 1">
                     <a name="close" href="javascript:void(0);" class="cursor-pointer" ng-click="eg.close()">
-                        <span class="fa purple-icon fa-compress" title="Minimize graph"></span>
+                        <i class="material-icons purple-icon fullscreen-exit-icon-purple" title="Share on facebook">fullscreen_exit</i>
                     </a>
                 </span>
                 <span style="float:right" class="margin-right-20" ng-if="eg.chartData.length === 1">
                     <a name="share" class="cursor-pointer" href="javascript:void(0);" ng-click="eg.showFbDialog('chart_expanded_0',  eg.graphTitle)">
-                        &nbsp; <span class="fa purple-icon fa-share-alt" title="Share on facebook"></span>
+                        &nbsp; <i class="material-icons purple-icon share-icon-purple" title="Share on facebook">share</i>
                     </a>
                 </span>
                 <span style="float: right" ng-if="eg.chartData.length === 1">

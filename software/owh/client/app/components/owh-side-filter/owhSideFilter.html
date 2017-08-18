@@ -44,11 +44,13 @@
                         <a ng-show="!sfc.filters.selectedPrimaryFilter['cat'+$index]" class="custom-link show-more-{{$index}}"
                            translate="label.show.more.filters"
                            translate-values="{showLength: (category.sideFilters.length - 2)}"
-                           ng-click="sfc.filters.selectedPrimaryFilter['cat'+$index] = !sfc.filters.selectedPrimaryFilter['cat'+$index]" href="javascript:void(0)"></a>
+                           ng-click="sfc.filters.selectedPrimaryFilter['cat'+$index] = !sfc.filters.selectedPrimaryFilter['cat'+$index]"
+                           href="javascript:void(0)"></a>
                         <a ng-show="sfc.filters.selectedPrimaryFilter['cat'+$index]" class="custom-link show-less-{{$index}}"
                            translate="label.hide.more.filters"
                            translate-values="{hideLength: (category.sideFilters.length -2)}"
-                           ng-click="sfc.filters.selectedPrimaryFilter['cat'+$index] = !sfc.filters.selectedPrimaryFilter['cat'+$index]" href="javascript:void(0)"></a>
+                           ng-click="sfc.filters.selectedPrimaryFilter['cat'+$index] = !sfc.filters.selectedPrimaryFilter['cat'+$index]"
+                           href="javascript:void(0)"></a>
                     </div>
                 </div>
             </div>
@@ -58,7 +60,7 @@
                 <div class="side-pane-div custom-div">
                     <a href="javascript:void(0)" ng-click="util.collapse = !util.collapse"
                        title="{{util.helpText | translate}}" class="custom-link">
-                        <span class="fa" ng-class="util.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
+                         <i class="material-icons chevron-right-black" ng-class="util.collapse?'shut':'open'">chevron_right</i>
                         <span translate="{{util.title}}"></span>
                     </a>
                 </div>
@@ -72,7 +74,7 @@
                                                on-change="option.onChange(option.value, option)">
                             </owh-toggle-switch>
                         </div>
-                        <br ng-if="$index === 0"/>
+                        <br ng-if="$index === 0" />
                     </div>
                 </ul>
             </span>
