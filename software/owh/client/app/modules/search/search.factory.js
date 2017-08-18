@@ -738,7 +738,7 @@
                 if (header.key == 'current_year') {
                     chartData.push(chartUtilService.lineChart(pieData, header, primaryFilter));
                 } else {//for other single filters, show pie chart
-                    chartData.push(chartUtilService.pieChart(pieData, header, primaryFilter));
+                    chartData.push(chartUtilService.plotlyPieChart(pieData, header, primaryFilter));
                 }
             }
 

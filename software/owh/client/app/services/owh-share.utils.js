@@ -4,60 +4,14 @@
         .module('owh.services')
         .service('shareUtilService', shareUtilService);
 
-    shareUtilService.$inject = ['SearchService', '$q', '$filter', 'utilService'];
+    shareUtilService.$inject = ['SearchService', '$q', '$filter', '$window', 'API'];
 
-    function shareUtilService(SearchService, $q, $filter) {
+    function shareUtilService(SearchService, $q, $filter, $window, API) {
         var service = {
             shareOnFb: shareOnFb,
             exportChart: exportChart
         };
         return service;
-
-
-        /**
-         * Exports chart as PDF or PNG
-         * @param chart
-         * @param title
-         * @param format
-         */
-        function exportChart(chart, title, format, chartdata, primaryFilters, selectedFiltersTxt) {
-            selectedFiltersTxt = selectedFiltersTxt?selectedFiltersTxt:'None';
-            var charttitle = primaryFilters.chartAxisLabel + ' by ' + title;
-            var filename = charttitle + '_' + $filter('date')(new Date(), 'yyyyMMdd-hhmmss');
-            if(format != 'PPT') {
-                getBase64ForSvg(chart).then(function (response) {
-                    if (format == 'PNG') {
-                        var link = document.createElement("a");
-                        link.download = filename + '.png';
-                        link.href = response.replace("image/png", "image/octet-stream");
-                        document.body.appendChild(link);
-                        link.click();
-
-                    } else {
-                        var doc = new jsPDF('l');
-                        doc.text(30, 25, charttitle);
-                        doc.addImage(response, 'PNG', 60, 30);
-                        doc.save(filename + '.pdf');
-                    }
-                });
-            }else {
-                var pptx = new PptxGenJS();
-                pptx.setLayout('LAYOUT_4x3');
-                var slide = pptx.addNewSlide();
-                slide.addShape(pptx.shapes.RECTANGLE, { x:'2%', y:'2%', w:'96%', h:'96%', line_size:1.5, line: '000000' });
-                if(chartdata.options.chart.type == "multiBarHorizontalChart" || chartdata.options.chart.type == "multiBarChart"){
-                    addBarChart(pptx, slide, charttitle, chartdata);
-                } else if (chartdata.options.chart.type == "pieChart"){
-                    addPieChart(pptx, slide, charttitle, chartdata);
-                } else if (chartdata.options.chart.type == "lineChart"){
-                    addLineChart(pptx, slide, charttitle, chartdata);
-                }
-
-                addFooter(pptx, slide, selectedFiltersTxt);
-                addNotesSlide(pptx, chartdata.dataset, selectedFiltersTxt);
-                pptx.save(filename);
-            }
-        }
 
         function shareOnFb(svgIndex, title, section, description, data) {
             section = section ? section : 'Mortality';
@@ -86,36 +40,83 @@
                 });
             });
         }
+
+        /**
+         * Exports chart as PPT, PDF or PNG
+         * @param chart
+         * @param title
+         * @param format
+         */
+        function exportChart(chart, title, format, chartdata, primaryFilters, selectedFiltersTxt) {
+            selectedFiltersTxt = selectedFiltersTxt?selectedFiltersTxt:'None';
+            // var charttitle = primaryFilters.chartAxisLabel + ' by ' + title;
+            var charttitle = chartdata.longtitle;
+            var filename = charttitle + '_' + $filter('date')(new Date(), 'yyyyMMdd-hhmmss');
+            var canvas;
+            if(format != 'PPT') {
+                getPNGfromSVG(chart).then(function (response) {
+                    if (format == 'PNG') {
+                        if(isIE()) {
+                            getImageCanvasForIE(response).then(function (canvas) {
+                                canvas.toBlob(function (blob) {
+                                    saveAs(blob, filename + 'file.png');
+                                }, "image/png");
+                            });
+                        } else {
+                            var link = document.createElement("a");
+                            link.download = filename + 'file.png';
+                            link.href = response.replace("image/png", "image/octet-stream");
+                            document.body.appendChild(link);
+                            link.click();
+                        }
+                    } else {
+                        var doc = new jsPDF('l');
+                        doc.text(30, 25, charttitle);
+                        doc.addImage(response, 'PNG', 60, 30);
+                        doc.save(filename + '.pdf');
+                    }
+                }, function(err){
+                    console.log(err);
+                });
+            }else {
+                var pptx = new PptxGenJS();
+                pptx.setLayout('LAYOUT_4x3');
+                var slide = pptx.addNewSlide();
+                slide.addShape(pptx.shapes.RECTANGLE, { x:'2%', y:'2%', w:'96%', h:'96%', line_size:1.5, line: '000000' });
+                if(chartdata.charttype == "multiBarHorizontalChart" || chartdata.charttype == "multiBarChart"){
+                    addBarChart(pptx, slide, chartdata.longtitle, chartdata);
+                } else if (chartdata.charttype == "pieChart"){
+                    addPieChart(pptx, slide, chartdata.longtitle, chartdata);
+                } else if (chartdata.charttype == "lineChart"){
+                    addLineChart(pptx, slide, chartdata.longtitle, chartdata);
+                }
+
+                addFooter(pptx, slide, selectedFiltersTxt);
+                addNotesSlide(pptx, chartdata.dataset, selectedFiltersTxt);
+                pptx.save(filename);
+            }
+        }
+
+
         /**
          * Converts svg to png base64 content
          * @returns {*}
          */
-        function getBase64ForSvg(buttonId) {
-            var html = d3.select("#" + buttonId + " svg")
-                .attr("version", 1.1)
-                .attr("xmlns", "http://www.w3.org/2000/svg")
-                .node().parentNode.innerHTML;
-            var imgSrc = 'data:image/svg+xml;base64,'+ btoa(html);
-            var canvas = document.createElement('canvas');
-
-            var image = new Image();
-            image.src = imgSrc;
-            var deferred = $q.defer();
-            image.onload = function() {
-                canvas.width = (image.width+50);
-                canvas.height = image.height+50;
-                canvas.getContext("2d").drawImage(image,20,20);
-                if (canvas.msToBlob) { //for IE
-                    try {
-                        deferred.resolve(canvas.msToBlob());
-                    }catch (err){
-                        console.log('"Exception on canvas.msToBlob');
-                    }
-                }else{ //for other browsers
-                    deferred.resolve(canvas.toDataURL("image/png"));
-                }
-            };
-            return deferred.promise;
+        function getPNGfromSVG(graphDiv) {
+            var div = document.getElementById(graphDiv).children[0];
+            if (isIE()){
+                var deferred = $q.defer();
+                var svg = document.getElementById(graphDiv).children[0].outerHTML;
+                SearchService.SVGtoPNG(svg).then(function (resp) {
+                    var png = resp.data;
+                    deferred.resolve(png);
+                }).catch(function (err) {
+                    deferred.reject("Unable to generate PNG");
+                });
+                return deferred.promise;
+            } else {
+                return Plotly.toImage(div, {format: 'png'});
+            }
         }
 
         // Adds a pie chart to a ppt
@@ -137,13 +138,13 @@
         // Adds a line chart to a ppt
         function addLineChart(pptx, slide, title, chartdata){
             var dataLines = [];
-            var data = chartdata.data();
+            var data = chartdata.data;
             for (var i = data.length - 1 ; i >=0 ; i-- ){
-                var line = {name: data[i].key, labels: [], values: []}
+                var line = {name: data[i].name, labels: [], values: []}
                 dataLines.push(line);
-                for (var j = data[i].values.length -1; j >=0 ; j--){
-                    line.labels.push(data[i].values[j].x);
-                    line.values.push(data[i].values[j].y);
+                for (var j = 0;  j < data[i].x.length ; j++){
+                    line.labels.push(data[i].x[j]);
+                    line.values.push(data[i].y[j]);
                 }
             }
 
@@ -162,22 +163,22 @@
             // Traverse the data in reverse order so that the bars order match in the UI and generate PPT.
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var region = chartdata.data[i];
-                var reg = {name: region.key, labels: [], values: []};
-                for (var j = region.values.length - 1 ; j >=0 ; j-- ){
-                    var value  = region.values[j];
-                    reg.labels.push(chartdata.options.chart.type == "multiBarHorizontalChart"?value.label:value.x);
-                    reg.values.push(value.y?value.y:value.value)
+                if (chartdata.charttype == 'multiBarHorizontalChart'){
+                        var reg = {name: region.name, labels: region.y, values: region.x};
+                }else{
+                        var reg = {name: region.name, labels: region.x, values: region.y};
                 }
+//                 var reg = {name: region.name, labels: region.y, values: region.x};
                 dataChartBar.push(reg);
             }
-            slide.addChart( pptx.charts.BAR, dataChartBar, { x:.2, y:.2, w:'95%', h:'85%',
+            slide.addChart( pptx.charts.BAR,dataChartBar, { x:.2, y:.2, w:'95%', h:'85%',
                 showLegend: true, legendPos: 't',
                 showLabel: true,
                 showTitle: true, title: title, titleFontSize: 20,
-                barGrouping:chartdata.options.chart.stacked?'stacked':'clustered',
+                barGrouping:chartdata.layout.barmode === 'stack'?'stacked':'clustered',
                 showValue: false,dataLabelFontSize:8,dataLabelPosition: 'outEnd',
                 //chartColors: colors
-                barDir: chartdata.options.chart.type == "multiBarHorizontalChart"?'bar':'col'
+                barDir: chartdata.charttype == "multiBarHorizontalChart"?'bar':'col'
             } );
         }
 
@@ -189,18 +190,48 @@
         function addNotesSlide(pptx, dataset, selectedFiltersTxt){
             var slide = pptx.addNewSlide();
             slide.addShape(pptx.shapes.RECTANGLE, { x:'2%', y:'2%', w:'96%', h:'96%', line_size:1.5, line: '000000'});
-            slide.addText('Notes: ', {x:'4%', y:'10%', w:'20%', font_size: 18, bold: true, underline:true});
-            slide.addText('Datasource: ', {x:'5%', y:'15%', w:'20%', font_size: 12});
-            slide.addText($filter('translate')('datadoc.datasource.'+dataset), {x:'20%', y:'15%', w:'75%', h:'15%', font_size: 11, valign: 'top', autoFit: true});
-            slide.addText('Query parameters: ', {x:'5%', y:'35%', w:'20%', font_size: 12});
-            slide.addText(selectedFiltersTxt,{x:'20%', y:'35%', w:'75%', font_size: 11, valign: 'top', autoFit: true})
-            slide.addText('Generated at:',{x:'5%', y:'40%', w:'20%', font_size: 12})
-            slide.addText($filter('date')(new Date(),'short'), {x:'20%', y:'40%', w:'75%', font_size: 11, valign: 'top', autoFit: true});
-            slide.addText('Suggested citation: ', {x:'5%', y:'45%', w:'20%', font_size: 12});
-            slide.addText($filter('translate')('datadoc.citation.'+dataset), {x:'20%', y:'45%', w:'75%', h:'10%', font_size: 11, valign: 'top', autoFit: true});
+            slide.addText('Notes: ', {x:'4%', y:'5%', w:'20%', font_size: 18, bold: true, underline:true});
+            slide.addText('Datasource: ', {x:'5%', y:'10%', w:'20%', font_size: 12});
+            slide.addText($filter('translate')('datadoc.datasource.'+dataset), {x:'20%', y:'10%', w:'75%', h:'15%', font_size: 11, valign: 'top', autoFit: true});
+            slide.addText('Query parameters: ', {x:'5%', y:'34%', w:'20%', font_size: 12});
+            slide.addText(selectedFiltersTxt,{x:'20%', y:'34%', w:'75%', font_size: 11, valign: 'top', autoFit: true})
+            slide.addText('Generated at:',{x:'5%', y:'42%', w:'20%', font_size: 12})
+            slide.addText($filter('date')(new Date(),'short'), {x:'20%', y:'42%', w:'75%', font_size: 11, valign: 'top', autoFit: true});
+            slide.addText('Suggested citation: ', {x:'5%', y:'46%', w:'20%', font_size: 12});
+            slide.addText($filter('translate')('datadoc.citation.'+dataset), {x:'20%', y:'46%', w:'75%', h:'10%', font_size: 11, valign: 'top', autoFit: true});
             slide.addText('Notes: ', {x:'5%', y:'50%', w:'20%', font_size: 12});
             slide.addText($filter('translate')('datadoc.notes.'+dataset), {x:'20%', y:'50%', w:'75%', h:'45%', font_size: 10, valign: 'top', autoFit: true});
             addFooter(pptx, slide, selectedFiltersTxt);
+        }
+
+        // Check if the client browser is IE
+        function isIE(){
+            var ms_ie = false;
+            var ua = $window.navigator.userAgent;
+            var old_ie = ua.indexOf('MSIE ');
+            var new_ie = ua.indexOf('Trident/');
+
+            if ((old_ie > -1) || (new_ie > -1)) {
+                ms_ie = true;
+            }
+            return ms_ie;
+        }
+
+        // Paint the imagedata on canvas to regenrate the image data url
+        // For some reason the image data url returned from the backend doesn't work on IE
+        function getImageCanvasForIE(imgData){
+            var deferred = $q.defer();
+            var image = new Image();
+            image.src = imgData;
+            image.onload = function () {
+                var canvas = document.createElement('canvas');
+                canvas.width = image.width;
+                canvas.height = image.height;
+                canvas.getContext('2d').drawImage(image, 0, 0);
+                deferred.resolve(canvas);
+            };
+
+            return deferred.promise;
         }
     }
 }());

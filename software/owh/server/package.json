@@ -25,6 +25,7 @@
     "request": "^2.76.0",
     "rio": "^2.4.1",
     "serve-favicon": "~2.3.0",
+    "svg2png": "^4.1.1",
     "x2js": "^3.0.1",
     "xmlbuilder": "^8.2.2"
   },

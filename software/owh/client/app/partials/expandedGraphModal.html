@@ -38,13 +38,13 @@
             <div class="usa-grid">
                 <div class="usa-width-one-whole" ng-repeat="eachChartData in eg.chartData">
                     <div class="text-center margin-top-5" ng-if="eg.chartData.length > 1">
-                        <span ng-bind="eachChartData.title | translate" class="graph-title"></span>
+                        <span ng-bind="eachChartData.layout.title" class="graph-title"></span>
                         <a name="share" class="font-20 cursor-pointer" href="javascript:void(0);" ng-click="eg.showFbDialog('chart_expanded_'+$index, eachChartData.title, 'YRBS by', eg.graphTitle)">
                             &nbsp; Share on Facebook
                             <i class="material-icons" title="{{'label.share.on.fb' | translate}}">share</i>
                         </a>
                     </div>
-                    <nvd3 id="chart_expanded_{{$index}}" options='eachChartData.options' data='eachChartData.data'></nvd3>
+                    <plotly id="chart_expanded_{{$index}}" plotly-data="eachChartData.data" plotly-layout="eachChartData.layout" plotly-options=eachChartData.options></plotly>
                 </div>
             </div>
         </div>

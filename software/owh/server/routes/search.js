@@ -9,6 +9,7 @@ var qc = require('../api/queryCache');
 var dsmetadata = require('../api/dsmetadata');
 var Q = require('q');
 var config = require('../config/config');
+var svgtopng = require('svg2png');
 
 var queryCache = new qc();
 
@@ -68,6 +69,17 @@ var searchRouter = function(app, rConfig) {
             res.send( new result('OK', resp, "success") );
         }, function (err) {
             res.send(new result('Error retrieving dataset metadata', err, "failed"));
+        });
+    });
+
+
+    app.post('/svgtopng', function (req, res) {
+        svgtopng(req.body.svg).then(function (png) {
+            var response = 'data:image/png;base64,' + new Buffer(png, 'binary').toString('base64');
+            res.send(new result('OK', response, "success"));
+        }).catch(function (err) {
+            console.log(err);
+            res.send(new result('Error converting to PNG: ' + err));
         });
     });
 };

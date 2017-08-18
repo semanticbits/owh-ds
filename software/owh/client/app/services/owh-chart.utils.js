@@ -10,32 +10,95 @@
         var service = {
             horizontalStack: horizontalStack,
             verticalStack: verticalStack,
-            pieChart: pieChart,
+            pieChart: plotlyPieChart,
+            plotlyPieChart: plotlyPieChart,
             horizontalBar:	horizontalBar,
             verticalBar: verticalBar,
             //bulletBar: bulletBar,
             HorizontalChart : horizontalChart,
             verticalChart : verticalChart,
-            lineChart : lineChart,
-            multiLineChart: multiLineChart,
+            lineChart : plotlyLineChart,
+            multiLineChart: plotlyMultiLineChart,
             showExpandedGraph: showExpandedGraph
         };
         return service;
 
+        // plotly layout for quick view
+        function quickChartLayout(chartdata){
+                return {
+                    width: 350,
+                    height: 300,
+                    showlegend: false,
+                    margin: {l:10, r:10, b:10, t:20},
+                    xaxis: {visible: false, title: chartdata.options.chart.xAxis.axisLabel,titlefont:{size: 16}, exponentformat: 'none', tickangle: 45, },
+                    yaxis: {visible: false, title: chartdata.options.chart.yAxis.axisLabel,titlefont:{size: 16}, exponentformat: 'none', tickangle: -45, ticksuffix: '   '}
+                }       
+        }
+
+        function getSelectedOptionTitlesOfFilter(filter) {
+            var options = [];
+            //filters options with checkboxes
+            if (angular.isArray(filter.value)) {
+                angular.forEach(filter.value, function (optionKey) {
+                    var option = utilService.findByKeyAndValue(filter.autoCompleteOptions, 'key', optionKey);
+                    options.push(option.title);
+                });
+            } else {//for filters with radios
+                var option = utilService.findByKeyAndValue(filter.autoCompleteOptions, 'key', filter.value);
+                options.push(option.title);
+            }
+
+            return options.join(', ');
+        }
+
+        function getLongChartTitle(primaryFilter, filter1, filter2){
+             var chartVars;
+             if (filter2){
+                chartVars= $translate.instant("label.title."+filter1.key+ "."+filter2.key);
+             }else{
+                chartVars= $translate.instant("label.filter."+filter1.key);
+             }
+              
+            var measure = $translate.instant('chart.title.measure.'+(primaryFilter.tableView?primaryFilter.tableView:primaryFilter.key));
+            var statefilter;
+            var yearfilter;
+            angular.forEach(primaryFilter.allFilters, function(filter){
+                if (filter.key === 'state'){
+                     if(filter.value.length > 3){
+                         statefilter = 'selected States';
+                     } else if(filter.value.length > 0){
+                         statefilter = getSelectedOptionTitlesOfFilter(filter);
+                     } else {
+                         statefilter = 'US'
+                     }
+                } else if (filter.key === 'year'){
+                     if(filter.value.length > 3){
+                       yearfilter = 'selected Years';
+                     }else if(filter.value.length > 0){
+                        yearfilter = getSelectedOptionTitlesOfFilter(filter);
+                     } else{
+                        yearfilter = filter.autoCompleteOptions[filter.autoCompleteOptions.length-1].title+ ' - ' + filter.autoCompleteOptions[0].title ;
+                     }
+                } 
+            });
+
+            return measure+ ' by ' + chartVars + ' in '+ statefilter+' for '+yearfilter;
+        }
+
         function horizontalStack(filter1, filter2, data, primaryFilter, postFixToTooltip) {
-            return horizontalChart(filter1, filter2, data, primaryFilter, true, postFixToTooltip);
+            return plotlyHorizontalChart(filter1, filter2, data, primaryFilter, true, postFixToTooltip);
         }
 
         function verticalStack(filter1, filter2, data, primaryFilter) {
-            return verticalChart(filter1, filter2, data, primaryFilter, true);
+            return plotlyVerticalChart(filter1, filter2, data, primaryFilter, true);
         }
 
         function horizontalBar(filter1, filter2, data, primaryFilter, postFixToTooltip) {
-            return horizontalChart(filter1, filter2, data, primaryFilter, false, postFixToTooltip);
+            return plotlyHorizontalChart(filter1, filter2, data, primaryFilter, false, postFixToTooltip);
         }
 
         function verticalBar(filter1, filter2, data, primaryFilter) {
-            return verticalChart(filter1, filter2, data, primaryFilter, false);
+            return plotlyVerticalChart(filter1, filter2, data, primaryFilter, false);
         }
 
         /**
@@ -87,6 +150,98 @@
             }
         }
 
+
+        function plotlyHorizontalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip){
+            var chartdata = horizontalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip);
+
+            var layout = quickChartLayout(chartdata);
+            layout.barmode = stacked?'stack':'bar';
+            var plotydata = [];
+            for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
+                var trace = chartdata.data[i];
+                var reg = {name: trace.key, x: [], y: [], text: [], orientation: 'h', type: 'bar', hoverinfo: 'text', hoverlabel:{font:{size:14}}};
+                for (var j = trace.values.length - 1 ; j >=0 ; j-- ){
+                    var value  = trace.values[j];
+                    reg.y.push(value.label);
+                    reg.x.push(value.value);
+                    reg.text.push(trace.key+':'+value.label+':'+value.value.toLocaleString());
+                }
+                plotydata.push(reg);
+            }
+            return { charttype:chartdata.options.chart.type, title: chartdata.title, longtitle: getLongChartTitle(primaryFilter, filter1, filter2), dataset: chartdata.dataset, data:plotydata, layout: layout, options: {displayModeBar: false}};
+        }
+
+        function plotlyVerticalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip){
+            var chartdata = verticalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip);
+            var layout = quickChartLayout(chartdata);
+            layout.barmode = stacked?'stack':'bar';
+            var plotydata = [];
+            for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
+                var trace = chartdata.data[i];
+                var reg = {name: trace.key, x: [], y: [], text: [], orientation: 'v', type: 'bar', hoverinfo: 'text', hoverlabel:{font:{size:14}}};
+                for (var j = trace.values.length - 1 ; j >=0 ; j-- ){
+                    var value  = trace.values[j];
+                    reg.x.push(value.x);
+                    reg.y.push(value.y);
+                    reg.text.push(trace.key+':'+value.x+':'+value.y.toLocaleString());
+
+                }
+                plotydata.push(reg);
+            }
+            return { charttype:chartdata.options.chart.type, title:chartdata.title, longtitle: getLongChartTitle(primaryFilter, filter1, filter2), dataset: chartdata.dataset, data:plotydata, layout: layout, options: {displayModeBar: false}};
+        }
+
+        function plotlyLineChart(data, filter, primaryFilter){
+            var chartdata = lineChart (data, filter, primaryFilter);
+            var layout = quickChartLayout(chartdata);
+            var linedata = chartdata.data();
+            var plotydata = {name: linedata[0].key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'text', hoverlabel:{font:{size:14}}};
+            for (var i = linedata[0].values.length -1 ; i >= 0 ; i-- ){
+                var value  = linedata[0].values[i];
+                plotydata.x.push(value.x);
+                plotydata.y.push(value.y);
+                plotydata.text.push(linedata[0].key+':'+value.x+':'+value.y.toLocaleString());
+            }
+            return { charttype:chartdata.options.chart.type, title: chartdata.title, longtitle: getLongChartTitle(primaryFilter, filter), dataset: chartdata.dataset, data:[plotydata], layout: layout, options: {displayModeBar: false}};
+        }
+
+        function plotlyMultiLineChart(data, primaryFilter){
+            var chartdata = multiLineChart (data, primaryFilter);
+            var layout = quickChartLayout(chartdata);
+            var linedata = chartdata.data();
+            var plotlydata = [];
+            for (var j = linedata.length -1 ; j >=0; j-- ){
+                var series = linedata[j];
+                var plotlyseries= {name: series.key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'text', hoverlabel:{font:{size:14}}};
+                for (var i = series.values.length -1 ; i >= 0 ; i-- ){
+                    var value  = series.values[i];
+                    plotlyseries.x.push(value.x);
+                    plotlyseries.y.push(value.y);
+                    plotlyseries.text.push(linedata[0].key+':'+value.x+':'+value.y.toLocaleString());
+                }
+                plotlydata.push(plotlyseries) ;
+            }
+            return { charttype:chartdata.options.chart.type, title: chartdata.title, longtitle: getLongChartTitle(primaryFilter), dataset: chartdata.dataset, data:plotlydata, layout: layout, options: {displayModeBar: false}};
+        }
+
+        function  plotlyPieChart(data, filter, primaryFilter, postFixToTooltip ) {
+            var chartdata  = pieChart(data, filter, primaryFilter, postFixToTooltip);
+
+            var layout = quickChartLayout(chartdata);
+            var plotydata = [];
+            for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
+                var trace = chartdata.data[i];
+                var reg = {name: trace.label, x: [], y: [], text: [], orientation: 'h', type: 'bar', hoverinfo: 'text', hoverlabel:{font:{size:14}}};
+                    reg.y.push(trace.label); 
+                    reg.x.push(trace.value);
+                    reg.text.push(trace.label+':'+trace.value.toLocaleString());
+                
+                plotydata.push(reg);
+            }
+            return { charttype:chartdata.options.chart.type, title: chartdata.title, longtitle: getLongChartTitle(primaryFilter, filter, null), dataset: chartdata.dataset, data:plotydata, layout: layout, options: {displayModeBar: false}};
+
+        }
+
         /*Multi Bar Horizontal Chart*/
         function horizontalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip) {
 
@@ -94,7 +249,7 @@
             var chartData = {
                 data: [],
                 dataset: primaryFilter.key,
-                title: "label.title."+filter1.key+"."+filter2.key,
+                title:  $translate.instant("label.title."+filter1.key+"."+filter2.key),
                 options: {
                     "chart": {
                         "type": "multiBarHorizontalChart",
@@ -117,14 +272,14 @@
                         y: function(d){return d.value;},
                         "xAxis": {
                             "axisLabelDistance": -20,
-                            "axisLabel": $translate.instant(filter2.title),
+                            "axisLabel": getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel),
                             tickFormat:function () {
                                 return null;
                             },
                             "showMaxMin": false
                         },
                         "yAxis": {
-                            "axisLabel": getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel),
+                            "axisLabel": $translate.instant(filter2.title),
                             tickFormat:function () {
                                 return null;
                             }
@@ -270,7 +425,7 @@
             var chartData = {
                 data: [],
                 dataset: primaryFilter.key,
-                title: "label.title."+filter1.key+"."+filter2.key,
+                title: $translate.instant("label.title."+filter1.key+"."+filter2.key),
                 options: {
                     "chart": {
                         "type": "multiBarChart",
@@ -381,7 +536,7 @@
             var chartData = {
                 data: [],
                 dataset: primaryFilter.key,
-                title: "label.graph."+filter.key,
+                title: $translate.instant("label.graph."+filter.key),
                 options: {
                     "chart": {
                         "type": "lineChart",
@@ -505,7 +660,7 @@
                     }
                 },
                 dataset: primaryFilter.key,
-                title: 'label.title.' + chart.headers[0].key + '.' + chart.headers[1].key,
+                title: $translate.instant('label.title.' + chart.headers[0].key + '.' + chart.headers[1].key),
                 options: {
                     chart: {
                         type: "lineChart",
@@ -581,7 +736,7 @@
             var chartData = {
                 data: [],
                 dataset: primaryFilter.key,
-                title: "label.graph."+filter.key,
+                title:  $translate.instant("label.filter."+filter.key),
                 options: {
                     chart: {
                         type: 'pieChart',
@@ -595,6 +750,13 @@
                         },
                         x: function(d){ return d.label; },
                         y: function(d){ return d.value; },
+                        yAxis: {
+                            axisLabel: $translate.instant("label.filter."+filter.key),
+                            
+                        },
+                        xAxis: {
+                            axisLabel: $translate.instant('chart.title.measure.'+(primaryFilter.tableView?primaryFilter.tableView:primaryFilter.key)),                            
+                        },
                         showValues: false,
                         showLabels: false,
                         transitionDuration: 250,
@@ -649,30 +811,15 @@
             return chartData;
         }
 
-        function countBars(data) {
-            var count = 0;
-            for (var i = 0; i < data.length; i++) {
-                if (Array.isArray(data[i].values)) {
-                    count += countBars(data[i].values);
-                }
-                else {
-                    count++;
-                }
+        function countBars(data, stacked) {
+            if(stacked){
+                return data[0].x.length
+            }                
+            else {
+                 return data[0].x.length * data.length;
             }
-
-            return count;
         }
 
-        function countStackedBars(data) {
-            var count = 0;
-            for (var i = 0; i < data.length; i++) {
-                if (Array.isArray(data[i].values)) {
-                    count = Math.max(count, countBars(data[i].values));
-                }
-            }
-
-            return Math.max(count, data.length);
-        }
 
         /*Show expanded graphs with whole set of features*/
         function showExpandedGraph(chartData, tableView, graphTitle, graphSubTitle,
@@ -681,107 +828,93 @@
             /**
              * Update chart dimensions and data
              */
-            var updateChart = function (chartData, tableView) {
-                var allExpandedChartDatas = [];
+            var updateChart = function (chartdata, tableView) {
+
                 graphTitle = graphTitle ? graphTitle : (chartData.length > 1? 'label.graph.expanded': chartData[0].title);
+                var expandedChartData = [];
                 angular.forEach(chartData, function(eachChartData) {
-                    var barsCount = eachChartData.options.chart.stacked ? countStackedBars(eachChartData.data) : countBars(eachChartData.data);
+                        var layout = utilService.clone(eachChartData.layout);
+                        // Set chart title
+                       layout.title = eachChartData.longtitle;
+                       layout.width = 1100;
+                       layout.height = 750;
+                       layout.showlegend= true;
+                       layout.legend ={orientation: "v",
+                           x: 1.01,
+                           y: .5
+                       };
+                       layout.margin = {l:200, r:250, b:200, t:100};
+                       layout.xaxis.visible= true;
+                       layout.yaxis.visible= true;
 
-                    var expandedChartData = angular.copy(eachChartData);
-                    /*Update chartData options*/
+                        // Update charts width/height based on the number of bars
+                       if (eachChartData.charttype === "multiBarChart") {
+                           layout.width = Math.max(1100, countBars(eachChartData.data,layout.barmode === 'stack') * 25);
+                       }
+                       else if (eachChartData.charttype === "multiBarHorizontalChart") {
+                            layout.height = Math.max(750, countBars(eachChartData.data,layout.barmode === 'stack') * 25);
+                       }
+                       if(tableView && tableView.indexOf('rate') >= 0) {
+                            layout.barmode = 'bar';
+                       }
 
-                    expandedChartData.options.chart.height = 500;
-                    expandedChartData.options.chart.width = 750;
+                       // Set margins 
+//                         if(eachChartData.charttype === 'multiBarHorizontalChart') {
+//                        layout.margin.t = 30;
+//                        layout.margin.r = 40;
+//                        layout.margin.b = 120;
+//                         if(eachChartData.title === 'label.title.agegroup.autopsy' ||
+//                             eachChartData.title === 'label.title.race.hispanicOrigin') {
+//                            layout.margin.l =
+//                                 (eachChartData.title === 'label.title.race.hispanicOrigin')?160:100;
+//                            layout.height = 550;
+// //                             eachChartData.options.chart.showValues = false;
+//                         } if(eachChartData.title === 'label.title.yrbsSex.yrbsRace' ) {
+//                            layout.margin.l = 210;
+//                         } else {
+//                            layout.margin.l = 200;
+//                         }
+//                     } else if(eachChartData.charttype === 'multiBarChart') {
+// //                         eachChartData.options.chart.xAxis.axisLabelDistance = 70;
+//                        layout.margin.t = 30;
+//                        layout.margin.r = 20;
+//                        layout.margin.b = 120;
+//                        layout.margin.l = 120;
+//                         if(eachChartData.title === 'label.title.gender.placeofdeath') {
+// //                             eachChartData.options.chart.wrapLabels=true;
+// //                             eachChartData.options.chart.rotateLabels=0;
+//                            layout.margin.b = 110;
+// //                             eachChartData.options.chart.staggerLabels = false;
+//                         }else if (eachChartData.title==='label.title.gender.hispanicOrigin' ||
+//                             eachChartData.title==='label.title.agegroup.hispanicOrigin' ) {
+// //                             eachChartData.options.chart.yAxis.axisLabelDistance = 30;
+//                            layout.height = 600;
+//                            layout.margin.b = 200;
+//                         }
+//                     } else if (eachChartData.charttype === 'pieChart') {
+//                         if(eachChartData.title === 'label.graph.yrbsGrade') {
+// //                             eachChartData.options.chart.legend.margin.right = 130;
+// //                             eachChartData.options.chart.legend.margin.top = 30;
+//                         }
+//                     } else if (eachChartData.charttype === 'lineChart') {
+//                        layout.margin.l = 85;
+//                        layout.margin.b = 50;
+// //                         eachChartData.options.chart.xAxis.axisLabelDistance = 5;
+// //                         eachChartData.options.chart.yAxis.axisLabelDistance = 20;
+//
+// //                         eachChartData.options.chart.yAxis.tickFormat = function (d) {
+// //                             if (isNaN(d)) {
+// //                                 return d;
+// //                             }
+// //                             return d3.format(',f')(d);
+// //                         };
+//                     }
+                    expandedChartData.push({layout:layout, dataset:eachChartData.dataset, data: eachChartData.data, longtitle: eachChartData.longtitle});
 
-                    if (eachChartData.options.chart.type === "multiBarChart") {
-                        expandedChartData.options.chart.width = Math.max(750, barsCount * 15);
-                    }
-                    else if (eachChartData.options.chart.type === "multiBarHorizontalChart") {
-                        expandedChartData.options.chart.height = Math.max(500, barsCount * 15);
-                    }
-
-                    expandedChartData.options.chart.showLegend = true;
-                    //If Rates selected then not enabling controls(grouped, stacked) for expanded visualizations and default view set to grouped.
-                    if(tableView && tableView.indexOf('rate') >= 0) {
-                        expandedChartData.options.chart.stacked = false;
-                    }
-                    else {
-                        expandedChartData.options.chart.showControls = true;
-                    }
-                    expandedChartData.options.chart.showValues = true;
-                    expandedChartData.options.chart.showXAxis = true;
-                    expandedChartData.options.chart.showYAxis = true;
-
-                    if (eachChartData.options.chart.type !== 'pieChart' && eachChartData.options.chart.type !== 'lineChart') {
-                        expandedChartData.options.chart.xAxis.tickFormat = function (d) {
-                            if (isNaN(d)) {
-                                return d;
-                            }
-                            return d3.format(',f')(d);
-                        };
-                        expandedChartData.options.chart.yAxis.tickFormat = function (d) {
-                            if (isNaN(d)) {
-                                return d;
-                            }
-                            return d3.format(',f')(d);
-                        };
-                        expandedChartData.options.chart.yAxis.axisLabelDistance = 10;
-                        expandedChartData.options.chart.xAxis.axisLabelDistance = 120;
-                    }
-                    if(eachChartData.options.chart.type === 'multiBarHorizontalChart') {
-                        expandedChartData.options.chart.margin.top = 20;
-                        expandedChartData.options.chart.margin.right = 40;
-                        expandedChartData.options.chart.margin.bottom = 120;
-                        if(expandedChartData.title === 'label.title.agegroup.autopsy' ||
-                            expandedChartData.title === 'label.title.race.hispanicOrigin') {
-                            expandedChartData.options.chart.margin.left =
-                                (expandedChartData.title === 'label.title.race.hispanicOrigin')?160:100;
-                            expandedChartData.options.chart.height = 550;
-                            expandedChartData.options.chart.showValues = false;
-                        } if(expandedChartData.title === 'label.title.yrbsSex.yrbsRace' ) {
-                            expandedChartData.options.chart.margin.left = 210;
-                        } else {
-                            expandedChartData.options.chart.margin.left = 200;
-                        }
-                    } else if(eachChartData.options.chart.type === 'multiBarChart') {
-                        expandedChartData.options.chart.xAxis.axisLabelDistance = 70;
-                        expandedChartData.options.chart.margin.top = 20;
-                        expandedChartData.options.chart.margin.right = 20;
-                        expandedChartData.options.chart.margin.bottom = 120;
-                        expandedChartData.options.chart.margin.left = 120;
-                        if(expandedChartData.title === 'label.title.gender.placeofdeath') {
-                            expandedChartData.options.chart.wrapLabels=true;
-                            expandedChartData.options.chart.rotateLabels=0;
-                            expandedChartData.options.chart.margin.bottom = 110;
-                            expandedChartData.options.chart.staggerLabels = false;
-                        }else if (expandedChartData.title==='label.title.gender.hispanicOrigin' ||
-                            expandedChartData.title==='label.title.agegroup.hispanicOrigin' ) {
-                            expandedChartData.options.chart.yAxis.axisLabelDistance = 30;
-                            expandedChartData.options.chart.height = 600;
-                            expandedChartData.options.chart.margin.bottom = 200;
-                        }
-                    } else if (eachChartData.options.chart.type === 'pieChart') {
-                        if(expandedChartData.title === 'label.graph.yrbsGrade') {
-                            expandedChartData.options.chart.legend.margin.right = 130;
-                            expandedChartData.options.chart.legend.margin.top = 30;
-                        }
-                    } else if (eachChartData.options.chart.type === 'lineChart') {
-                        expandedChartData.options.chart.margin.left = 85;
-                        expandedChartData.options.chart.margin.bottom = 50;
-                        expandedChartData.options.chart.xAxis.axisLabelDistance = 5;
-                        expandedChartData.options.chart.yAxis.axisLabelDistance = 20;
-
-                        expandedChartData.options.chart.yAxis.tickFormat = function (d) {
-                            if (isNaN(d)) {
-                                return d;
-                            }
-                            return d3.format(',f')(d);
-                        };
-                    }
-                    allExpandedChartDatas.push(expandedChartData);
                 });
-                return allExpandedChartDatas;
-            };
+
+                return expandedChartData;
+            }
 
             // Just provide a template url, a controller and call 'showModal'.
             ModalService.showModal({
