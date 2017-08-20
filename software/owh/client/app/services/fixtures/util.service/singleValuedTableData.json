@@ -464,7 +464,7 @@
         ],
         "donotshowOnSearch": true,
         "selectTitle": "select.label.yrbs.filter.question",
-        "iconClass": "fa fa-pie-chart purple-text",
+        "iconClass": "purple-text",
         "selectedValues": [
           {
             "id": "Current alcohol use",
@@ -624,7 +624,7 @@
           "rowspan": 1,
           "colspan": 1,
           "key": "Current alcohol use",
-          "iconClass": "fa fa-pie-chart purple-text"
+          "iconClass": "purple-text"
         },
         {
           "title": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>58",

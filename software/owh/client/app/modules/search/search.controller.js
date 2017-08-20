@@ -521,12 +521,12 @@
         //builds marker popup.
         sc.mapPopup = L.popup({autoPan:false, closeButton:false});
         sc.currentFeature = {};
-        function buildMarkerPopup(lat, lng, properties, map, tableView, markerPosition) {
+        function buildMarkerPopup(lat, lng, properties, map, key, markerPosition) {
             var childScope = $scope.$new();
             childScope.lat = lat;
             childScope.lng = lng;
             childScope.properties = properties;
-            childScope.tableView = tableView;
+            childScope.key = key;
             var ele = angular.element('<div></div>');
             ele.html($templateCache.get('app/partials/marker-template.html'));
             var compileEle = $compile(ele.contents())(childScope);
@@ -553,7 +553,7 @@
 
                     if(markerPosition.y < 180) {
                         //change position if popup does not fit into map-container
-                        popup.options.offset = new L.Point(10, popupHeight + 110);
+                        popup.options.offset = new L.Point(10, popupHeight + 170);
                         angular.element('#chart_us_map').addClass('reverse-popup')
                     } else {
                         //revert position
@@ -588,8 +588,8 @@
 
         $scope.$on("leafletDirectiveMap.load", function (event, args) {
             var mapScaleControl = mapService.addScaleControl(sc.filters.selectedPrimaryFilter.mapData);
-            args.leafletObject.addControl(new mapExpandControl());
             args.leafletObject.addControl(new mapShareControl());
+            args.leafletObject.addControl(new mapExpandControl());
             args.leafletObject.addControl(new mapScaleControl());
         });
 

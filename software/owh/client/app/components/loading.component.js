@@ -15,7 +15,7 @@
             {
                 element.append('<div class="ie-loading"><div class="loading-message">Loading...</div></div>');
             } else {
-                var spinner = new Spinner({radius:20, width:8, length: 10}).spin();
+                var spinner = new Spinner({radius:20, width:8, length: 10, color:'#6f399a'}).spin();
                 element.append(spinner.el);
             }
 

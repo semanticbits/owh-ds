@@ -607,7 +607,7 @@
       "helpText":"label.help.text.yrbs.question",
       "selectTitle": "select.label.yrbs.filter.question",
       "updateTitle": "update.label.yrbs.filter.question",
-      "iconClass": "fa fa-pie-chart purple-text"
+      "iconClass": "purple-text"
     }
   ],
   "columnHeaders": [],
