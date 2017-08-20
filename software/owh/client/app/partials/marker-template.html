@@ -10,10 +10,12 @@
             <div class="usa-width-one-whole margin-top-5" ng-repeat="eachCat in properties.sex">
                 <div class="usa-width-two-thirds marker-label" ng-bind="eachCat.name | GenderTitle"></div>
                 <div class="usa-width-one-third">
-                    <span ng-if="eachCat[tableView] !== 'suppressed'"
-                          ng-bind="eachCat[tableView] | number"></span>
-                    <span ng-if="eachCat[tableView] === 'suppressed'">Suppressed</span>
-                    <span ng-if="!eachCat[tableView] || eachCat[tableView] == 'na'"
+                    <span ng-if="eachCat.deaths !== 'suppressed' && ( properties.tableView === 'crude_death_rates' || properties.tableView === 'age-adjusted_death_rates')"
+                          ng-bind="eachCat['rate']"></span>
+                    <span ng-if="eachCat.deaths !== 'suppressed' && properties.tableView !== 'crude_death_rates' && properties.tableView !== 'age-adjusted_death_rates' "
+                          ng-bind="eachCat[key] | number"></span>
+                    <span ng-if="eachCat[key] === 'suppressed'">Suppressed</span>
+                    <span ng-if="!eachCat[key] || eachCat[key] == 'na'"
                           ng-bind="'label.not.available' | translate"></span>
                 </div>
             </div>
