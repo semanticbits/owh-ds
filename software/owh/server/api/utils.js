@@ -183,7 +183,7 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
  */
 function suppressCounts (obj, countKey, dataType, suppressKey, maxValue) {
     var key = suppressKey ? suppressKey : countKey;
-    var value = maxValue ? maxValue : 10;
+    var value = maxValue !== undefined ? maxValue : 10;
     for (var property in obj) {
         if (property === 'name') {
             continue;
