@@ -5,14 +5,6 @@ node_js:
 services:
   - docker
 
-cache:
-  directories:
-  - node_modules
-  - software/owh/server/node_modules
-  - software/owh/client/node_modules
-  - bower_components
-  - software/owh/client/bower_components
-
 addons:
   code_climate:
     repo_token: aa4bb84528f703e93a68f03079e9870898d452659e9498bbba8fb043c66e3083
