@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 8
+  - "node"
   
 services:
   - docker
@@ -24,7 +24,7 @@ before_install:
 
 install:
   - cd software/owh/server
-  - node -v
+  - node --version
   - npm install
   - npm install --dev
   - cd  ../client
