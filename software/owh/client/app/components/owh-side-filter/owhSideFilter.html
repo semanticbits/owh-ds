@@ -26,7 +26,7 @@
                             <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
                                class="custom-link" title="{{group.helpText | translate}}">
                                 <div class="sidebar-chevron">
-                                    <i class="material-icons"
+                                    <i class="material-icons chevron-right-black"
                                        ng-class="sideFilter.collapse?'shut':'open'">chevron_right</i>
                                  </div>
                             <span translate="{{group.title}}" class="filter-display-name"></span>
@@ -87,7 +87,7 @@
                             <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
                                title="{{group.helpText | translate}}" class="custom-link">
                                 <div class="sidebar-chevron">
-                                    <i class="material-icons"
+                                    <i class="material-icons chevron-right-black"
                                        ng-class="sideFilter.collapse?'shut':'open'">chevron_right</i>
                                  </div>
                                 <span translate="{{group.title}}" class="filter-display-name"></span>
@@ -157,7 +157,7 @@
                             <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
                                title="{{group.helpText | translate}}" class="custom-link">
                                 <div class="sidebar-chevron">
-                                    <i class="material-icons"
+                                    <i class="material-icons chevron-right-black"
                                        ng-class="sideFilter.collapse?'shut':'open'">chevron_right</i>
                                  </div>
                                 <span translate="{{group.title}}" class="filter-display-name"></span>
@@ -250,7 +250,7 @@
                 <span ng-class="{ 'disabled-filter': !sfc.isVisible(sideFilter) }" ng-if="group.filterType === 'site'">
                     <div class="side-pane-label custom-div">
                         <div class="sidebar-chevron left-float padding-left-5">
-                            <span class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
+                            <i class="material-icons chevron-right-black" ng-class="sideFilter.collapse?'shut':'open'">chevron_right</i>
                         </div>
                         <div class="left-float sidebar-filter-label">
                             <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse" title="{{group.helpText | translate}}" class="custom-link">
@@ -296,7 +296,7 @@
                         <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
                            title="{{group.helpText | translate}}" class="custom-link">
                             <div class="sidebar-chevron">
-                                    <i class="material-icons"
+                                    <i class="material-icons chevron-right-black"
                                        ng-class="sideFilter.collapse?'shut':'open'">chevron_right</i>
                                  </div>
                             <span translate="{{group.title}}" class="filter-display-name"></span>
@@ -372,7 +372,7 @@
                             <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
                                title="{{group.helpText | translate}}" class="custom-link">
                                 <div class="sidebar-chevron">
-                                    <i class="material-icons"
+                                    <i class="material-icons chevron-right-black"
                                        ng-class="sideFilter.collapse?'shut':'open'">chevron_right</i>
                                  </div>
                                 <span translate="{{group.title}}" class="filter-display-name"></span>
@@ -482,8 +482,8 @@
                                        ng-init="title = option.title">
                                     <a id="Hispanic" href="javascript:void(0)" title="option.title"
                                        ng-click="option.collapse = !option.collapse" class="custom-link">
-                                        <span class="fa"
-                                              ng-class="option.collapse ? 'fa-chevron-right':'fa-chevron-down'"></span>
+                                         <i class="material-icons chevron-right-black"
+                                            ng-class="option.collapse?'shut':'open'">chevron_right</i>
                                         <!--<span translate="{{group.title}}"></span>-->
                                         <span class="count-label" translate="{{title}}"></span>
                                     </a>
@@ -540,7 +540,7 @@
                             <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse"
                                title="{{group.helpText | translate}}" class="custom-link">
                                 <div class="sidebar-chevron">
-                            <i class="material-icons" ng-class="sideFilter.collapse?'shut':'open'">chevron_right</i>
+                            <i class="material-icons chevron-right-black" ng-class="sideFilter.collapse?'shut':'open'">chevron_right</i>
                         </div>
                             <span translate="{{group.title}}" class="filter-display-name"></span>
                         </a>
@@ -674,7 +674,7 @@
                  <div class="side-pane-div custom-div">
                         <a href="javascript:void(0)" ng-click="util.collapse = !util.collapse"
                            title="{{util.helpText | translate}}" class="custom-link">
-                        <span class="fa" ng-class="util.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
+                         <i class="material-icons chevron-right-black" ng-class="util.collapse?'shut':'open'">chevron_right</i>
                         <span translate="{{util.title}}"></span>
                     </a>
                  </div>

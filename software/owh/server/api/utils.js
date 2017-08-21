@@ -601,6 +601,76 @@ function getAllSelectedFilterOptions(q, apiQuery) {
     return allOptions;
 }
 
+function isFilterApplied (filter) {
+    var value = Array.isArray(filter.value) ? filter.value.length > 0 : !!filter.value;
+    var groupBy = !!filter.groupBy;
+    return value || groupBy;
+}
+
+function findAllAppliedFilters (allFilters) {
+    return allFilters.reduce(function (applied, filter) {
+        if ([ 'current_year', 'state' ].indexOf(filter.key) !== -1) return applied
+        if (isFilterApplied(filter)) return applied.concat(filter.key)
+        return applied
+    }, [])
+}
+
+function recursivelySuppressOptions (tree, countKey, suppressionValue) {
+    for (var prop in tree) {
+        if (prop === countKey) {
+            tree[prop] = suppressionValue;
+        } else if (Array.isArray(tree[prop])) {
+            tree[prop].forEach(function (node) {
+                recursivelySuppressOptions(node, countKey, suppressionValue);
+            });
+        }
+
+    }
+}
+
+function searchTree (root, rule, config, path) {
+    var containsRule = rule.every(function (value) {
+      return path.indexOf(value) !== -1;
+    });
+    if (containsRule) recursivelySuppressOptions(root, config.countKey, config.suppressionValue)
+    for (var property in root) {
+        if (Array.isArray(root[property])) {
+            root[property].forEach(function (option) {
+                searchTree(option, rule, config, path.concat([option.name]))
+            })
+        }
+    }
+}
+
+function createCancerIncidenceSuppressionRules () {
+    return [
+        [ ['American Indian/Alaska Native'], ['DE','GA','IL','KS','KY','MO','NJ','NY','SC'] ],
+        [ ['Asian or Pacific Islander'], ['DE', 'IL', 'KS', 'KY', 'MO', 'SC'] ],
+        [ ['Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown'], ['DE', 'KY', 'MA', 'MO', 'PA', 'SC'] ]
+    ].reduce(function (acc, rule) {
+        return acc.concat(create_rules(rule[0], rule[1]))
+    }, [])
+
+    function create_rules (f1options, f2options) {
+        return f1options.reduce(function (accu, f1option) {
+            return accu.concat(f2options.map(function (f2option) {
+                return [f1option, f2option];
+            }));
+        }, []);
+    }
+}
+
+function applyCustomSuppressions (data, rules, countKey) {
+    rules.forEach(function (rule) {
+        searchTree(data.table, rule, { countKey: countKey, suppressionValue: 'suppressed' }, [])
+    })
+    rules.forEach(function (rule) {
+        data.charts.forEach(function (chart) {
+            searchTree(chart, rule, { countKey: countKey, suppressionValue: 0 }, []);
+        });
+    });
+}
+
 module.exports.populateDataWithMappings = populateDataWithMappings;
 module.exports.populateYRBSData = populateYRBSData;
 module.exports.mergeAgeAdjustedRates = mergeAgeAdjustedRates;
@@ -612,3 +682,9 @@ module.exports.getYearFilter = getYearFilter;
 module.exports.mapAndGroupOptionResults = mapAndGroupOptionResults;
 module.exports.getAllSelectedFilterOptions = getAllSelectedFilterOptions;
 module.exports.suppressStateTotals = suppressStateTotals;
+module.exports.isFilterApplied = isFilterApplied;
+module.exports.findAllAppliedFilters = findAllAppliedFilters;
+module.exports.recursivelySuppressOptions = recursivelySuppressOptions;
+module.exports.searchTree = searchTree;
+module.exports.createCancerIncidenceSuppressionRules = createCancerIncidenceSuppressionRules;
+module.exports.applyCustomSuppressions = applyCustomSuppressions;

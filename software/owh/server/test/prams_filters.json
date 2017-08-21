@@ -2554,7 +2554,7 @@
       ],
       "selectTitle": "select.label.yrbs.filter.question",
       "updateTitle": "update.label.yrbs.filter.question",
-      "iconClass": "fa fa-pie-chart purple-text",
+      "iconClass": "purple-text",
       "helpText": "label.help.text.prams.question"
     }
   ],
@@ -5192,7 +5192,7 @@
       ],
       "selectTitle": "select.label.yrbs.filter.question",
       "updateTitle": "update.label.yrbs.filter.question",
-      "iconClass": "fa fa-pie-chart purple-text",
+      "iconClass": "purple-text",
       "helpText": "label.help.text.prams.question"
     }
   ],
@@ -7871,7 +7871,7 @@
             ],
             "selectTitle": "select.label.yrbs.filter.question",
             "updateTitle": "update.label.yrbs.filter.question",
-            "iconClass": "fa fa-pie-chart purple-text",
+            "iconClass": "purple-text",
             "helpText": "label.help.text.prams.question"
           }
         }
@@ -10406,7 +10406,7 @@
         ],
         "selectTitle": "select.label.yrbs.filter.question",
         "updateTitle": "update.label.yrbs.filter.question",
-        "iconClass": "fa fa-pie-chart purple-text",
+        "iconClass": "purple-text",
         "helpText": "label.help.text.prams.question"
       }
     ],
