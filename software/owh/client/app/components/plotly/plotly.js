@@ -8,6 +8,7 @@
                 controllerAs: 'plotly',
                 template: "<div></div>",
                 bindings: {
+                    barmode: '<',
                     plotlyData: '<',
                     plotlyLayout: '<',
                     plotlyOptions: '<'
@@ -25,7 +26,15 @@
                     duration: 500,
                     easing: 'cubic-in-out'
                 }
+            };
+
+        plotly.$onChanges = function () {
+            if(plotly.barmode){
+                plotly.plotlyLayout.barmode = plotly.barmode;
+                Plotly.redraw(graph);
             }
+        };
+
         Plotly.newPlot(graph, plotly.plotlyData, plotly.plotlyLayout, options);
     }
        

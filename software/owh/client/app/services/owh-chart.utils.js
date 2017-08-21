@@ -29,12 +29,17 @@
                     width: 350,
                     height: 300,
                     showlegend: false,
+                    hovermode: 'closest',
                     margin: {l:10, r:10, b:10, t:20},
                     xaxis: {visible: false, title: chartdata.options.chart.xAxis.axisLabel,titlefont:{size: 16}, exponentformat: 'none', tickangle: 45, },
                     yaxis: {visible: false, title: chartdata.options.chart.yAxis.axisLabel,titlefont:{size: 16}, exponentformat: 'none', tickangle: -45, ticksuffix: '   '}
                 }       
         }
 
+        function getColorPallete(){
+             return Plotly.d3.scale.category20();
+        }
+        
         function getSelectedOptionTitlesOfFilter(filter) {
             var options = [];
             //filters options with checkboxes
@@ -153,18 +158,18 @@
 
         function plotlyHorizontalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip){
             var chartdata = horizontalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip);
-
+            var colors = getColorPallete();    
             var layout = quickChartLayout(chartdata);
             layout.barmode = stacked?'stack':'bar';
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
-                var reg = {name: trace.key, x: [], y: [], text: [], orientation: 'h', type: 'bar', hoverinfo: 'text', hoverlabel:{font:{size:14}}};
+                var reg = {name: trace.key, x: [], y: [], text: [], orientation: 'h',  hoverinfo: 'none', type: 'bar',  marker :{color: colors[i]}};
                 for (var j = trace.values.length - 1 ; j >=0 ; j-- ){
                     var value  = trace.values[j];
                     reg.y.push(value.label);
                     reg.x.push(value.value);
-                    reg.text.push(trace.key+':'+value.label+':'+value.value.toLocaleString());
+                    //reg.text.push(trace.key+':'+value.label+':'+value.value.toLocaleString());
                 }
                 plotydata.push(reg);
             }
@@ -174,11 +179,12 @@
         function plotlyVerticalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip){
             var chartdata = verticalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip);
             var layout = quickChartLayout(chartdata);
+            var colors = getColorPallete();    
             layout.barmode = stacked?'stack':'bar';
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
-                var reg = {name: trace.key, x: [], y: [], text: [], orientation: 'v', type: 'bar', hoverinfo: 'text', hoverlabel:{font:{size:14}}};
+                var reg = {name: trace.key, x: [], y: [], text: [], orientation: 'v', type: 'bar', hoverinfo: 'none', marker :{color: colors[i]}};
                 for (var j = trace.values.length - 1 ; j >=0 ; j-- ){
                     var value  = trace.values[j];
                     reg.x.push(value.x);
@@ -194,8 +200,9 @@
         function plotlyLineChart(data, filter, primaryFilter){
             var chartdata = lineChart (data, filter, primaryFilter);
             var layout = quickChartLayout(chartdata);
+            var colors = getColorPallete();    
             var linedata = chartdata.data();
-            var plotydata = {name: linedata[0].key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'text', hoverlabel:{font:{size:14}}};
+            var plotydata = {name: linedata[0].key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[i]}};
             for (var i = linedata[0].values.length -1 ; i >= 0 ; i-- ){
                 var value  = linedata[0].values[i];
                 plotydata.x.push(value.x);
@@ -209,10 +216,11 @@
             var chartdata = multiLineChart (data, primaryFilter);
             var layout = quickChartLayout(chartdata);
             var linedata = chartdata.data();
+            var colors = getColorPallete();    
             var plotlydata = [];
             for (var j = linedata.length -1 ; j >=0; j-- ){
                 var series = linedata[j];
-                var plotlyseries= {name: series.key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'text', hoverlabel:{font:{size:14}}};
+                var plotlyseries= {name: series.key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[i]}};
                 for (var i = series.values.length -1 ; i >= 0 ; i-- ){
                     var value  = series.values[i];
                     plotlyseries.x.push(value.x);
@@ -224,14 +232,15 @@
             return { charttype:chartdata.options.chart.type, title: chartdata.title, longtitle: getLongChartTitle(primaryFilter), dataset: chartdata.dataset, data:plotlydata, layout: layout, options: {displayModeBar: false}};
         }
 
+        // The pie chart is displayed as bar chart        
         function  plotlyPieChart(data, filter, primaryFilter, postFixToTooltip ) {
             var chartdata  = pieChart(data, filter, primaryFilter, postFixToTooltip);
-
+            var colors = getColorPallete();    
             var layout = quickChartLayout(chartdata);
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
-                var reg = {name: trace.label, x: [], y: [], text: [], orientation: 'h', type: 'bar', hoverinfo: 'text', hoverlabel:{font:{size:14}}};
+                var reg = {name: trace.label, x: [], y: [], text: [], orientation: 'h', type: 'bar', hoverinfo: 'none', marker :{color: colors[i]}};
                     reg.y.push(trace.label); 
                     reg.x.push(trace.value);
                     reg.text.push(trace.label+':'+trace.value.toLocaleString());
@@ -837,19 +846,20 @@
                         // Set chart title
                        layout.title = eachChartData.longtitle;
                        layout.width = 1100;
-                       layout.height = 750;
+                       layout.height = 700;
+                       layout.autosize= true;
                        layout.showlegend= true;
                        layout.legend ={orientation: "v",
                            x: 1.01,
                            y: .5
                        };
-                       layout.margin = {l:200, r:250, b:200, t:100};
+                       layout.margin = {l:200, r:200, b:200, t:100};
                        layout.xaxis.visible= true;
                        layout.yaxis.visible= true;
 
                         // Update charts width/height based on the number of bars
                        if (eachChartData.charttype === "multiBarChart") {
-                           layout.width = Math.max(1100, countBars(eachChartData.data,layout.barmode === 'stack') * 25);
+                           layout.width = Math.max(1000, countBars(eachChartData.data,layout.barmode === 'stack') * 25);
                        }
                        else if (eachChartData.charttype === "multiBarHorizontalChart") {
                             layout.height = Math.max(750, countBars(eachChartData.data,layout.barmode === 'stack') * 25);
@@ -909,7 +919,7 @@
 // //                             return d3.format(',f')(d);
 // //                         };
 //                     }
-                    expandedChartData.push({layout:layout, dataset:eachChartData.dataset, data: eachChartData.data, longtitle: eachChartData.longtitle});
+                    expandedChartData.push({layout:layout, dataset:eachChartData.dataset, data: eachChartData.data, longtitle: eachChartData.longtitle, charttype: eachChartData.charttype});
 
                 });
 
@@ -930,10 +940,12 @@
                     eg.selectedQuestion = selectedQuestion;
                     eg.close = close;
                     eg.selectedFiltersTxt = selectedFiltersTxt;
+                    eg.barmode = eg.chartData[0].layout.barmode;
 
                     eg.showFbDialog = function(svgIndex, title, section, description) {
                         shareUtilService.shareOnFb(svgIndex, title, section, description);
                     };
+              
 
                     /**
                      * get the display name for chart
@@ -974,6 +986,8 @@
                     modal.element.hide();
                 });
             });
+
+            
         }
 
         /**

@@ -530,13 +530,13 @@ ul li::before {
 /*Accordion style ends*/
 
 #overlay {
-    position: fixed;
-    left: 19%;
+    position:fixed;
+    left: 10%;
     top: 4%;
     border: 2px solid black;
     background-color: #ffffff;
-    width: 60%;
-    max-height: 600px;
+    width: 70%;
+    height: 85%;
     z-index: 100;
     border-radius: 5px;
     overflow-y: auto;

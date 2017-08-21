@@ -39,7 +39,12 @@
                             <i class="material-icons" title="{{'label.share.on.fb' | translate}}">share</i>
                         </a>
                     </div>
-                    <plotly id="chart_expanded_{{$index}}" plotly-data="eachChartData.data" plotly-layout="eachChartData.layout" plotly-options=eachChartData.options></plotly>
+                    <owh-toggle-switch ng-if="eg.chartdata.charttype  !== 'lineChart' && eg.chartdata.charttype !== 'multiLineChart'" class="left-float chart-view-toggle"
+                                       options="[ {key:'bar', title:'Grouped', tooltip:'Select to view grouped bars'},{key:'stack', title:'Stacked', tooltip:'Select to view stacked bars'}]"
+                                       model="eg.barmode">
+                    </owh-toggle-switch>
+                    <br/><br/>
+                    <plotly id="chart_expanded_{{$index}}" plotly-data="eachChartData.data" plotly-layout="eachChartData.layout" plotly-options=eachChartData.options barmode="eg.barmode"></plotly>
                 </div>
             </div>
         </div>
