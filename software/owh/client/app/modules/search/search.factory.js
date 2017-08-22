@@ -2904,6 +2904,7 @@
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.tbFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'transmission')
                                 },
                                 {

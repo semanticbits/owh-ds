@@ -211,7 +211,7 @@
                     dataDescription: "Cancer mortality data are available for the United States, state by age group, race, ethnicity, gender and cancer site for the years 2000- 2015. ",
                     suppression: "For STD data, the data suppression rule is applied when the numerator for a given state is 3 or less. When suppressed, data are only displayed by state totals and breakdown by demographic characteristics is not permitted.",
                     source: "The United States Cancer Statistics (USCS) are the official federal statistics on cancer incidence from registries having high-quality data and cancer mortality statistics for 50 states and the District of Columbia. USCS are produced by the Centers for Disease Control and Prevention (CDC) and the National Cancer Institute (NCI), in collaboration with the North American Association of Central Cancer Registries (NAACCR). Data are provided by:" +
-                    "ul><li>The Centers for Disease Control and Prevention National Program of Cancer Registries (NPCR)</li>" +
+                    "<ul><li>The Centers for Disease Control and Prevention National Program of Cancer Registries (NPCR)</li>" +
                     "<li>The National Cancer Institute Surveillance, Epidemiology and End Results (SEER) program.</li>" +
                     "</ul>",
                     isRateCalculation: true,

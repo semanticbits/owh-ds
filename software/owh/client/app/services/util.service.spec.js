@@ -968,6 +968,51 @@ describe('utilService', function(){
         expect(filters.sideFilters[3].disabled).toBeFalsy();
     }));
 
+    it('should update tb demographic filters on a filter change', inject(function(SearchService, filterUtils) {
+        //selected demographic filter(sex: Male)
+        var filter = {
+            "key":"sex", "value":"Male",
+            "groupBy":false,"filterType":"radio",
+            "autoCompleteOptions":[
+                {"key":"Both sexes","title":"Both sexes"},
+                {"key":"Female","title":"Female"},
+                {"key":"Male","title":"Male"}], "doNotShowAll":true};
+
+        //state Alabama is selected
+        var categories = [{"sideFilters":[{"filterGroup":false,"collapse":false,"allowGrouping":true,"groupOptions":[{"key":"column","title":"Column","tooltip":"Select to view as columns on data table","$$hashKey":"object:2003"},{"key":"row","title":"Row","tooltip":"Select to view as rows on data table","$$hashKey":"object:2004"},{"key":false,"title":"Off","tooltip":"Select to hide on data table","$$hashKey":"object:2005"}],"filters":{"key":"current_year","title":"label.filter.year","queryKey":"current_year","primary":false,"value":"2015","groupBy":false,"filterType":"radio","autoCompleteOptions":[{"key":"2015","title":"2015"},{"key":"2014","title":"2014"}],"doNotShowAll":true,"helpText":"label.help.text.tb.year"},"$$hashKey":"object:1198"},{"filterGroup":false,"collapse":false,"allowGrouping":true,"groupOptions":[{"key":"column","title":"Column","tooltip":"Select to view as columns on data table","$$hashKey":"object:2003"},{"key":"row","title":"Row","tooltip":"Select to view as rows on data table","$$hashKey":"object:2004"},{"key":false,"title":"Off","tooltip":"Select to hide on data table","$$hashKey":"object:2005"}],"filters":{"key":"sex","title":"label.filter.gender","queryKey":"sex","primary":false,"value":"Male","groupBy":false,"filterType":"radio","autoCompleteOptions":[{"key":"Both sexes","title":"Both sexes"},{"key":"Female","title":"Female"},{"key":"Male","title":"Male"}],"doNotShowAll":true,"helpText":"label.help.text.tb.sex"}},{"filterGroup":false,"collapse":false,"allowGrouping":true,"groupOptions":[{"key":"column","title":"Column","tooltip":"Select to view as columns on data table","$$hashKey":"object:2003"},{"key":"row","title":"Row","tooltip":"Select to view as rows on data table","$$hashKey":"object:2004"},{"key":false,"title":"Off","tooltip":"Select to hide on data table","$$hashKey":"object:2005"}],"filters":{"key":"race","title":"label.yrbs.filter.race","queryKey":"race_ethnicity","primary":false,"value":"All races/ethnicities","groupBy":false,"filterType":"radio","autoCompleteOptions":[{"key":"All races/ethnicities","title":"All races/ethnicities"},{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native"},{"key":"Asian","title":"Asian"}],"doNotShowAll":true,"helpText":"label.help.text.tb.race"}},{"filterGroup":false,"collapse":false,"allowGrouping":true,"groupOptions":[{"key":"column","title":"Column","tooltip":"Select to view as columns on data table","$$hashKey":"object:2003"},{"key":"row","title":"Row","tooltip":"Select to view as rows on data table","$$hashKey":"object:2004"},{"key":false,"title":"Off","tooltip":"Select to hide on data table","$$hashKey":"object:2005"}],"filters":{"key":"age_group","title":"label.filter.agegroup","queryKey":"age_group","primary":false,"value":"All age groups","groupBy":false,"filterType":"radio","autoCompleteOptions":[{"key":"All age groups","title":"All age groups"},{"key":"Age 15 and older","title":"Age 15 and older"},{"key":"0-4","title":"0-4"},{"key":"0-14"}],"doNotShowAll":true,"helpText":"label.std.help.text.age.group"}},{"filterGroup":false,"collapse":false,"allowGrouping":true,"groupOptions":[{"key":"column","title":"Column","tooltip":"Select to view as columns on data table","$$hashKey":"object:2003"},{"key":"row","title":"Row","tooltip":"Select to view as rows on data table","$$hashKey":"object:2004"},{"key":false,"title":"Off","tooltip":"Select to hide on data table","$$hashKey":"object:2005"}],"filters":{"key":"transmission","title":"label.tb.filter.countryOfBirth","queryKey":"transmission","primary":false,"value":"No stratification","groupBy":false,"filterType":"radio","autoCompleteOptions":[{"key":"No stratification","title":"All countries of birth"},{"key":"Foreign-born","title":"Foreign-born"},{"key":"US-born","title":"US-born"}],"doNotShowAll":true,"helpText":"label.help.text.tb.countryOfBirth"}},{"filterGroup":false,"collapse":false,"allowGrouping":true,"groupOptions":[{"key":"column","title":"Column","tooltip":"Select to view as columns on data table","$$hashKey":"object:2003"},{"key":"row","title":"Row","tooltip":"Select to view as rows on data table","$$hashKey":"object:2004"},{"key":false,"title":"Off","tooltip":"Select to hide on data table","$$hashKey":"object:2005"}],"filters":{"key":"state","title":"label.filter.state","queryKey":"state","primary":false,"value":"AL","groupBy":false,"filterType":"radio","displaySearchBox":true,"displaySelectedFirst":true,"autoCompleteOptions":[{"key":"National","title":"National"},{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}],"doNotShowAll":true,"helpText":"label.help.text.tb.state"}}]}];
+
+        utils.tbFilterChange(filter, categories);
+        //year filter should not be included in demographic filter
+        expect(categories[0].sideFilters[0].filters.key).toEqual('current_year');
+        expect(categories[0].sideFilters[0].disabled).toBeFalsy();
+
+        //race filter should be disabled
+        expect(categories[0].sideFilters[2].filters.key).toEqual('race');
+        expect(categories[0].sideFilters[2].disabled).toBeTruthy();
+
+        //country of birth filter should be disabled
+        expect(categories[0].sideFilters[3].filters.key).toEqual('age_group');
+        expect(categories[0].sideFilters[3].disabled).toBeTruthy();
+
+        //age group filter should be disabled
+        expect(categories[0].sideFilters[4].filters.key).toEqual('transmission');
+        expect(categories[0].sideFilters[4].disabled).toBeTruthy();
+
+        //For National level data, all demographic filters should be enabled
+        categories[0].sideFilters[5].filters.value = 'National';
+
+        utils.tbFilterChange(filter, categories);
+
+        expect(categories[0].sideFilters[2].filters.key).toEqual('race');
+        expect(categories[0].sideFilters[2].disabled).toBeFalsy();
+
+        expect(categories[0].sideFilters[3].filters.key).toEqual('age_group');
+        expect(categories[0].sideFilters[3].disabled).toBeFalsy();
+
+        expect(categories[0].sideFilters[4].filters.key).toEqual('transmission');
+        expect(categories[0].sideFilters[4].disabled).toBeFalsy();
+    }));
+
     it('STD: Refresh filter options on year change - year set to 2006', inject(function(SearchService, filterUtils) {
         var deferred = $q.defer();
         var filters = {};
