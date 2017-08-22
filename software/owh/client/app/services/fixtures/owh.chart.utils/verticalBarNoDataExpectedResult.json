@@ -1,48 +1,44 @@
 {
-  "data": [],
+  "charttype":"multiBarChart",
+  "title":"label.title.gender.race",
+  "longtitle":"chart.title.measure.deaths by label.title.gender.race in undefined for undefined",
   "dataset":"deaths",
-  "title": "label.title.gender.race",
-  "options": {
-    "chart": {
-      "type": "multiBarChart",
-      "height": 250,
-      "width": 0,
-      "margin": {
-        "top": 5,
-        "right": 5,
-        "bottom": 45,
-        "left": 45
+  "data":[
+
+  ],
+  "layout":{
+    "width":350,
+    "height":300,
+    "showlegend":false,
+    "hovermode":"closest",
+    "margin":{
+      "l":10,
+      "r":10,
+      "b":10,
+      "t":20
+    },
+    "xaxis":{
+      "visible":false,
+      "title":"label.filter.race",
+      "titlefont":{
+        "size":16
       },
-      "showMaxMin": false,
-      "showLegend": false,
-      "showControls": false,
-      "showValues": false,
-      "showXAxis": true,
-      "showYAxis": true,
-      "reduceXTicks": false,
-      "legend": {
-        "width": 200,
-        "expanded": true
+      "exponentformat":"none",
+      "tickangle":45
+    },
+    "yaxis":{
+      "visible":false,
+      "title":"Deaths",
+      "titlefont":{
+        "size":16
       },
-      "staggerLabels": true,
-      "rotateLabels": 70,
-      "clipEdge": true,
-      "duration": 500,
-      "stacked": false,
-      "xAxis": {
-        "axisLabelDistance": -20,
-        "axisLabel": "label.filter.race",
-        "margin": {
-          "top": 60
-        }
-      },
-      "yAxis": {
-        "axisLabelDistance": -20,
-        "axisLabel": "Deaths"
-      },
-      "useInteractiveGuideline": false,
-      "interactive": false,
-      "tooltip": {}
-    }
+      "exponentformat":"none",
+      "tickangle":-45,
+      "ticksuffix":"   "
+    },
+    "barmode":"bar"
+  },
+  "options":{
+    "displayModeBar":false
   }
 }
