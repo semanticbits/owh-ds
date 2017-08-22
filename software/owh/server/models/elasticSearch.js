@@ -22,6 +22,8 @@ var cancer_incident_index = "owh_cancer_incident";
 var cancer_incident_type = "cancer_incident";
 var cancer_mortality_index = "owh_cancer_mortality";
 var cancer_mortality_type = "cancer_mortality";
+var cancer_population_index = "owh_cancer_population";
+var cancer_population_type = "cancer_population";
 
 //@TODO to work with my local ES DB I changed mapping name to 'queryResults1', revert before check in to 'queryResults'
 var _queryIndex = "owh_querycache";
@@ -153,10 +155,13 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
     if(query[1]){
         logger.debug("Mortality ES Query: "+ JSON.stringify( query[0]));
         logger.debug("Census ES Query: "+ JSON.stringify( query[1]));
+        logger.debug("Map ES Query: "+ JSON.stringify( query[2]));
         var promises = [
             this.executeMultipleESQueries(query[0], mortality_index, mortality_type),
             this.aggregateCensusDataQuery(query[1], census_rates_index, census_rates_type, 'pop'),
-            this.executeMultipleESQueries(query[2], mortality_index, mortality_type)
+            this.executeMultipleESQueries(query[2], mortality_index, mortality_type),
+            //To get population count for MAP
+            this.aggregateCensusDataQuery(query[2], census_rates_index, census_rates_type, 'pop')
         ];
         if(query.wonderQuery) {
             logger.debug("Wonder Query: "+ JSON.stringify(query.wonderQuery));
@@ -167,12 +172,15 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
             var mapData = searchUtils.populateDataWithMappings(respArray[2], 'deaths');
             data.data.nested.maps = mapData.data.nested.maps;
             self.mergeWithCensusData(data, respArray[1], 'pop');
+            mergeCensusRecursively(data.data.nested.maps, respArray[3].data.nested.maps, 'pop');
             if(query.wonderQuery) {
-                searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[3].table);
+                searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[4].table);
                 //Loop through charts array and merge age ajusted rates from response
                 data.data.nested.charts.forEach(function(chart, index){
-                    searchUtils.mergeAgeAdjustedRates(chart, respArray[3].charts[index]);
+                    searchUtils.mergeAgeAdjustedRates(chart, respArray[4].charts[index]);
                 });
+                //Merge Age Adjusted results for Map
+                searchUtils.mergeAgeAdjustedRates(data.data.nested.maps, respArray[4].maps);
             }
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'deaths');
@@ -502,12 +510,15 @@ ElasticClient.prototype.getCountForYearByFilter = function (year, filter, option
 ElasticClient.prototype.aggregateCancerData = function (query, cancer_index) {
     var index = cancer_index === cancer_incident_type ? cancer_incident_index : cancer_mortality_index;
     var type = cancer_index === cancer_incident_type ? cancer_incident_type : cancer_mortality_type;
-
     var promises = [ this.executeESQuery(index, type, query[0]) ];
-    if (query[2]) promises.push(this.executeESQuery(index, type, query[2]));
 
-    return Q.all(promises).spread(function (queryResponse, mapResponse) {
+    if (query[2]) promises.push(this.executeESQuery(index, type, query[2]));
+    if (query[1]) promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[1]));
+
+    return Q.all(promises).spread(function (queryResponse, mapResponse, populationResponse) {
         var data = searchUtils.populateDataWithMappings(queryResponse, type);
+        var pop = searchUtils.populateDataWithMappings(populationResponse, cancer_population_type);
+        searchUtils.attachPopulation(data.data.nested.table, pop.data.nested.table, []);
         if (mapResponse) {
           var mapData = searchUtils.populateDataWithMappings(mapResponse, type);
           data.data.nested.maps = mapData.data.nested.maps;
