@@ -22,6 +22,8 @@ var cancer_incident_index = "owh_cancer_incident";
 var cancer_incident_type = "cancer_incident";
 var cancer_mortality_index = "owh_cancer_mortality";
 var cancer_mortality_type = "cancer_mortality";
+var cancer_population_index = "owh_cancer_population";
+var cancer_population_type = "cancer_population";
 
 //@TODO to work with my local ES DB I changed mapping name to 'queryResults1', revert before check in to 'queryResults'
 var _queryIndex = "owh_querycache";
@@ -509,12 +511,15 @@ ElasticClient.prototype.getCountForYearByFilter = function (year, filter, option
 ElasticClient.prototype.aggregateCancerData = function (query, cancer_index) {
     var index = cancer_index === cancer_incident_type ? cancer_incident_index : cancer_mortality_index;
     var type = cancer_index === cancer_incident_type ? cancer_incident_type : cancer_mortality_type;
-
     var promises = [ this.executeESQuery(index, type, query[0]) ];
-    if (query[2]) promises.push(this.executeESQuery(index, type, query[2]));
 
-    return Q.all(promises).spread(function (queryResponse, mapResponse) {
+    if (query[2]) promises.push(this.executeESQuery(index, type, query[2]));
+    if (query[1]) promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[1]));
+
+    return Q.all(promises).spread(function (queryResponse, mapResponse, populationResponse) {
         var data = searchUtils.populateDataWithMappings(queryResponse, type);
+        var pop = searchUtils.populateDataWithMappings(populationResponse, cancer_population_type);
+        searchUtils.attachPopulation(data.data.nested.table, pop.data.nested.table, []);
         if (mapResponse) {
           var mapData = searchUtils.populateDataWithMappings(mapResponse, type);
           data.data.nested.maps = mapData.data.nested.maps;
