@@ -1,10 +1,8 @@
 <div ng-init="group = (sfic.filter.filterGroup ? sfic.filter : sfic.filter.filters)">
     <!-- Slider filter -->
-    <span ng-class="{'disabled-filter': sfic.filter.disabled }" ng-if="group.filterType === 'slider'">
+    <span ng-class="{'disabled-filter': sfic.filter.disabled }"
+          ng-if="group.filterType === 'slider'">
         <div class="side-pane-div custom-div">
-            <div class="sidebar-chevron left-float padding-left-5">
-                <span class="fa" ng-class="sfic.filter.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
-            </div>
             <div class="left-float sidebar-filter-label">
                 <a href="javascript:void(0)" ng-click="sfic.filter.collapse = !sfic.filter.collapse"
                    class="custom-link" title="{{group.helpText | translate}}">
@@ -65,9 +63,6 @@
     <span ng-class="{'disabled-filter': sfic.filter.disabled}"
           ng-if="group.filterType === 'conditions' && ( group.key === 'ucd-chapter-10')">
         <div class="side-pane-div custom-div">
-            <div class="sidebar-chevron left-float padding-left-5">
-                <span class="fa" ng-class="sfic.filter.collapse?'fa-chevron-right':'fa-chevron-down'"></span>
-            </div>
             <div class="left-float sidebar-filter-label">
                 <a href="javascript:void(0)" ng-click="sfic.filter.collapse = !sfic.filter.collapse"
                    title="{{group.helpText | translate}}" class="custom-link">
@@ -568,11 +563,11 @@
             </li>
 
             <!--radio filter-->
-            <!-- show All --->
+            <!-- show All -->
             <li class="group-option" ng-if="!group.doNotShowAll"
                 ng-class="{'thin-border-top': (group.value.length > 0 && group.displaySelectedFirst)}">
-                <input id="{{group.queryKey}}_all" name="{{group.queryKey}}" type="radio" class="inputFocus"
-                       ng-checked="!group.value" value=""
+                <input id="{{group.queryKey}}_all" name="{{group.queryKey}}" type="radio"
+                       ng-checked="!group.value" value="" class="inputFocus"
                        ng-model="group.value" ng-click="sfic.onFilterValueChange()">
                 <label for="{{group.queryKey}}_all" class="custom-label">
                     <span>All</span>
@@ -604,8 +599,8 @@
                 ng-if="$index < 3 || sfic.filter.showAll || ($index < (3+ group.value.length) && group.displaySelectedFirst)">
                 <div ng-if="!option.group && (group.displaySelectedFirst?!sfic.isOptionSelected(option, group.value):true)">
                     <input id="{{sfic.primaryKey}}_{{group.key}}_{{option.key}}" name="{{group.queryKey}}"
-                           type="radio"
-                           ng-disabled="sfic.isOptionDisabled(group, option)" class="inputFocus"
+                           type="radio" class="inputFocus"
+                           ng-disabled="sfic.isOptionDisabled(group, option)"
                            ng-model="group.value" ng-value="option.key"
                            ng-click="sfic.onFilterValueChange()">
                     <label for="{{sfic.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"

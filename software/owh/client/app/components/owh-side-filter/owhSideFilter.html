@@ -6,7 +6,9 @@
     </div>
     <ul class="usa-sidenav-list side-filters">
         <!--iterate over filter by category-->
-        <div class="category-{{$index}}" ng-repeat="category in sfc.filters" ng-init="categoryKey = category.category">
+        <div ng-repeat="category in sfc.filters"
+             ng-init="categoryKey = category.category"
+             class="category-{{$index}}">
             <div ng-switch="category.ui">
                 <div ng-switch-when="tabbed">
                     <li class="accordion">
