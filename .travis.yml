@@ -24,6 +24,9 @@ before_install:
 
 install:
   - cd software/owh/server
+  - npm cache clean -f
+  - npm install -g n
+  - n stable
   - node --version
   - npm install
   - npm install --dev
