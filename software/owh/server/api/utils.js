@@ -511,6 +511,91 @@ var mergeAgeAdjustedRates = function(mort, rates) {
     }
 };
 
+var mergeWonderResponseWithInfantESData = function(mort, rates) {
+    var keyMap = {
+        'Black': 'Black or African American',
+        'American Indian': 'American Indian or Alaska Native',
+        'Hispanic': 'Hispanic or Latino',
+        'Non-Hispanic': 'Not Hispanic or Latino',
+        "AL": "Alabama",
+        "AK": "Alaska",
+        "AZ": "Arizona",
+        "AR": "Arkansas",
+        "CA": "California",
+        "CO": "Colorado",
+        "CT": "Connecticut",
+        "DE": "Delaware",
+        "DC": "District of Columbia",
+        "FL": "Florida",
+        "GA": "Georgia",
+        "HI": "Hawaii",
+        "ID": "Idaho",
+        "IL": "Illinois",
+        "IN": "Indiana",
+        "IA": "Iowa",
+        "KS": "Kansas",
+        "KY": "Kentucky",
+        "LA": "Louisiana",
+        "ME": "Maine",
+        "MD": "Maryland",
+        "MA": "Massachusetts",
+        "MI": "Michigan",
+        "MN": "Minnesota",
+        "MS": "Mississippi",
+        "MO": "Missouri",
+        "MT": "Montana",
+        "NE": "Nebraska",
+        "NV": "Nevada",
+        "NH": "New Hampshire",
+        "NJ": "New Jersey",
+        "NM": "New Mexico",
+        "NY": "New York",
+        "NC": "North Carolina",
+        "ND": "North Dakota",
+        "OH": "Ohio",
+        "OK": "Oklahoma",
+        "OR": "Oregon",
+        "PA": "Pennsylvania",
+        "RI": "Rhode Island",
+        "SC": "South Carolina",
+        "SD": "South Dakota",
+        "TN": "Tennessee",
+        "TX": "Texas",
+        "UT": "Utah",
+        "VT": "Vermont",
+        "VA": "Virginia",
+        "WA": "Washington",
+        "WV": "West Virginia",
+        "WI": "Wisconsin",
+        "WY": "Wyoming"
+    };
+
+    for(var key in mort) {
+        if(key !== 'name') {
+            for(var i = 0; i < mort[key].length; i++) {
+                var age = rates[mort[key][i].name];
+                if(!age) {
+                    age = rates[keyMap[mort[key][i].name]];
+                }
+                if(age) {
+                    if (!age['birthRate']) { // Nested result. go to the leaf node recursively
+                        if (age['Total']) { // If there is a subtotal, assign subtotal value
+                            mort[key][i]['birthRate'] = age['Total'].birthRate;
+                            mort[key][i]['pop'] = age['Total'].births;
+                            mort[key][i]['infant_mortality'] = age['Total'].infant_mortality;
+                        }
+                        mergeWonderResponseWithInfantESData(mort[key][i], age);
+                    }else {
+                        mort[key][i]['birthRate'] = age.birthRate;
+                        mort[key][i]['pop'] = age.births;
+                        mort[key][i]['infant_mortality'] = age.infant_mortality;
+                    }
+                }
+            }
+        }
+    }
+};
+
 
 /**
  * Finds and returns the first object in array of objects by using the key and value
@@ -674,6 +759,7 @@ function applyCustomSuppressions (data, rules, countKey) {
 module.exports.populateDataWithMappings = populateDataWithMappings;
 module.exports.populateYRBSData = populateYRBSData;
 module.exports.mergeAgeAdjustedRates = mergeAgeAdjustedRates;
+module.exports.mergeWonderResponseWithInfantESData = mergeWonderResponseWithInfantESData;
 module.exports.applySuppressions = applySuppressions;
 module.exports.applyYRBSSuppressions = applyYRBSSuppressions;
 module.exports.getAllOptionValues = getAllOptionValues;

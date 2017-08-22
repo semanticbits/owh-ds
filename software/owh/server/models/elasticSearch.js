@@ -303,39 +303,29 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected)
 ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateSelected, allSelectedFilterOptions) {
     var self = this;
     var deferred = Q.defer();
-    if(query[1]) {
-        logger.debug("Infant Mortality ES Query: "+ JSON.stringify( query[0]));
-        logger.debug("Census Rates ES Query: "+ JSON.stringify( query[1]));
-        var promises = [
-            this.executeESQuery(infant_mortality_index, infant_mortality_type, query[0]),
-            this.aggregateCensusDataQuery(query[1], natality_index, natality_type, 'doc_count')
-        ];
-        Q.all(promises).then( function (resp) {
-            var data = searchUtils.populateDataWithMappings(resp[0], 'infant_mortality', undefined, allSelectedFilterOptions);
-            self.mergeWithCensusData(data, resp[1], 'doc_count');
+
+    var promises = [
+        this.executeESQuery(infant_mortality_index, infant_mortality_type, query[0][0])
+    ];
+    Q.all(promises).then( function (resp) {
+        var data = searchUtils.populateDataWithMappings(resp[0], 'infant_mortality', undefined, allSelectedFilterOptions);
+        Q.all(new wonder('D69').invokeWONDER(query[1])).then( function (response) {
+            searchUtils.mergeWonderResponseWithInfantESData(data.data.nested.table, response.table);
+            searchUtils.mergeWonderResponseWithInfantESData(data.data.nested.charts, response.charts);
             isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');
             deferred.resolve(data);
+            //Check with Ryan
+            /*if (data.data.simple.state) {
+                searchUtils.suppressStateTotals(data.data.simple.state, 'infant_mortality', 10);
+            }*/
         }, function (err) {
             logger.error(err.message);
             deferred.reject(err);
         });
-
-    }
-    else {
-        logger.debug("Infant Mortality ES Query: "+ JSON.stringify( query[0]));
-        this.executeESQuery(infant_mortality_index, infant_mortality_type, query[0])
-            .then(function (response) {
-                var data = searchUtils.populateDataWithMappings(response, 'infant_mortality', allSelectedFilterOptions);
-                isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');
-                deferred.resolve(data);
-                if (data.data.simple.state) {
-                    searchUtils.suppressStateTotals(data.data.simple.state, 'infant_mortality', 10);
-                }
-            }, function (error) {
-                logger.error(error.message);
-                deferred.reject(error);
-            });
-    }
+    }, function (err) {
+        logger.error(err.message);
+        deferred.reject(err);
+    });
     return deferred.promise;
 };
 

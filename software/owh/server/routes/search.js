@@ -170,26 +170,24 @@ function search(q) {
                 return option;
             }));
         }, []);
-
         var es = new elasticSearch();
-        var optionPromises = options.map(function (option) {
+        /*var optionPromises = options.map(function (option) {
             return es.getCountForYearByFilter(option.year, option.filter, option.key);
-        });
+        });*/
         var promises = [
-            es.aggregateInfantMortalityData(sideFilterQuery, isStateSelected, allSelectedFilterOptions),
-            es.aggregateInfantMortalityData(finalQuery, isStateSelected, allSelectedFilterOptions)
+            es.aggregateInfantMortalityData([finalQuery,preparedQuery.apiQuery], isStateSelected, allSelectedFilterOptions)
         ];
-        promises = promises.concat(optionPromises);
+        //promises = promises.concat(optionPromises);
 
-        Q.all(promises).spread(function (sideFilterResults, response) {
-            var optionResults = Array.prototype.slice.call(arguments, 2);
-            var lineChartData = searchUtils.mapAndGroupOptionResults(options, optionResults);
+        Q.all(promises).then(function (response) {
+            //var optionResults = Array.prototype.slice.call(arguments, 2);
+            //var lineChartData = searchUtils.mapAndGroupOptionResults(options, optionResults);
             var resData = {};
             resData.queryJSON = q;
-            resData.resultData = response.data;
-            resData.resultData.nested.lineCharts = lineChartData;
+            resData.resultData = response[0].data;
+            //resData.resultData.nested.lineCharts = lineChartData;
             resData.resultData.headers = preparedQuery.headers;
-            resData.sideFilterResults = sideFilterResults;
+            resData.sideFilterResults = {data: [], pagination: {}}//sideFilterResults;
             deferred.resolve(resData);
         }).catch(function (error) {
             logger.error('Infant Mortality ElasticSearch ', error);
