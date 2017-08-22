@@ -2,7 +2,564 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQB",
+    "_id": "AV3Z0Nt661TdEuADbqko",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Mexican",
+        "Non-Hispanic",
+        "Cuban",
+        "Puerto Rican",
+        "Other and Unknown Hispanic",
+        "Central or South American",
+        "Hispanic origin not stated"
+      ],
+      "filter_name": "hispanic_origin",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqkt",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "8th grade or less",
+        "High school graduate or GED completed",
+        "9th through 12th grade with no diploma",
+        "Associate degree (AA,AS)",
+        "Some college credit, but not a degree",
+        "Master’s degree (MA, MS, MEng, MEd, MSW, MBA)",
+        "Bachelor’s degree (BA, AB, BS)",
+        "Unknown",
+        "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)"
+      ],
+      "filter_name": "mother_education",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqky",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "2nd month",
+        "3rd month",
+        "No prenatal care",
+        "1st month",
+        "6th month",
+        "7th month",
+        "4th month",
+        "5th month",
+        "8th month",
+        "9th month",
+        "Unknown or not stated",
+        "10th month"
+      ],
+      "filter_name": "prenatal_care",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk3",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "1st child born alive to mother",
+        "3rd child born alive to mother",
+        "2nd child born alive to mother",
+        "5th child born alive to mother",
+        "4th child born alive to mother",
+        "7th child born alive to mother",
+        "6th child born alive to mother",
+        "Unknown or not stated",
+        "8 or more live births"
+      ],
+      "filter_name": "live_birth",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk8",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Yes",
+        "Unknown",
+        "No",
+        "Not on certificate"
+      ],
+      "filter_name": "diabetes",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqlD",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Unknown",
+        "28 - 31 weeks",
+        "Under 20 weeks",
+        "37 - 39 weeks",
+        "42 weeks and over",
+        "32 - 35 weeks",
+        "40 weeks",
+        "41 weeks",
+        "36 weeks",
+        "20 - 27 weeks"
+      ],
+      "filter_name": "gestation_recode10",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqkn",
+    "_score": 1,
+    "_source": {
+      "permissible_values": null,
+      "filter_name": "residence",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqks",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Married",
+        "Unmarried"
+      ],
+      "filter_name": "marital_status",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqkx",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Male",
+        "Female"
+      ],
+      "filter_name": "sex",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk2",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Single",
+        "Triplet",
+        "Twin",
+        "Quintuplet or higher",
+        "Quadruplet"
+      ],
+      "filter_name": "birth_plurality",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk7",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Yes",
+        "Unknown",
+        "No",
+        "Not on certificate"
+      ],
+      "filter_name": "chronic_hypertension",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk-",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Yes",
+        "Unknown",
+        "No",
+        "Not on certificate"
+      ],
+      "filter_name": "eclampsia",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk_",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Yes",
+        "Unknown or not stated",
+        "No"
+      ],
+      "filter_name": "tobacco_use",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqlC",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "39 weeks",
+        "Unknown",
+        "28 - 31 weeks",
+        "Under 20 weeks",
+        "37 - 38 weeks",
+        "42 weeks and over",
+        "32 - 33 weeks",
+        "34 - 36 weeks",
+        "40 weeks",
+        "41 weeks",
+        "20 - 27 weeks"
+      ],
+      "filter_name": "gestation_recode11",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqkr",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "White",
+        "American Indian or Alaska Native",
+        "Black",
+        "Asian or Pacific Islander"
+      ],
+      "filter_name": "race",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqkw",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Sunday",
+        "Tuesday",
+        "Monday",
+        "Thursday",
+        "Wednesday",
+        "Saturday",
+        "Friday"
+      ],
+      "filter_name": "weekday",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk1",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "500 - 999 grams",
+        "1000 - 1499 grams",
+        "499 grams or less",
+        "2500 - 2999 grams",
+        "3000 - 3499 grams",
+        "1500 - 1999 grams",
+        "2000 - 2499 grams",
+        "3500 - 3999 grams",
+        "4000 - 4499 grams",
+        "Not Stated",
+        "5000 - 8165 grams",
+        "4500 - 4999 grams"
+      ],
+      "filter_name": "birth_weight_r12",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk6",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Doctor of Medicine (MD)",
+        "Certified Nurse Midwife (CNM)",
+        "Doctor of Osteopathy (DO)",
+        "Other",
+        "Other Midwife",
+        "Unknown or not stated"
+      ],
+      "filter_name": "medical_attendant",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqlB",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "42 weeks",
+        "43 weeks",
+        "24 weeks",
+        "25 weeks",
+        "26 weeks",
+        "27 weeks",
+        "20 weeks",
+        "21 weeks",
+        "22 weeks",
+        "23 weeks",
+        "46 weeks",
+        "47 weeks",
+        "44 weeks",
+        "45 weeks",
+        "28 weeks",
+        "29 weeks",
+        "40 weeks",
+        "41 weeks",
+        "Unknown",
+        "39 weeks",
+        "38 weeks",
+        "17 weeks",
+        "19 weeks",
+        "18 weeks",
+        "31 weeks",
+        "30 weeks",
+        "37 weeks",
+        "36 weeks",
+        "35 weeks",
+        "34 weeks",
+        "33 weeks",
+        "32 weeks"
+      ],
+      "filter_name": "gestation_weekly",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqlG",
+    "_score": 1,
+    "_source": {
+      "permissible_values": null,
+      "filter_name": "census_division",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqkq",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Under 15 years",
+        "20-24 years",
+        "15-19 years",
+        "30-34 years",
+        "25-29 years",
+        "40-44 years",
+        "35-39 years",
+        "50-54 years",
+        "45-49 years"
+      ],
+      "filter_name": "mother_age_5year_interval",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqkv",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "February",
+        "March",
+        "January",
+        "June",
+        "July",
+        "April",
+        "May",
+        "August",
+        "September",
+        "December",
+        "November",
+        "October"
+      ],
+      "filter_name": "month",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk0",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "1499 grams or less",
+        "2500 - 8165 grams",
+        "1500 - 2499 grams",
+        "Unknown or not stated"
+      ],
+      "filter_name": "birth_weight_r4",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk5",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Vaginal",
+        "Unknown",
+        "Cesarean"
+      ],
+      "filter_name": "delivery_method",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqlA",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "WA",
+        "DE",
+        "DC",
+        "WI",
+        "WV",
+        "HI",
+        "FL",
+        "WY",
+        "NH",
+        "NJ",
+        "NM",
+        "TX",
+        "LA",
+        "NC",
+        "ND",
+        "NE",
+        "TN",
+        "NY",
+        "PA",
+        "CA",
+        "NV",
+        "VA",
+        "CO",
+        "AK",
+        "AL",
+        "AR",
+        "VT",
+        "IL",
+        "GA",
+        "IN",
+        "IA",
+        "OK",
+        "AZ",
+        "ID",
+        "CT",
+        "ME",
+        "MD",
+        "MA",
+        "OH",
+        "UT",
+        "MO",
+        "MN",
+        "MI",
+        "RI",
+        "KS",
+        "MT",
+        "MS",
+        "SC",
+        "KY",
+        "OR",
+        "SD"
+      ],
+      "filter_name": "state",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqlF",
+    "_score": 1,
+    "_source": {
+      "permissible_values": null,
+      "filter_name": "hhs_region",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqkp",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -52,7 +609,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQG",
+    "_id": "AV3Z0Nt661TdEuADbqku",
     "_score": 1,
     "_source": {
       "permissible_values": null,
@@ -64,7 +621,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQL",
+    "_id": "AV3Z0Nt661TdEuADbqkz",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -159,7 +716,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQQ",
+    "_id": "AV3Z0Nt661TdEuADbqk4",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -178,7 +735,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQV",
+    "_id": "AV3Z0Nt661TdEuADbqk9",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -194,441 +751,12 @@
   },
   {
     "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQA",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Mexican",
-        "Non-Hispanic",
-        "Cuban",
-        "Puerto Rican",
-        "Other and Unknown Hispanic",
-        "Central or South American",
-        "Hispanic origin not stated"
-      ],
-      "filter_name": "hispanic_origin",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQF",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "8th grade or less",
-        "High school graduate or GED completed",
-        "9th through 12th grade with no diploma",
-        "Associate degree (AA,AS)",
-        "Some college credit, but not a degree",
-        "Master’s degree (MA, MS, MEng, MEd, MSW, MBA)",
-        "Bachelor’s degree (BA, AB, BS)",
-        "Unknown",
-        "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)"
-      ],
-      "filter_name": "mother_education",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQK",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "2nd month",
-        "3rd month",
-        "No prenatal care",
-        "1st month",
-        "6th month",
-        "7th month",
-        "4th month",
-        "5th month",
-        "8th month",
-        "9th month",
-        "Unknown or not stated",
-        "10th month"
-      ],
-      "filter_name": "prenatal_care",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQP",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "1st child born alive to mother",
-        "3rd child born alive to mother",
-        "2nd child born alive to mother",
-        "5th child born alive to mother",
-        "4th child born alive to mother",
-        "7th child born alive to mother",
-        "6th child born alive to mother",
-        "Unknown or not stated",
-        "8 or more live births"
-      ],
-      "filter_name": "live_birth",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQU",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Yes",
-        "Unknown",
-        "No",
-        "Not on certificate"
-      ],
-      "filter_name": "diabetes",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQE",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Married",
-        "Unmarried"
-      ],
-      "filter_name": "marital_status",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQJ",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Male",
-        "Female"
-      ],
-      "filter_name": "sex",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQO",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Single",
-        "Triplet",
-        "Twin",
-        "Quintuplet or higher",
-        "Quadruplet"
-      ],
-      "filter_name": "birth_plurality",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQT",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Yes",
-        "Unknown",
-        "No",
-        "Not on certificate"
-      ],
-      "filter_name": "chronic_hypertension",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQY",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "WA",
-        "DE",
-        "DC",
-        "WI",
-        "WV",
-        "HI",
-        "FL",
-        "WY",
-        "NH",
-        "NJ",
-        "NM",
-        "TX",
-        "LA",
-        "NC",
-        "ND",
-        "NE",
-        "TN",
-        "NY",
-        "PA",
-        "CA",
-        "NV",
-        "VA",
-        "CO",
-        "AK",
-        "AL",
-        "AR",
-        "VT",
-        "IL",
-        "GA",
-        "IN",
-        "IA",
-        "OK",
-        "AZ",
-        "ID",
-        "CT",
-        "ME",
-        "MD",
-        "MA",
-        "OH",
-        "UT",
-        "MO",
-        "MN",
-        "MI",
-        "RI",
-        "KS",
-        "MT",
-        "MS",
-        "SC",
-        "KY",
-        "OR",
-        "SD"
-      ],
-      "filter_name": "state",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQD",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "White",
-        "American Indian or Alaska Native",
-        "Black",
-        "Asian or Pacific Islander"
-      ],
-      "filter_name": "race",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQI",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Sunday",
-        "Tuesday",
-        "Monday",
-        "Thursday",
-        "Wednesday",
-        "Saturday",
-        "Friday"
-      ],
-      "filter_name": "weekday",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQN",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "500 - 999 grams",
-        "1000 - 1499 grams",
-        "499 grams or less",
-        "2500 - 2999 grams",
-        "3000 - 3499 grams",
-        "1500 - 1999 grams",
-        "2000 - 2499 grams",
-        "3500 - 3999 grams",
-        "4000 - 4499 grams",
-        "Not Stated",
-        "5000 - 8165 grams",
-        "4500 - 4999 grams"
-      ],
-      "filter_name": "birth_weight_r12",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQS",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Doctor of Medicine (MD)",
-        "Certified Nurse Midwife (CNM)",
-        "Doctor of Osteopathy (DO)",
-        "Other",
-        "Other Midwife",
-        "Unknown or not stated"
-      ],
-      "filter_name": "medical_attendant",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQX",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Yes",
-        "Unknown or not stated",
-        "No"
-      ],
-      "filter_name": "tobacco_use",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtP_",
+    "_type": "a",
+    "_id": "AV3Z0Nt661TdEuADbqlE",
     "_score": 1,
     "_source": {
       "permissible_values": null,
-      "filter_name": "residence",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQC",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Under 15 years",
-        "20-24 years",
-        "15-19 years",
-        "30-34 years",
-        "25-29 years",
-        "40-44 years",
-        "35-39 years",
-        "50-54 years",
-        "45-49 years"
-      ],
-      "filter_name": "mother_age_5year_interval",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQH",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "February",
-        "March",
-        "January",
-        "June",
-        "July",
-        "April",
-        "May",
-        "August",
-        "September",
-        "December",
-        "November",
-        "October"
-      ],
-      "filter_name": "month",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQM",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "1499 grams or less",
-        "2500 - 8165 grams",
-        "1500 - 2499 grams",
-        "Unknown or not stated"
-      ],
-      "filter_name": "birth_weight_r4",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQR",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Vaginal",
-        "Unknown",
-        "Cesarean"
-      ],
-      "filter_name": "delivery_method",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AVwfxkFi-OCbMkrurtQW",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Yes",
-        "Unknown",
-        "No",
-        "Not on certificate"
-      ],
-      "filter_name": "eclampsia",
+      "filter_name": "census_region",
       "year": "2015",
       "dataset": "natality"
     }

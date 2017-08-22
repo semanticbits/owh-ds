@@ -44,6 +44,8 @@
             isFilterApplied: isFilterApplied,
             stdFilterChange: stdFilterChange,
             aidsFilterChange: aidsFilterChange,
+            removeValuesFromArray: removeValuesFromArray,
+            getSelectedFiltersText: getSelectedFiltersText,
             tbFilterChange: tbFilterChange
         };
 
@@ -124,7 +126,7 @@
          */
         function isFilterApplied(a) {
             if (a) {
-                return a.value.length > 0;
+                return a.value.length > 0 || a.groupBy;
             }
             return false;
         }
@@ -345,7 +347,7 @@
                 tableHeaders = colHeaders.headers;
             }
             tableHeaders[0] = rowHeaders.concat(tableHeaders[0]);
-            if(rowHeaders.length > 0 && countLabel) {
+            if(rowHeaders.length > 0 && countLabel && (countLabel != 'Number of Cases' || colHeaders.headers.length == 0)) {
                 tableHeaders[0].push({
                     title: countLabel,
                     colspan: 1,
@@ -536,7 +538,7 @@
             else {
                 var count = data[countKey];
                 var columnData = prepareMixedTableColumnData(columnHeaders, data, countKey, count, calculatePercentage, secondaryCountKeys);
-                if(typeof data[countKey] !== 'undefined' && countKey != 'std' && countKey != 'tb' && countKey !== 'aids') {
+                if(typeof data[countKey] !== 'undefined' && (columnHeaders.length == 0 || (countKey != 'std' && countKey != 'tb' && countKey !== 'aids'))){
                     columnData.push(prepareCountCell(count, data, countKey, totalCount, calculatePercentage, secondaryCountKeys, true));
                 }
                 tableData.push(columnData);
@@ -886,12 +888,28 @@
             }
         }
 
+
+        /**
+         * Remove multiple values from given array
+         * @param listOfValues - array of values
+         * @param removeFilterOptions - array of values to remove
+         * @return {T[]}
+         */
+        function removeValuesFromArray(listOfValues, removeFilterOptions) {
+            angular.forEach(removeFilterOptions, function(eachValue) {
+                listOfValues = ($filter('filter')(listOfValues, "!"+eachValue));
+            });
+            return listOfValues;
+        }
+
         /**
          * Enables/disables side filters and filter options based on the dataset metadata
-         * @param filter filter to be used for the querying ds metadata
-         * @param categories sidefilter categories
-         * @param datasetname name of dataset          */
-        function refreshFilterAndOptions(filter, categories, datasetname) {
+         * @param filter - filter to be used for the querying ds metadata
+         * @param categories - categories sidefilter categories
+         * @param datasetname - name of dataset
+         * @param tableView - current page table view value
+         */
+        function refreshFilterAndOptions(filter, categories, datasetname, tableView) {
             var sideFilters = [];
             angular.forEach(categories, function (category) {
                 sideFilters = sideFilters.concat(category.sideFilters);
@@ -904,6 +922,26 @@
             }
             SearchService.getDsMetadata(datasetname, filterValueArray).then(function (response) {
                 refreshFiltersWithDSMetadataResponse(response, sideFilters, datasetname, filterName);
+                //if natality -> fertility_rates then disable ages <15 and >44 in Age of Mother filters
+                if(tableView === "fertility_rates") {
+                    //find "Mother's Age" category
+                    var motherAgeCategory = findByKeyAndValue(categories, "category", "Mother's Age");
+                    var oneYearAgeSideFilter = motherAgeCategory.sideFilters[0];
+                    var fiveYearAgeSideFilter = motherAgeCategory.sideFilters[1];
+                    oneYearAgeSideFilter.filters.value = removeValuesFromArray(oneYearAgeSideFilter.filters.value, oneYearAgeSideFilter.filters.disableAgeOptions);
+                    fiveYearAgeSideFilter.filters.value = removeValuesFromArray(fiveYearAgeSideFilter.filters.value, fiveYearAgeSideFilter.filters.disableAgeOptions);
+                    //Disable one year age filter options
+                    angular.forEach(oneYearAgeSideFilter.filters.disableAgeOptions, function(eachAgeOption){
+                        var sideFilterOption = findByKeyAndValue(oneYearAgeSideFilter.filters.autoCompleteOptions, 'key', eachAgeOption);
+                        sideFilterOption.disabled = true;
+                    });
+                    //Disable five year age filter options
+                    angular.forEach(fiveYearAgeSideFilter.filters.disableAgeOptions, function(eachAgeOption){
+                        var sideFilterOption = findByKeyAndValue(fiveYearAgeSideFilter.filters.autoCompleteOptions, 'key', eachAgeOption);
+                        sideFilterOption.disabled = true;
+                    });
+
+                }
             }, function (error) {
                 angular.element(document.getElementById('spindiv')).addClass('ng-hide');
                 console.log(error);
@@ -1066,7 +1104,7 @@
             var demographicFilters = ['sex', 'race', 'age_group', 'transmission'];
             var activeFilters = filters.reduce(function (active, filter) {
                 var restrictedFilters = !!~demographicFilters.indexOf(filter.filters.key);
-                var unrestrictedValues = !!~['Both sexes', 'All races/ethnicities', 'All age groups 13 and up', 'No stratification'].indexOf(filter.filters.value);
+                var unrestrictedValues = !!~['Both sexes', 'All races/ethnicities', 'All age groups', 'No stratification'].indexOf(filter.filters.value);
                 if (restrictedFilters && !unrestrictedValues) {
                     active.push(filter.filters.key);
                 }
@@ -1091,8 +1129,35 @@
             }
         }
 
-        function disableFiltersExcluding(filters, excludedFilters) {
+        function getSelectedFiltersText(filters, sortlist){
+            var appliedFilters = [];
+            var filterText = ''
+            filters.forEach(function(filter){
+                (filter.value.length > 0 && filter.key != 'question') && appliedFilters.push(filter);
+            });
 
+            appliedFilters.sort(function (a, b) {
+                return (sortlist.indexOf(a.key) - sortlist.indexOf(b.key));
+            });
+
+            appliedFilters.forEach(function (f) {
+                filterText += ($filter('translate')(f.title) + ': ')
+                var options = [];
+                //filters options with checkboxes
+                if (angular.isArray(f.value)) {
+                    f.value.forEach(function (optionKey) {
+                        var option = findByKeyAndValue(f.autoCompleteOptions, 'key', optionKey);
+                        options.push(option.title);
+                    });
+                } else {//for filters with radios
+                    var option = findByKeyAndValue(f.autoCompleteOptions, 'key', f.value);
+                    options.push(option.title);
+                }
+                filterText += options.join(', ');
+                filterText += '| '
+            });
+            return filterText.substring(0, filterText.length -2);
         }
+
     }
 }());

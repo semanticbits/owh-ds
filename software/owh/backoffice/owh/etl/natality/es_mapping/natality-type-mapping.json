@@ -94,6 +94,27 @@
       },
       "state": {
         "type": "string", "index": "not_analyzed"
+      },
+      "gestational_age_r10":{
+        "type":"string", "index":"not_analyzed"
+      },
+      "gestation_weekly":{
+        "type":"string", "index":"not_analyzed"
+      },
+      "gestation_recode10": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "gestation_recode11": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "census_region": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "hhs_region": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "census_division": {
+        "type":"string", "index":"not_analyzed"
       }
     }
   }

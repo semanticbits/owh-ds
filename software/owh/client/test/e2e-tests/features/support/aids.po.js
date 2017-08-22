@@ -8,7 +8,7 @@ var AidsPage = function () {
 
     // Single filter actions
     this.getFilter = function (target_filter) {
-        return element.all(by.cssContainingText('.side-pane-label', target_filter))
+        return element.all(by.cssContainingText('.side-pane-div', target_filter))
             .first();
     };
 
@@ -58,6 +58,10 @@ var AidsPage = function () {
             .get(row)
             .all(by.tagName('td'))
             .getText();
+    };
+
+    this.getElementContainingText = function (text) {
+        return element(by.partialLinkText(text));
     };
 };
 

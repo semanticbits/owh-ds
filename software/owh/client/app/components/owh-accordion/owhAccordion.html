@@ -1,9 +1,9 @@
 <div class="accordion">
-    <label class="side-pane-label custom-label cursor-pointer" ng-click="oac.toggleAccordion()">
+    <div class="side-pane-label custom-div cursor-pointer" ng-click="oac.toggleAccordion()">
         <span class="fa" ng-class="{'fa-chevron-right': oac.collapsed, 'fa-chevron-down': !oac.collapsed}"></span>
         <span translate="{{oac.leftTitle}}"></span>
         <span ng-bind="oac.rightTitle" style="float: right;"></span>
-    </label>
+    </div>
     <div id="{{id}}" ng-hide="oac.collapsed" class="margin-left-20">
         <ng-transclude></ng-transclude>
     </div>

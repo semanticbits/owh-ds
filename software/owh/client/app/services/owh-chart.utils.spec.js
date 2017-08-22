@@ -93,6 +93,7 @@ describe('chart utils', function(){
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 1111111111111111}});
         $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
     }));
 
     it('test chart utils horizontalStack', function () {
@@ -161,7 +162,7 @@ describe('chart utils', function(){
         var filter = {"key":"state","title":"label.prams.filter.state","queryKey":"sitecode","value":["AK"],"autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]};
         var data = {"question":[{"name":"qn365","-1":{"sitecode":[{"name":"AK","prams":{"mean":"23.0","ci_l":"0","ci_u":"0"}},{"name":"AK","prams":{"mean":"21.0","ci_l":"0","ci_u":"0"}}]},"NO (UNCHECKED)":{"sitecode":[{"name":"AK","prams":{"mean":"97.4","ci_l":"96.0","ci_u":"98.3"}},{"name":"AK","prams":{"mean":"97.1","ci_l":"95.6","ci_u":"98.1"}}]},"YES (CHECKED)":{"sitecode":[{"name":"AK","prams":{"mean":"2.6","ci_l":"1.7","ci_u":"4.0"}},{"name":"AK","prams":{"mean":"2.9","ci_l":"1.9","ci_u":"4.4"}}]}}]};
         var primaryFilter = {key:'prams', chartAxisLabel: 'Percentage', allFilters:[{topic:[]}, {year:[]}, {state:[]}, {ques:[]}, {value:[]}]};
-        var expectedOutput = {"data":[{"key":"Percentage - NO (UNCHECKED)","values":[{"label":"Alaska","value":97.4}]},{"key":"Percentage - YES (CHECKED)","values":[{"label":"Alaska","value":2.6}]}],"title":"label.title.state.state","options":{"chart":{"type":"multiBarHorizontalChart","height":250,"width":0,"margin":{"top":5,"right":5,"bottom":45,"left":45},"showLegend":false,"showControls":false,"showValues":false,"showXAxis":true,"showYAxis":true,"stacked":false,"duration":500,"xAxis":{"axisLabelDistance":-20,"axisLabel":"label.prams.filter.state","showMaxMin":false},"yAxis":{"axisLabel":"Percentage"},"useInteractiveGuideline":false,"interactive":false,"tooltip":{}}}};
+        var expectedOutput = {"data":[{"key":"Percentage - NO (UNCHECKED)","values":[{"label":"Alaska","value":97.4}]},{"key":"Percentage - YES (CHECKED)","values":[{"label":"Alaska","value":2.6}]}],"dataset":"prams","title":"label.title.state.state","options":{"chart":{"type":"multiBarHorizontalChart","height":250,"width":0,"margin":{"top":5,"right":5,"bottom":45,"left":45},"showLegend":false,"showControls":false,"showValues":false,"showXAxis":true,"showYAxis":true,"stacked":false,"duration":500,"xAxis":{"axisLabelDistance":-20,"axisLabel":"label.prams.filter.state","showMaxMin":false},"yAxis":{"axisLabel":"Percentage"},"useInteractiveGuideline":false,"interactive":false,"tooltip":{}}}};
         var result = chartUtils.horizontalBar(filter, filter, data, primaryFilter);
         expect(JSON.stringify(result)).toEqual(JSON.stringify(expectedOutput));
     });
@@ -191,7 +192,7 @@ describe('chart utils', function(){
     });
 
     it('test chart utils lineChart', function () {
-        var result = chartUtils.lineChart(lineChartData, lineChartFilter, {key:'current_year'});
+        var result = chartUtils.lineChart(lineChartData, lineChartFilter, {key:'deaths'});
         expect(JSON.stringify(result)).toEqual(JSON.stringify(lineChartExpectedResult));
         result.data();
         expect(result.options.chart.x({x: 'x label'})).toEqual('x label');

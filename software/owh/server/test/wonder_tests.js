@@ -67,6 +67,9 @@ describe("WONDER API", function () {
             expect(resp.table).to.eql(stateWonderResponse);
             expect(resp.charts[0]).to.eql(stateWonderResponseForCharts_RaceAndState);
             expect(resp.charts[1]).to.eql(stateWonderResponseForCharts_GenderAndSex);
+            //Map data
+            expect(resp.maps.Alabama.Female.standardPop).to.eql(2505795);
+            expect(resp.maps.Alabama.Male.standardPop).to.eql(2353184);
             done();
         }, function(err){
             console.log(err);

@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var morganlogger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var logger = require('./config/logging')
+var logger = require('./config/logging');
 
 var app = express();
 app.use(bodyParser.json({limit: '10mb'}));

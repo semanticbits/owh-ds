@@ -19,9 +19,20 @@ Feature: TB page
     When I look at the TB data table
     Then I see the Rates, Population and Cases as outputs in the TB data table
 
+  Scenario: One filter on groupBy 'Row' should display totals
+    When  I select groupBy "Off" option for "Sex" filter
+    Then the default headers of the table should be "Race/Ethnicity, Number of Cases"
+    And the values in row "0" should be "All races/ethnicities, 9,554"
+    And the values in row "0" should be "All races/ethnicities, 321,418,820"
+    And the values in row "0" should be "All races/ethnicities, 3.0"
+    And the values in row "1" should be "American Indian or Alaska Native, 145"
+    And the values in row "1" should be "American Indian or Alaska Native, 2,369,834"
+    And the values in row "1" should be "American Indian or Alaska Native, 6.1"
+
   Scenario: Filter order
-    When I look at the sidebar
-    Then filters should be in this order "Year, Sex, Race/Ethnicity, Age Groups, State"
+    When  I select groupBy "Column" option for "Sex" filter
+    And I look at the sidebar
+    Then filters should be in this order "Year, Sex, Race/Ethnicity, Age Groups, Country of Birth, State"
 
   Scenario: Radio Buttons
     When I expand each TB filter
@@ -43,3 +54,8 @@ Feature: TB page
     Then I should not see grouped and stacked controls on expanded visualization
     And  I see labels "Race/Ethnicity" and "Rates" are displayed on expanded visualization
     And I close visualization popup
+
+  Scenario: GroupBy Country of Birth
+    When  I select groupBy "Row" option for "Country of Birth" filter
+    Then I see country of birth results on data table
+

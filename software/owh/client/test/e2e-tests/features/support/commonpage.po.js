@@ -1,15 +1,18 @@
 var CommonPage = function() {
     var cp = this;
-    cp.backButton = element(by.css('button[title="Previous Query"]'));
-    cp.forwardButton = element(by.css('button[title="Next Query"]'));
-    cp.interestedInSelectBox = element(by.id('interestedIn'));
+    cp.backButton = element(by.css('i[title="Previous query"]'));
+    cp.forwardButton = element(by.css('i[title="Next query"]'));
+    cp.interestedInSelectBox = element(by.id('selectedPrimaryFilterDiv'));
+    cp.secondaryMenu = element(by.className('dropdown-submenu'));
 
     cp.getSelectedFilterType = function() {
-        return cp.interestedInSelectBox.$('option:checked').getText();
+        return cp.interestedInSelectBox.getText();
     };
 
     cp.getFilterByType = function (type) {
-        return element(by.cssContainingText('div.sidebar-filter-label', type))
+        var elm = element(by.cssContainingText('div.sidebar-filter-label', type));
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
+        return element(by.cssContainingText('div.sidebar-filter-label', type));
     };
 
     cp.getSwitchForFilterType = function (type) {
@@ -34,7 +37,7 @@ var CommonPage = function() {
 
     cp.getFilterOptionContainerForFilter = function (filterType) {
         var filter = cp.getFilterByType(filterType);
-        return filter.element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul'))
+        return filter.element(by.xpath('ancestor::span')).element(by.tagName('ul'))
     };
 
     cp.getAllOptionsForFilter = function (filterType) {
@@ -54,7 +57,11 @@ var CommonPage = function() {
     
     cp.getShowMoreFilterOptionsLinkFor = function (filterType, linkText) {
         return cp.getFilterOptionContainerForFilter(filterType).element(by.cssContainingText('a', linkText));
-    }
+    };
+
+    cp.scrollToElement = function(elm) {
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
+    };
 };
 
 module.exports = new CommonPage;

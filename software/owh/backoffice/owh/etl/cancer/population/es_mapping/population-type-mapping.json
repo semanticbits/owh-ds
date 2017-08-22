@@ -27,7 +27,7 @@
         "type": "string", "index": "not_analyzed"
       },
       "pop": {
-        "type":"string", "index":"not_analyzed"
+        "type":"integer", "index":"not_analyzed"
       }
     }
   }

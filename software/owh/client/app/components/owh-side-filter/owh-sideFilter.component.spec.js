@@ -58,6 +58,7 @@ describe('OWH Side filter component: ', function() {
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 1111111111111111}});
         $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
 
         function searchResultsFn() {
 
@@ -134,7 +135,7 @@ describe('OWH Side filter component: ', function() {
         var allFilters = [
             { key: 'question', title: 'label.yrbs.filter.question', queryKey:"question.path", aggregationKey:"question.key",
                 primary: false, value: [], groupBy: 'row', filterType: 'tree', autoCompleteOptions: [], donotshowOnSearch:true,
-                selectTitle: 'select.label.yrbs.filter.question', iconClass: 'fa fa-pie-chart purple-text', selectedValues :[], selectedNodes:[]
+                selectTitle: 'select.label.yrbs.filter.question', iconClass: 'purple-text', selectedValues :[], selectedNodes:[]
             },
             { key: 'ucd-chapter-10', title: 'label.filter.ucd.icd.chapter', queryKey:"ICD_10_code.path",
                 primary: true, value: [], groupBy: false, type:"label.filter.group.ucd", groupKey:"ucd",
@@ -194,7 +195,7 @@ describe('OWH Side filter component: ', function() {
         var allFilters = [
             { key: 'question', title: 'label.yrbs.filter.question', queryKey:"question.path", aggregationKey:"question.key",
                 primary: false, value: [], groupBy: 'row', filterType: 'tree', autoCompleteOptions: [], donotshowOnSearch:true,
-                selectTitle: 'select.label.yrbs.filter.question', iconClass: 'fa fa-pie-chart purple-text',
+                selectTitle: 'select.label.yrbs.filter.question', iconClass: 'purple-text',
                 selectedValues:[], selectedNodes:[]
             }
         ];
@@ -219,6 +220,27 @@ describe('OWH Side filter component: ', function() {
         expect(JSON.stringify(selectedFilter.selectedValues)).toEqual(JSON.stringify([{"id":"qn1","text":"test ques1"},{"id":"qn2","text":"test ques2"},{"id":"Q2","text":"Question 2"}]))
     });
 
+    it('Should show tree modal on selecting Cancer Site filter', function () {
+        var allFilters = [{ key: 'site', selectedValues:[], selectedNodes:[] }];
+        var selectedFilter = allFilters[0];
+        var bindings = { filters : filters, onFilter: function(){} };
+        var ctrl = $componentController( 'owhSideFilter', { $scope: $scope}, bindings);
+        expect(ctrl).toBeDefined();
+
+        ctrl.showModal(selectedFilter, allFilters);
+
+        var modalCtrl = controllerProvider(givenModalDefaults.controller, { $scope: $scope, close: closeDeferred.promise });
+        modalCtrl.element = givenModalDefaults.element;
+        modalCtrl.controller = modalCtrl;
+        modalCtrl.optionValues = [{ id: "site1", text: "Site 1", childNodes: [{ id: "site1.1", text:"Site 1.1" }, { id: "site1.2", text: "Site 1.2"}] }, { id: "site1.3", text: "Site 1.3" }];
+        thenFunction(modalCtrl);
+        expect(elementVisible).toBeTruthy();
+        closeDeferred.resolve({});
+        $scope.$apply();
+        expect(elementVisible).toBeFalsy();
+        expect(JSON.stringify(selectedFilter.selectedNodes)).toEqual(JSON.stringify(modalCtrl.optionValues))
+        expect(JSON.stringify(selectedFilter.selectedValues)).toEqual(JSON.stringify([{ id: "site1.1", text:"Site 1.1" }, { id: "site1.2", text: "Site 1.2"}, { id: "site1.3", text: "Site 1.3" }]))
+    });
 
     it("Should show next phase implementation popup on selecting other filters", function() {
         var allFilters = [ { filterGroup: false, collapse: false, allowGrouping: true, groupBy:false,

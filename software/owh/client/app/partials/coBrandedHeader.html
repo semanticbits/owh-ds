@@ -1,0 +1,32 @@
+<div class="usa-grid-full">
+    <div class="usa-width-one-whole co-branded-header">
+        <div class="co-branded-row">
+            <span class="co-branded-logo">
+                <a ng-href="https://www.hhs.gov/" target="_blank">HHS.gov</a>
+            </span>
+            <span class="co-branded-site-name">
+                <a class="co-branded-anchor" ng-href="https://www.hhs.gov/" target="_blank">U.S. Department of Health &amp; Human Services</a>
+            </span>
+            <span class="co-branded-explore-shown">
+                <a class="co-branded-anchor" href="#" ng-show="!showMenus" ng-click="showMenus = !showMenus">Explore HHS <i class="material-icons add-icon">add</i></a>
+            </span>
+            <span class="co-branded-explore-close" ng-show="showMenus">
+                <a class="co-branded-anchor" href="#" ng-click="showMenus = !showMenus">Close <i class="material-icons add-icon rotate-45">close</i></a>
+            </span>
+        </div>
+       <div class="co-branded-menus" ng-show="showMenus">
+            <span class="co-branded-menu-block about-hhs">
+                <a class="co-branded-anchor" ng-href="https://www.hhs.gov/about/index.html" target="_blank">About HHS</a>
+            </span>
+            <span class="co-branded-menu-block program-services">
+                <a class="co-branded-anchor" ng-href="https://www.hhs.gov/programs/index.html" target="_blank">Programs &amp; Services</a>
+            </span>
+            <span class="co-branded-menu-block grants-contracts">
+                <a class="co-branded-anchor" ng-href="https://www.hhs.gov/grants/index.html" target="_blank">Grants &amp; Contracts</a>
+            </span>
+            <span class="co-branded-menu-block laws-regulations">
+                <a class="co-branded-anchor" ng-href="https://www.hhs.gov/regulations/index.html" target="_blank">Laws &amp; Regulations</a>
+            </span>
+        </div>
+    </div>
+</div>

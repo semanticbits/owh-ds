@@ -114,7 +114,7 @@
                         }
                     }
             }
-            
+
         }
 
         function getOptionCountPercentage(option) {
@@ -145,7 +145,11 @@
                     clearSelection(eachFilter)
                 }
             });
-            var showTree = selectedFilter.key === 'ucd-chapter-10' || selectedFilter.key === 'mcd-chapter-10' || selectedFilter.key === 'question';
+            var showTree = selectedFilter.key === 'ucd-chapter-10' ||
+                           selectedFilter.key === 'mcd-chapter-10' ||
+                           selectedFilter.key === 'question' ||
+                           selectedFilter.key === 'site' ||
+                           selectedFilter.key === 'childhood_cancer';
             if(!showTree) {
                 searchFactory.showPhaseTwoModal('label.mcd.impl.next');
             }else {
@@ -156,12 +160,27 @@
                     controller: function ($scope, close) {
                         var mc = this;
                         mc.codeKey = selectedFilter.key;
-                        mc.entityName = selectedFilter.key === 'question' ? 'Question' : 'Cause(s) of Death';
-                        mc.modelHeader = selectedFilter.key === 'question' ? 'label.select.question' : 'label.cause.death';
+
+                        mc.entityName = {
+                            question: 'Question',
+                            'ucd-chapter-10': 'Cause(s) of Death',
+                            'mcd-chapter-10': 'Cause(s) of Death',
+                            site: 'cancer site(s)',
+                            'childhood_cancer': 'childhood cancer(s)'
+                        }[selectedFilter.key];
+
+                        mc.modelHeader = {
+                            question: 'label.select.question',
+                            'ucd-chapter-10': 'label.cause.death',
+                            'mcd-chapter-10': 'label.cause.death',
+                            site: 'label.select.cancer_site',
+                            'childhood_cancer': 'label.select.childhood_cancer'
+                        }[selectedFilter.key];
 
                         mc.optionValues = selectedFilter.selectedNodes ? selectedFilter.selectedNodes : selectedFilter.selectedValues;
 
                         mc.questions = selectedFilter.questions;
+                        mc.tree = selectedFilter.tree;
                         mc.close = close;
                     }
                 }).then(function (modal) {
@@ -170,37 +189,42 @@
                     // it as you need to.
                     modal.element.show();
                     modal.close.then(function (result) {
-                        //remove all elements from array
-                        if (!selectedFilter.selectedValues || !selectedFilter.selectedNodes) {
-                            //selected nodes and their child nodes, which will be sent to backend for query
-                            selectedFilter.selectedValues = [];
-                            //selected nodes
-                            selectedFilter.selectedNodes = [];
-                        }
-                        selectedFilter.selectedValues.length = 0;
-                        selectedFilter.selectedNodes.length = 0;
-
-                        //To reflect the selected causes
-                        angular.forEach(modal.controller.optionValues, function (eachOption, index) {
-                            //get child nodes, if any and add to selected values
-                            if (eachOption.childNodes && eachOption.childNodes.length > 0) {
-                                angular.forEach(eachOption.childNodes, function (childNode, index) {
-                                    selectedFilter.selectedValues.push(childNode);
-                                });
-                            } else {
-                                selectedFilter.selectedValues.push(eachOption);
+                        if (result) {
+                            //remove all elements from array
+                            if (!selectedFilter.selectedValues || !selectedFilter.selectedNodes) {
+                                //selected nodes and their child nodes, which will be sent to backend for query
+                                selectedFilter.selectedValues = [];
+                                //selected nodes
+                                selectedFilter.selectedNodes = [];
                             }
+                            selectedFilter.selectedValues.length = 0;
+                            selectedFilter.selectedNodes.length = 0;
 
-                            selectedFilter.selectedNodes.push(eachOption);
-                        });
-                        selectedFilter.value = utilService.getValuesByKey(selectedFilter.selectedValues, 'id');
-                        modal.element.hide();
+                            //To reflect the selected causes
+                            angular.forEach(modal.controller.optionValues, function (eachOption, index) {
+                                //get child nodes, if any and add to selected values
+                                if (eachOption.childNodes && eachOption.childNodes.length > 0) {
+                                    angular.forEach(eachOption.childNodes, function (childNode, index) {
+                                        selectedFilter.selectedValues.push(childNode);
+                                    });
+                                } else {
+                                    selectedFilter.selectedValues.push(eachOption);
+                                }
 
-                        deferred.resolve(selectedFilter);
+                                selectedFilter.selectedNodes.push(eachOption);
+                            });
+                            selectedFilter.value = utilService.getValuesByKey(selectedFilter.selectedValues, 'id');
+                            modal.element.hide();
 
-                        //  Run the filter call back only if runOnFilterChange is true
-                        if(sfc.runOnFilterChange) {
-                            sfc.onFilter();
+                            deferred.resolve(selectedFilter);
+
+                            //  Run the filter call back only if runOnFilterChange is true
+                            if(sfc.runOnFilterChange) {
+                                sfc.onFilter();
+                            }
+                        }
+                        else {
+                            deferred.resolve(null);
                         }
                     });
                 });
@@ -228,9 +252,11 @@
                 selectedNodes: selectedFilter.selectedNodes[propertyKey],
                 value: selectedFilter.value[propertyKey]
             }, allFilters).then(function (filter) {
-                selectedFilter.selectedValues[propertyKey] = filter.selectedValues;
-                selectedFilter.selectedNodes[propertyKey] = filter.selectedNodes;
-                selectedFilter.value[propertyKey] = filter.value;
+                if (filter) {
+                    selectedFilter.selectedValues[propertyKey] = filter.selectedValues;
+                    selectedFilter.selectedNodes[propertyKey] = filter.selectedNodes;
+                    selectedFilter.value[propertyKey] = filter.value;
+                }
             });
         }
 
@@ -273,7 +299,7 @@
                 if ( group.allChecked === false ) {
                     // When All is unchecked, select all other values
                     angular.forEach(group.autoCompleteOptions, function(option){
-                        group.value.push(option.key)
+                        group.value.push(option.key);
                     });
                 } else {
                     // When All is selected, unselect individual values

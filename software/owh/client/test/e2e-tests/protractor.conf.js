@@ -9,7 +9,7 @@ exports.config = {
   frameworkPath: require.resolve('protractor-cucumber-framework'),
 
   specs: [
-    'features/*.feature'
+      'features/*.feature'
   ],
   cucumberOpts: {
     // require step definitions
@@ -25,6 +25,9 @@ exports.config = {
       'features/step_definitions/stdSteps.js',
       'features/step_definitions/tbSteps.js',
       'features/step_definitions/aidsSteps.js',
+      'features/step_definitions/cancerIncidenceSteps.js',
+      'features/step_definitions/cancerMortalitySteps.js',
+      'features/step_definitions/dataDocumentationSteps.js',
       'features/support/hook.js'
     ],
       format: 'pretty'

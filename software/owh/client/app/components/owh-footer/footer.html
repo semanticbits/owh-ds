@@ -1,31 +1,37 @@
-<div class="usa-grid-full footer">
-    <div class="usa-width-one-half footer-header">
-        <div class="usa-grid-full">
-            <div class="usa-width-one-third footer-header-img"><img width="110px" height="50px" src="app/images/owh_logo.png" alt="OWH Logo" style="margin-left: 20px"></div>
-            <div class="usa-width-two-thirds"><span class="footer-h2 margin-top-0" ng-bind="'label.app.title.qhdo' | translate"></span></div>
+<div class="sp-footer footer">
+    <div class="footer-header">
+        <div class="logo-container cursor-pointer">
+            <a ui-sref="home"><img class="owh-logo" ui-sref="home" src="../images/owh-logo-white.svg" alt="white OWH logo"/></a>
+            <div class="logo-divider"></div>
+            <a ui-sref="home"><img class="hig-logo" ui-sref="home" src="../images/hig-logo-white.svg" alt="white HIG Logo" /></a>
         </div>
     </div>
-    <div class="usa-width-one-half">
-        <div class="usa-grid">
-            <div class="usa-width-one-third">
-                <ul>
-                    <li><a href="#" ng-href="#" ng-click="fc.showPhaseTwoWarningModal('label.default.to.be.implemented');">FAQS</a></li>
-                    <li><a href="#" ng-href="#" ng-click="fc.showPhaseTwoWarningModal('label.default.to.be.implemented');">Links</a></li>
-                </ul>
 
-            </div>
-            <div class="usa-width-one-third">
-                <ul>
-                    <li><a href="#" ng-href="#" ng-click="fc.showPhaseTwoWarningModal('label.default.to.be.implemented');">A-Z index</a></li>
-                    <li><a href="#" ng-href="#" ng-click="fc.showPhaseTwoWarningModal('label.default.to.be.implemented');">Downloads</a></li>
-                </ul>
-            </div>
-            <div class="usa-width-one-third">
-                <ul>
-                    <li><a ng-href="http://www.womenshealth.gov" target="_blank">womenshealth.gov </a></li>
-                    <li><a ng-href="http://www.womenshealth.gov" target="_blank">HHS.gov</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <ul class="footer-link">
+        <!--put ul and li back if needed-->
+        <li class="cursor-pointer sp-icon-div" >
+            <a class="ft-link" ng-href="https://www.womenshealth.gov/about-us/" target="_blank">About Us</a>
+        </li>
+        <li class="cursor-pointer sp-icon-div" >
+            <a class="ft-link" ng-href="https://www.womenshealth.gov/contact-us/email/" target="_blank">Contact Us</a>
+        </li>
+        <li class="cursor-pointer sp-icon-div">
+            <a class="ft-link" ng-href="https://www.hhs.gov/privacy.html" target="_blank">Privacy Policy</a>
+        </li>
+        <li class="cursor-pointer sp-icon-div">
+            <a class="ft-link" ng-href="https://www.hhs.gov/foia/" target="_blank">FOIA</a>
+        </li>
+        <li class="cursor-pointer sp-icon-div">
+            <a class="ft-link" ng-href="https://www.hhs.gov/plugins.html" target="_blank">Viewers & Players</a>
+        </li>
+        <li class="cursor-pointer sp-icon-div">
+            <a class="ft-link" ng-href="http://www.womenshealth.gov" target="_blank">Womenshealth.gov </a>
+        </li>
+        <li class="cursor-pointer">
+            <a class="ft-link" ng-href="https://www.hhs.gov/" target="_blank">HHS.gov</a>
+        </li>
+        <li class="cursor-pointer">
+            <a class="ft-link" ng-href="https://www.usa.gov/" target="_blank">USA.gov</a>
+        </li>
+    </ul>
 </div>

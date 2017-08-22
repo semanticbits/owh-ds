@@ -4,7 +4,7 @@ var InfantMortalityPage = function () {
 
     // Sidebar Elements and Actions
     imp.getFilter = function (target_filter) {
-        return element.all(by.className('side-pane-label')).filter(function (category) {
+        return element.all(by.className('side-pane-div')).filter(function (category) {
             return category.element(by.className('filter-display-name')).getText()
                 .then(function (text) {
                     return text === target_filter;
@@ -92,7 +92,7 @@ var InfantMortalityPage = function () {
 
     imp.getFiltersForCategory = function (target_category) {
         return imp.getCategory(target_category)
-            .all(by.className('side-pane-label'))
+            .all(by.className('side-pane-div'))
             .map(function (filter) {
                 return filter.element(by.className('filter-display-name')).getText();
             });
@@ -107,6 +107,13 @@ var InfantMortalityPage = function () {
 
     imp.getTableRowData = function (row) {
         return imp.owhTable.element(by.id('clusterize-table')).element(by.tagName('tbody')).all(by.tagName('tr')).get(row).all(by.tagName('td')).getText();
+    };
+
+    imp.getAxisLabelsForMinimizedVisualization= function (xIndex, yIndex) {
+        var chartId= 'chart_'+xIndex+'_'+yIndex;
+        var axis_x_label = element(by.id(chartId)).element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-x.nv-axis')).element(by.css('.nv-axislabel'));
+        var axis_y_label = element(by.id(chartId)).element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-y.nv-axis')).element(by.css('.nv-axislabel'));
+        return [axis_x_label, axis_y_label];
     };
 };
 

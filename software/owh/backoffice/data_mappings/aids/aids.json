@@ -116,10 +116,9 @@
       "column_index": 5,
       "type": "map",
       "field": "AGEGROUP",
+      "comment": " '0' mapping is for 'All age groups 13 and up' to make similar to 'std' and 'tb' and avoid code complications changed to 'All age groups'",
       "mappings": {
-        "0": "All age groups 13 and up",
-        "10": "All age groups",
-        "20": "Age 15 and older",
+        "0": "All age groups",
         "30": "0-4",
         "40": "0-14",
         "50": "05-14",
@@ -154,9 +153,7 @@
         "2": "Injection drug use",
         "3": "Male-to-male sexual contact and injection drug use",
         "4": "Heterosexual contact",
-        "5": "Other",
-        "6": "US-born",
-        "7": "Foreign-born"
+        "5": "Other"
       }
     },
     {
