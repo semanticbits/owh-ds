@@ -27,7 +27,7 @@ install:
   - cd software/owh/server
   - npm cache clean -f
   - npm install -g n
-  - n stable
+  - sudo n stable
   - node --version
   - npm install
   - npm install --dev
