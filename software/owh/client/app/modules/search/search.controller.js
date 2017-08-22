@@ -79,7 +79,15 @@
                 {key: 'Sexual Behaviors', title: 'Sexual Behaviors'},
                 {key: 'Tobacco Use', title: 'Tobacco Use'},
                 {key: 'Unintentional Injuries and Violence', title: 'Unintentional Injuries and Violence'},
-                {key: 'Other Health Topics', title: 'Other Health Topics'}]
+                {key: 'Other Health Topics', title: 'Other Health Topics'}],
+            cancer_incident: [
+                { key: 'cancer_incident', title: 'Number of Incidents' },
+                { key: 'crude_cancer_incidence_rates', title: 'Crude Incidence Rate' }
+            ],
+            cancer_mortality: [
+                { key: 'cancer_mortality', title: 'Number of Deaths' },
+                { key: 'crude_cancer_death_rates', title: 'Crude Death Rates' }
+            ]
         };
         sc.sort = {
             "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'ucd-chapter-10', 'mcd-chapter-10'],
@@ -521,12 +529,12 @@
         //builds marker popup.
         sc.mapPopup = L.popup({autoPan:false, closeButton:false});
         sc.currentFeature = {};
-        function buildMarkerPopup(lat, lng, properties, map, tableView, markerPosition) {
+        function buildMarkerPopup(lat, lng, properties, map, key, markerPosition) {
             var childScope = $scope.$new();
             childScope.lat = lat;
             childScope.lng = lng;
             childScope.properties = properties;
-            childScope.tableView = tableView;
+            childScope.key = key;
             var ele = angular.element('<div></div>');
             ele.html($templateCache.get('app/partials/marker-template.html'));
             var compileEle = $compile(ele.contents())(childScope);
