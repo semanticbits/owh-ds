@@ -707,7 +707,7 @@
             }
             //When user selects more than one filter
             if( headers.chartHeaders.length > 0 ) {
-                var allOtherCharts = [];
+                /*var allOtherCharts = [];
                 var multiLineCharts = headers.chartHeaders.reduce(function (prev, header) {
                     if (header.chartType !== 'multiLineChart') {
                         allOtherCharts.push(header);
@@ -725,10 +725,15 @@
 
                 multiLineCharts.forEach(function (chart) {
                     chartData.push(chartUtilService.multiLineChart(chart, primaryFilter));
-                });
-
-                angular.forEach(allOtherCharts, function(eachChartHeaders, index) {
-                    chartData.push(chartUtilService[eachChartHeaders.chartType](eachChartHeaders.headers[0], eachChartHeaders.headers[1], nestedData.charts[index], primaryFilter));
+                }); */
+                angular.forEach(headers.chartHeaders, function(eachChartHeaders, index) {
+                    if(eachChartHeaders.chartType === 'multiLineChart') {
+                        //@Gopal: Need to send proper chart data to multiLineChart method
+                        //chartData.push(chartUtilService.multiLineChart(eachChartHeaders, primaryFilter));
+                    }
+                    else {
+                        chartData.push(chartUtilService[eachChartHeaders.chartType](eachChartHeaders.headers[0], eachChartHeaders.headers[1], nestedData.charts[index], primaryFilter));
+                    }
                 });
             }else if( ( headers.rowHeaders.length + headers.columnHeaders.length ) === 1 ) {
                 var data = nestedData.table;
@@ -2649,6 +2654,7 @@
                                     filterGroup: false,
                                     collapse: false,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'year_of_death'),
                                     refreshFiltersOnChange: true,
@@ -2658,6 +2664,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'sex')
                                 },
@@ -2665,6 +2672,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'infant_age_at_death')
                                 }
@@ -2677,6 +2685,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'race')
                                 },
@@ -2684,6 +2693,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'hispanic_origin')
                                 },
@@ -2691,6 +2701,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'mother_age_5_interval')
                                 },
@@ -2698,6 +2709,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'marital_status')
                                 },
@@ -2705,6 +2717,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'mother_education')
                                 }
@@ -2718,6 +2731,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'gestation_recode11')
                                 },
@@ -2725,6 +2739,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'gestation_recode10')
                                 },
@@ -2732,6 +2747,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'gestation_weekly')
                                 },
@@ -2739,6 +2755,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'prenatal_care')
                                 },
@@ -2746,6 +2763,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'birth_weight')
                                 },
@@ -2753,6 +2771,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'birth_plurality')
                                 },
@@ -2760,6 +2779,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'live_birth')
                                 },
@@ -2767,6 +2787,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'birth_place')
                                 },
@@ -2774,6 +2795,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'delivery_method')
                                 },
@@ -2781,6 +2803,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'medical_attendant')
                                 },
@@ -2788,6 +2811,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: {key: 'ucd-chapter-10', title: 'label.filter.ucd', queryKey:"ICD_10_code",
                                         primary: true, value: [], groupBy: false, type:"label.filter.group.ucd", groupKey:"ucd",
@@ -2806,6 +2830,7 @@
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
+                                    dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'state')
                                 }

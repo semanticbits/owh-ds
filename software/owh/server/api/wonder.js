@@ -1438,7 +1438,7 @@ function addFilterParams (wreq, query, dbID){
                     }
                     p = p['key'];
                 }
-                if(key === 'year_of_death' && (dbID === 'D69' || dbID === 'D31' || dbID === 'D18')) {
+                if(dbID === 'D69' || dbID === 'D31' || dbID === 'D18') {
                     addParamToWONDERReq(wreq, 'V_' + p, v);
                 }
                 else {

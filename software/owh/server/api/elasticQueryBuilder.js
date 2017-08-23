@@ -860,7 +860,23 @@ var chartMappings = {
     "sex&gestation_recode10": "horizontalStack",
     "race&gestation_recode10": "horizontalStack",
     "sex&gestation_weekly": "horizontalStack",
-    "race&gestation_weekly": "horizontalStack"
+    "race&gestation_weekly": "horizontalStack",
+
+    "year_of_death&sex": "multiLineChart",
+    "year_of_death&race": "multiLineChart",
+    "year_of_death&ethnicity": "multiLineChart",
+    "year_of_death&marital_status": "multiLineChart",
+    "year_of_death&mother_age": "multiLineChart",
+    "year_of_death&mother_education": "mulitLineChart",
+    "year_of_death&gestation_recode1": "multiLineChart",
+    "year_of_death&prenatal_care": "horizontalStack",
+    "year_of_death&birth_weight": "mulitLineChart",
+    "year_of_death&birth_plurality": "mulitLineChart",
+    "year_of_death&live_birth": "mulitLineChart",
+    "year_of_death&birth_place": "mulitLineChart",
+    "year_of_death&delivery_method": "mulitLineChart",
+    "year_of_death&medical_attendant": "mulitLineChart",
+    "year_of_death&ucd": "mulitLineChart"
 };
 
 var prepareMapAggregations = function() {

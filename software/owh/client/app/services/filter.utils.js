@@ -973,9 +973,11 @@
             return [
                 // Infant Characteristics
                 {key: 'year_of_death', title: 'label.filter.year', queryKey:"year_of_death", primary: false, value: ["2014"],
-                    defaultGroup:'column', groupBy: false, filterType: "checkbox", doNotShowAll: true,
+                    defaultGroup:'column', groupBy: false, filterType: "checkbox", doNotShowAll: true, defaultValue: ["2014"],
                     // Data only available for 2000-2014
-                    autoCompleteOptions: yearOptions.slice(1), helpText:"label.help.text.infantmort.year"},
+                    autoCompleteOptions: yearOptions.slice(1), helpText:"label.help.text.infantmort.year",
+                    D69Years: ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014'],
+                    D31Years: ['2003', '2004', '2005', '2006'], D18Years: ['2000', '2001', '2002']},
 
                 {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'column', filterType: "checkbox",
