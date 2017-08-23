@@ -175,6 +175,11 @@
         }
 
         function changeSelectedFilter(filter, category) {
+            if(category.selectedFilter) {
+                var previousFilter = utilService.findByKeyAndValue(category.sideFilters, 'filters.key', category.selectedFilter);
+                filter.filters.groupBy = previousFilter.filters.groupBy;
+            }
+
             category.selectedFilter = filter.filters.key;
 
             // If the category is exclusive, we would need to re-run the query

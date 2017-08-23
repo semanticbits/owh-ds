@@ -94,10 +94,28 @@
         function findByKeyAndValue(a, key, value) {
             if(a){
                 for (var i = 0; i < a.length; i++) {
-                    if ( a[i][key] && a[i][key] === value ) {return a[i];}
+                    var keyValue = extractPropertyValue(a[i], key);
+                    if ( keyValue && keyValue === value ) {return a[i];}
                 }
             }
             return null;
+        }
+
+        function extractPropertyValue(obj, property) {
+            var value;
+
+            if (typeof property === 'string') {
+                value = obj;
+                var properties = property.split('.');
+                properties.forEach(function (prop) {
+                    value = value[prop];
+                });
+            }
+            else {
+                value = obj[property];
+            }
+
+            return value;
         }
 
         /**
