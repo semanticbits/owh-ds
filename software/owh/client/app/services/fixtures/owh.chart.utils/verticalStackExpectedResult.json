@@ -65,29 +65,35 @@
     "showlegend":false,
     "hovermode":"closest",
     "margin":{
-      "l":10,
+      "l":20,
       "r":10,
-      "b":10,
+      "b":20,
       "t":20
     },
     "xaxis":{
-      "visible":false,
-      "title":"label.filter.race",
+      "visible":true,
       "titlefont":{
-        "size":16
+        "size":15
       },
       "exponentformat":"none",
-      "tickangle":45
+      "tickangle":45,
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "title":"label.filter.race"
     },
     "yaxis":{
-      "visible":false,
-      "title":"Deaths",
+      "visible":true,
       "titlefont":{
-        "size":16
+        "size":15
       },
       "exponentformat":"none",
-      "tickangle":-45,
-      "ticksuffix":"   "
+      "tickangle":45,
+      "ticksuffix":"   ",
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "title":"Deaths"
     },
     "barmode":"stack"
   },

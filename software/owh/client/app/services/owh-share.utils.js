@@ -4,9 +4,9 @@
         .module('owh.services')
         .service('shareUtilService', shareUtilService);
 
-    shareUtilService.$inject = ['SearchService', '$q', '$filter', '$window', 'API'];
+    shareUtilService.$inject = ['SearchService', '$q', '$filter', '$window', 'API', 'chartUtilService'];
 
-    function shareUtilService(SearchService, $q, $filter, $window, API) {
+    function shareUtilService(SearchService, $q, $filter, $window, API, chartUtilService) {
         var service = {
             shareOnFb: shareOnFb,
             exportChart: exportChart
@@ -19,7 +19,7 @@
             if(data) {
                 uploadImage(data, title, section, description);
             } else {
-                getBase64ForSvg(svgIndex).then(function(response){
+                getPNGfromSVG(svgIndex).then(function(response){
                     uploadImage(response, title, section, description);
                 });
             }
@@ -71,8 +71,29 @@
                         }
                     } else {
                         var doc = new jsPDF('l');
-                        doc.text(30, 25, charttitle);
-                        doc.addImage(response, 'PNG', 60, 30);
+                        doc.rect(5,5,285, 200);
+                        doc.addImage(response, 'PNG', 10, 10, 270, 190 );
+                        doc.line(5, 190, 290, 190);
+                        doc.setFontSize(11);
+                        doc.text( 7, 194, doc.splitTextToSize('This graph is downloaded form Health Information Gateway(HIG) using the query parameters: '+ selectedFiltersTxt, 280));
+                        doc.addPage();
+                        doc.rect(5,5,285, 200);
+                        doc.setFontSize(20);
+                        doc.setFontType("bold");
+                        doc.text(10,15, 'Notes:');
+                        doc.setFontSize(12);
+                        doc.text(12,22, 'Datasource: ');
+                        doc.text(12,70, 'Query parameters: ');
+                        doc.text(12,100, 'Generated at:')
+                        doc.text(12,110,'Suggested citation: ');
+                        doc.text(12,120, 'Notes: ');
+                        doc.setFontType("");
+                        doc.setFontSize(12);
+                        doc.text(60,22,  doc.splitTextToSize($filter('translate')('datadoc.datasource.'+chartdata.dataset), 200));
+                        doc.text(60,70, doc.splitTextToSize(selectedFiltersTxt, 200));
+                        doc.text(60,100, $filter('date')(new Date(),'short'));
+                        doc.text(60,110, doc.splitTextToSize($filter('translate')('datadoc.citation.'+chartdata.dataset),200));
+                        doc.text(60,120, doc.splitTextToSize($filter('translate')('datadoc.notes.'+chartdata.dataset),200));
                         doc.save(filename + '.pdf');
                     }
                 }, function(err){
@@ -87,7 +108,7 @@
                     addBarChart(pptx, slide, chartdata.longtitle, chartdata);
                 } else if (chartdata.charttype == "pieChart"){
                     addPieChart(pptx, slide, chartdata.longtitle, chartdata);
-                } else if (chartdata.charttype == "lineChart"){
+                } else if (chartdata.charttype == "lineChart" || chartdata.charttype == "multiLineChart"){
                     addLineChart(pptx, slide, chartdata.longtitle, chartdata);
                 }
 
@@ -131,7 +152,10 @@
                 showLegend: true, legendPos: 't',
                 showLabel: false,
                 showTitle: true, title: title, titleFontSize: 20,
-                showValue: true,dataLabelFontSize:8
+                showValue: true,dataLabelFontSize:8,
+                chartColors: chartUtilService.getColorPallete().map(function (color) {
+                    return color.substr(1); // strip off the leading #
+                }),
             } );
         }
 
@@ -152,14 +176,16 @@
                 showLegend: true, legendPos: 't',
                 showLabel: false,
                 showTitle: true, title: title, titleFontSize: 20,
-                showValue: true,dataLabelFontSize:8, dataLabelPosition: 't'
+                showValue: true,dataLabelFontSize:8, dataLabelPosition: 't',
+                chartColors: chartUtilService.getColorPallete().map(function (color) {
+                    return color.substr(1); // strip off the leading #
+                }),
             } );
         }
 
         // Adds a bar chart to a ppt
         function addBarChart(pptx, slide, title, chartdata){
             var dataChartBar = [];
-            var colors = [];
             // Traverse the data in reverse order so that the bars order match in the UI and generate PPT.
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var region = chartdata.data[i];
@@ -168,7 +194,6 @@
                 }else{
                         var reg = {name: region.name, labels: region.x, values: region.y};
                 }
-//                 var reg = {name: region.name, labels: region.y, values: region.x};
                 dataChartBar.push(reg);
             }
             slide.addChart( pptx.charts.BAR,dataChartBar, { x:.2, y:.2, w:'95%', h:'85%',
@@ -177,7 +202,9 @@
                 showTitle: true, title: title, titleFontSize: 20,
                 barGrouping:chartdata.layout.barmode === 'stack'?'stacked':'clustered',
                 showValue: false,dataLabelFontSize:8,dataLabelPosition: 'outEnd',
-                //chartColors: colors
+                chartColors: chartUtilService.getColorPallete().map(function (color) {
+                    return color.substr(1); // strip off the leading #
+                }),
                 barDir: chartdata.charttype == "multiBarHorizontalChart"?'bar':'col'
             } );
         }

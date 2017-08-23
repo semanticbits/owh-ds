@@ -7,36 +7,42 @@
       "hovermode":"closest",
       "margin":{
         "l":200,
-        "r":200,
+        "r":50,
         "b":200,
-        "t":100
+        "t":200
       },
       "xaxis":{
         "visible":true,
-        "title":"Deaths",
         "titlefont":{
-          "size":16
+          "size":15
         },
         "exponentformat":"none",
-        "tickangle":45
+        "tickangle":45,
+        "showline":true,
+        "gridcolor":"#bdbdbd",
+        "showticklabels":true,
+        "title":"Deaths"
       },
       "yaxis":{
         "visible":true,
-        "title":"label.filter.race",
         "titlefont":{
-          "size":16
+          "size":15
         },
         "exponentformat":"none",
-        "tickangle":-45,
-        "ticksuffix":"   "
+        "tickangle":45,
+        "ticksuffix":"   ",
+        "showline":true,
+        "gridcolor":"#bdbdbd",
+        "showticklabels":true,
+        "title":"label.filter.race"
       },
       "barmode":"stack",
       "title":"chart.title.measure.deaths by label.title.gender.race in undefined for undefined",
-      "autosize":true,
+      "autosize":false,
       "legend":{
-        "orientation":"v",
-        "x":1.01,
-        "y":0.5
+        "orientation":"h",
+        "y":1.1,
+        "x":0.5
       }
     },
     "dataset":"deaths",
@@ -101,35 +107,39 @@
       "hovermode":"closest",
       "margin":{
         "l":200,
-        "r":200,
+        "r":50,
         "b":200,
-        "t":100
+        "t":200
       },
       "xaxis":{
         "visible":true,
-        "title":"chart.title.measure.deaths",
         "titlefont":{
-          "size":16
+          "size":15
         },
         "exponentformat":"none",
-        "tickangle":45
+        "tickangle":45,
+        "showline":true,
+        "gridcolor":"#bdbdbd",
+        "showticklabels":true
       },
       "yaxis":{
         "visible":true,
-        "title":"label.filter.race",
         "titlefont":{
-          "size":16
+          "size":15
         },
         "exponentformat":"none",
-        "tickangle":-45,
-        "ticksuffix":"   "
+        "tickangle":45,
+        "ticksuffix":"   ",
+        "showline":true,
+        "gridcolor":"#bdbdbd",
+        "showticklabels":true
       },
       "title":"chart.title.measure.deaths by label.filter.race in undefined for undefined",
-      "autosize":true,
+      "autosize":false,
       "legend":{
-        "orientation":"v",
-        "x":1.01,
-        "y":0.5
+        "orientation":"h",
+        "y":1.1,
+        "x":0.5
       }
     },
     "dataset":"deaths",

@@ -480,31 +480,6 @@ ElasticClient.prototype.getDsMetadata = function (dataset, years) {
     return deferred.promise;
 };
 
-ElasticClient.prototype.getCountForYearByFilter = function (year, filter, option) {
-    var client = this.getClient();
-    var target = {};
-    target[filter] = option;
-    return client.count({
-        index: infant_mortality_index,
-        type: infant_mortality_type,
-        body: {
-            query: {
-                bool: {
-                    must: [
-                        { match: { 'year_of_death': year } },
-                        { match: target }
-                    ]
-                }
-            }
-        }
-    }).then(function (data) {
-        return data;
-    }).catch(function (error) {
-        logger.error('Failed to get count for ', filter, ' ', error);
-        return error;
-    });
-};
-
 ElasticClient.prototype.aggregateCancerData = function (query, cancer_index) {
     var index = cancer_index === cancer_incident_type ? cancer_incident_index : cancer_mortality_index;
     var type = cancer_index === cancer_incident_type ? cancer_incident_type : cancer_mortality_type;
