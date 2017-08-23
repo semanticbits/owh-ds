@@ -58,8 +58,7 @@ class STDETL (ETL):
                 # so we are setting cases and pop to -1 when data suppressed.
                 if(record['suppression_cases'] == '1'):
                     record['cases'] = -1
-                if(record['suppression_rate'] == '1'):
-                    record['pop'] = -1
+
                 record_count += 1
                 self.batchRepository.persist({"index": {"_index": self.config['elastic_search']['index'],
                                                         "_type": self.config['elastic_search']['type'],

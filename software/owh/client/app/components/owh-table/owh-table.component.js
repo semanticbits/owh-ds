@@ -68,6 +68,9 @@
             if(count === 'suppressed' || pop === 'suppressed') {
                 return 'suppressed';
             }
+            if (pop === 'n/a') {
+                return 'na'
+            }
             //If population value is undefined
             // OR
             //If table view is equals to 'std' OR 'tb' OR 'aids' OR 'disease_rate' and count == 'na'
@@ -184,7 +187,7 @@
                             }
                             if(otc.tableView !== 'age-adjusted_death_rates') {
                                 cell += '<span>';
-                                if(column.pop) {
+                                if(column.pop && column.pop !== 'n/a') {
                                     cell += $filter('number')(column.pop);
                                 } else {
                                     cell += 'Not Available';
