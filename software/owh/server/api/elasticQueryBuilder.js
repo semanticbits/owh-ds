@@ -955,7 +955,7 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery) {
         mapQuery = { "size":0, aggregations: {} };
         //prepare aggregations
         for(var index in aggregations['nested']['maps']) {
-            mapQuery.aggregations = generateNestedAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_', countQueryKey, true);
+            mapQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_');
         }
         //add quey criteria
         mapQuery.query = {filtered:{}};

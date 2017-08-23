@@ -4,10 +4,10 @@
         .module('owh')
         .service('mapService', mapService);
 
-    mapService.$inject = ['$rootScope', '$timeout', 'utilService', 'leafletData', 'shareUtilService', '$translate'];
+    mapService.$inject = ['$rootScope', '$timeout', 'utilService', 'leafletData', 'shareUtilService', '$translate', '$filter'];
 
     //service to provide utilities for leaflet geographical map
-    function mapService($rootScope, $timeout, utilService, leafletData, shareUtilService, $translate) {
+    function mapService($rootScope, $timeout, utilService, leafletData, shareUtilService, $translate, $filter) {
         var service = {
             updateStatesDeaths: updateStatesDeaths,
             addExpandControl: addExpandControl,
@@ -29,8 +29,28 @@
             angular.forEach($rootScope.states.features, function(feature){
                 var state = utilService.findByKeyAndValue(data.states, 'name', feature.properties.abbreviation);
                 if (utilService.isValueNotEmpty(state)){
-                    stateDeathTotals.push(state[primaryFilter.key]);
                     feature.properties.sex = state.sex;
+                    if(primaryFilter.tableView === 'crude_death_rates') {
+                        //calculate male and female rate
+                        angular.forEach(feature.properties.sex, function(eachGender){
+                            eachGender['rate'] = $filter('number')(eachGender[primaryFilter.key]/eachGender['pop'] * 1000000 / 10, 1);
+                        });
+                        var crudeDeathRate = Math.round(state[primaryFilter.key]/state['pop'] * 1000000) / 10 ;
+                        feature.properties.rate = crudeDeathRate;
+                        stateDeathTotals.push(crudeDeathRate);
+                    }
+                    else if(primaryFilter.tableView === 'age-adjusted_death_rates') {
+                        //calculate male and female rate
+                        angular.forEach(feature.properties.sex, function(eachGender){
+                            eachGender['rate'] = eachGender['ageAdjustedRate'];
+                        });
+                        feature.properties.rate = state['ageAdjustedRate'];
+                        stateDeathTotals.push(state['ageAdjustedRate']);
+                    }
+                    else {
+                        stateDeathTotals.push(state[primaryFilter.key]);
+                    }
+                    feature.properties.tableView = primaryFilter.tableView;
                     feature.properties[primaryFilter.key] =  state[primaryFilter.key];
                 }
                 feature.properties.years = angular.isArray(years)? years.join(', ') : years;
@@ -78,7 +98,7 @@
             var ranges = utilService.generateMapLegendRanges(primaryFilter.mapData.mapMinValue,
                 primaryFilter.mapData.mapMaxValue);
             return function style(feature) {
-                var total = feature.properties[primaryFilter.key];
+                var total = primaryFilter.tableView === 'crude_death_rates' || primaryFilter.tableView === 'age-adjusted_death_rates' ? feature.properties.rate : feature.properties[primaryFilter.key];
                 return {
                     fillColor: getColor(total, ranges),
                     weight: 0.8,
@@ -98,7 +118,6 @@
                 onAdd: function (map) {
                     var container = L.DomUtil.create('i', 'leaflet-bar leaflet-control leaflet-control-custom material-icons fullscreen-exit-icon-purple purple-icon');
                     container.innerHTML = "fullscreen_exit";
-                    //container.append(L.DomUtil.create('i', 'material-icons fullscreen-exit-icon-purple purple-icon'));
                     container.onclick = function (event) {
                         if (mapOptions.selectedMapSize === "small") {
                             mapOptions.selectedMapSize = "big";

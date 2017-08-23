@@ -114,7 +114,7 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
             aggregation[countKey] = aggregation[countKey];
             var innerObjKey = isValueHasGroupData(buckets[index]);
             // take from pop.value instead of doc_count for census data
-            if(countKey === 'pop') {
+            if(countKey === 'pop' || countKey === 'cancer_population') {
                 aggregation = {name: buckets[index]['key']};
                 if(buckets[index]['pop']) {
                     aggregation[countKey] = buckets[index]['pop'].value;
@@ -183,7 +183,7 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
  */
 function suppressCounts (obj, countKey, dataType, suppressKey, maxValue) {
     var key = suppressKey ? suppressKey : countKey;
-    var value = maxValue ? maxValue : 10;
+    var value = maxValue !== undefined ? maxValue : 10;
     for (var property in obj) {
         if (property === 'name') {
             continue;
@@ -624,6 +624,106 @@ function getAllSelectedFilterOptions(q, apiQuery) {
     return allOptions;
 }
 
+function isFilterApplied (filter) {
+    var value = Array.isArray(filter.value) ? filter.value.length > 0 : !!filter.value;
+    var groupBy = !!filter.groupBy;
+    return value || groupBy;
+}
+
+function findAllAppliedFilters (allFilters) {
+    return allFilters.reduce(function (applied, filter) {
+        if ([ 'current_year', 'state' ].indexOf(filter.key) !== -1) return applied
+        if (isFilterApplied(filter)) return applied.concat(filter.key)
+        return applied
+    }, [])
+}
+
+function recursivelySuppressOptions (tree, countKey, suppressionValue) {
+    for (var prop in tree) {
+        if (prop === countKey) {
+            tree[prop] = suppressionValue;
+        } else if (Array.isArray(tree[prop])) {
+            tree[prop].forEach(function (node) {
+                recursivelySuppressOptions(node, countKey, suppressionValue);
+            });
+        }
+
+    }
+}
+
+function searchTree (root, rule, config, path) {
+    var containsRule = rule.every(function (value) {
+      return path.indexOf(value) !== -1;
+    });
+    if (containsRule) recursivelySuppressOptions(root, config.countKey, config.suppressionValue)
+    for (var property in root) {
+        if (Array.isArray(root[property])) {
+            root[property].forEach(function (option) {
+                searchTree(option, rule, config, path.concat([option.name]))
+            })
+        }
+    }
+}
+
+function createCancerIncidenceSuppressionRules () {
+    return [
+        [ ['American Indian/Alaska Native'], ['DE','GA','IL','KS','KY','MO','NJ','NY','SC'] ],
+        [ ['Asian or Pacific Islander'], ['DE', 'IL', 'KS', 'KY', 'MO', 'SC'] ],
+        [ ['Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown'], ['DE', 'KY', 'MA', 'MO', 'PA', 'SC'] ]
+    ].reduce(function (acc, rule) {
+        return acc.concat(create_rules(rule[0], rule[1]))
+    }, [])
+
+    function create_rules (f1options, f2options) {
+        return f1options.reduce(function (accu, f1option) {
+            return accu.concat(f2options.map(function (f2option) {
+                return [f1option, f2option];
+            }));
+        }, []);
+    }
+}
+
+function applyCustomSuppressions (data, rules, countKey) {
+    rules.forEach(function (rule) {
+        searchTree(data.table, rule, { countKey: countKey, suppressionValue: 'suppressed' }, [])
+    })
+    rules.forEach(function (rule) {
+        data.charts.forEach(function (chart) {
+            searchTree(chart, rule, { countKey: countKey, suppressionValue: 0 }, []);
+        });
+    });
+}
+
+function attachPopulation (root, popTree, path) {
+    if (path.length) root.pop = findMatchingProp(popTree, path) || 'n/a';
+    for (var property in root) {
+        if (Array.isArray(root[property])) {
+            root[property].forEach(function (option) {
+              attachPopulation(option, popTree, path.concat([property, option.name]));
+            })
+        }
+    }
+}
+
+function findMatchingProp (tree, path) {
+  for (var i = 0; i < path.length; i += 2) {
+    var matching = findMatchingOption(tree[path[i]], path[i + 1]);
+    if (matching) {
+      tree = matching;
+    } else {
+      break;
+    }
+  }
+  return tree && tree['cancer_population'];
+}
+
+function findMatchingOption (options, target) {
+  return options.reduce(function (prev, curr) {
+    if (curr.name === target) return curr;
+    return prev;
+  }, null);
+}
+
 module.exports.populateDataWithMappings = populateDataWithMappings;
 module.exports.populateYRBSData = populateYRBSData;
 module.exports.mergeAgeAdjustedRates = mergeAgeAdjustedRates;
@@ -635,3 +735,12 @@ module.exports.getYearFilter = getYearFilter;
 module.exports.mapAndGroupOptionResults = mapAndGroupOptionResults;
 module.exports.getAllSelectedFilterOptions = getAllSelectedFilterOptions;
 module.exports.suppressStateTotals = suppressStateTotals;
+module.exports.isFilterApplied = isFilterApplied;
+module.exports.findAllAppliedFilters = findAllAppliedFilters;
+module.exports.recursivelySuppressOptions = recursivelySuppressOptions;
+module.exports.searchTree = searchTree;
+module.exports.createCancerIncidenceSuppressionRules = createCancerIncidenceSuppressionRules;
+module.exports.applyCustomSuppressions = applyCustomSuppressions;
+module.exports.attachPopulation = attachPopulation;
+module.exports.findMatchingProp = findMatchingProp;
+module.exports.findMatchingOption = findMatchingOption;
