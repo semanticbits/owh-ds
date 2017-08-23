@@ -44,6 +44,7 @@
             isFilterApplied: isFilterApplied,
             stdFilterChange: stdFilterChange,
             aidsFilterChange: aidsFilterChange,
+            infantMortalityFilterChange: infantMortalityFilterChange,
             removeValuesFromArray: removeValuesFromArray,
             getSelectedFiltersText: getSelectedFiltersText
         };
@@ -1111,6 +1112,44 @@
                 filterText += '| '
             });
             return filterText.substring(0, filterText.length -2);
+        }
+
+        function infantMortalityFilterChange(filter, categories){
+            var sideFilters = [];
+            var D69Years = ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014'];
+            var D31Years = ['2003', '2004', '2005', '2006'];
+            var D18Years = ['2000', '2001', '2002'];
+           angular.forEach(categories, function (category) {
+                sideFilters = sideFilters.concat(category.sideFilters);
+            });
+            //Year filter
+            var yearSideFilter = $filter('filter')(sideFilters, {filters : {key: 'year_of_death'}})[0];
+            var selectedYear = yearSideFilter.filters.value[yearSideFilter.filters.value.length - 1];
+            var listOfSelectedYears = clone(yearSideFilter.filters.value);
+            if( selectedYear >= '2007' && selectedYear <= '2014') {
+                angular.forEach(listOfSelectedYears, function(eachYear){
+                   if(D31Years.indexOf(eachYear) >= 0 || D18Years.indexOf(eachYear) >= 0){
+                        var index = yearSideFilter.filters.value.indexOf(eachYear);
+                        yearSideFilter.filters.value.splice(index, 1);
+                    }
+                });
+            }
+            else if(selectedYear >= '2003' && selectedYear <= '2006') {
+                angular.forEach(listOfSelectedYears, function(eachYear){
+                    if(D69Years.indexOf(eachYear) >= 0 || D18Years.indexOf(eachYear) >= 0){
+                        var index = yearSideFilter.filters.value.indexOf(eachYear);
+                        yearSideFilter.filters.value.splice(index, 1);
+                    }
+                });
+            }
+            else if(selectedYear >= '2000' && selectedYear <= '2002') {
+                angular.forEach(listOfSelectedYears, function(eachYear){
+                    if(D69Years.indexOf(eachYear) >= 0 || D31Years.indexOf(eachYear) >= 0){
+                        var index = yearSideFilter.filters.value.indexOf(eachYear);
+                        yearSideFilter.filters.value.splice(index, 1);
+                    }
+                });
+            }
         }
 
     }

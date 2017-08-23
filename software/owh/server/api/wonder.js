@@ -201,7 +201,7 @@ var wonderParamCodeMap = {
             }
         },
         'gestation_recode11': {
-            'key': 'D9.V24',
+            'key': 'D69.V24',
             'values': {
                 'Under 20 weeks': '01',
                 '20 - 27 weeks': '02',
@@ -471,6 +471,686 @@ var wonderParamCodeMap = {
             }
         },
         'states-group':'D69.V10-level1'
+    },
+    "D31": {
+        'year_of_death': 'D31.V9',
+        'sex': {
+            'key': 'D31.V3',
+            'values': {
+                "Female": 'F',
+                "Male": 'M'
+            }
+        },
+        'infant_age_at_death': {
+            'key': 'D31.V13',
+            'values': {
+                'Under 1 hour': '01',
+                '1-23 hours': '02',
+                '1-6 days': '03',
+                '7-27 days': '04',
+                '28 days and over': '05'
+            }
+        },
+        'race': {
+            "key": 'D31.V2',
+            "values": {
+                "White": '2106-3',
+                "Black": '2054-5',
+                "American Indian or Alaska Native": '1002-5',
+                "Asian or Pacific Islander": 'A-PI'
+            }
+        },
+        'hispanic_origin': {
+            'key': 'D31.V4',
+            'values': {
+                'hispanic_origin': '2148-5',
+                'Puerto Rican': '2180-8',
+                'Cuban': '2182-4',
+                'Central or South American': '4',
+                'Other and Unknown Hispanic': '5',
+                'Non-Hispanic White': '6',
+                'Non-Hispanic Black': '7',
+                'Non-Hispanic Other Races': '8',
+                'Origin unknown or not stated': '9'
+            }
+        },
+        'mother_age_5_interval': {
+            'key': 'D31.V1',
+            'values': {
+                'Under 15 years': '15',
+                '15-19 years': '15-19',
+                '20-24 years': '20-24',
+                '25-29 years': '25-29',
+                '30-34 years': '30-34',
+                '35-39 years': '35-39',
+                '40-44 years': '40-44',
+                '45-49 years': '45-49',
+                '50-54 years': '50+'
+            }
+        },
+        'marital_status': {
+            'key': 'D31.V11',
+            'values': {
+                'Married': '1',
+                'Unmarried': '2',
+                'Unknown or not Stated': '9'
+            }
+        },
+        'mother_education': {
+            'key': 'D31.V5',
+            'values': {
+                '0 – 8 years': '19176',
+                '9 – 11 years': '19177',
+                '12 years': '19178',
+                '13 – 15 years': '19179',
+                '16 years and over': '16+',
+                'Not stated': 'NR'
+            }
+        },
+        'gestation_recode11': {
+            'key': 'D31.V24',
+            'values': {
+                'Under 20 weeks': '01',
+                '20 - 27 weeks': '02',
+                '28 - 31 weeks': '03',
+                '32 - 33 weeks': '04',
+                '34 - 36 weeks': '05',
+                '37 - 38 weeks': '06',
+                '39 weeks': '07',
+                '40 weeks': '08',
+                '41 weeks': '09',
+                '42 weeks and over': '10',
+                'Unknown': '11'
+            }
+        },
+        'gestation_recode10': {
+            'key': 'D31.V6',
+            'values': {
+                'Under 20 weeks':'01',
+                '20 - 27 weeks':'02',
+                '28 - 31 weeks':'03',
+                '32 - 35 weeks':'04',
+                '36 weeks':'05',
+                '37 - 39 weeks':'06',
+                '40 weeks':'07',
+                '41 weeks':'08',
+                '42 weeks and over':'09',
+                'Unknown':'10',
+            }
+        },
+        'gestation_weekly': {
+            'key': 'D31.V25',
+            'values': {
+                '17 weeks':'17',
+                '18 weeks':'18',
+                '19 weeks':'19',
+                '20 weeks':'20',
+                '21 weeks':'21',
+                '22 weeks':'22',
+                '23 weeks':'23',
+                '24 weeks':'24',
+                '25 weeks':'25',
+                '26 weeks':'26',
+                '27 weeks':'27',
+                '28 weeks':'28',
+                '29 weeks':'29',
+                '30 weeks':'30',
+                '31 weeks':'31',
+                '32 weeks':'32',
+                '33 weeks':'33',
+                '34 weeks':'34',
+                '35 weeks':'35',
+                '36 weeks':'36',
+                '37 weeks':'37',
+                '38 weeks':'38',
+                '39 weeks':'39',
+                '40 weeks':'40',
+                '41 weeks':'41',
+                '42 weeks':'42',
+                '43 weeks':'43',
+                '44 weeks':'44',
+                '45 weeks':'45',
+                '46 weeks':'46',
+                '47 weeks':'47',
+                'Unknown':'99'
+            }
+        },
+        'prenatal_care': {
+            'key': 'D31.V7',
+            'values': {
+                'No prenatal care':'00',
+                '1st month':'01',
+                '2nd month':'02',
+                '3rd month':'03',
+                '4th month':'04',
+                '5th month':'05',
+                '6th month':'06',
+                '7th month':'07',
+                '8th month': '08',
+                '9th month': '09',
+                '10th month': '10',
+                'Unknown or not stated': '98',
+                'Not on certificate': '99'
+            }
+        },
+        'birth_weight': {
+            'key': 'D31.V8',
+            'values': {
+                '499 grams or less':'01',
+                '500 - 999 grams':'02',
+                '1000 - 1499 grams':'03',
+                '1500 - 1999 grams':'04',
+                '2000 - 2499 grams':'05',
+                '2500 - 2999 grams':'06',
+                '3000 - 3499 grams':'07',
+                '3500 - 3999 grams':'08',
+                '4000 - 4499 grams':'09',
+                '4500 - 4999 grams':'10',
+                '5000 - 8165 grams':'11',
+                'Not Stated': '12'
+            }
+        },
+        'birth_plurality': {
+            'key': 'D31.V15',
+            'values': {
+                'Single':'1',
+                'Twin':'2',
+                'Triplet':'3',
+                'Quadruplet':'4',
+                'Quintuplet or higher':'5'
+            }
+        },
+        'live_birth': {
+            'key': 'D31.V12',
+            'values': {
+                '1st child born alive to mother':'01',
+                '2nd child born alive to mother':'02',
+                '3rd child born alive to mother':'03',
+                '4th child born alive to mother':'04',
+                '5th child born alive to mother':'05',
+                '6th child born alive to mother':'06',
+                'Unknown or not stated': '99'
+            }
+        },
+        'birth_place': {
+            'key': 'D31.V21',
+            'values': {
+                'In Hospital':'1',
+                'Unknown':'3'
+            }
+        },
+        'delivery_method': {
+            'key': 'D31.V22',
+            'values': {
+                'Cesarean':'2',
+                'Vaginal':'1',
+                'Not stated':'9'
+            }
+        },
+        'medical_attendant': {
+            'key': 'D31.V20',
+            'values': {
+                'Doctor of Medicine (MD)':'1',
+                'Doctor of Osteopathy (DO)':'2',
+                'Certified Nurse Midwife (CNM)':'3',
+                'Other Midwife':'4',
+                'Other':'5',
+                'Unknown or not stated':'9'
+            }
+        },
+        'state': {
+            'key': 'D31.V10',
+            'values':{
+                "AL":"01",
+                "AK":"02",
+                "AZ":"04",
+                "AR":"05",
+                "CA":"06",
+                "CO":"08",
+                "CT":"09",
+                "DE":"10",
+                "DC":"11",
+                "FL":"12",
+                "GA":"13",
+                "HI":"15",
+                "ID":"16",
+                "IL":"17",
+                "IN":"18",
+                "IA":"19",
+                "KS":"20",
+                "KY":"21",
+                "LA":"22",
+                "ME":"23",
+                "MD":"24",
+                "MA":"25",
+                "MI":"26",
+                "MN":"27",
+                "MS":"28",
+                "MO":"29",
+                "MT":"30",
+                "NE":"31",
+                "NV":"32",
+                "NH":"33",
+                "NJ":"34",
+                "NM":"35",
+                "NY":"36",
+                "NC":"37",
+                "ND":"38",
+                "OH":"39",
+                "OK":"40",
+                "OR":"41",
+                "PA":"42",
+                "RI":"44",
+                "SC":"45",
+                "SD":"46",
+                "TN":"47",
+                "TX":"48",
+                "UT":"49",
+                "VT":"50",
+                "VA":"51",
+                "WA":"53",
+                "WV":"54",
+                "WI":"55",
+                "WY":"56"
+            }
+        },
+        'states': {
+            'key': 'D31.V10',
+            'values':{
+                "AL":"01",
+                "AK":"02",
+                "AZ":"04",
+                "AR":"05",
+                "CA":"06",
+                "CO":"08",
+                "CT":"09",
+                "DE":"10",
+                "DC":"11",
+                "FL":"12",
+                "GA":"13",
+                "HI":"15",
+                "ID":"16",
+                "IL":"17",
+                "IN":"18",
+                "IA":"19",
+                "KS":"20",
+                "KY":"21",
+                "LA":"22",
+                "ME":"23",
+                "MD":"24",
+                "MA":"25",
+                "MI":"26",
+                "MN":"27",
+                "MS":"28",
+                "MO":"29",
+                "MT":"30",
+                "NE":"31",
+                "NV":"32",
+                "NH":"33",
+                "NJ":"34",
+                "NM":"35",
+                "NY":"36",
+                "NC":"37",
+                "ND":"38",
+                "OH":"39",
+                "OK":"40",
+                "OR":"41",
+                "PA":"42",
+                "RI":"44",
+                "SC":"45",
+                "SD":"46",
+                "TN":"47",
+                "TX":"48",
+                "UT":"49",
+                "VT":"50",
+                "VA":"51",
+                "WA":"53",
+                "WV":"54",
+                "WI":"55",
+                "WY":"56"
+            }
+        },
+        'states-group':'D31.V10-level1'
+    },
+    "D18": {
+        'year_of_death': 'D18.V9',
+        'sex': {
+            'key': 'D18.V3',
+            'values': {
+                "Female": 'F',
+                "Male": 'M'
+            }
+        },
+        'infant_age_at_death': {
+            'key': 'D18.V13',
+            'values': {
+                'Under 1 hour': '01',
+                '1-23 hours': '02',
+                '1-6 days': '03',
+                '7-27 days': '04',
+                '28 days and over': '05'
+            }
+        },
+        'race': {
+            "key": 'D18.V2',
+            "values": {
+                "White": '2106-3',
+                "Black": '2054-5',
+                "American Indian or Alaska Native": '1002-5',
+                "Asian or Pacific Islander": 'A-PI'
+            }
+        },
+        'hispanic_origin': {
+            'key': 'D18.V4',
+            'values': {
+                'hispanic_origin': '2148-5',
+                'Puerto Rican': '2180-8',
+                'Cuban': '2182-4',
+                'Central or South American': '4',
+                'Other and Unknown Hispanic': '5',
+                'Non-Hispanic White': '6',
+                'Non-Hispanic Black': '7',
+                'Non-Hispanic Other Races': '8',
+                'Origin unknown or not stated': '9'
+            }
+        },
+        'mother_age_5_interval': {
+            'key': 'D18.V1',
+            'values': {
+                'Under 15 years': '15',
+                '15-19 years': '15-19',
+                '20-24 years': '20-24',
+                '25-29 years': '25-29',
+                '30-34 years': '30-34',
+                '35-39 years': '35-39',
+                '40-44 years': '40-44',
+                '45-49 years': '45-49',
+                '50-54 years': '50+'
+            }
+        },
+        'marital_status': {
+            'key': 'D18.V11',
+            'values': {
+                'Married': '1',
+                'Unmarried': '2',
+                'Unknown or not Stated': '9'
+            }
+        },
+        'mother_education': {
+            'key': 'D18.V5',
+            'values': {
+                '0 – 8 years': '19176',
+                '9 – 11 years': '19177',
+                '12 years': '19178',
+                '13 – 15 years': '19179',
+                '16 years and over': '16+',
+                'Not stated': 'NR'
+            }
+        },
+        'gestation_recode11': {
+            'key': 'D18.V24',
+            'values': {
+                'Under 20 weeks': '01',
+                '20 - 27 weeks': '02',
+                '28 - 31 weeks': '03',
+                '32 - 33 weeks': '04',
+                '34 - 36 weeks': '05',
+                '37 - 38 weeks': '06',
+                '39 weeks': '07',
+                '40 weeks': '08',
+                '41 weeks': '09',
+                '42 weeks and over': '10',
+                'Unknown': '11'
+            }
+        },
+        'gestation_recode10': {
+            'key': 'D18.V6',
+            'values': {
+                'Under 20 weeks':'01',
+                '20 - 27 weeks':'02',
+                '28 - 31 weeks':'03',
+                '32 - 35 weeks':'04',
+                '36 weeks':'05',
+                '37 - 39 weeks':'06',
+                '40 weeks':'07',
+                '41 weeks':'08',
+                '42 weeks and over':'09',
+                'Unknown':'10',
+            }
+        },
+        'gestation_weekly': {
+            'key': 'D18.V25',
+            'values': {
+                '17 weeks':'17',
+                '18 weeks':'18',
+                '19 weeks':'19',
+                '20 weeks':'20',
+                '21 weeks':'21',
+                '22 weeks':'22',
+                '23 weeks':'23',
+                '24 weeks':'24',
+                '25 weeks':'25',
+                '26 weeks':'26',
+                '27 weeks':'27',
+                '28 weeks':'28',
+                '29 weeks':'29',
+                '30 weeks':'30',
+                '31 weeks':'31',
+                '32 weeks':'32',
+                '33 weeks':'33',
+                '34 weeks':'34',
+                '35 weeks':'35',
+                '36 weeks':'36',
+                '37 weeks':'37',
+                '38 weeks':'38',
+                '39 weeks':'39',
+                '40 weeks':'40',
+                '41 weeks':'41',
+                '42 weeks':'42',
+                '43 weeks':'43',
+                '44 weeks':'44',
+                '45 weeks':'45',
+                '46 weeks':'46',
+                '47 weeks':'47',
+                'Unknown':'99'
+            }
+        },
+        'prenatal_care': {
+            'key': 'D18.V7',
+            'values': {
+                'No prenatal care':'00',
+                '1st month':'01',
+                '2nd month':'02',
+                '3rd month':'03',
+                '4th month':'04',
+                '5th month':'05',
+                '6th month':'06',
+                '7th month':'07',
+                '8th month': '08',
+                '9th month': '09',
+                '10th month': '10',
+                'Unknown or not stated': '98',
+                'Not on certificate': '99'
+            }
+        },
+        'birth_weight': {
+            'key': 'D18.V8',
+            'values': {
+                '499 grams or less':'01',
+                '500 - 999 grams':'02',
+                '1000 - 1499 grams':'03',
+                '1500 - 1999 grams':'04',
+                '2000 - 2499 grams':'05',
+                '2500 - 2999 grams':'06',
+                '3000 - 3499 grams':'07',
+                '3500 - 3999 grams':'08',
+                '4000 - 4499 grams':'09',
+                '4500 - 4999 grams':'10',
+                '5000 - 8165 grams':'11',
+                'Not Stated': '12'
+            }
+        },
+        'birth_plurality': {
+            'key': 'D18.V15',
+            'values': {
+                'Single':'1',
+                'Twin':'2',
+                'Triplet':'3',
+                'Quadruplet':'4',
+                'Quintuplet or higher':'5'
+            }
+        },
+        'live_birth': {
+            'key': 'D18.V12',
+            'values': {
+                '1st child born alive to mother':'01',
+                '2nd child born alive to mother':'02',
+                '3rd child born alive to mother':'03',
+                '4th child born alive to mother':'04',
+                '5th child born alive to mother':'05',
+                '6th child born alive to mother':'06',
+                'Unknown or not stated': '99'
+            }
+        },
+        'birth_place': {
+            'key': 'D18.V21',
+            'values': {
+                'In Hospital':'1',
+                'Unknown':'3'
+            }
+        },
+        'delivery_method': {
+            'key': 'D18.V22',
+            'values': {
+                'Cesarean':'2',
+                'Vaginal':'1',
+                'Not stated':'9'
+            }
+        },
+        'medical_attendant': {
+            'key': 'D18.V20',
+            'values': {
+                'Doctor of Medicine (MD)':'1',
+                'Doctor of Osteopathy (DO)':'2',
+                'Certified Nurse Midwife (CNM)':'3',
+                'Other Midwife':'4',
+                'Other':'5',
+                'Unknown or not stated':'9'
+            }
+        },
+        'state': {
+            'key': 'D18.V10',
+            'values':{
+                "AL":"01",
+                "AK":"02",
+                "AZ":"04",
+                "AR":"05",
+                "CA":"06",
+                "CO":"08",
+                "CT":"09",
+                "DE":"10",
+                "DC":"11",
+                "FL":"12",
+                "GA":"13",
+                "HI":"15",
+                "ID":"16",
+                "IL":"17",
+                "IN":"18",
+                "IA":"19",
+                "KS":"20",
+                "KY":"21",
+                "LA":"22",
+                "ME":"23",
+                "MD":"24",
+                "MA":"25",
+                "MI":"26",
+                "MN":"27",
+                "MS":"28",
+                "MO":"29",
+                "MT":"30",
+                "NE":"31",
+                "NV":"32",
+                "NH":"33",
+                "NJ":"34",
+                "NM":"35",
+                "NY":"36",
+                "NC":"37",
+                "ND":"38",
+                "OH":"39",
+                "OK":"40",
+                "OR":"41",
+                "PA":"42",
+                "RI":"44",
+                "SC":"45",
+                "SD":"46",
+                "TN":"47",
+                "TX":"48",
+                "UT":"49",
+                "VT":"50",
+                "VA":"51",
+                "WA":"53",
+                "WV":"54",
+                "WI":"55",
+                "WY":"56"
+            }
+        },
+        'states': {
+            'key': 'D18.V10',
+            'values':{
+                "AL":"01",
+                "AK":"02",
+                "AZ":"04",
+                "AR":"05",
+                "CA":"06",
+                "CO":"08",
+                "CT":"09",
+                "DE":"10",
+                "DC":"11",
+                "FL":"12",
+                "GA":"13",
+                "HI":"15",
+                "ID":"16",
+                "IL":"17",
+                "IN":"18",
+                "IA":"19",
+                "KS":"20",
+                "KY":"21",
+                "LA":"22",
+                "ME":"23",
+                "MD":"24",
+                "MA":"25",
+                "MI":"26",
+                "MN":"27",
+                "MS":"28",
+                "MO":"29",
+                "MT":"30",
+                "NE":"31",
+                "NV":"32",
+                "NH":"33",
+                "NJ":"34",
+                "NM":"35",
+                "NY":"36",
+                "NC":"37",
+                "ND":"38",
+                "OH":"39",
+                "OK":"40",
+                "OR":"41",
+                "PA":"42",
+                "RI":"44",
+                "SC":"45",
+                "SD":"46",
+                "TN":"47",
+                "TX":"48",
+                "UT":"49",
+                "VT":"50",
+                "VA":"51",
+                "WA":"53",
+                "WV":"54",
+                "WI":"55",
+                "WY":"56"
+            }
+        },
+        'states-group':'D18.V10-level1'
     }
 
 };
@@ -636,7 +1316,7 @@ function processWONDERResponse(response, dbID){
                 pop = parseInt(pop.replace(/,/g, ''));
             }
 
-            if(dbID === 'D69') {
+            if(dbID === 'D69' || dbID === 'D31' || dbID === 'D18') {
                 var births;
                 valCell = cell[cell.length - 2];
                 if ('_v' in valCell) {
@@ -758,7 +1438,7 @@ function addFilterParams (wreq, query, dbID){
                     }
                     p = p['key'];
                 }
-                if(key === 'year_of_death' && dbID === 'D69') {
+                if(key === 'year_of_death' && (dbID === 'D69' || dbID === 'D31' || dbID === 'D18')) {
                     addParamToWONDERReq(wreq, 'V_' + p, v);
                 }
                 else {
@@ -772,8 +1452,8 @@ function addFilterParams (wreq, query, dbID){
         if(dbID === 'D77') {
             addParamToWONDERReq(wreq, 'F_D77.V9', '*All*');
         }
-        else if(dbID === 'D69') {
-            addParamToWONDERReq(wreq, 'F_D69.V10', '*All*');
+        else if(dbID === 'D69' || dbID === 'D31' || dbID === 'D18') {
+            addParamToWONDERReq(wreq, 'F_'+dbID+'.V10', '*All*');
         }
     }
 
@@ -800,10 +1480,10 @@ function addMeasures(wreq, dbID) {
         // M4 is standard age adjusted rate
         addParamToWONDERReq(wreq, 'M_4', 'D77.M4');
     }
-    else if(dbID === 'D69') {
-        addParamToWONDERReq(wreq, 'M_1', 'D69.M1');
-        addParamToWONDERReq(wreq, 'M_2', 'D69.M2');
-        addParamToWONDERReq(wreq, 'M_3', 'D69.M3');
+    else if(dbID === 'D69'|| dbID === 'D31' || dbID === 'D18') {
+        addParamToWONDERReq(wreq, 'M_1',  dbID+'.M1');
+        addParamToWONDERReq(wreq, 'M_2', dbID+'.M2');
+        addParamToWONDERReq(wreq, 'M_3', dbID+'.M3');
 
         //Need to add age adjusted rates
     }
@@ -833,29 +1513,29 @@ function addOptionParams(wreq, dbID){
         addParamToWONDERReq(wreq, 'O_urban', 'D77.V19');
         addParamToWONDERReq(wreq, 'O_all_labels', 'true');
     }
-    else if(dbID === 'D69') {
+    else if(dbID === 'D69' || dbID === 'D31' || dbID === 'D18' ) {
         addParamToWONDERReq(wreq, 'O_V10_fmode', 'freg');
         addParamToWONDERReq(wreq, 'O_V16_fmode', 'freg');
         addParamToWONDERReq(wreq, 'O_V19_fmode', 'freg');
         addParamToWONDERReq(wreq, 'O_V26_fmode', 'freg');
-        addParamToWONDERReq(wreq, 'O_gestation', 'D69.V24');
-        addParamToWONDERReq(wreq, 'O_icd', 'D69.V16');
+        addParamToWONDERReq(wreq, 'O_gestation', dbID+'.V24');
+        addParamToWONDERReq(wreq, 'O_icd', dbID+'.V16');
         addParamToWONDERReq(wreq, 'O_javascript', 'on');
-        addParamToWONDERReq(wreq, 'O_location', 'D69.V10');
+        addParamToWONDERReq(wreq, 'O_location', dbID+'.V10');
         addParamToWONDERReq(wreq, 'O_precision', '2');
         addParamToWONDERReq(wreq, 'O_rate_per', '1000');
         addParamToWONDERReq(wreq, 'O_show_suppressed', 'true');
         addParamToWONDERReq(wreq, 'O_show_totals', 'true');
         addParamToWONDERReq(wreq, 'O_show_zeros', 'true');
         addParamToWONDERReq(wreq, 'O_timeout', '600');
-        addParamToWONDERReq(wreq, 'O_title', 'Default_By_D69.V10-level1');
+        addParamToWONDERReq(wreq, 'O_title', 'Default_By_'+dbID+'.V10-level1');
         /*addParamToWONDERReq(wreq, 'V_D69.V1', '*All*');
         addParamToWONDERReq(wreq, 'V_D69.V10', '');*/
         addParamToWONDERReq(wreq, 'action-Send', 'Send');
-        addParamToWONDERReq(wreq, 'finder-stage-D69.V10', 'codeset');
-        addParamToWONDERReq(wreq, 'finder-stage-D69.V16', 'codeset');
-        addParamToWONDERReq(wreq, 'finder-stage-D69.V19', 'codeset');
-        addParamToWONDERReq(wreq, 'finder-stage-D69.V26', 'codeset');
+        addParamToWONDERReq(wreq, 'finder-stage-'+dbID+'.V10', 'codeset');
+        addParamToWONDERReq(wreq, 'finder-stage-'+dbID+'.V16', 'codeset');
+        addParamToWONDERReq(wreq, 'finder-stage-'+dbID+'.V19', 'codeset');
+        addParamToWONDERReq(wreq, 'finder-stage-'+dbID+'.V26', 'codeset');
         addParamToWONDERReq(wreq, 'O_all_labels', 'true');
         addParamToWONDERReq(wreq, 'stage', 'request');
     }

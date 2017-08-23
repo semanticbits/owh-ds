@@ -175,7 +175,7 @@ function search(q) {
             return es.getCountForYearByFilter(option.year, option.filter, option.key);
         });*/
         var promises = [
-            es.aggregateInfantMortalityData([finalQuery,preparedQuery.apiQuery], isStateSelected, allSelectedFilterOptions)
+            es.aggregateInfantMortalityData([finalQuery,preparedQuery.apiQuery], isStateSelected, allSelectedFilterOptions, selectedYears)
         ];
         //promises = promises.concat(optionPromises);
 

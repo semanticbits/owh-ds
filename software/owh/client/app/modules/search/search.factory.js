@@ -2651,7 +2651,8 @@
                                     allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'year_of_death'),
-                                    refreshFiltersOnChange: true
+                                    refreshFiltersOnChange: true,
+                                    onFilterChange: utilService.infantMortalityFilterChange
                                 },
                                 {
                                     filterGroup: false,
