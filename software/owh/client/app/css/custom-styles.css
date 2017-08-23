@@ -1868,7 +1868,6 @@ select.tableViewDropDown:focus {
 
 ul.filter-group {
     flex-grow: 1;
-    justify-content: space-between;
     display: flex;
     align-items: center;
     margin: 0;

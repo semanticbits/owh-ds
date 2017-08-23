@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
     'use strict';
 
     angular
@@ -514,6 +514,81 @@
             {"key": "WI", "title": "Wisconsin"},
             {"key": "WY", "title": "Wyoming"}
         ];
+
+        var censusRegionOptions = [
+            {
+                key: "CENS-R1",
+                title: "Census Region 1: Northeast",
+                group: true,
+                options: [
+                    {
+                        key: "CENS-D1",
+                        title: "Division 1: New England",
+                    },
+                    {
+                        key: "CENS-D2",
+                        title: "Division 2: Middle Atlantic",
+                    },
+                ]
+            },
+            {
+                key: "CENS-R2",
+                title: "Census Region 2: Midwest",
+                group: true,
+                options: [
+                    {
+                        key: "CENS-D3",
+                        title: "Division 3: East North Central",
+                        parentFilterOptionKey: "CENS-R2",
+                    },
+                    {
+                        key: "CENS-D4",
+                        title: "Division 4: West North Central",
+                        parentFilterOptionKey: "CENS-R2",
+                    },
+                ]
+            },
+            {
+                key: "CENS-R3",
+                title: "Census Region 3: South",
+                group: true,
+                options: [
+                    {
+                        key: "CENS-D5",
+                        title: "Division 5: South Atlantic",
+                        parentFilterOptionKey: "CENS-R3",
+                    },
+                    {
+                        key: "CENS-D6",
+                        title: "Division 6: East South Central",
+                        parentFilterOptionKey: "CENS-R3",
+                    },
+                    {
+                        key: "CENS-D7",
+                        title: "Division 7: West South Central",
+                        parentFilterOptionKey: "CENS-R3",
+                    },
+                ]
+            },
+            {
+                key: "CENS-R4",
+                title: "Census Region 4: West",
+                group: true,
+                options: [
+                    {
+                        key: "CENS-D8",
+                        title: "Division 8: Mountain",
+                        parentFilterOptionKey: "CENS-R4",
+                    },
+                    {
+                        key: "CENS-D9",
+                        title: "Division 9: Pacific",
+                        parentFilterOptionKey: "CENS-R4",
+                    },
+                ]
+            },
+        ];
+
         var diseaseYearOptions = [
             {"key": "2015", "title": "2015"},
             {"key": "2014", "title": "2014"},
@@ -821,7 +896,14 @@
                     value:[], helpText:"label.help.text.bridged-race.ethnicity"},
                 {key: 'state', title: 'label.filter.state', queryKey:"state",primary: false, value:[], defaultGroup:'row',
                     groupBy: false, filterType: 'checkbox',autoCompleteOptions: stateOptions,
-                    displaySearchBox:true, displaySelectedFirst:true, helpText:"label.help.text.bridged-race.state"}
+                    displaySearchBox:true, displaySelectedFirst:true, helpText:"label.help.text.bridged-race.state"},
+                {
+                    key: 'census-region', title: 'label.filter.censusRegion', queryKey: "census_region|census_division", primary: false, value: [],
+                    queryType: "compound", titles: ['label.filter.censusRegion', 'label.filter.censusDivision'], queryKeys: ["census_region", "census_division"],
+                    groupBy: false, type: "label.filter.group.location", filterType: 'checkbox',
+                    autoCompleteOptions: censusRegionOptions, defaultGroup: "column",
+                    displaySearchBox: true, displaySelectedFirst: false, helpText: 'label.help.text.bridged-race.state'
+                }
             ];
 
             return bridgeDataFilters;

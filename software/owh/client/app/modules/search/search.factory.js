@@ -1,4 +1,4 @@
-//TODO: consolidate with search.service.js
+﻿//TODO: consolidate with search.service.js
 //TODO: split out some logic into separate services
 //TODO: split json out into separate files
 (function(){
@@ -2406,10 +2406,21 @@
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'ethnicity')
-                                },
+                                }
+                            ]
+                        },
+                        {
+                            exclusive: true,
+                            ui: 'tabbed',
+                            selectedFilter: "state", // defaulting to state
+                            sideFilters: [
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'state')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'census-region')
                                 }
                             ]
                         }
