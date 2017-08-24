@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     'use strict';
 
     angular
@@ -589,6 +589,19 @@
             },
         ];
 
+        var hhsOptions = [
+            { "key": "HHS-1", "title": "HHS Region #1  CT, ME, MA, NH, RI, VT" },
+            { "key": "HHS-2", "title": "HHS Region #2  NJ, NY" },
+            { "key": "HHS-3", "title": "HHS Region #3  DE, DC, MD, PA, VA, WV" },
+            { "key": "HHS-4", "title": "HHS Region #4  AL, FL, GA, KY, MS, NC, SC, TN" },
+            { "key": "HHS-5", "title": "HHS Region #5  IL, IN, MI, MN, OH, WI" },
+            { "key": "HHS-6", "title": "HHS Region #6  AR, LA, NM, OK, TX" },
+            { "key": "HHS-7", "title": "HHS Region #7  IA, KS, MO, NE" },
+            { "key": "HHS-8", "title": "HHS Region #8  CO, MT, ND, SD, UT, WY" },
+            { "key": "HHS-9", "title": "HHS Region #9  AZ, CA, HI, NV" },
+            { "key": "HHS-10", "title": "HHS Region #10  AK, ID, OR, WA" }
+        ];
+
         var diseaseYearOptions = [
             {"key": "2015", "title": "2015"},
             {"key": "2014", "title": "2014"},
@@ -897,14 +910,14 @@
                 {key: 'state', title: 'label.filter.state', queryKey:"state",primary: false, value:[], defaultGroup:'row',
                     groupBy: false, filterType: 'checkbox',autoCompleteOptions: stateOptions,
                     displaySearchBox:true, displaySelectedFirst:true, helpText:"label.help.text.bridged-race.state"},
-                {
-                    key: 'census-region', title: 'label.filter.censusRegion', queryKey: "census_region|census_division", primary: false, value: [],
-                    queryType: "compound", titles: ['label.filter.censusRegion', 'label.filter.censusDivision'], queryKeys: ["census_region", "census_division"],
-                    groupBy: false, type: "label.filter.group.location", filterType: 'checkbox',
-                    autoCompleteOptions: censusRegionOptions, defaultGroup: "column",
-                    displaySearchBox: true, displaySelectedFirst: false, helpText: 'label.help.text.bridged-race.state'
-                }
-            ];
+                    {
+                        key: 'census-region', title: 'label.filter.censusRegion', queryKey: "census_region|census_division", primary: false, value: [],
+                        queryType: "compound", titles: ['label.filter.censusRegion', 'label.filter.censusDivision'], queryKeys: ["census_region", "census_division"],
+                        groupBy: false, type: "label.filter.group.location", filterType: 'checkbox',
+                        autoCompleteOptions: censusRegionOptions, defaultGroup: "column",
+                        displaySearchBox: true, displaySelectedFirst: false, helpText: 'label.help.text.bridged-race.state'
+                    }
+                ];
 
             return bridgeDataFilters;
         }
@@ -918,8 +931,20 @@
                 {key: 'state', title: 'label.filter.state', queryKey:"state",primary: false, value:[], defaultGroup:'row',
                     groupBy: false, filterType: 'checkbox', displaySearchBox:true, displaySelectedFirst:true,
                     autoCompleteOptions: stateOptions, helpText:"label.help.text.natality.state"},
-
-                {key: 'mother_age_1year_interval', title: 'label.chart.mother_age.single.year.group', queryKey:"mother_age_1year_interval", primary: false, value: [],
+                {
+                    key: 'census-region', title: 'label.filter.censusRegion', queryKey: "census_region|census_division", primary: false, value: [],
+                    queryType: "compound", titles: ['label.filter.censusRegion', 'label.filter.censusDivision'], queryKeys: ["census_region", "census_division"],
+                    groupBy: false, type: "label.filter.group.location", filterType: 'checkbox',
+                    autoCompleteOptions: censusRegionOptions, defaultGroup: "column",
+                    displaySearchBox: true, displaySelectedFirst: false, helpText: 'label.help.text.mortality.state'
+                },
+                {
+                    key: 'hhs-region', title: 'label.filter.HHSRegion', queryKey: "hhs_region", primary: false, value: [],
+                    groupBy: false, type: "label.filter.group.location", filterType: 'checkbox',
+                    autoCompleteOptions: hhsOptions, defaultGroup: "column",
+                    displaySearchBox: true, displaySelectedFirst: true, helpText: 'label.help.text.mortality.state'
+                },
+                {key: 'mother_age_1year_interval', title: 'label.chart.mother_age.single.year.group', queryKey: "mother_age_1year_interval", primary: false, value: [],
                     defaultGroup:'column', groupBy: false, filterType: "checkbox",
                     autoCompleteOptions: singleYearAgeOptions, helpText:"label.help.text.mother.one.year.age", disableAgeOptions: ["Under 15 years", "45 years", "46 years", "47 years", "48 years", "49 years", "50-54 years"]},
 

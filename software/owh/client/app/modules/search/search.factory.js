@@ -1,4 +1,4 @@
-﻿//TODO: consolidate with search.service.js
+//TODO: consolidate with search.service.js
 //TODO: split out some logic into separate services
 //TODO: split json out into separate files
 (function(){
@@ -789,6 +789,8 @@
                 //for current_year dhow line graph
                 if (header.key == 'current_year') {
                     chartData.push(chartUtilService.lineChart(pieData, header, primaryFilter));
+                } else if (header.key.indexOf("census-region") >= 0) {
+                    // TODO: Remove this else if block after fixing server side for charts data for census regions and divisions
                 } else {//for other single filters, show pie chart
                     chartData.push(chartUtilService.pieChart(pieData, header, primaryFilter));
                 }
@@ -822,9 +824,15 @@
             var chartHeaders = [];
             var chartAggregations = [];
             angular.forEach(headers, function(eachPrimaryHeader) {
+                if(eachPrimaryHeader.key.indexOf("census-region")>=0) {
+                    return; // TODO: Remove this if block after fixing server side for charts data for census regions and divisions
+                }
                 var primaryGroupQuery = getGroupQuery(eachPrimaryHeader);
                 angular.forEach(headers, function(eachSecondaryHeader) {
-                    var chartType = $rootScope.chartMappings[eachPrimaryHeader.key + '&' + eachSecondaryHeader.key];
+                    if(eachPrimaryHeader.key.indexOf("census-region")>=0) {
+                        return; // TODO: Remove this if block after fixing server side for charts data for census regions and divisions
+                    }    
+                        var chartType = $rootScope.chartMappings[eachPrimaryHeader.key + '&' + eachSecondaryHeader.key];
                     if(chartType) {
                         var secondaryGroupQuery = getGroupQuery(eachSecondaryHeader);
                         chartHeaders.push({headers: [eachPrimaryHeader, eachSecondaryHeader], chartType: chartType});
@@ -2688,14 +2696,30 @@
                         } ,
                         {
                             category: 'Maternal Residence',
+                            exclusive: true,
+                            ui: "tabbed",
+                            selectedFilter: "state", // defaulting to state
                             sideFilters: [
-
                                 {
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'state')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'census-region')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'hhs-region')
                                 }
                             ]
                         }
