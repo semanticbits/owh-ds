@@ -22,6 +22,8 @@ var cancer_incident_index = "owh_cancer_incident";
 var cancer_incident_type = "cancer_incident";
 var cancer_mortality_index = "owh_cancer_mortality";
 var cancer_mortality_type = "cancer_mortality";
+var cancer_population_index = "owh_cancer_population";
+var cancer_population_type = "cancer_population";
 
 //@TODO to work with my local ES DB I changed mapping name to 'queryResults1', revert before check in to 'queryResults'
 var _queryIndex = "owh_querycache";
@@ -381,11 +383,12 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
                 i == 0 ? populationResponse = resp[i+2] : populationResponse.data.nested.charts.push(resp[i + 2].data.nested.charts[i-1]);
             }
             self.mergeWithCensusData(data, populationResponse, 'pop');
-            if (diseaseName !== 'tb') {
+            if (diseaseName === 'std' || diseaseName === 'aids') {
+                var threshold = diseaseName === 'std'? 4 : 0;
                 if (isStateSelected) {
-                    searchUtils.applySuppressions(data, indexType, 4)
+                    searchUtils.applySuppressions(data, indexType, threshold)
                 } else {
-                    searchUtils.applySuppressions(mapData, indexType, 4)
+                    searchUtils.applySuppressions(mapData, indexType, threshold)
                 }
             }
             deferred.resolve(data);
@@ -482,40 +485,18 @@ ElasticClient.prototype.getDsMetadata = function (dataset, years) {
     return deferred.promise;
 };
 
-ElasticClient.prototype.getCountForYearByFilter = function (year, filter, option) {
-    var client = this.getClient();
-    var target = {};
-    target[filter] = option;
-    return client.count({
-        index: infant_mortality_index,
-        type: infant_mortality_type,
-        body: {
-            query: {
-                bool: {
-                    must: [
-                        { match: { 'year_of_death': year } },
-                        { match: target }
-                    ]
-                }
-            }
-        }
-    }).then(function (data) {
-        return data;
-    }).catch(function (error) {
-        logger.error('Failed to get count for ', filter, ' ', error);
-        return error;
-    });
-};
-
 ElasticClient.prototype.aggregateCancerData = function (query, cancer_index) {
     var index = cancer_index === cancer_incident_type ? cancer_incident_index : cancer_mortality_index;
     var type = cancer_index === cancer_incident_type ? cancer_incident_type : cancer_mortality_type;
-
     var promises = [ this.executeESQuery(index, type, query[0]) ];
-    if (query[2]) promises.push(this.executeESQuery(index, type, query[2]));
 
-    return Q.all(promises).spread(function (queryResponse, mapResponse) {
+    if (query[2]) promises.push(this.executeESQuery(index, type, query[2]));
+    if (query[1]) promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[1]));
+
+    return Q.all(promises).spread(function (queryResponse, mapResponse, populationResponse) {
         var data = searchUtils.populateDataWithMappings(queryResponse, type);
+        var pop = searchUtils.populateDataWithMappings(populationResponse, cancer_population_type);
+        searchUtils.attachPopulation(data.data.nested.table, pop.data.nested.table, []);
         if (mapResponse) {
           var mapData = searchUtils.populateDataWithMappings(mapResponse, type);
           data.data.nested.maps = mapData.data.nested.maps;

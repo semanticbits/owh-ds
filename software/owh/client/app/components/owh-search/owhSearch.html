@@ -52,6 +52,20 @@
                     ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.mental_health"
                     class="usa-width-two-thirds add-on-element gray-border margin-0"></select>
         </div>
+        <div class="usa-width-one-fourth margin-right-0" ng-show="ots.filters.selectedPrimaryFilter.key === 'cancer_incident'">
+            <label for="showMeDropDown"><div class="usa-width-one-fourth show-me-text" ng-bind="'label.show.me' | translate"></div></label>
+            <select id="showMeDropDown" ng-model="ots.selectedShowFilter"
+                    ng-change="ots.onViewFilter({selectedFilter: ots.selectedShowFilter})"
+                    ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.deaths"
+                    class="usa-width-two-thirds add-on-element gray-border margin-0"></select>
+        </div>
+        <div class="usa-width-one-fourth margin-right-0" ng-show="ots.filters.selectedPrimaryFilter.key === 'cancer_mortality'">
+            <label for="showMeDropDown"><div class="usa-width-one-fourth show-me-text" ng-bind="'label.show.me' | translate"></div></label>
+            <select id="showMeDropDown" ng-model="ots.selectedShowFilter"
+                    ng-change="ots.onViewFilter({selectedFilter: ots.selectedShowFilter})"
+                    ng-options="eachFilter.title | translate for eachFilter in ots.showFilters.deaths"
+                    class="usa-width-two-thirds add-on-element gray-border margin-0"></select>
+        </div>
         <div class="forward-back">
             <button class="action-button condition-option ng-scope"  ng-click="ots.goBackward();"
                     title="Previous Query" aria-label="Back"><span class="fa fa-chevron-left" ng-class="fa-chevron-left"></span></button>

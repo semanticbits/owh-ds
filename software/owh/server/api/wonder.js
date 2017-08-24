@@ -113,7 +113,12 @@ var wonderParamCodeMap = {
                 "WI":"55",
                 "WY":"56"
             }
-        }
+        },
+        'census-region': 'D77.V10',
+        'census-region|census_region-group':'D77.V10-level1',
+        'census-region|census_division-group':'D77.V10-level2',
+        'hhs-region': 'D77.V27',
+        'hhs-region-group': 'D77.V27-level1',
     },
     "D69": {
         'year_of_death': 'D69.V9',
@@ -1178,7 +1183,7 @@ function requestWonder(dbID, req) {
             //logger.debug("Age adjusted rates: " + JSON.stringify(result));
             defer.resolve(result);
         } else {
-            logger.error("WONDER Error: " + (error ? error : body));
+            logger.error("WONDER Error: " + (error ? error : body) + "\nRequest: " + JSON.stringify(req));
             defer.reject('Error invoking WONDER API');
         }
     }, function (error) {
@@ -1353,9 +1358,9 @@ function createWONDERRquest(filter, groupParams, dbID){
     request.com("Groups");
     addGroupParams(request, groupParams, dbID);
     request.com("Filters");
-    addFilterParams(request, filter, dbID);
+    var locationFilter = addFilterParams(request, filter, dbID);
     request.com("Options");
-    addOptionParams(request, dbID);
+    addOptionParams(request, locationFilter, dbID);
     var reqStr = request.end({pretty:true});
     //logger.info("WONDER Request:",reqStr);
     return reqStr;
@@ -1385,7 +1390,7 @@ function addFilterParams (wreq, query, dbID){
 
     var mcdSet1 = [], mcdSet2 = [];
 
-    var statefound = false;
+    var locationFilter = '';
     if(query){
         for (var k in query){
             var key = query[k].key;
@@ -1411,9 +1416,23 @@ function addFilterParams (wreq, query, dbID){
                 }
             }
             else {
-                if (key == 'state') {
-                    statefound = true;
+                if (key.indexOf('|') >= 0) key = key.split('|')[0];
+
+                if(dbID === 'D77') {
+                    if (key === 'state') {
+                        locationFilter = 'D77.V9';
+                    }
+                    else if (key === 'census-region') {
+                        locationFilter = 'D77.V10'
+                    }
+                    else if (key === 'hhs-region') {
+                        locationFilter = 'D77.V27'
+                    }
                 }
+                else {
+                    locationFilter = true;
+                }
+
                 p = wonderParamCodeMap[dbID][key];
                 v = query[k].value;
                 //make sure values are replaced by proper keys
@@ -1440,7 +1459,7 @@ function addFilterParams (wreq, query, dbID){
             }
         }
     }
-    if(!statefound){
+    if(locationFilter === ''){
         // If state filter is not selected then add mandatory state filter
         if(dbID === 'D77') {
             addParamToWONDERReq(wreq, 'F_D77.V9', '*All*');
@@ -1461,6 +1480,8 @@ function addFilterParams (wreq, query, dbID){
         addParamToWONDERReq(wreq, 'V_D77.V13', mcdSet1);
         addParamToWONDERReq(wreq, 'V_D77.V13_AND', mcdSet2);
     }
+    return locationFilter;
+
 };
 
 function addMeasures(wreq, dbID) {
@@ -1482,7 +1503,7 @@ function addMeasures(wreq, dbID) {
     }
 };
 
-function addOptionParams(wreq, dbID){
+function addOptionParams(wreq, locationFilter, dbID){
     if(dbID === 'D77') {
         addParamToWONDERReq(wreq, 'O_V10_fmode', 'freg');
         addParamToWONDERReq(wreq, 'O_V13_fmode', 'fadv');
@@ -1497,7 +1518,7 @@ function addOptionParams(wreq, dbID){
         addParamToWONDERReq(wreq, 'O_aar_pop', '0000');
         addParamToWONDERReq(wreq, 'O_age', 'D77.V5'); // Age adjusted rate by 10 year interval
         addParamToWONDERReq(wreq, 'O_javascript', 'off');
-        addParamToWONDERReq(wreq, 'O_location', 'D77.V9');
+        addParamToWONDERReq(wreq, 'O_location', locationFilter || 'D77.V9');
         addParamToWONDERReq(wreq, 'O_precision', '1');
         addParamToWONDERReq(wreq, 'O_rate_per', '100000');
         addParamToWONDERReq(wreq, 'O_show_totals', 'true');

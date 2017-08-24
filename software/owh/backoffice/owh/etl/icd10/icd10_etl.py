@@ -86,10 +86,10 @@ class ICDETL (ETL):
         logger.info ("Processed %d conditions", recordCount)
         with open('conditions-ICD-10-mappings.json', 'w') as outfile:
             json.dump(self.conditionhierarchy,outfile, sort_keys=True, indent=2, separators=(',', ': '))
-            logger.info ("*** Generated ICD10 data file: %s, copy this file to app/client/jsons folder ***",os.getcwd()+'/conditions-ICD-10-mappings.json'),
+            logger.info ("*** Generated ICD10 data file: %s, copy this file to es_mapping folder of the mortality and infant_mortality ETLs ***",os.getcwd()+'/conditions-ICD-10.json')
         with open('conditions-ICD-10.json', 'w') as outfile:
             json.dump({'conditionsICD10': self.conditiontree,'conditionsListICD10': self.conditionlist},outfile, indent=2, separators=(',', ': '))
-            logger.info ("*** Generated ICD10 data file: %s, copy this file to es_mapping folder of the mortality and infant_mortality ETLs ***",os.getcwd()+'/conditions-ICD-10.json')
+            logger.info ("*** Generated ICD10 data file: %s, copy this file to app/client/jsons folder ***",os.getcwd()+'/conditions-ICD-10-mappings.json'),
 
     def validate_etl(self):
         """ Validate the ETL"""

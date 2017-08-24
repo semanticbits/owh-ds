@@ -179,23 +179,28 @@
             var refreshFiltersOnChange = false;
             //populate side filters based on cached query filters
             angular.forEach(updatedSideFilters, function (category, catIndex) {
+                var localCategory = primaryFilter.sideFilters[catIndex];
+                if(category.selectedFilter) {
+                    localCategory.selectedFilter = category.selectedFilter;
+                }
+
                 angular.forEach(category.sideFilters, function(filter, index) {
-                    if(primaryFilter.sideFilters[catIndex]) {
-                        refreshFiltersOnChange = refreshFiltersOnChange || primaryFilter.sideFilters[catIndex].sideFilters[index].refreshFiltersOnChange;
+                    if (localCategory) {
+                        refreshFiltersOnChange = refreshFiltersOnChange || localCategory.sideFilters[index].refreshFiltersOnChange;
                     }
-                    primaryFilter.sideFilters[catIndex].sideFilters[index].filters.value = filter.filters.value;
-                    primaryFilter.sideFilters[catIndex].sideFilters[index].filters.groupBy = filter.filters.groupBy;
+                    localCategory.sideFilters[index].filters.value = filter.filters.value;
+                    localCategory.sideFilters[index].filters.groupBy = filter.filters.groupBy;
 
                     if (filter.filters.filterType === 'slider') {
-                        primaryFilter.sideFilters[catIndex].sideFilters[index].filters.sliderValue = filter.filters.sliderValue;
+                        localCategory.sideFilters[index].filters.sliderValue = filter.filters.sliderValue;
                     }
 
                     if (filter.filters.selectedNodes != undefined) {
-                        primaryFilter.sideFilters[catIndex].sideFilters[index].filters.selectedNodes = filter.filters.selectedNodes;
+                        localCategory.sideFilters[index].filters.selectedNodes = filter.filters.selectedNodes;
                     }
                     //To un-select selected nodes when user go back from current page
-                    else if (primaryFilter.sideFilters[catIndex].sideFilters[index].filters.selectedNodes != undefined) {
-                        primaryFilter.sideFilters[catIndex].sideFilters[index].filters.selectedNodes.length = 0;
+                    else if (localCategory.sideFilters[index].filters.selectedNodes != undefined) {
+                        localCategory.sideFilters[index].filters.selectedNodes.length = 0;
                     }
                     addOrFilterToPrimaryFilterValue(filter.filters, primaryFilter);
                 });
@@ -226,6 +231,10 @@
                 file = {question: questions};
             }
             var headers = selectedFilter.headers ? selectedFilter.headers : {columnHeaders: [], rowHeaders: []};
+
+            headers.rowHeaders = updateSplitHeaders(headers.rowHeaders);
+            headers.columnHeaders = updateSplitHeaders(headers.columnHeaders);
+
             //make sure row/column headers are in proper order
             angular.forEach(headers.rowHeaders, function(header) {
                 sortAutoCompleteOptions(header, groupOptions[tableView]);
@@ -247,6 +256,41 @@
             }
 
             return tableData;
+        }
+
+        function updateSplitHeaders(headers) {
+            headers = utilService.clone(headers);
+            var newHeaders = [];
+            angular.forEach(headers, function (header, index) {
+                if (header.queryType === "compound") {
+                    var newHeader = utilService.clone(header);
+                    var queryKeys = header.queryKeys;
+                    var titles = header.titles;
+
+                    header.key += "|" + queryKeys[0];
+                    header.queryKey = queryKeys[0];
+                    header.title = titles[0];
+
+                    newHeader.key += "|" + queryKeys[1];
+                    newHeader.queryKey = queryKeys[1];
+                    newHeader.title = titles[1];
+                    var subOptions = [];
+                    angular.forEach(newHeader.autoCompleteOptions, function (option) {
+                        angular.forEach(option.options, function (subOption) {
+                            subOptions.push(subOption);
+                        });
+                    });
+                    newHeader.autoCompleteOptions = subOptions;
+
+                    newHeaders.push({ index: index + 1, header: newHeader });
+                }
+            });
+
+            angular.forEach(newHeaders, function (newHeader) {
+                headers.splice(newHeader.index, 0, newHeader.header);
+            });
+
+            return headers;
         }
 
         //takes mixedTable and returns categories array for use with owhAccordionTable
@@ -561,19 +605,7 @@
                 var filter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', key);
                 if (filter) {
                     if (filter.autoCompleteOptions) {
-                        angular.forEach(filter.autoCompleteOptions, function (option) {
-                            var optionData = utilService.findByKeyAndValue(eachFilterData, 'name', option.key);
-                            if (optionData) {
-                                option[primaryFilter.key] = optionData[primaryFilter.key];
-                                option['count'] = optionData[primaryFilter.key];
-                                option[primaryFilter.key + 'Percentage'] = 0;
-                                option[primaryFilter.key + 'Percentage'] = Number(((optionData[primaryFilter.key] / primaryFilter.count) * 100).toFixed(2));
-                            } else {
-                                option[primaryFilter.key] = 0;
-                                option['count'] = 0;
-                                option[primaryFilter.key + 'Percentage'] = 0;
-                            }
-                        });
+                        populateSideFilterTotalsOption(filter.autoCompleteOptions, eachFilterData, primaryFilter);
                     } else {
                         var autoCompleteOptions = [];
                         angular.forEach(eachFilterData, function (eachData) {
@@ -591,6 +623,26 @@
             });
         }
 
+        function populateSideFilterTotalsOption(autoCompleteOptions, filterData, primaryFilter) {
+            angular.forEach(autoCompleteOptions, function (option) {
+                if (option.group) {
+                    populateSideFilterTotalsOption(option.options, filterData, primaryFilter);
+                }
+                else {
+                    var optionData = utilService.findByKeyAndValue(filterData, 'name', option.key);
+                    if (optionData) {
+                        option[primaryFilter.key] = optionData[primaryFilter.key];
+                        option['count'] = optionData[primaryFilter.key];
+                        option[primaryFilter.key + 'Percentage'] = 0;
+                        option[primaryFilter.key + 'Percentage'] = Number(((optionData[primaryFilter.key] / primaryFilter.count) * 100).toFixed(2));
+                    } else {
+                        option[primaryFilter.key] = 0;
+                        option['count'] = 0;
+                        option[primaryFilter.key + 'Percentage'] = 0;
+                    }
+                }
+            });
+        }
 
         function prepareMortalityResults(primaryFilter, response) {
             var ucd10Filter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'ucd-chapter-10');
@@ -707,33 +759,8 @@
             }
             //When user selects more than one filter
             if( headers.chartHeaders.length > 0 ) {
-                /*var allOtherCharts = [];
-                var multiLineCharts = headers.chartHeaders.reduce(function (prev, header) {
-                    if (header.chartType !== 'multiLineChart') {
-                        allOtherCharts.push(header);
-                        return prev;
-                    }
-                    return prev.concat(header);
-                }, []).map(function (chart) {
-                    chart.data = nestedData.lineCharts.reduce(function (prev, curr) {
-                        if (prev) return prev;
-                        if (curr[0].filter === chart.headers[0].key || curr[0].filter === chart.headers[1].key) return curr;
-                        return null;
-                    }, null);
-                    return chart;
-                });
-
-                multiLineCharts.forEach(function (chart) {
-                    chartData.push(chartUtilService.multiLineChart(chart, primaryFilter));
-                }); */
                 angular.forEach(headers.chartHeaders, function(eachChartHeaders, index) {
-                    if(eachChartHeaders.chartType === 'multiLineChart') {
-                        //@Gopal: Need to send proper chart data to multiLineChart method
-                        //chartData.push(chartUtilService.multiLineChart(eachChartHeaders, primaryFilter));
-                    }
-                    else {
-                        chartData.push(chartUtilService[eachChartHeaders.chartType](eachChartHeaders.headers[0], eachChartHeaders.headers[1], nestedData.charts[index], primaryFilter));
-                    }
+                    chartData.push(chartUtilService[eachChartHeaders.chartType](eachChartHeaders.headers[0], eachChartHeaders.headers[1], nestedData.charts[index], primaryFilter));
                 });
             }else if( ( headers.rowHeaders.length + headers.columnHeaders.length ) === 1 ) {
                 var data = nestedData.table;
@@ -743,7 +770,7 @@
                 if (header.key == 'current_year') {
                     chartData.push(chartUtilService.lineChart(pieData, header, primaryFilter));
                 } else {//for other single filters, show pie chart
-                    chartData.push(chartUtilService.pieChart(pieData, header, primaryFilter));
+                    chartData.push(chartUtilService.plotlyPieChart(pieData, header, primaryFilter));
                 }
             }
 
@@ -1387,6 +1414,93 @@
                 { "key": "WY", "title": "Wyoming" }
             ];
 
+            filters.censusRegionOptions = [
+                {
+                    key: "CENS-R1",
+                    title: "Census Region 1: Northeast",
+                    group: true,
+                    options: [
+                        {
+                            key: "CENS-D1",
+                            title: "Division 1: New England",
+                        },
+                        {
+                            key: "CENS-D2",
+                            title: "Division 2: Middle Atlantic",
+                        },
+                    ]
+                },
+                {
+                    key: "CENS-R2",
+                    title: "Census Region 2: Midwest",
+                    group: true,
+                    options: [
+                        {
+                            key: "CENS-D3",
+                            title: "Division 3: East North Central",
+                            parentFilterOptionKey: "CENS-R2",
+                        },
+                        {
+                            key: "CENS-D4",
+                            title: "Division 4: West North Central",
+                            parentFilterOptionKey: "CENS-R2",
+                        },
+                    ]
+                },
+                {
+                    key: "CENS-R3",
+                    title: "Census Region 3: South",
+                    group: true,
+                    options: [
+                        {
+                            key: "CENS-D5",
+                            title: "Division 5: South Atlantic",
+                            parentFilterOptionKey: "CENS-R3",
+                        },
+                        {
+                            key: "CENS-D6",
+                            title: "Division 6: East South Central",
+                            parentFilterOptionKey: "CENS-R3",
+                        },
+                        {
+                            key: "CENS-D7",
+                            title: "Division 7: West South Central",
+                            parentFilterOptionKey: "CENS-R3",
+                        },
+                    ]
+                },
+                {
+                    key: "CENS-R4",
+                    title: "Census Region 4: West",
+                    group: true,
+                    options: [
+                        {
+                            key: "CENS-D8",
+                            title: "Division 8: Mountain",
+                            parentFilterOptionKey: "CENS-R4",
+                        },
+                        {
+                            key: "CENS-D9",
+                            title: "Division 9: Pacific",
+                            parentFilterOptionKey: "CENS-R4",
+                        },
+                    ]
+                },
+            ];
+
+            filters.hhsOptions = [
+                { "key": "HHS-1", "title": "HHS Region #1  CT, ME, MA, NH, RI, VT" },
+                { "key": "HHS-2", "title": "HHS Region #2  NJ, NY" },
+                { "key": "HHS-3", "title": "HHS Region #3  DE, DC, MD, PA, VA, WV" },
+                { "key": "HHS-4", "title": "HHS Region #4  AL, FL, GA, KY, MS, NC, SC, TN" },
+                { "key": "HHS-5", "title": "HHS Region #5  IL, IN, MI, MN, OH, WI" },
+                { "key": "HHS-6", "title": "HHS Region #6  AR, LA, NM, OK, TX" },
+                { "key": "HHS-7", "title": "HHS Region #7  IA, KS, MO, NE" },
+                { "key": "HHS-8", "title": "HHS Region #8  CO, MT, ND, SD, UT, WY" },
+                { "key": "HHS-9", "title": "HHS Region #9  AZ, CA, HI, NV" },
+                { "key": "HHS-10", "title": "HHS Region #10  AK, ID, OR, WA" }
+            ];
+
             filters.ageOptions = [
                 {key:'0-4years',title:'0 - 4 years', min: 1, max: 5},
                 {key:'5-9years',title:'5 - 9 years', min: 6, max: 10},
@@ -1744,6 +1858,19 @@
                     groupBy: false, type:"label.filter.group.location", filterType: 'checkbox',
                     autoCompleteOptions: filters.stateOptions, defaultGroup:"column",
                     displaySearchBox:true, displaySelectedFirst:true, helpText: 'label.help.text.mortality.state'},
+                {
+                    key: 'census-region', title: 'label.filter.censusRegion', queryKey: "census_region|census_division", primary: false, value: [],
+                    queryType: "compound", titles: ['label.filter.censusRegion','label.filter.censusDivision'], queryKeys: ["census_region", "census_division"],
+                    groupBy: false, type: "label.filter.group.location", filterType: 'checkbox',
+                    autoCompleteOptions: filters.censusRegionOptions, defaultGroup: "column",
+                    displaySearchBox: true, displaySelectedFirst: false, helpText: 'label.help.text.mortality.state'
+                },
+                {
+                    key: 'hhs-region', title: 'label.filter.HHSRegion', queryKey: "hhs_region", primary: false, value: [],
+                    groupBy: false, type: "label.filter.group.location", filterType: 'checkbox',
+                    autoCompleteOptions: filters.hhsOptions, defaultGroup: "column",
+                    displaySearchBox: true, displaySelectedFirst: true, helpText: 'label.help.text.mortality.state'
+                },
 
                 /*Underlying Cause of Death*/
                 {key: 'ucd-chapter-10', title: 'label.filter.ucd', queryKey:"ICD_10_code",
@@ -2076,11 +2203,30 @@
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'month')
-                                },
+                                }
+                            ]
+                        },
+                        {
+                            exclusive: true,
+                            ui: "tabbed",
+                            selectedFilter: "state", // defaulting to state
+                            sideFilters: [
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'state')
                                 },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'census-region')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true,
+                                    filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'hhs-region')
+                                }
+                            ]
+                        },
+                        {
+                            sideFilters: [
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'ucd-chapter-10')

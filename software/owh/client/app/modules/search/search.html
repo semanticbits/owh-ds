@@ -105,7 +105,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <nvd3 id="chart_{{parentIndex}}_{{$index}}" options='chartData.options' data='chartData.data' api="chartData.api" on-ready="sc.updateCharts()"></nvd3>
+                                <plotly id="chart_{{parentIndex}}_{{$index}}"  plotly-data='chartData.data' plotly-layout="chartData.layout" plotly-options='chartData.options'></plotly>
                             </div>
                             <!-- Graphs -->
                         </div>

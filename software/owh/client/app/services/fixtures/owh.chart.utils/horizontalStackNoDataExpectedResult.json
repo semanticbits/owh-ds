@@ -1,35 +1,50 @@
 {
-  "data": [],
+  "charttype":"multiBarHorizontalChart",
+  "title":"label.title.gender.race",
+  "longtitle":"chart.title.measure.deaths by label.title.gender.race in undefined for undefined",
   "dataset":"deaths",
-  "title": "label.title.gender.race",
-  "options": {
-    "chart": {
-      "type": "multiBarHorizontalChart",
-      "height": 250,
-      "width": 0,
-      "margin": {
-        "top": 5,
-        "right": 5,
-        "bottom": 45,
-        "left": 45
+  "data":[
+
+  ],
+  "layout":{
+    "width":350,
+    "height":300,
+    "showlegend":false,
+    "hovermode":"closest",
+    "margin":{
+      "l":20,
+      "r":10,
+      "b":20,
+      "t":20
+    },
+    "xaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
       },
-      "showLegend": false,
-      "showControls": false,
-      "showValues": false,
-      "showXAxis": true,
-      "showYAxis": true,
-      "duration": 500,
-      "xAxis": {
-        "axisLabelDistance":-20,
-        "axisLabel":"label.filter.race",
-        "showMaxMin": false
+      "exponentformat":"none",
+      "tickangle":45,
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "title":"Deaths"
+    },
+    "yaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
       },
-      "yAxis": {
-        "axisLabel": "Deaths"
-      },
-      "useInteractiveGuideline": false,
-      "interactive": false,
-      "tooltip": {}
-    }
+      "exponentformat":"none",
+      "tickangle":45,
+      "ticksuffix":"   ",
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "title":"label.filter.race"
+    },
+    "barmode":"stack"
+  },
+  "options":{
+    "displayModeBar":false
   }
 }
