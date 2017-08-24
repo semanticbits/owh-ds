@@ -124,7 +124,7 @@ describe('chart utils', function(){
 
         var result = chartUtils.horizontalBar(filter1, filter2, data, primaryFilter);
         var barData = result.data;
-        expect(barData[1].Y[3]).toEqual('American Indian or Alaska Native');
+        expect(barData[1].y[3]).toEqual('American Indian or Alaska Native');
         expect(barData[1].x[3]).toEqual('6.6');
 
         expect(barData[1].y[2]).toEqual('Asian or Pacific Islander');

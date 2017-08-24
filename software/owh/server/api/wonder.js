@@ -1429,7 +1429,7 @@ function addFilterParams (wreq, query, dbID){
                         locationFilter = 'D77.V27'
                     }
                 }
-                else {
+                else if(key === 'state') {
                     locationFilter = true;
                 }
 
