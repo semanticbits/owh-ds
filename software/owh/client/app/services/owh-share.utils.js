@@ -75,7 +75,7 @@
                         doc.addImage(response, 'PNG', 10, 10, 270, 190 );
                         doc.line(5, 190, 290, 190);
                         doc.setFontSize(11);
-                        doc.text( 7, 194, doc.splitTextToSize('This graph is downloaded form Health Information Gateway(HIG) using the query parameters: '+ selectedFiltersTxt, 280));
+                        doc.text( 7, 194, doc.splitTextToSize('This graph is downloaded from Health Information Gateway(HIG) using the query parameters: '+ selectedFiltersTxt, 280));
                         doc.addPage();
                         doc.rect(5,5,285, 200);
                         doc.setFontSize(20);
@@ -211,7 +211,7 @@
 
         function addFooter(pptx, slide, selectedFiltersTxt ){
             slide.addShape(pptx.shapes.LINE, { x:'2%', y:'92%', w:'96%', h:0, line:'000000', line_size:1.5 });
-            slide.addText('This graph is downloaded form Health Information Gateway(HIG) using the query parameters: '+ selectedFiltersTxt, {x:'2%', y:'93%', w:'95%', font_size: 9});
+            slide.addText('This graph is downloaded from Health Information Gateway(HIG) using the query parameters: '+ selectedFiltersTxt, {x:'2%', y:'93%', w:'95%', font_size: 9});
         }
 
         function addNotesSlide(pptx, dataset, selectedFiltersTxt){
