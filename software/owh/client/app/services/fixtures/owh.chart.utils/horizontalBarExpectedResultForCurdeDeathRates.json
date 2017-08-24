@@ -1,83 +1,97 @@
 {
-  "data": [
+  "charttype":"multiBarHorizontalChart",
+  "title":"label.title.gender.race",
+  "longtitle":"chart.title.measure.crude_death_rates by label.title.gender.race in undefined for undefined",
+  "dataset":"deaths",
+  "data":[
     {
-      "key": "Female",
-      "color": "#fe66ff",
-      "values": [
-        {
-          "label": "American Indian",
-          "value": 375.8
-        },
-        {
-          "label": "Asian or Pacific Islander",
-          "value": 310.8
-        },
-        {
-          "label": "Black",
-          "value": 665.7
-        },
-        {
-          "label": "White",
-          "value": 899.2
-        }
+      "name":"Male",
+      "x":[
+        932.9,
+        765.3,
+        354.5,
+        454.7
       ],
-      "deaths": 820.7
+      "y":[
+        "White",
+        "Black",
+        "Asian or Pacific Islander",
+        "American Indian"
+      ],
+      "text":[
+
+      ],
+      "orientation":"h",
+      "hoverinfo":"none",
+      "type":"bar",
+      "marker":{
+        "color":"#fe66ff"
+      }
     },
     {
-      "key": "Male",
-      "color": "#009aff",
-      "values": [
-        {
-          "label": "American Indian",
-          "value": 454.7
-        },
-        {
-          "label": "Asian or Pacific Islander",
-          "value": 354.5
-        },
-        {
-          "label": "Black",
-          "value": 765.3
-        },
-        {
-          "label": "White",
-          "value": 932.9
-        }
+      "name":"Female",
+      "x":[
+        899.2,
+        665.7,
+        310.8,
+        375.8
       ],
-      "deaths": 868
+      "y":[
+        "White",
+        "Black",
+        "Asian or Pacific Islander",
+        "American Indian"
+      ],
+      "text":[
+
+      ],
+      "orientation":"h",
+      "hoverinfo":"none",
+      "type":"bar",
+      "marker":{
+        "color":"#009aff"
+      }
     }
   ],
-  "dataset":"deaths",
-  "title": "label.title.gender.race",
-  "options": {
-    "chart": {
-      "type": "multiBarHorizontalChart",
-      "height": 250,
-      "width": 0,
-      "margin": {
-        "top": 5,
-        "right": 5,
-        "bottom": 45,
-        "left": 45
+  "layout":{
+    "width":350,
+    "height":300,
+    "showlegend":false,
+    "hovermode":"closest",
+    "margin":{
+      "l":20,
+      "r":10,
+      "b":20,
+      "t":20
+    },
+    "xaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
       },
-      "showLegend": false,
-      "showControls": false,
-      "showValues": false,
-      "showXAxis": true,
-      "showYAxis": true,
-      "stacked": false,
-      "duration": 500,
-      "xAxis": {
-        "axisLabelDistance": -20,
-        "axisLabel": "label.filter.race",
-        "showMaxMin": false
+      "exponentformat":"none",
+      "tickangle":45,
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "title":"Crude Death Rates"
+    },
+    "yaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
       },
-      "yAxis": {
-        "axisLabel": "Crude Death Rates"
-      },
-      "useInteractiveGuideline": false,
-      "interactive": false,
-      "tooltip": {}
-    }
+      "exponentformat":"none",
+      "tickangle":45,
+      "ticksuffix":"   ",
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "title":"label.filter.race"
+    },
+    "barmode":"bar"
+  },
+  "options":{
+    "displayModeBar":false
   }
 }
