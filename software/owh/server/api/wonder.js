@@ -1382,13 +1382,6 @@ function addFilterParams (wreq, query, dbID){
         addParamToWONDERReq(wreq, 'V_D77.V19', '*All*');
         addParamToWONDERReq(wreq, 'V_D77.V5', '*All*');
     }
-    else if(dbID === 'D69') {
-        // Add mandatory advanced filter options
-        //addParamToWONDERReq(wreq, 'F_D69.V16', '*All*');
-
-        /*addParamToWONDERReq(wreq, 'F_D69.V19', '*All*'); // Census Regions
-        addParamToWONDERReq(wreq, 'F_D69.V26', '*All*'); // HHS regions*/
-    }
 
     var mcdSet1 = [], mcdSet2 = [];
 
@@ -1438,7 +1431,7 @@ function addFilterParams (wreq, query, dbID){
                     }
                     p = p['key'];
                 }
-                if(dbID === 'D69' || dbID === 'D31' || dbID === 'D18') {
+                if((dbID === 'D69' || dbID === 'D31' || dbID === 'D18') && key !== 'state') {
                     addParamToWONDERReq(wreq, 'V_' + p, v);
                 }
                 else {
