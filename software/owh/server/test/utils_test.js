@@ -903,4 +903,57 @@ describe("Utils", function(){
             expect(data.charts[0].filter1[0].filter2[0].countKey).to.eql(0);
         });
     });
+
+    describe('.attachPopulation', function () {
+        var root, pop;
+        before(function () {
+            root = require('./data/cancer_data').incidence;
+            pop = require('./data/cancer_data').population;
+        });
+
+        it('should attach the pop property to the root that has a matching path', function () {
+            searchUtils.attachPopulation(root, pop, []);
+            expect(root.race[0].sex[0].pop).to.eql(126445081);
+            expect(root.race[0].pop).to.eql(250529673);
+        });
+
+        it('should attach an "n/a" to non-existent paths', function () {
+            searchUtils.attachPopulation(root, pop, []);
+            expect(root.race[3].sex[0].pop).to.eql('n/a');
+            expect(root.race[3].pop).to.eql('n/a');
+        });
+
+    });
+
+    describe('.findMatchingProp', function () {
+        var pop;
+        before(function () {
+            pop = require('./data/cancer_data').population;
+        });
+
+        it('should find the matching cancer_population from the given path', function () {
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'White' ])).to.eql(250529673);
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Black' ])).to.eql(44316094);
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'American Indian/Alaska Native', 'sex', 'Male' ])).to.eql(2267184);
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'American Indian/Alaska Native', 'sex', 'Female' ])).to.eql(2248348);
+        });
+
+        it('should return undefined when given an unmatched path', function () {
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Unknown' ])).to.eql(undefined);
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Unknown', 'sex', 'Female' ])).to.eql(undefined);
+        });
+    });
+
+    describe('.findMatchingOption', function () {
+        it('should return the matching option when given a target', function () {
+            var mock = [{ name: 'Male' }, { name: 'Female' }];
+            expect(searchUtils.findMatchingOption(mock, 'Male')).to.eql({ name: 'Male' });
+            expect(searchUtils.findMatchingOption(mock, 'Female')).to.eql({ name: 'Female' });
+        });
+
+        it('should return null when given a non-existent target', function () {
+            var mock = [{ name: 'White' }, { name: 'Black' }, { name: 'American Indian/Alaska Native' }];
+            expect(searchUtils.findMatchingOption(mock, 'Unknown')).to.eql(null);
+        });
+    });
 });
