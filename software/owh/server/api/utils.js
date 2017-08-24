@@ -114,7 +114,7 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
             aggregation[countKey] = aggregation[countKey];
             var innerObjKey = isValueHasGroupData(buckets[index]);
             // take from pop.value instead of doc_count for census data
-            if(countKey === 'pop') {
+            if(countKey === 'pop' || countKey === 'cancer_population') {
                 aggregation = {name: buckets[index]['key']};
                 if(buckets[index]['pop']) {
                     aggregation[countKey] = buckets[index]['pop'].value;
@@ -183,7 +183,7 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
  */
 function suppressCounts (obj, countKey, dataType, suppressKey, maxValue) {
     var key = suppressKey ? suppressKey : countKey;
-    var value = maxValue ? maxValue : 10;
+    var value = maxValue !== undefined ? maxValue : 10;
     for (var property in obj) {
         if (property === 'name') {
             continue;
@@ -484,7 +484,30 @@ var mergeAgeAdjustedRates = function(mort, rates) {
         "WA": "Washington",
         "WV": "West Virginia",
         "WI": "Wisconsin",
-        "WY": "Wyoming"
+        "WY": "Wyoming",
+        "CENS-R1": "Census Region 1: Northeast",
+        "CENS-R2": "Census Region 2: Midwest",
+        "CENS-R3": "Census Region 3: South",
+        "CENS-R4": "Census Region 4: West",
+        "CENS-D1": "Division 1: New England",
+        "CENS-D2": "Division 2: Middle Atlantic",
+        "CENS-D3": "Division 3: East North Central",
+        "CENS-D4": "Division 4: West North Central",
+        "CENS-D5": "Division 5: South Atlantic",
+        "CENS-D6": "Division 6: East South Central",
+        "CENS-D7": "Division 7: West South Central",
+        "CENS-D8": "Division 8: Mountain",
+        "CENS-D9": "Division 9: Pacific",
+        "HHS-1": "HHS Region #1  CT, ME, MA, NH, RI, VT",
+        "HHS-2": "HHS Region #2  NJ, NY",
+        "HHS-3": "HHS Region #3  DE, DC, MD, PA, VA, WV",
+        "HHS-4": "HHS Region #4  AL, FL, GA, KY, MS, NC, SC, TN",
+        "HHS-5": "HHS Region #5  IL, IN, MI, MN, OH, WI",
+        "HHS-6": "HHS Region #6  AR, LA, NM, OK, TX",
+        "HHS-7": "HHS Region #7  IA, KS, MO, NE",
+        "HHS-8": "HHS Region #8  CO, MT, ND, SD, UT, WY",
+        "HHS-9": "HHS Region #9  AZ, CA, HI, NV",
+        "HHS-10": "HHS Region #10  AK, ID, OR, WA",
     };
 
     for(var key in mort) {
@@ -671,6 +694,36 @@ function applyCustomSuppressions (data, rules, countKey) {
     });
 }
 
+function attachPopulation (root, popTree, path) {
+    if (path.length) root.pop = findMatchingProp(popTree, path) || 'n/a';
+    for (var property in root) {
+        if (Array.isArray(root[property])) {
+            root[property].forEach(function (option) {
+              attachPopulation(option, popTree, path.concat([property, option.name]));
+            })
+        }
+    }
+}
+
+function findMatchingProp (tree, path) {
+  for (var i = 0; i < path.length; i += 2) {
+    var matching = findMatchingOption(tree[path[i]], path[i + 1]);
+    if (matching) {
+      tree = matching;
+    } else {
+      break;
+    }
+  }
+  return tree && tree['cancer_population'];
+}
+
+function findMatchingOption (options, target) {
+  return options.reduce(function (prev, curr) {
+    if (curr.name === target) return curr;
+    return prev;
+  }, null);
+}
+
 module.exports.populateDataWithMappings = populateDataWithMappings;
 module.exports.populateYRBSData = populateYRBSData;
 module.exports.mergeAgeAdjustedRates = mergeAgeAdjustedRates;
@@ -688,3 +741,6 @@ module.exports.recursivelySuppressOptions = recursivelySuppressOptions;
 module.exports.searchTree = searchTree;
 module.exports.createCancerIncidenceSuppressionRules = createCancerIncidenceSuppressionRules;
 module.exports.applyCustomSuppressions = applyCustomSuppressions;
+module.exports.attachPopulation = attachPopulation;
+module.exports.findMatchingProp = findMatchingProp;
+module.exports.findMatchingOption = findMatchingOption;
