@@ -38,7 +38,7 @@
         }
 
         function getColorPallete(){
-             return [ "#009aff", "#fe66ff", '#5799C7', '#C2D5EE','#FF9F4A','#FFCC9A','#61B861','#B2E7A7','#DB5859','#FFB2B0','#AF8DCE','#D4C4E0','#A98078','#D3B5AF'];
+             return [ "#bc8fe0", "#65c2ff", '#5799C7', '#C2D5EE','#FF9F4A','#FFCC9A','#61B861','#B2E7A7','#DB5859','#FFB2B0','#AF8DCE','#D4C4E0','#A98078','#D3B5AF'];
         }
         
         function getSelectedOptionTitlesOfFilter(filter) {

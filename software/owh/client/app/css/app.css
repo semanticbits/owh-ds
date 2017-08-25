@@ -42,7 +42,7 @@
 
 .set-h3 {
     position: relative;
-    bottom: -15px;
+    bottom: -12px;
     background: #f3f4f4;
     padding: 0 15px;
     margin: 0px;
@@ -1329,6 +1329,10 @@ ul.legend-scale li span {
     transition: max-height 0.6s;
     max-height: 200px;
     overflow: hidden;
+}
+
+.owh-question__content .material-icons {
+    vertical-align: -7px;
 }
 
 .owh-question__question.ng-hide .owh-question__content {
