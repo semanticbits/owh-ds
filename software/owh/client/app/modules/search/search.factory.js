@@ -759,27 +759,7 @@
             }
             //When user selects more than one filter
             if( headers.chartHeaders.length > 0 ) {
-                var allOtherCharts = [];
-                var multiLineCharts = headers.chartHeaders.reduce(function (prev, header) {
-                    if (header.chartType !== 'multiLineChart') {
-                        allOtherCharts.push(header);
-                        return prev;
-                    }
-                    return prev.concat(header);
-                }, []).map(function (chart) {
-                    chart.data = nestedData.lineCharts.reduce(function (prev, curr) {
-                        if (prev) return prev;
-                        if (curr[0].filter === chart.headers[0].key || curr[0].filter === chart.headers[1].key) return curr;
-                        return null;
-                    }, null);
-                    return chart;
-                });
-
-                multiLineCharts.forEach(function (chart) {
-                    chartData.push(chartUtilService.multiLineChart(chart, primaryFilter));
-                });
-
-                angular.forEach(allOtherCharts, function(eachChartHeaders, index) {
+                angular.forEach(headers.chartHeaders, function(eachChartHeaders, index) {
                     chartData.push(chartUtilService[eachChartHeaders.chartType](eachChartHeaders.headers[0], eachChartHeaders.headers[1], nestedData.charts[index], primaryFilter));
                 });
             }else if( ( headers.rowHeaders.length + headers.columnHeaders.length ) === 1 ) {
@@ -792,7 +772,7 @@
                 } else if (header.key.indexOf("census-region") >= 0) {
                     // TODO: Remove this else if block after fixing server side for charts data for census regions and divisions
                 } else {//for other single filters, show pie chart
-                    chartData.push(chartUtilService.pieChart(pieData, header, primaryFilter));
+                    chartData.push(chartUtilService.plotlyPieChart(pieData, header, primaryFilter));
                 }
             }
 

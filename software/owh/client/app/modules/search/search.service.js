@@ -10,7 +10,8 @@
             searchResults : searchResults,
             uploadImage : uploadImage,
             generateHashCode : generateHashCode,
-            getDsMetadata: getDsMetadata
+            getDsMetadata: getDsMetadata,
+            SVGtoPNG:SVGtoPNG
         };
         return service;
 
@@ -41,6 +42,14 @@
         function getDsMetadata(dataset, years) {
             var deferred = $q.defer();
             API.getDsMetadata({dataset:dataset, years:years}).$promise.then(onComplete).catch(onFailed);
+            function onComplete(response) { deferred.resolve(response); }
+            function onFailed(error) { deferred.reject(error) }
+            return deferred.promise;
+        }
+
+        function SVGtoPNG(svg) {
+            var deferred = $q.defer();
+            API.convertSVGtoPNG({svg:svg}).$promise.then(onComplete).catch(onFailed);
             function onComplete(response) { deferred.resolve(response); }
             function onFailed(error) { deferred.reject(error) }
             return deferred.promise;

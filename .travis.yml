@@ -1,17 +1,9 @@
 language: node_js
 node_js:
-  - '4.4'
+  - "node"
   
 services:
   - docker
-
-cache:
-  directories:
-  - node_modules
-  - software/owh/server/node_modules
-  - software/owh/client/node_modules
-  - bower_components
-  - software/owh/client/bower_components
 
 addons:
   code_climate:
@@ -32,6 +24,9 @@ before_install:
 
 install:
   - cd software/owh/server
+  - nvm install node
+  - nvm use node
+  - node --version
   - npm install
   - npm install --dev
   - cd  ../client
