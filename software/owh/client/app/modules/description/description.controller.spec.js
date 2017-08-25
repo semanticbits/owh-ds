@@ -24,7 +24,8 @@ describe("Description Controller: ", function(){
         details = descriptionController.getDataSetDetails();
         expect(details.key).toEqual("deaths");
         expect(details.title).toEqual("Detailed Mortality");
-        expect(details.image).toEqual("mortality-icon.svg");
+        expect(details.image).toEqual("detailed-mortality-icon.svg");
+
     });
 
     it("Should redirectToMortalityPage", function() {
