@@ -393,7 +393,7 @@ describe('search factory ', function(){
         beforeEach(function() {
             deferred = $q.defer();
         });
-        it('updateFiltersAndData for std response', function(){
+        it('updateFiltersAndData for brfs response', function(){
             var groupOptions = {
                 alcohol_consumption: {
                     "topic": ['cat_12', 'cat_48', 'cat_51', 'cat_52']

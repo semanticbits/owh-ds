@@ -372,7 +372,7 @@ yrbs.prototype.getYRBSQuestionsTree = function () {
     } else {
         invokeYRBS(config.yrbs.questionsUrl + '?d=yrbss').then(function (response) {
             logger.info("Getting questions from yrbs service");
-            var data = prepareQuestionTree(response.questions, false);
+            var data = prepareQuestionTree(response, false);
             if (data.questionsList.length > 0) {
                 cahcedQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
             }
@@ -394,7 +394,7 @@ yrbs.prototype.getYRBSQuestionsTree = function () {
     } else {
         invokeYRBS(config.yrbs.questionsUrl + '?d=prams').then(function(response) {
             logger.info("Getting PRAMS questions from YRBS service");
-            var data = prepareQuestionTree(response.questions, true);
+            var data = prepareQuestionTree(response, true);
             // Cache the result only if it is valid
             if (data.questionsList.length > 0) {
                 cachedPramsQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
@@ -417,7 +417,7 @@ yrbs.prototype.getBRFSQuestionsTree = function () {
     } else {
         invokeYRBS(config.yrbs.questionsUrl + '?d=brfss').then(function(response) {
             logger.info("Getting BRFS questions from stats service");
-            var data = prepareQuestionTree(response.questions, true);
+            var data = prepareQuestionTree(response, true);
             // Cache the result only if it is valid
             if (data.questionsList.length > 0) {
                 cachedBRFSQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
