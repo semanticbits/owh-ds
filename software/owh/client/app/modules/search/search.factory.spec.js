@@ -399,9 +399,9 @@ describe('search factory ', function(){
                     "topic": ['cat_12', 'cat_48', 'cat_51', 'cat_52']
                 }
             };
-            var brfsFilters = {primaryFilters: [filters.search[10]]};
+            var brfsFilters = {primaryFilters: [filters.search[11]]};
             spyOn(utils, 'getValuesByKeyIncludingKeyAndValue').and.returnValue([]);
-
+            console.log(JSON.stringify(brfsFilters))
             var result = searchFactory.updateFiltersAndData(brfsFilters, response, groupOptions);
 
             expect(JSON.stringify(result.primaryFilter.data.question)).toEqual(JSON.stringify(response.data.resultData.table.question));
@@ -411,7 +411,7 @@ describe('search factory ', function(){
         it('searchBRFSSResults', function(){
             var deferredResults = $q.defer();
 
-            primaryFilter = filters.search[10];
+            primaryFilter = filters.search[11];
             filters.selectedPrimaryFilter = primaryFilter;
 
             spyOn(searchService, 'searchResults').and.returnValue(deferredResults.promise);
