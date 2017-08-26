@@ -3,7 +3,8 @@
 </div>
 
 <div class="usa-grid data-boxes-container"  ng-controller="SearchController as sc">
-    <div class="usa-width-one-third section">
+   <div class="usa-width-one-third">
+        <div class="section">
         <div class="usa-grid-full">
             <div class="usa-width-one-whole section-banner">
                 <div class="icon-container">
@@ -18,22 +19,43 @@
             <!---<img ui-sref="home" src="../images/owh-logo-white.svg" alt="owh_white_logo" height="60" width="200"/>--->
             <div class="section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('prams')">
                 <div class="description-text" translate="label.prams.title"></div>
-                <i class="material-icons">chevron_right</i>
+                <i class="material-icons chevron-right-blue">chevron_right</i>
                 <div translate="label.prams.dsc"></div>
             </div>
             <div class="section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('mental_health')">
                 <div class="description-text" translate="label.yrbs"></div>
-                <i class="material-icons">chevron_right</i>
+                <i class="material-icons chevron-right-blue">chevron_right</i>
                 <div translate="label.yrbs.dsc"></div>
             </div>
             <div class="section-banner-description home-section-box cursor-pointer">
                 <div class="description-text" translate="label.brfs"></div>
-                <i class="material-icons">chevron_right</i>
+                <i class="material-icons chevron-right-blue">chevron_right</i>
                 <div translate="label.brfs.dsc"></div>
             </div>
     </div>
-
-    <div class="usa-width-one-third section">
+       <div class="section">
+           <div class="usa-grid-full">
+               <div class="usa-width-one-whole section-banner">
+                   <div class="icon-container">
+                       <img ui-sref="home" src="../images/demographics-icon.svg" alt="Demographics" height="110" width="110"/>
+                   </div>
+                   <div class="section-banner-title home-h4 margin-top-minus-10" translate="label.filter.group.demographics">
+                   </div>
+                   <div class="color-black" translate="label.demographics.dsc">
+                   </div>
+               </div>
+           </div>
+           <div class="usa-grid-full">
+               <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('bridge_race')">
+                   <div class="description-text" translate="label.bridged.race"></div>
+                   <i class="material-icons chevron-right-blue">chevron_right</i>
+                   <div translate="label.bridged.race.dsc"></div>
+               </div>
+           </div>
+       </div>
+   </div>
+    <div class="usa-width-one-third">
+        <div class="section">
         <div class="usa-grid-full">
             <div class="usa-width-one-whole section-banner">
                 <div class="icon-container">
@@ -48,72 +70,19 @@
         <div class="usa-grid-full">
             <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('natality')">
                 <div class="description-text" translate="label.filter.natality"></div>
-                <i class="material-icons">chevron_right</i>
+                <i class="material-icons chevron-right-blue">chevron_right</i>
                 <div translate="label.natality.dsc"></div>
             </div>
         </div>
         <div class="usa-grid-full">
             <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer"ng-click="sc.changePrimaryFilter('prams')">
                 <div class="description-text" translate="label.prams.title"></div>
-                <i class="material-icons">chevron_right</i>
+                <i class="material-icons chevron-right-blue">chevron_right</i>
                 <div translate="label.prams.dsc"></div>
             </div>
         </div>
     </div>
-
-    <div class="usa-width-one-third section">
-        <div class="usa-grid-full">
-            <div class="usa-width-one-whole section-banner">
-                <div class="icon-container">
-                    <img ui-sref="home" src="../images/mortality-icon.svg" alt="Mortality" height="110" width="110"/>
-                </div>
-                <div class="section-banner-title home-h4 margin-top-minus-10" translate="label.mortality">
-                </div>
-                <div class="color-black" translate="label.mortality.dsc">
-                </div>
-            </div>
-        </div>
-        <div class="usa-grid-full">
-            <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('deaths')">
-                <div class="description-text" translate="label.filter.mortality"></div>
-                <i class="material-icons">chevron_right</i>
-                <div translate="label.mortality.dsc.two"></div>
-            </div>
-        </div>
-        <div class="usa-grid-full">
-            <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('infant_mortality')">
-                <div class="description-text" translate="label.filter.infant_mortality"></div>
-                <i class="material-icons">chevron_right</i>
-                <div translate="label.infant.mortality.dsc"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="usa-grid diseases data-boxes-container"  ng-controller="SearchController as sc">
-    <div class="usa-grid row-diseases" >
-        <div class="usa-width-one-third section">
-            <div class="usa-grid-full">
-                <div class="usa-width-one-whole section-banner">
-                    <div class="icon-container">
-                        <img ui-sref="home" src="../images/demographics-icon.svg" alt="Demographics" height="110" width="110"/>
-                    </div>
-                    <div class="section-banner-title home-h4 margin-top-minus-10" translate="label.filter.group.demographics">
-                    </div>
-                    <div class="color-black" translate="label.demographics.dsc">
-                    </div>
-                </div>
-            </div>
-            <div class="usa-grid-full">
-                <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('bridge_race')">
-                    <div class="description-text" translate="label.bridged.race"></div>
-                    <i class="material-icons">chevron_right</i>
-                    <div translate="label.bridged.race.dsc"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="usa-width-one-third section">
+        <div class="section">
             <div class="usa-grid-full">
                 <div class="usa-width-one-whole section-banner">
                     <div class="icon-container">
@@ -128,97 +97,88 @@
             <div class="usa-grid-full">
                 <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('mental_health')">
                     <div class="description-text" translate="label.yrbs"></div>
-                    <i class="material-icons">chevron_right</i>
+                    <i class="material-icons chevron-right-blue">chevron_right</i>
                     <div translate="label.yrbs.dsc"></div>
                 </div>
             </div>
             <div class="usa-grid-full">
                 <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer">
                     <div class="description-text" translate="label.brfs"></div>
-                    <i class="material-icons">chevron_right</i>
+                    <i class="material-icons chevron-right-blue">chevron_right</i>
                     <div translate="label.brfs.dsc"></div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="usa-width-one-third section">
-            <div class="usa-grid-full">
-                <div class="usa-width-one-whole section-banner">
-                    <div class="icon-container">
-                        <img ui-sref="home" src="../images/diseases-icon.svg" alt="Disease" height="110" width="110"/>
-                    </div>
-                    <div class="section-banner-title home-h4 margin-top-minus-10" translate="label.filter.disease">
-                    </div>
-                    <div class="color-black" translate="label.disease.dsc">
-                    </div>
+    <div class="usa-width-one-third">
+        <div class="section">
+        <div class="usa-grid-full">
+            <div class="usa-width-one-whole section-banner">
+                <div class="icon-container">
+                    <img ui-sref="home" src="../images/mortality-icon.svg" alt="Mortality" height="110" width="110"/>
+                </div>
+                <div class="section-banner-title home-h4 margin-top-minus-10" translate="label.mortality">
+                </div>
+                <div class="color-black" translate="label.mortality.dsc">
                 </div>
             </div>
-            <div class="usa-grid-full">
-                <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('aids')">
-                    <div class="description-text" translate="label.filter.aids"></div>
-                    <i class="material-icons">chevron_right</i>
-                    <div translate="label.aids.dsc"></div>
-                </div>
+        </div>
+        <div class="usa-grid-full">
+            <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('deaths')">
+                <div class="description-text" translate="label.filter.mortality"></div>
+                <i class="material-icons chevron-right-blue">chevron_right</i>
+                <div translate="label.mortality.dsc.two"></div>
             </div>
-            <div class="usa-grid-full">
-                <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('cancer_incident')">
-                    <div class="description-text" translate="label.filter.cancer_incident"></div>
-                    <i class="material-icons">chevron_right</i>
-                    <div translate="label.cancer.dsc"></div>
-                </div>
-            </div>
-            <div class="usa-grid-full">
-                <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('std')">
-                    <div class="description-text" translate="label.std"></div>
-                    <i class="material-icons">chevron_right</i>
-                    <div translate="label.std.dsc"></div>
-                </div>
-            </div>
-            <div class="usa-grid-full">
-                <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('tb')">
-                    <div class="description-text" translate="label.filter.tb"></div>
-                    <i class="material-icons">chevron_right</i>
-                    <div translate="label.tb.dsc"></div>
-                </div>
+        </div>
+        <div class="usa-grid-full">
+            <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('infant_mortality')">
+                <div class="description-text" translate="label.filter.infant_mortality"></div>
+                <i class="material-icons chevron-right-blue">chevron_right</i>
+                <div translate="label.infant.mortality.dsc"></div>
             </div>
         </div>
     </div>
-</div>
-
-<!--
-        <div class="usa-grid diseases data-boxes-container">
-        <div class="usa-grid row-diseases" >
-        <div class="usa-width-one-third section">
-            <div class="usa-grid-full">
-                <div class="usa-width-one-whole section-banner tb-section-banner">
-                    <div class="section-banner-title home-h4">
-                        TB
-                    </div>
-                    <a href="#" class="dashboard-explore-links custom-link"
-                       ng-click="hc.showPhaseTwoWarningModal('label.default.to.be.implemented');">EXPLORE <i class="fa fa-angle-right"></i></a>
+        <div class="section">
+        <div class="usa-grid-full">
+            <div class="usa-width-one-whole section-banner">
+                <div class="icon-container">
+                    <img ui-sref="home" src="../images/diseases-icon.svg" alt="Disease" height="110" width="110"/>
                 </div>
-            </div>
-            <div class="usa-grid-full">
-                <div class="usa-width-one-whole section-banner-description home-section-box">
-                    Browse information on reported cases of TB across the country and how it impacts specific states.
+                <div class="section-banner-title home-h4 margin-top-minus-10" translate="label.filter.disease">
+                </div>
+                <div class="color-black" translate="label.disease.dsc">
                 </div>
             </div>
         </div>
-        <div class="usa-width-one-third section">
-            <div class="usa-grid-full">
-                <div class="usa-width-one-whole section-banner womens-health-stds-section-banner">
-                    <div class="section-banner-title home-h4">
-                        STDs
-                    </div>
-                    <a href="#" class="dashboard-explore-links custom-link"
-                       ng-click="hc.showPhaseTwoWarningModal('label.default.to.be.implemented');">EXPLORE <i class="fa fa-angle-right"></i></a>
-                </div>
-            </div>
-            <div class="usa-grid-full">
-                <div class="usa-width-one-whole section-banner-description home-section-box">
-                    Search STD case reports for women in order to gain insight on disease incidence rates, the number of cases reported, and which STDs most commonly affect women.
-                </div>
+        <div class="usa-grid-full">
+            <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('aids')">
+                <div class="description-text" translate="label.filter.aids"></div>
+                <i class="material-icons chevron-right-blue">chevron_right</i>
+                <div translate="label.aids.dsc"></div>
             </div>
         </div>
+        <div class="usa-grid-full">
+            <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('cancer_incident')">
+                <div class="description-text" translate="label.filter.cancer_incident"></div>
+                <i class="material-icons chevron-right-blue">chevron_right</i>
+                <div translate="label.cancer.dsc"></div>
+            </div>
+        </div>
+        <div class="usa-grid-full">
+            <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('std')">
+                <div class="description-text" translate="label.std"></div>
+                <i class="material-icons chevron-right-blue">chevron_right</i>
+                <div translate="label.std.dsc"></div>
+            </div>
+        </div>
+        <div class="usa-grid-full">
+            <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="sc.changePrimaryFilter('tb')">
+                <div class="description-text" translate="label.filter.tb"></div>
+                <i class="material-icons chevron-right-blue">chevron_right</i>
+                <div translate="label.tb.dsc"></div>
+            </div>
+        </div>
+    </div>
     </div>
 </div>

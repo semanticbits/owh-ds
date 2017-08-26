@@ -18,10 +18,8 @@ var aidsStepDefinitions = function () {
         }).then(next);
     });
 
-    this.When(/^On the aids page, I expand the "([^"]*)" filter$/, function (filter) {
-        return aidsPage.expandFilter(filter).then(function () {
-            return aidsPage.clickMoreOptionsForFilter(filter);
-        });
+    this.When(/^On the aids page, I expand the "([^"]*)" filter$/, function (filter, next) {
+        aidsPage.getElementContainingText(filter).click().then(next);
     });
 
     this.Then(/^On the aids page, I should see "([^"]*)" options for "([^"]*)" filter$/, function (expected_options, filter, next) {
@@ -62,8 +60,8 @@ var aidsStepDefinitions = function () {
        return expect(commonPage.secondaryMenu.isDisplayed()).to.eventually.equal(true);
     });
 
-    this.When(/^I click on Aids dataset$/, function () {
-        element(by.cssContainingText('span', 'HIV/AIDS')).click();
+    this.When(/^I click on "([^"]*)" dataset menu$/, function (arg1) {
+        element(by.cssContainingText('span', arg1)).click();
     });
 };
 

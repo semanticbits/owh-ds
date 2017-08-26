@@ -5,7 +5,7 @@ Feature: Infant Mortality filters
   So that I can see the results of the filter options
   and I can quickly visualize and analyze the data
 
-  Background: Access Infant Mortality page
+  Scenario: Access Infant Mortality page
     When I am at home page
     And  I click on Explore button in Health Information Gateway section
     Then I should get search page with default filter type "Detailed Mortality"
@@ -73,8 +73,7 @@ Feature: Infant Mortality filters
     And the values in row "3" should be "White, Unreliable, 6.1, 5.8"
 
   Scenario: Infant Mortality Table Data with only 'Female'
-    When I select the option "2000" for "Year" and the option "Alaska" for "State"
-    And I expand "Sex" filter section
+    When I expand "Sex" filter section
     And filter "Sex" and option "Female" selected
     Then the values in row "0" should be "American Indian or Alaska Native, Suppressed, Suppressed"
     Then the values in row "0" should be "American Indian or Alaska Native, 1,190, 1,190"

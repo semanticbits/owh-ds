@@ -610,8 +610,7 @@ describe('search factory ', function(){
             deferred.resolve(yrbsResponse);
 
             genderFilter.groupBy = false;
-            raceFilter.value = 'all-races-ethnicities';
-            raceFilter.value = ['2015'];
+            raceFilter.value = 'Asian';
         });
 
         it('should give me a chart data for single filter with question', function () {

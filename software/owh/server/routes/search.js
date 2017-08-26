@@ -9,6 +9,7 @@ var qc = require('../api/queryCache');
 var dsmetadata = require('../api/dsmetadata');
 var Q = require('q');
 var config = require('../config/config');
+var svgtopng = require('svg2png');
 
 var queryCache = new qc();
 
@@ -74,6 +75,17 @@ var searchRouter = function(app, rConfig) {
             res.send( new result('OK', resp, "success") );
         }, function (err) {
             res.send(new result('Error retrieving dataset metadata', err, "failed"));
+        });
+    });
+
+
+    app.post('/svgtopng', function (req, res) {
+        svgtopng(req.body.svg).then(function (png) {
+            var response = 'data:image/png;base64,' + new Buffer(png, 'binary').toString('base64');
+            res.send(new result('OK', response, "success"));
+        }).catch(function (err) {
+            console.log(err);
+            res.send(new result('Error converting to PNG: ' + err));
         });
     });
 };
@@ -179,22 +191,15 @@ function search(q) {
         }, []);
 
         var es = new elasticSearch();
-        var optionPromises = options.map(function (option) {
-            return es.getCountForYearByFilter(option.year, option.filter, option.key);
-        });
         var promises = [
             es.aggregateInfantMortalityData(sideFilterQuery, isStateSelected, allSelectedFilterOptions),
             es.aggregateInfantMortalityData(finalQuery, isStateSelected, allSelectedFilterOptions)
         ];
-        promises = promises.concat(optionPromises);
 
         Q.all(promises).spread(function (sideFilterResults, response) {
-            var optionResults = Array.prototype.slice.call(arguments, 2);
-            var lineChartData = searchUtils.mapAndGroupOptionResults(options, optionResults);
             var resData = {};
             resData.queryJSON = q;
             resData.resultData = response.data;
-            resData.resultData.nested.lineCharts = lineChartData;
             resData.resultData.headers = preparedQuery.headers;
             resData.sideFilterResults = sideFilterResults;
             deferred.resolve(resData);
@@ -227,16 +232,23 @@ function search(q) {
                 deferred.resolve(resData);
             });
         });
-    } else if (preparedQuery.apiQuery.searchFor === 'cancer_incident') {
+    } else if (preparedQuery.apiQuery.searchFor === 'cancer_incident' || preparedQuery.apiQuery.searchFor === 'cancer_mortality') {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
         var es = new elasticSearch();
         Q.all([
-            es.aggregateCancerData(sideFilterQuery, isStateSelected),
-            es.aggregateCancerData(finalQuery, isStateSelected)
+            es.aggregateCancerData(sideFilterQuery, preparedQuery.apiQuery.searchFor),
+            es.aggregateCancerData(finalQuery, preparedQuery.apiQuery.searchFor)
         ]).spread(function (sideFilterResults, results) {
             var resData = {};
             resData.queryJSON = q;
+            searchUtils.applySuppressions(results, preparedQuery.apiQuery.searchFor, 16);
+            var isStateFilterApplied = searchUtils.isFilterApplied(stateFilter);
+            var appliedFilters = searchUtils.findAllAppliedFilters(q.allFilters);
+            if (preparedQuery.apiQuery.searchFor === 'cancer_incident' && isStateFilterApplied && appliedFilters.length) {
+                var rules = searchUtils.createCancerIncidenceSuppressionRules()
+                searchUtils.applyCustomSuppressions(results.data.nested, rules, preparedQuery.apiQuery.searchFor);
+            }
             resData.resultData = results.data;
             resData.resultData.headers = preparedQuery.headers;
             resData.sideFilterResults = sideFilterResults;
@@ -247,4 +259,3 @@ function search(q) {
 };
 
 module.exports = searchRouter;
-

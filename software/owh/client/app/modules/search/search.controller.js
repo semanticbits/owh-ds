@@ -100,10 +100,18 @@
                 {key: 'Sexual Behaviors', title: 'Sexual Behaviors'},
                 {key: 'Tobacco Use', title: 'Tobacco Use'},
                 {key: 'Unintentional Injuries and Violence', title: 'Unintentional Injuries and Violence'},
-                {key: 'Other Health Topics', title: 'Other Health Topics'}]
+                {key: 'Other Health Topics', title: 'Other Health Topics'}],
+                cancer_incident: [
+                    { key: 'cancer_incident', title: 'Number of Incidents' },
+                    { key: 'crude_cancer_incidence_rates', title: 'Crude Incidence Rate' }
+                ],
+                cancer_mortality: [
+                    { key: 'cancer_mortality', title: 'Number of Deaths' },
+                    { key: 'crude_cancer_death_rates', title: 'Crude Death Rates' }
+                ]
         };
         sc.sort = {
-            "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'ucd-chapter-10', 'mcd-chapter-10'],
+            "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'census-region', 'hhs-region', 'ucd-chapter-10', 'mcd-chapter-10'],
             "label.risk.behavior": ['year', 'yrbsSex', 'yrbsRace', 'yrbsGrade', 'sexid', 'sexpart', 'yrbsState', 'question'],
             "label.census.bridge.race.pop.estimate": ['current_year', 'sex', 'race', 'ethnicity', 'agegroup', 'state'],
             "label.filter.natality": ['current_year', 'month', 'weekday', 'sex', 'gestational_age_r10', 'gestation_recode10', 'gestation_recode11', 'gestation_weekly', 'prenatal_care',
@@ -121,7 +129,8 @@
             "label.filter.std": [],
             "label.filter.tb": [],
             "label.filter.aids": [],
-            "label.filter.cancer_incident": []
+            "label.filter.cancer_incident": [],
+            "label.filter.cancer_mortality": []
         };
 
         sc.optionsGroup = {
@@ -158,6 +167,7 @@
             tb:{},
             aids: {},
             cancer_incident: {},
+            cancer_mortality: {},
             mental_health:{},
             natality:{},
             prams:{},
@@ -250,10 +260,10 @@
         //show certain filters for different table views
         //add availablefilter for birth_rates
         sc.availableFilters = {
-            'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'state', 'ucd-chapter-10'],
-            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state', 'ucd-chapter-10', 'mcd-chapter-10'],
-            'birth_rates': ['current_year', 'race', 'state'],
-            'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval', 'state']
+            'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'state', 'census-region', 'hhs-region', 'ucd-chapter-10'],
+            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state', 'census-region', 'hhs-region', 'ucd-chapter-10', 'mcd-chapter-10'],
+            'birth_rates': ['current_year', 'race', 'state', 'census-region', 'hhs-region'],
+            'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval', 'state', 'census-region', 'hhs-region']
         };
         sc.queryID = $stateParams.queryID;
         sc.tableView = $stateParams.tableView ? $stateParams.tableView : sc.showMeOptions.deaths[0].key;
@@ -408,7 +418,7 @@
             legend: {},
             defaults: {
                 tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
-                scrollWheelZoom: true,
+                scrollWheelZoom: false,
                 minZoom: 3,
                 maxZoom: 5
             },
@@ -430,12 +440,16 @@
         var stdFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'std');
         var tbFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'tb');
         var aidsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'aids');
+        var cancerIncidenceFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'cancer_incident');
+        var cancerMortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'cancer_mortality');
 
         angular.extend(mortalityFilter.mapData, mapOptions);
         angular.extend(bridgeRaceFilter.mapData, mapOptions);
         angular.extend(stdFilter.mapData, mapOptions);
         angular.extend(tbFilter.mapData, mapOptions);
         angular.extend(aidsFilter.mapData, mapOptions);
+        angular.extend(cancerIncidenceFilter.mapData, mapOptions);
+        angular.extend(cancerMortalityFilter.mapData, mapOptions);
 
         function updateCharts() {
             angular.forEach(sc.filters.selectedPrimaryFilter.chartData, function (chartData) {
@@ -613,12 +627,12 @@
         //builds marker popup.
         sc.mapPopup = L.popup({autoPan:false, closeButton:false});
         sc.currentFeature = {};
-        function buildMarkerPopup(lat, lng, properties, map, tableView, markerPosition) {
+        function buildMarkerPopup(lat, lng, properties, map, key, markerPosition) {
             var childScope = $scope.$new();
             childScope.lat = lat;
             childScope.lng = lng;
             childScope.properties = properties;
-            childScope.tableView = tableView;
+            childScope.key = key;
             var ele = angular.element('<div></div>');
             ele.html($templateCache.get('app/partials/marker-template.html'));
             var compileEle = $compile(ele.contents())(childScope);
@@ -645,7 +659,7 @@
 
                     if(markerPosition.y < 180) {
                         //change position if popup does not fit into map-container
-                        popup.options.offset = new L.Point(10, popupHeight + 110);
+                        popup.options.offset = new L.Point(10, popupHeight + 170);
                         angular.element('#chart_us_map').addClass('reverse-popup')
                     } else {
                         //revert position
@@ -680,25 +694,26 @@
 
         $scope.$on("leafletDirectiveMap.load", function (event, args) {
             var mapScaleControl = mapService.addScaleControl(sc.filters.selectedPrimaryFilter.mapData);
-            args.leafletObject.addControl(new mapExpandControl());
             args.leafletObject.addControl(new mapShareControl());
+            args.leafletObject.addControl(new mapExpandControl());
             args.leafletObject.addControl(new mapScaleControl());
         });
 
         /*Show expanded graphs with whole set of features*/
         function showExpandedGraph(chartData) {
             var tableView = sc.filters.selectedPrimaryFilter.chartView || sc.filters.selectedPrimaryFilter.tableView;
-            chartUtilService.showExpandedGraph([chartData], tableView);
+            chartUtilService.showExpandedGraph([chartData], tableView,null, null, null, sc.filters.selectedPrimaryFilter, null, utilService.getSelectedFiltersText(sc.filters.selectedPrimaryFilter.allFilters, sc.sort[sc.filters.selectedPrimaryFilter.title]));
         }
 
         function getChartTitle(title) {
-            var filters = title.split('.');
-            filters = filters.slice(2);
-            if (filters.length > 1) {
-                return $filter('translate')('label.chart.' + filters[0]) + ' and ' + $filter('translate')('label.chart.' + filters[1]);
-            } else {
-                return $filter('translate')('label.chart.' + filters[0]);
-            }
+//             var filters = title.split('.');
+//             filters = filters.slice(2);
+//             if (filters.length > 1) {
+//                 return $filter('translate')('label.chart.' + filters[0]) + ' and ' + $filter('translate')('label.chart.' + filters[1]);
+//             } else {
+//                 return $filter('translate')('label.chart.' + filters[0]);
+//             }
+                return title;
         }
 
         /**

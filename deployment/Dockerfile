@@ -1,4 +1,4 @@
-FROM node:4.5.0-wheezy
+FROM node:8.4-wheezy
 
 RUN mkdir -p /usr/local/owh
 WORKDIR /usr/local/owh

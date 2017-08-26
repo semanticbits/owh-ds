@@ -3,6 +3,7 @@
     <ng-include src="'app/partials/coBrandedHeader.html'"></ng-include>
     <ng-include src="'app/partials/topBanner.html'"></ng-include>
 </div>
+<!--Search banner-->
 
 <div class="usa-grid-full">
     <div class="usa-grid">
@@ -15,23 +16,22 @@
 </div>
 
 <div class="usa-grid border-top-default" ng-class="{'allow-inline-charting': sc.filters.allowInlineCharting}">
-    <div class="usa-width-one-whole bottom-pane">
-        <a class="owh-side-menu__handle--collapsed cursor-pointer" ng-hide="sc.sideMenu.visible" ng-click="sc.sideMenu.visible = !sc.sideMenu.visible; sc.updateCharts()" href="javascript:void(0)">
-            <span>Show Filters &gt;&gt;</span>
-        </a>
+    <div class="usa-width-one-whole bottom-pane flex-container">
+
         <div class="usa-width-one-fourth side-pane-padding border-right-default owh-side-menu" ng-hide="!sc.sideMenu.visible">
+
             <div ng-show="sc.filters.selectedPrimaryFilter.title === 'label.risk.behavior'" class="yrbs_search_links">
-                <a class="owh-side-menu__handle cursor-pointer pull-left" ng-show="sc.filters.selectedPrimaryFilter.title === 'label.risk.behavior'"
+                <a class="advanced-search-toggle" ng-show="sc.filters.selectedPrimaryFilter.title === 'label.risk.behavior'"
                    ng-click="sc.switchToYRBSBasic();" ng-if="!sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu" href="javascript:void(0)">
                     <span ng-bind="'label.yrbs.basic.search' | translate"></span>
                 </a>
-                <a class="owh-side-menu__handle cursor-pointer pull-left" ng-show="sc.filters.selectedPrimaryFilter.title === 'label.risk.behavior'"
+                <a class="advanced-search-toggle" ng-show="sc.filters.selectedPrimaryFilter.title === 'label.risk.behavior'"
                    ng-click="sc.switchToYRBSAdvanced();" ng-if="sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu" href="javascript:void(0)">
                     <span ng-bind="'label.yrbs.advanced.search' | translate"></span>
                 </a>
             </div>
             <a class="owh-side-menu__handle cursor-pointer" ng-click="sc.sideMenu.visible = false; sc.updateCharts()" href="javascript:void(0)">
-                <span>&lt;&lt; Hide Filters</span>
+                HIDE FILTERS
             </a>
             <div class="sort-by side-filter-padding">
                 <owh-side-filter filters="sc.filters.selectedPrimaryFilter.sideFilters"
@@ -45,25 +45,43 @@
                     ></owh-side-filter>
             </div>
         </div>
-        <div class="owh-search-content usa-width-three-fourths overflow-visible" ng-class="{'owh-search-content--expanded': !sc.sideMenu.visible }">
+        <div class="owh-search-content-container usa-width-three-fourths" ng-class="{'owh-search-content--expanded': !sc.sideMenu.visible }">
+            <div class="flex-container flex-align-center">
+            <a class="owh-side-menu__handle--collapsed cursor-pointer" ng-hide="sc.sideMenu.visible" ng-click="sc.sideMenu.visible = !sc.sideMenu.visible; sc.updateCharts()" href="javascript:void(0)">
+                SHOW FILTERS
+            </a>
+                <list-selected-filters sort="sc.sort[sc.filters.selectedPrimaryFilter.title]"
+                                       filters="sc.filters.selectedPrimaryFilter.allFilters" class="flex-grow">
+                </list-selected-filters>
+                <div class="doc-link">
+                    <a id="data_doc_link" ng-click="$state.go('description', {dataSetKey: sc.filters.selectedPrimaryFilter.key})"
+                       href="#">Data Documentation<i class="material-icons chevron-right-purple">chevron_right</i></a>
+                </div>
+            </div>
 
-            <list-selected-filters sort="sc.sort[sc.filters.selectedPrimaryFilter.title]"
-                                   filters="sc.filters.selectedPrimaryFilter.allFilters">
-            </list-selected-filters>
 
-            <owh-toggle-switch ng-if="sc.filters.selectedPrimaryFilter.chartView"
-                               class="left-float chart-view-toggle"
-                               options="sc.filters.selectedPrimaryFilter.chartViewOptions"
-                               model="sc.filters.selectedPrimaryFilter.chartView"
-                               on-change="sc.onChartViewChange(sc.filters.selectedPrimaryFilter.chartView)"
-                               tooltip="{{'label.group.by.tooltip' | translate}}">
-            </owh-toggle-switch>
             <!--Charts-->
-            <div class="usa-grid-full margin-top-30">
+
+            <div class="usa-grid-full owh-search-content">
+                <!-- TODO: enable this
+                <ul class="owh-search-content-tabs flex-container">
+                    <li class="menu-tab active"><span class="link">Charts & Graphs</span></li>
+                    <li class="menu-tab"><span class="link">Data Table</span></li>
+                </ul>-->
+
+
+                <owh-toggle-switch ng-if="sc.filters.selectedPrimaryFilter.chartView"
+                                   class="left-float chart-view-toggle"
+                                   options="sc.filters.selectedPrimaryFilter.chartViewOptions"
+                                   model="sc.filters.selectedPrimaryFilter.chartView"
+                                   on-change="sc.onChartViewChange(sc.filters.selectedPrimaryFilter.chartView)"
+                                   tooltip="{{'label.group.by.tooltip' | translate}}">
+                </owh-toggle-switch>
+
                 <div class="usa-width-one-whole">
                     <div ng-repeat="startChartData in sc.filters.selectedPrimaryFilter.chartData" ng-init="parentIndex = $index">
                         <div ng-repeat="chartData in startChartData"
-                             ng-class="!chartData.isMap || sc.mapOptions.selectedMapSize==='small'?'usa-width-one-third graph-box':'usa-width-one-whole margin-bottom-20'">
+                             ng-class="!chartData.isMap || sc.mapOptions.selectedMapSize==='small'?'usa-width-one-half graph-box':'usa-width-one-half margin-bottom-20'">
                             <!-- Map -->
                             <div id="chart_us_map" ng-if="chartData.isMap && sc.filters.selectedPrimaryFilter.showMap">
                                 <leaflet  lf-center="chartData.usa" markers="chartData.markers" events="chartData.events" geojson="chartData.geojson"
@@ -74,30 +92,40 @@
 
                             <!-- Graphs -->
                             <div ng-if="!chartData.isMap">
-                                <div class="text-center margin-top-5" >
-                                    <span ng-bind="sc.getChartTitle(chartData.title)" class="graph-title"></span>
-                                    <a title="Facebook" aria-label="Share on Facebook" name="share_fb" ng-click="sc.showFbDialog('chart_'+parentIndex+'_'+$index, chartData.title)"
-                                       class="cursor-pointer" href="javascript:void(0);">
-                                        &nbsp; <span class="fa fa-share-alt" title="{{'label.share.on.fb' | translate}}"></span>
-                                    </a>
-                                    <a title="Graph" aria-label="Expand Graph" name="expand_graph"
-                                       ng-click="sc.showExpandedGraph(chartData)" class="cursor-pointer" href="javascript:void(0)">
-                                        &nbsp;<span class="fa fa-expand" title="Expand graph"></span>
-                                    </a>
+                                <div class="card-header">
+                                    <h4 ng-bind="sc.getChartTitle(chartData.title)" class="graph-title"></h4>
+                                    <div class="card-actions">
+                                        <a title="Facebook" aria-label="Share on Facebook" name="share_fb" ng-click="sc.showFbDialog('chart_'+parentIndex+'_'+$index, chartData.title)"
+                                           class="cursor-pointer share-graph" href="javascript:void(0);">
+                                            <i class="material-icons purple-icon share-icon-purple" title="{{'label.share.on.fb' | translate}}">share</i>
+                                        </a>
+                                        <a title="Graph" aria-label="Expand Graph" name="expand_graph"
+                                           ng-click="sc.showExpandedGraph(chartData)" class="cursor-pointer expand-graph" href="javascript:void(0)">
+                                            <i class="material-icons purple-icon fullscreen-icon-purple" title="Expand graph">fullscreen</i>
+                                        </a>
+                                    </div>
                                 </div>
-                                <nvd3 id="chart_{{parentIndex}}_{{$index}}" options='chartData.options' data='chartData.data' api="chartData.api" on-ready="sc.updateCharts()"></nvd3>
+                                <plotly id="chart_{{parentIndex}}_{{$index}}"  plotly-data='chartData.data' plotly-layout="chartData.layout" plotly-options='chartData.options'></plotly>
                             </div>
                             <!-- Graphs -->
                         </div>
                     </div>
                 </div>
-            </div>
             <!--Charts-->
 
+            <!--More visualization-->
+            <div class="usa-width-one-whole" ng-show="sc.filters.selectedPrimaryFilter.chartData.length > 0">
+                <div class="usa-width-one-whole more-graph-select">
+                    <span class="dark-link" ng-bind="'label.visualization.more.one' | translate"></span>
+                    <a href="javascript:void(0)" ng-click="sc.showPhaseTwoGraphs('label.graph.impl.next')">Build one</a>
+                    <span class="dark-link" ng-bind="'label.visualization.more.two' | translate"></span>
+                </div>
+                <a ng-click="$state.go('description', {dataSetKey: sc.filters.selectedPrimaryFilter.key})" href="#">Data Documentation</a>
+            </div>
+            <!--More visualization-->
+
             <!--Table-->
-            <div class="usa-grid-full">
                 <div class="usa-width-one-whole overflow-visible">
-                    <hr />
                     <!-- show hide percentage -->
                     <div id="togglePercentage" class="togglePercentage pull-left"
                          ng-show="sc.filters.selectedPrimaryFilter.title === 'label.filter.mortality' && sc.tableView === 'number_of_deaths' ||
@@ -112,14 +140,14 @@
                             <span ng-show="sc.tableData.calculatePercentage === false" ng-bind="'label.mortality.search.table.hidden.percentage.button' | translate"></span>
                         </a>
                     </div>
-                    <div class="pull-right margin-bottom-20 margin-right-10">
+                    <div class="pull-right margin-bottom-20 margin-right-10 export-links">
                         <!--<div>Icons made by <a href="http://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">Madebyoliver</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
                         <a name="download_csv" ng-click="sc.downloadCSV()" title="Download CSV" class="cursor-pointer" href="javascript:void(0)">
-                            <img alt="Export to csv" src="images/csv.png"/>
+                            <img alt="Export to CSV" src="images/csv-icon.svg"/>Export to CSV
                         </a>
                         |
                         <a name="download_xls" ng-click="sc.downloadXLS()" title="Download XLS" class="cursor-pointer" href="javascript:void(0)">
-                            <img alt="Export to Excel" src="images/xls.png"/>
+                            <img alt="Export to Excel" src="images/xls-icon.svg"/>Export to XLS
                         </a>
                     </div>
                     <p id="death-rate-disclaimer" class="dark-link" ng-if="sc.tableView === 'crude_death_rates'" ng-bind=" 'label.crude.death.rates.statement' | translate"></p>
@@ -133,7 +161,8 @@
                                sc.filters.selectedPrimaryFilter.key === 'std' ||
                                sc.filters.selectedPrimaryFilter.key === 'tb' ||
                                sc.filters.selectedPrimaryFilter.key === 'aids' ||
-                               sc.filters.selectedPrimaryFilter.key === 'cancer_incident')"
+                               sc.filters.selectedPrimaryFilter.key === 'cancer_incident' ||
+                               sc.filters.selectedPrimaryFilter.key === 'cancer_mortality')"
                                table-view="{{sc.tableView}}"
                                rowspan-threshold="50"></owh-table>
                     <owh-accordion-table headers="sc.tableData.headers" data="sc.tableData.data"
@@ -146,12 +175,12 @@
                                 show-charts = "sc.filters.selectedPrimaryFilter.value.length > 1">
                     </owh-accordion-table>
                 </div>
-            </div>
             <!--Table-->
         </div>
+        </div>
     </div>
-    <ng-include src="'app/partials/contentOwnerShip.html'"></ng-include>
 </div>
+<ng-include src="'app/partials/contentOwnerShip.html'"></ng-include>
 
 <div class="usa-grid-full">
     <owh-footer></owh-footer>

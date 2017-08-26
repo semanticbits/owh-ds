@@ -81,11 +81,12 @@ class CancerIncidentETL (ETL):
                 record  = cancer_incident_parser.parseNextLine()
                 if not record:
                     break
-                if (record['current_year'] == '1999') or record['state']== 'Puerto Rico': # skip year 1999 records & Puerto Rica
+                if (record['current_year'] == '1999') or record['state']== 'PR': # skip year 1999 records & Puerto Rica
                     continue
                 self.process_cancer_sites(record)
                 self.process_childhood_cancers(record)
-
+                #prepare region data
+                self.loadRegionData(record)
                 record_count += 1
                 self.batchRepository.persist({"index": {"_index": self.config['elastic_search']['index'],
                                                         "_type": self.config['elastic_search']['type'],

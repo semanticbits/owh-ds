@@ -39,7 +39,7 @@ class CancerPopulationETL (ETL):
                 record  = cancer_population_parser.parseNextLine()
                 if not record:
                     break
-                if (record['current_year'] == '1999' or record['state'] == 'Puerto Rico'
+                if (record['current_year'] == '1999' or record['state'] == 'PR'
                     or record['state'] == 'Katrina-Rita'): # 1999 year's, Puerto Rico and Katrina-Rita records
                     continue
                 record_count += 1

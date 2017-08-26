@@ -319,7 +319,7 @@
       "donotshowOnSearch": true,
       "selectTitle": "select.label.yrbs.filter.question",
       "updateTitle": "update.label.yrbs.filter.question",
-      "iconClass": "fa fa-pie-chart purple-text",
+      "iconClass": "purple-text",
       "$$hashKey": "object:1933"
     }],
   "selectedFilters2":[
@@ -397,7 +397,7 @@
       "donotshowOnSearch": true,
       "selectTitle": "select.label.yrbs.filter.question",
       "updateTitle": "update.label.yrbs.filter.question",
-      "iconClass": "fa fa-pie-chart purple-text",
+      "iconClass": "purple-text",
       "$$hashKey": "object:2903"
     },
     {

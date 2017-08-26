@@ -2,108 +2,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQr",
-    "_score": 1,
-    "_source": {
-      "permissible_values": null,
-      "filter_name": "residence",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQw",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Married",
-        "Unmarried"
-      ],
-      "filter_name": "marital_status",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQ1",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Male",
-        "Female"
-      ],
-      "filter_name": "sex",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQ6",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Single",
-        "Triplet",
-        "Twin",
-        "Quintuplet or higher",
-        "Quadruplet"
-      ],
-      "filter_name": "birth_plurality",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaRB",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Yes",
-        "Unknown",
-        "No",
-        "Not on certificate"
-      ],
-      "filter_name": "pregnancy_hypertension",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaRG",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "39 weeks",
-        "Unknown",
-        "28 - 31 weeks",
-        "Under 20 weeks",
-        "37 - 38 weeks",
-        "42 weeks and over",
-        "32 - 33 weeks",
-        "34 - 36 weeks",
-        "40 weeks",
-        "41 weeks",
-        "20 - 27 weeks"
-      ],
-      "filter_name": "gestation_recode11",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQs",
+    "_id": "AV3Z0Nt661TdEuADbqko",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -123,7 +22,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQx",
+    "_id": "AV3Z0Nt661TdEuADbqkt",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -145,7 +44,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQ2",
+    "_id": "AV3Z0Nt661TdEuADbqky",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -170,7 +69,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQ7",
+    "_id": "AV3Z0Nt661TdEuADbqk3",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -192,26 +91,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQ-",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Doctor of Medicine (MD)",
-        "Certified Nurse Midwife (CNM)",
-        "Doctor of Osteopathy (DO)",
-        "Other",
-        "Other Midwife",
-        "Unknown or not stated"
-      ],
-      "filter_name": "medical_attendant",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQ_",
+    "_id": "AV3Z0Nt661TdEuADbqk8",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -220,7 +100,7 @@
         "No",
         "Not on certificate"
       ],
-      "filter_name": "chronic_hypertension",
+      "filter_name": "diabetes",
       "year": "2015",
       "dataset": "natality"
     }
@@ -228,24 +108,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaRC",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Yes",
-        "Unknown",
-        "No",
-        "Not on certificate"
-      ],
-      "filter_name": "eclampsia",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaRH",
+    "_id": "AV3Z0Nt661TdEuADbqlD",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -268,7 +131,435 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQt",
+    "_id": "AV3Z0Nt661TdEuADbqkn",
+    "_score": 1,
+    "_source": {
+      "permissible_values": null,
+      "filter_name": "residence",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqks",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Married",
+        "Unmarried"
+      ],
+      "filter_name": "marital_status",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqkx",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Male",
+        "Female"
+      ],
+      "filter_name": "sex",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk2",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Single",
+        "Triplet",
+        "Twin",
+        "Quintuplet or higher",
+        "Quadruplet"
+      ],
+      "filter_name": "birth_plurality",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk7",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Yes",
+        "Unknown",
+        "No",
+        "Not on certificate"
+      ],
+      "filter_name": "chronic_hypertension",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk-",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Yes",
+        "Unknown",
+        "No",
+        "Not on certificate"
+      ],
+      "filter_name": "eclampsia",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk_",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Yes",
+        "Unknown or not stated",
+        "No"
+      ],
+      "filter_name": "tobacco_use",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqlC",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "39 weeks",
+        "Unknown",
+        "28 - 31 weeks",
+        "Under 20 weeks",
+        "37 - 38 weeks",
+        "42 weeks and over",
+        "32 - 33 weeks",
+        "34 - 36 weeks",
+        "40 weeks",
+        "41 weeks",
+        "20 - 27 weeks"
+      ],
+      "filter_name": "gestation_recode11",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqkr",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "White",
+        "American Indian or Alaska Native",
+        "Black",
+        "Asian or Pacific Islander"
+      ],
+      "filter_name": "race",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqkw",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Sunday",
+        "Tuesday",
+        "Monday",
+        "Thursday",
+        "Wednesday",
+        "Saturday",
+        "Friday"
+      ],
+      "filter_name": "weekday",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk1",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "500 - 999 grams",
+        "1000 - 1499 grams",
+        "499 grams or less",
+        "2500 - 2999 grams",
+        "3000 - 3499 grams",
+        "1500 - 1999 grams",
+        "2000 - 2499 grams",
+        "3500 - 3999 grams",
+        "4000 - 4499 grams",
+        "Not Stated",
+        "5000 - 8165 grams",
+        "4500 - 4999 grams"
+      ],
+      "filter_name": "birth_weight_r12",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk6",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Doctor of Medicine (MD)",
+        "Certified Nurse Midwife (CNM)",
+        "Doctor of Osteopathy (DO)",
+        "Other",
+        "Other Midwife",
+        "Unknown or not stated"
+      ],
+      "filter_name": "medical_attendant",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqlB",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "42 weeks",
+        "43 weeks",
+        "24 weeks",
+        "25 weeks",
+        "26 weeks",
+        "27 weeks",
+        "20 weeks",
+        "21 weeks",
+        "22 weeks",
+        "23 weeks",
+        "46 weeks",
+        "47 weeks",
+        "44 weeks",
+        "45 weeks",
+        "28 weeks",
+        "29 weeks",
+        "40 weeks",
+        "41 weeks",
+        "Unknown",
+        "39 weeks",
+        "38 weeks",
+        "17 weeks",
+        "19 weeks",
+        "18 weeks",
+        "31 weeks",
+        "30 weeks",
+        "37 weeks",
+        "36 weeks",
+        "35 weeks",
+        "34 weeks",
+        "33 weeks",
+        "32 weeks"
+      ],
+      "filter_name": "gestation_weekly",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqlG",
+    "_score": 1,
+    "_source": {
+      "permissible_values": null,
+      "filter_name": "census_division",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqkq",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Under 15 years",
+        "20-24 years",
+        "15-19 years",
+        "30-34 years",
+        "25-29 years",
+        "40-44 years",
+        "35-39 years",
+        "50-54 years",
+        "45-49 years"
+      ],
+      "filter_name": "mother_age_5year_interval",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqkv",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "February",
+        "March",
+        "January",
+        "June",
+        "July",
+        "April",
+        "May",
+        "August",
+        "September",
+        "December",
+        "November",
+        "October"
+      ],
+      "filter_name": "month",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk0",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "1499 grams or less",
+        "2500 - 8165 grams",
+        "1500 - 2499 grams",
+        "Unknown or not stated"
+      ],
+      "filter_name": "birth_weight_r4",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqk5",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "Vaginal",
+        "Unknown",
+        "Cesarean"
+      ],
+      "filter_name": "delivery_method",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqlA",
+    "_score": 1,
+    "_source": {
+      "permissible_values": [
+        "WA",
+        "DE",
+        "DC",
+        "WI",
+        "WV",
+        "HI",
+        "FL",
+        "WY",
+        "NH",
+        "NJ",
+        "NM",
+        "TX",
+        "LA",
+        "NC",
+        "ND",
+        "NE",
+        "TN",
+        "NY",
+        "PA",
+        "CA",
+        "NV",
+        "VA",
+        "CO",
+        "AK",
+        "AL",
+        "AR",
+        "VT",
+        "IL",
+        "GA",
+        "IN",
+        "IA",
+        "OK",
+        "AZ",
+        "ID",
+        "CT",
+        "ME",
+        "MD",
+        "MA",
+        "OH",
+        "UT",
+        "MO",
+        "MN",
+        "MI",
+        "RI",
+        "KS",
+        "MT",
+        "MS",
+        "SC",
+        "KY",
+        "OR",
+        "SD"
+      ],
+      "filter_name": "state",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqlF",
+    "_score": 1,
+    "_source": {
+      "permissible_values": null,
+      "filter_name": "hhs_region",
+      "year": "2015",
+      "dataset": "natality"
+    }
+  },
+  {
+    "_index": "owh_dsmetadata",
+    "_type": "dsmetadata",
+    "_id": "AV3Z0Nt661TdEuADbqkp",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -318,7 +609,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQy",
+    "_id": "AV3Z0Nt661TdEuADbqku",
     "_score": 1,
     "_source": {
       "permissible_values": null,
@@ -330,7 +621,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQ3",
+    "_id": "AV3Z0Nt661TdEuADbqkz",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -425,7 +716,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQ8",
+    "_id": "AV3Z0Nt661TdEuADbqk4",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -444,229 +735,7 @@
   {
     "_index": "owh_dsmetadata",
     "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaRD",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Yes",
-        "Unknown or not stated",
-        "No"
-      ],
-      "filter_name": "tobacco_use",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQu",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Under 15 years",
-        "20-24 years",
-        "15-19 years",
-        "30-34 years",
-        "25-29 years",
-        "40-44 years",
-        "35-39 years",
-        "50-54 years",
-        "45-49 years"
-      ],
-      "filter_name": "mother_age_5year_interval",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQz",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "February",
-        "March",
-        "January",
-        "June",
-        "July",
-        "April",
-        "May",
-        "August",
-        "September",
-        "December",
-        "November",
-        "October"
-      ],
-      "filter_name": "month",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQ4",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "1499 grams or less",
-        "2500 - 8165 grams",
-        "1500 - 2499 grams",
-        "Unknown or not stated"
-      ],
-      "filter_name": "birth_weight_r4",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQ9",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Vaginal",
-        "Unknown",
-        "Cesarean"
-      ],
-      "filter_name": "delivery_method",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaRE",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "WA",
-        "DE",
-        "DC",
-        "WI",
-        "WV",
-        "HI",
-        "FL",
-        "WY",
-        "NH",
-        "NJ",
-        "NM",
-        "TX",
-        "LA",
-        "NC",
-        "ND",
-        "NE",
-        "TN",
-        "NY",
-        "PA",
-        "CA",
-        "NV",
-        "VA",
-        "CO",
-        "AK",
-        "AL",
-        "AR",
-        "VT",
-        "IL",
-        "GA",
-        "IN",
-        "IA",
-        "OK",
-        "AZ",
-        "ID",
-        "CT",
-        "ME",
-        "MD",
-        "MA",
-        "OH",
-        "UT",
-        "MO",
-        "MN",
-        "MI",
-        "RI",
-        "KS",
-        "MT",
-        "MS",
-        "SC",
-        "KY",
-        "OR",
-        "SD"
-      ],
-      "filter_name": "state",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQv",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "White",
-        "American Indian or Alaska Native",
-        "Black",
-        "Asian or Pacific Islander"
-      ],
-      "filter_name": "race",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQ0",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "Sunday",
-        "Tuesday",
-        "Monday",
-        "Thursday",
-        "Wednesday",
-        "Saturday",
-        "Friday"
-      ],
-      "filter_name": "weekday",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaQ5",
-    "_score": 1,
-    "_source": {
-      "permissible_values": [
-        "500 - 999 grams",
-        "1000 - 1499 grams",
-        "499 grams or less",
-        "2500 - 2999 grams",
-        "3000 - 3499 grams",
-        "1500 - 1999 grams",
-        "2000 - 2499 grams",
-        "3500 - 3999 grams",
-        "4000 - 4499 grams",
-        "Not Stated",
-        "5000 - 8165 grams",
-        "4500 - 4999 grams"
-      ],
-      "filter_name": "birth_weight_r12",
-      "year": "2015",
-      "dataset": "natality"
-    }
-  },
-  {
-    "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaRA",
+    "_id": "AV3Z0Nt661TdEuADbqk9",
     "_score": 1,
     "_source": {
       "permissible_values": [
@@ -675,52 +744,19 @@
         "No",
         "Not on certificate"
       ],
-      "filter_name": "diabetes",
+      "filter_name": "pregnancy_hypertension",
       "year": "2015",
       "dataset": "natality"
     }
   },
   {
     "_index": "owh_dsmetadata",
-    "_type": "dsmetadata",
-    "_id": "AV1opxB-zbvSygy0OaRF",
+    "_type": "a",
+    "_id": "AV3Z0Nt661TdEuADbqlE",
     "_score": 1,
     "_source": {
-      "permissible_values": [
-        "42 weeks",
-        "43 weeks",
-        "24 weeks",
-        "25 weeks",
-        "26 weeks",
-        "27 weeks",
-        "20 weeks",
-        "21 weeks",
-        "22 weeks",
-        "23 weeks",
-        "46 weeks",
-        "47 weeks",
-        "44 weeks",
-        "45 weeks",
-        "28 weeks",
-        "29 weeks",
-        "40 weeks",
-        "41 weeks",
-        "Unknown",
-        "39 weeks",
-        "38 weeks",
-        "17 weeks",
-        "19 weeks",
-        "18 weeks",
-        "31 weeks",
-        "30 weeks",
-        "37 weeks",
-        "36 weeks",
-        "35 weeks",
-        "34 weeks",
-        "33 weeks",
-        "32 weeks"
-      ],
-      "filter_name": "gestation_weekly",
+      "permissible_values": null,
+      "filter_name": "census_region",
       "year": "2015",
       "dataset": "natality"
     }

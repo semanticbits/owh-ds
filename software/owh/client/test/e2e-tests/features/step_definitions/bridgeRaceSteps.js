@@ -188,12 +188,12 @@ var BridgeRaceStepDefinitionsWrapper = function () {
         bridgeRacePage.hidePecentageButton.click().then(next)
     });
 
-    this.Then(/^I should not see percentages$/, function () {
-        return bridgeRacePage.getTableRowData(0).then(function (row) {
+    this.Then(/^I should not see percentages$/, function (next) {
+        bridgeRacePage.getTableRowData(0).then(function (row) {
             expect(row[1]).to.equal('2,279,263');
             expect(row[2]).to.equal('2,298,590');
             expect(row[3]).to.equal('4,577,853');
-        });
+        }).then(next);
     });
 
     this.Then(/^I see data in data table for (\d+)\+ years age group$/, function (arg1, next) {
@@ -235,9 +235,10 @@ var BridgeRaceStepDefinitionsWrapper = function () {
         return browser.actions().mouseMove(bridgeRacePage.exportGraphLink).perform();
     });
 
-    this.Then(/^I see two export menus displayed$/, function () {
+    this.Then(/^I see three export menus displayed$/, function () {
         expect(bridgeRacePage.exportPNG.isPresent()).to.eventually.equal(true);
-        return expect(bridgeRacePage.exportPDF.isPresent()).to.eventually.equal(true);
+        expect(bridgeRacePage.exportPDF.isPresent()).to.eventually.equal(true);
+        return expect(bridgeRacePage.exportPPT.isPresent()).to.eventually.equal(true)
     });
 
     this.When(/^I click on the export as PNG$/, function () {
@@ -255,6 +256,16 @@ var BridgeRaceStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I see a PDF file is downloaded$/, function (next) {
+        // dont see a way to test this on selemium using javascript, so this is a NOOP test for now.
+        next();
+    });
+
+    this.When(/^I click on the export as PPT/, function () {
+        browser.executeScript("arguments[0].scrollIntoView();", bridgeRacePage.exportPPT );
+        return bridgeRacePage.exportPPT.click();
+    });
+
+    this.Then(/^I see a PPT file is downloaded$/, function (next) {
         // dont see a way to test this on selemium using javascript, so this is a NOOP test for now.
         next();
     });

@@ -36,7 +36,7 @@ var BridgeRaceSearchPage = function() {
     };
 
     brs.getSubFiltersOfAFilter = function(filterType) {
-        return element(by.cssContainingText('a', filterType)).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul')).all(by.tagName('li'));
+        return element(by.cssContainingText('a', filterType)).element(by.xpath('ancestor::span')).element(by.tagName('ul')).all(by.tagName('li'));
     };
 
     brs.isVisualizationDisplayed = function(){
@@ -97,6 +97,7 @@ var BridgeRaceSearchPage = function() {
 
     brs.exportPNG = element(by.name('exportpng'));
     brs.exportPDF = element(by.name('exportpdf'));
+    brs.exportPPT = element(by.name('exportppt'));
 };
 
 module.exports = new BridgeRaceSearchPage;

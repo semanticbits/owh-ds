@@ -1,53 +1,118 @@
 {
+  "charttype": "pieChart",
+  "title": "label.filter.race",
+  "longtitle": "chart.title.measure.deaths by label.filter.race in undefined for undefined",
+  "dataset": "deaths",
   "data": [
     {
-      "label": "American Indian",
-      "value": 18031
+      "name": "White",
+      "x": [
+        2241350
+      ],
+      "y": [
+        "White"
+      ],
+      "text": [
+        "White:2241350"
+      ],
+      "orientation": "h",
+      "type": "bar",
+      "hoverinfo": "none",
+      "marker": {
+        "color": "#C2D5EE"
+      }
     },
     {
-      "label": "Asian or Pacific Islander",
-      "value": 62103
+      "name": "Black",
+      "x": [
+        309316
+      ],
+      "y": [
+        "Black"
+      ],
+      "text": [
+        "Black:309316"
+      ],
+      "orientation": "h",
+      "type": "bar",
+      "hoverinfo": "none",
+      "marker": {
+        "color": "#5799C7"
+      }
     },
     {
-      "label": "Black",
-      "value": 309316
+      "name": "Asian or Pacific Islander",
+      "x": [
+        62103
+      ],
+      "y": [
+        "Asian or Pacific Islander"
+      ],
+      "text": [
+        "Asian or Pacific Islander:62103"
+      ],
+      "orientation": "h",
+      "type": "bar",
+      "hoverinfo": "none",
+      "marker": {
+        "color": "#65c2ff"
+      }
     },
     {
-      "label": "White",
-      "value": 2241350
+      "name": "American Indian",
+      "x": [
+        18031
+      ],
+      "y": [
+        "American Indian"
+      ],
+      "text": [
+        "American Indian:18031"
+      ],
+      "orientation": "h",
+      "type": "bar",
+      "hoverinfo": "none",
+      "marker": {
+        "color": "#bc8fe0"
+      }
     }
   ],
-  "title": "label.graph.race",
-  "options": {
-    "chart": {
-      "type": "pieChart",
-      "height": 250,
-      "width": 250,
-      "margin": {
-        "top": 5,
-        "right": 5,
-        "bottom": 5,
-        "left": 5
+  "layout": {
+    "width": 350,
+    "height": 300,
+    "showlegend": false,
+    "hovermode": "closest",
+    "margin": {
+      "l": 20,
+      "r": 10,
+      "b": 20,
+      "t": 20
+    },
+    "xaxis": {
+      "visible": true,
+      "titlefont": {
+        "size": 15
       },
-      "showValues": false,
-      "showLabels": false,
-      "transitionDuration": 250,
-      "showLegend": false,
-      "legend": {
-        "margin": {}
+      "exponentformat": "none",
+      "tickangle": 45,
+      "showline": true,
+      "gridcolor": "#bdbdbd",
+      "showticklabels": false
+    },
+    "yaxis": {
+      "visible": true,
+      "titlefont": {
+        "size": 15
       },
-      "labelThreshold": 0.01,
-      "labelSunbeamLayout": true,
-      "styles": {
-        "classes": {
-          "with-3d-shadow": true,
-          "with-transitions": true,
-          "gallery": false
-        }
-      },
-      "useInteractiveGuideline": false,
-      "interactive": false,
-      "tooltip": {}
+      "exponentformat": "none",
+      "tickangle": 45,
+      "ticksuffix": "   ",
+      "showline": true,
+      "gridcolor": "#bdbdbd",
+      "showticklabels": false
     }
+  },
+  "options": {
+    "displayModeBar": false
   }
 }

@@ -58,6 +58,10 @@
       'getDsMetadata' : {
         method : 'GET',
         url: '/dsmetadata/:dataset'
+      },
+      'convertSVGtoPNG' : {
+        method : 'POST',
+        url: '/svgtopng'
       }
     }
   }

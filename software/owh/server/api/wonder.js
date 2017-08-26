@@ -24,6 +24,14 @@ var wonderParamCodeMap = {
             "Male": 'M',
         }
     },
+    //Map wonder query has 'sex' as filed name so added this entry to get right key 'D77.V7' for sex
+    'sex': {
+        "key": 'D77.V7',
+        "values": {
+            "Female": 'F',
+            "Male": 'M',
+        }
+    },
     'hispanicOrigin': {
         'key': 'D77.V17',
         'values': {
@@ -47,6 +55,8 @@ var wonderParamCodeMap = {
     'month':'D77.V1-level2',
     'ucd-chapter-10':'D77.V2',
     'state-group':'D77.V9-level1', // Use this mapping for grouping param
+    //Map wonder query has 'states' as filed name so added this entry to get right key 'D77.V9-level1' for states
+    'states-group':'D77.V9-level1', // Use this mapping for grouping param
     'state': { // Use this for filtering param
         "key":'D77.V9',
         "values":{
@@ -102,7 +112,12 @@ var wonderParamCodeMap = {
             "WI":"55",
             "WY":"56"
         }
-    }
+    },
+    'census-region': 'D77.V10',
+    'census-region|census_region-group':'D77.V10-level1',
+    'census-region|census_division-group':'D77.V10-level2',
+    'hhs-region': 'D77.V27',
+    'hhs-region-group': 'D77.V27-level1',
 }
 
 /**
@@ -128,7 +143,7 @@ function requestWonder(dbID, req) {
             logger.debug("Age adjusted rates: " + JSON.stringify(result));
             defer.resolve(result);
         } else {
-            logger.error("WONDER Error: " + (error ? error : body));
+            logger.error("WONDER Error: " + (error ? error : body) + "\nRequest: " + JSON.stringify(req));
             defer.reject('Error invoking WONDER API');
         }
     }, function (error) {
@@ -194,6 +209,9 @@ wonder.prototype.invokeWONDER = function (query){
     }else {
         var reqArray = [];
         reqArray.push(createWONDERRquest(query.query, query.aggregations.nested.table));
+        if(query.aggregations.nested.maps){
+            reqArray.push(createWONDERRquest(query.query, query.aggregations.nested.maps[0]));
+        }
         if(query.aggregations.nested.charts) {
             query.aggregations.nested.charts.forEach(function (chart) {
                 reqArray.push(createWONDERRquest(query.query, chart));
@@ -207,7 +225,8 @@ wonder.prototype.invokeWONDER = function (query){
           var result = {};
           if(respArray.length > 0) {
               result.table = respArray[0];
-              respArray.splice(0, 1);
+              result.maps = respArray[1];
+              respArray.splice(0, 2);
               result.charts = respArray;
           }
           defer.resolve(result);
@@ -283,9 +302,9 @@ function createWONDERRquest(filter, groupParams){
     request.com("Groups");
     addGroupParams(request, groupParams);
     request.com("Filters");
-    addFilterParams(request, filter);
+    var locationFilter = addFilterParams(request, filter);
     request.com("Options");
-    addOptionParams(request);
+    addOptionParams(request, locationFilter);
     var reqStr = request.end({pretty:true});
     //logger.info("WONDER Request:",reqStr);
     return reqStr;
@@ -313,7 +332,7 @@ function addFilterParams (wreq, query){
 
     var mcdSet1 = [], mcdSet2 = [];
 
-    var statefound = false;
+    var locationFilter = '';
     if(query){
         for (var k in query){
             var key = query[k].key;
@@ -339,9 +358,18 @@ function addFilterParams (wreq, query){
                 }
             }
             else {
-                if (key == 'state') {
-                    statefound = true;
+                if (key.indexOf('|') >= 0) key = key.split('|')[0];
+
+                if (key === 'state') {
+                    locationFilter = 'D77.V9';
                 }
+                else if(key === 'census-region') {
+                    locationFilter = 'D77.V10'
+                }
+                else if(key === 'hhs-region') {
+                    locationFilter = 'D77.V27'
+                }
+
                 p = wonderParamCodeMap[key];
                 v = query[k].value;
                 //make sure values are replaced by proper keys
@@ -364,7 +392,7 @@ function addFilterParams (wreq, query){
             }
         }
     }
-    if(!statefound){
+    if(locationFilter === ''){
         // If state filter is not selected then add mandatory state filter
         addParamToWONDERReq(wreq,'F_D77.V9', '*All*');
     }
@@ -379,6 +407,8 @@ function addFilterParams (wreq, query){
 
     addParamToWONDERReq(wreq, 'V_D77.V13', mcdSet1);
     addParamToWONDERReq(wreq, 'V_D77.V13_AND', mcdSet2);
+
+    return locationFilter;
 };
 
 function addMeasures(wreq) {
@@ -391,7 +421,7 @@ function addMeasures(wreq) {
     addParamToWONDERReq(wreq,'M_4', 'D77.M4');
 };
 
-function addOptionParams(wreq){
+function addOptionParams(wreq, locationFilter){
     addParamToWONDERReq(wreq,'O_V10_fmode', 'freg');
     addParamToWONDERReq(wreq, 'O_V13_fmode', 'fadv');
     addParamToWONDERReq(wreq,'O_V1_fmode', 'freg');
@@ -405,7 +435,7 @@ function addOptionParams(wreq){
     addParamToWONDERReq(wreq,'O_aar_pop', '0000');
     addParamToWONDERReq(wreq,'O_age', 'D77.V5'); // Age adjusted rate by 10 year interval
     addParamToWONDERReq(wreq,'O_javascript', 'off');
-    addParamToWONDERReq(wreq,'O_location', 'D77.V9');
+    addParamToWONDERReq(wreq,'O_location', locationFilter || 'D77.V9');
     addParamToWONDERReq(wreq,'O_precision', '1');
     addParamToWONDERReq(wreq,'O_rate_per', '100000');
     addParamToWONDERReq(wreq,'O_show_totals', 'true');

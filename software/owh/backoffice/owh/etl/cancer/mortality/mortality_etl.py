@@ -57,11 +57,12 @@ class CancerMortalityETL (ETL):
                 record  = cancer_mortality_parser.parseNextLine()
                 if not record:
                     break
-                if (record['current_year'] == '1999' or record['state'] == 'Puerto Rico' ): # skip invalid CBSA records/ 1999 year's records
+                if (record['current_year'] == '1999' or record['state'] == 'PR' ): # skip invalid CBSA records/ 1999 year's records
                     continue
 
                 self.process_cancer_sites(record)
-
+                #prepare region data
+                self.loadRegionData(record)
                 record_count += 1
                 self.batchRepository.persist({"index": {"_index": self.config['elastic_search']['index'],
                                                         "_type": self.config['elastic_search']['type'],

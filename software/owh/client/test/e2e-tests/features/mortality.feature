@@ -39,8 +39,8 @@ Scenario: Side filter collapse
 Scenario: Side filter options retain order
   Given I am on search page
   When user expands race options
-  Then user clicks on "+ 1 more" more link for "Race" filter
-  When user selects second race option
+  And user clicks on "+ 1 more" more link
+  And user selects second race option
   #Then race options retain their initial ordering
 
 Scenario: Display show/hide percentage button only on mortality page
@@ -134,8 +134,12 @@ Scenario: Check box- Hispanic Sub Categories
 
 Scenario: Side filter total suppression
   Given I am on search page
-  When user shows more year filters
-  And user filters by year 2015
+  And I expand "Race" filter section
+  And I expand "State" filter section
+  And  user select "American Indian or Alaska Native" option in "Race" filter
+  And user clicks on "+ 48 more" more link for "State" filter
+  Then I see count for few states are suppressed
+
   #And user expands sex options
   #When user expands ethnicity filter
   #And user groups ethnicity by row
@@ -368,3 +372,8 @@ Scenario: Group by 'State' in age adjusted rate
     And I select groupBy "Off" option for "Sex" filter
     And I select groupBy "Column" option for "State" filter
     Then the rates, deaths and population for "Delaware" "Black or African American" in 'Death Rates' view are "664.0", "1,474" and "221,986"
+
+  Scenario: Suppression when user groups data by state
+    Given I am on search page
+    When I set "State" filter "Row"
+    Then I see suppressed data in data table
