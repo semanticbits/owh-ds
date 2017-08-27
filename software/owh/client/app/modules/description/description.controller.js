@@ -110,7 +110,7 @@
                 deaths: {
                     key:"deaths",
                     title: 'Detailed Mortality',
-                    image: 'mortality-icon.svg',
+                    image: 'detailed-mortality-icon.svg',
                     yrsAvail: '2000-2015',
                     topics: 'Multiple Causes of Death, Cancer, Diabetes, Deaths, Sexually Transmitted Diseases, Tuberculosis, Alcohol and Other Drug Use, Obesity, Overweight, Weight Control, Tobacco Use, HIV/AIDS, Prostate Cancer, Population Data',
                     dataDescription: 'The mortality data are based on death certificates for U.S. residents. Each death certificate identifies a single underlying cause of death and demographic data. The number of deaths, crude death rates or age-adjusted death rates, and 95% confidence intervals and standard errors for death rates can be obtained by place of residence (total U.S., region, and state), age group (single-year-of age, 5-year age groups, 10-year age groups), race (4 groups), Hispanic ethnicity, gender, year, cause-of-death (4-digit ICD-10 code or group of codes), injury intent and injury mechanism, drug/alcohol induced causes. Data are also available for place of death, month and week day of death, and whether an autopsy was performed.',
@@ -205,13 +205,13 @@
                 cancer: {
                     key:"cancer_incident",
                     title: 'Cancer',
-                    image: 'disease-icon.svg',
+                    image: 'cancer-incidence-icon.svg',
                     yrsAvail: '2000-2015',
                     topics: "Infants, Sexually Transmitted Diseases, Chlamydia, Gonorrhea, Primary and Secondary Syphilis, Early Latent Syphilis, Congenital Syphilis",
                     dataDescription: "Cancer mortality data are available for the United States, state by age group, race, ethnicity, gender and cancer site for the years 2000- 2015. ",
                     suppression: "For STD data, the data suppression rule is applied when the numerator for a given state is 3 or less. When suppressed, data are only displayed by state totals and breakdown by demographic characteristics is not permitted.",
                     source: "The United States Cancer Statistics (USCS) are the official federal statistics on cancer incidence from registries having high-quality data and cancer mortality statistics for 50 states and the District of Columbia. USCS are produced by the Centers for Disease Control and Prevention (CDC) and the National Cancer Institute (NCI), in collaboration with the North American Association of Central Cancer Registries (NAACCR). Data are provided by:" +
-                    "ul><li>The Centers for Disease Control and Prevention National Program of Cancer Registries (NPCR)</li>" +
+                    "<ul><li>The Centers for Disease Control and Prevention National Program of Cancer Registries (NPCR)</li>" +
                     "<li>The National Cancer Institute Surveillance, Epidemiology and End Results (SEER) program.</li>" +
                     "</ul>",
                     isRateCalculation: true,

@@ -80,17 +80,17 @@
                 {key: 'Tobacco Use', title: 'Tobacco Use'},
                 {key: 'Unintentional Injuries and Violence', title: 'Unintentional Injuries and Violence'},
                 {key: 'Other Health Topics', title: 'Other Health Topics'}],
-            cancer_incident: [
-                { key: 'cancer_incident', title: 'Number of Incidents' },
-                { key: 'crude_cancer_incidence_rates', title: 'Crude Incidence Rate' }
-            ],
-            cancer_mortality: [
-                { key: 'cancer_mortality', title: 'Number of Deaths' },
-                { key: 'crude_cancer_death_rates', title: 'Crude Death Rates' }
-            ]
+                cancer_incident: [
+                    { key: 'cancer_incident', title: 'Number of Incidents' },
+                    { key: 'crude_cancer_incidence_rates', title: 'Crude Incidence Rate' }
+                ],
+                cancer_mortality: [
+                    { key: 'cancer_mortality', title: 'Number of Deaths' },
+                    { key: 'crude_cancer_death_rates', title: 'Crude Death Rates' }
+                ]
         };
         sc.sort = {
-            "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'ucd-chapter-10', 'mcd-chapter-10'],
+            "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'census-region', 'hhs-region', 'ucd-chapter-10', 'mcd-chapter-10'],
             "label.risk.behavior": ['year', 'yrbsSex', 'yrbsRace', 'yrbsGrade', 'sexid', 'sexpart', 'yrbsState', 'question'],
             "label.census.bridge.race.pop.estimate": ['current_year', 'sex', 'race', 'ethnicity', 'agegroup', 'state'],
             "label.filter.natality": ['current_year', 'month', 'weekday', 'sex', 'gestational_age_r10', 'gestation_recode10', 'gestation_recode11', 'gestation_weekly', 'prenatal_care',
@@ -181,10 +181,10 @@
         //show certain filters for different table views
         //add availablefilter for birth_rates
         sc.availableFilters = {
-            'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'state', 'ucd-chapter-10'],
-            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state', 'ucd-chapter-10', 'mcd-chapter-10'],
-            'birth_rates': ['current_year', 'race', 'state'],
-            'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval', 'state']
+            'crude_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'state', 'census-region', 'hhs-region', 'ucd-chapter-10'],
+            'age-adjusted_death_rates': ['year', 'gender', 'race', 'hispanicOrigin', 'state', 'census-region', 'hhs-region', 'ucd-chapter-10', 'mcd-chapter-10'],
+            'birth_rates': ['current_year', 'race', 'state', 'census-region', 'hhs-region'],
+            'fertility_rates': ['current_year', 'race', 'mother_age_1year_interval', 'mother_age_5year_interval', 'state', 'census-region', 'hhs-region']
         };
         sc.queryID = $stateParams.queryID;
         sc.tableView = $stateParams.tableView ? $stateParams.tableView : sc.showMeOptions.deaths[0].key;
@@ -608,13 +608,14 @@
         }
 
         function getChartTitle(title) {
-            var filters = title.split('.');
-            filters = filters.slice(2);
-            if (filters.length > 1) {
-                return $filter('translate')('label.chart.' + filters[0]) + ' and ' + $filter('translate')('label.chart.' + filters[1]);
-            } else {
-                return $filter('translate')('label.chart.' + filters[0]);
-            }
+//             var filters = title.split('.');
+//             filters = filters.slice(2);
+//             if (filters.length > 1) {
+//                 return $filter('translate')('label.chart.' + filters[0]) + ' and ' + $filter('translate')('label.chart.' + filters[1]);
+//             } else {
+//                 return $filter('translate')('label.chart.' + filters[0]);
+//             }
+                return title;
         }
 
         /**
