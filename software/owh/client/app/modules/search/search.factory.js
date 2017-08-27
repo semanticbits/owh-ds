@@ -963,7 +963,7 @@
         function getAutoCompleteOptionsLength(filter) {
             //take into account group options length
             var length = filter.autoCompleteOptions ? filter.autoCompleteOptions.length : 0;
-            if (filter.key === 'ucd-chapter-10') {
+            if (filter.key === 'ucd-chapter-10' || filter.key === 'mcd-chapter-10') {
                 return 0 ;
             }
             if(filter.autoCompleteOptions) {
@@ -2240,7 +2240,7 @@
                                     filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'ucd-chapter-10')
                                 },
                                 {
-                                    filterGroup: false, collapse: true,
+                                    filterGroup: false, collapse: true, allowGrouping: true,
                                     filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'mcd-chapter-10')
                                 }
                             ]

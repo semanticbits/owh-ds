@@ -1144,5 +1144,14 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
 
+    this.Then(/^I see Multiple Causes of Deaths in datatable$/, function (next) {
+        mortalityPage.getTableRowDataCells(0).then(function (elements) {
+            expect(elements[0].getText()).to.eventually.equal('I00-I99');
+            expect(elements[1].getText()).to.eventually.equal('American Indian or Alaska Native');
+            expect(elements[2].getText()).to.eventually.contains('4,180 (45.9%)');
+            expect(elements[3].getText()).to.eventually.contains('4,929 (54.1%)');
+        }).then(next);
+    });
+
 };
 module.exports = mortalityStepDefinitionsWrapper;
