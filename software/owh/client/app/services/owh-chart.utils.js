@@ -4,9 +4,9 @@
         .module('owh.services')
         .service('chartUtilService', chartUtilService);
 
-    chartUtilService.$inject = ['$dateParser', '$filter', '$translate','utilService', 'ModalService'];
+    chartUtilService.$inject = ['$window', '$dateParser', '$filter', '$translate','utilService', 'ModalService'];
 
-    function chartUtilService($dateParser, $filter, $translate, utilService, ModalService) {
+    function chartUtilService($window, $dateParser, $filter, $translate, utilService, ModalService) {
         var service = {
             horizontalStack: horizontalStack,
             verticalStack: verticalStack,
@@ -27,13 +27,12 @@
         // plotly layout for quick view
         function quickChartLayout(){
                 return {
-                    width: 350,
-                    height: 300,
+                    width: $window.innerWidth * 0.32,
+                    autosize: true,
                     showlegend: false,
-                    hovermode: 'closest',
                     margin: {l:20, r:10, b:20, t:20},
-                    xaxis: {visible: true, titlefont:{size: 15}, exponentformat: 'none', tickangle: 45, showline: true, gridcolor: '#bdbdbd', showticklabels: false},
-                    yaxis: {visible: true, titlefont:{size: 15}, exponentformat: 'none', tickangle: 45, ticksuffix: '   ',showline: true,gridcolor: '#bdbdbd', showticklabels: false}
+                    xaxis: {visible: true, titlefont:{size: 15}, exponentformat: 'none', tickangle: 45, showline: true, gridcolor: '#bdbdbd', showticklabels: false, fixedrange: true},
+                    yaxis: {visible: true, titlefont:{size: 15}, exponentformat: 'none', tickangle: 45, ticksuffix: '   ',showline: true,gridcolor: '#bdbdbd', showticklabels: false, fixedrange: true}
                 }       
         }
 
@@ -774,19 +773,25 @@
                         var layout = utilService.clone(eachChartData.layout);
                         // Set chart title
                        layout.title = eachChartData.longtitle;
-                       layout.width = 1100;
-                       layout.height = 700;
-                       layout.autosize= false;
+                       layout.width = 1000;
+                       layout.height = 750;
                        layout.showlegend= true;
-                       // layout.legend ={orientation: "v",
-                       //     x: 1.01,
-                       //     y: .5
-                       // };
-                        layout.legend ={orientation: "h",
-                            y: 1.1,
-                            x: .5
-                        };
-                       layout.margin = {l:200, r:50, b:200, t:200};
+                       if(eachChartData.charttype !== "multiLineChart") {
+                           layout.legend = {
+                               orientation: "v",
+                               x: 1.01,
+                               y: .4,
+
+                           };
+                       }else {
+                           layout.legend ={orientation: "h",
+                               y: 1.15,
+                               x: .4
+                           };
+                       }
+                       layout.legend.traceorder = 'reversed';
+
+                       layout.margin = {l:200, r:10, b:200, t:150};
                        layout.xaxis.visible= true;
                        layout.yaxis.visible= true;
                        layout.xaxis.showticklabels= true;
