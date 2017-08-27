@@ -413,16 +413,51 @@ function buildAPIQuery(primaryFilter) {
         }
     }
     var sortedFilters = sortByKey(clone(primaryFilter.allFilters), getAutoCompleteOptionsLength);
-    sortedFilters.forEach  (function(eachFilter) {
-        if(eachFilter.groupBy) {
+    sortedFilters.forEach(function (eachFilter) {
+        if (eachFilter.groupBy) {
             var eachGroupQuery = getGroupQuery(eachFilter);
-            if ( eachFilter.groupBy === 'row' ) {
-                //user defined aggregations for rendering table
-                rowAggregations.push(eachGroupQuery);
-                headers.rowHeaders.push(eachFilter);
-            } else if( eachFilter.groupBy === 'column' ) {
-                columnAggregations.push(eachGroupQuery);
-                headers.columnHeaders.push(eachFilter);
+            var splitFilters = [eachFilter];
+            var splitGroupQueries = [eachGroupQuery];
+
+            if (eachFilter.queryType === "compound") {
+                var secondGroupQuery = clone(eachGroupQuery);
+
+                var secondFilter = clone(eachFilter);
+                var secondOptions = [];
+                secondFilter.autoCompleteOptions.forEach(function (option) {
+                    option.options.forEach(function (subOption) {
+                        secondOptions.push(subOption);
+                    });
+                });
+                secondFilter.autoCompleteOptions = secondOptions;
+
+                var split = eachFilter.queryKeys;
+
+                eachFilter.key += "|" + split[0];
+                eachGroupQuery.key += "|" + split[0];
+                eachGroupQuery.queryKey = split[0];
+
+                secondFilter.key += "|" + split[1];
+                secondGroupQuery.key += "|" + split[1];
+                secondGroupQuery.queryKey = split[1];
+
+                splitGroupQueries.push(secondGroupQuery);
+                splitFilters.push(secondFilter);
+            }
+
+            for (var i = 0; i < splitFilters.length; i++) {
+                eachFilter = splitFilters[i];
+                eachGroupQuery = splitGroupQueries[i];
+
+                if (eachFilter.groupBy === 'row') {
+                    //user defined aggregations for rendering table
+                    rowAggregations.push(eachGroupQuery);
+                    headers.rowHeaders.push(eachFilter);
+                }
+                else if (eachFilter.groupBy === 'column') {
+                    columnAggregations.push(eachGroupQuery);
+                    headers.columnHeaders.push(eachFilter);
+                }
             }
         }
 
@@ -546,7 +581,7 @@ function buildFilterQuery(filter) {
 function getFilterQuery(filter) {
     return {
         key: filter.key,
-        queryKey: filter.aggregationKey ? filter.aggregationKey : filter.queryKey,
+        queryKey: filter.queryType === 'compound' ? filter.queryKeys[1] : (filter.aggregationKey ? filter.aggregationKey : filter.queryKey),
         value: filter.value,
         primary: filter.primary
     };
@@ -860,7 +895,22 @@ var chartMappings = {
     "sex&gestation_recode10": "horizontalStack",
     "race&gestation_recode10": "horizontalStack",
     "sex&gestation_weekly": "horizontalStack",
-    "race&gestation_weekly": "horizontalStack"
+    "race&gestation_weekly": "horizontalStack",
+    "sex&year_of_death": "multiLineChart",
+    "race&year_of_death": "multiLineChart",
+    "ethnicity&year_of_death": "multiLineChart",
+    "marital_status&year_of_death": "multiLineChart",
+    "mother_age&year_of_death": "multiLineChart",
+    "mother_education&year_of_death": "mulitLineChart",
+    "gestation_recode1&year_of_death": "multiLineChart",
+    "prenatal_care&year_of_death": "horizontalStack",
+    "birth_weight&year_of_death": "mulitLineChart",
+    "birth_plurality&year_of_death": "mulitLineChart",
+    "live_birth&year_of_death": "mulitLineChart",
+    "birth_place&year_of_death": "mulitLineChart",
+    "delivery_method&year_of_death": "mulitLineChart",
+    "medical_attendant&year_of_death": "mulitLineChart",
+    "ucd&year_of_death": "mulitLineChart"
 };
 
 var prepareMapAggregations = function() {
@@ -880,22 +930,26 @@ var prepareMapAggregations = function() {
 }
 
 function addCountsToAutoCompleteOptions(primaryFilter) {
-   var apiQuery = {
+    var apiQuery = {
         searchFor: primaryFilter.key,
         aggregations: { simple: [] }
     };
     var filters = [];
-    primaryFilter.sideFilters.forEach(function(category) {
-        category.sideFilters.forEach(function(eachSideFilter) {
+    primaryFilter.sideFilters.forEach(function (category) {
+        category.sideFilters.forEach(function (eachSideFilter) {
             filters = filters.concat(eachSideFilter.filterGroup ? eachSideFilter.filters : [eachSideFilter.filters]);
         });
     });
-     filters.forEach(function(eachFilter) {
-        apiQuery.aggregations.simple.push(getGroupQuery(eachFilter));
-     });
+    filters.forEach(function (eachFilter) {
+        var aggregation = getGroupQuery(eachFilter);
+        if (aggregation.queryKey.indexOf('|') >= 0) {
+            aggregation.queryKey = aggregation.queryKey.split('|')[1];
+        }
+        apiQuery.aggregations.simple.push(aggregation);
+    });
     //if(query) {
-        var filterQuery = buildAPIQuery(primaryFilter).apiQuery.query;
-        apiQuery.query = filterQuery;
+    var filterQuery = buildAPIQuery(primaryFilter).apiQuery.query;
+    apiQuery.query = filterQuery;
     //}
     return apiQuery;
 }

@@ -18,6 +18,7 @@
             findByKey: findByKey,
             sortByKey: sortByKey,
             findByKeyAndValue: findByKeyAndValue,
+            findByKeyAndValueRecursive: findByKeyAndValueRecursive,
             findIndexByKeyAndValue: findIndexByKeyAndValue,
             findAllByKeyAndValue: findAllByKeyAndValue,
             findAllNotContainsKeyAndValue: findAllNotContainsKeyAndValue,
@@ -94,9 +95,52 @@
         function findByKeyAndValue(a, key, value) {
             if(a){
                 for (var i = 0; i < a.length; i++) {
-                    if ( a[i][key] && a[i][key] === value ) {return a[i];}
+                    var keyValue = extractPropertyValue(a[i], key);
+                    if ( keyValue && keyValue === value ) {return a[i];}
                 }
             }
+            return null;
+        }
+
+        function extractPropertyValue(obj, property) {
+            var value;
+
+            if (typeof property === 'string') {
+                value = obj;
+                var properties = property.split('.');
+                properties.forEach(function (prop) {
+                    value = value[prop];
+                });
+            }
+            else {
+                value = obj[property];
+            }
+
+            return value;
+        }
+
+        /**
+         * Finds and returns the first object in array of objects by using the key and value
+         * @param array
+         * @param key
+         * @param value
+         * @param childProperty
+         * @returns {*}
+         */
+        function findByKeyAndValueRecursive(array, key, value, childProperty) {
+            if (array) {
+                for (var i = 0; i < array.length; i++) {
+                    if (array[i][key] && array[i][key] === value) {
+                        return array[i];
+                    }
+
+                    if (childProperty && array[i][childProperty]) {
+                        var result = findByKeyAndValueRecursive(array[i][childProperty], key, value, childProperty);
+                        if (result) return result;
+                    }
+                }
+            }
+
             return null;
         }
 
@@ -380,7 +424,7 @@
             return tableRowHeaders;
         }
 
-        function prepareMixedTableColumnHeaders(columnHeaders, allOptionValues) {
+        function prepareMixedTableColumnHeaders(columnHeaders, allOptionValues, includeOnly) {
             var tableColumnHeaderData = {
                 totalColspan: 0,
                 headers: []
@@ -392,25 +436,34 @@
                     eachColumnHeader.autoCompleteOptions.push(eachColumnHeader.autoCompleteOptions.shift());
                 }
                 angular.forEach(getSelectedAutoCompleteOptions(eachColumnHeader), function(eachOption, optionIndex) {
-                    var colspan = 1;
-                    if(columnHeaders.length > 1) {
-                        var childColumnHeaderData = prepareMixedTableColumnHeaders(columnHeaders.slice(1), allOptionValues);
-                        colspan = childColumnHeaderData.totalColspan;
-                        angular.forEach(childColumnHeaderData.headers, function(eachChildHeader, childHeaderIndex) {
-                            if(optionIndex == 0) {
-                                tableColumnHeaderData.headers.push([]);
+                    if (!includeOnly || !angular.isArray(includeOnly) || includeOnly.indexOf(eachOption.key) >= 0) {
+                        var colspan = 1;
+                        if(columnHeaders.length > 1) {
+                            var includeKeys = [];
+                            if (eachOption.options) {
+                                angular.forEach(eachOption.options, function (subOption) {
+                                    includeKeys.push(subOption.key);
+                                });
                             }
-                            tableColumnHeaderData.headers[childHeaderIndex + 1] = tableColumnHeaderData.headers[childHeaderIndex + 1].concat(eachChildHeader);
+
+                            var childColumnHeaderData = prepareMixedTableColumnHeaders(columnHeaders.slice(1), allOptionValues, eachOption.options ? includeKeys : undefined);
+                            colspan = childColumnHeaderData.totalColspan;
+                            angular.forEach(childColumnHeaderData.headers, function(eachChildHeader, childHeaderIndex) {
+                                if(optionIndex == 0) {
+                                    tableColumnHeaderData.headers.push([]);
+                                }
+                                tableColumnHeaderData.headers[childHeaderIndex + 1] = tableColumnHeaderData.headers[childHeaderIndex + 1].concat(eachChildHeader);
+                            });
+                        }
+                        tableColumnHeaderData.headers[0].push({
+                            title: eachOption.title,
+                            colspan: colspan,
+                            rowspan: 1,
+                            isData: true,
+                            helpText: eachOption.title
                         });
+                        tableColumnHeaderData.totalColspan += colspan;
                     }
-                    tableColumnHeaderData.headers[0].push({
-                        title: eachOption.title,
-                        colspan: colspan,
-                        rowspan: 1,
-                        isData: true,
-                        helpText: eachOption.title
-                    });
-                    tableColumnHeaderData.totalColspan += colspan;
                 });
 
             }
@@ -611,7 +664,7 @@
          * @param secondaryCountKey
          * @returns {Array}
          */
-        function prepareMixedTableColumnData(columnHeaders, data, countKey, totalCount, calculatePercentage, secondaryCountKeys) {
+        function prepareMixedTableColumnData(columnHeaders, data, countKey, totalCount, calculatePercentage, secondaryCountKeys, includeOnly) {
             var tableData = [];
             var percentage ;
             if(calculatePercentage) {
@@ -622,23 +675,32 @@
 
                 var eachHeaderData = data[eachColumnHeader.key]?data[eachColumnHeader.key]:data[eachColumnHeader.queryKey];
                 var eachOptionLength = 0;
-                angular.forEach(getSelectedAutoCompleteOptions(eachColumnHeader), function(eachOption, optionIndex) {
-                    var matchedData = findByKeyAndValue(eachHeaderData, 'name', eachOption.key);
-                    if(matchedData) {
-                        if (columnHeaders.length > 1) {
-                            var childTableData = prepareMixedTableColumnData(columnHeaders.slice(1), matchedData, countKey, totalCount, calculatePercentage, secondaryCountKeys);
-                            eachOptionLength = childTableData.length;
-                            tableData = tableData.concat(childTableData);
+                angular.forEach(getSelectedAutoCompleteOptions(eachColumnHeader), function (eachOption, optionIndex) {
+                    if (!includeOnly || !angular.isArray(includeOnly) || includeOnly.indexOf(eachOption.key) >= 0) {
+                        var matchedData = findByKeyAndValue(eachHeaderData, 'name', eachOption.key);
+                        if(matchedData) {
+                            if (columnHeaders.length > 1) {
+                                var includeKeys = [];
+                                if (eachOption.options) {
+                                    angular.forEach(eachOption.options, function (subOption) {
+                                        includeKeys.push(subOption.key);
+                                    });
+                                }
+
+                                var childTableData = prepareMixedTableColumnData(columnHeaders.slice(1), matchedData, countKey, totalCount, calculatePercentage, secondaryCountKeys, eachOption.options ? includeKeys : undefined);
+                                eachOptionLength = childTableData.length;
+                                tableData = tableData.concat(childTableData);
+                            } else {
+                                var count = matchedData[countKey];
+                                eachOptionLength = 1;
+                                tableData.push(prepareCountCell(count, matchedData, countKey, totalCount, calculatePercentage, secondaryCountKeys, false));
+                            }
                         } else {
-                            var count = matchedData[countKey];
-                            eachOptionLength = 1;
-                            tableData.push(prepareCountCell(count, matchedData, countKey, totalCount, calculatePercentage, secondaryCountKeys, false));
+                            if(eachOptionLength <= 0) {
+                                eachOptionLength = getOptionDataLength(columnHeaders.slice(1));
+                            }
+                            tableData = tableData.concat(getArrayWithDefaultValue(eachOptionLength, {title: 'Not Available', percentage: percentage , isCount: true}));
                         }
-                    } else {
-                        if(eachOptionLength <= 0) {
-                            eachOptionLength = getOptionDataLength(columnHeaders.slice(1));
-                        }
-                        tableData = tableData.concat(getArrayWithDefaultValue(eachOptionLength, {title: 'Not Available', percentage: percentage , isCount: true}));
                     }
                 });
             }
@@ -854,6 +916,7 @@
             var newFilters = response.data;
             for (var f = 0; f < sideFilters.length; f++) {
                 var fkey = sideFilters[f].filters.queryKey;
+                if (fkey.indexOf('|') >= 0) fkey = fkey.split('|')[1];
                 if (fkey === 'ethnicity_group' && datasetname == 'deaths') {
                     fkey = 'hispanic_origin';
                 }

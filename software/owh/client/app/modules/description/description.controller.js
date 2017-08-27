@@ -61,7 +61,7 @@
                         {
                             question:"What are the population sources?",
                             answer:"The current population sources for calculating birth and fertility rates come from these sources:" +
-                            "<ol>" +
+                            "<ul>" +
                             "<li>Rates for year 2015:  the July 1st, 2015 (Vintage 2015) postcensal bridged-race estimates of the resident population, released by NCHS on June 28, 2016.</li>" +
                             "<li>Rates for year 2014:  the July 1st, 2014 (Vintage 2014) postcensal bridged-race estimates of the resident population, released by NCHS on June 30, 2015.</li>" +
                             "<li>Rates for year 2013:  the July 1st, 2013 (Vintage 2013) postcensal bridged-race estimates of the resident population, released by NCHS on June 26, 2014.</li>" +
@@ -69,48 +69,48 @@
                             "<li>Rates for year 2011:  the July 1st, 2011 (Vintage 2011) postcensal bridged-race estimates of the resident population, released by NCHS on July 18, 2012.</li>" +
                             "<li>Rates for year 2010:  the April 1st, 2010 bridged-race Census counts for year 2010, released by NCHS on November 17, 2011.</li>" +
                             "<li>Rates for years 2003-2009:  the July 1st revised intercensal estimates of the resident population, released by NCHS on October 26, 2012</li>" +
-                            "</ol>"
+                            "</ul>"
                         },
                         {
                             question:"What is the difference between the various Birth Weight filters?",
                             answer:"Infant's weight at birth is available in 3 sets of categories, through 8165 grams, or Not stated:" +
-                            "<ol>" +
+                            "<ul>" +
                             "<li>Birth Weight: 100 gram increments</li>" +
                             "<li>Birth Weight 12: 12 groups in 500 gram increments</li>" +
                             "<li>Birth Weight 14: 14 groups in 250 gram increments</li>" +
-                            "</ol>"
+                            "</ul>"
                         },
                         {
                             isRateInfo:true,
                             question:"How are Birth Rates and Fertility Rates calculated?",
                             answer:"Birth rates are calculated as the number of births divided by total population in the given year(s). When the numerator is sub-set by mother's race, location, or year of birth, then the same sub-set for race, location and year applies to the denominator population. If the data are sub-set by any other variable, then birth rates and denominator data are not available.<br/>Note:" +
-                            "<ol>" +
+                            "<ul>" +
                             "<li>Birth rates are available for the Natality data beginning in year 2003.</li>" +
                             "<li>Birth rates are only available for the total population, or for mother's race, mother's place of residence and the year of birth. If data are grouped by any other variable, or limited for any other variable, then birth rates are not calculated.</li>" +
-                            "</ol>" +
+                            "</ul>" +
                             "Fertility rates are calculated as the number of births divided by the number of females age 15 - 44 years old in the given year(s). When the numerator is sub-set by mother's age, mother's race, location, or year of birth, then the same sub-set for age, race, location and year applies to the denominator population. If data are sub-set by any other variable, then fertility rates and denominator data are not available.<br/>Note:" +
-                            "<ol>" +
+                            "<ul>" +
                             "<li>Fertility rates are available for the Natality data since year 2003.</li>" +
                             "<li>Fertility rates are only available for the total population, or for mother's age, mother's race, mother's place of residence and the year of birth. If data are grouped by any other variable, or limited for any other variable, then fertility rates are not calculated. Comparable denominator data are not available for the other variables.</li>" +
-                            "</ol>"
+                            "</ul>"
                         },
                         {
                             question:"What are the Assurance of Confidentiality constraints for the data?",
                             answer:"Data reports for years 1989 and later must meet the NCHS data use restrictions. Vital statistics data are suppressed due to confidentiality constraints, in order to protect personal privacy." +
-                            "<ol>" +
+                            "<ul>" +
                             "<li>The term <i>Suppressed</i> replaces sub-national births counts, birth rates and fertility rates, when the figure represents zero to nine (0-9) persons.	Corresponding population denominator data are also suppressed when the figure represents fewer than ten persons.</li>" +
                             "<li>Totals and sub-totals are suppressed when the value falls within scope of the suppression criteria, or when the summary value includes a single suppressed figure, in order to prevent the inadvertent disclosure of suppressed values.</li>" +
                             "<li>The confidentiality constraints are established by the original data providers. For more information, please contact the data providers.</li>" +
                             "<li>Natality data for the United States are limited to births occurring within the United States to U.S. residents and nonresidents. Births to non-residents of the United State are excluded from all tabulations by place of residence. Births occurring to U.S. citizens outside the United States are not included.</li>" +
                             "<li>All Natality data are reported in conformance to the reporting criteria of the mother's place of residence, rather than the actual criteria on the birth certificate issued by the reporting area of occurrence. For example, if a baby was born in Texas to a mother legally residing in California, then only those data items reported by California are included in the data set. The original Natality 2004 public use dataset includes data fields from the birth certificate, with an associated reporting flag for each field to indicate whether the mother's place of residence reports this item.</li>" +
-                            "</ol>"
+                            "</ul>"
                         }
                     ]
                 },
                 deaths: {
                     key:"deaths",
                     title: 'Detailed Mortality',
-                    image: 'mortality-icon.svg',
+                    image: 'detailed-mortality-icon.svg',
                     yrsAvail: '2000-2015',
                     topics: 'Multiple Causes of Death, Cancer, Diabetes, Deaths, Sexually Transmitted Diseases, Tuberculosis, Alcohol and Other Drug Use, Obesity, Overweight, Weight Control, Tobacco Use, HIV/AIDS, Prostate Cancer, Population Data',
                     dataDescription: 'The mortality data are based on death certificates for U.S. residents. Each death certificate identifies a single underlying cause of death and demographic data. The number of deaths, crude death rates or age-adjusted death rates, and 95% confidence intervals and standard errors for death rates can be obtained by place of residence (total U.S., region, and state), age group (single-year-of age, 5-year age groups, 10-year age groups), race (4 groups), Hispanic ethnicity, gender, year, cause-of-death (4-digit ICD-10 code or group of codes), injury intent and injury mechanism, drug/alcohol induced causes. Data are also available for place of death, month and week day of death, and whether an autopsy was performed.',
@@ -140,12 +140,12 @@
                     additionalInfo:[
                         {
                             question:"What are the population sources?",
-                            answer:"<ol>" +
+                            answer:"<ul>" +
                             "<li>The year 2000 and year 2010 populations are April 1 modified census counts.</li>" +
                             "<li>The 2001 through 2009 population estimates are revised intercensal estimates of the July 1 resident population, based on the year 2000 and year 2010 census counts (released by NCHS on 10/26/2012).</li>" +
                             "<li>The archive population estimates for years 2001 - 2009 are postcensal estimates of the July 1 resident population.</li>" +
                             "<li>The 2011 - 2015 population estimates are postcensal estimates of the July 1 resident population.</li>" +
-                            "</ol>" +
+                            "</ul>" +
                             "Note that these estimates are based on bridged-race categories. The population estimates are by geographic unit (total United States, State, and county), year, race (white, black, other races), sex, and age group (13 age groups). To permit the calculation of infant mortality rates, NCHS live-birth data are included on the file.<br/><br/>"
                         },
                         {
@@ -163,21 +163,21 @@
                         {
                             question:"What are the suppression rules for Crude Death Rates?",
                             answer:"Infant's weight at birth is available in 3 sets of categories, through 8165 grams, or Not stated:" +
-                            "<ol>" +
+                            "<ul>" +
                             "<li>Rates for small populations should be interpreted with caution.</li>" +
                             "<li>Rates are suppressed for sub-national data representing zero to nine (0-9) deaths. Corresponding sub-national denominator population figures are also suppressed when the population represents fewer than 10 persons.</li>" +
                             "<li>Rates are marked as <i>unreliable</i> when the death count is less than 20.</li>" +
                             "<li>Rates are marked as <i>not applicable</i> when the population denominator figure is unavailable, such as persons of not stated or unknown age or Hispanic origin.</li>" +
-                            "</ol>"
+                            "</ul>"
                         },
                         {
                             question:"What are the suppression rules for Age Adjusted Death Rates?",
-                            answer:"<ol>" +
+                            answer:"<ul>" +
                             "<li>Rates are suppressed for sub-national data representing zero to nine (0-9) deaths. Corresponding sub-national denominator population figures are also suppressed when the population represents fewer than 10 persons.</li>" +
                             "<li>Rates are marked as unreliable when the death count is less than 20.</li>" +
                             "<li>Rates are marked as not applicable when the denominator population figure is unavailable, such as not stated or unknown age or ethnicity.</li>" +
                             "<li>Deaths of persons with not stated or unknown age are not included in the calculation of age-adjusted rates.</li>" +
-                            "</ol>"
+                            "</ul>"
                         }
                     ]
                 },
@@ -205,7 +205,7 @@
                 cancer: {
                     key:"cancer_incident",
                     title: 'Cancer',
-                    image: 'disease-icon.svg',
+                    image: 'cancer-incidence-icon.svg',
                     yrsAvail: '2000-2015',
                     topics: "Infants, Sexually Transmitted Diseases, Chlamydia, Gonorrhea, Primary and Secondary Syphilis, Early Latent Syphilis, Congenital Syphilis",
                     dataDescription: "Cancer mortality data are available for the United States, state by age group, race, ethnicity, gender and cancer site for the years 2000- 2015. ",
@@ -314,13 +314,13 @@
                     topics: "Deaths, Babies, HIV/AIDS, AIDS Diagnoses, AIDS Deaths, AIDS Prevalence, HIV Diagnoses, HIV Deaths, HIV Prevalence",
                     dataDescription: "These data are the nation’s source of information on HIV in the United States. Numbers and rates and presented based on the date of diagnosis of HIV infection and infection classified as stage 3 (AIDS) (from the beginning of the epidemic through December 31, 2015; reported as of June 30, 2016).<br/>Data on diagnoses of HIV infection should be interpreted with caution. Data may not be representative of all persons with HIV because not all infected persons have been tested. Also, many states offer anonymous testing; the results of anonymous tests are not reported to the confidential name-based HIV registries of state and local health departments.",
                     suppression: "A data suppression rule is applied if:" +
-                    "<ol>" +
+                    "<ul>" +
                     "<li>The population denominator for 1-way and 2-way demographic/transmission category data is less than 100.</li>" +
                     "<li>Two variables are already selected from section X, then no further stratifications are allowed.</li>" +
                     "<li>Two-way demographic/risk stratifications for U.S. dependent areas (except Puerto Rico, for age and sex) are queried.</li>" +
                     "<li>Two-way demographic/risk stratifications for the race groups Native Hawaiians/Other Pacific Islanders (NHOPIs) and Multiple races are queried.</li>" +
                     "<li>Two-way demographic/transmission category stratifications for New Hampshire are queried.</li>" +
-                    "</ol>Also, data are suppressed or aggregated to preclude arithmetic calculation of a suppressed cell.",
+                    "</ul>Also, data are suppressed or aggregated to preclude arithmetic calculation of a suppressed cell.",
                     source: "CDC collects, analyzes, and disseminates surveillance data on diagnoses of HIV infection; these data are the nation’s source of information on HIV in the United States. Numbers and rates and presented based on the date of diagnosis of HIV infection and infection classified as stage 3 (AIDS) (from the beginning of the epidemic through December 31, 2015; reported as of June 30, 2016).",
                     isRateCalculation: true,
                     filters: [
@@ -355,11 +355,11 @@
                             isRateInfo:true,
                             question:"How are Rates calculated?",
                             answer:"Rates per 100,000 population were calculated for" +
-                            "<ol>" +
+                            "<ul>" +
                             "<li>The numbers of diagnoses of HIV infection and the numbers of infections classified as stage 3 (AIDS)</li>" +
                             "<li>The numbers of deaths of persons with diagnosed HIV infection and deaths of persons with infection classified as stage 3 (AIDS)</li>" +
                             "<li>The numbers of persons living with diagnosed HIV infection and persons living with infection classified as stage 3 (AIDS).</li>" +
-                            "</ol>"
+                            "</ul>"
                         },
                         {
                             question:"What are the  population sources?",
@@ -481,22 +481,22 @@
                         },
                         {
                             question:"Why is PRAMS important?",
-                            answer:"<ol>" +
+                            answer:"<ul>" +
                             "<li>PRAMS provides data for state health officials to use to improve the health of mothers and infants.</li>" +
                             "<li>PRAMS allows CDC and the states to monitor changes in maternal and child health indicators (e.g., unintended pregnancy, prenatal care, breastfeeding, smoking, drinking, infant health).</li>" +
                             "<li>PRAMS enhances information from birth certificates used to plan and review state maternal and infant health programs.</li>" +
                             "<li>The PRAMS sample is chosen from all women who had a live birth recently, so findings can be applied to the state’s entire population of women who have recently delivered a live-born infant.</li>" +
                             "<li>PRAMS not only provides state-specific data but also allows comparisons among participating states because the same data collection methods are used in all states.</li>" +
-                            "</ol>"
+                            "</ul>"
                         },
                         {
                             question:"How are PRAMS data used?",
                             answer:"PRAMS provides data not available from other sources about pregnancy and the first few months after birth. These data can be used to identify groups of women and infants at high risk for health problems, to monitor changes in health status, and to measure progress towards goals in improving the health of mothers and infants. PRAMS data are used by:" +
-                            "<ol>" +
+                            "<ul>" +
                             "<li>Researchers to investigate emerging issues in the field of maternal and child health.</li>" +
                             "<li>State and local governments to plan and review programs and policies aimed at reducing health problems among mothers and babies.</li>" +
                             "<li>State agencies to identify other agencies that have important contributions to make in planning maternal and infant health programs and to develop partnerships with those agencies.</li>" +
-                            "</ol>"
+                            "</ul>"
                         },
                         {
                             question:"What does PRAMS do with the information?",
