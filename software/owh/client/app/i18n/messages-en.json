@@ -203,6 +203,7 @@
   "label.filter.yrbsSex": "Sex",
   "label.filter.yrbsGrade": "Grade",
   "label.filter.yrbsRace": "Race",
+  "label.filter.yrbsState": "State",
   "label.chart.hispanic_origin": "Ethnicity",
   "label.chart.month": "Month",
   "label.chart.weekday": "Weekday",

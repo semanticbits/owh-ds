@@ -258,12 +258,14 @@
             return tableData;
         }
 
-        function updateSplitHeaders(headers) {
-            headers = utilService.clone(headers);
+        function updateSplitHeaders(headersin) {
+            var headers = utilService.clone(headersin);
             var newHeaders = [];
             angular.forEach(headers, function (header, index) {
+                header.onIconClick = headersin[index].onIconClick;  // copy the method that doesn't get cloned
                 if (header.queryType === "compound") {
                     var newHeader = utilService.clone(header);
+                    newHeader.onIconClick = header.onIconClick;
                     var queryKeys = header.queryKeys;
                     var titles = header.titles;
 
@@ -523,7 +525,7 @@
                 "yrbsSex": "horizontalBar",
                 "yrbsRace": "horizontalBar",
                 "yrbsGrade": "horizontalBar",
-                "state": "horizontalBar",
+                "yrbsState": "horizontalBar",
                 "year": "horizontalBar"
             };
 
@@ -532,8 +534,10 @@
             //collect all chart combinations
             // Disabling combination charts for now, see OWH-1363
             selectedFilters.forEach( function(selectedPrimaryFilter) {
-                //var chartType = chartMappings[selectedPrimaryFilter.key];
-                chartTypes.push([selectedPrimaryFilter.key]);
+                var chartType = chartMappings[selectedPrimaryFilter.key];
+                if(chartType){
+                      chartTypes.push([selectedPrimaryFilter.key]);
+                }
             });
             // selectedFilters.forEach( function(selectedPrimaryFilter) {
             //     selectedFilters.forEach( function(selectedSecondaryFilter) {
