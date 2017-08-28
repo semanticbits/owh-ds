@@ -233,6 +233,8 @@
   "label.chart.gestation_recode11": "Gestational Age Group 1",
   "label.chart.gestation_recode10": "Gestational Age Group 2",
   "label.chart.gestation_weekly": "Gestational Weekly",
+  "label.chart.hhs-region": "HHS Region",
+  "label.chart.census-region": "Census Region",
   "label.yrbs.basic.search": "Switch to Basic Search",
   "label.yrbs.advanced.search": "Switch to Advanced Search",
   "label.yrbs.healthtopics": "Topic:",

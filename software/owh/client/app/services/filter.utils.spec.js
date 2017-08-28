@@ -40,10 +40,12 @@ describe('filterUtils', function(){
             var natalityFilters = filterUtils.getNatalityDataFilters();
             expect(natalityFilters[0].key).toEqual('hispanic_origin');
             expect(natalityFilters[1].key).toEqual('state');
-            expect(natalityFilters[2].key).toEqual('mother_age_1year_interval');
-            expect(natalityFilters[3].key).toEqual('mother_age_5year_interval');
-            expect(natalityFilters[4].key).toEqual('race');
-            expect(natalityFilters[5].key).toEqual('marital_status');
+            expect(natalityFilters[2].key).toEqual('census-region');
+            expect(natalityFilters[3].key).toEqual('hhs-region');
+            expect(natalityFilters[4].key).toEqual('mother_age_1year_interval');
+            expect(natalityFilters[5].key).toEqual('mother_age_5year_interval');
+            expect(natalityFilters[6].key).toEqual('race');
+            expect(natalityFilters[7].key).toEqual('marital_status');
         });
     });
 

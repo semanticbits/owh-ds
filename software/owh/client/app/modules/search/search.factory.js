@@ -769,6 +769,8 @@
                 //for current_year dhow line graph
                 if (header.key == 'current_year') {
                     chartData.push(chartUtilService.lineChart(pieData, header, primaryFilter));
+                } else if (header.key.indexOf("census-region") >= 0) {
+                    // TODO: Remove this else if block after fixing server side for charts data for census regions and divisions
                 } else {//for other single filters, show pie chart
                     chartData.push(chartUtilService.plotlyPieChart(pieData, header, primaryFilter));
                 }
@@ -802,9 +804,15 @@
             var chartHeaders = [];
             var chartAggregations = [];
             angular.forEach(headers, function(eachPrimaryHeader) {
+                if(eachPrimaryHeader.key.indexOf("census-region")>=0) {
+                    return; // TODO: Remove this if block after fixing server side for charts data for census regions and divisions
+                }
                 var primaryGroupQuery = getGroupQuery(eachPrimaryHeader);
                 angular.forEach(headers, function(eachSecondaryHeader) {
-                    var chartType = $rootScope.chartMappings[eachPrimaryHeader.key + '&' + eachSecondaryHeader.key];
+                    if(eachPrimaryHeader.key.indexOf("census-region")>=0) {
+                        return; // TODO: Remove this if block after fixing server side for charts data for census regions and divisions
+                    }    
+                        var chartType = $rootScope.chartMappings[eachPrimaryHeader.key + '&' + eachSecondaryHeader.key];
                     if(chartType) {
                         var secondaryGroupQuery = getGroupQuery(eachSecondaryHeader);
                         chartHeaders.push({headers: [eachPrimaryHeader, eachSecondaryHeader], chartType: chartType});
@@ -955,7 +963,7 @@
         function getAutoCompleteOptionsLength(filter) {
             //take into account group options length
             var length = filter.autoCompleteOptions ? filter.autoCompleteOptions.length : 0;
-            if (filter.key === 'ucd-chapter-10') {
+            if (filter.key === 'ucd-chapter-10' || filter.key === 'mcd-chapter-10') {
                 return 0 ;
             }
             if(filter.autoCompleteOptions) {
@@ -2232,7 +2240,7 @@
                                     filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'ucd-chapter-10')
                                 },
                                 {
-                                    filterGroup: false, collapse: true,
+                                    filterGroup: false, collapse: true, allowGrouping: true,
                                     filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'mcd-chapter-10')
                                 }
                             ]
@@ -2386,10 +2394,21 @@
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'ethnicity')
-                                },
+                                }
+                            ]
+                        },
+                        {
+                            exclusive: true,
+                            ui: 'tabbed',
+                            selectedFilter: "state", // defaulting to state
+                            sideFilters: [
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'state')
+                                },
+                                {
+                                    filterGroup: false, collapse: true, allowGrouping: true, groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.censusFilters, 'key', 'census-region')
                                 }
                             ]
                         }
@@ -2657,14 +2676,30 @@
                         } ,
                         {
                             category: 'Maternal Residence',
+                            exclusive: true,
+                            ui: "tabbed",
+                            selectedFilter: "state", // defaulting to state
                             sideFilters: [
-
                                 {
                                     filterGroup: false,
                                     collapse: true,
                                     allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'state')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'census-region')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'hhs-region')
                                 }
                             ]
                         }

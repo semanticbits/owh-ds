@@ -140,14 +140,14 @@
                             <span ng-show="sc.tableData.calculatePercentage === false" ng-bind="'label.mortality.search.table.hidden.percentage.button' | translate"></span>
                         </a>
                     </div>
-                    <div class="pull-right margin-bottom-20 margin-right-10">
+                    <div class="pull-right margin-bottom-20 margin-right-10 export-links">
                         <!--<div>Icons made by <a href="http://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">Madebyoliver</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
                         <a name="download_csv" ng-click="sc.downloadCSV()" title="Download CSV" class="cursor-pointer" href="javascript:void(0)">
-                            <img alt="Export to csv" src="images/csv.png"/>
+                            <img alt="Export to CSV" src="images/csv-icon.svg"/>Export to CSV
                         </a>
                         |
                         <a name="download_xls" ng-click="sc.downloadXLS()" title="Download XLS" class="cursor-pointer" href="javascript:void(0)">
-                            <img alt="Export to Excel" src="images/xls.png"/>
+                            <img alt="Export to Excel" src="images/xls-icon.svg"/>Export to XLS
                         </a>
                     </div>
                     <p id="death-rate-disclaimer" class="dark-link" ng-if="sc.tableView === 'crude_death_rates'" ng-bind=" 'label.crude.death.rates.statement' | translate"></p>

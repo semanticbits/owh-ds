@@ -249,6 +249,9 @@ Scenario: Filer 'Multiple Causes of Deaths' should be displayed
   Given I am on search page
   When user sees side filter
   Then filter "Multiple Causes of Death" should be displayed
+  When I expand "Multiple Causes of Death" filter section
+  And I set "Multiple Causes of Death" filter "Row"
+  Then I see Multiple Causes of Deaths in datatable
 
 Scenario: Data should be right aligned
   Given I am on search page
