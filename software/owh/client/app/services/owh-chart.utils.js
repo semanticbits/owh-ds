@@ -319,7 +319,9 @@
                         },
                         valueFormat:function (n){
                             if(isNaN(n)){ return n; }
-                            else if (primaryFilter.key == 'mental_health' || primaryFilter.key === 'prams') {
+                            else if (primaryFilter.key == 'mental_health'
+                                || primaryFilter.key === 'prams'
+                                || primaryFilter.key === 'brfss') {
                                 return d3.format(',.1f')(n);(n);
                             } else {
                                 return d3.format('d')(n);
@@ -346,7 +348,8 @@
             };
             var multiChartBarData = [];
 
-            if (primaryFilter.key == 'mental_health' || primaryFilter.key === 'prams') {
+            if (primaryFilter.key == 'mental_health'
+                || primaryFilter.key === 'prams' || primaryFilter.key === 'brfss') {
 
                 var getBarValues = function (barData, filter) {
                     var barValues = [];
@@ -843,9 +846,9 @@
                      */
                     eg.getChartName = function (chartType) {
                         var chartNames = {'yrbsSex&yrbsRace':'Sex and Race', 'yrbsSex&yrbsGrade':'Sex and Grade',
-                            'yrbsGrade&yrbsRace': 'Grade and Race', 'yrbsRace': 'Race',
-                            'yrbsSex': 'Sex', 'yrbsGrade': 'Grade', 'year': 'Year', 'yrbsState': 'State', 'state': 'State' // for PRAMS
-                           };
+                            'yrbsGrade&yrbsRace': 'Grade and Race', 'yrbsRace': 'Race', 'race': 'Race/Ethnicity',
+                            'yrbsSex': 'Sex', 'yrbsGrade': 'Grade', 'year': 'Year', 'state': 'State', 'yrbsState': 'State',
+                            'income':'Household Income', 'education':'Education Attained', 'age_group':'Age group'};
 
                         if (chartType.length == 1) {
                             return chartNames[chartType[0]];

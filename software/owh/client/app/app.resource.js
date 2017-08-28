@@ -51,6 +51,10 @@
           method: 'GET',
           url: '/pramsQuestionsTree'
       },
+      'getBRFSQuestionsTree': {
+          method: 'GET',
+          url: '/brfsQuestionsTree'
+      },
       'getDsMetadata' : {
         method : 'GET',
         url: '/dsmetadata/:dataset'

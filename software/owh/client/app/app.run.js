@@ -360,9 +360,8 @@
             $rootScope.questions = response.data.questionTree;
             $rootScope.questionsList = response.data.questionsList;
             $rootScope.$broadcast("yrbsQuestionsLoadded");
-
         }).catch(function(error){
-            console.log(" Failed to get YRBS questions from yrbs service ", error);
+            console.log(" Failed to get YRBS questions from stats service ", error);
         });
 
         /*
@@ -375,7 +374,19 @@
             $rootScope.$broadcast("pramsQuestionsLoaded");
 
         }).catch(function(error){
-            console.log(" Failed to get PRAMS questions from yrbs service ", error);
+            console.log(" Failed to get PRAMS questions from stats service ", error);
+        });
+
+        /*
+            Get BRFS questions
+         */
+        API.getBRFSQuestionsTree().$promise.then(function(response){
+            console.log('brfs questions response', response);
+            $rootScope.brfsQuestions = response.data.questionTree;
+            $rootScope.brfsQuestionsList = response.data.questionsList;
+            $rootScope.$broadcast("brfsQuestionsLoaded");
+        }).catch(function(error){
+            console.log(" Failed to get BRFS questions from stats service ", error);
         });
 
     }

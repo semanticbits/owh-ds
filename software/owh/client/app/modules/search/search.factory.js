@@ -22,7 +22,7 @@
             removeDisabledFilters: removeDisabledFilters,
             getQueryResults: getQueryResults,
             prepareChartData: prepareChartData,
-            searchYRBSResults: searchYRBSResults,
+            invokeStatsService: invokeStatsService,
             buildQueryForYRBS: buildQueryForYRBS,
             prepareMortalityResults: prepareMortalityResults,
             prepareQuestionChart: prepareQuestionChart,
@@ -31,7 +31,8 @@
             getMixedTable: getMixedTable,
             setFilterGroupBy: setFilterGroupBy,
             getYrbsQuestionsForTopic: getYrbsQuestionsForTopic,
-            getPramsQuestionsForTopics: getPramsQuestionsForTopics,
+            getQuestionsByTopics: getQuestionsByTopics,
+            getQuestionsByDataset: getQuestionsByDataset,
             getPrimaryFilterByKey: getPrimaryFilterByKey
 
         };
@@ -82,11 +83,13 @@
                 var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question')
                 questionFilter.questions = getYrbsQuestionsForTopic(tableView);
             }
-            else if (primaryFilter.key === 'prams') {
+            else if (primaryFilter.key === 'prams' ||
+                primaryFilter.key === 'brfss') {
                 primaryFilter.data = response.data.resultData.table;
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 primaryFilter.headers = buildQueryForYRBS(primaryFilter, true).headers;
-                tableData.data = categorizeQuestions(tableData.data, $rootScope.pramsQuestions);
+                var questions = getQuestionsByDataset(primaryFilter.key);
+                tableData.data = categorizeQuestions(tableData.data, questions);
                 primaryFilter.showBasicSearchSideMenu = response.data.queryJSON.showBasicSearchSideMenu;
                 primaryFilter.runOnFilterChange = response.data.queryJSON.runOnFilterChange;
                 if(response.data.queryJSON) {
@@ -95,7 +98,7 @@
                 //update questions based on topics
                 var topics = groupOptions[tableView].topic;
                 var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question')
-                questionFilter.questions = getPramsQuestionsForTopics(topics);
+                questionFilter.questions = getQuestionsByTopics(topics, questions);
             }
             else if (primaryFilter.key === 'bridge_race') {
                 primaryFilter.data = response.data.resultData.nested.table;
@@ -153,12 +156,26 @@
          * Update prams questions based on topics
          * @param topics
          */
-        function getPramsQuestionsForTopics(topics) {
+        function getQuestionsByTopics(topics, questionList) {
             var questions = [];
             angular.forEach(topics, function (topic) {
-                var ques = utilService.findByKeyAndValue($rootScope.pramsQuestions, 'id', topic);
+                var ques = utilService.findByKeyAndValue(questionList, 'id', topic);
                 questions.push(ques);
             });
+            return questions;
+        }
+
+        /**
+         * Get the questions based on current data-set
+         * @param dataset -> name of data-set
+         */
+        function getQuestionsByDataset(dataset) {
+            var questions = [];
+            if (dataset === 'prams') {
+                questions = $rootScope.pramsQuestions;
+            } else if (dataset === 'brfss') {
+                questions = $rootScope.brfsQuestions;
+            }
             return questions;
         }
 
@@ -216,7 +233,8 @@
         function getMixedTable(selectedFilter, groupOptions, tableView){
             var file = selectedFilter.data ? selectedFilter.data : {};
 
-            if(selectedFilter.key === 'prams' || selectedFilter.key == 'mental_health') {
+            if(selectedFilter.key === 'prams' || selectedFilter.key === 'brfss'
+                || selectedFilter.key == 'mental_health') {
                 var questions = [];
                 angular.forEach(file.question, function(question) {
                     angular.forEach(question, function(response, key) {
@@ -251,7 +269,7 @@
 
             var tableData = utilService.prepareMixedTableData(headers, file, countKey, totalCount, countLabel, calculatePercentage, calculateRowTotal, secondaryCountKeys, filterUtils.getAllOptionValues());
 
-            if (selectedFilter.key === 'prams' || selectedFilter.key == 'mental_health') {
+            if (selectedFilter.key === 'prams' ||selectedFilter.key === 'brfss' || selectedFilter.key == 'mental_health') {
                 tableData.headers[0].splice(1, 0, { colspan: 1, rowspan: tableData.headers.length, title: "Response", helpText: $filter('translate')('label.help.text.prams.response') });
             }
 
@@ -451,28 +469,18 @@
             }
         }
 
-        //Search for YRBS data
-        function searchYRBSResults( primaryFilter, queryID ) {
+        //Fetch the survey data from stats service
+        function invokeStatsService( primaryFilter, queryID ) {
             var deferred = $q.defer();
-            queryYRBSAPI(primaryFilter, queryID ).then(function(response){
+            queryStatsAPI(primaryFilter, queryID ).then(function(response){
                 deferred.resolve(response);
             });
             return deferred.promise;
         }
 
-        function searchPRAMSResults( primaryFilter, queryID ) {
+        //Query Stats API
+        function queryStatsAPI( primaryFilter, queryID ) {
             var deferred = $q.defer();
-            queryYRBSAPI(primaryFilter, queryID ).then(function(response){
-                deferred.resolve(response);
-            });
-            return deferred.promise;
-        }
-
-        //Query YRBS API
-        function queryYRBSAPI( primaryFilter, queryID ) {
-            var deferred = $q.defer();
-            var apiQuery = buildQueryForYRBS(primaryFilter, true);
-            var headers = apiQuery.headers;
             SearchService.searchResults(primaryFilter, queryID).then(function(response) {
                 deferred.resolve(response);
             });
@@ -524,6 +532,11 @@
                 "yrbsGrade&yrbsRace": "horizontalBar",
                 "yrbsSex": "horizontalBar",
                 "yrbsRace": "horizontalBar",
+                "race": "horizontalBar",
+                "gender": "horizontalBar",
+                "income": "horizontalBar",
+                "age_group": "horizontalBar",
+                "education": "horizontalBar",
                 "yrbsGrade": "horizontalBar",
                 "yrbsState": "horizontalBar",
                 "year": "horizontalBar",
@@ -539,6 +552,10 @@
                 if(chartType){
                       chartTypes.push([selectedPrimaryFilter.key]);
                 }
+                /*//var chartType = chartMappings[selectedPrimaryFilter.key];
+                if (selectedPrimaryFilter.key != 'question') {
+                    chartTypes.push([selectedPrimaryFilter.key]);
+                }*/
             });
             // selectedFilters.forEach( function(selectedPrimaryFilter) {
             //     selectedFilters.forEach( function(selectedSecondaryFilter) {
@@ -565,6 +582,11 @@
             //get the question filter and update question filter with selected question
             var questionFilter = utilService.findByKeyAndValue(copiedPrimaryFilter.allFilters, 'key', 'question');
             questionFilter.value = [question.qkey];
+
+            if(copiedPrimaryFilter.key === 'prams' || copiedPrimaryFilter.key === 'brfss') {
+                var topicFilter = utilService.findByKeyAndValue(copiedPrimaryFilter.allFilters, 'key', 'topic');
+                topicFilter.questions = [question.qkey];
+            }
 
             //if chart type is not specified, select first from possible combinations
             if(!chartType) {
@@ -1278,6 +1300,14 @@
                             confidenceIntervalOption
                         ]
                     }
+                ],
+                'brfss' : [
+                    {
+                        title: 'Variance',
+                        options: [
+                            confidenceIntervalOption
+                        ]
+                    }
                 ]
             };
             filters.groupOptions = [
@@ -1535,7 +1565,7 @@
                 {key:'85-89years',title:'85 - 89 years', min: 86, max: 90},
                 {key:'90-94years',title:'90 - 94 years', min: 91, max: 95},
                 {key:'95-99years',title:'95 - 99 years', min: 96, max: 100},
-                {key:'100years and over',title:'>100', min: 101, max: 105},
+                {key:'100 years and over',title:'>100 years', min: 101, max: 105},
                 {key:'Age not stated',title:'Age not stated', min: -5, max: 0}
             ];
 
@@ -2168,6 +2198,273 @@
                     filterType: 'radio',autoCompleteOptions: filters.pramsSmokedLastOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.smoked.last"}
             ];
 
+            filters.brfsTopicOptions = [
+                {"key": "cat_45", "title": "Aerobic Activity"},
+                {"key": "cat_1",  "title": "Age"},
+                {"key": "cat_12", "title": "Alcohol Consumption"},
+                {"key": "cat_32", "title": "All Teeth Removed"},
+                {"key": "cat_17", "title": "Arthritis"},
+                {"key": "cat_34", "title": "Asthma"},
+                {"key": "cat_33", "title": "BMI Categories"},
+                {"key": "cat_48", "title": "Binge Drinking"},
+                {"key": "cat_49", "title": "Blood Stool Test"},
+                {"key": "cat_4",  "title": "COPD"},
+                {"key": "cat_10", "title": "Cardiovascular Disease"},
+                {"key": "cat_3",  "title": "Cholesterol Checked"},
+                {"key": "cat_50", "title": "Cholesterol High"},
+                {"key": "cat_51", "title": "Chronic Drinking"},
+                {"key": "cat_60", "title": "Current Smoker Status"},
+                {"key": "cat_37", "title": "Dental Visit"},
+                {"key": "cat_0",  "title": "Depression"},
+                {"key": "cat_11", "title": "Diabetes"},
+                {"key": "cat_2",  "title": "Disability status"},
+                {"key": "cat_38", "title": "Drink and Drive"},
+                {"key": "cat_13", "title": "Education"},
+                {"key": "cat_14", "title": "Employment"},
+                {"key": "cat_62", "title": "Exercise"},
+                {"key": "cat_53", "title": "Fair or Poor Health"},
+                {"key": "cat_15", "title": "Five Servings per Day"},
+                {"key": "cat_40", "title": "Flu Shot"},
+                {"key": "cat_41", "title": "Fruit Consumption"},
+                {"key": "cat_18", "title": "HIV Test"},
+                {"key": "cat_23", "title": "Health Care Cost"},
+                {"key": "cat_19", "title": "Health Care Coverage"},
+                {"key": "cat_52", "title": "Heavy Drinking"},
+                {"key": "cat_54", "title": "High Blood Pressure"},
+                {"key": "cat_20", "title": "Income"},
+                {"key": "cat_21", "title": "Internet"},
+                {"key": "cat_5",  "title": "Kidney"},
+                {"key": "cat_9",  "title": "Last Checkup"},
+                {"key": "cat_43", "title": "Mammogram"},
+                {"key": "cat_22", "title": "Marital Status"},
+                {"key": "cat_35", "title": "Number of Children"},
+                {"key": "cat_6",  "title": "Other Cancer"},
+                {"key": "cat_16", "title": "Overall Health"},
+                {"key": "cat_57", "title": "PSA Test"},
+                {"key": "cat_56", "title": "Pap Test"},
+                {"key": "cat_24", "title": "Personal Care Provider"},
+                {"key": "cat_55", "title": "Physical Activity"},
+                {"key": "cat_44", "title": "Physical Activity Index"},
+                {"key": "cat_47", "title": "Pneumonia Vaccination"},
+                {"key": "cat_25", "title": "Race"},
+                {"key": "cat_58", "title": "Seatbelt Use"},
+                {"key": "cat_27", "title": "Sex"},
+                {"key": "cat_28", "title": "Shingle Vaccination"},
+                {"key": "cat_59", "title": "Sigmoidoscopy"},
+                {"key": "cat_7",  "title": "Skin Cancer"},
+                {"key": "cat_30", "title": "Smokeless Tobacco"},
+                {"key": "cat_61", "title": "Smoker Status"},
+                {"key": "cat_46", "title": "Strength Activity"},
+                {"key": "cat_39", "title": "Teeth Removed"},
+                {"key": "cat_29", "title": "Tetanus Shot"},
+                {"key": "cat_36", "title": "USPSTF Recommendations"},
+                {"key": "cat_42", "title": "Under 65 Coverage"},
+                {"key": "cat_63", "title": "Vegetable Consumption"},
+                {"key": "cat_31", "title": "Veteran Status"},
+                {"key": "cat_8",  "title":  "Vision"}
+            ];
+
+            filters.brfsYearOptions = [
+                { "key": "2015", "title": "2015" },
+                { "key": "2014", "title": "2014" },
+                { "key": "2013", "title": "2013" },
+                { "key": "2012", "title": "2012" },
+                { "key": "2011", "title": "2011" },
+                { "key": "2010", "title": "2010" },
+                { "key": "2009", "title": "2009" },
+                { "key": "2008", "title": "2008" },
+                { "key": "2007", "title": "2007" },
+                { "key": "2006", "title": "2006" },
+                { "key": "2005", "title": "2005" },
+                { "key": "2004", "title": "2004" },
+                { "key": "2003", "title": "2003" },
+                { "key": "2002", "title": "2002" },
+                { "key": "2001", "title": "2001" },
+                { "key": "2000", "title": "2000" }
+            ];
+
+            filters.brfsAgeGroupOptions = [
+                {"key": "18-24", "title": "Age 18-24"},
+                {"key": "25-34", "title": "Age 25-34"},
+                {"key": "35-44", "title": "Age 35-44"},
+                {"key": "45-54", "title": "Age 45-54"},
+                {"key": "55-64", "title": "Age 55-64"},
+                {"key": "40-49", "title": "Age 40-49"},
+                {"key": "50-59", "title": "Age 50-59"},
+                {"key": "60-64", "title": "Age 60-64"},
+                {"key": "65+", "title": "Age 65+"},
+                {"key": "65-74", "title": "Age 65-74"},
+                {"key": "75+", "title": "Age 75+"},
+                {"key": "21-30", "title": "Age 21-30"},
+                {"key": "31-40", "title": "Age 31-40"},
+                {"key": "41-50", "title": "Age 41-50"},
+                {"key": "51-60", "title": "Age 51-60"},
+                {"key": "61-65", "title": "Age 61-65"},
+                {"key": "60-69", "title": "Age 60-69"},
+                {"key": "70-74", "title": "Age 70-74"},
+                {"key": "70-75", "title": "Age 70-75"}
+            ];
+            filters.brfsEducationOptions = [
+                {"key": "Less than H.S.", "title": "Less than H.S."},
+                {"key": "H.S. or G.E.D.", "title": "H.S. or G.E.D."},
+                {"key": "Some post-H.S.", "title": "Some post-H.S."},
+                {"key": "College graduate", "title": "College graduate"}
+            ];
+            filters.brfsGenderOptions = [
+                {"key": "Male", "title": "Male"},
+                {"key": "Female", "title": "Female"}
+            ];
+            filters.brfsIncomeOptions = [
+                {"key": "Less than $15,000", "title": "Less than $15,000"},
+                {"key": "$15,000-$24,999", "title": "$15,000-$24,999"},
+                {"key": "$25,000-$34,999", "title": "$25,000-$34,999"},
+                {"key": "$35,000-$49,999", "title": "$35,000-$49,999"},
+                {"key": "$50,000+", "title": "$50,000+"}
+            ];
+
+            filters.brfsRaceOptions = [
+                {"key": "White, non-Hispanic", "title": "White, non-Hispanic"},
+                {"key": "Black, non-Hispanic", "title": "Black, non-Hispanic"},
+                {"key": "American Indian or Alaskan Native, non-Hispanic", "title": "American Indian or Alaskan Native, non-Hispanic"},
+                {"key": "Asian, non-Hispanic", "title": "Asian, non-Hispanic"},
+                {"key": "Native Hawaiian or other Pacific Islander, non-Hispanic", "title": "Native Hawaiian or other Pacific Islander, non-Hispanic"},
+                {"key": "Other, non-Hispanic", "title": "Other, non-Hispanic"},
+                {"key": "Multiracial, non-Hispanic", "title": "Multiracial, non-Hispanic"},
+                {"key": "Hispanic", "title": "Hispanic"}
+            ];
+
+            filters.brfsStateOptions = [
+                { "key": "AL", "title": "Alabama" },
+                { "key": "AK", "title": "Alaska" },
+                { "key": "AZ", "title": "Arizona" },
+                { "key": "AR", "title": "Arkansas" },
+                { "key": "CA", "title": "California" },
+                { "key": "CO", "title": "Colorado" },
+                { "key": "CT", "title": "Connecticut" },
+                { "key": "DE", "title": "Delaware" },
+                { "key": "DC", "title": "District of Columbia" },
+                { "key": "FL", "title": "Florida" },
+                { "key": "GA", "title": "Georgia" },
+                { "key": "HI", "title": "Hawaii" },
+                { "key": "ID", "title": "Idaho" },
+                { "key": "IL", "title": "Illinois" },
+                { "key": "IN", "title": "Indiana"},
+                { "key": "IA", "title": "Iowa" },
+                { "key": "KS", "title": "Kansas" },
+                { "key": "KY", "title": "Kentucky" },
+                { "key": "LA", "title": "Louisiana" },
+                { "key": "ME", "title": "Maine" },
+                { "key": "MD", "title": "Maryland" },
+                { "key": "MA", "title": "Massachusetts" },
+                { "key": "MI", "title": "Michigan" },
+                { "key": "MS", "title": "Mississippi" },
+                { "key": "MO", "title": "Missouri" },
+                { "key": "MT", "title": "Montana" },
+                { "key": "NE", "title": "Nebraska" },
+                { "key": "NV", "title": "Nevada" },
+                { "key": "NH", "title": "New Hampshire" },
+                { "key": "NJ", "title": "New Jersey" },
+                { "key": "NM", "title": "New Mexico" },
+                { "key": "NY", "title": "New York" },
+                { "key": "NC", "title": "North Carolina" },
+                { "key": "ND", "title": "North Dakota" },
+                { "key": "OH", "title": "Ohio" },
+                { "key": "OK", "title": "Oklahoma" },
+                { "key": "PA", "title": "Pennsylvania" },
+                { "key": "RI", "title": "Rhode Island" },
+                { "key": "SC", "title": "South Carolina" },
+                { "key": "SD", "title": "South Dakota" },
+                { "key": "TN", "title": "Tennessee" },
+                { "key": "TX", "title": "Texas" },
+                { "key": "UT", "title": "Utah" },
+                { "key": "VT", "title": "Vermont" },
+                { "key": "VA", "title": "Virginia" },
+                { "key": "WV", "title": "West Virginia" },
+                { "key": "WI", "title": "Wisconsin" },
+                { "key": "WY", "title": "Wyoming" }
+            ];
+
+            filters.brfsFilters = [
+                {
+                    key: 'topic', title: 'label.brfss.filter.topic',
+                    queryKey:"topic",primary: false,
+                    value: [], groupBy: false,
+                    filterType: 'checkbox', autoCompleteOptions: filters.brfsTopicOptions,
+                    doNotShowAll: true, helpText: ""
+                },
+                {
+                    key: 'year', title: 'label.filter.year',
+                    queryKey:"year", primary: false,
+                    value: ['2015'], groupBy: false,
+                    filterType: 'radio', autoCompleteOptions: filters.brfsYearOptions,
+                    doNotShowAll: true, helpText: ""
+                },
+                {
+                    key: 'sex',
+                    title: 'label.filter.gender',
+                    queryKey: "gender",
+                    primary: false,
+                    value: [],
+                    groupBy: false,
+                    filterType: 'radio',
+                    autoCompleteOptions: filters.brfsGenderOptions,
+                    doNotShowAll: false,
+                    helpText: ''
+                },
+                {
+                    key: 'state', title: 'label.brfss.filter.state',
+                    queryKey:"sitecode",primary: false, value: ['AL'],
+                    groupBy: false, filterType: 'radio',
+                    autoCompleteOptions: filters.brfsStateOptions,
+                    doNotShowAll: false, helpText: ""
+                },
+                {
+                    key: 'race', title: 'label.brfss.filter.race_ethnicity',
+                    queryKey:"race", primary: false, value: [],
+                    groupBy: 'column', filterType: 'radio',
+                    autoCompleteOptions: filters.brfsRaceOptions,
+                    doNotShowAll: false, helpText: ""
+                },
+                {
+                    key: 'age_group', title: 'label.filter.age_group',
+                    queryKey:"age_group",primary: false, value: [],
+                    groupBy: false, filterType: 'radio',
+                    autoCompleteOptions: filters.brfsAgeGroupOptions,
+                    doNotShowAll: false, helpText: ""
+                },
+                {
+                    key: 'education', title: 'label.filter.education.attained',
+                    queryKey:"education",primary: false, value: [],
+                    groupBy: false, filterType: 'radio',
+                    autoCompleteOptions: filters.brfsEducationOptions,
+                    doNotShowAll: false, helpText: ""
+                },
+                {
+                    key: 'income', title: 'label.filter.household.income',
+                    queryKey:"income",primary: false, value: [],
+                    groupBy: false, filterType: 'radio',
+                    autoCompleteOptions: filters.brfsIncomeOptions,
+                    doNotShowAll: false, helpText: ""
+                },
+                {
+                    key: 'question', title: 'label.brfss.filter.question',
+                    queryKey:"question.path", aggregationKey:"question.key",
+                    primary: false, value: [],
+                    groupBy: 'row', filterType: 'tree',
+                    autoCompleteOptions: $rootScope.brfsQuestionsList,
+                    donotshowOnSearch:true,
+                    questions: $rootScope.brfsQuestions,
+                    selectTitle: 'label.brfss.select.question',
+                    updateTitle: 'label.brfss.update.question',
+                    iconClass: 'fa fa-pie-chart purple-text',
+                    helpText: '',
+                    onIconClick: function(question) {
+                        debugger
+                        showChartForQuestion(filters.selectedPrimaryFilter, question);
+                    }
+                }
+            ];
+
             filters.search = [
                 {
                     key: 'deaths', title: 'label.filter.mortality', primary: true, value: [], header:"Detailed Mortality",
@@ -2254,7 +2551,7 @@
                 },
                 {
                     key: 'mental_health', title: 'label.risk.behavior', primary: true, value:[], header:"Youth Risk Behavior",
-                    searchResults: searchYRBSResults, dontShowInlineCharting: true,
+                    searchResults: invokeStatsService, dontShowInlineCharting: true,
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total', tableView:'Alcohol and Other Drug Use',
                     chartAxisLabel:'Percentage',
                     showBasicSearchSideMenu: true, runOnFilterChange: true, allFilters: filters.yrbsBasicFilters, // Default to basic filter
@@ -2712,9 +3009,9 @@
                 },
                 {
                     key: 'prams', title: 'label.prams.title', primary: true, value:[], header:"Pregnancy Risk Assessment",
-                    searchResults: searchPRAMSResults, dontShowInlineCharting: true,
-                    additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total', tableView:'delivery',
-                    chartAxisLabel:'Percentage',
+                    searchResults: invokeStatsService, dontShowInlineCharting: true,
+                    additionalHeaders:filters.yrbsAdditionalHeaders, tableView:'delivery',
+                    chartAxisLabel:'Percentage', countLabel: 'Total',
                     showBasicSearchSideMenu: true, runOnFilterChange: true, allFilters: filters.pramsFilters, // Default to basic filter
                     sideFilters:[
                         {
@@ -3274,6 +3571,83 @@
                                     filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'state')
                                 }
                             ]
+                        }
+                    ]
+                },
+                {
+                    key: 'brfss', title: 'label.brfss.title', primary: true, value:[],
+                    searchResults: invokeStatsService, dontShowInlineCharting: true,
+                    additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total',
+                    tableView:'alcohol_consumption',  chartAxisLabel:'Percentage',
+                    showBasicSearchSideMenu: true, runOnFilterChange: true,
+                    allFilters: filters.brfsFilters, header:"Behavioral Risk Factor Surveillance System",
+                    sideFilters:[
+                        {
+
+                            sideFilters: [
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: false,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'topic')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: false,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'year')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: false,
+                                    allowGrouping: true,
+                                    groupOptions: filters.columnGroupOptions,
+                                    dontShowCounts: true,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'state')
+                                },
+                                {
+                                    filterGroup: false, collapse: false, allowGrouping: false,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'question')
+                                }
+                            ]
+                        },
+                        {
+                            category: 'Breakout',
+                            sideFilters: [
+                                {
+                                    filterGroup: false, collapse: false,
+                                    allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                    onFilterChange: utilService.brfsFilterChange,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'sex')
+                                },
+                                {
+                                    filterGroup: false, collapse: false,
+                                    allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                    onFilterChange: utilService.brfsFilterChange,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'race')
+                                },
+                                {
+                                    filterGroup: false, collapse: false,
+                                    allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                    onFilterChange: utilService.brfsFilterChange,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'age_group')
+                                },
+                                {
+                                    filterGroup: false, collapse: false,
+                                    allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                    onFilterChange: utilService.brfsFilterChange,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'education')
+                                },
+                                {
+                                    filterGroup: false, collapse: false,
+                                    allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                    onFilterChange: utilService.brfsFilterChange,
+                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'income')
+                                }
+                            ]
+
                         }
                     ]
                 }

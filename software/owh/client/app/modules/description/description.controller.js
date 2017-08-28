@@ -503,6 +503,42 @@
                             answer:"The information collected from the mothers is used to develop health programs and policies; help doctors and nurses improve care; and make better use of health resources."
                         }
                     ]
+                },
+                brfss: {
+                    key:"brfss",
+                    title: 'Behavioral Risk Factor Surveillance System(BRFSS)',
+                    image: 'brfss-icon.svg',
+                    yrsAvail: '2000-2015',
+                    topics: "Cancer, Diabetes, Alcohol and Other Drug Use, Obesity, Overweight and Weight Control, Dietary Behaviors, Physical Activity, Sexual Behavior, Tobacco Use, Babies, Health and Nutrition, Demographics, Chronic Health Indicators, Health Care Access and Coverage, Oral Health, Women’s Health, Prostate Cancer",
+                    dataDescription: "BRFSS is the nation's premier system of health-related telephone surveys that collect state data about U.S. residents regarding their health-related risk behaviors, chronic health conditions, and use of preventive services. BRFSS collects data in all 50 states as well as the District of Columbia. BRFSS completes more than 400,000 adult interviews each year, making it the largest continuously conducted health survey system in the world",
+                    suppression: "The Prevalence estimate not available if the unweighted sample size for the denominator was < 50 or the Relative Standard Error (RSE) is > 0.3 or if the state did not collect data for that calendar year.",
+                    source: "The Behavioral Risk Factor Surveillance System data are published by the United States Department of Health and Human Services (HHS), Centers for Disease Control and Prevention (CDC), National Center for Chronic Disease Prevention and Health Promotion (NCCDPHP), Division of Adult and Community Health, Behavioral Surveillance Branch.",
+                    filters: [
+                        {name: "Class", description: "This field indicates that the category of topics addressed in the BRFSS core questionnaire"},
+                        {name: "Topic", description: "Topics addressed in the BRFSS core questionnaire include barriers to and content of prenatal care, obstetric history, maternal use of alcohol and cigarettes, physical abuse, contraception, economic status, maternal stress, and early infant development and health status"},
+                        {name: "Year", description: "This field indicates the Year of the BRFSS survey"},
+                        {name: "Location- State", description: "This field indicates the States for which BRFSS data is available"},
+                        {name: "Question", description: "This field indicates the questions which were developed and tested and ultimately placed on the BRFSS questionnaire"},
+                        {name: "Sex", description: "This field indicates the sex of the survey respondents"},
+                        {name: "Race/Ethnicity", description: "This field indicates the race or ethnicity of the survey respondents"},
+                        {name: "Age Group", description: "This field indicates the age-group of the survey respondents"},
+                        {name: "Education attained", description: "This field indicates the education attained by the survey respondents"},
+                        {name: "Household Income", description: "This field indicates the household income of the survey respondents"}
+                    ],
+                    additionalInfo:[
+                        {
+                            question:"How is the survey conducted?",
+                            answer:"With technical and methodological assistance from CDC, state health departments use in-house interviewers or contract with telephone call centers or universities to administer the BRFSS surveys continuously through the year. The states use a standardized core questionnaire, optional modules, and state-added questions. The survey is conducted using Random Digit Dialing (RDD) techniques on both landlines and cell phones."
+                        },
+                        {
+                            question:"Who takes part in the BRFSS survey? Are they compensated?",
+                            answer:"Adults 18 years or older are asked to take part in the survey. Participants are not compensated monetarily but should know that they are taking part in a rewarding endeavor that helps improve the health of U.S. residents. The number of interviews within each state will vary based on funding and the size of regions, such as health districts, within each state"
+                        },
+                        {
+                            question:"How are BRFSS data weighted? What variables are used when weighting BRFSS data?",
+                            answer:"From the 1980s to 2010, CDC has used a statistical method called post stratification to weight BRFSS survey data to known proportions of age, race and ethnicity, sex, geographic region within a population. In 2011 the BRFSS moved to a new weighting methodology known as iterative proportional fitting or raking. Raking has several advantages over post stratification. First, it allows the introduction of more demographic variables—such as education level, marital status, and homeownership—into the statistical weighting process than would have been possible with post stratification. This advantage reduces the potential for bias and increases the representativeness of estimates. Second, raking allows for the incorporation of a now-crucial variable—telephone ownership (landline and/or cellular telephone)—into the BRFSS weighting methodology. Beginning with the 2011 dataset, raking succeeded post stratification as the BRFSS statistical weighting method. As noted in the previous paragraph, age, sex, categories of ethnicity, geographic regions within states, marital status, education level, home ownership and type of phone ownership are currently used to weight BRFSS data."
+                        }
+                    ]
                 }
         };
 

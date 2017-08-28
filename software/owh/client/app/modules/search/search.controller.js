@@ -71,6 +71,27 @@
                 {key: 'maternal_experiences', title: 'Maternal Experiences'},
                 {key: 'prenatal_care', title: 'Prenatal Care'},
                 {key: 'insurance_medicaid_services', title: 'Insurance/Medicaid/Services'}],
+            brfss: [
+                {key: 'alcohol_consumption', title: 'Alcohol Consumption'},
+                {key: 'cholesterol_awareness', title: 'Cholesterol Awareness'},
+                {key: 'chronic_health_indicator', title: 'Chronic Health Indicators'},
+                {key: 'colorectal_cancer_screening', title: 'Colorectal Cancer Screening'},
+                {key: 'brfs_demographics', title: 'Demographics'},
+                {key: 'fruits_vegetables', title: 'Fruits and Vegetables'},
+                {key: 'healthcare_acccess_coverage', title: 'Health Care Access/Coverage'},
+                {key: 'health_status', title: 'Health Status'},
+                {key: 'hiv_aids', title: 'HIV - AIDS'},
+                {key: 'hypertension_awareness', title: 'Hypertension Awareness'},
+                {key: 'immunization', title: 'Immunization'},
+                {key: 'injury', title: 'Injury'},
+                {key: 'oral_health', title: 'Oral Health'},
+                {key: 'overweight_and_ovesity', title: 'Overweight and Ovesity'},
+                {key: 'physical_activity', title: 'Physical Activity'},
+                {key: 'prostate_cancer', title: 'Prostate Cancer'},
+                {key: 'tobbaco_use', title: 'Tobbaco Use'},
+                {key: 'womens_health', title: "Women's Health"}
+            ],
+
             mental_health: [
                 {key: 'Alcohol and Other Drug Use', title: 'Alcohol and Other Drug Use'},
                 {key: 'Dietary Behaviors', title: 'Dietary Behaviors'},
@@ -104,6 +125,7 @@
                 'prenatal_care', 'birth_weight', 'birth_plurality', 'live_birth', 'birth_place', 'delivery_method', 'medical_attendant',
                 'ucd-chapter-10', 'state'],
             "label.prams.title": [],
+            "label.brfss.title": [],
             "label.filter.std": [],
             "label.filter.tb": [],
             "label.filter.aids": [],
@@ -149,6 +171,7 @@
             mental_health:{},
             natality:{},
             prams:{},
+            brfss:{},
             delivery: {
                 "topic": ['cat_45', 'cat_39', 'cat_0']
             },
@@ -175,6 +198,62 @@
             },
             insurance_medicaid_services: {
                 "topic": ['cat_32', 'cat_21', 'cat_44']
+            },
+            alcohol_consumption: {
+                "topic": ['cat_12', 'cat_48', 'cat_51', 'cat_52']
+            },
+            cholesterol_awareness: {
+                "topic": ['cat_3', 'cat_50']
+            },
+            chronic_health_indicator:{
+                "topic": ['cat_0', 'cat_4', 'cat_5', 'cat_6', 'cat_7', 'cat_8',
+                    'cat_10', 'cat_11', 'cat_17', 'cat_34']
+            },
+            colorectal_cancer_screening:{
+                "topic": ['cat_49', 'cat_59', 'cat_36']
+            },
+            brfs_demographics:{
+                "topic": ['cat_1', 'cat_2', 'cat_13','cat_14', 'cat_20', 'cat_21',
+                    'cat_22', 'cat_35', 'cat_25', 'cat_26', 'cat_27 ', 'cat_31 ']
+            },
+            fruits_vegetables:{
+                "topic": ['cat_15', 'cat_41', 'cat_63']
+            },
+            healthcare_access_coverage:{
+                "topic": ['cat_23', 'cat_19', 'cat_9', 'cat_24', 'cat_42']
+            },
+            health_status:{
+                "topic": ['cat_53', 'cat_16']
+            },
+            hiv_aids:{
+                "topic": ['cat_18']
+            },
+            hypertension_awareness:{
+                "topic": ['cat_54']
+            },
+            immunization:{
+                "topic": ['cat_40', 'cat_47', 'cat_29', 'cat_28']
+            },
+            injury:{
+                "topic": ['cat_38', 'cat_58']
+            },
+            oral_health:{
+                "topic": ['cat_32', 'cat_37', 'cat_39']
+            },
+            overweight_and_ovesity:{
+                "topic": ['cat_33']
+            },
+            prostate_cancer:{
+                "topic": ['cat_57']
+            },
+            tobbaco_use:{
+                "topic": ['cat_60', 'cat_30', 'cat_61']
+            },
+            womens_health:{
+                "topic": ['cat_43', 'cat_56']
+            },
+            physical_activity:{
+                "topic": ['cat_45', 'cat_62', 'cat_55', 'cat_44', 'cat_46']
             }
 
         };
@@ -206,7 +285,11 @@
             var pramsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'prams');
             angular.forEach(pramsFilter.sideFilters[0].sideFilters, function(filter){
                 if(filter.filters.key === 'topic') {
-                    filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
+                    if (sc.filters.selectedPrimaryFilter.key == 'prams') {
+                        filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
+                    } else {
+                        filter.filters.autoCompleteOptions = sc.filters.brfsTopicOptions;
+                    }
                     searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup['delivery']);
                 }
             });
@@ -241,13 +324,18 @@
         }
 
         function search(isFilterChanged) {
-            if(sc.filters.selectedPrimaryFilter.key === 'prams' || sc.filters.selectedPrimaryFilter.key === 'mental_health') {
+            if(sc.filters.selectedPrimaryFilter.key === 'prams'
+                || sc.filters.selectedPrimaryFilter.key === 'mental_health'
+                || sc.filters.selectedPrimaryFilter.key === 'brfss') {
+
+                var statQuestions = searchFactory.getQuestionsByDataset(sc.filters.selectedPrimaryFilter.key);
+
                 angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters[0].sideFilters, function(filter) {
                     if(filter.filters.key === 'topic') {
                         filter.filters.questions = [];
                         if(filter.filters.value.length === 0) {
                             angular.forEach(filter.filters.autoCompleteOptions, function (option) {
-                                angular.forEach($rootScope.pramsQuestions, function(pramsCat) {
+                                angular.forEach(statQuestions, function(pramsCat) {
                                     if(option.key === pramsCat.id) {
                                         angular.forEach(pramsCat.children, function(question) {
                                             filter.filters.questions.push(question.id);
@@ -257,7 +345,7 @@
                             });
                         } else {
                             angular.forEach(filter.filters.value, function(cat) {
-                                angular.forEach($rootScope.pramsQuestions, function(pramsCat) {
+                                angular.forEach(statQuestions, function(pramsCat) {
                                     if(cat === pramsCat.id) {
                                         angular.forEach(pramsCat.children, function(question) {
                                             filter.filters.questions.push(question.id);
@@ -269,8 +357,9 @@
                     } else if (filter.filters.key === 'question'){
                         if(sc.filters.selectedPrimaryFilter.key === 'mental_health') {
                             filter.filters.questions = searchFactory.getYrbsQuestionsForTopic(sc.tableView);
-                        } else if(sc.filters.selectedPrimaryFilter.key === 'prams'){
-                            filter.filters.questions = searchFactory.getPramsQuestionsForTopics(sc.optionsGroup[sc.tableView].topic);
+                        } else if(sc.filters.selectedPrimaryFilter.key === 'prams'
+                            || sc.filters.selectedPrimaryFilter.key === 'brfss'){
+                            filter.filters.questions = searchFactory.getQuestionsByTopics(sc.optionsGroup[sc.tableView].topic, statQuestions);
                         }
                     }
                 });
@@ -305,6 +394,11 @@
         $scope.$on('pramsQuestionsLoaded', function() {
             var questionFilter = utilService.findFilterByKeyAndValue(sc.filters.pramsFilters, 'key', 'question');
             questionFilter.autoCompleteOptions = $rootScope.pramsQuestionsList;
+        });
+
+        $scope.$on('brfsQuestionsLoaded', function() {
+            var questionFilter = utilService.findFilterByKeyAndValue(sc.filters.brfsFilters, 'key', 'question');
+            questionFilter.autoCompleteOptions = $rootScope.brfsQuestionsList;
         });
 
 
@@ -426,7 +520,11 @@
                     if (filter.filters.key === 'topic') {
                         //clear selected topics on class change
                         filter.filters.value = [];
-                        filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
+                        if (sc.filters.selectedPrimaryFilter.key == 'prams') {
+                            filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
+                        } else {
+                            filter.filters.autoCompleteOptions = sc.filters.brfsTopicOptions;
+                        }
                         searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup[selectedFilter.key]);
                     } else if (filter.filters.key === 'question') {
                         // Clear questions selection and update questions list on class/topic change for PRAMS and YRBS datasets

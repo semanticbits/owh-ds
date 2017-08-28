@@ -26,23 +26,18 @@
         ots.goBackward = goBackward;
         ots.$onChanges = function() {
             var filters = [];
-            if(ots.filters && ots.filters.selectedPrimaryFilter.key === 'prams') {
-                filters = ots.showFilters.prams;
-            }else if(ots.filters && ots.filters.selectedPrimaryFilter.key === 'mental_health') {
-                filters = ots.showFilters.mental_health;
-            }
-            else if(['number_of_deaths', 'crude_death_rates', 'age-adjusted_death_rates'].indexOf(ots.tableView) !== -1) {
+            if(['number_of_deaths', 'crude_death_rates', 'age-adjusted_death_rates'].indexOf(ots.tableView) !== -1) {
                 filters = ots.showFilters.deaths;
             }
             else {
-                filters = ots.showFilters.natality;
+                filters = ots.showFilters[ots.filters.selectedPrimaryFilter.key];
             }
             angular.forEach(filters, function(filter) {
                 if(filter.key === ots.tableView) {
                     ots.selectedShowFilter = filter;
                 }
             });
-        }
+        };
 
         function groupByFiltersUpdated(added) {
             var selectedFilterKeys = utilService.getValuesByKey(ots.filters.selectedPrimaryFilter.value, 'key');

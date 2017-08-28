@@ -33,11 +33,12 @@
                 <label for="tableView" ng-bind="'label.yrbs.healthtopics' | translate"
                       ng-if="mc.showMeOptions[mc.selectedFilter.key]"></label>
             </div>
-            <div class="label margin-right-10" ng-if="mc.selectedFilter.key === 'prams'">
+            <div class="label margin-right-10" ng-if="mc.selectedFilter.key === 'prams' || mc.selectedFilter.key === 'brfss'">
                 <label for="tableView" ng-bind="'label.prams.class' | translate" ng-if="mc.showMeOptions[mc.selectedFilter.key]"></label>
             </div>
-            <div class="label margin-right-10" ng-if="mc.selectedFilter.key !== 'mental_health'
-                                                                    && mc.selectedFilter.key !== 'prams'">
+            <div class="label margin-right-10"
+                 ng-if="mc.selectedFilter.key !== 'mental_health'
+                        && mc.selectedFilter.key !== 'prams' && mc.selectedFilter.key !== 'brfss'">
                 <label for="tableView" ng-bind="'label.show.me' | translate" ng-if="mc.showMeOptions[mc.selectedFilter.key]"></label>
             </div>
             <!--<div class="label-form select"></div>-->
@@ -76,9 +77,9 @@
                 <img src="../images/icons/prams-icon.svg" alt="PRAMS"/>
                 <span class="icon-label" ng-bind="mc.categoryName({newFilter:'prams'})"></span>
             </li>
-            <li>
-                <img src="../images/icons/brfss-icon.svg" alt="Behavioral Risk Factors"/>
-                <span class="icon-label">Behavioral Risk Factors</span>
+            <li ng-click="mc.changeFilter('brfss')">
+                <img src="../images/icons/brfss-icon.svg" alt="Behavioral Risk Factor Surveillance System"/>
+                <span class="icon-label" ng-bind="mc.categoryName({newFilter:'brfss'})"></span>
             </li>
             <li ng-click="mc.changeFilter('cancer_incident')">
                 <img src="../images/icons/cancer-incidence-icon.svg" alt="Cancer Incidence"/>

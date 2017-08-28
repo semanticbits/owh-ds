@@ -26,6 +26,7 @@ describe('mapService', function(){
         $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
+        $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
     }));
 
     describe('test map custom controls', function() {
