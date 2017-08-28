@@ -46,6 +46,7 @@
             stdFilterChange: stdFilterChange,
             aidsFilterChange: aidsFilterChange,
             infantMortalityFilterChange: infantMortalityFilterChange,
+            cancerIncidenceFilterChange: cancerIncidenceFilterChange,
             removeValuesFromArray: removeValuesFromArray,
             getSelectedFiltersText: getSelectedFiltersText,
             brfsFilterChange: brfsFilterChange
@@ -1239,6 +1240,41 @@
                         sideFilter.filters.value = [];
                         sideFilter.filters.groupBy = false;
                     }
+                });
+            }
+        }
+
+        function cancerIncidenceFilterChange (filter, categories) {
+            var filters = categories[0].sideFilters;
+            var ageFilter = filters.filter(function (sideFilter) {
+               return sideFilter.filters.key === 'age_group';
+            })[0];
+            var childhoodCancerFilter = filters.filter(function (sideFilter) {
+                return sideFilter.filters.key === 'childhood_cancer';
+            })[0];
+            var childAgeGroups = [ '00 years', '01-04 years', '05-09 years', '10-14 years', '15-19 years' ];
+            var hasChildAgeGroup = childAgeGroups.reduce(function (prev, curr, _, ages) {
+                return ageFilter.filters.value.every(function (value) {
+                    return ages.indexOf(value) !== -1;
+                });
+            }, false);
+            var filteringByChildhoodCancer = !!childhoodCancerFilter.filters.value.length
+
+            childhoodCancerFilter.disabled = !hasChildAgeGroup;
+
+            if (filteringByChildhoodCancer) {
+                if (ageFilter.filters.allChecked) {
+                    ageFilter.filters.allChecked = false;
+                    ageFilter.filters.value = childAgeGroups;
+                }
+                ageFilter.filters.disableAll = true;
+                ageFilter.filters.autoCompleteOptions.forEach(function (option) {
+                    option.disabled = !~childAgeGroups.indexOf(option.key);
+                });
+            } else {
+                ageFilter.filters.disableAll = false;
+                ageFilter.filters.autoCompleteOptions.forEach(function (option) {
+                    option.disabled = false;
                 });
             }
         }

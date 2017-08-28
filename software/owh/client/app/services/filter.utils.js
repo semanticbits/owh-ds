@@ -1540,6 +1540,7 @@
                     groupBy: false,
                     filterType: 'checkbox',
                     autoCompleteOptions: cancerAgeGroups,
+                    disableAll: false,
                     defaultGroup: 'column',
                     helpText: 'label.help.text.cancer_incidence.age_group'
                 },

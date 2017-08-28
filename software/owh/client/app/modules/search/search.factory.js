@@ -3487,36 +3487,43 @@
                                 {
                                     filterGroup: false, collapse: false, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'current_year')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'sex')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'race')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'hispanic_origin')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'age_group')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.conditionGroupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'site')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.conditionGroupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'childhood_cancer')
                                 },
                                 {
