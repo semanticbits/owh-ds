@@ -583,6 +583,11 @@
             var questionFilter = utilService.findByKeyAndValue(copiedPrimaryFilter.allFilters, 'key', 'question');
             questionFilter.value = [question.qkey];
 
+            if(copiedPrimaryFilter.key === 'prams' || copiedPrimaryFilter.key === 'brfss') {
+                var topicFilter = utilService.findByKeyAndValue(copiedPrimaryFilter.allFilters, 'key', 'topic');
+                topicFilter.questions = [question.qkey];
+            }
+
             //if chart type is not specified, select first from possible combinations
             if(!chartType) {
                 chartType = chartTypes[0];
@@ -2454,6 +2459,7 @@
                     iconClass: 'fa fa-pie-chart purple-text',
                     helpText: '',
                     onIconClick: function(question) {
+                        debugger
                         showChartForQuestion(filters.selectedPrimaryFilter, question);
                     }
                 }

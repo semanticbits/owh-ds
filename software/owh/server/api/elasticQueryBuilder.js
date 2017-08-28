@@ -504,7 +504,7 @@ function buildAPIQuery(primaryFilter) {
 }
 
 /**
- * Prepare queru for PRAMS Years and Questions
+ * Prepare query for PRAMS Years and Questions
  * @param primaryFilter
  * @param apiQuery
  */
