@@ -1147,4 +1147,50 @@ describe('utilService', function(){
 
     });
 
+    describe('infant year filter change', function(){
+        var categories;
+        beforeEach(function () {
+            categories = [{"category":"Infant Characteristics", "sideFilters": [{filters: utils.findByKeyAndValue(filterUtils.getInfantMortalityDataFilters(), 'key', 'year_of_death')}]}];
+        });
+
+        it('Should keep years which on in same range if user selected multiple years - 2014(D69) and 2006(D31)', function(){
+            //In this case user first selected year '2014' then selected year '2006', so we should delete year '2014' and keep '2006'
+            //So that query can hit only one wonder database. In this case database ID D31 for years 2003 - 2006.
+            var yearSideFilter = categories[0].sideFilters[0].filters;
+            yearSideFilter.value.push("2006");
+            utils.infantMortalityFilterChange(yearSideFilter, categories);
+            expect(yearSideFilter.value.length).toEqual(1);
+            expect(yearSideFilter.value[0]).toEqual("2006");
+        });
+        it('Should keep years which on in same range if user selected multiple years - 2014(D69) and 2013(D69)', function(){
+            //In this case user first selected year '2014' then selected year '2013', so we should keep both '2014' and '2013'
+            //Because those are in range 2007 - 2014(D69). So that query can hit only one wonder database.
+            var yearSideFilter = categories[0].sideFilters[0].filters;
+            yearSideFilter.value.push("2013");
+            utils.infantMortalityFilterChange(yearSideFilter, categories);
+            expect(yearSideFilter.value.length).toEqual(2);
+            expect(yearSideFilter.value[0]).toEqual("2014");
+            expect(yearSideFilter.value[1]).toEqual("2013");
+        });
+        it('Should keep years which on in same range if user selected multiple years - 2006(D31) and 2002(D18)', function(){
+            //In this case user first selected year '2006' then selected year '2002', so we should delete '2014' and keep '2002
+            //Because both selected years are in different range, so we are keeping latest selected year.
+            //So '2002' is in range 200 - 2003 which is comes under wonder database D18
+            var yearSideFilter = categories[0].sideFilters[0].filters;
+            yearSideFilter.value.push("2002");
+            utils.infantMortalityFilterChange(yearSideFilter, categories);
+            expect(yearSideFilter.value.length).toEqual(1);
+            expect(yearSideFilter.value[0]).toEqual("2002");
+        });
+        it('Should set to default year if user unselect all years', function(){
+            //By default year 2014 selected, if user un check '2014'
+            var yearSideFilter = categories[0].sideFilters[0].filters;
+            yearSideFilter.value = [];
+            //Then default value '2014' should be set
+            utils.infantMortalityFilterChange(yearSideFilter, categories);
+            expect(yearSideFilter.value.length).toEqual(1);
+            expect(yearSideFilter.value[0]).toEqual("2014");
+        });
+    });
+
 });
