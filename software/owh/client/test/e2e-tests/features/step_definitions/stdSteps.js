@@ -202,7 +202,7 @@ var stdStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^I close visualization popup$/, function (next) {
-        var elm = element(by.css('span[title="Minimize graph"]'));
+        var elm = element(by.cssContainingText('i', 'fullscreen_exit'));
         browser.executeScript("arguments[0].scrollIntoView();", elm);
         elm.click().then(next);
     });

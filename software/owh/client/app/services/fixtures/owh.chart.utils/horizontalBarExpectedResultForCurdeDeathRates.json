@@ -25,7 +25,7 @@
       "hoverinfo":"none",
       "type":"bar",
       "marker":{
-        "color":"#fe66ff"
+        "color":"#65c2ff"
       }
     },
     {
@@ -49,15 +49,14 @@
       "hoverinfo":"none",
       "type":"bar",
       "marker":{
-        "color":"#009aff"
+        "color":"#bc8fe0"
       }
     }
   ],
   "layout":{
-    "width":350,
-    "height":300,
+    "width":128,
+    "autosize":true,
     "showlegend":false,
-    "hovermode":"closest",
     "margin":{
       "l":20,
       "r":10,
@@ -74,6 +73,7 @@
       "showline":true,
       "gridcolor":"#bdbdbd",
       "showticklabels":false,
+      "fixedrange":true,
       "title":"Crude Death Rates"
     },
     "yaxis":{
@@ -87,6 +87,7 @@
       "showline":true,
       "gridcolor":"#bdbdbd",
       "showticklabels":false,
+      "fixedrange":true,
       "title":"label.filter.race"
     },
     "barmode":"bar"

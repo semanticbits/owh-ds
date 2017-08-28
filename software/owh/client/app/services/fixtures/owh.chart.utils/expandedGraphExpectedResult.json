@@ -1,15 +1,14 @@
 [
   {
     "layout":{
-      "width":1100,
-      "height":750,
+      "width":1000,
+      "autosize":true,
       "showlegend":true,
-      "hovermode":"closest",
       "margin":{
         "l":200,
-        "r":50,
+        "r":10,
         "b":200,
-        "t":200
+        "t":150
       },
       "xaxis":{
         "visible":true,
@@ -21,6 +20,7 @@
         "showline":true,
         "gridcolor":"#bdbdbd",
         "showticklabels":true,
+        "fixedrange":true,
         "title":"Deaths"
       },
       "yaxis":{
@@ -34,15 +34,17 @@
         "showline":true,
         "gridcolor":"#bdbdbd",
         "showticklabels":true,
+        "fixedrange":true,
         "title":"label.filter.race"
       },
       "barmode":"stack",
       "title":"chart.title.measure.deaths by label.title.gender.race in undefined for undefined",
-      "autosize":false,
+      "height":750,
       "legend":{
-        "orientation":"h",
-        "y":1.1,
-        "x":0.5
+        "orientation":"v",
+        "x":1.01,
+        "y":0.4,
+        "traceorder":"reversed"
       }
     },
     "dataset":"deaths",
@@ -68,7 +70,7 @@
         "hoverinfo":"none",
         "type":"bar",
         "marker":{
-          "color":"#fe66ff"
+          "color":"#65c2ff"
         }
       },
       {
@@ -92,7 +94,7 @@
         "hoverinfo":"none",
         "type":"bar",
         "marker":{
-          "color":"#009aff"
+          "color":"#bc8fe0"
         }
       }
     ],
@@ -101,15 +103,14 @@
   },
   {
     "layout":{
-      "width":1100,
-      "height":700,
+      "width":1000,
+      "autosize":true,
       "showlegend":true,
-      "hovermode":"closest",
       "margin":{
         "l":200,
-        "r":50,
+        "r":10,
         "b":200,
-        "t":200
+        "t":150
       },
       "xaxis":{
         "visible":true,
@@ -120,7 +121,8 @@
         "tickangle":45,
         "showline":true,
         "gridcolor":"#bdbdbd",
-        "showticklabels":true
+        "showticklabels":true,
+        "fixedrange":true
       },
       "yaxis":{
         "visible":true,
@@ -132,14 +134,16 @@
         "ticksuffix":"   ",
         "showline":true,
         "gridcolor":"#bdbdbd",
-        "showticklabels":true
+        "showticklabels":true,
+        "fixedrange":true
       },
       "title":"chart.title.measure.deaths by label.filter.race in undefined for undefined",
-      "autosize":false,
+      "height":750,
       "legend":{
-        "orientation":"h",
-        "y":1.1,
-        "x":0.5
+        "orientation":"v",
+        "x":1.01,
+        "y":0.4,
+        "traceorder":"reversed"
       }
     },
     "dataset":"deaths",
@@ -195,7 +199,7 @@
         "type":"bar",
         "hoverinfo":"none",
         "marker":{
-          "color":"#fe66ff"
+          "color":"#65c2ff"
         }
       },
       {
@@ -213,7 +217,7 @@
         "type":"bar",
         "hoverinfo":"none",
         "marker":{
-          "color":"#009aff"
+          "color":"#bc8fe0"
         }
       }
     ],
