@@ -1492,7 +1492,6 @@
                     groupBy: false,
                     filterType: 'checkbox',
                     autoCompleteOptions: yearOptions.slice(1),
-                    doNotShowAll: true,
                     defaultGroup: 'column',
                     helpText: 'label.help.text.cancer_incidence.year'
                 },
@@ -1584,6 +1583,8 @@
                     value: [],
                     groupBy: false,
                     filterType: 'checkbox',
+                    displaySearchBox: true,
+                    displaySelectedFirst: true,
                     autoCompleteOptions: stateOptions,
                     defaultGroup:'column',
                     helpText: 'label.help.text.cancer_incidence.state'
