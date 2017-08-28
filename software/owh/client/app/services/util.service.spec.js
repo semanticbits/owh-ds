@@ -1223,4 +1223,79 @@ describe('utilService', function(){
         });
     });
 
+    describe('Cancer Incidence Filter Change:', function () {
+        var mockFilters;
+
+        beforeEach(function () {
+           mockFilters = {};
+           mockFilters.sideFilters = [
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.cancerIncidenceFilters(), 'key', 'current_year')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.cancerIncidenceFilters(), 'key', 'sex')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.cancerIncidenceFilters(), 'key', 'race')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.cancerIncidenceFilters(), 'key', 'hispanic_origin')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.cancerIncidenceFilters(), 'key', 'age_group')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.cancerIncidenceFilters(), 'key', 'site')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.cancerIncidenceFilters(), 'key', 'childhood_cancer')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.cancerIncidenceFilters(), 'key', 'state')
+               }
+           ]
+        });
+
+        afterEach(function () {
+            mockFilters = null;
+        });
+
+        it('Should disable the childhood cancer filter when a non-childhood age group is selected', function () {
+            mockFilters.sideFilters[4].filters.value.push('50-54 years');
+            utils.cancerIncidenceFilterChange(mockFilters.sideFilters[4], [ mockFilters ]);
+            expect(mockFilters.sideFilters[6].disabled).toBeTruthy();
+        });
+
+        it('Should not disable the childhood cancer filter when a childhood age group is selected', function () {
+            mockFilters.sideFilters[4].filters.value.push('10-14 years');
+            utils.cancerIncidenceFilterChange(mockFilters.sideFilters[4], [ mockFilters ]);
+            expect(mockFilters.sideFilters[6].disabled).toBeFalsy();
+        });
+
+        it('Should disable non-childhood age groups when a childhood cancer site is selected', function () {
+            mockFilters.sideFilters[6].filters.value.push('10');
+            utils.cancerIncidenceFilterChange(mockFilters.sideFilters[6], [ mockFilters ]);
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[4].filters.autoCompleteOptions, 'key', '20-24 years').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[4].filters.autoCompleteOptions, 'key', '25-29 years').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[4].filters.autoCompleteOptions, 'key', '30-34 years').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[4].filters.autoCompleteOptions, 'key', '35-39 years').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[4].filters.autoCompleteOptions, 'key', '40-44 years').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[4].filters.autoCompleteOptions, 'key', '45-49 years').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[4].filters.autoCompleteOptions, 'key', '50-54 years').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[4].filters.autoCompleteOptions, 'key', '55-59 years').disabled).toBeTruthy();
+        });
+
+        it('Should disable the all option in the age group filter when a childhood cancer site is selected', function () {
+            mockFilters.sideFilters[6].filters.value.push('10');
+            utils.cancerIncidenceFilterChange(mockFilters.sideFilters[6], [ mockFilters ]);
+            expect(mockFilters.sideFilters[4].filters.disableAll).toBeTruthy();
+        });
+
+        it('Should select all childhood age groups when the childhood cancer site is selected and All age groups are selected', function () {
+            mockFilters.sideFilters[4].filters.allChecked = true;
+            mockFilters.sideFilters[6].filters.value.push('10');
+            utils.cancerIncidenceFilterChange(mockFilters.sideFilters[6], [ mockFilters ]);
+            expect(mockFilters.sideFilters[4].filters.value).toEqual([ '00 years', '01-04 years', '05-09 years', '10-14 years', '15-19 years' ]);
+        });
+    });
 });

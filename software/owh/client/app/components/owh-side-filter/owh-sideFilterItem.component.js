@@ -175,6 +175,7 @@
 
                             //  Run the filter call back only if runOnFilterChange is true
                             if (sfic.runOnFilterChange) {
+                                sfic.onFilterValueChange();
                                 sfic.onFilter();
                             }
                         }
@@ -234,6 +235,7 @@
 
             //  Run the filter call back only if runOnFilterChange is true
             if (sfic.runOnFilterChange) {
+                sfic.onFilterValueChange();
                 sfic.onFilter();
             }
         }
