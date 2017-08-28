@@ -192,16 +192,14 @@ function search(q) {
 
         var es = new elasticSearch();
         var promises = [
-            es.aggregateInfantMortalityData(sideFilterQuery, isStateSelected, allSelectedFilterOptions),
-            es.aggregateInfantMortalityData(finalQuery, isStateSelected, allSelectedFilterOptions)
+            es.aggregateInfantMortalityData([finalQuery[0],preparedQuery.apiQuery], isStateSelected, allSelectedFilterOptions, selectedYears)
         ];
-
-        Q.all(promises).spread(function (sideFilterResults, response) {
+      Q.all(promises).then(function (response) {
             var resData = {};
             resData.queryJSON = q;
-            resData.resultData = response.data;
+            resData.resultData = response[0].data;
             resData.resultData.headers = preparedQuery.headers;
-            resData.sideFilterResults = sideFilterResults;
+            resData.sideFilterResults = {data: [], pagination: {}};
             deferred.resolve(resData);
         }).catch(function (error) {
             logger.error('Infant Mortality ElasticSearch ', error);

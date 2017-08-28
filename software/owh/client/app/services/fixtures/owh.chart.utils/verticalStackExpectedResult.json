@@ -1,104 +1,104 @@
 {
-  "charttype": "multiBarChart",
-  "title": "label.title.gender.race",
-  "longtitle": "chart.title.measure.deaths by label.title.gender.race in undefined for undefined",
-  "dataset": "deaths",
-  "data": [
+  "charttype":"multiBarChart",
+  "title":"label.title.gender.race",
+  "longtitle":"chart.title.measure.deaths by label.title.gender.race in undefined for undefined",
+  "dataset":"deaths",
+  "data":[
     {
-      "name": "Male",
-      "x": [
+      "name":"Male",
+      "x":[
         "White",
         "Black",
         "Asian or Pacific Islander",
         "American Indian"
       ],
-      "y": [
+      "y":[
         1131379,
         157972,
         32035,
         9846
       ],
-      "text": [
+      "text":[
         "Male:White:1131379",
         "Male:Black:157972",
         "Male:Asian or Pacific Islander:32035",
         "Male:American Indian:9846"
       ],
-      "orientation": "v",
-      "type": "bar",
-      "hoverinfo": "none",
-      "marker": {
-        "color": "#65c2ff"
+      "orientation":"v",
+      "type":"bar",
+      "hoverinfo":"none",
+      "marker":{
+        "color":"#65c2ff"
       }
     },
     {
-      "name": "Female",
-      "x": [
+      "name":"Female",
+      "x":[
         "White",
         "Black",
         "Asian or Pacific Islander",
         "American Indian"
       ],
-      "y": [
+      "y":[
         1109971,
         151344,
         30068,
         8185
       ],
-      "text": [
+      "text":[
         "Female:White:1109971",
         "Female:Black:151344",
         "Female:Asian or Pacific Islander:30068",
         "Female:American Indian:8185"
       ],
-      "orientation": "v",
-      "type": "bar",
-      "hoverinfo": "none",
-      "marker": {
-        "color": "#bc8fe0"
+      "orientation":"v",
+      "type":"bar",
+      "hoverinfo":"none",
+      "marker":{
+        "color":"#bc8fe0"
       }
     }
   ],
-  "layout": {
-    "width": 350,
-    "height": 300,
-    "showlegend": false,
-    "hovermode": "closest",
-    "margin": {
-      "l": 20,
-      "r": 10,
-      "b": 20,
-      "t": 20
+  "layout":{
+    "width":128,
+    "autosize":true,
+    "showlegend":false,
+    "margin":{
+      "l":20,
+      "r":10,
+      "b":20,
+      "t":20
     },
-    "xaxis": {
-      "visible": true,
-      "titlefont": {
-        "size": 15
+    "xaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
       },
-      "exponentformat": "none",
-      "tickangle": 45,
-      "showline": true,
-      "gridcolor": "#bdbdbd",
-      "showticklabels": false,
-      "title": "label.filter.race"
+      "exponentformat":"none",
+      "tickangle":45,
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "fixedrange":true,
+      "title":"label.filter.race"
     },
-    "yaxis": {
-      "visible": true,
-      "titlefont": {
-        "size": 15
+    "yaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
       },
-      "exponentformat": "none",
-      "tickangle": 45,
-      "ticksuffix": "   ",
-      "showline": true,
-      "gridcolor": "#bdbdbd",
-      "showticklabels": false,
-      "title": "Deaths"
+      "exponentformat":"none",
+      "tickangle":45,
+      "ticksuffix":"   ",
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "fixedrange":true,
+      "title":"Deaths"
     },
-    "barmode": "stack"
+    "barmode":"stack"
   },
-
-  "options": {
-    "displayModeBar": false
+  "options":{
+    "displayModeBar":false
   }
 }

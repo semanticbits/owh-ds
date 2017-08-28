@@ -23,10 +23,9 @@
     }
   ],
   "layout":{
-    "width":350,
-    "height":300,
+    "width":128,
+    "autosize":true,
     "showlegend":false,
-    "hovermode":"closest",
     "margin":{
       "l":20,
       "r":10,
@@ -43,6 +42,7 @@
       "showline":true,
       "gridcolor":"#bdbdbd",
       "showticklabels":false,
+      "fixedrange":true,
       "title":"Year"
     },
     "yaxis":{
@@ -56,6 +56,7 @@
       "showline":true,
       "gridcolor":"#bdbdbd",
       "showticklabels":false,
+      "fixedrange":true,
       "title":"Population"
     }
   },

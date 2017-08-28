@@ -4,9 +4,9 @@
         .module('owh.services')
         .service('chartUtilService', chartUtilService);
 
-    chartUtilService.$inject = ['$dateParser', '$filter', '$translate','utilService', 'ModalService'];
+    chartUtilService.$inject = ['$window', '$dateParser', '$filter', '$translate','utilService', 'ModalService'];
 
-    function chartUtilService($dateParser, $filter, $translate, utilService, ModalService) {
+    function chartUtilService($window, $dateParser, $filter, $translate, utilService, ModalService) {
         var service = {
             horizontalStack: horizontalStack,
             verticalStack: verticalStack,
@@ -27,13 +27,12 @@
         // plotly layout for quick view
         function quickChartLayout(){
                 return {
-                    width: 350,
-                    height: 300,
+                    width: $window.innerWidth * 0.32,
+                    autosize: true,
                     showlegend: false,
-                    hovermode: 'closest',
                     margin: {l:20, r:10, b:20, t:20},
-                    xaxis: {visible: true, titlefont:{size: 15}, exponentformat: 'none', tickangle: 45, showline: true, gridcolor: '#bdbdbd', showticklabels: false},
-                    yaxis: {visible: true, titlefont:{size: 15}, exponentformat: 'none', tickangle: 45, ticksuffix: '   ',showline: true,gridcolor: '#bdbdbd', showticklabels: false}
+                    xaxis: {visible: true, titlefont:{size: 15}, exponentformat: 'none', tickangle: 45, showline: true, gridcolor: '#bdbdbd', showticklabels: false, fixedrange: true},
+                    yaxis: {visible: true, titlefont:{size: 15}, exponentformat: 'none', tickangle: 45, ticksuffix: '   ',showline: true,gridcolor: '#bdbdbd', showticklabels: false, fixedrange: true}
                 }       
         }
 
@@ -125,7 +124,7 @@
                 return data['pop'] ? Math.round(data[filter.key] / data['pop'] * 1000000) / 10 : 0;
             }
             else if(filter.chartView == "infant_death_rate") {
-                return data['pop'] ? $filter('number')(data[filter.key] / data['pop'] * 1000, 1): 0;
+                return data['pop'] ? $filter('number')(data['deathRate'], 1): 0;
             }
             else if(data['ageAdjustedRate'] && filter.tableView == "age-adjusted_death_rates"){
                 var ageAdjustedRate = parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));
@@ -777,19 +776,25 @@
                         var layout = utilService.clone(eachChartData.layout);
                         // Set chart title
                        layout.title = eachChartData.longtitle;
-                       layout.width = 1100;
-                       layout.height = 700;
-                       layout.autosize= false;
+                       layout.width = 1000;
+                       layout.height = 750;
                        layout.showlegend= true;
-                       // layout.legend ={orientation: "v",
-                       //     x: 1.01,
-                       //     y: .5
-                       // };
-                        layout.legend ={orientation: "h",
-                            y: 1.1,
-                            x: .5
-                        };
-                       layout.margin = {l:200, r:50, b:200, t:200};
+                       if(eachChartData.charttype !== "multiLineChart") {
+                           layout.legend = {
+                               orientation: "v",
+                               x: 1.01,
+                               y: .4,
+
+                           };
+                       }else {
+                           layout.legend ={orientation: "h",
+                               y: 1.15,
+                               x: .4
+                           };
+                       }
+                       layout.legend.traceorder = 'reversed';
+
+                       layout.margin = {l:200, r:10, b:200, t:150};
                        layout.xaxis.visible= true;
                        layout.yaxis.visible= true;
                        layout.xaxis.showticklabels= true;
@@ -842,7 +847,7 @@
                     eg.getChartName = function (chartType) {
                         var chartNames = {'yrbsSex&yrbsRace':'Sex and Race', 'yrbsSex&yrbsGrade':'Sex and Grade',
                             'yrbsGrade&yrbsRace': 'Grade and Race', 'yrbsRace': 'Race', 'race': 'Race/Ethnicity',
-                            'yrbsSex': 'Sex', 'yrbsGrade': 'Grade', 'year': 'Year', 'state': 'State',
+                            'yrbsSex': 'Sex', 'yrbsGrade': 'Grade', 'year': 'Year', 'state': 'State', 'yrbsState': 'State',
                             'income':'Household Income', 'education':'Education Attained', 'age_group':'Age group'};
 
                         if (chartType.length == 1) {
