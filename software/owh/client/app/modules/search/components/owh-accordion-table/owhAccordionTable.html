@@ -12,18 +12,19 @@
                 <tr ng-repeat="eachHeaderRow in oatc.headers">
                     <th ng-repeat="eachHeader in eachHeaderRow" ng-bind="eachHeader.title"
                         colspan="{{eachHeader.colspan}}" rowspan="{{eachHeader.rowspan}}"
-                        title="{{eachHeader.helpText}}" ng-if="$index > 0"></th>
+                        title="{{eachHeader.helpText}}" ng-if="eachHeader.title != 'Question'"></th>
                 </tr>
             </thead>
             <tbody ng-repeat="eachRow in oatc.listRows(topic)">
                 <tr ng-if="eachRow[0].title">
                    <td colspan="100%">
+                       <!-- TODO: charts are not working. looking inti it
                        <span class="chart-icon cursor-pointer {{eachRow[0].iconClass}}"
                              id="{{eachRow[0].qkey}}"
                              ng-if="eachRow[0].iconClass && oatc.showCharts"
                              ng-click="eachRow[0].onIconClick(eachRow[0])">
                            <i class="material-icons pie-chart-icon-purple">pie_chart</i>
-                       </span> &nbsp;&nbsp;
+                       </span> &nbsp;-->&nbsp;
                        <span ng-bind="eachRow[0].title"></span>
                    </td>
                 </tr>

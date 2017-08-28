@@ -269,7 +269,7 @@
 
             var tableData = utilService.prepareMixedTableData(headers, file, countKey, totalCount, countLabel, calculatePercentage, calculateRowTotal, secondaryCountKeys, filterUtils.getAllOptionValues());
 
-            if (selectedFilter.key === 'prams' || selectedFilter.key == 'mental_health') {
+            if (selectedFilter.key === 'prams' ||selectedFilter.key === 'brfss' || selectedFilter.key == 'mental_health') {
                 tableData.headers[0].splice(1, 0, { colspan: 1, rowspan: tableData.headers.length, title: "Response", helpText: $filter('translate')('label.help.text.prams.response') });
             }
 
@@ -1553,7 +1553,7 @@
                 {key:'85-89years',title:'85 - 89 years', min: 86, max: 90},
                 {key:'90-94years',title:'90 - 94 years', min: 91, max: 95},
                 {key:'95-99years',title:'95 - 99 years', min: 96, max: 100},
-                {key:'100years and over',title:'>100', min: 101, max: 105},
+                {key:'100 years and over',title:'>100 years', min: 101, max: 105},
                 {key:'Age not stated',title:'Age not stated', min: -5, max: 0}
             ];
 
