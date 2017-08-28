@@ -1896,6 +1896,24 @@ div.interested-in-filter:focus {
 	box-shadow: inset 0 0 0 2px #8c56b7 !important;
 }
 
+.additional-info ul {
+	list-style: inherit;
+	padding-left: 0;
+	margin-left: 20px;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.additional-info ul li {
+	list-style-type: disc;
+	padding-left: 0;
+	display: list-item;
+}
+
+.additional-info ul li:before, .additional-info ul li:after {
+	display: none;
+}
+
 select.tableViewDropDown:focus {
 	box-shadow: inset 0 0 0 2px #8c56b7 !important;
 }
