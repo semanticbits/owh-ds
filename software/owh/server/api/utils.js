@@ -601,15 +601,15 @@ var mergeWonderResponseWithInfantESData = function(mort, rates) {
                     age = rates[keyMap[mort[key][i].name]];
                 }
                 if(age) {
-                    if (age['birthRate'] == undefined) { // Nested result. go to the leaf node recursively
+                    if (age['deathRate'] == undefined) { // Nested result. go to the leaf node recursively
                         if (age['Total']) { // If there is a subtotal, assign subtotal value
-                            mort[key][i]['birthRate'] = age['Total'].birthRate;
+                            mort[key][i]['deathRate'] = age['Total'].deathRate;
                             mort[key][i]['pop'] = age['Total'].births;
                             mort[key][i]['infant_mortality'] = age['Total'].infant_mortality;
                         }
                         mergeWonderResponseWithInfantESData(mort[key][i], age);
                     }else {
-                        mort[key][i]['birthRate'] = age.birthRate;
+                        mort[key][i]['deathRate'] = age.deathRate;
                         mort[key][i]['pop'] = age.births;
                         mort[key][i]['infant_mortality'] = isNaN(age.infant_mortality) ? 0: age.infant_mortality;
                     }

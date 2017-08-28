@@ -1589,7 +1589,7 @@ function addValueToResultForInfant(keys, rate, pop, births, result){
         result[keys[0]] = {};
     }
     if (keys.length == 1){
-        result[keys[0]]['birthRate'] = rate;
+        result[keys[0]]['deathRate'] = rate;
         result[keys[0]]['infant_mortality'] = pop;
         result[keys[0]]['births'] = births;
     } else{

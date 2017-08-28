@@ -125,7 +125,7 @@
                 return data['pop'] ? Math.round(data[filter.key] / data['pop'] * 1000000) / 10 : 0;
             }
             else if(filter.chartView == "infant_death_rate") {
-                return data['pop'] ? $filter('number')(data['birthRate'], 1): 0;
+                return data['pop'] ? $filter('number')(data['deathRate'], 1): 0;
             }
             else if(data['ageAdjustedRate'] && filter.tableView == "age-adjusted_death_rates"){
                 var ageAdjustedRate = parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));

@@ -247,7 +247,7 @@
             var totalCount = selectedFilter.count;
             var calculatePercentage = selectedFilter.key === 'prams' || selectedFilter.key == 'mental_health' ? false : true;
             var calculateRowTotal = selectedFilter.calculateRowTotal;
-            var secondaryCountKeys = ['pop', 'ageAdjustedRate', 'standardPop', 'birthRate'];
+            var secondaryCountKeys = ['pop', 'ageAdjustedRate', 'standardPop', 'deathRate'];
 
             var tableData = utilService.prepareMixedTableData(headers, file, countKey, totalCount, countLabel, calculatePercentage, calculateRowTotal, secondaryCountKeys, filterUtils.getAllOptionValues());
 

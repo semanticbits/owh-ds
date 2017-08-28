@@ -844,30 +844,30 @@ describe("Elastic Search", function () {
             //White
             expect(data[0].name).equal('White');
             expect(data[0].infant_mortality).equal(14927);
-            expect(data[0].birthRate).equal("4.94");
+            expect(data[0].deathRate).equal("4.94");
             expect(data[0].pop).equal(3019863);
             var  nestedData1 = data[0].sex;
             expect(nestedData1[0].name).equal('Male');
             expect(nestedData1[0].infant_mortality).equal(8337);
-            expect(nestedData1[0].birthRate).equal("5.39");
+            expect(nestedData1[0].deathRate).equal("5.39");
             expect(nestedData1[0].pop).equal(1547425);
             expect(nestedData1[1].name).equal('Female');
             expect(nestedData1[1].infant_mortality).equal(6590);
-            expect(nestedData1[1].birthRate).equal("4.48");
+            expect(nestedData1[1].deathRate).equal("4.48");
             expect(nestedData1[1].pop).equal(1472438);
             //Black
             expect(data[1].name).equal('Black');
             expect(data[1].infant_mortality).equal(6853);
-            expect(data[1].birthRate).equal("10.70");
+            expect(data[1].deathRate).equal("10.70");
             expect(data[1].pop).equal(640562);
             var  nestedData2 = data[1].sex;
             expect(nestedData2[0].name).equal('Male');
             expect(nestedData2[0].infant_mortality).equal(3752);
-            expect(nestedData2[0].birthRate).equal("11.55");
+            expect(nestedData2[0].deathRate).equal("11.55");
             expect(nestedData2[0].pop).equal(324821);
             expect(nestedData2[1].name).equal('Female');
             expect(nestedData2[1].infant_mortality).equal(3101);
-            expect(nestedData2[1].birthRate).equal("9.82");
+            expect(nestedData2[1].deathRate).equal("9.82");
             expect(nestedData2[1].pop).equal(315741);
             done();
         })
@@ -883,30 +883,30 @@ describe("Elastic Search", function () {
             //White
             expect(data[0].name).equal('White');
             expect(data[0].infant_mortality).equal(18422);
-            expect(data[0].birthRate).equal("5.57");
+            expect(data[0].deathRate).equal("5.57");
             expect(data[0].pop).equal(3310331);
             var  nestedData1 = data[0].sex;
             expect(nestedData1[0].name).equal('Male');
             expect(nestedData1[0].infant_mortality).equal(10384);
-            expect(nestedData1[0].birthRate).equal("6.12");
+            expect(nestedData1[0].deathRate).equal("6.12");
             expect(nestedData1[0].pop).equal(1695886);
             expect(nestedData1[1].name).equal('Female');
             expect(nestedData1[1].infant_mortality).equal(8039);
-            expect(nestedData1[1].birthRate).equal("4.98");
+            expect(nestedData1[1].deathRate).equal("4.98");
             expect(nestedData1[1].pop).equal(1614445);
             //Black
             expect(data[1].name).equal('Black');
             expect(data[1].infant_mortality).equal(8595);
-            expect(data[1].birthRate).equal("12.90");
+            expect(data[1].deathRate).equal("12.90");
             expect(data[1].pop).equal(666494);
             var  nestedData2 = data[1].sex;
             expect(nestedData2[0].name).equal('Male');
             expect(nestedData2[0].infant_mortality).equal(4726);
-            expect(nestedData2[0].birthRate).equal("13.91");
+            expect(nestedData2[0].deathRate).equal("13.91");
             expect(nestedData2[0].pop).equal(339844);
             expect(nestedData2[1].name).equal('Female');
             expect(nestedData2[1].infant_mortality).equal(3869);
-            expect(nestedData2[1].birthRate).equal("11.84");
+            expect(nestedData2[1].deathRate).equal("11.84");
             expect(nestedData2[1].pop).equal(326650);
             done();
         })
@@ -922,30 +922,30 @@ describe("Elastic Search", function () {
             //White
             expect(data[0].name).equal('White');
             expect(data[0].infant_mortality).equal(18087);
-            expect(data[0].birthRate).equal("5.69");
+            expect(data[0].deathRate).equal("5.69");
             expect(data[0].pop).equal(3177698);
             var  nestedData1 = data[0].sex;
             expect(nestedData1[0].name).equal('Male');
             expect(nestedData1[0].infant_mortality).equal(10132);
-            expect(nestedData1[0].birthRate).equal("6.23");
+            expect(nestedData1[0].deathRate).equal("6.23");
             expect(nestedData1[0].pop).equal(1625548);
             expect(nestedData1[1].name).equal('Female');
             expect(nestedData1[1].infant_mortality).equal(7955);
-            expect(nestedData1[1].birthRate).equal("5.13");
+            expect(nestedData1[1].deathRate).equal("5.13");
             expect(nestedData1[1].pop).equal(1552150);
             //Black
             expect(data[1].name).equal('Black');
             expect(data[1].infant_mortality).equal(8084);
-            expect(data[1].birthRate).equal("13.34");
+            expect(data[1].deathRate).equal("13.34");
             expect(data[1].pop).equal(606183);
             var  nestedData2 = data[1].sex;
             expect(nestedData2[0].name).equal('Male');
             expect(nestedData2[0].infant_mortality).equal(4543);
-            expect(nestedData2[0].birthRate).equal("14.76");
+            expect(nestedData2[0].deathRate).equal("14.76");
             expect(nestedData2[0].pop).equal(307851);
             expect(nestedData2[1].name).equal('Female');
             expect(nestedData2[1].infant_mortality).equal(3541);
-            expect(nestedData2[1].birthRate).equal("11.87");
+            expect(nestedData2[1].deathRate).equal("11.87");
             expect(nestedData2[1].pop).equal(298332);
             done();
         })
@@ -965,11 +965,11 @@ describe("Elastic Search", function () {
             var  nestedData = data[3].sex;
             expect(nestedData[0].name).equal('Male');
             expect(nestedData[0].infant_mortality).equal(0);
-            expect(nestedData[0].birthRate).equal('Suppressed');
+            expect(nestedData[0].deathRate).equal('Suppressed');
             expect(nestedData[0].pop).equal(247);
             expect(nestedData[1].name).equal('Female');
             expect(nestedData[1].infant_mortality).equal(0);
-            expect(nestedData[1].birthRate).equal('Suppressed');
+            expect(nestedData[1].deathRate).equal('Suppressed');
             expect(nestedData[1].pop).equal(215);
             done();
         })

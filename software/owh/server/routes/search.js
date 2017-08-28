@@ -192,7 +192,7 @@ function search(q) {
             resData.queryJSON = q;
             resData.resultData = response[0].data;
             resData.resultData.headers = preparedQuery.headers;
-            resData.sideFilterResults = {data: [], pagination: {}}//sideFilterResults;
+            resData.sideFilterResults = {data: [], pagination: {}};
             deferred.resolve(resData);
         }).catch(function (error) {
             logger.error('Infant Mortality ElasticSearch ', error);

@@ -1147,4 +1147,76 @@ describe('utilService', function(){
 
     });
 
+    describe('infant year filter change', function(){
+        var categories;
+        var yearFilter;
+        beforeEach(function () {
+  /*          var yearOptions = [
+                { "key": "2015", "title": "2015"},
+                { "key": "2014", "title": "2014"},
+                { "key": "2013", "title": "2013"},
+                { "key": "2012", "title": "2012"},
+                { "key": "2011", "title": "2011"},
+                { "key": "2010", "title": "2010"},
+                { "key": "2009", "title": "2009"},
+                { "key": "2008", "title": "2008"},
+                { "key": "2007", "title": "2007"},
+                { "key": "2006", "title": "2006"},
+                { "key": "2005", "title": "2005"},
+                { "key": "2004", "title": "2004"},
+                { "key": "2003", "title": "2003"},
+                { "key": "2002", "title": "2002"},
+                { "key": "2001", "title": "2001"},
+                { "key": "2000", "title": "2000"}
+            ];
+  */          /*yearFilter = {key: 'year_of_death', title: 'label.filter.year', queryKey:"year_of_death", primary: false, value: ["2014"],
+                defaultGroup:'column', groupBy: false, filterType: "checkbox", doNotShowAll: true, defaultValue: ["2014"],
+                // Data only available for 2000-2014
+                autoCompleteOptions: yearOptions.slice(1), helpText:"label.help.text.infantmort.year",
+                D69Years: ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014'],
+                D31Years: ['2003', '2004', '2005', '2006'], D18Years: ['2000', '2001', '2002']};
+*/
+            categories = [{"category":"Infant Characteristics", "sideFilters": [{filters: utils.findByKeyAndValue(filterUtils.getInfantMortalityDataFilters(), 'key', 'year_of_death')}]}];
+        });
+
+        it('Should keep years which on in same range if user selected multiple years - 2014(D69) and 2006(D31)', function(){
+            //In this case user first selected year '2014' then selected year '2006', so we should delete year '2014' and keep '2006'
+            //So that query can hit only one wonder database. In this case database ID D31 for years 2003 - 2006.
+            var yearSideFilter = categories[0].sideFilters[0].filters;
+            yearSideFilter.value.push("2006");
+            utils.infantMortalityFilterChange(yearSideFilter, categories);
+            expect(yearSideFilter.value.length).toEqual(1);
+            expect(yearSideFilter.value[0]).toEqual("2006");
+        });
+        it('Should keep years which on in same range if user selected multiple years - 2014(D69) and 2013(D69)', function(){
+            //In this case user first selected year '2014' then selected year '2013', so we should keep both '2014' and '2013'
+            //Because those are in range 2007 - 2014(D69). So that query can hit only one wonder database.
+            var yearSideFilter = categories[0].sideFilters[0].filters;
+            yearSideFilter.value.push("2013");
+            utils.infantMortalityFilterChange(yearSideFilter, categories);
+            expect(yearSideFilter.value.length).toEqual(2);
+            expect(yearSideFilter.value[0]).toEqual("2014");
+            expect(yearSideFilter.value[1]).toEqual("2013");
+        });
+        it('Should keep years which on in same range if user selected multiple years - 2006(D31) and 2002(D18)', function(){
+            //In this case user first selected year '2006' then selected year '2002', so we should delete '2014' and keep '2002
+            //Because both selected years are in different range, so we are keeping latest selected year.
+            //So '2002' is in range 200 - 2003 which is comes under wonder database D18
+            var yearSideFilter = categories[0].sideFilters[0].filters;
+            yearSideFilter.value.push("2002");
+            utils.infantMortalityFilterChange(yearSideFilter, categories);
+            expect(yearSideFilter.value.length).toEqual(1);
+            expect(yearSideFilter.value[0]).toEqual("2002");
+        });
+        it('Should set to default year if user unselect all years', function(){
+            //By default year 2014 selected, if user un check '2014'
+            var yearSideFilter = categories[0].sideFilters[0].filters;
+            yearSideFilter.value = [];
+            //Then default value '2014' should be set
+            utils.infantMortalityFilterChange(yearSideFilter, categories);
+            expect(yearSideFilter.value.length).toEqual(1);
+            expect(yearSideFilter.value[0]).toEqual("2014");
+        });
+    });
+
 });
