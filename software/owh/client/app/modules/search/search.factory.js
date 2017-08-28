@@ -3546,7 +3546,7 @@
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total',
                     tableView:'alcohol_consumption',  chartAxisLabel:'Percentage',
                     showBasicSearchSideMenu: true, runOnFilterChange: true,
-                    allFilters: filters.brfsFilters, header:"Behavioral Risk Factors",
+                    allFilters: filters.brfsFilters, header:"Behavioral Risk Factor Surveillance System",
                     sideFilters:[
                         {
 
