@@ -844,7 +844,8 @@
                     eg.getChartName = function (chartType) {
                         var chartNames = {'yrbsSex&yrbsRace':'Sex and Race', 'yrbsSex&yrbsGrade':'Sex and Grade',
                             'yrbsGrade&yrbsRace': 'Grade and Race', 'yrbsRace': 'Race',
-                            'yrbsSex': 'Sex', 'yrbsGrade': 'Grade', 'year': 'Year', 'yrbsState': 'State'};
+                            'yrbsSex': 'Sex', 'yrbsGrade': 'Grade', 'year': 'Year', 'yrbsState': 'State', 'state': 'State' // for PRAMS
+                           };
 
                         if (chartType.length == 1) {
                             return chartNames[chartType[0]];

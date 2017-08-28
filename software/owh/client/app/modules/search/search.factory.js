@@ -526,7 +526,8 @@
                 "yrbsRace": "horizontalBar",
                 "yrbsGrade": "horizontalBar",
                 "yrbsState": "horizontalBar",
-                "year": "horizontalBar"
+                "year": "horizontalBar",
+                "state": "horizontalBar"  // for PRAMS
             };
 
             var chartTypes = [];
