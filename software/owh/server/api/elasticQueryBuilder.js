@@ -487,7 +487,7 @@ function buildAPIQuery(primaryFilter) {
             }
         }
     });
-    if (primaryFilter.key === 'prams') {
+    if (primaryFilter.key === 'prams' || primaryFilter.key === 'brfss') {
         getPramsQueryForAllYearsAndQuestions(primaryFilter, apiQuery)
     }
     apiQuery.aggregations.nested.table = rowAggregations.concat(columnAggregations);
@@ -504,7 +504,7 @@ function buildAPIQuery(primaryFilter) {
 }
 
 /**
- * Prepare queru for PRAMS Years and Questions
+ * Prepare query for PRAMS Years and Questions
  * @param primaryFilter
  * @param apiQuery
  */

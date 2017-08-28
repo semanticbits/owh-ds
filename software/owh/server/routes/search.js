@@ -62,8 +62,14 @@ var searchRouter = function(app, rConfig) {
         });
     });
 
+    app.get('/brfsQuestionsTree', function (req, res) {
+        new yrbs().getBRFSQuestionsTree().then(function(response) {
+            res.send(new result('OK', response, "success"));
+        });
+    });
+
     app.get('/dsmetadata/:dataset', function(req, res) {
-        var dataset = req.params.dataset
+        var dataset = req.params.dataset;
         var years = req.query.years?req.query.years.split(','):[];
         new dsmetadata().getDsMetadata(dataset, years).then( function (resp) {
             res.send( new result('OK', resp, "success") );
@@ -120,7 +126,8 @@ function search(q) {
             resData.sideFilterResults = [];
             deferred.resolve(resData);
         });
-    } else if(preparedQuery.apiQuery.searchFor === "prams") {
+    } else if(preparedQuery.apiQuery.searchFor === "prams"
+        || preparedQuery.apiQuery.searchFor === "brfss") {
         preparedQuery['pagination'] = {from: 0, size: 10000};
         preparedQuery.apiQuery['pagination'] = {from: 0, size: 10000};
         new yrbs().invokeYRBSService(preparedQuery.apiQuery).then(function (response) {

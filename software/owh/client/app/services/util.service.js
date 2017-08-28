@@ -47,7 +47,8 @@
             aidsFilterChange: aidsFilterChange,
             infantMortalityFilterChange: infantMortalityFilterChange,
             removeValuesFromArray: removeValuesFromArray,
-            getSelectedFiltersText: getSelectedFiltersText
+            getSelectedFiltersText: getSelectedFiltersText,
+            brfsFilterChange: brfsFilterChange
         };
 
         return service;
@@ -494,8 +495,8 @@
                 var eachHeaderData = data[eachHeader.key];
                 angular.forEach(eachHeader.autoCompleteOptions, function(matchedOption, index) {
 
-                    var key = (countKey === 'mental_health' || countKey === 'prams')?matchedOption.qkey:matchedOption.key;
-                    if(countKey === 'prams' || countKey === 'mental_health') {
+                    var key = (countKey === 'mental_health' || countKey === 'prams' || countKey === 'brfss')?matchedOption.qkey:matchedOption.key;
+                    if(countKey === 'prams' || countKey === 'brfss' || countKey === 'mental_health') {
                         var eachData = findAllByKeyAndValue(eachHeaderData, 'name', key);
                         if(eachData.length === 0) {
                             return;
@@ -1216,5 +1217,30 @@
             }
         }
 
+
+        /**
+         * On BRFSS filter change, perform the actions
+         * @param filter
+         * @param categories
+         */
+        function brfsFilterChange(filter, categories) {
+            var sideFilters = [];
+            if(filter.value.length > 0 || filter.groupBy) {
+                angular.forEach(categories, function (category) {
+                    sideFilters = sideFilters.concat(category.sideFilters);
+                });
+                angular.forEach(sideFilters, function (sideFilter) {
+                    if (filter.key === sideFilter.filters.key) {
+                        if (!sideFilter.filters.groupBy) {
+                            sideFilter.filters.groupBy = "column";
+                        }
+                    } else if(sideFilter.allowGrouping && sideFilter.filters.key !== 'state'
+                            && sideFilter.filters.groupBy === 'column') {
+                        sideFilter.filters.value = [];
+                        sideFilter.filters.groupBy = false;
+                    }
+                });
+            }
+        }
     }
 }());
