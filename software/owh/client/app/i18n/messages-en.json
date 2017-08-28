@@ -522,7 +522,6 @@
   "chart.title.measure.bridge_race": "Population",
   "chart.title.measure.birth_rates": "Birth Rates",
   "chart.title.measure.number_of_births":"Number of Births",
-  "chart.title.measure.fertility_rates": "Firtility Rates",
   "chart.title.measure.disease_rate": "Rates",
   "chart.title.measure.cases": "Number of Cases",
   "chart.title.measure.std.cases": "Number of Cases",
@@ -537,5 +536,6 @@
   "chart.title.measure.number_of_infant_deaths.death": "Number of Infant Deaths",
   "chart.title.measure.number_of_infant_deaths.infant_death_rate": "Rate of Infant Deaths",
   "chart.title.measure.cancer_incident":"Number of Cancer Incidence",
-  "chart.title.measure.cancer_mortality":"Number of Cancer Deaths"
+  "chart.title.measure.cancer_mortality":"Number of Cancer Deaths",
+  "chart.title.measure.fertility_rates": "Fertility Rates"
 }
