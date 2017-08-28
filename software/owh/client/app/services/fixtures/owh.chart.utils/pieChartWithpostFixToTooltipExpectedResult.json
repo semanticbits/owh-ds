@@ -1,118 +1,119 @@
 {
-  "charttype": "pieChart",
-  "title": "label.filter.race",
-  "longtitle": "chart.title.measure.deaths by label.filter.race in undefined for undefined",
-  "dataset": "deaths",
-  "data": [
+  "charttype":"pieChart",
+  "title":"label.filter.race",
+  "longtitle":"chart.title.measure.deaths by label.filter.race in undefined for undefined",
+  "dataset":"deaths",
+  "data":[
     {
-      "name": "White",
-      "x": [
+      "name":"White",
+      "x":[
         2241350
       ],
-      "y": [
+      "y":[
         "White"
       ],
-      "text": [
+      "text":[
         "White:2241350"
       ],
-      "orientation": "h",
-      "type": "bar",
-      "hoverinfo": "none",
-      "marker": {
-        "color": "#C2D5EE"
+      "orientation":"h",
+      "type":"bar",
+      "hoverinfo":"none",
+      "marker":{
+        "color":"#C2D5EE"
       }
     },
     {
-      "name": "Black",
-      "x": [
+      "name":"Black",
+      "x":[
         309316
       ],
-      "y": [
+      "y":[
         "Black"
       ],
-      "text": [
+      "text":[
         "Black:309316"
       ],
-      "orientation": "h",
-      "type": "bar",
-      "hoverinfo": "none",
-      "marker": {
-        "color": "#5799C7"
+      "orientation":"h",
+      "type":"bar",
+      "hoverinfo":"none",
+      "marker":{
+        "color":"#5799C7"
       }
     },
     {
-      "name": "Asian or Pacific Islander",
-      "x": [
+      "name":"Asian or Pacific Islander",
+      "x":[
         62103
       ],
-      "y": [
+      "y":[
         "Asian or Pacific Islander"
       ],
-      "text": [
+      "text":[
         "Asian or Pacific Islander:62103"
       ],
-      "orientation": "h",
-      "type": "bar",
-      "hoverinfo": "none",
-      "marker": {
-        "color": "#65c2ff"
+      "orientation":"h",
+      "type":"bar",
+      "hoverinfo":"none",
+      "marker":{
+        "color":"#65c2ff"
       }
     },
     {
-      "name": "American Indian",
-      "x": [
+      "name":"American Indian",
+      "x":[
         18031
       ],
-      "y": [
+      "y":[
         "American Indian"
       ],
-      "text": [
+      "text":[
         "American Indian:18031"
       ],
-      "orientation": "h",
-      "type": "bar",
-      "hoverinfo": "none",
-      "marker": {
-        "color": "#bc8fe0"
+      "orientation":"h",
+      "type":"bar",
+      "hoverinfo":"none",
+      "marker":{
+        "color":"#bc8fe0"
       }
     }
   ],
-  "layout": {
-    "width": 350,
-    "height": 300,
-    "showlegend": false,
-    "hovermode": "closest",
-    "margin": {
-      "l": 20,
-      "r": 10,
-      "b": 20,
-      "t": 20
+  "layout":{
+    "width":128,
+    "autosize":true,
+    "showlegend":false,
+    "margin":{
+      "l":20,
+      "r":10,
+      "b":20,
+      "t":20
     },
-    "xaxis": {
-      "visible": true,
-      "titlefont": {
-        "size": 15
+    "xaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
       },
-      "exponentformat": "none",
-      "tickangle": 45,
-      "showline": true,
-      "gridcolor": "#bdbdbd",
-      "showticklabels": false
+      "exponentformat":"none",
+      "tickangle":45,
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "fixedrange":true
     },
-    "yaxis": {
-      "visible": true,
-      "titlefont": {
-        "size": 15
+    "yaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
       },
-      "exponentformat": "none",
-      "tickangle": 45,
-      "ticksuffix": "   ",
-      "showline": true,
-      "gridcolor": "#bdbdbd",
-      "showticklabels": false
+      "exponentformat":"none",
+      "tickangle":45,
+      "ticksuffix":"   ",
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "fixedrange":true
     }
   },
-  "options": {
-    "displayModeBar": false
+  "options":{
+    "displayModeBar":false
   }
 }

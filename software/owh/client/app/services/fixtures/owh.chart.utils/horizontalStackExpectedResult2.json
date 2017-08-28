@@ -1,12 +1,12 @@
 {
-  "charttype": "multiBarHorizontalChart",
-  "title": "label.title.race.hispanicOrigin",
-  "longtitle": "chart.title.measure.deaths by label.title.race.hispanicOrigin in undefined for undefined",
-  "dataset": "deaths",
-  "data": [
+  "charttype":"multiBarHorizontalChart",
+  "title":"label.title.race.hispanicOrigin",
+  "longtitle":"chart.title.measure.deaths by label.title.race.hispanicOrigin in undefined for undefined",
+  "dataset":"deaths",
+  "data":[
     {
-      "name": "White",
-      "x": [
+      "name":"White",
+      "x":[
         6888,
         598,
         5964,
@@ -20,7 +20,7 @@
         2369,
         7026
       ],
-      "y": [
+      "y":[
         "Unknown",
         "Spaniard",
         "South American",
@@ -34,17 +34,19 @@
         "Central and South American",
         "Central American"
       ],
-      "text": [],
-      "orientation": "h",
-      "hoverinfo": "none",
-      "type": "bar",
-      "marker": {
-        "color": "#C2D5EE"
+      "text":[
+
+      ],
+      "orientation":"h",
+      "hoverinfo":"none",
+      "type":"bar",
+      "marker":{
+        "color":"#C2D5EE"
       }
     },
     {
-      "name": "Black",
-      "x": [
+      "name":"Black",
+      "x":[
         1867,
         2,
         93,
@@ -58,7 +60,7 @@
         112,
         491
       ],
-      "y": [
+      "y":[
         "Unknown",
         "Spaniard",
         "South American",
@@ -72,17 +74,19 @@
         "Central and South American",
         "Central American"
       ],
-      "text": [],
-      "orientation": "h",
-      "hoverinfo": "none",
-      "type": "bar",
-      "marker": {
-        "color": "#5799C7"
+      "text":[
+
+      ],
+      "orientation":"h",
+      "hoverinfo":"none",
+      "type":"bar",
+      "marker":{
+        "color":"#5799C7"
       }
     },
     {
-      "name": "Asian or Pacific Islander",
-      "x": [
+      "name":"Asian or Pacific Islander",
+      "x":[
         280,
         27,
         35,
@@ -96,7 +100,7 @@
         4,
         43
       ],
-      "y": [
+      "y":[
         "Unknown",
         "Spaniard",
         "South American",
@@ -110,17 +114,19 @@
         "Central and South American",
         "Central American"
       ],
-      "text": [],
-      "orientation": "h",
-      "hoverinfo": "none",
-      "type": "bar",
-      "marker": {
-        "color": "#65c2ff"
+      "text":[
+
+      ],
+      "orientation":"h",
+      "hoverinfo":"none",
+      "type":"bar",
+      "marker":{
+        "color":"#65c2ff"
       }
     },
     {
-      "name": "American Indian",
-      "x": [
+      "name":"American Indian",
+      "x":[
         64,
         11,
         17,
@@ -134,7 +140,7 @@
         1,
         19
       ],
-      "y": [
+      "y":[
         "Unknown",
         "Spaniard",
         "South American",
@@ -148,54 +154,57 @@
         "Central and South American",
         "Central American"
       ],
-      "text": [],
-      "orientation": "h",
-      "hoverinfo": "none",
-      "type": "bar",
-      "marker": {
-        "color": "#bc8fe0"
+      "text":[
+
+      ],
+      "orientation":"h",
+      "hoverinfo":"none",
+      "type":"bar",
+      "marker":{
+        "color":"#bc8fe0"
       }
     }
   ],
-  "layout": {
-    "width": 350,
-    "height": 300,
-    "showlegend": false,
-    "hovermode": "closest",
-    "margin": {
-      "l": 20,
-      "r": 10,
-      "b": 20,
-      "t": 20
+  "layout":{
+    "width":128,
+    "autosize":true,
+    "showlegend":false,
+    "margin":{
+      "l":20,
+      "r":10,
+      "b":20,
+      "t":20
     },
-    "xaxis": {
-      "visible": true,
-      "titlefont": {
-        "size": 15
+    "xaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
       },
-      "exponentformat": "none",
-      "tickangle": 45,
-      "showline": true,
-      "gridcolor": "#bdbdbd",
-      "showticklabels": false,
-      "title": "Deaths"
+      "exponentformat":"none",
+      "tickangle":45,
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "fixedrange":true,
+      "title":"Deaths"
     },
-    "yaxis": {
-      "visible": true,
-      "titlefont": {
-        "size": 15
+    "yaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
       },
-      "exponentformat": "none",
-      "tickangle": 45,
-      "ticksuffix": "   ",
-      "showline": true,
-      "gridcolor": "#bdbdbd",
-      "showticklabels": false,
-      "title": "label.filter.hispanicOrigin"
+      "exponentformat":"none",
+      "tickangle":45,
+      "ticksuffix":"   ",
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "fixedrange":true,
+      "title":"label.filter.hispanicOrigin"
     },
-    "barmode": "stack"
+    "barmode":"stack"
   },
-  "options": {
-    "displayModeBar": false
+  "options":{
+    "displayModeBar":false
   }
 }
