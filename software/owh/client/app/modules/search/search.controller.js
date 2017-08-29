@@ -327,7 +327,6 @@
         }
 
         function search(isFilterChanged) {
-            debugger
             if(sc.filters.selectedPrimaryFilter.key === 'prams'
                 || sc.filters.selectedPrimaryFilter.key === 'mental_health'
                 || sc.filters.selectedPrimaryFilter.key === 'brfss') {
