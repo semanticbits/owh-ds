@@ -183,7 +183,7 @@
   "label.graph.ethnicity": "Ethnicity",
   "label.graph.hispanic_origin": "Hispanic Origin",
   "label.filter.hispanic_origin": "Hispanic Origin",
-   "label.graph.sex": "Sex",
+  "label.graph.sex": "Sex",
   "label.graph.current_year": "Yearly July 1st Estimates",
   "label.graph.state": "State",
   "label.bookmark.search": "Bookmark this Search",
@@ -456,6 +456,7 @@
   "label.data.source": "DATA SOURCE CATEGORIES",
   "label.aids.dsc": "Learn about reported cases of AIDS and the corresponding response of health departments across the country. View information on survival rates and risk factors that contributed to AIDS-related deaths.",
   "label.cancer.dsc": "Compare cancer incidence and death statistics across ages, race, gender and year, as well as by cancer centers across the country.",
+  "label.cancer_mortality.dsc": "Compare cancer death statistics across ages, race, gender and year, as well as by cancer centers across the country.",
   "label.prams.dsc": "Collection of data available by state and year for a variety of risk factors, such as physical abuse, breastfeeding, and pregnancy intention.",
   "label.natality.dsc": "Explore information regarding births across the country, including trends and data based on maternal education, socioeconomic background and risk factors.",
   "label.std": "Sexually Transmitted Diseases (STD)",
@@ -548,5 +549,5 @@
   "chart.title.measure.number_of_infant_deaths.infant_death_rate": "Rate of Infant Deaths",
   "chart.title.measure.cancer_incident":"Number of Cancer Incidence",
   "chart.title.measure.cancer_mortality":"Number of Cancer Deaths",
-  "chart.title.measure.fertility_rates":"Fertility Rates"
+  "chart.title.measure.fertility_rates": "Fertility Rates"
 }

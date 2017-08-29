@@ -730,4 +730,36 @@ describe("Search controller: ", function () {
         expect(searchController.filters.selectedPrimaryFilter.chartAxisLabel).toEqual('Cases');
         expect(searchController.filters.selectedPrimaryFilter.chartView).toEqual('cases');
     }));
+
+    it("dataSourceCategories in instialized correctly", inject(function() {
+        var categories = searchController.dataSourceCategories;
+        expect(categories).not.toBeNull();
+        expect(categories.length).toEqual(3);
+
+        for (var i = 0; i < categories.length; i++) {
+            var category = categories[i];
+
+            expect(category).not.toBeNull();
+            expect(category.dataSources.length).toBeGreaterThan(0);
+
+            for (var j = 0; j < category.dataSources.length; j++) {
+                var datasource = category.dataSources[j];
+
+                expect(datasource.title).not.toBeNull();
+                expect(datasource.description).not.toBeNull();
+                expect(datasource.icon).not.toBeNull();
+                expect(datasource.altText).not.toBeNull();
+                expect(datasource.dataSets).not.toBeNull();
+                expect(datasource.dataSets.length).toBeGreaterThan(0);
+
+                for (var k = 0; k < datasource.dataSets.length; k++) {
+                    var dataSet = datasource.dataSets[k];
+
+                    expect(dataSet.title).not.toBeNull();
+                    expect(dataSet.description).not.toBeNull();
+                    expect(typeof dataSet.switchTo).toEqual('function');
+                }
+            }
+        }
+    }));
 });

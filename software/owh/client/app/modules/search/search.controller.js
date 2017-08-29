@@ -404,7 +404,6 @@
             questionFilter.autoCompleteOptions = $rootScope.brfsQuestionsList;
         });
 
-
         /**************************************************/
         var mapExpandControl = mapService.addExpandControl(sc.mapOptions, sc.filters.selectedPrimaryFilter);
 
@@ -485,8 +484,6 @@
                 return response;
             });
         }
-
-
 
         function changeViewFilter(selectedFilter) {
             sc.tableView = selectedFilter.key;
@@ -605,8 +602,6 @@
             });
         }
 
-
-
         /**
          * This method getting called when filters changed
          * This function get
@@ -679,6 +674,7 @@
             rotatePopup();
 
         }
+
         $scope.$on("leafletDirectiveGeoJson.mouseover", function (event, args) {
             var leafEvent = args.leafletEvent;
             buildMarkerPopup(leafEvent.latlng.lat, leafEvent.latlng.lng, leafEvent.target.feature.properties,
@@ -687,10 +683,12 @@
             mapService.highlightFeature(args.leafletObject._map._layers[leafEvent.target._leaflet_id])
 
         });
+
         $scope.$on("leafletDirectiveGeoJson.mouseout", function (event, args) {
             sc.mapPopup._close();
             mapService.resetHighlight(args);
         });
+
         $scope.$on("leafletDirectiveMap.mouseout", function (event, args) {
             sc.mapPopup._close();
         });
@@ -709,14 +707,14 @@
         }
 
         function getChartTitle(title) {
-//             var filters = title.split('.');
-//             filters = filters.slice(2);
-//             if (filters.length > 1) {
-//                 return $filter('translate')('label.chart.' + filters[0]) + ' and ' + $filter('translate')('label.chart.' + filters[1]);
-//             } else {
-//                 return $filter('translate')('label.chart.' + filters[0]);
-//             }
-                return title;
+            // var filters = title.split('.');
+            // filters = filters.slice(2);
+            // if (filters.length > 1) {
+            //     return $filter('translate')('label.chart.' + filters[0]) + ' and ' + $filter('translate')('label.chart.' + filters[1]);
+            // } else {
+            //     return $filter('translate')('label.chart.' + filters[0]);
+            // }
+            return title;
         }
 
         /**
@@ -763,6 +761,70 @@
 
         function findNameByKeyAndValue(key) {
             return utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', key).header;
+        }
+
+        sc.dataSourceCategories = [
+            {
+                dataSources: [
+                    createDataSource('label.filter.group.demographics', 'label.demographics.dsc', 'demographics-icon.svg', 'Demographics', [
+                        createDataSet('bridge_race', 'label.bridged.race', 'label.bridged.race.dsc')
+                    ]),
+                    createDataSource('label.filter.disease', 'label.disease.dsc', 'diseases-icon.svg', 'Disease', [
+                        createDataSet('cancer_incident', 'label.filter.cancer_incident', 'label.cancer.dsc'),
+                        createDataSet('aids', 'label.filter.aids', 'label.aids.dsc'),
+                        createDataSet('std', 'label.std', 'label.std.dsc'),
+                        createDataSet('tb', 'label.filter.tb', 'label.tb.dsc')
+                    ])
+                ]
+            },
+            {
+                dataSources: [
+                    createDataSource('label.births.family', 'label.births.family.dsc', 'natality-icon.svg', 'Births and Family Planning', [
+                        createDataSet('natality', 'label.filter.natality', 'label.natality.dsc'),
+                        createDataSet('prams', 'label.prams.title', 'label.prams.dsc')
+                    ]),
+                    createDataSource('label.health.risk', 'label.health.risk.dsc', 'health-risk-factors-icon.svg', 'Health Status and Risk Factors', [
+                        createDataSet('brfss', 'label.brfs', 'label.brfs.dsc'),
+                        createDataSet('prams', 'label.prams.title', 'label.prams.dsc'),
+                        createDataSet('mental_health', 'label.yrbs', 'label.yrbs.dsc')
+                    ])
+                ]
+            },
+            {
+                dataSources: [
+                    createDataSource('label.mortality', 'label.mortality.dsc', 'mortality-icon.svg', 'Mortality', [
+                        createDataSet('cancer_mortality', 'label.filter.cancer_mortality', 'label.cancer_mortality.dsc'),
+                        createDataSet('deaths', 'label.filter.mortality', 'label.mortality.dsc.two'),
+                        createDataSet('infant_mortality', 'label.filter.infant_mortality', 'label.infant.mortality.dsc')
+                    ]),
+                    createDataSource('label.health.behaviors', 'label.health.behaviors.dsc', 'health-behavior-prevention-icon.svg', 'Health Status and Risk Factors', [
+                        createDataSet('brfss', 'label.brfs', 'label.brfs.dsc'),
+                        createDataSet('prams', 'label.prams.title', 'label.prams.dsc'),
+                        createDataSet('mental_health', 'label.yrbs', 'label.yrbs.dsc')
+                    ])
+                ]
+            }
+        ];
+
+        function createDataSource(title, description, icon, altText, datasets) {
+            return {
+                title: $filter('translate')(title),
+                description: $filter('translate')(description),
+                icon: $filter('translate')(icon),
+                altText: altText,
+                dataSets: datasets
+            };
+        }
+
+        function createDataSet(key, title, description) {
+            return {
+                title: $filter('translate')(title),
+                description: $filter('translate')(description),
+                switchTo: function ()
+                {
+                    sc.changePrimaryFilter(key);
+                }
+            };
         }
     }
 }());
