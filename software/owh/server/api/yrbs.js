@@ -318,7 +318,7 @@ function resultCellObject (response) {
         mean: toRoundedPercentage(response.mean, prec),
         ci_l: toRoundedPercentage(response.ci_l, prec),
         ci_u: toRoundedPercentage(response.ci_u, prec),
-        count: response.count
+        count: response.count != undefined ? response.count : response.sample_size
     };
 }
 
