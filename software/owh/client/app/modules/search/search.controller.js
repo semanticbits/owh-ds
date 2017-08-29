@@ -85,7 +85,7 @@
                 {key: 'immunization', title: 'Immunization'},
                 {key: 'injury', title: 'Injury'},
                 {key: 'oral_health', title: 'Oral Health'},
-                {key: 'overweight_and_ovesity', title: 'Overweight and Ovesity'},
+                {key: 'overweight_and_ovesity', title: 'Overweight and Obesity(BMI)'},
                 {key: 'physical_activity', title: 'Physical Activity'},
                 {key: 'prostate_cancer', title: 'Prostate Cancer'},
                 {key: 'tobbaco_use', title: 'Tobbaco Use'},
@@ -206,15 +206,18 @@
                 "topic": ['cat_3', 'cat_50']
             },
             chronic_health_indicator:{
-                "topic": ['cat_0', 'cat_4', 'cat_5', 'cat_6', 'cat_7', 'cat_8',
-                    'cat_10', 'cat_11', 'cat_17', 'cat_34']
+                "topic": ['cat_17', 'cat_34', 'cat_10', 'cat_4',
+                    'cat_0', 'cat_11', 'cat_5', 'cat_6', 'cat_7', 'cat_8']
+            },
+            healthcare_acccess_coverage: {
+                "topic": ['cat_23', 'cat_19', 'cat_9', 'cat_24', 'cat_42']
             },
             colorectal_cancer_screening:{
                 "topic": ['cat_49', 'cat_59', 'cat_36']
             },
             brfs_demographics:{
                 "topic": ['cat_1', 'cat_2', 'cat_13','cat_14', 'cat_20', 'cat_21',
-                    'cat_22', 'cat_35', 'cat_25', 'cat_26', 'cat_27 ', 'cat_31 ']
+                    'cat_22', 'cat_35', 'cat_25', 'cat_26', 'cat_27', 'cat_31']
             },
             fruits_vegetables:{
                 "topic": ['cat_15', 'cat_41', 'cat_63']
