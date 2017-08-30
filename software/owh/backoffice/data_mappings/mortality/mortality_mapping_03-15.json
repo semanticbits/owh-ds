@@ -47,7 +47,7 @@
       "stop": 78,
       "field": "Age Recode 27",
       "mappings": {
-        "01-02": "< 1 year",
+        "01-02": "1 year",
         "03-06": "1-4years",
         "07-07": "5-9years",
         "08-08": "10-14years",
@@ -68,7 +68,7 @@
         "23-23": "85-89years",
         "24-24": "90-94years",
         "25-25": "95-99years",
-        "26-26": "100 years and over",
+        "26-26": "z100 years and over",
         "27-27": "Age not stated"
       }
     },

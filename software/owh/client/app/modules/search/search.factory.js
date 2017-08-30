@@ -1545,8 +1545,8 @@
             ];
 
             filters.ageOptions = [
-                {key:'< 1 year',title:'< 1 year', min: 0, max: 1},
-                {key:'1-4years',title:'1 - 4 years', min: 1, max: 5},
+                {key:'1 year',title:'< 1 year', min: 0, max: 1},
+                {key:'1-4years',title:'1 - 4 years', min: 2, max: 5},
                 {key:'5-9years',title:'5 - 9 years', min: 6, max: 10},
                 {key:'10-14years',title:'10 - 14 years', min: 11, max: 15},
                 {key:'15-19years',title:'15 - 19 years', min: 16, max: 20},
@@ -1566,7 +1566,7 @@
                 {key:'85-89years',title:'85 - 89 years', min: 86, max: 90},
                 {key:'90-94years',title:'90 - 94 years', min: 91, max: 95},
                 {key:'95-99years',title:'95 - 99 years', min: 96, max: 100},
-                {key:'100 years and over',title:'>100 years', min: 101, max: 105},
+                {key:'z100 years and over',title:'> 100 years', min: 101, max: 105},
                 {key:'Age not stated',title:'Age not stated', min: -5, max: 0}
             ];
 
