@@ -511,7 +511,7 @@ describe('search factory ', function(){
         it('ageSliderOptions callback', function () {
             filters.ageSliderOptions.callback('0;10');
             var agegroupFilter = utils.findByKeyAndValue(filters.allMortalityFilters, 'key', 'agegroup');
-            expect(agegroupFilter.value).toEqual([ '0-4years', '5-9years', 'Age not stated' ]);
+            expect(agegroupFilter.value).toEqual([ '< 1 year', '1-4years', '5-9years', 'Age not stated' ]);
         });
 
         //TODO: Need to be fixed
