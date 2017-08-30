@@ -166,6 +166,9 @@
                                 selectedFilter.selectedNodes.push(eachOption);
                             });
                             selectedFilter.value = utilService.getValuesByKey(selectedFilter.selectedValues, 'id');
+                            if(selectedFilter.key === 'ucd-chapter-10' || selectedFilter.key === 'mcd-chapter-10'){
+                                selectedFilter.autoCompleteOptions = selectedFilter.selectedValues.map(function(val){return {key:val.id, title:val.text}});
+                            }
                             modal.element.hide();
 
                             deferred.resolve(selectedFilter);
@@ -208,6 +211,10 @@
                     selectedFilter.selectedValues[propertyKey] = filter.selectedValues;
                     selectedFilter.selectedNodes[propertyKey] = filter.selectedNodes;
                     selectedFilter.value[propertyKey] = filter.value;
+                    if(selectedFilter.key === 'mcd-chapter-10'){
+                        selectedFilter.autoCompleteOptions = selectedFilter.selectedValues.set1.map(function(val){return {key:val.id, title:val.text}});
+                        selectedFilter.autoCompleteOptions = selectedFilter.autoCompleteOptions.concat(selectedFilter.selectedValues.set2.map(function(val){return {key:val.id, title:val.text}}))
+                    }
                 }
             });
         }
@@ -221,6 +228,9 @@
             filter.selectedNodes.length = 0;
             filter.selectedValues.length = 0;
             filter.value.length = 0;
+            if(filter.key === 'ucd-chapter-10' || filter.key === 'mcd-chapter-10') {
+                filter.autoCompleteOptions = utilService.getICD10Chapters();
+            }
 
             //  Run the filter call back only if runOnFilterChange is true
             if (sfic.runOnFilterChange) {
@@ -237,7 +247,7 @@
             filter.selectedNodes[propertyKey].length = 0;
             filter.selectedValues[propertyKey].length = 0;
             filter.value[propertyKey].length = 0;
-
+            filter.autoCompleteOptions = utilService.getICD10Chapters();
             //  Run the filter call back only if runOnFilterChange is true
             if (sfic.runOnFilterChange) {
                 sfic.onFilter();

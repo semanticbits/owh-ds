@@ -12,7 +12,6 @@
         var service = {
             getAllFilters : getAllFilters,
             queryMortalityAPI: queryMortalityAPI,
-            addCountsToAutoCompleteOptions: addCountsToAutoCompleteOptions,
             searchMortalityResults: searchMortalityResults,
             showPhaseTwoModal: showPhaseTwoModal,
             generateHashCode: generateHashCode,
@@ -214,10 +213,38 @@
 
                     if (filter.filters.selectedNodes != undefined) {
                         localCategory.sideFilters[index].filters.selectedNodes = filter.filters.selectedNodes;
+                        localCategory.sideFilters[index].filters.selectedValues = filter.filters.selectedValues;
+                        if(filter.filters.key === 'ucd-chapter-10' ) {
+                            // for ucd filters, the autocomplete optios is set to the selected values
+                            localCategory.sideFilters[index].filters.autoCompleteOptions = filter.filters.selectedValues.map(function (node) {
+                                return {key: node.id, title: node.text}
+                            });
+                        }else if (filter.filters.key === 'mcd-chapter-10'){
+                            // for mcd filters, the autocomplete optios is set to the selected values
+                            localCategory.sideFilters[index].filters.autoCompleteOptions = [];
+                            if(filter.filters.selectedValues.set1){
+                                    localCategory.sideFilters[index].filters.autoCompleteOptions = localCategory.sideFilters[index].filters.autoCompleteOptions.concat(filter.filters.selectedValues.set1.map(function (node) {
+                                        return {key: node.id, title: node.text}
+                                    })); 
+                            }
+                            if(filter.filters.selectedValues.set2){
+                                   localCategory.sideFilters[index].filters.autoCompleteOptions = localCategory.sideFilters[index].filters.autoCompleteOptions.concat(filter.filters.selectedValues.set2.map(function (node) {
+                                        return {key: node.id, title: node.text}
+                                    })); 
+                            }
+                            if (!filter.filters.selectedValues.set1 && !filter.filters.selectedValues.set2){
+                                localCategory.sideFilters[index].filters.autoCompleteOptions = utilService.getICD10Chapters();
+                            }
+                            
+                        }
                     }
                     //To un-select selected nodes when user go back from current page
                     else if (localCategory.sideFilters[index].filters.selectedNodes != undefined) {
                         localCategory.sideFilters[index].filters.selectedNodes.length = 0;
+                        localCategory.sideFilters[index].filters.selectedValues.length = 0;
+                        if(localCategory.sideFilters[index].filters.key === 'ucd-chapter-10' || localCategory.sideFilters[index].filters.key === 'mcd-chapter-10') {
+                            localCategory.sideFilters[index].filters.autoCompleteOptions = utilService.getICD10Chapters();
+                        }
                     }
                     addOrFilterToPrimaryFilterValue(filter.filters, primaryFilter);
                 });
@@ -672,8 +699,6 @@
         }
 
         function prepareMortalityResults(primaryFilter, response) {
-            var ucd10Filter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'ucd-chapter-10');
-            ucd10Filter.autoCompleteOptions = $rootScope.conditionsListICD10;
             primaryFilter.data = response.resultData.nested.table;
             primaryFilter.calculatePercentage = true;
             primaryFilter.calculateRowTotal = true;
@@ -1038,67 +1063,6 @@
             return result;
         }
 
-        function addCountsToAutoCompleteOptions(primaryFilter, query, queryID) {
-            var deferred = $q.defer();
-            var apiQuery = {
-                searchFor: primaryFilter.key,
-                aggregations: { simple: [] }
-            };
-            var filters = [];
-            angular.forEach(primaryFilter.sideFilters, function(category) {
-                angular.forEach(category.sideFilters, function(eachSideFilter) {
-                    filters = filters.concat(eachSideFilter.filterGroup ? eachSideFilter.filters : [eachSideFilter.filters]);
-                });
-            });
-            angular.forEach(filters, function(eachFilter) {
-                apiQuery.aggregations.simple.push(getGroupQuery(eachFilter));
-            });
-            if(query) {
-                var filterQuery = buildAPIQuery(query).apiQuery.query;
-                apiQuery.query = filterQuery;
-            }
-            //search results and populate according owh design
-            SearchService.searchResults(apiQuery, queryID).then(function(response) {
-                primaryFilter.count = response.pagination.total;
-                angular.forEach(response.data.simple, function(eachFilterData, key) {
-                    //fill auto-completer data with counts
-                    var filter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', key);
-                    if(filter) {
-                        if(filter.autoCompleteOptions) {
-                            angular.forEach(filter.autoCompleteOptions, function (option) {
-                                var optionData = utilService.findByKeyAndValue(eachFilterData, 'name', option.key);
-                                if (optionData) {
-                                    option[primaryFilter.key] = utilService.numberWithCommas(optionData[primaryFilter.key]);
-                                    option['count'] = optionData[primaryFilter.key];
-                                    option[primaryFilter.key + 'Percentage'] = 0;
-                                    option[primaryFilter.key + 'Percentage'] = Number(((optionData[primaryFilter.key] / primaryFilter.count) * 100).toFixed(2));
-                                } else {
-                                    option[primaryFilter.key] = 0;
-                                    option['count'] = 0;
-                                    option[primaryFilter.key + 'Percentage'] = 0;
-                                }
-                            });
-                        } else {
-                            var autoCompleteOptions = [];
-                            angular.forEach(eachFilterData, function(eachData) {
-                                var eachOption = {  key: eachData.name, title: eachData.name };
-                                eachOption[primaryFilter.key] = utilService.numberWithCommas(eachData[primaryFilter.key]);
-                                eachOption['count'] = eachData[primaryFilter.key];
-                                eachOption[primaryFilter.key + 'Percentage'] = Number(((eachData[primaryFilter.key] / primaryFilter.count) * 100).toFixed(2));
-                                autoCompleteOptions.push(eachOption);
-                            });
-                            filter.autoCompleteOptions = autoCompleteOptions;
-                        }
-                        //sort on primary filter key.. so that it will rendered in desc order in side filter
-                        //filter.sortedAutoCompleteOptions = utilService.sortByKey(angular.copy(filter.autoCompleteOptions), 'count', false);
-                    }
-                });
-                var ucd10Filter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'ucd-chapter-10');
-                ucd10Filter.autoCompleteOptions = $rootScope.conditionsListICD10;
-                deferred.resolve({});
-            });
-            return deferred.promise;
-        }
 
         function queryCensusAPI( primaryFilter, queryID ) {
             var deferred = $q.defer();
@@ -1918,15 +1882,15 @@
                 /*Underlying Cause of Death*/
                 {key: 'ucd-chapter-10', title: 'label.filter.ucd', queryKey:"ICD_10_code",
                     primary: true, value: [], groupBy: false, type:"label.filter.group.ucd", groupKey:"ucd",
-                    autoCompleteOptions: $rootScope.conditionsListICD10, filterType: 'conditions',
+                    autoCompleteOptions: utilService.getICD10Chapters(), filterType: 'conditions',
                     selectTitle: 'select.label.filter.ucd', updateTitle: 'update.label.filter.ucd',
                     aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions,
                     helpText: 'label.help.text.mortality.ucd'},
 
                 /*Multiple Cause of death*/
                 {key: 'mcd-chapter-10', title: 'label.filter.mcd', queryKey:"ICD_10_code",
-                    primary: false, value: { 'set1': [], 'set2': [] }, groupBy: false, type: "label.filter.group.mcd", groupKey:"mcd",
-                    autoCompleteOptions: $rootScope.conditionsListICD10, filterType: 'conditions',
+                    primary: false, value: { 'set1': [], 'set2': []}, groupBy: false, type: "label.filter.group.mcd", groupKey:"mcd",
+                    autoCompleteOptions: utilService.getICD10Chapters(), filterType: 'conditions',
                     selectTitle: 'select.label.filter.mcd', updateTitle: 'update.label.filter.mcd',
                     aggregationKey: "record_axis_condn.path", groupOptions: filters.conditionGroupOptions,
                     helpText: 'label.help.text.mortality.mcd'}
@@ -3298,7 +3262,7 @@
                                     groupOptions: filters.groupOptions,
                                     filters: {key: 'ucd-chapter-10', title: 'label.filter.ucd', queryKey:"ICD_10_code",
                                         primary: true, value: [], groupBy: false, type:"label.filter.group.ucd", groupKey:"ucd",
-                                        autoCompleteOptions: $rootScope.conditionsListICD10, filterType: 'conditions',
+                                        autoCompleteOptions: utilService.getICD10Chapters(), filterType: 'conditions',
                                         selectTitle: 'select.label.filter.ucd', updateTitle: 'update.label.filter.ucd',
                                         aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions,
                                         helpText:"label.help.text.infantmort.ucd"}

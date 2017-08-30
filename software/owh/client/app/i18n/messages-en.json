@@ -64,7 +64,10 @@
   "label.filter.age": "Age",
   "label.filter.autopsy": "Autopsy",
   "label.filter.pod": "Place of Death",
+  "label.filter.placeofdeath": "Place of Death",
   "label.filter.leading.causes.death": "UCD - 15 Leading Causes of Death",
+  "label.filter.ucd-chapter-10": "Underlying Cause of Death",
+
   "label.filter.leading.causes.death.infants": "UCD - 15 Leading Causes of Death (Infants)",
   "label.filter.ucd.icd.chapter": "UCD - ICD Chapter",
   "select.label.filter.ucd": "Select Cause of Death",
@@ -245,6 +248,7 @@
   "label.yrbs.healthtopics": "Topic:",
   "label.run.query": "Run Query",
   "label.run.query.title": "Click to Run Query",
+  "label.title.sex.month": "Sex and Month",
 
   "label.filter.infant_mortality": "Infant Mortality",
   "label.filter.infant_age_at_death": "Age of Infant at Death",
