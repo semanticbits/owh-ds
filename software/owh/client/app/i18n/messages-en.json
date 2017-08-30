@@ -237,6 +237,8 @@
   "label.title.sex.gestation_weekly": "Sex and Gestational Age - Weekly",
   "label.title.race.mother_age_5_interval":"Race and Age of Mother",
   "label.title.sex.mother_age_5_interval":"Sex and Age of Mother",
+  "label.title.race.live_birth": "Race and Live Birth Order",
+  "label.title.sex.live_birth": "Sex and Live Birt Order",
   "label.chart.mother_age_5_interval": "Age of Mother",
   "label.chart.gestation_recode11": "Gestational Age Group 1",
   "label.chart.gestation_recode10": "Gestational Age Group 2",
