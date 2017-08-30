@@ -47,7 +47,8 @@
       "stop": 78,
       "field": "Age Recode 27",
       "mappings": {
-        "01-06": "0-4years",
+        "01-02": "< 1 year",
+        "03-06": "1-4years",
         "07-07": "5-9years",
         "08-08": "10-14years",
         "09-09": "15-19years",

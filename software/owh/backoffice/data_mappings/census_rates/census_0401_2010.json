@@ -115,7 +115,8 @@
       "stop": 7,
       "field": "Age Groups",
       "mappings": {
-        "00-04": "0-4 years",
+        "00-00": "< 1 year",
+        "01-04": "1-4 years",
         "05-09": "5-9 years",
         "10-14": "10-14 years",
         "15-19": "15-19 years",
