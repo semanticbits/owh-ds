@@ -170,8 +170,8 @@
                                  || sc.filters.selectedPrimaryFilter.key === 'prams'
                                  || sc.filters.selectedPrimaryFilter.key === 'brfss'"
                                 primary-key="sc.filters.selectedPrimaryFilter.key"
-                                show-ci="sc.filters.filterUtilities['mental_health'][0].options[0].value"
-                                show-uf="sc.filters.filterUtilities['mental_health'][0].options[1].value"
+                                show-ci="sc.filters.filterUtilities[sc.filters.selectedPrimaryFilter.key][0].options[0].value"
+                                show-uf="sc.filters.filterUtilities[sc.filters.selectedPrimaryFilter.key][0].options[1].value"
                                 show-charts = "sc.filters.selectedPrimaryFilter.value.length > 1">
                     </owh-accordion-table>
                 </div>

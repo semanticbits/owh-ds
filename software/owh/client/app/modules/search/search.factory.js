@@ -1230,6 +1230,25 @@
                     }
                 ]
             };
+            var sampleSizeOption = {
+                title: 'Sample size',
+                type: 'toggle',
+                value: false,
+                onChange: function(value, option) {
+                    option.value = value;
+                },
+                options: [
+                    {
+                        title: 'label.mortality.search.table.show.percentage.button',
+                        key: true
+                    },
+                    {
+                        title: 'label.mortality.search.table.hide.percentage.button',
+                        key: false
+                    }
+                ]
+            };
+
             filters.filterUtilities = {
                 'mental_health': [
                     {
@@ -1261,7 +1280,7 @@
                     {
                         title: 'Variance',
                         options: [
-                            confidenceIntervalOption
+                            confidenceIntervalOption, sampleSizeOption
                         ]
                     }
                 ],
@@ -1269,7 +1288,7 @@
                     {
                         title: 'Variance',
                         options: [
-                            confidenceIntervalOption
+                            confidenceIntervalOption, sampleSizeOption
                         ]
                     }
                 ]
