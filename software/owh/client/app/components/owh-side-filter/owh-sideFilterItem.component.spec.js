@@ -157,7 +157,7 @@ describe('OWH Side filter item component: ', function () {
             {
                 key: 'mcd-chapter-10', title: 'label.filter.mcd', queryKey: "ICD_10_code.path",
                 primary: false, value: { 'set1': [], 'set2': [] }, groupBy: false, type: "label.filter.group.mcd", groupKey: "mcd",
-                autoCompleteOptions: [], filterType: 'conditions', selectTitle: 'select.label.filter.mcd', updateTitle: 'update.label.filter.mcd',
+                autoCompleteOptions: [{id:'disease1', title:'disease1'}], filterType: 'conditions', selectTitle: 'select.label.filter.mcd', updateTitle: 'update.label.filter.mcd',
                 aggregationKey: "ICD_10_code.path", groupOptions: filters.conditionGroupOptions,
                 selectedValues: { set1: [{ id: "disease1", text: "disease1" }], set2: [] }, selectedNodes: { set1: [], set2: [] }
             }
