@@ -51,6 +51,7 @@ describe("Build elastic search queries", function(){
             }
         }
         };
+        params.searchFor = 'deaths';
         var result = elasticQueryBuilder.buildSearchQuery(params, true);
         var query =result[0];
         var censusQuery = result[1];

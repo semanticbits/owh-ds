@@ -329,6 +329,7 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
             data.data.nested.charts.forEach(function (eachChartData, index) {
                 searchUtils.mergeWonderResponseWithInfantESData(eachChartData, resp[1].charts[index]);
             });
+            isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');
             deferred.resolve(data);
 
         }, function (err) {
