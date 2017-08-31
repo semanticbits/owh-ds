@@ -444,16 +444,15 @@ describe('search factory ', function(){
             expect(primaryFilter.key).toEqual('deaths');
         });
 
-        it('addCountsToAutoCompleteOptions', function () {
-            spyOn(searchService, 'searchResults').and.returnValue(deferred.promise);
-            searchFactory.addCountsToAutoCompleteOptions(primaryFilter);
-            deferred.resolve(countsMortalityAutoCompletes);
-            $scope.$apply();
-            var yearFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year');
-            expect(yearFilter.autoCompleteOptions.length).toEqual(16);
-            expect(yearFilter.autoCompleteOptions[0].count).toEqual(2630800);
-        });
-
+        // it('addCountsToAutoCompleteOptions', function () {
+        //     spyOn(searchService, 'searchResults').and.returnValue(deferred.promise);
+        //     searchFactory.addCountsToAutoCompleteOptions(primaryFilter);
+        //     deferred.resolve(countsMortalityAutoCompletes);
+        //     $scope.$apply();
+        //     var yearFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year');
+        //     expect(yearFilter.autoCompleteOptions.length).toEqual(16);
+        //     expect(yearFilter.autoCompleteOptions[0].count).toEqual(2630800);
+        // });
         it('searchMortalityResults', function () {
             var result = searchFactory.updateFiltersAndData(filters, searchResponse, {'number_of_deaths': {}}, {});
             expect(JSON.stringify(result.primaryFilter.data)).toEqual(JSON.stringify(searchResponse.data.resultData.nested.table));
@@ -511,7 +510,7 @@ describe('search factory ', function(){
         it('ageSliderOptions callback', function () {
             filters.ageSliderOptions.callback('0;10');
             var agegroupFilter = utils.findByKeyAndValue(filters.allMortalityFilters, 'key', 'agegroup');
-            expect(agegroupFilter.value).toEqual([ '0-4years', '5-9years', 'Age not stated' ]);
+            expect(agegroupFilter.value).toEqual([ '1 year', '1-4years', '5-9years', 'Age not stated' ]);
         });
 
         //TODO: Need to be fixed

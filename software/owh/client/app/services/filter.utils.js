@@ -1077,6 +1077,18 @@
                 { key: "28 days and over", title: "28 days and over" }
             ];
 
+            var infantRaceOptions = [
+                { "key": "American Indian or Alaska Native", "title": "American Indian or Alaska Native" },
+                { "key": "Asian or Pacific Islander", "title": "Asian or Pacific Islander" },
+                { "key": "Black", "title": "Black or African American" },
+                { "key": "White", "title": "White" },
+                { "key": "Chinese", "title": "Chinese" },
+                { "key": "Filipino", "title": "Filipino" },
+                { "key": "Hawaiian", "title": "Hawaiian" },
+                { "key": "Japanese", "title": "Japanese" },
+                { "key": "Other Asian", "title": "Other Asian" }
+            ];
+
             return [
                 // Infant Characteristics
                 {key: 'year_of_death', title: 'label.filter.year', queryKey:"year_of_death", primary: false, value: ["2014"],
@@ -1097,7 +1109,7 @@
                 // Maternal Characteristics
                 {key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'row', filterType: "checkbox",
-                    autoCompleteOptions: raceOptions, helpText:"label.help.text.race"},
+                    autoCompleteOptions: infantRaceOptions, helpText:"label.help.text.race"},
 
                 {key: 'hispanic_origin', title: 'label.filter.hispanicOrigin', queryKey:"hispanic_origin",
                     primary: false, value: [], defaultGroup:'row', groupBy: false, filterType: "checkbox",

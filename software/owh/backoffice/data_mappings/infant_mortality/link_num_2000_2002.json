@@ -43,7 +43,11 @@
         "01-01": "White",
         "02-02": "Black",
         "03-03": "American Indian or Alaska Native",
-        "04-78": "Asian or Pacific Islander"
+        "04-04": "Chinese",
+        "05-05": "Japanese",
+        "06-06": "Hawaiian",
+        "07-07": "Filipino",
+        "08-78": "Other Asian"
       }
     },
     {

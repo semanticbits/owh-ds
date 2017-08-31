@@ -536,6 +536,7 @@ var mergeAgeAdjustedRates = function(mort, rates) {
 
 var mergeWonderResponseWithInfantESData = function(mort, rates) {
     var keyMap = {
+        'Other Asian': 'Other Asian ',
         'Black': 'Black or African American',
         'American Indian': 'American Indian or Alaska Native',
         'Hispanic': 'Hispanic or Latino',
@@ -601,11 +602,16 @@ var mergeWonderResponseWithInfantESData = function(mort, rates) {
                     age = rates[keyMap[mort[key][i].name]];
                 }
                 if(age) {
-                    if (age['deathRate'] == undefined) { // Nested result. go to the leaf node recursively
+                    if (age['infant_mortality'] == undefined) { // Nested result. go to the leaf node recursively
                         if (age['Total']) { // If there is a subtotal, assign subtotal value
                             mort[key][i]['deathRate'] = age['Total'].deathRate;
                             mort[key][i]['pop'] = age['Total'].births;
-                            mort[key][i]['infant_mortality'] = age['Total'].infant_mortality;
+                            mort[key][i]['infant_mortality'] = isNaN(age['Total'].infant_mortality) ? 0: age['Total'].infant_mortality;
+                        }
+                        //IF wonder response don't have 'infant_mortality' property and If ES response has it then set this property to 'na'
+                        //So we show 'Not Available' in the UI
+                        else if(mort[key][i]['infant_mortality']) {
+                            mort[key][i]['infant_mortality'] = 'na';
                         }
                         mergeWonderResponseWithInfantESData(mort[key][i], age);
                     }else {
