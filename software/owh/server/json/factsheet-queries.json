@@ -1,0 +1,1973 @@
+{
+  "bridge_race": {
+    "gender_population": {
+      "size": 0,
+      "aggregations": {
+        "group_table_sex": {
+          "terms": {
+            "field": "sex",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "MD"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "nonHispanicRace_population": {
+      "size": 0,
+      "aggregations": {
+        "group_table_race": {
+          "terms": {
+            "field": "race",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "ethnicity_group": "Non-Hispanic"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "race": "Black"
+                        }
+                      },
+                      {
+                        "term": {
+                          "race": "White"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "MD"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "race_population": {
+      "size": 0,
+      "aggregations": {
+        "group_table_race": {
+          "terms": {
+            "field": "race",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "race": "American Indian"
+                        }
+                      },
+                      {
+                        "term": {
+                          "race": "Asian or Pacific Islander"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "MD"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "hispanic_population":{
+      "size": 0,
+      "aggregations": {
+        "group_table_ethnicity": {
+          "terms": {
+            "field": "ethnicity_group",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "ethnicity_group": "Hispanic"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "MD"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "age_population": {
+      "size": 0,
+      "aggregations": {
+        "group_table_agegroup": {
+          "terms": {
+            "field": "age_5_interval",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "MD"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "age_5_interval": "10-14 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "15-19 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "20-24 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "25-29 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "30-34 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "35-39 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "40-44 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "45-49 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "50-54 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "55-59 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "60-64 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "65-69 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "70-74 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "75-79 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "80-84 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "85+ years"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "infant_mortality": {
+    "query": {
+      "year_of_death": {
+        "key": "year_of_death",
+        "queryKey": "year_of_death",
+        "value": [
+          "2014"
+        ],
+        "primary": false
+      },
+      "state": {
+        "key": "state",
+        "queryKey": "state",
+        "value": [
+          "MD"
+        ],
+        "primary": false
+      }
+    },
+    "aggregations": {
+      "simple": [],
+      "nested": {
+        "table": [
+          {
+            "key": "year_of_death",
+            "queryKey": "current_year",
+            "size": 0
+          }
+        ]
+      }
+    }
+  },
+  "tuberculosis": [
+    {
+    "size": 0,
+    "aggregations": {
+      "group_table_race": {
+        "terms": {
+          "field": "race_ethnicity",
+          "size": 0
+        },
+        "aggregations": {
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        }
+      },
+      "group_count_cases": {
+        "sum": {
+          "field": "cases"
+        }
+      }
+    },
+    "query": {
+      "filtered": {
+        "query": {
+          "bool": {
+            "must": []
+          }
+        },
+        "filter": {
+          "bool": {
+            "must": [
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "sex": "Both sexes"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "transmission": "No stratification"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "current_year": "2015"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "age_group": "All age groups"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "state": "MD"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+    {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+    }
+  ],
+  "std": {
+    "chlamydia": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Chlamydia"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Chlamydia"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "Gonorrhea": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Gonorrhea"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Gonorrhea"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "Primary and Secondary Syphilis":[
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Primary and Secondary Syphilis"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Primary and Secondary Syphilis"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "Early Latent Syphilis": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Early Latent Syphilis"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Early Latent Syphilis"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "Congenital Syphilis": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Congenital Syphilis"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Congenital Syphilis"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "aids": {
+    "AIDS Diagnoses": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "HIV, stage 3 (AIDS)"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "HIV, stage 3 (AIDS)"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "AIDS Deaths": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "HIV, stage 3 (AIDS) deaths"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2014"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "HIV, stage 3 (AIDS) deaths"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2014"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

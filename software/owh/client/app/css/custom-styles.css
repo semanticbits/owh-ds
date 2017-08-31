@@ -1961,6 +1961,12 @@ ul.filter-group li.selected a {
     color: #0080d1;
 }
 
+.factsheet-container {
+	z-index: 1;
+	position: relative;
+	padding: 0 30px;
+}
+
 /**
 * Conditional CSS for IE 8+.
 */

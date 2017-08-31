@@ -7,6 +7,7 @@ var searchUtils = require('../api/utils');
 var logger = require('../config/logging')
 var qc = require('../api/queryCache');
 var dsmetadata = require('../api/dsmetadata');
+var factSheet = require('../api/factSheet');
 var Q = require('q');
 var config = require('../config/config');
 var svgtopng = require('svg2png');
@@ -64,6 +65,14 @@ var searchRouter = function(app, rConfig) {
 
     app.get('/brfsQuestionsTree', function (req, res) {
         new yrbs().getBRFSQuestionsTree().then(function(response) {
+            res.send(new result('OK', response, "success"));
+        });
+    });
+
+    app.get('/factsheet', function (req, res) {
+        var state = req.query.state;
+        var fsType = req.query.fsType;
+        new factSheet().prepareFactSheet(state, fsType).then(function(response) {
             res.send(new result('OK', response, "success"));
         });
     });

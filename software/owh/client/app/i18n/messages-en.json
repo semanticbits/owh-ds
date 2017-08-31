@@ -13,6 +13,7 @@
   "label.project.title": "OWH-Quick Health Data Online",
   "label.app.title.description": "OWH-Quick Health Data Online",
   "label.app.title.qhdo": "Health Information Gateway",
+  "label.filter.sex": "Sex",
   "label.filter.births": "Births",
   "label.filter.total.deaths": "Total deaths",
   "label.filter.mental.health": "Mental Health",

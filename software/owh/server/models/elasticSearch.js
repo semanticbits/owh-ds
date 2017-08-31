@@ -317,11 +317,13 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
     else if(selectedYear <= '2002' && selectedYear >= '2000') {
         dbID = 'D18'
     }
+    logger.debug("Infant Mortality ES Query: ", JSON.stringify(query[0]));
     logger.debug("Executing wonder query against database ", dbID);
     var promises = [
         this.executeESQuery(infant_mortality_index, infant_mortality_type, query[0])
     ];
     if(dbID) {
+        logger.debug("Invoking wonder query with this query JSON: ", JSON.stringify(query[1]));
         promises.push(new wonder(dbID).invokeWONDER(query[1]));
         Q.all(promises).then(function (resp) {
             var data = searchUtils.populateDataWithMappings(resp[0], 'infant_mortality', undefined, allSelectedFilterOptions);
