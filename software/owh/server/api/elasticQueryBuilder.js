@@ -215,7 +215,7 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
         censusQuery.query.filtered.filter = clonedFilterQuery;
     }
     //prepare query for map
-    var  mapQuery = buildMapQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery);
+    var  mapQuery = buildMapQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, params.searchFor);
     searchQueryArray.push(elasticQuery);
     //Prepare chart query for disease datasets 'std', 'tb' and 'aids'.
     if(params.searchFor == 'std' || params.searchFor == 'tb' || params.searchFor == 'aids') {
@@ -960,9 +960,10 @@ function addCountsToAutoCompleteOptions(primaryFilter) {
  * @param countQueryKey
  * @param primaryQuery
  * @param filterQuery
- * @returns {undefined}
+ * @param datasetName
+ * @return {undefined}
  */
-function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery) {
+function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery, datasetName) {
 
     var mapQuery = undefined;
 
@@ -970,7 +971,12 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery) {
         mapQuery = { "size":0, aggregations: {} };
         //prepare aggregations
         for(var index in aggregations['nested']['maps']) {
-            mapQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_');
+            if(datasetName == 'deaths') {
+                mapQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_');
+            }
+            else {
+                mapQuery.aggregations = generateNestedAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_', countQueryKey, true);
+            }
         }
         //add quey criteria
         mapQuery.query = {filtered:{}};
