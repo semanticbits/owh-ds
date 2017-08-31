@@ -848,7 +848,7 @@
                         var chartNames = {'yrbsSex&yrbsRace':'Sex and Race', 'yrbsSex&yrbsGrade':'Sex and Grade',
                             'yrbsGrade&yrbsRace': 'Grade and Race', 'yrbsRace': 'Race', 'race': 'Race/Ethnicity',
                             'yrbsSex': 'Sex', 'yrbsGrade': 'Grade', 'year': 'Year', 'state': 'State', 'yrbsState': 'State',
-                            'income':'Household Income', 'education':'Education Attained', 'age_group':'Age group'};
+                            'income':'Household Income', 'education':'Education Attained', 'age_group':'Age group', 'sex':'Sex'};
 
                         if (chartType.length == 1) {
                             return chartNames[chartType[0]];
