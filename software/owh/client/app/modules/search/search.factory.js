@@ -257,7 +257,7 @@
         /*
             Builds table based on primaryFilter and options
          */
-        function getMixedTable(selectedFilter, groupOptions, tableView){
+        function getMixedTable(selectedFilter, groupOptions, tableView, calculatePercentage){
             var file = selectedFilter.data ? selectedFilter.data : {};
 
             if(selectedFilter.key === 'prams' || selectedFilter.key === 'brfss'
@@ -290,7 +290,11 @@
             var countKey = selectedFilter.key;
             var countLabel = selectedFilter.countLabel;
             var totalCount = selectedFilter.count;
-            var calculatePercentage = selectedFilter.key === 'prams' || selectedFilter.key == 'mental_health' ? false : true;
+            if (calculatePercentage === undefined || calculatePercentage === null) {
+                calculatePercentage = (selectedFilter.key === 'deaths' && tableView === 'number_of_deaths') ||
+                                      (selectedFilter.key === 'natality' && tableView === 'number_of_births') ||
+                                      (selectedFilter.key === 'bridge_race' && tableView === 'bridge_race');
+            }
             var calculateRowTotal = selectedFilter.calculateRowTotal;
             var secondaryCountKeys = ['pop', 'ageAdjustedRate', 'standardPop', 'deathRate'];
 
