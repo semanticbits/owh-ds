@@ -2410,6 +2410,7 @@
                     queryKey:"sitecode",primary: false, value: ['AL'],
                     groupBy: false, filterType: 'radio',
                     autoCompleteOptions: filters.brfsStateOptions,
+                    displaySearchBox:true, displaySelectedFirst:true,
                     doNotShowAll: false, helpText: ""
                 },
                 {
