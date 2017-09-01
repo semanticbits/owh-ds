@@ -396,6 +396,7 @@
                 <input type="checkbox" id="{{group.queryKey}}_all" name="{{group.queryKey}}_all"
                        ng-checked="group.value.length === 0"
                        ng-click="sfic.updateGroupValue();" ng-model="group.allChecked"
+                       ng-disabled='!!group.disableAll'
                        ng-init="group.allChecked = group.value.length === 0"
                        ng-show="group.filterType === 'checkbox'">
                 <label for="{{group.queryKey}}_all" class="custom-label">

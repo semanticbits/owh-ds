@@ -1240,6 +1240,25 @@
                     }
                 ]
             };
+            var sampleSizeOption = {
+                title: 'Sample size',
+                type: 'toggle',
+                value: false,
+                onChange: function(value, option) {
+                    option.value = value;
+                },
+                options: [
+                    {
+                        title: 'label.mortality.search.table.show.percentage.button',
+                        key: true
+                    },
+                    {
+                        title: 'label.mortality.search.table.hide.percentage.button',
+                        key: false
+                    }
+                ]
+            };
+
             filters.filterUtilities = {
                 'mental_health': [
                     {
@@ -1271,7 +1290,7 @@
                     {
                         title: 'Variance',
                         options: [
-                            confidenceIntervalOption
+                            confidenceIntervalOption, sampleSizeOption
                         ]
                     }
                 ],
@@ -1279,7 +1298,7 @@
                     {
                         title: 'Variance',
                         options: [
-                            confidenceIntervalOption
+                            confidenceIntervalOption, sampleSizeOption
                         ]
                     }
                 ]
@@ -3461,36 +3480,43 @@
                                 {
                                     filterGroup: false, collapse: false, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'current_year')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'sex')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'race')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'hispanic_origin')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'age_group')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.conditionGroupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'site')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.conditionGroupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'childhood_cancer')
                                 },
                                 {
