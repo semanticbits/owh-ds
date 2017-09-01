@@ -1,7 +1,7 @@
 {
   "charttype":"multiBarChart",
-  "title":"label.title.race.hispanicOrigin",
-  "longtitle":"chart.title.measure.deaths by label.title.race.hispanicOrigin in undefined for undefined",
+  "title":"label.filter.race and label.filter.hispanicOrigin",
+  "longtitle":"chart.title.measure.deaths by label.filter.race and label.filter.hispanicOrigin in undefined for undefined",
   "dataset":"deaths",
   "data":[
     {

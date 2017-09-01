@@ -59,15 +59,15 @@
         function getLongChartTitle(primaryFilter, filter1, filter2){
              var chartVars;
              if (filter2){
-                chartVars= $translate.instant("label.title."+filter1.key+ "."+filter2.key);
+                chartVars= $translate.instant(filter1.title) + ' and ' + $translate.instant(filter2.title);
              }else{
-                chartVars= $translate.instant("label.filter."+filter1.key);
+                chartVars= $translate.instant(filter1.title);
              }
             
             var measure;
             if(primaryFilter.key == 'mental_health' || primaryFilter.key == 'prams' ||primaryFilter.key == 'brfss'){ //Dont use tableView for stats datasets, as tableView captures topics and not views 
                 measure = $translate.instant('chart.title.measure.'+primaryFilter.key);       
-                chartVars= $translate.instant("label.filter."+filter1.key);
+                chartVars= $translate.instant(filter1.title);
             }else{
                 measure= $translate.instant('chart.title.measure.'+(primaryFilter.tableView?primaryFilter.tableView:primaryFilter.key) + (primaryFilter.chartView?('.'+primaryFilter.chartView):''));
             }
@@ -172,7 +172,7 @@
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
-                var reg = {name: trace.key, x: [], y: [], text: [], orientation: 'h',  hoverinfo: 'none', type: 'bar',  marker :{color: colors[i]}};
+                var reg = {name: trace.key, x: [], y: [], text: [], orientation: 'h',  hoverinfo: 'none', type: 'bar',  marker :{color: colors[i%colors.length]}};
                 for (var j = trace.values.length - 1 ; j >=0 ; j-- ){
                     var value  = trace.values[j];
                     reg.y.push(value.label);
@@ -195,7 +195,7 @@
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
-                var reg = {name: trace.key, x: [], y: [], text: [], orientation: 'v', type: 'bar', hoverinfo: 'none', marker :{color: colors[i]}};
+                var reg = {name: trace.key, x: [], y: [], text: [], orientation: 'v', type: 'bar', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
                 for (var j = trace.values.length - 1 ; j >=0 ; j-- ){
                     var value  = trace.values[j];
                     reg.x.push(value.x);
@@ -215,7 +215,7 @@
             layout.yaxis.title = "Population";
             var colors = getColorPallete();    
             var linedata = chartdata.data();
-            var plotydata = {name: linedata[0].key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[i]}};
+            var plotydata = {name: linedata[0].key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
             for (var i = linedata[0].values.length -1 ; i >= 0 ; i-- ){
                 var value  = linedata[0].values[i];
                 plotydata.x.push(value.x);
@@ -235,7 +235,7 @@
             angular.forEach(utilService.getSelectedAutoCompleteOptions(filter1), function (primaryOption,index) {
                     var eachPrimaryData = utilService.findByKeyAndValue(data[filter1.key], 'name', primaryOption.key);
 
-                    var plotlyseries= {name: primaryOption.key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[index]}}; 
+                    var plotlyseries= {name: primaryOption.key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[index%colors.length]}};
                     if(eachPrimaryData && eachPrimaryData[filter2.key]) {
                         angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2) , function (secondaryOption,j) {
                             if (!secondaryOption.disabled) {
@@ -264,7 +264,7 @@
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
-                var reg = {name: trace.label, x: [], y: [], text: [], orientation: 'h', type: 'bar', hoverinfo: 'none', marker :{color: colors[i]}};
+                var reg = {name: trace.label, x: [], y: [], text: [], orientation: 'h', type: 'bar', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
                     reg.y.push(trace.label); 
                     reg.x.push(trace.value);
                     reg.text.push(trace.label+':'+trace.value.toLocaleString());
@@ -282,66 +282,16 @@
             var chartData = {
                 data: [],
                 dataset: primaryFilter.key,
-                title:  $translate.instant("label.title."+filter1.key+"."+filter2.key),
+                title:  $translate.instant(filter1.title) + ' and ' + $translate.instant(filter2.title),
                 options: {
                     "chart": {
                         "type": "multiBarHorizontalChart",
-                        "height": 250,
-                        "width": 0,
-                        "margin": {
-                            "top": 5,
-                            "right": 5,
-                            "bottom": 45,
-                            "left": 45
-                        },
-                        showLegend: false,
-                        showControls: false,
-                        showValues: false,
-                        showXAxis:true,
-                        showYAxis:true,
                         stacked: stacked && primaryFilter.tableView && primaryFilter.tableView.indexOf('rate') < 0,
-                        "duration": 500,
-                        x: function(d){return d.label;},
-                        y: function(d){return d.value;},
                         "xAxis": {
-                            "axisLabelDistance": -20,
-                            "axisLabel": getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel),
-                            tickFormat:function () {
-                                return null;
-                            },
-                            "showMaxMin": false
+                            "axisLabel": getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel)
                         },
                         "yAxis": {
-                            "axisLabel": $translate.instant(filter2.title),
-                            tickFormat:function () {
-                                return null;
-                            }
-                        },
-                        valueFormat:function (n){
-                            if(isNaN(n)){ return n; }
-                            else if (primaryFilter.key == 'mental_health'
-                                || primaryFilter.key === 'prams'
-                                || primaryFilter.key === 'brfss') {
-                                return d3.format(',.1f')(n);(n);
-                            } else {
-                                return d3.format('d')(n);
-                            }
-                        },
-                        useInteractiveGuideline: false,
-                        interactive: false,
-                        tooltip: {
-                            contentGenerator: function(d) {
-                                var html = "<div class='usa-grid-full'"+
-                                    "<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>"+ d.value+"</div>" +
-                                    "<div class='usa-width-one-whole nvtooltip-value'>";
-                                    d.series.forEach(function(elem){
-                                        html += "<span class='fa fa-square' style='color:"+elem.color+"'></span>" +
-                                            "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"
-                                            + getCount(elem.value, primaryFilter) + postFixToTooltip + "</div>";
-                                    });
-                                    html += "</div>";
-                                return html;
-                            }
+                            "axisLabel": $translate.instant(filter2.title)
                         }
                     }
                 }
@@ -461,72 +411,16 @@
             var chartData = {
                 data: [],
                 dataset: primaryFilter.key,
-                title: $translate.instant("label.title."+filter1.key+"."+filter2.key),
+                title: $translate.instant(filter1.title) + ' and ' + $translate.instant(filter2.title),
                 options: {
                     "chart": {
                         "type": "multiBarChart",
-                        "height": 250,
-                        "width": 0,
-                        "margin": {
-                            "top": 5,
-                            "right": 5,
-                            "bottom": 45,
-                            "left": 45
-                        },
-                        showMaxMin: false,
-                        showLegend: false,
-                        showControls: false,
-                        showValues: false,
-                        showXAxis:true,
-                        showYAxis:true,
-                        reduceXTicks:false,
-                        //wrapLabels:true,
-                        legend:{
-                            width:200,
-                            expanded:true
-                        },
-                        staggerLabels:true,
-                        rotateLabels:70,
-                        x: function(d){return d.x;},
-                        y: function(d){return d.y;},
-                        "clipEdge": true,
-                        "duration": 500,
                         "stacked": stacked,
                         "xAxis": {
-                            "axisLabelDistance": -20,
-                            "axisLabel": $translate.instant(filter2.title),
-                            margin: {
-                                top:60
-                            },
-                            tickFormat:function () {
-                                return null;
-                            }
+                            "axisLabel": $translate.instant(filter2.title)
                         },
                         "yAxis": {
-                            "axisLabelDistance": -20,
-                            "axisLabel": getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel),
-                            tickFormat:function () {
-                               return null;
-                            }
-                        },
-                        valueFormat:function (n){
-                            if(isNaN(n)){ return n; }
-                            return d3.format('d')(n);
-                        },useInteractiveGuideline: false,
-                        interactive: false,
-                        tooltip: {
-                            contentGenerator: function(d) {
-                                var html = "<div class='usa-grid-full'"+
-                                    "<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>"+ d.value+"</div>" +
-                                    "<div class='usa-width-one-whole nvtooltip-value'>";
-                                d.series.forEach(function(elem){
-                                    html += "<span class='fa fa-square' style='color:"+elem.color+"'></span>" +
-                                        "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"
-                                        +getCount(elem.value, primaryFilter)+"</div>";
-                                });
-                                html += "</div>";
-                                return html;
-                            }
+                            "axisLabel": getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel)
                         }
                     }
                 }
@@ -572,7 +466,7 @@
             var chartData = {
                 data: [],
                 dataset: primaryFilter.key,
-                title: $translate.instant("label.graph."+filter.key),
+                title: $translate.instant(filter.title),
                 options: {
                     "chart": {
                         "type": "lineChart",
@@ -671,69 +565,19 @@
         /*Prepare pie chart for single filter*/
         function pieChart( data, filter, primaryFilter, postFixToTooltip ) {
             postFixToTooltip = postFixToTooltip ? postFixToTooltip : '';
-
-            var color = d3.scale.category20();
             var chartData = {
                 data: [],
                 dataset: primaryFilter.key,
-                title:  $translate.instant("label.filter."+filter.key),
+                title:  $translate.instant(filter.title),
                 options: {
                     chart: {
                         type: 'pieChart',
-                        "height": 250,
-                        "width": 250,
-                        "margin": {
-                            "top": 5,
-                            "right": 5,
-                            "bottom": 5,
-                            "left": 5
-                        },
-                        x: function(d){ return d.label; },
-                        y: function(d){ return d.value; },
                         yAxis: {
                             axisLabel: $translate.instant("label.filter."+filter.key),
                             
                         },
                         xAxis: {
                             axisLabel: $translate.instant('chart.title.measure.'+(primaryFilter.tableView?primaryFilter.tableView:primaryFilter.key)),                            
-                        },
-                        showValues: false,
-                        showLabels: false,
-                        transitionDuration: 250,
-                        showLegend: false,
-                        legend: {
-                            margin:{}
-                        },
-                        labelThreshold: 0.01,
-                        labelSunbeamLayout: true,
-                        styles: {
-                            classes: {
-                                'with-3d-shadow': true,
-                                'with-transitions': true,
-                                gallery: false
-
-                            }
-                        },
-                        color:function (d, i) {
-                            if(filter.key==='gender') {
-                                return d.label === 'Male' ?  "#009aff" : "#fe66ff";
-                            }else {
-                                return color(i);
-                            }
-                        },useInteractiveGuideline: false,
-                        interactive: false,
-                        tooltip: {
-                            contentGenerator: function(d) {
-                                var html = "<div class='usa-grid-full'"+
-                                    "<div class='usa-width-one-whole nvtooltip-value'>";
-                                d.series.forEach(function(elem){
-                                    html += "<span class='fa fa-square' style='color:"+elem.color+"'></span>" +
-                                        "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"
-                                        +getCount(elem.value, primaryFilter) + postFixToTooltip + "</div>";
-                                });
-                                html += "</div>";
-                                return html;
-                            }
                         }
                     }}
             };

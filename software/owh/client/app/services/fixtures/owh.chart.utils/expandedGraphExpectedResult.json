@@ -38,7 +38,7 @@
         "title":"label.filter.race"
       },
       "barmode":"stack",
-      "title":"chart.title.measure.deaths by label.title.gender.race in undefined for undefined",
+      "title":"chart.title.measure.deaths by label.filter.gender and label.filter.race in undefined for undefined",
       "height":750,
       "legend":{
         "orientation":"v",
@@ -98,7 +98,7 @@
         }
       }
     ],
-    "longtitle":"chart.title.measure.deaths by label.title.gender.race in undefined for undefined",
+    "longtitle":"chart.title.measure.deaths by label.filter.gender and label.filter.race in undefined for undefined",
     "charttype":"multiBarHorizontalChart"
   },
   {
