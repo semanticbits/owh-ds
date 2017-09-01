@@ -1,46 +1,66 @@
 {
-  "title": "label.graph.current_year",
-  "options": {
-    "chart": {
-      "type": "lineChart",
-      "height": 250,
-      "width": 300,
-      "margin": {
-        "top": 5,
-        "right": 5,
-        "bottom": 16,
-        "left": 50
-      },
-      "showMaxMin": false,
-      "showLegend": false,
-      "showControls": false,
-      "showValues": false,
-      "showXAxis": true,
-      "showYAxis": true,
-      "reduceXTicks": false,
-      "legend": {
-        "width": 200,
-        "expanded": true
-      },
-      "staggerLabels": true,
-      "rotateLabels": 70,
-      "styles": {
-        "classes": {
-          "with-3d-shadow": true,
-          "with-transitions": true,
-          "gallery": false
-        }
-      },
-      "interactive": true,
-      "xAxis": {
-        "axisLabelDistance": -20,
-        "axisLabel": "Year"
-      },
-      "yAxis": {
-        "axisLabelDistance": -20,
-        "axisLabel": "Population"
-      },
-      "tooltip": {}
+  "charttype":"lineChart",
+  "title":"label.graph.current_year",
+  "longtitle":"chart.title.measure.deaths by label.filter.current_year in undefined for undefined",
+  "dataset":"deaths",
+  "data":[
+    {
+      "name":"Population",
+      "x":[
+
+      ],
+      "y":[
+
+      ],
+      "text":[
+
+      ],
+      "type":"scatter",
+      "hoverinfo":"none",
+      "marker":{
+
+      }
     }
+  ],
+  "layout":{
+    "width":128,
+    "autosize":true,
+    "showlegend":false,
+    "margin":{
+      "l":20,
+      "r":10,
+      "b":20,
+      "t":20
+    },
+    "xaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
+      },
+      "exponentformat":"none",
+      "tickangle":45,
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "fixedrange":true,
+      "title":"Year"
+    },
+    "yaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
+      },
+      "exponentformat":"none",
+      "tickangle":45,
+      "ticksuffix":"   ",
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "fixedrange":true,
+      "title":"Population"
+    }
+  },
+  "options":{
+    "displayModeBar":false
   }
 }

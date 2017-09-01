@@ -90,10 +90,10 @@ var homeStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^footer should have "([^"]*)" links$/, function (arg1, next) {
-        var footer = element(by.className('footer'));
+        var footer = element(by.className('footer-link'));
         browser.executeScript("arguments[0].scrollIntoView();", footer);
         var links = arg1.split(',');
-        var allElements =  element.all(by.className('ft-link'));
+        var allElements =  footer.all(by.className('ft-link'));
         allElements.getText().then(function (filters) {
             filters.forEach(function (filter, index) {
                 expect(filter).to.contains(links[index]);
@@ -105,8 +105,11 @@ var homeStepDefinitionsWrapper = function () {
         return expect(element(by.className("contentOwnership")).getText()).to.eventually.contains(arg1);
     });
 
-    this.Then(/^I see "([^"]*)" msg on footer$/, function (arg1) {
-        return expect(element(by.className("hig-formerly-msg")).getText()).to.eventually.contains(arg1);
+    this.Then(/^I see "([^"]*)" msg on footer$/, function (arg1, next) {
+        var elms = element.all(by.className("usa-text-small"));
+        elms.getText().then(function (textList) {
+            expect(textList[1]).to.contains(arg1);
+        }).then(next);
     });
 };
 module.exports = homeStepDefinitionsWrapper;

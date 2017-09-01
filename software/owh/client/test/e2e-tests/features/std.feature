@@ -8,7 +8,9 @@ Feature: STD page
     When I am at home page
     And  I click on Explore button in Health Information Gateway section
     Then I should get search page with default filter type "Detailed Mortality"
-    When I change 'I'm interested in' dropdown value to "Sexually Transmitted Diseases/Infections"
+    When I change 'I'm interested in' dropdown
+    Then I see menu appears with data-sets options
+    And I click on "Sexually Transmitted Diseases/Infections" dataset menu
     Then I should see filter type "Sexually Transmitted Diseases/Infections" selected
     And I expand "Disease" filter section
     And filter "Chlamydia" under STD "disease" should be a "radio"
@@ -23,8 +25,20 @@ Feature: STD page
     When I look at the STD data table
     Then I see the Rates, Population and Cases as outputs in the STD data table
 
+  Scenario: One filter on groupBy 'Row' should display totals
+    When  I select groupBy "Off" option for "Sex" filter
+    Then the default headers of the table should be "Race/Ethnicity, Number of Cases"
+    And the values in row "0" should be "All races/ethnicities, 1,526,658"
+    And the values in row "0" should be "All races/ethnicities, 318,857,056"
+    And the values in row "0" should be "All races/ethnicities, 478.8"
+    And the values in row "1" should be "American Indian or Alaska Native, 13,113"
+    And the values in row "1" should be "American Indian or Alaska Native, 2,002,659"
+    And the values in row "1" should be "American Indian or Alaska Native, 654.8"
+
+
   Scenario: Filter order
-    When I look at the sidebar
+    When  I select groupBy "Column" option for "Sex" filter
+    And I look at the sidebar
     Then filters should be in this order "Disease, Year, Sex, Race/Ethnicity, Age Groups, State"
 
   Scenario: Radio Buttons

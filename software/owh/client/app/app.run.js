@@ -304,21 +304,21 @@
             "age_group&state": "horizontalBar",
 
             // Infant Mortality
-            "year_of_death&sex": "multiLineChart",
-            "year_of_death&race": "multiLineChart",
-            "year_of_death&ethnicity": "multiLineChart",
-            "year_of_death&marital_status": "multiLineChart",
-            "year_of_death&mother_age": "multiLineChart",
-            "year_of_death&mother_education": "mulitLineChart",
-            "year_of_death&gestation_recode1": "multiLineChart",
-            "year_of_death&prenatal_care": "horizontalStack",
-            "year_of_death&birth_weight": "mulitLineChart",
-            "year_of_death&birth_plurality": "mulitLineChart",
-            "year_of_death&live_birth": "mulitLineChart",
-            "year_of_death&birth_place": "mulitLineChart",
-            "year_of_death&delivery_method": "mulitLineChart",
-            "year_of_death&medical_attendant": "mulitLineChart",
-            "year_of_death&ucd": "mulitLineChart",
+            "sex&year_of_death": "multiLineChart",
+            "race&year_of_death": "multiLineChart",
+            "ethnicity&year_of_death": "multiLineChart",
+            "marital_status&year_of_death": "multiLineChart",
+            "mother_age&year_of_death": "multiLineChart",
+            "mother_education&year_of_death": "mulitLineChart",
+            "gestation_recode1&year_of_death": "multiLineChart",
+            "prenatal_care&year_of_death": "horizontalStack",
+            "birth_weight&year_of_death": "mulitLineChart",
+            "birth_plurality&year_of_death": "mulitLineChart",
+            "live_birth&year_of_death": "mulitLineChart",
+            "birth_place&year_of_death": "mulitLineChart",
+            "delivery_method&year_of_death": "mulitLineChart",
+            "medical_attendant&year_of_death": "mulitLineChart",
+            "ucd&year_of_death": "mulitLineChart",
             "sex&infant_age_at_death": "horizontalBar",
             "sex&mother_age_5_interval": "horizontalBar",
             "race&mother_age_5_interval": "horizontalBar",
@@ -360,9 +360,8 @@
             $rootScope.questions = response.data.questionTree;
             $rootScope.questionsList = response.data.questionsList;
             $rootScope.$broadcast("yrbsQuestionsLoadded");
-
         }).catch(function(error){
-            console.log(" Failed to get YRBS questions from yrbs service ", error);
+            console.log(" Failed to get YRBS questions from stats service ", error);
         });
 
         /*
@@ -375,7 +374,19 @@
             $rootScope.$broadcast("pramsQuestionsLoaded");
 
         }).catch(function(error){
-            console.log(" Failed to get PRAMS questions from yrbs service ", error);
+            console.log(" Failed to get PRAMS questions from stats service ", error);
+        });
+
+        /*
+            Get BRFS questions
+         */
+        API.getBRFSQuestionsTree().$promise.then(function(response){
+            console.log('brfs questions response', response);
+            $rootScope.brfsQuestions = response.data.questionTree;
+            $rootScope.brfsQuestionsList = response.data.questionsList;
+            $rootScope.$broadcast("brfsQuestionsLoaded");
+        }).catch(function(error){
+            console.log(" Failed to get BRFS questions from stats service ", error);
         });
 
     }

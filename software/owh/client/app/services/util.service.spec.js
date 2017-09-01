@@ -3,7 +3,7 @@
 /*group of common test goes here as describe*/
 describe('utilService', function(){
     var utils, list, tableData, multipleColumnsTableData, noColumnsTableData, noRowsTableData,
-        multipleColumnsTableDataWithUnmatchedColumns, singleValuedTableData, $q, $scope, filterUtils;
+        multipleColumnsTableDataWithUnmatchedColumns, singleValuedTableData, $q, $scope, filterUtils, icd10codes, $rootScope;
 
     beforeEach(module('owh'));
 
@@ -11,6 +11,7 @@ describe('utilService', function(){
         utils = $injector.get('utilService');
         filterUtils = $injector.get('filterUtils');
         $q = _$q_;
+        $rootScope = _$rootScope_;
         $scope= _$rootScope_.$new();
         var $httpBackend = $injector.get('$httpBackend');
         list = [
@@ -35,11 +36,14 @@ describe('utilService', function(){
 
         singleValuedTableData = __fixtures__['app/services/fixtures/util.service/noRowsTableData'];
 
+        icd10codes  = __fixtures__['app/services/fixtures/util.service/conditions-ICD-10'];
+
         $httpBackend.whenGET('app/i18n/messages-en.json').respond({});
         $httpBackend.whenGET('app/partials/marker-template.html').respond( {});
         $httpBackend.whenGET('/getFBAppID').respond({});
         $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('app/modules/home/home.html').respond({data: { }});
         $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
     }));
@@ -101,9 +105,13 @@ describe('utilService', function(){
         var isFilterApplied = utils.isFilterApplied(filter);
         expect(isFilterApplied).toEqual(true);
 
+        filter = {"key":"state","value":["AK"], groupBy:'row', "autoCompleteOptions":[{"key":"AL"},{"key":"AK"}]};
+        isFilterApplied = utils.isFilterApplied(filter);
+        expect(isFilterApplied).toEqual(true);
+
         //not applied
-        filter = {"key":"state","value":[],"autoCompleteOptions":[{"key":"AL"},{"key":"AK"}]};
-        var isFilterApplied = utils.isFilterApplied(filter);
+        filter = {"key":"state","value":[], groupBy:false, "autoCompleteOptions":[{"key":"AL"},{"key":"AK"}]};
+        isFilterApplied = utils.isFilterApplied(filter);
         expect(isFilterApplied).toEqual(false);
     });
 
@@ -348,6 +356,7 @@ describe('utilService', function(){
 
 
     it('refreshFilterAndOptions options should set filter option correctly - without category property ', inject(function(SearchService) {
+
         var deferred = $q.defer();
         var filters= [
             {
@@ -716,6 +725,43 @@ describe('utilService', function(){
         expect(filters[1].filters.autoCompleteOptions[8].disabled).toBeTruthy();
     }));
 
+    it('Should generate appropriate selected filters text', function () {
+        var filters= [
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:"row",
+                key: 'year', title: 'label.filter.year', queryKey:"year", primary: false, value: ['2000', '2014'],
+                type:"label.filter.group.year", showChart: true, defaultGroup:"column",
+                autoCompleteOptions: [{key:'2000','title':'2000'},{key:'2010','title':'2010'},{key:'2014','title':'2014'}]
+            },
+            {
+                filterGroup: false, collapse: true, allowGrouping: true,groupBy:true,
+                key: 'gender', title: 'label.filter.gender', queryKey:"sex", primary: false, value: ['M'],
+                type:"label.filter.group.demographics", groupByDefault: 'column', showChart: true,
+                autoCompleteOptions: [
+                    {key:'F',title:'Female'},
+                    {key:'M',title:'Male'}
+                ], defaultGroup:"column"
+
+            },
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:false,
+                key: 'race', title: 'label.filter.race', queryKey:"race", primary: false, value: ['White', 'Asian'],
+                type:"label.filter.group.demographics", showChart: true, defaultGroup:"column",
+                autoCompleteOptions: [{key:'White','title':'White'},{key:'Black','title':'Black'},{key:'Asian','title':'Asian'}]
+            },
+
+            {
+                filterGroup: false, collapse: false, allowGrouping: true, groupBy:false,
+                key: 'ethnicity', title: 'label.filter.ethnicity', queryKey:"ethnicity", primary: false, value: [],
+                type:"label.filter.group.ethnicity", showChart: true, defaultGroup:"column",
+                autoCompleteOptions: [{key:'Hispanic','title':'Hispanic'},{key:'Non-Hispanic','title':'Non-Hispanic'}]
+            }
+        ];
+        var sort  = ['year', 'race', 'gender','ethnicity'];
+
+        expect(utils.getSelectedFiltersText(filters, sort)).toEqual ('label.filter.year: 2000, 2014| label.filter.race: White, Asian| label.filter.gender: Male');
+    });
+
     it('STD: Disease filter option "Congenital Syphilis" on change', inject(function(filterUtils){
         var filters = {};
         filters.groupOptions = [
@@ -1036,6 +1082,16 @@ describe('utilService', function(){
         expect(year_2002.disabled).toBeTruthy();
     }));
 
+    it('getICD10Chapters returns epmty list when icd codes are not loaded', function () {
+        expect(utils.getICD10Chapters()).toEqual ([]);
+    });
+
+    it('getICD10Chapters returns icd10 chapters', function () {
+        $rootScope.conditionsICD10 = icd10codes.conditionsICD10;
+        expect(utils.getICD10Chapters().length).toEqual(21);
+        expect(utils.getICD10Chapters()).toEqual( [{ "key": "A00-B99", "title": "Certain infectious and parasitic diseases(A00-B99)" }, { "key": "C00-D48", "title": "Neoplasms(C00-D48)" }, { "key": "D50-D89", "title": "Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism(D50-D89)" }, { "key": "E00-E89", "title": "Endocrine, nutritional and metabolic diseases(E00-E89)" }, { "key": "F01-F99", "title": "Mental and behavioural disorders(F01-F99)" }, { "key": "G00-G98", "title": "Diseases of the nervous system(G00-G98)" }, { "key": "H00-H59", "title": "Diseases of the eye and adnexa(H00-H59)" }, { "key": "H60-H95", "title": "Diseases of the ear and mastoid process(H60-H95)" }, { "key": "I00-I99", "title": "Diseases of the circulatory system(I00-I99)" }, { "key": "J00-J98", "title": "Diseases of the respiratory system(J00-J98)" }, { "key": "K00-K92", "title": "Diseases of the digestive system(K00-K92)" }, { "key": "L00-L98", "title": "Diseases of the skin and subcutaneous tissue(L00-L98)" }, { "key": "M00-M99", "title": "Diseases of the musculoskeletal system and connective tissue(M00-M99)" }, { "key": "N00-N99", "title": "Diseases of the genitourinary system(N00-N99)" }, { "key": "O00-O99", "title": "Pregnancy, childbirth and the puerperium(O00-O99)" }, { "key": "P00-P96", "title": "Certain conditions originating in the perinatal period(P00-P96)" }, { "key": "Q00-Q99", "title": "Congenital malformations, deformations and chromosomal abnormalities(Q00-Q99)" }, { "key": "R00-R99", "title": "Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified(R00-R99)" }, { "key": "S00-T98", "title": "Injury, poisoning and certain other consequences of external causes(S00-T98)" }, { "key": "U00-U99", "title": "Codes for special purposes(U00-U99)" }, { "key": "V01-Y89", "title": "External causes of morbidity and mortality(V01-Y89)" }]);
+    });
+
     describe('Aids Filter Change:', function () {
         var mockFilters;
 
@@ -1101,6 +1157,145 @@ describe('utilService', function(){
             utils.aidsFilterChange(mockFilters.sideFilters[3], [mockFilters]);
             expect(mockFilters.sideFilters[4].disabled).toBeTruthy();
             expect(mockFilters.sideFilters[5].disabled).toBeTruthy();
+        });
+
+        it('should reset all groupings to off on brfssFilterChange and put current filter to column', function () {
+            var filter = {"key":"state","title":"label.brfss.filter.state","queryKey":"sitecode","primary":false,"value":["AL"],"groupBy":"column","filterType":"radio","autoCompleteOptions":[{"key":"AL","title":"Alabama","$$hashKey":"object:4162","count":0},{"key":"AK","title":"Alaska","$$hashKey":"object:4163","count":0},{"key":"AZB","title":"Arizona","$$hashKey":"object:4164","count":0}],"doNotShowAll":false,"helpText":"","$$hashKey":"object:3824"};
+            var categories = [
+                {"sideFilters":[{"filterGroup":false,"collapse":false,"allowGrouping":false,"dontShowCounts":true,"filters":{"key":"year","title":"label.filter.year","queryKey":"year","primary":false,"value":["2015"],"groupBy":false,"filterType":"radio","autoCompleteOptions":[{"key":"2015","title":"2015","$$hashKey":"object:4083","count":0},{"key":"2014","title":"2014","$$hashKey":"object:4084","count":0}],"doNotShowAll":true,"helpText":"","$$hashKey":"object:3822"},"$$hashKey":"object:3847"},{"filterGroup":false,"collapse":false,"allowGrouping":true,"groupOptions":[{"key":"column","title":"Column","tooltip":"Select to view as columns on data table","$$hashKey":"object:4467"},{"key":false,"title":"Off","tooltip":"Select to hide on data table","$$hashKey":"object:4468"}],"dontShowCounts":true,"filters":{"key":"state","title":"label.brfss.filter.state","queryKey":"sitecode","primary":false,"value":["AL"],"groupBy":false,"filterType":"radio","autoCompleteOptions":[{"key":"AL","title":"Alabama","$$hashKey":"object:4162","count":0},{"key":"AK","title":"Alaska","$$hashKey":"object:4163","count":0}],"doNotShowAll":false,"helpText":"","$$hashKey":"object:3824"},"$$hashKey":"object:3848"}],"$$hashKey":"object:3839"},
+                {"category":"Breakout","sideFilters":[{"filterGroup":false,"collapse":false,"allowGrouping":true,"groupOptions":[{"key":"column","title":"Column","tooltip":"Select to view as columns on data table","$$hashKey":"object:4467"},{"key":false,"title":"Off","tooltip":"Select to hide on data table","$$hashKey":"object:4468"}],"filters":{"key":"sex","title":"label.filter.gender","queryKey":"gender","primary":false,"value":[],"groupBy":false,"filterType":"radio","autoCompleteOptions":[{"key":"Male","title":"Male","$$hashKey":"object:4362","count":0},{"key":"Female","title":"Female","$$hashKey":"object:4363","count":0}],"doNotShowAll":false,"helpText":"","$$hashKey":"object:3823"},"$$hashKey":"object:4339"},{"filterGroup":false,"collapse":false,"allowGrouping":true,"groupOptions":[{"key":"column","title":"Column","tooltip":"Select to view as columns on data table","$$hashKey":"object:4467"},{"key":false,"title":"Off","tooltip":"Select to hide on data table","$$hashKey":"object:4468"}],"filters":{"key":"race","title":"label.brfss.filter.race_ethnicity","queryKey":"race","primary":false,"value":[],"groupBy":"column","filterType":"radio","autoCompleteOptions":[{"key":"White, non-Hispanic","title":"White, non-Hispanic","$$hashKey":"object:4392","count":0},{"key":"Black, non-Hispanic","title":"Black, non-Hispanic","$$hashKey":"object:4393","count":0}],"doNotShowAll":false,"helpText":"","$$hashKey":"object:3825"},"$$hashKey":"object:4340"}],"$$hashKey":"object:3840"}
+            ];
+
+            //before onchange
+            var stateFilter = categories[0].sideFilters[1];
+            expect(stateFilter.filters.groupBy).toEqual(false);
+
+            utils.brfsFilterChange(filter, categories);
+            //after onchange
+            expect(stateFilter.filters.groupBy).toEqual("column");
+
+        });
+    });
+
+    describe('infant year filter change', function(){
+        var categories;
+        beforeEach(function () {
+            categories = [{"category":"Infant Characteristics", "sideFilters": [{filters: utils.findByKeyAndValue(filterUtils.getInfantMortalityDataFilters(), 'key', 'year_of_death')}]}];
+        });
+
+        it('Should keep years which on in same range if user selected multiple years - 2014(D69) and 2006(D31)', function(){
+            //In this case user first selected year '2014' then selected year '2006', so we should delete year '2014' and keep '2006'
+            //So that query can hit only one wonder database. In this case database ID D31 for years 2003 - 2006.
+            var yearSideFilter = categories[0].sideFilters[0].filters;
+            yearSideFilter.value.push("2006");
+            utils.infantMortalityFilterChange(yearSideFilter, categories);
+            expect(yearSideFilter.value.length).toEqual(1);
+            expect(yearSideFilter.value[0]).toEqual("2006");
+        });
+        it('Should keep years which on in same range if user selected multiple years - 2014(D69) and 2013(D69)', function(){
+            //In this case user first selected year '2014' then selected year '2013', so we should keep both '2014' and '2013'
+            //Because those are in range 2007 - 2014(D69). So that query can hit only one wonder database.
+            var yearSideFilter = categories[0].sideFilters[0].filters;
+            yearSideFilter.value.push("2013");
+            utils.infantMortalityFilterChange(yearSideFilter, categories);
+            expect(yearSideFilter.value.length).toEqual(2);
+            expect(yearSideFilter.value[0]).toEqual("2014");
+            expect(yearSideFilter.value[1]).toEqual("2013");
+        });
+        it('Should keep years which on in same range if user selected multiple years - 2006(D31) and 2002(D18)', function(){
+            //In this case user first selected year '2006' then selected year '2002', so we should delete '2014' and keep '2002
+            //Because both selected years are in different range, so we are keeping latest selected year.
+            //So '2002' is in range 200 - 2003 which is comes under wonder database D18
+            var yearSideFilter = categories[0].sideFilters[0].filters;
+            yearSideFilter.value.push("2002");
+            utils.infantMortalityFilterChange(yearSideFilter, categories);
+            expect(yearSideFilter.value.length).toEqual(1);
+            expect(yearSideFilter.value[0]).toEqual("2002");
+        });
+        it('Should set to default year if user unselect all years', function(){
+            //By default year 2014 selected, if user un check '2014'
+            var yearSideFilter = categories[0].sideFilters[0].filters;
+            yearSideFilter.value = [];
+            //Then default value '2014' should be set
+            utils.infantMortalityFilterChange(yearSideFilter, categories);
+            expect(yearSideFilter.value.length).toEqual(1);
+            expect(yearSideFilter.value[0]).toEqual("2014");
+        });
+    });
+
+    describe('Cancer Incidence Filter Change:', function () {
+        var mockFilters;
+
+        beforeEach(function () {
+           mockFilters = {};
+           mockFilters.sideFilters = [
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.cancerIncidenceFilters(), 'key', 'current_year')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.cancerIncidenceFilters(), 'key', 'sex')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.cancerIncidenceFilters(), 'key', 'race')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.cancerIncidenceFilters(), 'key', 'hispanic_origin')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.cancerIncidenceFilters(), 'key', 'age_group')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.cancerIncidenceFilters(), 'key', 'site')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.cancerIncidenceFilters(), 'key', 'childhood_cancer')
+               },
+               {
+                   filters: utils.findByKeyAndValue(filterUtils.cancerIncidenceFilters(), 'key', 'state')
+               }
+           ]
+        });
+
+        afterEach(function () {
+            mockFilters = null;
+        });
+
+        it('Should disable the childhood cancer filter when a non-childhood age group is selected', function () {
+            mockFilters.sideFilters[4].filters.value.push('50-54 years');
+            utils.cancerIncidenceFilterChange(mockFilters.sideFilters[4], [ mockFilters ]);
+            expect(mockFilters.sideFilters[6].disabled).toBeTruthy();
+        });
+
+        it('Should not disable the childhood cancer filter when a childhood age group is selected', function () {
+            mockFilters.sideFilters[4].filters.value.push('10-14 years');
+            utils.cancerIncidenceFilterChange(mockFilters.sideFilters[4], [ mockFilters ]);
+            expect(mockFilters.sideFilters[6].disabled).toBeFalsy();
+        });
+
+        it('Should disable non-childhood age groups when a childhood cancer site is selected', function () {
+            mockFilters.sideFilters[6].filters.value.push('10');
+            utils.cancerIncidenceFilterChange(mockFilters.sideFilters[6], [ mockFilters ]);
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[4].filters.autoCompleteOptions, 'key', '20-24 years').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[4].filters.autoCompleteOptions, 'key', '25-29 years').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[4].filters.autoCompleteOptions, 'key', '30-34 years').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[4].filters.autoCompleteOptions, 'key', '35-39 years').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[4].filters.autoCompleteOptions, 'key', '40-44 years').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[4].filters.autoCompleteOptions, 'key', '45-49 years').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[4].filters.autoCompleteOptions, 'key', '50-54 years').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[4].filters.autoCompleteOptions, 'key', '55-59 years').disabled).toBeTruthy();
+        });
+
+        it('Should disable the all option in the age group filter when a childhood cancer site is selected', function () {
+            mockFilters.sideFilters[6].filters.value.push('10');
+            utils.cancerIncidenceFilterChange(mockFilters.sideFilters[6], [ mockFilters ]);
+            expect(mockFilters.sideFilters[4].filters.disableAll).toBeTruthy();
+        });
+
+        it('Should select all childhood age groups when the childhood cancer site is selected and All age groups are selected', function () {
+            mockFilters.sideFilters[4].filters.allChecked = true;
+            mockFilters.sideFilters[6].filters.value.push('10');
+            utils.cancerIncidenceFilterChange(mockFilters.sideFilters[6], [ mockFilters ]);
+            expect(mockFilters.sideFilters[4].filters.value).toEqual([ '00 years', '01-04 years', '05-09 years', '10-14 years', '15-19 years' ]);
         });
     });
 });

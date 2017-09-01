@@ -5,7 +5,7 @@ Feature: Bridge race filters
   So that I can see the results of the filter options
   and I can quickly visualize and analyze the data
 
-  Background: Access Bridged-Race Population estimates page
+  Scenario: Access Bridged-Race Population estimates page
     When I am at home page
     And  I click on Explore button in Health Information Gateway section
     Then I should get search page with default filter type "Detailed Mortality"
@@ -40,39 +40,14 @@ Feature: Bridge race filters
     Then I see sex filter options disappeared
 
   Scenario: View axis labels & data elements for chart
-    When I see a visualization
+    When I set "Yearly July 1st Estimates" filter "Off"
+    And  filter "Yearly July 1st Estimates" and option "2015" selected
+    And I see a visualization
     Then I see data element and values are plotted on both the axes
     And I see chart heading appears on the top
     #And I see an axis labels are displayed on the graph
     #And I see an Expand button on the top right corner
     #And I see an share button on the top right corner
-
-  #Scenario: Export chart
-    #And I see export chart button
-    #When I click on export chart button
-    #Then The chart is downloaded
-
-  Scenario: Expand/collapse chart
-    When I clicks on the expand button
-    Then I see expanded graph in modal dialog
-    And  I see expand button is changed to collapse button
-    And I see export chart button
-    When I hover on the export chart button
-    Then I see two export menus displayed
-    When I click on the export as PNG
-    Then I see a PNG file is downloaded
-    When I hover on the export chart button
-    When I click on the export as PDF
-    Then I see a PDF file is downloaded
-    When I click on collapse button
-    Then I see graph is collapsed
-    And I see an Expand button on the top right corner
-
-
- # Scenario: Show line graph
- #   When I remove default filters
-  #  And I select year filter
- #   Then I should see line graph
 
   Scenario: State filter search box
     When I expands the State filter
@@ -87,3 +62,20 @@ Feature: Bridge race filters
   Scenario: Age group 85+ years groupings
     When I set "Age Groups" filter "Row"
     Then I see data in data table for 85+ years age group
+
+  Scenario: Expand/collapse chart
+    When I clicks on the expand button
+    Then I see expanded graph in modal dialog
+    And  I see expand button is changed to collapse button
+    And I see export chart button
+    When I hover on the export chart button
+    Then I see three export menus displayed
+    When I click on the export as PNG
+    Then I see a PNG file is downloaded
+    When I hover on the export chart button
+    When I click on the export as PDF
+    Then I see a PDF file is downloaded
+    When I click on collapse button
+    Then I see graph is collapsed
+    And I see an Expand button on the top right corner
+

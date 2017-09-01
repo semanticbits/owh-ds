@@ -16,10 +16,10 @@
         //TODO: move these route definitions inside of their respective modules
         //Routes
         $stateProvider.state('home', {
-            url:'/',
-            templateUrl: 'app/modules/home/home.html',
-            controller: 'HomeController',
-            controllerAs: 'hc'
+                url:'/',
+                templateUrl: 'app/modules/home/home.html',
+                controller: 'HomeController',
+                controllerAs: 'hc'
         }).state('search', {
                 url:'/search/:queryID',
                 templateUrl: 'app/modules/search/search.html',
@@ -29,14 +29,19 @@
                 onEnter: function () {
                     $('html, body').animate({ scrollTop: -10000 }, 100);
                 }
+        }).state('description',  {
+                url:'/description/:dataSetKey',
+                templateUrl: 'app/modules/description/description.html',
+                controller: 'DescriptionController',
+                controllerAs: 'dc'
         }).state('about',  {
             url:'/about',
             templateUrl: 'app/modules/about/about.html',
             controller: 'AboutController',
             controllerAs: 'ac'
         }).state('404',  {
-            url:'/404',
-            templateUrl: '404.html'
+                url:'/404',
+                templateUrl: '404.html'
         });
 
         $urlRouterProvider.otherwise('/404');

@@ -26,7 +26,7 @@ var cancerIncidenceStepDefinitions = function () {
         }).then(next);
     });
 
-    this.Then(/On the cancer incidence page, the visiualization is displayed/, function (next) {
+    this.Then(/On the cancer incidence page, the visualization is displayed/, function (next) {
         cancerIncidencePage.isVisualizationDisplayed().then(function (value) {
             expect(value).to.be.true;
         }).then(next);

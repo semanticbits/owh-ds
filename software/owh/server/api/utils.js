@@ -114,7 +114,7 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
             aggregation[countKey] = aggregation[countKey];
             var innerObjKey = isValueHasGroupData(buckets[index]);
             // take from pop.value instead of doc_count for census data
-            if(countKey === 'pop') {
+            if(countKey === 'pop' || countKey === 'cancer_population') {
                 aggregation = {name: buckets[index]['key']};
                 if(buckets[index]['pop']) {
                     aggregation[countKey] = buckets[index]['pop'].value;
@@ -183,7 +183,7 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
  */
 function suppressCounts (obj, countKey, dataType, suppressKey, maxValue) {
     var key = suppressKey ? suppressKey : countKey;
-    var value = maxValue ? maxValue : 10;
+    var value = maxValue !== undefined ? maxValue : 10;
     for (var property in obj) {
         if (property === 'name') {
             continue;
@@ -200,7 +200,7 @@ function suppressCounts (obj, countKey, dataType, suppressKey, maxValue) {
                 suppressCounts(arrObj, countKey, dataType, suppressKey, maxValue);
             });
         } else if(obj[countKey] != undefined && obj[countKey] < value) {
-            if(dataType == 'maps' || dataType == 'charts') {//for chart and map set suppressed values to 0
+            if(dataType == 'charts') {//for chart and map set suppressed values to 0
                 obj[key] = 0;
             }
             else if(countKey === 'std' && obj[countKey] === 0) {
@@ -244,7 +244,7 @@ function suppressTotalCounts (obj, countKey, dataType, suppressKey) {
         } else if (obj[property].constructor === Array) {
             obj[property].forEach(function(arrObj) {
                 if (obj[countKey] && JSON.stringify(obj).indexOf('suppressed') != -1 ) {
-                    if(dataType == 'maps' || dataType == 'charts') {//for chart and map set suppressed values to 0
+                    if(dataType == 'charts') {//for chart and map set suppressed values to 0
                         obj[countKey] = 0;
                     } else {//for table data set to suppressed
                         obj[key] = 'suppressed';
@@ -283,6 +283,19 @@ function applyYRBSSuppressions(obj, countKey, suppressKey, isSexFiltersSelected,
     suppressCounts(obj.data, countKey, dataType, suppressKey, maxValue);
     suppressTotalCounts(obj.data, countKey, dataType, suppressKey);
 };
+
+/**
+ * This function is used to suppress the state totals when it reaches to specified value
+ * @param stateData
+ */
+function suppressStateTotals(stateData, key, minVal) {
+    stateData.forEach(function (data) {
+        if (data[key] < minVal) {
+            data[key] = 'suppressed';
+        }
+    })
+}
+
 var sumBucketProperty = function(bucket, key) {
     var sum = 0;
     for(var i = 0; i < bucket.buckets.length; i++) {
@@ -471,7 +484,30 @@ var mergeAgeAdjustedRates = function(mort, rates) {
         "WA": "Washington",
         "WV": "West Virginia",
         "WI": "Wisconsin",
-        "WY": "Wyoming"
+        "WY": "Wyoming",
+        "CENS-R1": "Census Region 1: Northeast",
+        "CENS-R2": "Census Region 2: Midwest",
+        "CENS-R3": "Census Region 3: South",
+        "CENS-R4": "Census Region 4: West",
+        "CENS-D1": "Division 1: New England",
+        "CENS-D2": "Division 2: Middle Atlantic",
+        "CENS-D3": "Division 3: East North Central",
+        "CENS-D4": "Division 4: West North Central",
+        "CENS-D5": "Division 5: South Atlantic",
+        "CENS-D6": "Division 6: East South Central",
+        "CENS-D7": "Division 7: West South Central",
+        "CENS-D8": "Division 8: Mountain",
+        "CENS-D9": "Division 9: Pacific",
+        "HHS-1": "HHS Region #1  CT, ME, MA, NH, RI, VT",
+        "HHS-2": "HHS Region #2  NJ, NY",
+        "HHS-3": "HHS Region #3  DE, DC, MD, PA, VA, WV",
+        "HHS-4": "HHS Region #4  AL, FL, GA, KY, MS, NC, SC, TN",
+        "HHS-5": "HHS Region #5  IL, IN, MI, MN, OH, WI",
+        "HHS-6": "HHS Region #6  AR, LA, NM, OK, TX",
+        "HHS-7": "HHS Region #7  IA, KS, MO, NE",
+        "HHS-8": "HHS Region #8  CO, MT, ND, SD, UT, WY",
+        "HHS-9": "HHS Region #9  AZ, CA, HI, NV",
+        "HHS-10": "HHS Region #10  AK, ID, OR, WA",
     };
 
     for(var key in mort) {
@@ -491,6 +527,97 @@ var mergeAgeAdjustedRates = function(mort, rates) {
                     }else {
                         mort[key][i]['ageAdjustedRate'] = age.ageAdjustedRate;
                         mort[key][i]['standardPop'] = age.standardPop;
+                    }
+                }
+            }
+        }
+    }
+};
+
+var mergeWonderResponseWithInfantESData = function(mort, rates) {
+    var keyMap = {
+        'Other Asian': 'Other Asian ',
+        'Black': 'Black or African American',
+        'American Indian': 'American Indian or Alaska Native',
+        'Hispanic': 'Hispanic or Latino',
+        'Non-Hispanic': 'Not Hispanic or Latino',
+        "AL": "Alabama",
+        "AK": "Alaska",
+        "AZ": "Arizona",
+        "AR": "Arkansas",
+        "CA": "California",
+        "CO": "Colorado",
+        "CT": "Connecticut",
+        "DE": "Delaware",
+        "DC": "District of Columbia",
+        "FL": "Florida",
+        "GA": "Georgia",
+        "HI": "Hawaii",
+        "ID": "Idaho",
+        "IL": "Illinois",
+        "IN": "Indiana",
+        "IA": "Iowa",
+        "KS": "Kansas",
+        "KY": "Kentucky",
+        "LA": "Louisiana",
+        "ME": "Maine",
+        "MD": "Maryland",
+        "MA": "Massachusetts",
+        "MI": "Michigan",
+        "MN": "Minnesota",
+        "MS": "Mississippi",
+        "MO": "Missouri",
+        "MT": "Montana",
+        "NE": "Nebraska",
+        "NV": "Nevada",
+        "NH": "New Hampshire",
+        "NJ": "New Jersey",
+        "NM": "New Mexico",
+        "NY": "New York",
+        "NC": "North Carolina",
+        "ND": "North Dakota",
+        "OH": "Ohio",
+        "OK": "Oklahoma",
+        "OR": "Oregon",
+        "PA": "Pennsylvania",
+        "RI": "Rhode Island",
+        "SC": "South Carolina",
+        "SD": "South Dakota",
+        "TN": "Tennessee",
+        "TX": "Texas",
+        "UT": "Utah",
+        "VT": "Vermont",
+        "VA": "Virginia",
+        "WA": "Washington",
+        "WV": "West Virginia",
+        "WI": "Wisconsin",
+        "WY": "Wyoming"
+    };
+
+    for(var key in mort) {
+        if(key !== 'name') {
+            for(var i = 0; i < mort[key].length; i++) {
+                var age = rates[mort[key][i].name];
+                if(!age) {
+                    age = rates[keyMap[mort[key][i].name]];
+                }
+                if(age) {
+                    if (age['infant_mortality'] == undefined) { // Nested result. go to the leaf node recursively
+                        if (age['Total']) { // If there is a subtotal, assign subtotal value
+                            mort[key][i]['deathRate'] = age['Total'].deathRate;
+                            mort[key][i]['pop'] = age['Total'].births;
+                            mort[key][i]['infant_mortality'] = isNaN(age['Total'].infant_mortality) ? 0: age['Total'].infant_mortality;
+                        }
+                        //IF wonder response don't have 'infant_mortality' property and If ES response has it then set this property to 'na'
+                        //So we show 'Not Available' in the UI
+                        else if(mort[key][i]['infant_mortality']) {
+                            mort[key][i]['infant_mortality'] = 'na';
+                        }
+                        mergeWonderResponseWithInfantESData(mort[key][i], age);
+                    }else {
+                        mort[key][i]['deathRate'] = age.deathRate;
+                        mort[key][i]['pop'] = age.births;
+                        mort[key][i]['infant_mortality'] = isNaN(age.infant_mortality) ? 0: age.infant_mortality;
                     }
                 }
             }
@@ -588,9 +715,110 @@ function getAllSelectedFilterOptions(q, apiQuery) {
     return allOptions;
 }
 
+function isFilterApplied (filter) {
+    var value = Array.isArray(filter.value) ? filter.value.length > 0 : !!filter.value;
+    var groupBy = !!filter.groupBy;
+    return value || groupBy;
+}
+
+function findAllAppliedFilters (allFilters) {
+    return allFilters.reduce(function (applied, filter) {
+        if ([ 'current_year', 'state' ].indexOf(filter.key) !== -1) return applied
+        if (isFilterApplied(filter)) return applied.concat(filter.key)
+        return applied
+    }, [])
+}
+
+function recursivelySuppressOptions (tree, countKey, suppressionValue) {
+    for (var prop in tree) {
+        if (prop === countKey) {
+            tree[prop] = suppressionValue;
+        } else if (Array.isArray(tree[prop])) {
+            tree[prop].forEach(function (node) {
+                recursivelySuppressOptions(node, countKey, suppressionValue);
+            });
+        }
+
+    }
+}
+
+function searchTree (root, rule, config, path) {
+    var containsRule = rule.every(function (value) {
+      return path.indexOf(value) !== -1;
+    });
+    if (containsRule) recursivelySuppressOptions(root, config.countKey, config.suppressionValue)
+    for (var property in root) {
+        if (Array.isArray(root[property])) {
+            root[property].forEach(function (option) {
+                searchTree(option, rule, config, path.concat([option.name]))
+            })
+        }
+    }
+}
+
+function createCancerIncidenceSuppressionRules () {
+    return [
+        [ ['American Indian/Alaska Native'], ['DE','GA','IL','KS','KY','MO','NJ','NY','SC'] ],
+        [ ['Asian or Pacific Islander'], ['DE', 'IL', 'KS', 'KY', 'MO', 'SC'] ],
+        [ ['Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown'], ['DE', 'KY', 'MA', 'MO', 'PA', 'SC'] ]
+    ].reduce(function (acc, rule) {
+        return acc.concat(create_rules(rule[0], rule[1]))
+    }, [])
+
+    function create_rules (f1options, f2options) {
+        return f1options.reduce(function (accu, f1option) {
+            return accu.concat(f2options.map(function (f2option) {
+                return [f1option, f2option];
+            }));
+        }, []);
+    }
+}
+
+function applyCustomSuppressions (data, rules, countKey) {
+    rules.forEach(function (rule) {
+        searchTree(data.table, rule, { countKey: countKey, suppressionValue: 'suppressed' }, [])
+    })
+    rules.forEach(function (rule) {
+        data.charts.forEach(function (chart) {
+            searchTree(chart, rule, { countKey: countKey, suppressionValue: 0 }, []);
+        });
+    });
+}
+
+function attachPopulation (root, popTree, path) {
+    if (path.length) root.pop = findMatchingProp(popTree, path) || 'n/a';
+    for (var property in root) {
+        if (Array.isArray(root[property])) {
+            root[property].forEach(function (option) {
+              attachPopulation(option, popTree, path.concat([property, option.name]));
+            })
+        }
+    }
+}
+
+function findMatchingProp (tree, path) {
+  for (var i = 0; i < path.length; i += 2) {
+    var matching = findMatchingOption(tree[path[i]], path[i + 1]);
+    if (matching) {
+      tree = matching;
+    } else {
+      break;
+    }
+  }
+  return tree && tree['cancer_population'];
+}
+
+function findMatchingOption (options, target) {
+  return options.reduce(function (prev, curr) {
+    if (curr.name === target) return curr;
+    return prev;
+  }, null);
+}
+
 module.exports.populateDataWithMappings = populateDataWithMappings;
 module.exports.populateYRBSData = populateYRBSData;
 module.exports.mergeAgeAdjustedRates = mergeAgeAdjustedRates;
+module.exports.mergeWonderResponseWithInfantESData = mergeWonderResponseWithInfantESData;
 module.exports.applySuppressions = applySuppressions;
 module.exports.applyYRBSSuppressions = applyYRBSSuppressions;
 module.exports.getAllOptionValues = getAllOptionValues;
@@ -598,3 +826,13 @@ module.exports.getSelectedGroupByOptions = getSelectedGroupByOptions;
 module.exports.getYearFilter = getYearFilter;
 module.exports.mapAndGroupOptionResults = mapAndGroupOptionResults;
 module.exports.getAllSelectedFilterOptions = getAllSelectedFilterOptions;
+module.exports.suppressStateTotals = suppressStateTotals;
+module.exports.isFilterApplied = isFilterApplied;
+module.exports.findAllAppliedFilters = findAllAppliedFilters;
+module.exports.recursivelySuppressOptions = recursivelySuppressOptions;
+module.exports.searchTree = searchTree;
+module.exports.createCancerIncidenceSuppressionRules = createCancerIncidenceSuppressionRules;
+module.exports.applyCustomSuppressions = applyCustomSuppressions;
+module.exports.attachPopulation = attachPopulation;
+module.exports.findMatchingProp = findMatchingProp;
+module.exports.findMatchingOption = findMatchingOption;

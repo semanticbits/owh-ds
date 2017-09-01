@@ -41,7 +41,7 @@
             //filters options with checkboxes
             if (angular.isArray(filter.value)) {
                 angular.forEach(filter.value, function (optionKey) {
-                    var option = utilService.findByKeyAndValue(filter.autoCompleteOptions, 'key', optionKey);
+                    var option = utilService.findByKeyAndValueRecursive(filter.autoCompleteOptions, 'key', optionKey, "options");
                     options.push(option.title);
                 });
             } else {//for filters with radios

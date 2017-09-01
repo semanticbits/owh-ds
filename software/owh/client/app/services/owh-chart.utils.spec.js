@@ -94,42 +94,17 @@ describe('chart utils', function(){
         $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
+        $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
     }));
 
     it('test chart utils horizontalStack', function () {
         var result = chartUtils.horizontalStack(filter1, filter2, data1, primaryFilter, postFixToTooltip);
         expect(JSON.stringify(result)).toEqual(JSON.stringify(horizontalStackExpectedResult1));
-
-        expect(result.options.chart.x({label: 'x label'})).toEqual('x label');
-        expect(result.options.chart.y({value: 'y value'})).toEqual('y value');
-        expect(result.options.chart.xAxis.tickFormat('1,234')).toEqual(null);
-        expect(result.options.chart.xAxis.tickFormat(1234)).toEqual(null);
-
-        expect(result.options.chart.yAxis.tickFormat('1,234')).toEqual(null);
-        expect(result.options.chart.yAxis.tickFormat(1234)).toEqual(null);
-
-        expect(result.options.chart.valueFormat('1,234')).toEqual('1,234');
-        expect(result.options.chart.valueFormat(1234)).toEqual('1234');
-
-        expect(result.options.chart.tooltip.contentGenerator({value: 1234, series: [{color: 'red', value: 1234}]})).toEqual("<div class='usa-grid-full'<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>1234</div><div class='usa-width-one-whole nvtooltip-value'><span class='fa fa-square' style='color:red'></span>&nbsp;&nbsp;&nbsp;undefined&nbsp;&nbsp;&nbsp;1,234data</div></div>");
     });
 
     it('test chart utils verticalStack', function () {
         var result = chartUtils.verticalStack(filter1, filter2, data1, primaryFilter);
         expect(JSON.stringify(result)).toEqual(JSON.stringify(verticalStackExpectedResult));
-
-        expect(result.options.chart.x({x: 'x label'})).toEqual('x label');
-        expect(result.options.chart.y({y: 'y value'})).toEqual('y value');
-        expect(result.options.chart.xAxis.tickFormat('1,234')).toEqual(null);
-        expect(result.options.chart.xAxis.tickFormat(1234)).toEqual(null);
-
-        expect(result.options.chart.yAxis.tickFormat('1,234')).toEqual(null);
-        expect(result.options.chart.yAxis.tickFormat(1234)).toEqual(null);
-
-        expect(result.options.chart.valueFormat('1,234')).toEqual('1,234');
-        expect(result.options.chart.valueFormat(1234)).toEqual('1234');
-
-        expect(result.options.chart.tooltip.contentGenerator({value: 1234, series: [{color: 'red', value: 1234}]})).toEqual("<div class='usa-grid-full'<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>1234</div><div class='usa-width-one-whole nvtooltip-value'><span class='fa fa-square' style='color:red'></span>&nbsp;&nbsp;&nbsp;undefined&nbsp;&nbsp;&nbsp;1,234</div></div>");
     });
 
     it('test chart utils horizontalBar', function () {
@@ -143,18 +118,18 @@ describe('chart utils', function(){
     });
 
     it('test chart utils horizontalBar for infant death rates', function () {
-        var filter1 = {"key":"sex","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"defaultGroup":"column","groupBy":"column","filterType":"checkbox","autoCompleteOptions":[{"key":"Female","title":"Female","count":0,"infant_mortality":10251},{"key":"Male","title":"Male","count":0,"infant_mortality":12799}],"helpText":"label.help.text.infantmort.sex","allChecked":true};
-        var filter2 = {"key":"race","title":"label.filter.race","queryKey":"race","primary":false,"value":[],"defaultGroup":"column","groupBy":"row","filterType":"checkbox","autoCompleteOptions":[{"key":"American Indian / Alaskan Native","title":"American Indian / Alaskan Native","count":0,"infant_mortality":340},{"key":"Asian / Pacific Islander","title":"Asian / Pacific Islander","count":0,"infant_mortality":1080},{"key":"Black","title":"Black or African American","count":0,"infant_mortality":6809},{"key":"White","title":"White","count":0,"infant_mortality":14821},{"key":"Chinese","title":"Chinese","count":0,"infant_mortality":0},{"key":"Japanese","title":"Japanese","count":0,"infant_mortality":0},{"key":"Hawaiian","title":"Hawaiian","count":0,"infant_mortality":0},{"key":"Filipino","title":"Filipino","count":0,"infant_mortality":0},{"key":"Other Asian","title":"Other Asian","count":0,"infant_mortality":0}],"helpText":"label.help.text.race","allChecked":true};
-        var data = {"sex":[{"name":"Female","infant_mortality":10251,"race":[{"name":"American Indian / Alaskan Native","infant_mortality":146,"pop":22120},{"name":"Asian / Pacific Islander","infant_mortality":480,"pop":137076},{"name":"Black","infant_mortality":3082,"pop":315741},{"name":"White","infant_mortality":6543,"pop":1472438}],"pop":1947375},{"name":"Male","infant_mortality":12799,"race":[{"name":"American Indian / Alaskan Native","infant_mortality":194,"pop":22808},{"name":"Asian / Pacific Islander","infant_mortality":600,"pop":145647},{"name":"Black","infant_mortality":3727,"pop":324821},{"name":"White","infant_mortality":8278,"pop":1547425}],"pop":2040701}]};
+        var filter1 = {"key":"sex","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"defaultGroup":"column","groupBy":"column","filterType":"checkbox","autoCompleteOptions":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"helpText":"label.help.text.infantmort.sex"};
+        var filter2 = {"key":"race","title":"label.filter.race","queryKey":"race","primary":false,"value":[],"defaultGroup":"column","groupBy":"row","filterType":"checkbox","autoCompleteOptions":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Asian or Pacific Islander","title":"Asian or Pacific Islander","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}],"helpText":"label.help.text.race"};
+        var data = {"sex":[{"name":"Male","infant_mortality":12889,"race":[{"name":"White","infant_mortality":8337,"deathRate":"5.39","pop":1547425},{"name":"Black","infant_mortality":3752,"deathRate":"11.55","pop":324821},{"name":"Asian or Pacific Islander","infant_mortality":605,"deathRate":"4.15","pop":145647},{"name":"American Indian or Alaska Native","infant_mortality":195,"deathRate":"8.55","pop":22808}],"deathRate":"6.32","pop":2040701},{"name":"Female","infant_mortality":10322,"race":[{"name":"White","infant_mortality":6590,"deathRate":"4.48","pop":1472438},{"name":"Black","infant_mortality":3101,"deathRate":"9.82","pop":315741},{"name":"Asian or Pacific Islander","infant_mortality":484,"deathRate":"3.53","pop":137076},{"name":"American Indian or Alaska Native","infant_mortality":146,"deathRate":"6.60","pop":22120}],"deathRate":"5.30","pop":1947375}]};
         var primaryFilter = {"key":"infant_mortality","title":"label.filter.infant_mortality","primary":true,"header":"Infant Mortality","showMap":false,"chartAxisLabel":"Rates","countLabel":"Number of Infant Deaths","tableView":"number_of_infant_deaths","runOnFilterChange":true,"applySuppression":true,"chartView":"infant_death_rate","chartViewOptions":[{"key":"death","title":"Deaths","tooltip":"Select to view as deaths on charts","$$hashKey":"object:4475"},{"key":"infant_death_rate","title":"Rates","tooltip":"Select to view as rates on charts","$$hashKey":"object:4476"}],"$$hashKey":"object:1207","initiated":true,"headers":{"chartHeaders":[{"headers":[{"key":"sex","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"defaultGroup":"column","groupBy":"column","filterType":"checkbox","autoCompleteOptions":[{"key":"Female","title":"Female","count":0,"infant_mortality":10251},{"key":"Male","title":"Male","count":0,"infant_mortality":12799}],"helpText":"label.help.text.infantmort.sex","allChecked":true},{"key":"race","title":"label.filter.race","queryKey":"race","primary":false,"value":[],"defaultGroup":"column","groupBy":"row","filterType":"checkbox","autoCompleteOptions":[{"key":"American Indian / Alaskan Native","title":"American Indian / Alaskan Native","count":0,"infant_mortality":340},{"key":"Asian / Pacific Islander","title":"Asian / Pacific Islander","count":0,"infant_mortality":1080},{"key":"Black","title":"Black or African American","count":0,"infant_mortality":6809},{"key":"White","title":"White","count":0,"infant_mortality":14821},{"key":"Chinese","title":"Chinese","count":0,"infant_mortality":0},{"key":"Japanese","title":"Japanese","count":0,"infant_mortality":0},{"key":"Hawaiian","title":"Hawaiian","count":0,"infant_mortality":0},{"key":"Filipino","title":"Filipino","count":0,"infant_mortality":0},{"key":"Other Asian","title":"Other Asian","count":0,"infant_mortality":0}],"helpText":"label.help.text.race","allChecked":true}],"chartType":"horizontalBar"}]},"count":23050};
 
         var result = chartUtils.horizontalBar(filter1, filter2, data, primaryFilter);
-        var barData = result.data[0].values;
-        expect(barData[0].label).toEqual('American Indian / Alaskan Native');
-        expect(barData[0].value).toEqual('6.6');
+        var barData = result.data;
+        expect(barData[1].y[3]).toEqual('American Indian or Alaska Native');
+        expect(barData[1].x[3]).toEqual('6.6');
 
-        expect(barData[1].label).toEqual('Asian / Pacific Islander');
-        expect(barData[1].value).toEqual('3.5');
+        expect(barData[1].y[2]).toEqual('Asian or Pacific Islander');
+        expect(barData[1].x[2]).toEqual('3.5');
 
     });
 
@@ -162,7 +137,7 @@ describe('chart utils', function(){
         var filter = {"key":"state","title":"label.prams.filter.state","queryKey":"sitecode","value":["AK"],"autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]};
         var data = {"question":[{"name":"qn365","-1":{"sitecode":[{"name":"AK","prams":{"mean":"23.0","ci_l":"0","ci_u":"0"}},{"name":"AK","prams":{"mean":"21.0","ci_l":"0","ci_u":"0"}}]},"NO (UNCHECKED)":{"sitecode":[{"name":"AK","prams":{"mean":"97.4","ci_l":"96.0","ci_u":"98.3"}},{"name":"AK","prams":{"mean":"97.1","ci_l":"95.6","ci_u":"98.1"}}]},"YES (CHECKED)":{"sitecode":[{"name":"AK","prams":{"mean":"2.6","ci_l":"1.7","ci_u":"4.0"}},{"name":"AK","prams":{"mean":"2.9","ci_l":"1.9","ci_u":"4.4"}}]}}]};
         var primaryFilter = {key:'prams', chartAxisLabel: 'Percentage', allFilters:[{topic:[]}, {year:[]}, {state:[]}, {ques:[]}, {value:[]}]};
-        var expectedOutput = {"data":[{"key":"Percentage - NO (UNCHECKED)","values":[{"label":"Alaska","value":97.4}]},{"key":"Percentage - YES (CHECKED)","values":[{"label":"Alaska","value":2.6}]}],"title":"label.title.state.state","options":{"chart":{"type":"multiBarHorizontalChart","height":250,"width":0,"margin":{"top":5,"right":5,"bottom":45,"left":45},"showLegend":false,"showControls":false,"showValues":false,"showXAxis":true,"showYAxis":true,"stacked":false,"duration":500,"xAxis":{"axisLabelDistance":-20,"axisLabel":"label.prams.filter.state","showMaxMin":false},"yAxis":{"axisLabel":"Percentage"},"useInteractiveGuideline":false,"interactive":false,"tooltip":{}}}};
+        var expectedOutput = {"charttype":"multiBarHorizontalChart","title":"label.title.state.state","longtitle":"chart.title.measure.prams by label.filter.state in undefined for undefined","dataset":"prams","data":[{"name":"Percentage - YES (CHECKED)","x":[2.6],"y":["Alaska"],"text":[],"orientation":"h","hoverinfo":"none","type":"bar","marker":{"color":"#65c2ff"}},{"name":"Percentage - NO (UNCHECKED)","x":[97.4],"y":["Alaska"],"text":[],"orientation":"h","hoverinfo":"none","type":"bar","marker":{"color":"#bc8fe0"}}],"layout":{"width":128,"autosize":true,"showlegend":false,"margin":{"l":20,"r":10,"b":20,"t":20},"xaxis":{"visible":true,"titlefont":{"size":15},"exponentformat":"none","tickangle":45,"showline":true,"gridcolor":"#bdbdbd","showticklabels":false,"fixedrange":true,"title":"Percentage"},"yaxis":{"visible":true,"titlefont":{"size":15},"exponentformat":"none","tickangle":45,"ticksuffix":"   ","showline":true,"gridcolor":"#bdbdbd","showticklabels":false,"fixedrange":true,"title":"label.prams.filter.state"},"barmode":"bar"},"options":{"displayModeBar":false}};
         var result = chartUtils.horizontalBar(filter, filter, data, primaryFilter);
         expect(JSON.stringify(result)).toEqual(JSON.stringify(expectedOutput));
     });
@@ -192,18 +167,8 @@ describe('chart utils', function(){
     });
 
     it('test chart utils lineChart', function () {
-        var result = chartUtils.lineChart(lineChartData, lineChartFilter, {key:'current_year'});
+        var result = chartUtils.lineChart(lineChartData, lineChartFilter, {key:'deaths'});
         expect(JSON.stringify(result)).toEqual(JSON.stringify(lineChartExpectedResult));
-        result.data();
-        expect(result.options.chart.x({x: 'x label'})).toEqual('x label');
-        expect(result.options.chart.y({y: 'y value'})).toEqual('y value');
-
-        expect(result.options.chart.xAxis.tickFormat(1234)).toEqual(null);
-
-        expect(result.options.chart.yAxis.tickFormat(1234)).toEqual(null);
-        console.log(result.options.chart.tooltip.contentGenerator({value: 1234, series: [{color: 'red', value: 1234}]}));
-        expect(result.options.chart.tooltip.contentGenerator({value: 1234, series: [{color: 'red', value: 1234}]})).toEqual("<div class='usa-grid-full'<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>1234</div><div class='usa-width-one-whole nvtooltip-value'><span class='fa fa-square' style='color:red'></span>&nbsp;&nbsp;&nbsp;undefined&nbsp;&nbsp;&nbsp;1,234</div></div>");
-
     });
 
     it('test showExpandedGraph for lineChart', function () {
@@ -218,20 +183,6 @@ describe('chart utils', function(){
     it('test chart utils pieChart with postFixToTooltip', function () {
         var result = chartUtils.pieChart(pieChartData, filter2, primaryFilter, postFixToTooltip);
         expect(JSON.stringify(result)).toEqual(JSON.stringify(pieChartWithpostFixToTooltipExpectedResult));
-
-        expect(result.options.chart.x({label: 'x label'})).toEqual('x label');
-        expect(result.options.chart.y({value: 'y value'})).toEqual('y value');
-
-        expect(result.options.chart.color({label: 'label'}, 1)).toEqual(d3.scale.category20()(1));
-
-        expect(result.options.chart.tooltip.contentGenerator({value: 1234, series: [{color: 'red', value: 1234}]})).toEqual("<div class='usa-grid-full'<div class='usa-width-one-whole nvtooltip-value'><span class='fa fa-square' style='color:red'></span>&nbsp;&nbsp;&nbsp;undefined&nbsp;&nbsp;&nbsp;1,234data</div></div>");
-    });
-
-    it('test chart utils pieChart for gender filter', function () {
-        var result = chartUtils.pieChart(pieChartData, filter1, primaryFilter, postFixToTooltip);
-
-        expect(result.options.chart.color({label: 'Male'}, 1)).toEqual('#009aff');
-        expect(result.options.chart.color({label: 'Female'}, 1)).toEqual('#fe66ff');
     });
 
     it('test chart utils showExpandedGraph', function () {
@@ -271,16 +222,6 @@ describe('chart utils', function(){
         chartUtils.showExpandedGraph([verticalBarExpectedResult1, horizontalStackExpectedResult1]);
         var ctrl = controllerProvider(givenModalDefaults.controller, { $scope: $scope, close: closeDeferred.promise, shareUtilService: shareUtils});
         expect(ctrl.graphTitle).toEqual('label.graph.expanded');
-    });
-
-    it('test chart utils showExpandedGraph for bulletChart', function () {
-        horizontalStackExpectedResult1.options.chart.type = 'bulletChart';
-        chartUtils.showExpandedGraph([horizontalStackExpectedResult1], null, 'graph title', 'graph sub title');
-        spyOn(shareUtils, 'shareOnFb');
-        var ctrl = controllerProvider(givenModalDefaults.controller, { $scope: $scope, close: closeDeferred.promise, shareUtilService: shareUtils});
-        expect(ctrl.graphSubTitle).toEqual('graph sub title');
-        ctrl.showFbDialog();
-        expect(shareUtils.shareOnFb).toHaveBeenCalled();
     });
 
     it('test chart utils showExpandedGraph for getChartName', function () {

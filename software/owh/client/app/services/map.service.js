@@ -4,10 +4,10 @@
         .module('owh')
         .service('mapService', mapService);
 
-    mapService.$inject = ['$rootScope', '$timeout', 'utilService', 'leafletData', 'shareUtilService', '$translate'];
+    mapService.$inject = ['$rootScope', '$timeout', 'utilService', 'leafletData', 'shareUtilService', '$translate', '$filter'];
 
     //service to provide utilities for leaflet geographical map
-    function mapService($rootScope, $timeout, utilService, leafletData, shareUtilService, $translate) {
+    function mapService($rootScope, $timeout, utilService, leafletData, shareUtilService, $translate, $filter) {
         var service = {
             updateStatesDeaths: updateStatesDeaths,
             addExpandControl: addExpandControl,
@@ -29,11 +29,31 @@
             angular.forEach($rootScope.states.features, function(feature){
                 var state = utilService.findByKeyAndValue(data.states, 'name', feature.properties.abbreviation);
                 if (utilService.isValueNotEmpty(state)){
-                    stateDeathTotals.push(state[primaryFilter.key]);
-                    feature.properties.years = angular.isArray(years)? years.join(', ') : years;
                     feature.properties.sex = state.sex;
+                    if(primaryFilter.tableView === 'crude_death_rates') {
+                        //calculate male and female rate
+                        angular.forEach(feature.properties.sex, function(eachGender){
+                            eachGender['rate'] = $filter('number')(eachGender[primaryFilter.key]/eachGender['pop'] * 1000000 / 10, 1);
+                        });
+                        var crudeDeathRate = Math.round(state[primaryFilter.key]/state['pop'] * 1000000) / 10 ;
+                        feature.properties.rate = crudeDeathRate;
+                        stateDeathTotals.push(crudeDeathRate);
+                    }
+                    else if(primaryFilter.tableView === 'age-adjusted_death_rates') {
+                        //calculate male and female rate
+                        angular.forEach(feature.properties.sex, function(eachGender){
+                            eachGender['rate'] = eachGender['ageAdjustedRate'];
+                        });
+                        feature.properties.rate = state['ageAdjustedRate'];
+                        stateDeathTotals.push(state['ageAdjustedRate']);
+                    }
+                    else {
+                        stateDeathTotals.push(state[primaryFilter.key]);
+                    }
+                    feature.properties.tableView = primaryFilter.tableView;
                     feature.properties[primaryFilter.key] =  state[primaryFilter.key];
                 }
+                feature.properties.years = angular.isArray(years)? years.join(', ') : years;
             });
             var minMaxValueObj = utilService.getMinAndMaxValue(stateDeathTotals);
             angular.extend(primaryFilter.mapData, {
@@ -78,7 +98,7 @@
             var ranges = utilService.generateMapLegendRanges(primaryFilter.mapData.mapMinValue,
                 primaryFilter.mapData.mapMaxValue);
             return function style(feature) {
-                var total = feature.properties[primaryFilter.key];
+                var total = primaryFilter.tableView === 'crude_death_rates' || primaryFilter.tableView === 'age-adjusted_death_rates' ? feature.properties.rate : feature.properties[primaryFilter.key];
                 return {
                     fillColor: getColor(total, ranges),
                     weight: 0.8,
@@ -96,18 +116,21 @@
                     position: 'topright'
                 },
                 onAdd: function (map) {
-                    var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom fa fa-expand fa-2x purple-icon');
+                    var container = L.DomUtil.create('i', 'leaflet-bar leaflet-control leaflet-control-custom material-icons fullscreen-exit-icon-purple purple-icon');
+                    container.innerHTML = "fullscreen_exit";
                     container.onclick = function (event) {
                         if (mapOptions.selectedMapSize === "small") {
                             mapOptions.selectedMapSize = "big";
                             resizeUSAMap(true, primaryFilter);
-                            angular.element(container).removeClass('fa-expand');
-                            angular.element(container).addClass('fa-compress');
+                            container.innerHTML = "fullscreen_exit";
+                            angular.element(container).removeClass('fullscreen-icon-purple');
+                            angular.element(container).addClass('fullscreen-exit-icon-purple');
                         } else if (mapOptions.selectedMapSize === "big") {
                             mapOptions.selectedMapSize = "small";
                             resizeUSAMap(false, primaryFilter);
-                            angular.element(container).removeClass('fa-compress');
-                            angular.element(container).addClass('fa-expand');
+                            container.innerHTML = "fullscreen";
+                            angular.element(container).removeClass('fullscreen-exit-icon-purple');
+                            angular.element(container).addClass('fullscreen-icon-purple');
                         }
                     };
                     return container;
@@ -135,7 +158,8 @@
                     position: 'topright'
                 },
                 onAdd: function (map) {
-                    var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom fa fa-share-alt fa-2x purple-icon');
+                    var container = L.DomUtil.create('i', 'leaflet-bar leaflet-control leaflet-control-custom material-icons share-icon-purple purple-icon');
+                    container.innerHTML = "share";
                     container.title = $translate.instant('label.share.on.fb');
                     container.onclick = function (event) {
                         angular.element(document.getElementById('spindiv')).removeClass('ng-hide');

@@ -26,6 +26,7 @@ describe("Search controller: ", function () {
             $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 11111}});
             $httpBackend.whenGET('/yrbsQuestionsTree').respond({});
             $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
+            $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
             $httpBackend.whenGET('app/modules/home/home.html').respond({});
             $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
             searchResultsResponse = __fixtures__['app/modules/search/fixtures/search.factory/searchResultsResponse'];
@@ -672,6 +673,25 @@ describe("Search controller: ", function () {
         expect(JSON.stringify(searchController.filters.pramsFilters[4].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.pramsQuestionsList));
     }));
 
+    it("should listen for brfsQuestionsLoaded event", inject(function () {
+
+        $rootScope.brfsQuestionsList = [
+            {
+                "text": "Ever told you that you have a form of depression?",
+                "id": "ADDEPEV2"
+            },
+            {
+                "text": "What is your age?",
+                "id": "AGE"
+            }
+        ];
+        searchController.filters = {brfsFilters: [{"key": "question", autoCompleteOptions:[]}]};
+
+        $rootScope.$broadcast('brfsQuestionsLoaded', $rootScope.brfsQuestionsList);
+        //should collect questions from selected topic of a class only
+        expect(JSON.stringify(searchController.filters.brfsFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.brfsQuestionsList));
+    }));
+
     it("should listen for yrbsQuestionsLoadded event", inject(function () {
 
         $rootScope.questionsList = [
@@ -709,5 +729,37 @@ describe("Search controller: ", function () {
         searchController.onChartViewChange('cases');
         expect(searchController.filters.selectedPrimaryFilter.chartAxisLabel).toEqual('Cases');
         expect(searchController.filters.selectedPrimaryFilter.chartView).toEqual('cases');
+    }));
+
+    it("dataSourceCategories in instialized correctly", inject(function() {
+        var categories = searchController.dataSourceCategories;
+        expect(categories).not.toBeNull();
+        expect(categories.length).toEqual(3);
+
+        for (var i = 0; i < categories.length; i++) {
+            var category = categories[i];
+
+            expect(category).not.toBeNull();
+            expect(category.dataSources.length).toBeGreaterThan(0);
+
+            for (var j = 0; j < category.dataSources.length; j++) {
+                var datasource = category.dataSources[j];
+
+                expect(datasource.title).not.toBeNull();
+                expect(datasource.description).not.toBeNull();
+                expect(datasource.icon).not.toBeNull();
+                expect(datasource.altText).not.toBeNull();
+                expect(datasource.dataSets).not.toBeNull();
+                expect(datasource.dataSets.length).toBeGreaterThan(0);
+
+                for (var k = 0; k < datasource.dataSets.length; k++) {
+                    var dataSet = datasource.dataSets[k];
+
+                    expect(dataSet.title).not.toBeNull();
+                    expect(dataSet.description).not.toBeNull();
+                    expect(typeof dataSet.switchTo).toEqual('function');
+                }
+            }
+        }
     }));
 });

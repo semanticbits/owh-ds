@@ -18,6 +18,7 @@
             findByKey: findByKey,
             sortByKey: sortByKey,
             findByKeyAndValue: findByKeyAndValue,
+            findByKeyAndValueRecursive: findByKeyAndValueRecursive,
             findIndexByKeyAndValue: findIndexByKeyAndValue,
             findAllByKeyAndValue: findAllByKeyAndValue,
             findAllNotContainsKeyAndValue: findAllNotContainsKeyAndValue,
@@ -44,7 +45,12 @@
             isFilterApplied: isFilterApplied,
             stdFilterChange: stdFilterChange,
             aidsFilterChange: aidsFilterChange,
-            removeValuesFromArray: removeValuesFromArray
+            infantMortalityFilterChange: infantMortalityFilterChange,
+            cancerIncidenceFilterChange: cancerIncidenceFilterChange,
+            removeValuesFromArray: removeValuesFromArray,
+            getSelectedFiltersText: getSelectedFiltersText,
+            brfsFilterChange: brfsFilterChange,
+            getICD10Chapters:getICD10Chapters
         };
 
         return service;
@@ -90,11 +96,63 @@
          * @returns {*}
          */
         function findByKeyAndValue(a, key, value) {
+            var result = null;
             if(a){
                 for (var i = 0; i < a.length; i++) {
-                    if ( a[i][key] && a[i][key] === value ) {return a[i];}
+                    var keyValue = a[i][key];
+                    if(keyValue === value ) {return a[i];}
+                    else if (a[i].options){ // Check subOptions
+                            a[i].options.forEach(function(opt){
+                               if(opt[key] === value){
+                                   result= opt;
+                                   return;
+                               }
+                            });
+                    }
                 }
             }
+            return result;
+        }
+
+        function extractPropertyValue(obj, property) {
+            var value;
+
+            if (typeof property === 'string') {
+                value = obj;
+                var properties = property.split('.');
+                properties.forEach(function (prop) {
+                    value = value[prop];
+                });
+            }
+            else {
+                value = obj[property];
+            }
+
+            return value;
+        }
+
+        /**
+         * Finds and returns the first object in array of objects by using the key and value
+         * @param array
+         * @param key
+         * @param value
+         * @param childProperty
+         * @returns {*}
+         */
+        function findByKeyAndValueRecursive(array, key, value, childProperty) {
+            if (array) {
+                for (var i = 0; i < array.length; i++) {
+                    if (array[i][key] && array[i][key] === value) {
+                        return array[i];
+                    }
+
+                    if (childProperty && array[i][childProperty]) {
+                        var result = findByKeyAndValueRecursive(array[i][childProperty], key, value, childProperty);
+                        if (result) return result;
+                    }
+                }
+            }
+
             return null;
         }
 
@@ -124,7 +182,7 @@
          */
         function isFilterApplied(a) {
             if (a) {
-                return a.value.length > 0;
+                return a.value.length > 0 || a.groupBy;
             }
             return false;
         }
@@ -345,7 +403,7 @@
                 tableHeaders = colHeaders.headers;
             }
             tableHeaders[0] = rowHeaders.concat(tableHeaders[0]);
-            if(rowHeaders.length > 0 && countLabel) {
+            if(rowHeaders.length > 0 && countLabel && (countLabel != 'Number of Cases' || colHeaders.headers.length == 0)) {
                 tableHeaders[0].push({
                     title: countLabel,
                     colspan: 1,
@@ -378,7 +436,7 @@
             return tableRowHeaders;
         }
 
-        function prepareMixedTableColumnHeaders(columnHeaders, allOptionValues) {
+        function prepareMixedTableColumnHeaders(columnHeaders, allOptionValues, includeOnly) {
             var tableColumnHeaderData = {
                 totalColspan: 0,
                 headers: []
@@ -390,25 +448,34 @@
                     eachColumnHeader.autoCompleteOptions.push(eachColumnHeader.autoCompleteOptions.shift());
                 }
                 angular.forEach(getSelectedAutoCompleteOptions(eachColumnHeader), function(eachOption, optionIndex) {
-                    var colspan = 1;
-                    if(columnHeaders.length > 1) {
-                        var childColumnHeaderData = prepareMixedTableColumnHeaders(columnHeaders.slice(1), allOptionValues);
-                        colspan = childColumnHeaderData.totalColspan;
-                        angular.forEach(childColumnHeaderData.headers, function(eachChildHeader, childHeaderIndex) {
-                            if(optionIndex == 0) {
-                                tableColumnHeaderData.headers.push([]);
+                    if (!includeOnly || !angular.isArray(includeOnly) || includeOnly.indexOf(eachOption.key) >= 0) {
+                        var colspan = 1;
+                        if(columnHeaders.length > 1) {
+                            var includeKeys = [];
+                            if (eachOption.options) {
+                                angular.forEach(eachOption.options, function (subOption) {
+                                    includeKeys.push(subOption.key);
+                                });
                             }
-                            tableColumnHeaderData.headers[childHeaderIndex + 1] = tableColumnHeaderData.headers[childHeaderIndex + 1].concat(eachChildHeader);
+
+                            var childColumnHeaderData = prepareMixedTableColumnHeaders(columnHeaders.slice(1), allOptionValues, eachOption.options ? includeKeys : undefined);
+                            colspan = childColumnHeaderData.totalColspan;
+                            angular.forEach(childColumnHeaderData.headers, function(eachChildHeader, childHeaderIndex) {
+                                if(optionIndex == 0) {
+                                    tableColumnHeaderData.headers.push([]);
+                                }
+                                tableColumnHeaderData.headers[childHeaderIndex + 1] = tableColumnHeaderData.headers[childHeaderIndex + 1].concat(eachChildHeader);
+                            });
+                        }
+                        tableColumnHeaderData.headers[0].push({
+                            title: eachOption.title,
+                            colspan: colspan,
+                            rowspan: 1,
+                            isData: true,
+                            helpText: eachOption.title
                         });
+                        tableColumnHeaderData.totalColspan += colspan;
                     }
-                    tableColumnHeaderData.headers[0].push({
-                        title: eachOption.title,
-                        colspan: colspan,
-                        rowspan: 1,
-                        isData: true,
-                        helpText: eachOption.title
-                    });
-                    tableColumnHeaderData.totalColspan += colspan;
                 });
 
             }
@@ -439,8 +506,8 @@
                 var eachHeaderData = data[eachHeader.key];
                 angular.forEach(eachHeader.autoCompleteOptions, function(matchedOption, index) {
 
-                    var key = (countKey === 'mental_health' || countKey === 'prams')?matchedOption.qkey:matchedOption.key;
-                    if(countKey === 'prams' || countKey === 'mental_health') {
+                    var key = (countKey === 'mental_health' || countKey === 'prams' || countKey === 'brfss')?matchedOption.qkey:matchedOption.key;
+                    if(countKey === 'prams' || countKey === 'brfss' || countKey === 'mental_health') {
                         var eachData = findAllByKeyAndValue(eachHeaderData, 'name', key);
                         if(eachData.length === 0) {
                             return;
@@ -536,7 +603,7 @@
             else {
                 var count = data[countKey];
                 var columnData = prepareMixedTableColumnData(columnHeaders, data, countKey, count, calculatePercentage, secondaryCountKeys);
-                if(typeof data[countKey] !== 'undefined' && countKey != 'std' && countKey != 'tb' && countKey !== 'aids') {
+                if(typeof data[countKey] !== 'undefined' && (columnHeaders.length == 0 || (countKey != 'std' && countKey != 'tb' && countKey !== 'aids'))){
                     columnData.push(prepareCountCell(count, data, countKey, totalCount, calculatePercentage, secondaryCountKeys, true));
                 }
                 tableData.push(columnData);
@@ -609,7 +676,7 @@
          * @param secondaryCountKey
          * @returns {Array}
          */
-        function prepareMixedTableColumnData(columnHeaders, data, countKey, totalCount, calculatePercentage, secondaryCountKeys) {
+        function prepareMixedTableColumnData(columnHeaders, data, countKey, totalCount, calculatePercentage, secondaryCountKeys, includeOnly) {
             var tableData = [];
             var percentage ;
             if(calculatePercentage) {
@@ -620,23 +687,32 @@
 
                 var eachHeaderData = data[eachColumnHeader.key]?data[eachColumnHeader.key]:data[eachColumnHeader.queryKey];
                 var eachOptionLength = 0;
-                angular.forEach(getSelectedAutoCompleteOptions(eachColumnHeader), function(eachOption, optionIndex) {
-                    var matchedData = findByKeyAndValue(eachHeaderData, 'name', eachOption.key);
-                    if(matchedData) {
-                        if (columnHeaders.length > 1) {
-                            var childTableData = prepareMixedTableColumnData(columnHeaders.slice(1), matchedData, countKey, totalCount, calculatePercentage, secondaryCountKeys);
-                            eachOptionLength = childTableData.length;
-                            tableData = tableData.concat(childTableData);
+                angular.forEach(getSelectedAutoCompleteOptions(eachColumnHeader), function (eachOption, optionIndex) {
+                    if (!includeOnly || !angular.isArray(includeOnly) || includeOnly.indexOf(eachOption.key) >= 0) {
+                        var matchedData = findByKeyAndValue(eachHeaderData, 'name', eachOption.key);
+                        if(matchedData) {
+                            if (columnHeaders.length > 1) {
+                                var includeKeys = [];
+                                if (eachOption.options) {
+                                    angular.forEach(eachOption.options, function (subOption) {
+                                        includeKeys.push(subOption.key);
+                                    });
+                                }
+
+                                var childTableData = prepareMixedTableColumnData(columnHeaders.slice(1), matchedData, countKey, totalCount, calculatePercentage, secondaryCountKeys, eachOption.options ? includeKeys : undefined);
+                                eachOptionLength = childTableData.length;
+                                tableData = tableData.concat(childTableData);
+                            } else {
+                                var count = matchedData[countKey];
+                                eachOptionLength = 1;
+                                tableData.push(prepareCountCell(count, matchedData, countKey, totalCount, calculatePercentage, secondaryCountKeys, false));
+                            }
                         } else {
-                            var count = matchedData[countKey];
-                            eachOptionLength = 1;
-                            tableData.push(prepareCountCell(count, matchedData, countKey, totalCount, calculatePercentage, secondaryCountKeys, false));
+                            if(eachOptionLength <= 0) {
+                                eachOptionLength = getOptionDataLength(columnHeaders.slice(1));
+                            }
+                            tableData = tableData.concat(getArrayWithDefaultValue(eachOptionLength, {title: 'Not Available', percentage: percentage , isCount: true}));
                         }
-                    } else {
-                        if(eachOptionLength <= 0) {
-                            eachOptionLength = getOptionDataLength(columnHeaders.slice(1));
-                        }
-                        tableData = tableData.concat(getArrayWithDefaultValue(eachOptionLength, {title: 'Not Available', percentage: percentage , isCount: true}));
                     }
                 });
             }
@@ -852,6 +928,7 @@
             var newFilters = response.data;
             for (var f = 0; f < sideFilters.length; f++) {
                 var fkey = sideFilters[f].filters.queryKey;
+                if (fkey.indexOf('|') >= 0) fkey = fkey.split('|')[1];
                 if (fkey === 'ethnicity_group' && datasetname == 'deaths') {
                     fkey = 'hispanic_origin';
                 }
@@ -1079,6 +1156,146 @@
                         return sideFilter.filters.key === demoFilter;
                     })[0].disabled = false;
                 })
+            }
+        }
+
+        function getSelectedFiltersText(filters, sortlist){
+            var appliedFilters = [];
+            var filterText = ''
+            filters.forEach(function(filter){
+                (filter.value.length > 0 && filter.key != 'question') && appliedFilters.push(filter);
+            });
+
+            appliedFilters.sort(function (a, b) {
+                return (sortlist.indexOf(a.key) - sortlist.indexOf(b.key));
+            });
+
+            appliedFilters.forEach(function (f) {
+                filterText += ($filter('translate')(f.title) + ': ')
+                var options = [];
+                //filters options with checkboxes
+                if (angular.isArray(f.value)) {
+                    f.value.forEach(function (optionKey) {
+                        var option = findByKeyAndValue(f.autoCompleteOptions, 'key', optionKey);
+                        options.push(option.title);
+                    });
+                } else {//for filters with radios
+                    var option = findByKeyAndValue(f.autoCompleteOptions, 'key', f.value);
+                    options.push(option.title);
+                }
+                filterText += options.join(', ');
+                filterText += '| '
+            });
+            return filterText.substring(0, filterText.length -2);
+        }
+
+        function infantMortalityFilterChange(filter, categories){
+            var sideFilters = [];
+           angular.forEach(categories, function (category) {
+                sideFilters = sideFilters.concat(category.sideFilters);
+            });
+            //Year filter
+            var yearSideFilter = $filter('filter')(sideFilters, {filters : {key: 'year_of_death'}})[0];
+            //If user un-check all years - no year selected
+            if(yearSideFilter.filters.value.length == 0){
+                yearSideFilter.filters.value = yearSideFilter.filters.defaultValue;
+            }
+            var selectedYear = yearSideFilter.filters.value[yearSideFilter.filters.value.length - 1];
+            var listOfSelectedYears = clone(yearSideFilter.filters.value);
+            if( selectedYear >= '2007' && selectedYear <= '2014') {
+                angular.forEach(listOfSelectedYears, function(eachYear){
+                   if(yearSideFilter.filters.D31Years.indexOf(eachYear) >= 0 || yearSideFilter.filters.D18Years.indexOf(eachYear) >= 0){
+                        var index = yearSideFilter.filters.value.indexOf(eachYear);
+                        yearSideFilter.filters.value.splice(index, 1);
+                    }
+                });
+            }
+            else if(selectedYear >= '2003' && selectedYear <= '2006') {
+                angular.forEach(listOfSelectedYears, function(eachYear){
+                    if(yearSideFilter.filters.D69Years.indexOf(eachYear) >= 0 || yearSideFilter.filters.D18Years.indexOf(eachYear) >= 0){
+                        var index = yearSideFilter.filters.value.indexOf(eachYear);
+                        yearSideFilter.filters.value.splice(index, 1);
+                    }
+                });
+            }
+            else if(selectedYear >= '2000' && selectedYear <= '2002') {
+                angular.forEach(listOfSelectedYears, function(eachYear){
+                    if(yearSideFilter.filters.D69Years.indexOf(eachYear) >= 0 || yearSideFilter.filters.D31Years.indexOf(eachYear) >= 0){
+                        var index = yearSideFilter.filters.value.indexOf(eachYear);
+                        yearSideFilter.filters.value.splice(index, 1);
+                    }
+                });
+            }
+        }
+
+
+        /**
+         * On BRFSS filter change, perform the actions
+         * @param filter
+         * @param categories
+         */
+        function brfsFilterChange(filter, categories) {
+            var sideFilters = [];
+            if(filter.value.length > 0 || filter.groupBy) {
+                angular.forEach(categories, function (category) {
+                    sideFilters = sideFilters.concat(category.sideFilters);
+                });
+                angular.forEach(sideFilters, function (sideFilter) {
+                    if (filter.key === sideFilter.filters.key) {
+                        if (!sideFilter.filters.groupBy) {
+                            sideFilter.filters.groupBy = "column";
+                        }
+                    } else if(sideFilter.allowGrouping && sideFilter.filters.key !== 'state'
+                            && sideFilter.filters.groupBy === 'column') {
+                        sideFilter.filters.value = [];
+                        sideFilter.filters.groupBy = false;
+                    }
+                });
+            }
+        }
+
+        function getICD10Chapters(){
+            if($rootScope.conditionsICD10) {
+                return $rootScope.conditionsICD10.map(function (cond) {
+                    return {key: cond.id, title: cond.text}
+                });
+            }else{
+                return [];
+            }
+        }
+
+        function cancerIncidenceFilterChange (filter, categories) {
+            var filters = categories[0].sideFilters;
+            var ageFilter = filters.filter(function (sideFilter) {
+               return sideFilter.filters.key === 'age_group';
+            })[0];
+            var childhoodCancerFilter = filters.filter(function (sideFilter) {
+                return sideFilter.filters.key === 'childhood_cancer';
+            })[0];
+            var childAgeGroups = [ '00 years', '01-04 years', '05-09 years', '10-14 years', '15-19 years' ];
+            var hasChildAgeGroup = childAgeGroups.reduce(function (prev, curr, _, ages) {
+                return ageFilter.filters.value.every(function (value) {
+                    return ages.indexOf(value) !== -1;
+                });
+            }, false);
+            var filteringByChildhoodCancer = !!childhoodCancerFilter.filters.value.length
+
+            childhoodCancerFilter.disabled = !hasChildAgeGroup;
+
+            if (filteringByChildhoodCancer) {
+                if (ageFilter.filters.allChecked) {
+                    ageFilter.filters.allChecked = false;
+                    ageFilter.filters.value = childAgeGroups;
+                }
+                ageFilter.filters.disableAll = true;
+                ageFilter.filters.autoCompleteOptions.forEach(function (option) {
+                    option.disabled = !~childAgeGroups.indexOf(option.key);
+                });
+            } else {
+                ageFilter.filters.disableAll = false;
+                ageFilter.filters.autoCompleteOptions.forEach(function (option) {
+                    option.disabled = false;
+                });
             }
         }
     }

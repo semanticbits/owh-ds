@@ -1,251 +1,210 @@
 {
-  "data": [
+  "charttype":"multiBarHorizontalChart",
+  "title":"label.title.race.hispanicOrigin",
+  "longtitle":"chart.title.measure.deaths by label.title.race.hispanicOrigin in undefined for undefined",
+  "dataset":"deaths",
+  "data":[
     {
-      "key": "American Indian",
-      "values": [
-        {
-          "label": "Central American",
-          "value": 19
-        },
-        {
-          "label": "Central and South American",
-          "value": 1
-        },
-        {
-          "label": "Cuban",
-          "value": 9
-        },
-        {
-          "label": "Dominican",
-          "value": 6
-        },
-        {
-          "label": "Latin American",
-          "value": 10
-        },
-        {
-          "label": "Mexican",
-          "value": 512
-        },
-        {
-          "label": "Non-Hispanic",
-          "value": 17151
-        },
-        {
-          "label": "Other Hispanic",
-          "value": 203
-        },
-        {
-          "label": "Puerto Rican",
-          "value": 28
-        },
-        {
-          "label": "South American",
-          "value": 17
-        },
-        {
-          "label": "Spaniard",
-          "value": 11
-        },
-        {
-          "label": "Unknown",
-          "value": 64
-        }
+      "name":"White",
+      "x":[
+        6888,
+        598,
+        5964,
+        21079,
+        14643,
+        2068925,
+        95193,
+        716,
+        3013,
+        14936,
+        2369,
+        7026
       ],
-      "deaths": 18031
+      "y":[
+        "Unknown",
+        "Spaniard",
+        "South American",
+        "Puerto Rican",
+        "Other Hispanic",
+        "Non-Hispanic",
+        "Mexican",
+        "Latin American",
+        "Dominican",
+        "Cuban",
+        "Central and South American",
+        "Central American"
+      ],
+      "text":[
+
+      ],
+      "orientation":"h",
+      "hoverinfo":"none",
+      "type":"bar",
+      "marker":{
+        "color":"#C2D5EE"
+      }
     },
     {
-      "key": "Asian or Pacific Islander",
-      "values": [
-        {
-          "label": "Central American",
-          "value": 43
-        },
-        {
-          "label": "Central and South American",
-          "value": 4
-        },
-        {
-          "label": "Cuban",
-          "value": 14
-        },
-        {
-          "label": "Dominican",
-          "value": 6
-        },
-        {
-          "label": "Latin American",
-          "value": 6
-        },
-        {
-          "label": "Mexican",
-          "value": 207
-        },
-        {
-          "label": "Non-Hispanic",
-          "value": 60942
-        },
-        {
-          "label": "Other Hispanic",
-          "value": 397
-        },
-        {
-          "label": "Puerto Rican",
-          "value": 142
-        },
-        {
-          "label": "South American",
-          "value": 35
-        },
-        {
-          "label": "Spaniard",
-          "value": 27
-        },
-        {
-          "label": "Unknown",
-          "value": 280
-        }
+      "name":"Black",
+      "x":[
+        1867,
+        2,
+        93,
+        581,
+        321,
+        304107,
+        539,
+        19,
+        838,
+        346,
+        112,
+        491
       ],
-      "deaths": 62103
+      "y":[
+        "Unknown",
+        "Spaniard",
+        "South American",
+        "Puerto Rican",
+        "Other Hispanic",
+        "Non-Hispanic",
+        "Mexican",
+        "Latin American",
+        "Dominican",
+        "Cuban",
+        "Central and South American",
+        "Central American"
+      ],
+      "text":[
+
+      ],
+      "orientation":"h",
+      "hoverinfo":"none",
+      "type":"bar",
+      "marker":{
+        "color":"#5799C7"
+      }
     },
     {
-      "key": "Black",
-      "values": [
-        {
-          "label": "Central American",
-          "value": 491
-        },
-        {
-          "label": "Central and South American",
-          "value": 112
-        },
-        {
-          "label": "Cuban",
-          "value": 346
-        },
-        {
-          "label": "Dominican",
-          "value": 838
-        },
-        {
-          "label": "Latin American",
-          "value": 19
-        },
-        {
-          "label": "Mexican",
-          "value": 539
-        },
-        {
-          "label": "Non-Hispanic",
-          "value": 304107
-        },
-        {
-          "label": "Other Hispanic",
-          "value": 321
-        },
-        {
-          "label": "Puerto Rican",
-          "value": 581
-        },
-        {
-          "label": "South American",
-          "value": 93
-        },
-        {
-          "label": "Spaniard",
-          "value": 2
-        },
-        {
-          "label": "Unknown",
-          "value": 1867
-        }
+      "name":"Asian or Pacific Islander",
+      "x":[
+        280,
+        27,
+        35,
+        142,
+        397,
+        60942,
+        207,
+        6,
+        6,
+        14,
+        4,
+        43
       ],
-      "deaths": 309316
+      "y":[
+        "Unknown",
+        "Spaniard",
+        "South American",
+        "Puerto Rican",
+        "Other Hispanic",
+        "Non-Hispanic",
+        "Mexican",
+        "Latin American",
+        "Dominican",
+        "Cuban",
+        "Central and South American",
+        "Central American"
+      ],
+      "text":[
+
+      ],
+      "orientation":"h",
+      "hoverinfo":"none",
+      "type":"bar",
+      "marker":{
+        "color":"#65c2ff"
+      }
     },
     {
-      "key": "White",
-      "values": [
-        {
-          "label": "Central American",
-          "value": 7026
-        },
-        {
-          "label": "Central and South American",
-          "value": 2369
-        },
-        {
-          "label": "Cuban",
-          "value": 14936
-        },
-        {
-          "label": "Dominican",
-          "value": 3013
-        },
-        {
-          "label": "Latin American",
-          "value": 716
-        },
-        {
-          "label": "Mexican",
-          "value": 95193
-        },
-        {
-          "label": "Non-Hispanic",
-          "value": 2068925
-        },
-        {
-          "label": "Other Hispanic",
-          "value": 14643
-        },
-        {
-          "label": "Puerto Rican",
-          "value": 21079
-        },
-        {
-          "label": "South American",
-          "value": 5964
-        },
-        {
-          "label": "Spaniard",
-          "value": 598
-        },
-        {
-          "label": "Unknown",
-          "value": 6888
-        }
+      "name":"American Indian",
+      "x":[
+        64,
+        11,
+        17,
+        28,
+        203,
+        17151,
+        512,
+        10,
+        6,
+        9,
+        1,
+        19
       ],
-      "deaths": 2241350
+      "y":[
+        "Unknown",
+        "Spaniard",
+        "South American",
+        "Puerto Rican",
+        "Other Hispanic",
+        "Non-Hispanic",
+        "Mexican",
+        "Latin American",
+        "Dominican",
+        "Cuban",
+        "Central and South American",
+        "Central American"
+      ],
+      "text":[
+
+      ],
+      "orientation":"h",
+      "hoverinfo":"none",
+      "type":"bar",
+      "marker":{
+        "color":"#bc8fe0"
+      }
     }
   ],
-  "title": "label.title.race.hispanicOrigin",
-  "options": {
-    "chart": {
-      "type": "multiBarHorizontalChart",
-      "height": 250,
-      "width": 0,
-      "margin": {
-        "top": 5,
-        "right": 5,
-        "bottom": 45,
-        "left": 45
+  "layout":{
+    "width":128,
+    "autosize":true,
+    "showlegend":false,
+    "margin":{
+      "l":20,
+      "r":10,
+      "b":20,
+      "t":20
+    },
+    "xaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
       },
-      "showLegend": false,
-      "showControls": false,
-      "showValues": false,
-      "showXAxis": true,
-      "showYAxis": true,
-      "duration": 500,
-      "xAxis": {
-        "axisLabelDistance":-20,
-        "axisLabel":"label.filter.hispanicOrigin",
-        "showMaxMin": false
+      "exponentformat":"none",
+      "tickangle":45,
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "fixedrange":true,
+      "title":"Deaths"
+    },
+    "yaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
       },
-      "yAxis": {
-        "axisLabel": "Deaths"
-      },
-      "useInteractiveGuideline": false,
-      "interactive": false,
-      "tooltip": {}
-    }
+      "exponentformat":"none",
+      "tickangle":45,
+      "ticksuffix":"   ",
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "fixedrange":true,
+      "title":"label.filter.hispanicOrigin"
+    },
+    "barmode":"stack"
+  },
+  "options":{
+    "displayModeBar":false
   }
 }

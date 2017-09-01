@@ -19,7 +19,11 @@ var census_rates_type="census_rates";
 var infant_mortality_index = "owh_infant_mortality";
 var infant_mortality_type = "infant_mortality";
 var cancer_incident_index = "owh_cancer_incident";
-var cancer_type = "cancer_incident";
+var cancer_incident_type = "cancer_incident";
+var cancer_mortality_index = "owh_cancer_mortality";
+var cancer_mortality_type = "cancer_mortality";
+var cancer_population_index = "owh_cancer_population";
+var cancer_population_type = "cancer_population";
 
 //@TODO to work with my local ES DB I changed mapping name to 'queryResults1', revert before check in to 'queryResults'
 var _queryIndex = "owh_querycache";
@@ -151,10 +155,13 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
     if(query[1]){
         logger.debug("Mortality ES Query: "+ JSON.stringify( query[0]));
         logger.debug("Census ES Query: "+ JSON.stringify( query[1]));
+        logger.debug("Map ES Query: "+ JSON.stringify( query[2]));
         var promises = [
             this.executeMultipleESQueries(query[0], mortality_index, mortality_type),
             this.aggregateCensusDataQuery(query[1], census_rates_index, census_rates_type, 'pop'),
-            this.executeMultipleESQueries(query[2], mortality_index, mortality_type)
+            this.executeMultipleESQueries(query[2], mortality_index, mortality_type),
+            //To get population count for MAP
+            this.aggregateCensusDataQuery(query[2], census_rates_index, census_rates_type, 'pop')
         ];
         if(query.wonderQuery) {
             logger.debug("Wonder Query: "+ JSON.stringify(query.wonderQuery));
@@ -165,15 +172,20 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
             var mapData = searchUtils.populateDataWithMappings(respArray[2], 'deaths');
             data.data.nested.maps = mapData.data.nested.maps;
             self.mergeWithCensusData(data, respArray[1], 'pop');
+            mergeCensusRecursively(data.data.nested.maps, respArray[3].data.nested.maps, 'pop');
             if(query.wonderQuery) {
-                searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[3].table);
+                searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[4].table);
                 //Loop through charts array and merge age ajusted rates from response
                 data.data.nested.charts.forEach(function(chart, index){
-                    searchUtils.mergeAgeAdjustedRates(chart, respArray[3].charts[index]);
+                    searchUtils.mergeAgeAdjustedRates(chart, respArray[4].charts[index]);
                 });
+                //Merge Age Adjusted results for Map
+                searchUtils.mergeAgeAdjustedRates(data.data.nested.maps, respArray[4].maps);
             }
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'deaths');
+            } else {
+                searchUtils.applySuppressions(mapData, 'deaths');
             }
             deferred.resolve(data);
         }, function (err) {
@@ -187,7 +199,10 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
             var data = searchUtils.populateDataWithMappings(resp, 'deaths');
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'deaths');
+            } else if (data.data.simple.state) {
+                searchUtils.suppressStateTotals(data.data.simple.state, 'deaths', 10);
             }
+
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
@@ -216,6 +231,8 @@ ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected) {
             data.data.nested.maps = mapData.data.nested.maps;
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'bridge_race');
+            } else {
+                searchUtils.applySuppressions(mapData, 'bridge_race');
             }
             deferred.resolve(data);
         }, function (err) {
@@ -270,6 +287,12 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected)
         logger.debug("Natality ES Query: "+ JSON.stringify( query[0]));
         this.executeESQuery(natality_index, natality_type, query[0]).then(function (resp) {;
             var data = searchUtils.populateDataWithMappings(resp, 'natality');
+            if (isStateSelected) {
+                searchUtils.applySuppressions(data, 'natality');
+            } else if (data.data.simple.state) {
+                searchUtils.suppressStateTotals(data.data.simple.state, 'natality', 10);
+            }
+
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
@@ -279,38 +302,40 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected)
     return deferred.promise;
 };
 
-ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateSelected, allSelectedFilterOptions) {
+ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateSelected, allSelectedFilterOptions, selectedYears) {
     var self = this;
     var deferred = Q.defer();
-    if(query[1]) {
-        logger.debug("Infant Mortality ES Query: "+ JSON.stringify( query[0]));
-        logger.debug("Census Rates ES Query: "+ JSON.stringify( query[1]));
-        var promises = [
-            this.executeESQuery(infant_mortality_index, infant_mortality_type, query[0]),
-            this.aggregateCensusDataQuery(query[1], natality_index, natality_type, 'doc_count')
-        ];
-        Q.all(promises).then( function (resp) {
+    var dbID;
+    //Based on selected year choose wonder database ID
+    var selectedYear = selectedYears[0];
+    if(selectedYear <= '2014' && selectedYear >= '2007') {
+        dbID = 'D69';
+    }
+    else if(selectedYear <= '2006' && selectedYear >= '2003') {
+        dbID = 'D31'
+    }
+    else if(selectedYear <= '2002' && selectedYear >= '2000') {
+        dbID = 'D18'
+    }
+    logger.debug("Executing wonder query against database ", dbID);
+    var promises = [
+        this.executeESQuery(infant_mortality_index, infant_mortality_type, query[0])
+    ];
+    if(dbID) {
+        promises.push(new wonder(dbID).invokeWONDER(query[1]));
+        Q.all(promises).then(function (resp) {
             var data = searchUtils.populateDataWithMappings(resp[0], 'infant_mortality', undefined, allSelectedFilterOptions);
-            self.mergeWithCensusData(data, resp[1], 'doc_count');
+            searchUtils.mergeWonderResponseWithInfantESData(data.data.nested.table, resp[1].table);
+            data.data.nested.charts.forEach(function (eachChartData, index) {
+                searchUtils.mergeWonderResponseWithInfantESData(eachChartData, resp[1].charts[index]);
+            });
             isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');
             deferred.resolve(data);
+
         }, function (err) {
             logger.error(err.message);
             deferred.reject(err);
         });
-
-    }
-    else {
-        logger.debug("Infant Mortality ES Query: "+ JSON.stringify( query[0]));
-        this.executeESQuery(infant_mortality_index, infant_mortality_type, query[0])
-            .then(function (response) {
-                var data = searchUtils.populateDataWithMappings(response, 'infant_mortality', allSelectedFilterOptions);
-                isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');
-                deferred.resolve(data);
-            }, function (error) {
-                logger.error(error.message);
-                deferred.reject(error);
-            });
     }
     return deferred.promise;
 };
@@ -355,7 +380,14 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
                 i == 0 ? populationResponse = resp[i+2] : populationResponse.data.nested.charts.push(resp[i + 2].data.nested.charts[i-1]);
             }
             self.mergeWithCensusData(data, populationResponse, 'pop');
-            isStateSelected && searchUtils.applySuppressions(data, indexType, 4);
+            if (diseaseName === 'std' || diseaseName === 'aids') {
+                var threshold = diseaseName === 'std'? 4 : 0;
+                if (isStateSelected) {
+                    searchUtils.applySuppressions(data, indexType, threshold)
+                } else {
+                    searchUtils.applySuppressions(mapData, indexType, threshold)
+                }
+            }
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
@@ -450,39 +482,27 @@ ElasticClient.prototype.getDsMetadata = function (dataset, years) {
     return deferred.promise;
 };
 
-ElasticClient.prototype.getCountForYearByFilter = function (year, filter, option) {
-    var client = this.getClient();
-    var target = {};
-    target[filter] = option;
-    return client.count({
-        index: infant_mortality_index,
-        type: infant_mortality_type,
-        body: {
-            query: {
-                bool: {
-                    must: [
-                        { match: { 'year_of_death': year } },
-                        { match: target }
-                    ]
-                }
-            }
+ElasticClient.prototype.aggregateCancerData = function (query, cancer_index) {
+    var index = cancer_index === cancer_incident_type ? cancer_incident_index : cancer_mortality_index;
+    var type = cancer_index === cancer_incident_type ? cancer_incident_type : cancer_mortality_type;
+    var promises = [ this.executeESQuery(index, type, query[0]) ];
+
+    if (query[2]) promises.push(this.executeESQuery(index, type, query[2]));
+    if (query[1]) promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[1]));
+
+    return Q.all(promises).spread(function (queryResponse, mapResponse, populationResponse) {
+        var data = searchUtils.populateDataWithMappings(queryResponse, type);
+        var pop = searchUtils.populateDataWithMappings(populationResponse, cancer_population_type);
+        searchUtils.attachPopulation(data.data.nested.table, pop.data.nested.table, []);
+        if (mapResponse) {
+          var mapData = searchUtils.populateDataWithMappings(mapResponse, type);
+          data.data.nested.maps = mapData.data.nested.maps;
         }
-    }).then(function (data) {
         return data;
     }).catch(function (error) {
-        logger.error('Failed to get count for ', filter, ' ', error);
-        return error;
+        logger.debug('Error fetching cancer data', error);
+        return error
     });
-};
-
-ElasticClient.prototype.aggregateCancerData = function (query) {
-    var deferred = Q.defer();
-    this.executeESQuery(cancer_incident_index, cancer_type, query[0]).then(function (resp) {
-        deferred.resolve(searchUtils.populateDataWithMappings(resp, 'cancer_incident'));
-    }).catch(function (error) {
-        deferred.reject(error)
-    });
-    return deferred.promise;
 };
 
 module.exports = ElasticClient;

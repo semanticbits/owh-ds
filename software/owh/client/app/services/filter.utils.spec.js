@@ -40,10 +40,12 @@ describe('filterUtils', function(){
             var natalityFilters = filterUtils.getNatalityDataFilters();
             expect(natalityFilters[0].key).toEqual('hispanic_origin');
             expect(natalityFilters[1].key).toEqual('state');
-            expect(natalityFilters[2].key).toEqual('mother_age_1year_interval');
-            expect(natalityFilters[3].key).toEqual('mother_age_5year_interval');
-            expect(natalityFilters[4].key).toEqual('race');
-            expect(natalityFilters[5].key).toEqual('marital_status');
+            expect(natalityFilters[2].key).toEqual('census-region');
+            expect(natalityFilters[3].key).toEqual('hhs-region');
+            expect(natalityFilters[4].key).toEqual('mother_age_1year_interval');
+            expect(natalityFilters[5].key).toEqual('mother_age_5year_interval');
+            expect(natalityFilters[6].key).toEqual('race');
+            expect(natalityFilters[7].key).toEqual('marital_status');
         });
     });
 
@@ -119,6 +121,30 @@ describe('filterUtils', function(){
             expect(stdDataFilters[4].key).toEqual('state');
             expect(stdDataFilters[4].value).toEqual('National');
             expect(stdDataFilters[5].key).toEqual('transmission');
+        });
+    });
+
+    describe('cancerIncidenceFilters', function () {
+        it('should have keys for current_year, sex, race, hispanic_origin, age_group, site, childhood_cancer, state', function () {
+            var actual = filterUtils.cancerIncidenceFilters().map(function (filter) {
+                return filter.key;
+            });
+            var expected = [ 'current_year', 'sex', 'race', 'hispanic_origin', 'age_group', 'site', 'state' ];
+            expected.forEach(function (key) {
+                expect(actual).toContain(key);
+            });
+        });
+    });
+
+    describe('cancerMortalityFilters', function () {
+        it('should have keys for current_year, sex, race, hispanic_origin, age_group, site, childhood_cancer, state', function () {
+            var actual = filterUtils.cancerMortalityFilters().map(function (filter) {
+                return filter.key;
+            });
+            var expected = [ 'current_year', 'sex', 'race', 'hispanic_origin', 'age_group', 'site', 'state' ];
+            expected.forEach(function (key) {
+                expect(actual).toContain(key);
+            });
         });
     });
 });

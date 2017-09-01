@@ -39,6 +39,7 @@ describe('search factory ', function(){
         $httpBackend.whenGET('/yrbsQuestionsTree').respond(questionsTreeJson);
         $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
+        $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
         $rootScope.questionsList = questionsTreeJson.questionsList;
         filters = searchFactory.getAllFilters();
         filters.primaryFilters = utils.findAllByKeyAndValue(filters.search, 'primary', true);
@@ -384,6 +385,47 @@ describe('search factory ', function(){
 
     });
 
+    describe('BRFSS search ->', function() {
+        var response;
+        beforeAll(function() {
+            response = __fixtures__['app/modules/search/fixtures/search.factory/brfsFilterResponse'];
+        });
+        beforeEach(function() {
+            deferred = $q.defer();
+        });
+        it('updateFiltersAndData for brfs response', function(){
+            var groupOptions = {
+                alcohol_consumption: {
+                    "topic": ['cat_12', 'cat_48', 'cat_51', 'cat_52']
+                }
+            };
+            var brfsFilters = {primaryFilters: [filters.search[11]]};
+            spyOn(utils, 'getValuesByKeyIncludingKeyAndValue').and.returnValue([]);
+            console.log(JSON.stringify(brfsFilters))
+            var result = searchFactory.updateFiltersAndData(brfsFilters, response, groupOptions);
+
+            expect(JSON.stringify(result.primaryFilter.data.question)).toEqual(JSON.stringify(response.data.resultData.table.question));
+            expect(result.primaryFilter.allFilters[8].questions.length).toEqual(groupOptions.alcohol_consumption.topic.length);
+        });
+
+        it('searchBRFSSResults', function(){
+            var deferredResults = $q.defer();
+
+            primaryFilter = filters.search[11];
+            filters.selectedPrimaryFilter = primaryFilter;
+
+            spyOn(searchService, 'searchResults').and.returnValue(deferredResults.promise);
+
+            primaryFilter.searchResults(primaryFilter, '35343dsfvvcxvsd').then(function(result) {
+                expect(JSON.stringify(result.data.resultData.table)).toEqual(JSON.stringify(response.data.resultData.table));
+            });
+
+            deferredResults.resolve(response);
+            $scope.$apply()
+
+        });
+    });
+
     describe('test with mortality data', function () {
         beforeAll(function() {
             primaryFilter = filters.search[0];
@@ -402,16 +444,15 @@ describe('search factory ', function(){
             expect(primaryFilter.key).toEqual('deaths');
         });
 
-        it('addCountsToAutoCompleteOptions', function () {
-            spyOn(searchService, 'searchResults').and.returnValue(deferred.promise);
-            searchFactory.addCountsToAutoCompleteOptions(primaryFilter);
-            deferred.resolve(countsMortalityAutoCompletes);
-            $scope.$apply();
-            var yearFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year');
-            expect(yearFilter.autoCompleteOptions.length).toEqual(16);
-            expect(yearFilter.autoCompleteOptions[0].count).toEqual(2630800);
-        });
-
+        // it('addCountsToAutoCompleteOptions', function () {
+        //     spyOn(searchService, 'searchResults').and.returnValue(deferred.promise);
+        //     searchFactory.addCountsToAutoCompleteOptions(primaryFilter);
+        //     deferred.resolve(countsMortalityAutoCompletes);
+        //     $scope.$apply();
+        //     var yearFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year');
+        //     expect(yearFilter.autoCompleteOptions.length).toEqual(16);
+        //     expect(yearFilter.autoCompleteOptions[0].count).toEqual(2630800);
+        // });
         it('searchMortalityResults', function () {
             var result = searchFactory.updateFiltersAndData(filters, searchResponse, {'number_of_deaths': {}}, {});
             expect(JSON.stringify(result.primaryFilter.data)).toEqual(JSON.stringify(searchResponse.data.resultData.nested.table));
@@ -469,7 +510,7 @@ describe('search factory ', function(){
         it('ageSliderOptions callback', function () {
             filters.ageSliderOptions.callback('0;10');
             var agegroupFilter = utils.findByKeyAndValue(filters.allMortalityFilters, 'key', 'agegroup');
-            expect(agegroupFilter.value).toEqual([ '0-4years', '5-9years', 'Age not stated' ]);
+            expect(agegroupFilter.value).toEqual([ '1 year', '1-4years', '5-9years', 'Age not stated' ]);
         });
 
         //TODO: Need to be fixed
@@ -524,12 +565,12 @@ describe('search factory ', function(){
             expect(primaryFilter.allFilters).toEqual(filters.yrbsBasicFilters);
         });
 
-        it('searchYRBSResults', function () {
+        it('invokeStatsService for yrbs', function () {
             var result = searchFactory.updateFiltersAndData(filters, yrbsResponse, {'mental_health': {}}, 'mental_health');
             expect(JSON.stringify(result.primaryFilter.data)).toEqual(JSON.stringify(yrbsResponse.data.resultData.table));
         });
 
-        it('searchYRBSResults with only one row group having no value', function () {
+        it('invokeStatsService for yrbs with only one row group having no value', function () {
             var raceFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'yrbsRace');
             raceFilter.groupBy = 'row';
             raceFilter.value = '';
@@ -541,7 +582,7 @@ describe('search factory ', function(){
             raceFilter.value = ['all-races-ethnicities'];
         });
 
-        it('searchYRBSResults with only one row and one column group', function () {
+        it('invokeStatsService for yrbs with only one row and one column group', function () {
             var genderFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'yrbsSex');
             genderFilter.groupBy = 'column';
 
@@ -551,7 +592,7 @@ describe('search factory ', function(){
             genderFilter.groupBy = false;
         });
 
-        it('searchYRBSResults with only one row and one column group with out all value', function () {
+        it('invokeStatsService for yrbs with only one row and one column group with out all value', function () {
             var genderFilter = utils.findByKeyAndValue(primaryFilter.allFilters, 'key', 'yrbsSex');
             genderFilter.groupBy = 'column';
 
@@ -568,8 +609,7 @@ describe('search factory ', function(){
             deferred.resolve(yrbsResponse);
 
             genderFilter.groupBy = false;
-            raceFilter.value = 'all-races-ethnicities';
-            raceFilter.value = ['2015'];
+            raceFilter.value = 'Asian';
         });
 
         it('should give me a chart data for single filter with question', function () {

@@ -19,6 +19,8 @@
     'owh.services',
     'owh.home',
     'owh.search',
+    'owh.description',
+    'owh.search',
     'owh.about'
   ]);
 }());
