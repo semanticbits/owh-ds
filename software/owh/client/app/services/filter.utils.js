@@ -1599,7 +1599,15 @@
                     filterType: 'checkbox',
                     displaySearchBox: true,
                     displaySelectedFirst: true,
-                    autoCompleteOptions: stateOptions,
+                    autoCompleteOptions: (function (states) {
+                        states.forEach(function (state) {
+                            if (state.key === 'KS') {
+                                state.disabled = true;
+                                return state;
+                            }
+                        })
+                        return states;
+                    })(stateOptions),
                     defaultGroup:'column',
                     helpText: 'label.help.text.cancer_incidence.state'
                 }
