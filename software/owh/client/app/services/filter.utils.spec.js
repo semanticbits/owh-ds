@@ -33,6 +33,23 @@ describe('filterUtils', function(){
             var ageGroupFilter = utilService.findByKeyAndValue(bridgeRaceFilters, 'key', 'agegroup');
             expect(ageGroupFilter.value).toEqual(['5-9 years', '10-14 years', '15-19 years']);
         });
+
+        it('should provide me correct slider intervals for single value selection', function () {
+
+            var bridgeRaceFilters = filterUtils.getBridgeDataFilters();
+
+            bridgeRaceFilters[2].sliderOptions.callback('5;5');
+            var ageGroupFilter = utilService.findByKeyAndValue(bridgeRaceFilters, 'key', 'agegroup');
+            expect(ageGroupFilter.value).toEqual(['5-9 years']);
+        });
+        it('should provide me correct slider intervals for single interval selection', function () {
+
+            var bridgeRaceFilters = filterUtils.getBridgeDataFilters();
+
+            bridgeRaceFilters[2].sliderOptions.callback('5;10');
+            var ageGroupFilter = utilService.findByKeyAndValue(bridgeRaceFilters, 'key', 'agegroup');
+            expect(ageGroupFilter.value).toEqual(['5-9 years', '10-14 years']);
+        });
     });
 
     describe('test natality filters', function() {

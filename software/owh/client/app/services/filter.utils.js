@@ -870,7 +870,7 @@
                     // set the values list only if the slider selection is different from the default
                     if(! (minValue == 0  && maxValue == 85)) {
                         angular.forEach(ageGroupFilter.autoCompleteOptions, function(eachOption) {
-                            if((eachOption.min <= minValue && eachOption.max >= minValue)
+                            if((eachOption.min <= minValue && eachOption.max > minValue)
                                 || (eachOption.min >= minValue && eachOption.max <= maxValue)
                                 || (eachOption.min <= maxValue && eachOption.max >= maxValue)) {
                                 ageGroupFilter.value.push(eachOption.key);

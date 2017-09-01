@@ -510,7 +510,31 @@ describe('search factory ', function(){
         it('ageSliderOptions callback', function () {
             filters.ageSliderOptions.callback('0;10');
             var agegroupFilter = utils.findByKeyAndValue(filters.allMortalityFilters, 'key', 'agegroup');
-            expect(agegroupFilter.value).toEqual([ '1 year', '1-4years', '5-9years', 'Age not stated' ]);
+            expect(agegroupFilter.value).toEqual([  '1-4years', '5-9years', '10-14years' ]);
+        });
+
+        it('ageSliderOptions callback single value selection', function () {
+            filters.ageSliderOptions.callback('-5;-5');
+            var agegroupFilter = utils.findByKeyAndValue(filters.allMortalityFilters, 'key', 'agegroup');
+            expect(agegroupFilter.value).toEqual([  '1 year' ]);
+        });
+
+        it('ageSliderOptions callback single interval selection', function () {
+            filters.ageSliderOptions.callback('-5;0');
+            var agegroupFilter = utils.findByKeyAndValue(filters.allMortalityFilters, 'key', 'agegroup');
+            expect(agegroupFilter.value).toEqual([  '1 year', '1-4years' ]);
+        });
+
+        it('ageSliderOptions callback not stated selection', function () {
+            filters.ageSliderOptions.callback('-10;-10');
+            var agegroupFilter = utils.findByKeyAndValue(filters.allMortalityFilters, 'key', 'agegroup');
+            expect(agegroupFilter.value).toEqual([  'Age not stated' ]);
+        });
+
+        it('ageSliderOptions callback all selection', function () {
+            filters.ageSliderOptions.callback('-10;105');
+            var agegroupFilter = utils.findByKeyAndValue(filters.allMortalityFilters, 'key', 'agegroup');
+            expect(agegroupFilter.value).toEqual([]);
         });
 
         //TODO: Need to be fixed
