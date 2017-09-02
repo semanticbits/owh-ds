@@ -754,7 +754,7 @@
         ];
 
         var cancerAgeGroups = [
-            { key: '00 years', title: '00 years' },
+            { key: '00 years', title: '< 1 years' },
             { key: '01-04 years', title: '01-04 years' },
             { key: '05-09 years', title: '05-09 years' },
             { key: '10-14 years', title: '10-14 years' },
