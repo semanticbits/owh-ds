@@ -81,6 +81,7 @@
                 //update questions based on selected
                 var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question')
                 questionFilter.questions = getYrbsQuestionsForTopic(tableView);
+                tableData.data = getDataForSelectedTopics(questionFilter.questions, tableData);
             }
             else if (primaryFilter.key === 'prams' ||
                 primaryFilter.key === 'brfss') {
@@ -98,6 +99,7 @@
                 var topics = groupOptions[tableView].topic;
                 var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question')
                 questionFilter.questions = getQuestionsByTopics(topics, questions);
+                tableData.data = getDataForSelectedTopics(questionFilter.questions, tableData);
             }
             else if (primaryFilter.key === 'bridge_race') {
                 primaryFilter.data = response.data.resultData.nested.table;
@@ -151,6 +153,13 @@
             };
         }
 
+        function getDataForSelectedTopics(topics, tableData) {
+            var data = [];
+            topics.forEach( function( topic ) {
+                data.push(utilService.findByKeyAndValue(tableData.data, 'title', topic.text));
+            });
+            return data;
+        }
         /**
          * Update prams questions based on topics
          * @param topics
@@ -567,6 +576,7 @@
                 "yrbsGrade": "horizontalBar",
                 "yrbsState": "horizontalBar",
                 "year": "horizontalBar",
+                "sex": "horizontalBar",
                 "state": "horizontalBar"  // for PRAMS
             };
 
@@ -2400,6 +2410,7 @@
                     queryKey:"sitecode",primary: false, value: ['AL'],
                     groupBy: false, filterType: 'radio',
                     autoCompleteOptions: filters.brfsStateOptions,
+                    displaySearchBox:true, displaySelectedFirst:true,
                     doNotShowAll: false, helpText: ""
                 },
                 {
@@ -2443,7 +2454,6 @@
                     iconClass: 'fa fa-pie-chart purple-text',
                     helpText: '',
                     onIconClick: function(question) {
-                        debugger
                         showChartForQuestion(filters.selectedPrimaryFilter, question);
                     }
                 }

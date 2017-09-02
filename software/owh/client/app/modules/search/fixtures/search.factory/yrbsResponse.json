@@ -1,7 +1,7 @@
 {
   "status": "OK",
   "data":{
-    "queryJSON": {"key": "mental_health", "tableView": "mental_health", "showBasicSearchSideMenu": true},
+    "queryJSON": {"key": "mental_health", "tableView": "Alcohol and Other Drug Use", "showBasicSearchSideMenu": true},
     "resultData": {
        "table":{
          "question":[

@@ -181,7 +181,7 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
  * @param suppressKey - if suppressKey passed then set 'obj[suppresskey]' to 'suppressed'
  * @param maxValue
  */
-function suppressCounts (obj, countKey, dataType, suppressKey, maxValue) {
+function suppressCounts (obj, countKey, dataType, suppressKey, maxValue, dataset) {
     var key = suppressKey ? suppressKey : countKey;
     var value = maxValue !== undefined ? maxValue : 10;
     for (var property in obj) {
@@ -194,12 +194,19 @@ function suppressCounts (obj, countKey, dataType, suppressKey, maxValue) {
         }
 
         if (obj[property].constructor === Object) {
-            suppressCounts(obj[property], countKey, dataType, suppressKey, maxValue);
+            suppressCounts(obj[property], countKey, dataType, suppressKey, maxValue, dataset);
         } else if (obj[property].constructor === Array) {
             obj[property].forEach(function(arrObj) {
-                suppressCounts(arrObj, countKey, dataType, suppressKey, maxValue);
+                suppressCounts(arrObj, countKey, dataType, suppressKey, maxValue, dataset);
             });
-        } else if(obj[countKey] != undefined && obj[countKey] < value) {
+        } else if(dataset === 'brfss') {
+            if(obj.mean == 0 && obj.count != 0) {
+                obj.mean = 'suppressed';
+            } else if(obj.mean == 0 && obj.count == 0) {
+                obj.mean = 'nr'; //no response
+            }
+        }
+        else if(obj[countKey] != undefined && obj[countKey] < value) {
             if(dataType == 'charts') {//for chart and map set suppressed values to 0
                 obj[key] = 0;
             }
@@ -283,6 +290,21 @@ function applyYRBSSuppressions(obj, countKey, suppressKey, isSexFiltersSelected,
     suppressCounts(obj.data, countKey, dataType, suppressKey, maxValue);
     suppressTotalCounts(obj.data, countKey, dataType, suppressKey);
 };
+
+/**
+ * Suppression for BRFSS
+ * @param obj
+ * @param countKey
+ * @param suppressKey
+ * @param isChartorMapQuery
+ */
+function applyBRFSSuppression(obj, countKey, suppressKey, isChartorMapQuery ) {
+    var dataType;
+    if(isChartorMapQuery){
+        dataType = 'charts';
+    }
+    suppressCounts(obj.data, countKey, dataType, suppressKey, undefined, 'brfss');
+}
 
 /**
  * This function is used to suppress the state totals when it reaches to specified value
@@ -821,6 +843,7 @@ module.exports.mergeAgeAdjustedRates = mergeAgeAdjustedRates;
 module.exports.mergeWonderResponseWithInfantESData = mergeWonderResponseWithInfantESData;
 module.exports.applySuppressions = applySuppressions;
 module.exports.applyYRBSSuppressions = applyYRBSSuppressions;
+module.exports.applyBRFSSuppression = applyBRFSSuppression;
 module.exports.getAllOptionValues = getAllOptionValues;
 module.exports.getSelectedGroupByOptions = getSelectedGroupByOptions;
 module.exports.getYearFilter = getYearFilter;
