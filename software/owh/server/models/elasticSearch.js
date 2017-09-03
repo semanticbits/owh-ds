@@ -487,10 +487,16 @@ ElasticClient.prototype.getDsMetadata = function (dataset, years) {
 ElasticClient.prototype.aggregateCancerData = function (query, cancer_index) {
     var index = cancer_index === cancer_incident_type ? cancer_incident_index : cancer_mortality_index;
     var type = cancer_index === cancer_incident_type ? cancer_incident_type : cancer_mortality_type;
+    logger.debug("Cancer ES Query for "+ index+ " :"+ JSON.stringify( query[0]));
     var promises = [ this.executeESQuery(index, type, query[0]) ];
 
-    if (query[2]) promises.push(this.executeESQuery(index, type, query[2]));
-    if (query[1]) promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[1]));
+    if (query[2]) {
+        promises.push(this.executeESQuery(index, type, query[2]));
+    }
+    if (query[1])  {
+        logger.debug("Cancer Population ES Query for "+ cancer_population_index+ " :"+ JSON.stringify( query[1]));
+        promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[1]));
+    }
 
     return Q.all(promises).spread(function (queryResponse, mapResponse, populationResponse) {
         var data = searchUtils.populateDataWithMappings(queryResponse, type);

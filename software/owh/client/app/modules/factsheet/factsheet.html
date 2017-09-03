@@ -105,6 +105,26 @@
                         <div><i>Sources: 2015, NCHS National Vital Statistics System , * Racial/ethnic groups may not sum to total </i></div>
                     </div>
                 </div>
+                <!--  Detail Mortality - Cause of Death -->
+                <div class="detail-mortality-factsheet">
+                    <h5>Mortality</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cause of Death</th>
+                                <th>Number of Deaths</th>
+                                <th>Age-Adjusted Death Rate (per 100,000)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="eachRecord in fsc.factSheet.detailMortalityData">
+                                <td ng-bind="eachRecord.causeOfDeath"></td>
+                                <td ng-bind="eachRecord.data.deaths"></td>
+                                <td ng-bind="eachRecord.data.ageAdjustedRate"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <!-- Infant mortality total deaths, births and rates for 2014 for selected state -->
                 <div class="infant-mortality-factsheet" ng-if="fsc.factSheet.infantMortalityData">
                     <p><h5>Infant Mortality:</h5> (All Causes, Not gender-specific)</p>
@@ -125,6 +145,53 @@
                         </tbody>
                     </table>
                     <i>Source: 2014  NCHS National Vital Statistics System</i>
+                </div>
+                <!-- Prenatal Care and Pregnancy Risk -->
+                <div class="prams-factsheet">
+                    <h5>Prenatal Care and Pregnancy Risk</h5> (Percent)
+                    <p>Pregnant women:  </p>
+                    <table>
+                        <tbody>
+                            <tr>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Women:  </p>
+                    <table>
+                        <tbody>
+                        <tr>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                    <i>Sources: 2011, CDC PRAMS, † 2012, CDC PRAMS</i>
+                </div>
+                <!-- Natality -->
+                <div class="natality-factsheet">
+                    <h5>Birth Outcomes</h5>
+                    <table>
+                        <tr>
+                            <td>Births</td>
+                            <td>{{fsc.factSheet.natalityData.births}}</td>
+                        </tr>
+                        <tr>
+                            <td>Total Population</td>
+                            <td>{{fsc.factSheet.natalityData.population}}</td>
+                        </tr>
+                        <tr>
+                            <td>Birth Rates (per 100,000)</td>
+                            <td>{{fsc.factSheet.natalityData.birthRate}}</td>
+                        </tr>
+                        <tr>
+                            <td>Female  Population (Ages 15 to 44)</td>
+                            <td>{{fsc.factSheet.natalityData.femalePopulation}}</td>
+                        </tr>
+                        <tr>
+                            <td>Fertility Rates (per 100,000)</td>
+                            <td>{{fsc.factSheet.natalityData.fertilityRate}}</td>
+                        </tr>
+                    </table>
                 </div>
                 <!-- Tuberculosis -->
                 <div class="tb-factsheet">
@@ -186,6 +253,34 @@
                         </tbody>
                     </table>
                     <i>Source: 2015, Estimated Data from the CDC NCHHSTP Atlas, *2014</i>
+                </div>
+                <!-- Cancer - Moratlity - Incidence -->
+                <div class="cancer-factsheet">
+                    ---- {{fsc.factSheet.cancerMortalityData}}
+                    <h5>Cancer Statistics</h5>
+                    <p>Cancer Incidence and Mortality:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Cancer Site</td>
+                                <td>Population</td>
+                                <td>Count</td>
+                                <td>Incidence Crude Rates (per 100,000)</td>
+                                <td>Deaths</td>
+                                <td>Mortality Crude Rates (per 100,000)</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="eachRecord in fsc.factSheet.cancerMortalityData">
+                                <td ng-bind="eachRecord.site"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td ng-bind="eachRecord.deaths"></td>
+                                <td ng-bind="eachRecord.rate"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div id="editor"></div>

@@ -14,6 +14,7 @@
   "label.app.title.description": "OWH-Quick Health Data Online",
   "label.app.title.qhdo": "Health Information Gateway",
   "label.filter.sex": "Sex",
+  "label.title.sex.delivery_method": "Sex and Delivery Method",
   "label.filter.births": "Births",
   "label.filter.total.deaths": "Total deaths",
   "label.filter.mental.health": "Mental Health",
