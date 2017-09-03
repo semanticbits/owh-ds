@@ -3524,6 +3524,7 @@
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
                                     onFilterChange: utilService.cancerIncidenceFilterChange,
+                                    dontShowCounts: true,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'state')
                                 }
                             ]
