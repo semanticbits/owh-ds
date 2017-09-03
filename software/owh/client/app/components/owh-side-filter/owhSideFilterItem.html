@@ -228,13 +228,13 @@
 
     <!-- Cancer Site filter -->
     <span ng-class="{ 'disabled-filter': !sfic.isVisible(sfic.filter) }" ng-if="group.filterType === 'site'">
-        <div class="side-pane-label custom-div">
-            <div class="sidebar-chevron left-float padding-left-5">
-                <i class="material-icons chevron-right-black" ng-class="sfic.filter.collapse?'shut':'open'">chevron-right</i>
-            </div>
+        <div class="side-pane-div custom-div">
             <div class="left-float sidebar-filter-label">
                 <a href="javascript:void(0)" ng-click="sfic.filter.collapse = !sfic.filter.collapse" title="{{group.helpText | translate}}" class="custom-link">
-                    <span translate="{{ group.title }}" class="filter-display-name"></span>
+                    <div class="sidebar-chevron">
+                        <i class="material-icons chevron-right-black" ng-class="sfic.filter.collapse?'shut':'open'">chevron_right</i>
+                    </div>
+                    <span translate="{{group.title}}" class="filter-display-name"></span>
                 </a>
             </div>
             <owh-toggle-switch ng-if="sfic.filter.allowGrouping"
