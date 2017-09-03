@@ -66,7 +66,10 @@
   "label.filter.age": "Age",
   "label.filter.autopsy": "Autopsy",
   "label.filter.pod": "Place of Death",
+  "label.filter.placeofdeath": "Place of Death",
   "label.filter.leading.causes.death": "UCD - 15 Leading Causes of Death",
+  "label.filter.ucd-chapter-10": "Underlying Cause of Death",
+
   "label.filter.leading.causes.death.infants": "UCD - 15 Leading Causes of Death (Infants)",
   "label.filter.ucd.icd.chapter": "UCD - ICD Chapter",
   "select.label.filter.ucd": "Select Cause of Death",
@@ -236,6 +239,8 @@
   "label.title.sex.gestation_weekly": "Sex and Gestational Age - Weekly",
   "label.title.race.mother_age_5_interval":"Race and Age of Mother",
   "label.title.sex.mother_age_5_interval":"Sex and Age of Mother",
+  "label.title.race.live_birth": "Race and Live Birth Order",
+  "label.title.sex.live_birth": "Sex and Live Birt Order",
   "label.chart.mother_age_5_interval": "Age of Mother",
   "label.chart.gestation_recode11": "Gestational Age Group 1",
   "label.chart.gestation_recode10": "Gestational Age Group 2",
@@ -247,6 +252,7 @@
   "label.yrbs.healthtopics": "Topic:",
   "label.run.query": "Run Query",
   "label.run.query.title": "Click to Run Query",
+  "label.title.sex.month": "Sex and Month",
 
   "label.filter.infant_mortality": "Infant Mortality",
   "label.filter.infant_age_at_death": "Age of Infant at Death",
@@ -496,6 +502,7 @@
   "label.documentation.about.dataset": "About This Dataset",
   "label.not.available": "Not Available",
   "label.data.not.available": "Data not available",
+  "label.survey.data.not.available": "Survey data is not available for the selected year",
 
   "datadoc.datasource.deaths": "The Detailed Mortality data are compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative; the data set is produced by the U.S. Department of Health and Human Services (US DHHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS), Division of Vital Statistics (DVS), Mortality Statistics Branch.",
   "datadoc.citation.deaths": "Health Information Gateway, Office on Women's Health, HHS, 5/26/2017.",

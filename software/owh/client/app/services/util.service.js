@@ -46,9 +46,11 @@
             stdFilterChange: stdFilterChange,
             aidsFilterChange: aidsFilterChange,
             infantMortalityFilterChange: infantMortalityFilterChange,
+            cancerIncidenceFilterChange: cancerIncidenceFilterChange,
             removeValuesFromArray: removeValuesFromArray,
             getSelectedFiltersText: getSelectedFiltersText,
-            brfsFilterChange: brfsFilterChange
+            brfsFilterChange: brfsFilterChange,
+            getICD10Chapters:getICD10Chapters
         };
 
         return service;
@@ -94,13 +96,22 @@
          * @returns {*}
          */
         function findByKeyAndValue(a, key, value) {
+            var result = null;
             if(a){
                 for (var i = 0; i < a.length; i++) {
-                    var keyValue = extractPropertyValue(a[i], key);
-                    if ( keyValue && keyValue === value ) {return a[i];}
+                    var keyValue = a[i][key];
+                    if(keyValue === value ) {return a[i];}
+                    else if (a[i].options){ // Check subOptions
+                            a[i].options.forEach(function(opt){
+                               if(opt[key] === value){
+                                   result= opt;
+                                   return;
+                               }
+                            });
+                    }
                 }
             }
-            return null;
+            return result;
         }
 
         function extractPropertyValue(obj, property) {
@@ -1239,6 +1250,51 @@
                         sideFilter.filters.value = [];
                         sideFilter.filters.groupBy = false;
                     }
+                });
+            }
+        }
+
+        function getICD10Chapters(){
+            if($rootScope.conditionsICD10) {
+                return $rootScope.conditionsICD10.map(function (cond) {
+                    return {key: cond.id, title: cond.text}
+                });
+            }else{
+                return [];
+            }
+        }
+
+        function cancerIncidenceFilterChange (filter, categories) {
+            var filters = categories[0].sideFilters;
+            var ageFilter = filters.filter(function (sideFilter) {
+               return sideFilter.filters.key === 'age_group';
+            })[0];
+            var childhoodCancerFilter = filters.filter(function (sideFilter) {
+                return sideFilter.filters.key === 'childhood_cancer';
+            })[0];
+            var childAgeGroups = [ '00 years', '01-04 years', '05-09 years', '10-14 years', '15-19 years' ];
+            var hasChildAgeGroup = childAgeGroups.reduce(function (prev, curr, _, ages) {
+                return ageFilter.filters.value.every(function (value) {
+                    return ages.indexOf(value) !== -1;
+                });
+            }, false);
+            var filteringByChildhoodCancer = !!childhoodCancerFilter.filters.value.length
+
+            childhoodCancerFilter.disabled = !hasChildAgeGroup;
+
+            if (filteringByChildhoodCancer) {
+                if (ageFilter.filters.allChecked) {
+                    ageFilter.filters.allChecked = false;
+                    ageFilter.filters.value = childAgeGroups;
+                }
+                ageFilter.filters.disableAll = true;
+                ageFilter.filters.autoCompleteOptions.forEach(function (option) {
+                    option.disabled = !~childAgeGroups.indexOf(option.key);
+                });
+            } else {
+                ageFilter.filters.disableAll = false;
+                ageFilter.filters.autoCompleteOptions.forEach(function (option) {
+                    option.disabled = false;
                 });
             }
         }

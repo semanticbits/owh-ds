@@ -655,7 +655,8 @@
             {"key": "40-44", "title": "40-44"},
             {"key": "45-54", "title": "45-54"},
             {"key": "55-64", "title": "55-64"},
-            {"key": "65+", "title": "65+"}
+            {"key": "65+", "title": "65+"},
+            {"key": "Unknown", "title": "Unknown"}
         ];
         var diseaseRaceOptions = [
             {"key": "All races/ethnicities", "title": "All races/ethnicities"},
@@ -1552,6 +1553,7 @@
                     groupBy: false,
                     filterType: 'checkbox',
                     autoCompleteOptions: cancerAgeGroups,
+                    disableAll: false,
                     defaultGroup: 'column',
                     helpText: 'label.help.text.cancer_incidence.age_group'
                 },
