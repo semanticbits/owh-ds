@@ -1,4 +1,6 @@
 var elasticSearch = require('../models/elasticSearch');
+var yrbs = require("../api/yrbs");
+var queryBuilder = require('../api/elasticQueryBuilder');
 var factSheetQueries = require('../json/factsheet-queries.json');
 var searchUtils = require('../api/utils');
 var wonder = require("../api/wonder");
@@ -75,9 +77,14 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
         var natality_fertilityRates_esQuery = factSheetQueries.natality["fertilityRates"][0];
         var natality_fertilityRates_populationQuery = factSheetQueries.natality["fertilityRates"][1];
         //Cancer - Mortality
-        var cancer_mortality_esQuery = factSheetQueries.cancer["mortality"][0];
-        var cancer_mortality_populationQuery = factSheetQueries.cancer["mortality"][1];
-
+        var cancer_esQuery = factSheetQueries.cancer["mortality-incidence"][0];
+        var cancer_populationQuery = factSheetQueries.cancer["mortality-incidence"][1];
+        //YRBS - Use Alcohol
+        var yrbs_alcohol_stats_query = factSheetQueries.yrbs["alcohol"];
+        //BRFSS - 2015 - Overweight and Obesity(BMI), Tobbaco use, Fruits and Vegetables, Alcohol Consumption
+        var brfss_2015_query = factSheetQueries.brfss.query_2015;
+        //BRFSS - 2009 - Physical Activity
+        var brfss_2009_query = factSheetQueries.brfss.query_2009;
 
         var es = new elasticSearch();
         var promises = [
@@ -160,9 +167,15 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             es.executeMultipleESQueries(natality_fertilityRates_esQuery, 'owh_natality', 'natality'),
             es.aggregateCensusDataQuery(natality_fertilityRates_populationQuery, 'owh_census_rates', "census_rates", 'pop'),
             //Cancer - Mortality
-            es.executeESQuery('owh_cancer_mortality', 'cancer_mortality', cancer_mortality_esQuery),
-            es.executeESQuery('owh_cancer_population', 'cancer_population', cancer_mortality_populationQuery)
-
+            es.executeESQuery('owh_cancer_mortality', 'cancer_mortality', cancer_esQuery),
+            es.executeESQuery('owh_cancer_population', 'cancer_population', cancer_populationQuery),
+            //Cancer - incident
+            es.executeESQuery('owh_cancer_incident', 'cancer_incident', cancer_esQuery),
+            new yrbs().invokeYRBSService(yrbs_alcohol_stats_query),
+            //BRFSS - 2015 - Overweight and Obesity(BMI), Tobbaco use, Fruits and Vegetables, Alcohol Consumption
+            new yrbs().invokeYRBSService(brfss_2015_query),
+            //BRFSS - 2009 - Physical Activity
+            new yrbs().invokeYRBSService(brfss_2009_query)
         ];
 
         Q.all(promises).then( function (resp) {
@@ -248,8 +261,17 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             es.mergeWithCensusData(natality_fertilityRates_Data, resp[53], 'pop');
             //Cancer - Mortality
             var cancer_mortality_data = searchUtils.populateDataWithMappings(resp[54], 'cancer_mortality');
-            var cancer_mortality_population = searchUtils.populateDataWithMappings(resp[55], 'cancer_population');
-            searchUtils.attachPopulation(cancer_mortality_data.data.nested.table, cancer_mortality_population.data.nested.table, []);
+            var cancer_population = searchUtils.populateDataWithMappings(resp[55], 'cancer_population');
+            searchUtils.attachPopulation(cancer_mortality_data.data.nested.table, cancer_population.data.nested.table, []);
+            var cancer_incident_data = searchUtils.populateDataWithMappings(resp[56], 'cancer_incident');
+            searchUtils.attachPopulation(cancer_incident_data.data.nested.table, cancer_population.data.nested.table, []);
+
+            //YRBS - Alcohol
+            var yrbs_alchohol_data =  resp[57];
+            //BRFSS - 2015 - Overweight and Obesity(BMI), Tobbaco use, Fruits and Vegetables, Alcohol Consumption
+            var brfss_2015_data = resp[58];
+            //BRFSS - 2009 - Physical Activity
+            var brfss_2009_data = resp[59];
 
             var factSheet = prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
                 raceData, hispanicData, ageGroupData);
@@ -277,7 +299,9 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
                 {causeOfDeath: "Homicide", data:detailMortalityHomicide_Data.data.nested.table.year[0]},
                 {causeOfDeath: "Human Immunodeficiency Virus(HIV)", data:detailMortalityB20_B24_Data.data.nested.table.year[0]}];
             factSheet.natalityData = prepareNatalityData(natality_BirthRates_Data, natality_fertilityRates_Data);
-            factSheet.cancerMortalityData = prepareCancerData(cancer_mortality_data);
+            factSheet.cancerData = prepareCancerData(cancer_mortality_data, cancer_incident_data);
+            factSheet.yrbs = prepareYRBSData(yrbs_alchohol_data);
+            factSheet.brfss = prepareBRFSSData(brfss_2015_data, brfss_2009_data);
             deferred.resolve(factSheet);
         }, function (err) {
             logger.error(err.message);
@@ -287,31 +311,71 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
     return deferred.promise;
 };
 
-function prepareCancerData(cancerMortalityData) {
+function prepareBRFSSData(data_2015, data_2009){
+    data_2015.table.question.push(data_2009.table.question[0]);
+    var brfssData = [];
+    data_2015.table.question.forEach(function(eachRecord){
+        switch(eachRecord.name){
+            case "_BMI5CAT":
+                brfssData.push({question: 'Were Obese (BMI 30.0 - 99.8)', data: eachRecord["Obese (BMI 30.0 - 99.8)"].brfss.mean + "%"});
+                break;
+            case "_RFSMOK3":
+                brfssData.push({question: 'Adults who are current smokers', data: eachRecord.Yes.brfss.mean});
+                break;
+            case "_FRTLT1":
+                brfssData.push({question: 'Consumed fruits one or more times a day', data: eachRecord["One or more times per day"].brfss.mean + "%"});
+                break;
+            case "_VEGLT1":
+                brfssData.push({question: 'Consumed vegetables one or more times a day', data: eachRecord["One or more times per day"].brfss.mean + "%"});
+                break;
+            case "_RFDRHV5":
+                brfssData.push({question: 'Are heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)', data: eachRecord["Meet criteria for heavy drinking"].brfss.mean + "%"});
+                break;
+            case "_RFPAVIG":
+                brfssData.push({question: 'Adults with 20+ minutes of vigorous physical activity three or more days per week', data: "† "+eachRecord.Yes.brfss.mean + "%"});
+                break;
+        }
+    });
+    return brfssData;
+}
+function prepareYRBSData(data) {
+    var yrbsData = [];
+    yrbsData.push({"question": "Currently use alcohol", data:data.table.question[0].YES ? data.table.question[0].YES.mental_health.mean + "%" : "NR"});
+    yrbsData.push({"question": "Currently use cigarettes", data:data.table.question[1].YES ? data.table.question[1].YES.mental_health.mean + "%" : "NR"});
+    yrbsData.push({"question": "Currently use marijuana", data:data.table.question[2].YES ? data.table.question[2].YES.mental_health.mean + "%" : "NR"});
+    yrbsData.push({"question": "Currently sexually active", data:data.table.question[3].YES ? data.table.question[3].YES.mental_health.mean + "%" : "NR"});
+    yrbsData.push({"question": "Attempted suicide", data:data.table.question[4].YES ? data.table.question[4].YES.mental_health.mean + "%" : "NR"});
+    yrbsData.push({"question": "Overweight", data:data.table.question[5].YES ? data.table.question[5].YES.mental_health.mean + "%" : "NR"});
+    return yrbsData;
+}
+function prepareCancerData(cancerMortalityData, cancerIncidentData) {
     var cancerData = [];
     cancerMortalityData.data.nested.table.site.forEach(function(eachRecord){
-        var crudeRate = eachRecord.pop != 'n/a' ? Math.round(eachRecord.cancer_mortality /  eachRecord.pop * 1000000) / 10 : "Not Available";
+        var crudeMortalityRate = eachRecord.pop != 'n/a' ? Math.round(eachRecord.cancer_mortality /  eachRecord.pop * 1000000) / 10 : "Not Available";
+        var incidentData = queryBuilder.findFilterByKeyAndValue(cancerIncidentData.data.nested.table.site, 'name', eachRecord.name);
+        var incidentPopulation = incidentData.pop == 'n/a' ? 'Not Available' : incidentData.pop;
+        var crudeIncidentRate = incidentData.pop != 'n/a' ? Math.round(eachRecord.cancer_incident /  eachRecord.pop * 1000000) / 10 : "Not Available";
         switch(eachRecord.name){
             case "26000":
-                cancerData.push({site:'Breast', deaths: eachRecord.cancer_mortality, rate: crudeRate });
+                cancerData.push({site:'Breast', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate,  deaths: eachRecord.cancer_mortality, mortality_rate: crudeMortalityRate });
                 break;
             case "27010":
-                cancerData.push({site:'Cervix Uteri†', deaths: eachRecord.cancer_mortality, rate: crudeRate });
+                cancerData.push({site:'Cervix Uteri†', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: eachRecord.cancer_mortality, mortality_rate: crudeMortalityRate });
                 break;
             case "21041-21052":
-                cancerData.push({site:'Colon and Rectum', deaths: eachRecord.cancer_mortality, rate: crudeRate });
+                cancerData.push({site:'Colon and Rectum', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: eachRecord.cancer_mortality, mortality_rate: crudeMortalityRate });
                 break;
             case "22030":
-                cancerData.push({site:'Lung and Bronchus', deaths: eachRecord.cancer_mortality, rate: crudeRate });
+                cancerData.push({site:'Lung and Bronchus', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: eachRecord.cancer_mortality, mortality_rate: crudeMortalityRate });
                 break;
             case "25010":
-                cancerData.push({site:'Melanoma of the Skin', deaths: eachRecord.cancer_mortality, rate: crudeRate });
+                cancerData.push({site:'Melanoma of the Skin', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: eachRecord.cancer_mortality, mortality_rate: crudeMortalityRate });
                 break;
             case "27040":
-                cancerData.push({site:'Ovary†', deaths: eachRecord.cancer_mortality, rate: crudeRate });
+                cancerData.push({site:'Ovary†', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: eachRecord.cancer_mortality, mortality_rate: crudeMortalityRate });
                 break;
             case "28010-28040":
-                cancerData.push({site:'Prostate††', deaths: eachRecord.cancer_mortality, rate: crudeRate });
+                cancerData.push({site:'Prostate††', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: eachRecord.cancer_mortality, mortality_rate: crudeMortalityRate });
                 break;
         }
     });
@@ -348,7 +412,7 @@ function prepareDiseaseData(data, countKey) {
         }
         else {
             var rate = record['pop'] ? Math.round(record[countKey] / record['pop'] * 1000000) / 10 : 0;
-            record['displayValue'] = record[countKey] + " (" + rate + " )";
+            record['displayValue'] = formatNumber(record[countKey]) + " (" + rate + " )";
         }
         //Delete un wanted properties from JSON
         delete record[countKey];
@@ -356,6 +420,10 @@ function prepareDiseaseData(data, countKey) {
         index != 0 && delete record['pop'];
     });
     return tbData;
+}
+
+function formatNumber (num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 }
 
 function prepareFactSheetForPopulation(genderData, nonHispanicRaceData,

@@ -5107,7 +5107,7 @@
     ]
   },
   "cancer": {
-    "mortality": [
+    "mortality-incidence": [
       {
         "size": 0,
         "aggregations": {
@@ -5133,7 +5133,7 @@
                       "should": [
                         {
                           "term": {
-                            "current_year": "2013"
+                            "current_year": "2014"
                           }
                         }
                       ]
@@ -5229,7 +5229,7 @@
                       "should": [
                         {
                           "term": {
-                            "current_year": "2013"
+                            "current_year": "2014"
                           }
                         }
                       ]
@@ -5294,5 +5294,189 @@
         }
       }
     ]
+  },
+  "yrbs": {
+    "alcohol": {
+      "searchFor": "mental_health",
+      "query": {
+        "year": {
+          "key": "year",
+          "queryKey": "year",
+          "value": "2015",
+          "primary": false
+        },
+        "sitecode": {
+          "key": "yrbsState",
+          "queryKey": "sitecode",
+          "value": "MD",
+          "primary": false
+        },
+        "question.path": {
+          "key": "question",
+          "queryKey": "question.key",
+          "value": [
+            "qn43",
+            "qndaycig",
+            "qn49",
+            "qn63",
+            "qn30",
+            "qn69"
+          ],
+          "primary": false
+        }
+      },
+      "aggregations": {
+        "simple": [],
+        "nested": {
+          "table": [
+            {
+              "key": "question",
+              "queryKey": "question.key",
+              "size": 0
+            }
+          ],
+          "charts": [],
+          "maps": [
+            [
+              {
+                "key": "states",
+                "queryKey": "state",
+                "size": 0
+              },
+              {
+                "key": "sex",
+                "queryKey": "sex",
+                "size": 0
+              }
+            ]
+          ]
+        }
+      },
+      "yrbsBasic": true,
+      "pagination": {
+        "from": 0,
+        "size": 10000
+      }
+    }
+  },
+  "brfss": {
+    "query_2015": {
+      "searchFor": "brfss",
+      "query": {
+        "year": {
+          "key": "year",
+          "queryKey": "year",
+          "value": [
+            "2015"
+          ],
+          "primary": false
+        },
+        "sitecode": {
+          "key": "state",
+          "queryKey": "sitecode",
+          "value": "MD",
+          "primary": false
+        },
+        "question.path": {
+          "key": "question",
+          "queryKey": "question.key",
+          "value": [
+            "_BMI5CAT",
+            "_RFSMOK3",
+            "_FRTLT1",
+            "_VEGLT1",
+            "_RFDRHV5"
+          ],
+          "primary": false
+        }
+      },
+      "aggregations": {
+        "simple": [],
+        "nested": {
+          "table": [
+            {
+              "key": "question",
+              "queryKey": "question.key",
+              "size": 0
+            }
+          ],
+          "charts": [],
+          "maps": [
+            [
+              {
+                "key": "states",
+                "queryKey": "state",
+                "size": 0
+              },
+              {
+                "key": "sex",
+                "queryKey": "sex",
+                "size": 0
+              }
+            ]
+          ]
+        }
+      },
+      "pagination": {
+        "from": 0,
+        "size": 10000
+      }
+    },
+    "query_2009": {
+      "searchFor": "brfss",
+      "query": {
+        "year": {
+          "key": "year",
+          "queryKey": "year",
+          "value": "2009",
+          "primary": false
+        },
+        "sitecode": {
+          "key": "state",
+          "queryKey": "sitecode",
+          "value": "MD",
+          "primary": false
+        },
+        "question.path": {
+          "key": "question",
+          "queryKey": "question.key",
+          "value": [
+            "_RFPAVIG"
+          ],
+          "primary": false
+        }
+      },
+      "aggregations": {
+        "simple": [],
+        "nested": {
+          "table": [
+            {
+              "key": "question",
+              "queryKey": "question.key",
+              "size": 0
+            }
+          ],
+          "charts": [],
+          "maps": [
+            [
+              {
+                "key": "states",
+                "queryKey": "state",
+                "size": 0
+              },
+              {
+                "key": "sex",
+                "queryKey": "sex",
+                "size": 0
+              }
+            ]
+          ]
+        }
+      },
+      "pagination": {
+        "from": 0,
+        "size": 10000
+      }
+    }
   }
 }

@@ -2004,9 +2004,25 @@ ul.filter-group li.selected a {
 		opacity: 0.5 !important;
 	}
 }
-
+/**
+Factsheet css
+ */
 .factsheet-container {
     z-index: 1;
     position: relative;
     padding: 0 30px;
+}
+.factsheet-content h5 {
+	text-decoration: underline;
+}
+.factsheet-content i {
+	font-size: 8px;
+	font-style: italic;
+}
+.table-heading {
+	display: inline;
+}
+.table-heading h5,
+.table-heading p {
+	display: inline;
 }

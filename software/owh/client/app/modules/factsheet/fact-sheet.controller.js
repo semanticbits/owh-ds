@@ -74,17 +74,19 @@
         }
 
         function exportFactSheet() {
-            var doc = new jsPDF();
+            var doc = new jsPDF('l');
+            doc.setFontSize(5);
+            doc.line(5, 190, 290, 190);
             var specialElementHandlers = {
                 '#editor': function (element, renderer) {
                     return true;
                 }
             };
-            doc.fromHTML($('#factsheet_content').html(), 15, 15, {
+            doc.fromHTML($('#factsheet_content').html(), 10, 10, {
                 'width': 370,
                 'elementHandlers': specialElementHandlers
             });
-            doc.save('sample-file.pdf');
+            doc.save('factsheet.pdf');
         }
         function getStateName(key) {
             return fsc.states[key];
