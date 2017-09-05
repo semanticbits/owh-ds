@@ -121,10 +121,10 @@
         function getValueFromData(filter, data) {
             if(filter.tableView == "crude_death_rates" || filter.tableView == "birth_rates"
                 || filter.tableView == "fertility_rates" || filter.chartView == "disease_rate") {
-                return data['pop'] ? Math.round(data[filter.key] / data['pop'] * 1000000) / 10 : 0;
+                return data['pop'] ? Math.round(data[filter.key] / data['pop'] * 1000000) / 10 : -1;
             }
             else if(filter.chartView == "infant_death_rate") {
-                return data['pop'] ? $filter('number')(data['deathRate'], 1): 0;
+                return data['pop'] ? $filter('number')(data['deathRate'], 1): -1;
             }
             else if(data['ageAdjustedRate'] && filter.tableView == "age-adjusted_death_rates"){
                 var ageAdjustedRate = parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));
@@ -176,7 +176,7 @@
                 for (var j = trace.values.length - 1 ; j >=0 ; j-- ){
                     var value  = trace.values[j];
                     reg.y.push(value.label);
-                    reg.x.push(value.value);
+                    reg.x.push(value.value < 0?0:value.value);
                     reg.text.push(getSuppressedCount(value.value, primaryFilter));
                 }
                 plotydata.push(reg);
@@ -199,7 +199,7 @@
                 for (var j = trace.values.length - 1 ; j >=0 ; j-- ){
                     var value  = trace.values[j];
                     reg.x.push(value.x);
-                    reg.y.push(value.y);
+                    reg.y.push(value.y < 0 ? 0:value.y);
                     reg.text.push(getSuppressedCount(value.y, primaryFilter));
 
                 }
@@ -219,7 +219,7 @@
             for (var i = linedata[0].values.length -1 ; i >= 0 ; i-- ){
                 var value  = linedata[0].values[i];
                 plotydata.x.push(value.x);
-                plotydata.y.push(value.y);
+                plotydata.y.push(value.y < 0 ? 0:value.y);
                 plotydata.text.push(getSuppressedCount(value.y, primaryFilter));
             }
             return { charttype:chartdata.options.chart.type, title: chartdata.title, longtitle: getLongChartTitle(primaryFilter, filter), dataset: chartdata.dataset, data:[plotydata], layout: layout, options: {displayModeBar: false}};
@@ -227,8 +227,8 @@
 
         function plotlyMultiLineChart(filter1, filter2, data, primaryFilter){
             var layout = quickChartLayout();
-            layout.xaxis.title = "Year";
-            layout.yaxis.title = primaryFilter.chartAxisLabel;
+            layout.xaxis.title = $translate.instant(filter2.title);
+            layout.yaxis.title = getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel);
 
             var colors = getColorPallete();    
             var plotlydata = [];
@@ -246,7 +246,7 @@
                                 }
                                 if (value !== undefined) {
                                     plotlyseries.x.push(secondaryOption.key);
-                                    plotlyseries.y.push(value);
+                                    plotlyseries.y.push(value < 0 ? 0:value);
                                     plotlyseries.text.push(getSuppressedCount(value, primaryFilter));
                                 }
                             }
@@ -262,12 +262,14 @@
             var chartdata  = pieChart(data, filter, primaryFilter, postFixToTooltip);
             var colors = getColorPallete();    
             var layout = quickChartLayout(chartdata);
+            layout.xaxis.title = "Year";
+            layout.yaxis.title = primaryFilter.chartAxisLabel;
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
                 var reg = {name: trace.label, x: [], y: [], text: [], orientation: 'h', type: 'bar', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
                     reg.y.push(trace.label); 
-                    reg.x.push(trace.value);
+                    reg.x.push(trace.value<0?0:trace.value);
                     reg.text.push(getSuppressedCount(trace.value, primaryFilter));
                 
                 plotydata.push(reg);
@@ -693,7 +695,9 @@
          * Else return actual count
          */
         function getSuppressedCount(count, primaryFilter) {
-            if (count == 0 && primaryFilter.applySuppression) {
+            if (count == -1){
+                    return 'Not Available';
+            } else if (count == 0 && primaryFilter.applySuppression) {
                 var stateFilter = utilService.findFilterByKeyAndValue(primaryFilter.allFilters, 'key', 'state');
                 var isStateFilter = utilService.isFilterApplied(stateFilter);
                 return isStateFilter? 'Suppressed': $filter('number')(count);
