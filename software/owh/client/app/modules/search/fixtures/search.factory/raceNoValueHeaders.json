@@ -49,8 +49,97 @@
       "primary": false,
       "value": [],
       "groupBy": "row",
-      "questions":[
-        null
+      "questions": [
+        {
+          "id": "cat_5",
+          "text": "Alcohol and Other Drug Use",
+          "children": [
+            {
+              "text": "Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)",
+              "id": "qn43"
+            },
+            {
+              "text": "Currently used marijuana(one or more times during the 30 days before the survey)",
+              "id": "qn49"
+            },
+            {
+              "text": "Drank alcohol before age 13 years(for the first time other than a few sips)",
+              "id": "qn42"
+            },
+            {
+              "text": "Drank five or more drinks of alcohol in a row(within a couple of hours on at least 1 day during the 30 days before the survey)",
+              "id": "qn44"
+            },
+            {
+              "text": "Ever drank alcohol(at least one drink of alcohol on at least 1 day during their life)",
+              "id": "qn41"
+            },
+            {
+              "text": "Ever injected any illegal drug(used a needle to inject any illegal drug into their body one or more times during their life)",
+              "id": "qn58"
+            },
+            {
+              "text": "Ever took prescription drugs without a doctors prescription(such as Oxycontin, Percocet, Vicodin, codeine, Adderall, Ritalin, or Xanax, one or more times during their life)",
+              "id": "qn57"
+            },
+            {
+              "text": "Ever took steroids without a doctors prescription(pills or shots, one or more times during their life)",
+              "id": "qn56"
+            },
+            {
+              "text": "Ever used cocaine(any form of cocaine, such as powder, crack, or freebase, one or more times during their life)",
+              "id": "qn50"
+            },
+            {
+              "text": "Ever used ecstasy(also called \"MDMA,\" one or more times during their life)",
+              "id": "qn54"
+            },
+            {
+              "text": "Ever used heroin(also called \"smack,\" \"junk,\" or \"China white,\" one or more times during their life)",
+              "id": "qn52"
+            },
+            {
+              "text": "Ever used inhalants(sniffed glue, breathed the contents of aerosol spray cans, or inhaled any paints or sprays to get high, one or more times during their life)",
+              "id": "qn51"
+            },
+            {
+              "text": "Ever used marijuana(one or more times during their life)",
+              "id": "qn47"
+            },
+            {
+              "text": "Ever used methamphetamines(also called \"speed,\" \"crystal,\" \"crank,\" or \"ice,\" one or more times during their life)",
+              "id": "qn53"
+            },
+            {
+              "text": "Ever used synthetic marijuana(also called \"K2\", \"Spice\", \"fake weed\", \"King Kong\", \"Yucatan Fire\", \"Skunk\", or \"Moon Rocks\", one or more times during their life)",
+              "id": "qn55"
+            },
+            {
+              "text": "Reported that the largest number of drinks they had in a row was 10 or more(within a couple of hours during the 30 days before the survey)",
+              "id": "qn45"
+            },
+            {
+              "text": "Tried marijuana before age 13 years(for the first time)",
+              "id": "qn48"
+            },
+            {
+              "text": "Used LSD 1+ times(such as LSD, acid, PCP, angel dust, mescaline, or mushrooms, one or more times during their life)",
+              "id": "qnhallucdrug"
+            },
+            {
+              "text": "Usually obtained the alcohol they drank by someone giving it to them(during the 30 days before the survey, among students who currently drank alcohol)",
+              "id": "qn46"
+            },
+            {
+              "text": "Usually used marijuana by smoking it in a joint, bong, pipe, or blunt(in a joint, bong, pipe, or blunt during the 30 days before the survey)",
+              "id": "qnhowmarijuana"
+            },
+            {
+              "text": "Were offered, sold, or given an illegal drug on school property(during the 12 months before the survey)",
+              "id": "qn59"
+            }
+          ]
+        }
       ],
       "filterType": "tree",
       "autoCompleteOptions": [{
@@ -602,7 +691,8 @@
           "key": "Drank three or more glasses per day of water",
           "qkey": "qnwater3",
           "text": "Drank three or more glasses per day of water(during the 7 days before the survey)"
-        }],
+        }
+      ],
       "donotshowOnSearch": true,
       "helpText":"label.help.text.yrbs.question",
       "selectTitle": "select.label.yrbs.filter.question",

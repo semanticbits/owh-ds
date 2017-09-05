@@ -81,6 +81,7 @@
                 //update questions based on selected
                 var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question')
                 questionFilter.questions = getYrbsQuestionsForTopic(tableView);
+                tableData.data = getDataForSelectedTopics(questionFilter.questions, tableData);
             }
             else if (primaryFilter.key === 'prams' ||
                 primaryFilter.key === 'brfss') {
@@ -98,6 +99,7 @@
                 var topics = groupOptions[tableView].topic;
                 var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question')
                 questionFilter.questions = getQuestionsByTopics(topics, questions);
+                tableData.data = getDataForSelectedTopics(questionFilter.questions, tableData);
             }
             else if (primaryFilter.key === 'bridge_race') {
                 primaryFilter.data = response.data.resultData.nested.table;
@@ -151,6 +153,13 @@
             };
         }
 
+        function getDataForSelectedTopics(topics, tableData) {
+            var data = [];
+            topics.forEach( function( topic ) {
+                data.push(utilService.findByKeyAndValue(tableData.data, 'title', topic.text));
+            });
+            return data;
+        }
         /**
          * Update prams questions based on topics
          * @param topics
@@ -578,6 +587,7 @@
                 "yrbsGrade": "horizontalBar",
                 "yrbsState": "horizontalBar",
                 "year": "horizontalBar",
+                "sex": "horizontalBar",
                 "state": "horizontalBar"  // for PRAMS
             };
 
@@ -1241,6 +1251,25 @@
                     }
                 ]
             };
+            var sampleSizeOption = {
+                title: 'Sample size',
+                type: 'toggle',
+                value: false,
+                onChange: function(value, option) {
+                    option.value = value;
+                },
+                options: [
+                    {
+                        title: 'label.mortality.search.table.show.percentage.button',
+                        key: true
+                    },
+                    {
+                        title: 'label.mortality.search.table.hide.percentage.button',
+                        key: false
+                    }
+                ]
+            };
+
             filters.filterUtilities = {
                 'mental_health': [
                     {
@@ -1272,7 +1301,7 @@
                     {
                         title: 'Variance',
                         options: [
-                            confidenceIntervalOption
+                            confidenceIntervalOption, sampleSizeOption
                         ]
                     }
                 ],
@@ -1280,7 +1309,7 @@
                     {
                         title: 'Variance',
                         options: [
-                            confidenceIntervalOption
+                            confidenceIntervalOption, sampleSizeOption
                         ]
                     }
                 ]
@@ -1520,29 +1549,29 @@
             ];
 
             filters.ageOptions = [
-                {key:'1 year',title:'< 1 year', min: 0, max: 1},
-                {key:'1-4years',title:'1 - 4 years', min: 2, max: 5},
-                {key:'5-9years',title:'5 - 9 years', min: 6, max: 10},
-                {key:'10-14years',title:'10 - 14 years', min: 11, max: 15},
-                {key:'15-19years',title:'15 - 19 years', min: 16, max: 20},
-                {key:'20-24years',title:'20 - 24 years', min: 21, max: 25},
-                {key:'25-29years',title:'25 - 29 years', min: 26, max: 30},
-                {key:'30-34years',title:'30 - 34 years', min: 31, max: 35},
-                {key:'35-39years',title:'35 - 39 years', min: 36, max: 40},
-                {key:'40-44years',title:'40 - 44 years', min: 41, max: 45},
-                {key:'45-49years',title:'45 - 49 years', min: 46, max: 50},
-                {key:'50-54years',title:'50 - 54 years', min: 51, max: 55},
-                {key:'55-59years',title:'55 - 59 years', min: 56, max: 60},
-                {key:'60-64years',title:'60 - 64 years', min: 61, max: 65},
-                {key:'65-69years',title:'65 - 69 years', min: 66, max: 70},
-                {key:'70-74years',title:'70 - 74 years', min: 71, max: 75},
-                {key:'75-79years',title:'75 - 79 years', min: 76, max: 80},
-                {key:'80-84years',title:'80 - 84 years', min: 81, max: 85},
-                {key:'85-89years',title:'85 - 89 years', min: 86, max: 90},
-                {key:'90-94years',title:'90 - 94 years', min: 91, max: 95},
-                {key:'95-99years',title:'95 - 99 years', min: 96, max: 100},
-                {key:'z100 years and over',title:'> 100 years', min: 101, max: 105},
-                {key:'Age not stated',title:'Age not stated', min: -5, max: 0}
+                {key:'1 year',title:'< 1 year', min: -5, max: -1},
+                {key:'1-4years',title:'1 - 4 years', min: 0, max: 4},
+                {key:'5-9years',title:'5 - 9 years', min: 5, max: 9},
+                {key:'10-14years',title:'10 - 14 years', min: 10, max: 14},
+                {key:'15-19years',title:'15 - 19 years', min: 15, max: 19},
+                {key:'20-24years',title:'20 - 24 years', min: 20, max: 24},
+                {key:'25-29years',title:'25 - 29 years', min: 25, max: 29},
+                {key:'30-34years',title:'30 - 34 years', min: 30, max: 34},
+                {key:'35-39years',title:'35 - 39 years', min: 35, max: 40},
+                {key:'40-44years',title:'40 - 44 years', min: 40, max: 44},
+                {key:'45-49years',title:'45 - 49 years', min: 45, max: 50},
+                {key:'50-54years',title:'50 - 54 years', min: 50, max: 54},
+                {key:'55-59years',title:'55 - 59 years', min: 55, max: 60},
+                {key:'60-64years',title:'60 - 64 years', min: 60, max: 64},
+                {key:'65-69years',title:'65 - 69 years', min: 65, max: 70},
+                {key:'70-74years',title:'70 - 74 years', min: 70, max: 74},
+                {key:'75-79years',title:'75 - 79 years', min: 75, max: 80},
+                {key:'80-84years',title:'80 - 84 years', min: 80, max: 84},
+                {key:'85-89years',title:'85 - 89 years', min: 85, max: 90},
+                {key:'90-94years',title:'90 - 94 years', min: 90, max: 94},
+                {key:'95-99years',title:'95 - 99 years', min: 95, max: 100},
+                {key:'z100 years and over',title:'100+ years', min: 100, max: 105},
+                {key:'Age not stated',title:'Age not stated', min: -10, max: -6}
             ];
 
             filters.genderOptions=[
@@ -1585,12 +1614,12 @@
             ];
 
             filters.ageSliderOptions = {
-                from: -5,
+                from: -10,
                 to: 105,
                 step: 5,
                 threshold: 0,
-                scale: ['Not stated', 0, '', 10, '', 20, '', 30, '', 40, '', 50, '', 60, '', 70, '', 80, '', 90, '', 100, '>100'],
-                modelLabels: {'-5': 'Not stated', 105: '>100'},
+                scale: ['Not stated', '<1', '1','', 10, '', 20, '', 30, '', 40, '', 50, '', 60, '', 70, '', 80, '', 90, '', 100, '>100'],
+                modelLabels: {'-10': 'Not stated', '-5': '< 1', 0:'1', 105: '>100'},
                 css: {
                     background: {'background-color': '#ccc'},
                     before: {'background-color': '#ccc'},
@@ -1609,9 +1638,9 @@
                     var prevValue = angular.copy(agegroupFilter.value);
                     agegroupFilter.value = [];
                     // set the values list only if the slider selection is different from the default
-                    if(! (minValue == -5  && maxValue == 105)){
+                    if(! (minValue == -10  && maxValue == 105)){
                         angular.forEach(agegroupFilter.autoCompleteOptions, function(eachOption) {
-                            if((eachOption.min <= minValue && eachOption.max >= minValue)
+                            if((eachOption.min <= minValue && eachOption.max > minValue)
                                 || (eachOption.min >= minValue && eachOption.max <= maxValue)
                                 || (eachOption.min <= maxValue && eachOption.max >= maxValue)) {
                                 agegroupFilter.value.push(eachOption.key);
@@ -1836,7 +1865,7 @@
                 {key: 'agegroup', title: 'label.filter.agegroup', queryKey:"age_5_interval",
                     primary: false, value: [], groupBy: false, type:"label.filter.group.demographics",
                     filterType: 'slider', autoCompleteOptions: filters.ageOptions, showChart: true,
-                    sliderOptions: filters.ageSliderOptions, sliderValue: '-5;105', timer: undefined, defaultGroup:"row",
+                    sliderOptions: filters.ageSliderOptions, sliderValue: '-10;105', timer: undefined, defaultGroup:"row",
                     helpText: 'label.help.text.mortality.age'},
                 {key: 'hispanicOrigin', title: 'label.filter.hispanicOrigin', queryKey:"hispanic_origin",
                     primary: false, value: [], groupBy: false, type:"label.filter.group.demographics",
@@ -2392,6 +2421,7 @@
                     queryKey:"sitecode",primary: false, value: ['AL'],
                     groupBy: false, filterType: 'radio',
                     autoCompleteOptions: filters.brfsStateOptions,
+                    displaySearchBox:true, displaySelectedFirst:true,
                     doNotShowAll: false, helpText: ""
                 },
                 {
@@ -2435,7 +2465,6 @@
                     iconClass: 'fa fa-pie-chart purple-text',
                     helpText: '',
                     onIconClick: function(question) {
-                        debugger
                         showChartForQuestion(filters.selectedPrimaryFilter, question);
                     }
                 }
@@ -3463,36 +3492,43 @@
                                 {
                                     filterGroup: false, collapse: false, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'current_year')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'sex')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'race')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'hispanic_origin')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'age_group')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.conditionGroupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'site')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.conditionGroupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'childhood_cancer')
                                 },
                                 {

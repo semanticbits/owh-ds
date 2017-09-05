@@ -33,6 +33,23 @@ describe('filterUtils', function(){
             var ageGroupFilter = utilService.findByKeyAndValue(bridgeRaceFilters, 'key', 'agegroup');
             expect(ageGroupFilter.value).toEqual(['5-9 years', '10-14 years', '15-19 years']);
         });
+
+        it('should provide me correct slider intervals for single value selection', function () {
+
+            var bridgeRaceFilters = filterUtils.getBridgeDataFilters();
+
+            bridgeRaceFilters[2].sliderOptions.callback('5;5');
+            var ageGroupFilter = utilService.findByKeyAndValue(bridgeRaceFilters, 'key', 'agegroup');
+            expect(ageGroupFilter.value).toEqual(['5-9 years']);
+        });
+        it('should provide me correct slider intervals for single interval selection', function () {
+
+            var bridgeRaceFilters = filterUtils.getBridgeDataFilters();
+
+            bridgeRaceFilters[2].sliderOptions.callback('5;10');
+            var ageGroupFilter = utilService.findByKeyAndValue(bridgeRaceFilters, 'key', 'agegroup');
+            expect(ageGroupFilter.value).toEqual(['5-9 years', '10-14 years']);
+        });
     });
 
     describe('test natality filters', function() {
@@ -79,7 +96,7 @@ describe('filterUtils', function(){
             expect(stdDataFilters[3].key).toEqual('age_group');
             expect(stdDataFilters[3].value).toEqual('All age groups');
             expect(stdDataFilters[3].helpText).toEqual('label.std.help.text.age.group');
-            expect(stdDataFilters[3].autoCompleteOptions.length).toEqual(11);
+            expect(stdDataFilters[3].autoCompleteOptions.length).toEqual(12);
             expect(stdDataFilters[3].autoCompleteOptions[0].key).toEqual("All age groups");
             expect(stdDataFilters[3].autoCompleteOptions[1].key).toEqual("0-14");
             expect(stdDataFilters[3].autoCompleteOptions[2].key).toEqual("15-19");
@@ -91,6 +108,7 @@ describe('filterUtils', function(){
             expect(stdDataFilters[3].autoCompleteOptions[8].key).toEqual("45-54");
             expect(stdDataFilters[3].autoCompleteOptions[9].key).toEqual("55-64");
             expect(stdDataFilters[3].autoCompleteOptions[10].key).toEqual("65+");
+            expect(stdDataFilters[3].autoCompleteOptions[11].key).toEqual("Unknown");
             expect(stdDataFilters[4].key).toEqual('race');
             expect(stdDataFilters[4].value).toEqual('All races/ethnicities');
             expect(stdDataFilters[4].helpText).toEqual('label.std.help.text.race.ethnicity');

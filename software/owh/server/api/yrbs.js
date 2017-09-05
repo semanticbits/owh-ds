@@ -50,6 +50,8 @@ yrbs.prototype.invokeYRBSService = function(apiQuery){
         });
         if(apiQuery.searchFor == 'mental_health') {
             searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexualOrientationSelected, apiQuery.isChartorMapQuery);
+        } else if(apiQuery.searchFor == 'brfss') {
+            searchUtils.applyBRFSSuppression({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery);
         }
         deferred.resolve(data);
     }, function (error) {
@@ -318,7 +320,7 @@ function resultCellObject (response) {
         mean: toRoundedPercentage(response.mean, prec),
         ci_l: toRoundedPercentage(response.ci_l, prec),
         ci_u: toRoundedPercentage(response.ci_u, prec),
-        count: response.count
+        count: response.count != undefined ? response.count : response.sample_size
     };
 }
 
