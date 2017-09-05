@@ -579,25 +579,25 @@
         }
 
         function downloadCSV() {
-            var data = searchFactory.getMixedTable(sc.filters.selectedPrimaryFilter, sc.optionsGroup, sc.tableView);
-            addRowHeaders(data, sc.filters.selectedPrimaryFilter);
+            var data = searchFactory.getMixedTable(sc.filters.selectedPrimaryFilter, sc.optionsGroup, sc.tableView, sc.tableData.calculatePercentage);
+            addRowHeadersData(data, sc.filters.selectedPrimaryFilter);
             var filename = xlsService.getFilename(sc.filters.selectedPrimaryFilter);
-            xlsService.exportCSVFromMixedTable(data, filename);
+            xlsService.exportCSVFromMixedTable(data, sc.tableView, filename);
         }
 
         function downloadXLS() {
-            var data = searchFactory.getMixedTable(sc.filters.selectedPrimaryFilter, sc.optionsGroup, sc.tableView);
-            addRowHeaders(data, sc.filters.selectedPrimaryFilter);
+            var data = searchFactory.getMixedTable(sc.filters.selectedPrimaryFilter, sc.optionsGroup, sc.tableView, sc.tableData.calculatePercentage);
+            addRowHeadersData(data, sc.filters.selectedPrimaryFilter);
             var filename = xlsService.getFilename(sc.filters.selectedPrimaryFilter);
-            xlsService.exportXLSFromMixedTable(data, filename);
+            xlsService.exportXLSFromMixedTable(data, sc.tableView, filename);
         }
 
-        function addRowHeaders(mixedTable, selectedFilter) {
-            //add row headers so we can properly repeat row header merge cells, and also for adding % columns
-            mixedTable.rowHeaders = [];
+        function addRowHeadersData(mixedTable, selectedFilter) {
+            //add row headers so we can properly repeat row header merge cells, and also for adding % columns -- only length is used
+            mixedTable.rowHeadersLength = 0;
             angular.forEach(selectedFilter.value, function(filter, idx) {
                 if(filter.groupBy === 'row') {
-                    mixedTable.rowHeaders.push(filter);
+                    mixedTable.rowHeadersLength++;
                 }
             });
         }

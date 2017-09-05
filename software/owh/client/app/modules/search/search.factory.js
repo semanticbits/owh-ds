@@ -519,11 +519,18 @@
         }
 
         function addOrFilterToPrimaryFilterValue(filter, primaryFilter) {
-            var filterIndex = utilService.findIndexByKeyAndValue(primaryFilter.value, 'key', filter.key);
-            if(filter.groupBy && filterIndex < 0) {
+            var existingFilter = utilService.findByKeyAndValue(primaryFilter.value, 'key', filter.key);
+            if (existingFilter) {
+                if (filter.groupBy) {
+                    existingFilter.groupBy = filter.groupBy;
+                }
+                else {
+                    var filterIndex = primaryFilter.value.indexOf(existingFilter);
+                    primaryFilter.value.splice(filterIndex, 1);
+                }
+            }
+            else if (filter.groupBy) {
                 primaryFilter.value.push(filter);
-            } else if(!filter.groupBy && filterIndex >= 0) {
-                primaryFilter.value.splice(filterIndex, 1);
             }
         }
 

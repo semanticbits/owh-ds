@@ -26,17 +26,17 @@
         }
 
         //data should have rowHeaders array for csv exporting
-        function exportCSVFromMixedTable(data, filename) {
-            var sheetArray = getSheetArrayFromMixedTable(data);
+        function exportCSVFromMixedTable(data, tableView, filename) {
+            var sheetArray = getSheetArrayFromMixedTable(data, tableView);
             var sheet = getSheetFromArray(sheetArray);
             var csv = getCSVFromSheet(sheet, data.headers, data.rowHeaders);
             saveAs(new Blob([s2ab(csv)], {type:"application/octet-stream"}), filename + ".csv");
         }
 
-        function exportXLSFromMixedTable(data, filename) {
+        function exportXLSFromMixedTable(data, tableView, filename) {
             var wb = {SheetNames: [], Sheets: {}};
             var ws_name = filename;
-            var sheetJson = getSheetArrayFromMixedTable(data);
+            var sheetJson = getSheetArrayFromMixedTable(data, tableView);
             var ws = getSheetFromArray(sheetJson, true);
             wb.SheetNames.push(ws_name);
             wb.Sheets[ws_name] = ws;
@@ -119,19 +119,26 @@
         }
 
         //gets json representation of sheet
-        function getSheetArrayFromMixedTable(table) {
+        function getSheetArrayFromMixedTable(table, tableView) {
+            if (['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates', 'std', 'tb', 'aids',
+                'disease_rate', 'number_of_infant_deaths', 'crude_cancer_incidence_rates', 'crude_cancer_death_rates'].indexOf(tableView) >= 0) {
+                var rateLabel = { 'crude_death_rates': 'Crude Death Rate', 'age-adjusted_death_rates': 'Age Adjusted Death Rate', 'birth_rates': 'Birth Rate', 'fertility_rates': 'Fertility Rate' }[tableView] || 'Rate';
+                var countLabel = { 'birth_rates': 'Births', 'fertility_rates': 'Births', 'std': 'Cases', 'tb': 'Cases', 'aids': 'Cases', 'disease_rate': 'Cases', 'crude_cancer_incidence_rates': 'Incidence' }[tableView] || 'Deaths';
+                transformTableForRates(table, rateLabel, countLabel, tableView);
+            }
+
             var sheet = [];
             var numOfPercentageColumns = 0;
             angular.forEach(table.headers, function(headerRow, idx) {
                 var headers = [];
                 if(idx > 0 && table.headers.length > 1) {
                     //add cell to account for row headers
-                    headers.push({title: "", colspan: table.rowHeaders.length, rowspan: 1});
+                    headers.push({title: "", colspan: table.rowHeadersLength, rowspan: 1});
                 }
                 angular.forEach(headerRow, function(cell, innerIdx) {
                     var colspan = cell.colspan;
                     //check is column header for data column, else add header as normal
-                    if(table.calculatePercentage && ((innerIdx >= table.rowHeaders.length && innerIdx < headerRow.length - 1) || idx > 0)) {
+                    if(table.calculatePercentage && ((innerIdx >= table.rowHeadersLength && innerIdx < headerRow.length - 1) || idx > 0)) {
                         //for the bottom row just add an extra column for every existing one, else double the length
                         if(idx === table.headers.length - 1) {
                             headers.push({title: cell.title, colspan: colspan, rowspan: cell.rowspan});
@@ -155,7 +162,7 @@
 
                 function getPadding(colOffsets) {
                     var padding = 0;
-                    for(var i = 0; i < table.rowHeaders.length - 1; i++) {
+                    for(var i = 0; i < table.rowHeadersLength - 1; i++) {
                         if(colOffsets[i]) {
                             padding++;
                             colOffsets[i]--;
@@ -166,7 +173,7 @@
 
                 function replacePadding(colOffsets) {
                     var paddingIndex = 0;
-                    for(var i = 0; i < table.rowHeaders.length; i++) {
+                    for(var i = 0; i < table.rowHeadersLength; i++) {
                         if(!colOffsets[i]) {
                             var rowspan = row[paddingIndex] ? row[paddingIndex].rowspan : 0;
                             if(rowspan > 0) {
@@ -182,7 +189,7 @@
                 var padding = getPadding(colOffsets);
 
                 //add padding as needed to row
-                if(table.rowHeaders.length > 1) {
+                if(table.rowHeadersLength > 1) {
                     if(padding > 0) {
                         rowArray.push({title: "", colspan: padding, rowspan: 1});
                     }
@@ -205,6 +212,82 @@
                 sheet.push(rowArray);
             });
             return sheet;
+        }
+
+        function transformTableForRates(table, ratesLabel, countLabel, tableView) {
+            // Headers
+            var headers = table.headers;
+            headers.forEach(function (headerRow) {
+                headerRow.forEach(function (headerCell) {
+                    if (headerCell.isData || headerCell.title === "Total" || headerCell.title === "Number of Deaths") {
+                        headerCell.colspan *= 3;
+                    }
+                });
+            });
+
+            for (var j = 0; j < table.rowHeadersLength; j++) {
+                headers[0][j].rowspan++;
+            }
+
+            var newHeaderRow = [];
+            // Add three header cells for each data column
+            headers[headers.length - 1].forEach(function (headerCell) {
+                if (headerCell.isData && headerCell.title !== "Total" && headerCell.title !== "Number of Deaths") {
+                    newHeaderRow.push({ title: ratesLabel, colspan: 1, rowspan: 1 });
+                    newHeaderRow.push({ title: "Population", colspan: 1, rowspan: 1 });
+                    newHeaderRow.push({ title: countLabel, colspan: 1, rowspan: 1 });
+                }
+            });
+
+            // Add them for the total column
+            newHeaderRow.push({ title: ratesLabel, colspan: 1, rowspan: 1 });
+            newHeaderRow.push({ title: "Population", colspan: 1, rowspan: 1 });
+            newHeaderRow.push({ title: countLabel, colspan: 1, rowspan: 1 });
+
+            headers.push(newHeaderRow);
+
+            var previousRowCellsCount = 0;
+
+            // Data
+            table.data.forEach(function (row, i) {
+                var newCells = [];
+
+                row.forEach(function (cell, j) {
+                    var cell = row[j];
+
+                    if (cell.isCount) {
+                        var rateValue;
+                        var rateVisibility = getRateVisibility(cell.title, cell.pop, tableView);
+
+                        if (rateVisibility === 'visible') {
+                            rateValue = cell.title / cell.pop * 100000;
+                        }
+                        else if (rateVisibility === 'suppressed') {
+                            rateValue = 'Suppressed';
+                        } else if (rateVisibility === 'na') {
+                            rateValue = 'Not Applicable'
+                        } else if (rateVisibility === 'unreliable') {
+                            rateValue = 'Unreliable';
+                        }
+
+                        newCells.push({ index: j, cell: { title: rateValue, colspan: 1, rowspan: 1 } });
+                        newCells.push({ index: j, cell: { title: cell.pop || "Not Available", colspan: 1, rowspan: 1 } });
+                    }
+                });
+
+                // Update the colspan of the total row
+                if (row[0].title === "Total") {
+                    row[0].colspan += previousRowCellsCount - 2;
+                }
+
+                previousRowCellsCount = newCells.length;
+
+                // Insert the new cells in appropriate positions in reverse order
+                for (var j = previousRowCellsCount - 1; j >= 0; j--) {
+                    var newCell = newCells[j];
+                    row.splice(newCell.index, 0, newCell.cell);
+                }
+            });
         }
 
         //helper function to repeat merge cells in header for CSV output
@@ -265,5 +348,29 @@
             return selectedFilter.header + '_' + yearRange + '_Filtered';
         }
 
+        function getRateVisibility(count, pop, tableView) {
+            if(count === 'suppressed' || pop === 'suppressed') {
+                return 'suppressed';
+            }
+            if (pop === 'n/a') {
+                return 'na'
+            }
+
+            //If population value is undefined
+            // OR
+            //If table view is equals to 'std' OR 'tb' OR 'aids' OR 'disease_rate' and count == 'na'
+            //Then @return 'na'
+            if(!pop || (['std', 'tb', 'aids', 'disease_rate'].indexOf(tableView) >= 0 && count === 'na')) {
+                return 'na';
+            }
+
+            //if table view is not equals to 'std' OR 'tb' OR 'aids' OR 'disease_rate' and count < 20
+            //Basically we are skipping displaying 'unreliable' string for disease related data sets.
+            if(['std', 'tb', 'aids', 'disease_rate'].indexOf(tableView) < 0 && count < 20) {
+                return 'unreliable';
+            }
+
+            return 'visible';
+        }
     }
 }());
