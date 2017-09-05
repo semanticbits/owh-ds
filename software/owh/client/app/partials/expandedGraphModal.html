@@ -39,7 +39,7 @@
                             <i class="material-icons" title="{{'label.share.on.fb' | translate}}">share</i>
                         </a>
                     </div>
-                    <owh-toggle-switch ng-if="(eachChartData.charttype  !== 'lineChart' && eachChartData.charttype !== 'multiLineChart') && eachChartData.longtitle.indexOf('Rate') < 0" class="left-float chart-view-toggle"
+                    <owh-toggle-switch ng-if="(eachChartData.charttype  !== 'pieChart' && eachChartData.charttype  !== 'lineChart' && eachChartData.charttype !== 'multiLineChart') && eachChartData.longtitle.indexOf('Rate') < 0" class="left-float chart-view-toggle"
                                        options="[ {key:'bar', title:'Grouped', tooltip:'Select to view grouped bars'},{key:'stack', title:'Stacked', tooltip:'Select to view stacked bars'}]"
                                        model="eg.barmode">
                     </owh-toggle-switch>

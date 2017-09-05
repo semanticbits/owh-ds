@@ -5,7 +5,7 @@
   "dataset":"deaths",
   "data":[
     {
-      "name":"Male",
+      "name":"Male     ",
       "x":[
         1131379,
         157972,
@@ -19,7 +19,10 @@
         "American Indian"
       ],
       "text":[
-
+        "1,131,379",
+        "157,972",
+        "32,035",
+        "9,846"
       ],
       "orientation":"h",
       "hoverinfo":"none",
@@ -29,7 +32,7 @@
       }
     },
     {
-      "name":"Female",
+      "name":"Female     ",
       "x":[
         1109971,
         151344,
@@ -43,13 +46,16 @@
         "American Indian"
       ],
       "text":[
-
+        "1,109,971",
+        "151,344",
+        "30,068",
+        "8,185"
       ],
       "orientation":"h",
       "hoverinfo":"none",
       "type":"bar",
       "marker":{
-        "color":"#bc8fe0"
+        "color":"#ED93CB"
       }
     }
   ],

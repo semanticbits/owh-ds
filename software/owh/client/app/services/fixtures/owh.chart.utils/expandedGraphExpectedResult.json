@@ -50,7 +50,7 @@
     "dataset":"deaths",
     "data":[
       {
-        "name":"Male",
+        "name":"Male     ",
         "x":[
           1131379,
           157972,
@@ -64,7 +64,10 @@
           "American Indian"
         ],
         "text":[
-
+          "1,131,379",
+          "157,972",
+          "32,035",
+          "9,846"
         ],
         "orientation":"h",
         "hoverinfo":"none",
@@ -74,7 +77,7 @@
         }
       },
       {
-        "name":"Female",
+        "name":"Female     ",
         "x":[
           1109971,
           151344,
@@ -88,13 +91,16 @@
           "American Indian"
         ],
         "text":[
-
+          "1,109,971",
+          "151,344",
+          "30,068",
+          "8,185"
         ],
         "orientation":"h",
         "hoverinfo":"none",
         "type":"bar",
         "marker":{
-          "color":"#bc8fe0"
+          "color":"#ED93CB"
         }
       }
     ],
@@ -122,7 +128,8 @@
         "showline":true,
         "gridcolor":"#bdbdbd",
         "showticklabels":true,
-        "fixedrange":true
+        "fixedrange":true,
+        "title":"Deaths"
       },
       "yaxis":{
         "visible":true,
@@ -135,7 +142,8 @@
         "showline":true,
         "gridcolor":"#bdbdbd",
         "showticklabels":true,
-        "fixedrange":true
+        "fixedrange":true,
+        "title":"label.filter.race"
       },
       "title":"chart.title.measure.deaths by label.filter.race in undefined for undefined",
       "height":750,
@@ -149,7 +157,7 @@
     "dataset":"deaths",
     "data":[
       {
-        "name":"White",
+        "name":"White     ",
         "x":[
           2241350
         ],
@@ -157,7 +165,7 @@
           "White"
         ],
         "text":[
-          "White:2241350"
+          "2,241,350"
         ],
         "orientation":"h",
         "type":"bar",
@@ -167,7 +175,7 @@
         }
       },
       {
-        "name":"Black",
+        "name":"Black     ",
         "x":[
           309316
         ],
@@ -175,7 +183,7 @@
           "Black"
         ],
         "text":[
-          "Black:309316"
+          "309,316"
         ],
         "orientation":"h",
         "type":"bar",
@@ -185,7 +193,7 @@
         }
       },
       {
-        "name":"Asian or Pacific Islander",
+        "name":"Asian or Pacific Islander     ",
         "x":[
           62103
         ],
@@ -193,7 +201,7 @@
           "Asian or Pacific Islander"
         ],
         "text":[
-          "Asian or Pacific Islander:62103"
+          "62,103"
         ],
         "orientation":"h",
         "type":"bar",
@@ -203,7 +211,7 @@
         }
       },
       {
-        "name":"American Indian",
+        "name":"American Indian     ",
         "x":[
           18031
         ],
@@ -211,13 +219,13 @@
           "American Indian"
         ],
         "text":[
-          "American Indian:18031"
+          "18,031"
         ],
         "orientation":"h",
         "type":"bar",
         "hoverinfo":"none",
         "marker":{
-          "color":"#bc8fe0"
+          "color":"#ED93CB"
         }
       }
     ],

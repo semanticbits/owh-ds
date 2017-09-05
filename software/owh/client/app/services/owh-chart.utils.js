@@ -172,7 +172,8 @@
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
-                var reg = {name: trace.key, x: [], y: [], text: [], orientation: 'h',  hoverinfo: 'none', type: 'bar',  marker :{color: colors[i%colors.length]}};
+                // The additional white space on the name is added as a hack for fixing the legend string getting cut off issue
+                var reg = {name: trace.key + '     ', x: [], y: [], text: [], orientation: 'h',  hoverinfo: 'none', type: 'bar',  marker :{color: colors[i%colors.length]}};
                 for (var j = trace.values.length - 1 ; j >=0 ; j-- ){
                     var value  = trace.values[j];
                     reg.y.push(value.label);
@@ -195,7 +196,8 @@
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
-                var reg = {name: trace.key, x: [], y: [], text: [], orientation: 'v', type: 'bar', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
+                // The additional white space on the name is added as a hack for fixing the legend string getting cut off issue
+                var reg = {name: trace.key+ '     ', x: [], y: [], text: [], orientation: 'v', type: 'bar', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
                 for (var j = trace.values.length - 1 ; j >=0 ; j-- ){
                     var value  = trace.values[j];
                     reg.x.push(value.x);
@@ -262,12 +264,13 @@
             var chartdata  = pieChart(data, filter, primaryFilter, postFixToTooltip);
             var colors = getColorPallete();    
             var layout = quickChartLayout(chartdata);
-            layout.xaxis.title = "Year";
-            layout.yaxis.title = primaryFilter.chartAxisLabel;
+            layout.xaxis.title = getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel);
+            layout.yaxis.title = $translate.instant(filter.title);
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
-                var reg = {name: trace.label, x: [], y: [], text: [], orientation: 'h', type: 'bar', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
+                // The additional white space on the name is added as a hack for fixing the legend string getting cut off issue
+                var reg = {name: trace.label + '     ', x: [], y: [], text: [], orientation: 'h', type: 'bar', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
                     reg.y.push(trace.label); 
                     reg.x.push(trace.value<0?0:trace.value);
                     reg.text.push(getSuppressedCount(trace.value, primaryFilter));
@@ -591,13 +594,14 @@
                                orientation: "v",
                                x: 1.01,
                                y: .4,
-
-                           };
+                           }
+                           ;
                        }else {
                            layout.legend ={orientation: "h",
                                y: 1.15,
-                               x: .4
+                               x: .4,
                            };
+                           // layout.legend
                        }
                        layout.legend.traceorder = 'reversed';
 
