@@ -175,9 +175,13 @@
         }
 
         function changeSelectedFilter(filter, category) {
+            // Select group by settingd from the previously selected filter
             if(category.selectedFilter) {
-                var previousFilter = utilService.findByKeyAndValue(category.sideFilters, 'filters.key', category.selectedFilter);
-                filter.filters.groupBy = previousFilter.filters.groupBy;
+                category.sideFilters.forEach(function(f){
+                    if(f.filters.key == category.selectedFilter){
+                        filter.filters.groupBy = f.filters.groupBy;
+                    }
+                });
             }
 
             category.selectedFilter = filter.filters.key;
