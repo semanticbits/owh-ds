@@ -1961,6 +1961,41 @@ ul.filter-group li.selected a {
     color: #0080d1;
 }
 
+.topic-accordion i {
+	vertical-align: -7px;
+}
+
+.horizontal-scroll {
+	overflow: hidden;
+	overflow-x: auto;
+}
+
+.visualize {
+	display: inline-block;
+	text-align: center;
+	font-size: 85%;
+	line-height: 1;
+	vertical-align: middle;
+	font-family: 'Montserrat', Sans-serif;
+	font-weight: bold;
+}
+
+.visualize i {
+	display: block;
+}
+.text-align-left {
+	text-align: left;
+}
+
+.stat-question {
+	font-weight: bold;
+}
+.disclaimer-surveydata-notavailable {
+	padding: 10px;
+	font-weight: 400;
+	color: #696969;
+}
+
 /**
 * Conditional CSS for IE 8+.
 */
