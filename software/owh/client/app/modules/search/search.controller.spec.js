@@ -35,6 +35,7 @@ describe("Search controller: ", function () {
             filters = $searchFactory.getAllFilters();
             shareUtilService = $injector.get('shareUtilService');
             searchController.searchFactory = searchFactory;
+            searchController.tableData = {};
         });
     });
 

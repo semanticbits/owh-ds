@@ -25,7 +25,7 @@ describe('xlsService', function(){
                 }
             ]
         ],
-        "rowHeaders": [],
+        "rowHeadersLength": 0,
         "data": [
             [
                 {
@@ -136,7 +136,7 @@ describe('xlsService', function(){
                     [{title: '5', colspan: 1, rowspan: 1}],
                     [{title: '6', colspan: 1, rowspan: 1}, {title: '7', colspan: 1, rowspan: 1}]
                 ],
-                rowHeaders: [{}, {}, {}]
+                rowHeadersLength: 3
             };
             var sheetArray = xlsService.getSheetArrayFromMixedTable(mixedTable);
 
@@ -157,7 +157,7 @@ describe('xlsService', function(){
                     [{title: 'f', colspan: 1, rowspan: 1}]
                 ],
                 data: [[]],
-                rowHeaders: [{}, {}, {}]
+                rowHeadersLength: 3
             };
             var sheetArray = xlsService.getSheetArrayFromMixedTable(mixedTable);
 
@@ -175,7 +175,7 @@ describe('xlsService', function(){
                     [{title: 'c', colspan: 1, rowspan: 1}]
                 ],
                 data: [[]],
-                rowHeaders: [{}],
+                rowHeadersLength: 1,
                 calculatePercentage: true
             };
             var sheetArray = xlsService.getSheetArrayFromMixedTable(mixedTable);
@@ -193,7 +193,7 @@ describe('xlsService', function(){
                     [{title: 'a', colspan: 1, rowspan: 2}, {title: 'b', colspan: 1, rowspan: 1}, {title: 'c', colspan: 1, rowspan: 1}, {title: 'd', colspan: 1, rowspan: 1}, {title: 'e', colspan: 1, rowspan: 1}]
                 ],
                 data: [[{title: 'Total', colspan: 3, rowspan: 1}, {title: "1", colspan: 1, rowspan: 1}]],
-                rowHeaders: [{}],
+                rowHeadersLength: 1,
                 calculatePercentage: true
             };
             var sheetArray = xlsService.getSheetArrayFromMixedTable(mixedTable);
@@ -274,7 +274,7 @@ describe('xlsService', function(){
             rowHeaders: [{}]
         };
         var filename = 'testname';
-        xlsService.exportCSVFromMixedTable(mixedTable, filename);
+        xlsService.exportCSVFromMixedTable(mixedTable, "view", filename);
 
         expect(window.saveAs).toHaveBeenCalled();
         expect(window.saveAs.calls.argsFor(0)[1]).toEqual(filename + '.csv');
@@ -291,7 +291,7 @@ describe('xlsService', function(){
             rowHeaders: [{}]
         };
         var filename = 'testnameXLS';
-        xlsService.exportXLSFromMixedTable(mixedTable, filename);
+        xlsService.exportXLSFromMixedTable(mixedTable, "view", filename);
 
         expect(window.saveAs).toHaveBeenCalled();
         expect(window.saveAs.calls.argsFor(0)[1]).toEqual(filename + '.xlsx');
