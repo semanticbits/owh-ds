@@ -5107,102 +5107,73 @@
     ]
   },
   "cancer": {
-    "mortality-incidence": [
-      {
-        "size": 0,
-        "aggregations": {
-          "group_table_site": {
-            "terms": {
-              "field": "cancer_site.path",
-              "size": 0
+    "mortality-incidence": {
+      "Breast": [
+          {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "MD"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "cancer_site.path": "26000"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
             }
           }
         },
-        "query": {
-          "filtered": {
-            "query": {
-              "bool": {
-                "must": []
-              }
-            },
-            "filter": {
-              "bool": {
-                "must": [
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "current_year": "2014"
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "state": "MD"
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "cancer_site.path": "21041-21052"
-                          }
-                        },
-                        {
-                          "term": {
-                            "cancer_site.path": "22030"
-                          }
-                        },
-                        {
-                          "term": {
-                            "cancer_site.path": "25010"
-                          }
-                        },
-                        {
-                          "term": {
-                            "cancer_site.path": "26000"
-                          }
-                        },
-                        {
-                          "term": {
-                            "cancer_site.path": "27010"
-                          }
-                        },
-                        {
-                          "term": {
-                            "cancer_site.path": "27040"
-                          }
-                        },
-                        {
-                          "term": {
-                            "cancer_site.path": "28010"
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        }
-      },
-      {
+          {
         "size": 0,
         "aggregations": {
-          "group_table_site": {
+          "group_table_current_year": {
             "terms": {
-              "field": "cancer_site.path",
+              "field": "current_year",
               "size": 0
             },
             "aggregations": {
@@ -5245,43 +5216,477 @@
                         }
                       ]
                     }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+        ],
+      "Colon and Rectum": [
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "MD"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "cancer_site.path": "21041-21052"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "MD"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "Lung and Bronchus": [
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "MD"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "cancer_site.path": "22030"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "MD"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "Melanoma of the Skin": [
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "MD"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "cancer_site.path": "25010"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "MD"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "Cervix Uteri": [
+          {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "MD"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "cancer_site.path": "22030"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+          {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Female"
+                          }
+                        }
+                      ]
+                    }
                   },
                   {
                     "bool": {
                       "should": [
                         {
                           "term": {
-                            "cancer_site.path": "21041-21052"
+                            "current_year": "2014"
                           }
-                        },
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
                         {
                           "term": {
-                            "cancer_site.path": "22030"
-                          }
-                        },
-                        {
-                          "term": {
-                            "cancer_site.path": "25010"
-                          }
-                        },
-                        {
-                          "term": {
-                            "cancer_site.path": "26000"
-                          }
-                        },
-                        {
-                          "term": {
-                            "cancer_site.path": "27010"
-                          }
-                        },
-                        {
-                          "term": {
-                            "cancer_site.path": "27040"
-                          }
-                        },
-                        {
-                          "term": {
-                            "cancer_site.path": "28010"
+                            "state": "MD"
                           }
                         }
                       ]
@@ -5293,7 +5698,262 @@
           }
         }
       }
-    ]
+        ],
+      "Ovary": [
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "MD"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "cancer_site.path": "27040"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "sex": "Female"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "MD"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "Prostate": [
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "MD"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "cancer_site.path": "28010-28040"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Male"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2014"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+      ]
+    }
   },
   "yrbs": {
     "alcohol": {
@@ -5476,6 +6136,456 @@
       "pagination": {
         "from": 0,
         "size": 10000
+      }
+    }
+  },
+  "prams": {
+    "Pregnant women": {
+      "qn30": {
+        "searchFor": "prams",
+        "query": {
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2009",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_26"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "MD"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn31"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "state",
+                "queryKey": "sitecode",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
+      },
+      "qn16": {
+        "searchFor": "prams",
+        "query": {
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2009",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_11"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "MD"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn16"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "state",
+                "queryKey": "sitecode",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
+      },
+      "qn21": {
+        "searchFor": "prams",
+        "query": {
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2009",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_29"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "MD"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn21"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "state",
+                "queryKey": "sitecode",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
+      }
+    },
+    "Women": {
+      "qn16": {
+        "searchFor": "prams",
+        "query": {
+          "BOC20": {
+            "key": "previous_births",
+            "queryKey": "BOC20",
+            "value": "PRV1",
+            "primary": false
+          },
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2009",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_11"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "MD"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn16"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "state",
+                "queryKey": "sitecode",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
+      },
+      "qn5": {
+        "searchFor": "prams",
+        "query": {
+          "BOC20": {
+            "key": "previous_births",
+            "queryKey": "BOC20",
+            "value": "PRV1",
+            "primary": false
+          },
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2009",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_43"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "MD"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn5"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "state",
+                "queryKey": "sitecode",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
+      },
+      "qn133": {
+        "searchFor": "prams",
+        "query": {
+          "BOC20": {
+            "key": "previous_births",
+            "queryKey": "BOC20",
+            "value": "PRV1",
+            "primary": false
+          },
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2009",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_12"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "MD"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn133"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "state",
+                "queryKey": "sitecode",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
       }
     }
   }

@@ -2007,6 +2007,9 @@ ul.filter-group li.selected a {
 /**
 Factsheet css
  */
+.state-heading {
+	text-align: center
+}
 .factsheet-container {
     z-index: 1;
     position: relative;
@@ -2016,7 +2019,7 @@ Factsheet css
 	text-decoration: underline;
 }
 .factsheet-content i {
-	font-size: 8px;
+	font-size: 12px;
 	font-style: italic;
 }
 .table-heading {
@@ -2025,4 +2028,17 @@ Factsheet css
 .table-heading h5,
 .table-heading p {
 	display: inline;
+}
+.underline {
+	text-decoration: underline;
+}
+.smallHeading {
+	font-size: 12px;
+}
+.factsheet-pagebreak {
+	page-break-after: always;
+}
+
+.solidBorder {
+	border-top: 1px solid #ddd;
 }
