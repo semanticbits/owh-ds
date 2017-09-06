@@ -1,7 +1,7 @@
 {
   "charttype":"multiBarChart",
-  "title":"label.title.gender.race",
-  "longtitle":"chart.title.measure.deaths by label.title.gender.race in undefined for undefined",
+  "title":"label.filter.gender and label.filter.race",
+  "longtitle":"chart.title.measure.deaths by label.filter.gender and label.filter.race in undefined for undefined",
   "dataset":"deaths",
   "data":[
 
