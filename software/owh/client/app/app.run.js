@@ -87,6 +87,9 @@
             "gender&autopsy": "verticalBar",
             "agegroup&autopsy": "horizontalBar",
             "gender&placeofdeath": "verticalStack",
+            "gender&state": "horizontalStack",
+            "gender&hhs-region": "horizontalStack",
+            "race&hhs-region": "horizontalStack",
             //natality
             "hispanic_origin&race": "horizontalBar",
             "sex&race": "horizontalBar",
@@ -288,6 +291,7 @@
             "sex&agegroup": "horizontalStack",
             "sex&state": "verticalBar",
             "sex&region": "verticalBar",
+            "sex&hhs-region": "horizontalStack",
             "race&ethnicity": "horizontalBar",
             "race&state": "horizontalStack",
             "race&region": "verticalBar",
