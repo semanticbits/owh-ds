@@ -1295,6 +1295,7 @@ function processWONDERResponse(response, dbID){
             row = datatable.r[r];
             cell = row.c;
             var keys = []
+          if(cell) {
             for (i = 0; i <= cell.length - 4; i++) {
                 if ('_l' in cell[i]) {
                     keys.push(cell[i]._l);
@@ -1321,7 +1322,7 @@ function processWONDERResponse(response, dbID){
                 pop = parseInt(pop.replace(/,/g, ''));
             }
 
-            if(dbID === 'D69' || dbID === 'D31' || dbID === 'D18') {
+            if (dbID === 'D69' || dbID === 'D31' || dbID === 'D18') {
                 var births;
                 valCell = cell[cell.length - 2];
                 if ('_v' in valCell) {
@@ -1337,6 +1338,7 @@ function processWONDERResponse(response, dbID){
             else {
                 addValueToResult(keys, rate, pop, result);
             }
+        }
         }
     }
     return result;

@@ -9,11 +9,6 @@
             <div class="usa-width-two-thirds">
                 <h3>State Fact Sheets</h3>
             </div>
-            <div class="usa-width-one-third padding-top-20">
-                <a href="#">
-                    Download Fact sheets for USA Health
-                </a>
-            </div>
         </div>
         <div class="usa-width-one-whole">
             <div>Select desired state and type to download fact sheet that present a snapshot of
@@ -22,9 +17,7 @@
             <div class="usa-grid">
                 <div class="usa-width-one-half">
                     <label for="state">I am interested in looking at</label>
-                    <select name="state" id="state" ng-init="state = 'MD'" ng-model="state">
-                        <option value="MD">Maryland</option>
-                        <option value="AL">Alabama</option>
+                    <select name="state" id="state" ng-options="s.id as s.text for s in fsc.stateJSON" ng-init="state = 'MD'" ng-model="state">
                     </select>
                 </div>
                 <div class="usa-width-one-half">
@@ -44,14 +37,14 @@
                 </a>
             </div>
             <div id="factsheet_content" ng-if="fsc.factSheet" class="factsheet-content">
-              <div class="factsheet-part1">
-                <h3 ng-bind="fsc.getStateName(state)" class="state-heading"></h3>
-                <a href="#" ng-click="fsc.exportFactSheet()" ng-if="fsc.factSheet" class="pull-right">
-                    <span>Download fact sheet for Maryland</span>
+              <a href="#" ng-click="fsc.exportFactSheet()" ng-if="fsc.factSheet" class="pull-right">
+                    <span>Download fact sheet for {{fsc.state}}</span>
                     <span><i class="material-icons margin-right-10 pdf-icon">picture_as_pdf</i></span>
                 </a>
+              <div class="factsheet-part1">
+                <h3 ng-bind="fsc.state" class="state-heading"></h3>
                 <div ng-if="fsc.factSheet.totalGenderPop" class="bridge-race-factsheet">
-                    <h5 class="bridge-race-heading">Population in Maryland</h5>
+                    <h5 class="bridge-race-heading">Population in {{fsc.state}}</h5>
                     <div class="bridge-race-description">
                         Total state population: {{fsc.factSheet.totalGenderPop}} ({{fsc.factSheet.gender[0].bridge_race}} females; {{fsc.factSheet.gender[1].bridge_race}} males)</div>
                     <div>

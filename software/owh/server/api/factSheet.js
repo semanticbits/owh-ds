@@ -14,102 +14,105 @@ var FactSheet = function() {
 FactSheet.prototype.prepareFactSheet = function (state, fsType) {
     var self = this;
     var deferred = Q.defer();
-    if (fsType === 'State Health') {
-        var bridgeRaceQueryObj = factSheetQueries.bridge_race;
+    var factSheetQueryString = JSON.stringify(factSheetQueries);
+    var factSheetQueryJSON;
+    factSheetQueryJSON = JSON.parse(factSheetQueryString.split("$state$").join(state));
+    if (factSheetQueryJSON && fsType === 'State Health') {
+        var bridgeRaceQueryObj = factSheetQueryJSON.bridge_race;
         //STD
-        var std_chlamydia_esQuery = factSheetQueries.std["chlamydia"][0];
-        var std_chlamydia_populationQuery = factSheetQueries.std["chlamydia"][1];
-        var std_gonorrhea_esQuery = factSheetQueries.std["Gonorrhea"][0];
-        var std_gonorrhea_populationQuery = factSheetQueries.std["Gonorrhea"][1];
-        var std_primarySyphilis_esQuery = factSheetQueries.std["Primary and Secondary Syphilis"][0];
-        var std_primarySyphilis_populationQuery = factSheetQueries.std["Primary and Secondary Syphilis"][1];
-        var std_earlySyphilis_esQuery = factSheetQueries.std["Early Latent Syphilis"][0];
-        var std_earlySyphilis_populationQuery =factSheetQueries.std["Early Latent Syphilis"][1];
-        var std_congSyphilis_esQuery = factSheetQueries.std["Congenital Syphilis"][0];
-        var std_congSyphilis_populationQuery = factSheetQueries.std["Congenital Syphilis"][1];
+        var std_chlamydia_esQuery = factSheetQueryJSON.std["chlamydia"][0];
+        var std_chlamydia_populationQuery = factSheetQueryJSON.std["chlamydia"][1];
+        var std_gonorrhea_esQuery = factSheetQueryJSON.std["Gonorrhea"][0];
+        var std_gonorrhea_populationQuery = factSheetQueryJSON.std["Gonorrhea"][1];
+        var std_primarySyphilis_esQuery = factSheetQueryJSON.std["Primary and Secondary Syphilis"][0];
+        var std_primarySyphilis_populationQuery = factSheetQueryJSON.std["Primary and Secondary Syphilis"][1];
+        var std_earlySyphilis_esQuery = factSheetQueryJSON.std["Early Latent Syphilis"][0];
+        var std_earlySyphilis_populationQuery =factSheetQueryJSON.std["Early Latent Syphilis"][1];
+        var std_congSyphilis_esQuery = factSheetQueryJSON.std["Congenital Syphilis"][0];
+        var std_congSyphilis_populationQuery = factSheetQueryJSON.std["Congenital Syphilis"][1];
         //HIV-AIDS
-        var AIDSDiagnoses_esQuery = factSheetQueries.aids["AIDS Diagnoses"][0];
-        var AIDSDiagnoses_populationQuery = factSheetQueries.aids["AIDS Diagnoses"][1];
-        var AIDSDeaths_esQuery = factSheetQueries.aids["AIDS Deaths"][0];
-        var AIDSDeaths_populationQuery = factSheetQueries.aids["AIDS Deaths"][1];
-        var AIDSPrevalence_esQuery = factSheetQueries.aids["AIDS Prevalence"][0];
-        var AIDSPrevalence_populationQuery = factSheetQueries.aids["AIDS Prevalence"][1];
-        var HIVDiagnoses_esQuery = factSheetQueries.aids["HIV Diagnoses"][0];
-        var HIVDiagnoses_populationQuery = factSheetQueries.aids["HIV Diagnoses"][1];
-        var HIVDeaths_esQuery = factSheetQueries.aids["HIV Deaths"][0];
-        var HIVDeaths_populationQuery = factSheetQueries.aids["HIV Deaths"][1];
-        var HIVPrevalence_esQuery = factSheetQueries.aids["HIV Prevalence"][0];
-        var HIVPrevalence_populationQuery = factSheetQueries.aids["HIV Prevalence"][1];
+        var AIDSDiagnoses_esQuery = factSheetQueryJSON.aids["AIDS Diagnoses"][0];
+        var AIDSDiagnoses_populationQuery = factSheetQueryJSON.aids["AIDS Diagnoses"][1];
+        var AIDSDeaths_esQuery = factSheetQueryJSON.aids["AIDS Deaths"][0];
+        var AIDSDeaths_populationQuery = factSheetQueryJSON.aids["AIDS Deaths"][1];
+        var AIDSPrevalence_esQuery = factSheetQueryJSON.aids["AIDS Prevalence"][0];
+        var AIDSPrevalence_populationQuery = factSheetQueryJSON.aids["AIDS Prevalence"][1];
+        var HIVDiagnoses_esQuery = factSheetQueryJSON.aids["HIV Diagnoses"][0];
+        var HIVDiagnoses_populationQuery = factSheetQueryJSON.aids["HIV Diagnoses"][1];
+        var HIVDeaths_esQuery = factSheetQueryJSON.aids["HIV Deaths"][0];
+        var HIVDeaths_populationQuery = factSheetQueryJSON.aids["HIV Deaths"][1];
+        var HIVPrevalence_esQuery = factSheetQueryJSON.aids["HIV Prevalence"][0];
+        var HIVPrevalence_populationQuery = factSheetQueryJSON.aids["HIV Prevalence"][1];
         //Detail Mortality - Total
-        var mortality_total_esQuery = factSheetQueries.detailMortality["Total"][0];
-        var mortality_total_wonderQuery = factSheetQueries.detailMortality["Total"][1];
+        var mortality_total_esQuery = factSheetQueryJSON.detailMortality["Total"][0];
+        var mortality_total_wonderQuery = factSheetQueryJSON.detailMortality["Total"][1];
         //Detail Mortality - C50-C50
-        var c50_esQuery = factSheetQueries.detailMortality["C50-C50"][0];
-        var c50_wonderQuery = factSheetQueries.detailMortality["C50-C50"][1];
+        var c50_esQuery = factSheetQueryJSON.detailMortality["C50-C50"][0];
+        var c50_wonderQuery = factSheetQueryJSON.detailMortality["C50-C50"][1];
         //Detail Mortality - C00-C97
-        var c00_c97_esQuery = factSheetQueries.detailMortality["C00-C97"][0];
-        var c00_c97_wonderQuery = factSheetQueries.detailMortality["C00-C97"][1];
+        var c00_c97_esQuery = factSheetQueryJSON.detailMortality["C00-C97"][0];
+        var c00_c97_wonderQuery = factSheetQueryJSON.detailMortality["C00-C97"][1];
         //Detail Mortality - C53
-        var c53_esQuery = factSheetQueries.detailMortality["C53"][0];
-        var c53_wonderQuery = factSheetQueries.detailMortality["C53"][1];
+        var c53_esQuery = factSheetQueryJSON.detailMortality["C53"][0];
+        var c53_wonderQuery = factSheetQueryJSON.detailMortality["C53"][1];
         //Detail Mortality - I160-I169
-        var i160_i169_esQuery = factSheetQueries.detailMortality["I160-I169"][0];
-        var i160_i169_wonderQuery = factSheetQueries.detailMortality["I160-I169"][1];
+        var i160_i169_esQuery = factSheetQueryJSON.detailMortality["I160-I169"][0];
+        var i160_i169_wonderQuery = factSheetQueryJSON.detailMortality["I160-I169"][1];
         //Detail Mortality - J40-J47 and J60
-        var j40_j47_j60_esQuery = factSheetQueries.detailMortality["J40-47-60"][0];
-        var j40_j47_j60_wonderQuery = factSheetQueries.detailMortality["J40-47-60"][1];
+        var j40_j47_j60_esQuery = factSheetQueryJSON.detailMortality["J40-47-60"][0];
+        var j40_j47_j60_wonderQuery = factSheetQueryJSON.detailMortality["J40-47-60"][1];
         //Detail Mortality - drug-induced
-        var drug_induced_esQuery = factSheetQueries.detailMortality["drug-induced"][0];
-        var drug_induced_wonderQuery = factSheetQueries.detailMortality["drug-induced"][1];
+        var drug_induced_esQuery = factSheetQueryJSON.detailMortality["drug-induced"][0];
+        var drug_induced_wonderQuery = factSheetQueryJSON.detailMortality["drug-induced"][1];
         //Detail Mortality - Suicide
-        var suicide_esQuery = factSheetQueries.detailMortality["Suicide"][0];
-        var suicide_wonderQuery = factSheetQueries.detailMortality["Suicide"][1];
+        var suicide_esQuery = factSheetQueryJSON.detailMortality["Suicide"][0];
+        var suicide_wonderQuery = factSheetQueryJSON.detailMortality["Suicide"][1];
         //Detail Mortality - Homicide
-        var homicide_esQuery = factSheetQueries.detailMortality["Homicide"][0];
-        var homicide_wonderQuery = factSheetQueries.detailMortality["Homicide"][1];
+        var homicide_esQuery = factSheetQueryJSON.detailMortality["Homicide"][0];
+        var homicide_wonderQuery = factSheetQueryJSON.detailMortality["Homicide"][1];
         //Detail Mortality - B20-B24
-        var b20_b24_esQuery = factSheetQueries.detailMortality["B20-B24"][0];
-        var b20_b24_wonderQuery = factSheetQueries.detailMortality["B20-B24"][1];
+        var b20_b24_esQuery = factSheetQueryJSON.detailMortality["B20-B24"][0];
+        var b20_b24_wonderQuery = factSheetQueryJSON.detailMortality["B20-B24"][1];
         //Natality - Brith Rates
-        var natality_birthRates_esQuery = factSheetQueries.natality["birthRates"][0];
-        var natality_birthRates_populationQuery = factSheetQueries.natality["birthRates"][1];
+        var natality_birthRates_esQuery = factSheetQueryJSON.natality["birthRates"][0];
+        var natality_birthRates_populationQuery = factSheetQueryJSON.natality["birthRates"][1];
         //Natality - fertilityRates
-        var natality_fertilityRates_esQuery = factSheetQueries.natality["fertilityRates"][0];
-        var natality_fertilityRates_populationQuery = factSheetQueries.natality["fertilityRates"][1];
+        var natality_fertilityRates_esQuery = factSheetQueryJSON.natality["fertilityRates"][0];
+        var natality_fertilityRates_populationQuery = factSheetQueryJSON.natality["fertilityRates"][1];
         //Cancer - Mortality - Incident
-        var cancer_Breast_esQuery = factSheetQueries.cancer["mortality-incidence"]["Breast"][0];
-        var cancer_Breast_populationQuery = factSheetQueries.cancer["mortality-incidence"]["Breast"][1];
-        var cancer_colonAndRectum_esQuery = factSheetQueries.cancer["mortality-incidence"]["Colon and Rectum"][0];
-        var cancer_colonAndRectum_populationQuery = factSheetQueries.cancer["mortality-incidence"]["Colon and Rectum"][1];
-        var cancer_lungAndBronchus_esQuery = factSheetQueries.cancer["mortality-incidence"]["Lung and Bronchus"][0];
-        var cancer_lungAndBronchus_populationQuery = factSheetQueries.cancer["mortality-incidence"]["Lung and Bronchus"][1];
-        var cancer_melanoma_esQuery = factSheetQueries.cancer["mortality-incidence"]["Melanoma of the Skin"][0];
-        var cancer_melanoma_populationQuery = factSheetQueries.cancer["mortality-incidence"]["Melanoma of the Skin"][1];
-        var cancer_cervix_esQuery = factSheetQueries.cancer["mortality-incidence"]["Cervix Uteri"][0];
-        var cancer_cervix_populationQuery = factSheetQueries.cancer["mortality-incidence"]["Cervix Uteri"][1];
-        var cancer_ovary_esQuery = factSheetQueries.cancer["mortality-incidence"]["Ovary"][0];
-        var cancer_ovary_populationQuery = factSheetQueries.cancer["mortality-incidence"]["Ovary"][1];
-        var cancer_prostate_esQuery = factSheetQueries.cancer["mortality-incidence"]["Prostate"][0];
-        var cancer_prostate_populationQuery = factSheetQueries.cancer["mortality-incidence"]["Prostate"][1];
+        var cancer_Breast_esQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Breast"][0];
+        var cancer_Breast_populationQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Breast"][1];
+        var cancer_colonAndRectum_esQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Colon and Rectum"][0];
+        var cancer_colonAndRectum_populationQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Colon and Rectum"][1];
+        var cancer_lungAndBronchus_esQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Lung and Bronchus"][0];
+        var cancer_lungAndBronchus_populationQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Lung and Bronchus"][1];
+        var cancer_melanoma_esQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Melanoma of the Skin"][0];
+        var cancer_melanoma_populationQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Melanoma of the Skin"][1];
+        var cancer_cervix_esQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Cervix Uteri"][0];
+        var cancer_cervix_populationQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Cervix Uteri"][1];
+        var cancer_ovary_esQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Ovary"][0];
+        var cancer_ovary_populationQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Ovary"][1];
+        var cancer_prostate_esQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Prostate"][0];
+        var cancer_prostate_populationQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Prostate"][1];
 
         //YRBS - Use Alcohol
-        var yrbs_alcohol_stats_query = factSheetQueries.yrbs["alcohol"];
+        var yrbs_alcohol_stats_query = factSheetQueryJSON.yrbs["alcohol"];
         //BRFSS - 2015 - Overweight and Obesity(BMI), Tobbaco use, Fruits and Vegetables, Alcohol Consumption
-        var brfss_2015_query = factSheetQueries.brfss.query_2015;
+        var brfss_2015_query = factSheetQueryJSON.brfss.query_2015;
         //BRFSS - 2009 - Physical Activity
-        var brfss_2009_query = factSheetQueries.brfss.query_2009;
+        var brfss_2009_query = factSheetQueryJSON.brfss.query_2009;
         //PRAMS - 2009 - Smoking cigarettes during the last three months of pregnancy
-        var prams_smoking_query = factSheetQueries.prams['Pregnant women']['qn30'];
+        var prams_smoking_query = factSheetQueryJSON.prams['Pregnant women']['qn30'];
         //PRAMS - 2009 - Intended pregnancy
-        var prams_intended_pregnancy_query = factSheetQueries.prams['Pregnant women']['qn16'];
+        var prams_intended_pregnancy_query = factSheetQueryJSON.prams['Pregnant women']['qn16'];
         //PRAMS - 2009 - Females reported physical abuse by husband or partner during pregnancy (percent)
-        var prams_physical_abuse_query = factSheetQueries.prams['Pregnant women']['qn21'];
+        var prams_physical_abuse_query = factSheetQueryJSON.prams['Pregnant women']['qn21'];
         //PRAMS - 2009 - With one or more previous live births who reported unintended pregnancy
-        var prams_live_birth_unintended_query = factSheetQueries.prams['Women']['qn16'];
+        var prams_live_birth_unintended_query = factSheetQueryJSON.prams['Women']['qn16'];
         //PRAMS - 2009 - Ever breastfed or pump breast milk to feed after delivery
-        var prams_breast_milk_feed_query = factSheetQueries.prams['Women']['qn5'];
+        var prams_breast_milk_feed_query = factSheetQueryJSON.prams['Women']['qn5'];
         //PRAMS - 2009 - Indicator of depression 3 months before pregnancy
-        var prams_indicator_depression_query = factSheetQueries.prams['Women']['qn133'];
+        var prams_indicator_depression_query = factSheetQueryJSON.prams['Women']['qn133'];
 
         var es = new elasticSearch();
         var promises = [
@@ -118,10 +121,10 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.race_population),
             es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.hispanic_population),
             es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.age_population),
-            new wonder('D69').invokeWONDER(factSheetQueries.infant_mortality),
+            new wonder('D69').invokeWONDER(factSheetQueryJSON.infant_mortality),
             //For Tuberculosis
-            es.executeESQuery('owh_tb', 'tb', factSheetQueries.tuberculosis[0]),
-            es.aggregateCensusDataQuery(factSheetQueries.tuberculosis[1], 'owh_tb', "tb", 'pop'),
+            es.executeESQuery('owh_tb', 'tb', factSheetQueryJSON.tuberculosis[0]),
+            es.aggregateCensusDataQuery(factSheetQueryJSON.tuberculosis[1], 'owh_tb', "tb", 'pop'),
             //For Sexually Transmitted Diseases - chlamydia
             es.executeESQuery('owh_std', 'std', std_chlamydia_esQuery),
             es.aggregateCensusDataQuery(std_chlamydia_populationQuery, 'owh_std', "std", 'pop'),
@@ -389,6 +392,7 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
 
             var factSheet = prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
                 raceData, hispanicData, ageGroupData);
+            factSheet.state = state;
             factSheet.infantMortalityData = infantMortalityData;
             factSheet.tuberculosis = prepareDiseaseData(tbData, 'tb');
             factSheet.stdData = [{disease:"Chlamydia", data:prepareDiseaseData(stdChlamydiaData, 'std')},
