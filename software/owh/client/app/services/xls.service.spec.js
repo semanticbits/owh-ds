@@ -152,7 +152,7 @@ describe('xlsService', function(){
              */
             var mixedTable = {
                 headers: [
-                    [{title: 'a', colspan: 1, rowspan: 3}, {title: 'b', colspan: 1, rowspan: 3}, {title: 'c', colspan: 1, rowspan: 3}, {title: 'd', colspan: 1, rowspan: 1}, {title: 'g', colspan: 1, rowspan: 3}],
+                    [{ title: 'a', colspan: 1, rowspan: 3 }, { title: 'b', colspan: 1, rowspan: 3 }, { title: 'c', colspan: 1, rowspan: 3 }, { title: 'd', colspan: 1, rowspan: 1, isData: true }, { title: 'g', colspan: 1, rowspan: 3, isData: true }],
                     [{title: 'e', colspan: 1, rowspan: 1}],
                     [{title: 'f', colspan: 1, rowspan: 1}]
                 ],
@@ -161,7 +161,7 @@ describe('xlsService', function(){
             };
             var sheetArray = xlsService.getSheetArrayFromMixedTable(mixedTable);
 
-            expect(sheetArray[1]).toEqual([{title: "", colspan: 3, rowspan: 1}, {title: 'e', colspan: 1, rowspan: 1}]);
+            expect(sheetArray[1]).toEqual([{ title: "", colspan: 1, rowspan: 1 }, { title: "", colspan: 1, rowspan: 1 }, { title: "", colspan: 1, rowspan: 1 }, { title: 'e', colspan: 1, rowspan: 1 }]);
         });
 
         it('should extend column headers properly to account for percentages', function() {
@@ -274,7 +274,7 @@ describe('xlsService', function(){
             rowHeaders: [{}]
         };
         var filename = 'testname';
-        xlsService.exportCSVFromMixedTable(mixedTable, "view", filename);
+        xlsService.exportCSVFromMixedTable(mixedTable, "datasetKey", "view", filename);
 
         expect(window.saveAs).toHaveBeenCalled();
         expect(window.saveAs.calls.argsFor(0)[1]).toEqual(filename + '.csv');
@@ -291,7 +291,7 @@ describe('xlsService', function(){
             rowHeaders: [{}]
         };
         var filename = 'testnameXLS';
-        xlsService.exportXLSFromMixedTable(mixedTable, "view", filename);
+        xlsService.exportXLSFromMixedTable(mixedTable, "datasetKey", "view", filename);
 
         expect(window.saveAs).toHaveBeenCalled();
         expect(window.saveAs.calls.argsFor(0)[1]).toEqual(filename + '.xlsx');

@@ -578,18 +578,34 @@
 
         }
 
+        function prepareDataForExport() {
+            var filters = sc.filters;
+            var selectedPrimaryFilter = filters.selectedPrimaryFilter;
+            var key = selectedPrimaryFilter.key;
+
+            var data = searchFactory.getMixedTable(selectedPrimaryFilter, sc.optionsGroup, sc.tableView, sc.tableData.calculatePercentage);
+            addRowHeadersData(data, selectedPrimaryFilter);
+
+            if (filters.filterUtilities && filters.filterUtilities[key]) {
+                data.filterUtilities = {
+                    exportCi: filters.filterUtilities[key][0].options[0].value,
+                    exportUf: filters.filterUtilities[key][0].options[1].value
+                };
+            }
+
+            var filename = xlsService.getFilename(selectedPrimaryFilter);
+
+            return { data: data, key: key, filename: filename };
+        }
+
         function downloadCSV() {
-            var data = searchFactory.getMixedTable(sc.filters.selectedPrimaryFilter, sc.optionsGroup, sc.tableView, sc.tableData.calculatePercentage);
-            addRowHeadersData(data, sc.filters.selectedPrimaryFilter);
-            var filename = xlsService.getFilename(sc.filters.selectedPrimaryFilter);
-            xlsService.exportCSVFromMixedTable(data, sc.tableView, filename);
+            var result = prepareDataForExport();
+            xlsService.exportCSVFromMixedTable(result.data, result.key, sc.tableView, result.filename);
         }
 
         function downloadXLS() {
-            var data = searchFactory.getMixedTable(sc.filters.selectedPrimaryFilter, sc.optionsGroup, sc.tableView, sc.tableData.calculatePercentage);
-            addRowHeadersData(data, sc.filters.selectedPrimaryFilter);
-            var filename = xlsService.getFilename(sc.filters.selectedPrimaryFilter);
-            xlsService.exportXLSFromMixedTable(data, sc.tableView, filename);
+            var result = prepareDataForExport();
+            xlsService.exportXLSFromMixedTable(result.data, result.key, sc.tableView, result.filename);
         }
 
         function addRowHeadersData(mixedTable, selectedFilter) {

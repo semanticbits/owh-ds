@@ -26,17 +26,17 @@
         }
 
         //data should have rowHeaders array for csv exporting
-        function exportCSVFromMixedTable(data, tableView, filename) {
-            var sheetArray = getSheetArrayFromMixedTable(data, tableView);
+        function exportCSVFromMixedTable(data, dataKey, tableView, filename) {
+            var sheetArray = getSheetArrayFromMixedTable(data, dataKey, tableView);
             var sheet = getSheetFromArray(sheetArray);
             var csv = getCSVFromSheet(sheet, data.headers, data.rowHeaders);
             saveAs(new Blob([s2ab(csv)], {type:"application/octet-stream"}), filename + ".csv");
         }
 
-        function exportXLSFromMixedTable(data, tableView, filename) {
+        function exportXLSFromMixedTable(data, dataKey, tableView, filename) {
             var wb = {SheetNames: [], Sheets: {}};
             var ws_name = filename;
-            var sheetJson = getSheetArrayFromMixedTable(data, tableView);
+            var sheetJson = getSheetArrayFromMixedTable(data, dataKey, tableView);
             var ws = getSheetFromArray(sheetJson, true);
             wb.SheetNames.push(ws_name);
             wb.Sheets[ws_name] = ws;
@@ -119,8 +119,11 @@
         }
 
         //gets json representation of sheet
-        function getSheetArrayFromMixedTable(table, tableView) {
-            if (['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates', 'std', 'tb', 'aids',
+        function getSheetArrayFromMixedTable(table, dataKey, tableView) {
+            if (["prams", "mental_health", "brfss"].indexOf(dataKey) >= 0) {
+                transformTableForVariance(table, "Confidence interval", "Number of responses");
+            }
+            else if (['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates', 'std', 'tb', 'aids',
                 'disease_rate', 'number_of_infant_deaths', 'crude_cancer_incidence_rates', 'crude_cancer_death_rates'].indexOf(tableView) >= 0) {
                 var rateLabel = { 'crude_death_rates': 'Crude Death Rate', 'age-adjusted_death_rates': 'Age Adjusted Death Rate', 'birth_rates': 'Birth Rate', 'fertility_rates': 'Fertility Rate' }[tableView] || 'Rate';
                 var countLabel = { 'birth_rates': 'Births', 'fertility_rates': 'Births', 'std': 'Cases', 'tb': 'Cases', 'aids': 'Cases', 'disease_rate': 'Cases', 'crude_cancer_incidence_rates': 'Incidence' }[tableView] || 'Deaths';
@@ -129,13 +132,21 @@
 
             var sheet = [];
             var numOfPercentageColumns = 0;
-            angular.forEach(table.headers, function(headerRow, idx) {
+            angular.forEach(table.headers, function (headerRow, idx) {
                 var headers = [];
-                if(idx > 0 && table.headers.length > 1) {
-                    //add cell to account for row headers
-                    headers.push({title: "", colspan: table.rowHeadersLength, rowspan: 1});
+
+                if (idx > 0) {
+                    // Add padding cells for headers
+                    for (var i = 0; i < idx; i++) {
+                        table.headers[i].forEach(function (headerCell, j) {
+                            if (headerCell.rowspan > idx && !headerCell.isData) {
+                                headers.push({ title: "", colspan: 1, rowspan: 1 });
+                            }
+                        });
+                    }
                 }
-                angular.forEach(headerRow, function(cell, innerIdx) {
+
+                angular.forEach(headerRow, function (cell, innerIdx) {
                     var colspan = cell.colspan;
                     //check is column header for data column, else add header as normal
                     if(table.calculatePercentage && ((innerIdx >= table.rowHeadersLength && innerIdx < headerRow.length - 1) || idx > 0)) {
@@ -284,6 +295,75 @@
 
                 // Insert the new cells in appropriate positions in reverse order
                 for (var j = previousRowCellsCount - 1; j >= 0; j--) {
+                    var newCell = newCells[j];
+                    row.splice(newCell.index, 0, newCell.cell);
+                }
+            });
+        }
+
+        function transformTableForVariance(table, ciLabel, countLabel) {
+            var newColumnsCount = 1                                         // For percentage
+                                + (table.filterUtilities.exportCi ? 1 : 0)  // For Confidence Interval
+                                + (table.filterUtilities.exportUf ? 1 : 0); // For Sample Size (or count)
+
+            if (newColumnsCount < 2) {
+                return;
+            }
+
+            // Headers
+            var headers = table.headers;
+            headers.forEach(function (headerRow) {
+                headerRow.forEach(function (headerCell) {
+                    if (headerCell.isData) {
+                        headerCell.colspan *= newColumnsCount;
+                    }
+                });
+            });
+
+            for (var j = 0; j < table.rowHeadersLength + 1; j++) {
+                headers[0][j].rowspan++;
+            }
+
+            var newHeaderRow = [];
+            // Add three header cells for each data column
+            headers[headers.length - 1].forEach(function (headerCell) {
+                if (headerCell.isData) {
+                    newHeaderRow.push({ title: "Percentage of responses", colspan: 1, rowspan: 1 });
+
+                    if (table.filterUtilities.exportCi) {
+                        newHeaderRow.push({ title: ciLabel, colspan: 1, rowspan: 1 });
+                    }
+
+                    if (table.filterUtilities.exportUf) {
+                        newHeaderRow.push({ title: countLabel, colspan: 1, rowspan: 1 });
+                    }
+                }
+            });
+
+            headers.push(newHeaderRow);
+
+            // Data
+            table.data.forEach(function (row, i) {
+                var newCells = [];
+
+                row.forEach(function (cell, j) {
+                    var cell = row[j];
+
+                    if (cell.isCount) {
+                        if (table.filterUtilities.exportCi) {
+                            var ciValue = !cell.title.mean || cell.title.mean === "suppressed" || cell.title.mean === "nr" ? "" : "(" + cell.title.ci_l + " - " + cell.title.ci_u + ")";
+                            newCells.push({ index: j + 1, cell: { title: ciValue, colspan: 1, rowspan: 1 } });
+                        }
+
+                        if (table.filterUtilities.exportUf) {
+                            var countValue = !cell.title.mean || cell.title.mean === "suppressed" || cell.title.mean === "nr" || !cell.title.count ? "" : cell.title.count;
+                            newCells.push({ index: j + 1, cell: { title: countValue, colspan: 1, rowspan: 1 } });
+                        }
+                    }
+                });
+
+                // Insert the new cells in appropriate positions in reverse order
+                for (var j = newCells.length - 1; j >= 0; j--) {
                     var newCell = newCells[j];
                     row.splice(newCell.index, 0, newCell.cell);
                 }
