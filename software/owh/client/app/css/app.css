@@ -580,7 +580,26 @@ ul li::before {
 .custom-modal-header {
     border-bottom: 1px solid #ccc;
     padding:15px;
+    display: inline-flex;
+    width: 100%;
 }
+.custom-modal-button {
+    float: right;
+    padding-top: 2px;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 3px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 1px black;
+    border-radius: 5px;
+}
+
+.custom-modal-button a:hover {
+    opacity: .5;
+}
+
 .custom-modal-body {
     padding: 15px;
 }

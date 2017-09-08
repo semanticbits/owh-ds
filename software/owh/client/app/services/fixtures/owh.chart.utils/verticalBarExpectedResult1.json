@@ -1,11 +1,11 @@
 {
   "charttype":"multiBarChart",
-  "title":"label.title.gender.race",
-  "longtitle":"chart.title.measure.deaths by label.title.gender.race in undefined for undefined",
+  "title":"label.filter.gender and label.filter.race",
+  "longtitle":"chart.title.measure.deaths by label.filter.gender and label.filter.race in undefined for undefined",
   "dataset":"deaths",
   "data":[
     {
-      "name":"Male",
+      "name":"Male     ",
       "x":[
         "White",
         "Black",
@@ -19,10 +19,10 @@
         9846
       ],
       "text":[
-        "Male:White:1131379",
-        "Male:Black:157972",
-        "Male:Asian or Pacific Islander:32035",
-        "Male:American Indian:9846"
+        "1,131,379",
+        "157,972",
+        "32,035",
+        "9,846"
       ],
       "orientation":"v",
       "type":"bar",
@@ -32,7 +32,7 @@
       }
     },
     {
-      "name":"Female",
+      "name":"Female     ",
       "x":[
         "White",
         "Black",
@@ -46,16 +46,16 @@
         8185
       ],
       "text":[
-        "Female:White:1109971",
-        "Female:Black:151344",
-        "Female:Asian or Pacific Islander:30068",
-        "Female:American Indian:8185"
+        "1,109,971",
+        "151,344",
+        "30,068",
+        "8,185"
       ],
       "orientation":"v",
       "type":"bar",
       "hoverinfo":"none",
       "marker":{
-        "color":"#bc8fe0"
+        "color":"#ED93CB"
       }
     }
   ],

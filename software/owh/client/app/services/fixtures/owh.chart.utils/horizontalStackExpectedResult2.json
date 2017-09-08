@@ -1,11 +1,11 @@
 {
   "charttype":"multiBarHorizontalChart",
-  "title":"label.title.race.hispanicOrigin",
-  "longtitle":"chart.title.measure.deaths by label.title.race.hispanicOrigin in undefined for undefined",
+  "title":"label.filter.race and label.filter.hispanicOrigin",
+  "longtitle":"chart.title.measure.deaths by label.filter.race and label.filter.hispanicOrigin in undefined for undefined",
   "dataset":"deaths",
   "data":[
     {
-      "name":"White",
+      "name":"White     ",
       "x":[
         6888,
         598,
@@ -35,7 +35,18 @@
         "Central American"
       ],
       "text":[
-
+        "6,888",
+        "598",
+        "5,964",
+        "21,079",
+        "14,643",
+        "2,068,925",
+        "95,193",
+        "716",
+        "3,013",
+        "14,936",
+        "2,369",
+        "7,026"
       ],
       "orientation":"h",
       "hoverinfo":"none",
@@ -45,7 +56,7 @@
       }
     },
     {
-      "name":"Black",
+      "name":"Black     ",
       "x":[
         1867,
         2,
@@ -75,7 +86,18 @@
         "Central American"
       ],
       "text":[
-
+        "1,867",
+        "2",
+        "93",
+        "581",
+        "321",
+        "304,107",
+        "539",
+        "19",
+        "838",
+        "346",
+        "112",
+        "491"
       ],
       "orientation":"h",
       "hoverinfo":"none",
@@ -85,7 +107,7 @@
       }
     },
     {
-      "name":"Asian or Pacific Islander",
+      "name":"Asian or Pacific Islander     ",
       "x":[
         280,
         27,
@@ -115,7 +137,18 @@
         "Central American"
       ],
       "text":[
-
+        "280",
+        "27",
+        "35",
+        "142",
+        "397",
+        "60,942",
+        "207",
+        "6",
+        "6",
+        "14",
+        "4",
+        "43"
       ],
       "orientation":"h",
       "hoverinfo":"none",
@@ -125,7 +158,7 @@
       }
     },
     {
-      "name":"American Indian",
+      "name":"American Indian     ",
       "x":[
         64,
         11,
@@ -155,13 +188,24 @@
         "Central American"
       ],
       "text":[
-
+        "64",
+        "11",
+        "17",
+        "28",
+        "203",
+        "17,151",
+        "512",
+        "10",
+        "6",
+        "9",
+        "1",
+        "19"
       ],
       "orientation":"h",
       "hoverinfo":"none",
       "type":"bar",
       "marker":{
-        "color":"#bc8fe0"
+        "color":"#ED93CB"
       }
     }
   ],
