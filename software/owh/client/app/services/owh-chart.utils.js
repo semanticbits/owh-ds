@@ -123,13 +123,13 @@
                 || filter.tableView == "fertility_rates" || filter.chartView == "disease_rate" 
                 || filter.tableView === 'crude_cancer_incidence_rates' || filter.tableView === 'crude_cancer_death_rates') {
                 if(data[filter.key] >= 0) { // calculate rate if count is available, else return the notavailable or suppressed value
-                    return data['pop'] ? Math.round(data[filter.key] / data['pop'] * 1000000) / 10 : -2;
+                    return !isNaN(data['pop']) ? Math.round(data[filter.key] / data['pop'] * 1000000) / 10 : -2;
                 }else {
                     return data[filter.key] ;
                 }
             }
             else if(filter.chartView == "infant_death_rate") {
-                return data['pop'] ? $filter('number')(data['deathRate'], 1): -2;
+                return !isNaN(data['pop']) ? $filter('number')(data['deathRate'], 1): -2;
             }
             else if(data['ageAdjustedRate'] && filter.tableView == "age-adjusted_death_rates"){
                 var ageAdjustedRate = parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));

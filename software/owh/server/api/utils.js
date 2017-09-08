@@ -833,29 +833,21 @@ function applyCustomSuppressions (data, rules, countKey) {
 }
 
 function attachPopulation (root, popTree, path) {
-    if( Array.isArray(root)){
-       for (var i=0; i< root.length; i++){
-           attachPopulation (root[i], popTree[i], path);
-       }
-    }else {
-        if (path.length) root.pop = findMatchingProp(popTree, path) || 'n/a';
-        for (var property in root) {
-            if (Array.isArray(root[property])) {
-                root[property].forEach(function (option) {
-                    attachPopulation(option, popTree, path.concat([property, option.name]));
-                })
-            }
+    if (path.length) root.pop = findMatchingProp(popTree, path) || 'n/a';
+    for (var property in root) {
+        if (Array.isArray(root[property])) {
+            root[property].forEach(function (option) {
+                attachPopulation(option, popTree, path.concat([property, option.name]));
+            })
         }
     }
 }
 
 function findMatchingProp (tree, path) {
   for (var i = 0; i < path.length; i += 2) {
-    var matching = findMatchingOption(tree[path[i]], path[i + 1]);
-    if (matching) {
-      tree = matching;
-    } else {
-      break;
+    tree = findMatchingOption(tree[path[i]], path[i + 1]);
+    if (! tree){
+        break;
     }
   }
   return tree && tree['cancer_population'];

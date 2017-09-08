@@ -968,12 +968,15 @@ describe("Utils", function(){
             expect(searchUtils.findMatchingProp(pop, [ 'race', 'Black' ])).to.eql(44316094);
             expect(searchUtils.findMatchingProp(pop, [ 'race', 'American Indian/Alaska Native', 'sex', 'Male' ])).to.eql(2267184);
             expect(searchUtils.findMatchingProp(pop, [ 'race', 'American Indian/Alaska Native', 'sex', 'Female' ])).to.eql(2248348);
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Asian or Pacific Islander', 'sex', 'Female' ])).to.eql(10183290);
         });
 
-        it('should return undefined when given an unmatched path', function () {
-            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Unknown' ])).to.eql(undefined);
-            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Unknown', 'sex', 'Female' ])).to.eql(undefined);
+        it('should return null when given an unmatched path', function () {
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Unknown' ])).to.eql(null);
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Unknown', 'sex', 'Female' ])).to.eql(null);
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Asian or Pacific Islander', 'sex', 'Male' ])).to.eql(null);
         });
+
     });
 
     describe('.findMatchingOption', function () {
