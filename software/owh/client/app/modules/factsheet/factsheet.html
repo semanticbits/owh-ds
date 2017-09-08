@@ -7,11 +7,11 @@
     <div style="padding: 30px;">
         <div class="usa-grid">
             <div class="usa-width-two-thirds">
-                <h3>State Fact Sheets</h3>
+                <h3 id="pageHeading">State Fact Sheets</h3>
             </div>
         </div>
         <div class="usa-width-one-whole">
-            <div>Select desired state and type to download fact sheet that present a snapshot of
+            <div id="pageDescription">Select desired state and type to download fact sheet that present a snapshot of
                 demographic characteristics as well as variety of health status indicators for females within the area</div>
 
             <div class="usa-grid">
@@ -32,12 +32,12 @@
             <br/>
             <br/>
             <div>
-                <a href="#" ng-click="fsc.getFactSheet(state, fsType);">
+                <a id="generateFactSheetLink" href="#" ng-click="fsc.getFactSheet(state, fsType);">
                     Generate fact sheet
                 </a>
             </div>
             <div id="factsheet_content" ng-if="fsc.factSheet" class="factsheet-content">
-              <a href="#" ng-click="fsc.exportFactSheet()" ng-if="fsc.factSheet" class="pull-right">
+              <a href="#"  id="downloadFactSheetLink" ng-click="fsc.exportFactSheet()" ng-if="fsc.factSheet" class="pull-right">
                     <span>Download fact sheet for {{fsc.state}}</span>
                     <span><i class="material-icons margin-right-10 pdf-icon">picture_as_pdf</i></span>
                 </a>

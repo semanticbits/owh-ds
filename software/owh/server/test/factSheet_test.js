@@ -1,5 +1,4 @@
 var factSheet = require('../api/factSheet');
-var factSheetResponse = require('./data/factsheet.json');
 var expect = require("expect.js");
 
 describe("Fact sheet", function () {
