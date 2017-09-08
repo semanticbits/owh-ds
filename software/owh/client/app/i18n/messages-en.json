@@ -559,5 +559,7 @@
   "chart.title.measure.number_of_infant_deaths.infant_death_rate": "Rate of Infant Deaths",
   "chart.title.measure.cancer_incident":"Number of Cancer Incidence",
   "chart.title.measure.cancer_mortality":"Number of Cancer Deaths",
+  "chart.title.measure.crude_cancer_death_rates":"Cancer Death Rates",
+  "chart.title.measure.crude_cancer_incidence_rates":"Cancer Incidence Rates",
   "chart.title.measure.fertility_rates": "Fertility Rates"
 }

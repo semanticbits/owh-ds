@@ -124,10 +124,6 @@ module.exports.population = {
           {
             "name": "Female",
             "cancer_population": 10183290
-          },
-          {
-            "name": "Male",
-            "cancer_population": 9362812
           }
         ]
       }

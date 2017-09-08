@@ -184,6 +184,13 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
 function suppressCounts (obj, countKey, dataType, suppressKey, maxValue, dataset) {
     var key = suppressKey ? suppressKey : countKey;
     var value = maxValue !== undefined ? maxValue : 10;
+    var suppressedVal = 'suppressed';
+    var naVal = 'na'
+    // Set supressed and na value for charts to -1 and -2 respectively;
+    if(dataType === 'charts'){
+        suppressedVal = -1;
+        naVal = -2;
+    }
     for (var property in obj) {
         if (property === 'name') {
             continue;
@@ -201,20 +208,21 @@ function suppressCounts (obj, countKey, dataType, suppressKey, maxValue, dataset
             });
         } else if(dataset === 'brfss') {
             if(obj.mean == 0 && obj.count != 0) {
-                obj.mean = 'suppressed';
+                obj.mean = suppressedVal;
             } else if(obj.mean == 0 && obj.count == 0) {
-                obj.mean = 'nr'; //no response
+                obj.mean = naVal; //no response
             }
-        }
-        else if(obj[countKey] != undefined && obj[countKey] < value) {
-            if(dataType == 'charts') {//for chart and map set suppressed values to 0
-                obj[key] = 0;
+        } else if(obj[countKey] != undefined && obj[countKey] < value) {
+            if(countKey === 'std' && obj[countKey] === 0) {
+                obj[countKey] = naVal;
+            } else {// supress value
+                obj[key] = suppressedVal;
             }
-            else if(countKey === 'std' && obj[countKey] === 0) {
-                obj[countKey] = 'na';
-            }
-            else {//for table data set to suppressed
-                obj[key] = 'suppressed';
+        } else if ((countKey === 'cancer_incident' || countKey === 'cancer_mortality') && obj.pop) {  //Apply cancer SE suppression
+            var se = Math.sqrt(obj[countKey]) / obj.pop * 100000;
+            obj['se'] = se;
+            if (se >= 25) {
+                obj[key] = suppressedVal;
             }
         }
     }
@@ -829,7 +837,7 @@ function attachPopulation (root, popTree, path) {
     for (var property in root) {
         if (Array.isArray(root[property])) {
             root[property].forEach(function (option) {
-              attachPopulation(option, popTree, path.concat([property, option.name]));
+                attachPopulation(option, popTree, path.concat([property, option.name]));
             })
         }
     }
@@ -837,11 +845,9 @@ function attachPopulation (root, popTree, path) {
 
 function findMatchingProp (tree, path) {
   for (var i = 0; i < path.length; i += 2) {
-    var matching = findMatchingOption(tree[path[i]], path[i + 1]);
-    if (matching) {
-      tree = matching;
-    } else {
-      break;
+    tree = findMatchingOption(tree[path[i]], path[i + 1]);
+    if (! tree){
+        break;
     }
   }
   return tree && tree['cancer_population'];
