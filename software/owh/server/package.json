@@ -5,7 +5,7 @@
   "scripts": {
     "prestart": "npm install",
     "start": "node ./bin/www",
-    "debug": "node --inspect=3001 ./bin/www ",
+    "debug": "nodemon --inspect=3001 ./bin/www ",
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive test"
   },
   "dependencies": {

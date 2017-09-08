@@ -76,7 +76,7 @@ describe("Utils", function(){
         expect(result.data.nested.table.race[0].hispanicOrigin[0].deaths).equal('suppressed');
         expect(result.data.nested.table.race[0].hispanicOrigin[0].gender[1].deaths).equal('suppressed');
         //for chart initialize suppressed counts to 0
-        expect(result.data.nested.charts[0].race[1].hispanicOrigin[1].deaths).equal(0);
+        expect(result.data.nested.charts[0].race[1].hispanicOrigin[1].deaths).equal(-1);
         done();
 
     });

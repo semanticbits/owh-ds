@@ -45,13 +45,13 @@
                             <span ng-if="!eachColumn.title.mean" ng-bind-html="eachColumn.title"></span>
                             <div ng-if="eachColumn.title.mean">
                                 {{eachColumn.title.mean == 'suppressed' ? 'Suppressed' :
-                                (eachColumn.title.mean == 'nr'? 'No response' : eachColumn.title.mean + '%')}}
-                                <div ng-if="oatc.showCi && eachColumn.title.mean != 'suppressed' && eachColumn.title.mean != 'nr'"
+                                (eachColumn.title.mean == 'na'? 'No response' : eachColumn.title.mean + '%')}}
+                                <div ng-if="oatc.showCi && eachColumn.title.mean != 'suppressed' && eachColumn.title.mean != 'na'"
                                      title="Confidence interval">
                                     <br/><br/>
                                     ({{eachColumn.title.ci_l}}-{{eachColumn.title.ci_u}})
                                 </div>
-                                <div ng-if="oatc.showUf && eachColumn.title.mean != 'suppressed' && eachColumn.title.mean != 'nr'"
+                                <div ng-if="oatc.showUf && eachColumn.title.mean != 'suppressed' && eachColumn.title.mean != 'na'"
                                      title="Number of responses">
                                     <br/>
                                     {{eachColumn.title.count}}
