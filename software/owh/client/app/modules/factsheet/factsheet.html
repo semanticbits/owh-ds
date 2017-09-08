@@ -46,7 +46,8 @@
                 <div ng-if="fsc.factSheet.totalGenderPop" class="bridge-race-factsheet">
                     <h5 class="bridge-race-heading">Population in {{fsc.state}}</h5>
                     <div class="bridge-race-description">
-                        Total state population: {{fsc.factSheet.totalGenderPop}} ({{fsc.factSheet.gender[0].bridge_race}} females; {{fsc.factSheet.gender[1].bridge_race}} males)</div>
+                        Total state population: {{fsc.factSheet.totalGenderPop}} ({{fsc.factSheet.gender[0].bridge_race}} females; {{fsc.factSheet.gender[1].bridge_race}} males)
+                    </div>
                     <div>
                         <table class="bridge-race-table1">
                             <thead>
@@ -93,7 +94,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <i class="bridge-race-info">Sources: 2015, NCHS National Vital Statistics System , * Racial/ethnic groups may not sum to total </i>
+                        <i class="bridge-race-info">Sources: 2015, NCHS National Vital Statistics System , * Racial/ethnic groups may not sum to total</i>
                     </div>
                 </div>
                 <!--  Detail Mortality - Cause of Death -->
@@ -176,12 +177,10 @@
                 <div class="yrbs-factsheet">
                     <div class="table-heading"><h5>Teen Health</h5> <p class="smallHeading">(Percent teenage population unless otherwise specified)</p></div>
                     <table class="yrbs-table">
-                        <tbody>
                         <tr ng-repeat="eachRecord in fsc.factSheet.yrbs" ng-class="{solidBorder: $index == 0}">
                             <td ng-bind="eachRecord.question"></td>
                             <td ng-bind="eachRecord.data"></td>
                         </tr>
-                        </tbody>
                     </table>
                     <i>Sources: 2015, YRBS; NA - Data not available or suppressed , NR - Data not reported</i>
                 </div>
