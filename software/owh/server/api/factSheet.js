@@ -430,6 +430,12 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
     return deferred.promise;
 };
 
+/**
+ * To prepare PRAMS data
+ * @param pregnantWomenData
+ * @param womenData
+ * @return {{pregnantWoment: [], women: []}}
+ */
 function preparePRAMSData(pregnantWomenData, womenData) {
     var pramsData = {
        pregnantWoment: [],
@@ -445,6 +451,13 @@ function preparePRAMSData(pregnantWomenData, womenData) {
     pramsData.women.push({"question": "Ever breastfed or pump breast milk to feed after delivery", data: womenData[2].table.question[0].YES ? womenData[2].table.question[0].YES.sitecode[0].prams.mean + "%" : "NR"});
     return pramsData;
 }
+
+/**
+ * To prepare BRFSS data
+ * @param data_2015
+ * @param data_2009
+ * @return BRFSS data array
+ */
 function prepareBRFSSData(data_2015, data_2009){
     data_2015.table.question.push(data_2009.table.question[0]);
     var brfssData = [];
@@ -472,6 +485,12 @@ function prepareBRFSSData(data_2015, data_2009){
     });
     return brfssData;
 }
+
+/**
+ * To prepare YRBS data
+ * @param data
+ * @return YRBS data array
+ */
 function prepareYRBSData(data) {
     var yrbsData = [];
     yrbsData.push({"question": "Currently use alcohol", data:data.table.question[0].YES ? data.table.question[0].YES.mental_health.mean + "%" : "NR"});
@@ -482,6 +501,13 @@ function prepareYRBSData(data) {
     yrbsData.push({"question": "Overweight", data:data.table.question[5].YES ? data.table.question[5].YES.mental_health.mean + "%" : "NR"});
     return yrbsData;
 }
+
+/**
+ * To prepare CancerData
+ * @param cancerMortalityData
+ * @param cancerIncidentData
+ * @return Cancer data array
+ */
 function prepareCancerData(cancerMortalityData, cancerIncidentData) {
     var cancerData = [];
     cancerMortalityData.data.nested.table.current_year.forEach(function(eachRecord, index){
@@ -522,7 +548,12 @@ function prepareCancerData(cancerMortalityData, cancerIncidentData) {
 }
 
 
-
+/**
+ *  To prepare natality data
+ * @param natalityBirthData
+ * @param natalityFertilityData
+ * @return Natality data json
+ */
 function prepareNatalityData(natalityBirthData, natalityFertilityData) {
     var natalityBirthDataForYear = natalityBirthData.data.nested.table.current_year[0];
     var natalityFertilityDataForYear = natalityFertilityData.data.nested.table.current_year[0];
@@ -537,6 +568,11 @@ function prepareNatalityData(natalityBirthData, natalityFertilityData) {
 }
 
 
+/**
+ * Prepare disease data
+ * @param data
+ * @param countKey
+ */
 function prepareDiseaseData(data, countKey) {
     var tbData = data.data.nested.table.race;
     tbData.forEach(function(record, index){
@@ -555,6 +591,10 @@ function prepareDiseaseData(data, countKey) {
     return tbData;
 }
 
+/**
+ * To format number
+ * @param num
+ */
 function formatNumber (num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 }

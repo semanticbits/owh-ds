@@ -41,7 +41,9 @@ module.exports = function(config){
       'app/**/*.js',
       'app/**/*.html',
       'app/**/*.spec.js',
-      'app/**/fixtures/**/*.json'
+      'app/**/fixtures/**/*.json',
+      'bower_components/pdfmake/build/pdfmake.js',
+      'bower_components/pdfmake/build/vfs_fonts.js'
     ],
 
     preprocessors: {

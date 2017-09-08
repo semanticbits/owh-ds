@@ -62,6 +62,7 @@
             "WI": "Wisconsin",
             "WY": "Wyoming"
         };
+        //To populate select box
         fsc.stateJSON = [
             {id:"AL", text:"Alabama"},
             {id:"AK", text: "Alaska"},
@@ -118,6 +119,11 @@
         fsc.exportFactSheet = exportFactSheet;
         fsc.getStateName = getStateName;
 
+        /**
+         * To get factsheet data from server
+         * @param state
+         * @param fsType
+         */
         function getFactSheet(state, fsType) {
             factSheetService.prepareFactSheetForState(state, fsType).then(function (response) {
                 fsc.state = fsc.states[response.state];
@@ -125,6 +131,12 @@
             })
         }
 
+        /**
+         * To prepare table headers for pdfmake content using given headers array
+         * @param headers
+         * @param cssClass
+         * @return table header array
+         */
         function prepareTableHeaders(headers, cssClass){
             var tableHeaders = [];
             angular.forEach(headers, function(eachHeaderText){
@@ -133,6 +145,12 @@
             return tableHeaders;
         }
 
+        /**
+         * To prepare table body for pdfmake content using given table data array
+         * @param data
+         * @param cssClass
+         * @return returns table body data array
+         */
         function prepareTableBody(data, cssClass){
             var tableBody = [];
             angular.forEach(data, function(eachRecord){
@@ -154,6 +172,10 @@
             return tableBody;
         }
 
+        /**
+         * To prepare all table data for PDF generation
+         * @return all table data JSON
+         */
         function prepareAllTablesData(){
             var allTablesData = {};
             //Prepare bridgeRace data
@@ -320,12 +342,12 @@
                 headerData:  ["Cancer Site", "Population", "Count", "Incidence Crude Rates (per 100,000)", "Deaths", "Mortality Crude Rates (per 100,000)"],
                 bodyData: cancerData
             };
-
-
-
             return allTablesData;
         }
 
+        /**
+         * To export factsheet data into PDF
+         */
         function exportFactSheet() {
             var allTablesData = prepareAllTablesData();
             var hivTableData = prepareTableBody(allTablesData.hiv.bodyData);
@@ -549,7 +571,9 @@
                 {text: 'Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only', style: 'info'}
 
             ];
-            pdfMake.createPdf(pdfDefinition).download(fsc.state+"-factsheet.pdf");
+            var document = pdfMake.createPdf(pdfDefinition);
+            document.download(fsc.state+"-factsheet.pdf");
+            return document.docDefinition
         }
         function getStateName(key) {
             return fsc.states[key];
