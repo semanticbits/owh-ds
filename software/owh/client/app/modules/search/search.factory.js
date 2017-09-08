@@ -234,17 +234,17 @@
                             if(filter.filters.selectedValues.set1){
                                     localCategory.sideFilters[index].filters.autoCompleteOptions = localCategory.sideFilters[index].filters.autoCompleteOptions.concat(filter.filters.selectedValues.set1.map(function (node) {
                                         return {key: node.id, title: node.text}
-                                    })); 
+                                    }));
                             }
                             if(filter.filters.selectedValues.set2){
                                    localCategory.sideFilters[index].filters.autoCompleteOptions = localCategory.sideFilters[index].filters.autoCompleteOptions.concat(filter.filters.selectedValues.set2.map(function (node) {
                                         return {key: node.id, title: node.text}
-                                    })); 
+                                    }));
                             }
                             if (!filter.filters.selectedValues.set1 && !filter.filters.selectedValues.set2){
                                 localCategory.sideFilters[index].filters.autoCompleteOptions = utilService.getICD10Chapters();
                             }
-                            
+
                         }
                     }
                     //To un-select selected nodes when user go back from current page
@@ -873,7 +873,7 @@
                 angular.forEach(headers, function(eachSecondaryHeader) {
                     if(eachPrimaryHeader.key.indexOf("census-region")>=0) {
                         return; // TODO: Remove this if block after fixing server side for charts data for census regions and divisions
-                    }    
+                    }
                         var chartType = $rootScope.chartMappings[eachPrimaryHeader.key + '&' + eachSecondaryHeader.key];
                     if(chartType) {
                         var secondaryGroupQuery = getGroupQuery(eachSecondaryHeader);
@@ -3523,6 +3523,8 @@
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
+                                    dontShowCounts: true,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'state')
                                 }
                             ]

@@ -1,24 +1,24 @@
 <div id="custom-modal">
     <div id="overlay">
         <div class="custom-modal-header">
-            <div>
-                <span ng-class="{'small-model-title': eg.chartData.length > 1}" ng-bind=" eg.graphTitle| translate"></span>
-                <span style="float: right" ng-if="eg.chartData.length === 1">
-                    <a name="close" href="javascript:void(0);" class="cursor-pointer" ng-click="eg.close()">
-                        <i class="material-icons purple-icon fullscreen-exit-icon-purple" title="Share on facebook">fullscreen_exit</i>
+            <div style="width: 85%">
+                <span ng-class="{'small-model-title': eg.chartData.length > 1}" ng-bind=" eg.graphTitle"></span>
+            </div>
+            <div style="width: 15%">
+                <span ng-if="eg.chartData.length === 1" class="custom-modal-button" >
+                    <a name="close" href="javascript:void(0);" ng-click="eg.close()">
+                        <i class="material-icons purple-icon fullscreen-exit-icon-purple" title="Close graph">fullscreen_exit</i>
                     </a>
                 </span>
-                <span style="float:right" class="margin-right-20" ng-if="eg.chartData.length === 1">
-                    <a name="share" class="cursor-pointer" href="javascript:void(0);" ng-click="eg.showFbDialog('chart_expanded_0',  eg.graphTitle)">
-                        &nbsp; <i class="material-icons purple-icon share-icon-purple" title="Share on facebook">share</i>
+                <span  ng-if="eg.chartData.length === 1" class="custom-modal-button" >
+                    <a name="share" href="javascript:void(0);" ng-click="eg.showFbDialog('chart_expanded_0',  eg.graphTitle)">
+                      <i class="material-icons purple-icon share-icon-purple" title="Share on facebook">share</i>
                     </a>
                 </span>
-                <span style="float: right" ng-if="eg.chartData.length === 1">
+                <span  ng-if="eg.chartData.length === 1" class="custom-modal-button">
                     <owh-export-chart chart="'chart_expanded_0'", charttitle="eg.graphTitle | translate" chartdata=eg.chartData primaryFilters=eg.primaryFilters selectedfilterstxt=eg.selectedFiltersTxt/>
                 </span>
-                <!--<span style="float: right" ng-if="eg.chartData.length === 1"><a class="cursor-pointer" name="export" ng-click="eg.export('chart_expanded_0', eg.graphTitle | translate, 'PNG')"><span class="fa purple-icon fa-download" title="Export graph as PNG"></span></a></span>-->
             </div>
-            <div ng-bind="eg.graphSubTitle"></div>
         </div>
         <div class="custom-modal-body usa-grid">
 
@@ -39,7 +39,7 @@
                             <i class="material-icons" title="{{'label.share.on.fb' | translate}}">share</i>
                         </a>
                     </div>
-                    <owh-toggle-switch ng-if="(eachChartData.charttype  !== 'lineChart' && eachChartData.charttype !== 'multiLineChart') && eachChartData.longtitle.indexOf('Rate') < 0" class="left-float chart-view-toggle"
+                    <owh-toggle-switch ng-if="(eachChartData.charttype  !== 'pieChart' && eachChartData.charttype  !== 'lineChart' && eachChartData.charttype !== 'multiLineChart') && eachChartData.longtitle.indexOf('Rate') < 0" class="left-float chart-view-toggle"
                                        options="[ {key:'bar', title:'Grouped', tooltip:'Select to view grouped bars'},{key:'stack', title:'Stacked', tooltip:'Select to view stacked bars'}]"
                                        model="eg.barmode">
                     </owh-toggle-switch>
