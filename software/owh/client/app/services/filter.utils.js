@@ -754,7 +754,7 @@
         ];
 
         var cancerAgeGroups = [
-            { key: '00 years', title: '00 years' },
+            { key: '00 years', title: '< 1 years' },
             { key: '01-04 years', title: '01-04 years' },
             { key: '05-09 years', title: '05-09 years' },
             { key: '10-14 years', title: '10-14 years' },
@@ -871,7 +871,7 @@
                     // set the values list only if the slider selection is different from the default
                     if(! (minValue == 0  && maxValue == 85)) {
                         angular.forEach(ageGroupFilter.autoCompleteOptions, function(eachOption) {
-                            if((eachOption.min <= minValue && eachOption.max >= minValue)
+                            if((eachOption.min <= minValue && eachOption.max > minValue)
                                 || (eachOption.min >= minValue && eachOption.max <= maxValue)
                                 || (eachOption.min <= maxValue && eachOption.max >= maxValue)) {
                                 ageGroupFilter.value.push(eachOption.key);
@@ -1599,7 +1599,15 @@
                     filterType: 'checkbox',
                     displaySearchBox: true,
                     displaySelectedFirst: true,
-                    autoCompleteOptions: stateOptions,
+                    autoCompleteOptions: (function (states) {
+                        states.forEach(function (state) {
+                            if (state.key === 'KS') {
+                                state.disabled = true;
+                                return state;
+                            }
+                        })
+                        return states;
+                    })(stateOptions),
                     defaultGroup:'column',
                     helpText: 'label.help.text.cancer_incidence.state'
                 }

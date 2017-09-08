@@ -689,9 +689,9 @@ function getSelectedGroupByOptions (filters) {
     }, []);
 }
 
-function getYearFilter (filters) {
+function getYearFilter (filters, yearFilterKey) {
     var yearFilter = filters.find(function (filter) {
-        return filter.key === 'year_of_death'
+        return filter.key === yearFilterKey
     });
     if (!yearFilter) return [];
     if (yearFilter.allChecked) {
@@ -751,6 +751,13 @@ function findAllAppliedFilters (allFilters) {
     }, [])
 }
 
+function hasFilterApplied (allFilters, targets) {
+    return allFilters.reduce(function (applied, filter) {
+        if (isFilterApplied(filter) && targets.indexOf(filter.key) !== -1) return true
+        return applied
+    }, false)
+}
+
 function recursivelySuppressOptions (tree, countKey, suppressionValue) {
     for (var prop in tree) {
         if (prop === countKey) {
@@ -778,12 +785,22 @@ function searchTree (root, rule, config, path) {
     }
 }
 
-function createCancerIncidenceSuppressionRules () {
-    return [
-        [ ['American Indian/Alaska Native'], ['DE','GA','IL','KS','KY','MO','NJ','NY','SC'] ],
-        [ ['Asian or Pacific Islander'], ['DE', 'IL', 'KS', 'KY', 'MO', 'SC'] ],
-        [ ['Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown'], ['DE', 'KY', 'MA', 'MO', 'PA', 'SC'] ]
-    ].reduce(function (acc, rule) {
+function createCancerIncidenceSuppressionRules (years) {
+    years = years || [];
+    var rules = [
+        [ ['American Indian/Alaska Native'], ['DE','IL','KY','NJ','NY'] ],
+        [ ['Asian or Pacific Islander'], ['DE', 'IL', 'KY'] ],
+        [ ['Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown'], ['DE', 'KY', 'MA'] ]
+    ];
+
+    if (years.indexOf('2013') !== -1 || years.indexOf('2014') !== -1) {
+        rules.push(
+            [ ['Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown'], ['AK'] ],
+            [ ['Asian or Pacific Islander'], ['AK'] ]
+        );
+    }
+
+    return rules.reduce(function (acc, rule) {
         return acc.concat(create_rules(rule[0], rule[1]))
     }, [])
 
@@ -837,6 +854,19 @@ function findMatchingOption (options, target) {
   }, null);
 }
 
+function applyPopulationSpecificSuppression (root, countKey) {
+    if (root.pop < 50000 && root[countKey]) {
+        root[countKey] = 'suppressed';
+    }
+    for (var property in root) {
+        if (Array.isArray(root[property])) {
+            root[property].forEach(function (option) {
+                applyPopulationSpecificSuppression(option, countKey);
+            });
+        }
+    }
+}
+
 module.exports.populateDataWithMappings = populateDataWithMappings;
 module.exports.populateYRBSData = populateYRBSData;
 module.exports.mergeAgeAdjustedRates = mergeAgeAdjustedRates;
@@ -852,6 +882,7 @@ module.exports.getAllSelectedFilterOptions = getAllSelectedFilterOptions;
 module.exports.suppressStateTotals = suppressStateTotals;
 module.exports.isFilterApplied = isFilterApplied;
 module.exports.findAllAppliedFilters = findAllAppliedFilters;
+module.exports.hasFilterApplied = hasFilterApplied;
 module.exports.recursivelySuppressOptions = recursivelySuppressOptions;
 module.exports.searchTree = searchTree;
 module.exports.createCancerIncidenceSuppressionRules = createCancerIncidenceSuppressionRules;
@@ -859,3 +890,4 @@ module.exports.applyCustomSuppressions = applyCustomSuppressions;
 module.exports.attachPopulation = attachPopulation;
 module.exports.findMatchingProp = findMatchingProp;
 module.exports.findMatchingOption = findMatchingOption;
+module.exports.applyPopulationSpecificSuppression = applyPopulationSpecificSuppression;
