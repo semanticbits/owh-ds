@@ -290,10 +290,10 @@
                 if(filter.filters.key === 'topic') {
                     if (sc.filters.selectedPrimaryFilter.key == 'prams') {
                         filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
-                    } else {
+                        searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup['delivery']);
+                    } else if (sc.filters.selectedPrimaryFilter.key == 'brfss') {
                         filter.filters.autoCompleteOptions = sc.filters.brfsTopicOptions;
                     }
-                    searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup['delivery']);
                 }
             });
         }
