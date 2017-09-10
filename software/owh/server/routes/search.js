@@ -56,11 +56,11 @@ var searchRouter = function(app, rConfig) {
         });
     });
 
-    app.get('/pramsQuestionsTree', function (req, res) {
+    /*app.get('/pramsQuestionsTree', function (req, res) {
         new yrbs().getPramsQuestionsTree().then(function(response) {
             res.send(new result('OK', response, "success"));
         });
-    });
+    });*/
 
     app.get('/brfsQuestionsTree', function (req, res) {
         new yrbs().getBRFSQuestionsTree().then(function(response) {

@@ -367,7 +367,7 @@
         /*
             Get PRAMS questions
          */
-        API.getPRAMSQuestionsTree().$promise.then(function(response){
+        /*API.getPRAMSQuestionsTree().$promise.then(function(response){
             console.log('prams questions response', response);
             $rootScope.pramsQuestions = response.data.questionTree;
             $rootScope.pramsQuestionsList = response.data.questionsList;
@@ -375,7 +375,7 @@
 
         }).catch(function(error){
             console.log(" Failed to get PRAMS questions from stats service ", error);
-        });
+        });*/
 
         /*
             Get BRFS questions

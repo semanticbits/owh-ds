@@ -404,9 +404,9 @@ function buildAPIQuery(primaryFilter) {
     }
 
     // For YRBS query capture the basisc/advanced search view
-    if(primaryFilter.key === 'mental_health'){
+    if(primaryFilter.key === 'mental_health' || primaryFilter.key === 'brfss'){
         if(primaryFilter.showBasicSearchSideMenu) {
-            apiQuery.yrbsBasic = true;
+            apiQuery.basicSearch = true;
         }
         if(primaryFilter.isChartorMapQuery) {
             apiQuery.isChartorMapQuery = true;

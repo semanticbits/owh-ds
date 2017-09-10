@@ -53,6 +53,14 @@
                     primaryFilter.allFilters = filters.yrbsAdvancedFilters;
                     primaryFilter.sideFilters = primaryFilter.advancedSideFilters;
                 }
+            } else if(primaryFilter.key == 'brfss') {
+                if (response.data.queryJSON.showBasicSearchSideMenu) {
+                    primaryFilter.allFilters = filters.brfsBasicFilters;
+                    primaryFilter.sideFilters = primaryFilter.basicSideFilters[0].sideFilters;
+                } else {
+                    primaryFilter.allFilters = filters.brfsAdvancedFilters;
+                    primaryFilter.sideFilters = primaryFilter.advancedSideFilters[0].sideFilters;
+                }
             }
             //sets tableView
             var tableView = response.data.queryJSON.tableView;
@@ -99,7 +107,18 @@
                 var topics = groupOptions[tableView].topic;
                 var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question')
                 questionFilter.questions = getQuestionsByTopics(topics, questions);
-                tableData.data = getDataForSelectedTopics(questionFilter.questions, tableData);
+
+                var topicFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'topic');
+                var selectedTopics = [];
+                //iff All topics selected
+                if(topicFilter.value.length == 0) {
+                    selectedTopics = questionFilter.questions;
+                } else {//get selected topic objects only
+                    selectedTopics = questionFilter.questions.filter(function(obj){
+                        return topicFilter.value.indexOf(obj.id) != -1 ;
+                    });
+                }
+                tableData.data = getDataForSelectedTopics(selectedTopics, tableData);
             }
             else if (primaryFilter.key === 'bridge_race') {
                 primaryFilter.data = response.data.resultData.nested.table;
@@ -2193,68 +2212,68 @@
             ];
 
             filters.brfsTopicOptions = [
-                {"key": "cat_45", "title": "Aerobic Activity"},
+                {"key": "cat_44", "title": "Aerobic Activity"},
                 {"key": "cat_1",  "title": "Age"},
                 {"key": "cat_12", "title": "Alcohol Consumption"},
-                {"key": "cat_32", "title": "All Teeth Removed"},
-                {"key": "cat_17", "title": "Arthritis"},
-                {"key": "cat_34", "title": "Asthma"},
-                {"key": "cat_33", "title": "BMI Categories"},
-                {"key": "cat_48", "title": "Binge Drinking"},
-                {"key": "cat_49", "title": "Blood Stool Test"},
+                {"key": "cat_30", "title": "All Teeth Removed"},
+                {"key": "cat_36", "title": "Arthritis"},
+                {"key": "cat_32", "title": "Asthma"},
+                {"key": "cat_31", "title": "BMI Categories"},
+                {"key": "cat_47", "title": "Binge Drinking"},
+                {"key": "cat_48", "title": "Blood Stool Test"},
                 {"key": "cat_4",  "title": "COPD"},
                 {"key": "cat_10", "title": "Cardiovascular Disease"},
                 {"key": "cat_3",  "title": "Cholesterol Checked"},
-                {"key": "cat_50", "title": "Cholesterol High"},
-                {"key": "cat_51", "title": "Chronic Drinking"},
-                {"key": "cat_60", "title": "Current Smoker Status"},
-                {"key": "cat_37", "title": "Dental Visit"},
+                {"key": "cat_49", "title": "Cholesterol High"},
+                {"key": "cat_57", "title": "Current Smoker Status"},
+                {"key": "cat_35", "title": "Dental Visit"},
                 {"key": "cat_0",  "title": "Depression"},
                 {"key": "cat_11", "title": "Diabetes"},
                 {"key": "cat_2",  "title": "Disability status"},
-                {"key": "cat_38", "title": "Drink and Drive"},
+                {"key": "cat_37", "title": "Drink and Drive"},
                 {"key": "cat_13", "title": "Education"},
                 {"key": "cat_14", "title": "Employment"},
-                {"key": "cat_62", "title": "Exercise"},
-                {"key": "cat_53", "title": "Fair or Poor Health"},
-                {"key": "cat_15", "title": "Five Servings per Day"},
-                {"key": "cat_40", "title": "Flu Shot"},
-                {"key": "cat_41", "title": "Fruit Consumption"},
-                {"key": "cat_18", "title": "HIV Test"},
-                {"key": "cat_23", "title": "Health Care Cost"},
-                {"key": "cat_19", "title": "Health Care Coverage"},
-                {"key": "cat_52", "title": "Heavy Drinking"},
-                {"key": "cat_54", "title": "High Blood Pressure"},
-                {"key": "cat_20", "title": "Income"},
-                {"key": "cat_21", "title": "Internet"},
+                {"key": "cat_59", "title": "Exercise"},
+                {"key": "cat_51", "title": "Fair or Poor Health"},
+                {"key": "cat_39", "title": "Flu Shot"},
+                /*{"key": "cat_15", "title": "Fruit Consumption"},*/
+                {"key": "cat_40", "title": "Fruit Consumption"},
+                {"key": "cat_16", "title": "HIV Test"},
+                {"key": "cat_21", "title": "Health Care Cost"},
+                {"key": "cat_17", "title": "Health Care Coverage"},
+                {"key": "cat_50", "title": "Heavy Drinking"},
+                {"key": "cat_52", "title": "High Blood Pressure"},
+                {"key": "cat_18", "title": "Income"},
+                {"key": "cat_19", "title": "Internet"},
                 {"key": "cat_5",  "title": "Kidney"},
                 {"key": "cat_9",  "title": "Last Checkup"},
-                {"key": "cat_43", "title": "Mammogram"},
-                {"key": "cat_22", "title": "Marital Status"},
-                {"key": "cat_35", "title": "Number of Children"},
+                {"key": "cat_42", "title": "Mammogram"},
+                {"key": "cat_20", "title": "Marital Status"},
+                {"key": "cat_33", "title": "Number of Children"},
                 {"key": "cat_6",  "title": "Other Cancer"},
-                {"key": "cat_16", "title": "Overall Health"},
-                {"key": "cat_57", "title": "PSA Test"},
-                {"key": "cat_56", "title": "Pap Test"},
-                {"key": "cat_24", "title": "Personal Care Provider"},
-                {"key": "cat_55", "title": "Physical Activity"},
-                {"key": "cat_44", "title": "Physical Activity Index"},
-                {"key": "cat_47", "title": "Pneumonia Vaccination"},
-                {"key": "cat_25", "title": "Race"},
-                {"key": "cat_58", "title": "Seatbelt Use"},
-                {"key": "cat_27", "title": "Sex"},
-                {"key": "cat_28", "title": "Shingle Vaccination"},
-                {"key": "cat_59", "title": "Sigmoidoscopy"},
+                {"key": "cat_15", "title": "Overall Health"},
+                {"key": "cat_54", "title": "PSA Test"},
+                {"key": "cat_53", "title": "Pap Test"},
+                {"key": "cat_22", "title": "Personal Care Provider"},
+                /*{"key": "cat_55", "title": "Physical Activity"},*/
+                {"key": "cat_43", "title": "Physical Activity Index"},
+                {"key": "cat_46", "title": "Pneumonia Vaccination"},
+                {"key": "cat_23", "title": "Race"},
+                {"key": "cat_24", "title": "Rent/Own Home"},
+                {"key": "cat_55", "title": "Seatbelt Use"},
+                {"key": "cat_25", "title": "Sex"},
+                {"key": "cat_26", "title": "Shingle Vaccination"},
+                {"key": "cat_56", "title": "Sigmoidoscopy"},
                 {"key": "cat_7",  "title": "Skin Cancer"},
-                {"key": "cat_30", "title": "Smokeless Tobacco"},
-                {"key": "cat_61", "title": "Smoker Status"},
-                {"key": "cat_46", "title": "Strength Activity"},
-                {"key": "cat_39", "title": "Teeth Removed"},
-                {"key": "cat_29", "title": "Tetanus Shot"},
-                {"key": "cat_36", "title": "USPSTF Recommendations"},
-                {"key": "cat_42", "title": "Under 65 Coverage"},
-                {"key": "cat_63", "title": "Vegetable Consumption"},
-                {"key": "cat_31", "title": "Veteran Status"},
+                {"key": "cat_28", "title": "Smokeless Tobacco"},
+                {"key": "cat_58", "title": "Smoker Status"},
+                {"key": "cat_45", "title": "Strength Activity"},
+                {"key": "cat_38", "title": "Teeth Removed"},
+                {"key": "cat_27", "title": "Tetanus Shot"},
+                {"key": "cat_34", "title": "USPSTF Recommendations"},
+                {"key": "cat_41", "title": "Under 65 Coverage"},
+                {"key": "cat_60", "title": "Vegetable Consumption"},
+                {"key": "cat_29", "title": "Veteran Status"},
                 {"key": "cat_8",  "title":  "Vision"}
             ];
 
@@ -2299,31 +2318,31 @@
                 {"key": "70-75", "title": "Age 70-75"}
             ];
             filters.brfsEducationOptions = [
-                {"key": "Less than H.S.", "title": "Less than H.S."},
-                {"key": "H.S. or G.E.D.", "title": "H.S. or G.E.D."},
-                {"key": "Some post-H.S.", "title": "Some post-H.S."},
-                {"key": "College graduate", "title": "College graduate"}
+                {"key": "Less than High School", "title": "Less than H.S."},
+                {"key": "High School Graduate", "title": "High School or Graduate"},
+                {"key": "Attended College/Technical School", "title": "Some post-H.S."},
+                {"key": "College/Technical School Graduate", "title": "College graduate"}
             ];
             filters.brfsGenderOptions = [
                 {"key": "Male", "title": "Male"},
                 {"key": "Female", "title": "Female"}
             ];
             filters.brfsIncomeOptions = [
-                {"key": "Less than $15,000", "title": "Less than $15,000"},
-                {"key": "$15,000-$24,999", "title": "$15,000-$24,999"},
-                {"key": "$25,000-$34,999", "title": "$25,000-$34,999"},
-                {"key": "$35,000-$49,999", "title": "$35,000-$49,999"},
-                {"key": "$50,000+", "title": "$50,000+"}
+                {"key": "<$15k", "title": "Less than $15,000"},
+                {"key": "$15k-$25k", "title": "$15,000-$25,000"},
+                {"key": "$25k-$35k", "title": "$25,000-$35,000"},
+                {"key": "$35,000 -  49,999", "title": "$35,000-$49,999"},
+                {"key": "$50k+", "title": "$50,000+"}
             ];
 
             filters.brfsRaceOptions = [
-                {"key": "White, non-Hispanic", "title": "White, non-Hispanic"},
-                {"key": "Black, non-Hispanic", "title": "Black, non-Hispanic"},
-                {"key": "American Indian or Alaskan Native, non-Hispanic", "title": "American Indian or Alaskan Native, non-Hispanic"},
-                {"key": "Asian, non-Hispanic", "title": "Asian, non-Hispanic"},
-                {"key": "Native Hawaiian or other Pacific Islander, non-Hispanic", "title": "Native Hawaiian or other Pacific Islander, non-Hispanic"},
-                {"key": "Other, non-Hispanic", "title": "Other, non-Hispanic"},
-                {"key": "Multiracial, non-Hispanic", "title": "Multiracial, non-Hispanic"},
+                {"key": "White", "title": "White, non-Hispanic"},
+                {"key": "Black", "title": "Black, non-Hispanic"},
+                {"key": "AI/AN", "title": "American Indian or Alaskan Native, non-Hispanic"},
+                {"key": "Asian", "title": "Asian, non-Hispanic"},
+                {"key": "NHOPI", "title": "Native Hawaiian or other Pacific Islander, non-Hispanic"},
+                {"key": "Other Race", "title": "Other, non-Hispanic"},
+                {"key": "Multiracial non-Hispanic", "title": "Multiracial, non-Hispanic"},
                 {"key": "Hispanic", "title": "Hispanic"}
             ];
 
@@ -2351,6 +2370,7 @@
                 { "key": "MD", "title": "Maryland" },
                 { "key": "MA", "title": "Massachusetts" },
                 { "key": "MI", "title": "Michigan" },
+                { "key": "MN", "title": "Minnesota" },
                 { "key": "MS", "title": "Mississippi" },
                 { "key": "MO", "title": "Missouri" },
                 { "key": "MT", "title": "Montana" },
@@ -2364,6 +2384,7 @@
                 { "key": "ND", "title": "North Dakota" },
                 { "key": "OH", "title": "Ohio" },
                 { "key": "OK", "title": "Oklahoma" },
+                { "key": "OR", "title": "Oregon" },
                 { "key": "PA", "title": "Pennsylvania" },
                 { "key": "RI", "title": "Rhode Island" },
                 { "key": "SC", "title": "South Carolina" },
@@ -2374,17 +2395,18 @@
                 { "key": "VT", "title": "Vermont" },
                 { "key": "VA", "title": "Virginia" },
                 { "key": "WV", "title": "West Virginia" },
+                { "key": "WA", "title": "Washington" },
                 { "key": "WI", "title": "Wisconsin" },
                 { "key": "WY", "title": "Wyoming" }
             ];
 
-            filters.brfsFilters = [
+            filters.brfsBasicFilters = [
                 {
                     key: 'topic', title: 'label.brfss.filter.topic',
-                    queryKey:"topic",primary: false,
+                    queryKey:"topic", primary: false,
                     value: [], groupBy: false,
                     filterType: 'checkbox', autoCompleteOptions: filters.brfsTopicOptions,
-                    doNotShowAll: true, helpText: ""
+                    doNotShowAll: false, helpText: ""
                 },
                 {
                     key: 'year', title: 'label.filter.year',
@@ -2396,7 +2418,7 @@
                 {
                     key: 'sex',
                     title: 'label.filter.gender',
-                    queryKey: "gender",
+                    queryKey: "sex",
                     primary: false,
                     value: [],
                     groupBy: false,
@@ -2422,7 +2444,7 @@
                 },
                 {
                     key: 'age_group', title: 'label.filter.age_group',
-                    queryKey:"age_group",primary: false, value: [],
+                    queryKey:"age",primary: false, value: [],
                     groupBy: false, filterType: 'radio',
                     autoCompleteOptions: filters.brfsAgeGroupOptions,
                     doNotShowAll: false, helpText: ""
@@ -2438,6 +2460,86 @@
                     key: 'income', title: 'label.filter.household.income',
                     queryKey:"income",primary: false, value: [],
                     groupBy: false, filterType: 'radio',
+                    autoCompleteOptions: filters.brfsIncomeOptions,
+                    doNotShowAll: false, helpText: ""
+                },
+                {
+                    key: 'question', title: 'label.brfss.filter.question',
+                    queryKey:"question.path", aggregationKey:"question.key",
+                    primary: false, value: [],
+                    groupBy: 'row', filterType: 'tree',
+                    autoCompleteOptions: $rootScope.brfsQuestionsList,
+                    donotshowOnSearch:true,
+                    questions: $rootScope.brfsQuestions,
+                    selectTitle: 'label.brfss.select.question',
+                    updateTitle: 'label.brfss.update.question',
+                    iconClass: 'fa fa-pie-chart purple-text',
+                    helpText: '',
+                    onIconClick: function(question) {
+                        showChartForQuestion(filters.selectedPrimaryFilter, question);
+                    }
+                }
+            ];
+            filters.brfsAdvancedFilters = [
+                {
+                    key: 'topic', title: 'label.brfss.filter.topic',
+                    queryKey:"topic",primary: false,
+                    value: [], groupBy: false,
+                    filterType: 'checkbox', autoCompleteOptions: filters.brfsTopicOptions,
+                    doNotShowAll: false, helpText: ""
+                },
+                {
+                    key: 'year', title: 'label.filter.year',
+                    queryKey:"year", primary: false,
+                    value: ['2015'], groupBy: false,
+                    filterType: 'checkbox', autoCompleteOptions: filters.brfsYearOptions,
+                    doNotShowAll: true, helpText: ""
+                },
+                {
+                    key: 'sex',
+                    title: 'label.filter.gender',
+                    queryKey: "sex",
+                    primary: false,
+                    value: [],
+                    groupBy: false,
+                    filterType: 'checkbox',
+                    autoCompleteOptions: filters.brfsGenderOptions,
+                    doNotShowAll: false,
+                    helpText: ''
+                },
+                {
+                    key: 'state', title: 'label.brfss.filter.state',
+                    queryKey:"sitecode",primary: false, value: ['AL'],
+                    groupBy: false, filterType: 'checkbox',
+                    autoCompleteOptions: filters.brfsStateOptions,
+                    displaySearchBox:true, displaySelectedFirst:true,
+                    doNotShowAll: false, helpText: ""
+                },
+                {
+                    key: 'race', title: 'label.brfss.filter.race_ethnicity',
+                    queryKey:"race", primary: false, value: [],
+                    groupBy: 'column', filterType: 'checkbox',
+                    autoCompleteOptions: filters.brfsRaceOptions,
+                    doNotShowAll: false, helpText: ""
+                },
+                {
+                    key: 'age_group', title: 'label.filter.age_group',
+                    queryKey:"age",primary: false, value: [],
+                    groupBy: false, filterType: 'checkbox',
+                    autoCompleteOptions: filters.brfsAgeGroupOptions,
+                    doNotShowAll: false, helpText: ""
+                },
+                {
+                    key: 'education', title: 'label.filter.education.attained',
+                    queryKey:"education",primary: false, value: [],
+                    groupBy: false, filterType: 'checkbox',
+                    autoCompleteOptions: filters.brfsEducationOptions,
+                    doNotShowAll: false, helpText: ""
+                },
+                {
+                    key: 'income', title: 'label.filter.household.income',
+                    queryKey:"income",primary: false, value: [],
+                    groupBy: false, filterType: 'checkbox',
                     autoCompleteOptions: filters.brfsIncomeOptions,
                     doNotShowAll: false, helpText: ""
                 },
@@ -3581,80 +3683,157 @@
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total',
                     tableView:'alcohol_consumption',  chartAxisLabel:'Percentage',
                     showBasicSearchSideMenu: true, runOnFilterChange: true,
-                    allFilters: filters.brfsFilters, header:"Behavioral Risk Factor Surveillance System",
-                    sideFilters:[
+                    allFilters: filters.brfsBasicFilters, header:"Behavioral Risk Factor Surveillance System",
+                    advancedSideFilters:[
                         {
+                            sideFilters:[
+                                {
+                                    sideFilters: [
+                                        {
+                                            filterGroup: false,
+                                            collapse: false,
+                                            allowGrouping: false,
+                                            dontShowCounts: true,
+                                            filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'topic')
+                                        },
+                                        {
+                                            filterGroup: false,
+                                            collapse: false,
+                                            allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts: true,
+                                            filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'year')
+                                        },
+                                        {
+                                            filterGroup: false,
+                                            collapse: false,
+                                            allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts: true,
+                                            filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'state')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'question')
+                                        }
+                                    ]
+                                },
+                                {
+                                    category: 'Breakout',
+                                    sideFilters: [
+                                        {
+                                            filterGroup: false, collapse: false,
+                                            allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            onFilterChange: utilService.brfsFilterChange,
+                                            filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'sex')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false,
+                                            allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            onFilterChange: utilService.brfsFilterChange,
+                                            filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'race')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false,
+                                            allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            onFilterChange: utilService.brfsFilterChange,
+                                            filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'age_group')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false,
+                                            allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            onFilterChange: utilService.brfsFilterChange,
+                                            filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'education')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false,
+                                            allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            onFilterChange: utilService.brfsFilterChange,
+                                            filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'income')
+                                        }
+                                    ]
 
-                            sideFilters: [
-                                {
-                                    filterGroup: false,
-                                    collapse: false,
-                                    allowGrouping: false,
-                                    dontShowCounts: true,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'topic')
-                                },
-                                {
-                                    filterGroup: false,
-                                    collapse: false,
-                                    allowGrouping: false,
-                                    dontShowCounts: true,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'year')
-                                },
-                                {
-                                    filterGroup: false,
-                                    collapse: false,
-                                    allowGrouping: true,
-                                    groupOptions: filters.columnGroupOptions,
-                                    dontShowCounts: true,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'state')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'question')
                                 }
                             ]
-                        },
+                        }
+                    ],
+                    basicSideFilters:[
                         {
-                            category: 'Breakout',
-                            sideFilters: [
+                            sideFilters:[
                                 {
-                                    filterGroup: false, collapse: false,
-                                    allowGrouping: true, groupOptions: filters.columnGroupOptions,
-                                    onFilterChange: utilService.brfsFilterChange,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'sex')
+                                    sideFilters: [
+                                        {
+                                            filterGroup: false,
+                                            collapse: false,
+                                            allowGrouping: false,
+                                            dontShowCounts: true,
+                                            filters: utilService.findByKeyAndValue(filters.brfsBasicFilters, 'key', 'topic')
+                                        },
+                                        {
+                                            filterGroup: false,
+                                            collapse: false,
+                                            allowGrouping: false,
+                                            dontShowCounts: true,
+                                            filters: utilService.findByKeyAndValue(filters.brfsBasicFilters, 'key', 'year')
+                                        },
+                                        {
+                                            filterGroup: false,
+                                            collapse: false,
+                                            allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts: true,
+                                            filters: utilService.findByKeyAndValue(filters.brfsBasicFilters, 'key', 'state')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.brfsBasicFilters, 'key', 'question')
+                                        }
+                                    ]
                                 },
                                 {
-                                    filterGroup: false, collapse: false,
-                                    allowGrouping: true, groupOptions: filters.columnGroupOptions,
-                                    onFilterChange: utilService.brfsFilterChange,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'race')
-                                },
-                                {
-                                    filterGroup: false, collapse: false,
-                                    allowGrouping: true, groupOptions: filters.columnGroupOptions,
-                                    onFilterChange: utilService.brfsFilterChange,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'age_group')
-                                },
-                                {
-                                    filterGroup: false, collapse: false,
-                                    allowGrouping: true, groupOptions: filters.columnGroupOptions,
-                                    onFilterChange: utilService.brfsFilterChange,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'education')
-                                },
-                                {
-                                    filterGroup: false, collapse: false,
-                                    allowGrouping: true, groupOptions: filters.columnGroupOptions,
-                                    onFilterChange: utilService.brfsFilterChange,
-                                    filters: utilService.findByKeyAndValue(filters.brfsFilters, 'key', 'income')
+                                    category: 'Breakout',
+                                    sideFilters: [
+                                        {
+                                            filterGroup: false, collapse: false,
+                                            allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            onFilterChange: utilService.brfsFilterChange,
+                                            filters: utilService.findByKeyAndValue(filters.brfsBasicFilters, 'key', 'sex')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false,
+                                            allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            onFilterChange: utilService.brfsFilterChange,
+                                            filters: utilService.findByKeyAndValue(filters.brfsBasicFilters, 'key', 'race')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false,
+                                            allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            onFilterChange: utilService.brfsFilterChange,
+                                            filters: utilService.findByKeyAndValue(filters.brfsBasicFilters, 'key', 'age_group')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false,
+                                            allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            onFilterChange: utilService.brfsFilterChange,
+                                            filters: utilService.findByKeyAndValue(filters.brfsBasicFilters, 'key', 'education')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false,
+                                            allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            onFilterChange: utilService.brfsFilterChange,
+                                            filters: utilService.findByKeyAndValue(filters.brfsBasicFilters, 'key', 'income')
+                                        }
+                                    ]
+
                                 }
                             ]
-
                         }
                     ]
                 }
             ];
 
             filters.search[1].sideFilters = filters.search[1].basicSideFilters; //Set the default side filters for YRBS to basic
+            filters.search[11].sideFilters = filters.search[11].basicSideFilters[0].sideFilters; //Set the default side filters for BRFSS to basic
             return filters;
         }
 
