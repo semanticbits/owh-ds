@@ -62,6 +62,10 @@
       'convertSVGtoPNG' : {
         method : 'POST',
         url: '/svgtopng'
+      },
+      'getFactSheet' : {
+          method : 'GET',
+          url: '/factsheet'
       }
     }
   }

@@ -11,7 +11,8 @@
             uploadImage : uploadImage,
             generateHashCode : generateHashCode,
             getDsMetadata: getDsMetadata,
-            SVGtoPNG:SVGtoPNG
+            SVGtoPNG:SVGtoPNG,
+            getFactSheetForState:getFactSheetForState
         };
         return service;
 
@@ -52,6 +53,18 @@
             API.convertSVGtoPNG({svg:svg}).$promise.then(onComplete).catch(onFailed);
             function onComplete(response) { deferred.resolve(response); }
             function onFailed(error) { deferred.reject(error) }
+            return deferred.promise;
+        }
+
+        function getFactSheetForState(state, fsType) {
+            var deferred = $q.defer();
+            API.getFactSheet({state:state, fsType:fsType}).$promise.then(onComplete).catch(onFailed);
+            function onComplete(response) {
+                deferred.resolve(response);
+            }
+            function onFailed(error) {
+                deferred.reject(error)
+            }
             return deferred.promise;
         }
     }

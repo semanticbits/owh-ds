@@ -23,6 +23,18 @@
   .home-icon {
     background: url(../images/material-icons/home-blue.svg);
   }
+
+  .description-icon {
+    background: url(../images/material-icons/ic_description_black.svg);
+  }
+
+  .pdf-icon {
+    background: url(../images/material-icons/pdf_red.svg);
+  }
+  .active .description-icon {
+    background: url(../images/material-icons/ic_description_purple.svg);
+  }
+
   .active .home-icon {
     background: url(../images/material-icons/home-purple.svg);
   }
