@@ -482,6 +482,7 @@ describe("Search controller: ", function () {
             primaryFilterKey: 'deaths'
         };
 
+        $rootScope.acceptDUR = true;
         spyOn(searchFactory, "generateHashCode").and.returnValue({
             then: function(){}
         });

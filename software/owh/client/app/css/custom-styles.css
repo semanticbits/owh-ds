@@ -2004,3 +2004,17 @@ ul.filter-group li.selected a {
 		opacity: 0.5 !important;
 	}
 }
+.data-use {
+	top: 10%;
+	left: 25%;
+	height: 670px;
+	overflow-y: auto;
+	width: 900px;
+	max-width: 85%;
+	box-shadow: 0 10px 30px black;
+	position:fixed;
+	border: 2px solid black;
+	background-color: #ffffff;
+	z-index: 100;
+	border-radius: 5px;
+}
