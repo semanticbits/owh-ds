@@ -38,7 +38,7 @@ var factsheetsDefinitionsWrapper = function () {
         fsp.getTableHeaders('bridge-race-table1').then(function(headers) {
             expect(headers[0]).to.contains('Racial Distributions of Residents*');
             expect(headers[1]).to.contains('Total');
-            expect(headers[2]).to.contains('Black, non-Hispanic**');
+            expect(headers[2]).to.contains('Black, non-Hispanic');
             expect(headers[3]).to.contains('White, non-Hispanic');
             expect(headers[4]).to.contains('American Indian');
             expect(headers[5]).to.contains('Asian/Pacific Islander');
