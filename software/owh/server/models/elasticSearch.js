@@ -490,18 +490,18 @@ ElasticClient.prototype.aggregateCancerData = function (query, cancer_index) {
     logger.debug("Cancer ES Query for "+ index+ " :"+ JSON.stringify( query[0]));
     var promises = [ this.executeESQuery(index, type, query[0]) ];
 
-    if (query[2]) {
-        promises.push(this.executeESQuery(index, type, query[2]));
-    }
-    if (query[1])  {
-        logger.debug("Cancer Population ES Query for "+ cancer_population_index+ " :"+ JSON.stringify( query[1]));
-        promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[1]));
-    }
+    if (query[2]) promises.push(this.executeESQuery(index, type, query[2]));
+    if (query[1]) promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[1]));
+    if (query[2]) promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[2]));
 
     return Q.all(promises).spread(function (queryResponse, mapResponse, populationResponse) {
         var data = searchUtils.populateDataWithMappings(queryResponse, type);
         var pop = searchUtils.populateDataWithMappings(populationResponse, cancer_population_type);
         searchUtils.attachPopulation(data.data.nested.table, pop.data.nested.table, []);
+        // searchUtils.attachPopulation(data.data.nested.charts, pop.data.nested.charts, []);
+        for (var i=0; i< data.data.nested.charts.length; i++){
+            searchUtils.attachPopulation (data.data.nested.charts[i], pop.data.nested.charts[i], []);
+        }
         if (mapResponse) {
           var mapData = searchUtils.populateDataWithMappings(mapResponse, type);
           data.data.nested.maps = mapData.data.nested.maps;

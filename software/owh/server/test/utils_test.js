@@ -76,7 +76,7 @@ describe("Utils", function(){
         expect(result.data.nested.table.race[0].hispanicOrigin[0].deaths).equal('suppressed');
         expect(result.data.nested.table.race[0].hispanicOrigin[0].gender[1].deaths).equal('suppressed');
         //for chart initialize suppressed counts to 0
-        expect(result.data.nested.charts[0].race[1].hispanicOrigin[1].deaths).equal(0);
+        expect(result.data.nested.charts[0].race[1].hispanicOrigin[1].deaths).equal(-1);
         done();
 
     });
@@ -968,12 +968,15 @@ describe("Utils", function(){
             expect(searchUtils.findMatchingProp(pop, [ 'race', 'Black' ])).to.eql(44316094);
             expect(searchUtils.findMatchingProp(pop, [ 'race', 'American Indian/Alaska Native', 'sex', 'Male' ])).to.eql(2267184);
             expect(searchUtils.findMatchingProp(pop, [ 'race', 'American Indian/Alaska Native', 'sex', 'Female' ])).to.eql(2248348);
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Asian or Pacific Islander', 'sex', 'Female' ])).to.eql(10183290);
         });
 
-        it('should return undefined when given an unmatched path', function () {
-            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Unknown' ])).to.eql(undefined);
-            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Unknown', 'sex', 'Female' ])).to.eql(undefined);
+        it('should return null when given an unmatched path', function () {
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Unknown' ])).to.eql(null);
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Unknown', 'sex', 'Female' ])).to.eql(null);
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Asian or Pacific Islander', 'sex', 'Male' ])).to.eql(null);
         });
+
     });
 
     describe('.findMatchingOption', function () {
