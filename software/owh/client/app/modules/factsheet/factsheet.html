@@ -46,7 +46,7 @@
                 <div ng-if="fsc.factSheet.totalGenderPop" class="bridge-race-factsheet">
                     <h5 class="bridge-race-heading">Population in {{fsc.state}}</h5>
                     <div class="bridge-race-description">
-                        Total state population: {{fsc.factSheet.totalGenderPop}} ({{fsc.factSheet.gender[0].bridge_race}} females; {{fsc.factSheet.gender[1].bridge_race}} males)
+                        Total state population: {{fsc.factSheet.totalGenderPop | number }} ({{fsc.factSheet.gender[0].bridge_race | number }} females; {{fsc.factSheet.gender[1].bridge_race | number}} males)
                     </div>
                     <div>
                         <table class="bridge-race-table1">
@@ -54,7 +54,7 @@
                                 <tr>
                                     <th>Racial Distributions of Residents*</th>
                                     <th>Total</th>
-                                    <th>Black, non-Hispanic**</th>
+                                    <th>Black, non-Hispanic</th>
                                     <th>White, non-Hispanic</th>
                                     <th>American Indian</th>
                                     <th>Asian/Pacific Islander</th>
@@ -209,6 +209,22 @@
                         <tr>
                             <td>Fertility Rates (per 100,000)</td>
                             <td>{{fsc.factSheet.natalityData.fertilityRate}}</td>
+                        </tr>
+                        <tr>
+                            <td>Vaginal</td>
+                            <td>{{fsc.factSheet.natalityData.vaginalRate}}</td>
+                        </tr>
+                        <tr>
+                            <td>Cesarean</td>
+                            <td>{{fsc.factSheet.natalityData.cesareanRate}}</td>
+                        </tr>
+                        <tr>
+                            <td>Low Birth Weight (<2500 gms)</td>
+                            <td>{{fsc.factSheet.natalityData.lowBirthWeightRate}}</td>
+                        </tr>
+                        <tr>
+                            <td>Twin Birth Rate</td>
+                            <td>{{fsc.factSheet.natalityData.twinBirthRate}}</td>
                         </tr>
                     </table>
                     <i>Sources:  2015, NCHS National Vital Statistics System</i>

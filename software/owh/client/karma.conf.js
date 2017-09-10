@@ -37,13 +37,13 @@ module.exports = function(config){
       'bower_components/file-saver/FileSaver.min.js',
       'vendor/leaflet-image/leaflet-image.js',
       'bower_components/angular-filter/dist/angular-filter.min.js',
+      'bower_components/pdfmake/build/pdfmake.js',
+      'bower_components/pdfmake/build/vfs_fonts.js',
       'app/**/*.module.js',
       'app/**/*.js',
       'app/**/*.html',
       'app/**/*.spec.js',
-      'app/**/fixtures/**/*.json',
-      'bower_components/pdfmake/build/pdfmake.js',
-      'bower_components/pdfmake/build/vfs_fonts.js'
+      'app/**/fixtures/**/*.json'
     ],
 
     preprocessors: {

@@ -79,6 +79,18 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
         //Natality - fertilityRates
         var natality_fertilityRates_esQuery = factSheetQueryJSON.natality["fertilityRates"][0];
         var natality_fertilityRates_populationQuery = factSheetQueryJSON.natality["fertilityRates"][1];
+        //Natality - Vaginal
+        var natality_vaginal_esQuery = factSheetQueryJSON.natality["vaginal"];
+        //Natality - Cesarean
+        var natality_cesarean_esQuery = factSheetQueryJSON.natality["cesarean"];
+        //Natality - Low Birth Weight (<2500 gms)
+        var natality_lowBirthWeight_esQuery = factSheetQueryJSON.natality["lowBirthWeight"];
+        //Natality - Twin Birth Rate
+        var natality_twinBirth_esQuery = factSheetQueryJSON.natality["twinBirth"];
+        //Natality - total 2015 births
+        var natality_total_births_esQuery = factSheetQueryJSON.natality["totalBirthsByYear"];
+
+
         //Cancer - Mortality - Incident
         var cancer_Breast_esQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Breast"][0];
         var cancer_Breast_populationQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Breast"][1];
@@ -194,6 +206,16 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             //Natality - fertilityRates
             es.executeMultipleESQueries(natality_fertilityRates_esQuery, 'owh_natality', 'natality'),
             es.aggregateCensusDataQuery(natality_fertilityRates_populationQuery, 'owh_census_rates', "census_rates", 'pop'),
+            //Natality - Vaginal
+            es.executeMultipleESQueries(natality_vaginal_esQuery, 'owh_natality', 'natality'),
+            //Natality cesarean
+            es.executeMultipleESQueries(natality_cesarean_esQuery, 'owh_natality', 'natality'),
+            //Natality Low Birth Weight (<2500 gms)
+            es.executeMultipleESQueries(natality_lowBirthWeight_esQuery, 'owh_natality', 'natality'),
+            //Natality Twin Birth Rate
+            es.executeMultipleESQueries(natality_twinBirth_esQuery, 'owh_natality', 'natality'),
+            //Natality total birth population by year
+            es.executeMultipleESQueries(natality_total_births_esQuery, 'owh_natality', 'natality'),
             //Cancer - Mortality
             es.executeESQuery('owh_cancer_mortality', 'cancer_mortality', cancer_Breast_esQuery),
             es.executeESQuery('owh_cancer_population', 'cancer_population', cancer_Breast_populationQuery),
@@ -318,27 +340,37 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             //Natality - fertilityRates
             var natality_fertilityRates_Data = searchUtils.populateDataWithMappings(resp[52], 'natality');
             es.mergeWithCensusData(natality_fertilityRates_Data, resp[53], 'pop');
+            //Natality - vaginal
+            var natality_vaginal_Data = searchUtils.populateDataWithMappings(resp[54], 'natality');
+            //Natality n- Cesarean
+            var natality_cesarean_Data = searchUtils.populateDataWithMappings(resp[55], 'natality');
+            //Natality - Low Birth weight (<2500 gms)
+            var natality_lowBirthWeight_Data = searchUtils.populateDataWithMappings(resp[56], 'natality');
+            //Natality - Twin Birth Rate
+            var natality_twinBirth_Data = searchUtils.populateDataWithMappings(resp[57], 'natality');
+            //Natality - Total birth population by year
+            var natality_totalBirthPopulation_Data = searchUtils.populateDataWithMappings(resp[58], 'natality');
             //Cancer - Mortality
-            var cancer_mortality_breast_data = searchUtils.populateDataWithMappings(resp[54], 'cancer_mortality');
-            var cancer_breast_population = searchUtils.populateDataWithMappings(resp[55], 'cancer_population');
+            var cancer_mortality_breast_data = searchUtils.populateDataWithMappings(resp[59], 'cancer_mortality');
+            var cancer_breast_population = searchUtils.populateDataWithMappings(resp[60], 'cancer_population');
             searchUtils.attachPopulation(cancer_mortality_breast_data.data.nested.table, cancer_breast_population.data.nested.table, []);
-            var cancer_mortality_colonAndRectum_data = searchUtils.populateDataWithMappings(resp[56], 'cancer_mortality');
-            var cancer_colonAndRectum_population = searchUtils.populateDataWithMappings(resp[57], 'cancer_population');
+            var cancer_mortality_colonAndRectum_data = searchUtils.populateDataWithMappings(resp[61], 'cancer_mortality');
+            var cancer_colonAndRectum_population = searchUtils.populateDataWithMappings(resp[62], 'cancer_population');
             searchUtils.attachPopulation(cancer_mortality_colonAndRectum_data.data.nested.table, cancer_colonAndRectum_population.data.nested.table, []);
-            var cancer_mortality_lungAndBronchus_data = searchUtils.populateDataWithMappings(resp[58], 'cancer_mortality');
-            var cancer_lungAndBronchus_population = searchUtils.populateDataWithMappings(resp[59], 'cancer_population');
+            var cancer_mortality_lungAndBronchus_data = searchUtils.populateDataWithMappings(resp[63], 'cancer_mortality');
+            var cancer_lungAndBronchus_population = searchUtils.populateDataWithMappings(resp[64], 'cancer_population');
             searchUtils.attachPopulation(cancer_mortality_lungAndBronchus_data.data.nested.table, cancer_lungAndBronchus_population.data.nested.table, []);
-            var cancer_mortality_melanoma_data = searchUtils.populateDataWithMappings(resp[60], 'cancer_mortality');
-            var cancer_melanoma_population = searchUtils.populateDataWithMappings(resp[61], 'cancer_population');
+            var cancer_mortality_melanoma_data = searchUtils.populateDataWithMappings(resp[65], 'cancer_mortality');
+            var cancer_melanoma_population = searchUtils.populateDataWithMappings(resp[66], 'cancer_population');
             searchUtils.attachPopulation(cancer_mortality_melanoma_data.data.nested.table, cancer_melanoma_population.data.nested.table, []);
-            var cancer_mortality_cervix_data = searchUtils.populateDataWithMappings(resp[62], 'cancer_mortality');
-            var cancer_cervix_population = searchUtils.populateDataWithMappings(resp[63], 'cancer_population');
+            var cancer_mortality_cervix_data = searchUtils.populateDataWithMappings(resp[67], 'cancer_mortality');
+            var cancer_cervix_population = searchUtils.populateDataWithMappings(resp[68], 'cancer_population');
             searchUtils.attachPopulation(cancer_mortality_cervix_data.data.nested.table, cancer_cervix_population.data.nested.table, []);
-            var cancer_mortality_ovary_data = searchUtils.populateDataWithMappings(resp[64], 'cancer_mortality');
-            var cancer_ovary_population = searchUtils.populateDataWithMappings(resp[65], 'cancer_population');
+            var cancer_mortality_ovary_data = searchUtils.populateDataWithMappings(resp[69], 'cancer_mortality');
+            var cancer_ovary_population = searchUtils.populateDataWithMappings(resp[70], 'cancer_population');
             searchUtils.attachPopulation(cancer_mortality_ovary_data.data.nested.table, cancer_ovary_population.data.nested.table, []);
-            var cancer_mortality_prostate_data = searchUtils.populateDataWithMappings(resp[66], 'cancer_mortality');
-            var cancer_prostate_population = searchUtils.populateDataWithMappings(resp[67], 'cancer_population');
+            var cancer_mortality_prostate_data = searchUtils.populateDataWithMappings(resp[71], 'cancer_mortality');
+            var cancer_prostate_population = searchUtils.populateDataWithMappings(resp[72], 'cancer_population');
             searchUtils.attachPopulation(cancer_mortality_prostate_data.data.nested.table, cancer_prostate_population.data.nested.table, []);
             //Merge all Cancer mortality sites data
             var cancer_mortality_data = cancer_mortality_breast_data;
@@ -349,19 +381,19 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             cancer_mortality_data.data.nested.table.current_year.push.apply(cancer_mortality_data.data.nested.table.current_year, cancer_mortality_ovary_data.data.nested.table.current_year);
             cancer_mortality_data.data.nested.table.current_year.push.apply(cancer_mortality_data.data.nested.table.current_year, cancer_mortality_prostate_data.data.nested.table.current_year);
             //Cancer - Incident
-            var cancer_incident_breast_data = searchUtils.populateDataWithMappings(resp[68], 'cancer_incident');
+            var cancer_incident_breast_data = searchUtils.populateDataWithMappings(resp[73], 'cancer_incident');
             searchUtils.attachPopulation(cancer_incident_breast_data.data.nested.table, cancer_breast_population.data.nested.table, []);
-            var cancer_incident_colonAndRectum_data = searchUtils.populateDataWithMappings(resp[69], 'cancer_incident');
+            var cancer_incident_colonAndRectum_data = searchUtils.populateDataWithMappings(resp[74], 'cancer_incident');
             searchUtils.attachPopulation(cancer_incident_colonAndRectum_data.data.nested.table, cancer_colonAndRectum_population.data.nested.table, []);
-            var cancer_incident_lungAndBronchus_data = searchUtils.populateDataWithMappings(resp[70], 'cancer_incident');
+            var cancer_incident_lungAndBronchus_data = searchUtils.populateDataWithMappings(resp[75], 'cancer_incident');
             searchUtils.attachPopulation(cancer_incident_lungAndBronchus_data.data.nested.table, cancer_lungAndBronchus_population.data.nested.table, []);
-            var cancer_incident_melanoma_data = searchUtils.populateDataWithMappings(resp[71], 'cancer_incident');
+            var cancer_incident_melanoma_data = searchUtils.populateDataWithMappings(resp[76], 'cancer_incident');
             searchUtils.attachPopulation(cancer_incident_melanoma_data.data.nested.table, cancer_melanoma_population.data.nested.table, []);
-            var cancer_incident_cervix_data = searchUtils.populateDataWithMappings(resp[72], 'cancer_incident');
+            var cancer_incident_cervix_data = searchUtils.populateDataWithMappings(resp[77], 'cancer_incident');
             searchUtils.attachPopulation(cancer_incident_cervix_data.data.nested.table, cancer_cervix_population.data.nested.table, []);
-            var cancer_incident_ovary_data = searchUtils.populateDataWithMappings(resp[73], 'cancer_incident');
+            var cancer_incident_ovary_data = searchUtils.populateDataWithMappings(resp[78], 'cancer_incident');
             searchUtils.attachPopulation(cancer_incident_ovary_data.data.nested.table, cancer_ovary_population.data.nested.table, []);
-            var cancer_incident_prostate_data = searchUtils.populateDataWithMappings(resp[74], 'cancer_incident');
+            var cancer_incident_prostate_data = searchUtils.populateDataWithMappings(resp[79], 'cancer_incident');
             searchUtils.attachPopulation(cancer_incident_prostate_data.data.nested.table, cancer_prostate_population.data.nested.table, []);
             //Merge all Cancer incident sites data
             var cancer_incident_data = cancer_incident_breast_data;
@@ -372,23 +404,23 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             cancer_incident_data.data.nested.table.current_year.push.apply(cancer_incident_data.data.nested.table.current_year, cancer_incident_ovary_data.data.nested.table.current_year);
             cancer_incident_data.data.nested.table.current_year.push.apply(cancer_incident_data.data.nested.table.current_year, cancer_incident_prostate_data.data.nested.table.current_year);
             //YRBS - Alcohol
-            var yrbs_alchohol_data =  resp[75];
+            var yrbs_alchohol_data =  resp[80];
             //BRFSS - 2015 - Overweight and Obesity(BMI), Tobbaco use, Fruits and Vegetables, Alcohol Consumption
-            var brfss_2015_data = resp[76];
+            var brfss_2015_data = resp[81];
             //BRFSS - 2009 - Physical Activity
-            var brfss_2009_data = resp[77];
+            var brfss_2009_data = resp[82];
             //PRAMS - 2009 - Smoking cigarettes during the last three months of pregnancy
-            var prams_smoking_data = resp[78];
+            var prams_smoking_data = resp[83];
             //PRAMS - 2009 - Intended pregnancy
-            var prams_intended_pregnancy_data = resp[79];
+            var prams_intended_pregnancy_data = resp[84];
             //PRAMS - 2009 - Females reported physical abuse by husband or partner during pregnancy (percent)
-            var prams_physical_abuse_data = resp[80];
+            var prams_physical_abuse_data = resp[85];
             //PRAMS - 2009 - With one or more previous live births who reported unintended pregnancy
-            var prams_live_birth_unintended_data = resp[81];
+            var prams_live_birth_unintended_data = resp[86];
             //PRAMS - 2009 - Ever breastfed or pump breast milk to feed after delivery
-            var prams_breast_milk_feed_data = resp[82];
+            var prams_breast_milk_feed_data = resp[87];
             //PRAMS - 2009 - Indicator of depression 3 months before pregnancy
-            var prams_indicator_depression_data = resp[83];
+            var prams_indicator_depression_data = resp[88];
 
             var factSheet = prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
                 raceData, hispanicData, ageGroupData);
@@ -407,7 +439,7 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
                 {disease:"HIV Deaths*", data:prepareDiseaseData(HIVDeathsData, 'aids')},
                 {disease:"HIV Prevalence*", data:prepareDiseaseData(HIVPrevalenceData, 'aids')}];
             factSheet.detailMortalityData = [{causeOfDeath:"Total (all ages)", data:detailMortalityTotal_Data.data.nested.table.year[0]},
-                {causeOfDeath:"Cancer (Malignant neoplasms)", data:[]},
+                {causeOfDeath:"Cancer (Malignant neoplasms)", data:detailMortalityC00_C97_Data.data.nested.table.year[0]},
                 {causeOfDeath: "Breast Cancer (Malignant neoplasms of breast)", data:detailMortalityC50Data.data.nested.table.year[0]},
                 {causeOfDeath: "Cervical Cancer(Malignant neoplasm of cervix uteri)", data:detailMortalityC53_Data.data.nested.table.year[0]},
                 {causeOfDeath: "Cerebrovascular diseases (Stroke)", data:detailMortalityI60_I69_Data.data.nested.table.year[0]},
@@ -416,7 +448,8 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
                 {causeOfDeath: "Suicide", data:detailMortalitySuicide_Data.data.nested.table.year[0]},
                 {causeOfDeath: "Homicide", data:detailMortalityHomicide_Data.data.nested.table.year[0]},
                 {causeOfDeath: "Human Immunodeficiency Virus(HIV)", data:detailMortalityB20_B24_Data.data.nested.table.year[0]}];
-            factSheet.natalityData = prepareNatalityData(natality_BirthRates_Data, natality_fertilityRates_Data);
+            factSheet.natalityData = prepareNatalityData(natality_BirthRates_Data, natality_fertilityRates_Data, natality_vaginal_Data,
+                                            natality_cesarean_Data, natality_lowBirthWeight_Data, natality_twinBirth_Data, natality_totalBirthPopulation_Data);
             factSheet.cancerData = prepareCancerData(cancer_mortality_data, cancer_incident_data);
             factSheet.yrbs = prepareYRBSData(yrbs_alchohol_data);
             factSheet.brfss = prepareBRFSSData(brfss_2015_data, brfss_2009_data);
@@ -554,9 +587,10 @@ function prepareCancerData(cancerMortalityData, cancerIncidentData) {
  * @param natalityFertilityData
  * @return Natality data json
  */
-function prepareNatalityData(natalityBirthData, natalityFertilityData) {
+function prepareNatalityData(natalityBirthData, natalityFertilityData, vaginalData, cesareanData, lowBirthWeightData, twinBirthData, totalBirthsData) {
     var natalityBirthDataForYear = natalityBirthData.data.nested.table.current_year[0];
     var natalityFertilityDataForYear = natalityFertilityData.data.nested.table.current_year[0];
+    var totalBirthPopulationByYear = totalBirthsData.data.nested.table.current_year[0].natality;
     var natalityData = {};
     natalityData.births = natalityBirthDataForYear.natality;
     natalityData.population = natalityBirthDataForYear.pop;
@@ -564,6 +598,10 @@ function prepareNatalityData(natalityBirthData, natalityFertilityData) {
 
     natalityData.femalePopulation = natalityFertilityDataForYear.pop;
     natalityData.fertilityRate = natalityFertilityDataForYear.pop ? Math.round(natalityFertilityDataForYear.natality / natalityFertilityDataForYear.pop * 1000000) / 10 : 0;
+    natalityData.vaginalRate =  totalBirthPopulationByYear ? parseFloat(vaginalData.data.nested.table.current_year[0].natality / totalBirthPopulationByYear * 100).toFixed(2) + "%" : 0;
+    natalityData.cesareanRate =  totalBirthPopulationByYear ? parseFloat(cesareanData.data.nested.table.current_year[0].natality / totalBirthPopulationByYear * 100).toFixed(2) + "%" : 0;
+    natalityData.lowBirthWeightRate =  totalBirthPopulationByYear ? parseFloat(lowBirthWeightData.data.nested.table.current_year[0].natality / totalBirthPopulationByYear * 100).toFixed(2) + "%" : 0;
+    natalityData.twinBirthRate =  totalBirthPopulationByYear ? parseFloat(twinBirthData.data.nested.table.current_year[0].natality / totalBirthPopulationByYear * 1000).toFixed(1) + " per 1,000 births" : 0;
     return natalityData;
 }
 

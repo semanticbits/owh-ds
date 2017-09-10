@@ -578,5 +578,8 @@
         function getStateName(key) {
             return fsc.states[key];
         }
+        $scope.redirectToMortalityPage = function(){
+            $state.go('search');
+        }
     }
 }());

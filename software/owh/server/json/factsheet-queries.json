@@ -3013,7 +3013,77 @@
                       "should": [
                         {
                           "match": {
-                            "ICD_10_code.path": "C00-C97"
+                            "ICD_10_code.path": "C00-C14"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C15-C26"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C30-C39"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C40-C41"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C43-C44"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C45-C49"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C50-C50"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C51-C58"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C60-C63"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C64-C68"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C69-C72"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C73-C75"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C76-C80"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C81-C96"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C97-C97"
                           }
                         }
                       ]
@@ -3060,7 +3130,21 @@
             "key": "ucd-chapter-10",
             "queryKey": "ICD_10_code.path",
             "value": [
-              "C00-C97"
+              "C00-C14",
+              "C15-C26",
+              "C30-C39",
+              "C40-C41",
+              "C43-C44",
+              "C45-C49",
+              "C50-C50",
+              "C51-C58",
+              "C60-C63",
+              "C64-C68",
+              "C69-C72",
+              "C73-C75",
+              "C76-C80",
+              "C81-C96",
+              "C97-C97"
             ],
             "primary": true
           },
@@ -3116,7 +3200,7 @@
                       "should": [
                         {
                           "match": {
-                            "ICD_10_code.path": "C50-C50"
+                            "ICD_10_code.path": "C53"
                           }
                         }
                       ]
@@ -3163,7 +3247,7 @@
             "key": "ucd-chapter-10",
             "queryKey": "ICD_10_code.path",
             "value": [
-              "C50-C50"
+              "C53"
             ],
             "primary": true
           },
@@ -3193,21 +3277,6 @@
                 "queryKey": "current_year",
                 "size": 0
               }
-            ],
-            "charts": [],
-            "maps": [
-              [
-                {
-                  "key": "states",
-                  "queryKey": "state",
-                  "size": 0
-                },
-                {
-                  "key": "sex",
-                  "queryKey": "sex",
-                  "size": 0
-                }
-              ]
             ]
           }
         }
@@ -3339,11 +3408,6 @@
                           "match": {
                             "ICD_10_code.path": "J40-J47"
                           }
-                        },
-                        {
-                          "match": {
-                            "ICD_10_code.path": "J60"
-                          }
                         }
                       ]
                     }
@@ -3389,8 +3453,7 @@
             "key": "ucd-chapter-10",
             "queryKey": "ICD_10_code.path",
             "value": [
-              "J40-J47",
-              "J60"
+              "J40-J47"
             ],
             "primary": true
           },
@@ -5104,7 +5167,356 @@
           }
         }
       }
-    ]
+    ],
+    "vaginal": {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          },
+          "group_count_pop": {
+            "sum": {
+              "field": "pop"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "delivery_method": "Vaginal"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+    "cesarean": {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          },
+          "group_count_pop": {
+            "sum": {
+              "field": "pop"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "delivery_method": "Cesarean"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+    "lowBirthWeight": {
+      "size": 0,
+      "aggregations": {
+        "group_table_current_year": {
+          "terms": {
+            "field": "current_year",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "birth_weight_r4": "1499 grams or less"
+                        }
+                      },
+                      {
+                        "term": {
+                          "birth_weight_r4": "1500 - 2499 grams"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "MD"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "twinBirth": {
+      "size": 0,
+      "aggregations": {
+        "group_table_current_year": {
+          "terms": {
+            "field": "current_year",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "birth_plurality": "Twin"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "MD"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "totalBirthsByYear": {
+      "size": 0,
+      "aggregations": {
+        "group_table_current_year": {
+          "terms": {
+            "field": "current_year",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "MD"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
   },
   "cancer": {
     "mortality-incidence": {
@@ -5620,7 +6032,7 @@
                         "should": [
                           {
                             "term": {
-                              "cancer_site.path": "22030"
+                              "cancer_site.path": "27010"
                             }
                           }
                         ]
