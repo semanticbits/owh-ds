@@ -32,6 +32,7 @@ yrbs.prototype.invokeYRBSService = function(apiQuery){
     var queryPromises = [];
     var startTime = new Date().getTime();
     logger.info("Invoking YRBS service for "+yrbsquery.length+" questions");
+    logger.info("Invoking stats service with query ", JSON.stringify(yrbsquery));
     for (var q in yrbsquery){
         queryPromises.push(invokeYRBS(yrbsquery[q]));
     }
