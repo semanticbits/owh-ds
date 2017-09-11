@@ -784,7 +784,7 @@
                         createDataSet('prams', 'label.prams.title', 'label.prams.dsc')
                     ]),
                     createDataSource('label.health.risk', 'label.health.risk.dsc', 'health-risk-factors-icon.svg', 'Health Status and Risk Factors', [
-                        createDataSet('brfss', 'label.brfs', 'label.brfs.dsc'),
+                        createDataSet('brfss', 'label.brfss.title', 'label.brfs.dsc'),
                         createDataSet('prams', 'label.prams.title', 'label.prams.dsc'),
                         createDataSet('mental_health', 'label.yrbs', 'label.yrbs.dsc')
                     ])
@@ -798,7 +798,7 @@
                         createDataSet('infant_mortality', 'label.filter.infant_mortality', 'label.infant.mortality.dsc')
                     ]),
                     createDataSource('label.health.behaviors', 'label.health.behaviors.dsc', 'health-behavior-prevention-icon.svg', 'Health Status and Risk Factors', [
-                        createDataSet('brfss', 'label.brfs', 'label.brfs.dsc'),
+                        createDataSet('brfss', 'label.brfss.title', 'label.brfs.dsc'),
                         createDataSet('prams', 'label.prams.title', 'label.prams.dsc'),
                         createDataSet('mental_health', 'label.yrbs', 'label.yrbs.dsc')
                     ])
