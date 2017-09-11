@@ -23,7 +23,7 @@ describe('cancer.service', function(){
         });
 
         it('should return an array', function () {
-            expect(cancerService.getCancerSiteListFor()).toEqual(jasmine.any(Array));
+            expect(cancerService.getCancerSiteListFor('cancer_incidence')).toEqual(jasmine.any(Array));
         });
     });
 
@@ -33,7 +33,7 @@ describe('cancer.service', function(){
         });
 
         it('should return an array', function () {
-            expect(cancerService.getCancerSiteListFor()).toEqual(jasmine.any(Array));
+            expect(cancerService.getCancerSiteListFor('cancer_incidence')).toEqual(jasmine.any(Array));
         });
     });
 
@@ -53,7 +53,7 @@ describe('cancer.service', function(){
         });
 
         it('should return an array', function () {
-            expect(cancerService.getChildhoodCancersList('cancer_incidence')).toEqual(jasmine.any(Array));
+            expect(cancerService.getChildhoodCancersList()).toEqual(jasmine.any(Array));
         });
     });
 });
