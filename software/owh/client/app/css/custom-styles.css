@@ -2004,3 +2004,55 @@ ul.filter-group li.selected a {
 		opacity: 0.5 !important;
 	}
 }
+/**
+Factsheet css
+ */
+.state-heading {
+	text-align: center
+}
+.factsheet-container {
+    z-index: 1;
+    position: relative;
+    padding: 0 30px;
+}
+.factsheet-content h5 {
+	text-decoration: underline;
+}
+.factsheet-content i {
+	font-size: 12px;
+	font-style: italic;
+}
+.table-heading {
+	display: inline;
+}
+.table-heading h5,
+.table-heading p {
+	display: inline;
+}
+.underline {
+	text-decoration: underline;
+}
+.smallHeading {
+	font-size: 12px;
+}
+.factsheet-pagebreak {
+	page-break-after: always;
+}
+
+.solidBorder {
+	border-top: 1px solid #ddd;
+}
+.data-use {
+	top: 10%;
+	left: 25%;
+	height: 670px;
+	overflow-y: auto;
+	width: 900px;
+	max-width: 85%;
+	box-shadow: 0 10px 30px black;
+	position:fixed;
+	border: 2px solid black;
+	background-color: #ffffff;
+	z-index: 100;
+	border-radius: 5px;
+}

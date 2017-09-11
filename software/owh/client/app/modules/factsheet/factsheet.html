@@ -1,0 +1,330 @@
+<div class="usa-grid">
+    <ng-include src="'app/partials/disclaimer.html'"></ng-include>
+    <ng-include src="'app/partials/coBrandedHeader.html'"></ng-include>
+    <ng-include src="'app/partials/topBanner.html'"></ng-include>
+</div>
+<div class="factsheet-container">
+    <div style="padding: 30px;">
+        <div class="usa-grid">
+            <div class="usa-width-two-thirds">
+                <h3 id="pageHeading">State Fact Sheets</h3>
+            </div>
+        </div>
+        <div class="usa-width-one-whole">
+            <div id="pageDescription">Select desired state and type to download fact sheet that present a snapshot of
+                demographic characteristics as well as variety of health status indicators for females within the area</div>
+
+            <div class="usa-grid">
+                <div class="usa-width-one-half">
+                    <label for="state">I am interested in looking at</label>
+                    <select name="state" id="state" ng-options="s.id as s.text for s in fsc.stateJSON" ng-init="state = 'MD'" ng-model="state">
+                    </select>
+                </div>
+                <div class="usa-width-one-half">
+                    <label for="type">For fact sheet type</label>
+                    <select name="type" id="type"
+                            ng-init="fsType = fsc.fsTypes.state_health"
+                            ng-model="fsType"
+                            ng-options="v for (k,v) in fsc.fsTypes">
+                    </select>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <div>
+                <a id="generateFactSheetLink" href="#" ng-click="fsc.getFactSheet(state, fsType);">
+                    Generate fact sheet
+                </a>
+            </div>
+            <div id="factsheet_content" ng-if="fsc.factSheet" class="factsheet-content">
+              <a href="#"  id="downloadFactSheetLink" ng-click="fsc.exportFactSheet()" ng-if="fsc.factSheet" class="pull-right">
+                    <span>Download fact sheet for {{fsc.state}}</span>
+                    <span><i class="material-icons margin-right-10 pdf-icon">picture_as_pdf</i></span>
+                </a>
+              <div class="factsheet-part1">
+                <h3 ng-bind="fsc.state" class="state-heading"></h3>
+                <div ng-if="fsc.factSheet.totalGenderPop" class="bridge-race-factsheet">
+                    <h5 class="bridge-race-heading">Population in {{fsc.state}}</h5>
+                    <div class="bridge-race-description">
+                        Total state population: {{fsc.factSheet.totalGenderPop | number }} ({{fsc.factSheet.gender[0].bridge_race | number }} females; {{fsc.factSheet.gender[1].bridge_race | number}} males)
+                    </div>
+                    <div>
+                        <table class="bridge-race-table1">
+                            <thead>
+                                <tr>
+                                    <th>Racial Distributions of Residents*</th>
+                                    <th>Total</th>
+                                    <th>Black, non-Hispanic</th>
+                                    <th>White, non-Hispanic</th>
+                                    <th>American Indian</th>
+                                    <th>Asian/Pacific Islander</th>
+                                    <th>Hispanic</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="bold-class">Number</td>
+                                    <td>{{fsc.factSheet.totalGenderPop | number }}</td>
+                                    <td ng-repeat="race in fsc.factSheet.race" ng-bind="race.bridge_race | number "></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <table class="bridge-race-table2" style="background-color: white;">
+                            <thead>
+                                <tr>
+                                    <th>Age Distributions of Residents</th>
+                                    <th>10-14</th>
+                                    <th>15-19</th>
+                                    <th>20-44</th>
+                                    <th>45-64</th>
+                                    <th>65-84</th>
+                                    <th>85+</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="bold-class">Number</td>
+                                    <td>{{fsc.factSheet.ageGroups[0].bridge_race | number }}</td>
+                                    <td>{{fsc.factSheet.ageGroups[1]["15-44 years"][0].bridge_race  | number }}</td>
+                                    <td>{{fsc.factSheet.ageGroups[1]["15-44 years"][1].bridge_race  | number }}</td>
+                                    <td>{{fsc.factSheet.ageGroups[2].bridge_race | number }}</td>
+                                    <td>{{fsc.factSheet.ageGroups[3].bridge_race | number }}</td>
+                                    <td>{{fsc.factSheet.ageGroups[4].bridge_race | number }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <i class="bridge-race-info">Sources: 2015, NCHS National Vital Statistics System , * Racial/ethnic groups may not sum to total</i>
+                    </div>
+                </div>
+                <!--  Detail Mortality - Cause of Death -->
+                <div class="detail-mortality-factsheet">
+                    <h5 class="mortality-heading">Mortality</h5>
+                    <table class="detail-mortality-table">
+                        <thead>
+                            <tr>
+                                <th>Cause of Death</th>
+                                <th>Number of Deaths</th>
+                                <th>Age-Adjusted Death Rate (per 100,000)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="eachRecord in fsc.factSheet.detailMortalityData">
+                                <td ng-bind="eachRecord.causeOfDeath"></td>
+                                <td ng-bind="eachRecord.data.deaths | number "></td>
+                                <td ng-bind="eachRecord.data.ageAdjustedRate"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <i class="mortality-info">Source: 2015, NCHS National Vital Statistics System</i>
+                </div>
+                <br/>
+                <!-- Infant mortality total deaths, births and rates for 2014 for selected state -->
+                <div class="infant-mortality-factsheet" ng-if="fsc.factSheet.infantMortalityData">
+                    <div class="table-heading"><h5>Infant Mortality:</h5> <p>(All Causes, Not gender-specific)</p> </div>
+                    <table class="infant-mortality-table">
+                        <thead>
+                            <tr>
+                                <th>Deaths</th>
+                                <th>Births</th>
+                                <th>Death Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{fsc.factSheet.infantMortalityData.infant_mortality | number }}</td>
+                                <td>{{fsc.factSheet.infantMortalityData.births | number }}</td>
+                                <td>{{fsc.factSheet.infantMortalityData.deathRate}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <i>Source: 2014  NCHS National Vital Statistics System</i>
+                </div>
+                <p class="factsheet-pagebreak">&nbsp;</p>
+                <!-- Prenatal Care and Pregnancy Risk -->
+                <div class="prams-factsheet">
+                    <div class="table-heading"><h5>Prenatal Care and Pregnancy Risk</h5> <p class="smallHeading">(Percent)</p></div>
+                    <p class="underline">Pregnant women:  </p>
+                    <table class="prams-table-1">
+                            <tr ng-repeat="eachRecord in fsc.factSheet.prams.pregnantWoment" ng-class="{solidBorder: $index == 0}">
+                                <td ng-bind="eachRecord.question"></td>
+                                <td ng-bind="eachRecord.data"></td>
+                            </tr>
+                    </table>
+                    <p class="underline">Women:  </p>
+                    <table class="prams-table-2">
+                        <tr ng-repeat="eachRecord in fsc.factSheet.prams.women" ng-class="{solidBorder: $index == 0}">
+                            <td ng-bind="eachRecord.question"></td>
+                            <td ng-bind="eachRecord.data"></td>
+                        </tr>
+                    </table>
+                    <i>Sources: 2009, CDC PRAMS</i>
+                </div>
+                <!-- BRFSS -->
+                <br/>
+                <div class="brfss-factsheet">
+                    <div class="table-heading"><h5>Behavioral Risk Factors</h5> <p class="smallHeading">(Percent)</p></div>
+                    <table class="brfss-table">
+                        <tr ng-repeat="eachRecord in fsc.factSheet.brfss" ng-class="{solidBorder: $index == 0}">
+                            <td ng-bind="eachRecord.question"></td>
+                            <td ng-bind="eachRecord.data"></td>
+                        </tr>
+                    </table>
+                    <i>Source:  2015, CDC BRFSS; † 2009, CDC BRFSS</i>
+                </div>
+                <br/>
+                <!-- YRBS -->
+                <div class="yrbs-factsheet">
+                    <div class="table-heading"><h5>Teen Health</h5> <p class="smallHeading">(Percent teenage population unless otherwise specified)</p></div>
+                    <table class="yrbs-table">
+                        <tr ng-repeat="eachRecord in fsc.factSheet.yrbs" ng-class="{solidBorder: $index == 0}">
+                            <td ng-bind="eachRecord.question"></td>
+                            <td ng-bind="eachRecord.data"></td>
+                        </tr>
+                    </table>
+                    <i>Sources: 2015, YRBS; NA - Data not available or suppressed , NR - Data not reported</i>
+                </div>
+              </div>
+              <div class="factsheet-part2">
+                <!-- Natality -->
+                <div class="natality-factsheet">
+                    <h5>Birth Outcomes</h5>
+                    <table class="natality-table">
+                        <tr class="solidBorder">
+                            <td>Births</td>
+                            <td>{{fsc.factSheet.natalityData.births | number }}</td>
+                        </tr>
+                        <tr>
+                            <td>Total Population</td>
+                            <td>{{fsc.factSheet.natalityData.population | number }}</td>
+                        </tr>
+                        <tr>
+                            <td>Birth Rates (per 100,000)</td>
+                            <td>{{fsc.factSheet.natalityData.birthRate}}</td>
+                        </tr>
+                        <tr>
+                            <td>Female  Population (Ages 15 to 44)</td>
+                            <td>{{fsc.factSheet.natalityData.femalePopulation | number }}</td>
+                        </tr>
+                        <tr>
+                            <td>Fertility Rates (per 100,000)</td>
+                            <td>{{fsc.factSheet.natalityData.fertilityRate}}</td>
+                        </tr>
+                        <tr>
+                            <td>Vaginal</td>
+                            <td>{{fsc.factSheet.natalityData.vaginalRate}}</td>
+                        </tr>
+                        <tr>
+                            <td>Cesarean</td>
+                            <td>{{fsc.factSheet.natalityData.cesareanRate}}</td>
+                        </tr>
+                        <tr>
+                            <td>Low Birth Weight (<2500 gms)</td>
+                            <td>{{fsc.factSheet.natalityData.lowBirthWeightRate}}</td>
+                        </tr>
+                        <tr>
+                            <td>Twin Birth Rate</td>
+                            <td>{{fsc.factSheet.natalityData.twinBirthRate}}</td>
+                        </tr>
+                    </table>
+                    <i>Sources:  2015, NCHS National Vital Statistics System</i>
+                </div>
+                <p class="factsheet-pagebreak">&nbsp;</p>
+                <!-- Tuberculosis -->
+                <div class="tb-factsheet">
+                    <div class="table-heading"><h5>Tuberculosis</h5> <p class="smallHeading">(Number of new annual reported infections and rate per 100,000)</p> </div>
+                    <p>Population: {{fsc.factSheet.tuberculosis[0].pop}} </p>
+                    <table class="tb-table">
+                        <thead>
+                          <tr>
+                              <th>Total Cases (Rates)</th>
+                              <th ng-repeat="eachRecord in fsc.factSheet.tuberculosis" ng-if="$index > 0 && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td ng-repeat="eachRecord in  fsc.factSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.displayValue"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <i>Source: 2015, Estimated Data from the CDC NCHHSTP Atlas</i>
+                </div>
+                <br/>
+                <!-- STD -->
+                <div class="std-factsheet">
+                    <div class="table-heading"><h5>Sexually Transmitted Infections </h5> <p class="smallHeading">(Number of new annual reported infections and rate per 100,000)</p></div>
+                    <p>Population: {{fsc.factSheet.stdData[0].data[0].pop}} </p>
+                    <table class="std-table">
+                        <thead>
+                            <tr>
+                                <th>Disease</th>
+                                <th>Total Cases (Rates)</th>
+                                <th ng-repeat="eachRecord in fsc.factSheet.stdData[0].data" ng-if="$index > 0 && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="eachRecord in fsc.factSheet.stdData">
+                                <td>{{eachRecord.disease}}</td>
+                                <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown'">{{eachRaceValue.displayValue}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <i>Source: 2015, Estimated Data from the CDC NCHHSTP Atlas</i>
+                </div>
+                <br/>
+                <!-- HIV/AIDS -->
+                <div class="hiv-factsheet">
+                    <div class="table-heading"><h5>HIV/AIDS</h5>  <p class="smallHeading">(Number of new annual reported infections and rate per 100,000)</p></div>
+                    <p>Population: {{fsc.factSheet.hivAIDSData[0].data[0].pop}}  </p>
+                    <table class="hiv-table">
+                        <thead>
+                        <tr>
+                            <th>Indicator</th>
+                            <th>Total Cases (Rates)</th>
+                            <th ng-repeat="eachRecord in fsc.factSheet.hivAIDSData[0].data" ng-if="$index > 0 && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="eachRecord in fsc.factSheet.hivAIDSData">
+                            <td>{{eachRecord.disease}}</td>
+                            <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown'">{{eachRaceValue.displayValue}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <i>Source: 2015, Estimated Data from the CDC NCHHSTP Atlas, *2014</i>
+                </div>
+                <br/>
+                <!-- Cancer - Moratlity - Incidence -->
+                <div class="cancer-factsheet">
+                    <h5>Cancer Statistics</h5>
+                    <p>Cancer Incidence and Mortality:</p>
+                    <table class="cancer-table">
+                        <thead>
+                            <tr>
+                                <th>Cancer Site</th>
+                                <th>Population</th>
+                                <th>Count</th>
+                                <th>Incidence Crude Rates (per 100,000)</th>
+                                <th>Deaths</th>
+                                <th>Mortality Crude Rates (per 100,000)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="eachRecord in fsc.factSheet.cancerData">
+                                <td ng-bind="eachRecord.site"></td>
+                                <td ng-bind="eachRecord.pop | number"></td>
+                                <td ng-bind="eachRecord.count | number"></td>
+                                <td ng-bind="eachRecord.incident_rate"></td>
+                                <td ng-bind="eachRecord.deaths | number"></td>
+                                <td ng-bind="eachRecord.mortality_rate"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <i>Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only</i>
+                </div>
+              </div>
+            </div>
+            <div id="editor"></div>
+        </div>
+    </div>
+</div>

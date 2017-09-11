@@ -200,6 +200,7 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
         if (clonedUserQuery['ICD_10_code']) delete clonedUserQuery['ICD_10_code'];
         if (clonedUserQuery['ICD_130_code']) delete clonedUserQuery['ICD_130_code'];
         if (clonedUserQuery['infant_age_at_death']) delete clonedUserQuery['infant_age_at_death'];
+        if (clonedUserQuery['cancer_site']) delete clonedUserQuery['cancer_site'];
         if(clonedUserQuery['year_of_death']) {
             //Infant mortality index has column 'year_of_death', should match with natality index column in Elastic Search
             //So that we can query natality index for Birth counts.
@@ -975,7 +976,7 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery, d
         mapQuery = { "size":0, aggregations: {} };
         //prepare aggregations
         for(var index in aggregations['nested']['maps']) {
-            if(datasetName == 'deaths') {
+            if(datasetName == 'deaths' || datasetName == 'cancer_incident' || datasetName == 'cancer_mortality') {
                 mapQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_');
             }
             else {

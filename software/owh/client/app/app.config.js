@@ -34,6 +34,11 @@
                 templateUrl: 'app/modules/description/description.html',
                 controller: 'DescriptionController',
                 controllerAs: 'dc'
+        }).state('factsheets',  {
+                url:'/factsheets',
+                templateUrl: 'app/modules/factsheet/factsheet.html',
+                controller: 'FactSheetController',
+                controllerAs: 'fsc'
         }).state('404',  {
                 url:'/404',
                 templateUrl: '404.html'

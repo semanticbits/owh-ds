@@ -13,6 +13,8 @@
   "label.project.title": "OWH-Quick Health Data Online",
   "label.app.title.description": "OWH-Quick Health Data Online",
   "label.app.title.qhdo": "Health Information Gateway",
+  "label.filter.sex": "Sex",
+  "label.title.sex.delivery_method": "Sex and Delivery Method",
   "label.filter.births": "Births",
   "label.filter.total.deaths": "Total deaths",
   "label.filter.mental.health": "Mental Health",
@@ -559,5 +561,7 @@
   "chart.title.measure.number_of_infant_deaths.infant_death_rate": "Rate of Infant Deaths",
   "chart.title.measure.cancer_incident":"Number of Cancer Incidence",
   "chart.title.measure.cancer_mortality":"Number of Cancer Deaths",
+  "chart.title.measure.crude_cancer_death_rates":"Cancer Death Rates",
+  "chart.title.measure.crude_cancer_incidence_rates":"Cancer Incidence Rates",
   "chart.title.measure.fertility_rates": "Fertility Rates"
 }
