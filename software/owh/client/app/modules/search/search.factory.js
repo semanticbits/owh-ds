@@ -2018,6 +2018,7 @@
                 { "key": "MD", "title": "Maryland" },
                 { "key": "MA", "title": "Massachusetts" },
                 { "key": "MI", "title": "Michigan" },
+                { "key": "MN", "title": "Minnesota" },
                 { "key": "MS", "title": "Mississippi" },
                 { "key": "MO", "title": "Missouri" },
                 { "key": "MT", "title": "Montana" },
@@ -2026,7 +2027,7 @@
                 { "key": "NH", "title": "New Hampshire" },
                 { "key": "NJ", "title": "New Jersey" },
                 { "key": "NM", "title": "New Mexico" },
-                { "key": "NY", "title": "New York" },
+                { "key": "NY", "title": "New York(excluding NYC)" },
                 { "key": "NC", "title": "North Carolina" },
                 { "key": "ND", "title": "North Dakota" },
                 { "key": "OH", "title": "Ohio" },
@@ -2034,7 +2035,7 @@
                 { "key": "PA", "title": "Pennsylvania" },
                 { "key": "RI", "title": "Rhode Island" },
                 { "key": "SC", "title": "South Carolina" },
-                { "key": "SD", "title": "South Dakota" },
+                { "key": "SD", "title": "South Dakota Tribal" },
                 { "key": "TN", "title": "Tennessee" },
                 { "key": "TX", "title": "Texas" },
                 { "key": "UT", "title": "Utah" },
@@ -3594,7 +3595,7 @@
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total',
                     tableView:'alcohol_consumption',  chartAxisLabel:'Percentage',
                     showBasicSearchSideMenu: true, runOnFilterChange: true,
-                    allFilters: filters.brfsFilters, header:"Behavioral Risk Factor Surveillance System",
+                    allFilters: filters.brfsFilters, header:"Behavioral Risk Factors",
                     sideFilters:[
                         {
 

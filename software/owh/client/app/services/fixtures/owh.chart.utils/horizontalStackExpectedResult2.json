@@ -52,7 +52,7 @@
       "hoverinfo":"none",
       "type":"bar",
       "marker":{
-        "color":"#C2D5EE"
+        "color":"#56b783"
       }
     },
     {
@@ -103,7 +103,7 @@
       "hoverinfo":"none",
       "type":"bar",
       "marker":{
-        "color":"#5799C7"
+        "color":"#FFCC9A"
       }
     },
     {

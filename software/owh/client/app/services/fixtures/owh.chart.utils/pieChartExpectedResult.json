@@ -1,121 +1,121 @@
 {
-  "charttype":"pieChart",
-  "title":"label.filter.race",
-  "longtitle":"chart.title.measure.deaths by label.filter.race in undefined for undefined",
-  "dataset":"deaths",
-  "data":[
+  "charttype": "pieChart",
+  "title": "label.filter.race",
+  "longtitle": "chart.title.measure.deaths by label.filter.race in undefined for undefined",
+  "dataset": "deaths",
+  "data": [
     {
-      "name":"White     ",
-      "x":[
+      "name": "White     ",
+      "x": [
         2241350
       ],
-      "y":[
+      "y": [
         "White"
       ],
-      "text":[
+      "text": [
         "2,241,350"
       ],
-      "orientation":"h",
-      "type":"bar",
-      "hoverinfo":"none",
-      "marker":{
-        "color":"#C2D5EE"
+      "orientation": "h",
+      "type": "bar",
+      "hoverinfo": "none",
+      "marker": {
+        "color": "#56b783"
       }
     },
     {
-      "name":"Black     ",
-      "x":[
+      "name": "Black     ",
+      "x": [
         309316
       ],
-      "y":[
+      "y": [
         "Black"
       ],
-      "text":[
+      "text": [
         "309,316"
       ],
-      "orientation":"h",
-      "type":"bar",
-      "hoverinfo":"none",
-      "marker":{
-        "color":"#5799C7"
+      "orientation": "h",
+      "type": "bar",
+      "hoverinfo": "none",
+      "marker": {
+        "color": "#FFCC9A"
       }
     },
     {
-      "name":"Asian or Pacific Islander     ",
-      "x":[
+      "name": "Asian or Pacific Islander     ",
+      "x": [
         62103
       ],
-      "y":[
+      "y": [
         "Asian or Pacific Islander"
       ],
-      "text":[
+      "text": [
         "62,103"
       ],
-      "orientation":"h",
-      "type":"bar",
-      "hoverinfo":"none",
-      "marker":{
-        "color":"#65c2ff"
+      "orientation": "h",
+      "type": "bar",
+      "hoverinfo": "none",
+      "marker": {
+        "color": "#65c2ff"
       }
     },
     {
-      "name":"American Indian     ",
-      "x":[
+      "name": "American Indian     ",
+      "x": [
         18031
       ],
-      "y":[
+      "y": [
         "American Indian"
       ],
-      "text":[
+      "text": [
         "18,031"
       ],
-      "orientation":"h",
-      "type":"bar",
-      "hoverinfo":"none",
-      "marker":{
-        "color":"#ED93CB"
+      "orientation": "h",
+      "type": "bar",
+      "hoverinfo": "none",
+      "marker": {
+        "color": "#ED93CB"
       }
     }
   ],
-  "layout":{
-    "width":128,
-    "autosize":true,
-    "showlegend":false,
-    "margin":{
-      "l":20,
-      "r":10,
-      "b":20,
-      "t":20
+  "layout": {
+    "width": 128,
+    "autosize": true,
+    "showlegend": false,
+    "margin": {
+      "l": 20,
+      "r": 10,
+      "b": 20,
+      "t": 20
     },
-    "xaxis":{
-      "visible":true,
-      "titlefont":{
-        "size":15
+    "xaxis": {
+      "visible": true,
+      "titlefont": {
+        "size": 15
       },
-      "exponentformat":"none",
-      "tickangle":45,
-      "showline":true,
-      "gridcolor":"#bdbdbd",
-      "showticklabels":false,
-      "fixedrange":true,
-      "title":"Deaths"
+      "exponentformat": "none",
+      "tickangle": 45,
+      "showline": true,
+      "gridcolor": "#bdbdbd",
+      "showticklabels": false,
+      "fixedrange": true,
+      "title": "Deaths"
     },
-    "yaxis":{
-      "visible":true,
-      "titlefont":{
-        "size":15
+    "yaxis": {
+      "visible": true,
+      "titlefont": {
+        "size": 15
       },
-      "exponentformat":"none",
-      "tickangle":45,
-      "ticksuffix":"   ",
-      "showline":true,
-      "gridcolor":"#bdbdbd",
-      "showticklabels":false,
-      "fixedrange":true,
-      "title":"label.filter.race"
+      "exponentformat": "none",
+      "tickangle": 45,
+      "ticksuffix": "   ",
+      "showline": true,
+      "gridcolor": "#bdbdbd",
+      "showticklabels": false,
+      "fixedrange": true,
+      "title": "label.filter.race"
     }
   },
-  "options":{
-    "displayModeBar":false
+  "options": {
+    "displayModeBar": false
   }
 }

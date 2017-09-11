@@ -301,10 +301,10 @@
                 if(filter.filters.key === 'topic') {
                     if (sc.filters.selectedPrimaryFilter.key == 'prams') {
                         filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
-                    } else {
+                        searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup['delivery']);
+                    } else if (sc.filters.selectedPrimaryFilter.key == 'brfss') {
                         filter.filters.autoCompleteOptions = sc.filters.brfsTopicOptions;
                     }
-                    searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup['delivery']);
                 }
             });
         }
@@ -839,7 +839,7 @@
                         createDataSet('prams', 'label.prams.title', 'label.prams.dsc')
                     ]),
                     createDataSource('label.health.risk', 'label.health.risk.dsc', 'health-risk-factors-icon.svg', 'Health Status and Risk Factors', [
-                        createDataSet('brfss', 'label.brfs', 'label.brfs.dsc'),
+                        createDataSet('brfss', 'label.brfss.title', 'label.brfs.dsc'),
                         createDataSet('prams', 'label.prams.title', 'label.prams.dsc'),
                         createDataSet('mental_health', 'label.yrbs', 'label.yrbs.dsc')
                     ])
@@ -853,7 +853,7 @@
                         createDataSet('infant_mortality', 'label.filter.infant_mortality', 'label.infant.mortality.dsc')
                     ]),
                     createDataSource('label.health.behaviors', 'label.health.behaviors.dsc', 'health-behavior-prevention-icon.svg', 'Health Status and Risk Factors', [
-                        createDataSet('brfss', 'label.brfs', 'label.brfs.dsc'),
+                        createDataSet('brfss', 'label.brfss.title', 'label.brfs.dsc'),
                         createDataSet('prams', 'label.prams.title', 'label.prams.dsc'),
                         createDataSet('mental_health', 'label.yrbs', 'label.yrbs.dsc')
                     ])
