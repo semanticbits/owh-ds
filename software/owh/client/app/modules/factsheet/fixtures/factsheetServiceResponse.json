@@ -1,0 +1,754 @@
+{
+  "totalGenderPop": 6006401,
+  "gender": [
+    {
+      "name": "Female",
+      "bridge_race": 3095316
+    },
+    {
+      "name": "Male",
+      "bridge_race": 2911085
+    }
+  ],
+  "race": [
+    {
+      "name": "Black",
+      "bridge_race": 1820087
+    },
+    {
+      "name": "White",
+      "bridge_race": 3184932
+    },
+    {
+      "name": "American Indian",
+      "bridge_race": 39697
+    },
+    {
+      "name": "Asian or Pacific Islander",
+      "bridge_race": 424047
+    },
+    {
+      "name": "Hispanic",
+      "bridge_race": 572373
+    }
+  ],
+  "ageGroups": [
+    {
+      "name": "10-14 years",
+      "bridge_race": 374419
+    },
+    {
+      "15-44 years": [
+        {
+          "name": "15-19 years",
+          "bridge_race": 385317
+        },
+        {
+          "name": "20-44 years",
+          "bridge_race": 2003311
+        }
+      ]
+    },
+    {
+      "name": "45-64 years",
+      "bridge_race": 1650040
+    },
+    {
+      "name": "65-84 years",
+      "bridge_race": 736357
+    },
+    {
+      "name": "85+ years",
+      "bridge_race": 113214
+    }
+  ],
+  "state": "MD",
+  "infantMortalityData": {
+    "deathRate": "6.49",
+    "infant_mortality": 480,
+    "births": 73921
+  },
+  "tuberculosis": [
+    {
+      "name": "All races/ethnicities",
+      "pop": 6006401,
+      "displayValue": "176 (2.9)"
+    },
+    {
+      "name": "American Indian or Alaska Native",
+      "displayValue": 0
+    },
+    {
+      "name": "Asian",
+      "displayValue": "50 (13)"
+    },
+    {
+      "name": "Black or African American",
+      "displayValue": "71 (4)"
+    },
+    {
+      "name": "Hispanic or Latino",
+      "displayValue": "39 (6.8)"
+    },
+    {
+      "name": "Multiple races",
+      "displayValue": "2 (1.5)"
+    },
+    {
+      "name": "Native Hawaiian or Other Pacific Islander",
+      "displayValue": "1 (32.3)"
+    },
+    {
+      "name": "Unknown",
+      "displayValue": 0
+    },
+    {
+      "name": "White",
+      "displayValue": "13 (0.4)"
+    }
+  ],
+  "stdData": [
+    {
+      "disease": "Chlamydia",
+      "data": [
+        {
+          "name": "All races/ethnicities",
+          "pop": 5976407,
+          "displayValue": "27,450 (459.3)"
+        },
+        {
+          "name": "American Indian or Alaska Native",
+          "displayValue": "36 (248.2)"
+        },
+        {
+          "name": "Asian",
+          "displayValue": "167 (44.7)"
+        },
+        {
+          "name": "Black or African American",
+          "displayValue": "11,611 (663.7)"
+        },
+        {
+          "name": "Hispanic or Latino",
+          "displayValue": "1,030 (184.8)"
+        },
+        {
+          "name": "Multiple races",
+          "displayValue": 0
+        },
+        {
+          "name": "Native Hawaiian or Other Pacific Islander",
+          "displayValue": "16 (525.1)"
+        },
+        {
+          "name": "Unknown",
+          "displayValue": "11,430 (0)"
+        },
+        {
+          "name": "White",
+          "displayValue": "3,160 (100.5)"
+        }
+      ]
+    },
+    {
+      "disease": "Gonorrhea",
+      "data": [
+        {
+          "name": "All races/ethnicities",
+          "pop": 5976407,
+          "displayValue": "6,858 (114.8)"
+        },
+        {
+          "name": "American Indian or Alaska Native",
+          "displayValue": "8 (55.1)"
+        },
+        {
+          "name": "Asian",
+          "displayValue": "30 (8)"
+        },
+        {
+          "name": "Black or African American",
+          "displayValue": "4,189 (239.4)"
+        },
+        {
+          "name": "Hispanic or Latino",
+          "displayValue": "141 (25.3)"
+        },
+        {
+          "name": "Multiple races",
+          "displayValue": 0
+        },
+        {
+          "name": "Native Hawaiian or Other Pacific Islander",
+          "displayValue": "4 (131.3)"
+        },
+        {
+          "name": "Unknown",
+          "displayValue": "1,718 (0)"
+        },
+        {
+          "name": "White",
+          "displayValue": "768 (24.4)"
+        }
+      ]
+    },
+    {
+      "disease": "Primary and Secondary Syphilis",
+      "data": [
+        {
+          "name": "All races/ethnicities",
+          "pop": 5976407,
+          "displayValue": "509 (8.5)"
+        },
+        {
+          "name": "American Indian or Alaska Native",
+          "displayValue": 0
+        },
+        {
+          "name": "Asian",
+          "displayValue": "6 (1.6)"
+        },
+        {
+          "name": "Black or African American",
+          "displayValue": "320 (18.3)"
+        },
+        {
+          "name": "Hispanic or Latino",
+          "displayValue": "21 (3.8)"
+        },
+        {
+          "name": "Multiple races",
+          "displayValue": 0
+        },
+        {
+          "name": "Native Hawaiian or Other Pacific Islander",
+          "displayValue": 0
+        },
+        {
+          "name": "Unknown",
+          "displayValue": "40 (0)"
+        },
+        {
+          "name": "White",
+          "displayValue": "122 (3.9)"
+        }
+      ]
+    },
+    {
+      "disease": "Early Latent Syphilis",
+      "data": [
+        {
+          "name": "All races/ethnicities",
+          "pop": 5976407,
+          "displayValue": "594 (9.9)"
+        },
+        {
+          "name": "American Indian or Alaska Native",
+          "displayValue": 0
+        },
+        {
+          "name": "Asian",
+          "displayValue": "7 (1.9)"
+        },
+        {
+          "name": "Black or African American",
+          "displayValue": "392 (22.4)"
+        },
+        {
+          "name": "Hispanic or Latino",
+          "displayValue": "33 (5.9)"
+        },
+        {
+          "name": "Multiple races",
+          "displayValue": 0
+        },
+        {
+          "name": "Native Hawaiian or Other Pacific Islander",
+          "displayValue": 0
+        },
+        {
+          "name": "Unknown",
+          "displayValue": "56 (0)"
+        },
+        {
+          "name": "White",
+          "displayValue": "106 (3.4)"
+        }
+      ]
+    },
+    {
+      "disease": "Congenital Syphilis",
+      "data": [
+        {
+          "name": "All races/ethnicities",
+          "pop": 71953,
+          "displayValue": "18 (25)"
+        }
+      ]
+    }
+  ],
+  "hivAIDSData": [
+    {
+      "disease": "AIDS Diagnoses",
+      "data": [
+        {
+          "name": "All races/ethnicities",
+          "pop": 5039068,
+          "displayValue": "660 (13.1)"
+        },
+        {
+          "name": "American Indian or Alaska Native",
+          "displayValue": "2 (16)"
+        },
+        {
+          "name": "Asian",
+          "displayValue": "7 (2.2)"
+        },
+        {
+          "name": "Black or African American",
+          "displayValue": "515 (35)"
+        },
+        {
+          "name": "Hispanic or Latino",
+          "displayValue": "49 (11.5)"
+        },
+        {
+          "name": "Multiple races",
+          "displayValue": "27 (31.2)"
+        },
+        {
+          "name": "Native Hawaiian or Other Pacific Islander",
+          "displayValue": 0
+        },
+        {
+          "name": "White",
+          "displayValue": "60 (2.2)"
+        }
+      ]
+    },
+    {
+      "disease": "AIDS Deaths*",
+      "data": [
+        {
+          "name": "All races/ethnicities",
+          "pop": 5008827,
+          "displayValue": "460 (9.2)"
+        },
+        {
+          "name": "American Indian or Alaska Native",
+          "displayValue": 0
+        },
+        {
+          "name": "Asian",
+          "displayValue": 0
+        },
+        {
+          "name": "Black or African American",
+          "displayValue": "337 (23.2)"
+        },
+        {
+          "name": "Hispanic or Latino",
+          "displayValue": "27 (6.5)"
+        },
+        {
+          "name": "Multiple races",
+          "displayValue": "30 (35.9)"
+        },
+        {
+          "name": "Native Hawaiian or Other Pacific Islander",
+          "displayValue": 0
+        },
+        {
+          "name": "White",
+          "displayValue": "66 (2.4)"
+        }
+      ]
+    },
+    {
+      "disease": "AIDS Prevalence*",
+      "data": [
+        {
+          "name": "All races/ethnicities",
+          "pop": 5008827,
+          "displayValue": "17,417 (347.7)"
+        },
+        {
+          "name": "American Indian or Alaska Native",
+          "displayValue": "4 (32.2)"
+        },
+        {
+          "name": "Asian",
+          "displayValue": "90 (28.7)"
+        },
+        {
+          "name": "Black or African American",
+          "displayValue": "13,061 (898.1)"
+        },
+        {
+          "name": "Hispanic or Latino",
+          "displayValue": "1,059 (256.1)"
+        },
+        {
+          "name": "Multiple races",
+          "displayValue": "1,008 (1204.9)"
+        },
+        {
+          "name": "Native Hawaiian or Other Pacific Islander",
+          "displayValue": "2 (78.8)"
+        },
+        {
+          "name": "White",
+          "displayValue": "2,193 (80.4)"
+        }
+      ]
+    },
+    {
+      "disease": "HIV Diagnoses",
+      "data": [
+        {
+          "name": "All races/ethnicities",
+          "pop": 5039068,
+          "displayValue": "1,347 (26.7)"
+        },
+        {
+          "name": "American Indian or Alaska Native",
+          "displayValue": "3 (24)"
+        },
+        {
+          "name": "Asian",
+          "displayValue": "18 (5.5)"
+        },
+        {
+          "name": "Black or African American",
+          "displayValue": "1,022 (69.5)"
+        },
+        {
+          "name": "Hispanic or Latino",
+          "displayValue": "99 (23.2)"
+        },
+        {
+          "name": "Multiple races",
+          "displayValue": "31 (35.8)"
+        },
+        {
+          "name": "Native Hawaiian or Other Pacific Islander",
+          "displayValue": 0
+        },
+        {
+          "name": "White",
+          "displayValue": "174 (6.4)"
+        }
+      ]
+    },
+    {
+      "disease": "HIV Deaths*",
+      "data": [
+        {
+          "name": "All races/ethnicities",
+          "pop": 5008827,
+          "displayValue": "554 (11.1)"
+        },
+        {
+          "name": "American Indian or Alaska Native",
+          "displayValue": 0
+        },
+        {
+          "name": "Asian",
+          "displayValue": 0
+        },
+        {
+          "name": "Black or African American",
+          "displayValue": "405 (27.8)"
+        },
+        {
+          "name": "Hispanic or Latino",
+          "displayValue": "29 (7)"
+        },
+        {
+          "name": "Multiple races",
+          "displayValue": "36 (43)"
+        },
+        {
+          "name": "Native Hawaiian or Other Pacific Islander",
+          "displayValue": "1 (39.4)"
+        },
+        {
+          "name": "White",
+          "displayValue": "83 (3)"
+        }
+      ]
+    },
+    {
+      "disease": "HIV Prevalence*",
+      "data": [
+        {
+          "name": "All races/ethnicities",
+          "pop": 5008827,
+          "displayValue": "32,002 (638.9)"
+        },
+        {
+          "name": "American Indian or Alaska Native",
+          "displayValue": "21 (169.3)"
+        },
+        {
+          "name": "Asian",
+          "displayValue": "210 (66.9)"
+        },
+        {
+          "name": "Black or African American",
+          "displayValue": "23,879 (1641.9)"
+        },
+        {
+          "name": "Hispanic or Latino",
+          "displayValue": "1,819 (439.9)"
+        },
+        {
+          "name": "Multiple races",
+          "displayValue": "1,641 (1961.5)"
+        },
+        {
+          "name": "Native Hawaiian or Other Pacific Islander",
+          "displayValue": "4 (157.6)"
+        },
+        {
+          "name": "White",
+          "displayValue": "4,428 (162.3)"
+        }
+      ]
+    }
+  ],
+  "detailMortalityData": [
+    {
+      "causeOfDeath": "Total (all ages)",
+      "data": {
+        "name": "2015",
+        "deaths": 47247,
+        "ageAdjustedRate": "705.7",
+        "standardPop": 6006401
+      }
+    },
+    {
+      "causeOfDeath": "Cancer (Malignant neoplasms)",
+      "data": []
+    },
+    {
+      "causeOfDeath": "Breast Cancer (Malignant neoplasms of breast)",
+      "data": {
+        "name": "2015",
+        "deaths": 839,
+        "ageAdjustedRate": "12.3",
+        "standardPop": 6006401
+      }
+    },
+    {
+      "causeOfDeath": "Cervical Cancer(Malignant neoplasm of cervix uteri)",
+      "data": {
+        "name": "2015",
+        "deaths": 839,
+        "ageAdjustedRate": "12.3",
+        "standardPop": 6006401
+      }
+    },
+    {
+      "causeOfDeath": "Cerebrovascular diseases (Stroke)",
+      "data": {
+        "name": "2015",
+        "deaths": 2540,
+        "ageAdjustedRate": "37.8",
+        "standardPop": 6006401
+      }
+    },
+    {
+      "causeOfDeath": "Chronic Lower Respiratory Disease",
+      "data": {
+        "name": "2015",
+        "deaths": 2040,
+        "ageAdjustedRate": "30.7",
+        "standardPop": 6006401
+      }
+    },
+    {
+      "causeOfDeath": "Alcohol or Drug Induced",
+      "data": {
+        "name": "2015",
+        "deaths": 1446,
+        "ageAdjustedRate": "25.8",
+        "standardPop": 6006401
+      }
+    },
+    {
+      "causeOfDeath": "Suicide",
+      "data": {
+        "name": "2015",
+        "deaths": 554,
+        "ageAdjustedRate": "8.8",
+        "standardPop": 6006401
+      }
+    },
+    {
+      "causeOfDeath": "Homicide",
+      "data": {
+        "name": "2015",
+        "deaths": 585,
+        "ageAdjustedRate": "10.3",
+        "standardPop": 6006401
+      }
+    },
+    {
+      "causeOfDeath": "Human Immunodeficiency Virus(HIV)",
+      "data": {
+        "name": "2015",
+        "deaths": 193,
+        "ageAdjustedRate": "2.9",
+        "standardPop": 6006401
+      }
+    }
+  ],
+  "natalityData": {
+    "births": 73616,
+    "population": 6006401,
+    "birthRate": 1225.6,
+    "femalePopulation": 1200564,
+    "fertilityRate": 6131.8
+  },
+  "cancerData": [
+    {
+      "site": "Breast",
+      "pop": 5975346,
+      "count": 4791,
+      "incident_rate": 80.2,
+      "deaths": 871,
+      "mortality_rate": 14.6
+    },
+    {
+      "site": "Cervix Uteri†",
+      "pop": 3079751,
+      "count": 3720,
+      "incident_rate": 120.8,
+      "deaths": 2750,
+      "mortality_rate": 89.3
+    },
+    {
+      "site": "Colon and Rectum",
+      "pop": 5975346,
+      "count": 2466,
+      "incident_rate": 41.3,
+      "deaths": 955,
+      "mortality_rate": 16
+    },
+    {
+      "site": "Lung and Bronchus",
+      "pop": 5975346,
+      "count": 3720,
+      "incident_rate": 62.3,
+      "deaths": 2750,
+      "mortality_rate": 46
+    },
+    {
+      "site": "Melanoma of the Skin",
+      "pop": 5975346,
+      "count": 1445,
+      "incident_rate": 24.2,
+      "deaths": 140,
+      "mortality_rate": 2.3
+    },
+    {
+      "site": "Ovary†",
+      "pop": 3079751,
+      "count": 367,
+      "incident_rate": 11.9,
+      "deaths": 240,
+      "mortality_rate": 7.8
+    },
+    {
+      "site": "Prostate††",
+      "pop": 2895595,
+      "count": 4072,
+      "incident_rate": 140.6,
+      "deaths": 514,
+      "mortality_rate": 17.8
+    }
+  ],
+  "yrbs": [
+    {
+      "question": "Currently use alcohol",
+      "data": "26.1%"
+    },
+    {
+      "question": "Currently use cigarettes",
+      "data": "1.8%"
+    },
+    {
+      "question": "Currently use marijuana",
+      "data": "18.8%"
+    },
+    {
+      "question": "Currently sexually active",
+      "data": "22.6%"
+    },
+    {
+      "question": "Attempted suicide",
+      "data": "NR"
+    },
+    {
+      "question": "Overweight",
+      "data": "26.2%"
+    }
+  ],
+  "brfss": [
+    {
+      "question": "Were Obese (BMI 30.0 - 99.8)",
+      "data": "29.8%"
+    },
+    {
+      "question": "Adults who are current smokers",
+      "data": "13.4%"
+    },
+    {
+      "question": "Consumed fruits one or more times a day",
+      "data": "67.1%"
+    },
+    {
+      "question": "Consumed vegetables one or more times a day",
+      "data": "82.0%"
+    },
+    {
+      "question": "Are heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)",
+      "data": "5.1%"
+    },
+    {
+      "question": "Adults with 20+ minutes of vigorous physical activity three or more days per week",
+      "data": "† 35.2%"
+    }
+  ],
+  "prams": {
+    "pregnantWoment": [
+      {
+        "question": "Smoking cigarettes during the last three months of pregnancy",
+        "data": "9.1%"
+      },
+      {
+        "question": "Intended pregnancy",
+        "data": "54.5%"
+      },
+      {
+        "question": "Females reported physical abuse by husband or partner during pregnancy (percent)",
+        "data": "3.3%"
+      }
+    ],
+    "women": [
+      {
+        "question": "With one or more previous live births who reported unintended pregnancy",
+        "data": "45.5%"
+      },
+      {
+        "question": "Ever breastfed or pump breast milk to feed after delivery",
+        "data": "84.3%"
+      },
+      {
+        "question": "Ever breastfed or pump breast milk to feed after delivery",
+        "data": "10.1%"
+      }
+    ]
+  }
+}

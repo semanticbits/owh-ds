@@ -5,11 +5,11 @@
 
     SearchController.$inject = ['$scope', 'utilService', 'searchFactory', '$rootScope',
         '$templateCache', '$compile', '$filter', 'leafletData', '$timeout', 'chartUtilService', 'shareUtilService',
-        '$stateParams', '$state', 'xlsService', '$window', 'mapService'];
+        '$stateParams', '$state', 'xlsService', '$window', 'mapService', 'ModalService', '$q'];
 
     function SearchController($scope, utilService, searchFactory, $rootScope,
                                  $templateCache, $compile, $filter, leafletData, $timeout, chartUtilService,
-                                 shareUtilService, $stateParams, $state, xlsService, $window, mapService) {
+                                 shareUtilService, $stateParams, $state, xlsService, $window, mapService, ModalService, $q) {
 
         var sc = this;
         sc.downloadCSV = downloadCSV;
@@ -275,10 +275,21 @@
         sc.tableName = null;
 
         function changePrimaryFilter(newFilter) {
-            sc.tableData = {};
-            sc.filters.selectedPrimaryFilter = searchFactory.getPrimaryFilterByKey(newFilter);
-            sc.tableView = sc.filters.selectedPrimaryFilter.tableView;
-            sc.search(true);
+            $rootScope.acceptDUR = false;
+            if (newFilter == 'deaths' ||newFilter== 'natality' ||newFilter == 'infant_mortality'){
+                showDataUseRestriction().then (function () {
+                    sc.tableData = {};
+                    sc.filters.selectedPrimaryFilter = searchFactory.getPrimaryFilterByKey(newFilter);
+                    sc.tableView = sc.filters.selectedPrimaryFilter.tableView;
+                    sc.search(true);
+                })
+            }else {
+                sc.tableData = {};
+                sc.filters.selectedPrimaryFilter = searchFactory.getPrimaryFilterByKey(newFilter);
+                sc.tableView = sc.filters.selectedPrimaryFilter.tableView;
+                sc.search(true);
+            }
+
         }
 
         function setDefaults() {
@@ -327,6 +338,14 @@
         }
 
         function search(isFilterChanged) {
+            if (!$rootScope.acceptDUR  && (sc.filters.selectedPrimaryFilter.key === 'deaths' || sc.filters.selectedPrimaryFilter.key === 'natality' ||sc.filters.selectedPrimaryFilter.key === 'infant_mortality')) {
+                showDataUseRestriction().then (function () {
+                    search(isFilterChanged);
+                }).catch(function () {
+                    return
+                });
+                return;
+            }
             if(sc.filters.selectedPrimaryFilter.key === 'prams'
                 || sc.filters.selectedPrimaryFilter.key === 'mental_health'
                 || sc.filters.selectedPrimaryFilter.key === 'brfss') {
@@ -473,16 +492,30 @@
         }, 1700);
 
         function getQueryResults(queryID) {
-            return searchFactory.getQueryResults(queryID).then(function (response) {
+            var deffered = $q.defer();
+            searchFactory.getQueryResults(queryID).then(function (response) {
                //if queryID exists in owh_querycache index, then update data that are required to display search results
                 if (response.data) {
-                    var result = searchFactory.updateFiltersAndData(sc.filters, response, sc.optionsGroup, sc.mapOptions);
-                    sc.tableView = result.tableView;
-                    sc.tableData = result.tableData;
-                    sc.filters.selectedPrimaryFilter = result.primaryFilter;
+                    var dataset = response.data.queryJSON.key;
+                    if (!$rootScope.acceptDUR && (dataset === 'deaths' || dataset === 'natality' || dataset === 'infant_mortality')) {
+                        showDataUseRestriction().then(function () {
+                            var result = searchFactory.updateFiltersAndData(sc.filters, response, sc.optionsGroup, sc.mapOptions);
+                            sc.tableView = result.tableView;
+                            sc.tableData = result.tableData;
+                            sc.filters.selectedPrimaryFilter = result.primaryFilter;
+                        }).catch(function () {
+                            deffered.reject();
+                        });
+                    } else {
+                        var result = searchFactory.updateFiltersAndData(sc.filters, response, sc.optionsGroup, sc.mapOptions);
+                        sc.tableView = result.tableView;
+                        sc.tableData = result.tableData;
+                        sc.filters.selectedPrimaryFilter = result.primaryFilter;
+                    }
                 }
-                return response;
+                deffered.resolve(response);
             });
+            return deffered.promise;
         }
 
         function changeViewFilter(selectedFilter) {
@@ -841,6 +874,34 @@
                     sc.changePrimaryFilter(key);
                 }
             };
+        }
+
+        function showDataUseRestriction() {
+            var deffered = $q.defer();
+            ModalService.showModal({
+                templateUrl: "app/partials/datauseRestrictions.html",
+                controllerAs: 'dur',
+                controller: function ($scope, close) {
+                    var dur = this;
+                    $rootScope.acceptDUR = false;
+                    dur.close = close;
+                    dur.accept = function () {
+                        dur.close(true);
+                    }
+                }
+            }).then(function (modal) {
+                modal.element.show();
+                modal.close.then(function (accept) {
+                    modal.element.hide();
+                    if(accept) {
+                        $rootScope.acceptDUR = accept;
+                        deffered.resolve(accept);
+                    }else {
+                        deffered.reject();
+                    }
+                });
+            });
+            return deffered.promise;
         }
     }
 }());

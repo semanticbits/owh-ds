@@ -1837,7 +1837,7 @@
             ];
 
             filters.yrbsBasicFilters = [
-                {key: 'year', title: 'label.yrbs.filter.year', queryKey:"year",primary: false, value: '2015', groupBy: false,
+                {key: 'year', title: 'label.yrbs.filter.year', queryKey:"year",primary: false, value: '2015', groupBy: false,defaultGroup:"column",
                     filterType: 'radio',autoCompleteOptions: filters.yrbsYearsOptions, doNotShowAll: true, donotshowOnSearch:true, helpText:"label.help.text.yrbs.year" },
                 { key: 'yrbsSex', title: 'label.yrbs.filter.sex', queryKey:"sex", primary: false, value: '', groupBy: false,
                     filterType: 'radio',autoCompleteOptions: filters.yrbsGenderOptions, defaultGroup:"column", helpText:"label.help.text.yrbs.sex" },
@@ -2154,9 +2154,9 @@
             filters.pramsFilters = [
                 {key: 'topic', title: 'label.prams.filter.topic', queryKey:"topic",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsTopicOptions, doNotShowAll: true, helpText: "label.help.text.prams.topic"},
-                {key: 'year', title: 'label.prams.filter.year', queryKey:"year",primary: false, value: ['2009'], groupBy: false,
+                {key: 'year', title: 'label.prams.filter.year', queryKey:"year",primary: false, value: ['2009'], groupBy: false,defaultGroup:"column",
                     filterType: 'radio',autoCompleteOptions: filters.pramsYearOptions, doNotShowAll: false, helpText: "label.help.text.prams.year"},
-                {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [], groupBy: 'column',
+                {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [], groupBy: 'column',defaultGroup:"column",
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsStateOptions, doNotShowAll: false, helpText: "label.help.text.prams.state"},
                 { key: 'question', title: 'label.prams.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
                     filterType: 'tree', autoCompleteOptions: $rootScope.pramsQuestionsList, donotshowOnSearch:true,
@@ -2400,7 +2400,7 @@
                 {
                     key: 'year', title: 'label.filter.year',
                     queryKey:"year", primary: false,
-                    value: ['2015'], groupBy: false,
+                    value: ['2015'], groupBy: false,defaultGroup:"column",
                     filterType: 'radio', autoCompleteOptions: filters.brfsYearOptions,
                     doNotShowAll: true, helpText: ""
                 },
@@ -2411,7 +2411,7 @@
                     primary: false,
                     value: [],
                     groupBy: false,
-                    filterType: 'radio',
+                    filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsGenderOptions,
                     doNotShowAll: false,
                     helpText: ''
@@ -2419,7 +2419,7 @@
                 {
                     key: 'state', title: 'label.brfss.filter.state',
                     queryKey:"sitecode",primary: false, value: ['AL'],
-                    groupBy: false, filterType: 'radio',
+                    groupBy: false, filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsStateOptions,
                     displaySearchBox:true, displaySelectedFirst:true,
                     doNotShowAll: false, helpText: ""
@@ -2427,28 +2427,28 @@
                 {
                     key: 'race', title: 'label.brfss.filter.race_ethnicity',
                     queryKey:"race", primary: false, value: [],
-                    groupBy: 'column', filterType: 'radio',
+                    groupBy: 'column', filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsRaceOptions,
                     doNotShowAll: false, helpText: ""
                 },
                 {
                     key: 'age_group', title: 'label.filter.age_group',
                     queryKey:"age_group",primary: false, value: [],
-                    groupBy: false, filterType: 'radio',
+                    groupBy: false, filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsAgeGroupOptions,
                     doNotShowAll: false, helpText: ""
                 },
                 {
                     key: 'education', title: 'label.filter.education.attained',
                     queryKey:"education",primary: false, value: [],
-                    groupBy: false, filterType: 'radio',
+                    groupBy: false, filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsEducationOptions,
                     doNotShowAll: false, helpText: ""
                 },
                 {
                     key: 'income', title: 'label.filter.household.income',
                     queryKey:"income",primary: false, value: [],
-                    groupBy: false, filterType: 'radio',
+                    groupBy: false, filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsIncomeOptions,
                     doNotShowAll: false, helpText: ""
                 },
