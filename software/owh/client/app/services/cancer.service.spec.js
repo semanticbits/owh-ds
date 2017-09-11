@@ -12,28 +12,28 @@ describe('cancer.service', function(){
     it('should return an object with properties that are functions', function () {
         expect(cancerService).toEqual(jasmine.any(Object));
         Object.keys(cancerService).forEach(function (property) {
-            var methods = [ 'getSites', 'getList', 'getChildhoodCancers', 'getChildhoodCancersList' ];
+            var methods = [ 'getCancerSitesFor', 'getCancerSiteListFor', 'getChildhoodCancers', 'getChildhoodCancersList' ];
             expect(methods).toContain(property);
         });
     });
 
     describe('getSites', function () {
         it('should be a function', function () {
-            expect(cancerService.getSites).toEqual(jasmine.any(Function));
+            expect(cancerService.getCancerSitesFor).toEqual(jasmine.any(Function));
         });
 
         it('should return an array', function () {
-            expect(cancerService.getSites()).toEqual(jasmine.any(Array));
+            expect(cancerService.getCancerSiteListFor()).toEqual(jasmine.any(Array));
         });
     });
 
     describe('getList', function () {
         it('should be a function', function () {
-            expect(cancerService.getList).toEqual(jasmine.any(Function));
+            expect(cancerService.getCancerSiteListFor).toEqual(jasmine.any(Function));
         });
 
         it('should return an array', function () {
-            expect(cancerService.getList()).toEqual(jasmine.any(Array));
+            expect(cancerService.getCancerSiteListFor()).toEqual(jasmine.any(Array));
         });
     });
 
