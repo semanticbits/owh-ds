@@ -266,7 +266,7 @@
         /*
             Builds table based on primaryFilter and options
          */
-        function getMixedTable(selectedFilter, groupOptions, tableView){
+        function getMixedTable(selectedFilter, groupOptions, tableView, calculatePercentage){
             var file = selectedFilter.data ? selectedFilter.data : {};
 
             if(selectedFilter.key === 'prams' || selectedFilter.key === 'brfss'
@@ -299,7 +299,11 @@
             var countKey = selectedFilter.key;
             var countLabel = selectedFilter.countLabel;
             var totalCount = selectedFilter.count;
-            var calculatePercentage = selectedFilter.key === 'prams' || selectedFilter.key == 'mental_health' ? false : true;
+            if (calculatePercentage === undefined || calculatePercentage === null) {
+                calculatePercentage = (selectedFilter.key === 'deaths' && tableView === 'number_of_deaths') ||
+                                      (selectedFilter.key === 'natality' && tableView === 'number_of_births') ||
+                                      (selectedFilter.key === 'bridge_race' && tableView === 'bridge_race');
+            }
             var calculateRowTotal = selectedFilter.calculateRowTotal;
             var secondaryCountKeys = ['pop', 'ageAdjustedRate', 'standardPop', 'deathRate'];
 
@@ -524,11 +528,18 @@
         }
 
         function addOrFilterToPrimaryFilterValue(filter, primaryFilter) {
-            var filterIndex = utilService.findIndexByKeyAndValue(primaryFilter.value, 'key', filter.key);
-            if(filter.groupBy && filterIndex < 0) {
+            var existingFilter = utilService.findByKeyAndValue(primaryFilter.value, 'key', filter.key);
+            if (existingFilter) {
+                if (filter.groupBy) {
+                    existingFilter.groupBy = filter.groupBy;
+                }
+                else {
+                    var filterIndex = primaryFilter.value.indexOf(existingFilter);
+                    primaryFilter.value.splice(filterIndex, 1);
+                }
+            }
+            else if (filter.groupBy) {
                 primaryFilter.value.push(filter);
-            } else if(!filter.groupBy && filterIndex >= 0) {
-                primaryFilter.value.splice(filterIndex, 1);
             }
         }
 

@@ -35,6 +35,7 @@ describe("Search controller: ", function () {
             filters = $searchFactory.getAllFilters();
             shareUtilService = $injector.get('shareUtilService');
             searchController.searchFactory = searchFactory;
+            searchController.tableData = {};
         });
     });
 
@@ -482,6 +483,7 @@ describe("Search controller: ", function () {
             primaryFilterKey: 'deaths'
         };
 
+        $rootScope.acceptDUR = true;
         spyOn(searchFactory, "generateHashCode").and.returnValue({
             then: function(){}
         });
