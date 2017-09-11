@@ -694,9 +694,10 @@ ul li::before {
 
 .graph-box {
     padding:0 10px;
-    margin-bottom:30px;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px 1px #ccc;
+    width: 48% !important;
+    margin: 0 1% 20px !important;
 }
 
 .graph-title {
@@ -1116,18 +1117,21 @@ ul.legend-scale li span {
 
 .owh-search-content-container {
     transition: width 0.3s;
-    overflow: hidden;
     width: 75% !important;
-    height: calc(100vh - 198px);
     background: white;
     position: relative;
 }
 
 .owh-search-content {
-    overflow-y: auto;
-    height: calc(100% - 50px);
-    padding: 20px 20px 50px 20px;
+    padding: 20px 0 50px 0;
+    margin: 0 1%;
     position: relative;
+}
+
+.owh-search-content:after {
+    content: '';
+    clear: both;
+    display: table;
 }
 
 

@@ -115,7 +115,7 @@
                         cell += '<div class="custom-div owh-table__cell-content">';
                             cell += '<div>';
                         if(['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates', 'std', 'tb', 'aids', 'disease_rate', 'number_of_infant_deaths', 'crude_cancer_incidence_rates', 'crude_cancer_death_rates'].indexOf(otc.tableView) >= 0) {
-                            cell += '<div id="crudeRateDiv" class="owh-table__left-col ' + (row.length > 5 ? 'usa-width-one-half' : 'usa-width-one-third') + '">';
+                            cell += '<div id="crudeRateDiv" class="owh-table__left-col usa-width-one-half">'
                             if(rowIndex === 0) {
                                 var rateLabel = { 'crude_death_rates': 'Crude Death Rate', 'age-adjusted_death_rates': 'Age Adjusted Death Rate', 'birth_rates':'Birth Rate', 'fertility_rates':'Fertility Rate' }[otc.tableView] || 'Rate';
                                 var tooltip = { 'crude_death_rates': $translate.instant('label.help.text.rate'),
@@ -143,7 +143,7 @@
                                 cell += '</span>';
                             }
                             cell += '</div>';
-                            cell += '<div id="curdeDeathsPopuDiv" class="' + (row.length > 5 ? 'usa-width-one-half' : 'usa-width-one-third') + '">';
+                            cell += '<div id="curdeDeathsPopuDiv" class="usa-width-one-half">';
                             cell += '<div>';
                             if(rowIndex === 0) {
                                 if(otc.tableView === 'birth_rates' || otc.tableView === 'fertility_rates') {
