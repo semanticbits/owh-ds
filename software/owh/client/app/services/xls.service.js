@@ -217,8 +217,13 @@
                     }
                     rowArray.push({title: cell.title, colspan: colspan, rowspan: cell.rowspan});
                     //if we have a percentage then add an extra column to display it
-                    if(table.calculatePercentage && cell.percentage !== undefined && innerIdx < row.length - 1 ) {
-                        rowArray.push({title: cell.percentage, colspan: colspan, rowspan: cell.rowspan});
+                    if (table.calculatePercentage && innerIdx < row.length - 1) {
+                        if (cell.title === "Not Available" || cell.title === "suppressed") {
+                            rowArray.push({ title: "", colspan: colspan, rowspan: cell.rowspan });
+                        }
+                        else if (cell.isCount) {
+                            rowArray.push({ title: cell.percentage || "", colspan: colspan, rowspan: cell.rowspan });
+                        }
                     }
                 });
                 sheet.push(rowArray);
