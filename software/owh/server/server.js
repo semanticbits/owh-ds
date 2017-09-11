@@ -5,6 +5,8 @@ var morganlogger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var logger = require('./config/logging');
+var helmet = require('helmet');
+var expressSanitizer = require('express-sanitizer');
 
 var app = express();
 app.use(bodyParser.json({limit: '10mb'}));
@@ -16,7 +18,8 @@ app.use(morganlogger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(helmet());
+app.use(expressSanitizer());
 
 // view engine setup
 app.engine('html', require('ejs').renderFile);
