@@ -266,7 +266,7 @@
         /*
             Builds table based on primaryFilter and options
          */
-        function getMixedTable(selectedFilter, groupOptions, tableView){
+        function getMixedTable(selectedFilter, groupOptions, tableView, calculatePercentage){
             var file = selectedFilter.data ? selectedFilter.data : {};
 
             if(selectedFilter.key === 'prams' || selectedFilter.key === 'brfss'
@@ -299,7 +299,11 @@
             var countKey = selectedFilter.key;
             var countLabel = selectedFilter.countLabel;
             var totalCount = selectedFilter.count;
-            var calculatePercentage = selectedFilter.key === 'prams' || selectedFilter.key == 'mental_health' ? false : true;
+            if (calculatePercentage === undefined || calculatePercentage === null) {
+                calculatePercentage = (selectedFilter.key === 'deaths' && tableView === 'number_of_deaths') ||
+                                      (selectedFilter.key === 'natality' && tableView === 'number_of_births') ||
+                                      (selectedFilter.key === 'bridge_race' && tableView === 'bridge_race');
+            }
             var calculateRowTotal = selectedFilter.calculateRowTotal;
             var secondaryCountKeys = ['pop', 'ageAdjustedRate', 'standardPop', 'deathRate'];
 
@@ -524,11 +528,18 @@
         }
 
         function addOrFilterToPrimaryFilterValue(filter, primaryFilter) {
-            var filterIndex = utilService.findIndexByKeyAndValue(primaryFilter.value, 'key', filter.key);
-            if(filter.groupBy && filterIndex < 0) {
+            var existingFilter = utilService.findByKeyAndValue(primaryFilter.value, 'key', filter.key);
+            if (existingFilter) {
+                if (filter.groupBy) {
+                    existingFilter.groupBy = filter.groupBy;
+                }
+                else {
+                    var filterIndex = primaryFilter.value.indexOf(existingFilter);
+                    primaryFilter.value.splice(filterIndex, 1);
+                }
+            }
+            else if (filter.groupBy) {
                 primaryFilter.value.push(filter);
-            } else if(!filter.groupBy && filterIndex >= 0) {
-                primaryFilter.value.splice(filterIndex, 1);
             }
         }
 
@@ -1826,7 +1837,7 @@
             ];
 
             filters.yrbsBasicFilters = [
-                {key: 'year', title: 'label.yrbs.filter.year', queryKey:"year",primary: false, value: '2015', groupBy: false,
+                {key: 'year', title: 'label.yrbs.filter.year', queryKey:"year",primary: false, value: '2015', groupBy: false,defaultGroup:"column",
                     filterType: 'radio',autoCompleteOptions: filters.yrbsYearsOptions, doNotShowAll: true, donotshowOnSearch:true, helpText:"label.help.text.yrbs.year" },
                 { key: 'yrbsSex', title: 'label.yrbs.filter.sex', queryKey:"sex", primary: false, value: '', groupBy: false,
                     filterType: 'radio',autoCompleteOptions: filters.yrbsGenderOptions, defaultGroup:"column", helpText:"label.help.text.yrbs.sex" },
@@ -2007,6 +2018,7 @@
                 { "key": "MD", "title": "Maryland" },
                 { "key": "MA", "title": "Massachusetts" },
                 { "key": "MI", "title": "Michigan" },
+                { "key": "MN", "title": "Minnesota" },
                 { "key": "MS", "title": "Mississippi" },
                 { "key": "MO", "title": "Missouri" },
                 { "key": "MT", "title": "Montana" },
@@ -2015,7 +2027,7 @@
                 { "key": "NH", "title": "New Hampshire" },
                 { "key": "NJ", "title": "New Jersey" },
                 { "key": "NM", "title": "New Mexico" },
-                { "key": "NY", "title": "New York" },
+                { "key": "NY", "title": "New York(excluding NYC)" },
                 { "key": "NC", "title": "North Carolina" },
                 { "key": "ND", "title": "North Dakota" },
                 { "key": "OH", "title": "Ohio" },
@@ -2023,7 +2035,7 @@
                 { "key": "PA", "title": "Pennsylvania" },
                 { "key": "RI", "title": "Rhode Island" },
                 { "key": "SC", "title": "South Carolina" },
-                { "key": "SD", "title": "South Dakota" },
+                { "key": "SD", "title": "South Dakota Tribal" },
                 { "key": "TN", "title": "Tennessee" },
                 { "key": "TX", "title": "Texas" },
                 { "key": "UT", "title": "Utah" },
@@ -2143,9 +2155,9 @@
             filters.pramsFilters = [
                 {key: 'topic', title: 'label.prams.filter.topic', queryKey:"topic",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsTopicOptions, doNotShowAll: true, helpText: "label.help.text.prams.topic"},
-                {key: 'year', title: 'label.prams.filter.year', queryKey:"year",primary: false, value: ['2009'], groupBy: false,
+                {key: 'year', title: 'label.prams.filter.year', queryKey:"year",primary: false, value: ['2009'], groupBy: false,defaultGroup:"column",
                     filterType: 'radio',autoCompleteOptions: filters.pramsYearOptions, doNotShowAll: false, helpText: "label.help.text.prams.year"},
-                {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [], groupBy: 'column',
+                {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [], groupBy: 'column',defaultGroup:"column",
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsStateOptions, doNotShowAll: false, helpText: "label.help.text.prams.state"},
                 { key: 'question', title: 'label.prams.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
                     filterType: 'tree', autoCompleteOptions: $rootScope.pramsQuestionsList, donotshowOnSearch:true,
@@ -2389,7 +2401,7 @@
                 {
                     key: 'year', title: 'label.filter.year',
                     queryKey:"year", primary: false,
-                    value: ['2015'], groupBy: false,
+                    value: ['2015'], groupBy: false,defaultGroup:"column",
                     filterType: 'radio', autoCompleteOptions: filters.brfsYearOptions,
                     doNotShowAll: true, helpText: ""
                 },
@@ -2400,7 +2412,7 @@
                     primary: false,
                     value: [],
                     groupBy: false,
-                    filterType: 'radio',
+                    filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsGenderOptions,
                     doNotShowAll: false,
                     helpText: ''
@@ -2408,7 +2420,7 @@
                 {
                     key: 'state', title: 'label.brfss.filter.state',
                     queryKey:"sitecode",primary: false, value: ['AL'],
-                    groupBy: false, filterType: 'radio',
+                    groupBy: false, filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsStateOptions,
                     displaySearchBox:true, displaySelectedFirst:true,
                     doNotShowAll: false, helpText: ""
@@ -2416,28 +2428,28 @@
                 {
                     key: 'race', title: 'label.brfss.filter.race_ethnicity',
                     queryKey:"race", primary: false, value: [],
-                    groupBy: 'column', filterType: 'radio',
+                    groupBy: 'column', filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsRaceOptions,
                     doNotShowAll: false, helpText: ""
                 },
                 {
                     key: 'age_group', title: 'label.filter.age_group',
                     queryKey:"age_group",primary: false, value: [],
-                    groupBy: false, filterType: 'radio',
+                    groupBy: false, filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsAgeGroupOptions,
                     doNotShowAll: false, helpText: ""
                 },
                 {
                     key: 'education', title: 'label.filter.education.attained',
                     queryKey:"education",primary: false, value: [],
-                    groupBy: false, filterType: 'radio',
+                    groupBy: false, filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsEducationOptions,
                     doNotShowAll: false, helpText: ""
                 },
                 {
                     key: 'income', title: 'label.filter.household.income',
                     queryKey:"income",primary: false, value: [],
-                    groupBy: false, filterType: 'radio',
+                    groupBy: false, filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsIncomeOptions,
                     doNotShowAll: false, helpText: ""
                 },
@@ -3583,7 +3595,7 @@
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total',
                     tableView:'alcohol_consumption',  chartAxisLabel:'Percentage',
                     showBasicSearchSideMenu: true, runOnFilterChange: true,
-                    allFilters: filters.brfsFilters, header:"Behavioral Risk Factor Surveillance System",
+                    allFilters: filters.brfsFilters, header:"Behavioral Risk Factors",
                     sideFilters:[
                         {
 

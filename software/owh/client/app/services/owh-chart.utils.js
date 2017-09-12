@@ -37,7 +37,7 @@
         }
 
         function getColorPallete(){
-             return ["#ED93CB", "#65c2ff", "#5799C7", "#C2D5EE", "#FF9F4A", "#FFCC9A", "#61B861", "#B2E7A7 ", "#DB5859", "#FFB2B0 ", "#AF8DCE", "#D4C4E0 ", "#A98078", "#D3B5AF", "#64D7D6", "#44558F", "#FFE495", "#1684A7 ", "#7577CD", "#6A759B", "#F6EC72", "#F97300 ", "#FD6378", "#390050", "#970747"]
+             return ["#ED93CB", "#65c2ff", "#FFCC9A", "#56b783", "#FF9F4A", "#FFCC9A", "#61B861", "#B2E7A7 ", "#DB5859", "#FFB2B0 ", "#AF8DCE", "#D4C4E0 ", "#A98078", "#D3B5AF", "#64D7D6", "#44558F", "#FFE495", "#1684A7 ", "#7577CD", "#6A759B", "#F6EC72", "#F97300 ", "#FD6378", "#390050", "#970747"]
         }
         
         function getSelectedOptionTitlesOfFilter(filter) {
@@ -120,11 +120,16 @@
          */
         function getValueFromData(filter, data) {
             if(filter.tableView == "crude_death_rates" || filter.tableView == "birth_rates"
-                || filter.tableView == "fertility_rates" || filter.chartView == "disease_rate") {
-                return data['pop'] ? Math.round(data[filter.key] / data['pop'] * 1000000) / 10 : -1;
+                || filter.tableView == "fertility_rates" || filter.chartView == "disease_rate" 
+                || filter.tableView === 'crude_cancer_incidence_rates' || filter.tableView === 'crude_cancer_death_rates') {
+                if(data[filter.key] >= 0) { // calculate rate if count is available, else return the notavailable or suppressed value
+                    return !isNaN(data['pop']) ? Math.round(data[filter.key] / data['pop'] * 1000000) / 10 : -2;
+                }else {
+                    return data[filter.key] ;
+                }
             }
             else if(filter.chartView == "infant_death_rate") {
-                return data['pop'] ? $filter('number')(data['deathRate'], 1): -1;
+                return !isNaN(data['pop']) ? $filter('number')(data['deathRate'], 1): -2;
             }
             else if(data['ageAdjustedRate'] && filter.tableView == "age-adjusted_death_rates"){
                 var ageAdjustedRate = parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));
@@ -156,6 +161,12 @@
                 case "fertility_rates":
                     return "Fertility Rates";
                     break;
+                case "crude_cancer_death_rates":
+                    return "Cancer Death Rates";
+                    break;
+                case "crude_cancer_incidence_rates":
+                    return "Cancer Incidence Rates";
+                    break;          
                 default:
                     return chartLabel;
             }
@@ -230,6 +241,7 @@
         function plotlyMultiLineChart(filter1, filter2, data, primaryFilter){
             var layout = quickChartLayout();
             layout.xaxis.title = $translate.instant(filter2.title);
+            layout.xaxis.type = "category";
             layout.yaxis.title = getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel);
 
             var colors = getColorPallete();    
@@ -237,7 +249,7 @@
             angular.forEach(utilService.getSelectedAutoCompleteOptions(filter1), function (primaryOption,index) {
                     var eachPrimaryData = utilService.findByKeyAndValue(data[filter1.key], 'name', primaryOption.key);
 
-                    var plotlyseries= {name: primaryOption.key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[index%colors.length]}};
+                    var plotlyseries= {name: primaryOption.title, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[index%colors.length]}};
                     if(eachPrimaryData && eachPrimaryData[filter2.key]) {
                         angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2) , function (secondaryOption,j) {
                             if (!secondaryOption.disabled) {
@@ -366,9 +378,6 @@
                         }
                         //Set name to series
                         seriesDataObj["key"] = primaryOption.title;
-                        if(filter1.queryKey === 'sex') {
-                            seriesDataObj["color"] = primaryOption.key === 'Male' ?  "#009aff" : "#fe66ff";
-                        }
 
                         //collect series values
                         seriesDataObj["values"] = getBarValues(eachPrimaryData[filter2.queryKey], filter2);
@@ -382,9 +391,7 @@
                     var eachPrimaryData = utilService.findByKeyAndValue(data[filter1.key], 'name', primaryOption.key);
 
                     primaryDataObj["key"] = primaryOption.title;
-                    if(filter1.key === 'gender') {
-                        primaryDataObj["color"] = primaryOption.key === 'Male' ?  "#009aff" : "#fe66ff";
-                    }
+                  
                     primaryDataObj["values"] = [];
                     if(eachPrimaryData) {
                         primaryDataObj[primaryFilter.key] = getValueFromData(primaryFilter, eachPrimaryData);
@@ -439,9 +446,6 @@
                     var primaryObj = {};
                     primaryObj["key"] = primaryOption.title;
                     primaryObj["values"] = [];
-                    if(filter1.key === 'gender') {
-                        primaryObj["color"] = primaryOption.key === 'Male' ?  "#009aff" : "#fe66ff";
-                    }
 
                     if(eachPrimaryData && eachPrimaryData[filter2.key]) {
                         var secondaryArrayData = utilService.sortByKey(eachPrimaryData[filter2.key], 'name');
@@ -482,20 +486,6 @@
                         "yAxis": {
                             "axisLabel": "Population",
                         },
-                        tooltip: {
-                            contentGenerator: function(d) {
-                                var html = "<div class='usa-grid-full'"+
-                                    "<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>"+ d.value+"</div>" +
-                                    "<div class='usa-width-one-whole nvtooltip-value'>";
-                                d.series.forEach(function(elem){
-                                    html += "<span class='fa fa-square' style='color:"+elem.color+"'></span>" +
-                                        "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"
-                                        +getCount(elem.value, primaryFilter) + "</div>";
-                                });
-                                html += "</div>";
-                                return html;
-                            }
-                        }
                     }
                 }
             };
@@ -700,13 +690,13 @@
          */
         function getSuppressedCount(count, primaryFilter) {
             if (count == -1){
-                    return 'Not Available';
-            } else if (count == 0 && primaryFilter.applySuppression) {
-                var stateFilter = utilService.findFilterByKeyAndValue(primaryFilter.allFilters, 'key', 'state');
-                var isStateFilter = utilService.isFilterApplied(stateFilter);
-                return isStateFilter? 'Suppressed': $filter('number')(count);
+                 return 'Suppressed';
+            }else if (count == -2){
+                 return 'Not Available';
+            } else {
+               return $filter('number')(count);
             }
-            return $filter('number')(count);
+            
         }
     }
 }());

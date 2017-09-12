@@ -171,7 +171,7 @@
         "type":"bar",
         "hoverinfo":"none",
         "marker":{
-          "color":"#C2D5EE"
+          "color":"#56b783"
         }
       },
       {
@@ -189,7 +189,7 @@
         "type":"bar",
         "hoverinfo":"none",
         "marker":{
-          "color":"#5799C7"
+          "color":"#FFCC9A"
         }
       },
       {

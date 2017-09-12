@@ -739,10 +739,10 @@
         ];
 
         var cancerRaceOptions = [
-            { key: 'White', title: 'White' },
-            { key: 'Black', title: 'Black' },
             { key: 'American Indian/Alaska Native', title: 'American Indian/Alaska Native' },
             { key: 'Asian or Pacific Islander', title: 'Asian or Pacific Islander' },
+            { key: 'Black', title: 'Black' },
+            { key: 'White', title: 'White' },
             { key: 'Unknown', title: 'Unknown' }
         ];
 
