@@ -1075,8 +1075,8 @@
                         ]
                     },
                     {
-                        text: 'Female Breast, In Situ',
-                        id: 'Male Breast, In Situ',
+                        text: 'Male Breast, In Situ',
+                        id: 'Breast-InSitu-Male',
                         children: [],
                         path: [
                             "Breast-InSitu-Male",
@@ -1509,8 +1509,8 @@
                     key: 'Breast-InSitu-Female'
                 },
                 {
-                    title: 'Female Breast, In Situ',
-                    key: 'Male Breast, In Situ'
+                    title: 'Male Breast, In Situ',
+                    key: 'Breast-InSitu-Male'
                 }
             );
         }
