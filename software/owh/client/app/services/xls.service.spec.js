@@ -257,7 +257,7 @@ describe('xlsService', function(){
                 '!ref': 'A1:D4',
                 '!merges': [{s: {c: 0, r: 1}, e: {c: 0, r: 3}}, {s: {c: 1, r: 3}, e: {c: 2, r: 3}}]
             }
-            var csv = xlsService.getCSVFromSheet(ws, [[]], [{}, {}]);
+            var csv = xlsService.getCSVFromSheet(ws, [[]], 2);
 
             expect(csv).toEqual('1,2,3,9\na,4,5,10\na,6,7,11\na,8,,12\n');
         })
