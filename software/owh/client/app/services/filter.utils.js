@@ -1567,8 +1567,8 @@
                     filterType: 'site',
                     selectTitle: 'label.cancer_site.select',
                     updateTitle: 'label.cancer_site.update',
-                    autoCompleteOptions: cancerService.getList(),
-                    tree: cancerService.getSites(),
+                    autoCompleteOptions: cancerService.getCancerSiteListFor('cancer_incidence'),
+                    tree: cancerService.getCancerSitesFor('cancer_incidence'),
                     aggregationKey: 'cancer_site.path',
                     defaultGroup:'row',
                     helpText: 'label.help.text.cancer_incidence.cancer_site'
@@ -1682,8 +1682,8 @@
                     filterType: 'site',
                     selectTitle: 'label.cancer_site.select',
                     updateTitle: 'label.cancer_site.update',
-                    autoCompleteOptions: cancerService.getList(),
-                    tree: cancerService.getSites(),
+                    autoCompleteOptions: cancerService.getCancerSiteListFor(),
+                    tree: cancerService.getCancerSitesFor(),
                     aggregationKey: 'cancer_site.path',
                     defaultGroup:'row',
                     helpText: 'label.help.text.cancer_mortality.cancer_site'

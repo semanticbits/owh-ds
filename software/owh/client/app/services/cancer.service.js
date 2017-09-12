@@ -8,15 +8,15 @@
 
     function cancerService () {
         return {
-            getSites: getSites,
-            getList: getList,
+            getCancerSitesFor: getCancerSitesFor,
+            getCancerSiteListFor: getCancerSiteListFor,
             getChildhoodCancers: getChildhoodCancers,
             getChildhoodCancersList: getChildhoodCancersList
         }
     }
 
-    function getSites () {
-        return [
+    function getCancerSitesFor (dataset) {
+        var cancerSites = [
             {
                 text: 'Oral Cavity and Pharynx',
                 id: '20010-20100',
@@ -1057,8 +1057,11 @@
                     "37000",
                     "0"
                 ]
-            },
-            {
+            }
+        ];
+
+        if (dataset === 'cancer_incidence') {
+            var insituCancer = {
                 text: 'In situ breast cancer',
                 id: 'Breast-InSitu',
                 children: [
@@ -1084,12 +1087,15 @@
                 path: [
                     "Breast-InSitu"
                 ]
-            }
-        ]
+            };
+            cancerSites.push(insituCancer)
+        }
+
+        return cancerSites;
     }
 
-    function getList () {
-        return [
+    function getCancerSiteListFor (dataset) {
+        var cancerSites = [
             {
                 title: 'Oral Cavity and Pharynx',
                 key: '20010-20100'
@@ -1489,20 +1495,26 @@
             {
                 title: 'Miscellaneous',
                 key: '37000'
-            },
-            {
-                title: 'In situ breast cancer',
-                key: 'Breast-InSitu'
-            },
-            {
-                title: 'Female Breast, In Situ',
-                key: 'Breast-InSitu-Female'
-            },
-            {
-                title: 'Female Breast, In Situ',
-                key: 'Male Breast, In Situ'
             }
-        ]
+        ];
+
+        if(dataset === 'cancer_incidence') {
+            cancerSites.push(
+                {
+                    title: 'In situ breast cancer',
+                    key: 'Breast-InSitu'
+                },
+                {
+                    title: 'Female Breast, In Situ',
+                    key: 'Breast-InSitu-Female'
+                },
+                {
+                    title: 'Female Breast, In Situ',
+                    key: 'Male Breast, In Situ'
+                }
+            );
+        }
+        return cancerSites;
     }
 
     function getChildhoodCancers () {
