@@ -562,5 +562,15 @@
   "chart.title.measure.cancer_mortality":"Number of Cancer Deaths",
   "chart.title.measure.crude_cancer_death_rates":"Cancer Death Rates",
   "chart.title.measure.crude_cancer_incidence_rates":"Cancer Incidence Rates",
-  "chart.title.measure.fertility_rates": "Fertility Rates"
+  "chart.title.measure.fertility_rates": "Fertility Rates",
+
+  "label.help.text.brfss.topic": "Topics addressed in the BRFSS core questionnaire include barriers to and content of prenatal care, obstetric history, maternal use of alcohol and cigarettes, physical abuse, contraception, economic status, maternal stress, and early infant development and health status",
+  "label.help.text.brfss.year": "This field indicates the Year of the BRFSS survey",
+  "label.help.text.brfss.state": "This field indicates the States for which BRFSS data is available",
+  "label.help.text.brfss.question": "This field indicates the questions which were developed and tested and ultimately placed on the BRFSS questionnaire",
+  "label.help.text.brfss.sex": "This field indicates the sex of the survey respondents",
+  "label.help.text.brfss.race_ethnicity": "This field indicates the race or ethnicity of the survey respondents",
+  "label.help.text.brfss.age_group": "This field indicates the age-group of the survey respondents",
+  "label.help.text.brfss.education": "This field indicates the education attained by the survey respondents",
+  "label.help.text.brfss.income": "This field indicates the household income of the survey respondents"
 }

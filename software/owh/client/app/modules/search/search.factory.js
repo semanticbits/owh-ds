@@ -2418,14 +2418,14 @@
                     queryKey:"topic", primary: false,
                     value: [], groupBy: false,
                     filterType: 'checkbox', autoCompleteOptions: filters.brfsTopicOptions,
-                    doNotShowAll: false, helpText: ""
+                    doNotShowAll: false, helpText: 'label.help.text.brfss.topic'
                 },
                 {
                     key: 'year', title: 'label.filter.year',
                     queryKey:"year", primary: false,
                     value: ['2015'], groupBy: false,defaultGroup:"column",
                     filterType: 'radio', autoCompleteOptions: filters.brfsYearOptions,
-                    doNotShowAll: true, helpText: ""
+                    doNotShowAll: true, helpText: 'label.help.text.brfss.year'
                 },
                 {
                     key: 'sex',
@@ -2437,7 +2437,7 @@
                     filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsGenderOptions,
                     doNotShowAll: false,
-                    helpText: ''
+                    helpText: 'label.help.text.brfss.sex'
                 },
                 {
                     key: 'state', title: 'label.brfss.filter.state',
@@ -2445,35 +2445,35 @@
                     groupBy: false, filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsStateOptions,
                     displaySearchBox:true, displaySelectedFirst:true,
-                    doNotShowAll: false, helpText: ""
+                    doNotShowAll: false, helpText: 'label.help.text.brfss.state'
                 },
                 {
                     key: 'race', title: 'label.brfss.filter.race_ethnicity',
                     queryKey:"race", primary: false, value: [],
                     groupBy: 'column', filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsRaceOptions,
-                    doNotShowAll: false, helpText: ""
+                    doNotShowAll: false, helpText: 'label.help.text.brfss.race_ethnicity'
                 },
                 {
                     key: 'age_group', title: 'label.filter.age_group',
                     queryKey:"age",primary: false, value: [],
                     groupBy: false, filterType: 'radio', defaultGroup:"column",
                     autoCompleteOptions: filters.brfsAgeGroupOptions,
-                    doNotShowAll: false, helpText: ""
+                    doNotShowAll: false, helpText: 'label.help.text.brfss.age_group'
                 },
                 {
                     key: 'education', title: 'label.filter.education.attained',
                     queryKey:"education",primary: false, value: [],
                     groupBy: false, filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsEducationOptions,
-                    doNotShowAll: false, helpText: ""
+                    doNotShowAll: false, helpText: 'label.help.text.brfss.education'
                 },
                 {
                     key: 'income', title: 'label.filter.household.income',
                     queryKey:"income",primary: false, value: [],
                     groupBy: false, filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsIncomeOptions,
-                    doNotShowAll: false, helpText: ""
+                    doNotShowAll: false, helpText: 'label.help.text.brfss.income'
                 },
                 {
                     key: 'question', title: 'label.brfss.filter.question',
@@ -2486,7 +2486,7 @@
                     selectTitle: 'label.brfss.select.question',
                     updateTitle: 'label.brfss.update.question',
                     iconClass: 'fa fa-pie-chart purple-text',
-                    helpText: '',
+                    helpText: 'label.help.text.brfss.question',
                     onIconClick: function(question) {
                         showChartForQuestion(filters.selectedPrimaryFilter, question);
                     }
@@ -2498,14 +2498,14 @@
                     queryKey:"topic",primary: false,
                     value: [], groupBy: false,
                     filterType: 'checkbox', autoCompleteOptions: filters.brfsTopicOptions,
-                    doNotShowAll: false, helpText: ""
+                    doNotShowAll: false, helpText: 'label.help.text.brfss.topic'
                 },
                 {
                     key: 'year', title: 'label.filter.year',
                     queryKey:"year", primary: false,
                     value: ['2015'], groupBy: false,
                     filterType: 'checkbox', autoCompleteOptions: filters.brfsYearOptions,
-                    doNotShowAll: true, helpText: ""
+                    doNotShowAll: true, helpText: 'label.help.text.brfss.year'
                 },
                 {
                     key: 'sex',
@@ -2517,7 +2517,7 @@
                     filterType: 'checkbox',
                     autoCompleteOptions: filters.brfsGenderOptions,
                     doNotShowAll: false,
-                    helpText: ''
+                    helpText: 'label.help.text.brfss.sex'
                 },
                 {
                     key: 'state', title: 'label.brfss.filter.state',
@@ -2525,35 +2525,35 @@
                     groupBy: false, filterType: 'checkbox',
                     autoCompleteOptions: filters.brfsStateOptions,
                     displaySearchBox:true, displaySelectedFirst:true,
-                    doNotShowAll: false, helpText: ""
+                    doNotShowAll: false, helpText: 'label.help.text.brfss.state'
                 },
                 {
                     key: 'race', title: 'label.brfss.filter.race_ethnicity',
                     queryKey:"race", primary: false, value: [],
                     groupBy: 'column', filterType: 'checkbox',
                     autoCompleteOptions: filters.brfsRaceOptions,
-                    doNotShowAll: false, helpText: ""
+                    doNotShowAll: false, helpText: 'label.help.text.brfss.race_ethnicity'
                 },
                 {
                     key: 'age_group', title: 'label.filter.age_group',
                     queryKey:"age",primary: false, value: [],
                     groupBy: false, filterType: 'checkbox',
                     autoCompleteOptions: filters.brfsAgeGroupOptions,
-                    doNotShowAll: false, helpText: ""
+                    doNotShowAll: false, helpText: 'label.help.text.brfss.age_group'
                 },
                 {
                     key: 'education', title: 'label.filter.education.attained',
                     queryKey:"education",primary: false, value: [],
                     groupBy: false, filterType: 'checkbox',
                     autoCompleteOptions: filters.brfsEducationOptions,
-                    doNotShowAll: false, helpText: ""
+                    doNotShowAll: false, helpText: 'label.help.text.brfss.education'
                 },
                 {
                     key: 'income', title: 'label.filter.household.income',
                     queryKey:"income",primary: false, value: [],
                     groupBy: false, filterType: 'checkbox',
                     autoCompleteOptions: filters.brfsIncomeOptions,
-                    doNotShowAll: false, helpText: ""
+                    doNotShowAll: false, helpText: 'label.help.text.brfss.income'
                 },
                 {
                     key: 'question', title: 'label.brfss.filter.question',
@@ -2566,7 +2566,7 @@
                     selectTitle: 'label.brfss.select.question',
                     updateTitle: 'label.brfss.update.question',
                     iconClass: 'fa fa-pie-chart purple-text',
-                    helpText: '',
+                    helpText: 'label.help.text.brfss.question',
                     onIconClick: function(question) {
                         showChartForQuestion(filters.selectedPrimaryFilter, question);
                     }
