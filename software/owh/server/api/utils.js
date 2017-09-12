@@ -117,6 +117,7 @@ var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, all
             total: 0
         }
     };
+    var groupByState = false;
     //Get selected aggregation filter keys
     var tableFilterKeys = [];
     wonderQuery.aggregations.nested.table.forEach(function(eachAgg){
@@ -130,19 +131,73 @@ var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, all
         });
        chartFilterKeys.push(chartAggKeyArray);
     });
+    groupByState = tableFilterKeys.indexOf('state') > -1;
     if(resp) {
-        result.data.nested.table = populateAggregateDataForWonderResponse(resp.table, 'parentTotal', tableFilterKeys);
+        result.data.nested.table = populateAggregateDataForWonderResponse(resp.table, 'Total', tableFilterKeys, groupByState);
         chartFilterKeys.forEach(function(eachChartFilterKeys, index){
-            result.data.nested.charts[index] = populateAggregateDataForWonderResponse(resp.charts[index], 'parentTotal', eachChartFilterKeys);
+            result.data.nested.charts[index] = populateAggregateDataForWonderResponse(resp.charts[index], 'Total', eachChartFilterKeys, groupByState);
         });
     }
     return result;
 };
 
-var populateAggregateDataForWonderResponse = function(wonderResponse, key, filterKeys){
+var populateAggregateDataForWonderResponse = function(wonderResponse, key, filterKeys, groupByState){
+    var keyMap = {
+        "Alabama": "AL",
+        "Alaska": "AK",
+        "Arizona": "AZ",
+        "Arkansas": "AR",
+        "California": "CA",
+        "Colorado": "CO",
+        "Connecticut": "CT",
+        "Delaware": "DE",
+        "District of Columbia": "DC",
+        "Florida": "FL",
+        "Georgia": "GA",
+        "Hawaii": "HI",
+        "Idaho": "ID",
+        "Illinois": "IL",
+        "Indiana": "IN",
+        "Iowa": "IA",
+        "Kansas": "KS",
+        "Kentucky": "KY",
+        "Louisiana": "LA",
+        "Maine": "ME",
+        "Maryland": "MD",
+        "Massachusetts": "MA",
+        "Michigan": "MI",
+        "Minnesota": "MN",
+        "Mississippi": "MS",
+        "Missouri": "MO",
+        "Montana": "MT",
+        "Nebraska": "NE",
+        "Nevada": "NV",
+        "New Hampshire": "NH",
+        "New Jersey": "NJ",
+        "New Mexico": "NM",
+        "New York": "NY",
+        "North Carolina": "NC",
+        "North Dakota": "ND",
+        "Ohio": "OH",
+        "Oklahoma": "OK",
+        "Oregon": "OR",
+        "Pennsylvania": "PA",
+        "Rhode Island": "RI",
+        "South Carolina": "SC",
+        "South Dakota": "SD",
+        "Tennessee": "TN",
+        "Texas": "TX",
+        "Utah": "UT",
+        "Vermont": "VT",
+        "Virginia": "VA",
+        "Washington": "WA",
+        "West Virginia": "WV",
+        "Wisconsin": "WI",
+        "Wyoming": "WY"
+    };
     var result = {};
     if (wonderResponse.Total){
-        if(wonderResponse.Total['infant_mortality'] != 0) {
+        if(wonderResponse.Total['infant_mortality'] != 0 && !isNaN(wonderResponse.Total['infant_mortality'])) {
             result['name'] = key;
             result.infant_mortality = wonderResponse.Total['infant_mortality'];
             result['deathRate'] = wonderResponse.Total['deathRate'];
@@ -150,15 +205,30 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
             result [filterKeys[0]] = [];
             Object.keys(wonderResponse).forEach(function (key) {
                 if (key != 'Total') {
-                    result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function (x, i) {
-                        return i !== 0;
-                    })));
+                    result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function (x, i) { return i !== 0;}), groupByState));
                 }
             });
         }
         return result;
-    }else {
-        if(wonderResponse['infant_mortality'] != 0) {
+    }
+    else if(groupByState && !wonderResponse.hasOwnProperty('infant_mortality')) {
+        if(keyMap[key]){
+            key = keyMap[key];
+        }
+        result['name'] = key;
+        result['deathRate'] = 'na';
+        result['pop'] = 'na';
+        result [filterKeys[0]] = [];
+        Object.keys(wonderResponse).forEach(function (key) {
+            result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function (x, i) { return i !== 0;}), groupByState));
+        });
+        return result;
+    }
+    else {
+        if(wonderResponse['infant_mortality'] != 0 && !isNaN(wonderResponse['infant_mortality'])) {
+            if(keyMap[key]){
+                key = keyMap[key];
+            }
             result['name'] = key;
             result.infant_mortality = wonderResponse['infant_mortality'];
             result['deathRate'] = wonderResponse['deathRate'];
