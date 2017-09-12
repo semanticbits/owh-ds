@@ -444,8 +444,8 @@
         "id":"Breast-InSitu-Female"
       },
       {
-        "text":"Female Breast, In Situ",
-        "id":"Male Breast, In Situ"
+        "text":"Male Breast, In Situ",
+        "id":"Breast-InSitu-Male"
       }
     ]
   }

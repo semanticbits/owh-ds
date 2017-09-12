@@ -241,6 +241,7 @@
         function plotlyMultiLineChart(filter1, filter2, data, primaryFilter){
             var layout = quickChartLayout();
             layout.xaxis.title = $translate.instant(filter2.title);
+            layout.xaxis.type = "category";
             layout.yaxis.title = getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel);
 
             var colors = getColorPallete();    
@@ -248,7 +249,7 @@
             angular.forEach(utilService.getSelectedAutoCompleteOptions(filter1), function (primaryOption,index) {
                     var eachPrimaryData = utilService.findByKeyAndValue(data[filter1.key], 'name', primaryOption.key);
 
-                    var plotlyseries= {name: primaryOption.key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[index%colors.length]}};
+                    var plotlyseries= {name: primaryOption.title, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[index%colors.length]}};
                     if(eachPrimaryData && eachPrimaryData[filter2.key]) {
                         angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2) , function (secondaryOption,j) {
                             if (!secondaryOption.disabled) {
