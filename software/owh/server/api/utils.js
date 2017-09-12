@@ -141,24 +141,29 @@ var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, all
 
 var populateAggregateDataForWonderResponse = function(wonderResponse, key, filterKeys){
     var result = {};
-    console.log(" wonder response ", JSON.stringify(wonderResponse));
     if (wonderResponse.Total){
-        result['name'] = key;
-        result.infant_mortality = wonderResponse.Total['infant_mortality'];
-        result['deathRate'] = wonderResponse.Total['deathRate'];
-        result['pop'] = wonderResponse.Total['births'];
-        result [filterKeys[0]] = [];
-        Object.keys(wonderResponse).forEach(function (key){
-            if(key != 'Total' ){
-                result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function(x,i) { return i !== 0; })));
-            }
-        });
+        if(wonderResponse.Total['infant_mortality'] != 0) {
+            result['name'] = key;
+            result.infant_mortality = wonderResponse.Total['infant_mortality'];
+            result['deathRate'] = wonderResponse.Total['deathRate'];
+            result['pop'] = wonderResponse.Total['births'];
+            result [filterKeys[0]] = [];
+            Object.keys(wonderResponse).forEach(function (key) {
+                if (key != 'Total') {
+                    result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function (x, i) {
+                        return i !== 0;
+                    })));
+                }
+            });
+        }
         return result;
     }else {
-        result['name'] = key;
-        result.infant_mortality = wonderResponse['infant_mortality'];
-        result['deathRate'] = wonderResponse['deathRate'];
-        result['pop'] = wonderResponse['births'];
+        if(wonderResponse['infant_mortality'] != 0) {
+            result['name'] = key;
+            result.infant_mortality = wonderResponse['infant_mortality'];
+            result['deathRate'] = wonderResponse['deathRate'];
+            result['pop'] = wonderResponse['births'];
+        }
         return result;
     }
 };
