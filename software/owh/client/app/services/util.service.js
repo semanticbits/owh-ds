@@ -879,11 +879,11 @@
         function generateMapLegendRanges(minValue, maxValue) {
             var counter = getLegendCounter(minValue, maxValue);
             var counterRoundedValue = Math.round(counter/((counter < 5) ? 5 : 10), 0)*10;
-            var minRoundedValue = Math.round(minValue/10, 0) * 10;
+            var minRoundedValue = 10 + Math.round(minValue/10, 0) * 10;
             var ranges = [];
-            ranges.push(minRoundedValue);
+            ranges.push(minRoundedValue + 10);
             [1, 2, 3, 4, 5, 6].forEach(function(option, index){
-                ranges.push(minRoundedValue + (counterRoundedValue*index));
+                ranges.push(minRoundedValue + (counterRoundedValue*option));
             });
             return ranges;
         }
