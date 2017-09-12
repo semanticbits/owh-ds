@@ -861,7 +861,11 @@
 
 
         function getMinAndMaxValue(array) {
-            var sortedArray = array.sort(function(a,b) {
+            //collect only numbers. exlude strings e.g 'suppressed', 'na'
+            var filteredArray = array.filter(function(elm){
+                return !isNaN(elm);
+            });
+            var sortedArray = filteredArray.sort(function(a,b) {
                 return a-b;
             });
             return { minValue: sortedArray[0], maxValue: sortedArray[sortedArray.length-1] }
@@ -874,8 +878,8 @@
 
         function generateMapLegendRanges(minValue, maxValue) {
             var counter = getLegendCounter(minValue, maxValue);
-            var counterRoundedValue = Math.round(counter/((counter<50)?50:100), 0)*100;
-            var minRoundedValue = Math.round(minValue/100, 0)*100;
+            var counterRoundedValue = Math.round(counter/((counter < 5) ? 5 : 10), 0)*10;
+            var minRoundedValue = Math.round(minValue/10, 0) * 10;
             var ranges = [];
             ranges.push(minRoundedValue);
             [1, 2, 3, 4, 5, 6].forEach(function(option, index){
