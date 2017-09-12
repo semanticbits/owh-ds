@@ -29,7 +29,7 @@
         function exportCSVFromMixedTable(data, dataKey, tableView, filename) {
             var sheetArray = getSheetArrayFromMixedTable(data, dataKey, tableView);
             var sheet = getSheetFromArray(sheetArray);
-            var csv = getCSVFromSheet(sheet, data.headers, data.rowHeaders);
+            var csv = getCSVFromSheet(sheet, data.headers, data.rowHeadersLength);
             saveAs(new Blob([s2ab(csv)], {type:"application/octet-stream"}), filename + ".csv");
         }
 
@@ -101,6 +101,7 @@
                 cell.v = datenum(cell.v);
             }
             else if(cell.v === 'suppressed') {
+                cell.t = 's';
                 cell.v = 'Suppressed';
             }
             else {
@@ -121,7 +122,7 @@
         //gets json representation of sheet
         function getSheetArrayFromMixedTable(table, dataKey, tableView) {
             if (["prams", "mental_health", "brfss"].indexOf(dataKey) >= 0) {
-                transformTableForVariance(table, "Confidence interval", "Number of responses");
+                transformTableForVariance(table);
             }
             else if (['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates', 'std', 'tb', 'aids',
                 'disease_rate', 'number_of_infant_deaths', 'crude_cancer_incidence_rates', 'crude_cancer_death_rates'].indexOf(tableView) >= 0) {
@@ -301,10 +302,10 @@
             });
         }
 
-        function transformTableForVariance(table, ciLabel, countLabel) {
+        function transformTableForVariance(table) {
             var newColumnsCount = 1                                         // For percentage
-                                + (table.filterUtilities.exportCi ? 1 : 0)  // For Confidence Interval
-                                + (table.filterUtilities.exportUf ? 1 : 0); // For Sample Size (or count)
+                                + (table.filterUtilities.ci.value ? 1 : 0)  // For Confidence Interval
+                                + (table.filterUtilities.uf.value ? 1 : 0); // For Sample Size (or count)
 
             if (newColumnsCount < 2) {
                 return;
@@ -330,12 +331,12 @@
                 if (headerCell.isData) {
                     newHeaderRow.push({ title: "Percentage of responses", colspan: 1, rowspan: 1 });
 
-                    if (table.filterUtilities.exportCi) {
-                        newHeaderRow.push({ title: ciLabel, colspan: 1, rowspan: 1 });
+                    if (table.filterUtilities.ci.value) {
+                        newHeaderRow.push({ title: table.filterUtilities.ci.title, colspan: 1, rowspan: 1 });
                     }
 
-                    if (table.filterUtilities.exportUf) {
-                        newHeaderRow.push({ title: countLabel, colspan: 1, rowspan: 1 });
+                    if (table.filterUtilities.uf.value) {
+                        newHeaderRow.push({ title: table.filterUtilities.uf.title, colspan: 1, rowspan: 1 });
                     }
                 }
             });
@@ -350,12 +351,12 @@
                     var cell = row[j];
 
                     if (cell.isCount) {
-                        if (table.filterUtilities.exportCi) {
+                        if (table.filterUtilities.ci.value) {
                             var ciValue = !cell.title.mean || cell.title.mean === "suppressed" || cell.title.mean === "nr" ? "" : "(" + cell.title.ci_l + " - " + cell.title.ci_u + ")";
                             newCells.push({ index: j + 1, cell: { title: ciValue, colspan: 1, rowspan: 1 } });
                         }
 
-                        if (table.filterUtilities.exportUf) {
+                        if (table.filterUtilities.uf.value) {
                             var countValue = !cell.title.mean || cell.title.mean === "suppressed" || cell.title.mean === "nr" || !cell.title.count ? "" : cell.title.count;
                             newCells.push({ index: j + 1, cell: { title: countValue, colspan: 1, rowspan: 1 } });
                         }
@@ -371,11 +372,11 @@
         }
 
         //helper function to repeat merge cells in header for CSV output
-        function padSheetForCSV(sheet, colHeaders, rowHeaders) {
+        function padSheetForCSV(sheet, colHeaders, rowHeadersLength) {
             var headerMerges = [];
             angular.forEach(sheet['!merges'], function(merge, idx) {
                 //only repeat if merge cell is part of headers, use rowHeaders.length - 1 because of Total row
-                if(merge.s.r < colHeaders.length || merge.s.c < rowHeaders.length - 1) {
+                if(merge.s.r < colHeaders.length || merge.s.c < rowHeadersLength - 1) {
                     var start = sheet[XLSX.utils.encode_cell(merge.s)];
                     for(var r = merge.s.r; r <= merge.e.r; r++) {
                         for(var c = merge.s.c; c <= merge.e.c; c++) {
@@ -392,8 +393,8 @@
             return sheet;
         }
 
-        function getCSVFromSheet(sheet, colHeaders, rowHeaders) {
-            var csv = XLSX.utils.sheet_to_csv(padSheetForCSV(sheet, colHeaders, rowHeaders));
+        function getCSVFromSheet(sheet, colHeaders, rowHeadersLength) {
+            var csv = XLSX.utils.sheet_to_csv(padSheetForCSV(sheet, colHeaders, rowHeadersLength));
             return csv;
         }
 

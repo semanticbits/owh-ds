@@ -18,7 +18,7 @@ var searchRouter = function(app, rConfig) {
     app.post('/search', function (req, res) {
         var q = req.body.q;
         logger.debug("Incoming RAW query: ", JSON.stringify(q));
-        var queryId = req.body.qID;
+        var queryId = req.sanitize(req.body.qID);
         if (queryId) {
             queryCache.getCachedQuery(queryId).then(function (r) {
                 if(r && !config.disableQueryCache) {
@@ -70,16 +70,16 @@ var searchRouter = function(app, rConfig) {
     });
 
     app.get('/factsheet', function (req, res) {
-        var state = req.query.state;
-        var fsType = req.query.fsType;
+        var state = req.sanitize(req.query.state);
+        var fsType = req.sanitize(req.query.fsType);
         new factSheet().prepareFactSheet(state, fsType).then(function(response) {
             res.send(new result('OK', response, "success"));
         });
     });
 
     app.get('/dsmetadata/:dataset', function(req, res) {
-        var dataset = req.params.dataset;
-        var years = req.query.years?req.query.years.split(','):[];
+        var dataset = req.sanitize(req.params.dataset);
+        var years = req.query.years?req.sanitize(req.query.years).split(','):[];
         new dsmetadata().getDsMetadata(dataset, years).then( function (resp) {
             res.send( new result('OK', resp, "success") );
         }, function (err) {

@@ -729,7 +729,7 @@ var chartMappings = {
     "sex&month": "horizontalBar",
     "sex&weekday": "horizontalBar",
     //insert gestation age here
-    "hispanic_origin&prenatal_care": "lineChart",
+    "hispanic_origin&prenatal_care": "horizontalStack",
     "race&prenatal_care": "horizontalBar",
     "marital_status&prenatal_care": "horizontalBar",
     "mother_age&prenatal_care": "horizontalBar",

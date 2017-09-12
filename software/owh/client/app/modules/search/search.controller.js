@@ -621,8 +621,14 @@
 
             if (filters.filterUtilities && filters.filterUtilities[key]) {
                 data.filterUtilities = {
-                    exportCi: filters.filterUtilities[key][0].options[0].value,
-                    exportUf: filters.filterUtilities[key][0].options[1].value
+                    ci: {
+                        value: filters.filterUtilities[key][0].options[0].value,
+                        title: filters.filterUtilities[key][0].options[0].title
+                    },
+                    uf: {
+                        value: filters.filterUtilities[key][0].options[1].value,
+                        title: filters.filterUtilities[key][0].options[1].title
+                    }
                 };
             }
 
