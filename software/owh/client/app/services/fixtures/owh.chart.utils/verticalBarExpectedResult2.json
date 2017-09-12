@@ -1,11 +1,11 @@
 {
   "charttype":"multiBarChart",
-  "title":"label.title.race.hispanicOrigin",
-  "longtitle":"chart.title.measure.deaths by label.title.race.hispanicOrigin in undefined for undefined",
+  "title":"label.filter.race and label.filter.hispanicOrigin",
+  "longtitle":"chart.title.measure.deaths by label.filter.race and label.filter.hispanicOrigin in undefined for undefined",
   "dataset":"deaths",
   "data":[
     {
-      "name":"White",
+      "name":"White     ",
       "x":[
         "Unknown",
         "Spaniard",
@@ -35,28 +35,28 @@
         7026
       ],
       "text":[
-        "White:Unknown:6888",
-        "White:Spaniard:598",
-        "White:South American:5964",
-        "White:Puerto Rican:21079",
-        "White:Other Hispanic:14643",
-        "White:Non-Hispanic:2068925",
-        "White:Mexican:95193",
-        "White:Latin American:716",
-        "White:Dominican:3013",
-        "White:Cuban:14936",
-        "White:Central and South American:2369",
-        "White:Central American:7026"
+        "6,888",
+        "598",
+        "5,964",
+        "21,079",
+        "14,643",
+        "2,068,925",
+        "95,193",
+        "716",
+        "3,013",
+        "14,936",
+        "2,369",
+        "7,026"
       ],
       "orientation":"v",
       "type":"bar",
       "hoverinfo":"none",
       "marker":{
-        "color":"#C2D5EE"
+        "color":"#56b783"
       }
     },
     {
-      "name":"Black",
+      "name":"Black     ",
       "x":[
         "Unknown",
         "Spaniard",
@@ -86,28 +86,28 @@
         491
       ],
       "text":[
-        "Black:Unknown:1867",
-        "Black:Spaniard:2",
-        "Black:South American:93",
-        "Black:Puerto Rican:581",
-        "Black:Other Hispanic:321",
-        "Black:Non-Hispanic:304107",
-        "Black:Mexican:539",
-        "Black:Latin American:19",
-        "Black:Dominican:838",
-        "Black:Cuban:346",
-        "Black:Central and South American:112",
-        "Black:Central American:491"
+        "1,867",
+        "2",
+        "93",
+        "581",
+        "321",
+        "304,107",
+        "539",
+        "19",
+        "838",
+        "346",
+        "112",
+        "491"
       ],
       "orientation":"v",
       "type":"bar",
       "hoverinfo":"none",
       "marker":{
-        "color":"#5799C7"
+        "color":"#FFCC9A"
       }
     },
     {
-      "name":"Asian or Pacific Islander",
+      "name":"Asian or Pacific Islander     ",
       "x":[
         "Unknown",
         "Spaniard",
@@ -137,18 +137,18 @@
         43
       ],
       "text":[
-        "Asian or Pacific Islander:Unknown:280",
-        "Asian or Pacific Islander:Spaniard:27",
-        "Asian or Pacific Islander:South American:35",
-        "Asian or Pacific Islander:Puerto Rican:142",
-        "Asian or Pacific Islander:Other Hispanic:397",
-        "Asian or Pacific Islander:Non-Hispanic:60942",
-        "Asian or Pacific Islander:Mexican:207",
-        "Asian or Pacific Islander:Latin American:6",
-        "Asian or Pacific Islander:Dominican:6",
-        "Asian or Pacific Islander:Cuban:14",
-        "Asian or Pacific Islander:Central and South American:4",
-        "Asian or Pacific Islander:Central American:43"
+        "280",
+        "27",
+        "35",
+        "142",
+        "397",
+        "60,942",
+        "207",
+        "6",
+        "6",
+        "14",
+        "4",
+        "43"
       ],
       "orientation":"v",
       "type":"bar",
@@ -158,7 +158,7 @@
       }
     },
     {
-      "name":"American Indian",
+      "name":"American Indian     ",
       "x":[
         "Unknown",
         "Spaniard",
@@ -188,24 +188,24 @@
         19
       ],
       "text":[
-        "American Indian:Unknown:64",
-        "American Indian:Spaniard:11",
-        "American Indian:South American:17",
-        "American Indian:Puerto Rican:28",
-        "American Indian:Other Hispanic:203",
-        "American Indian:Non-Hispanic:17151",
-        "American Indian:Mexican:512",
-        "American Indian:Latin American:10",
-        "American Indian:Dominican:6",
-        "American Indian:Cuban:9",
-        "American Indian:Central and South American:1",
-        "American Indian:Central American:19"
+        "64",
+        "11",
+        "17",
+        "28",
+        "203",
+        "17,151",
+        "512",
+        "10",
+        "6",
+        "9",
+        "1",
+        "19"
       ],
       "orientation":"v",
       "type":"bar",
       "hoverinfo":"none",
       "marker":{
-        "color":"#bc8fe0"
+        "color":"#ED93CB"
       }
     }
   ],

@@ -739,10 +739,10 @@
         ];
 
         var cancerRaceOptions = [
-            { key: 'White', title: 'White' },
-            { key: 'Black', title: 'Black' },
             { key: 'American Indian/Alaska Native', title: 'American Indian/Alaska Native' },
             { key: 'Asian or Pacific Islander', title: 'Asian or Pacific Islander' },
+            { key: 'Black', title: 'Black' },
+            { key: 'White', title: 'White' },
             { key: 'Unknown', title: 'Unknown' }
         ];
 
@@ -754,7 +754,7 @@
         ];
 
         var cancerAgeGroups = [
-            { key: '00 years', title: '00 years' },
+            { key: '00 years', title: '< 1 years' },
             { key: '01-04 years', title: '01-04 years' },
             { key: '05-09 years', title: '05-09 years' },
             { key: '10-14 years', title: '10-14 years' },
@@ -871,7 +871,7 @@
                     // set the values list only if the slider selection is different from the default
                     if(! (minValue == 0  && maxValue == 85)) {
                         angular.forEach(ageGroupFilter.autoCompleteOptions, function(eachOption) {
-                            if((eachOption.min <= minValue && eachOption.max >= minValue)
+                            if((eachOption.min <= minValue && eachOption.max > minValue)
                                 || (eachOption.min >= minValue && eachOption.max <= maxValue)
                                 || (eachOption.min <= maxValue && eachOption.max >= maxValue)) {
                                 ageGroupFilter.value.push(eachOption.key);
@@ -1567,8 +1567,8 @@
                     filterType: 'site',
                     selectTitle: 'label.cancer_site.select',
                     updateTitle: 'label.cancer_site.update',
-                    autoCompleteOptions: cancerService.getList(),
-                    tree: cancerService.getSites(),
+                    autoCompleteOptions: cancerService.getCancerSiteListFor('cancer_incidence'),
+                    tree: cancerService.getCancerSitesFor('cancer_incidence'),
                     aggregationKey: 'cancer_site.path',
                     defaultGroup:'row',
                     helpText: 'label.help.text.cancer_incidence.cancer_site'
@@ -1599,7 +1599,15 @@
                     filterType: 'checkbox',
                     displaySearchBox: true,
                     displaySelectedFirst: true,
-                    autoCompleteOptions: stateOptions,
+                    autoCompleteOptions: (function (states) {
+                        states.forEach(function (state) {
+                            if (state.key === 'KS') {
+                                state.disabled = true;
+                                return state;
+                            }
+                        })
+                        return states;
+                    })(stateOptions),
                     defaultGroup:'column',
                     helpText: 'label.help.text.cancer_incidence.state'
                 }
@@ -1674,8 +1682,8 @@
                     filterType: 'site',
                     selectTitle: 'label.cancer_site.select',
                     updateTitle: 'label.cancer_site.update',
-                    autoCompleteOptions: cancerService.getList(),
-                    tree: cancerService.getSites(),
+                    autoCompleteOptions: cancerService.getCancerSiteListFor(),
+                    tree: cancerService.getCancerSitesFor(),
                     aggregationKey: 'cancer_site.path',
                     defaultGroup:'row',
                     helpText: 'label.help.text.cancer_mortality.cancer_site'

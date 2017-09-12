@@ -76,7 +76,7 @@ describe("Utils", function(){
         expect(result.data.nested.table.race[0].hispanicOrigin[0].deaths).equal('suppressed');
         expect(result.data.nested.table.race[0].hispanicOrigin[0].gender[1].deaths).equal('suppressed');
         //for chart initialize suppressed counts to 0
-        expect(result.data.nested.charts[0].race[1].hispanicOrigin[1].deaths).equal(0);
+        expect(result.data.nested.charts[0].race[1].hispanicOrigin[1].deaths).equal(-1);
         done();
 
     });
@@ -619,18 +619,18 @@ describe("Utils", function(){
                { key: 'sex', autoCompleteOptions: [{ key: 'Male', title: 'Male'}, { key: 'Female', title: 'Female' }], allChecked: false }
             ];
             var expected = [ '2014' ];
-            expect(searchUtils.getYearFilter(mock)).to.eql(expected);
+            expect(searchUtils.getYearFilter(mock, 'year_of_death')).to.eql(expected);
         });
 
         it('should not return any other filter', function () {
             var mock = [{ key: 'sex', autoCompleteOptions: [{ key: 'Male', title: 'Male'}, { key: 'Female', title: 'Female' }], allChecked: false }];
-            expect(searchUtils.getYearFilter(mock)).to.be.empty();
+            expect(searchUtils.getYearFilter(mock, 'year_of_death')).to.be.empty();
         });
 
         it('should return all autoCompleteOptions when allChecked is true', function () {
             var mock = [{ key: 'year_of_death', autoCompleteOptions: [{ key: '2015', title: '2015' }, { key: '2014', title: '2014' }], allChecked: true, value: [] }];
             var expected = [ '2015', '2014' ];
-            expect(searchUtils.getYearFilter(mock)).to.eql(expected);
+            expect(searchUtils.getYearFilter(mock, 'year_of_death')).to.eql(expected);
         });
     });
 
@@ -821,6 +821,31 @@ describe("Utils", function(){
         });
     });
 
+    describe('.hasFilterApplied', function () {
+        var mock;
+        before(function () {
+            mock = [
+              { key: 'current_year', value: [ '2015' ], groupBy: false },
+              { key: 'state', value: [], groupBy: false },
+              { key: 'race', value: [], groupBy: 'row' },
+              { key: 'sex', value: [], groupBy: 'column' }
+            ];
+        });
+
+        it('should return a boolean', function () {
+            expect(searchUtils.hasFilterApplied(mock, [ 'current_year' ])).to.be.a('boolean');
+        });
+
+        it('should return true when allFilters has a target filter applied', function () {
+            expect(searchUtils.hasFilterApplied(mock, [ 'current_year' ])).to.be(true);
+            expect(searchUtils.hasFilterApplied(mock, [ 'current_year', 'race' ])).to.be(true);
+        });
+
+        it('should return false when allFilters does not have a target filter applied', function () {
+            expect(searchUtils.hasFilterApplied(mock, [ 'state' ])).to.be(false);
+        });
+    });
+
     describe('.recursivelySuppressOptions', function () {
         it('should change each of the countKey values to suppressed', function () {
             var mock = { filter: [{ name: 'option 1', countKey: 1234 }, { name: 'option 2', countKey: 12345 }] }
@@ -889,6 +914,13 @@ describe("Utils", function(){
                 expect(rule).to.have.length(2);
             });
         });
+
+        it('should add addtional rules when given years 2013 and/or 2014', function () {
+            var rules = searchUtils.createCancerIncidenceSuppressionRules().length;
+            var additionalRules = searchUtils.createCancerIncidenceSuppressionRules([ '2013' ]).length
+            console.log(searchUtils.createCancerIncidenceSuppressionRules([ '2013' ]))
+            expect(additionalRules).to.be.greaterThan(rules);
+        });
     });
 
     describe('.applyCustomSuppressions', function () {
@@ -936,12 +968,15 @@ describe("Utils", function(){
             expect(searchUtils.findMatchingProp(pop, [ 'race', 'Black' ])).to.eql(44316094);
             expect(searchUtils.findMatchingProp(pop, [ 'race', 'American Indian/Alaska Native', 'sex', 'Male' ])).to.eql(2267184);
             expect(searchUtils.findMatchingProp(pop, [ 'race', 'American Indian/Alaska Native', 'sex', 'Female' ])).to.eql(2248348);
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Asian or Pacific Islander', 'sex', 'Female' ])).to.eql(10183290);
         });
 
-        it('should return undefined when given an unmatched path', function () {
-            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Unknown' ])).to.eql(undefined);
-            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Unknown', 'sex', 'Female' ])).to.eql(undefined);
+        it('should return null when given an unmatched path', function () {
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Unknown' ])).to.eql(null);
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Unknown', 'sex', 'Female' ])).to.eql(null);
+            expect(searchUtils.findMatchingProp(pop, [ 'race', 'Asian or Pacific Islander', 'sex', 'Male' ])).to.eql(null);
         });
+
     });
 
     describe('.findMatchingOption', function () {
@@ -954,6 +989,26 @@ describe("Utils", function(){
         it('should return null when given a non-existent target', function () {
             var mock = [{ name: 'White' }, { name: 'Black' }, { name: 'American Indian/Alaska Native' }];
             expect(searchUtils.findMatchingOption(mock, 'Unknown')).to.eql(null);
+        });
+    });
+
+    describe('.applyPopulationSpecificSuppression', function () {
+        var mock;
+        before(function () {
+            mock = { filter1: [{ name: 'option', countKey: 1234, pop: 60000, filter2: [{ name: 'option2', countKey: 123, pop: 55000 }, { name: 'option3', countKey: 234, pop: 5000 }] }] };
+        });
+        after(function () {
+            mock = null;
+        });
+
+        it('should change the countKey value to suppressed when the pop value is less than 50000', function () {
+            searchUtils.applyPopulationSpecificSuppression(mock, 'countKey');
+            expect(mock.filter1[0].filter2[1].countKey).to.eql('suppressed');
+        });
+
+        it('should not change the countKey value when the pop is greater than 50000', function () {
+            searchUtils.applyPopulationSpecificSuppression(mock, 'countKey');
+            expect(mock.filter1[0].countKey).to.eql(1234);
         });
     });
 });

@@ -155,7 +155,7 @@ h1.dataset-name {
 
 @media(min-width: 1201px) {
 	.intro {
-		width: 33%;
+		width: 50%;
 	}
 
 }
@@ -216,30 +216,53 @@ h1.dataset-name {
 }
 
 
-.intro .usa-button-secondary, .explore-dataset-btn {
+.intro .usa-button-secondary, .explore-dataset-btn, .usa-button-outline {
 	/*background: #009ddd;*/
 	background: #2381ca;
-	padding: 10px 30px 10px 40px;
+	padding: 10px 22px 10px 30px;
 	border-radius: 100px;
 	text-transform: uppercase;
 	color: white;
 	font-weight: bold;
 	display: inline-block;
 	font-family: 'Montserrat', Sans-serif;
-	letter-spacing: 2px;
+	letter-spacing: 1px;
 	font-size:0.9em;
 }
 
-.intro .usa-button-secondary i, .explore-dataset-btn i {
+.intro .usa-button-secondary {
+	margin-right:8px;
+	margin-bottom: 10px;
+}
+
+.intro .usa-button-secondary i, .explore-dataset-btn i, .usa-button-outline i {
 	vertical-align: -7px;
 	transition: all 0.2s linear;
 	margin-left: 10px;
 }
+.usa-button-outline {
+	background: transparent;
+	box-shadow: inset 0 0 0 2px #974bc2;
+	color: #974bc2;
+	padding:10px 30px 10px 22px;
+	transition: all .05s linear;
+}
 
+.usa-button-outline:hover {
+	background: #974bc2;
+	color: white;
+}
 
+.usa-button-outline:focus {
+	box-shadow: inset 0 0 0 2px #974bc2;
+}
+
+.usa-button-outline i {
+	margin: 0 10px 0 0;
+}
 .intro .usa-button-secondary:hover,
 .explore-dataset-btn:hover, .explore-dataset-btn:focus {
-	background: #9958a3;
+	background: #974bc2;
 }
 .intro .usa-button-secondary:hover i , .explore-dataset-btn:hover i {
 	transform: translateX(5px);
@@ -1365,8 +1388,6 @@ table th, table td {
 }
 .usa-width-one-fourth.side-pane-padding.border-right-default {
 	background: #f0f9fd;
-	height: calc(100vh - 198px);
-	overflow: hidden;
 	margin-right: 0;
 	width: 25%;
 }
@@ -1374,8 +1395,7 @@ table th, table td {
 	margin-left: 0;
 	padding: 0 10px 10px 10px;
 	border-top: 1px solid #ccc;
-	overflow-y: auto;
-	height: calc(100% - 50px);
+
 }
 
 .selected-filters {
@@ -1937,24 +1957,29 @@ select.tableViewDropDown:focus {
 }
 
 ul.filter-group {
-    flex-grow: 1;
     display: flex;
     align-items: center;
     margin: 0;
-    border-bottom: 1px #ccc solid;
+	box-shadow: inset 0 -1px #ccc;
+	justify-content: space-evenly;
 }
 
 ul.filter-group li {
-    border-bottom: 5px transparent solid;
+	text-align: center;
+	width:100%;
 }
 
 ul.filter-group li.selected {
-    border-bottom-color: #0080d1;
+    box-shadow: inset 0 -4px 0 #00adee;
 }
 
 ul.filter-group li a {
-    padding: 8px;
+    padding: 12px 0;
     font-size: 1.4rem;
+}
+
+ul.filter-group li a:hover {
+	background: none;
 }
 
 ul.filter-group li.selected a {
@@ -1968,6 +1993,14 @@ ul.filter-group li.selected a {
 .horizontal-scroll {
 	overflow: hidden;
 	overflow-x: auto;
+	border: 1px solid #ccc;
+	position: relative;
+}
+.horizontal-scroll:after {
+	content: '';
+	height: 100%;
+	width: 40px;
+	background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 92%,rgba(255,255,255,1) 100%);
 }
 
 .visualize {
@@ -2003,4 +2036,56 @@ ul.filter-group li.selected a {
 	.hero-bg:after {
 		opacity: 0.5 !important;
 	}
+}
+/**
+Factsheet css
+ */
+.state-heading {
+	text-align: center
+}
+.factsheet-container {
+    z-index: 1;
+    position: relative;
+    padding: 0 30px;
+}
+.factsheet-content h5 {
+	text-decoration: underline;
+}
+.factsheet-content i {
+	font-size: 12px;
+	font-style: italic;
+}
+.table-heading {
+	display: inline;
+}
+.table-heading h5,
+.table-heading p {
+	display: inline;
+}
+.underline {
+	text-decoration: underline;
+}
+.smallHeading {
+	font-size: 12px;
+}
+.factsheet-pagebreak {
+	page-break-after: always;
+}
+
+.solidBorder {
+	border-top: 1px solid #ddd;
+}
+.data-use {
+	top: 10%;
+	left: 25%;
+	height: 670px;
+	overflow-y: auto;
+	width: 900px;
+	max-width: 85%;
+	box-shadow: 0 10px 30px black;
+	position:fixed;
+	border: 2px solid black;
+	background-color: #ffffff;
+	z-index: 100;
+	border-radius: 5px;
 }

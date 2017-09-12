@@ -1,7 +1,7 @@
 {
   "charttype":"lineChart",
-  "title":"label.graph.current_year",
-  "longtitle":"chart.title.measure.deaths by label.filter.current_year in undefined for undefined",
+  "title":"label.filter.yearly.estimate",
+  "longtitle":"chart.title.measure.deaths by label.filter.yearly.estimate in undefined for undefined",
   "dataset":"deaths",
   "data":[
     {

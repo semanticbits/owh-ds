@@ -37,7 +37,7 @@
         }
 
         function getColorPallete(){
-             return [ "#bc8fe0", "#65c2ff", '#5799C7', '#C2D5EE','#FF9F4A','#FFCC9A','#61B861','#B2E7A7','#DB5859','#FFB2B0','#AF8DCE','#D4C4E0','#A98078','#D3B5AF'];
+             return ["#ED93CB", "#65c2ff", "#FFCC9A", "#56b783", "#FF9F4A", "#FFCC9A", "#61B861", "#B2E7A7 ", "#DB5859", "#FFB2B0 ", "#AF8DCE", "#D4C4E0 ", "#A98078", "#D3B5AF", "#64D7D6", "#44558F", "#FFE495", "#1684A7 ", "#7577CD", "#6A759B", "#F6EC72", "#F97300 ", "#FD6378", "#390050", "#970747"]
         }
         
         function getSelectedOptionTitlesOfFilter(filter) {
@@ -59,15 +59,15 @@
         function getLongChartTitle(primaryFilter, filter1, filter2){
              var chartVars;
              if (filter2){
-                chartVars= $translate.instant("label.title."+filter1.key+ "."+filter2.key);
+                chartVars= $translate.instant(filter1.title) + ' and ' + $translate.instant(filter2.title);
              }else{
-                chartVars= $translate.instant("label.filter."+filter1.key);
+                chartVars= $translate.instant(filter1.title);
              }
             
             var measure;
             if(primaryFilter.key == 'mental_health' || primaryFilter.key == 'prams' ||primaryFilter.key == 'brfss'){ //Dont use tableView for stats datasets, as tableView captures topics and not views 
                 measure = $translate.instant('chart.title.measure.'+primaryFilter.key);       
-                chartVars= $translate.instant("label.filter."+filter1.key);
+                chartVars= $translate.instant(filter1.title);
             }else{
                 measure= $translate.instant('chart.title.measure.'+(primaryFilter.tableView?primaryFilter.tableView:primaryFilter.key) + (primaryFilter.chartView?('.'+primaryFilter.chartView):''));
             }
@@ -120,11 +120,16 @@
          */
         function getValueFromData(filter, data) {
             if(filter.tableView == "crude_death_rates" || filter.tableView == "birth_rates"
-                || filter.tableView == "fertility_rates" || filter.chartView == "disease_rate") {
-                return data['pop'] ? Math.round(data[filter.key] / data['pop'] * 1000000) / 10 : 0;
+                || filter.tableView == "fertility_rates" || filter.chartView == "disease_rate" 
+                || filter.tableView === 'crude_cancer_incidence_rates' || filter.tableView === 'crude_cancer_death_rates') {
+                if(data[filter.key] >= 0) { // calculate rate if count is available, else return the notavailable or suppressed value
+                    return !isNaN(data['pop']) ? Math.round(data[filter.key] / data['pop'] * 1000000) / 10 : -2;
+                }else {
+                    return data[filter.key] ;
+                }
             }
             else if(filter.chartView == "infant_death_rate") {
-                return data['pop'] ? $filter('number')(data['deathRate'], 1): 0;
+                return !isNaN(data['pop']) ? $filter('number')(data['deathRate'], 1): -2;
             }
             else if(data['ageAdjustedRate'] && filter.tableView == "age-adjusted_death_rates"){
                 var ageAdjustedRate = parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));
@@ -156,6 +161,12 @@
                 case "fertility_rates":
                     return "Fertility Rates";
                     break;
+                case "crude_cancer_death_rates":
+                    return "Cancer Death Rates";
+                    break;
+                case "crude_cancer_incidence_rates":
+                    return "Cancer Incidence Rates";
+                    break;          
                 default:
                     return chartLabel;
             }
@@ -172,12 +183,13 @@
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
-                var reg = {name: trace.key, x: [], y: [], text: [], orientation: 'h',  hoverinfo: 'none', type: 'bar',  marker :{color: colors[i]}};
+                // The additional white space on the name is added as a hack for fixing the legend string getting cut off issue
+                var reg = {name: trace.key + '     ', x: [], y: [], text: [], orientation: 'h',  hoverinfo: 'none', type: 'bar',  marker :{color: colors[i%colors.length]}};
                 for (var j = trace.values.length - 1 ; j >=0 ; j-- ){
                     var value  = trace.values[j];
                     reg.y.push(value.label);
-                    reg.x.push(value.value);
-                    //reg.text.push(trace.key+':'+value.label+':'+value.value.toLocaleString());
+                    reg.x.push(value.value < 0?0:value.value);
+                    reg.text.push(getSuppressedCount(value.value, primaryFilter));
                 }
                 plotydata.push(reg);
             }
@@ -195,12 +207,13 @@
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
-                var reg = {name: trace.key, x: [], y: [], text: [], orientation: 'v', type: 'bar', hoverinfo: 'none', marker :{color: colors[i]}};
+                // The additional white space on the name is added as a hack for fixing the legend string getting cut off issue
+                var reg = {name: trace.key+ '     ', x: [], y: [], text: [], orientation: 'v', type: 'bar', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
                 for (var j = trace.values.length - 1 ; j >=0 ; j-- ){
                     var value  = trace.values[j];
                     reg.x.push(value.x);
-                    reg.y.push(value.y);
-                    reg.text.push(trace.key+':'+value.x+':'+value.y.toLocaleString());
+                    reg.y.push(value.y < 0 ? 0:value.y);
+                    reg.text.push(getSuppressedCount(value.y, primaryFilter));
 
                 }
                 plotydata.push(reg);
@@ -215,27 +228,28 @@
             layout.yaxis.title = "Population";
             var colors = getColorPallete();    
             var linedata = chartdata.data();
-            var plotydata = {name: linedata[0].key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[i]}};
+            var plotydata = {name: linedata[0].key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
             for (var i = linedata[0].values.length -1 ; i >= 0 ; i-- ){
                 var value  = linedata[0].values[i];
                 plotydata.x.push(value.x);
-                plotydata.y.push(value.y);
-                plotydata.text.push(linedata[0].key+':'+value.x+':'+value.y.toLocaleString());
+                plotydata.y.push(value.y < 0 ? 0:value.y);
+                plotydata.text.push(getSuppressedCount(value.y, primaryFilter));
             }
             return { charttype:chartdata.options.chart.type, title: chartdata.title, longtitle: getLongChartTitle(primaryFilter, filter), dataset: chartdata.dataset, data:[plotydata], layout: layout, options: {displayModeBar: false}};
         }
 
         function plotlyMultiLineChart(filter1, filter2, data, primaryFilter){
             var layout = quickChartLayout();
-            layout.xaxis.title = "Year";
-            layout.yaxis.title = primaryFilter.chartAxisLabel;
+            layout.xaxis.title = $translate.instant(filter2.title);
+            layout.xaxis.type = "category";
+            layout.yaxis.title = getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel);
 
             var colors = getColorPallete();    
             var plotlydata = [];
             angular.forEach(utilService.getSelectedAutoCompleteOptions(filter1), function (primaryOption,index) {
                     var eachPrimaryData = utilService.findByKeyAndValue(data[filter1.key], 'name', primaryOption.key);
 
-                    var plotlyseries= {name: primaryOption.key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[index]}}; 
+                    var plotlyseries= {name: primaryOption.title, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[index%colors.length]}};
                     if(eachPrimaryData && eachPrimaryData[filter2.key]) {
                         angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2) , function (secondaryOption,j) {
                             if (!secondaryOption.disabled) {
@@ -246,7 +260,8 @@
                                 }
                                 if (value !== undefined) {
                                     plotlyseries.x.push(secondaryOption.key);
-                                    plotlyseries.y.push(value);
+                                    plotlyseries.y.push(value < 0 ? 0:value);
+                                    plotlyseries.text.push(getSuppressedCount(value, primaryFilter));
                                 }
                             }
                         });
@@ -261,13 +276,16 @@
             var chartdata  = pieChart(data, filter, primaryFilter, postFixToTooltip);
             var colors = getColorPallete();    
             var layout = quickChartLayout(chartdata);
+            layout.xaxis.title = getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel);
+            layout.yaxis.title = $translate.instant(filter.title);
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
-                var reg = {name: trace.label, x: [], y: [], text: [], orientation: 'h', type: 'bar', hoverinfo: 'none', marker :{color: colors[i]}};
+                // The additional white space on the name is added as a hack for fixing the legend string getting cut off issue
+                var reg = {name: trace.label + '     ', x: [], y: [], text: [], orientation: 'h', type: 'bar', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
                     reg.y.push(trace.label); 
-                    reg.x.push(trace.value);
-                    reg.text.push(trace.label+':'+trace.value.toLocaleString());
+                    reg.x.push(trace.value<0?0:trace.value);
+                    reg.text.push(getSuppressedCount(trace.value, primaryFilter));
                 
                 plotydata.push(reg);
             }
@@ -282,66 +300,16 @@
             var chartData = {
                 data: [],
                 dataset: primaryFilter.key,
-                title:  $translate.instant("label.title."+filter1.key+"."+filter2.key),
+                title:  $translate.instant(filter1.title) + ' and ' + $translate.instant(filter2.title),
                 options: {
                     "chart": {
                         "type": "multiBarHorizontalChart",
-                        "height": 250,
-                        "width": 0,
-                        "margin": {
-                            "top": 5,
-                            "right": 5,
-                            "bottom": 45,
-                            "left": 45
-                        },
-                        showLegend: false,
-                        showControls: false,
-                        showValues: false,
-                        showXAxis:true,
-                        showYAxis:true,
                         stacked: stacked && primaryFilter.tableView && primaryFilter.tableView.indexOf('rate') < 0,
-                        "duration": 500,
-                        x: function(d){return d.label;},
-                        y: function(d){return d.value;},
                         "xAxis": {
-                            "axisLabelDistance": -20,
-                            "axisLabel": getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel),
-                            tickFormat:function () {
-                                return null;
-                            },
-                            "showMaxMin": false
+                            "axisLabel": getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel)
                         },
                         "yAxis": {
-                            "axisLabel": $translate.instant(filter2.title),
-                            tickFormat:function () {
-                                return null;
-                            }
-                        },
-                        valueFormat:function (n){
-                            if(isNaN(n)){ return n; }
-                            else if (primaryFilter.key == 'mental_health'
-                                || primaryFilter.key === 'prams'
-                                || primaryFilter.key === 'brfss') {
-                                return d3.format(',.1f')(n);(n);
-                            } else {
-                                return d3.format('d')(n);
-                            }
-                        },
-                        useInteractiveGuideline: false,
-                        interactive: false,
-                        tooltip: {
-                            contentGenerator: function(d) {
-                                var html = "<div class='usa-grid-full'"+
-                                    "<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>"+ d.value+"</div>" +
-                                    "<div class='usa-width-one-whole nvtooltip-value'>";
-                                    d.series.forEach(function(elem){
-                                        html += "<span class='fa fa-square' style='color:"+elem.color+"'></span>" +
-                                            "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"
-                                            + getCount(elem.value, primaryFilter) + postFixToTooltip + "</div>";
-                                    });
-                                    html += "</div>";
-                                return html;
-                            }
+                            "axisLabel": $translate.instant(filter2.title)
                         }
                     }
                 }
@@ -410,9 +378,6 @@
                         }
                         //Set name to series
                         seriesDataObj["key"] = primaryOption.title;
-                        if(filter1.queryKey === 'sex') {
-                            seriesDataObj["color"] = primaryOption.key === 'Male' ?  "#009aff" : "#fe66ff";
-                        }
 
                         //collect series values
                         seriesDataObj["values"] = getBarValues(eachPrimaryData[filter2.queryKey], filter2);
@@ -426,9 +391,7 @@
                     var eachPrimaryData = utilService.findByKeyAndValue(data[filter1.key], 'name', primaryOption.key);
 
                     primaryDataObj["key"] = primaryOption.title;
-                    if(filter1.key === 'gender') {
-                        primaryDataObj["color"] = primaryOption.key === 'Male' ?  "#009aff" : "#fe66ff";
-                    }
+                  
                     primaryDataObj["values"] = [];
                     if(eachPrimaryData) {
                         primaryDataObj[primaryFilter.key] = getValueFromData(primaryFilter, eachPrimaryData);
@@ -461,72 +424,16 @@
             var chartData = {
                 data: [],
                 dataset: primaryFilter.key,
-                title: $translate.instant("label.title."+filter1.key+"."+filter2.key),
+                title: $translate.instant(filter1.title) + ' and ' + $translate.instant(filter2.title),
                 options: {
                     "chart": {
                         "type": "multiBarChart",
-                        "height": 250,
-                        "width": 0,
-                        "margin": {
-                            "top": 5,
-                            "right": 5,
-                            "bottom": 45,
-                            "left": 45
-                        },
-                        showMaxMin: false,
-                        showLegend: false,
-                        showControls: false,
-                        showValues: false,
-                        showXAxis:true,
-                        showYAxis:true,
-                        reduceXTicks:false,
-                        //wrapLabels:true,
-                        legend:{
-                            width:200,
-                            expanded:true
-                        },
-                        staggerLabels:true,
-                        rotateLabels:70,
-                        x: function(d){return d.x;},
-                        y: function(d){return d.y;},
-                        "clipEdge": true,
-                        "duration": 500,
                         "stacked": stacked,
                         "xAxis": {
-                            "axisLabelDistance": -20,
-                            "axisLabel": $translate.instant(filter2.title),
-                            margin: {
-                                top:60
-                            },
-                            tickFormat:function () {
-                                return null;
-                            }
+                            "axisLabel": $translate.instant(filter2.title)
                         },
                         "yAxis": {
-                            "axisLabelDistance": -20,
-                            "axisLabel": getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel),
-                            tickFormat:function () {
-                               return null;
-                            }
-                        },
-                        valueFormat:function (n){
-                            if(isNaN(n)){ return n; }
-                            return d3.format('d')(n);
-                        },useInteractiveGuideline: false,
-                        interactive: false,
-                        tooltip: {
-                            contentGenerator: function(d) {
-                                var html = "<div class='usa-grid-full'"+
-                                    "<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>"+ d.value+"</div>" +
-                                    "<div class='usa-width-one-whole nvtooltip-value'>";
-                                d.series.forEach(function(elem){
-                                    html += "<span class='fa fa-square' style='color:"+elem.color+"'></span>" +
-                                        "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"
-                                        +getCount(elem.value, primaryFilter)+"</div>";
-                                });
-                                html += "</div>";
-                                return html;
-                            }
+                            "axisLabel": getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel)
                         }
                     }
                 }
@@ -539,9 +446,6 @@
                     var primaryObj = {};
                     primaryObj["key"] = primaryOption.title;
                     primaryObj["values"] = [];
-                    if(filter1.key === 'gender') {
-                        primaryObj["color"] = primaryOption.key === 'Male' ?  "#009aff" : "#fe66ff";
-                    }
 
                     if(eachPrimaryData && eachPrimaryData[filter2.key]) {
                         var secondaryArrayData = utilService.sortByKey(eachPrimaryData[filter2.key], 'name');
@@ -572,70 +476,16 @@
             var chartData = {
                 data: [],
                 dataset: primaryFilter.key,
-                title: $translate.instant("label.graph."+filter.key),
+                title: $translate.instant(filter.title),
                 options: {
                     "chart": {
                         "type": "lineChart",
-                        "height": 250,
-                        "width": 300,
-                        "margin": {
-                            "top": 5,
-                            "right": 5,
-                            "bottom": 16,
-                            "left": 50
-                        },
-                        showMaxMin: false,
-                        showLegend: false,
-                        showControls: false,
-                        showValues: false,
-                        showXAxis:true,
-                        showYAxis:true,
-                        reduceXTicks:false,
-                        legend:{
-                            width:200,
-                            expanded:true
-                        },
-                        staggerLabels:true,
-                        rotateLabels:70,
-                        styles: {
-                            classes: {
-                                'with-3d-shadow': true,
-                                'with-transitions': true,
-                                gallery: false
-
-                            }
-                        },
-                        interactive: true,
-                        x: function(d){return d.x;},
-                        y: function(d){return d.y;},
                         "xAxis": {
-                            "axisLabelDistance": -20,
                             "axisLabel": "Year",
-                            tickFormat:function (d) {
-                                return null;
-                            }
                         },
                         "yAxis": {
-                            "axisLabelDistance": -20,
                             "axisLabel": "Population",
-                            tickFormat:function (d) {
-                                return null;
-                            }
                         },
-                        tooltip: {
-                            contentGenerator: function(d) {
-                                var html = "<div class='usa-grid-full'"+
-                                    "<div class='usa-width-one-whole' style='padding: 10px; font-weight: bold'>"+ d.value+"</div>" +
-                                    "<div class='usa-width-one-whole nvtooltip-value'>";
-                                d.series.forEach(function(elem){
-                                    html += "<span class='fa fa-square' style='color:"+elem.color+"'></span>" +
-                                        "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"
-                                        +getCount(elem.value, primaryFilter) + "</div>";
-                                });
-                                html += "</div>";
-                                return html;
-                            }
-                        }
                     }
                 }
             };
@@ -671,69 +521,19 @@
         /*Prepare pie chart for single filter*/
         function pieChart( data, filter, primaryFilter, postFixToTooltip ) {
             postFixToTooltip = postFixToTooltip ? postFixToTooltip : '';
-
-            var color = d3.scale.category20();
             var chartData = {
                 data: [],
                 dataset: primaryFilter.key,
-                title:  $translate.instant("label.filter."+filter.key),
+                title:  $translate.instant(filter.title),
                 options: {
                     chart: {
                         type: 'pieChart',
-                        "height": 250,
-                        "width": 250,
-                        "margin": {
-                            "top": 5,
-                            "right": 5,
-                            "bottom": 5,
-                            "left": 5
-                        },
-                        x: function(d){ return d.label; },
-                        y: function(d){ return d.value; },
                         yAxis: {
                             axisLabel: $translate.instant("label.filter."+filter.key),
                             
                         },
                         xAxis: {
                             axisLabel: $translate.instant('chart.title.measure.'+(primaryFilter.tableView?primaryFilter.tableView:primaryFilter.key)),                            
-                        },
-                        showValues: false,
-                        showLabels: false,
-                        transitionDuration: 250,
-                        showLegend: false,
-                        legend: {
-                            margin:{}
-                        },
-                        labelThreshold: 0.01,
-                        labelSunbeamLayout: true,
-                        styles: {
-                            classes: {
-                                'with-3d-shadow': true,
-                                'with-transitions': true,
-                                gallery: false
-
-                            }
-                        },
-                        color:function (d, i) {
-                            if(filter.key==='gender') {
-                                return d.label === 'Male' ?  "#009aff" : "#fe66ff";
-                            }else {
-                                return color(i);
-                            }
-                        },useInteractiveGuideline: false,
-                        interactive: false,
-                        tooltip: {
-                            contentGenerator: function(d) {
-                                var html = "<div class='usa-grid-full'"+
-                                    "<div class='usa-width-one-whole nvtooltip-value'>";
-                                d.series.forEach(function(elem){
-                                    html += "<span class='fa fa-square' style='color:"+elem.color+"'></span>" +
-                                        "&nbsp;&nbsp;&nbsp;"+elem.key+"&nbsp;&nbsp;&nbsp;"
-                                        +getCount(elem.value, primaryFilter) + postFixToTooltip + "</div>";
-                                });
-                                html += "</div>";
-                                return html;
-                            }
                         }
                     }}
             };
@@ -784,13 +584,14 @@
                                orientation: "v",
                                x: 1.01,
                                y: .4,
-
-                           };
+                           }
+                           ;
                        }else {
                            layout.legend ={orientation: "h",
                                y: 1.15,
-                               x: .4
+                               x: .4,
                            };
+                           // layout.legend
                        }
                        layout.legend.traceorder = 'reversed';
 
@@ -887,13 +688,15 @@
          * If state filter is selected and count is equals 0- return Suppressed
          * Else return actual count
          */
-        function getCount(count, primaryFilter) {
-            if (count == 0 && primaryFilter.applySuppression) {
-                var stateFilter = utilService.findFilterByKeyAndValue(primaryFilter.allFilters, 'key', 'state');
-                var isStateFilter = utilService.isFilterApplied(stateFilter);
-                return isStateFilter? 'Suppressed': $filter('number')(count);
+        function getSuppressedCount(count, primaryFilter) {
+            if (count == -1){
+                 return 'Suppressed';
+            }else if (count == -2){
+                 return 'Not Available';
+            } else {
+               return $filter('number')(count);
             }
-            return $filter('number')(count);
+            
         }
     }
 }());

@@ -3959,7 +3959,7 @@ describe("YRBS API", function () {
         });
     });
 
-    it("invokeYRBS service for basic results with default grouping for chart - supressed values are set to 0 if count < 100", function (){
+    it("invokeYRBS service for basic results with default grouping for chart - supressed values are set to -1 if count < 100", function (){
         var apiQuery = {"searchFor":"mental_health", "isChartorMapQuery":true, "query":{"year":{"key":"year","queryKey":"year","value":"2015","primary":false},
             "question.path":{"key":"question","queryKey":"question.key","value":["qn14"],"primary":false}},"aggregations":{"simple":[],
             "nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"yrbsSex","queryKey":"sex","size":0},
@@ -3970,11 +3970,11 @@ describe("YRBS API", function () {
             var sex= sortByKey(q0.YES.sex,'name',true);
             var race= sortByKey(sex[0].race,'name',true);
             expect(race[5].name).to.eql("Native Hawaiian/other PI");
-            expect(race[5].mental_health.mean).to.eql("0");
+            expect(race[5].mental_health.mean).to.eql("-1");
             expect(race[5].mental_health.count).to.eql("19");
 
             expect(race[6].name).to.eql("White");
-            expect(race[6].mental_health.mean).to.not.eql("0");
+            expect(race[6].mental_health.mean).to.not.eql("-1");
             expect(race[6].mental_health.count).to.eql("2723");
         });
     });
@@ -3999,7 +3999,7 @@ describe("YRBS API", function () {
         });
     });
 
-    it("invokeYRBS service for advanced results with sexid filter for chart - supressed values set to 0 if value < 30", function (){
+    it("invokeYRBS service for advanced results with sexid filter for chart - supressed values set to -1 if value < 30", function (){
         var apiQuery = {"searchFor":"mental_health", "isChartorMapQuery":true, "query":{"year":{"key":"year","queryKey":"year","value":["2015"],"primary":false},
             "sexid":{"key":"sexid","queryKey":"sexid","value":["Heterosexual"],"primary":false},
             "question.path":{"key":"question","queryKey":"question.key","value":["qn64"],"primary":false}},"aggregations":{"simple":[],
@@ -4009,11 +4009,11 @@ describe("YRBS API", function () {
             var q0=resp.table.question[0];
             var race = sortByKey(q0.YES.race,'name',true);
             expect(race[5].name).to.eql("Native Hawaiian/other PI");
-            expect(race[5].mental_health.mean).to.eql("0");
+            expect(race[5].mental_health.mean).to.eql("-1");
             expect(race[5].mental_health.count).to.eql("16");
 
             expect(race[1].name).to.eql("Asian");
-            expect(race[1].mental_health.mean).to.not.eql("0");
+            expect(race[1].mental_health.mean).to.not.eql("-1");
             expect(race[1].mental_health.count).to.eql("81");
         });
     });
@@ -4032,7 +4032,7 @@ describe("YRBS API", function () {
 
             //No response
             expect(yesReponse.race[5].name).to.eql("Native Hawaiian or other Pacific Islander, non-Hispanic");
-            expect(yesReponse.race[5].brfss.mean).to.eql("nr");
+            expect(yesReponse.race[5].brfss.mean).to.eql("na");
             expect(yesReponse.race[5].brfss.ci_l).to.eql(0);
             expect(yesReponse.race[5].brfss.ci_u).to.eql(0);
             expect(yesReponse.race[5].brfss.count).to.eql(0);

@@ -5,11 +5,11 @@
 
     SearchController.$inject = ['$scope', 'utilService', 'searchFactory', '$rootScope',
         '$templateCache', '$compile', '$filter', 'leafletData', '$timeout', 'chartUtilService', 'shareUtilService',
-        '$stateParams', '$state', 'xlsService', '$window', 'mapService'];
+        '$stateParams', '$state', 'xlsService', '$window', 'mapService', 'ModalService', '$q'];
 
     function SearchController($scope, utilService, searchFactory, $rootScope,
                                  $templateCache, $compile, $filter, leafletData, $timeout, chartUtilService,
-                                 shareUtilService, $stateParams, $state, xlsService, $window, mapService) {
+                                 shareUtilService, $stateParams, $state, xlsService, $window, mapService, ModalService, $q) {
 
         var sc = this;
         sc.downloadCSV = downloadCSV;
@@ -272,10 +272,21 @@
         sc.tableName = null;
 
         function changePrimaryFilter(newFilter) {
-            sc.tableData = {};
-            sc.filters.selectedPrimaryFilter = searchFactory.getPrimaryFilterByKey(newFilter);
-            sc.tableView = sc.filters.selectedPrimaryFilter.tableView;
-            sc.search(true);
+            $rootScope.acceptDUR = false;
+            if (newFilter == 'deaths' ||newFilter== 'natality' ||newFilter == 'infant_mortality'){
+                showDataUseRestriction().then (function () {
+                    sc.tableData = {};
+                    sc.filters.selectedPrimaryFilter = searchFactory.getPrimaryFilterByKey(newFilter);
+                    sc.tableView = sc.filters.selectedPrimaryFilter.tableView;
+                    sc.search(true);
+                })
+            }else {
+                sc.tableData = {};
+                sc.filters.selectedPrimaryFilter = searchFactory.getPrimaryFilterByKey(newFilter);
+                sc.tableView = sc.filters.selectedPrimaryFilter.tableView;
+                sc.search(true);
+            }
+
         }
 
         function setDefaults() {
@@ -288,7 +299,7 @@
                     if (sc.filters.selectedPrimaryFilter.key == 'prams') {
                         filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
                         searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup['delivery']);
-                    } else {
+                    } else if (sc.filters.selectedPrimaryFilter.key == 'brfss') {
                         filter.filters.autoCompleteOptions = sc.filters.brfsTopicOptions;
                     }
                 }
@@ -324,6 +335,14 @@
         }
 
         function search(isFilterChanged) {
+            if (!$rootScope.acceptDUR  && (sc.filters.selectedPrimaryFilter.key === 'deaths' || sc.filters.selectedPrimaryFilter.key === 'natality' ||sc.filters.selectedPrimaryFilter.key === 'infant_mortality')) {
+                showDataUseRestriction().then (function () {
+                    search(isFilterChanged);
+                }).catch(function () {
+                    return
+                });
+                return;
+            }
             if(sc.filters.selectedPrimaryFilter.key === 'prams'
                 || sc.filters.selectedPrimaryFilter.key === 'mental_health'
                 || sc.filters.selectedPrimaryFilter.key === 'brfss') {
@@ -472,16 +491,30 @@
         }, 1700);
 
         function getQueryResults(queryID) {
-            return searchFactory.getQueryResults(queryID).then(function (response) {
+            var deffered = $q.defer();
+            searchFactory.getQueryResults(queryID).then(function (response) {
                //if queryID exists in owh_querycache index, then update data that are required to display search results
                 if (response.data) {
-                    var result = searchFactory.updateFiltersAndData(sc.filters, response, sc.optionsGroup, sc.mapOptions);
-                    sc.tableView = result.tableView;
-                    sc.tableData = result.tableData;
-                    sc.filters.selectedPrimaryFilter = result.primaryFilter;
+                    var dataset = response.data.queryJSON.key;
+                    if (!$rootScope.acceptDUR && (dataset === 'deaths' || dataset === 'natality' || dataset === 'infant_mortality')) {
+                        showDataUseRestriction().then(function () {
+                            var result = searchFactory.updateFiltersAndData(sc.filters, response, sc.optionsGroup, sc.mapOptions);
+                            sc.tableView = result.tableView;
+                            sc.tableData = result.tableData;
+                            sc.filters.selectedPrimaryFilter = result.primaryFilter;
+                        }).catch(function () {
+                            deffered.reject();
+                        });
+                    } else {
+                        var result = searchFactory.updateFiltersAndData(sc.filters, response, sc.optionsGroup, sc.mapOptions);
+                        sc.tableView = result.tableView;
+                        sc.tableData = result.tableData;
+                        sc.filters.selectedPrimaryFilter = result.primaryFilter;
+                    }
                 }
-                return response;
+                deffered.resolve(response);
             });
+            return deffered.promise;
         }
 
         function changeViewFilter(selectedFilter) {
@@ -577,26 +610,48 @@
 
         }
 
+        function prepareDataForExport() {
+            var filters = sc.filters;
+            var selectedPrimaryFilter = filters.selectedPrimaryFilter;
+            var key = selectedPrimaryFilter.key;
+
+            var data = searchFactory.getMixedTable(selectedPrimaryFilter, sc.optionsGroup, sc.tableView, sc.tableData.calculatePercentage);
+            addRowHeadersData(data, selectedPrimaryFilter);
+
+            if (filters.filterUtilities && filters.filterUtilities[key]) {
+                data.filterUtilities = {
+                    ci: {
+                        value: filters.filterUtilities[key][0].options[0].value,
+                        title: filters.filterUtilities[key][0].options[0].title
+                    },
+                    uf: {
+                        value: filters.filterUtilities[key][0].options[1].value,
+                        title: filters.filterUtilities[key][0].options[1].title
+                    }
+                };
+            }
+
+            var filename = xlsService.getFilename(selectedPrimaryFilter);
+
+            return { data: data, key: key, filename: filename };
+        }
+
         function downloadCSV() {
-            var data = searchFactory.getMixedTable(sc.filters.selectedPrimaryFilter, sc.optionsGroup, sc.tableView);
-            addRowHeaders(data, sc.filters.selectedPrimaryFilter);
-            var filename = xlsService.getFilename(sc.filters.selectedPrimaryFilter);
-            xlsService.exportCSVFromMixedTable(data, filename);
+            var result = prepareDataForExport();
+            xlsService.exportCSVFromMixedTable(result.data, result.key, sc.tableView, result.filename);
         }
 
         function downloadXLS() {
-            var data = searchFactory.getMixedTable(sc.filters.selectedPrimaryFilter, sc.optionsGroup, sc.tableView);
-            addRowHeaders(data, sc.filters.selectedPrimaryFilter);
-            var filename = xlsService.getFilename(sc.filters.selectedPrimaryFilter);
-            xlsService.exportXLSFromMixedTable(data, filename);
+            var result = prepareDataForExport();
+            xlsService.exportXLSFromMixedTable(result.data, result.key, sc.tableView, result.filename);
         }
 
-        function addRowHeaders(mixedTable, selectedFilter) {
-            //add row headers so we can properly repeat row header merge cells, and also for adding % columns
-            mixedTable.rowHeaders = [];
+        function addRowHeadersData(mixedTable, selectedFilter) {
+            //add row headers so we can properly repeat row header merge cells, and also for adding % columns -- only length is used
+            mixedTable.rowHeadersLength = 0;
             angular.forEach(selectedFilter.value, function(filter, idx) {
                 if(filter.groupBy === 'row') {
-                    mixedTable.rowHeaders.push(filter);
+                    mixedTable.rowHeadersLength++;
                 }
             });
         }
@@ -795,7 +850,7 @@
                         createDataSet('prams', 'label.prams.title', 'label.prams.dsc')
                     ]),
                     createDataSource('label.health.risk', 'label.health.risk.dsc', 'health-risk-factors-icon.svg', 'Health Status and Risk Factors', [
-                        createDataSet('brfss', 'label.brfs', 'label.brfs.dsc'),
+                        createDataSet('brfss', 'label.brfss.title', 'label.brfs.dsc'),
                         createDataSet('prams', 'label.prams.title', 'label.prams.dsc'),
                         createDataSet('mental_health', 'label.yrbs', 'label.yrbs.dsc')
                     ])
@@ -809,7 +864,7 @@
                         createDataSet('infant_mortality', 'label.filter.infant_mortality', 'label.infant.mortality.dsc')
                     ]),
                     createDataSource('label.health.behaviors', 'label.health.behaviors.dsc', 'health-behavior-prevention-icon.svg', 'Health Status and Risk Factors', [
-                        createDataSet('brfss', 'label.brfs', 'label.brfs.dsc'),
+                        createDataSet('brfss', 'label.brfss.title', 'label.brfs.dsc'),
                         createDataSet('prams', 'label.prams.title', 'label.prams.dsc'),
                         createDataSet('mental_health', 'label.yrbs', 'label.yrbs.dsc')
                     ])
@@ -836,6 +891,34 @@
                     sc.changePrimaryFilter(key);
                 }
             };
+        }
+
+        function showDataUseRestriction() {
+            var deffered = $q.defer();
+            ModalService.showModal({
+                templateUrl: "app/partials/datauseRestrictions.html",
+                controllerAs: 'dur',
+                controller: function ($scope, close) {
+                    var dur = this;
+                    $rootScope.acceptDUR = false;
+                    dur.close = close;
+                    dur.accept = function () {
+                        dur.close(true);
+                    }
+                }
+            }).then(function (modal) {
+                modal.element.show();
+                modal.close.then(function (accept) {
+                    modal.element.hide();
+                    if(accept) {
+                        $rootScope.acceptDUR = accept;
+                        deffered.resolve(accept);
+                    }else {
+                        deffered.reject();
+                    }
+                });
+            });
+            return deffered.promise;
         }
     }
 }());

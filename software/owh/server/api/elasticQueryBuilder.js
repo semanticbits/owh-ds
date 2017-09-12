@@ -200,6 +200,7 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
         if (clonedUserQuery['ICD_10_code']) delete clonedUserQuery['ICD_10_code'];
         if (clonedUserQuery['ICD_130_code']) delete clonedUserQuery['ICD_130_code'];
         if (clonedUserQuery['infant_age_at_death']) delete clonedUserQuery['infant_age_at_death'];
+        if (clonedUserQuery['cancer_site']) delete clonedUserQuery['cancer_site'];
         if(clonedUserQuery['year_of_death']) {
             //Infant mortality index has column 'year_of_death', should match with natality index column in Elastic Search
             //So that we can query natality index for Birth counts.
@@ -667,10 +668,14 @@ var chartMappings = {
     "gender&autopsy": "verticalBar",
     "agegroup&autopsy": "horizontalBar",
     "gender&placeofdeath": "verticalStack",
+    "gender&state": "horizontalStack",
+    "gender&hhs-region": "horizontalStack",
+    "race&hhs-region": "horizontalStack",
     "sex&race": "verticalBar",
     "sex&ethnicity": "verticalBar",
     "sex&agegroup": "horizontalStack",
     "sex&state": "verticalBar",
+    "sex&hhs-region": "horizontalStack",
     "sex&region": "verticalBar",
     "race&ethnicity": "horizontalBar",
     "race&agegroup": "horizontalBar",
@@ -724,7 +729,7 @@ var chartMappings = {
     "sex&month": "horizontalBar",
     "sex&weekday": "horizontalBar",
     //insert gestation age here
-    "hispanic_origin&prenatal_care": "lineChart",
+    "hispanic_origin&prenatal_care": "horizontalStack",
     "race&prenatal_care": "horizontalBar",
     "marital_status&prenatal_care": "horizontalBar",
     "mother_age&prenatal_care": "horizontalBar",
@@ -971,7 +976,7 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery, d
         mapQuery = { "size":0, aggregations: {} };
         //prepare aggregations
         for(var index in aggregations['nested']['maps']) {
-            if(datasetName == 'deaths') {
+            if(datasetName == 'deaths' || datasetName == 'cancer_incident' || datasetName == 'cancer_mortality') {
                 mapQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_');
             }
             else {

@@ -35,6 +35,7 @@ describe("Search controller: ", function () {
             filters = $searchFactory.getAllFilters();
             shareUtilService = $injector.get('shareUtilService');
             searchController.searchFactory = searchFactory;
+            searchController.tableData = {};
         });
     });
 
@@ -199,7 +200,7 @@ describe("Search controller: ", function () {
         expect(searchController.queryId).not.toEqual(queryIdForIntialCall);
     });
 
-    it("downloadCSV should prepare mixedTable and call out to xlsService",inject(function(utilService, xlsService) {
+    it("downloadCSV should prepare mixedTable and call out to csvService",inject(function(utilService, xlsService) {
         spyOn(utilService, 'prepareMixedTableData').and.returnValue({});
         spyOn(xlsService, 'exportCSVFromMixedTable');
         searchController.downloadCSV();
@@ -482,6 +483,7 @@ describe("Search controller: ", function () {
             primaryFilterKey: 'deaths'
         };
 
+        $rootScope.acceptDUR = true;
         spyOn(searchFactory, "generateHashCode").and.returnValue({
             then: function(){}
         });

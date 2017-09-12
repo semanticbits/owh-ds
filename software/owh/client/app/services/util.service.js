@@ -1297,6 +1297,51 @@
                     option.disabled = false;
                 });
             }
+
+            // Year and State combinations
+            var yearFilter = filters.filter(function (sideFilter) {
+              return sideFilter.filters.key === 'current_year';
+            })[0];
+            var stateFilter = filters.filter(function (sideFilter) {
+                return sideFilter.filters.key === 'state';
+            })[0];
+            var rules = {
+              '2000': [ 'AR', 'KS', 'MS', 'SD' ],
+              '2001': [ 'KS', 'MS' ],
+              '2002': [ 'DC', 'KS', 'MS' ],
+              '2003': [ 'KS' ],
+              '2004': [ 'KS' ],
+              '2005': [ 'KS' ],
+              '2006': [ 'KS' ],
+              '2007': [ 'KS' ],
+              '2008': [ 'KS' ],
+              '2009': [ 'KS' ],
+              '2010': [ 'KS' ],
+              '2011': [ 'KS', 'NV' ],
+              '2012': [ 'KS' ],
+              '2013': [ 'KS' ],
+              '2014': [ 'KS' ]
+            };
+
+            var yearsApplied = !yearFilter.filters.allChecked ? yearFilter.filters.value : yearFilter.filters.autoCompleteOptions.map(function (option) {
+                return option.key;
+            });
+
+            var disabledStates = yearsApplied.reduce(function (states, year) {
+                if (rules[year]) return states.concat(rules[year]);
+                return states;
+            }, []).reduce(function (unique, state) {
+                unique[state] = true;
+                return unique;
+            }, {});
+
+            stateFilter.filters.autoCompleteOptions.forEach(function (option) {
+                if (Object.keys(disabledStates).indexOf(option.key) !== -1) {
+                    option.disabled = true;
+                } else {
+                    option.disabled = false;
+                }
+            });
         }
     }
 }());

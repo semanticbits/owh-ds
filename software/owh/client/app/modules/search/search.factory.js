@@ -253,17 +253,17 @@
                             if(filter.filters.selectedValues.set1){
                                     localCategory.sideFilters[index].filters.autoCompleteOptions = localCategory.sideFilters[index].filters.autoCompleteOptions.concat(filter.filters.selectedValues.set1.map(function (node) {
                                         return {key: node.id, title: node.text}
-                                    })); 
+                                    }));
                             }
                             if(filter.filters.selectedValues.set2){
                                    localCategory.sideFilters[index].filters.autoCompleteOptions = localCategory.sideFilters[index].filters.autoCompleteOptions.concat(filter.filters.selectedValues.set2.map(function (node) {
                                         return {key: node.id, title: node.text}
-                                    })); 
+                                    }));
                             }
                             if (!filter.filters.selectedValues.set1 && !filter.filters.selectedValues.set2){
                                 localCategory.sideFilters[index].filters.autoCompleteOptions = utilService.getICD10Chapters();
                             }
-                            
+
                         }
                     }
                     //To un-select selected nodes when user go back from current page
@@ -285,7 +285,7 @@
         /*
             Builds table based on primaryFilter and options
          */
-        function getMixedTable(selectedFilter, groupOptions, tableView){
+        function getMixedTable(selectedFilter, groupOptions, tableView, calculatePercentage){
             var file = selectedFilter.data ? selectedFilter.data : {};
 
             if(selectedFilter.key === 'prams' || selectedFilter.key === 'brfss'
@@ -318,7 +318,11 @@
             var countKey = selectedFilter.key;
             var countLabel = selectedFilter.countLabel;
             var totalCount = selectedFilter.count;
-            var calculatePercentage = selectedFilter.key === 'prams' || selectedFilter.key == 'mental_health' ? false : true;
+            if (calculatePercentage === undefined || calculatePercentage === null) {
+                calculatePercentage = (selectedFilter.key === 'deaths' && tableView === 'number_of_deaths') ||
+                                      (selectedFilter.key === 'natality' && tableView === 'number_of_births') ||
+                                      (selectedFilter.key === 'bridge_race' && tableView === 'bridge_race');
+            }
             var calculateRowTotal = selectedFilter.calculateRowTotal;
             var secondaryCountKeys = ['pop', 'ageAdjustedRate', 'standardPop', 'deathRate'];
 
@@ -543,11 +547,18 @@
         }
 
         function addOrFilterToPrimaryFilterValue(filter, primaryFilter) {
-            var filterIndex = utilService.findIndexByKeyAndValue(primaryFilter.value, 'key', filter.key);
-            if(filter.groupBy && filterIndex < 0) {
+            var existingFilter = utilService.findByKeyAndValue(primaryFilter.value, 'key', filter.key);
+            if (existingFilter) {
+                if (filter.groupBy) {
+                    existingFilter.groupBy = filter.groupBy;
+                }
+                else {
+                    var filterIndex = primaryFilter.value.indexOf(existingFilter);
+                    primaryFilter.value.splice(filterIndex, 1);
+                }
+            }
+            else if (filter.groupBy) {
                 primaryFilter.value.push(filter);
-            } else if(!filter.groupBy && filterIndex >= 0) {
-                primaryFilter.value.splice(filterIndex, 1);
             }
         }
 
@@ -892,7 +903,7 @@
                 angular.forEach(headers, function(eachSecondaryHeader) {
                     if(eachPrimaryHeader.key.indexOf("census-region")>=0) {
                         return; // TODO: Remove this if block after fixing server side for charts data for census regions and divisions
-                    }    
+                    }
                         var chartType = $rootScope.chartMappings[eachPrimaryHeader.key + '&' + eachSecondaryHeader.key];
                     if(chartType) {
                         var secondaryGroupQuery = getGroupQuery(eachSecondaryHeader);
@@ -1557,29 +1568,29 @@
             ];
 
             filters.ageOptions = [
-                {key:'1 year',title:'< 1 year', min: 0, max: 1},
-                {key:'1-4years',title:'1 - 4 years', min: 2, max: 5},
-                {key:'5-9years',title:'5 - 9 years', min: 6, max: 10},
-                {key:'10-14years',title:'10 - 14 years', min: 11, max: 15},
-                {key:'15-19years',title:'15 - 19 years', min: 16, max: 20},
-                {key:'20-24years',title:'20 - 24 years', min: 21, max: 25},
-                {key:'25-29years',title:'25 - 29 years', min: 26, max: 30},
-                {key:'30-34years',title:'30 - 34 years', min: 31, max: 35},
-                {key:'35-39years',title:'35 - 39 years', min: 36, max: 40},
-                {key:'40-44years',title:'40 - 44 years', min: 41, max: 45},
-                {key:'45-49years',title:'45 - 49 years', min: 46, max: 50},
-                {key:'50-54years',title:'50 - 54 years', min: 51, max: 55},
-                {key:'55-59years',title:'55 - 59 years', min: 56, max: 60},
-                {key:'60-64years',title:'60 - 64 years', min: 61, max: 65},
-                {key:'65-69years',title:'65 - 69 years', min: 66, max: 70},
-                {key:'70-74years',title:'70 - 74 years', min: 71, max: 75},
-                {key:'75-79years',title:'75 - 79 years', min: 76, max: 80},
-                {key:'80-84years',title:'80 - 84 years', min: 81, max: 85},
-                {key:'85-89years',title:'85 - 89 years', min: 86, max: 90},
-                {key:'90-94years',title:'90 - 94 years', min: 91, max: 95},
-                {key:'95-99years',title:'95 - 99 years', min: 96, max: 100},
-                {key:'z100 years and over',title:'> 100 years', min: 101, max: 105},
-                {key:'Age not stated',title:'Age not stated', min: -5, max: 0}
+                {key:'1 year',title:'< 1 year', min: -5, max: -1},
+                {key:'1-4years',title:'1 - 4 years', min: 0, max: 4},
+                {key:'5-9years',title:'5 - 9 years', min: 5, max: 9},
+                {key:'10-14years',title:'10 - 14 years', min: 10, max: 14},
+                {key:'15-19years',title:'15 - 19 years', min: 15, max: 19},
+                {key:'20-24years',title:'20 - 24 years', min: 20, max: 24},
+                {key:'25-29years',title:'25 - 29 years', min: 25, max: 29},
+                {key:'30-34years',title:'30 - 34 years', min: 30, max: 34},
+                {key:'35-39years',title:'35 - 39 years', min: 35, max: 40},
+                {key:'40-44years',title:'40 - 44 years', min: 40, max: 44},
+                {key:'45-49years',title:'45 - 49 years', min: 45, max: 50},
+                {key:'50-54years',title:'50 - 54 years', min: 50, max: 54},
+                {key:'55-59years',title:'55 - 59 years', min: 55, max: 60},
+                {key:'60-64years',title:'60 - 64 years', min: 60, max: 64},
+                {key:'65-69years',title:'65 - 69 years', min: 65, max: 70},
+                {key:'70-74years',title:'70 - 74 years', min: 70, max: 74},
+                {key:'75-79years',title:'75 - 79 years', min: 75, max: 80},
+                {key:'80-84years',title:'80 - 84 years', min: 80, max: 84},
+                {key:'85-89years',title:'85 - 89 years', min: 85, max: 90},
+                {key:'90-94years',title:'90 - 94 years', min: 90, max: 94},
+                {key:'95-99years',title:'95 - 99 years', min: 95, max: 100},
+                {key:'z100 years and over',title:'100+ years', min: 100, max: 105},
+                {key:'Age not stated',title:'Age not stated', min: -10, max: -6}
             ];
 
             filters.genderOptions=[
@@ -1622,12 +1633,12 @@
             ];
 
             filters.ageSliderOptions = {
-                from: -5,
+                from: -10,
                 to: 105,
                 step: 5,
                 threshold: 0,
-                scale: ['Not stated', 0, '', 10, '', 20, '', 30, '', 40, '', 50, '', 60, '', 70, '', 80, '', 90, '', 100, '>100'],
-                modelLabels: {'-5': 'Not stated', 105: '>100'},
+                scale: ['Not stated', '<1', '1','', 10, '', 20, '', 30, '', 40, '', 50, '', 60, '', 70, '', 80, '', 90, '', 100, '>100'],
+                modelLabels: {'-10': 'Not stated', '-5': '< 1', 0:'1', 105: '>100'},
                 css: {
                     background: {'background-color': '#ccc'},
                     before: {'background-color': '#ccc'},
@@ -1646,9 +1657,9 @@
                     var prevValue = angular.copy(agegroupFilter.value);
                     agegroupFilter.value = [];
                     // set the values list only if the slider selection is different from the default
-                    if(! (minValue == -5  && maxValue == 105)){
+                    if(! (minValue == -10  && maxValue == 105)){
                         angular.forEach(agegroupFilter.autoCompleteOptions, function(eachOption) {
-                            if((eachOption.min <= minValue && eachOption.max >= minValue)
+                            if((eachOption.min <= minValue && eachOption.max > minValue)
                                 || (eachOption.min >= minValue && eachOption.max <= maxValue)
                                 || (eachOption.min <= maxValue && eachOption.max >= maxValue)) {
                                 agegroupFilter.value.push(eachOption.key);
@@ -1845,7 +1856,7 @@
             ];
 
             filters.yrbsBasicFilters = [
-                {key: 'year', title: 'label.yrbs.filter.year', queryKey:"year",primary: false, value: '2015', groupBy: false,
+                {key: 'year', title: 'label.yrbs.filter.year', queryKey:"year",primary: false, value: '2015', groupBy: false,defaultGroup:"column",
                     filterType: 'radio',autoCompleteOptions: filters.yrbsYearsOptions, doNotShowAll: true, donotshowOnSearch:true, helpText:"label.help.text.yrbs.year" },
                 { key: 'yrbsSex', title: 'label.yrbs.filter.sex', queryKey:"sex", primary: false, value: '', groupBy: false,
                     filterType: 'radio',autoCompleteOptions: filters.yrbsGenderOptions, defaultGroup:"column", helpText:"label.help.text.yrbs.sex" },
@@ -1873,7 +1884,7 @@
                 {key: 'agegroup', title: 'label.filter.agegroup', queryKey:"age_5_interval",
                     primary: false, value: [], groupBy: false, type:"label.filter.group.demographics",
                     filterType: 'slider', autoCompleteOptions: filters.ageOptions, showChart: true,
-                    sliderOptions: filters.ageSliderOptions, sliderValue: '-5;105', timer: undefined, defaultGroup:"row",
+                    sliderOptions: filters.ageSliderOptions, sliderValue: '-10;105', timer: undefined, defaultGroup:"row",
                     helpText: 'label.help.text.mortality.age'},
                 {key: 'hispanicOrigin', title: 'label.filter.hispanicOrigin', queryKey:"hispanic_origin",
                     primary: false, value: [], groupBy: false, type:"label.filter.group.demographics",
@@ -2026,6 +2037,7 @@
                 { "key": "MD", "title": "Maryland" },
                 { "key": "MA", "title": "Massachusetts" },
                 { "key": "MI", "title": "Michigan" },
+                { "key": "MN", "title": "Minnesota" },
                 { "key": "MS", "title": "Mississippi" },
                 { "key": "MO", "title": "Missouri" },
                 { "key": "MT", "title": "Montana" },
@@ -2034,7 +2046,7 @@
                 { "key": "NH", "title": "New Hampshire" },
                 { "key": "NJ", "title": "New Jersey" },
                 { "key": "NM", "title": "New Mexico" },
-                { "key": "NY", "title": "New York" },
+                { "key": "NY", "title": "New York(excluding NYC)" },
                 { "key": "NC", "title": "North Carolina" },
                 { "key": "ND", "title": "North Dakota" },
                 { "key": "OH", "title": "Ohio" },
@@ -2042,7 +2054,7 @@
                 { "key": "PA", "title": "Pennsylvania" },
                 { "key": "RI", "title": "Rhode Island" },
                 { "key": "SC", "title": "South Carolina" },
-                { "key": "SD", "title": "South Dakota" },
+                { "key": "SD", "title": "South Dakota Tribal" },
                 { "key": "TN", "title": "Tennessee" },
                 { "key": "TX", "title": "Texas" },
                 { "key": "UT", "title": "Utah" },
@@ -2162,9 +2174,9 @@
             filters.pramsFilters = [
                 {key: 'topic', title: 'label.prams.filter.topic', queryKey:"topic",primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsTopicOptions, doNotShowAll: true, helpText: "label.help.text.prams.topic"},
-                {key: 'year', title: 'label.prams.filter.year', queryKey:"year",primary: false, value: ['2009'], groupBy: false,
+                {key: 'year', title: 'label.prams.filter.year', queryKey:"year",primary: false, value: ['2009'], groupBy: false,defaultGroup:"column",
                     filterType: 'radio',autoCompleteOptions: filters.pramsYearOptions, doNotShowAll: false, helpText: "label.help.text.prams.year"},
-                {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [], groupBy: 'column',
+                {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [], groupBy: 'column',defaultGroup:"column",
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsStateOptions, doNotShowAll: false, helpText: "label.help.text.prams.state"},
                 { key: 'question', title: 'label.prams.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
                     filterType: 'tree', autoCompleteOptions: $rootScope.pramsQuestionsList, donotshowOnSearch:true,
@@ -2411,7 +2423,7 @@
                 {
                     key: 'year', title: 'label.filter.year',
                     queryKey:"year", primary: false,
-                    value: ['2015'], groupBy: false,
+                    value: ['2015'], groupBy: false,defaultGroup:"column",
                     filterType: 'radio', autoCompleteOptions: filters.brfsYearOptions,
                     doNotShowAll: true, helpText: ""
                 },
@@ -2422,7 +2434,7 @@
                     primary: false,
                     value: [],
                     groupBy: false,
-                    filterType: 'radio',
+                    filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsGenderOptions,
                     doNotShowAll: false,
                     helpText: ''
@@ -2430,7 +2442,7 @@
                 {
                     key: 'state', title: 'label.brfss.filter.state',
                     queryKey:"sitecode",primary: false, value: ['AL'],
-                    groupBy: false, filterType: 'radio',
+                    groupBy: false, filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsStateOptions,
                     displaySearchBox:true, displaySelectedFirst:true,
                     doNotShowAll: false, helpText: ""
@@ -2438,28 +2450,28 @@
                 {
                     key: 'race', title: 'label.brfss.filter.race_ethnicity',
                     queryKey:"race", primary: false, value: [],
-                    groupBy: 'column', filterType: 'radio',
+                    groupBy: 'column', filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsRaceOptions,
                     doNotShowAll: false, helpText: ""
                 },
                 {
                     key: 'age_group', title: 'label.filter.age_group',
                     queryKey:"age",primary: false, value: [],
-                    groupBy: false, filterType: 'radio',
+                    groupBy: false, filterType: 'radio', defaultGroup:"column",
                     autoCompleteOptions: filters.brfsAgeGroupOptions,
                     doNotShowAll: false, helpText: ""
                 },
                 {
                     key: 'education', title: 'label.filter.education.attained',
                     queryKey:"education",primary: false, value: [],
-                    groupBy: false, filterType: 'radio',
+                    groupBy: false, filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsEducationOptions,
                     doNotShowAll: false, helpText: ""
                 },
                 {
                     key: 'income', title: 'label.filter.household.income',
                     queryKey:"income",primary: false, value: [],
-                    groupBy: false, filterType: 'radio',
+                    groupBy: false, filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: filters.brfsIncomeOptions,
                     doNotShowAll: false, helpText: ""
                 },
@@ -3625,6 +3637,8 @@
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.cancerIncidenceFilterChange,
+                                    dontShowCounts: true,
                                     filters: utilService.findByKeyAndValue(filters.cancerIncidenceFilters, 'key', 'state')
                                 }
                             ]
@@ -3683,7 +3697,7 @@
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total',
                     tableView:'alcohol_consumption',  chartAxisLabel:'Percentage',
                     showBasicSearchSideMenu: true, runOnFilterChange: true,
-                    allFilters: filters.brfsBasicFilters, header:"Behavioral Risk Factor Surveillance System",
+                    allFilters: filters.brfsBasicFilters, header:"Behavioral Risk Factors",
                     advancedSideFilters:[
                         {
                             sideFilters:[
@@ -3824,7 +3838,6 @@
                                             filters: utilService.findByKeyAndValue(filters.brfsBasicFilters, 'key', 'income')
                                         }
                                     ]
-
                                 }
                             ]
                         }

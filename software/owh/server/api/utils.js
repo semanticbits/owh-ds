@@ -184,6 +184,13 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
 function suppressCounts (obj, countKey, dataType, suppressKey, maxValue, dataset) {
     var key = suppressKey ? suppressKey : countKey;
     var value = maxValue !== undefined ? maxValue : 10;
+    var suppressedVal = 'suppressed';
+    var naVal = 'na'
+    // Set supressed and na value for charts to -1 and -2 respectively;
+    if(dataType === 'charts'){
+        suppressedVal = -1;
+        naVal = -2;
+    }
     for (var property in obj) {
         if (property === 'name') {
             continue;
@@ -201,20 +208,21 @@ function suppressCounts (obj, countKey, dataType, suppressKey, maxValue, dataset
             });
         } else if(dataset === 'brfss') {
             if(obj.mean == 0 && obj.count != 0) {
-                obj.mean = 'suppressed';
+                obj.mean = suppressedVal;
             } else if(obj.mean == 0 && obj.count == 0) {
-                obj.mean = 'nr'; //no response
+                obj.mean = naVal; //no response
             }
-        }
-        else if(obj[countKey] != undefined && obj[countKey] < value) {
-            if(dataType == 'charts') {//for chart and map set suppressed values to 0
-                obj[key] = 0;
+        } else if(obj[countKey] != undefined && obj[countKey] < value) {
+            if(countKey === 'std' && obj[countKey] === 0) {
+                obj[countKey] = naVal;
+            } else {// supress value
+                obj[key] = suppressedVal;
             }
-            else if(countKey === 'std' && obj[countKey] === 0) {
-                obj[countKey] = 'na';
-            }
-            else {//for table data set to suppressed
-                obj[key] = 'suppressed';
+        } else if ((countKey === 'cancer_incident' || countKey === 'cancer_mortality') && obj.pop) {  //Apply cancer SE suppression
+            var se = Math.sqrt(obj[countKey]) / obj.pop * 100000;
+            obj['se'] = se;
+            if (se >= 25) {
+                obj[key] = suppressedVal;
             }
         }
     }
@@ -689,9 +697,9 @@ function getSelectedGroupByOptions (filters) {
     }, []);
 }
 
-function getYearFilter (filters) {
+function getYearFilter (filters, yearFilterKey) {
     var yearFilter = filters.find(function (filter) {
-        return filter.key === 'year_of_death'
+        return filter.key === yearFilterKey
     });
     if (!yearFilter) return [];
     if (yearFilter.allChecked) {
@@ -751,6 +759,13 @@ function findAllAppliedFilters (allFilters) {
     }, [])
 }
 
+function hasFilterApplied (allFilters, targets) {
+    return allFilters.reduce(function (applied, filter) {
+        if (isFilterApplied(filter) && targets.indexOf(filter.key) !== -1) return true
+        return applied
+    }, false)
+}
+
 function recursivelySuppressOptions (tree, countKey, suppressionValue) {
     for (var prop in tree) {
         if (prop === countKey) {
@@ -778,12 +793,22 @@ function searchTree (root, rule, config, path) {
     }
 }
 
-function createCancerIncidenceSuppressionRules () {
-    return [
-        [ ['American Indian/Alaska Native'], ['DE','GA','IL','KS','KY','MO','NJ','NY','SC'] ],
-        [ ['Asian or Pacific Islander'], ['DE', 'IL', 'KS', 'KY', 'MO', 'SC'] ],
-        [ ['Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown'], ['DE', 'KY', 'MA', 'MO', 'PA', 'SC'] ]
-    ].reduce(function (acc, rule) {
+function createCancerIncidenceSuppressionRules (years) {
+    years = years || [];
+    var rules = [
+        [ ['American Indian/Alaska Native'], ['DE','IL','KY','NJ','NY'] ],
+        [ ['Asian or Pacific Islander'], ['DE', 'IL', 'KY'] ],
+        [ ['Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown'], ['DE', 'KY', 'MA'] ]
+    ];
+
+    if (years.indexOf('2013') !== -1 || years.indexOf('2014') !== -1) {
+        rules.push(
+            [ ['Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown'], ['AK'] ],
+            [ ['Asian or Pacific Islander'], ['AK'] ]
+        );
+    }
+
+    return rules.reduce(function (acc, rule) {
         return acc.concat(create_rules(rule[0], rule[1]))
     }, [])
 
@@ -812,7 +837,7 @@ function attachPopulation (root, popTree, path) {
     for (var property in root) {
         if (Array.isArray(root[property])) {
             root[property].forEach(function (option) {
-              attachPopulation(option, popTree, path.concat([property, option.name]));
+                attachPopulation(option, popTree, path.concat([property, option.name]));
             })
         }
     }
@@ -820,11 +845,9 @@ function attachPopulation (root, popTree, path) {
 
 function findMatchingProp (tree, path) {
   for (var i = 0; i < path.length; i += 2) {
-    var matching = findMatchingOption(tree[path[i]], path[i + 1]);
-    if (matching) {
-      tree = matching;
-    } else {
-      break;
+    tree = findMatchingOption(tree[path[i]], path[i + 1]);
+    if (! tree){
+        break;
     }
   }
   return tree && tree['cancer_population'];
@@ -835,6 +858,19 @@ function findMatchingOption (options, target) {
     if (curr.name === target) return curr;
     return prev;
   }, null);
+}
+
+function applyPopulationSpecificSuppression (root, countKey) {
+    if (root.pop < 50000 && root[countKey]) {
+        root[countKey] = 'suppressed';
+    }
+    for (var property in root) {
+        if (Array.isArray(root[property])) {
+            root[property].forEach(function (option) {
+                applyPopulationSpecificSuppression(option, countKey);
+            });
+        }
+    }
 }
 
 module.exports.populateDataWithMappings = populateDataWithMappings;
@@ -852,6 +888,7 @@ module.exports.getAllSelectedFilterOptions = getAllSelectedFilterOptions;
 module.exports.suppressStateTotals = suppressStateTotals;
 module.exports.isFilterApplied = isFilterApplied;
 module.exports.findAllAppliedFilters = findAllAppliedFilters;
+module.exports.hasFilterApplied = hasFilterApplied;
 module.exports.recursivelySuppressOptions = recursivelySuppressOptions;
 module.exports.searchTree = searchTree;
 module.exports.createCancerIncidenceSuppressionRules = createCancerIncidenceSuppressionRules;
@@ -859,3 +896,4 @@ module.exports.applyCustomSuppressions = applyCustomSuppressions;
 module.exports.attachPopulation = attachPopulation;
 module.exports.findMatchingProp = findMatchingProp;
 module.exports.findMatchingOption = findMatchingOption;
+module.exports.applyPopulationSpecificSuppression = applyPopulationSpecificSuppression;

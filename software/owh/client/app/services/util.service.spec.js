@@ -1297,5 +1297,30 @@ describe('utilService', function(){
             utils.cancerIncidenceFilterChange(mockFilters.sideFilters[6], [ mockFilters ]);
             expect(mockFilters.sideFilters[4].filters.value).toEqual([ '00 years', '01-04 years', '05-09 years', '10-14 years', '15-19 years' ]);
         });
+
+        it('Should disable Arkansas, Kansas, Mississippi, and South Dakota when the year 2000 is selected', function () {
+            mockFilters.sideFilters[0].filters.value.push('2000');
+            utils.cancerIncidenceFilterChange(mockFilters.sideFilters[0], [ mockFilters ]);
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[7].filters.autoCompleteOptions, 'key', 'AR').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[7].filters.autoCompleteOptions, 'key', 'KS').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[7].filters.autoCompleteOptions, 'key', 'MS').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[7].filters.autoCompleteOptions, 'key', 'SD').disabled).toBeTruthy();
+        });
+
+        it('Should disable the relevant states when multiple years are selected', function () {
+            mockFilters.sideFilters[0].filters.value.push('2001', '2011');
+            utils.cancerIncidenceFilterChange(mockFilters.sideFilters[0], [ mockFilters ]);
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[7].filters.autoCompleteOptions, 'key', 'KS').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[7].filters.autoCompleteOptions, 'key', 'MS').disabled).toBeTruthy();
+            expect(utils.findByKeyAndValue(mockFilters.sideFilters[7].filters.autoCompleteOptions, 'key', 'NV').disabled).toBeTruthy();
+        });
+
+        it('Should not disable states that do not match the suppression rules', function () {
+          mockFilters.sideFilters[0].filters.value.push('2001');
+          utils.cancerIncidenceFilterChange(mockFilters.sideFilters[0], [ mockFilters ]);
+          expect(utils.findByKeyAndValue(mockFilters.sideFilters[7].filters.autoCompleteOptions, 'key', 'KS').disabled).toBeTruthy();
+          expect(utils.findByKeyAndValue(mockFilters.sideFilters[7].filters.autoCompleteOptions, 'key', 'MS').disabled).toBeTruthy();
+          expect(utils.findByKeyAndValue(mockFilters.sideFilters[7].filters.autoCompleteOptions, 'key', 'NV').disabled).toBeFalsy();
+        });
     });
 });

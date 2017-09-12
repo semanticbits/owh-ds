@@ -87,6 +87,9 @@
             "gender&autopsy": "verticalBar",
             "agegroup&autopsy": "horizontalBar",
             "gender&placeofdeath": "verticalStack",
+            "gender&state": "horizontalStack",
+            "gender&hhs-region": "horizontalStack",
+            "race&hhs-region": "horizontalStack",
             //natality
             "hispanic_origin&race": "horizontalBar",
             "sex&race": "horizontalBar",
@@ -125,7 +128,7 @@
             "sex&month": "horizontalBar",
             "sex&weekday": "horizontalBar",
             //insert gestation age here
-            "hispanic_origin&prenatal_care": "lineChart",
+            "hispanic_origin&prenatal_care": "horizontalStack",
             "race&prenatal_care": "horizontalBar",
             "marital_status&prenatal_care": "horizontalBar",
             "mother_age&prenatal_care": "horizontalBar",
@@ -288,6 +291,7 @@
             "sex&agegroup": "horizontalStack",
             "sex&state": "verticalBar",
             "sex&region": "verticalBar",
+            "sex&hhs-region": "horizontalStack",
             "race&ethnicity": "horizontalBar",
             "race&state": "horizontalStack",
             "race&region": "verticalBar",
