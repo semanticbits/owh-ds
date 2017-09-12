@@ -326,11 +326,11 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
         logger.debug("Invoking wonder query with this query JSON: ", JSON.stringify(query[1]));
         promises.push(new wonder(dbID).invokeWONDER(query[1]));
         Q.all(promises).then(function (resp) {
-            var data = searchUtils.populateDataWithMappings(resp[0], 'infant_mortality', undefined, allSelectedFilterOptions);
-            searchUtils.mergeWonderResponseWithInfantESData(data.data.nested.table, resp[1].table);
-            data.data.nested.charts.forEach(function (eachChartData, index) {
+            var data = searchUtils.populateWonderDataWithMappings(resp[1], 'infant_mortality', undefined, allSelectedFilterOptions, query[1]);
+            //searchUtils.mergeWonderResponseWithInfantESData(data.data.nested.table, resp[1].table);
+            /*data.data.nested.charts.forEach(function (eachChartData, index) {
                 searchUtils.mergeWonderResponseWithInfantESData(eachChartData, resp[1].charts[index]);
-            });
+            });*/
             isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');
             deferred.resolve(data);
 

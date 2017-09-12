@@ -103,6 +103,71 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelect
     return result;
 };
 
+var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, allSelectedFilterOptions, wonderQuery) {
+    var result = {
+        data: {
+            simple: {},
+            nested: {
+                table: {},
+                charts: [],
+                maps:{}
+            }
+        },
+        pagination: {
+            total: 0
+        }
+    };
+    //Get selected aggregation filter keys
+    var tableFilterKeys = [];
+    wonderQuery.aggregations.nested.table.forEach(function(eachAgg){
+        tableFilterKeys.push(eachAgg.key);
+    });
+    var chartFilterKeys = [];
+    wonderQuery.aggregations.nested.charts.forEach(function(eachChartArray){
+        var chartAggKeyArray = [];
+        eachChartArray.forEach(function(eachAgg){
+            chartAggKeyArray.push(eachAgg.key);
+        });
+       chartFilterKeys.push(chartAggKeyArray);
+    });
+    var mapFilterKeys = [];
+    wonderQuery.aggregations.nested.maps.forEach(function(eachAgg){
+       mapFilterKeys.push(eachAgg.key);
+    });
+    if(resp) {
+        result.data.nested.table = populateAggregateDataForWonderResponse(resp.table, 'parentTotal', tableFilterKeys);
+        chartFilterKeys.forEach(function(eachChartFilterKeys, index){
+            result.data.nested.charts[index] = populateAggregateDataForWonderResponse(resp.charts, 'parentTotal', eachChartFilterKeys)[eachChartFilterKeys[0]];
+        });
+       // result.data.nested.maps = populateAggregateDataForWonderResponse(resp.maps, countKey, 'result', mapFilterKeys)[mapFilterKeys[0]];
+    }
+    return result;
+};
+
+var populateAggregateDataForWonderResponse = function(wonderResponse, key, filterKeys){
+    var result = {};
+    console.log(" wonder response ", JSON.stringify(wonderResponse));
+    if (wonderResponse.Total){
+        result['name'] = key;
+        result.infant_mortality = wonderResponse.Total['infant_mortality'];
+        result['deathRate'] = wonderResponse.Total['deathRate'];
+        result['pop'] = wonderResponse.Total['births'];
+        result [filterKeys[0]] = [];
+        Object.keys(wonderResponse).forEach(function (key){
+            if(key != 'Total' ){
+                result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function(x,i) { return i !== 0; })));
+            }
+        });
+        return result;
+    }else {
+        result['name'] = key;
+        result.infant_mortality = wonderResponse['infant_mortality'];
+        result['deathRate'] = wonderResponse['deathRate'];
+        result['pop'] = wonderResponse['births'];
+        return result;
+    }
+};
+
 var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQueryKey, regex, dataKey, allSelectedFilterOptions) {
     var result = [];
     for(var index in buckets) {
@@ -874,6 +939,7 @@ function applyPopulationSpecificSuppression (root, countKey) {
 }
 
 module.exports.populateDataWithMappings = populateDataWithMappings;
+module.exports.populateWonderDataWithMappings = populateWonderDataWithMappings;
 module.exports.populateYRBSData = populateYRBSData;
 module.exports.mergeAgeAdjustedRates = mergeAgeAdjustedRates;
 module.exports.mergeWonderResponseWithInfantESData = mergeWonderResponseWithInfantESData;

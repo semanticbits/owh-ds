@@ -1081,7 +1081,7 @@
             var infantRaceOptions = [
                 { "key": "American Indian or Alaska Native", "title": "American Indian or Alaska Native" },
                 { "key": "Asian or Pacific Islander", "title": "Asian or Pacific Islander" },
-                { "key": "Black", "title": "Black or African American" },
+                { "key": "Black or African American", "title": "Black or African American" },
                 { "key": "White", "title": "White" },
                 { "key": "Chinese", "title": "Chinese" },
                 { "key": "Filipino", "title": "Filipino" },

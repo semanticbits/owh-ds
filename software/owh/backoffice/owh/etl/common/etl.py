@@ -169,6 +169,9 @@ class ETL :
             self.insertDsMetadataRecord(datasetname, year,'census_region',None)
             self.insertDsMetadataRecord(datasetname, year,'hhs_region',None)
             self.insertDsMetadataRecord(datasetname, year,'census_division',None)
+         #To enable state filter adding a random state for metadata
+         if (datasetname == 'infant_mortality' and year > 2002):
+            self.insertDsMetadataRecord(datasetname, year,'state',None)
          self.batchRepository.flush()
          self.refresh_index()
 

@@ -475,7 +475,8 @@ var wonderParamCodeMap = {
                 "WY":"56"
             }
         },
-        'states-group':'D69.V10-level1'
+        'states-group':'D69.V10-level1',
+        'state-group':'D69.V10-level1'
     },
     "D31": {
         'year_of_death': 'D31.V9',
@@ -815,7 +816,8 @@ var wonderParamCodeMap = {
                 "WY":"56"
             }
         },
-        'states-group':'D31.V10-level1'
+        'states-group':'D31.V10-level1',
+        'state-group':'D31.V10-level1'
     },
     "D18": {
         'year_of_death': 'D18.V9',
@@ -1155,7 +1157,8 @@ var wonderParamCodeMap = {
                 "WY":"56"
             }
         },
-        'states-group':'D18.V10-level1'
+        'states-group':'D18.V10-level1',
+        'state-group':'D18.V10-level1'
     }
 
 };
