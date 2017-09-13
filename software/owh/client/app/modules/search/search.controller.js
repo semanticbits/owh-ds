@@ -898,12 +898,17 @@
             }).then(function (modal) {
                 modal.element.show();
                 modal.close.then(function (accept) {
-                    modal.element.hide();
-                    if(accept) {
+                    if(accept === true){     
+                        modal.element.hide();
                         $rootScope.acceptDUR = accept;
                         deffered.resolve(accept);
-                    }else {
+                    }else if (accept === false) {
+                        modal.element.hide();
+                        $rootScope.acceptDUR = accept;
                         deffered.reject();
+                    }else {
+                        // Call the showdataUsage again if the modal closes for any reason other than user accepting or cancelling
+                        deffered.resolve(showDataUseRestriction());
                     }
                 });
             });
