@@ -836,151 +836,149 @@ describe("Elastic Search", function () {
 
     it("Check aggregate infant mortality data with birth query for years 2007 - 20014. Database D69", function (done){
         //user selected year '2014' and Race on 'Row' and 'Sex' on 'Column'
-        var query = [{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"year_of_death":"2014"}}]}}]}}}}}];
         var apiQuery = {"searchFor":"infant_mortality","query":{"year_of_death":{"key":"year_of_death","queryKey":"year_of_death","value":["2014"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":0},{"key":"sex","queryKey":"sex","size":0}],"charts":[[{"key":"sex","queryKey":"sex","size":0},{"key":"race","queryKey":"race","size":0}]],"maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}}};
         var allSelectedOptions = {"sex":{"options":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"selectedValues":[]},"race":{"options":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Asian or Pacific Islander","title":"Asian or Pacific Islander","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}],"selectedValues":[]}};
-        new elasticSearch().aggregateInfantMortalityData([query[0], apiQuery], false, allSelectedOptions, ['2014']).then(function (resp) {
+        new elasticSearch().aggregateInfantMortalityData(apiQuery, false, allSelectedOptions, ['2014']).then(function (resp) {
             var  data = resp.data.nested.table.race;
-            //White
-            expect(data[0].name).equal('White');
-            expect(data[0].infant_mortality).equal(14927);
-            expect(data[0].deathRate).equal("4.94");
-            expect(data[0].pop).equal(3019863);
-            var  nestedData1 = data[0].sex;
-            expect(nestedData1[0].name).equal('Male');
-            expect(nestedData1[0].infant_mortality).equal(8337);
-            expect(nestedData1[0].deathRate).equal("5.39");
-            expect(nestedData1[0].pop).equal(1547425);
-            expect(nestedData1[1].name).equal('Female');
-            expect(nestedData1[1].infant_mortality).equal(6590);
-            expect(nestedData1[1].deathRate).equal("4.48");
-            expect(nestedData1[1].pop).equal(1472438);
             //Black
-            expect(data[1].name).equal('Black');
-            expect(data[1].infant_mortality).equal(6853);
-            expect(data[1].deathRate).equal("10.70");
-            expect(data[1].pop).equal(640562);
-            var  nestedData2 = data[1].sex;
-            expect(nestedData2[0].name).equal('Male');
-            expect(nestedData2[0].infant_mortality).equal(3752);
-            expect(nestedData2[0].deathRate).equal("11.55");
-            expect(nestedData2[0].pop).equal(324821);
-            expect(nestedData2[1].name).equal('Female');
-            expect(nestedData2[1].infant_mortality).equal(3101);
-            expect(nestedData2[1].deathRate).equal("9.82");
-            expect(nestedData2[1].pop).equal(315741);
+            expect(data[2].name).equal('Black or African American');
+            expect(data[2].infant_mortality).equal(6853);
+            expect(data[2].deathRate).equal("10.70");
+            expect(data[2].pop).equal(640562);
+            var  nestedData2 = data[2].sex;
+            expect(nestedData2[0].name).equal('Female');
+            expect(nestedData2[0].infant_mortality).equal(3101);
+            expect(nestedData2[0].deathRate).equal("9.82");
+            expect(nestedData2[0].pop).equal(315741);
+            expect(nestedData2[1].name).equal('Male');
+            expect(nestedData2[1].infant_mortality).equal(3752);
+            expect(nestedData2[1].deathRate).equal("11.55");
+            expect(nestedData2[1].pop).equal(324821);
+            //White
+            expect(data[3].name).equal('White');
+            expect(data[3].infant_mortality).equal(14927);
+            expect(data[3].deathRate).equal("4.94");
+            expect(data[3].pop).equal(3019863);
+            var  nestedData1 = data[3].sex;
+            expect(nestedData1[0].name).equal('Female');
+            expect(nestedData1[0].infant_mortality).equal(6590);
+            expect(nestedData1[0].deathRate).equal("4.48");
+            expect(nestedData1[0].pop).equal(1472438);
+            expect(nestedData1[1].name).equal('Male');
+            expect(nestedData1[1].infant_mortality).equal(8337);
+            expect(nestedData1[1].deathRate).equal("5.39");
+            expect(nestedData1[1].pop).equal(1547425);
             done();
         })
     });
 
     it("Check aggregate infant mortality data with birth query for years 2003 - 2006. Database D31", function (done){
         //user selected year '2014' and Race on 'Row' and 'Sex' on 'Column'
-        var query = [{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"year_of_death":"2006"}}]}}]}}}}}];
         var apiQuery = {"searchFor":"infant_mortality","query":{"year_of_death":{"key":"year_of_death","queryKey":"year_of_death","value":["2006"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":0},{"key":"sex","queryKey":"sex","size":0}],"charts":[[{"key":"sex","queryKey":"sex","size":0},{"key":"race","queryKey":"race","size":0}]],"maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}}};
         var allSelectedOptions = {"sex":{"options":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"selectedValues":[]},"race":{"options":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Asian or Pacific Islander","title":"Asian or Pacific Islander","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}],"selectedValues":[]}};
-        new elasticSearch().aggregateInfantMortalityData([query[0], apiQuery], false, allSelectedOptions, ['2006']).then(function (resp) {
+        new elasticSearch().aggregateInfantMortalityData(apiQuery, false, allSelectedOptions, ['2006']).then(function (resp) {
             var  data = resp.data.nested.table.race;
-            //White
-            expect(data[0].name).equal('White');
-            expect(data[0].infant_mortality).equal(18422);
-            expect(data[0].deathRate).equal("5.57");
-            expect(data[0].pop).equal(3310331);
-            var  nestedData1 = data[0].sex;
-            expect(nestedData1[0].name).equal('Male');
-            expect(nestedData1[0].infant_mortality).equal(10384);
-            expect(nestedData1[0].deathRate).equal("6.12");
-            expect(nestedData1[0].pop).equal(1695886);
-            expect(nestedData1[1].name).equal('Female');
-            expect(nestedData1[1].infant_mortality).equal(8039);
-            expect(nestedData1[1].deathRate).equal("4.98");
-            expect(nestedData1[1].pop).equal(1614445);
             //Black
-            expect(data[1].name).equal('Black');
-            expect(data[1].infant_mortality).equal(8595);
-            expect(data[1].deathRate).equal("12.90");
-            expect(data[1].pop).equal(666494);
-            var  nestedData2 = data[1].sex;
-            expect(nestedData2[0].name).equal('Male');
-            expect(nestedData2[0].infant_mortality).equal(4726);
-            expect(nestedData2[0].deathRate).equal("13.91");
-            expect(nestedData2[0].pop).equal(339844);
-            expect(nestedData2[1].name).equal('Female');
-            expect(nestedData2[1].infant_mortality).equal(3869);
-            expect(nestedData2[1].deathRate).equal("11.84");
-            expect(nestedData2[1].pop).equal(326650);
+            expect(data[2].name).equal('Black or African American');
+            expect(data[2].infant_mortality).equal(8595);
+            expect(data[2].deathRate).equal("12.90");
+            expect(data[2].pop).equal(666494);
+            var  nestedData2 = data[2].sex;
+            expect(nestedData2[0].name).equal('Female');
+            expect(nestedData2[0].infant_mortality).equal(3869);
+            expect(nestedData2[0].deathRate).equal("11.84");
+            expect(nestedData2[0].pop).equal(326650);
+            expect(nestedData2[1].name).equal('Male');
+            expect(nestedData2[1].infant_mortality).equal(4726);
+            expect(nestedData2[1].deathRate).equal("13.91");
+            expect(nestedData2[1].pop).equal(339844);
+            //White
+            expect(data[3].name).equal('White');
+            expect(data[3].infant_mortality).equal(18422);
+            expect(data[3].deathRate).equal("5.57");
+            expect(data[3].pop).equal(3310331);
+            var  nestedData1 = data[3].sex;
+            expect(nestedData1[0].name).equal('Female');
+            expect(nestedData1[0].infant_mortality).equal(8039);
+            expect(nestedData1[0].deathRate).equal("4.98");
+            expect(nestedData1[0].pop).equal(1614445);
+            expect(nestedData1[1].name).equal('Male');
+            expect(nestedData1[1].infant_mortality).equal(10384);
+            expect(nestedData1[1].deathRate).equal("6.12");
+            expect(nestedData1[1].pop).equal(1695886);
             done();
         })
     });
 
     it("Check aggregate infant mortality data with birth query for years 2000 - 2002. Database D18", function (done){
         //user selected year '2014' and Race on 'Row' and 'Sex' on 'Column'
-        var query = [{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"year_of_death":"2001"}}]}}]}}}}}];
         var apiQuery = {"searchFor":"infant_mortality","query":{"year_of_death":{"key":"year_of_death","queryKey":"year_of_death","value":["2001"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":0},{"key":"sex","queryKey":"sex","size":0}],"charts":[[{"key":"sex","queryKey":"sex","size":0},{"key":"race","queryKey":"race","size":0}]],"maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}}};
         var allSelectedOptions = {"sex":{"options":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"selectedValues":["Female"]},"race":{"options":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}, { "key": "Chinese", "title": "Chinese" }, { "key": "Filipino", "title": "Filipino" }, { "key": "Hawaiian", "title": "Hawaiian" }, { "key": "Japanese", "title": "Japanese" }, { "key": "Other Asian", "title": "Other Asian" }],"selectedValues":[]}};
-        new elasticSearch().aggregateInfantMortalityData([query[0], apiQuery], false, allSelectedOptions, ['2001']).then(function (resp) {
+        new elasticSearch().aggregateInfantMortalityData(apiQuery, false, allSelectedOptions, ['2001']).then(function (resp) {
             var  data = resp.data.nested.table.race;
-            //White
-            expect(data[0].name).equal('White');
-            expect(data[0].infant_mortality).equal(18087);
-            expect(data[0].deathRate).equal("5.69");
-            expect(data[0].pop).equal(3177698);
-            var  nestedData1 = data[0].sex;
-            expect(nestedData1[0].name).equal('Male');
-            expect(nestedData1[0].infant_mortality).equal(10132);
-            expect(nestedData1[0].deathRate).equal("6.23");
-            expect(nestedData1[0].pop).equal(1625548);
-            expect(nestedData1[1].name).equal('Female');
-            expect(nestedData1[1].infant_mortality).equal(7955);
-            expect(nestedData1[1].deathRate).equal("5.13");
-            expect(nestedData1[1].pop).equal(1552150);
             //Black
-            expect(data[1].name).equal('Black');
+            expect(data[1].name).equal('Black or African American');
             expect(data[1].infant_mortality).equal(8084);
             expect(data[1].deathRate).equal("13.34");
             expect(data[1].pop).equal(606183);
             var  nestedData2 = data[1].sex;
-            expect(nestedData2[0].name).equal('Male');
-            expect(nestedData2[0].infant_mortality).equal(4543);
-            expect(nestedData2[0].deathRate).equal("14.76");
-            expect(nestedData2[0].pop).equal(307851);
-            expect(nestedData2[1].name).equal('Female');
-            expect(nestedData2[1].infant_mortality).equal(3541);
-            expect(nestedData2[1].deathRate).equal("11.87");
-            expect(nestedData2[1].pop).equal(298332);
+            expect(nestedData2[0].name).equal('Female');
+            expect(nestedData2[0].infant_mortality).equal(3541);
+            expect(nestedData2[0].deathRate).equal("11.87");
+            expect(nestedData2[0].pop).equal(298332);
+            expect(nestedData2[1].name).equal('Male');
+            expect(nestedData2[1].infant_mortality).equal(4543);
+            expect(nestedData2[1].deathRate).equal("14.76");
+            expect(nestedData2[1].pop).equal(307851);
+            //White
+            expect(data[7].name).equal('White');
+            expect(data[7].infant_mortality).equal(18087);
+            expect(data[7].deathRate).equal("5.69");
+            expect(data[7].pop).equal(3177698);
+            var  nestedData1 = data[7].sex;
+            expect(nestedData1[0].name).equal('Female');
+            expect(nestedData1[0].infant_mortality).equal(7955);
+            expect(nestedData1[0].deathRate).equal("5.13");
+            expect(nestedData1[0].pop).equal(1552150);
+            expect(nestedData1[1].name).equal('Male');
+            expect(nestedData1[1].infant_mortality).equal(10132);
+            expect(nestedData1[1].deathRate).equal("6.23");
+            expect(nestedData1[1].pop).equal(1625548);
             done();
         })
     });
 
 
     it("Check aggregate infant mortality data with birth query - selected 'All' option and data not available for few options", function (done){
-        //user selected year '2000', state 'AK' and Race on 'Row' and 'Sex' on 'Column'
-        var query = [{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"year_of_death":"2000"}}]}},{"bool":{"should":[{"term":{"state":"AK"}}]}}]}}}}},{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2000"}}]}},{"bool":{"should":[{"term":{"state":"AK"}}]}}]}}}}},{"size":0,"aggregations":{"group_maps_0_states":{"terms":{"field":"state","size":0},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"year_of_death":"2000"}}]}}]}}}}}];
-        var apiQuery = {"searchFor":"infant_mortality","query":{"year_of_death":{"key":"year_of_death","queryKey":"year_of_death","value":["2000"],"primary":false},"state":{"key":"state","queryKey":"state","value":["AK"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":0},{"key":"sex","queryKey":"sex","size":0}],"charts":[[{"key":"sex","queryKey":"sex","size":0},{"key":"race","queryKey":"race","size":0}]],"maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}}};
+        //user selected year '2000', state 'AL' and Race on 'Row' and 'Sex' on 'Column'
+        var apiQuery = {"searchFor":"infant_mortality","query":{"year_of_death":{"key":"year_of_death","queryKey":"year_of_death","value":["2000"],"primary":false},"state":{"key":"state","queryKey":"state","value":["AL"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":0},{"key":"sex","queryKey":"sex","size":0}],"charts":[[{"key":"sex","queryKey":"sex","size":0},{"key":"race","queryKey":"race","size":0}]],"maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}}};
         var allSelectedOptions = {"sex":{"options":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"selectedValues":["Female"]},"race":{"options":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}, { "key": "Chinese", "title": "Chinese" }, { "key": "Filipino", "title": "Filipino" }, { "key": "Hawaiian", "title": "Hawaiian" }, { "key": "Japanese", "title": "Japanese" }, { "key": "Other Asian", "title": "Other Asian" }],"selectedValues":[]}};
-        new elasticSearch().aggregateInfantMortalityData([query[0], apiQuery], false, allSelectedOptions, ['2000']).then(function (resp) {
+        new elasticSearch().aggregateInfantMortalityData(apiQuery, false, allSelectedOptions, ['2000']).then(function (resp) {
             var  data = resp.data.nested.table.race;
-            //Black -> Female should have infant_mortality value zero
-            expect(data[2].name).equal('Black');
-            expect(data[2].infant_mortality).equal('na');
-            var  nestedData = data[2].sex;
-            expect(nestedData[0].name).equal('Male');
-            expect(nestedData[0].infant_mortality).equal(0);
-            expect(nestedData[0].deathRate).equal('Suppressed');
-            expect(nestedData[0].pop).equal(247);
-            expect(nestedData[1].name).equal('Female');
-            expect(nestedData[1].infant_mortality).equal(0);
-            expect(nestedData[1].deathRate).equal('Suppressed');
-            expect(nestedData[1].pop).equal(215);
+            //Only Black and White race data available for state 'AL'
+            expect(data[0].name).equal(undefined);
+            expect(data[1].name).equal('Black or African American');
+            expect(data[1].infant_mortality).equal(317);
+            var  nestedData = data[1].sex;
+            expect(nestedData[0].name).equal('Female');
+            expect(nestedData[0].infant_mortality).equal(140);
+            expect(nestedData[0].deathRate).equal('13.82');
+            expect(nestedData[0].pop).equal(10130);
+            expect(nestedData[1].name).equal('Male');
+            expect(nestedData[1].infant_mortality).equal(177);
+            expect(nestedData[1].deathRate).equal('17.05');
+            expect(nestedData[1].pop).equal(10382);
+            expect(data[2].name).equal(undefined);
+            expect(data[7].name).equal('White');
             done();
         })
     });
 
     it("Check aggregate infant mortality data with birth query - selected specific option and data not available for selected options", function (done){
         //user selected year '2000', state 'AK' and Race on 'Row' and 'Sex' on 'Column'
-        var query = [{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"sex":"Female"}}]}},{"bool":{"should":[{"term":{"year_of_death":"2000"}}]}},{"bool":{"should":[{"term":{"state":"AK"}}]}}]}}}}},{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}},"group_chart_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"sex":"Female"}}]}},{"bool":{"should":[{"term":{"current_year":"2000"}}]}},{"bool":{"should":[{"term":{"state":"AK"}}]}}]}}}}},{"size":0,"aggregations":{"group_maps_0_states":{"terms":{"field":"state","size":0},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"sex":"Female"}}]}},{"bool":{"should":[{"term":{"year_of_death":"2000"}}]}}]}}}}}];
         var apiQuery = {"searchFor":"infant_mortality","query":{"year_of_death":{"key":"year_of_death","queryKey":"year_of_death","value":["2000"],"primary":false},"state":{"key":"state","queryKey":"state","value":["AK"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"race","queryKey":"race","size":0},{"key":"sex","queryKey":"sex","size":0}],"charts":[[{"key":"sex","queryKey":"sex","size":0},{"key":"race","queryKey":"race","size":0}]],"maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}}};
         var allSelectedOptions = {"sex":{"options":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"selectedValues":["Female"]},"race":{"options":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}, { "key": "Chinese", "title": "Chinese" }, { "key": "Filipino", "title": "Filipino" }, { "key": "Hawaiian", "title": "Hawaiian" }, { "key": "Japanese", "title": "Japanese" }, { "key": "Other Asian", "title": "Other Asian" }],"selectedValues":[]}};
-        new elasticSearch().aggregateInfantMortalityData([query[0], apiQuery], false, allSelectedOptions, ['2000']).then(function (resp) {
+        new elasticSearch().aggregateInfantMortalityData(apiQuery, false, allSelectedOptions, ['2000']).then(function (resp) {
             var  data = resp.data.nested.table.race;
             //Black race should not be available in results
             expect(data.length).equal(3);
