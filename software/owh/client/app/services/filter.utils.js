@@ -1427,7 +1427,7 @@
                     title: 'label.filter.year',
                     queryKey: 'current_year',
                     primary: false,
-                    value: '2015',
+                    value: '2014',
                     groupBy: false,
                     filterType: 'radio',
                     autoCompleteOptions: yearOptions,
