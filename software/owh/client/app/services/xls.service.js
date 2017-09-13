@@ -100,13 +100,15 @@
                 cell.t = 'n'; cell.z = XLSX.SSF._table[14];
                 cell.v = datenum(cell.v);
             }
-            else if(cell.v === 'suppressed') {
-                cell.t = 's';
-                cell.v = 'Suppressed';
-            }
             else {
                 cell.t = 's';
-                if(convertNumbers) {
+                if(cell.v === 'suppressed') {
+                    cell.v = 'Suppressed';
+                }
+                else if(cell.v === 'na') {
+                    cell.v = 'No response';
+                }
+                else if(convertNumbers) {
                     //check if string is parsable as integer and make sure doesn't contain letters
                     var numberValue = parseFloat(cell.v.replace(',', ''));
 
@@ -150,7 +152,7 @@
                 angular.forEach(headerRow, function (cell, innerIdx) {
                     var colspan = cell.colspan;
                     //check is column header for data column, else add header as normal
-                    if(table.calculatePercentage && ((innerIdx >= table.rowHeadersLength && innerIdx < headerRow.length - 1) || idx > 0)) {
+                    if(table.calculatePercentage && ((innerIdx >= table.rowHeadersLength && innerIdx < headerRow.length - 1) || idx > 0 || cell.isData)) {
                         //for the bottom row just add an extra column for every existing one, else double the length
                         if(idx === table.headers.length - 1) {
                             headers.push({title: cell.title, colspan: colspan, rowspan: cell.rowspan});
@@ -217,8 +219,13 @@
                     }
                     rowArray.push({title: cell.title, colspan: colspan, rowspan: cell.rowspan});
                     //if we have a percentage then add an extra column to display it
-                    if(table.calculatePercentage && cell.percentage !== undefined && innerIdx < row.length - 1 ) {
-                        rowArray.push({title: cell.percentage, colspan: colspan, rowspan: cell.rowspan});
+                    if (table.calculatePercentage && innerIdx < row.length - 1) {
+                        if (cell.title === "Not Available" || cell.title === "suppressed") {
+                            rowArray.push({ title: "", colspan: colspan, rowspan: cell.rowspan });
+                        }
+                        else if (cell.isCount) {
+                            rowArray.push({ title: cell.percentage || "", colspan: colspan, rowspan: cell.rowspan });
+                        }
                     }
                 });
                 sheet.push(rowArray);
@@ -243,8 +250,8 @@
 
             var newHeaderRow = [];
             // Add three header cells for each data column
-            headers[headers.length - 1].forEach(function (headerCell) {
-                if (headerCell.isData && headerCell.title !== "Total" && headerCell.title !== "Number of Deaths") {
+            headers[headers.length - 1].forEach(function (headerCell, index) {
+                if (headerCell.isData && (index !== headers[headers.length - 1].length - 1)) {
                     newHeaderRow.push({ title: ratesLabel, colspan: 1, rowspan: 1 });
                     newHeaderRow.push({ title: "Population", colspan: 1, rowspan: 1 });
                     newHeaderRow.push({ title: countLabel, colspan: 1, rowspan: 1 });
@@ -272,7 +279,7 @@
                         var rateVisibility = getRateVisibility(cell.title, cell.pop, tableView);
 
                         if (rateVisibility === 'visible') {
-                            rateValue = cell.title / cell.pop * 100000;
+                            rateValue = tableView === 'number_of_infant_deaths' ? cell.deathRate : cell.title / cell.pop * 100000;
                         }
                         else if (rateVisibility === 'suppressed') {
                             rateValue = 'Suppressed';
@@ -352,12 +359,12 @@
 
                     if (cell.isCount) {
                         if (table.filterUtilities.ci.value) {
-                            var ciValue = !cell.title.mean || cell.title.mean === "suppressed" || cell.title.mean === "nr" ? "" : "(" + cell.title.ci_l + " - " + cell.title.ci_u + ")";
+                            var ciValue = !cell.title.mean || cell.title.mean === "suppressed" || cell.title.mean === "nr" || cell.title.mean === "na" ? "" : "(" + cell.title.ci_l + " - " + cell.title.ci_u + ")";
                             newCells.push({ index: j + 1, cell: { title: ciValue, colspan: 1, rowspan: 1 } });
                         }
 
                         if (table.filterUtilities.uf.value) {
-                            var countValue = !cell.title.mean || cell.title.mean === "suppressed" || cell.title.mean === "nr" || !cell.title.count ? "" : cell.title.count;
+                            var countValue = !cell.title.mean || cell.title.mean === "suppressed" || cell.title.mean === "nr" || cell.title.mean === "na" || !cell.title.count ? "" : cell.title.count;
                             newCells.push({ index: j + 1, cell: { title: countValue, colspan: 1, rowspan: 1 } });
                         }
                     }

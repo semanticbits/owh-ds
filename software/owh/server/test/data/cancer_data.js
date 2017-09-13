@@ -122,6 +122,10 @@ module.exports.population = {
         "cancer_population": 19546102,
         "sex": [
           {
+            "name": "Male",
+            "cancer_population": 9362812
+          },
+          {
             "name": "Female",
             "cancer_population": 10183290
           }

@@ -60,8 +60,8 @@
                     return 1;
                 }
             });
-            hi.left = data.event.layerX +'px';
-            hi.top = (data.event.layerY) +'px';
+            hi.left = (data.event.offsetX)+'px';
+            hi.top = (data.event.offsetY) +'px';
 
             plotly.hoverinfo = hi;
             $scope.$apply();
