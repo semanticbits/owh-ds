@@ -749,7 +749,7 @@
         var cancerHispanicOptions = [
             { key: 'Non-Hispanic', title: 'Non-Hispanic' },
             { key: 'Hispanic', title: 'Hispanic' },
-            { key: 'Invalid', title: 'Invalid' },
+            { key: 'Invalid', title: 'Unknown or Missing' },
             { key: 'Unknown', title: 'Unknown' }
         ];
 
@@ -1540,7 +1540,7 @@
                     value: [],
                     groupBy: false,
                     filterType: 'checkbox',
-                    autoCompleteOptions: cancerHispanicOptions,
+                    autoCompleteOptions: cancerHispanicOptions.slice(0, -1),
                     defaultGroup: 'column',
                     helpText: 'label.help.text.cancer_incidence.hispanic_origin'
                 },
