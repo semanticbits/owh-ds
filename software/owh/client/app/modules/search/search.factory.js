@@ -940,7 +940,7 @@
                 chartHeaders: []
             };
             //var defaultHeaders = [];
-            var sortedFilters = utilService.sortByKey(angular.copy(primaryFilter.allFilters), getAutoCompleteOptionsLength);
+            var sortedFilters = utilService.sortFilters(angular.copy(primaryFilter.allFilters), getAutoCompleteOptionsLength);
             angular.forEach(sortedFilters, function(eachFilter) {
                 if(eachFilter.groupBy) {
                     var eachGroupQuery = getGroupQuery(eachFilter);
