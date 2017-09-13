@@ -54,8 +54,8 @@
                                        filters="sc.filters.selectedPrimaryFilter.allFilters" class="flex-grow">
                 </list-selected-filters>
                 <div class="doc-link">
-                    <a id="data_doc_link" ng-click="$state.go('description', {dataSetKey: sc.filters.selectedPrimaryFilter.key})"
-                       href="#">Data Documentation<i class="material-icons chevron-right-purple">chevron_right</i></a>
+                    <a id="data_doc_link" href="{{$state.href('description', {dataSetKey: sc.filters.selectedPrimaryFilter.key}, {absolute: true})}}"
+                       target="_blank">Data Documentation<i class="material-icons chevron-right-purple">chevron_right</i></a>
                 </div>
             </div>
 
@@ -118,7 +118,7 @@
                     <a href="javascript:void(0)" ng-click="sc.showPhaseTwoGraphs('label.graph.impl.next')">Build one</a>
                     <span class="dark-link" ng-bind="'label.visualization.more.two' | translate"></span>
                 </div>
-                <a ng-click="$state.go('description', {dataSetKey: sc.filters.selectedPrimaryFilter.key})" href="#">Data Documentation</a>
+                <a href="{{$state.href('description', {dataSetKey: sc.filters.selectedPrimaryFilter.key}, {absolute:true})}}" target="_blank">Data Documentation</a>
             </div>
             <!--More visualization-->
 
