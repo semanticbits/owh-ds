@@ -8,8 +8,8 @@
     function FactSheetController($scope, $state, factSheetService, $filter) {
         var fsc = this;
         fsc.fsTypes = {
-            minority_health: 'Minority Health',
-            womens_health: "Women's Health",
+            //minority_health: 'Minority Health',
+            //womens_health: "Women's Health",
             state_health: "State Health"};
         fsc.states = {
             "AL": "Alabama",

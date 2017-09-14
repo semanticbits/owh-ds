@@ -113,11 +113,11 @@
 
             <!--More visualization-->
             <div class="usa-width-one-whole" ng-show="sc.filters.selectedPrimaryFilter.chartData.length > 0">
-                <div class="usa-width-one-whole more-graph-select">
+                <!-- <div class="usa-width-one-whole more-graph-select">
                     <span class="dark-link" ng-bind="'label.visualization.more.one' | translate"></span>
                     <a href="javascript:void(0)" ng-click="sc.showPhaseTwoGraphs('label.graph.impl.next')">Build one</a>
                     <span class="dark-link" ng-bind="'label.visualization.more.two' | translate"></span>
-                </div>
+                </div> -->
                 <a ng-click="$state.go('description', {dataSetKey: sc.filters.selectedPrimaryFilter.key})" href="#">Data Documentation</a>
             </div>
             <!--More visualization-->
