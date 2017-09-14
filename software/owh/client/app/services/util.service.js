@@ -17,6 +17,7 @@
             formatDateString: formatDateString,
             findByKey: findByKey,
             sortByKey: sortByKey,
+            sortFilters: sortFilters,
             findByKeyAndValue: findByKeyAndValue,
             findByKeyAndValueRecursive: findByKeyAndValueRecursive,
             findIndexByKeyAndValue: findIndexByKeyAndValue,
@@ -213,6 +214,29 @@
                 }
             });
         }
+
+        /**
+         * Sorts filtes by the length of autocomplete options, if the autocomplete options are of same lenght
+         * then sort by the filter keys to make sure the sort will give exact same results on all browsers.
+         * Filter keys are unique with in a dataset, so this should returning deterministic result
+         * @param array
+         * @param key
+         * @param asc
+         * @returns {*}
+         */
+        function sortFilters(array, key, asc) {
+            return array.sort(function(a, b) {
+                var x = angular.isFunction(key) ? key(a) : a[key];
+                var y = angular.isFunction(key) ? key(b) : b[key];
+                if(asc===undefined || asc === true) {
+
+                    return ((x < y) ? -1 : ((x > y) ? 1 : (a.key < b.key)? 1: -1));
+                }else {
+                    return ((x > y) ? -1 : ((x < y) ? 1 : (a.key < b.key)? -1: 1));
+                }
+            });
+        }
+
 
         /**
          * Finds and returns the first object in array of objects by using the key
