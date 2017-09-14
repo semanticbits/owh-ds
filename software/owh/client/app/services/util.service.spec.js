@@ -171,6 +171,16 @@ describe('utilService', function(){
         expect(result[0].title).toEqual('Wednesday');
     });
 
+    it('test utils sortFilters', function () {
+        var filters = [{key:'key1', autocompleteopts :[1,2,3]},
+                        {key:'key2', autocompleteopts :[1,2,3, 4]},
+                        {key:'key3', autocompleteopts: [1,2,3]}]
+        var result = utils.sortFilters(filters, function (a) {return a.autocompleteopts.length;});
+        expect(result[0].key).toEqual('key3');
+        expect(result[1].key).toEqual('key1');
+        expect(result[2].key).toEqual('key2');
+    });
+
     it('test utils findByKey', function () {
         var result = utils.findByKey(list, 'show');
         expect(result).toEqual({key: '1', title: 'Sunday', show: true});

@@ -40,7 +40,7 @@ install:
 before_script:
   - sleep 10
   - curl http://54.242.94.197/esdev  # To verify ElasticSearch running 
-  - curl  http://54.86.112.54:7777/questions?d=yrbss # check connection to YRBS dev service
+  - curl http://54.242.94.197/stats/questions?d=yrbss # check connection to YRBS dev service
   - java -version
   - echo $JAVA_HOME
   - export DISPLAY=:99.0

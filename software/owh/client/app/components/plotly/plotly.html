@@ -1,5 +1,5 @@
 <div style="width: 95%; display: inline-block"></div>
-<div id='tooltip' ng-if="plotly.hoverinfo" class="chart-tooltip" ng-style="{'left': plotly.hoverinfo.left,'top': plotly.hoverinfo.top}">
+<div id='tooltip' ng-if="plotly.hoverinfo" class="chart-tooltip" ng-style="{'left': plotly.hoverinfo.left,'top': plotly.hoverinfo.top, 'display': 'inline-block'}">
     <div id="tooltip-series"><strong>{{plotly.hoverinfo.name}}</strong></div>
     <div ng-repeat="p in plotly.hoverinfo.points" id="tooltip-value" class='nvtooltip-value'>
         <!--<span class='fa fa-square' style='color:"{{p.color}}"'></span>-->
