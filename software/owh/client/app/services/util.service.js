@@ -902,7 +902,7 @@
 
         function generateMapLegendRanges(minValue, maxValue) {
             var counter = getLegendCounter(minValue, maxValue);
-            var counterRoundedValue = Math.round(counter/((counter < 5) ? 5 : 10), 0)*10;
+            var counterRoundedValue = 1 + Math.round(counter/((counter < 5) ? 5 : 10), 0)*10;
             var minRoundedValue = 10 + Math.round(minValue/10, 0) * 10;
             var ranges = [];
             ranges.push(minRoundedValue + 10);
