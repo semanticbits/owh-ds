@@ -1085,6 +1085,7 @@
                     if(['2000', '2001', '2002'].indexOf(filterValue) >= 0) {
                         earlyLatentSyphilis.disabled = true;
                     }
+                    enableOrDisableFilterOptions(sideFilters, ['sex', 'race'], diseaseSideFilter.filters.value === 'Congenital Syphilis');
                 }, function (error) {
                     angular.element(document.getElementById('spindiv')).addClass('ng-hide');
                     console.log(error);
