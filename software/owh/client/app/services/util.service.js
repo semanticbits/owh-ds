@@ -103,12 +103,12 @@
                     var keyValue = a[i][key];
                     if(keyValue === value ) {return a[i];}
                     else if (a[i].options){ // Check subOptions
-                            a[i].options.forEach(function(opt){
-                               if(opt[key] === value){
-                                   result= opt;
-                                   return;
-                               }
-                            });
+                        a[i].options.forEach(function(opt){
+                            if(opt[key] === value){
+                                result= opt;
+                                return;
+                            }
+                        });
                     }
                 }
             }
@@ -795,11 +795,11 @@
         function getValuesByKeyIncludingKeyAndValue(data, key, includeKey, includeValue) {
             var values = [];
             if(data){
-                    for (var i = 0; i < data.length; i++) {
-                        if(data[i][includeKey] === includeValue) {
-                            values.push(data[i][key]);
-                        }
+                for (var i = 0; i < data.length; i++) {
+                    if(data[i][includeKey] === includeValue) {
+                        values.push(data[i][key]);
                     }
+                }
             }
             return values;
         }
@@ -885,7 +885,11 @@
 
 
         function getMinAndMaxValue(array) {
-            var sortedArray = array.sort(function(a,b) {
+            //collect only numbers. exlude strings e.g 'suppressed', 'na'
+            var filteredArray = array.filter(function(elm){
+                return !isNaN(elm);
+            });
+            var sortedArray = filteredArray.sort(function(a,b) {
                 return a-b;
             });
             return { minValue: sortedArray[0], maxValue: sortedArray[sortedArray.length-1] }
@@ -898,12 +902,12 @@
 
         function generateMapLegendRanges(minValue, maxValue) {
             var counter = getLegendCounter(minValue, maxValue);
-            var counterRoundedValue = Math.round(counter/((counter<50)?50:100), 0)*100;
-            var minRoundedValue = Math.round(minValue/100, 0)*100;
+            var counterRoundedValue = Math.round(counter/((counter < 5) ? 5 : 10), 0)*10;
+            var minRoundedValue = 10 + Math.round(minValue/10, 0) * 10;
             var ranges = [];
-            ranges.push(minRoundedValue);
+            ranges.push(minRoundedValue + 10);
             [1, 2, 3, 4, 5, 6].forEach(function(option, index){
-                ranges.push(minRoundedValue + (counterRoundedValue*index));
+                ranges.push(minRoundedValue + (counterRoundedValue*option));
             });
             return ranges;
         }
@@ -1085,7 +1089,7 @@
                     if(['2000', '2001', '2002'].indexOf(filterValue) >= 0) {
                         earlyLatentSyphilis.disabled = true;
                     }
-                    enableOrDisableFilterOptions(sideFilters, ['sex', 'race'], diseaseSideFilter.filters.value === 'Congenital Syphilis');
+                    enableOrDisableFilterOptions(sideFilters, ['sex', 'race', 'age_group'], diseaseSideFilter.filters.value === 'Congenital Syphilis');
                 }, function (error) {
                     angular.element(document.getElementById('spindiv')).addClass('ng-hide');
                     console.log(error);
