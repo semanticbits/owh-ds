@@ -58,7 +58,7 @@ describe('mapService', function(){
             legendInterval.dispatchEvent(evt);
 
             //style changed
-            expect(map._layers[0].style).toEqual({"color":"#333333","weight":2.6,"opacity":1,"fillOpacity":0.9});
+            expect(map._layers[0].style).toEqual({"color":"black","fillOpacity":0.7});
             //no style change for polygon which does not match event target
             expect(map._layers[1].style).toEqual({color: 'black', fillOpacity: 0.7});
 
@@ -67,7 +67,7 @@ describe('mapService', function(){
             evt.initEvent('mouseout', true, true);
             legendInterval.dispatchEvent(evt);
             //reset style
-            expect(map._layers[0].style).toEqual({weight: 0.8, opacity: 1, color: 'black', fillOpacity: 0.7});
+            expect(map._layers[0].style).toEqual({color: 'black', fillOpacity: 0.7});
 
         });
 
