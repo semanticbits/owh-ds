@@ -967,32 +967,39 @@ function applyCustomSuppressions (data, rules, countKey) {
     });
 }
 
-function attachPopulation (root, popTree, path) {
-    if (path.length) root.pop = findMatchingProp(popTree, path) || 'n/a';
-    for (var property in root) {
-        if (Array.isArray(root[property])) {
-            root[property].forEach(function (option) {
-                attachPopulation(option, popTree, path.concat([property, option.name]));
-            })
+function createPopIndex  (tree, popKey) {
+    var index = {};
+    map_tree(tree, '');
+    return index;
+    function map_tree (tree, path) {
+        if (path && !index[path]) index[path.slice(0, -1)] = tree[popKey];
+        for (var prop in tree) {
+            if (Array.isArray(tree[prop])) {
+                tree[prop].forEach(function (option) {
+                    map_tree(option, `${ path }${ prop }.${ option.name }.`);
+                });
+            }
         }
     }
 }
 
-function findMatchingProp (tree, path) {
-  for (var i = 0; i < path.length; i += 2) {
-    tree = findMatchingOption(tree[path[i]], path[i + 1]);
-    if (! tree){
-        break;
+function attachPopulation (root, index, path) {
+    if (path) {
+        root.pop = Object.keys(index).sort().reduce(function (prev, key) {
+            var contains = key.split('.').every(function (prop) {
+                return !!~path.split('.').indexOf(prop);
+            });
+            if (contains) return index[key];
+            return prev;
+        }, null) || 'n/a';
     }
-  }
-  return tree && tree['cancer_population'];
-}
-
-function findMatchingOption (options, target) {
-  return options.reduce(function (prev, curr) {
-    if (curr.name === target) return curr;
-    return prev;
-  }, null);
+    for (var property in root) {
+        if (Array.isArray(root[property])) {
+            root[property].forEach(function (option) {
+                attachPopulation(option, index, `${ path }${ property }.${ option.name }.`);
+            });
+        }
+    }
 }
 
 function applyPopulationSpecificSuppression (root, countKey) {
@@ -1030,6 +1037,5 @@ module.exports.searchTree = searchTree;
 module.exports.createCancerIncidenceSuppressionRules = createCancerIncidenceSuppressionRules;
 module.exports.applyCustomSuppressions = applyCustomSuppressions;
 module.exports.attachPopulation = attachPopulation;
-module.exports.findMatchingProp = findMatchingProp;
-module.exports.findMatchingOption = findMatchingOption;
+module.exports.createPopIndex = createPopIndex;
 module.exports.applyPopulationSpecificSuppression = applyPopulationSpecificSuppression;

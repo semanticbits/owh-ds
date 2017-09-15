@@ -353,25 +353,32 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             //Cancer - Mortality
             var cancer_mortality_breast_data = searchUtils.populateDataWithMappings(resp[59], 'cancer_mortality');
             var cancer_breast_population = searchUtils.populateDataWithMappings(resp[60], 'cancer_population');
-            searchUtils.attachPopulation(cancer_mortality_breast_data.data.nested.table, cancer_breast_population.data.nested.table, []);
+            var cancer_breast_population_index = searchUtils.createPopIndex(cancer_breast_population.data.nested.table, 'cancer_population');
+            searchUtils.attachPopulation(cancer_mortality_breast_data.data.nested.table, cancer_breast_population_index, '');
             var cancer_mortality_colonAndRectum_data = searchUtils.populateDataWithMappings(resp[61], 'cancer_mortality');
             var cancer_colonAndRectum_population = searchUtils.populateDataWithMappings(resp[62], 'cancer_population');
-            searchUtils.attachPopulation(cancer_mortality_colonAndRectum_data.data.nested.table, cancer_colonAndRectum_population.data.nested.table, []);
+            var cancer_colonAndRectum_population_index = searchUtils.createPopIndex(cancer_colonAndRectum_population.data.nested.table, 'cancer_population');
+            searchUtils.attachPopulation(cancer_mortality_colonAndRectum_data.data.nested.table, cancer_colonAndRectum_population_index, '');
             var cancer_mortality_lungAndBronchus_data = searchUtils.populateDataWithMappings(resp[63], 'cancer_mortality');
             var cancer_lungAndBronchus_population = searchUtils.populateDataWithMappings(resp[64], 'cancer_population');
-            searchUtils.attachPopulation(cancer_mortality_lungAndBronchus_data.data.nested.table, cancer_lungAndBronchus_population.data.nested.table, []);
+            var cancer_lungAndBronchus_population_index = searchUtils.createPopIndex(cancer_lungAndBronchus_population.data.nested.table, 'cancer_population');
+            searchUtils.attachPopulation(cancer_mortality_lungAndBronchus_data.data.nested.table, cancer_lungAndBronchus_population_index, '');
             var cancer_mortality_melanoma_data = searchUtils.populateDataWithMappings(resp[65], 'cancer_mortality');
             var cancer_melanoma_population = searchUtils.populateDataWithMappings(resp[66], 'cancer_population');
-            searchUtils.attachPopulation(cancer_mortality_melanoma_data.data.nested.table, cancer_melanoma_population.data.nested.table, []);
+            var cancer_melanoma_population_index = searchUtils.createPopIndex(cancer_melanoma_population.data.nested.table, 'cancer_population');
+            searchUtils.attachPopulation(cancer_mortality_melanoma_data.data.nested.table, cancer_melanoma_population_index, '');
             var cancer_mortality_cervix_data = searchUtils.populateDataWithMappings(resp[67], 'cancer_mortality');
             var cancer_cervix_population = searchUtils.populateDataWithMappings(resp[68], 'cancer_population');
-            searchUtils.attachPopulation(cancer_mortality_cervix_data.data.nested.table, cancer_cervix_population.data.nested.table, []);
+            var cancer_cervix_population_index = searchUtils.createPopIndex(cancer_cervix_population.data.nested.table, 'cancer_population')
+            searchUtils.attachPopulation(cancer_mortality_cervix_data.data.nested.table, cancer_cervix_population_index, '');
             var cancer_mortality_ovary_data = searchUtils.populateDataWithMappings(resp[69], 'cancer_mortality');
             var cancer_ovary_population = searchUtils.populateDataWithMappings(resp[70], 'cancer_population');
-            searchUtils.attachPopulation(cancer_mortality_ovary_data.data.nested.table, cancer_ovary_population.data.nested.table, []);
+            var cancer_ovary_population_index = searchUtils.createPopIndex(cancer_ovary_population.data.nested.table, 'cancer_population');
+            searchUtils.attachPopulation(cancer_mortality_ovary_data.data.nested.table, cancer_ovary_population_index, '');
             var cancer_mortality_prostate_data = searchUtils.populateDataWithMappings(resp[71], 'cancer_mortality');
             var cancer_prostate_population = searchUtils.populateDataWithMappings(resp[72], 'cancer_population');
-            searchUtils.attachPopulation(cancer_mortality_prostate_data.data.nested.table, cancer_prostate_population.data.nested.table, []);
+            var cancer_prostate_population_index = searchUtils.createPopIndex(cancer_prostate_population.data.nested.table, 'cancer_population');
+            searchUtils.attachPopulation(cancer_mortality_prostate_data.data.nested.table, cancer_prostate_population_index, '');
             //Merge all Cancer mortality sites data
             var cancer_mortality_data = cancer_mortality_breast_data;
             cancer_mortality_data.data.nested.table.current_year.push.apply(cancer_mortality_data.data.nested.table.current_year, cancer_mortality_colonAndRectum_data.data.nested.table.current_year);
@@ -382,19 +389,19 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             cancer_mortality_data.data.nested.table.current_year.push.apply(cancer_mortality_data.data.nested.table.current_year, cancer_mortality_prostate_data.data.nested.table.current_year);
             //Cancer - Incident
             var cancer_incident_breast_data = searchUtils.populateDataWithMappings(resp[73], 'cancer_incident');
-            searchUtils.attachPopulation(cancer_incident_breast_data.data.nested.table, cancer_breast_population.data.nested.table, []);
+            searchUtils.attachPopulation(cancer_incident_breast_data.data.nested.table, cancer_breast_population_index, '');
             var cancer_incident_colonAndRectum_data = searchUtils.populateDataWithMappings(resp[74], 'cancer_incident');
-            searchUtils.attachPopulation(cancer_incident_colonAndRectum_data.data.nested.table, cancer_colonAndRectum_population.data.nested.table, []);
+            searchUtils.attachPopulation(cancer_incident_colonAndRectum_data.data.nested.table, cancer_colonAndRectum_population_index, '');
             var cancer_incident_lungAndBronchus_data = searchUtils.populateDataWithMappings(resp[75], 'cancer_incident');
-            searchUtils.attachPopulation(cancer_incident_lungAndBronchus_data.data.nested.table, cancer_lungAndBronchus_population.data.nested.table, []);
+            searchUtils.attachPopulation(cancer_incident_lungAndBronchus_data.data.nested.table, cancer_lungAndBronchus_population_index, '');
             var cancer_incident_melanoma_data = searchUtils.populateDataWithMappings(resp[76], 'cancer_incident');
-            searchUtils.attachPopulation(cancer_incident_melanoma_data.data.nested.table, cancer_melanoma_population.data.nested.table, []);
+            searchUtils.attachPopulation(cancer_incident_melanoma_data.data.nested.table, cancer_melanoma_population_index, '');
             var cancer_incident_cervix_data = searchUtils.populateDataWithMappings(resp[77], 'cancer_incident');
-            searchUtils.attachPopulation(cancer_incident_cervix_data.data.nested.table, cancer_cervix_population.data.nested.table, []);
+            searchUtils.attachPopulation(cancer_incident_cervix_data.data.nested.table, cancer_cervix_population_index, '');
             var cancer_incident_ovary_data = searchUtils.populateDataWithMappings(resp[78], 'cancer_incident');
-            searchUtils.attachPopulation(cancer_incident_ovary_data.data.nested.table, cancer_ovary_population.data.nested.table, []);
+            searchUtils.attachPopulation(cancer_incident_ovary_data.data.nested.table, cancer_ovary_population_index, '');
             var cancer_incident_prostate_data = searchUtils.populateDataWithMappings(resp[79], 'cancer_incident');
-            searchUtils.attachPopulation(cancer_incident_prostate_data.data.nested.table, cancer_prostate_population.data.nested.table, []);
+            searchUtils.attachPopulation(cancer_incident_prostate_data.data.nested.table, cancer_prostate_population_index, '');
             //Merge all Cancer incident sites data
             var cancer_incident_data = cancer_incident_breast_data;
             cancer_incident_data.data.nested.table.current_year.push.apply(cancer_incident_data.data.nested.table.current_year, cancer_incident_colonAndRectum_data.data.nested.table.current_year);
@@ -441,7 +448,7 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             factSheet.detailMortalityData = [{causeOfDeath:"Total (all ages)", data:detailMortalityTotal_Data.data.nested.table.year[0]},
                 {causeOfDeath:"Cancer (Malignant neoplasms)", data:detailMortalityC00_C97_Data.data.nested.table.year[0]},
                 {causeOfDeath: "Breast Cancer (Malignant neoplasms of breast)", data:detailMortalityC50Data.data.nested.table.year[0]},
-                {causeOfDeath: "Cervical Cancer(Malignant neoplasm of cervix uteri)", data:detailMortalityC53_Data.data.nested.table.year[0]},
+                {causeOfDeath: "Cervical Cancer (Malignant neoplasm of cervix uteri)", data:detailMortalityC53_Data.data.nested.table.year[0]},
                 {causeOfDeath: "Cerebrovascular diseases (Stroke)", data:detailMortalityI60_I69_Data.data.nested.table.year[0]},
                 {causeOfDeath: "Chronic Lower Respiratory Disease", data:detailMortalityJ40_J47_J60_Data.data.nested.table.year[0]},
                 {causeOfDeath: "Alcohol or Drug Induced", data:detailMortalityDrugInduced_Data.data.nested.table.year[0]},
@@ -545,7 +552,7 @@ function prepareCancerData(cancerMortalityData, cancerIncidentData) {
     var cancerData = [];
     cancerMortalityData.data.nested.table.current_year.forEach(function(eachRecord, index){
         var crudeMortalityRate = eachRecord.pop != 'n/a' ? Math.round(eachRecord.cancer_mortality /  eachRecord.pop * 1000000) / 10 : "Not Available";
-        var incidentData = cancerIncidentData.data.nested.table.current_year[index];
+        var incidentData = cancerIncidentData.data.nested.table.current_year[index] ? cancerIncidentData.data.nested.table.current_year[index] : {cancer_incident: 'Not Available', pop: 'n/a'};
         var incidentPopulation = incidentData.pop == 'n/a' ? 'Not Available' : incidentData.pop;
         var crudeIncidentRate = incidentData.pop != 'n/a' ? Math.round(incidentData.cancer_incident /  incidentData.pop * 1000000) / 10 : "Not Available";
         switch(index){

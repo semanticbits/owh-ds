@@ -11,6 +11,7 @@ var factSheet = require('../api/factSheet');
 var Q = require('q');
 var config = require('../config/config');
 var svgtopng = require('svg2png');
+var fs = require('fs');
 
 var queryCache = new qc();
 
@@ -89,13 +90,26 @@ var searchRouter = function(app, rConfig) {
 
 
     app.post('/svgtopng', function (req, res) {
-        svgtopng(req.body.svg).then(function (png) {
-            var response = 'data:image/png;base64,' + new Buffer(png, 'binary').toString('base64');
-            res.send(new result('OK', response, "success"));
-        }).catch(function (err) {
-            console.log(err);
-            res.send(new result('Error converting to PNG: ' + err));
-        });
+        //../client/app/images/state-shapes/
+        if(Array.isArray(req.body.svg)) {
+            var imageDataArray = [];
+            req.body.svg.forEach(function(eachSVGFile){
+                var svgData = fs.readFileSync(eachSVGFile, 'utf8');
+                var png = svgtopng.sync(svgData, {width: 150, height: 150});
+                var response = 'data:image/png;base64,' + new Buffer(png, 'binary').toString('base64');
+                imageDataArray.push(response);
+            });
+            res.send(new result('OK', imageDataArray, "success"));
+        }
+        else {
+            svgtopng(req.body.svg).then(function (png) {
+                var response = 'data:image/png;base64,' + new Buffer(png, 'binary').toString('base64');
+                res.send(new result('OK', response, "success"));
+            }).catch(function (err) {
+                console.log(err);
+                res.send(new result('Error converting to PNG: ' + err));
+            });
+        }
     });
 };
 
