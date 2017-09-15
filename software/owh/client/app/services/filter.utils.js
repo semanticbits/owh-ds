@@ -1373,7 +1373,7 @@
                 { key: 'Black or African American', title: 'Black/African American' },
                 { key: 'Hispanic or Latino', title: 'Hispanic/Latino' },
                 { key: 'Multiple races', title: 'Multiple races' },
-                { key: 'Asian or Pacific Islander', title: 'Native Hawaiian/Other Pacific Islander' },
+                { key: 'Native Hawaiian or Other Pacific Islander', title: 'Native Hawaiian/Other Pacific Islander' },
                 { key: 'White', title: 'White' }
             ];
 
