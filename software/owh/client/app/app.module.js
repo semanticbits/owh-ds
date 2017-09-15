@@ -20,6 +20,7 @@
     'owh.home',
     'owh.search',
     'owh.description',
-    'owh.fact-sheet'
+    'owh.fact-sheet',
+    'sticky'
   ]);
 }());
