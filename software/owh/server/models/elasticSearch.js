@@ -323,7 +323,7 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
         logger.debug("Invoking wonder query with this query JSON: ", JSON.stringify(query));
         promises.push(new wonder(dbID).invokeWONDER(query));
         Q.all(promises).then(function (resp) {
-            data = searchUtils.populateWonderDataWithMappings(resp[0], 'infant_mortality', undefined, allSelectedFilterOptions, query);
+            var data = searchUtils.populateWonderDataWithMappings(resp[0], 'infant_mortality', undefined, allSelectedFilterOptions, query, isStateSelected);
             isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');
             deferred.resolve(data);
 

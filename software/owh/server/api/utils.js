@@ -103,7 +103,7 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelect
     return result;
 };
 
-var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, allSelectedFilterOptions, wonderQuery) {
+var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, allSelectedFilterOptions, wonderQuery, isStateSelected) {
     var result = {
         data: {
             simple: {},
@@ -117,7 +117,6 @@ var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, all
             total: 0
         }
     };
-    var groupByState = false;
     //Get selected aggregation filter keys
     var tableFilterKeys = [];
     wonderQuery.aggregations.nested.table.forEach(function(eachAgg){
@@ -131,17 +130,16 @@ var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, all
         });
        chartFilterKeys.push(chartAggKeyArray);
     });
-    groupByState = tableFilterKeys.indexOf('state') > -1;
     if(resp) {
-        result.data.nested.table = populateAggregateDataForWonderResponse(resp.table, 'Total', tableFilterKeys, groupByState);
+        result.data.nested.table = populateAggregateDataForWonderResponse(resp.table, 'Total', tableFilterKeys, isStateSelected);
         chartFilterKeys.forEach(function(eachChartFilterKeys, index){
-            result.data.nested.charts[index] = populateAggregateDataForWonderResponse(resp.charts[index], 'Total', eachChartFilterKeys, groupByState);
+            result.data.nested.charts[index] = populateAggregateDataForWonderResponse(resp.charts[index], 'Total', eachChartFilterKeys, isStateSelected);
         });
     }
     return result;
 };
 
-var populateAggregateDataForWonderResponse = function(wonderResponse, key, filterKeys, groupByState){
+var populateAggregateDataForWonderResponse = function(wonderResponse, key, filterKeys, isStateSelected){
     var keyMap = {
         "Alabama": "AL",
         "Alaska": "AK",
@@ -205,13 +203,13 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
             result [filterKeys[0]] = [];
             Object.keys(wonderResponse).forEach(function (key) {
                 if (key != 'Total') {
-                    result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function (x, i) { return i !== 0;}), groupByState));
+                    result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function (x, i) { return i !== 0;}), isStateSelected));
                 }
             });
         }
         return result;
     }
-    else if(groupByState && !wonderResponse.hasOwnProperty('infant_mortality')) {
+    else if(isStateSelected && !wonderResponse.hasOwnProperty('infant_mortality')) {
         if(keyMap[key]){
             key = keyMap[key];
         }
@@ -220,7 +218,7 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
         result['pop'] = 'na';
         result [filterKeys[0]] = [];
         Object.keys(wonderResponse).forEach(function (key) {
-            result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function (x, i) { return i !== 0;}), groupByState));
+            result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function (x, i) { return i !== 0;}), isStateSelected));
         });
         return result;
     }
