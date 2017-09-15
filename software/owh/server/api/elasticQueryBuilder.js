@@ -6,6 +6,9 @@ var prepareCensusAggregationQuery = function(aggregations, datasetName) {
     censusQuery.aggregations = {};
     if (aggregations['nested']) {
         if (aggregations['nested']['table'] && aggregations['nested']['table'].length > 0) {
+            aggregations['nested']['table'] = aggregations['nested']['table'].filter(function (filter) {
+                return !~[ 'site', 'childhood_cancer' ].indexOf(filter.key);
+            });
             censusQuery.aggregations = merge(censusQuery.aggregations, generateNestedCensusAggQuery(aggregations['nested']['table'], 'group_table_'));
         }
       if (datasetName != 'std' && datasetName != 'tb' && datasetName != 'aids' &&  aggregations['nested']['charts']) {

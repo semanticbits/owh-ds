@@ -17,6 +17,7 @@
             formatDateString: formatDateString,
             findByKey: findByKey,
             sortByKey: sortByKey,
+            sortFilters: sortFilters,
             findByKeyAndValue: findByKeyAndValue,
             findByKeyAndValueRecursive: findByKeyAndValueRecursive,
             findIndexByKeyAndValue: findIndexByKeyAndValue,
@@ -102,12 +103,12 @@
                     var keyValue = a[i][key];
                     if(keyValue === value ) {return a[i];}
                     else if (a[i].options){ // Check subOptions
-                            a[i].options.forEach(function(opt){
-                               if(opt[key] === value){
-                                   result= opt;
-                                   return;
-                               }
-                            });
+                        a[i].options.forEach(function(opt){
+                            if(opt[key] === value){
+                                result= opt;
+                                return;
+                            }
+                        });
                     }
                 }
             }
@@ -213,6 +214,29 @@
                 }
             });
         }
+
+        /**
+         * Sorts filtes by the length of autocomplete options, if the autocomplete options are of same lenght
+         * then sort by the filter keys to make sure the sort will give exact same results on all browsers.
+         * Filter keys are unique with in a dataset, so this should returning deterministic result
+         * @param array
+         * @param key
+         * @param asc
+         * @returns {*}
+         */
+        function sortFilters(array, key, asc) {
+            return array.sort(function(a, b) {
+                var x = angular.isFunction(key) ? key(a) : a[key];
+                var y = angular.isFunction(key) ? key(b) : b[key];
+                if(asc===undefined || asc === true) {
+
+                    return ((x < y) ? -1 : ((x > y) ? 1 : (a.key < b.key)? 1: -1));
+                }else {
+                    return ((x > y) ? -1 : ((x < y) ? 1 : (a.key < b.key)? -1: 1));
+                }
+            });
+        }
+
 
         /**
          * Finds and returns the first object in array of objects by using the key
@@ -771,11 +795,11 @@
         function getValuesByKeyIncludingKeyAndValue(data, key, includeKey, includeValue) {
             var values = [];
             if(data){
-                    for (var i = 0; i < data.length; i++) {
-                        if(data[i][includeKey] === includeValue) {
-                            values.push(data[i][key]);
-                        }
+                for (var i = 0; i < data.length; i++) {
+                    if(data[i][includeKey] === includeValue) {
+                        values.push(data[i][key]);
                     }
+                }
             }
             return values;
         }
@@ -861,7 +885,11 @@
 
 
         function getMinAndMaxValue(array) {
-            var sortedArray = array.sort(function(a,b) {
+            //collect only numbers. exlude strings e.g 'suppressed', 'na'
+            var filteredArray = array.filter(function(elm){
+                return !isNaN(elm);
+            });
+            var sortedArray = filteredArray.sort(function(a,b) {
                 return a-b;
             });
             return { minValue: sortedArray[0], maxValue: sortedArray[sortedArray.length-1] }
@@ -874,12 +902,12 @@
 
         function generateMapLegendRanges(minValue, maxValue) {
             var counter = getLegendCounter(minValue, maxValue);
-            var counterRoundedValue = Math.round(counter/((counter<50)?50:100), 0)*100;
-            var minRoundedValue = Math.round(minValue/100, 0)*100;
+            var counterRoundedValue = Math.round(counter/((counter < 5) ? 5 : 10), 0)*10;
+            var minRoundedValue = 10 + Math.round(minValue/10, 0) * 10;
             var ranges = [];
-            ranges.push(minRoundedValue);
+            ranges.push(minRoundedValue + 10);
             [1, 2, 3, 4, 5, 6].forEach(function(option, index){
-                ranges.push(minRoundedValue + (counterRoundedValue*index));
+                ranges.push(minRoundedValue + (counterRoundedValue*option));
             });
             return ranges;
         }
@@ -1061,6 +1089,7 @@
                     if(['2000', '2001', '2002'].indexOf(filterValue) >= 0) {
                         earlyLatentSyphilis.disabled = true;
                     }
+                    enableOrDisableFilterOptions(sideFilters, ['sex', 'race', 'age_group'], diseaseSideFilter.filters.value === 'Congenital Syphilis');
                 }, function (error) {
                     angular.element(document.getElementById('spindiv')).addClass('ng-hide');
                     console.log(error);

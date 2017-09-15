@@ -171,6 +171,16 @@ describe('utilService', function(){
         expect(result[0].title).toEqual('Wednesday');
     });
 
+    it('test utils sortFilters', function () {
+        var filters = [{key:'key1', autocompleteopts :[1,2,3]},
+                        {key:'key2', autocompleteopts :[1,2,3, 4]},
+                        {key:'key3', autocompleteopts: [1,2,3]}]
+        var result = utils.sortFilters(filters, function (a) {return a.autocompleteopts.length;});
+        expect(result[0].key).toEqual('key3');
+        expect(result[1].key).toEqual('key1');
+        expect(result[2].key).toEqual('key2');
+    });
+
     it('test utils findByKey', function () {
         var result = utils.findByKey(list, 'show');
         expect(result).toEqual({key: '1', title: 'Sunday', show: true});
@@ -299,8 +309,9 @@ describe('utilService', function(){
     });
 
     it('test utils generateMapLegendLabels', function () {
-        expect(utils.generateMapLegendLabels(10000, 70000)).toEqual([ '> 40,000', '> 34,000', '> 28,000', '> 22,000', '> 16,000', '> 10,000', '< 10,000' ]);
-        expect(utils.generateMapLegendLabels(10000, 10490)).toEqual([ '> 10,500', '> 10,400', '> 10,300', '> 10,200', '> 10,100', '> 10,000', '< 10,000' ]);
+        expect(utils.generateMapLegendLabels(10000, 70000)).toEqual([ '> 46,010', '> 40,010', '> 34,010', '> 28,010', '> 22,010', '> 16,010', '< 10,020' ]);
+        expect(utils.generateMapLegendLabels(10000, 10490)).toEqual([ '> 10,310', '> 10,260', '> 10,210', '> 10,160', '> 10,110', '> 10,060', '< 10,020' ]);
+        expect(utils.generateMapLegendLabels(1, 30)).toEqual([ '> 70', '> 60', '> 50', '> 40', '> 30', '> 20', '< 20' ]);
     });
 
     it('refreshFilterAndOptions options should set filter option correctly - with category property ', inject(function(SearchService) {
