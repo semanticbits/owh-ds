@@ -101,14 +101,14 @@
                 {key: 'Tobacco Use', title: 'Tobacco Use'},
                 {key: 'Unintentional Injuries and Violence', title: 'Unintentional Injuries and Violence'},
                 {key: 'Other Health Topics', title: 'Other Health Topics'}],
-                cancer_incident: [
-                    { key: 'cancer_incident', title: 'Number of Incidents' },
-                    { key: 'crude_cancer_incidence_rates', title: 'Crude Incidence Rate' }
-                ],
-                cancer_mortality: [
-                    { key: 'cancer_mortality', title: 'Number of Deaths' },
-                    { key: 'crude_cancer_death_rates', title: 'Crude Death Rates' }
-                ]
+            cancer_incident: [
+                { key: 'cancer_incident', title: 'Number of Incidents' },
+                { key: 'crude_cancer_incidence_rates', title: 'Crude Incidence Rates' }
+            ],
+            cancer_mortality: [
+                { key: 'cancer_mortality', title: 'Number of Deaths' },
+                { key: 'crude_cancer_death_rates', title: 'Crude Death Rates' }
+            ]
         };
         sc.sort = {
             "label.filter.mortality": ['year', 'gender', 'race', 'hispanicOrigin', 'agegroup', 'autopsy', 'placeofdeath', 'weekday', 'month', 'state', 'census-region', 'hhs-region', 'ucd-chapter-10', 'mcd-chapter-10'],
