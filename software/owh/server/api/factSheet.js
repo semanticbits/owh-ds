@@ -441,7 +441,7 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             factSheet.detailMortalityData = [{causeOfDeath:"Total (all ages)", data:detailMortalityTotal_Data.data.nested.table.year[0]},
                 {causeOfDeath:"Cancer (Malignant neoplasms)", data:detailMortalityC00_C97_Data.data.nested.table.year[0]},
                 {causeOfDeath: "Breast Cancer (Malignant neoplasms of breast)", data:detailMortalityC50Data.data.nested.table.year[0]},
-                {causeOfDeath: "Cervical Cancer(Malignant neoplasm of cervix uteri)", data:detailMortalityC53_Data.data.nested.table.year[0]},
+                {causeOfDeath: "Cervical Cancer (Malignant neoplasm of cervix uteri)", data:detailMortalityC53_Data.data.nested.table.year[0]},
                 {causeOfDeath: "Cerebrovascular diseases (Stroke)", data:detailMortalityI60_I69_Data.data.nested.table.year[0]},
                 {causeOfDeath: "Chronic Lower Respiratory Disease", data:detailMortalityJ40_J47_J60_Data.data.nested.table.year[0]},
                 {causeOfDeath: "Alcohol or Drug Induced", data:detailMortalityDrugInduced_Data.data.nested.table.year[0]},
@@ -545,7 +545,7 @@ function prepareCancerData(cancerMortalityData, cancerIncidentData) {
     var cancerData = [];
     cancerMortalityData.data.nested.table.current_year.forEach(function(eachRecord, index){
         var crudeMortalityRate = eachRecord.pop != 'n/a' ? Math.round(eachRecord.cancer_mortality /  eachRecord.pop * 1000000) / 10 : "Not Available";
-        var incidentData = cancerIncidentData.data.nested.table.current_year[index];
+        var incidentData = cancerIncidentData.data.nested.table.current_year[index] ? cancerIncidentData.data.nested.table.current_year[index] : {cancer_incident: 'Not Available', pop: 'n/a'};
         var incidentPopulation = incidentData.pop == 'n/a' ? 'Not Available' : incidentData.pop;
         var crudeIncidentRate = incidentData.pop != 'n/a' ? Math.round(incidentData.cancer_incident /  incidentData.pop * 1000000) / 10 : "Not Available";
         switch(index){

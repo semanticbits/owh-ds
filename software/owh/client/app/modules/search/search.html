@@ -12,7 +12,7 @@
                   on-primary-filter="sc.changePrimaryFilter(newFilter)" category-name="sc.findNameByKeyAndValue(newFilter)"
                   on-view-filter="selectedFilter && sc.changeViewFilter(selectedFilter)">
         </owh-menu>
-</div>
+    </div>
 </div>
 
 <div class="usa-grid border-top-default" ng-class="{'allow-inline-charting': sc.filters.allowInlineCharting}">
@@ -35,21 +35,21 @@
             </a>
             <div class="sort-by side-filter-padding">
                 <owh-side-filter filters="sc.filters.selectedPrimaryFilter.sideFilters"
-                    group-options="sc.filters.groupOptions"
-                    primary-key="{{ sc.filters.selectedPrimaryFilter.key }}"
-                    on-filter="sc.search(true)"
-                    sort="sc.sort[sc.filters.selectedPrimaryFilter.title]"
-                    show-filters="sc.availableFilters[sc.tableView]"
-                    utilities="sc.filterUtilities[sc.filters.selectedPrimaryFilter.key]"
-                    run-on-filter-change="sc.filters.selectedPrimaryFilter.runOnFilterChange"
-                    ></owh-side-filter>
+                                 group-options="sc.filters.groupOptions"
+                                 primary-key="{{ sc.filters.selectedPrimaryFilter.key }}"
+                                 on-filter="sc.search(true)"
+                                 sort="sc.sort[sc.filters.selectedPrimaryFilter.title]"
+                                 show-filters="sc.availableFilters[sc.tableView]"
+                                 utilities="sc.filterUtilities[sc.filters.selectedPrimaryFilter.key]"
+                                 run-on-filter-change="sc.filters.selectedPrimaryFilter.runOnFilterChange"
+                ></owh-side-filter>
             </div>
         </div>
         <div class="owh-search-content-container usa-width-three-fourths" ng-class="{'owh-search-content--expanded': !sc.sideMenu.visible }">
             <div class="flex-container flex-align-center">
-            <a class="owh-side-menu__handle--collapsed cursor-pointer" ng-hide="sc.sideMenu.visible" ng-click="sc.sideMenu.visible = !sc.sideMenu.visible; sc.updateCharts()" href="javascript:void(0)">
-                SHOW FILTERS
-            </a>
+                <a class="owh-side-menu__handle--collapsed cursor-pointer" ng-hide="sc.sideMenu.visible" ng-click="sc.sideMenu.visible = !sc.sideMenu.visible; sc.updateCharts()" href="javascript:void(0)">
+                    SHOW FILTERS
+                </a>
                 <list-selected-filters sort="sc.sort[sc.filters.selectedPrimaryFilter.title]"
                                        filters="sc.filters.selectedPrimaryFilter.allFilters" class="flex-grow">
                 </list-selected-filters>
@@ -71,7 +71,7 @@
 
 
                 <owh-toggle-switch ng-if="sc.filters.selectedPrimaryFilter.chartView"
-                                   class="left-float chart-view-toggle"
+                                   class="chart-view-toggle"
                                    options="sc.filters.selectedPrimaryFilter.chartViewOptions"
                                    model="sc.filters.selectedPrimaryFilter.chartView"
                                    on-change="sc.onChartViewChange(sc.filters.selectedPrimaryFilter.chartView)"
@@ -80,7 +80,7 @@
 
                 <div ng-repeat="startChartData in sc.filters.selectedPrimaryFilter.chartData" ng-init="parentIndex = $index">
                     <div  class="graph-box" ng-repeat="chartData in startChartData"
-                         ng-class="!chartData.isMap || sc.mapOptions.selectedMapSize==='small'?'usa-width-one-half':'usa-width-one-half margin-bottom-20'">
+                          ng-class="!chartData.isMap || sc.mapOptions.selectedMapSize==='small'?'usa-width-one-half':'usa-width-one-half margin-bottom-20'">
                         <!-- Map -->
                         <div id="chart_us_map" ng-if="chartData.isMap && sc.filters.selectedPrimaryFilter.showMap">
                             <leaflet  lf-center="chartData.usa" markers="chartData.markers" events="chartData.events" geojson="chartData.geojson"
@@ -109,20 +109,20 @@
                         <!-- Graphs -->
                     </div>
                 </div>
-            <!--Charts-->
+                <!--Charts-->
 
-            <!--More visualization-->
-            <div class="usa-width-one-whole" ng-show="sc.filters.selectedPrimaryFilter.chartData.length > 0">
-                <div class="usa-width-one-whole more-graph-select">
-                    <span class="dark-link" ng-bind="'label.visualization.more.one' | translate"></span>
-                    <a href="javascript:void(0)" ng-click="sc.showPhaseTwoGraphs('label.graph.impl.next')">Build one</a>
-                    <span class="dark-link" ng-bind="'label.visualization.more.two' | translate"></span>
+                <!--More visualization-->
+                <div class="usa-width-one-whole" ng-show="sc.filters.selectedPrimaryFilter.chartData.length > 0">
+                    <div class="usa-width-one-whole more-graph-select">
+                        <span class="dark-link" ng-bind="'label.visualization.more.one' | translate"></span>
+                        <a href="javascript:void(0)" ng-click="sc.showPhaseTwoGraphs('label.graph.impl.next')">Build one</a>
+                        <span class="dark-link" ng-bind="'label.visualization.more.two' | translate"></span>
+                    </div>
+                    <a ng-click="$state.go('description', {dataSetKey: sc.filters.selectedPrimaryFilter.key})" href="#">Data Documentation</a>
                 </div>
-                <a ng-click="$state.go('description', {dataSetKey: sc.filters.selectedPrimaryFilter.key})" href="#">Data Documentation</a>
-            </div>
-            <!--More visualization-->
+                <!--More visualization-->
 
-            <!--Table-->
+                <!--Table-->
                 <div class="usa-width-one-whole overflow-visible">
                     <!-- show hide percentage -->
                     <div id="togglePercentage" class="togglePercentage pull-left"
@@ -164,17 +164,17 @@
                                table-view="{{sc.tableView}}"
                                rowspan-threshold="50"></owh-table>
                     <owh-accordion-table headers="sc.tableData.headers" data="sc.tableData.data"
-                                ng-if="sc.filters.selectedPrimaryFilter.key === 'mental_health'
+                                         ng-if="sc.filters.selectedPrimaryFilter.key === 'mental_health'
                                  || sc.filters.selectedPrimaryFilter.key === 'prams'
                                  || sc.filters.selectedPrimaryFilter.key === 'brfss'"
-                                primary-key="sc.filters.selectedPrimaryFilter.key"
-                                show-ci="sc.filters.filterUtilities[sc.filters.selectedPrimaryFilter.key][0].options[0].value"
-                                show-uf="sc.filters.filterUtilities[sc.filters.selectedPrimaryFilter.key][0].options[1].value"
-                                show-charts = "sc.filters.selectedPrimaryFilter.value.length > 1">
+                                         primary-key="sc.filters.selectedPrimaryFilter.key"
+                                         show-ci="sc.filters.filterUtilities[sc.filters.selectedPrimaryFilter.key][0].options[0].value"
+                                         show-uf="sc.filters.filterUtilities[sc.filters.selectedPrimaryFilter.key][0].options[1].value"
+                                         show-charts = "sc.filters.selectedPrimaryFilter.value.length > 1">
                     </owh-accordion-table>
                 </div>
-            <!--Table-->
-        </div>
+                <!--Table-->
+            </div>
         </div>
     </div>
 </div>
