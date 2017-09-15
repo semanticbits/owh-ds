@@ -4,7 +4,6 @@ var FactsheetsPage = function() {
     fsp.pageHeading = element(by.id('pageHeading'));
     fsp.pageDescription = element(by.id('pageDescription'));
     fsp.stateSelectBox = element(by.id('state'));
-    fsp.typeSelectBox = element(by.id('type'));
     fsp.generateFactSheetLink = element(by.id('generateFactSheetLink'));
     fsp.downloadFactSheetLink = element(by.id('downloadFactSheetLink'));
 
