@@ -151,7 +151,7 @@ var wonderParamCodeMap = {
         'hispanic_origin': {
             'key': 'D69.V4',
             'values': {
-                'hispanic_origin': '2148-5',
+                'Mexican': '2148-5',
                 'Puerto Rican': '2180-8',
                 'Cuban': '2182-4',
                 'Central or South American': '4',
@@ -509,7 +509,7 @@ var wonderParamCodeMap = {
         'hispanic_origin': {
             'key': 'D31.V4',
             'values': {
-                'hispanic_origin': '2148-5',
+                'Mexican': '2148-5',
                 'Puerto Rican': '2180-8',
                 'Cuban': '2182-4',
                 'Central or South American': '4',
@@ -850,7 +850,7 @@ var wonderParamCodeMap = {
         'hispanic_origin': {
             'key': 'D18.V4',
             'values': {
-                'hispanic_origin': '2148-5',
+                'Mexican': '2148-5',
                 'Puerto Rican': '2180-8',
                 'Cuban': '2182-4',
                 'Central or South American': '4',

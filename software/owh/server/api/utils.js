@@ -195,9 +195,9 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
     };
     var result = {};
     if (wonderResponse.Total){
-        if(wonderResponse.Total['infant_mortality'] != 0 && !isNaN(wonderResponse.Total['infant_mortality'])) {
+        if(wonderResponse.Total['infant_mortality'] != 0) {
             result['name'] = key;
-            result.infant_mortality = wonderResponse.Total['infant_mortality'];
+            result.infant_mortality = wonderResponse.Total['deathRate'] === 'Suppressed' ? 'suppressed': wonderResponse.Total['infant_mortality'];
             result['deathRate'] = wonderResponse.Total['deathRate'];
             result['pop'] = wonderResponse.Total['births'];
             result [filterKeys[0]] = [];
@@ -214,6 +214,7 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
             key = keyMap[key];
         }
         result['name'] = key;
+        result['infant_mortality'] = 'na';
         result['deathRate'] = 'na';
         result['pop'] = 'na';
         result [filterKeys[0]] = [];
@@ -223,12 +224,12 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
         return result;
     }
     else {
-        if(wonderResponse['infant_mortality'] != 0 && !isNaN(wonderResponse['infant_mortality'])) {
+        if(wonderResponse['infant_mortality'] != 0) {
             if(keyMap[key]){
                 key = keyMap[key];
             }
             result['name'] = key;
-            result.infant_mortality = wonderResponse['infant_mortality'];
+            result.infant_mortality = wonderResponse['deathRate'] === 'Suppressed' ? 'suppressed' : wonderResponse['infant_mortality'];
             result['deathRate'] = wonderResponse['deathRate'];
             result['pop'] = wonderResponse['births'];
         }
