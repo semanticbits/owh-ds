@@ -1,10 +1,8 @@
 <div id="custom-modal">
     <div id="overlay">
         <div class="custom-modal-header">
-            <div>
                 <span style="font-size: 25px;" ng-bind="mc.modelHeader | translate"></span>
-                <span style="float: right"><a href ng-click="mc.close(false)" id="modal-close"><i class="material-icons close-icon-purple">close</i></a></span>
-            </div>
+                <a class="right-float" href ng-click="mc.close(false)" id="modal-close"><i class="material-icons close-icon-purple">close</i></a>
         </div>
         <div class="custom-modal-body usa-grid">
             <owh-tree entity-name="mc.entityName" code-key="mc.codeKey" option-values="mc.optionValues" submit-close ="mc.close(true)" questions="mc.questions" tree="mc.tree"></owh-tree>

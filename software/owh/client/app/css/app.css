@@ -297,8 +297,9 @@ ul.usa-unstyled-list.group-options li.group-option.more-options {
 }
 ul.usa-unstyled-list.group-options li.group-option input[type="checkbox"] + label::before,
 ul.usa-unstyled-list.group-options li.group-option input[type="radio"] + label::before {
-    width: 1.5rem;
+    min-width: 1.5rem;
     height: 1.5rem;
+    max-width: 1.5rem;
 }
 
 
@@ -547,8 +548,8 @@ ul li::before {
     width: 75%;
 }
 #overlay.small {
-    left: 30%;
     width: 45%;
+    height: auto;
 }
 
 #fade {
@@ -697,8 +698,19 @@ ul li::before {
     padding:0 10px;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px 1px #ccc;
-    width: 48% !important;
-    margin: 0 1% 20px !important;
+
+}
+@media(min-width: 1024px) {
+    .graph-box {
+        width: 48% !important;
+        margin: 0 1% 20px !important;
+    }
+}
+@media(max-width: 1023px) {
+    .graph-box {
+        width: 96% !important;
+        margin: 0 2% 20px !important;
+    }
 }
 
 .graph-title {
@@ -819,7 +831,7 @@ body {
     margin-right: 8px;
 }
 
-.leaflet-top, .leaflet-bottom{
+.leaflet-top, .leaflet-bottom {
     z-index: 0;
 }
 
@@ -839,10 +851,7 @@ body {
 }
 
 .leaflet-container {
-    background-color: #f6f6f6;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #fff;
 }
 
 .leaflet-control-container .legend {
@@ -972,12 +981,6 @@ ul.legend-scale li span {
 .marker-years {
     text-overflow: ellipsis;
     overflow: hidden;
-}
-
-/*dashboard*/
-.side-filter-padding {
-    margin-left: -10px;
-    padding-right: 10px;
 }
 
 .add-on-element option {
@@ -1281,6 +1284,10 @@ ul.legend-scale li span {
     margin-left:-4px;
 }
 
+.togglePercentage > a.active-link:first-of-type {
+    border-radius: 3px 0 0 3px;
+}
+
 /* owh-table */
 .owh-table-span {
     margin-top: 0;
@@ -1303,12 +1310,12 @@ ul.legend-scale li span {
     margin-bottom: 0;
 }
 
-#clusterize-table {
-    max-height: 500px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    border-bottom: 1px solid #ccc;
-}
+/*#clusterize-table {*/
+    /*max-height: 500px;*/
+    /*overflow-y: auto;*/
+    /*overflow-x: hidden;*/
+    /*border-bottom: 1px solid #ccc;*/
+/*}*/
 
 /*#clusterize-table {*/
     /*max-height: 900px;*/
