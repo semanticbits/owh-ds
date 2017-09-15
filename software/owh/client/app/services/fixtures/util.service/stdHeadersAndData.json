@@ -324,21 +324,21 @@
           "helpText": "label.help.text.race"
         },
         {
-          "title": "Female",
+          "title": "label.filter.gender: Female",
           "colspan": 1,
           "rowspan": 1,
           "isData": true,
           "helpText": "Female"
         },
         {
-          "title": "Male",
+          "title": "label.filter.gender: Male",
           "colspan": 1,
           "rowspan": 1,
           "isData": true,
           "helpText": "Male"
         },
         {
-          "title": "Both sexes",
+          "title": "label.filter.gender: Both sexes",
           "colspan": 1,
           "rowspan": 1,
           "isData": true,
