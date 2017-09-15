@@ -492,7 +492,7 @@
                             });
                         }
                         tableColumnHeaderData.headers[0].push({
-                            title: eachOption.title,
+                            title: $filter("translate")(eachColumnHeader.title) + ": " + eachOption.title,
                             colspan: colspan,
                             rowspan: 1,
                             isData: true,

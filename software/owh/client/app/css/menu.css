@@ -208,7 +208,7 @@
     transition: all 0.5s linear;
 }
 .interested-in-filter.menu-open, .interested-in-filter:hover {
-    background: rgba(237, 225, 238, .5);
+    background: #faf3fb;
 }
 .interested-in-filter.menu-open i {
     transform: rotateX(180deg);
@@ -224,7 +224,7 @@
     .primary-filter-bar {
         display: flex;
         align-items: stretch;
-        background: rgba(246, 246, 246, .8);
+        background: rgba(246, 246, 246, 1);
         z-index: 2;
         position: relative;
         min-height: 60px;
