@@ -840,9 +840,12 @@ function createPopIndex  (tree, popKey) {
         if (path && !index[path]) index[path.slice(0, -1)] = tree[popKey];
         for (var prop in tree) {
             if (Array.isArray(tree[prop])) {
+                var total = 0;
                 tree[prop].forEach(function (option) {
                     map_tree(option, `${ path }${ prop }.${ option.name }.`);
+                    total +=  option[popKey];
                 });
+                index[path] = total;
             }
         }
     }

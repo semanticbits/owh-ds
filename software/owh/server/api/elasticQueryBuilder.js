@@ -5,11 +5,23 @@ var prepareCensusAggregationQuery = function(aggregations, datasetName) {
     var censusQuery = { size: 0};
     censusQuery.aggregations = {};
     if (aggregations['nested']) {
-        if (aggregations['nested']['table'] && aggregations['nested']['table'].length > 0) {
+        if (aggregations['nested']['table']) {
             aggregations['nested']['table'] = aggregations['nested']['table'].filter(function (filter) {
-                return !~[ 'site', 'childhood_cancer' ].indexOf(filter.key);
+                return !~['ucd-chapter-10', 'ICD_130_code', 'infant_age_at_death', 'site', 'childhood_cancer' ].indexOf(filter.key);
             });
-            censusQuery.aggregations = merge(censusQuery.aggregations, generateNestedCensusAggQuery(aggregations['nested']['table'], 'group_table_'));
+            if(aggregations['nested']['table'].length > 0) {
+                censusQuery.aggregations = merge(censusQuery.aggregations, generateNestedCensusAggQuery(aggregations['nested']['table'], 'group_table_'));
+            }else{
+                // Population query when no aggregations are applicable
+                // TODO: code for processing qeury results can not handle the response for this query correctly yet
+                censusQuery.aggregations = merge(censusQuery.aggregations, {
+                    "pop": {
+                        "sum": {
+                            "field": "pop"
+                        }
+                    }
+                });
+            }
         }
       if (datasetName != 'std' && datasetName != 'tb' && datasetName != 'aids' &&  aggregations['nested']['charts']) {
             for(var index in aggregations['nested']['charts']) {

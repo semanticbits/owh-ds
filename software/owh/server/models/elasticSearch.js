@@ -171,7 +171,15 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
             var data = searchUtils.populateDataWithMappings(respArray[0], 'deaths');
             var mapData = searchUtils.populateDataWithMappings(respArray[2], 'deaths');
             data.data.nested.maps = mapData.data.nested.maps;
-            self.mergeWithCensusData(data, respArray[1], 'pop');
+            var popIndex = searchUtils.createPopIndex(respArray[1].data.nested.table, 'pop');
+            searchUtils.attachPopulation(data.data.nested.table, popIndex, '');
+
+            //Merger pop data for charts
+            respArray[1].data.nested.charts.forEach(function (chart, index) {
+                popIndex = searchUtils.createPopIndex(chart, 'pop');
+                searchUtils.attachPopulation(data.data.nested.charts[index], popIndex, '');
+            })
+
             mergeCensusRecursively(data.data.nested.maps, respArray[3].data.nested.maps, 'pop');
             if(query.wonderQuery) {
                 searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[4].table);
