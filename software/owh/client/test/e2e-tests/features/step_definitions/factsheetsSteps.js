@@ -129,5 +129,10 @@ var factsheetsDefinitionsWrapper = function () {
         }).then(next);
 
     });
+
+    this.When(/^I select state "([^"]*)" from state selectbox$/, function (arg1, next) {
+        element(by.id('state')).element(by.cssContainingText('option', arg1)).click()
+            .then(next);
+    });
 };
 module.exports = factsheetsDefinitionsWrapper;
