@@ -460,7 +460,7 @@ function prepareQuestionTree(questions,  prams) {
             catCount = catCount + 1;
         }
 
-        if (!prams) {
+        if (quesObj.description !== undefined) {
             var question = {text:quesObj.question +"("+quesObj.description+")", id:qKey};
             qCategoryMap[qCategory].children.push(question);
             //capture all questions into questionsList

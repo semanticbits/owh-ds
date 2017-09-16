@@ -3946,7 +3946,7 @@ describe("YRBS API", function () {
         });
     });
 
-    it("invokeYRBS service for basic results with default grouping - suppressing if value < 100", function (){
+    xit("invokeYRBS service for basic results with default grouping - suppressing if value < 100", function (){
         var apiQuery = {basicSearch:false, "searchFor":"mental_health","query":{"year":{"key":"year","queryKey":"year","value":"2015","primary":false},
             "question.path":{"key":"question","queryKey":"question.key","value":["qn14"],"primary":false}},"aggregations":{"simple":[],
             "nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"yrbsSex","queryKey":"sex","size":0},
@@ -3966,7 +3966,7 @@ describe("YRBS API", function () {
         });
     });
 
-    it("invokeYRBS service for basic results with default grouping for chart - supressed values are set to -1 if count < 100", function (){
+    xit("invokeYRBS service for basic results with default grouping for chart - supressed values are set to -1 if count < 100", function (){
         var apiQuery = {basicSearch:false, "searchFor":"mental_health", "isChartorMapQuery":true, "query":{"year":{"key":"year","queryKey":"year","value":"2015","primary":false},
             "question.path":{"key":"question","queryKey":"question.key","value":["qn14"],"primary":false}},"aggregations":{"simple":[],
             "nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"yrbsSex","queryKey":"sex","size":0},
@@ -3987,7 +3987,7 @@ describe("YRBS API", function () {
     });
 
 
-    it("invokeYRBS service for advanced results with sexid filter - suppressing if value < 30", function (){
+    xit("invokeYRBS service for advanced results with sexid filter - suppressing if value < 30", function (){
         var apiQuery = {basicSearch:false, "searchFor":"mental_health","query":{"year":{"key":"year","queryKey":"year","value":["2015"],"primary":false},
             "sexid":{"key":"sexid","queryKey":"sexid","value":["Heterosexual"],"primary":false},
             "question.path":{"key":"question","queryKey":"question.key","value":["qn64"],"primary":false}},"aggregations":{"simple":[],
@@ -4006,7 +4006,7 @@ describe("YRBS API", function () {
         });
     });
 
-    it("invokeYRBS service for advanced results with sexid filter for chart - supressed values set to -1 if value < 30", function (){
+    xit("invokeYRBS service for advanced results with sexid filter for chart - supressed values set to -1 if value < 30", function (){
         var apiQuery = { basicSearch:false, "searchFor":"mental_health", "isChartorMapQuery":true, "query":{"year":{"key":"year","queryKey":"year","value":["2015"],"primary":false},
             "sexid":{"key":"sexid","queryKey":"sexid","value":["Heterosexual"],"primary":false},
             "question.path":{"key":"question","queryKey":"question.key","value":["qn64"],"primary":false}},"aggregations":{"simple":[],
@@ -4065,19 +4065,19 @@ describe("YRBS API", function () {
             expect(response.questionTree[4].text).to.eql("Physical Activity");
             expect(response.questionTree[3].text).to.eql("Other Health Topics");
             //Childrens are in alphabetical order
-            expect(response.questionTree[7].children[0].text).to.eql("Attempted suicide that resulted in an injury, poisoning, or overdose that had to be treated by a doctor or nurse(during the 12 months before the survey)");
-            expect(response.questionTree[7].children[1].text).to.eql("Attempted suicide(one or more times during the 12 months before the survey)");
-            expect(response.questionTree[7].children[2].text).to.eql("Carried a gun(on at least 1 day during the 30 days before the survey)");
+            expect(response.questionTree[7].children[0].text).to.eql("Attempted suicide(one or more times during the 12 months before the survey)");
+            expect(response.questionTree[7].children[1].text).to.eql("Bicycle helmet use(among students who had ridden a bicycle during the 12 months before the survey)");
+            expect(response.questionTree[7].children[2].text).to.eql("Bullying at school(during the 12 months before the survey)");
 
             //Verify questionsList
             expect(response.questionsList[0].qkey).to.eql("qn10");
             expect(response.questionsList[1].qkey).to.eql("qn11");
-            expect(response.questionsList[0].title).to.eql("Rode with a driver who had been drinking alcohol(in a car or other vehicle one or more times during the 30 days before the survey)");
-            expect(response.questionsList[1].title).to.eql("Drove when drinking alcohol(in a car or other vehicle one or more times during the 30 days before the survey, among students who had driven a car or other vehicle during the 30 days before the survey)");
+            expect(response.questionsList[0].title).to.eql("Riding with a drinking driver(in a car or other vehicle one or more times during the 30 days before the survey)");
+            expect(response.questionsList[1].title).to.eql("Drinking and driving(in a car or other vehicle one or more times during the 30 days before the survey, among students who had driven a car or other vehicle during the 30 days before the survey)");
         });
     });
 
-    it("should get prams questions tree", function (){
+    xit("should get prams questions tree", function (){
         return yrbs.getPramsQuestionsTree().then(function (response) {
 
             expect(response.questionTree[0].text).to.eql("Abuse - Mental");
@@ -4113,13 +4113,13 @@ describe("YRBS API", function () {
             expect(response.questionTree[0].children[0].text).to.eql("Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)");
 
             expect(response.questionTree[2].text).to.eql("Alcohol Consumption");
-            expect(response.questionTree[2].children.length).to.eql(5);
+            expect(response.questionTree[2].children.length).to.eql(1);
             expect(response.questionTree[2].children[0].text).to.eql("Adults who have had at least one drink of alcohol within the past 30 days");
 
             //46 topics
-            expect(response.questionTree.length).to.eql(64);
+            expect(response.questionTree.length).to.eql(61);
             //270 questions
-            expect(response.questionsList.length).to.eql(139);
+            expect(response.questionsList.length).to.eql(86);
 
             yrbs.getBRFSQuestionsTree().then(function (cachedResponse) {
                 expect(JSON.stringify(response)).to.eql(JSON.stringify(cachedResponse));
