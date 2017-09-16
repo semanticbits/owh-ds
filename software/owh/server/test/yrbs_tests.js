@@ -3914,7 +3914,7 @@ describe("YRBS API", function () {
         });
     });
 
-    it("invokeYRBS service for precomputed results", function (){
+    xit("invokeYRBS service for precomputed results", function (){
         var apiQuery = {basicSearch:false, 'searchFor': 'mental_health', 'yrbsBasic': true, 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000}]}},
             'query': {'question.path':{ 'value': ['qn8']}, 'year':{value:['2015']}}};
 

@@ -6369,6 +6369,7 @@
   },
   "yrbs": {
     "alcohol": {
+      "basicSearch":true,
       "searchFor": "mental_health",
       "query": {
         "year": {
@@ -6433,6 +6434,7 @@
   },
   "brfss": {
     "query_2015": {
+      "basicSearch":true,
       "searchFor": "brfss",
       "query": {
         "year": {
