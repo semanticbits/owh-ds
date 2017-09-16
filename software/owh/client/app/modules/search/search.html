@@ -18,15 +18,17 @@
 <div class="usa-grid border-top-default content-wrapper" ng-class="{'allow-inline-charting': sc.filters.allowInlineCharting}">
     <div class="usa-width-one-whole bottom-pane flex-container">
         <div class="usa-width-one-fourth side-pane-padding border-right-default owh-side-menu" ng-hide="!sc.sideMenu.visible">
-
-
-            <div ng-show="sc.filters.selectedPrimaryFilter.title === 'label.risk.behavior'" class="yrbs_search_links">
-                <a class="advanced-search-toggle" ng-show="sc.filters.selectedPrimaryFilter.title === 'label.risk.behavior'"
-                   ng-click="sc.switchToYRBSBasic();" ng-if="!sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu" href="javascript:void(0)">
+            <div ng-show="sc.filters.selectedPrimaryFilter.key === 'mental_health' ||
+                sc.filters.selectedPrimaryFilter.key === 'brfss'" class="yrbs_search_links">
+                <a class="advanced-search-toggle"
+                   ng-click="sc.switchToBasicSearch(sc.filters.selectedPrimaryFilter.key);"
+                   ng-if="!sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu" href="javascript:void(0)">
                     <span ng-bind="'label.yrbs.basic.search' | translate"></span>
                 </a>
-                <a class="advanced-search-toggle" ng-show="sc.filters.selectedPrimaryFilter.title === 'label.risk.behavior'"
-                   ng-click="sc.switchToYRBSAdvanced();" ng-if="sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu" href="javascript:void(0)">
+                <a class="advanced-search-toggle"
+                   ng-click="sc.switchToAdvancedSearch(sc.filters.selectedPrimaryFilter.key);"
+                   ng-if="sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu"
+                   href="javascript:void(0)">
                     <span ng-bind="'label.yrbs.advanced.search' | translate"></span>
                 </a>
             </div>
@@ -70,8 +72,6 @@
                     <li class="menu-tab active"><span class="link">Charts & Graphs</span></li>
                     <li class="menu-tab"><span class="link">Data Table</span></li>
                 </ul>-->
-
-
                 <owh-toggle-switch ng-if="sc.filters.selectedPrimaryFilter.chartView"
                                    class="chart-view-toggle margin-bottom-20 margin-left-10"
                                    options="sc.filters.selectedPrimaryFilter.chartViewOptions"
