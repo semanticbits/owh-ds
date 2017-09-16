@@ -3738,31 +3738,26 @@
                                         {
                                             filterGroup: false, collapse: false,
                                             allowGrouping: true, groupOptions: filters.columnGroupOptions,
-                                            onFilterChange: utilService.brfsFilterChange,
                                             filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'sex')
                                         },
                                         {
                                             filterGroup: false, collapse: false,
                                             allowGrouping: true, groupOptions: filters.columnGroupOptions,
-                                            onFilterChange: utilService.brfsFilterChange,
                                             filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'race')
                                         },
                                         {
                                             filterGroup: false, collapse: false,
                                             allowGrouping: true, groupOptions: filters.columnGroupOptions,
-                                            onFilterChange: utilService.brfsFilterChange,
                                             filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'age_group')
                                         },
                                         {
                                             filterGroup: false, collapse: false,
                                             allowGrouping: true, groupOptions: filters.columnGroupOptions,
-                                            onFilterChange: utilService.brfsFilterChange,
                                             filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'education')
                                         },
                                         {
                                             filterGroup: false, collapse: false,
                                             allowGrouping: true, groupOptions: filters.columnGroupOptions,
-                                            onFilterChange: utilService.brfsFilterChange,
                                             filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'income')
                                         }
                                     ]
