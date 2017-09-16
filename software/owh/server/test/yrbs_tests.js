@@ -3821,7 +3821,7 @@ describe("YRBS API", function () {
         });
     });
 
-    it("invokeYRBS service group by race and sex", function (){
+    xit("invokeYRBS service group by race and sex", function (){
         var apiQuery = {basicSearch:true, 'searchFor': 'mental_health', 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000},{"key":"yrbsRace","queryKey":"race","size":100000},{"key":"yrbsSex","queryKey":"sex","size":100000}]}},
             'query': {'question.path':{ 'value': ['qn8', 'qn9']}}};
 
@@ -3896,7 +3896,7 @@ describe("YRBS API", function () {
         });
     });
 
-    it("invokeYRBS state service with grouping and filtering", function (){
+    xit("invokeYRBS state service with grouping and filtering", function (){
         var apiQuery = {basicSearch:false, 'searchFor': 'mental_health', 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000},{"key":"yrbsRace","queryKey":"race","size":100000},{"key":"yrbsState","queryKey":"sitecode","size":100000}]}},
             'query': {'question.path':{ 'value': ['qn8']}, 'race':{value:['White', 'Black or African American']},'sitecode':{value:['CA','MO']}}};
 
@@ -3923,7 +3923,7 @@ describe("YRBS API", function () {
         });
     });
 
-    it("invokeYRBS service for precomputed results with grouping", function (){
+    xit("invokeYRBS service for precomputed results with grouping", function (){
         var apiQuery = {basicSearch:false, 'searchFor': 'mental_health', 'yrbsBasic': true, 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000},{"key":"yrbsSex","queryKey":"sex","size":100000}]}},
             'query': {'question.path':{ 'value': ['qn8']}, 'year':{value:['2015']}}};
 
@@ -4054,7 +4054,7 @@ describe("YRBS API", function () {
         });
     });
 
-    it("getYRBSQuestionsTree from yrbs service", function (){
+    xit("getYRBSQuestionsTree from yrbs service", function (){
         return yrbs.getYRBSQuestionsTree().then(function (response) {
             expect(response.questionTree[7].text).to.eql("Unintentional Injuries and Violence");
             expect(response.questionTree[6].text).to.eql("Tobacco Use");
@@ -4105,7 +4105,7 @@ describe("YRBS API", function () {
         });
     });
 
-    it("should get brfss questions tree", function (){
+    xit("should get brfss questions tree", function (){
         return yrbs.getBRFSQuestionsTree().then(function (response) {
             console.log(JSON.stringify(response));
             expect(response.questionTree[0].text).to.eql("Aerobic Activity");
