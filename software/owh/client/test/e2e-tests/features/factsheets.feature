@@ -9,6 +9,7 @@ Scenario: Access fact sheet page
   Then I should get factsheets page
 
 Scenario: Generate PDF
-  When I click on generate fact sheet link
+  When I select state "Maryland" from state selectbox
+  And I click on generate fact sheet link
   Then generated data should be displayed on same factsheets page
 

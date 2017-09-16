@@ -14,7 +14,8 @@
             <div class="usa-grid fact-sheet-generator">
                 <div class="usa-width-one-third">
                     <label for="state">I am interested in looking at the State Health fact sheet for</label>
-                    <select name="state" id="state" ng-options="s.id as s.text for s in fsc.stateJSON" ng-init="state = 'MD'" ng-model="state">
+                    <select name="state" id="state" ng-options="s.id as s.text for s in fsc.stateJSON" ng-model="state" required>
+                        <option value="">Select State</option>
                     </select>
                 </div>
                 <div class="usa-width-one-third">

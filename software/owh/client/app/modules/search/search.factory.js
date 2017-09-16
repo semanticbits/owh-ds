@@ -119,6 +119,14 @@
                 primaryFilter.nestedData = response.data.resultData.nested;
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
+                var headers = angular.copy(primaryFilter.headers.columnHeaders);
+                headers.push.apply(headers, angular.copy(primaryFilter.headers.rowHeaders));
+                primaryFilter.countLabel = 'Number of Infant Deaths';
+                angular.forEach(headers, function(columnHeader){
+                     if(columnHeader.key === 'state') {
+                        primaryFilter.countLabel = null;
+                     }
+                });
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
             }
             else if (response.data.queryJSON.key == 'std' ||
