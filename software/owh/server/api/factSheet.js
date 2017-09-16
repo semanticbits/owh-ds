@@ -108,6 +108,16 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
         var cancer_prostate_populationQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Prostate"][1];
 
         //YRBS - Use Alcohol
+        //If state 'Arizona' change code to 'AZB' for YRBS,
+        if(state === 'AZ') {
+            factSheetQueryJSON.yrbs["alcohol"].query.sitecode.value = 'AZB';
+            Object.keys(factSheetQueryJSON.prams["Pregnant women"]).forEach(function(eachKey){
+                factSheetQueryJSON.prams["Pregnant women"][eachKey].query.sitecode.value = ["AZB"];
+            });
+            Object.keys(factSheetQueryJSON.prams["Women"]).forEach(function(eachKey){
+                factSheetQueryJSON.prams["Women"][eachKey].query.sitecode.value = ["AZB"];
+            });
+        }
         var yrbs_alcohol_stats_query = factSheetQueryJSON.yrbs["alcohol"];
         //BRFSS - 2015 - Overweight and Obesity(BMI), Tobbaco use, Fruits and Vegetables, Alcohol Consumption
         var brfss_2015_query = factSheetQueryJSON.brfss.query_2015;
