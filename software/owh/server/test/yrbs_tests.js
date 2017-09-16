@@ -4122,7 +4122,7 @@ describe("YRBS API", function () {
             expect(response.questionsList.length).to.eql(86);
 
             yrbs.getBRFSQuestionsTree().then(function (cachedResponse) {
-                expect(JSON.stringify(response)).to.eql(JSON.stringify(cachedResponse));
+                return expect(JSON.stringify(response)).to.eql(JSON.stringify(cachedResponse));
             });
         });
     });
