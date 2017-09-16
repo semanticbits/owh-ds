@@ -142,12 +142,14 @@
          * @param fsType
          */
         function getFactSheet(state, fsType) {
-            factSheetService.prepareFactSheetForState(state, fsType).then(function (response) {
-                fsc.state = fsc.states[response.state];
-                fsc.stateImg = 'state_'+response.state+'.svg';
-                fsc.stateImgUrl = '../../images/state-shapes/state_'+response.state+'.svg';
-                fsc.factSheet = response;
-            })
+            if(state) {
+                factSheetService.prepareFactSheetForState(state, fsType).then(function (response) {
+                    fsc.state = fsc.states[response.state];
+                    fsc.stateImg = 'state_' + response.state + '.svg';
+                    fsc.stateImgUrl = '../../images/state-shapes/state_' + response.state + '.svg';
+                    fsc.factSheet = response;
+                });
+            }
         }
 
         /**

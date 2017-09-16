@@ -151,7 +151,7 @@ var wonderParamCodeMap = {
         'hispanic_origin': {
             'key': 'D69.V4',
             'values': {
-                'hispanic_origin': '2148-5',
+                'Mexican': '2148-5',
                 'Puerto Rican': '2180-8',
                 'Cuban': '2182-4',
                 'Central or South American': '4',
@@ -475,7 +475,8 @@ var wonderParamCodeMap = {
                 "WY":"56"
             }
         },
-        'states-group':'D69.V10-level1'
+        'states-group':'D69.V10-level1',
+        'state-group':'D69.V10-level1'
     },
     "D31": {
         'year_of_death': 'D31.V9',
@@ -508,7 +509,7 @@ var wonderParamCodeMap = {
         'hispanic_origin': {
             'key': 'D31.V4',
             'values': {
-                'hispanic_origin': '2148-5',
+                'Mexican': '2148-5',
                 'Puerto Rican': '2180-8',
                 'Cuban': '2182-4',
                 'Central or South American': '4',
@@ -815,7 +816,8 @@ var wonderParamCodeMap = {
                 "WY":"56"
             }
         },
-        'states-group':'D31.V10-level1'
+        'states-group':'D31.V10-level1',
+        'state-group':'D31.V10-level1'
     },
     "D18": {
         'year_of_death': 'D18.V9',
@@ -848,7 +850,7 @@ var wonderParamCodeMap = {
         'hispanic_origin': {
             'key': 'D18.V4',
             'values': {
-                'hispanic_origin': '2148-5',
+                'Mexican': '2148-5',
                 'Puerto Rican': '2180-8',
                 'Cuban': '2182-4',
                 'Central or South American': '4',
@@ -1155,7 +1157,8 @@ var wonderParamCodeMap = {
                 "WY":"56"
             }
         },
-        'states-group':'D18.V10-level1'
+        'states-group':'D18.V10-level1',
+        'state-group':'D18.V10-level1'
     }
 
 };

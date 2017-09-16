@@ -39,6 +39,7 @@ module.exports = function(config){
       'bower_components/angular-filter/dist/angular-filter.min.js',
       'bower_components/pdfmake/build/pdfmake.js',
       'bower_components/pdfmake/build/vfs_fonts.js',
+      'bower_components/ngSticky/dist/sticky.min.js',
       'app/**/*.module.js',
       'app/**/*.js',
       'app/**/*.html',

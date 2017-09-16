@@ -613,7 +613,7 @@
                             iconClass: eachHeader.iconClass,
                             onIconClick: eachHeader.onIconClick
                         };
-                        childTableData[0].unshift(eachTableRow);
+                        childTableData[0] && childTableData[0].unshift(eachTableRow);
                         tableData = tableData.concat(childTableData);
                     }
 
