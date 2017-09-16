@@ -196,6 +196,9 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
     var result = {};
     if (wonderResponse.Total){
         if(wonderResponse.Total['infant_mortality'] != 0) {
+            if(keyMap[key]){
+                key = keyMap[key];
+            }
             result['name'] = key;
             result.infant_mortality = wonderResponse.Total['deathRate'] === 'Suppressed' ? 'suppressed': wonderResponse.Total['infant_mortality'];
             result['deathRate'] = wonderResponse.Total['deathRate'];

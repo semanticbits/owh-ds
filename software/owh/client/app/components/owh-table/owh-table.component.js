@@ -155,6 +155,9 @@
                                 else if(otc.tableView === 'crude_cancer_incidence_rates') {
                                     cell += '<span class="owh-table-span">Incidence</span>';
                                 }
+                                else if(otc.tableView === 'number_of_infant_deaths') {
+                                    cell += '<span class="owh-table-span">Infant Deaths</span>';
+                                }
                                 else {
                                     var deaths = $translate.instant('label.help.text.deaths');
                                     cell += '<span class="owh-table-span" title="'+deaths+'">Deaths</span>';

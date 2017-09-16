@@ -25,7 +25,7 @@
       "column": "race",
       "mappings": {
         "01-01": "White",
-        "02-02": "Black",
+        "02-02": "Black or African American",
         "03-03": "American Indian or Alaska Native",
         "04-04": "Chinese",
         "05-05": "Japanese",
