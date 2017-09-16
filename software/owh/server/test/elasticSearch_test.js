@@ -956,7 +956,8 @@ describe("Elastic Search", function () {
         new elasticSearch().aggregateInfantMortalityData(apiQuery, false, allSelectedOptions, ['2000']).then(function (resp) {
             var  data = resp.data.nested.table.race;
             //Only Black and White race data available for state 'AL'
-            expect(data[0].name).equal(undefined);
+            expect(data[0].name).equal('American Indian or Alaska Native');
+            expect(data[0].infant_mortality).equal('suppressed');
             expect(data[1].name).equal('Black or African American');
             expect(data[1].infant_mortality).equal(317);
             var  nestedData = data[1].sex;
@@ -968,7 +969,8 @@ describe("Elastic Search", function () {
             expect(nestedData[1].infant_mortality).equal(177);
             expect(nestedData[1].deathRate).equal('17.05');
             expect(nestedData[1].pop).equal(10382);
-            expect(data[2].name).equal(undefined);
+            expect(data[2].name).equal('Chinese');
+            expect(data[2].infant_mortality).equal('suppressed');
             expect(data[7].name).equal('White');
             done();
         })
@@ -980,16 +982,15 @@ describe("Elastic Search", function () {
         var allSelectedOptions = {"sex":{"options":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"selectedValues":["Female"]},"race":{"options":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}, { "key": "Chinese", "title": "Chinese" }, { "key": "Filipino", "title": "Filipino" }, { "key": "Hawaiian", "title": "Hawaiian" }, { "key": "Japanese", "title": "Japanese" }, { "key": "Other Asian", "title": "Other Asian" }],"selectedValues":[]}};
         new elasticSearch().aggregateInfantMortalityData(apiQuery, false, allSelectedOptions, ['2000']).then(function (resp) {
             var  data = resp.data.nested.table.race;
-            console.log("resp ", JSON.stringify(resp));
             //only Black and White should be available for state 'AL' and year 2000
             expect(data.length).equal(8);
-            expect(data[0].name).equal(undefined);
+            expect(data[0].name).equal('American Indian or Alaska Native');
+            expect(data[0].infant_mortality).equal('suppressed');
             expect(data[1].name).equal('Black or African American');
-            expect(data[2].name).equal(undefined);
-            expect(data[3].name).equal(undefined);
-            expect(data[4].name).equal(undefined);
-            expect(data[5].name).equal(undefined);
-            expect(data[6].name).equal(undefined);
+            expect(data[2].name).equal('Chinese');
+            expect(data[3].name).equal('Filipino');
+            expect(data[4].name).equal('Hawaiian');
+            expect(data[5].name).equal('Japanese');
             expect(data[7].name).equal('White');
             done();
         })
