@@ -143,7 +143,8 @@
         "gridcolor":"#bdbdbd",
         "showticklabels":true,
         "fixedrange":true,
-        "title":"label.filter.race"
+        "title":"label.filter.race",
+        "type":"category"
       },
       "title":"chart.title.measure.deaths by label.filter.race in undefined for undefined",
       "height":750,

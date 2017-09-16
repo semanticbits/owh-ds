@@ -226,6 +226,7 @@
             var layout = quickChartLayout();
             layout.xaxis.title = "Year";
             layout.yaxis.title = "Population";
+            layout.xaxis.type = "category";
             var colors = getColorPallete();    
             var linedata = chartdata.data();
             var plotydata = {name: linedata[0].key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
@@ -278,6 +279,7 @@
             var layout = quickChartLayout(chartdata);
             layout.xaxis.title = getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel);
             layout.yaxis.title = $translate.instant(filter.title);
+            layout.yaxis.type = "category";
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
