@@ -11,6 +11,7 @@ var factSheet = require('../api/factSheet');
 var Q = require('q');
 var config = require('../config/config');
 //var svgtopng = require('svg2png');
+var fs = require('fs');
 
 var queryCache = new qc();
 
@@ -57,11 +58,11 @@ var searchRouter = function(app, rConfig) {
         });
     });
 
-    /*app.get('/pramsQuestionsTree', function (req, res) {
+    app.get('/pramsQuestionsTree', function (req, res) {
         new yrbs().getPramsQuestionsTree().then(function(response) {
             res.send(new result('OK', response, "success"));
         });
-    });*/
+    });
 
     app.get('/brfsQuestionsTree', function (req, res) {
         new yrbs().getBRFSQuestionsTree().then(function(response) {
@@ -89,13 +90,26 @@ var searchRouter = function(app, rConfig) {
 
 
     app.post('/svgtopng', function (req, res) {
-        svgtopng(req.body.svg).then(function (png) {
-            var response = 'data:image/png;base64,' + new Buffer(png, 'binary').toString('base64');
-            res.send(new result('OK', response, "success"));
-        }).catch(function (err) {
-            console.log(err);
-            res.send(new result('Error converting to PNG: ' + err));
-        });
+        //../client/app/images/state-shapes/
+        if(Array.isArray(req.body.svg)) {
+            var imageDataArray = [];
+            req.body.svg.forEach(function(eachSVGFile){
+                var svgData = fs.readFileSync(eachSVGFile, 'utf8');
+                var png = svgtopng.sync(svgData, {width: 150, height: 150});
+                var response = 'data:image/png;base64,' + new Buffer(png, 'binary').toString('base64');
+                imageDataArray.push(response);
+            });
+            res.send(new result('OK', imageDataArray, "success"));
+        }
+        else {
+            svgtopng(req.body.svg).then(function (png) {
+                var response = 'data:image/png;base64,' + new Buffer(png, 'binary').toString('base64');
+                res.send(new result('OK', response, "success"));
+            }).catch(function (err) {
+                console.log(err);
+                res.send(new result('Error converting to PNG: ' + err));
+            });
+        }
     });
 };
 
@@ -185,10 +199,8 @@ function search(q) {
         });
 
     } else if (preparedQuery.apiQuery.searchFor === 'infant_mortality') {
-        finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         //Get all selected filter options
         var allSelectedFilterOptions = searchUtils.getAllSelectedFilterOptions(q, preparedQuery.apiQuery.query);
-        var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
         var selectedYears = searchUtils.getYearFilter(q.allFilters, 'year_of_death');
         var groupByOptions = searchUtils.getSelectedGroupByOptions(q.allFilters);
         var options = selectedYears.reduce(function (prev, year) {
@@ -201,7 +213,7 @@ function search(q) {
 
         var es = new elasticSearch();
         var promises = [
-            es.aggregateInfantMortalityData([finalQuery[0],preparedQuery.apiQuery], isStateSelected, allSelectedFilterOptions, selectedYears)
+            es.aggregateInfantMortalityData(preparedQuery.apiQuery, isStateSelected, allSelectedFilterOptions, selectedYears)
         ];
       Q.all(promises).then(function (response) {
             var resData = {};

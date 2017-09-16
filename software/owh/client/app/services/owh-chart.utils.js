@@ -37,7 +37,7 @@
         }
 
         function getColorPallete(){
-             return ["#ED93CB", "#65c2ff", "#FFCC9A", "#56b783", "#FF9F4A", "#FFCC9A", "#61B861", "#B2E7A7 ", "#DB5859", "#FFB2B0 ", "#AF8DCE", "#D4C4E0 ", "#A98078", "#D3B5AF", "#64D7D6", "#44558F", "#FFE495", "#1684A7 ", "#7577CD", "#6A759B", "#F6EC72", "#F97300 ", "#FD6378", "#390050", "#970747"]
+             return ["#ED93CB", "#65c2ff", "#FFCC9A", "#56b783", "#FF9F4A", "#fdac5c", "#61B861", "#B2E7A7 ", "#DB5859", "#FFB2B0 ", "#AF8DCE", "#D4C4E0 ", "#A98078", "#D3B5AF", "#64D7D6", "#44558F", "#FFE495", "#1684A7 ", "#7577CD", "#6A759B", "#F6EC72", "#F97300 ", "#FD6378", "#390050", "#970747"]
         }
         
         function getSelectedOptionTitlesOfFilter(filter) {
@@ -226,6 +226,7 @@
             var layout = quickChartLayout();
             layout.xaxis.title = "Year";
             layout.yaxis.title = "Population";
+            layout.xaxis.type = "category";
             var colors = getColorPallete();    
             var linedata = chartdata.data();
             var plotydata = {name: linedata[0].key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
@@ -278,6 +279,7 @@
             var layout = quickChartLayout(chartdata);
             layout.xaxis.title = getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel);
             layout.yaxis.title = $translate.instant(filter.title);
+            layout.yaxis.type = "category";
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];

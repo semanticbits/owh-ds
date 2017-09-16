@@ -55,14 +55,14 @@
     "headers": [
       [
         {
-          "title": "Female",
+          "title": "label.filter.gender: Female",
           "colspan": 1,
           "rowspan": 1,
           "isData": true,
           "helpText": "Female"
         },
         {
-          "title": "Male",
+          "title": "label.filter.gender: Male",
           "colspan": 1,
           "rowspan": 1,
           "isData": true,

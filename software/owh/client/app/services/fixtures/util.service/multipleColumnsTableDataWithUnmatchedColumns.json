@@ -454,14 +454,14 @@
           "title": "label.filter.race"
         },
         {
-          "title": "Female",
+          "title": "label.filter.gender: Female",
           "colspan": 1,
           "rowspan": 1,
           "isData": true,
           "helpText": "Female"
         },
         {
-          "title": "Male",
+          "title": "label.filter.gender: Male",
           "colspan": 1,
           "rowspan": 1,
           "isData": true,
@@ -476,14 +476,14 @@
       ],
       [
         {
-          "title": "2014",
+          "title": "label.filter.year: 2014",
           "colspan": 1,
           "rowspan": 1,
           "isData": true,
           "helpText": "2014"
         },
         {
-          "title": "2014",
+          "title": "label.filter.year: 2014",
           "colspan": 1,
           "rowspan": 1,
           "isData": true,

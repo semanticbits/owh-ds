@@ -12,14 +12,12 @@
                   on-primary-filter="sc.changePrimaryFilter(newFilter)" category-name="sc.findNameByKeyAndValue(newFilter)"
                   on-view-filter="selectedFilter && sc.changeViewFilter(selectedFilter)">
         </owh-menu>
-</div>
+    </div>
 </div>
 
-<div class="usa-grid border-top-default" ng-class="{'allow-inline-charting': sc.filters.allowInlineCharting}">
+<div class="usa-grid border-top-default content-wrapper" ng-class="{'allow-inline-charting': sc.filters.allowInlineCharting}">
     <div class="usa-width-one-whole bottom-pane flex-container">
-
         <div class="usa-width-one-fourth side-pane-padding border-right-default owh-side-menu" ng-hide="!sc.sideMenu.visible">
-
             <div ng-show="sc.filters.selectedPrimaryFilter.key === 'mental_health' ||
                 sc.filters.selectedPrimaryFilter.key === 'brfss'" class="yrbs_search_links">
                 <a class="advanced-search-toggle"
@@ -37,23 +35,25 @@
             <a class="owh-side-menu__handle cursor-pointer" ng-click="sc.sideMenu.visible = false; sc.updateCharts()" href="javascript:void(0)">
                 HIDE FILTERS
             </a>
-            <div class="sort-by side-filter-padding">
+            <div class="sidebar-wrapper">
+                <div class="sort-by side-filter-padding">
                 <owh-side-filter filters="sc.filters.selectedPrimaryFilter.sideFilters"
-                    group-options="sc.filters.groupOptions"
-                    primary-key="{{ sc.filters.selectedPrimaryFilter.key }}"
-                    on-filter="sc.search(true)"
-                    sort="sc.sort[sc.filters.selectedPrimaryFilter.title]"
-                    show-filters="sc.availableFilters[sc.tableView]"
-                    utilities="sc.filterUtilities[sc.filters.selectedPrimaryFilter.key]"
-                    run-on-filter-change="sc.filters.selectedPrimaryFilter.runOnFilterChange"
-                    ></owh-side-filter>
+                                 group-options="sc.filters.groupOptions"
+                                 primary-key="{{ sc.filters.selectedPrimaryFilter.key }}"
+                                 on-filter="sc.search(true)"
+                                 sort="sc.sort[sc.filters.selectedPrimaryFilter.title]"
+                                 show-filters="sc.availableFilters[sc.tableView]"
+                                 utilities="sc.filterUtilities[sc.filters.selectedPrimaryFilter.key]"
+                                 run-on-filter-change="sc.filters.selectedPrimaryFilter.runOnFilterChange"
+                ></owh-side-filter>
+            </div>
             </div>
         </div>
         <div class="owh-search-content-container usa-width-three-fourths" ng-class="{'owh-search-content--expanded': !sc.sideMenu.visible }">
-            <div class="flex-container flex-align-center">
-            <a class="owh-side-menu__handle--collapsed cursor-pointer" ng-hide="sc.sideMenu.visible" ng-click="sc.sideMenu.visible = !sc.sideMenu.visible; sc.updateCharts()" href="javascript:void(0)">
-                SHOW FILTERS
-            </a>
+            <div class="bg-white flex-container flex-align-center">
+                <a class="owh-side-menu__handle--collapsed cursor-pointer" ng-hide="sc.sideMenu.visible" ng-click="sc.sideMenu.visible = !sc.sideMenu.visible; sc.updateCharts()" href="javascript:void(0)">
+                    SHOW FILTERS
+                </a>
                 <list-selected-filters sort="sc.sort[sc.filters.selectedPrimaryFilter.title]"
                                        filters="sc.filters.selectedPrimaryFilter.allFilters" class="flex-grow">
                 </list-selected-filters>
@@ -66,16 +66,14 @@
 
             <!--Charts-->
 
-            <div class="owh-search-content">
+            <div id="content-container" class="owh-search-content">
                 <!-- TODO: enable this
                 <ul class="owh-search-content-tabs flex-container">
                     <li class="menu-tab active"><span class="link">Charts & Graphs</span></li>
                     <li class="menu-tab"><span class="link">Data Table</span></li>
                 </ul>-->
-
-
                 <owh-toggle-switch ng-if="sc.filters.selectedPrimaryFilter.chartView"
-                                   class="left-float chart-view-toggle"
+                                   class="chart-view-toggle margin-bottom-20 margin-left-10"
                                    options="sc.filters.selectedPrimaryFilter.chartViewOptions"
                                    model="sc.filters.selectedPrimaryFilter.chartView"
                                    on-change="sc.onChartViewChange(sc.filters.selectedPrimaryFilter.chartView)"
@@ -84,7 +82,7 @@
 
                 <div ng-repeat="startChartData in sc.filters.selectedPrimaryFilter.chartData" ng-init="parentIndex = $index">
                     <div  class="graph-box" ng-repeat="chartData in startChartData"
-                         ng-class="!chartData.isMap || sc.mapOptions.selectedMapSize==='small'?'usa-width-one-half':'usa-width-one-half margin-bottom-20'">
+                          ng-class="!chartData.isMap || sc.mapOptions.selectedMapSize==='small'?'usa-width-one-half':'usa-width-one-half margin-bottom-20'">
                         <!-- Map -->
                         <div id="chart_us_map" ng-if="chartData.isMap && sc.filters.selectedPrimaryFilter.showMap">
                             <leaflet  lf-center="chartData.usa" markers="chartData.markers" events="chartData.events" geojson="chartData.geojson"
@@ -113,20 +111,21 @@
                         <!-- Graphs -->
                     </div>
                 </div>
-            <!--Charts-->
+                <!--Charts-->
 
             <!--More visualization-->
+                <div class="table-content">
             <div class="usa-width-one-whole" ng-show="sc.filters.selectedPrimaryFilter.chartData.length > 0">
-                <div class="usa-width-one-whole more-graph-select">
+                <!-- <div class="usa-width-one-whole more-graph-select">
                     <span class="dark-link" ng-bind="'label.visualization.more.one' | translate"></span>
                     <a href="javascript:void(0)" ng-click="sc.showPhaseTwoGraphs('label.graph.impl.next')">Build one</a>
                     <span class="dark-link" ng-bind="'label.visualization.more.two' | translate"></span>
-                </div>
+                </div> -->
                 <a ng-click="$state.go('description', {dataSetKey: sc.filters.selectedPrimaryFilter.key})" href="#">Data Documentation</a>
             </div>
             <!--More visualization-->
 
-            <!--Table-->
+                <!--Table-->
                 <div class="usa-width-one-whole overflow-visible">
                     <!-- show hide percentage -->
                     <div id="togglePercentage" class="togglePercentage pull-left"
@@ -143,7 +142,6 @@
                         </a>
                     </div>
                     <div class="pull-right margin-bottom-20 margin-right-10 export-links">
-                        <!--<div>Icons made by <a href="http://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">Madebyoliver</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
                         <a name="download_csv" ng-click="sc.downloadCSV()" title="Download CSV" class="cursor-pointer" href="javascript:void(0)">
                             <img alt="Export to CSV" src="images/csv-icon.svg"/>Export to CSV
                         </a>
@@ -168,19 +166,20 @@
                                table-view="{{sc.tableView}}"
                                rowspan-threshold="50"></owh-table>
                     <owh-accordion-table headers="sc.tableData.headers" data="sc.tableData.data"
-                                ng-if="sc.filters.selectedPrimaryFilter.key === 'mental_health'
+                                         ng-if="sc.filters.selectedPrimaryFilter.key === 'mental_health'
                                  || sc.filters.selectedPrimaryFilter.key === 'prams'
                                  || sc.filters.selectedPrimaryFilter.key === 'brfss'"
-                                primary-key="sc.filters.selectedPrimaryFilter.key"
-                                show-ci="sc.filters.filterUtilities[sc.filters.selectedPrimaryFilter.key][0].options[0].value"
-                                show-uf="sc.filters.filterUtilities[sc.filters.selectedPrimaryFilter.key][0].options[1].value"
-                                show-charts = "sc.filters.selectedPrimaryFilter.value.length > 1">
+                                         primary-key="sc.filters.selectedPrimaryFilter.key"
+                                         show-ci="sc.filters.filterUtilities[sc.filters.selectedPrimaryFilter.key][0].options[0].value"
+                                         show-uf="sc.filters.filterUtilities[sc.filters.selectedPrimaryFilter.key][0].options[1].value"
+                                         show-charts = "sc.filters.selectedPrimaryFilter.value.length > 1">
                     </owh-accordion-table>
                 </div>
-            <!--Table-->
-        </div>
+                <!--Table-->
+            </div>
         </div>
     </div>
+</div>
 </div>
 <ng-include src="'app/partials/contentOwnerShip.html'"></ng-include>
 

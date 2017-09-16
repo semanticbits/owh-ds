@@ -492,7 +492,7 @@
                             });
                         }
                         tableColumnHeaderData.headers[0].push({
-                            title: eachOption.title,
+                            title: $filter("translate")(eachColumnHeader.title) + ": " + eachOption.title,
                             colspan: colspan,
                             rowspan: 1,
                             isData: true,
@@ -613,7 +613,7 @@
                             iconClass: eachHeader.iconClass,
                             onIconClick: eachHeader.onIconClick
                         };
-                        childTableData[0].unshift(eachTableRow);
+                        childTableData[0] && childTableData[0].unshift(eachTableRow);
                         tableData = tableData.concat(childTableData);
                     }
 

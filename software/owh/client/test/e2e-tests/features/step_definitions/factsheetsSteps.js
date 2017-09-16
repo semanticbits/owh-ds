@@ -18,7 +18,6 @@ var factsheetsDefinitionsWrapper = function () {
         expect(fsp.pageHeading.isDisplayed()).to.eventually.equal(true);
         expect(fsp.pageDescription.isDisplayed()).to.eventually.equal(true);
         expect(fsp.stateSelectBox.isDisplayed()).to.eventually.equal(true);
-        expect(fsp.typeSelectBox.isDisplayed()).to.eventually.equal(true);
         return expect(fsp.generateFactSheetLink.isDisplayed()).to.eventually.equal(true);
     });
 
@@ -28,9 +27,6 @@ var factsheetsDefinitionsWrapper = function () {
     });
 
     this.Then(/^generated data should be displayed on same factsheets page$/, function (next) {
-        /*var until = protractor.ExpectedConditions;
-        browser.wait(until.presenceOf(element(by.id('bridge-race-table1'))), 25000, 'PDF generation taking too long.....');
-        */
         expect(element(by.className('state-heading')).isDisplayed()).to.eventually.equal(true);
         expect(element(by.className('state-heading')).getText()).to.eventually.equal("Maryland");
         expect(element(by.className('bridge-race-heading')).getText()).to.eventually.equal("Population in Maryland");
@@ -132,6 +128,11 @@ var factsheetsDefinitionsWrapper = function () {
             expect(data).to.contains('5,975,346');
         }).then(next);
 
+    });
+
+    this.When(/^I select state "([^"]*)" from state selectbox$/, function (arg1, next) {
+        element(by.id('state')).element(by.cssContainingText('option', arg1)).click()
+            .then(next);
     });
 };
 module.exports = factsheetsDefinitionsWrapper;
