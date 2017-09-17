@@ -226,7 +226,7 @@
                 "topic": ['cat_51', 'cat_15']
             },
             hiv_aids:{
-                "topic": ['cat_13']
+                "topic": ['cat_16']
             },
             hypertension_awareness:{
                 "topic": ['cat_52']
