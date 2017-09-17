@@ -12,6 +12,7 @@
             updateStatesDeaths: updateStatesDeaths,
             addExpandControl: addExpandControl,
             addShareControl: addShareControl,
+            getMapTitle: getMapTitle,
             addScaleControl: addScaleControl,
             highlightFeature: highlightFeature,
             resetHighlight: resetHighlight,
@@ -85,12 +86,12 @@
         function getColor(d, ranges) {
             // var ranges = utilService.generateMapLegendRanges(sc.filters.selectedPrimaryFilter.mapData.mapMinValue,
             //     sc.filters.selectedPrimaryFilter.mapData.mapMaxValue);
-            return d > ranges[6] ? '#190032' :
-                d > ranges[5]  ?  '#3f007d':
-                d > ranges[4]  ?  '#6a51a3':
-                d > ranges[3]  ?  '#9e9ac8':
-                d > ranges[2]  ?  '#dadaeb':
-                d > ranges[1]  ?  '#efedf5': '#fcfbfd';
+            return d > ranges[6] ? '#aa7ed4' :
+                d > ranges[5]  ?  '#5569de':
+                    d > ranges[4]  ?  '#6f9af1':
+                        d > ranges[3]  ?  '#8bd480':
+                            d > ranges[2]  ?  '#ea8484':
+                                d > ranges[1]  ?  '#f3af60': '#fff280';
         }
 
         //return map feature styling configuration parameters
@@ -188,7 +189,7 @@
                 onAdd: function (map) {
                     var container = L.DomUtil.create('div', 'leaflet-control leaflet-control-custom custom-legend');
 
-                    var colors = ['#190032','#3f007d','#6a51a3', '#9e9ac8','#dadaeb','#efedf5','#fcfbfd'];
+                    var colors = ['#aa7ed4', '#5569de','#6f9af1','#8bd480','#ea8484','#f3af60','#fff280'];
                     var labels = getLabels(mapData.mapMinValue, mapData.mapMaxValue);
                     var legendScale = L.DomUtil.create('ul', 'legend-scale', container);
                     var polygons = [];
@@ -213,7 +214,7 @@
                 }
             });
         }
-        
+
         function getMapPolygonsByColor(map, color) {
             var polygonList = [];
             //convert background color from rgb to hex
@@ -271,6 +272,28 @@
                map.setView(new L.LatLng(38, 14), 3);
                 $timeout(function(){ map.invalidateSize()}, 100);
             });
+        }
+
+        function getMapTitle(primaryFilter){
+            var measure;
+            if(primaryFilter.key == 'mental_health' || primaryFilter.key == 'prams' ||primaryFilter.key == 'brfss'){ //Dont use tableView for stats datasets, as tableView captures topics and not views
+                measure = $translate.instant('chart.title.measure.'+primaryFilter.key);
+            }else{
+                measure= $translate.instant('chart.title.measure.'+(primaryFilter.tableView?primaryFilter.tableView:primaryFilter.key) + (primaryFilter.chartView?('.'+primaryFilter.chartView):''));
+            }
+
+            var yearfilter;
+            angular.forEach(primaryFilter.allFilters, function(filter){
+            if (filter.key === 'year' || filter.key === 'current_year' || filter.key === 'year_of_death'){
+                    if(!filter.value || (Array.isArray(filter.value) && filter.value.length != 1)){
+                        yearfilter = 'selected years';
+                    }else {
+                        yearfilter = Array.isArray(filter.value)?filter.value[0]:filter.value;
+                    }
+                }
+            });
+
+            return measure+ ' by Sex' +' for '+yearfilter;
         }
     }
 }());

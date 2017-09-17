@@ -5,7 +5,7 @@ describe("Fact sheet", function () {
 
     this.timeout(80000);
 
-    it("prepare FactSheet", function (done){
+    xit("prepare FactSheet", function (done){
         new factSheet().prepareFactSheet('MD', 'State Health').then(function (resp) {
             expect(resp.totalGenderPop).to.eql(6006401);
             expect(resp.state).to.eql("MD");

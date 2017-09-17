@@ -152,7 +152,7 @@
                 angular.forEach(headerRow, function (cell, innerIdx) {
                     var colspan = cell.colspan;
                     //check is column header for data column, else add header as normal
-                    if(table.calculatePercentage && ((innerIdx >= table.rowHeadersLength && innerIdx < headerRow.length - 1) || idx > 0 || cell.isData)) {
+                    if (table.calculatePercentage && ((innerIdx >= table.rowHeadersLength && innerIdx < headerRow.length - 1) || idx > 0 || (cell.isData && cell.title != "Total"))) {
                         //for the bottom row just add an extra column for every existing one, else double the length
                         if(idx === table.headers.length - 1) {
                             headers.push({title: cell.title, colspan: colspan, rowspan: cell.rowspan});

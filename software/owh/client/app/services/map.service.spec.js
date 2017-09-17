@@ -58,7 +58,7 @@ describe('mapService', function(){
             legendInterval.dispatchEvent(evt);
 
             //style changed
-            expect(map._layers[0].style).toEqual({"color":"#333333","weight":2.6,"opacity":1,"fillOpacity":0.9});
+            expect(map._layers[0].style).toEqual({"color":"black","fillOpacity":0.7});
             //no style change for polygon which does not match event target
             expect(map._layers[1].style).toEqual({color: 'black', fillOpacity: 0.7});
 
@@ -67,7 +67,7 @@ describe('mapService', function(){
             evt.initEvent('mouseout', true, true);
             legendInterval.dispatchEvent(evt);
             //reset style
-            expect(map._layers[0].style).toEqual({weight: 0.8, opacity: 1, color: 'black', fillOpacity: 0.7});
+            expect(map._layers[0].style).toEqual({color: 'black', fillOpacity: 0.7});
 
         });
 
@@ -176,5 +176,52 @@ describe('mapService', function(){
             expect($rootScope.states.features[0].properties.tableView).toEqual("age-adjusted_death_rates");
             expect($rootScope.states.features[0].properties.deaths).toEqual(31617);
         }));
+    });
+
+    it("getMapTitle should return appropriate map title", function () {
+        expect(mapService.getMapTitle({
+                key: 'deaths', title: 'label.filter.mortality', primary: true, value: [], header:"Mortality", tableView: 'number_of_deaths',
+                allFilters:[ {
+                    key: 'year',
+                    value: ['2014']
+                }
+                ]
+            })).toEqual("chart.title.measure.number_of_deaths by Sex for 2014");
+
+        expect(mapService.getMapTitle({
+            key: 'deaths', title: 'label.filter.mortality', primary: true, value: [], header:"Mortality", tableView: 'number_of_deaths',
+            allFilters:[ {
+                key: 'year',
+                value: ['2014','2015']
+            }
+            ]
+        })).toEqual("chart.title.measure.number_of_deaths by Sex for selected years");
+
+        expect(mapService.getMapTitle({
+            key: 'deaths', title: 'label.filter.mortality', primary: true, value: [], header:"Mortality", tableView: 'number_of_deaths',
+            allFilters:[ {
+                key: 'year',
+                value: []
+            }
+            ]
+        })).toEqual("chart.title.measure.number_of_deaths by Sex for selected years");
+
+        expect(mapService.getMapTitle({
+            key: 'deaths', title: 'label.filter.mortality', primary: true, value: [], header:"Mortality", chartView: 'rates',
+            allFilters:[ {
+                key: 'year',
+                value: []
+            }
+            ]
+        })).toEqual("chart.title.measure.deaths.rates by Sex for selected years");
+
+        expect(mapService.getMapTitle({
+            key: 'deaths', title: 'label.filter.mortality', primary: true, value: [], header:"Mortality",
+            allFilters:[ {
+                key: 'year',
+                value: []
+            }
+            ]
+        })).toEqual("chart.title.measure.deaths by Sex for selected years");
     });
 });

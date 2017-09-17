@@ -5,21 +5,20 @@
 
 <div class="data-sets" style="padding: 30px;">
     <div class="usa-grid" ng-init="dataset = dc.getDataSetDetails()">
-        <div class="usa-width-three-fourths content-container scroll-box-wrapper">
-            <div class="scroll-box">
+        <div class="usa-width-three-fourths content-container">
                 <div class="thin-border-bottom padding-bottom-15">
                     <img ng-src="{{'../images/icons/'+ dataset.image}}" alt="{{dataset.title}}"
                          height="80"/>
                     <h1 class="dark-purple-text dataset-name" ng-bind="dataset.title"></h1>
                 </div>
-                <h4 class="dark-purple-text" ng-bind="'label.documentation.about.dataset' | translate"></h4>
+                <h3 class="dark-purple-text" ng-bind="'label.documentation.about.dataset' | translate"></h3>
                 <div ng-bind="dataset.dataDescription"></div>
                 <div ng-if="dataset.suppression">
                     <h5>Data Suppression:</h5>
                     <div ng-bind-html="dataset.suppression"></div>
                 </div>
                 <hr>
-                <h4 class="dark-purple-text">Measures in this dataset ({{dataset.filters.length}})</h4><br>
+                <h3 class="dark-purple-text">Measures in this dataset ({{dataset.filters.length}})</h3><br>
                 <div class="thin-border-bottom usa-width-one-whole padding-bottom-10">
                     <div class="usa-width-one-fourth">
                         <b>Measure</b>
@@ -35,22 +34,21 @@
                     <div class="usa-width-three-fourths" ng-bind="filter.description"></div>
                 </div>
                 <div class="pull-left">
-                    <a href="#" class="dark-purple-text" ng-click="dc.showAllMeasures = true" ng-if="!dc.showAllMeasures">Show more...</a></div>
+                    <a href="#" class="show-link" ng-click="dc.showAllMeasures = true" ng-if="!dc.showAllMeasures">Show more<i class="material-icons">keyboard_arrow_down</i></a></div>
                 <div class="pull-left">
-                    <a href="#" class="dark-purple-text" ng-click="dc.showAllMeasures = false" ng-if="dc.showAllMeasures">Show less...</a></div>
+                    <a href="#" class="show-link" ng-click="dc.showAllMeasures = false" ng-if="dc.showAllMeasures">Show less<i class="material-icons">keyboard_arrow_up</i></a></div>
 
                 <div class="usa-width-one-whole margin-top-10 additional-info" ng-if="dataset.additionalInfo">
-                    <h4 class="dark-purple-text">Additional Information:</h4>
+                    <h3 class="dark-purple-text">Additional Information:</h3>
                     <div ng-repeat="info in dataset.additionalInfo">
                         <div ng-class="{'rate-info-section': info.isRateInfo == true}"
                              ng-bind="info.question" class="bold-class"></div>
                         <div ng-bind-html="info.answer"></div>
                     </div>
                 </div>
-            </div>
         </div>
-        <div class="usa-width-one-fourth scroll-box-wrapper sidebar">
-            <div class="scroll-box">
+        <div class="usa-width-one-fourth sidebar" sticky sticky-class="sidebar-right" offset="20" confine="true">
+            <div class="" >
                 <div ng-controller="SearchController as sc">
                     <a class="explore-dataset-btn" ng-click="sc.changePrimaryFilter(dataset.key)"
                        href="#">EXPLORE DATASET<i class="material-icons arrow-forward-white">arrow_forward</i> </a>

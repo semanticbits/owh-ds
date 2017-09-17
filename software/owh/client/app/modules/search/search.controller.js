@@ -23,11 +23,12 @@
         sc.updateCharts = updateCharts;
         sc.getChartTitle = getChartTitle;
         sc.skipRefresh = false;
-        sc.switchToYRBSBasic = switchToYRBSBasic;
-        sc.switchToYRBSAdvanced = switchToYRBSAdvanced;
+        sc.switchToBasicSearch = switchToBasicSearch;
+        sc.switchToAdvancedSearch = switchToAdvancedSearch;
         sc.showFbDialog = showFbDialog;
         sc.onChartViewChange = onChartViewChange;
         sc.findNameByKeyAndValue = findNameByKeyAndValue;
+        sc.mapService = mapService;
         $scope.redirectToMortalityPage = function(){
            sc.changePrimaryFilter('deaths');
         };
@@ -78,7 +79,7 @@
                 {key: 'colorectal_cancer_screening', title: 'Colorectal Cancer Screening'},
                 {key: 'brfs_demographics', title: 'Demographics'},
                 {key: 'fruits_vegetables', title: 'Fruits and Vegetables'},
-                {key: 'healthcare_acccess_coverage', title: 'Health Care Access/Coverage'},
+                {key: 'healthcare_access_coverage', title: 'Health Care Access/Coverage'},
                 {key: 'health_status', title: 'Health Status'},
                 {key: 'hiv_aids', title: 'HIV - AIDS'},
                 {key: 'hypertension_awareness', title: 'Hypertension Awareness'},
@@ -200,63 +201,60 @@
                 "topic": ['cat_32', 'cat_21', 'cat_44']
             },
             alcohol_consumption: {
-                "topic": ['cat_12', 'cat_48', 'cat_51', 'cat_52']
+                "topic": ['cat_12', 'cat_47', 'cat_50']
             },
             cholesterol_awareness: {
-                "topic": ['cat_3', 'cat_50']
+                "topic": ['cat_3', 'cat_49']
             },
             chronic_health_indicator:{
-                "topic": ['cat_17', 'cat_34', 'cat_10', 'cat_4',
-                    'cat_0', 'cat_11', 'cat_5', 'cat_6', 'cat_7', 'cat_8']
+                "topic": ['cat_36', 'cat_32', 'cat_10', 'cat_4', 'cat_0', 'cat_11',
+                    'cat_5', 'cat_6', 'cat_7', 'cat_8']
             },
-            healthcare_acccess_coverage: {
-                "topic": ['cat_23', 'cat_19', 'cat_9', 'cat_24', 'cat_42']
+            healthcare_access_coverage: {
+                "topic": ['cat_21', 'cat_17', 'cat_9', 'cat_22', 'cat_41']
             },
             colorectal_cancer_screening:{
-                "topic": ['cat_49', 'cat_59', 'cat_36']
+                "topic": ['cat_48', 'cat_56', 'cat_34']
             },
             brfs_demographics:{
-                "topic": ['cat_1', 'cat_2', 'cat_13','cat_14', 'cat_20', 'cat_21',
-                    'cat_22', 'cat_35', 'cat_25', 'cat_26', 'cat_27', 'cat_31']
+                "topic": ['cat_1', 'cat_2', 'cat_13','cat_14', 'cat_18', 'cat_19',
+                    'cat_20', 'cat_33', 'cat_23', 'cat_24', 'cat_25', 'cat_29']
             },
             fruits_vegetables:{
-                "topic": ['cat_15', 'cat_41', 'cat_63']
-            },
-            healthcare_access_coverage:{
-                "topic": ['cat_23', 'cat_19', 'cat_9', 'cat_24', 'cat_42']
+                "topic": ['cat_40', 'cat_60']
             },
             health_status:{
-                "topic": ['cat_53', 'cat_16']
+                "topic": ['cat_51', 'cat_15']
             },
             hiv_aids:{
-                "topic": ['cat_18']
+                "topic": ['cat_16']
             },
             hypertension_awareness:{
-                "topic": ['cat_54']
+                "topic": ['cat_52']
             },
             immunization:{
-                "topic": ['cat_40', 'cat_47', 'cat_29', 'cat_28']
+                "topic": ['cat_39', 'cat_46', 'cat_27', 'cat_26']
             },
             injury:{
-                "topic": ['cat_38', 'cat_58']
+                "topic": ['cat_37', 'cat_55']
             },
             oral_health:{
-                "topic": ['cat_32', 'cat_37', 'cat_39']
+                "topic": ['cat_30', 'cat_35', 'cat_38']
             },
             overweight_and_ovesity:{
-                "topic": ['cat_33']
+                "topic": ['cat_31']
             },
             prostate_cancer:{
-                "topic": ['cat_57']
+                "topic": ['cat_54']
             },
             tobbaco_use:{
-                "topic": ['cat_60', 'cat_30', 'cat_61']
+                "topic": ['cat_57', 'cat_28', 'cat_57']
             },
             womens_health:{
-                "topic": ['cat_43', 'cat_56']
+                "topic": ['cat_42', 'cat_53']
             },
             physical_activity:{
-                "topic": ['cat_45', 'cat_62', 'cat_55', 'cat_44', 'cat_46']
+                "topic": ['cat_44', 'cat_59', 'cat_43', 'cat_45']
             }
 
         };
@@ -419,8 +417,10 @@
         });
 
         $scope.$on('brfsQuestionsLoaded', function() {
-            var questionFilter = utilService.findFilterByKeyAndValue(sc.filters.brfsFilters, 'key', 'question');
-            questionFilter.autoCompleteOptions = $rootScope.brfsQuestionsList;
+            var basicQuesFilter = utilService.findFilterByKeyAndValue(sc.filters.brfsBasicFilters, 'key', 'question');
+            basicQuesFilter.autoCompleteOptions = $rootScope.brfsQuestionsList;
+            var advanceQuesFilter = utilService.findFilterByKeyAndValue(sc.filters.brfsAdvancedFilters, 'key', 'question');
+            advanceQuesFilter.autoCompleteOptions = $rootScope.brfsQuestionsList;
         });
 
         /**************************************************/
@@ -775,22 +775,34 @@
         /**
          * Switch to YRBS basic filter
          */
-        function switchToYRBSBasic(){
+        function switchToBasicSearch(dataset){
             sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu = true;
             sc.filters.selectedPrimaryFilter.runOnFilterChange = true;
-            sc.filters.selectedPrimaryFilter.allFilters = sc.filters.yrbsBasicFilters;
-            sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[1].basicSideFilters;
+            if(dataset === 'mental_health') {
+                sc.filters.selectedPrimaryFilter.allFilters = sc.filters.yrbsBasicFilters;
+                sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[1].basicSideFilters;
+            } else if (dataset === 'brfss') {
+                sc.filters.selectedPrimaryFilter.allFilters = sc.filters.brfsBasicFilters;
+                sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[11].basicSideFilters[0].sideFilters;
+            }
+
             sc.search(true);
         }
 
         /**
          * Switch to YRBS advanced filter
          */
-        function switchToYRBSAdvanced(){
+        function switchToAdvancedSearch(dataset) {
             sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu = false;
             sc.filters.selectedPrimaryFilter.runOnFilterChange = false;
-            sc.filters.selectedPrimaryFilter.allFilters = sc.filters.yrbsAdvancedFilters;
-            sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[1].advancedSideFilters;
+            if(dataset === 'mental_health') {
+                sc.filters.selectedPrimaryFilter.allFilters = sc.filters.yrbsAdvancedFilters;
+                sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[1].advancedSideFilters;
+            } else if (dataset === 'brfss') {
+                sc.filters.selectedPrimaryFilter.allFilters = sc.filters.brfsAdvancedFilters;
+                sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[11].advancedSideFilters[0].sideFilters;
+            }
+
             sc.search(true);
         }
 

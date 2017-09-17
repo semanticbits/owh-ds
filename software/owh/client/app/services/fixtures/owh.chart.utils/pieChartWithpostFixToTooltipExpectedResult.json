@@ -112,7 +112,8 @@
       "gridcolor":"#bdbdbd",
       "showticklabels":false,
       "fixedrange":true,
-      "title":"label.filter.race"
+      "title":"label.filter.race",
+      "type":"category"
     }
   },
   "options":{

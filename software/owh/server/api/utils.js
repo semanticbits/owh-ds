@@ -103,6 +103,143 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelect
     return result;
 };
 
+var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, allSelectedFilterOptions, wonderQuery, isStateSelected) {
+    var result = {
+        data: {
+            simple: {},
+            nested: {
+                table: {},
+                charts: [],
+                maps:{}
+            }
+        },
+        pagination: {
+            total: 0
+        }
+    };
+    //Get selected aggregation filter keys
+    var tableFilterKeys = [];
+    wonderQuery.aggregations.nested.table.forEach(function(eachAgg){
+        tableFilterKeys.push(eachAgg.key);
+    });
+    var chartFilterKeys = [];
+    wonderQuery.aggregations.nested.charts.forEach(function(eachChartArray){
+        var chartAggKeyArray = [];
+        eachChartArray.forEach(function(eachAgg){
+            chartAggKeyArray.push(eachAgg.key);
+        });
+       chartFilterKeys.push(chartAggKeyArray);
+    });
+    if(resp) {
+        result.data.nested.table = populateAggregateDataForWonderResponse(resp.table, 'Total', tableFilterKeys, isStateSelected);
+        chartFilterKeys.forEach(function(eachChartFilterKeys, index){
+            result.data.nested.charts[index] = populateAggregateDataForWonderResponse(resp.charts[index], 'Total', eachChartFilterKeys, isStateSelected);
+        });
+    }
+    return result;
+};
+
+var populateAggregateDataForWonderResponse = function(wonderResponse, key, filterKeys, isStateSelected){
+    var keyMap = {
+        "Alabama": "AL",
+        "Alaska": "AK",
+        "Arizona": "AZ",
+        "Arkansas": "AR",
+        "California": "CA",
+        "Colorado": "CO",
+        "Connecticut": "CT",
+        "Delaware": "DE",
+        "District of Columbia": "DC",
+        "Florida": "FL",
+        "Georgia": "GA",
+        "Hawaii": "HI",
+        "Idaho": "ID",
+        "Illinois": "IL",
+        "Indiana": "IN",
+        "Iowa": "IA",
+        "Kansas": "KS",
+        "Kentucky": "KY",
+        "Louisiana": "LA",
+        "Maine": "ME",
+        "Maryland": "MD",
+        "Massachusetts": "MA",
+        "Michigan": "MI",
+        "Minnesota": "MN",
+        "Mississippi": "MS",
+        "Missouri": "MO",
+        "Montana": "MT",
+        "Nebraska": "NE",
+        "Nevada": "NV",
+        "New Hampshire": "NH",
+        "New Jersey": "NJ",
+        "New Mexico": "NM",
+        "New York": "NY",
+        "North Carolina": "NC",
+        "North Dakota": "ND",
+        "Ohio": "OH",
+        "Oklahoma": "OK",
+        "Oregon": "OR",
+        "Pennsylvania": "PA",
+        "Rhode Island": "RI",
+        "South Carolina": "SC",
+        "South Dakota": "SD",
+        "Tennessee": "TN",
+        "Texas": "TX",
+        "Utah": "UT",
+        "Vermont": "VT",
+        "Virginia": "VA",
+        "Washington": "WA",
+        "West Virginia": "WV",
+        "Wisconsin": "WI",
+        "Wyoming": "WY"
+    };
+    var result = {};
+    if (wonderResponse.Total){
+        if(wonderResponse.Total['infant_mortality'] != 0) {
+            if(keyMap[key]){
+                key = keyMap[key];
+            }
+            result['name'] = key.trim();
+            result.infant_mortality = wonderResponse.Total['deathRate'] === 'Suppressed' ? 'suppressed': wonderResponse.Total['infant_mortality'];
+            result['deathRate'] = wonderResponse.Total['deathRate'] === 'Suppressed' ? 'suppressed': wonderResponse.Total['deathRate'];
+            result['pop'] = isNaN(wonderResponse.Total['births']) ? 'suppressed' : wonderResponse.Total['births'];
+            result [filterKeys[0]] = [];
+            Object.keys(wonderResponse).forEach(function (key) {
+                if (key != 'Total') {
+                    result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function (x, i) { return i !== 0;}), isStateSelected));
+                }
+            });
+        }
+        return result;
+    }
+    else if(isStateSelected && !wonderResponse.hasOwnProperty('infant_mortality')) {
+        if(keyMap[key]){
+            key = keyMap[key];
+        }
+        result['name'] = key.trim();
+        result['infant_mortality'] = 'na';
+        result['deathRate'] = 'na';
+        result['pop'] = 'na';
+        result [filterKeys[0]] = [];
+        Object.keys(wonderResponse).forEach(function (key) {
+            result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function (x, i) { return i !== 0;}), isStateSelected));
+        });
+        return result;
+    }
+    else {
+        if(wonderResponse['infant_mortality'] != 0) {
+            if(keyMap[key]){
+                key = keyMap[key];
+            }
+            result['name'] = key.trim();
+            result.infant_mortality = wonderResponse['deathRate'] === 'Suppressed' ? 'suppressed' : wonderResponse['infant_mortality'];
+            result['deathRate'] = wonderResponse['deathRate'] === 'Suppressed' ? 'suppressed' : wonderResponse['deathRate'];
+            result['pop'] = isNaN(wonderResponse['births']) ? 'suppressed' : wonderResponse['births'];
+        }
+        return result;
+    }
+};
+
 var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQueryKey, regex, dataKey, allSelectedFilterOptions) {
     var result = [];
     for(var index in buckets) {
@@ -881,6 +1018,7 @@ function applyPopulationSpecificSuppression (root, countKey) {
 }
 
 module.exports.populateDataWithMappings = populateDataWithMappings;
+module.exports.populateWonderDataWithMappings = populateWonderDataWithMappings;
 module.exports.populateYRBSData = populateYRBSData;
 module.exports.mergeAgeAdjustedRates = mergeAgeAdjustedRates;
 module.exports.mergeWonderResponseWithInfantESData = mergeWonderResponseWithInfantESData;

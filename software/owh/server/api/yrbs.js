@@ -40,7 +40,7 @@ yrbs.prototype.invokeYRBSService = function(apiQuery){
     Q.all(queryPromises).then(function(resp){
         var duration = new Date().getTime() - startTime;
         logger.info("YRBS service response received for all "+yrbsquery.length+" questions, duration(s)="+ duration/1000);
-        var data = self.processYRBSReponses(resp, apiQuery.yrbsBasic, apiQuery.searchFor);
+        var data = self.processYRBSReponses(resp, apiQuery.basicSearch, apiQuery.searchFor);
         //if 'Sexual Identity' or 'Sex of Sexual Contacts' option(s) selected
         var isSexualOrientationSelected = 'sexid' in apiQuery.query || 'sexpart' in apiQuery.query;
         //if only groupBy 'row' or 'column' selected for 'Sexual Identity' or 'Sex of Sexual Contacts' filters
@@ -50,9 +50,9 @@ yrbs.prototype.invokeYRBSService = function(apiQuery){
             }
         });
         if(apiQuery.searchFor == 'mental_health') {
-            searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexualOrientationSelected, apiQuery.isChartorMapQuery);
+            //searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexualOrientationSelected, apiQuery.isChartorMapQuery);
         } else if(apiQuery.searchFor == 'brfss') {
-            searchUtils.applyBRFSSuppression({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery);
+            //searchUtils.applyBRFSSuppression({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery);
         }
         deferred.resolve(data);
     }, function (error) {
@@ -85,9 +85,6 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
     if(aggrsKeys.indexOf('sex') >= 0){
         sortedKeys.push('sex');
     }
-    if(aggrsKeys.indexOf('gender') >= 0){
-        sortedKeys.push('gender');
-    }
     if(aggrsKeys.indexOf('grade') >= 0){
         sortedKeys.push('grade');
     }
@@ -100,8 +97,8 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
     if(aggrsKeys.indexOf('race') >= 0){
         sortedKeys.push('race');
     }
-    if(aggrsKeys.indexOf('age_group') >= 0){
-        sortedKeys.push('age_group');
+    if(aggrsKeys.indexOf('age') >= 0){
+        sortedKeys.push('age');
     }
     if(aggrsKeys.indexOf('education') >= 0){
         sortedKeys.push('education');
@@ -123,7 +120,7 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
         // Build filter params
         var f = '';
         for (q in apiQuery.query){
-            if(q != 'question.path' && q != 'breakout' && 'value' in  apiQuery.query[q] && apiQuery.query[q].value) {
+            if(q != 'question.path' && q != 'topic' && q != 'breakout' && 'value' in  apiQuery.query[q] && apiQuery.query[q].value) {
                 f += (q + ':');
                 if(apiQuery.query[q].value instanceof  Array) {
                     f += apiQuery.query[q].value.join(',') + '|';
@@ -145,9 +142,10 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
                 } else if(apiQuery.searchFor === 'brfss') {
                     qry += 'd=brfss&' // yrbs dataset
                 }
-                if(apiQuery.yrbsBasic || apiQuery.searchFor === 'prams'
-                    || apiQuery.searchFor === 'brfss'){
+                if(apiQuery.basicSearch || apiQuery.searchFor === 'prams') {
                     qry +='s=1&';
+                } else {
+                    qry +='s=0&';
                 }
                 qry += 'q=' + selectedQs[i]; // Question param
                 qry += (v ? ('&' + v) : ''); // Group param
@@ -214,43 +212,43 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
             var cell = q[responseKey];
             // The result table is always nested in the order Sex (sex), Grade (grade), Race (race7) and  Year (year)
             // so nest the results in that order
-            if ('sex' in r) {
+            if ('sex' in r && response.vars.indexOf('sex') != -1) {
                 cell = getResultCell(cell, 'sex', r.sex);
             }
-            if ('gender' in r) {
+            if ('gender' in r && response.vars.indexOf('gender') != -1) {
                 cell = getResultCell(cell, 'gender', r.gender);
             }
-            if ('grade' in r) {
+            if ('grade' in r && response.vars.indexOf('grade') != -1) {
                 cell = getResultCell(cell, 'grade', r.grade);
             }
-            if ('sexid' in r) {
+            if ('sexid' in r && response.vars.indexOf('sexid') != -1) {
                 cell = getResultCell(cell, 'sexid', r.sexid);
             }
 
-            if ('sexpart' in r) {
+            if ('sexpart' in r && response.vars.indexOf('sexpart') != -1) {
                 cell = getResultCell(cell, 'sexpart', r.sexpart);
             }
-            if ('race' in r) {
+            if ('race' in r && response.vars.indexOf('race') != -1) {
                 cell = getResultCell(cell, 'race', r.race);
             }
 
-            if ('age_group' in r) {
-                cell = getResultCell(cell, 'age_group', r.age_group);
+            if ('age' in r && response.vars.indexOf('age') != -1) {
+                cell = getResultCell(cell, 'age', r.age);
             }
 
-            if ('education' in r) {
+            if ('education' in r && response.vars.indexOf('education') != -1) {
                 cell = getResultCell(cell, 'education', r.education);
             }
 
-            if ('income' in r) {
+            if ('income' in r && response.vars.indexOf('income') != -1) {
                 cell = getResultCell(cell, 'income', r.income);
             }
 
             // Prams filters
-            if ('year' in r) {
+            if ('year' in r && response.vars.indexOf('year') != -1) {
                 cell = getResultCell(cell, 'year', r.year);
             }
-            if ('sitecode' in r) {
+            if ('sitecode' in r && response.vars.indexOf('sitecode') != -1) {
                 cell = getResultCell(cell, 'sitecode', r.sitecode);
             }
 
@@ -375,7 +373,7 @@ yrbs.prototype.getYRBSQuestionsTree = function () {
     } else {
         invokeYRBS(config.yrbs.questionsUrl + '?d=yrbss').then(function (response) {
             logger.info("Getting questions from yrbs service");
-            var data = prepareQuestionTree(response, false);
+            var data = prepareQuestionTree(response.questions, false);
             if (data.questionsList.length > 0) {
                 cahcedQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
             }
@@ -420,7 +418,7 @@ yrbs.prototype.getBRFSQuestionsTree = function () {
     } else {
         invokeYRBS(config.yrbs.questionsUrl + '?d=brfss').then(function(response) {
             logger.info("Getting BRFS questions from stats service");
-            var data = prepareQuestionTree(response, true);
+            var data = prepareQuestionTree(response.questions, true);
             // Cache the result only if it is valid
             if (data.questionsList.length > 0) {
                 cachedBRFSQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
@@ -456,7 +454,7 @@ function prepareQuestionTree(questions,  prams) {
     //iterate through questions
     for (var qKey in questions) {
         var quesObj = questions[qKey];
-        var qCategory = quesObj.topic;
+        var qCategory = prams? quesObj.subtopic : quesObj.topic;
         if (qCategory && qCategoryMap[qCategory] == undefined) {
             qCategoryMap[qCategory] = {id: 'cat_' + catCount, text: qCategory, children: []};
             catCount = catCount + 1;

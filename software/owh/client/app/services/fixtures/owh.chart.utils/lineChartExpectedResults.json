@@ -43,7 +43,8 @@
       "gridcolor":"#bdbdbd",
       "showticklabels":false,
       "fixedrange":true,
-      "title":"Year"
+      "title":"Year",
+      "type":"category"
     },
     "yaxis":{
       "visible":true,
