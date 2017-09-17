@@ -190,7 +190,7 @@
                             if(otc.tableView !== 'age-adjusted_death_rates') {
                                 cell += '<span>';
                                 if(column.pop && column.pop !== 'n/a') {
-                                    cell += $filter('number')(column.pop);
+                                    cell += column.pop === 'suppressed' ? 'Suppressed' : $filter('number')(column.pop);
                                 } else {
                                     cell += 'Not Available';
                                 }

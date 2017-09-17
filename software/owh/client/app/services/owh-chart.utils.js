@@ -129,7 +129,12 @@
                 }
             }
             else if(filter.chartView == "infant_death_rate") {
-                return !isNaN(data['pop']) ? $filter('number')(data['deathRate'], 1): -2;
+                if(!isNaN(data['deathRate'])) {
+                    return $filter('number')(data['deathRate'], 1)
+                }
+                else {
+                    return data['deathRate'] === 'suppressed' ? -1 : -2;
+                }
             }
             else if(data['ageAdjustedRate'] && filter.tableView == "age-adjusted_death_rates"){
                 var ageAdjustedRate = parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));
@@ -137,7 +142,12 @@
                 return ageAdjustedRate == NaN ? data['ageAdjustedRate'] : ageAdjustedRate ;
             }
             else {
-                return data[filter.key];
+                if(filter.tableView === 'number_of_infant_deaths' && data[filter.key] === 'suppressed' ) {
+                    return -1;
+                }
+                else {
+                    return data[filter.key];
+                }
             }
         }
 
