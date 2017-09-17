@@ -376,7 +376,7 @@ function findFilterByKeyAndValue(a, key, value) {
  */
 function isFilterApplied(a) {
     if (a) {
-        return a.value.length > 0 || a.groupBy;
+        return (a.value.length > 0 && a.value != 'National') || a.groupBy;
     }
     return false;
 }
@@ -408,9 +408,9 @@ function buildAPIQuery(primaryFilter) {
     }
 
     // For YRBS query capture the basisc/advanced search view
-    if(primaryFilter.key === 'mental_health'){
+    if(primaryFilter.key === 'mental_health' || primaryFilter.key === 'brfss'){
         if(primaryFilter.showBasicSearchSideMenu) {
-            apiQuery.yrbsBasic = true;
+            apiQuery.basicSearch = true;
         }
         if(primaryFilter.isChartorMapQuery) {
             apiQuery.isChartorMapQuery = true;

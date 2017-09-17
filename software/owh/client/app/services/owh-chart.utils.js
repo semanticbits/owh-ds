@@ -129,7 +129,12 @@
                 }
             }
             else if(filter.chartView == "infant_death_rate") {
-                return !isNaN(data['pop']) ? $filter('number')(data['deathRate'], 1): -2;
+                if(!isNaN(data['deathRate'])) {
+                    return $filter('number')(data['deathRate'], 1)
+                }
+                else {
+                    return data['deathRate'] === 'suppressed' ? -1 : -2;
+                }
             }
             else if(data['ageAdjustedRate'] && filter.tableView == "age-adjusted_death_rates"){
                 var ageAdjustedRate = parseFloat(data['ageAdjustedRate'].replace(/,/g, ''));
@@ -137,7 +142,12 @@
                 return ageAdjustedRate == NaN ? data['ageAdjustedRate'] : ageAdjustedRate ;
             }
             else {
-                return data[filter.key];
+                if(filter.tableView === 'number_of_infant_deaths' && data[filter.key] === 'suppressed' ) {
+                    return -1;
+                }
+                else {
+                    return data[filter.key];
+                }
             }
         }
 
@@ -226,6 +236,7 @@
             var layout = quickChartLayout();
             layout.xaxis.title = "Year";
             layout.yaxis.title = "Population";
+            layout.xaxis.type = "category";
             var colors = getColorPallete();    
             var linedata = chartdata.data();
             var plotydata = {name: linedata[0].key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
@@ -278,6 +289,7 @@
             var layout = quickChartLayout(chartdata);
             layout.xaxis.title = getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel);
             layout.yaxis.title = $translate.instant(filter.title);
+            layout.yaxis.type = "category";
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];

@@ -386,22 +386,26 @@ describe('search factory ', function(){
     });
 
     describe('BRFSS search ->', function() {
-        var response;
+        var response, basicFilters;
         beforeAll(function() {
             response = __fixtures__['app/modules/search/fixtures/search.factory/brfsFilterResponse'];
+            basicFilters = __fixtures__['app/modules/search/fixtures/search.factory/brfssBasicFilters'];
         });
         beforeEach(function() {
             deferred = $q.defer();
         });
-        it('updateFiltersAndData for brfs response', function(){
+        it('updateFiltersAndData for brfss response', function(){
             var groupOptions = {
                 alcohol_consumption: {
-                    "topic": ['cat_12', 'cat_48', 'cat_51', 'cat_52']
+                    "topic": ['cat_12', 'cat_47', 'cat_50']
                 }
             };
-            var brfsFilters = {primaryFilters: [filters.search[11]]};
+            var brfsFilters = {
+                primaryFilters: [filters.search[11]],
+                brfsBasicFilters: basicFilters
+            };
             spyOn(utils, 'getValuesByKeyIncludingKeyAndValue').and.returnValue([]);
-            $rootScope.brfsQuestions = [{"id":"cat_45","text":"Aerobic Activity","children":[{"text":"Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)","id":"_PASTAE1"},{"text":"Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)","id":"_PASTAER"}]},{"id":"cat_51","text":"Chronic Drinking","children":[{"text":"Chronic drinkers (adult respondents having more than 60 alcoholic beverages in the past month) (variable calculated from one or more BRFSS questions)","id":"_RFDRCHR"}]},{"id":"cat_48","text":"Binge Drinking","children":[{"text":"Binge drinkers (adults having five or more drinks on one occasion) (variable calculated from one or more BRFSS questions)","id":"_RFBING2"},{"text":"Binge drinkers (adults having five or more drinks on one occasion) (variable calculated from one or more BRFSS questions)","id":"_RFBING3"},{"text":"Binge drinkers (adults having five or more drinks on one occasion) (variable calculated from one or more BRFSS questions)","id":"_RFBINGE"},{"text":"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)","id":"_RFBING4"},{"text":"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)","id":"_RFBING5"}]},{"id":"cat_12","text":"Alcohol Consumption","children":[{"text":"Adults who have had at least one drink of alcohol within the past 30 days","id":"DRNKANY2"},{"text":"Adults who have had at least one drink of alcohol within the past 30 days","id":"DRNKANY3"},{"text":"Adults who have had at least one drink of alcohol within the past 30 days","id":"DRNKANY4"},{"text":"Adults who have had at least one drink of alcohol within the past 30 days","id":"DRNKANY5"},{"text":"During the past month, have you had at least one drink of any alcoholic beverage?","id":"DRINKANY"}]},{"id":"cat_52","text":"Heavy Drinking","children":[{"text":"Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions)","id":"_RFDRHV5"},{"text":"Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)","id":"_RFDRHV2"},{"text":"Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)","id":"_RFDRHV3"},{"text":"Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)","id":"_RFDRHV4"},{"text":"Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)","id":"_RFDRHVY"}]},{"id":"cat_8","text":"Vision","children":[{"text":"Ever told you have vision impairment?","id":"CHCVISN1"},{"text":"Ever told you have vision impairment?","id":"CHCVISON"}]}];
+            $rootScope.brfsQuestions = [{"id":"cat_44","text":"Aerobic Activity","children":[{"text":"Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)","id":"x_pastae1"},{"text":"Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)","id":"x_pastaer"}]},{"id":"cat_12","text":"Alcohol Consumption","children":[{"text":"Adults who have had at least one drink of alcohol within the past 30 days","id":"drnkany5"}]},{"id":"cat_47","text":"Binge Drinking","children":[{"text":"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)","id":"x_rfbing5"}]},{"id":"cat_50","text":"Heavy Drinking","children":[{"text":"Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions)","id":"x_rfdrhv5"},{"text":"Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)","id":"x_rfdrhv4"}]},{"id":"cat_1","text":"Age","children":[{"text":"What is your age?","id":"age"}]}];
 
             var result = searchFactory.updateFiltersAndData(brfsFilters, response, groupOptions);
 

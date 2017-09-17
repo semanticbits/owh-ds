@@ -142,12 +142,14 @@
          * @param fsType
          */
         function getFactSheet(state, fsType) {
-            factSheetService.prepareFactSheetForState(state, fsType).then(function (response) {
-                fsc.state = fsc.states[response.state];
-                fsc.stateImg = 'state_'+response.state+'.svg';
-                fsc.stateImgUrl = '../../images/state-shapes/state_'+response.state+'.svg';
-                fsc.factSheet = response;
-            })
+            if(state) {
+                factSheetService.prepareFactSheetForState(state, fsType).then(function (response) {
+                    fsc.state = fsc.states[response.state];
+                    fsc.stateImg = 'state_' + response.state + '.svg';
+                    fsc.stateImgUrl = '../../images/state-shapes/state_' + response.state + '.svg';
+                    fsc.factSheet = response;
+                });
+            }
         }
 
         /**
@@ -493,7 +495,7 @@
                          },
                          layout: lightHorizontalLines
                      },
-                     {text: 'Sources: 2015, NCHS National Vital Statistics System , * Racial/ethnic groups may not sum to total', style: 'info'},
+                     {text: 'Sources: 2015, U.S. Census Bureau and NCHS; * Racial/ethnic groups may not sum to total', style: 'info'},
                      {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                      {text: 'Mortality',  style: 'heading'},
                      {
