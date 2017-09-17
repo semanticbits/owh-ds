@@ -612,25 +612,35 @@ describe("Utils", function(){
         });
     });
 
-    describe('.getYearFilter', function () {
-        it('should return a list of years', function () {
+    describe('.getTargetFilter', function () {
+        it('should return an object for the target filter', function () {
+            var mock = [
+               { key: 'year_of_death', autoCompleteOptions: [{ key: '2015', title: '2015' }, { key: '2014', title: '2014' }], allChecked: false, value: [ '2014' ] },
+               { key: 'sex', autoCompleteOptions: [{ key: 'Male', title: 'Male'}, { key: 'Female', title: 'Female' }], allChecked: false }
+            ];
+            expect(searchUtils.getTargetFilter(mock, 'year_of_death')).to.eql(mock[0]);
+        });
+    });
+
+    describe('.getTargetFilterValue', function () {
+        it('should return an array of values for the target filter', function () {
             var mock = [
                { key: 'year_of_death', autoCompleteOptions: [{ key: '2015', title: '2015' }, { key: '2014', title: '2014' }], allChecked: false, value: [ '2014' ] },
                { key: 'sex', autoCompleteOptions: [{ key: 'Male', title: 'Male'}, { key: 'Female', title: 'Female' }], allChecked: false }
             ];
             var expected = [ '2014' ];
-            expect(searchUtils.getYearFilter(mock, 'year_of_death')).to.eql(expected);
+            expect(searchUtils.getTargetFilterValue(mock, 'year_of_death')).to.eql(expected);
         });
 
         it('should not return any other filter', function () {
             var mock = [{ key: 'sex', autoCompleteOptions: [{ key: 'Male', title: 'Male'}, { key: 'Female', title: 'Female' }], allChecked: false }];
-            expect(searchUtils.getYearFilter(mock, 'year_of_death')).to.be.empty();
+            expect(searchUtils.getTargetFilterValue(mock, 'year_of_death')).to.be.empty();
         });
 
         it('should return all autoCompleteOptions when allChecked is true', function () {
             var mock = [{ key: 'year_of_death', autoCompleteOptions: [{ key: '2015', title: '2015' }, { key: '2014', title: '2014' }], allChecked: true, value: [] }];
             var expected = [ '2015', '2014' ];
-            expect(searchUtils.getYearFilter(mock, 'year_of_death')).to.eql(expected);
+            expect(searchUtils.getTargetFilterValue(mock, 'year_of_death')).to.eql(expected);
         });
     });
 
@@ -906,20 +916,18 @@ describe("Utils", function(){
 
     describe('.createCancerIncidenceSuppressionRules', function () {
         it('should return an array', function () {
-            expect(searchUtils.createCancerIncidenceSuppressionRules()).to.be.a('array');
-        });
-
-        it('should contain pairs of values', function () {
-            searchUtils.createCancerIncidenceSuppressionRules().forEach(function (rule) {
-                expect(rule).to.have.length(2);
-            });
+            expect(searchUtils.createCancerIncidenceSuppressionRules([], [])).to.be.a('array');
         });
 
         it('should add addtional rules when given years 2013 and/or 2014', function () {
-            var rules = searchUtils.createCancerIncidenceSuppressionRules().length;
-            var additionalRules = searchUtils.createCancerIncidenceSuppressionRules([ '2013' ]).length
-            console.log(searchUtils.createCancerIncidenceSuppressionRules([ '2013' ]))
+            var rules = searchUtils.createCancerIncidenceSuppressionRules([], []).length;
+            var additionalRules = searchUtils.createCancerIncidenceSuppressionRules([ '2013' ], []).length;
             expect(additionalRules).to.be.greaterThan(rules);
+        });
+
+        it('should add single properties when specific states are selected', function () {
+            var rules = searchUtils.createCancerIncidenceSuppressionRules([], [ 'NJ' ]);
+            expect(rules[rules.length - 1]).to.eql([ 'American Indian/Alaska Native' ]);
         });
     });
 
