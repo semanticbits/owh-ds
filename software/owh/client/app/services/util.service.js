@@ -1020,6 +1020,11 @@
             var filterName = filter.queryKey;
             var filterValue = filter.value;
             var filterValueArray = null;
+            //Infant mortality has grouped years and each group of years has different mapping.
+            //So we have to consider last selected year to get DS metadata.
+            if(datasetname === 'infant_mortality' && angular.isArray(filterValue) ) {
+                filterValue = filterValue[filterValue.length - 1];
+            }
             if(filterValue) {
                 filterValueArray = angular.isArray(filterValue) ? filterValue.join(',') : [filterValue];
             }

@@ -199,10 +199,10 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
             if(keyMap[key]){
                 key = keyMap[key];
             }
-            result['name'] = key;
+            result['name'] = key.trim();
             result.infant_mortality = wonderResponse.Total['deathRate'] === 'Suppressed' ? 'suppressed': wonderResponse.Total['infant_mortality'];
-            result['deathRate'] = wonderResponse.Total['deathRate'];
-            result['pop'] = wonderResponse.Total['births'];
+            result['deathRate'] = wonderResponse.Total['deathRate'] === 'Suppressed' ? 'suppressed': wonderResponse.Total['deathRate'];
+            result['pop'] = isNaN(wonderResponse.Total['births']) ? 'suppressed' : wonderResponse.Total['births'];
             result [filterKeys[0]] = [];
             Object.keys(wonderResponse).forEach(function (key) {
                 if (key != 'Total') {
@@ -216,7 +216,7 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
         if(keyMap[key]){
             key = keyMap[key];
         }
-        result['name'] = key;
+        result['name'] = key.trim();
         result['infant_mortality'] = 'na';
         result['deathRate'] = 'na';
         result['pop'] = 'na';
@@ -231,10 +231,10 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
             if(keyMap[key]){
                 key = keyMap[key];
             }
-            result['name'] = key;
+            result['name'] = key.trim();
             result.infant_mortality = wonderResponse['deathRate'] === 'Suppressed' ? 'suppressed' : wonderResponse['infant_mortality'];
-            result['deathRate'] = wonderResponse['deathRate'];
-            result['pop'] = wonderResponse['births'];
+            result['deathRate'] = wonderResponse['deathRate'] === 'Suppressed' ? 'suppressed' : wonderResponse['deathRate'];
+            result['pop'] = isNaN(wonderResponse['births']) ? 'suppressed' : wonderResponse['births'];
         }
         return result;
     }
