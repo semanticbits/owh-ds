@@ -177,4 +177,51 @@ describe('mapService', function(){
             expect($rootScope.states.features[0].properties.deaths).toEqual(31617);
         }));
     });
+
+    it("getMapTitle should return appropriate map title", function () {
+        expect(mapService.getMapTitle({
+                key: 'deaths', title: 'label.filter.mortality', primary: true, value: [], header:"Mortality", tableView: 'number_of_deaths',
+                allFilters:[ {
+                    key: 'year',
+                    value: ['2014']
+                }
+                ]
+            })).toEqual("chart.title.measure.number_of_deaths by Sex for 2014");
+
+        expect(mapService.getMapTitle({
+            key: 'deaths', title: 'label.filter.mortality', primary: true, value: [], header:"Mortality", tableView: 'number_of_deaths',
+            allFilters:[ {
+                key: 'year',
+                value: ['2014','2015']
+            }
+            ]
+        })).toEqual("chart.title.measure.number_of_deaths by Sex for selected years");
+
+        expect(mapService.getMapTitle({
+            key: 'deaths', title: 'label.filter.mortality', primary: true, value: [], header:"Mortality", tableView: 'number_of_deaths',
+            allFilters:[ {
+                key: 'year',
+                value: []
+            }
+            ]
+        })).toEqual("chart.title.measure.number_of_deaths by Sex for selected years");
+
+        expect(mapService.getMapTitle({
+            key: 'deaths', title: 'label.filter.mortality', primary: true, value: [], header:"Mortality", chartView: 'rates',
+            allFilters:[ {
+                key: 'year',
+                value: []
+            }
+            ]
+        })).toEqual("chart.title.measure.deaths.rates by Sex for selected years");
+
+        expect(mapService.getMapTitle({
+            key: 'deaths', title: 'label.filter.mortality', primary: true, value: [], header:"Mortality",
+            allFilters:[ {
+                key: 'year',
+                value: []
+            }
+            ]
+        })).toEqual("chart.title.measure.deaths by Sex for selected years");
+    });
 });

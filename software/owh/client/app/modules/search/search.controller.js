@@ -28,6 +28,7 @@
         sc.showFbDialog = showFbDialog;
         sc.onChartViewChange = onChartViewChange;
         sc.findNameByKeyAndValue = findNameByKeyAndValue;
+        sc.mapService = mapService;
         $scope.redirectToMortalityPage = function(){
            sc.changePrimaryFilter('deaths');
         };
