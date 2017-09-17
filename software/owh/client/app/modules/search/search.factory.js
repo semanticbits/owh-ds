@@ -3406,21 +3406,7 @@
                                     dontShowCounts: true,
                                     groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.infantMortalityFilters, 'key', 'medical_attendant')
-                                },
-                                {
-                                    filterGroup: false,
-                                    collapse: true,
-                                    allowGrouping: true,
-                                    dontShowCounts: true,
-                                    groupOptions: filters.groupOptions,
-                                    filters: {key: 'ucd-chapter-10', title: 'label.filter.ucd', queryKey:"ICD_10_code",
-                                        primary: true, value: [], groupBy: false, type:"label.filter.group.ucd", groupKey:"ucd",
-                                        autoCompleteOptions: utilService.getICD10Chapters(), filterType: 'conditions',
-                                        selectTitle: 'select.label.filter.ucd', updateTitle: 'update.label.filter.ucd',
-                                        aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions,
-                                        helpText:"label.help.text.infantmort.ucd"}
                                 }
-
                             ]
                         },
                         {
