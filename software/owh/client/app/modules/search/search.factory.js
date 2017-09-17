@@ -815,7 +815,8 @@
             var hashQuery = {
                 primaryKey: primaryFilter.key,
                 tableView: primaryFilter.tableView,
-                filters: []
+                filters: [],
+                isPrecomputed: primaryFilter.showBasicSearchSideMenu
             };
             angular.forEach(primaryFilter.sideFilters, function(category){
                 angular.forEach(category.sideFilters, function(filter) {
