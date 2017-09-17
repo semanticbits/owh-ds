@@ -12,6 +12,7 @@
             updateStatesDeaths: updateStatesDeaths,
             addExpandControl: addExpandControl,
             addShareControl: addShareControl,
+            getMapTitle: getMapTitle,
             addScaleControl: addScaleControl,
             highlightFeature: highlightFeature,
             resetHighlight: resetHighlight,
@@ -271,6 +272,28 @@
                map.setView(new L.LatLng(38, 14), 3);
                 $timeout(function(){ map.invalidateSize()}, 100);
             });
+        }
+
+        function getMapTitle(primaryFilter){
+            var measure;
+            if(primaryFilter.key == 'mental_health' || primaryFilter.key == 'prams' ||primaryFilter.key == 'brfss'){ //Dont use tableView for stats datasets, as tableView captures topics and not views
+                measure = $translate.instant('chart.title.measure.'+primaryFilter.key);
+            }else{
+                measure= $translate.instant('chart.title.measure.'+(primaryFilter.tableView?primaryFilter.tableView:primaryFilter.key) + (primaryFilter.chartView?('.'+primaryFilter.chartView):''));
+            }
+
+            var yearfilter;
+            angular.forEach(primaryFilter.allFilters, function(filter){
+            if (filter.key === 'year' || filter.key === 'current_year' || filter.key === 'year_of_death'){
+                    if(!filter.value || (Array.isArray(filter.value) && filter.value.length != 1)){
+                        yearfilter = 'selected years';
+                    }else {
+                        yearfilter = Array.isArray(filter.value)?filter.value[0]:filter.value;
+                    }
+                }
+            });
+
+            return measure+ ' by Sex' +' for '+yearfilter;
         }
     }
 }());

@@ -500,7 +500,7 @@ describe("Search controller: ", function () {
     it('switch to YRBS Basic filter', inject(function(searchFactory) {
         spyOn(searchController, 'search');
         searchController.filters.selectedPrimaryFilter = searchController.filters.search[1]; //select YRBS
-        searchController.switchToYRBSBasic();
+        searchController.switchToBasicSearch('mental_health');
         expect(searchController.filters.selectedPrimaryFilter.showBasicSearchSideMenu).toEqual(true);
         expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].sideFilters[0].filters.filterType).toEqual('radio');
         expect(searchController.search).toHaveBeenCalledWith(true);
@@ -510,7 +510,26 @@ describe("Search controller: ", function () {
     it('switch to YRBS advanced filter', inject(function() {
         spyOn(searchController, 'search');
         searchController.filters.selectedPrimaryFilter = searchController.filters.search[1]; //select YRBS
-        searchController.switchToYRBSAdvanced();
+        searchController.switchToAdvancedSearch('mental_health');
+        expect(searchController.filters.selectedPrimaryFilter.showBasicSearchSideMenu).toEqual(false);
+        expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].sideFilters[0].filters.filterType).toEqual('checkbox');
+        expect(searchController.search).toHaveBeenCalledWith(true);
+
+    }));
+
+    it('switch to brfss basic filter', inject(function() {
+        spyOn(searchController, 'search');
+        searchController.filters.selectedPrimaryFilter = searchController.filters.search[11]; //select YRBS
+        searchController.switchToBasicSearch('brfss');
+        expect(searchController.filters.selectedPrimaryFilter.showBasicSearchSideMenu).toEqual(true);
+        expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].sideFilters[0].filters.filterType).toEqual('checkbox');
+        expect(searchController.search).toHaveBeenCalledWith(true);
+    }));
+
+    it('switch to brfss advanced filter', inject(function() {
+        spyOn(searchController, 'search');
+        searchController.filters.selectedPrimaryFilter = searchController.filters.search[11]; //select YRBS
+        searchController.switchToAdvancedSearch('brfss');
         expect(searchController.filters.selectedPrimaryFilter.showBasicSearchSideMenu).toEqual(false);
         expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].sideFilters[0].filters.filterType).toEqual('checkbox');
         expect(searchController.search).toHaveBeenCalledWith(true);
@@ -687,11 +706,15 @@ describe("Search controller: ", function () {
                 "id": "AGE"
             }
         ];
-        searchController.filters = {brfsFilters: [{"key": "question", autoCompleteOptions:[]}]};
+        searchController.filters =  {
+            brfsBasicFilters: [{"key": "question", autoCompleteOptions:[]}],
+            brfsAdvancedFilters: [{"key": "question", autoCompleteOptions:[]}]
+        };
 
         $rootScope.$broadcast('brfsQuestionsLoaded', $rootScope.brfsQuestionsList);
         //should collect questions from selected topic of a class only
-        expect(JSON.stringify(searchController.filters.brfsFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.brfsQuestionsList));
+        expect(JSON.stringify(searchController.filters.brfsBasicFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.brfsQuestionsList));
+        expect(JSON.stringify(searchController.filters.brfsAdvancedFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.brfsQuestionsList));
     }));
 
     it("should listen for yrbsQuestionsLoadded event", inject(function () {
