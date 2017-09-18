@@ -384,7 +384,7 @@
         function padSheetForCSV(sheet, colHeaders, rowHeadersLength) {
             var headerMerges = [];
             // Temporary fix for OWH-1877 issue #13. Real fix should go around the todo comment added above 'TODO: For OWH-1877 issue #13'
-            var sheetMerges = sheet['!merges'].reverse();
+            var sheetMerges = (sheet['!merges'] || []).reverse();
             sheetMerges.forEach(function(merge, idx) {
                 //only repeat if merge cell is part of headers, use rowHeaders.length - 1 because of Total row
                 if(merge.s.r < colHeaders.length || merge.s.c < rowHeadersLength - 1) {

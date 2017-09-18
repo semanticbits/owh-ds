@@ -480,6 +480,7 @@
           "title": "Number of Deaths",
           "colspan": 1,
           "rowspan": 2,
+          "isTotal": true,
           "isData": true
         }
       ],
@@ -559,7 +560,8 @@
           "isCount": true,
           "rowspan": 1,
           "colspan": 1,
-          "isBold": true
+          "isBold": true,
+          "isTotal": true
         }
       ],
       [
