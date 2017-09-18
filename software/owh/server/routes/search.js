@@ -268,8 +268,11 @@ function search(q) {
             var isStateFilterApplied = searchUtils.isFilterApplied(stateFilter);
             var appliedFilters = searchUtils.findAllAppliedFilters(q.allFilters);
             if (dataset === 'cancer_incident' && isStateFilterApplied && appliedFilters.length) {
-                var years = searchUtils.getYearFilter(q.allFilters, 'current_year');
-                var rules = searchUtils.createCancerIncidenceSuppressionRules(years);
+                var years = searchUtils.getTargetFilterValue(q.allFilters, 'current_year');
+                var stateGroupBy = searchUtils.getTargetFilter(q.allFilters, 'state').groupBy;
+                var statesSelected = searchUtils.getTargetFilterValue(q.allFilters, 'state');
+                var rules = searchUtils.createCancerIncidenceSuppressionRules(years, statesSelected, stateGroupBy);
+                console.log('rules >>>>>>>>>', JSON.stringify(rules))
                 searchUtils.applyCustomSuppressions(results.data.nested, rules, 'cancer_incident');
             }
 

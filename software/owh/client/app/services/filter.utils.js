@@ -749,7 +749,7 @@
         var cancerHispanicOptions = [
             { key: 'Non-Hispanic', title: 'Non-Hispanic' },
             { key: 'Hispanic', title: 'Hispanic' },
-            { key: 'Invalid', title: 'Invalid' },
+            { key: 'Invalid', title: 'Unknown or Missing' },
             { key: 'Unknown', title: 'Unknown' }
         ];
 
@@ -1202,7 +1202,7 @@
                     value: "2015",
                     defaultValue: "2015",
                     groupBy: false,
-                    filterType: 'radio',
+                    filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: diseaseYearOptions,
                     doNotShowAll: true,
                     helpText: "label.std.help.text.year"
@@ -1215,7 +1215,7 @@
                     value: 'Chlamydia',
                     defaultValue: "Chlamydia",
                     groupBy: false,
-                    filterType: 'radio',
+                    filterType: 'radio',defaultGroup:"row",
                     autoCompleteOptions: stdDiseaseOptions,
                     doNotShowAll: true,
                     helpText: "label.std.help.text.disease"
@@ -1226,7 +1226,7 @@
                     value: 'National', defaultValue: "National",
                     groupBy: false, filterType: 'radio', displaySearchBox: true, displaySelectedFirst: true,
                     autoCompleteOptions: diseaseStateOptions,
-                    doNotShowAll: true,
+                    doNotShowAll: true,defaultGroup:"row",
                     helpText: "label.std.help.text.state"
                 },
 
@@ -1238,7 +1238,7 @@
                     value: 'All age groups',
                     defaultValue: 'All age groups',
                     groupBy: false,
-                    filterType: 'radio',
+                    filterType: 'radio',defaultGroup:"row",
                     autoCompleteOptions: stdAgeGroupOptions,
                     doNotShowAll: true,
                     helpText: "label.std.help.text.age.group"
@@ -1253,6 +1253,7 @@
                     defaultValue: 'All races/ethnicities',
                     groupBy: "row",
                     filterType: 'radio',
+                    defaultGroup:"row",
                     autoCompleteOptions: diseaseRaceOptions,
                     doNotShowAll: true,
                     helpText: "label.std.help.text.race.ethnicity"
@@ -1266,6 +1267,7 @@
                     value: 'Both sexes',
                     defaultValue: 'Both sexes',
                     groupBy: "column",
+                    defaultGroup:"column",
                     filterType: 'radio',
                     autoCompleteOptions: diseaseGenderOptions,
                     doNotShowAll: true,
@@ -1294,7 +1296,7 @@
                     primary: false,
                     value: "2015",
                     groupBy: false,
-                    filterType: 'radio',
+                    filterType: 'radio',defaultGroup:"row",
                     autoCompleteOptions: diseaseYearOptions,
                     doNotShowAll: true,
                     helpText: "label.help.text.tb.year"
@@ -1306,7 +1308,7 @@
                     primary: false,
                     value: 'All age groups',
                     groupBy: false,
-                    filterType: 'radio',
+                    filterType: 'radio',defaultGroup:"row",
                     autoCompleteOptions: diseaseAgeGroupOptions,
                     doNotShowAll: true,
                     helpText: "label.std.help.text.age.group"
@@ -1318,7 +1320,7 @@
                     primary: false,
                     value: 'All races/ethnicities',
                     groupBy: "row",
-                    filterType: 'radio',
+                    filterType: 'radio',defaultGroup:"row",
                     autoCompleteOptions: diseaseRaceOptions,
                     doNotShowAll: true,
                     helpText: "label.help.text.tb.race"
@@ -1330,7 +1332,7 @@
                     primary: false,
                     value: 'Both sexes',
                     groupBy: "column",
-                    filterType: 'radio',
+                    filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: diseaseGenderOptions,
                     doNotShowAll: true,
                     helpText: "label.help.text.tb.sex"
@@ -1338,7 +1340,7 @@
                 {
                     key: 'state', title: 'label.filter.state', queryKey: "state",
                     primary: false, value: 'National',
-                    groupBy: false, filterType: 'radio',
+                    groupBy: false, filterType: 'radio',defaultGroup:"row",
                     displaySearchBox: true, displaySelectedFirst: true,
                     autoCompleteOptions: diseaseStateOptions,
                     doNotShowAll: true,
@@ -1347,7 +1349,7 @@
                 {
                     key: 'transmission', title: 'label.tb.filter.countryOfBirth', queryKey: "transmission",
                     primary: false, value: 'No stratification',
-                    groupBy: false, filterType: 'radio',
+                    groupBy: false, filterType: 'radio', defaultGroup:"column",
                     autoCompleteOptions: countryOfBirth,
                     doNotShowAll: true,
                     helpText: "label.help.text.tb.countryOfBirth"
@@ -1373,7 +1375,7 @@
                 { key: 'Black or African American', title: 'Black/African American' },
                 { key: 'Hispanic or Latino', title: 'Hispanic/Latino' },
                 { key: 'Multiple races', title: 'Multiple races' },
-                { key: 'Asian or Pacific Islander', title: 'Native Hawaiian/Other Pacific Islander' },
+                { key: 'Native Hawaiian or Other Pacific Islander', title: 'Native Hawaiian/Other Pacific Islander' },
                 { key: 'White', title: 'White' }
             ];
 
@@ -1404,6 +1406,7 @@
                     value: 'HIV, stage 3 (AIDS)',
                     groupBy: false,
                     filterType: 'radio',
+                    defaultGroup:"row",
                     autoCompleteOptions: aidsDiseaseOptions,
                     doNotShowAll: true,
                     helpText: 'label.help.text.disease'
@@ -1416,6 +1419,7 @@
                     value: 'National',
                     groupBy: false,
                     filterType: 'radio',
+                    defaultGroup:"row",
                     displaySearchBox: true,
                     displaySelectedFirst: true,
                     autoCompleteOptions: diseaseStateOptions,
@@ -1427,9 +1431,10 @@
                     title: 'label.filter.year',
                     queryKey: 'current_year',
                     primary: false,
-                    value: '2015',
+                    value: '2014',
                     groupBy: false,
                     filterType: 'radio',
+                    defaultGroup:"row",
                     autoCompleteOptions: yearOptions,
                     doNotShowAll: true,
                     helpText: 'label.help.text.hiv.year'
@@ -1441,6 +1446,7 @@
                     primary: false,
                     value: 'All races/ethnicities',
                     groupBy: 'row',
+                    defaultGroup:"row",
                     filterType: 'radio',
                     autoCompleteOptions: aidsRaceOptions,
                     doNotShowAll: true,
@@ -1453,6 +1459,7 @@
                     primary: false,
                     value: 'Both sexes',
                     groupBy: 'column',
+                    defaultGroup:"column",
                     filterType: 'radio',
                     autoCompleteOptions: diseaseGenderOptions,
                     doNotShowAll: true,
@@ -1465,6 +1472,7 @@
                     primary: false,
                     value: 'All age groups',
                     groupBy: false,
+                    defaultGroup:"row",
                     filterType: 'radio',
                     autoCompleteOptions: aidsAgeGroupOptions,
                     doNotShowAll: true,
@@ -1477,6 +1485,7 @@
                     primary: false,
                     value: 'No stratification',
                     groupBy: false,
+                    defaultGroup:"row",
                     filterType: 'radio',
                     autoCompleteOptions: aidsTransmissionOptions,
                     doNotShowAll: true,
@@ -1529,7 +1538,7 @@
                     groupBy: 'row',
                     filterType: 'checkbox',
                     autoCompleteOptions: cancerRaceOptions,
-                    defaultGroup: 'column',
+                    defaultGroup: 'row',
                     helpText: 'label.help.text.cancer_incidence.race'
                 },
                 {
@@ -1540,8 +1549,8 @@
                     value: [],
                     groupBy: false,
                     filterType: 'checkbox',
-                    autoCompleteOptions: cancerHispanicOptions,
-                    defaultGroup: 'column',
+                    autoCompleteOptions: cancerHispanicOptions.slice(0, -1),
+                    defaultGroup: 'row',
                     helpText: 'label.help.text.cancer_incidence.hispanic_origin'
                 },
                 {
@@ -1554,7 +1563,7 @@
                     filterType: 'checkbox',
                     autoCompleteOptions: cancerAgeGroups,
                     disableAll: false,
-                    defaultGroup: 'column',
+                    defaultGroup: 'row',
                     helpText: 'label.help.text.cancer_incidence.age_group'
                 },
                 {
@@ -1626,6 +1635,7 @@
                     filterType: 'checkbox',
                     autoCompleteOptions: yearOptions.slice(1),
                     doNotShowAll: true,
+                    defaultGroup:"column",
                     helpText: 'label.help.text.cancer_mortality.year'
                 },
                 {
@@ -1635,6 +1645,7 @@
                     primary: false,
                     value: [],
                     groupBy: 'column',
+                    defaultGroup:"column",
                     filterType: 'checkbox',
                     autoCompleteOptions: genderOptions,
                     helpText: 'label.help.text.cancer_mortality.sex'
@@ -1646,6 +1657,7 @@
                     primary: false,
                     value: [],
                     groupBy: 'row',
+                    defaultGroup:"row",
                     filterType: 'checkbox',
                     autoCompleteOptions: cancerRaceOptions.slice(0, -1),
                     helpText: 'label.help.text.cancer_mortality.race'
@@ -1657,6 +1669,7 @@
                     primary: false,
                     value: [],
                     groupBy: false,
+                    defaultGroup:"row",
                     filterType: 'checkbox',
                     autoCompleteOptions: cancerHispanicOptions.slice(0, 2).concat(cancerHispanicOptions.slice(-1)),
                     helpText: 'label.help.text.cancer_mortality.hispanic_origin'
@@ -1668,6 +1681,7 @@
                     primary: false,
                     value: [],
                     groupBy: false,
+                    defaultGroup:"row",
                     filterType: 'checkbox',
                     autoCompleteOptions: cancerAgeGroups,
                     helpText: 'label.help.text.cancer_mortality.age_group'
@@ -1698,6 +1712,7 @@
                     filterType: 'checkbox',
                     autoCompleteOptions: stateOptions,
                     doNotShowAll: true,
+                    defaultGroup:"row",
                     helpText: 'label.help.text.cancer_mortality.state'
                 }
             ]

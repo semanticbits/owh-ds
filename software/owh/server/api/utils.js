@@ -834,17 +834,21 @@ function getSelectedGroupByOptions (filters) {
     }, []);
 }
 
-function getYearFilter (filters, yearFilterKey) {
-    var yearFilter = filters.find(function (filter) {
-        return filter.key === yearFilterKey
-    });
-    if (!yearFilter) return [];
-    if (yearFilter.allChecked) {
-        return yearFilter.autoCompleteOptions.map(function (option) {
+function getTargetFilter (filters, targetFilterKey) {
+  return filters.find(function (filter) {
+      return filter.key === targetFilterKey;
+  });
+}
+
+function getTargetFilterValue (filters, targetFilterKey) {
+    var targetFilter = getTargetFilter(filters, targetFilterKey);
+    if (!targetFilter) return [];
+    if (targetFilter.allChecked) {
+        return targetFilter.autoCompleteOptions.map(function (option) {
             return option.key;
         });
     }
-    return yearFilter.value
+    return targetFilter.value
 }
 
 function mapAndGroupOptionResults (options, results) {
@@ -930,24 +934,49 @@ function searchTree (root, rule, config, path) {
     }
 }
 
-function createCancerIncidenceSuppressionRules (years) {
-    years = years || [];
+function createCancerIncidenceSuppressionRules (years, states, stateGroupBy) {
     var rules = [
         [ ['American Indian/Alaska Native'], ['DE','IL','KY','NJ','NY'] ],
         [ ['Asian or Pacific Islander'], ['DE', 'IL', 'KY'] ],
         [ ['Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown'], ['DE', 'KY', 'MA'] ]
     ];
+    var stateSelectedRules;
+
+    if (states.length && !stateGroupBy) {
+        var stateRules = {
+          AR: [ 'Asian or Pacific Islander', 'Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown' ],
+          DE: [ 'American Indian/Alaska Native', 'Asian or Pacific Islander', 'Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown' ],
+          IL: [ 'American Indian/Alaska Native', 'Asian or Pacific Islander' ],
+          KY: [ 'American Indian/Alaska Native', 'Asian or Pacific Islander', 'Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown' ],
+          NJ: [ 'American Indian/Alaska Native' ],
+          NY: [ 'American Indian/Alaska Native' ],
+          MA: [ 'Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown' ]
+        }
+        stateSelectedRules = states.reduce(function (prev, state) {
+            if (stateRules[state] && state !== 'AR') {
+              return prev.concat(stateRules[state])
+            } else if (state === 'AR' && (years.indexOf('2013') !== -1 || years.indexOf('2014') !== -1)) {
+              return prev.concat(stateRules[state])
+            }
+            return prev
+        }, [])
+        .reduce(function (unique, option) {
+            if (!~unique.indexOf(option)) return unique.concat([[option]]);
+            return unique;
+        }, [])
+    }
 
     if (years.indexOf('2013') !== -1 || years.indexOf('2014') !== -1) {
         rules.push(
-            [ ['Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown'], ['AK'] ],
-            [ ['Asian or Pacific Islander'], ['AK'] ]
+            [ ['Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown'], ['AR'] ],
+            [ ['Asian or Pacific Islander'], ['AR'] ]
         );
     }
 
     return rules.reduce(function (acc, rule) {
         return acc.concat(create_rules(rule[0], rule[1]))
     }, [])
+    .concat(stateSelectedRules);
 
     function create_rules (f1options, f2options) {
         return f1options.reduce(function (accu, f1option) {
@@ -1027,7 +1056,8 @@ module.exports.applyYRBSSuppressions = applyYRBSSuppressions;
 module.exports.applyBRFSSuppression = applyBRFSSuppression;
 module.exports.getAllOptionValues = getAllOptionValues;
 module.exports.getSelectedGroupByOptions = getSelectedGroupByOptions;
-module.exports.getYearFilter = getYearFilter;
+module.exports.getTargetFilter = getTargetFilter;
+module.exports.getTargetFilterValue = getTargetFilterValue;
 module.exports.mapAndGroupOptionResults = mapAndGroupOptionResults;
 module.exports.getAllSelectedFilterOptions = getAllSelectedFilterOptions;
 module.exports.suppressStateTotals = suppressStateTotals;

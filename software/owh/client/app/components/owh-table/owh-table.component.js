@@ -215,7 +215,7 @@
                                    otc.tableView === 'cancer_mortality') {
                             if(column.title === 'suppressed') {
                                 cell += '<span>Suppressed</span>';
-                            } else if(column.title === 'Not Available') {
+                            } else if(column.title === 'na') {
                                 cell += '<span>Not Available</span>';
                             } else {
                                 cell += '<span class="count-value">' + $filter('number')(column.title) + '</span>';

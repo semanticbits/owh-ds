@@ -21,13 +21,16 @@
             </div>
             <div class="usa-width-one-whole margin-top-5 padding-top-5 border-top-default padding-bottom-10">
                 <div class="usa-width-two-thirds marker-label">
-                    <span ng-if="tableView === 'deaths'">Total Deaths</span>
-                    <span ng-if="tableView === 'bridge_race'">Total</span>
+                    <span ng-if="properties.tableView === 'number_of_deaths'">Total Deaths</span>
+                    <span ng-if="properties.tableView !== 'number_of_deaths'">Total</span>
                 </div>
-                <div class="usa-width-one-third" ng-if="tableView === 'deaths'
-            || tableView === 'bridge_race'">
-                    <span ng-if="properties[tableView] === 'suppressed'">Suppressed</span>
-                    <span ng-if="properties[tableView] !== 'suppressed'">{{properties[tableView] | number}}</span>
+                <div class="usa-width-one-third" ng-if="properties.tableView === 'number_of_deaths'">
+                    <span ng-if="properties[properties.tableView] === 'suppressed'">Suppressed</span>
+                    <span ng-if="properties[properties.tableView] !== 'suppressed'">{{properties.deaths | number}}</span>
+                </div>
+                <div class="usa-width-one-third" ng-if="properties.tableView !== 'number_of_deaths'">
+                    <span ng-if="properties[properties.tableView] === 'suppressed'">Suppressed</span>
+                    <span ng-if="properties[properties.tableView] !== 'suppressed'">{{properties[properties.tableView] | number}}</span>
                 </div>
             </div>
         </div>

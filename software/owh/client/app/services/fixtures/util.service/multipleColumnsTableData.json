@@ -543,12 +543,16 @@
           "colspan": 1
         },
         {
-          "title": "Not Available",
-          "isCount": true
+        "title":"na",
+        "isCount":true,
+        "standardPop":"na",
+        "pop":"n/a"
         },
         {
-          "title": "Not Available",
-          "isCount": true
+          "title":"na",
+          "isCount":true,
+          "standardPop":"na",
+          "pop":"n/a"
         },
         {
           "title": 314748,

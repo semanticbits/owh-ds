@@ -33,6 +33,7 @@
         mc.updateFilterByText = updateFilterByText;
         mc.getSelectedFilterTitles = getSelectedFilterTitles;
         mc.groupByFiltersUpdated = groupByFiltersUpdated;
+        mc.excludeDisabled = function (filter) { return !(filter.disableFilter || mc.selectedFilter.value.some(function(val){return val.key === filter.key})) }
 
         mc.$onChanges = function() {
             var filters = [];
@@ -98,7 +99,14 @@
             mc.searchResults({});
         }
 
-        function groupByFiltersUpdated(added) {
+        function groupByFiltersUpdated(item, added) {
+            // For BRFSS Allow only one breakout filter other than state, question and year
+            if (mc.selectedFilter.key === 'brfss'){
+                mc.selectedFilter.value = mc.selectedFilter.value.filter(function(val){
+                    return val.key === 'state' || val.key === 'question' || val.key === 'year' || val.key === item.key;
+                  }
+                );
+            }
             var selectedFilterKeys = utilService.getValuesByKey(mc.selectedFilter.value, 'key');
             angular.forEach(mc.selectedFilter.allFilters, function(eachGroupByFilter) {
                 if(!eachGroupByFilter.donotshowOnSearch && selectedFilterKeys.indexOf(eachGroupByFilter.key) < 0) {
@@ -117,5 +125,7 @@
             mc.displayMenu = false;
             mc.onPrimaryFilter({newFilter:filterKey})
         }
+
+
     }
 }());
