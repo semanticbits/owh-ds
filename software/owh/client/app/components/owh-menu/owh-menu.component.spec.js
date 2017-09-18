@@ -126,4 +126,95 @@ describe('OWH menu component: ', function() {
         expect(titles[0]).toEqual('label.filter.agegroup');
         expect(titles[1]).toEqual('label.filter.hispanicOrigin');
     }));
+
+    it("groupByFiltersUpdated should select only one braekout filter for BRFSS", function () {
+        var searchResults =  jasmine.createSpy('searchResults');
+        var filter = {key: 'brfss', allFilters: [{
+                key: 'question', title: 'label.brfss.filter.question',
+                queryKey:"question", primary: false,
+                value: [], groupBy: false,
+                filterType: 'checkbox',
+                doNotShowAll: false, helpText: 'label.help.text.brfss.question'
+            },
+            {
+                key: 'sex',
+                title: 'label.filter.gender',
+                queryKey: "sex",
+                primary: false,
+                value: [],
+                groupBy: 'column',
+                filterType: 'radio',defaultGroup:"column",
+                doNotShowAll: false,
+                helpText: 'label.help.text.brfss.sex'
+            },
+            {
+                key: 'state', title: 'label.brfss.filter.state',
+                queryKey:"sitecode",primary: false, value: ['AL'],
+                groupBy: false, filterType: 'radio',defaultGroup:"column",
+                displaySearchBox:true, displaySelectedFirst:true,
+                doNotShowAll: false, helpText: 'label.help.text.brfss.state'
+            },
+            {
+                key: 'race', title: 'label.brfss.filter.race_ethnicity',
+                queryKey:"race", primary: false, value: [],
+                groupBy: false, filterType: 'radio',defaultGroup:"column",
+                doNotShowAll: false, helpText: 'label.help.text.brfss.race_ethnicity'
+            }]};
+        var bindings = { selectedFilter: filter};
+
+        var ctrl = $componentController('owhMenu', null, bindings);
+        ctrl.selectedFilter.value = [filter.allFilters[0],filter.allFilters[1],filter.allFilters[3]];
+        ctrl.groupByFiltersUpdated(filter.allFilters[3],true);
+        expect(filter.allFilters[3].groupBy).toEqual("column");
+        expect(filter.allFilters[1].groupBy).toEqual(false);
+        expect(ctrl.selectedFilter.value).toEqual([filter.allFilters[0],filter.allFilters[3]]);
+        //Select state
+        ctrl.selectedFilter.value = [filter.allFilters[0],filter.allFilters[1],filter.allFilters[2]];
+        ctrl.groupByFiltersUpdated(filter.allFilters[2],true);
+        expect(filter.allFilters[2].groupBy).toEqual("column");
+        expect(ctrl.selectedFilter.value).toEqual([filter.allFilters[0],filter.allFilters[2]])
+
+
+    });
+
+    it ("test excludedisabled", function(){
+        var filter = {key: 'brfss', allFilters: [{
+            key: 'question', title: 'label.brfss.filter.question',
+            queryKey:"question", primary: false,
+            value: [], groupBy: false,
+            filterType: 'checkbox',
+            doNotShowAll: false, helpText: 'label.help.text.brfss.question'
+        },
+            {
+                key: 'sex',
+                title: 'label.filter.gender',
+                queryKey: "sex",
+                primary: false,
+                value: [],
+                groupBy: 'column',
+                filterType: 'radio',defaultGroup:"column",
+                doNotShowAll: false,
+                helpText: 'label.help.text.brfss.sex'
+            },
+            {
+                key: 'state', title: 'label.brfss.filter.state',
+                queryKey:"sitecode",primary: false, value: ['AL'],
+                groupBy: false, filterType: 'radio',defaultGroup:"column",
+                displaySearchBox:true, displaySelectedFirst:true,
+                doNotShowAll: false, helpText: 'label.help.text.brfss.state'
+            },
+            {
+                key: 'race', title: 'label.brfss.filter.race_ethnicity',
+                queryKey:"race", primary: false, value: [],
+                groupBy: false, filterType: 'radio',defaultGroup:"column",
+                doNotShowAll: false, helpText: 'label.help.text.brfss.race_ethnicity', disableFilter:true
+            }],
+        };
+        filter.value = [filter.allFilters[0],filter.allFilters[1]];
+        var ctrl = $componentController('owhMenu', null, { selectedFilter: filter});
+        // ctrl.selectedFilter.value = ;
+        expect(ctrl.excludeDisabled(filter.allFilters[3])).toEqual(false);
+        expect(ctrl.excludeDisabled(filter.allFilters[0])).toEqual(false);
+        expect(ctrl.excludeDisabled(filter.allFilters[2])).toEqual(true);
+    });
 });
