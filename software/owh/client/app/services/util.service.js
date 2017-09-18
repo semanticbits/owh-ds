@@ -735,7 +735,7 @@
                             if(eachOptionLength <= 0) {
                                 eachOptionLength = getOptionDataLength(columnHeaders.slice(1));
                             }
-                            tableData = tableData.concat(getArrayWithDefaultValue(eachOptionLength, {title: 'Not Available', percentage: percentage , isCount: true}));
+                            tableData = tableData.concat(getArrayWithDefaultValue(eachOptionLength,{title: 'na',isCount: true, standardPop: 'na', pop:'n/a'}));
                         }
                     }
                 });

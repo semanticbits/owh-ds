@@ -508,12 +508,16 @@
           "key": "White"
         },
         {
-          "title": "Not Available",
-          "isCount": true
+        "title":"na",
+        "isCount":true,
+        "standardPop":"na",
+        "pop":"n/a"
         },
         {
-          "title": "Not Available",
-          "isCount": true
+          "title":"na",
+          "isCount":true,
+          "standardPop":"na",
+          "pop":"n/a"
         },
         {
           "title": 157850,
