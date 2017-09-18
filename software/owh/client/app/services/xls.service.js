@@ -129,8 +129,9 @@
             else if (['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates', 'std', 'tb', 'aids',
                 'disease_rate', 'number_of_infant_deaths', 'crude_cancer_incidence_rates', 'crude_cancer_death_rates'].indexOf(tableView) >= 0) {
                 var rateLabel = { 'crude_death_rates': 'Crude Death Rate', 'age-adjusted_death_rates': 'Age Adjusted Death Rate', 'birth_rates': 'Birth Rate', 'fertility_rates': 'Fertility Rate' }[tableView] || 'Rate';
-                var countLabel = { 'birth_rates': 'Births', 'fertility_rates': 'Births', 'std': 'Cases', 'tb': 'Cases', 'aids': 'Cases', 'disease_rate': 'Cases', 'crude_cancer_incidence_rates': 'Incidence' }[tableView] || 'Deaths';
-                transformTableForRates(table, rateLabel, countLabel, tableView);
+                var countLabel = { 'birth_rates': 'Births', 'fertility_rates': 'Births', 'std': 'Cases', 'tb': 'Cases', 'aids': 'Cases', 'disease_rate': 'Cases', 'crude_cancer_incidence_rates': 'Incidence', 'number_of_infant_deaths': "Infant Deaths" }[tableView] || 'Deaths';
+                var popLabel = { 'number_of_infant_deaths': "Births" }[tableView] || 'Population';
+                transformTableForRates(table, rateLabel, popLabel, countLabel, tableView);
             }
 
             var sheet = [];
@@ -152,7 +153,7 @@
                 angular.forEach(headerRow, function (cell, innerIdx) {
                     var colspan = cell.colspan;
                     //check is column header for data column, else add header as normal
-                    if (table.calculatePercentage && ((innerIdx >= table.rowHeadersLength && innerIdx < headerRow.length - 1) || idx > 0 || (cell.isData && cell.title != "Total"))) {
+                    if (table.calculatePercentage && ((innerIdx >= table.rowHeadersLength && innerIdx < headerRow.length - 1) || idx > 0 || (cell.isData && !cell.isTotal))) {
                         //for the bottom row just add an extra column for every existing one, else double the length
                         if(idx === table.headers.length - 1) {
                             headers.push({title: cell.title, colspan: colspan, rowspan: cell.rowspan});
@@ -202,6 +203,7 @@
                 //get padding
                 var padding = getPadding(colOffsets);
 
+                // TODO: For OWH-1877 issue #13: Real fix should go around this code. The issue is that some additional unneeded padding cells are being added.
                 //add padding as needed to row
                 if(table.rowHeadersLength > 1) {
                     if(padding > 0) {
@@ -233,7 +235,7 @@
             return sheet;
         }
 
-        function transformTableForRates(table, ratesLabel, countLabel, tableView) {
+        function transformTableForRates(table, ratesLabel, popLabel, countLabel, tableView) {
             // Headers
             var headers = table.headers;
             headers.forEach(function (headerRow) {
@@ -253,14 +255,14 @@
             headers[headers.length - 1].forEach(function (headerCell, index) {
                 if (headerCell.isData && (index !== headers[headers.length - 1].length - 1)) {
                     newHeaderRow.push({ title: ratesLabel, colspan: 1, rowspan: 1 });
-                    newHeaderRow.push({ title: "Population", colspan: 1, rowspan: 1 });
+                    newHeaderRow.push({ title: popLabel, colspan: 1, rowspan: 1 });
                     newHeaderRow.push({ title: countLabel, colspan: 1, rowspan: 1 });
                 }
             });
 
             // Add them for the total column
             newHeaderRow.push({ title: ratesLabel, colspan: 1, rowspan: 1 });
-            newHeaderRow.push({ title: "Population", colspan: 1, rowspan: 1 });
+            newHeaderRow.push({ title: popLabel, colspan: 1, rowspan: 1 });
             newHeaderRow.push({ title: countLabel, colspan: 1, rowspan: 1 });
 
             headers.push(newHeaderRow);
@@ -381,7 +383,9 @@
         //helper function to repeat merge cells in header for CSV output
         function padSheetForCSV(sheet, colHeaders, rowHeadersLength) {
             var headerMerges = [];
-            angular.forEach(sheet['!merges'], function(merge, idx) {
+            // Temporary fix for OWH-1877 issue #13. Real fix should go around the todo comment added above 'TODO: For OWH-1877 issue #13'
+            var sheetMerges = (sheet['!merges'] || []).reverse();
+            sheetMerges.forEach(function(merge, idx) {
                 //only repeat if merge cell is part of headers, use rowHeaders.length - 1 because of Total row
                 if(merge.s.r < colHeaders.length || merge.s.c < rowHeadersLength - 1) {
                     var start = sheet[XLSX.utils.encode_cell(merge.s)];
