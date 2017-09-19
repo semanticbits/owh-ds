@@ -384,7 +384,7 @@
                     image: 'tuberculosis-icon.svg',
                     yrsAvail: '2000-2015',
                     topics: "Tuberculosis",
-                    dataDescription: "TB data are presented by year of disease confirmation, reporting area (state/territory or county), age group, race/ethnicity, sex, and whether or not the patient was born in the United States. The most common site of infection is the lung, but other organs may be involved. Nationally notifiable TB surveillance data are collected and compiled from reports sent to CDC’s Division of TB Elimination by the TB control programs and health departments in all 50 states, the District of Columbia, U.S. dependencies and possessions, and independent nations in free association with the United States.",
+                    dataDescription: "TB data are presented by year of disease confirmation, reporting area (state), age group, race/ethnicity, sex, and whether or not the patient was born in the United States. The most common site of infection is the lung, but other organs may be involved. Nationally notifiable TB surveillance data are collected and compiled from reports sent to CDC’s Division of TB Elimination by the TB control programs and health departments in all 50 states, the District of Columbia, U.S. dependencies and possessions, and independent nations in free association with the United States.",
                     suppression: "Data are not suppressed at the state level; TB data can be viewed in aggregate format or one-way stratifications (i.e., by age group, sex, race/ethnicity, or country of birth [U.S.-born or foreign-born]).",
                     source: "The CDC collects, analyzes, and disseminates surveillance data on newly reported cases of tuberculosis (TB) disease in the United States. The Atlas presents TB case report data submitted from all 50 states, the District of Columbia for the years 2000 to 2015.",
                     isRateCalculation: true,
@@ -404,6 +404,11 @@
                             isRateInfo:true,
                             question:"How are Rates calculated?",
                             answer:"TB Rates are expressed as the number of cases reported each calendar year per 100,000 populations."
+                        },
+                        {
+                            isRateInfo:false,
+                            question:"Why cannot I apply more than one demographic filter on State data?",
+                            answer:"TB data can be viewed in aggregate format or one-way stratifications (i.e., by age group, sex, race/ethnicity, or country of birth [U.S.-born or foreign-born]). When the state filter is applied, then only one of the demographic filters can be applied as data are not available."
                         }
                     ]
                 },
