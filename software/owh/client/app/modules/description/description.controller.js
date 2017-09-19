@@ -113,7 +113,7 @@
                     image: 'detailed-mortality-icon.svg',
                     yrsAvail: '2000-2015',
                     topics: 'Multiple Causes of Death, Cancer, Diabetes, Deaths, Sexually Transmitted Diseases, Tuberculosis, Alcohol and Other Drug Use, Obesity, Overweight, Weight Control, Tobacco Use, HIV/AIDS, Prostate Cancer, Population Data',
-                    dataDescription: 'The mortality data are based on death certificates for U.S. residents. Each death certificate identifies a single underlying cause of death and demographic data. The number of deaths, crude death rates or age-adjusted death rates, and 95% confidence intervals and standard errors for death rates can be obtained by place of residence (total U.S., region, and state), age group (single-year-of age, 5-year age groups, 10-year age groups), race (4 groups), Hispanic ethnicity, gender, year, cause-of-death (4-digit ICD-10 code or group of codes), injury intent and injury mechanism, drug/alcohol induced causes. Data are also available for place of death, month and week day of death, and whether an autopsy was performed.',
+                    dataDescription: 'The mortality data are based on death certificates for U.S. residents. Each death certificate identifies a single underlying cause of death and demographic data. The number of deaths, crude death rates or age-adjusted death rates can be obtained by place of residence (total U.S., region, and state), 5-year age groups, race (4 groups), Hispanic ethnicity, gender, year, cause-of-death (4-digit ICD-10 code or group of codes), injury intent and injury mechanism, drug/alcohol induced causes. Data are also available for place of death, month and week day of death, and whether an autopsy was performed.',
                     suppression: 'Vital statistics data are suppressed due to confidentiality constraints, in order to protect personal privacy. As of May 23, 2011, all sub-national data representing zero to nine (0-9) deaths or births are suppressed. Corresponding sub-national denominator population figures are also suppressed when the population represents fewer than ten persons.',
                     source: 'The Detailed Mortality data are compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative; the data set is produced by the U.S. Department of Health and Human Services (US HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS), Division of Vital Statistics (DVS), Mortality Statistics Branch.',
                     isRateCalculation: true,
@@ -146,7 +146,7 @@
                             "<li>The archive population estimates for years 2001 - 2009 are postcensal estimates of the July 1 resident population.</li>" +
                             "<li>The 2011 - 2015 population estimates are postcensal estimates of the July 1 resident population.</li>" +
                             "</ul>" +
-                            "Note that these estimates are based on bridged-race categories. The population estimates are by geographic unit (total United States, State, and county), year, race (white, black, other races), sex, and age group (13 age groups). To permit the calculation of infant mortality rates, NCHS live-birth data are included on the file.<br/><br/>"
+                            "Note that these estimates are based on bridged-race categories. The population estimates are by geographic unit (total United States, State), year, race (white, black, other races), sex, and age group. To permit the calculation of infant mortality rates, NCHS live-birth data are included on the file.<br/><br/>"
                         },
                         {
                             isRateInfo:true,
@@ -156,14 +156,13 @@
                             "<p>R' = S i ( Psi / Ps ) Ri</p>where <b>Psi</b> is the standard population for age group <b>i</b> and <b>Ps</b> is the total U.S. standard population (all ages combined).<br/><br/>"
                         },
                         {
-                            question:"How are Crude Rates calculated? ",
+                            question:"How are Crude Rates calculated?",
                             answer:"Crude Rates are expressed as the number of deaths reported each calendar year per the factor you select. The default factor is per 100,000 population, reporting the death rate per 100,000 persons." +
                             "<p>Crude Rate = Count / Population * 100,000</p>"
                         },
                         {
                             question:"What are the suppression rules for Crude Death Rates?",
-                            answer:"Infant's weight at birth is available in 3 sets of categories, through 8165 grams, or Not stated:" +
-                            "<ul>" +
+                            answer:"<ul>" +
                             "<li>Rates for small populations should be interpreted with caution.</li>" +
                             "<li>Rates are suppressed for sub-national data representing zero to nine (0-9) deaths. Corresponding sub-national denominator population figures are also suppressed when the population represents fewer than 10 persons.</li>" +
                             "<li>Rates are marked as <i>unreliable</i> when the death count is less than 20.</li>" +
@@ -178,6 +177,10 @@
                             "<li>Rates are marked as not applicable when the denominator population figure is unavailable, such as not stated or unknown age or ethnicity.</li>" +
                             "<li>Deaths of persons with not stated or unknown age are not included in the calculation of age-adjusted rates.</li>" +
                             "</ul>"
+                        },
+                        {
+                            question:"Why are some filters disabled for Crude Rates and Age Adjusted Rate calculations?",
+                            answer:"The Crude Rates and Fertility Rates data are limited to certain items. These data are not available for filters that show up as disabled.",
                         }
                     ]
                 },
