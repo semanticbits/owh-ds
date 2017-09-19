@@ -527,6 +527,10 @@
                             question:"How are Rates calculated?",
                             answer:"This represents the rates for deaths of children under 1 year of age, occurring within the United States to U.S. residents" +
                             "<p>Rates = (Counts of deaths of children under 1 year of age) / Live births (age under 365 days) to a mother who is a resident of the United States</p>"
+                        },
+                        {
+                            question:"Why can I not pick years from two groups?",
+                            answer:"Different sets of years have different filter options available. Hence the years under one set cannot be combined and compared with other set. The years 2000-2014 are divided into three sets 2000-2002, 2003-2006 and 2007-2014"
                         }
                     ]
                 },
