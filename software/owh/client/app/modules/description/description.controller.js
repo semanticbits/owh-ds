@@ -1,4 +1,4 @@
-(function(){
+﻿(function(){
     angular
         .module('owh.description')
         .controller('DescriptionController', DescriptionController);
@@ -229,8 +229,8 @@
                     "</ul>",
                     source: "The United States Cancer Statistics (USCS) are the official federal statistics on cancer incidence from registries having high-quality data and cancer mortality statistics for 50 states and the District of Columbia. USCS are produced by the Centers for Disease Control and Prevention (CDC) and the National Cancer Institute (NCI), in collaboration with the North American Association of Central Cancer Registries (NAACCR). Data are provided by:" +
                     "<ul>" +
-                      "<li>The Centers for Disease Control and Prevention National Program of Cancer Registries (NPCR) </li>" +
-                      "<li>The National Cancer Institute Surveillance, Epidemiology and End Results (SEER) program.</li>" +
+                    "<li>The Centers for Disease Control and Prevention National Program of Cancer Registries (NPCR) </li>" +
+                  "<li>The National Cancer Institute Surveillance, Epidemiology and End Results (SEER) program.</li>" +
                     "</ul>",
                     isRateCalculation: true,
                     filters: [
@@ -352,7 +352,7 @@
                     topics: "Infants, Sexually Transmitted Diseases, Chlamydia, Gonorrhea, Primary and Secondary Syphilis, Early Latent Syphilis, Congenital Syphilis",
                     dataDescription: "STD morbidity data presented in this report are compiled from a combination of data reported on standardized hard copy reporting forms and electronic data received through the National Electronic Tele­communications System for Surveillance (NETSS) for diagnosis years 2000 through 2015.",
                     suppression: "For STD data, the data suppression rule is applied when the numerator for a given state is 3 or less. When suppressed, data are only displayed by state totals and breakdown by demographic characteristics is not permitted.",
-                    source: "The CDC collects, analyzes, and disseminates surveillance data on STD diagnoses. The NCHHSTP AtlasPlus presents chlamydia, gonorrhea, congenital syphilis, and primary and secondary syphilis case report data submitted from all 50 states, the District of Columbia for the years 2000 to 2015 and early latent syphilis case report data for 2003-2015. STD data are presented by disease, year of diagnosis, reporting area (state or territory), age group, race/ethnicity, and sex.",
+                    source: "The CDC collects, analyzes, and disseminates surveillance data on STD diagnoses. The NCHHSTP AtlasPlus presents chlamydia, gonorrhea, congenital syphilis, and primary and secondary syphilis case report data submitted from all 50 states, the District of Columbia for the years 2000 to 2015 and early latent syphilis case report data for 2003-2015. STD data are presented by disease, year of diagnosis, reporting area (state), age group, race/ethnicity, and sex.",
                     isRateCalculation: true,
                     filters: [
                         {name: "Cases", description: "Cases of a given STD refer to confirmed diagnoses during a given time period"},
@@ -370,6 +370,11 @@
                             isRateInfo:true,
                             question:"How are Rates calculated?",
                             answer:"Each rate was calculated by dividing the number of STD cases for the calendar year by the population for that calendar year and then multiplying the number by 100,000."
+                        },
+                        {
+                            isRateInfo:false,
+                            question:"What are the scenarios where data is not available?",
+                            answer:"<u>Race/Ethnicity</u><ul><li>Data are not available for the Race/Ethnicity stratification over National data for the years 2007-2010 for all diseases</li><li>No data are available for Race/Ethnicity stratification for 2000-2006 for all diseases</li></ul><p>When specific race/ethnicity data are presented in this atlas, the following OMB compliant categories are reported: American Indian or Alaska Native, Asian, Black or African American, Hispanic or Latino, Native Hawaiian or Other Pacific Islander, White and multirace. States began reporting these OMB compliant race categories in different years. Therefore, specific race/ethnicity categories are presented for a state only in the years when that state reported 97% or more of its cases with OMB compliant race/ethnicity categories. In addition, when presenting 5-year trend data, only states that reported 97% of more of their cases with OMB compliant race/ethnicity categories for all five years are included.</p><u>Additional Scenarios:</u><ul><li>National data are not available for the years 2000-2002 for Early Latent Syphilis</li><li>Population data are not available when Race/Ethnicity is Unknown, hence the Rates are not applicable</li><li>Only aggregate data are available for Congenital Syphilis. No demographic filter can be applied on these data</li></ul>"
                         }
                     ]
                 },
