@@ -16,7 +16,7 @@ env:
 before_install:
   - docker info
   - mkdir -p .owh/logs
-  - pip install awscli
+  - sudo pip install awscli
   - export PATH=$PATH:$HOME/.local/bin
 
 
