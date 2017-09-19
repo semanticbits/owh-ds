@@ -232,6 +232,7 @@ function search(q) {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true, searchUtils.getAllOptionValues());
         sideFilterTotalCountQuery = queryBuilder.addCountsToAutoCompleteOptions(q);
         sideFilterTotalCountQuery.countQueryKey = 'cases';
+        sideFilterTotalCountQuery.filterCountsQuery = true;
         sideFilterQuery = queryBuilder.buildSearchQuery(sideFilterTotalCountQuery, true);
         var indexName, indexType;
         if (preparedQuery.apiQuery.searchFor === 'std') {

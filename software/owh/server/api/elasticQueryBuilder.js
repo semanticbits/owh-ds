@@ -223,12 +223,18 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     searchQueryArray.push(elasticQuery);
     //Prepare chart query for disease datasets 'std', 'tb' and 'aids'.
     if(params.searchFor == 'std' || params.searchFor == 'tb' || params.searchFor == 'aids') {
-        var charQueryArray = buildChartQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, censusQuery, params.searchFor);
+        var chartQueryArray = buildChartQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, censusQuery, params.searchFor);
+        console.log(chartQueryArray)
+        if (!params.filterCountsQuery) {
+            var mapPopQuery = getPopulationQueryForMap(params.aggregations);
+            mapPopQuery.query = mapQuery.query;
+            chartQueryArray[0].splice(0, 0, mapPopQuery );
+        }
         //'Population' query
-        searchQueryArray.push(charQueryArray[0]);
+        searchQueryArray.push(chartQueryArray[0]);
         searchQueryArray.push(mapQuery);
         //Chart 'Cases' query
-        searchQueryArray.push(charQueryArray[1]);
+        searchQueryArray.push(chartQueryArray[1]);
     }
     else {
         searchQueryArray.push(censusQuery);
@@ -1087,6 +1093,12 @@ function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery,
     }
     //List of 'Population query' and 'Cases query'
     return [chartPopulationQueryArray, chartCasesQueryArray];
+}
+
+function getPopulationQueryForMap(aggregations) {
+    var populationQuery = { "size":0, aggregations: {} };
+    populationQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['maps'][0], 'group_maps_' + 0 + '_');
+    return populationQuery
 }
 
 

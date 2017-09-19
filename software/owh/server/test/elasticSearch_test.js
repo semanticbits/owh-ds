@@ -596,10 +596,13 @@ describe("Elastic Search", function () {
             expect(states[0].name).equal('AK');
             expect(states[0].sex[0].name).equal('Both sexes');
             expect(states[0].sex[0].std).equal(11320);
+            expect(states[0].sex[0].pop).equal(1473464);
             expect(states[0].sex[1].name).equal('Female');
             expect(states[0].sex[1].std).equal(7572);
+            expect(states[0].sex[1].pop).equal(698872);
             expect(states[0].sex[2].name).equal('Male');
             expect(states[0].sex[2].std).equal(3742);
+            expect(states[0].sex[2].pop).equal(774592);
 
             done();
         })
@@ -607,10 +610,10 @@ describe("Elastic Search", function () {
 
     it("Check aggregate std chart data with filter 'Sex', 'Race/Ethinicity' and 'Age Group'", function (done){
         var casesQuery = stdQueryWithMultipleFilters[0];
-        var PopulationQuery = stdQueryWithMultipleFilters[1];
+        var populationQuery = stdQueryWithMultipleFilters[1];
         var mapQuery = stdQueryWithMultipleFilters[2];
         var chartQuery = stdQueryWithMultipleFilters[3];
-        var query = [casesQuery, PopulationQuery, mapQuery, chartQuery];
+        var query = [casesQuery, populationQuery, mapQuery, chartQuery];
         new elasticSearch().aggregateDiseaseData(query, 'std', 'owh_std', 'std').then(function (resp) {
             //Chart 0 -> age_group vs race
             expect(resp.data.nested.charts[0].age_group[16].name).equal("All age groups");
