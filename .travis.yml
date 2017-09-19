@@ -1,119 +1,38 @@
+sudo: required 
+
 language: node_js
 node_js:
-  - '4.4'
+  - "node"
+
 services:
   - docker
-
-cache:
-  directories:
-  - node_modules
-  - software/owh/server/node_modules
-  - software/owh/client/node_modules
-  - bower_components
-  - software/owh/client/bower_components
-addons:
-  code_climate:
-    repo_token: aa4bb84528f703e93a68f03079e9870898d452659e9498bbba8fb043c66e3083
 
 env:
   global:
     - AWS_ACCESS_KEY_ID=$OWH_ACCESS_KEY
     - AWS_SECRET_ACCESS_KEY=$OWH_ACCESS_SECRET
-    - NODE_ENV=test
-  
+#    - NODE_ENV=test
+
 before_install:
-  - curl -O https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.4.0/elasticsearch-2.4.0.deb && sudo dpkg -i --force-confnew elasticsearch-2.4.0.deb && sudo service elasticsearch restart
   - docker info
-  - openssl aes-256-cbc -K $encrypted_515f2799f321_key -iv $encrypted_515f2799f321_iv -in .owh/owh-config.yaml.enc -out .owh/owh-config.yaml -d
+  - mkdir -p .owh/logs
   - pip install awscli
   - export PATH=$PATH:$HOME/.local/bin
-   
-install:
-  - cd software/owh/server
-  - npm install
-  - npm install --dev
-  - cd  ../client
-  - npm install
-  - npm install --dev
-  - npm install -g nodemon
-  - npm install -g istanbul
-  - npm install -g codeclimate-test-reporter
-  - npm install -g lcov-result-merger
 
-before_script:
-  - sleep 10
-  - curl http://localhost:9200/  # To verify ElasticSearch running
-  - curl -XPUT 'http://localhost:9200/owh' #create index 'owh' in ElasticSearch
-  - "curl -XPUT \"http://localhost:9200/owh/_settings\" -d '{ \"index\" : { \"max_result_window\" : 1000000000}}\'" #increase result window - forgive the nasty esacping.
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - npm start > /dev/null &
-  - ./node_modules/protractor/bin/webdriver-manager update
-  - sleep 1 #give server time to start
-
-script:
-  - npm run-script test-single-run
-  - ls
-  - ls coverage
-  - ls 'coverage/PhantomJS 2.1.1 (Linux 0.0.0)'
-  - cd ../server
-  - istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive test
-  - npm start > /dev/null &
-  - sleep 10
-  - cd ../client
-  - ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox
-
-after_success:
-  - cd ..
-  - lcov-result-merger './**/lcov.info' 'merged-lcov.info'
-  - codeclimate-test-reporter < "merged-lcov.info"
 
 before_deploy:
 
   - cd $TRAVIS_BUILD_DIR/software/owh
   # Dealing with paths that fight each other... start the nasty bit...
   - cp -R $TRAVIS_BUILD_DIR/deployment/* $TRAVIS_BUILD_DIR/software/owh
-  # End the nasty bit.
-  - aws s3 sync s3://owh-config-dev $TRAVIS_BUILD_DIR/software/owh
-  - docker-compose up -d
-  - docker-compose build
-  - docker images
-  - mkdir -p dpl_tmp
-  - mkdir -p dpl_cd_upload
-  - docker save owh_web |  gzip -c >  dpl_tmp/owh_web.tar.gz
-  - cp $TRAVIS_BUILD_DIR/deployment/appspec.yml dpl_tmp/appspec.yml
-  - cp $TRAVIS_BUILD_DIR/deployment/docker-compose-deploy.yml  dpl_tmp/docker-compose.yml
-  - cp $TRAVIS_BUILD_DIR/deployment/Dockerfile  dpl_tmp/
-  - cp -R $TRAVIS_BUILD_DIR/deployment/scripts  dpl_tmp/scripts
-  - cd dpl_tmp
-  - zip -r owh-${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}.zip *
-  - ls
-  - cd ..
-  - mv dpl_tmp/owh-${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}.zip dpl_cd_upload/
-  - ls dpl_tmp
-  - rm -rf dpl_tmp
+  - mkdir -p $TRAVIS_BUILD_DIR/software/owh/.owh/logs
 
-deploy:
-- provider: s3
-  access_key_id: $OWH_ACCESS_KEY
-  secret_access_key: $OWH_ACCESS_SECRET
-  local_dir: dpl_cd_upload
-  skip_cleanup: true
-  on: &2
-    repo: semanticbits/owh-ds
-    branch:
-     - develop
-     # - release (TBD)
-  bucket: sb-owh-deployment
-- provider: codedeploy
-  access_key_id: $OWH_ACCESS_KEY
-  secret_access_key: $OWH_ACCESS_SECRET
-  bucket: sb-owh-deployment
-  key: owh-$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER.zip
-  bundle_type: zip
-  application: OwhDev
-  deployment_group: $TRAVIS_BRANCH
-  on: *2
+after_success:
+  - docker --version  # document the version travis is using
+  - eval $(aws ecr get-login --region us-east-1) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
+  - docker build -t owh-prod .
+  - docker tag owh-prod:latest 498284886784.dkr.ecr.us-east-1.amazonaws.com/owh-prod:latest
+  - docker push 498284886784.dkr.ecr.us-east-1.amazonaws.com/owh-prod:latest
+  - sh script.sh
 
-after_script:
-  - kill -9 $(fuser -n tcp 3000 2> /dev/null)
+
