@@ -618,6 +618,10 @@
                         {
                             question:"What does PRAMS do with the information?",
                             answer:"The information collected from the mothers is used to develop health programs and policies; help doctors and nurses improve care; and make better use of health resources."
+                        },
+                        {
+                            question:"Why are results not available for every state?",
+                            answer:"Results are not available from every state for several reasons. Firstly, Eleven states (Arizona, Connecticut, District of Columbia, Idaho, Indiana, Iowa, Kansas, Kentucky, Nevada, New Hampshire, Virginia) do not participate in the PRAMS. Secondly, data is not available for some states in certain years (See Availability of PRAMS Data For Analysis by State and Year: <a href='https://www.cdc.gov/prams/pramstat/state-availability-year.html' target='_blank'>https://www.cdc.gov/prams/pramstat/state-availability-year.html</a>)"
                         }
                     ]
                 },
