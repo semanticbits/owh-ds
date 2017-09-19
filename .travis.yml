@@ -13,15 +13,13 @@ env:
     - AWS_SECRET_ACCESS_KEY=$OWH_ACCESS_SECRET
 #    - NODE_ENV=test
 
-before_install:
+install:
   - docker info
   - mkdir -p .owh/logs
   - sudo pip install awscli
   - export PATH=$PATH:$HOME/.local/bin
 
-
-before_deploy:
-
+script:
   - cd $TRAVIS_BUILD_DIR/software/owh
   # Dealing with paths that fight each other... start the nasty bit...
   - cp -R $TRAVIS_BUILD_DIR/deployment/* $TRAVIS_BUILD_DIR/software/owh
