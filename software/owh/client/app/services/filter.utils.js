@@ -1765,7 +1765,6 @@
                     groupBy: false,
                     filterType: 'checkbox',
                     autoCompleteOptions: yearOptions.slice(1),
-                    doNotShowAll: true,
                     defaultGroup:"column",
                     helpText: 'label.help.text.cancer_mortality.year'
                 },
