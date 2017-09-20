@@ -51,7 +51,7 @@
                                     <br/><br/>
                                     ({{eachColumn.title.ci_l}}-{{eachColumn.title.ci_u}})
                                 </div>
-                                <div ng-if="oatc.showUf && eachColumn.title.mean != 'suppressed' && eachColumn.title.mean != 'na'"
+                                <div ng-if="oatc.showUf && oatc.isShowCounts(eachColumn.title.mean)"
                                      title="Number of responses">
                                     <br/>
                                     {{eachColumn.title.count}}
