@@ -4106,7 +4106,7 @@ describe("YRBS API", function () {
         });
     });
 
-    it("should get brfss questions tree", function (){
+    xit("should get brfss questions tree", function (){
         return yrbs.getBRFSQuestionsTree().then(function (response) {
             expect(response.questionTree[0].text).to.eql("Aerobic Activity");
             expect(response.questionTree[0].children.length).to.eql(2);
