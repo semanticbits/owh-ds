@@ -1,0 +1,66 @@
+<div ng-repeat="topic in oatc.data">
+    <h5>
+        <a class="topic-accordion" href="javascript:void(0)" ng-click="topic.collapse = !topic.collapse">
+            <span class="purple-icon" title="Collapse topic"
+                      ng-show="topic.collapse">
+                <i class="material-icons chevron-right-black">chevron_right</i>
+            </span>
+            <span class="purple-icon" title="Expand topic"
+                      ng-show="!topic.collapse">
+                <i class="material-icons keyboard-arrow-down-black">keyboard_arrow_down</i>
+            </span>
+            {{topic.title}}
+        </a>
+    </h5>
+    <div ng-if="topic.questions.length == 0 && !topic.collapse"
+         ng-bind="'label.survey.data.not.available' | translate"
+         class="disclaimer-surveydata-notavailable"></div>
+
+    <div ng-if="topic.questions.length > 0" class="horizontal-scroll">
+        <table class="owh-data-table" id="survey_table_{{$index}}" ng-if="!topic.collapse">
+            <thead>
+                <tr ng-repeat="eachHeaderRow in oatc.headers">
+                    <th ng-repeat="eachHeader in eachHeaderRow" ng-bind="eachHeader.title"
+                        colspan="{{eachHeader.colspan}}" rowspan="{{eachHeader.rowspan}}"
+                        title="{{eachHeader.helpText}}" ng-if="eachHeader.title != 'Question'"></th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="eachRow in oatc.listRows(topic)">
+                <tr ng-if="eachRow[0].title">
+                   <td colspan="100%">
+                       <span class="visualize cursor-pointer {{eachRow[0].iconClass}}"
+                             id="{{eachRow[0].qkey}}"
+                             ng-if="eachRow[0].iconClass && oatc.showCharts"
+                             ng-click="eachRow[0].onIconClick(eachRow[0])">
+                           <i class="material-icons pie-chart-icon-purple" title="Visualize">pie_chart</i>
+                       </span> &nbsp;&nbsp;
+                       <span ng-bind="eachRow[0].title" class="stat-question"></span>
+                   </td>
+                </tr>
+                <tr class="owh-question__question">
+                    <td ng-repeat="eachColumn in eachRow" colspan="{{ eachColumn.colspan }}"
+                        rowspan="{{ eachColumn.rowspan }}" ng-style="eachColumn.style"
+                        ng-if="!eachColumn.key" ng-class="{'bold-class': $index == 1}">
+                        <div class="owh-question__content" ng-class="{'text-right': $index > 1}">
+                            <span ng-if="!eachColumn.title.mean" ng-bind-html="eachColumn.title"></span>
+                            <div ng-if="eachColumn.title.mean">
+                                {{eachColumn.title.mean == 'suppressed' ? 'Suppressed' :
+                                (eachColumn.title.mean == 'na'? 'No response' : eachColumn.title.mean + '%')}}
+                                <div ng-if="oatc.showCi && eachColumn.title.mean != 'suppressed' && eachColumn.title.mean != 'na'"
+                                     title="Confidence interval">
+                                    <br/><br/>
+                                    ({{eachColumn.title.ci_l}}-{{eachColumn.title.ci_u}})
+                                </div>
+                                <div ng-if="oatc.showUf && eachColumn.title.mean != 'suppressed' && eachColumn.title.mean != 'na'"
+                                     title="Number of responses">
+                                    <br/>
+                                    {{eachColumn.title.count}}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

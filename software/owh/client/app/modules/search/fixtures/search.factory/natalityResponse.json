@@ -1,0 +1,1470 @@
+{
+  "status": "OK",
+  "data": {
+    "queryJSON": {
+      "key": "natality",
+      "title": "label.filter.natality",
+      "primary": true,
+      "value": [],
+      "header": "Natality",
+      "allFilters": [
+        {
+          "key": "hispanic_origin",
+          "title": "label.filter.hispanicOrigin",
+          "queryKey": "hispanic_origin",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "row",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "Non-Hispanic",
+              "title": "Non Hispanic"
+            },
+            {
+              "key": "Mexican",
+              "title": "Mexican"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "mother_age",
+          "title": "label.filter.ageOfMother",
+          "queryKey": "mother_age",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "Under 15 years",
+              "title": "Under 15 years"
+            },
+            {
+              "key": "15-19 years",
+              "title": "15-19 years"
+            },
+            {
+              "key": "20-24 years",
+              "title": "20-24 years"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "race",
+          "title": "label.filter.race",
+          "queryKey": "race",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": "row",
+          "autoCompleteOptions": [
+            {
+              "key": "American Indian or Alaska Native",
+              "title": "American Indian"
+            },
+            {
+              "key": "Asian or Pacific Islander",
+              "title": "Asian or Pacific Islander"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "marital_status",
+          "title": "label.filter.maritalStatus",
+          "queryKey": "marital_status",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "Married",
+              "title": "Married"
+            },
+            {
+              "key": "Unmarried",
+              "title": "Unmarried"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "mother_education",
+          "title": "label.filter.education",
+          "queryKey": "mother_education",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "8th grade or less",
+              "title": "8th grade or less"
+            },
+            {
+              "key": "9th through 12th grade with no diploma",
+              "title": "9th through 12th grade with no diploma"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "current_year",
+          "title": "label.filter.year",
+          "queryKey": "current_year",
+          "primary": false,
+          "value": [
+            "2014"
+          ],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "2014",
+              "title": "2014"
+            },
+            {
+              "key": "2013",
+              "title": "2013"
+            },
+            {
+              "key": "2012",
+              "title": "2012"
+            },
+            {
+              "key": "2011",
+              "title": "2011"
+            }
+          ],
+          "allChecked": false
+        },
+        {
+          "key": "month",
+          "title": "label.filter.month",
+          "queryKey": "month",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "January",
+              "title": "January"
+            },
+            {
+              "key": "February",
+              "title": "February"
+            },
+            {
+              "key": "March",
+              "title": "March"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "sex",
+          "title": "label.filter.gender",
+          "queryKey": "sex",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": "column",
+          "autoCompleteOptions": [
+            {
+              "key": "Female",
+              "title": "Female"
+            },
+            {
+              "key": "Male",
+              "title": "Male"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "prenatal_care",
+          "title": "label.filter.monthPrenatalCareBegan",
+          "queryKey": "prenatal_care",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "No prenatal care",
+              "title": "No prenatal care"
+            },
+            {
+              "key": "1st month",
+              "title": "1st month"
+            },
+            {
+              "key": "2nd month",
+              "title": "2nd month"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "birth_weight",
+          "title": "label.filter.birthWeight",
+          "queryKey": "birth_weight",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "499 grams or less",
+              "title": "499 grams or less"
+            },
+            {
+              "key": "500 - 999 grams",
+              "title": "500 - 999 grams"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "birth_plurality",
+          "title": "label.filter.plurality",
+          "queryKey": "birth_plurality",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "Single",
+              "title": "Single"
+            },
+            {
+              "key": "Twin",
+              "title": "Twin"
+            },
+            {
+              "key": "Triplet",
+              "title": "Triplet"
+            },
+            {
+              "key": "Quadruplet",
+              "title": "Quadruplet"
+            },
+            {
+              "key": "Quintuplet or higher",
+              "title": "Quintuplet or higher"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "live_birth",
+          "title": "label.filter.liveBirthOrder",
+          "queryKey": "live_birth",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "1st child born alive to mother",
+              "title": "1st child born alive to mother"
+            },
+            {
+              "key": "2nd child born alive to mother",
+              "title": "2nd child born alive to mother"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "birth_place",
+          "title": "label.filter.birthPlace",
+          "queryKey": "birth_place",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "In Hospital",
+              "title": "In Hospital"
+            },
+            {
+              "key": "Not in Hospital",
+              "title": "Not in Hospital"
+            },
+            {
+              "key": "Unknown or Not Stated",
+              "title": "Unknown or Not Stated"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "delivery_method",
+          "title": "label.filter.deliveryMethod",
+          "queryKey": "delivery_method",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "Cesarean",
+              "title": "Cesarean"
+            },
+            {
+              "key": "Vaginal",
+              "title": "Vaginal"
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "medical_attendant",
+          "title": "label.filter.medicalAttendant",
+          "queryKey": "medical_attendant",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "Doctor of Medicine (MD)",
+              "title": "Doctor of Medicine (MD)"
+            },
+            {
+              "key": "Doctor of Osteopathy (DO)",
+              "title": "Doctor of Osteopathy (DO)"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "chronic_hypertension",
+          "title": "label.filter.chronicHypertension",
+          "queryKey": "chronic_hypertension",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "Yes",
+              "title": "Yes"
+            },
+            {
+              "key": "No",
+              "title": "No"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "diabetes",
+          "title": "label.filter.diabetes",
+          "queryKey": "diabetes",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "Yes",
+              "title": "Yes"
+            },
+            {
+              "key": "No",
+              "title": "No"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "pregnancy_hypertension",
+          "title": "label.filter.pregnancy.hypertension",
+          "queryKey": "pregnancy_hypertension",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "Yes",
+              "title": "Yes"
+            },
+            {
+              "key": "No",
+              "title": "No"
+            }
+          ]
+        },
+        {
+          "key": "eclampsia",
+          "title": "label.filter.eclampsia",
+          "queryKey": "eclampsia",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "Yes",
+              "title": "Yes"
+            },
+            {
+              "key": "No",
+              "title": "No"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "tobacco_use",
+          "title": "label.filter.tobacco.use",
+          "queryKey": "tobacco_use",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "autoCompleteOptions": [
+            {
+              "key": "Yes",
+              "title": "Yes"
+            },
+            {
+              "key": "No",
+              "title": "No"
+            }
+          ],
+          "allChecked": true
+        }
+      ],
+      "dontShowInlineCharting": true,
+      "chartAxisLabel": "Population",
+      "countLabel": "Total",
+      "tableView": "natality",
+      "sideFilters": [
+        {
+          "filterGroup": false,
+          "collapse": false,
+          "allowGrouping": true,
+          "filters": {
+            "key": "hispanic_origin",
+            "title": "label.filter.hispanicOrigin",
+            "queryKey": "hispanic_origin",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "row",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "Non-Hispanic",
+                "title": "Non Hispanic"
+              },
+              {
+                "key": "Mexican",
+                "title": "Mexican"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            },
+            {
+              "key": false,
+              "title": "Off",
+              "tooltip": "Select to hide on data table"
+            }
+          ],
+          "filters": {
+            "key": "race",
+            "title": "label.filter.race",
+            "queryKey": "race",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": "row",
+            "autoCompleteOptions": [
+              {
+                "key": "American Indian or Alaska Native",
+                "title": "American Indian"
+              },
+              {
+                "key": "Asian or Pacific Islander",
+                "title": "Asian or Pacific Islander"
+              },
+              {
+                "key": "Black",
+                "title": "Black or African American"
+              },
+              {
+                "key": "White",
+                "title": "White"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            },
+            {
+              "key": false,
+              "title": "Off",
+              "tooltip": "Select to hide on data table"
+            }
+          ],
+          "filters": {
+            "key": "marital_status",
+            "title": "label.filter.maritalStatus",
+            "queryKey": "marital_status",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "Married",
+                "title": "Married"
+              },
+              {
+                "key": "Unmarried",
+                "title": "Unmarried"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            },
+            {
+              "key": false,
+              "title": "Off",
+              "tooltip": "Select to hide on data table"
+            }
+          ],
+          "filters": {
+            "key": "mother_age",
+            "title": "label.filter.gender",
+            "queryKey": "mother_age",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "Under 15 years",
+                "title": "Under 15 years"
+              },
+              {
+                "key": "15-19 years",
+                "title": "15-19 years"
+              },
+              {
+                "key": "20-24 years",
+                "title": "20-24 years"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            }
+          ],
+          "filters": {
+            "key": "mother_education",
+            "title": "label.filter.education",
+            "queryKey": "mother_education",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "8th grade or less",
+                "title": "8th grade or less"
+              },
+              {
+                "key": "9th through 12th grade with no diploma",
+                "title": "9th through 12th grade with no diploma"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            }
+          ],
+          "filters": {
+            "key": "current_year",
+            "title": "label.filter.year",
+            "queryKey": "current_year",
+            "primary": false,
+            "value": [
+              "2014"
+            ],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "2014",
+                "title": "2014"
+              },
+              {
+                "key": "2013",
+                "title": "2013"
+              }
+            ],
+            "allChecked": false
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            }
+          ],
+          "filters": {
+            "key": "month",
+            "title": "label.filter.month",
+            "queryKey": "month",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "January",
+                "title": "January"
+              },
+              {
+                "key": "February",
+                "title": "February"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            }
+          ],
+          "filters": {
+            "key": "weekday",
+            "title": "label.filter.weekday",
+            "queryKey": "weekday",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "Sunday",
+                "title": "Sunday"
+              },
+              {
+                "key": "Monday",
+                "title": "Monday"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            }
+          ],
+          "filters": {
+            "key": "sex",
+            "title": "label.filter.gender",
+            "queryKey": "sex",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": "column",
+            "autoCompleteOptions": [
+              {
+                "key": "Female",
+                "title": "Female"
+              },
+              {
+                "key": "Male",
+                "title": "Male"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            }
+          ],
+          "filters": {
+            "key": "prenatal_care",
+            "title": "label.filter.monthPrenatalCareBegan",
+            "queryKey": "prenatal_care",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "No prenatal care",
+                "title": "No prenatal care"
+              },
+              {
+                "key": "1st month",
+                "title": "1st month"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            },
+            {
+              "key": false,
+              "title": "Off",
+              "tooltip": "Select to hide on data table"
+            }
+          ],
+          "filters": {
+            "key": "birth_weight",
+            "title": "label.filter.birthWeight",
+            "queryKey": "birth_weight",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "499 grams or less",
+                "title": "499 grams or less"
+              },
+              {
+                "key": "500 - 999 grams",
+                "title": "500 - 999 grams"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            },
+            {
+              "key": false,
+              "title": "Off",
+              "tooltip": "Select to hide on data table"
+            }
+          ],
+          "filters": {
+            "key": "birth_plurality",
+            "title": "label.filter.plurality",
+            "queryKey": "birth_plurality",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "Single",
+                "title": "Single"
+              },
+              {
+                "key": "Twin",
+                "title": "Twin"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            },
+            {
+              "key": false,
+              "title": "Off",
+              "tooltip": "Select to hide on data table"
+            }
+          ],
+          "filters": {
+            "key": "live_birth",
+            "title": "label.filter.liveBirthOrder",
+            "queryKey": "live_birth",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "1st child born alive to mother",
+                "title": "1st child born alive to mother"
+              },
+              {
+                "key": "2nd child born alive to mother",
+                "title": "2nd child born alive to mother"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            },
+            {
+              "key": false,
+              "title": "Off",
+              "tooltip": "Select to hide on data table"
+            }
+          ],
+          "filters": {
+            "key": "birth_place",
+            "title": "label.filter.birthPlace",
+            "queryKey": "birth_place",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "In Hospital",
+                "title": "In Hospital"
+              },
+              {
+                "key": "Not in Hospital",
+                "title": "Not in Hospital"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            }
+          ],
+          "filters": {
+            "key": "delivery_method",
+            "title": "label.filter.deliveryMethod",
+            "queryKey": "delivery_method",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "Cesarean",
+                "title": "Cesarean"
+              },
+              {
+                "key": "Vaginal",
+                "title": "Vaginal"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            }
+          ],
+          "filters": {
+            "key": "medical_attendant",
+            "title": "label.filter.medicalAttendant",
+            "queryKey": "medical_attendant",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "Doctor of Medicine (MD)",
+                "title": "Doctor of Medicine (MD)"
+              },
+              {
+                "key": "Doctor of Osteopathy (DO)",
+                "title": "Doctor of Osteopathy (DO)"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            }
+          ],
+          "filters": {
+            "key": "chronic_hypertension",
+            "title": "label.filter.chronicHypertension",
+            "queryKey": "chronic_hypertension",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "Yes",
+                "title": "Yes"
+              },
+              {
+                "key": "No",
+                "title": "No"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            }
+          ],
+          "filters": {
+            "key": "diabetes",
+            "title": "label.filter.diabetes",
+            "queryKey": "diabetes",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "Yes",
+                "title": "Yes"
+              },
+              {
+                "key": "No",
+                "title": "No"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            }
+          ],
+          "filters": {
+            "key": "eclampsia",
+            "title": "label.filter.eclampsia",
+            "queryKey": "eclampsia",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "Yes",
+                "title": "Yes"
+              },
+              {
+                "key": "No",
+                "title": "No"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupOptions": [
+            {
+              "key": "column",
+              "title": "Column",
+              "tooltip": "Select to view as columns on data table"
+            },
+            {
+              "key": "row",
+              "title": "Row",
+              "tooltip": "Select to view as rows on data table"
+            }
+          ],
+          "filters": {
+            "key": "tobacco_use",
+            "title": "label.filter.tobacco.use",
+            "queryKey": "tobacco_use",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": false,
+            "autoCompleteOptions": [
+              {
+                "key": "Yes",
+                "title": "Yes"
+              },
+              {
+                "key": "No",
+                "title": "No"
+              }
+            ],
+            "allChecked": true
+          }
+        }
+      ],
+      "initiated": false
+    },
+    "resultData": {
+      "simple": {
+        "group_table_mother_race": [
+          {
+            "name": "White",
+            "natality": 3029013,
+            "undefined": [
+              {
+                "name": "Male",
+                "natality": 1552147
+              },
+              {
+                "name": "Female",
+                "natality": 1476866
+              }
+            ]
+          },
+          {
+            "name": "Black",
+            "natality": 641089,
+            "undefined": [
+              {
+                "name": "Male",
+                "natality": 325088
+              },
+              {
+                "name": "Female",
+                "natality": 316001
+              }
+            ]
+          },
+          {
+            "name": "Asian or Pacific Islander",
+            "natality": 283111,
+            "undefined": [
+              {
+                "name": "Male",
+                "natality": 145846
+              },
+              {
+                "name": "Female",
+                "natality": 137265
+              }
+            ]
+          },
+          {
+            "name": "American Indian or Alaska Native",
+            "natality": 44962,
+            "undefined": [
+              {
+                "name": "Male",
+                "natality": 22821
+              },
+              {
+                "name": "Female",
+                "natality": 22141
+              }
+            ]
+          }
+        ]
+      },
+      "nested": {
+        "table": {
+          "race": [
+            {
+              "name": "White",
+              "natality": 3029013,
+              "sex": [
+                {
+                  "name": "Male",
+                  "natality": 1552147
+                },
+                {
+                  "name": "Female",
+                  "natality": 1476866
+                }
+              ]
+            },
+            {
+              "name": "Black",
+              "natality": 641089,
+              "sex": [
+                {
+                  "name": "Male",
+                  "natality": 325088
+                },
+                {
+                  "name": "Female",
+                  "natality": 316001
+                }
+              ]
+            },
+            {
+              "name": "Asian or Pacific Islander",
+              "natality": 283111,
+              "sex": [
+                {
+                  "name": "Male",
+                  "natality": 145846
+                },
+                {
+                  "name": "Female",
+                  "natality": 137265
+                }
+              ]
+            },
+            {
+              "name": "American Indian or Alaska Native",
+              "natality": 44962,
+              "sex": [
+                {
+                  "name": "Male",
+                  "natality": 22821
+                },
+                {
+                  "name": "Female",
+                  "natality": 22141
+                }
+              ]
+            }
+          ]
+        },
+        "charts": [],
+        "maps": {
+          "states": []
+        }
+      },
+      "headers": {
+        "rowHeaders": [
+          {
+            "key": "race",
+            "title": "label.filter.race",
+            "queryKey": "race",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": "row",
+            "autoCompleteOptions": [
+              {
+                "key": "American Indian or Alaska Native",
+                "title": "American Indian"
+              },
+              {
+                "key": "Asian or Pacific Islander",
+                "title": "Asian or Pacific Islander"
+              },
+              {
+                "key": "Black",
+                "title": "Black or African American"
+              },
+              {
+                "key": "White",
+                "title": "White"
+              }
+            ],
+            "allChecked": true
+          }
+        ],
+        "columnHeaders": [
+          {
+            "key": "sex",
+            "title": "label.filter.gender",
+            "queryKey": "sex",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": "column",
+            "autoCompleteOptions": [
+              {
+                "key": "Female",
+                "title": "Female"
+              },
+              {
+                "key": "Male",
+                "title": "Male"
+              }
+            ],
+            "allChecked": true
+          }
+        ],
+        "chartHeaders": []
+      }
+    },
+    "sideFilterResults":{
+      "pagination": {},
+      "data":{
+        "simple":{
+          "current_year": [
+            {
+              "name": "2014",
+              "bridge_race": 282162411
+            },
+            {
+              "name": "2013",
+              "bridge_race": 284968955
+            }
+          ],
+          "sex": [
+            {
+              "name": "Male",
+              "bridge_race": 2045902
+            },
+            {
+              "name": "Female",
+              "bridge_race": 1952273
+            }
+          ],
+          "race": [
+            {
+              "name": "American Indian",
+              "bridge_race": 44962
+            },
+            {
+              "name": "Asian or Pacific Islander",
+              "bridge_race": 283111
+            }
+          ],
+          "ethnicity": [
+            {
+              "name": "Mexican",
+              "bridge_race": 553738
+            },
+            {
+              "name": "Non-Hispanic",
+              "bridge_race": 3045419
+            }
+          ]
+        }
+      }
+    }
+  },
+  "pagination": {}
+}

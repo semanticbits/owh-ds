@@ -10,14 +10,14 @@
   "showChart": true,
   "autoCompleteOptions": [
     {
-      "key": "F",
+      "key": "Female",
       "title": "Female",
       "deaths": "6,362,211",
       "count": 6362211,
       "deathsPercentage": 49.81
     },
     {
-      "key": "M",
+      "key": "Male",
       "title": "Male",
       "deaths": "6,410,289",
       "count": 6410289,

@@ -7,9 +7,12 @@
             controller: OWHSearchController,
             controllerAs: 'ots',
             bindings: {
-                filters : '=',
+                filters : '<',
                 showFilters : '=',
-                searchResults : '&'
+                searchResults : '&',
+                onViewFilter: '&',
+                onPrimaryFilter: '&',
+                tableView: '@'
             }
         });
 
@@ -19,7 +22,22 @@
         var ots = this;
         ots.groupByFiltersUpdated = groupByFiltersUpdated;
         ots.phaseTwoImpl = phaseTwoImpl;
-        ots.selectedShowFilter = ots.showFilters[0];
+        ots.goForward = goForward;
+        ots.goBackward = goBackward;
+        ots.$onChanges = function() {
+            var filters = [];
+            if(['number_of_deaths', 'crude_death_rates', 'age-adjusted_death_rates'].indexOf(ots.tableView) !== -1) {
+                filters = ots.showFilters.deaths;
+            }
+            else {
+                filters = ots.showFilters[ots.filters.selectedPrimaryFilter.key];
+            }
+            angular.forEach(filters, function(filter) {
+                if(filter.key === ots.tableView) {
+                    ots.selectedShowFilter = filter;
+                }
+            });
+        };
 
         function groupByFiltersUpdated(added) {
             var selectedFilterKeys = utilService.getValuesByKey(ots.filters.selectedPrimaryFilter.value, 'key');
@@ -40,10 +58,19 @@
         /*Show phase two implementation box*/
         function phaseTwoImpl() {
             if(ots.selectedShowFilter.key !== 'number_of_deaths') {
-                ots.selectedShowFilter = ots.showFilters[0];
+                ots.selectedShowFilter = ots.showFilters.deaths[0];
                 searchFactory.showPhaseTwoModal('label.show.impl.next');
             }
         }
+
+        function goForward() {
+            window.history.forward();
+        }
+
+        function goBackward(){
+            window.history.back();
+        }
+
     }
 
 }());

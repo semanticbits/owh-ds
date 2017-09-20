@@ -370,8 +370,8 @@
             "title": "Texted or e-mailed while driving a car or other vehicle(on at least 1 day during the 30 days before the survey, among students who had driven a car or other vehicle during the 30 days before the survey)"
           },
           {
-            "key": "Tobbaco use",
-            "title": "Tobbacco Use"
+            "key": "Tobacco use",
+            "title": "Tobacco Use"
           },
           {
             "key": "Initiation of marijuana use",
@@ -464,7 +464,7 @@
         ],
         "donotshowOnSearch": true,
         "selectTitle": "select.label.yrbs.filter.question",
-        "iconClass": "fa fa-pie-chart purple-text",
+        "iconClass": "purple-text",
         "selectedValues": [
           {
             "id": "Current alcohol use",
@@ -588,12 +588,12 @@
           "title": "label.yrbs.filter.question"
         },
         {
-          "title": "Female",
+          "title": "label.filter.gender: Female",
           "colspan": 1,
           "rowspan": 1
         },
         {
-          "title": "Male",
+          "title": "label.filter.gender: Male",
           "colspan": 1,
           "rowspan": 1
         },
@@ -624,7 +624,7 @@
           "rowspan": 1,
           "colspan": 1,
           "key": "Current alcohol use",
-          "iconClass": "fa fa-pie-chart purple-text"
+          "iconClass": "purple-text"
         },
         {
           "title": "N/A<br/><nobr>(N/A&#8209;N/A)</nobr><br/>58",

@@ -3,133 +3,123 @@ import os
 from random import randint
 from owh.etl.common.etl import ETL
 import logging
+from owh.etl.common.datafile_parser import DataFileParser
 
 logger = logging.getLogger('mortality_etl')
 
-counter = 0
-us_states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA",
-             "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK",
-             "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
 
 class MortalityIndexer (ETL):
 
     def __init__(self, configFile):
         ETL.__init__(self, configFile)
-        self._create_index(True)
-        self._load_icd_code_mappings()
+        # if 'action' is specified then set, else default to replace
+        self.action = self.config.get('action', 'replace')
 
+        self.create_index(os.path.join(os.path.dirname(__file__), "es_mapping"
+                           ,self.config['elastic_search']['type_mapping'])
+                           ,self.action == 'replace')
+        self._load_icd_code_mappings()
 
     def _load_icd_code_mappings(self):
         with open(os.path.join(os.path.dirname(__file__),"es_mapping/conditions-ICD-10-mappings.json")) as jf:
             self.icd_10_code_mappings = json.load(jf, encoding="utf8")
 
-    def _create_index(self, recreate_index):
-        mappingFile = os.path.join(os.path.dirname(__file__), "es_mapping"
-                                                    ,self.config['elastic_search']['type_mapping'])
-        if recreate_index:
-            with open(mappingFile, "r") as mapping:
-                self.esRepository.recreate_index(json.load(mapping))
-        else:
-            with open(mappingFile, "r") as mapping:
-                self.esRepository.create_mappings(json.load(mapping))
+    def _check_blanks(self, record):
+        for key, value in record.iteritems():
+            if value == '':  # check for blank
+                record[key] = '_BLANK_'
 
-    def _load_config_json_file(self, file_name):
-        print 'Loading config file:', file_name
-        with open(os.path.join(self.dataDirectory, 'data_mapping',file_name)) as jf:
-            self.configs = json.load(jf, encoding="utf8")
-
-    def _parse_value(self, value):
-        if not value.isdigit():
-            return value
-        if "." in value:
-            return float(value)
-        return int(value)
-
-    def _get_range_value(self, value, mappings):
-        if mappings.get(value):
-            return value
-        else:
-            for key in mappings.keys():
-                if "-" in key:
-                    ranges = key.split("-")
-                    if self._parse_value(value) >= self._parse_value(ranges[0]) \
-                            and self._parse_value(value) <= self._parse_value(ranges[1]):
-                        return key
-    def _check_blanks(self, value):
-        if value == '':  # check for blank
-            value = '_BLANK_'
-        return value
+    def _process_conditions(self, record, condn_axis, condn_col_prefix):
+        condcount = record[condn_axis]
+        conditions = []
+        condnheierarchy = []
+        for i in range(1,21):
+            condcolname = '%s%d' % (condn_col_prefix, i)
+            if record[condcolname]:
+                conditions.append(record[condcolname].upper())
+                parents = self.icd_10_code_mappings.get(record[condcolname].upper())
+                if parents:
+                    condnheierarchy+= parents
+            del record[condcolname]
+        record[condn_axis[:-6]] = {'code': conditions, 'path' : condnheierarchy}
 
     def perform_etl(self):
         """Perform the mortality ETL"""
-
-        for f in os.listdir(self.dataDirectory):
-            if not f.endswith(".DUSMCPUB"):
+        recordCount = 0
+        deleteCount = 0
+        self.initialCount = self.get_record_count()
+        files = os.listdir(self.dataDirectory)
+        files.sort()
+        for f in files:
+            if not os.path.isfile(os.path.join(self.dataDirectory, f)) or f.endswith(".zip") :
                 continue
+
             file_path = os.path.join(self.dataDirectory, f)
-            logger.info("Processing file: %s", f)
-            config_file =  f.replace(".DUSMCPUB", ".json")
-            self._load_config_json_file(config_file)
-            logger.debug('Loading config file for: %s', f)
-            with open(file_path) as infile:
-                for line in infile:
-                    row = {}
-                    global counter
-                    counter += 1
-                    i = 0
-                    #iterate over each config mapping
-                    while i < self.configs.__len__():
-                        config = self.configs[i]
-                        start = config['start']
-                        stop = config['stop']
-                        value = line[start - 1:stop].strip()
-                        #if this field is condition field, we have to capture all conditions(cound be 20) in single field
-                        if (config['column'] == 'entity_axis_condn_count' or config['column'] == 'record_axis_condn_count'):
+            logger.info("Processing file: %s", file_path)
+            if f.startswith("MULT"):
+                year = int(f[4:8])  # e.g. MULT2011
+            else:
+                year = 2000 + int(f[4:6])  # e.g Mort01us
 
-                            numberOfCond = int(value)
-                            # store number of conditions
-                            row[config['column']] = numberOfCond
+            if year <= 2015 and year >= 2003:   # data file for year 2003 to 2014
+                config_file =  os.path.join(self.dataDirectory, 'data_mapping', 'mortality_mapping_03-15.json')
+            elif year <= 2002 and year >= 2000:
+                config_file =  os.path.join(self.dataDirectory, 'data_mapping', 'mortality_mapping_00-02.json')
+            else:
+                logger.warn("No mapping available for data file %s, skipping", file_path)
+                continue
+            # load dataset metadata
+            self.loadDataSetMetaData('deaths', str(year), config_file)
+            # delete records for the year if action is update
+            # FIXME: The delete function is not working as expected, the results vary by ES version
+            # in 1.5.x, the delete action doesn't work at all, in 2.4.x it delete more records than specified
+            # because of these we can not use update action for now
+            if (self.action == 'update'):
+                deleteCount += self.esRepository.delete_records_for_year(year)[0]
+            mortalityParser = DataFileParser(file_path, config_file)
+            while True:
+                record  = mortalityParser.parseNextLine()
+                if not record:
+                    break
 
-                            conditions = []
-                            conditionIndex = i + 1
-                            #get all the conditions
-                            for j in range(0, numberOfCond):
-                                conditionConfig = self.configs[conditionIndex]
-                                start = conditionConfig['start']
-                                stop = conditionConfig['stop']
-                                condition = line[start - 1:stop].strip()
-                                conditions.append(condition)
-                                conditionIndex += 1
+                if(record['residence'] == '4'):
+                    logger.info ("Skipping foreign resident")
+                    continue
 
-                            row[config['column'][:-6]] = conditions
-                            i += 21
-                        elif config.get('type'):  # check for range values
-                            value = self._get_range_value(value, config['mappings'])
-                            row[config['column']] = self._check_blanks(value)
-                            i += 1
-                        elif config['column'] == 'ICD_10_code':
-                            code = value.upper()
-                            if code:
-                                row[config['column']] = {'code': code, 'path':self.icd_10_code_mappings[code]}
-                            else:
-                                row[config['column']] = self._check_blanks(value.upper())
-                            i += 1
-                        else:
-                            row[config['column']] = self._check_blanks(value.upper())
-                            i += 1
+                del record['residence']
+                recordCount += 1
+                self._process_conditions(record,'entity_axis_condn_count', 'EAC')
+                self._process_conditions(record,'record_axis_condn_count', 'RAC')
 
-                    logger.debug("Record count: %s", counter)
-                    row['state'] = us_states[randint(0,49)]
-                    self.batchRepository.persist({"index": {"_index": self.config['elastic_search']['index'], "_type": self.config['elastic_search']['type'], "_id": counter}})
-                    self.batchRepository.persist(row)
-            infile.close()
+                icdcode = record['ICD_10_code'].upper()
+                if (icdcode):
+                    record['ICD_10_code'] = {'code': icdcode, 'path':self.icd_10_code_mappings[icdcode]}
+                else:
+                    record['ICD_10_code'] = self._check_blanks(icdcode)
+
+                #add ethnicity group based on hispanic_origin
+                if(record['hispanic_origin'] == 'Unknown' or record['hispanic_origin'] == 'Non-Hispanic'):
+                    record['ethnicity_group'] = record['hispanic_origin']
+                else:
+                    record['ethnicity_group'] = 'Hispanic'
+
+                self._check_blanks(record)
+                #prepare region data
+                self.loadRegionData(record)
+                self.batchRepository.persist({"index": {"_index": self.config['elastic_search']['index'], "_type": self.config['elastic_search']['type'], "_id": recordCount}})
+                self.batchRepository.persist(record)
+
             self.batchRepository.flush()
-        self.metrics.insertCount=counter
+            self.refresh_index()
+        self.metrics.insertCount=recordCount
+        self.metrics.deleteCount=deleteCount
+
 
     def validate_etl(self):
         """ Validate the ETL"""
-        if self.metrics.insertCount != self.get_record_count():
-            self.metrics.message = "Number of records in the DB (%d) not same as the number of records inserted (%d)" % (self.get_record_count(), self.metrics.insertCount)
+        expectedCount = (self.initialCount - self.metrics.deleteCount + self.metrics.insertCount)
+        if expectedCount != self.get_record_count():
+            self.metrics.message = "Number of records in the DB (%d) not same as the number of records expected (%d)" % (self.get_record_count(), expectedCount)
             return False
         if self.get_record_by_id(1) is None:
             self.metrics.message = "Record 1 is None"

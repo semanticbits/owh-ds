@@ -1,0 +1,67 @@
+{
+  "charttype":"lineChart",
+  "title":"label.filter.yearly.estimate",
+  "longtitle":"chart.title.measure.deaths by label.filter.yearly.estimate in undefined for undefined",
+  "dataset":"deaths",
+  "data":[
+    {
+      "name":"Population",
+      "x":[
+
+      ],
+      "y":[
+
+      ],
+      "text":[
+
+      ],
+      "type":"scatter",
+      "hoverinfo":"none",
+      "marker":{
+
+      }
+    }
+  ],
+  "layout":{
+    "width":128,
+    "autosize":true,
+    "showlegend":false,
+    "margin":{
+      "l":20,
+      "r":10,
+      "b":20,
+      "t":20
+    },
+    "xaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
+      },
+      "exponentformat":"none",
+      "tickangle":45,
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "fixedrange":true,
+      "title":"Year",
+      "type":"category"
+    },
+    "yaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
+      },
+      "exponentformat":"none",
+      "tickangle":45,
+      "ticksuffix":"   ",
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "fixedrange":true,
+      "title":"Population"
+    }
+  },
+  "options":{
+    "displayModeBar":false
+  }
+}

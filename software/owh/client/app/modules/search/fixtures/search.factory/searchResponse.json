@@ -1,125 +1,38 @@
 {
   "status": "OK",
   "data": {
-    "simple": {
-      "group_table_race": [
-        {
-          "name": "1",
-          "deaths": 2241350,
-          "undefined": [
-            {
-              "name": "M",
-              "deaths": 1131379
-            },
-            {
-              "name": "F",
-              "deaths": 1109971
-            }
-          ]
-        },
-        {
-          "name": "2",
-          "deaths": 309316,
-          "undefined": [
-            {
-              "name": "M",
-              "deaths": 157972
-            },
-            {
-              "name": "F",
-              "deaths": 151344
-            }
-          ]
-        },
-        {
-          "name": "4",
-          "deaths": 62103,
-          "undefined": [
-            {
-              "name": "M",
-              "deaths": 32035
-            },
-            {
-              "name": "F",
-              "deaths": 30068
-            }
-          ]
-        },
-        {
-          "name": "3",
-          "deaths": 18031,
-          "undefined": [
-            {
-              "name": "M",
-              "deaths": 9846
-            },
-            {
-              "name": "F",
-              "deaths": 8185
-            }
-          ]
-        }
-      ],
-      "group_chart_0_gender": [
-        {
-          "name": "M",
-          "deaths": 1331232,
-          "undefined": [
-            {
-              "name": "1",
-              "deaths": 1131379
-            },
-            {
-              "name": "2",
-              "deaths": 157972
-            },
-            {
-              "name": "4",
-              "deaths": 32035
-            },
-            {
-              "name": "3",
-              "deaths": 9846
-            }
-          ]
-        },
-        {
-          "name": "F",
-          "deaths": 1299568,
-          "undefined": [
-            {
-              "name": "1",
-              "deaths": 1109971
-            },
-            {
-              "name": "2",
-              "deaths": 151344
-            },
-            {
-              "name": "4",
-              "deaths": 30068
-            },
-            {
-              "name": "3",
-              "deaths": 8185
-            }
-          ]
-        }
-      ]
+    "queryJSON" : {
+      "key": "deaths",
+      "tableView": "number_of_deaths"
     },
-    "nested": {
-      "table": {
-        "race": [
+    "sideFilterResults": {
+      "data": {
+        "simple": {
+
+        },
+        "nested": {
+          "table": {
+
+          }
+        }
+      },
+      "pagination": {
+        "total": 1400
+      }
+    },
+    "resultData": {
+      "simple": {
+        "group_table_race": [
           {
             "name": "1",
             "deaths": 2241350,
-            "gender": [
+            "undefined": [
               {
-                "name": "M",
+                "name": "Male",
                 "deaths": 1131379
               },
               {
-                "name": "F",
+                "name": "Female",
                 "deaths": 1109971
               }
             ]
@@ -127,13 +40,13 @@
           {
             "name": "2",
             "deaths": 309316,
-            "gender": [
+            "undefined": [
               {
-                "name": "M",
+                "name": "Male",
                 "deaths": 157972
               },
               {
-                "name": "F",
+                "name": "Female",
                 "deaths": 151344
               }
             ]
@@ -141,13 +54,13 @@
           {
             "name": "4",
             "deaths": 62103,
-            "gender": [
+            "undefined": [
               {
-                "name": "M",
+                "name": "Male",
                 "deaths": 32035
               },
               {
-                "name": "F",
+                "name": "Female",
                 "deaths": 30068
               }
             ]
@@ -155,772 +68,880 @@
           {
             "name": "3",
             "deaths": 18031,
-            "gender": [
+            "undefined": [
               {
-                "name": "M",
+                "name": "Male",
                 "deaths": 9846
               },
               {
-                "name": "F",
+                "name": "Female",
+                "deaths": 8185
+              }
+            ]
+          }
+        ],
+        "group_chart_0_gender": [
+          {
+            "name": "Male",
+            "deaths": 1331232,
+            "undefined": [
+              {
+                "name": "1",
+                "deaths": 1131379
+              },
+              {
+                "name": "2",
+                "deaths": 157972
+              },
+              {
+                "name": "4",
+                "deaths": 32035
+              },
+              {
+                "name": "3",
+                "deaths": 9846
+              }
+            ]
+          },
+          {
+            "name": "Female",
+            "deaths": 1299568,
+            "undefined": [
+              {
+                "name": "1",
+                "deaths": 1109971
+              },
+              {
+                "name": "2",
+                "deaths": 151344
+              },
+              {
+                "name": "4",
+                "deaths": 30068
+              },
+              {
+                "name": "3",
                 "deaths": 8185
               }
             ]
           }
         ]
       },
-      "charts": [
-        {
-          "gender": [
+      "nested": {
+        "table": {
+          "race": [
             {
-              "name": "M",
-              "deaths": 1331232,
-              "race": [
+              "name": "1",
+              "deaths": 2241350,
+              "gender": [
                 {
-                  "name": "1",
+                  "name": "Male",
                   "deaths": 1131379
                 },
                 {
-                  "name": "2",
-                  "deaths": 157972
-                },
-                {
-                  "name": "4",
-                  "deaths": 32035
-                },
-                {
-                  "name": "3",
-                  "deaths": 9846
+                  "name": "Female",
+                  "deaths": 1109971
                 }
               ]
             },
             {
-              "name": "F",
-              "deaths": 1299568,
-              "race": [
+              "name": "2",
+              "deaths": 309316,
+              "gender": [
                 {
-                  "name": "1",
-                  "deaths": 1109971
+                  "name": "Male",
+                  "deaths": 157972
                 },
                 {
-                  "name": "2",
+                  "name": "Female",
                   "deaths": 151344
+                }
+              ]
+            },
+            {
+              "name": "4",
+              "deaths": 62103,
+              "gender": [
+                {
+                  "name": "Male",
+                  "deaths": 32035
                 },
                 {
-                  "name": "4",
+                  "name": "Female",
                   "deaths": 30068
+                }
+              ]
+            },
+            {
+              "name": "3",
+              "deaths": 18031,
+              "gender": [
+                {
+                  "name": "Male",
+                  "deaths": 9846
                 },
                 {
-                  "name": "3",
+                  "name": "Female",
                   "deaths": 8185
                 }
               ]
             }
           ]
-        }
-      ],
-      "maps": {
-        "states": [
+        },
+        "charts": [
           {
-            "name": "NY",
-            "deaths": 53107,
-            "sex": [
+            "gender": [
               {
-                "name": "M",
-                "deaths": 27003
+                "name": "Male",
+                "deaths": 1331232,
+                "race": [
+                  {
+                    "name": "1",
+                    "deaths": 1131379
+                  },
+                  {
+                    "name": "2",
+                    "deaths": 157972
+                  },
+                  {
+                    "name": "4",
+                    "deaths": 32035
+                  },
+                  {
+                    "name": "3",
+                    "deaths": 9846
+                  }
+                ]
               },
               {
-                "name": "F",
-                "deaths": 26104
-              }
-            ]
-          },
-          {
-            "name": "MT",
-            "deaths": 53060,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26800
-              },
-              {
-                "name": "F",
-                "deaths": 26260
-              }
-            ]
-          },
-          {
-            "name": "WA",
-            "deaths": 53057,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26955
-              },
-              {
-                "name": "F",
-                "deaths": 26102
-              }
-            ]
-          },
-          {
-            "name": "MN",
-            "deaths": 52961,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26671
-              },
-              {
-                "name": "F",
-                "deaths": 26290
-              }
-            ]
-          },
-          {
-            "name": "MS",
-            "deaths": 52928,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26652
-              },
-              {
-                "name": "F",
-                "deaths": 26276
-              }
-            ]
-          },
-          {
-            "name": "CA",
-            "deaths": 52872,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26635
-              },
-              {
-                "name": "F",
-                "deaths": 26237
-              }
-            ]
-          },
-          {
-            "name": "PA",
-            "deaths": 52850,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26915
-              },
-              {
-                "name": "F",
-                "deaths": 25935
-              }
-            ]
-          },
-          {
-            "name": "IN",
-            "deaths": 52817,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26831
-              },
-              {
-                "name": "F",
-                "deaths": 25986
-              }
-            ]
-          },
-          {
-            "name": "AK",
-            "deaths": 52813,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26532
-              },
-              {
-                "name": "F",
-                "deaths": 26281
-              }
-            ]
-          },
-          {
-            "name": "NJ",
-            "deaths": 52785,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26657
-              },
-              {
-                "name": "F",
-                "deaths": 26128
-              }
-            ]
-          },
-          {
-            "name": "OH",
-            "deaths": 52782,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26788
-              },
-              {
-                "name": "F",
-                "deaths": 25994
-              }
-            ]
-          },
-          {
-            "name": "DE",
-            "deaths": 52747,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26516
-              },
-              {
-                "name": "F",
-                "deaths": 26231
-              }
-            ]
-          },
-          {
-            "name": "VT",
-            "deaths": 52745,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26564
-              },
-              {
-                "name": "F",
-                "deaths": 26181
-              }
-            ]
-          },
-          {
-            "name": "ME",
-            "deaths": 52741,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26724
-              },
-              {
-                "name": "F",
-                "deaths": 26017
-              }
-            ]
-          },
-          {
-            "name": "NC",
-            "deaths": 52723,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26564
-              },
-              {
-                "name": "F",
-                "deaths": 26159
-              }
-            ]
-          },
-          {
-            "name": "TN",
-            "deaths": 52716,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26724
-              },
-              {
-                "name": "F",
-                "deaths": 25992
-              }
-            ]
-          },
-          {
-            "name": "MD",
-            "deaths": 52696,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26730
-              },
-              {
-                "name": "F",
-                "deaths": 25966
-              }
-            ]
-          },
-          {
-            "name": "RI",
-            "deaths": 52681,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26813
-              },
-              {
-                "name": "F",
-                "deaths": 25868
-              }
-            ]
-          },
-          {
-            "name": "WI",
-            "deaths": 52666,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26762
-              },
-              {
-                "name": "F",
-                "deaths": 25904
-              }
-            ]
-          },
-          {
-            "name": "OK",
-            "deaths": 52663,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26622
-              },
-              {
-                "name": "F",
-                "deaths": 26041
-              }
-            ]
-          },
-          {
-            "name": "LA",
-            "deaths": 52645,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26457
-              },
-              {
-                "name": "F",
-                "deaths": 26188
-              }
-            ]
-          },
-          {
-            "name": "CO",
-            "deaths": 52633,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26692
-              },
-              {
-                "name": "F",
-                "deaths": 25941
-              }
-            ]
-          },
-          {
-            "name": "NE",
-            "deaths": 52633,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26817
-              },
-              {
-                "name": "F",
-                "deaths": 25816
-              }
-            ]
-          },
-          {
-            "name": "OR",
-            "deaths": 52628,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26632
-              },
-              {
-                "name": "F",
-                "deaths": 25996
-              }
-            ]
-          },
-          {
-            "name": "FL",
-            "deaths": 52613,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26642
-              },
-              {
-                "name": "F",
-                "deaths": 25971
-              }
-            ]
-          },
-          {
-            "name": "AL",
-            "deaths": 52604,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26611
-              },
-              {
-                "name": "F",
-                "deaths": 25993
-              }
-            ]
-          },
-          {
-            "name": "NM",
-            "deaths": 52603,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26456
-              },
-              {
-                "name": "F",
-                "deaths": 26147
-              }
-            ]
-          },
-          {
-            "name": "WY",
-            "deaths": 52597,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26698
-              },
-              {
-                "name": "F",
-                "deaths": 25899
-              }
-            ]
-          },
-          {
-            "name": "ND",
-            "deaths": 52588,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26551
-              },
-              {
-                "name": "F",
-                "deaths": 26037
-              }
-            ]
-          },
-          {
-            "name": "IL",
-            "deaths": 52579,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26675
-              },
-              {
-                "name": "F",
-                "deaths": 25904
-              }
-            ]
-          },
-          {
-            "name": "MA",
-            "deaths": 52555,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26447
-              },
-              {
-                "name": "F",
-                "deaths": 26108
-              }
-            ]
-          },
-          {
-            "name": "SD",
-            "deaths": 52549,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26492
-              },
-              {
-                "name": "F",
-                "deaths": 26057
-              }
-            ]
-          },
-          {
-            "name": "ID",
-            "deaths": 52524,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26500
-              },
-              {
-                "name": "F",
-                "deaths": 26024
-              }
-            ]
-          },
-          {
-            "name": "VA",
-            "deaths": 52523,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26619
-              },
-              {
-                "name": "F",
-                "deaths": 25904
-              }
-            ]
-          },
-          {
-            "name": "HI",
-            "deaths": 52486,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26619
-              },
-              {
-                "name": "F",
-                "deaths": 25867
-              }
-            ]
-          },
-          {
-            "name": "KY",
-            "deaths": 52477,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26459
-              },
-              {
-                "name": "F",
-                "deaths": 26018
-              }
-            ]
-          },
-          {
-            "name": "UT",
-            "deaths": 52460,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26486
-              },
-              {
-                "name": "F",
-                "deaths": 25974
-              }
-            ]
-          },
-          {
-            "name": "TX",
-            "deaths": 52440,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26419
-              },
-              {
-                "name": "F",
-                "deaths": 26021
-              }
-            ]
-          },
-          {
-            "name": "GA",
-            "deaths": 52419,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26640
-              },
-              {
-                "name": "F",
-                "deaths": 25779
-              }
-            ]
-          },
-          {
-            "name": "NV",
-            "deaths": 52418,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26534
-              },
-              {
-                "name": "F",
-                "deaths": 25884
-              }
-            ]
-          },
-          {
-            "name": "AR",
-            "deaths": 52409,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26635
-              },
-              {
-                "name": "F",
-                "deaths": 25774
-              }
-            ]
-          },
-          {
-            "name": "WV",
-            "deaths": 52397,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26645
-              },
-              {
-                "name": "F",
-                "deaths": 25752
-              }
-            ]
-          },
-          {
-            "name": "MO",
-            "deaths": 52384,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26498
-              },
-              {
-                "name": "F",
-                "deaths": 25886
-              }
-            ]
-          },
-          {
-            "name": "SC",
-            "deaths": 52375,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26694
-              },
-              {
-                "name": "F",
-                "deaths": 25681
-              }
-            ]
-          },
-          {
-            "name": "MI",
-            "deaths": 52368,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26638
-              },
-              {
-                "name": "F",
-                "deaths": 25730
-              }
-            ]
-          },
-          {
-            "name": "AZ",
-            "deaths": 52351,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26406
-              },
-              {
-                "name": "F",
-                "deaths": 25945
-              }
-            ]
-          },
-          {
-            "name": "KS",
-            "deaths": 52351,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26440
-              },
-              {
-                "name": "F",
-                "deaths": 25911
-              }
-            ]
-          },
-          {
-            "name": "CT",
-            "deaths": 52340,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26452
-              },
-              {
-                "name": "F",
-                "deaths": 25888
-              }
-            ]
-          },
-          {
-            "name": "IA",
-            "deaths": 52259,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26463
-              },
-              {
-                "name": "F",
-                "deaths": 25796
-              }
-            ]
-          },
-          {
-            "name": "NH",
-            "deaths": 52182,
-            "sex": [
-              {
-                "name": "M",
-                "deaths": 26457
-              },
-              {
-                "name": "F",
-                "deaths": 25725
+                "name": "Female",
+                "deaths": 1299568,
+                "race": [
+                  {
+                    "name": "1",
+                    "deaths": 1109971
+                  },
+                  {
+                    "name": "2",
+                    "deaths": 151344
+                  },
+                  {
+                    "name": "4",
+                    "deaths": 30068
+                  },
+                  {
+                    "name": "3",
+                    "deaths": 8185
+                  }
+                ]
               }
             ]
           }
-        ]
+        ],
+        "maps": {
+          "states": [
+            {
+              "name": "NY",
+              "deaths": 53107,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 27003
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26104
+                }
+              ]
+            },
+            {
+              "name": "MT",
+              "deaths": 53060,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26800
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26260
+                }
+              ]
+            },
+            {
+              "name": "WA",
+              "deaths": 53057,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26955
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26102
+                }
+              ]
+            },
+            {
+              "name": "MN",
+              "deaths": 52961,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26671
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26290
+                }
+              ]
+            },
+            {
+              "name": "MS",
+              "deaths": 52928,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26652
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26276
+                }
+              ]
+            },
+            {
+              "name": "CA",
+              "deaths": 52872,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26635
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26237
+                }
+              ]
+            },
+            {
+              "name": "PA",
+              "deaths": 52850,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26915
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25935
+                }
+              ]
+            },
+            {
+              "name": "IN",
+              "deaths": 52817,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26831
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25986
+                }
+              ]
+            },
+            {
+              "name": "AK",
+              "deaths": 52813,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26532
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26281
+                }
+              ]
+            },
+            {
+              "name": "NJ",
+              "deaths": 52785,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26657
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26128
+                }
+              ]
+            },
+            {
+              "name": "OH",
+              "deaths": 52782,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26788
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25994
+                }
+              ]
+            },
+            {
+              "name": "DE",
+              "deaths": 52747,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26516
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26231
+                }
+              ]
+            },
+            {
+              "name": "VT",
+              "deaths": 52745,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26564
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26181
+                }
+              ]
+            },
+            {
+              "name": "ME",
+              "deaths": 52741,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26724
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26017
+                }
+              ]
+            },
+            {
+              "name": "NC",
+              "deaths": 52723,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26564
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26159
+                }
+              ]
+            },
+            {
+              "name": "TN",
+              "deaths": 52716,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26724
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25992
+                }
+              ]
+            },
+            {
+              "name": "MD",
+              "deaths": 52696,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26730
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25966
+                }
+              ]
+            },
+            {
+              "name": "RI",
+              "deaths": 52681,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26813
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25868
+                }
+              ]
+            },
+            {
+              "name": "WI",
+              "deaths": 52666,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26762
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25904
+                }
+              ]
+            },
+            {
+              "name": "OK",
+              "deaths": 52663,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26622
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26041
+                }
+              ]
+            },
+            {
+              "name": "LA",
+              "deaths": 52645,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26457
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26188
+                }
+              ]
+            },
+            {
+              "name": "CO",
+              "deaths": 52633,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26692
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25941
+                }
+              ]
+            },
+            {
+              "name": "NE",
+              "deaths": 52633,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26817
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25816
+                }
+              ]
+            },
+            {
+              "name": "OR",
+              "deaths": 52628,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26632
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25996
+                }
+              ]
+            },
+            {
+              "name": "FL",
+              "deaths": 52613,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26642
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25971
+                }
+              ]
+            },
+            {
+              "name": "AL",
+              "deaths": 52604,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26611
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25993
+                }
+              ]
+            },
+            {
+              "name": "NM",
+              "deaths": 52603,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26456
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26147
+                }
+              ]
+            },
+            {
+              "name": "WY",
+              "deaths": 52597,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26698
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25899
+                }
+              ]
+            },
+            {
+              "name": "ND",
+              "deaths": 52588,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26551
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26037
+                }
+              ]
+            },
+            {
+              "name": "IL",
+              "deaths": 52579,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26675
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25904
+                }
+              ]
+            },
+            {
+              "name": "MA",
+              "deaths": 52555,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26447
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26108
+                }
+              ]
+            },
+            {
+              "name": "SD",
+              "deaths": 52549,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26492
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26057
+                }
+              ]
+            },
+            {
+              "name": "ID",
+              "deaths": 52524,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26500
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26024
+                }
+              ]
+            },
+            {
+              "name": "VA",
+              "deaths": 52523,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26619
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25904
+                }
+              ]
+            },
+            {
+              "name": "HI",
+              "deaths": 52486,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26619
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25867
+                }
+              ]
+            },
+            {
+              "name": "KY",
+              "deaths": 52477,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26459
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26018
+                }
+              ]
+            },
+            {
+              "name": "UT",
+              "deaths": 52460,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26486
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25974
+                }
+              ]
+            },
+            {
+              "name": "TX",
+              "deaths": 52440,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26419
+                },
+                {
+                  "name": "Female",
+                  "deaths": 26021
+                }
+              ]
+            },
+            {
+              "name": "GA",
+              "deaths": 52419,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26640
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25779
+                }
+              ]
+            },
+            {
+              "name": "NV",
+              "deaths": 52418,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26534
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25884
+                }
+              ]
+            },
+            {
+              "name": "AR",
+              "deaths": 52409,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26635
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25774
+                }
+              ]
+            },
+            {
+              "name": "WV",
+              "deaths": 52397,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26645
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25752
+                }
+              ]
+            },
+            {
+              "name": "MO",
+              "deaths": 52384,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26498
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25886
+                }
+              ]
+            },
+            {
+              "name": "SC",
+              "deaths": 52375,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26694
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25681
+                }
+              ]
+            },
+            {
+              "name": "MI",
+              "deaths": 52368,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26638
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25730
+                }
+              ]
+            },
+            {
+              "name": "AZ",
+              "deaths": 52351,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26406
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25945
+                }
+              ]
+            },
+            {
+              "name": "KS",
+              "deaths": 52351,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26440
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25911
+                }
+              ]
+            },
+            {
+              "name": "CT",
+              "deaths": 52340,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26452
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25888
+                }
+              ]
+            },
+            {
+              "name": "IA",
+              "deaths": 52259,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26463
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25796
+                }
+              ]
+            },
+            {
+              "name": "NH",
+              "deaths": 52182,
+              "sex": [
+                {
+                  "name": "Male",
+                  "deaths": 26457
+                },
+                {
+                  "name": "Female",
+                  "deaths": 25725
+                }
+              ]
+            }
+          ]
+        }
       }
     }
   },

@@ -1,5 +1,8 @@
 {
   "mortality": {
+    "_source": {
+      "enabled": true
+    },
     "include_in_all": false,
     "properties": {
       "state":{
@@ -48,18 +51,36 @@
         "type":"string"
       },
       "entity_axis_condn": {
-        "type":"string", "index":"not_analyzed"
+        "properties": {
+          "code":{ "type": "string", "index":"not_analyzed"},
+          "path":{ "type": "string", "index":"not_analyzed"}
+        }
       },
       "record_axis_condn_count":{
         "type":"string"
       },
       "record_axis_condn": {
-        "type":"string", "index":"not_analyzed"
+        "properties": {
+          "code":{ "type": "string", "index":"not_analyzed"},
+          "path":{ "type": "string", "index":"not_analyzed"}
+        }
       },
       "race": {
         "type":"string", "index":"not_analyzed"
       },
       "hispanic_origin": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "ethnicity_group": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "census_region": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "hhs_region": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "census_division": {
         "type":"string", "index":"not_analyzed"
       }
     }

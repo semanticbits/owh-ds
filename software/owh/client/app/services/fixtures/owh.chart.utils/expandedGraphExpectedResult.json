@@ -1,156 +1,236 @@
 [
   {
-    "data": [
+    "layout":{
+      "width":1000,
+      "autosize":true,
+      "showlegend":true,
+      "margin":{
+        "l":200,
+        "r":10,
+        "b":200,
+        "t":150
+      },
+      "xaxis":{
+        "visible":true,
+        "titlefont":{
+          "size":15
+        },
+        "exponentformat":"none",
+        "tickangle":45,
+        "showline":true,
+        "gridcolor":"#bdbdbd",
+        "showticklabels":true,
+        "fixedrange":true,
+        "title":"Deaths"
+      },
+      "yaxis":{
+        "visible":true,
+        "titlefont":{
+          "size":15
+        },
+        "exponentformat":"none",
+        "tickangle":45,
+        "ticksuffix":"   ",
+        "showline":true,
+        "gridcolor":"#bdbdbd",
+        "showticklabels":true,
+        "fixedrange":true,
+        "title":"label.filter.race"
+      },
+      "barmode":"stack",
+      "title":"chart.title.measure.deaths by label.filter.gender and label.filter.race in undefined for undefined",
+      "height":750,
+      "legend":{
+        "orientation":"v",
+        "x":1.01,
+        "y":0.4,
+        "traceorder":"reversed"
+      }
+    },
+    "dataset":"deaths",
+    "data":[
       {
-        "key": "Female",
-        "color": "#fe66ff",
-        "values": [
-          {
-            "label": "American Indian",
-            "value": 8185
-          },
-          {
-            "label": "Asian or Pacific Islander",
-            "value": 30068
-          },
-          {
-            "label": "Black",
-            "value": 151344
-          },
-          {
-            "label": "Other (Puerto Rico only)",
-            "value": 0
-          },
-          {
-            "label": "White",
-            "value": 1109971
-          }
+        "name":"Male     ",
+        "x":[
+          1131379,
+          157972,
+          32035,
+          9846
         ],
-        "deaths": 1299568
+        "y":[
+          "White",
+          "Black",
+          "Asian or Pacific Islander",
+          "American Indian"
+        ],
+        "text":[
+          "1,131,379",
+          "157,972",
+          "32,035",
+          "9,846"
+        ],
+        "orientation":"h",
+        "hoverinfo":"none",
+        "type":"bar",
+        "marker":{
+          "color":"#65c2ff"
+        }
       },
       {
-        "key": "Male",
-        "color": "#009aff",
-        "values": [
-          {
-            "label": "American Indian",
-            "value": 9846
-          },
-          {
-            "label": "Asian or Pacific Islander",
-            "value": 32035
-          },
-          {
-            "label": "Black",
-            "value": 157972
-          },
-          {
-            "label": "Other (Puerto Rico only)",
-            "value": 0
-          },
-          {
-            "label": "White",
-            "value": 1131379
-          }
+        "name":"Female     ",
+        "x":[
+          1109971,
+          151344,
+          30068,
+          8185
         ],
-        "deaths": 1331232
+        "y":[
+          "White",
+          "Black",
+          "Asian or Pacific Islander",
+          "American Indian"
+        ],
+        "text":[
+          "1,109,971",
+          "151,344",
+          "30,068",
+          "8,185"
+        ],
+        "orientation":"h",
+        "hoverinfo":"none",
+        "type":"bar",
+        "marker":{
+          "color":"#ED93CB"
+        }
       }
     ],
-    "title": "label.title.yrbsSex.yrbsRace",
-    "options": {
-      "chart": {
-        "type": "multiBarHorizontalChart",
-        "height": 500,
-        "width": 720,
-        "margin": {
-          "top": 20,
-          "right": 40,
-          "bottom": 120,
-          "left": 210
-        },
-        "showLegend": true,
-        "showControls": true,
-        "showValues": true,
-        "showXAxis": true,
-        "showYAxis": true,
-        "stacked": true,
-        "duration": 500,
-        "xAxis": {
-          "axisLabelDistance":120,
-          "axisLabel":"label.filter.race",
-          "showMaxMin": false
-        },
-        "yAxis": {
-          "axisLabel":"Deaths",
-          "axisLabelDistance":10
-        },
-        "useInteractiveGuideline": false,
-        "interactive": false,
-        "tooltip": {}
-      }
-    }
+    "longtitle":"chart.title.measure.deaths by label.filter.gender and label.filter.race in undefined for undefined",
+    "charttype":"multiBarHorizontalChart"
   },
   {
-    "data": [
+    "layout":{
+      "width":1000,
+      "autosize":true,
+      "showlegend":true,
+      "margin":{
+        "l":200,
+        "r":10,
+        "b":200,
+        "t":150
+      },
+      "xaxis":{
+        "visible":true,
+        "titlefont":{
+          "size":15
+        },
+        "exponentformat":"none",
+        "tickangle":45,
+        "showline":true,
+        "gridcolor":"#bdbdbd",
+        "showticklabels":true,
+        "fixedrange":true,
+        "title":"Deaths"
+      },
+      "yaxis":{
+        "visible":true,
+        "titlefont":{
+          "size":15
+        },
+        "exponentformat":"none",
+        "tickangle":45,
+        "ticksuffix":"   ",
+        "showline":true,
+        "gridcolor":"#bdbdbd",
+        "showticklabels":true,
+        "fixedrange":true,
+        "title":"label.filter.race",
+        "type":"category"
+      },
+      "title":"chart.title.measure.deaths by label.filter.race in undefined for undefined",
+      "height":750,
+      "legend":{
+        "orientation":"v",
+        "x":1.01,
+        "y":0.4,
+        "traceorder":"reversed"
+      }
+    },
+    "dataset":"deaths",
+    "data":[
       {
-        "label": "American Indian",
-        "value": 18031
+        "name":"White     ",
+        "x":[
+          2241350
+        ],
+        "y":[
+          "White"
+        ],
+        "text":[
+          "2,241,350"
+        ],
+        "orientation":"h",
+        "type":"bar",
+        "hoverinfo":"none",
+        "marker":{
+          "color":"#56b783"
+        }
       },
       {
-        "label": "Asian or Pacific Islander",
-        "value": 62103
+        "name":"Black     ",
+        "x":[
+          309316
+        ],
+        "y":[
+          "Black"
+        ],
+        "text":[
+          "309,316"
+        ],
+        "orientation":"h",
+        "type":"bar",
+        "hoverinfo":"none",
+        "marker":{
+          "color":"#FFCC9A"
+        }
       },
       {
-        "label": "Black",
-        "value": 309316
+        "name":"Asian or Pacific Islander     ",
+        "x":[
+          62103
+        ],
+        "y":[
+          "Asian or Pacific Islander"
+        ],
+        "text":[
+          "62,103"
+        ],
+        "orientation":"h",
+        "type":"bar",
+        "hoverinfo":"none",
+        "marker":{
+          "color":"#65c2ff"
+        }
       },
       {
-        "label": "Other (Puerto Rico only)",
-        "value": 0
-      },
-      {
-        "label": "White",
-        "value": 2241350
+        "name":"American Indian     ",
+        "x":[
+          18031
+        ],
+        "y":[
+          "American Indian"
+        ],
+        "text":[
+          "18,031"
+        ],
+        "orientation":"h",
+        "type":"bar",
+        "hoverinfo":"none",
+        "marker":{
+          "color":"#ED93CB"
+        }
       }
     ],
-    "title": "label.graph.yrbsGrade",
-    "options": {
-      "chart": {
-        "type": "pieChart",
-        "height": 500,
-        "width": 720,
-        "margin": {
-          "top": 5,
-          "right": 5,
-          "bottom": 5,
-          "left": 5
-        },
-        "showValues": true,
-        "showLabels": false,
-        "transitionDuration": 250,
-        "showLegend": true,
-        "legend": {
-          "margin": {
-            "right": 130,
-            "top": 30
-          }
-        },
-        "labelThreshold": 0.01,
-        "labelSunbeamLayout": true,
-        "styles": {
-          "classes": {
-            "with-3d-shadow": true,
-            "with-transitions": true,
-            "gallery": false
-          }
-        },
-        "useInteractiveGuideline": false,
-        "interactive": false,
-        "tooltip": {},
-        "showControls": true,
-        "showXAxis": true,
-        "showYAxis": true
-      }
-    }
+    "longtitle":"chart.title.measure.deaths by label.filter.race in undefined for undefined",
+    "charttype":"pieChart"
   }
 ]

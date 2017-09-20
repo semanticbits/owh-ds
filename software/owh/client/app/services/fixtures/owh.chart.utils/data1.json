@@ -1,45 +1,45 @@
 {
   "gender": [
     {
-      "name": "M",
+      "name": "Male",
       "deaths": 1331232,
       "race": [
         {
-          "name": "1",
+          "name": "White",
           "deaths": 1131379
         },
         {
-          "name": "2",
+          "name": "Black",
           "deaths": 157972
         },
         {
-          "name": "4",
+          "name": "Asian or Pacific Islander",
           "deaths": 32035
         },
         {
-          "name": "3",
+          "name": "American Indian",
           "deaths": 9846
         }
       ]
     },
     {
-      "name": "F",
+      "name": "Female",
       "deaths": 1299568,
       "race": [
         {
-          "name": "1",
+          "name": "White",
           "deaths": 1109971
         },
         {
-          "name": "2",
+          "name": "Black",
           "deaths": 151344
         },
         {
-          "name": "4",
+          "name": "Asian or Pacific Islander",
           "deaths": 30068
         },
         {
-          "name": "3",
+          "name": "American Indian",
           "deaths": 8185
         }
       ]

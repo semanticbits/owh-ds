@@ -1,22 +1,25 @@
 var OwhHomepage = function() {
     var hp = this;
     //explore button in Quick Health Data Online Box
-    hp.quickHealthExploreBtn = element( by.css('.qh-button'));
+    hp.quickHealthExploreBtn = element( by.css('.usa-button-secondary'));
 
     //Birth Explore link in Women's Health section
-    hp.birthExplorerLink = element( by.id('wh_birth_explorer'));
+    hp.birthExplorerLink = element( by.cssContainingText('div', "Pregnancy Risk Assessment Monitoring System (PRAMS)"));
 
     //Explore link in Youth related under Behavior Risk section
-    hp.mentalExplorerLink = element( by.id('br_mental_health_explorer'));
+    hp.mentalExplorerLink = element( by.cssContainingText('div', "Youth Risk Behavior Surveillance System (YRBSS)"));
 
     hp.getPhaseTwoPopupHeading =  function() {
-        return element( by.binding("'label.next.impl' | translate")).getText()
-    }
+        return element( by.css('.custom-modal-body.usa-grid')).getText();
+    };
     hp.getYouCanSectionContent = function() {
         return element(by.css('.youCanContent')).all(by.tagName('p'));
-    }
+    };
     hp.getWorkInProgressMessage = function () {
         return element(by.css('.usa-disclaimer-official')).element(by.tagName('span')).getText();
+    };
+    hp.getOWHAppName = function() {
+        return element( by.cssContainingText("title", "OWH-Health Information Gateway")).getText();
     }
 };
 

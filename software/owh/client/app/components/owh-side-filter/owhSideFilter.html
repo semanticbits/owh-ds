@@ -1,139 +1,83 @@
 <aside>
+    <div class="margin-top-20" align="center" ng-if="!sfc.runOnFilterChange">
+        <button class="action-button condition-option ng-scope buttonFocus" ng-click="sfc.onFilter();"
+                title="{{'label.run.query.title' | translate}}">{{'label.run.query' | translate}}
+        </button>
+    </div>
     <ul class="usa-sidenav-list side-filters">
-        <li class="accordion" ng-repeat="sideFilter in sfc.filters.selectedPrimaryFilter.sideFilters | orderBy: sfc.getFilterOrder">
-            <span ng-init="group = (sideFilter.filterGroup ? sideFilter : sideFilter.filters)">
-                <label class="side-pane-label custom-label">
-                    <a href="javascript:void(0)" ng-click="sideFilter.collapse = !sideFilter.collapse" class="custom-link">
-                        <i class="fa" ng-class="sideFilter.collapse?'fa-chevron-right':'fa-chevron-down'"></i>
-                        <span translate="{{group.title}}"></span>
+        <!--iterate over filter by category-->
+        <div ng-repeat="category in sfc.filters"
+             ng-init="categoryKey = category.category"
+             class="category-{{$index}}">
+            <div ng-switch="category.ui">
+                <div ng-switch-when="tabbed">
+                    <li class="accordion">
+                        <ul class="filter-group">
+                            <li ng-repeat="sideFilter in category.sideFilters" ng-init="group = (sideFilter.filterGroup ? sideFilter : sideFilter.filters)" ng-class="{selected: category.selectedFilter === group.key, 'cursor-not-allowed disabled-filter': !sfc.isVisible(sideFilter) || sideFilter.disabled}">
+                                <a href="javascript:void(0)" ng-click="sfc.changeSelectedFilter(sideFilter, category)">By {{group.title | translate}}</a>
+                            </li>
+                        </ul>
+                        <div ng-repeat="sideFilter in category.sideFilters" ng-init="group = (sideFilter.filterGroup ? sideFilter : sideFilter.filters)" ng-show="category.selectedFilter === group.key" ng-class="{'cursor-not-allowed disabled-filter': !sfc.isVisible(sideFilter) || sideFilter.disabled}">
+                            <owh-side-filter-item filter="sideFilter"
+                                                  group-options="sfc.groupOptions"
+                                                  run-on-filter-change="sfc.runOnFilterChange"
+                                                  on-filter-value-change="sfc.onFilterValueChange(sideFilter, category)"
+                                                  on-filter="sfc.onFilter()"></owh-side-filter-item>
+                        </div>
+                    </li>
+                </div>
+                <div ng-switch-default="">
+                    <div class="padding-top-20 bold-class grey-text filter-category"
+                         ng-if="categoryKey" ng-bind="categoryKey">
+                    </div>
+                    <!--iterate over filters of a category-->
+                    <li class="accordion" ng-repeat="sideFilter in category.sideFilters | orderBy: sfc.getFilterOrder"
+                        ng-class="{'cursor-not-allowed disabled-filter': !sfc.isVisible(sideFilter) || sideFilter.disabled }"
+                        ng-if="!categoryKey || $index < 2 || sfc.filters.selectedPrimaryFilter['cat' + $parent.$index]">
+                        <owh-side-filter-item filter="sideFilter"
+                                              group-options="sfc.groupOptions"
+                                              run-on-filter-change="sfc.runOnFilterChange"
+                                              on-filter-value-change="sfc.onFilterValueChange(sideFilter, category)"
+                                              on-filter="sfc.onFilter()"></owh-side-filter-item>
+                    </li>
+                    <!--show hide/more filters of a category-->
+                    <div ng-if="category.sideFilters.length > 2 && categoryKey"
+                         class="padding-top-10 toggle-filter-link">
+                        <a ng-show="!sfc.filters.selectedPrimaryFilter['cat'+$index]" class="custom-link show-more-{{$index}}"
+                           translate="label.show.more.filters"
+                           translate-values="{showLength: (category.sideFilters.length - 2)}"
+                           ng-click="sfc.filters.selectedPrimaryFilter['cat'+$index] = !sfc.filters.selectedPrimaryFilter['cat'+$index]"
+                           href="javascript:void(0)"></a>
+                        <a ng-show="sfc.filters.selectedPrimaryFilter['cat'+$index]" class="custom-link show-less-{{$index}}"
+                           translate="label.hide.more.filters"
+                           translate-values="{hideLength: (category.sideFilters.length -2)}"
+                           ng-click="sfc.filters.selectedPrimaryFilter['cat'+$index] = !sfc.filters.selectedPrimaryFilter['cat'+$index]"
+                           href="javascript:void(0)"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <li class="accordion" ng-repeat="util in sfc.utilities">
+            <span>
+                <div class="side-pane-div custom-div">
+                    <a href="javascript:void(0)" ng-click="util.collapse = !util.collapse"
+                       title="{{util.helpText | translate}}" class="custom-link">
+                         <i class="material-icons chevron-right-black" ng-class="util.collapse?'shut':'open'">chevron_right</i>
+                        <span translate="{{util.title}}"></span>
                     </a>
-                    <owh-toggle-switch ng-if="sideFilter.allowGrouping" class="pull-right"
-                                       options="sideFilter.groupOptions ? sideFilter.groupOptions : sfc.filters.groupOptions"
-                                       model="group.groupBy" on-change="sfc.onFilter()"
-                                       tooltip="{{'label.group.by.tooltip' | translate}}">
-                    </owh-toggle-switch>
-                    <!--<a class="group-by-link custom-link" href="javascript:void(0)"
-                       ng-if="sideFilter.allowGrouping" ng-class="{'selected': group.groupBy}"
-                       ng-click="sfc.groupBySideFilter(group)">
-                        <span translate="label.group.by"></span>
-                        <i class="fa" ng-class="{'fa-times': group.groupBy}"></i>
-                    </a>-->
-                </label>
-                <ul class="usa-unstyled-list group-options" ng-if="group.filterGroup" ng-hide="sideFilter.collapse">
-                    <li ng-repeat="eachFilter in group.filters" class="group-option" ng-show="$index < 3 || sideFilter.showAll">
-                        <input type="checkbox" ng-model="eachFilter.groupBy" id="{{eachFilter.key}}">
-                        <label for="{{eachFilter.key}}" class="custom-label">
-                            <span translate="{{eachFilter.title}}"></span>
-                            <span class="pull-right" ng-bind="sfc.getOptionCount(eachFilter.autoCompleteOptions[0])"></span>
-                        </label>
-                    </li>
-                    <li class="group-option more-options" ng-if="group.filters.length > 3">
-                        <a ng-show="!sideFilter.showAll" class="custom-link" translate="label.show.more"
-                           translate-values="{showLength: group.filters.length - 3}"
-                           ng-click="sideFilter.showAll = !sideFilter.showAll" href="javascript:void(0)"></a>
-                        <a ng-show="sideFilter.showAll" class="custom-link" translate="label.hide.more"
-                           translate-values="{hideLength: group.filters.length - 3}"
-                           ng-click="sideFilter.showAll = !sideFilter.showAll" href="javascript:void(0)"></a>
-                    </li>
-                </ul>
-                <ul class="usa-unstyled-list group-options" ng-if="!group.filterGroup" ng-hide="sideFilter.collapse">
-
-                    <!--Age group filter -->
-                    <li ng-if="group.filterType === 'slider'">
-                        <input type="text" ng-model="group.sliderValue" id="{{group.key}}_slider" slider options="group.sliderOptions"/>
-                    </li>
-
-                    <!--Radio button filters (UCD & MCD)-->
-                    <li ng-if="group.filterType === 'conditions'" ng-repeat="option in group.autoCompleteOptions" class="group-option" >
-                        <!--<input id="{{option.key}}" type="radio" ng-model="group.value" ng-value="option.key"
-                               ng-click="sfc.showModal(option.key, option.value, group.autoCompleteOptions)">-->
-                        <label for="{{option.key}}" class="custom-label" style="margin-bottom: 0">
-                            <button class="action-button condition-option" translate="select.{{option.title}}"
-                                    ng-click="group.value = option.key;sfc.showModal(option, group.autoCompleteOptions)"></button>
-                            <owh-toggle-switch class="pull-right" ng-show="option.selectedValues.length > 0 "
-                                               options="group.groupOptions"
-                                               model="option.groupBy" on-change="sfc.onFilter()"
-                                               tooltip="{{'label.group.by.tooltip' | translate}}">
+                </div>
+                <ul class="owh-side-menu__options-list usa-unstyled-list group-options" ng-hide="util.collapse">
+                    <div class="owh-side-menu__utility-option" ng-repeat="option in util.options">
+                        <div ng-if="option.type === 'toggle'">
+                            <span>{{option.title}}</span>
+                            <owh-toggle-switch class="pull-right"
+                                               model="option.value"
+                                               options="option.options"
+                                               on-change="option.onChange(option.value, option)">
                             </owh-toggle-switch>
-
-                        </label>
-                        <div ng-show="group.value===option.key">
-                            <div ng-repeat="selectedValue in option.selectedValues" >
-                                <span style="font-size: 13px" ng-bind="selectedValue.text"></span>
-                            </div>
-                            <div ng-if="!option.selectedValues || option.selectedValues.length === 0" style="margin-bottom: 20px">
-                                <span style="font-size: 13px">All</span>
-                            </div>
                         </div>
-                          <div class="ucd-clear" ng-show="option.selectedValues.length > 0 ">
-                              <button class="action-button" translate="label.clear"
-                                      ng-click="sfc.clearSelection(option, true)"></button>
-                            </div>
-                    </li>
-                    <!--Radio button filters (UCD & MCD)-->
-
-
-                    <!--Tree filter-->
-                    <li ng-if="group.filterType === 'tree'" class="group-option" >
-                        <!--<input id="{{option.key}}" type="radio" ng-model="group.value" ng-value="option.key"
-                               ng-click="sfc.showModal(option.key, option.value, group.autoCompleteOptions)">-->
-                        <label for="{{group.key}}" class="custom-label" style="margin-bottom: 0">
-                            <button class="action-button condition-option" translate="{{group.selectTitle}}"
-                                    ng-click="sfc.showModal(group, [group])"></button>
-                        </label>
-                        <div class="">
-                            <div ng-repeat="selectedValue in group.selectedValues" >
-                                <span style="font-size: 13px" ng-bind="selectedValue.text"></span>
-                            </div>
-                            <div ng-if="!group.selectedValues || group.selectedValues.length === 0" style="margin-bottom: 20px">
-                                <span style="font-size: 13px">All</span>
-                            </div>
-                        </div>
-                        <div class="ucd-clear" ng-show="group.selectedValues.length > 0 ">
-                            <button class="action-button" translate="label.clear"
-                                    ng-click="sfc.clearSelection(group)"></button>
-                        </div>
-                    </li>
-                    <!--Tree filter-->
-
-                    <!--Radio button filters (UCD & MCD)-->
-                    <li ng-if="group.filterType === 'radio'" ng-repeat="option in group.autoCompleteOptions" class="group-option" >
-                        <input id="{{option.key}}" type="radio" ng-model="group.value" ng-value="option.key" ng-click="sfc.onFilter()" >
-                        <label for="{{option.key}}" class="custom-label" style="margin-bottom: 0">
-                            <span translate="{{option.title}}"></span>
-                        </label>
-                    </li>
-                    <!--Radio button filters (UCD & MCD)-->
-
-
-                    <!--Fot all other filters-->
-                    <li class="group-option" ng-if="group.filterType !== 'tree' && group.filterType !== 'slider' && group.filterType !== 'conditions'  && group.filterType !== 'radio' ">
-                        <input type="checkbox" id="{{group.queryKey}}_all" name="{{group.queryKey}}_all" ng-checked="group.value.length === 0"
-                               ng-click="sfc.updateGroupValue(group);" ng-model="group.allChecked" ng-init="group.allChecked = group.value.length === 0">
-                        <label for="{{group.queryKey}}_all" class="custom-label">
-                            <span>All</span>
-                        </label>
-                    </li>
-                    <li ng-repeat="option in group.autoCompleteOptions | orderBy:'-count'" ng-if="group.filterType !== 'tree' && group.filterType !== 'slider' && group.filterType !== 'conditions'  && group.filterType !== 'radio' "
-                        class="group-option" ng-show="$index < 3 || sideFilter.showAll">
-                        <input id="{{sfc.filters.selectedPrimaryFilter.key}}_{{group.key}}_{{option.key}}" type="checkbox"
-                               checklist-model="group.value" checklist-value="option.key" ng-click="sfc.onFilter()">
-                        <label for="{{sfc.filters.selectedPrimaryFilter.key}}_{{group.key}}_{{option.key}}" class="custom-label"
-                               ng-init="title = option.title == 'Nursing home/long term care' ? 'Nursing home/long term <br>care' : option.title">
-                            <span class="count-label" translate="{{title}}"></span>
-                            <span class="pull-right count-value" ng-if="!sideFilter.dontShowCounts" ng-bind="sfc.getOptionCount(option)"></span>
-                        </label>
-                    </li>
-                    <li class="group-option more-options" ng-if="group.autoCompleteOptions.length > 3 &&
-                        group.filterType !== 'tree' && group.filterType !== 'slider' && group.filterType !== 'conditions' &&
-                        group.filterType !== 'radio' " >
-                        <a ng-show="!sideFilter.showAll" class="custom-link" translate="label.show.more"
-                           translate-values="{showLength: group.autoCompleteOptions.length - 3}"
-                           ng-click="sideFilter.showAll = !sideFilter.showAll" href="javascript:void(0)"></a>
-                        <a ng-show="sideFilter.showAll" class="custom-link" translate="label.hide.more"
-                           translate-values="{hideLength: group.autoCompleteOptions.length - 3}"
-                           ng-click="sideFilter.showAll = !sideFilter.showAll" href="javascript:void(0)"></a>
-                    </li>
+                        <br ng-if="$index === 0" />
+                    </div>
                 </ul>
             </span>
         </li>

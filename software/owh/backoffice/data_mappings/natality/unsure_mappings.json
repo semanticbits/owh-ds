@@ -1,0 +1,91 @@
+{
+  "datafiletype": "fwf",
+  "columns": [
+    {
+      "column": "comb_gest_weekly",
+      "type": "range",
+      "start": 451,
+      "stop": 452,
+      "field": "LMP Gestational Age Weekly",
+      "mappings": {
+        "17-47": "17th through 47th week of Gestation",
+        "99": "Unknown or not stated"
+      }
+    },
+    {
+      "column": "lmp_gest_group1",
+      "start": 455,
+      "stop": 455,
+      "field": "LMP Gestational Age Group1",
+      "mappings": {
+        "1": "Under 37 weeks",
+        "2": "37 weeks and over",
+        "3": "Not stated"
+      }
+    },
+    {
+      "column": "lmp_gest_group2",
+      "type": "symple",
+      "start": 453,
+      "stop": 454,
+      "field": "LMP Gestational Age Group2",
+      "mappings": {
+        "01": "Under 20 weeks",
+        "02": "20-27 weeks",
+        "03": "28-31 weeks",
+        "04": "32-33 weeks",
+        "05": "34-36 weeks",
+        "06": "37-38 weeks",
+        "07": "39 weeks",
+        "08": "40 weeks",
+        "09": "41 weeks",
+        "10": "42 weeks and over",
+        "99": "Unknown"
+      }
+    },
+    {
+      "column": "oe_gestational_age_group_1",
+      "type": "range",
+      "start": 499,
+      "stop": 500,
+      "field": "OEGest_Comb",
+      "description": "Obstetric Estimate Edited",
+      "mappings": {
+        "17-47": "Weeks of gestation",
+        "99": "Not stated"
+      }
+    },
+    {
+      "column": "oe_gestational_age_group_2",
+      "start": 501,
+      "stop": 502,
+      "field": "OEGest_R10",
+      "description": "Obstetric Estimate Recode10",
+      "mappings": {
+        "10": "42 weeks and over",
+        "99": "Unknown",
+        "01": "Under 20 weeks",
+        "02": "20-27 weeks",
+        "03": "28-31 weeks",
+        "04": "32-33 weeks",
+        "05": "34-36 weeks",
+        "06": "37-38 weeks",
+        "07": "39 weeks",
+        "08": "40 weeks",
+        "09": "41 weeks"
+      }
+    },
+    {
+      "column": "oe_gestational_age_weekly",
+      "start": 503,
+      "stop": 503,
+      "field": "OEGest_R3",
+      "description": "Obstetric Estimate Recode 3",
+      "mappings": {
+        "1": "Under 37 weeks",
+        "2": "37 weeks and over",
+        "3": "Not stated"
+      }
+    }
+  ]
+}

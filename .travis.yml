@@ -1,36 +1,129 @@
-sudo: required 
-
 language: node_js
 node_js:
   - "node"
-
+  
 services:
   - docker
 
+addons:
+  code_climate:
+    repo_token: aa4bb84528f703e93a68f03079e9870898d452659e9498bbba8fb043c66e3083
+
 env:
   global:
-    - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PROD
-    - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PROD
-#    - NODE_ENV=test
+    - AWS_ACCESS_KEY_ID=$OWH_ACCESS_KEY
+    - AWS_SECRET_ACCESS_KEY=$OWH_ACCESS_SECRET
+    - NODE_ENV=test
 
-install:
-  - docker info
+before_install:
+  - docker info  
   - mkdir -p .owh/logs
-  - sudo pip install awscli
+  - openssl aes-256-cbc -K $encrypted_24a8a70e72ba_key -iv $encrypted_24a8a70e72ba_iv -in .owh/owh-config.yaml.enc -out .owh/owh-config.yaml -d
+  - pip install awscli
   - export PATH=$PATH:$HOME/.local/bin
 
+install:
+  - cd software/owh/server
+  - nvm install node
+  - nvm use node
+  - node --version
+  - npm install
+  - npm install --dev
+  - cd  ../client
+  - npm install
+  - npm install --dev
+  - npm install -g nodemon
+  - npm install -g istanbul
+  - npm install -g codeclimate-test-reporter
+  - npm install -g lcov-result-merger
+
+before_script:
+  - sleep 10
+  - curl http://54.242.94.197/esdev  # To verify ElasticSearch running 
+  - curl http://54.242.94.197/stats/questions?d=yrbss # check connection to YRBS dev service
+  - java -version
+  - echo $JAVA_HOME
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - npm start > /dev/null &
+  - ./node_modules/protractor/bin/webdriver-manager update
+  - sleep 1 #give server time to start
+
+group: deprecated-2017Q2
+language: java
+jdk:
+  - oraclejdk8
+  
 script:
+  - npm run-script test-single-run
+  - ls
+  - ls coverage
+  - ls 'coverage/PhantomJS 2.1.1 (Linux 0.0.0)'
+  - cd ../server
+  - istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive test
+  - npm start > /dev/null &
+  - sleep 10
+  - cd ../client
+  #- ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Factsheets
+  # - ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Yrbs,@PRAMS,@Home
+  #- ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Natality,@Mortality
+  #- ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@CancerIncidence,@Common,@Infant
+  #- ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Census,@AIDS
+  #- ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@STD,@TB,@DataDocumentation
+
+after_success:
+  - cd ..
+  - lcov-result-merger './**/lcov.info' 'merged-lcov.info'
+  - codeclimate-test-reporter < "merged-lcov.info"
+  - aws s3 sync client/cucumber-test-reports s3://owh-cucumber-report --acl public-read
+
+before_deploy:
+
   - cd $TRAVIS_BUILD_DIR/software/owh
   # Dealing with paths that fight each other... start the nasty bit...
   - cp -R $TRAVIS_BUILD_DIR/deployment/* $TRAVIS_BUILD_DIR/software/owh
+  # End the nasty bit.
+  - aws s3 sync s3://owh-config-dev $TRAVIS_BUILD_DIR/software/owh
   - mkdir -p $TRAVIS_BUILD_DIR/software/owh/.owh/logs
+  - docker-compose up -d
+  - docker-compose build
+  - docker images
+  - mkdir -p dpl_tmp
+  - mkdir -p dpl_cd_upload
+  - docker save owh_web |  gzip -c >  dpl_tmp/owh_web.tar.gz
+  - cp $TRAVIS_BUILD_DIR/deployment/appspec.yml dpl_tmp/appspec.yml
+  - cp $TRAVIS_BUILD_DIR/deployment/docker-compose-deploy.yml  dpl_tmp/docker-compose.yml
+  - cp $TRAVIS_BUILD_DIR/deployment/Dockerfile  dpl_tmp/
+  - cp -R $TRAVIS_BUILD_DIR/deployment/scripts  dpl_tmp/scripts
+  - cd dpl_tmp
+  - zip -r owh-${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}.zip *
+  - ls
+  - cd ..
+  - mv dpl_tmp/owh-${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}.zip dpl_cd_upload/
+  - ls dpl_tmp
+  - rm -rf dpl_tmp
 
-after_success:
-  - docker --version  # document the version travis is using
-  - eval $(aws ecr get-login --region us-east-1) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
-  - docker build -t owh-prod .
-  - docker tag owh-prod:latest 498284886784.dkr.ecr.us-east-1.amazonaws.com/owh-prod:latest
-  - docker push 498284886784.dkr.ecr.us-east-1.amazonaws.com/owh-prod:latest
-  - sh script.sh
+deploy:
+- provider: s3
+  access_key_id: $OWH_ACCESS_KEY
+  secret_access_key: $OWH_ACCESS_SECRET
+  local_dir: dpl_cd_upload
+  skip_cleanup: true
+  on: &2
+    repo: semanticbits/owh-ds
+    branch:
+     - develop
+     # - release (TBD)
+  bucket: sb-owh-deployment
+- provider: codedeploy
+  access_key_id: $OWH_ACCESS_KEY
+  secret_access_key: $OWH_ACCESS_SECRET
+  bucket: sb-owh-deployment
+  key: owh-$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER.zip
+  bundle_type: zip
+  application: OwhDev
+  deployment_group: $TRAVIS_BRANCH
+  on: *2
 
-
+after_script:
+  - kill -9 $(fuser -n tcp 3000 2> /dev/null)

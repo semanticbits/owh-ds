@@ -1,0 +1,154 @@
+/**
+* Conditional CSS for IE 8+.
+*/
+@media screen\0 {
+
+  select::-ms-expand {
+    display: none;
+  }
+  body {
+    font-family: sans-serif;
+  }
+  .material-icons {
+    width: 24px;
+    height: 24px;
+    text-indent: -9999px;
+  }
+  .chevron-right-blue {
+    background: url(../images/material-icons/chevron-right-blue.svg);
+  }
+  .chevron-right-black {
+    background: url(../images/material-icons/chevron-right-black.svg);
+  }
+  .home-icon {
+    background: url(../images/material-icons/home-blue.svg);
+  }
+
+  .description-icon {
+    background: url(../images/material-icons/ic_description_black.svg);
+  }
+
+  .pdf-icon {
+    background: url(../images/material-icons/pdf_red.svg);
+  }
+  .active .description-icon {
+    background: url(../images/material-icons/ic_description_purple.svg);
+  }
+
+  .active .home-icon {
+    background: url(../images/material-icons/home-purple.svg);
+  }
+  .explore-icon {
+    background: url(../images/material-icons/explore-blue.svg);
+  }
+  .active .explore-icon {
+    background: url(../images/material-icons/explore-purple.svg);
+  }
+  .add-icon {
+    background: url(../images/material-icons/add-black.svg);
+  }
+  .co-branded-anchor i {
+    vertical-align: -2px;
+  }
+  .rotate-45 {
+    transform: rotate(45deg);
+  }
+  .arrow-forward-white {
+    background: url(../images/material-icons/arrow-forward-white.svg);
+  }
+  .intro .usa-button-secondary i, .explore-dataset-btn i {
+    vertical-align: -2px;
+  }
+  .arrow-forward-black {
+    background: url(../images/material-icons/arrow-forward-black-big.svg);
+    background-repeat: no-repeat;
+  }
+  .arrow-backward-black {
+    background: url(../images/material-icons/arrow-backward-black-bg.svg);
+    background-repeat: no-repeat;
+    padding-right: 30px !important;
+  }
+  .keyboard-arrow-down-black {
+    background: url(../images/material-icons/keyboard-arrow-down-black.svg);
+  }
+  .refresh-icon-black {
+    background: url(../images/material-icons/refresh_black.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .share-icon-black {
+    background: url(../images/material-icons/share-black.svg);
+  }
+  .share-icon-purple {
+    background: url(../images/material-icons/share-purple.svg) !important;
+    background-repeat: no-repeat !important;
+    background-color: white !important;
+    background-position: center !important;
+  }
+  .fullscreen-icon-purple {
+    background: url(../images/material-icons/fullscreen-purple.svg)!important;
+    background-repeat: no-repeat !important;
+    background-color: white !important;
+    background-position: center !important;
+  }
+  .fullscreen-icon-black {
+    background: url(../images/material-icons/fullscreen-black.svg);
+  }
+  .fullscreen-exit-icon-purple {
+    background: url(../images/material-icons/fullscreen-exit-purple.svg)!important;
+    background-repeat: no-repeat !important;
+    background-color: white !important;
+    background-position: center !important;
+  }
+  .fullscreen-exit-icon-black {
+    background: url(../images/material-icons/fullscreen-exit-black.svg);
+  }
+  .file-download-icon-purple {
+    background: url(../images/material-icons/file-download-purple.svg);
+  }
+  .backspace-icon-red {
+    background: url(../images/material-icons/backspace_red.svg);
+  }
+  .clear-filters i {
+    vertical-align: -2px;
+  }
+  .cancel-small-black {
+    background: url(../images/material-icons/cancel_small_black.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .remove-question {
+    vertical-align: -2px;
+  }
+  .owh-side-menu__handle::before {
+     /*content: ' <';*/
+     background: url(../images/material-icons/keyboard-arrow-left-blue.svg);
+     top: 3px;
+  }
+  .owh-side-menu__handle--collapsed::before {
+     /*content: ' >'*/
+    background: url(../images/material-icons/keyboard-arrow-right-blue.svg);
+    top: 16px;
+    background-repeat: no-repeat;
+  }
+  .close-icon-black {
+    background: url(../images/material-icons/close_black.svg);
+  }
+  .close-icon-purple {
+    background: url(../images/material-icons/close_purple.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .refresh i {
+    transform: none;
+    width: 48px;
+  }
+  .pie-chart-icon-purple {
+    background: url(../images/material-icons/pie-chart-purple.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .chevron-right-purple {
+    background: url(../images/material-icons/chevron-right-purple.svg);
+  }
+}

@@ -1,0 +1,2554 @@
+{
+  data: {
+    "queryJSON": {
+      "key": "deaths",
+      "tableView": "number_of_deaths",
+      "allFilters": [
+        {
+          "key": "agegroup",
+          "title": "label.filter.agegroup",
+          "queryKey": "age_5_interval",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "type": "label.filter.group.demographics",
+          "filterType": "slider",
+          "autoCompleteOptions": [
+            {
+              "key": "0-4years",
+              "title": "0 - 4 years",
+              "min": 1,
+              "max": 5
+            },
+            {
+              "key": "5-9years",
+              "title": "5 - 9 years",
+              "min": 6,
+              "max": 10
+            },
+            {
+              "key": "10-14years",
+              "title": "10 - 14 years",
+              "min": 11,
+              "max": 15
+            },
+            {
+              "key": "15-19years",
+              "title": "15 - 19 years",
+              "min": 16,
+              "max": 20
+            },
+            {
+              "key": "20-24years",
+              "title": "20 - 24 years",
+              "min": 21,
+              "max": 25
+            },
+            {
+              "key": "25-29years",
+              "title": "25 - 29 years",
+              "min": 26,
+              "max": 30
+            },
+            {
+              "key": "30-34years",
+              "title": "30 - 34 years",
+              "min": 31,
+              "max": 35
+            },
+            {
+              "key": "35-39years",
+              "title": "35 - 39 years",
+              "min": 36,
+              "max": 40
+            },
+            {
+              "key": "40-44years",
+              "title": "40 - 44 years",
+              "min": 41,
+              "max": 45
+            },
+            {
+              "key": "45-49years",
+              "title": "45 -49 years",
+              "min": 46,
+              "max": 50
+            },
+            {
+              "key": "50-54years",
+              "title": "50 - 54 years",
+              "min": 51,
+              "max": 55
+            },
+            {
+              "key": "55-59years",
+              "title": "55 - 59 years",
+              "min": 56,
+              "max": 60
+            },
+            {
+              "key": "60-64years",
+              "title": "60 - 64 years",
+              "min": 61,
+              "max": 65
+            },
+            {
+              "key": "65-69years",
+              "title": "65 - 69 years",
+              "min": 66,
+              "max": 70
+            },
+            {
+              "key": "70-74years",
+              "title": "70 - 74 years",
+              "min": 71,
+              "max": 75
+            },
+            {
+              "key": "75-79years",
+              "title": "75 - 79 years",
+              "min": 76,
+              "max": 80
+            },
+            {
+              "key": "80-84years",
+              "title": "80 - 84 years",
+              "min": 81,
+              "max": 85
+            },
+            {
+              "key": "85-89years",
+              "title": "85 - 89 years",
+              "min": 86,
+              "max": 90
+            },
+            {
+              "key": "90-94years",
+              "title": "90 - 94 years",
+              "min": 91,
+              "max": 95
+            },
+            {
+              "key": "95-99years",
+              "title": "95 - 99 years",
+              "min": 96,
+              "max": 100
+            },
+            {
+              "key": "100years and over",
+              "title": ">100",
+              "min": 101,
+              "max": 105
+            },
+            {
+              "key": "Age not stated",
+              "title": "Age not stated",
+              "min": -5,
+              "max": 0
+            }
+          ],
+          "showChart": true,
+          "sliderOptions": {
+            "from": -5,
+            "to": 105,
+            "step": 5,
+            "threshold": 0,
+            "scale": [
+              "Not stated",
+              0,
+              "",
+              10,
+              "",
+              20,
+              "",
+              30,
+              "",
+              40,
+              "",
+              50,
+              "",
+              60,
+              "",
+              70,
+              "",
+              80,
+              "",
+              90,
+              "",
+              100,
+              ">100"
+            ],
+            "modelLabels": {
+              "105": ">100",
+              "-5": "Not stated"
+            },
+            "css": {
+              "background": {
+                "background-color": "#ccc"
+              },
+              "before": {
+                "background-color": "#ccc"
+              },
+              "default": {
+                "background-color": "white"
+              },
+              "after": {
+                "background-color": "#ccc"
+              },
+              "pointer": {
+                "background-color": "#914fb5"
+              },
+              "range": {
+                "background-color": "#914fb5"
+              }
+            },
+            "limits": true
+          },
+          "sliderValue": "-5;105",
+          "defaultGroup": "row"
+        },
+        {
+          "key": "hispanicOrigin",
+          "title": "label.filter.hispanicOrigin",
+          "queryKey": "hispanic_origin",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "type": "label.filter.group.demographics",
+          "autoCompleteOptions": [
+            {
+              "key": "Central American",
+              "title": "Central American"
+            },
+            {
+              "key": "Central and South American",
+              "title": "Central and South American"
+            },
+            {
+              "key": "Cuban",
+              "title": "Cuban"
+            },
+            {
+              "key": "Dominican",
+              "title": "Dominican"
+            },
+            {
+              "key": "Latin American",
+              "title": "Latin American"
+            },
+            {
+              "key": "Mexican",
+              "title": "Mexican"
+            },
+            {
+              "key": "Non-Hispanic",
+              "title": "Non-Hispanic"
+            },
+            {
+              "key": "Other Hispanic",
+              "title": "Other Hispanic"
+            },
+            {
+              "key": "Puerto Rican",
+              "title": "Puerto Rican"
+            },
+            {
+              "key": "South American",
+              "title": "South American"
+            },
+            {
+              "key": "Spaniard",
+              "title": "Spaniard"
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown"
+            }
+          ],
+          "defaultGroup": "row",
+          "allChecked": true
+        },
+        {
+          "key": "race",
+          "title": "label.filter.race",
+          "queryKey": "race",
+          "primary": false,
+          "value": [],
+          "groupBy": "row",
+          "type": "label.filter.group.demographics",
+          "showChart": true,
+          "defaultGroup": "column",
+          "autoCompleteOptions": [
+            {
+              "key": "American Indian",
+              "title": "American Indian"
+            },
+            {
+              "key": "Asian or Pacific Islander",
+              "title": "Asian or Pacific Islander"
+            },
+            {
+              "key": "Black",
+              "title": "Black"
+            },
+            {
+              "key": "White",
+              "title": "White"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "gender",
+          "title": "label.filter.gender",
+          "queryKey": "sex",
+          "primary": false,
+          "value": [],
+          "groupBy": "column",
+          "type": "label.filter.group.demographics",
+          "groupByDefault": "column",
+          "showChart": true,
+          "autoCompleteOptions": [
+            {
+              "key": "Female",
+              "title": "Female"
+            },
+            {
+              "key": "Male",
+              "title": "Male"
+            }
+          ],
+          "defaultGroup": "column",
+          "allChecked": true
+        },
+        {
+          "key": "year",
+          "title": "label.filter.year",
+          "queryKey": "current_year",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "type": "label.filter.group.year.month",
+          "defaultGroup": "row",
+          "allChecked": true
+        },
+        {
+          "key": "month",
+          "title": "label.filter.month",
+          "queryKey": "month_of_death",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "type": "label.filter.group.year.month",
+          "defaultGroup": "row",
+          "autoCompleteOptions": [
+            {
+              "key": "January",
+              "title": "January"
+            },
+            {
+              "key": "February",
+              "title": "February"
+            },
+            {
+              "key": "March",
+              "title": "March"
+            },
+            {
+              "key": "April",
+              "title": "April"
+            },
+            {
+              "key": "May",
+              "title": "May"
+            },
+            {
+              "key": "June",
+              "title": "June"
+            },
+            {
+              "key": "July",
+              "title": "July"
+            },
+            {
+              "key": "August",
+              "title": "August"
+            },
+            {
+              "key": "September",
+              "title": "September"
+            },
+            {
+              "key": "October",
+              "title": "October"
+            },
+            {
+              "key": "November",
+              "title": "November"
+            },
+            {
+              "key": "December",
+              "title": "December"
+            }
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "weekday",
+          "title": "label.filter.weekday",
+          "queryKey": "week_of_death",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "type": "label.filter.group.weekday.autopsy.pod",
+          "autoCompleteOptions": [
+            {
+              "key": "Sunday",
+              "title": "Sunday"
+            },
+            {
+              "key": "Monday",
+              "title": "Monday"
+            },
+            {
+              "key": "Tuesday",
+              "title": "Tuesday"
+            },
+            {
+              "key": "Wednesday",
+              "title": "Wednesday"
+            },
+            {
+              "key": "Thursday",
+              "title": "Thursday"
+            },
+            {
+              "key": "Friday",
+              "title": "Friday"
+            },
+            {
+              "key": "Saturday",
+              "title": "Saturday"
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown"
+            }
+          ],
+          "defaultGroup": "row",
+          "allChecked": true
+        },
+        {
+          "key": "autopsy",
+          "title": "label.filter.autopsy",
+          "queryKey": "autopsy",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "type": "label.filter.group.weekday.autopsy.pod",
+          "autoCompleteOptions": [
+            {
+              "key": "Yes",
+              "title": "Yes"
+            },
+            {
+              "key": "No",
+              "title": "No"
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown"
+            }
+          ],
+          "defaultGroup": "row",
+          "allChecked": true
+        },
+        {
+          "key": "placeofdeath",
+          "title": "label.filter.pod",
+          "queryKey": "place_of_death",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "type": "label.filter.group.weekday.autopsy.pod",
+          "autoCompleteOptions": [
+            {
+              "key": "Decedent’s home",
+              "title": "Decedent’s home"
+            },
+            {
+              "key": "Hospital, clinic or Medical Center - Patient status unknown",
+              "title": "Hospital, clinic or Medical Center-  Patient status unknown"
+            },
+            {
+              "key": "Hospital, Clinic or Medical Center - Dead on Arrival",
+              "title": "Hospital, Clinic or Medical Center-  Dead on Arrival"
+            },
+            {
+              "key": "Hospital, clinic or Medical Center - Inpatient",
+              "title": "Hospital, clinic or Medical Center-  Inpatient"
+            },
+            {
+              "key": "Hospital, Clinic or Medical Center - Outpatient or admitted to Emergency Room",
+              "title": "Hospital, Clinic or Medical Center-  Outpatient or admitted to Emergency Room"
+            },
+            {
+              "key": "Nursing home/long term care",
+              "title": "Nursing home/long term care"
+            },
+            {
+              "key": "Place of death unknown",
+              "title": "Place of death unknown"
+            },
+            {
+              "key": "Other",
+              "title": "Other"
+            }
+          ],
+          "defaultGroup": "row",
+          "allChecked": true
+        },
+        {
+          "key": "ucd-chapter-10",
+          "title": "label.filter.ucd.icd.chapter",
+          "queryKey": "ICD_10_code.path",
+          "primary": true,
+          "value": [],
+          "groupBy": false,
+          "type": "label.filter.group.ucd",
+          "groupKey": "ucd",
+          "autoCompleteOptions": [],
+          "aggregationKey": "ICD_10_code.code"
+        },
+        {
+          "key": "ucd-icd-10-113",
+          "title": "label.filter.icd10.113",
+          "queryKey": "ICD_113_code",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "type": "label.filter.group.ucd",
+          "groupKey": "ucd",
+          "autoCompleteOptions": [],
+          "disableFilter": true
+        },
+        {
+          "key": "ucd-icd-10-130",
+          "title": "label.filter.icd10.130",
+          "queryKey": "ICD_130_code",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "type": "label.filter.group.ucd",
+          "groupKey": "ucd",
+          "autoCompleteOptions": [],
+          "disableFilter": true
+        },
+        {
+          "key": "mcd-chapter-10",
+          "title": "label.filter.mcd.icd.chapter",
+          "queryKey": "record_axis_condn",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "type": "label.filter.group.mcd",
+          "groupKey": "mcd",
+          "autoCompleteOptions": [],
+          "disableFilter": true
+        },
+        {
+          "key": "mcd-icd-10-113",
+          "title": "label.filter.mcd.cause.list",
+          "queryKey": "record_axis_condn",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "type": "label.filter.group.mcd",
+          "groupKey": "mcd",
+          "autoCompleteOptions": [],
+          "disableFilter": true
+        },
+        {
+          "key": "mcd-icd-10-130",
+          "title": "label.filter.mcd.cause.list.infant",
+          "queryKey": "record_axis_condn",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "type": "label.filter.group.mcd",
+          "groupKey": "mcd",
+          "autoCompleteOptions": [],
+          "disableFilter": true
+        }
+      ],
+      "sideFilters": [
+        {
+          "filterGroup": false,
+          "collapse": false,
+          "allowGrouping": true,
+          "filters": {
+            "key": "year",
+            "title": "label.filter.year",
+            "queryKey": "current_year",
+            "primary": false,
+            "value": [],
+            "groupBy": false,
+            "type": "label.filter.group.year.month",
+            "defaultGroup": "row",
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "filters": {
+            "key": "race",
+            "title": "label.filter.race",
+            "queryKey": "race",
+            "primary": false,
+            "value": [],
+            "groupBy": "row",
+            "type": "label.filter.group.demographics",
+            "showChart": true,
+            "defaultGroup": "column",
+            "autoCompleteOptions": [
+              {
+                "key": "American Indian",
+                "title": "American Indian"
+              },
+              {
+                "key": "Asian or Pacific Islander",
+                "title": "Asian or Pacific Islander"
+              },
+              {
+                "key": "Black",
+                "title": "Black"
+              },
+              {
+                "key": "White",
+                "title": "White"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "filters": {
+            "key": "gender",
+            "title": "label.filter.gender",
+            "queryKey": "sex",
+            "primary": false,
+            "value": [],
+            "groupBy": "column",
+            "type": "label.filter.group.demographics",
+            "groupByDefault": "column",
+            "showChart": true,
+            "autoCompleteOptions": [
+              {
+                "key": "Female",
+                "title": "Female"
+              },
+              {
+                "key": "Male",
+                "title": "Male"
+              }
+            ],
+            "defaultGroup": "column",
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "filters": {
+            "key": "agegroup",
+            "title": "label.filter.agegroup",
+            "queryKey": "age_5_interval",
+            "primary": false,
+            "value": [],
+            "groupBy": false,
+            "type": "label.filter.group.demographics",
+            "filterType": "slider",
+            "autoCompleteOptions": [
+              {
+                "key": "0-4years",
+                "title": "0 - 4 years",
+                "min": 1,
+                "max": 5
+              },
+              {
+                "key": "5-9years",
+                "title": "5 - 9 years",
+                "min": 6,
+                "max": 10
+              },
+              {
+                "key": "10-14years",
+                "title": "10 - 14 years",
+                "min": 11,
+                "max": 15
+              },
+              {
+                "key": "15-19years",
+                "title": "15 - 19 years",
+                "min": 16,
+                "max": 20
+              },
+              {
+                "key": "20-24years",
+                "title": "20 - 24 years",
+                "min": 21,
+                "max": 25
+              },
+              {
+                "key": "25-29years",
+                "title": "25 - 29 years",
+                "min": 26,
+                "max": 30
+              },
+              {
+                "key": "30-34years",
+                "title": "30 - 34years",
+                "min": 31,
+                "max": 35
+              },
+              {
+                "key": "35-39years",
+                "title": "35 - 39 years",
+                "min": 36,
+                "max": 40
+              },
+              {
+                "key": "40-44years",
+                "title": "40 - 44 years",
+                "min": 41,
+                "max": 45
+              },
+              {
+                "key": "45-49years",
+                "title": "45 - 49 years",
+                "min": 46,
+                "max": 50
+              },
+              {
+                "key": "50-54years",
+                "title": "50 - 54 years",
+                "min": 51,
+                "max": 55
+              },
+              {
+                "key": "55-59years",
+                "title": "55 - 59 years",
+                "min": 56,
+                "max": 60
+              },
+              {
+                "key": "60-64years",
+                "title": "60 - 64 years",
+                "min": 61,
+                "max": 65
+              },
+              {
+                "key": "65-69years",
+                "title": "65 - 69 years",
+                "min": 66,
+                "max": 70
+              },
+              {
+                "key": "70-74years",
+                "title": "70 - 74 years",
+                "min": 71,
+                "max": 75
+              },
+              {
+                "key": "75-79years",
+                "title": "75 - 79 years",
+                "min": 76,
+                "max": 80
+              },
+              {
+                "key": "80-84years",
+                "title": "80 - 84 years",
+                "min": 81,
+                "max": 85
+              },
+              {
+                "key": "85-89years",
+                "title": "85 - 89 years",
+                "min": 86,
+                "max": 90
+              },
+              {
+                "key": "90-94years",
+                "title": "90 - 94 years",
+                "min": 91,
+                "max": 95
+              },
+              {
+                "key": "95-99years",
+                "title": "95 - 99 years",
+                "min": 96,
+                "max": 100
+              },
+              {
+                "key": "100years and over",
+                "title": ">100",
+                "min": 101,
+                "max": 105
+              },
+              {
+                "key": "Age not stated",
+                "title": "Age not stated",
+                "min": -5,
+                "max": 0
+              }
+            ],
+            "showChart": true,
+            "sliderOptions": {
+              "from": -5,
+              "to": 105,
+              "step": 5,
+              "threshold": 0,
+              "scale": [
+                "Not stated",
+                0,
+                "",
+                10,
+                "",
+                20,
+                "",
+                30,
+                "",
+                40,
+                "",
+                50,
+                "",
+                60,
+                "",
+                70,
+                "",
+                80,
+                "",
+                90,
+                "",
+                100,
+                ">100"
+              ],
+              "modelLabels": {
+                "105": ">100",
+                "-5": "Not stated"
+              },
+              "css": {
+                "background": {
+                  "background-color": "#ccc"
+                },
+                "before": {
+                  "background-color": "#ccc"
+                },
+                "default": {
+                  "background-color": "white"
+                },
+                "after": {
+                  "background-color": "#ccc"
+                },
+                "pointer": {
+                  "background-color": "#914fb5"
+                },
+                "range": {
+                  "background-color": "#914fb5"
+                }
+              },
+              "limits": true
+            },
+            "sliderValue": "-5;105",
+            "defaultGroup": "row"
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "groupBy": false,
+          "filters": {
+            "key": "hispanicOrigin",
+            "title": "label.filter.hispanicOrigin",
+            "queryKey": "hispanic_origin",
+            "primary": false,
+            "value": [],
+            "groupBy": false,
+            "type": "label.filter.group.demographics",
+            "autoCompleteOptions": [
+              {
+                "key": "Central American",
+                "title": "Central American"
+              },
+              {
+                "key": "Central and South American",
+                "title": "Central and South American"
+              },
+              {
+                "key": "Cuban",
+                "title": "Cuban"
+              },
+              {
+                "key": "Dominican",
+                "title": "Dominican"
+              },
+              {
+                "key": "Latin American",
+                "title": "Latin American"
+              },
+              {
+                "key": "Mexican",
+                "title": "Mexican"
+              },
+              {
+                "key": "Non-Hispanic",
+                "title": "Non-Hispanic"
+              },
+              {
+                "key": "Other Hispanic",
+                "title": "Other Hispanic"
+              },
+              {
+                "key": "Puerto Rican",
+                "title": "Puerto Rican"
+              },
+              {
+                "key": "South American",
+                "title": "South American"
+              },
+              {
+                "key": "Spaniard",
+                "title": "Spaniard"
+              },
+              {
+                "key": "Unknown",
+                "title": "Unknown"
+              }
+            ],
+            "defaultGroup": "row",
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "filters": {
+            "key": "autopsy",
+            "title": "label.filter.autopsy",
+            "queryKey": "autopsy",
+            "primary": false,
+            "value": [],
+            "groupBy": false,
+            "type": "label.filter.group.weekday.autopsy.pod",
+            "autoCompleteOptions": [
+              {
+                "key": "Yes",
+                "title": "Yes"
+              },
+              {
+                "key": "No",
+                "title": "No"
+              },
+              {
+                "key": "Unknown",
+                "title": "Unknown"
+              }
+            ],
+            "defaultGroup": "row",
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "filters": {
+            "key": "placeofdeath",
+            "title": "label.filter.pod",
+            "queryKey": "place_of_death",
+            "primary": false,
+            "value": [],
+            "groupBy": false,
+            "type": "label.filter.group.weekday.autopsy.pod",
+            "autoCompleteOptions": [
+              {
+                "key": "Decedent’s home",
+                "title": "Decedent’s home"
+              },
+              {
+                "key": "Hospital, clinic or Medical Center - Patient status unknown",
+                "title": "Hospital, clinic or Medical Center-  Patient status unknown"
+              },
+              {
+                "key": "Hospital, Clinic or Medical Center - Dead on Arrival",
+                "title": "Hospital, Clinic or Medical Center-  Dead on Arrival"
+              },
+              {
+                "key": "Hospital, clinic or Medical Center - Inpatient",
+                "title": "Hospital, clinic or Medical Center-  Inpatient"
+              },
+              {
+                "key": "Hospital, Clinic or Medical Center - Outpatient or admitted to Emergency Room",
+                "title": "Hospital, Clinic or Medical Center-  Outpatient or admitted to Emergency Room"
+              },
+              {
+                "key": "Nursing home/long term care",
+                "title": "Nursing home/long term care"
+              },
+              {
+                "key": "Place of death unknown",
+                "title": "Place of death unknown"
+              },
+              {
+                "key": "Other",
+                "title": "Other"
+              }
+            ],
+            "defaultGroup": "row",
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "filters": {
+            "key": "weekday",
+            "title": "label.filter.weekday",
+            "queryKey": "week_of_death",
+            "primary": false,
+            "value": [],
+            "groupBy": false,
+            "type": "label.filter.group.weekday.autopsy.pod",
+            "autoCompleteOptions": [
+              {
+                "key": "Sunday",
+                "title": "Sunday"
+              },
+              {
+                "key": "Monday",
+                "title": "Monday"
+              },
+              {
+                "key": "Tuesday",
+                "title": "Tuesday"
+              },
+              {
+                "key": "Wednesday",
+                "title": "Wednesday"
+              },
+              {
+                "key": "Thursday",
+                "title": "Thursday"
+              },
+              {
+                "key": "Friday",
+                "title": "Friday"
+              },
+              {
+                "key": "Saturday",
+                "title": "Saturday"
+              },
+              {
+                "key": "Unknown",
+                "title": "Unknown"
+              }
+            ],
+            "defaultGroup": "row",
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "allowGrouping": true,
+          "filters": {
+            "key": "month",
+            "title": "label.filter.month",
+            "queryKey": "month_of_death",
+            "primary": false,
+            "value": [],
+            "groupBy": false,
+            "type": "label.filter.group.year.month",
+            "defaultGroup": "row",
+            "autoCompleteOptions": [
+              {
+                "key": "January",
+                "title": "January"
+              },
+              {
+                "key": "February",
+                "title": "February"
+              },
+              {
+                "key": "March",
+                "title": "March"
+              },
+              {
+                "key": "April",
+                "title": "April"
+              },
+              {
+                "key": "May",
+                "title": "May"
+              },
+              {
+                "key": "June",
+                "title": "June"
+              },
+              {
+                "key": "July",
+                "title": "July"
+              },
+              {
+                "key": "August",
+                "title": "August"
+              },
+              {
+                "key": "September",
+                "title": "September"
+              },
+              {
+                "key": "October",
+                "title": "October"
+              },
+              {
+                "key": "November",
+                "title": "November"
+              },
+              {
+                "key": "December",
+                "title": "December"
+              }
+            ],
+            "allChecked": true
+          }
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "filters": {
+            "key": "ucd-filters",
+            "title": "label.filter.ucd",
+            "queryKey": "",
+            "primary": false,
+            "value": [],
+            "groupBy": false,
+            "type": "label.filter.group.ucd",
+            "filterType": "conditions",
+            "groupOptions": [
+              {
+                "key": "row",
+                "title": "Row",
+                "tooltip": "Select to view as rows on data table"
+              },
+              {
+                "key": false,
+                "title": "Off",
+                "tooltip": "Select to hide on data table"
+              }
+            ],
+            "autoCompleteOptions": [
+              {
+                "key": "ucd-chapter-10",
+                "title": "label.filter.ucd.icd.chapter",
+                "queryKey": "ICD_10_code.path",
+                "primary": true,
+                "value": [],
+                "groupBy": false,
+                "type": "label.filter.group.ucd",
+                "groupKey": "ucd",
+                "autoCompleteOptions": [],
+                "aggregationKey": "ICD_10_code.code"
+              }
+            ]
+          },
+          "autoCompleteOptions": []
+        },
+        {
+          "filterGroup": false,
+          "collapse": true,
+          "filters": {
+            "key": "mcd-filters",
+            "title": "label.filter.mcd",
+            "queryKey": "",
+            "primary": false,
+            "value": [],
+            "groupBy": false,
+            "type": "label.filter.group.mcd",
+            "filterType": "conditions",
+            "groupOptions": [],
+            "autoCompleteOptions": [
+              {
+                "key": "mcd-chapter-10",
+                "title": "label.filter.mcd.icd.chapter",
+                "queryKey": "record_axis_condn",
+                "primary": false,
+                "value": [],
+                "groupBy": false,
+                "type": "label.filter.group.mcd",
+                "groupKey": "mcd",
+                "autoCompleteOptions": [],
+                "disableFilter": true
+              }
+            ]
+          },
+          "autoCompleteOptions": []
+        }
+      ]
+    },
+    "resultData": {
+      "simple": {
+        "group_table_race": [
+          {
+            "name": "White",
+            "deaths": 31771296,
+            "undefined": [
+              {
+                "name": "Female",
+                "deaths": 16088007
+              },
+              {
+                "name": "Male",
+                "deaths": 15683289
+              }
+            ]
+          },
+          {
+            "name": "Black",
+            "deaths": 4374470,
+            "undefined": [
+              {
+                "name": "Male",
+                "deaths": 2227092
+              },
+              {
+                "name": "Female",
+                "deaths": 2147378
+              }
+            ]
+          },
+          {
+            "name": "Asian or Pacific Islander",
+            "deaths": 703842,
+            "undefined": [
+              {
+                "name": "Male",
+                "deaths": 367670
+              },
+              {
+                "name": "Female",
+                "deaths": 336172
+              }
+            ]
+          },
+          {
+            "name": "American Indian",
+            "deaths": 217181,
+            "undefined": [
+              {
+                "name": "Male",
+                "deaths": 118412
+              },
+              {
+                "name": "Female",
+                "deaths": 98769
+              }
+            ]
+          }
+        ],
+        "group_chart_0_gender": [
+          {
+            "name": "Female",
+            "deaths": 18670326,
+            "undefined": [
+              {
+                "name": "White",
+                "deaths": 16088007
+              },
+              {
+                "name": "Black",
+                "deaths": 2147378
+              },
+              {
+                "name": "Asian or Pacific Islander",
+                "deaths": 336172
+              },
+              {
+                "name": "American Indian",
+                "deaths": 98769
+              }
+            ]
+          },
+          {
+            "name": "Male",
+            "deaths": 18396463,
+            "undefined": [
+              {
+                "name": "White",
+                "deaths": 15683289
+              },
+              {
+                "name": "Black",
+                "deaths": 2227092
+              },
+              {
+                "name": "Asian or Pacific Islander",
+                "deaths": 367670
+              },
+              {
+                "name": "American Indian",
+                "deaths": 118412
+              }
+            ]
+          }
+        ]
+      },
+      "nested": {
+        "table": {
+          "race": [
+            {
+              "name": "American Indian",
+              "deaths": 217181,
+              "gender": [
+                {
+                  "name": "Female",
+                  "deaths": 98769,
+                  "pop": 28544528,
+                  "ageAdjustedRate": "557.9",
+                  "standardPop": 32250198
+                },
+                {
+                  "name": "Male",
+                  "deaths": 118412,
+                  "pop": 28645741,
+                  "ageAdjustedRate": "754.4",
+                  "standardPop": 32369216
+                }
+              ],
+              "pop": 57190269,
+              "ageAdjustedRate": "647.7",
+              "standardPop": 64619414
+            },
+            {
+              "name": "Asian or Pacific Islander",
+              "deaths": 703842,
+              "gender": [
+                {
+                  "name": "Female",
+                  "deaths": 336172,
+                  "pop": 121309960,
+                  "ageAdjustedRate": "368.3",
+                  "standardPop": 137270512
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367670,
+                  "pop": 112325576,
+                  "ageAdjustedRate": "524.1",
+                  "standardPop": 127115817
+                }
+              ],
+              "pop": 233635536,
+              "ageAdjustedRate": "435.2",
+              "standardPop": 264386329
+            },
+            {
+              "name": "Black",
+              "deaths": 4374470,
+              "gender": [
+                {
+                  "name": "Female",
+                  "deaths": 2147378,
+                  "pop": 317237591,
+                  "ageAdjustedRate": "807.4",
+                  "standardPop": 359386608
+                },
+                {
+                  "name": "Male",
+                  "deaths": 2227092,
+                  "pop": 289840863,
+                  "ageAdjustedRate": "1,193.3",
+                  "standardPop": 328414017
+                }
+              ],
+              "pop": 607078454,
+              "ageAdjustedRate": "967.6",
+              "standardPop": 687800625
+            },
+            {
+              "name": "White",
+              "deaths": 31771296,
+              "gender": [
+                {
+                  "name": "Female",
+                  "deaths": 16088007,
+                  "pop": 1828192603,
+                  "ageAdjustedRate": "660.1",
+                  "standardPop": 2070887962
+                },
+                {
+                  "name": "Male",
+                  "deaths": 15683289,
+                  "pop": 1787480522,
+                  "ageAdjustedRate": "922.5",
+                  "standardPop": 2024924546
+                }
+              ],
+              "pop": 3615673125,
+              "ageAdjustedRate": "777.0",
+              "standardPop": 4095812508
+            }
+          ]
+        },
+        "charts": [
+          {
+            "gender": [
+              {
+                "name": "Female",
+                "deaths": 18670326,
+                "race": [
+                  {
+                    "name": "White",
+                    "deaths": 16088007
+                  },
+                  {
+                    "name": "Black",
+                    "deaths": 2147378
+                  },
+                  {
+                    "name": "Asian or Pacific Islander",
+                    "deaths": 336172
+                  },
+                  {
+                    "name": "American Indian",
+                    "deaths": 98769
+                  }
+                ]
+              },
+              {
+                "name": "Male",
+                "deaths": 18396463,
+                "race": [
+                  {
+                    "name": "White",
+                    "deaths": 15683289
+                  },
+                  {
+                    "name": "Black",
+                    "deaths": 2227092
+                  },
+                  {
+                    "name": "Asian or Pacific Islander",
+                    "deaths": 367670
+                  },
+                  {
+                    "name": "American Indian",
+                    "deaths": 118412
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "maps": {
+          "states": [
+            {
+              "name": "OR",
+              "deaths": 743213,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373873
+                },
+                {
+                  "name": "Male",
+                  "deaths": 369340
+                }
+              ]
+            },
+            {
+              "name": "ID",
+              "deaths": 743195,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 374880
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368315
+                }
+              ]
+            },
+            {
+              "name": "GA",
+              "deaths": 742897,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 374388
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368509
+                }
+              ]
+            },
+            {
+              "name": "WY",
+              "deaths": 742539,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373629
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368910
+                }
+              ]
+            },
+            {
+              "name": "MT",
+              "deaths": 742416,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373880
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368536
+                }
+              ]
+            },
+            {
+              "name": "NE",
+              "deaths": 742416,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 374419
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367997
+                }
+              ]
+            },
+            {
+              "name": "OK",
+              "deaths": 742340,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373534
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368806
+                }
+              ]
+            },
+            {
+              "name": "MI",
+              "deaths": 742131,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373702
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368429
+                }
+              ]
+            },
+            {
+              "name": "MO",
+              "deaths": 742128,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373388
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368740
+                }
+              ]
+            },
+            {
+              "name": "NH",
+              "deaths": 742067,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373732
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368335
+                }
+              ]
+            },
+            {
+              "name": "IL",
+              "deaths": 741967,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 374360
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367607
+                }
+              ]
+            },
+            {
+              "name": "PA",
+              "deaths": 741959,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373207
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368752
+                }
+              ]
+            },
+            {
+              "name": "WI",
+              "deaths": 741898,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373789
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368109
+                }
+              ]
+            },
+            {
+              "name": "KS",
+              "deaths": 741857,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373494
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368363
+                }
+              ]
+            },
+            {
+              "name": "SD",
+              "deaths": 741752,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373459
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368293
+                }
+              ]
+            },
+            {
+              "name": "HI",
+              "deaths": 741727,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373826
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367901
+                }
+              ]
+            },
+            {
+              "name": "TN",
+              "deaths": 741582,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 374203
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367379
+                }
+              ]
+            },
+            {
+              "name": "AZ",
+              "deaths": 741555,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 374049
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367506
+                }
+              ]
+            },
+            {
+              "name": "NM",
+              "deaths": 741550,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 374019
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367531
+                }
+              ]
+            },
+            {
+              "name": "ND",
+              "deaths": 741542,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 372605
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368937
+                }
+              ]
+            },
+            {
+              "name": "CA",
+              "deaths": 741486,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373433
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368053
+                }
+              ]
+            },
+            {
+              "name": "LA",
+              "deaths": 741418,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373231
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368187
+                }
+              ]
+            },
+            {
+              "name": "NV",
+              "deaths": 741374,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373605
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367769
+                }
+              ]
+            },
+            {
+              "name": "WV",
+              "deaths": 741296,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373421
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367875
+                }
+              ]
+            },
+            {
+              "name": "AK",
+              "deaths": 741278,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373608
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367670
+                }
+              ]
+            },
+            {
+              "name": "MS",
+              "deaths": 741214,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373827
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367387
+                }
+              ]
+            },
+            {
+              "name": "MN",
+              "deaths": 741206,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373475
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367731
+                }
+              ]
+            },
+            {
+              "name": "MD",
+              "deaths": 741186,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373139
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368047
+                }
+              ]
+            },
+            {
+              "name": "WA",
+              "deaths": 741179,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373428
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367751
+                }
+              ]
+            },
+            {
+              "name": "VT",
+              "deaths": 741164,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 372928
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368236
+                }
+              ]
+            },
+            {
+              "name": "SC",
+              "deaths": 741122,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 372830
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368292
+                }
+              ]
+            },
+            {
+              "name": "TX",
+              "deaths": 741094,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 372976
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368118
+                }
+              ]
+            },
+            {
+              "name": "ME",
+              "deaths": 741076,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373263
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367813
+                }
+              ]
+            },
+            {
+              "name": "DE",
+              "deaths": 741051,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373789
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367262
+                }
+              ]
+            },
+            {
+              "name": "KY",
+              "deaths": 740970,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 372844
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368126
+                }
+              ]
+            },
+            {
+              "name": "RI",
+              "deaths": 740960,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373146
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367814
+                }
+              ]
+            },
+            {
+              "name": "CT",
+              "deaths": 740958,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 372383
+                },
+                {
+                  "name": "Male",
+                  "deaths": 368575
+                }
+              ]
+            },
+            {
+              "name": "NJ",
+              "deaths": 740772,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373700
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367072
+                }
+              ]
+            },
+            {
+              "name": "CO",
+              "deaths": 740693,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 374013
+                },
+                {
+                  "name": "Male",
+                  "deaths": 366680
+                }
+              ]
+            },
+            {
+              "name": "IN",
+              "deaths": 740677,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373145
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367532
+                }
+              ]
+            },
+            {
+              "name": "OH",
+              "deaths": 740658,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373118
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367540
+                }
+              ]
+            },
+            {
+              "name": "UT",
+              "deaths": 740552,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373205
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367347
+                }
+              ]
+            },
+            {
+              "name": "VA",
+              "deaths": 740484,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373473
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367011
+                }
+              ]
+            },
+            {
+              "name": "FL",
+              "deaths": 740483,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 372559
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367924
+                }
+              ]
+            },
+            {
+              "name": "NY",
+              "deaths": 740318,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 372794
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367524
+                }
+              ]
+            },
+            {
+              "name": "AR",
+              "deaths": 740189,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 372456
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367733
+                }
+              ]
+            },
+            {
+              "name": "MA",
+              "deaths": 740129,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 372742
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367387
+                }
+              ]
+            },
+            {
+              "name": "IA",
+              "deaths": 739945,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 373099
+                },
+                {
+                  "name": "Male",
+                  "deaths": 366846
+                }
+              ]
+            },
+            {
+              "name": "AL",
+              "deaths": 739877,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 372278
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367599
+                }
+              ]
+            },
+            {
+              "name": "NC",
+              "deaths": 739249,
+              "sex": [
+                {
+                  "name": "Female",
+                  "deaths": 371982
+                },
+                {
+                  "name": "Male",
+                  "deaths": 367267
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "sideFilterResults": {
+      "data": {
+        "simple": {
+          "placeofdeath": [
+            {
+              "name": "Hospital, clinic or Medical Center - Inpatient",
+              "deaths": 13079218
+            },
+            {
+              "name": "Decedent's home",
+              "deaths": 9531295
+            },
+            {
+              "name": "Nursing home/long term care",
+              "deaths": 7940085
+            },
+            {
+              "name": "Hospital, Clinic or Medical Center - Outpatient or admitted to Emergency Room",
+              "deaths": 2633673
+            },
+            {
+              "name": "Other",
+              "deaths": 2273247
+            },
+            {
+              "name": "Hospice facility",
+              "deaths": 1091501
+            },
+            {
+              "name": "Hospital, Clinic or Medical Center - Dead on Arrival",
+              "deaths": 316703
+            },
+            {
+              "name": "Place of death unknown",
+              "deaths": 165470
+            },
+            {
+              "name": "Hospital, Clinic or Medical Center - Patient status unknown",
+              "deaths": 35597
+            }
+          ],
+          "hispanicOrigin": [
+            {
+              "name": "Non-Hispanic",
+              "deaths": 34926053
+            },
+            {
+              "name": "Mexican",
+              "deaths": 1155470
+            },
+            {
+              "name": "Puerto Rican",
+              "deaths": 260772
+            },
+            {
+              "name": "Other Hispanic",
+              "deaths": 213544
+            },
+            {
+              "name": "Cuban",
+              "deaths": 197080
+            },
+            {
+              "name": "Unknown",
+              "deaths": 94819
+            },
+            {
+              "name": "Central American",
+              "deaths": 74461
+            },
+            {
+              "name": "Central and South American",
+              "deaths": 63457
+            },
+            {
+              "name": "South American",
+              "deaths": 41511
+            },
+            {
+              "name": "Dominican",
+              "deaths": 29494
+            },
+            {
+              "name": "Spaniard",
+              "deaths": 5971
+            },
+            {
+              "name": "Latin American",
+              "deaths": 4157
+            }
+          ],
+          "mcd-filters": [],
+          "ucd-filters": [],
+          "weekday": [
+            {
+              "name": "Saturday",
+              "deaths": 5367503
+            },
+            {
+              "name": "Friday",
+              "deaths": 5344867
+            },
+            {
+              "name": "Monday",
+              "deaths": 5300217
+            },
+            {
+              "name": "Thursday",
+              "deaths": 5266918
+            },
+            {
+              "name": "Wednesday",
+              "deaths": 5266837
+            },
+            {
+              "name": "Tuesday",
+              "deaths": 5262950
+            },
+            {
+              "name": "Sunday",
+              "deaths": 5256353
+            },
+            {
+              "name": "Unknown",
+              "deaths": 1144
+            }
+          ],
+          "agegroup": [
+            {
+              "name": "80-84years",
+              "deaths": 5435697
+            },
+            {
+              "name": "85-89years",
+              "deaths": 5428786
+            },
+            {
+              "name": "75-79years",
+              "deaths": 4471378
+            },
+            {
+              "name": "90-94years",
+              "deaths": 3755974
+            },
+            {
+              "name": "70-74years",
+              "deaths": 3472174
+            },
+            {
+              "name": "65-69years",
+              "deaths": 2796964
+            },
+            {
+              "name": "60-64years",
+              "deaths": 2378520
+            },
+            {
+              "name": "55-59years",
+              "deaths": 1980982
+            },
+            {
+              "name": "50-54years",
+              "deaths": 1569719
+            },
+            {
+              "name": "95-99years",
+              "deaths": 1476328
+            },
+            {
+              "name": "45-49years",
+              "deaths": 1112465
+            },
+            {
+              "name": "40-44years",
+              "deaths": 727998
+            },
+            {
+              "name": "0-4years",
+              "deaths": 467671
+            },
+            {
+              "name": "35-39years",
+              "deaths": 467563
+            },
+            {
+              "name": "30-34years",
+              "deaths": 342647
+            },
+            {
+              "name": "100 years and over",
+              "deaths": 312742
+            },
+            {
+              "name": "25-29years",
+              "deaths": 298474
+            },
+            {
+              "name": "20-24years",
+              "deaths": 291468
+            },
+            {
+              "name": "15-19years",
+              "deaths": 183520
+            },
+            {
+              "name": "10-14years",
+              "deaths": 51759
+            },
+            {
+              "name": "5-9years",
+              "deaths": 40357
+            },
+            {
+              "name": "Age not started",
+              "deaths": 3603
+            }
+          ],
+          "month": [
+            {
+              "name": "January",
+              "deaths": 3464050
+            },
+            {
+              "name": "December",
+              "deaths": 3345731
+            },
+            {
+              "name": "March",
+              "deaths": 3314583
+            },
+            {
+              "name": "February",
+              "deaths": 3109668
+            },
+            {
+              "name": "October",
+              "deaths": 3068160
+            },
+            {
+              "name": "April",
+              "deaths": 3056378
+            },
+            {
+              "name": "November",
+              "deaths": 3055392
+            },
+            {
+              "name": "May",
+              "deaths": 3038446
+            },
+            {
+              "name": "July",
+              "deaths": 2941181
+            },
+            {
+              "name": "August",
+              "deaths": 2925163
+            },
+            {
+              "name": "June",
+              "deaths": 2878725
+            },
+            {
+              "name": "September",
+              "deaths": 2869312
+            }
+          ],
+          "gender": [
+            {
+              "name": "Female",
+              "deaths": 18670326
+            },
+            {
+              "name": "Male",
+              "deaths": 18396463
+            }
+          ],
+          "autopsy": [
+            {
+              "name": "No",
+              "deaths": 24174400
+            },
+            {
+              "name": "Unknown",
+              "deaths": 3314646
+            },
+            {
+              "name": "Yes",
+              "deaths": 2314576
+            }
+          ],
+          "year": [
+            {
+              "name": "2014",
+              "deaths": 2626418
+            },
+            {
+              "name": "2013",
+              "deaths": 2596993
+            },
+            {
+              "name": "2012",
+              "deaths": 2543279
+            },
+            {
+              "name": "2011",
+              "deaths": 2515458
+            },
+            {
+              "name": "2008",
+              "deaths": 2471984
+            },
+            {
+              "name": "2010",
+              "deaths": 2468435
+            },
+            {
+              "name": "2003",
+              "deaths": 2448288
+            },
+            {
+              "name": "2005",
+              "deaths": 2448017
+            },
+            {
+              "name": "2002",
+              "deaths": 2443387
+            },
+            {
+              "name": "2009",
+              "deaths": 2437163
+            },
+            {
+              "name": "2006",
+              "deaths": 2426264
+            },
+            {
+              "name": "2007",
+              "deaths": 2423712
+            },
+            {
+              "name": "2001",
+              "deaths": 2416425
+            },
+            {
+              "name": "2000",
+              "deaths": 2403351
+            },
+            {
+              "name": "2004",
+              "deaths": 2397615
+            }
+          ],
+          "race": [
+            {
+              "name": "White",
+              "deaths": 31771296
+            },
+            {
+              "name": "Black",
+              "deaths": 4374470
+            },
+            {
+              "name": "Asian or Pacific Islander",
+              "deaths": 703842
+            },
+            {
+              "name": "American Indian",
+              "deaths": 217181
+            }
+          ]
+        },
+        "nested": {
+          "table": {},
+          "charts": [],
+          "maps": {}
+        }
+      },
+      "pagination": {
+        "total": 37066789
+      }
+    }
+  },
+  "pagination": {
+    "total": 0
+  }
+}

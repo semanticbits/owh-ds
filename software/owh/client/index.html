@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="en" ng-app="owh" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="owh" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="owh" class="no-js lt-ie9"> <![endif]-->
@@ -15,16 +15,20 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="vendor/uswds-0.9.1/css/uswds.min.css">
-  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css">
   <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css">
   <link rel="stylesheet" href="bower_components/angular-awesome-slider/dist/css/angular-awesome-slider.min.css">
+  <link rel="stylesheet" href="bower_components/clusterize/clusterize.css">
   <!--Jstree custom theme-->
   <link rel="stylesheet" href="vendor/expand_collapse/style.css">
   <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css">
   <link rel="stylesheet" href="app/css/ui-select-custom.css">
   <link rel="stylesheet" href="app/css/app.css">
   <link rel="stylesheet" href="app/css/custom-styles.css">
+  <link rel="stylesheet" href="app/css/menu.css">
+  <link rel="stylesheet" href="app/css/material-icons.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
   <!--<link href="http://btrayn.com/semanticbits/owh/custom-styles.css" rel="stylesheet">-->
 </head>
 <body>
@@ -65,6 +69,17 @@
 <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
 <script src="bower_components/js-xlsx/dist/xlsx.full.min.js"></script>
 <script src="bower_components/file-saver/FileSaver.min.js"></script>
+<script src="bower_components/clusterize/clusterize.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<script src="bower_components/pdfmake/build/pdfmake.js"></script>
+<script src="bower_components/pdfmake/build/vfs_fonts.js"></script>
+<script src="bower_components/jspdf/dist/jspdf.min.js"></script>
+<script src="bower_components/pptxgenjs/dist/pptxgen.js"></script>
+<script src="bower_components/pptxgenjs/dist/pptxgen.bundle.js"></script>
+<script src="bower_components/pptxgenjs/libs/jszip.min.js"></script>
+<script src="bower_components/plotly.js/dist/plotly.js"></script>
+<script src="bower_components/canvas-toBlob.js/canvas-toBlob.js"></script>
+
 
 <script src="app/modules/home/home.module.js"></script>
 <script src="app/modules/home/home.controller.js"></script>
@@ -72,8 +87,16 @@
 <script src="app/modules/search/search.service.js"></script>
 <script src="app/modules/search/search.controller.js"></script>
 <script src="app/modules/search/search.factory.js"></script>
+<script src="app/modules/description/description.module.js"></script>
+<script src="app/modules/description/description.controller.js"></script>
+<script src="app/modules/factsheet/fact-sheet.module.js"></script>
+<script src="app/modules/factsheet/fact-sheet.controller.js"></script>
+<script src="app/modules/search/components/owh-accordion-table/owh-accordion-table.component.js"></script>
 <script src="app/services/services.module.js"></script>
+<script src="app/services/cancer.service.js"></script>
+<script src="app/services/fact-sheet.service.js"></script>
 <script src="app/services/util.service.js"></script>
+<script src="app/services/filter.utils.js"></script>
 <script src="app/services/owh-chart.utils.js"></script>
 <script src="app/app.module.js"></script>
 <script src="app/app.config.js"></script>
@@ -82,8 +105,10 @@
 <script src="app/app.filters.js"></script>
 <script src="app/services/owh-share.utils.js"></script>
 <script src="app/components/owh-table/owh-table.component.js"></script>
+<script src="app/components/owh-table/owh-table-cell.component.js"></script>
 <script src="app/components/owh-search/owh-search.component.js"></script>
 <script src="app/components/owh-side-filter/owh-sideFilter.component.js"></script>
+<script src="app/components/owh-side-filter/owh-sideFilterItem.component.js"></script>
 <script src="app/components/loading.component.js"></script>
 <script src="app/components/owh-accordion/owh-accordion.component.js"></script>
 <script src="app/components/owh-nested-accordion/owh-nested-accordion.component.js"></script>
@@ -91,20 +116,18 @@
 <script src="app/components/owh-tree/owh-tree.component.js"></script>
 <script src="app/components/owh-toggle-switch/owh-toggle-switch.component.js"></script>
 <script src="app/components/owh-footer/owh-footer.component.js"></script>
+<script src="app/components/owh-bookmark/owh-bookmark.component.js"></script>
+<script src="app/components/owh-menu/owh-menu.component.js"></script>
+<script src="app/components/owh-export-chart/owh-export-chart.component.js"></script>
+<script src="app/components/list-selected-filter-options/list-selected-filters.component.js"></script>
+<script src="app/components/plotly/plotly.js"></script>
 <script src="app/services/xls.service.js"></script>
+<script src="app/services/map.service.js"></script>
 <script src="vendor/leaflet-image/leaflet-image.js"></script>
+<script src="bower_components/ngSticky/dist/sticky.min.js"></script>
 
 <div id="fb-root"></div>
 <script>
-  /*fb share*/
-  (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=116005232167274";
-      fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-  /*fb share*/
   /*google analytics*/
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

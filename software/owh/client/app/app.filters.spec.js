@@ -24,8 +24,8 @@ describe('OWH Filters: ', function(){
     }));
 
     it('Should convert to genderTitle', inject(function() {
-        expect(genderTitle("M")).toBe('Male');
-        expect(genderTitle("F")).toBe('Female');
+        expect(genderTitle("Male")).toBe('Male');
+        expect(genderTitle("Female")).toBe('Female');
         expect(genderTitle("X")).toBe('X');
         expect(toLowerCase(undefined)).toBe('');
     }));

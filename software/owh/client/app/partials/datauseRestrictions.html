@@ -1,0 +1,41 @@
+<div id="custom-modal">
+    <div id="overlay" style="max-height: 850px; max-width: 1100px">
+        <div class="custom-modal-header">
+            <div style="width: 98%">
+                <span ng-class="small-model-title">Data Use Restrictions</span>
+            </div>
+            <div class="usa-grid usa-width-one-whole" style="float: right">
+                <a href="javascript:void(0)" class="margin-right-10" ng-click="dur.close(false)"><i class="material-icons close-icon-purple">close</i></a>
+            </div>
+        </div>
+        <div class="custom-modal-body usa-grid">
+            <div class="usa-grid">
+                <div class="usa-width-one-whole">
+                    <p>The Public Health Service Act (42 U.S.C. 242m(d)) provides that the data collected by the National Center for Health Statistics (NCHS) may be used only for the purpose for which they were obtained; any effort to determine the identity of any reported cases, or to use the information for any purpose other than for health statistical reporting and analysis, is against the law. Therefore users will:</p>
+                    <ol class="additional-info">
+                    <li>Use these data for health statistical reporting and analysis only.</li>
+                    <li>For sub-national geography, do not present or publish death counts of 9 or fewer or death rates based on counts of nine or fewer (in figures, graphs, maps, tables, etc.).</li>
+                    <li>Make no attempt to learn the identity of any person or establishment included in these data.</li>
+                    <li>Make no disclosure or other use of the identity of any person or establishment discovered inadvertently and advise the NCHS Confidentiality Officer of any such discovery.</li>
+                    </ol>
+                    <p style="margin-left: 75px;">
+                        Confidentiality Officer<br/>
+                        National Center for Health Statistics<br/>
+                        3311 Toledo Road<br/>
+                        Hyattsville, MD 20782<br/>
+                        Telephone 888-642-4159<br/>
+                        Email: nchsconfidentiality@cdc.gov<br/>
+                    </p>
+                    <br/>
+                    <p><strong>Sanctions for Violating Rules:</strong></p>
+                    <p>Researchers who violate the terms of the data use restrictions will lose access to Health Information Gateway and their sponsors and institutions will be notified. Researchers who are suspected of violating the rules may be prevented from using Health Information Gateway until an investigation can be completed. Deliberately making a false statement in any matter within the jurisdiction of any department or agency of the Federal government violates 18 USC 1001 and is punishable by a fine of up to $10,000 or up to 5 years in prison, or both.</p>
+                    <br/>
+                    <hr/>
+                    <p align="center" style="margin-left: 100px; margin-right: 100px; text-align: center ">By clicking the <strong>"I Agree"</strong> button I signify that I will abide by the terms of data use stated above and understand the sanctions and legal penalties for violation of these terms of use.</p>
+                    <button class="action-button" style="margin-left: 45%" ng-click="dur.accept()">I Agree</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="fade"></div>
+</div>

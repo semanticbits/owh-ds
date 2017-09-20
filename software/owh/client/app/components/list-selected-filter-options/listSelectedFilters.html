@@ -1,0 +1,15 @@
+<div class="selected-filters">
+    <strong ng-bind="'label.selected.filters' | translate"></strong>
+{{lfc.appliedFilter}}
+    <span class="text-muted filter-pill none" ng-if="lfc.appliedFilters.length == 0">None</span>
+
+    <span ng-if="lfc.appliedFilters.length>0">
+        <span class="filter-pill" ng-repeat="filter in lfc.appliedFilters | orderBy: lfc.getFilterOrder">
+            <b ng-bind="filter.title | translate"></b><b>:</b>
+            <span ng-bind="lfc.getSelectedOptionTitlesOfFilter(filter);"></span>
+            <!--<span ng-if="$index != lfc.appliedFilters.length-1">|</span>-->
+        </span>
+    </span>
+
+    <!-- <span class="clear-filters" ng-if="lfc.appliedFilters.length>0"><i class="material-icons backspace-icon-red">backspace</i>Clear All</span> -->
+</div>

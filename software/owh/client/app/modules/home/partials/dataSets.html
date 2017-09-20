@@ -1,0 +1,26 @@
+<div class="usa-grid-full text-center home-h4 category-header padding-bottom-15">
+    <div class="border-set"><h3 class="set-h3" translate="label.data.source"></h3></div>
+</div>
+
+<div class="usa-grid data-boxes-container" ng-controller="SearchController as sc">
+    <div class="usa-width-one-third" ng-repeat="category in sc.dataSourceCategories">
+        <div class="section" ng-repeat="source in category.dataSources">
+            <div class="usa-grid-full">
+                <div class="usa-width-one-whole section-banner">
+                    <div class="icon-container">
+                        <img ui-sref="home" src="../images/{{source.icon}}" alt="{{source.altText}}" height="110" width="110" />
+                    </div>
+                    <div class="section-banner-title home-h4 margin-top-minus-10" ng-bind="source.title"></div>
+                    <div class="color-black" ng-bind="source.description"></div>
+                </div>
+                <div class="usa-grid-full" ng-repeat="dataset in source.dataSets">
+                    <div class="usa-width-one-whole section-banner-description home-section-box cursor-pointer" ng-click="dataset.switchTo()">
+                        <div class="description-text" ng-bind="dataset.title"></div>
+                        <i class="material-icons chevron-right-blue">chevron_right</i>
+                        <div ng-bind="dataset.description"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

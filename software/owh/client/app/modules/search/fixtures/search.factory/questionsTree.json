@@ -1,0 +1,1036 @@
+{
+  "questionTree": [
+    {
+      "text": "Unintentional Injuries and Violence",
+      "children": [
+        {
+          "text": "Attempted suicide that resulted in an injury, poisoning, or overdose that had to be treated by a doctor or nurse(during the 12 months before the survey)",
+          "id": "qn30"
+        },
+        {
+          "text": "Attempted suicide(one or more times during the 12 months before the survey)",
+          "id": "qn29"
+        },
+        {
+          "text": "Carried a gun(on at least 1 day during the 30 days before the survey)",
+          "id": "qn14"
+        },
+        {
+          "text": "Carried a weapon on school property(such as, a gun, knife, or club, on at least 1 day during the 30 days before the survey)",
+          "id": "qn15"
+        },
+        {
+          "text": "Carried a weapon(such as, a gun, knife, or club, on at least 1 day during the 30 days before the survey)",
+          "id": "qn13"
+        },
+        {
+          "text": "Did not go to school because they felt unsafe at school or on their way to or from school(on at least 1 day during the 30 days before the survey)",
+          "id": "qn16"
+        },
+        {
+          "text": "Drove when drinking alcohol(in a car or other vehicle one or more times during the 30 days before the survey, among students who had driven a car or other vehicle during the 30 days before the survey)",
+          "id": "qn11"
+        },
+        {
+          "text": "Experienced physical dating violence(counting being hit, slammed into something, or injured with an object or weapon on purpose by someone they were dating or going out with one or more times during the 12 months before the survey,  among students who dated or went out with someone during the 12 months before the survey)",
+          "id": "qn22"
+        },
+        {
+          "text": "Experienced sexual dating violence(counting kissing, touching, or being physically forced to have sexual intercourse when they did not want to by someone they were dating or going out with one or more times during the 12 months before the survey, among students who dated or went out with someone during the 12 months before the survey)",
+          "id": "qn23"
+        },
+        {
+          "text": "Felt sad or hopeless(almost every day for 2 or more weeks in a row so that they stopped doing some usual activities during the 12 months before the survey)",
+          "id": "qn26"
+        },
+        {
+          "text": "Made a plan about how they would attempt suicide(during the 12 months before the survey)",
+          "id": "qn28"
+        },
+        {
+          "text": "Rarely or never wore a bicycle helmet(among students who had ridden a bicycle during the 12 months before the survey)",
+          "id": "qn8"
+        },
+        {
+          "text": "Rarely or never wore aseat belt(when riding in a car driven by someone else)",
+          "id": "qn9"
+        },
+        {
+          "text": "Seriously considered attempting suicide(during the 12 months before the survey)",
+          "id": "qn27"
+        },
+        {
+          "text": "Texted or e-mailed while driving a car or other vehicle(on at least 1 day during the 30 days before the survey, among students who had driven a car or other vehicle during the 30 days before the survey)",
+          "id": "qn12"
+        },
+        {
+          "text": "Were bullied on school property(during the 12 months before the survey)",
+          "id": "qn24"
+        },
+        {
+          "text": "Were electronically bullied(counting being bullied through e-mail, chat rooms, instant messaging, Web sites, or texting during the 12 months before the survey)",
+          "id": "qn25"
+        },
+        {
+          "text": "Were ever physically forced to have sexual intercourse(when they did not want to)",
+          "id": "qn21"
+        },
+        {
+          "text": "Were in a physical fight on school property(one or more times during the 12 months before the survey)",
+          "id": "qn20"
+        },
+        {
+          "text": "Were in aphysical fight(one or more times during the 12 months before the survey)",
+          "id": "qn18"
+        },
+        {
+          "text": "Were injured in a physical fight(one or more times during the 12 months before the survey and injuries had to be treated by a doctor or nurse)",
+          "id": "qn19"
+        },
+        {
+          "text": "Were threatened or injured with a weapon on school property(such as, a gun, knife, or club, one or more times during the 12 months before the survey)",
+          "id": "qn17"
+        }
+      ]
+    },
+    {
+      "text": "Tobacco Use",
+      "children": [
+        {
+          "text": "Currently frequently smoked cigarettes(on 20 or more days during the 30 days before the survey)",
+          "id": "qnfrcig"
+        },
+        {
+          "text": "Currently smoked cigarettes daily(on all 30 days during the 30 days before the survey)",
+          "id": "qndaycig"
+        },
+        {
+          "text": "Currently smoked cigarettes or cigars(on at least 1 day during the 30 days before the survey)",
+          "id": "qntob2"
+        },
+        {
+          "text": "Currently smoked cigarettes(on at least 1 day during the 30 days before the survey)",
+          "id": "qn33"
+        },
+        {
+          "text": "Currently smoked cigars(cigars, cigarillos, or little cigars on at least 1 day during the 30 days before the survey)",
+          "id": "qn38"
+        },
+        {
+          "text": "Currently used cigarettes, cigars, or smokeless tobacco(on at least 1 day during the 30 days before the survey)",
+          "id": "qntob3"
+        },
+        {
+          "text": "Currently used electronic vapor products(including e-cigarettes, e-cigars, e-pipes, vape pipes, vaping pens, e-hookahs, and hookah pens on at least 1 day during the 30 days before the survey)",
+          "id": "qn40"
+        },
+        {
+          "text": "Currently used smokeless tobacco(chewing tobacco, snuff, or dip on at least 1 day during the 30 days before the survey)",
+          "id": "qn37"
+        },
+        {
+          "text": "Currently used tobacco(current cigarette, smokeless tobacco, cigar, or electronic vapor products use on at least 1 day during the 30 days before the survey)",
+          "id": "qntob4"
+        },
+        {
+          "text": "Ever used electronic vapor products(including e-cigarettes, e-cigars, e-pipes, vape pipes, vapingpens, e-hookahs, and hookah pens)",
+          "id": "qn39"
+        },
+        {
+          "text": "Smoked a whole cigarette before age 13 years(for the first time)",
+          "id": "qn32"
+        },
+        {
+          "text": "Smoked more than 10 cigarettes per day(on the days they smoked during the 30 days before the survey, among students who currently smoked cigarettes)",
+          "id": "qn34"
+        },
+        {
+          "text": "Tried to quit smoking cigarettes(during the 12 months before the survey, among students who currently smoked cigarettes)",
+          "id": "qn36"
+        },
+        {
+          "text": "Usually obtained their own cigarettes by buying on the internet(during the 30 days before the survey, among students who currently smoked cigarettes and who were aged <18 years)",
+          "id": "qncigint"
+        },
+        {
+          "text": "Usually obtained their owncigarettes by buying them in a store or gas station(during the 30 days before the survey, among students who currently smoked cigarettes and who were aged <18 years)",
+          "id": "qn35"
+        }
+      ]
+    },
+    {
+      "text": "Alcohol and Other Drug Use",
+      "children": [
+        {
+          "text": "Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)",
+          "id": "qn43"
+        },
+        {
+          "text": "Currently used marijuana(one or more times during the 30 days before the survey)",
+          "id": "qn49"
+        },
+        {
+          "text": "Drank alcohol before age 13 years(for the first time other than a few sips)",
+          "id": "qn42"
+        },
+        {
+          "text": "Drank five or more drinks of alcohol in a row(within a couple of hours on at least 1 day during the 30 days before the survey)",
+          "id": "qn44"
+        },
+        {
+          "text": "Ever injected any illegal drug(used a needle to inject any illegal drug into their body one or more times during their life)",
+          "id": "qn58"
+        },
+        {
+          "text": "Ever took prescription drugs without a doctors prescription(such as Oxycontin, Percocet, Vicodin, codeine, Adderall, Ritalin, or Xanax, one or more times during their life)",
+          "id": "qn57"
+        },
+        {
+          "text": "Ever took steroids without a doctors prescription(pills or shots, one or more times during their life)",
+          "id": "qn56"
+        },
+        {
+          "text": "Ever used cocaine(any form of cocaine, such as powder, crack, or freebase, one or more times during their life)",
+          "id": "qn50"
+        },
+        {
+          "text": "Ever used ecstasy(also called \"MDMA,\" one or more times during their life)",
+          "id": "qn54"
+        },
+        {
+          "text": "Ever used heroin(also called \"smack,\" \"junk,\" or \"China white,\" one or more times during their life)",
+          "id": "qn52"
+        },
+        {
+          "text": "Ever used inhalants(sniffed glue, breathed the contentsof aerosol spray cans, or inhaled any paints or sprays to get high, one or more times during their life)",
+          "id": "qn51"
+        },
+        {
+          "text": "Ever used marijuana(one or more times during their life)",
+          "id": "qn47"
+        },
+        {
+          "text": "Ever used methamphetamines(also called \"speed,\" \"crystal,\" \"crank,\" or \"ice,\" one or more times during their life)",
+          "id": "qn53"
+        },
+        {
+          "text": "Ever used synthetic marijuana(also called \"K2\", \"Spice\", \"fake weed\", \"King Kong\", \"Yucatan Fire\", \"Skunk\", or \"Moon Rocks\", one or more times during their life)",
+          "id": "qn55"
+        },
+        {
+          "text": "Reported that the largest number of drinks they had in a row was 10 or more(within a couple of hours during the 30 days before the survey)",
+          "id": "qn45"
+        },
+        {
+          "text": "Tried marijuana before age 13 years(for the first time)",
+          "id": "qn48"
+        },
+        {
+          "text": "Used LSD 1+ times(such as LSD, acid, PCP, angel dust, mescaline, or mushrooms, one or more times during their life)",
+          "id": "qnhallucdrug"
+        },
+        {
+          "text": "Usually obtained the alcohol they drank by someone giving it to them(during the 30 days before the survey, among students who currently drank alcohol)",
+          "id": "qn46"
+        },
+        {
+          "text": "Usually used marijuana by smoking it in a joint, bong, pipe, or blunt(in a joint, bong, pipe, or blunt during the 30 days before the survey)",
+          "id": "qnhowmarijuana"
+        },
+        {
+          "text": "Were offered, sold, or given an illegal drug on school property(during the 12 months before the survey)",
+          "id": "qn59"
+        }
+      ]
+    },
+    {
+      "text": "Sexual Behaviors",
+      "children": [
+        {
+          "text": "Did not use any method to prevent pregnancy(during last sexual intercourse, among students who were currently sexually active)",
+          "id": "qnbcnone"
+        },
+        {
+          "text": "Drankalcohol or used drugs before last sexual intercourse(before last sexual intercourse, among students who were currently sexually active)",
+          "id": "qn64"
+        },
+        {
+          "text": "Had sexual intercourse before age 13 years(for the first time)",
+          "id": "qn61"
+        },
+        {
+          "text": "Had sexual intercourse with four or more persons(during their life)",
+          "id": "qn62"
+        },
+        {
+          "text": "Used a condom(during last sexual intercourse, among students who were currently sexually active)",
+          "id": "qn65"
+        },
+        {
+          "text": "Used a shot (e.g., Depo-Provera), patch (e.g., OrthoEvra), or birth control ring (e.g., NuvaRing)(before last sexual intercourse to prevent pregnancy, among students who were currently sexually active)",
+          "id": "qnshparg"
+        },
+        {
+          "text": "Used an IUD (e.g., Mirena or ParaGard) or implant (e.g., Implanon or Nexplanon)(before last sexual intercourse to prevent pregnancy, among students who were currently sexually active)",
+          "id": "qniudimp"
+        },
+        {
+          "text": "Used birth control pills(before last sexual intercourse to prevent pregnancy, among students who were currently sexually active)",
+          "id": "qn66"
+        },
+        {
+          "text": "Used birth control pills; an IUD or implant; or a shot, patch, or birth control ring(before last sexual intercourse to prevent pregnancy, among students who were currently sexually active)",
+          "id": "qnothhpl"
+        },
+        {
+          "text": "Used both a condom during and birth control pills; an IUD or implant; or a shot, patch, or birth control ring before lastsexual intercourse(before last sexual intercourse to prevent pregnancy, among students who were currently sexually active)",
+          "id": "qndualbc"
+        },
+        {
+          "text": "Were currently sexually active(had sexual intercourse with at least one person during the 3 months before the survey)",
+          "id": "qn63"
+        },
+        {
+          "text": "Were ever tested for HIV(not counting tests done when donating blood)",
+          "id": "qn85"
+        }
+      ]
+    },
+    {
+      "text": "Obesity, Overweight, and Weight Control",
+      "children": [
+        {
+          "text": "Were Obese(>=95th percentile for body mass index, based on sex- and age-specific reference data from the 2000 CDC growth charts)",
+          "id": "qnobese"
+        },
+        {
+          "text": "Were Overweight(>= 85th percentile but <95th percentile for body mass index, based on sex- and age-specific reference data from the 2000 CDC growth charts)",
+          "id": "qnowt"
+        },
+        {
+          "text": "Were trying to lose weight()",
+          "id": "qn70"
+        }
+      ]
+    },
+    {
+      "text": "Dietary Behaviors",
+      "children": [
+        {
+          "text": "Ate breakfast on all 7 days(during the 7 days before the survey)",
+          "id": "qnbk7day"
+        },
+        {
+          "text": "Ate fruit or drank 100% fruit juices one or more times per day(during the 7 days before the survey)",
+          "id": "qnfr1"
+        },
+        {
+          "text": "Ate fruit or drank 100% fruit juices three or more times per day(during the 7 days before the survey)",
+          "id": "qnfr3"
+        },
+        {
+          "text": "Ate fruit or drank 100% fruit juices two or more times per day(during the 7 days before the survey)",
+          "id": "qnfr2"
+        },
+        {
+          "text": "Ate vegetables one or more times per day(green salad, potatoes (excluding French fries, fried potatoes, or potato chips), carrots, or other vegetables, during the 7 days before the survey)",
+          "id": "qnveg1"
+        },
+        {
+          "text": "Ate vegetables three or more times per day(green salad, potatoes (excluding French fries, fried potatoes, or potato chips), carrots, or other vegetables, during the 7 days before the survey)",
+          "id": "qnveg3"
+        },
+        {
+          "text": "Ate vegetables two or more times per day(green salad, potatoes (excluding French fries, fried potatoes, or potato chips), carrots, or other vegetables, during the 7 days before the survey)",
+          "id": "qnveg2"
+        },
+        {
+          "text": "Did not drink a bottle or glass of plain water(during the 7 days before the survey)",
+          "id": "qnwater"
+        },
+        {
+          "text": "Did not drink a can, bottle, or glass of a sports drink(not counting low calorie sports drinks during the 7 days before the survey)",
+          "id": "qnsportsdrink"
+        },
+        {
+          "text": "Did not drink milk(during the 7 days before the survey)",
+          "id": "qn78"
+        },
+        {
+          "text": "Did not eat breakfast(during the 7 days before the survey)",
+          "id": "qn79"
+        },
+        {
+          "text": "Did not eat fruit or drink 100% fruit juices(during the 7 days before the survey)",
+          "id": "qnfr0"
+        },
+        {
+          "text": "Did not eat vegetables(green salad, potatoes (excluding French fries, fried potatoes, or potato chips), carrots, or other vegetables, during the 7 days before the survey)",
+          "id": "qnveg0"
+        },
+        {
+          "text": "Drank a can, bottle, or glass of a sports drink one or more times per day(not counting low calorie sports drinks during the 7 days before the survey)",
+          "id": "qnspdrk1"
+        },
+        {
+          "text": "Drank a can, bottle, or glass of a sports drink three or more times per day(not counting low calorie sports drinks during the 7 days before the survey)",
+          "id": "qnspdrk3"
+        },
+        {
+          "text": "Drank a can, bottle, or glass of a sports drink two or more times per day(not counting low calorie sports drinks during the 7 days before the survey)",
+          "id": "qnspdrk2"
+        },
+        {
+          "text": "Drank a can, bottle, or glass of soda or pop one or more times per day(not counting diet soda or diet pop, during the 7 days before the survey)",
+          "id": "qnsoda1"
+        },
+        {
+          "text": "Drank a can, bottle, or glass of soda or pop three or more times per day(not counting diet soda or diet pop, during the 7 days before the survey)",
+          "id": "qnsoda3"
+        },
+        {
+          "text": "Drank a can, bottle, or glass of soda or pop two or more times per day(not counting diet soda or diet pop, during the 7 days before the survey)",
+          "id": "qnsoda2"
+        },
+        {
+          "text": "Drank one or more glasses per day of milk(during the 7 days before the survey)",
+          "id": "qnmilk1"
+        },
+        {
+          "text": "Drank one or more glasses per day of water(during the 7 days before the survey)",
+          "id": "qnwater1"
+        },
+        {
+          "text": "Drank three or more glasses per day of milk(during the 7 days before the survey)",
+          "id": "qnmilk3"
+        },
+        {
+          "text": "Drank three or more glasses per day of water(during the 7 days before the survey)",
+          "id": "qnwater3"
+        },
+        {
+          "text": "Drank two or more glasses per day of milk(during the 7 days before the survey)",
+          "id": "qnmilk2"
+        },
+        {
+          "text": "Drank two or more glasses per day of water(during the 7 days before the survey)",
+          "id": "qnwater2"
+        }
+      ]
+    },
+    {
+      "text": "Physical Activity",
+      "children": [
+        {
+          "text": "Attended physical education classes on 1 or more days(in an average week when they were in school)",
+          "id": "qn83"
+        },
+        {
+          "text": "Attended physical education classes on all 5 days(in an average week when they were in school)",
+          "id": "qndlype"
+        },
+        {
+          "text": "Did not participate in at least 60 minutes of physical activity on at least 1 day(doing any kind of physical activity that increased their heart rate and made them breathe hard some of the time during the 7 days before the survey)",
+          "id": "qnpa0day"
+        },
+        {
+          "text": "Played on at least one sports team(run by their school or community groups during the 12 months before the survey)",
+          "id": "qn84"
+        },
+        {
+          "text": "Played video or computer games or used a computer 3 or more hours per day(for something that was not school work on an average school day)",
+          "id": "qn82"
+        },
+        {
+          "text": "Strengthened muscles 3+ of past 7 days(such as, push-ups, sit-ups, or weight lifting, during the 7 days before the survey)",
+          "id": "qnmusclestrength"
+        },
+        {
+          "text": "Watched television 3 or more hours per day(on an average school day)",
+          "id": "qn81"
+        },
+        {
+          "text": "Were physically active at least 60 minutes per day on all 7 days(doing any kind of physical activity that increased their heart rate and made them breathe hard some of the time during the 7 days before the survey)",
+          "id": "qnpa7day"
+        }
+      ]
+    },
+    {
+      "text": "Other Health Topics",
+      "children": [
+        {
+          "text": "Had 8 or more hours of sleep(on an average school night)",
+          "id": "qn88"
+        },
+        {
+          "text": "Had a sunburn(one or more times during the 12 months before the survey, counting even a small part of the skin turning red or hurting for12 hours or more after being outside in the sun or after using a sunlamp or other indoor tanning device)",
+          "id": "qnsunburn"
+        },
+        {
+          "text": "Had ever been told by a doctor or nurse that they had asthma()",
+          "id": "qn87"
+        },
+        {
+          "text": "Have to avoid some foods because eating the food could cause an allergic reaction(such as skin rashes, swelling, itching, vomiting, coughing, or trouble breathing)",
+          "id": "qnfoodallergy"
+        },
+        {
+          "text": "Used 1+ times indoor tanning(such as a sunlamp, sunbed, or tanning booth (not counting getting a spray-on tan) one or more times during the 12 months before the survey)",
+          "id": "qnindoortanning"
+        }
+      ]
+    }
+  ],
+  "questionsList": [
+    {
+      "key": "Drove when drinking alcohol",
+      "qkey": "qn11",
+      "text": "Drove when drinking alcohol(in a car or other vehicle one or more times during the 30 days before the survey, among students who had driven a car or other vehicle during the 30 days before the survey)"
+    },
+    {
+      "key": "Texted or e-mailed while driving a car or other vehicle",
+      "qkey": "qn12",
+      "text": "Texted or e-mailed while driving a car or other vehicle(on at least 1 day during the 30 days before the survey, among students who had driven a car or other vehicle during the 30 days before the survey)"
+    },
+    {
+      "key": "Carried a weapon",
+      "qkey": "qn13",
+      "text": "Carried a weapon(such as, a gun, knife, or club, on at least 1 day during the 30 days before the survey)"
+    },
+    {
+      "key": "Carried a gun",
+      "qkey": "qn14",
+      "text": "Carried a gun(on at least 1 day during the 30 days before the survey)"
+    },
+    {
+      "key": "Carried a weapon on school property",
+      "qkey": "qn15",
+      "text": "Carried a weapon on school property(such as, a gun, knife, or club, on at least 1 day during the 30 days before the survey)"
+    },
+    {
+      "key": "Did not go to school because they felt unsafe at school or on their way to or from school",
+      "qkey": "qn16",
+      "text": "Did not go to school because they felt unsafe at school or on their way to or from school(on at least 1 day during the 30 days before the survey)"
+    },
+    {
+      "key": "Were threatened or injured with a weapon on school property",
+      "qkey": "qn17",
+      "text": "Were threatened or injured with a weapon on school property(such as, agun, knife, or club, one or more times during the 12 months before the survey)"
+    },
+    {
+      "key": "Were in a physical fight",
+      "qkey": "qn18",
+      "text": "Were in a physical fight(one or more times during the 12 months before the survey)"
+    },
+    {
+      "key": "Were injured in a physical fight",
+      "qkey": "qn19",
+      "text": "Were injured in a physical fight(one or more times during the 12 months before the survey and injuries had to be treated by a doctor or nurse)"
+    },
+    {
+      "key": "Were in a physical fight on school property",
+      "qkey": "qn20",
+      "text": "Were in a physical fight on school property(one or more times during the 12 months before the survey)"
+    },
+    {
+      "key": "Were ever physically forced to have sexual intercourse",
+      "qkey": "qn21",
+      "text": "Were ever physically forced to have sexual intercourse(when they did not want to)"
+    },
+    {
+      "key": "Experienced physical dating violence",
+      "qkey": "qn22",
+      "text": "Experienced physical dating violence(counting being hit, slammed into something, or injured with an object or weapon on purpose by someone they were dating or going out with one or more times during the 12 months before the survey,  among students who dated or went out with someone during the 12 months before the survey)"
+    },
+    {
+      "key": "Experienced sexual dating violence",
+      "qkey": "qn23",
+      "text": "Experienced sexual dating violence(counting kissing, touching, or being physically forced to have sexual intercourse when they did not want to by someone they were dating or going out with one or more times during the 12 months before the survey, among students who dated or went out with someone during the 12 months before the survey)"
+    },
+    {
+      "key": "Were bullied on school property",
+      "qkey": "qn24",
+      "text": "Were bullied on school property(during the 12 months before the survey)"
+    },
+    {
+      "key": "Were electronically bullied",
+      "qkey": "qn25",
+      "text": "Were electronically bullied(counting being bullied through e-mail, chat rooms, instant messaging, Web sites, or texting during the 12 months before the survey)"
+    },
+    {
+      "key": "Felt sad or hopeless",
+      "qkey": "qn26",
+      "text": "Felt sad or hopeless(almost every day for 2 or more weeks in a row so that they stopped doing some usual activities during the 12 months before the survey)"
+    },
+    {
+      "key": "Seriously considered attempting suicide",
+      "qkey": "qn27",
+      "text": "Seriously considered attempting suicide(during the 12 months before the survey)"
+    },
+    {
+      "key": "Made a plan about how they would attempt suicide",
+      "qkey": "qn28",
+      "text": "Made a plan about how they would attempt suicide(during the 12 months before the survey)"
+    },
+    {
+      "key": "Attempted suicide",
+      "qkey": "qn29",
+      "text": "Attempted suicide(oneor more times during the 12 months before the survey)"
+    },
+    {
+      "key": "Attempted suicide that resulted in an injury, poisoning, or overdose that had to be treated by a doctor or nurse",
+      "qkey": "qn30",
+      "text": "Attempted suicide that resulted in an injury, poisoning, or overdose that had to be treated by a doctor or nurse(during the 12 months before the survey)"
+    },
+    {
+      "key": "Smoked a whole cigarette before age 13 years",
+      "qkey": "qn32",
+      "text": "Smoked a whole cigarette before age 13 years(for the first time)"
+    },
+    {
+      "key": "Currently smoked cigarettes",
+      "qkey": "qn33",
+      "text": "Currently smoked cigarettes(on at least 1 day during the 30 days before the survey)"
+    },
+    {
+      "key": "Smoked more than 10 cigarettes per day",
+      "qkey": "qn34",
+      "text": "Smoked more than 10 cigarettes per day(on the days they smoked during the 30 days before the survey, among students who currently smoked cigarettes)"
+    },
+    {
+      "key": "Usually obtained their own cigarettes by buying them in a store or gas station",
+      "qkey": "qn35",
+      "text": "Usually obtained their own cigarettes by buying them in a store or gas station(during the 30 days before the survey, among students who currently smoked cigarettes and who were aged <18 years)"
+    },
+    {
+      "key": "Tried to quit smoking cigarettes",
+      "qkey": "qn36",
+      "text": "Tried to quit smoking cigarettes(during the 12 months before the survey, among students who currently smoked cigarettes)"
+    },
+    {
+      "key": "Currently used smokeless tobacco",
+      "qkey": "qn37",
+      "text": "Currently used smokeless tobacco(chewing tobacco, snuff, or dip on at least 1 day during the 30 days before the survey)"
+    },
+    {
+      "key": "Currently smoked cigars",
+      "qkey": "qn38",
+      "text": "Currently smoked cigars(cigars, cigarillos, or little cigars on at least 1 day during the 30 days before the survey)"
+    },
+    {
+      "key": "Ever used electronic vapor products",
+      "qkey": "qn39",
+      "text": "Ever used electronic vapor products(including e-cigarettes, e-cigars, e-pipes, vape pipes, vaping pens, e-hookahs, and hookah pens)"
+    },
+    {
+      "key": "Currently used electronic vapor products",
+      "qkey": "qn40",
+      "text": "Currently used electronic vapor products(including e-cigarettes, e-cigars, e-pipes, vape pipes, vaping pens, e-hookahs, and hookah pens on at least 1 day during the 30 days before the survey)"
+    },
+    {
+      "key": "Drank alcohol before age 13 years",
+      "qkey": "qn42",
+      "text": "Drank alcohol before age 13 years(for the first time other than a few sips)"
+    },
+    {
+      "key": "Currently drank alcohol",
+      "qkey": "qn43",
+      "text": "Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)"
+    },
+    {
+      "key": "Drank five or more drinks of alcohol in a row",
+      "qkey": "qn44",
+      "text": "Drank five or more drinks of alcohol in a row(within a couple of hours on at least 1 day during the 30 days before the survey)"
+    },
+    {
+      "key": "Reported that the largest number of drinks they had in a row was 10 or more",
+      "qkey": "qn45",
+      "text": "Reported that the largest number of drinks they had in a row was 10 or more(within a couple of hours during the 30 days before the survey)"
+    },
+    {
+      "key": "Usually obtained the alcohol they drank by someone giving it to them",
+      "qkey": "qn46",
+      "text": "Usually obtained the alcohol they drank by someone giving it to them(during the 30 days before the survey, among students who currently drank alcohol)"
+    },
+    {
+      "key": "Ever used marijuana",
+      "qkey": "qn47",
+      "text": "Ever used marijuana(one or more times during their life)"
+    },
+    {
+      "key": "Tried marijuana before age 13 years",
+      "qkey": "qn48",
+      "text": "Tried marijuana before age 13 years(for the first time)"
+    },
+    {
+      "key": "Currently used marijuana",
+      "qkey": "qn49",
+      "text": "Currently used marijuana(one or more times during the 30 days before the survey)"
+    },
+    {
+      "key": "Ever used cocaine",
+      "qkey": "qn50",
+      "text": "Ever used cocaine(any form of cocaine, such as powder, crack, or freebase, one or more times during their life)"
+    },
+    {
+      "key": "Ever used inhalants",
+      "qkey": "qn51",
+      "text": "Ever used inhalants(sniffed glue, breathed the contents of aerosol spray cans, or inhaled any paints or sprays to get high, one or more times during their life)"
+    },
+    {
+      "key": "Ever used heroin",
+      "qkey": "qn52",
+      "text": "Ever used heroin(also called \"smack,\" \"junk,\" or \"China white,\" one or more times during their life)"
+    },
+    {
+      "key": "Ever used methamphetamines",
+      "qkey": "qn53",
+      "text": "Ever used methamphetamines(also called \"speed,\" \"crystal,\" \"crank,\" or \"ice,\" one or more times during their life)"
+    },
+    {
+      "key": "Ever used ecstasy",
+      "qkey": "qn54",
+      "text": "Ever used ecstasy(also called \"MDMA,\" one or more times during their life)"
+    },
+    {
+      "key": "Ever used synthetic marijuana",
+      "qkey": "qn55",
+      "text": "Ever used synthetic marijuana(also called \"K2\", \"Spice\", \"fake weed\", \"King Kong\", \"Yucatan Fire\", \"Skunk\", or \"Moon Rocks\", one or more times during their life)"
+    },
+    {
+      "key": "Ever took steroids without a doctors prescription",
+      "qkey": "qn56",
+      "text": "Ever took steroids without a doctors prescription(pills or shots, one or more times during their life)"
+    },
+    {
+      "key": "Ever took prescription drugs without a doctors prescription",
+      "qkey": "qn57",
+      "text": "Ever took prescription drugs without a doctors prescription(such as Oxycontin, Percocet, Vicodin, codeine, Adderall, Ritalin, or Xanax, one or more times during their life)"
+    },
+    {
+      "key": "Ever injected any illegal drug",
+      "qkey": "qn58",
+      "text": "Ever injected any illegal drug(used a needle to inject any illegal drug into their body one or more times during their life)"
+    },
+    {
+      "key": "Were offered, sold, or given an illegal drug on school property",
+      "qkey": "qn59",
+      "text": "Were offered, sold, or given an illegal drug on school property(during the 12 months before the survey)"
+    },
+    {
+      "key": "Had sexual intercourse before age 13 years",
+      "qkey": "qn61",
+      "text": "Had sexual intercourse before age 13 years(for the first time)"
+    },
+    {
+      "key": "Had sexual intercourse with four or more persons",
+      "qkey": "qn62",
+      "text": "Had sexual intercourse with four or more persons(duringtheir life)"
+    },
+    {
+      "key": "Were currently sexually active",
+      "qkey": "qn63",
+      "text": "Were currently sexually active(had sexual intercourse with at least one person during the 3 months before the survey)"
+    },
+    {
+      "key": "Drank alcohol or used drugs before last sexual intercourse",
+      "qkey": "qn64",
+      "text": "Drank alcohol or used drugs before last sexual intercourse(before last sexual intercourse, among students who were currently sexually active)"
+    },
+    {
+      "key": "Used a condom",
+      "qkey": "qn65",
+      "text": "Used a condom(during last sexual intercourse, among students who were currently sexually active)"
+    },
+    {
+      "key": "Used birth control pills",
+      "qkey": "qn66",
+      "text": "Used birth control pills(before last sexual intercourse to prevent pregnancy, among students who were currently sexually active)"
+    },
+    {
+      "key": "Were trying to lose weight",
+      "qkey": "qn70",
+      "text": "Were trying to lose weight()"
+    },
+    {
+      "key": "Did not drink milk",
+      "qkey": "qn78",
+      "text": "Did not drink milk(during the 7 days before the survey)"
+    },
+    {
+      "key": "Did not eat breakfast",
+      "qkey": "qn79",
+      "text": "Did not eat breakfast(during the 7 days before the survey)"
+    },
+    {
+      "key": "Rarely or never wore a bicycle helmet",
+      "qkey": "qn8",
+      "text": "Rarely or never wore a bicycle helmet(among students who had ridden a bicycle during the 12 months before the survey)"
+    },
+    {
+      "key": "Watched television 3 or more hours per day",
+      "qkey": "qn81",
+      "text": "Watched television 3 or more hours per day(on an average school day)"
+    },
+    {
+      "key": "Played video or computer games or used a computer 3 or more hours per day",
+      "qkey": "qn82",
+      "text": "Played video or computer games or used a computer 3 or more hours per day(for something that was not school work on an average school day)"
+    },
+    {
+      "key": "Attended physical education classes on 1 or more days",
+      "qkey": "qn83",
+      "text": "Attended physical education classes on 1 or more days(in an average week when they were in school)"
+    },
+    {
+      "key": "Played on at least one sports team",
+      "qkey": "qn84",
+      "text": "Played on at least one sports team(run by their school or community groups during the 12 months before the survey)"
+    },
+    {
+      "key": "Were ever tested for HIV",
+      "qkey": "qn85",
+      "text": "Were ever tested for HIV(not counting tests done when donating blood)"
+    },
+    {
+      "key": "Had ever been told by a doctor or nurse that they had asthma",
+      "qkey": "qn87",
+      "text": "Had ever been told by a doctor or nurse that they had asthma()"
+    },
+    {
+      "key": "Had 8 or more hours of sleep",
+      "qkey": "qn88",
+      "text": "Had 8 or more hours of sleep(on an average school night)"
+    },
+    {
+      "key": "Rarely or never wore a seat belt",
+      "qkey": "qn9",
+      "text": "Rarely or never wore a seat belt(when riding in a cardriven by someone else)"
+    },
+    {
+      "key": "Did not use any method to prevent pregnancy",
+      "qkey": "qnbcnone",
+      "text": "Did not use any method to prevent pregnancy(during last sexual intercourse, among students who were currently sexually active)"
+    },
+    {
+      "key": "Ate breakfast on all 7 days",
+      "qkey": "qnbk7day",
+      "text": "Ate breakfast on all 7 days(during the 7 days before the survey)"
+    },
+    {
+      "key": "Usually obtained their own cigarettes by buying on the internet",
+      "qkey": "qncigint",
+      "text": "Usually obtained their own cigarettes by buying on the internet(during the 30 days before the survey, among students who currently smoked cigarettes and who were aged <18 years)"
+    },
+    {
+      "key": "Currently smoked cigarettes daily",
+      "qkey": "qndaycig",
+      "text": "Currently smoked cigarettes daily(on all 30 days during the 30 days before the survey)"
+    },
+    {
+      "key": "Attended physical education classes on all 5 days",
+      "qkey": "qndlype",
+      "text": "Attended physical education classes on all 5 days(in an average week when they were in school)"
+    },
+    {
+      "key": "Used both a condom during and birth control pills; an IUD or implant; or a shot, patch, or birth control ring before last sexual intercourse",
+      "qkey": "qndualbc",
+      "text": "Used both a condom during and birth control pills; an IUD or implant; or a shot, patch, or birth control ring before last sexual intercourse(before last sexual intercourse to prevent pregnancy, among students who were currently sexually active)"
+    },
+    {
+      "key": "Have to avoid some foods because eating the food could cause an allergic reaction",
+      "qkey": "qnfoodallergy",
+      "text": "Have to avoid some foods because eating the food could cause an allergic reaction(such as skin rashes, swelling, itching, vomiting, coughing, or trouble breathing)"
+    },
+    {
+      "key": "Did not eat fruit or drink 100% fruit juices",
+      "qkey": "qnfr0",
+      "text": "Did not eat fruit or drink 100% fruit juices(during the 7 days before the survey)"
+    },
+    {
+      "key": "Ate fruit or drank 100% fruit juices one or more times per day",
+      "qkey": "qnfr1",
+      "text": "Ate fruit or drank 100% fruit juices one or more times per day(during the 7 days before the survey)"
+    },
+    {
+      "key": "Ate fruit or drank 100% fruit juices two or more times per day",
+      "qkey": "qnfr2",
+      "text": "Ate fruit or drank 100% fruit juices two or more times per day(during the 7 days before the survey)"
+    },
+    {
+      "key": "Ate fruit or drank 100% fruit juices three or more times per day",
+      "qkey": "qnfr3",
+      "text": "Ate fruit or drank 100% fruit juices three or more times per day(during the 7 days before the survey)"
+    },
+    {
+      "key": "Currently frequently smoked cigarettes",
+      "qkey": "qnfrcig",
+      "text": "Currently frequently smoked cigarettes(on 20 or more days during the 30 days before the survey)"
+    },
+    {
+      "key": "Used LSD 1+ times",
+      "qkey": "qnhallucdrug",
+      "text": "Used LSD 1+ times(such as LSD, acid, PCP, angel dust, mescaline, or mushrooms, one or more times during their life)"
+    },
+    {
+      "key": "Usually used marijuana by smoking it in a joint, bong, pipe, or blunt",
+      "qkey": "qnhowmarijuana",
+      "text": "Usually used marijuana by smoking it in a joint, bong, pipe, or blunt(in a joint, bong, pipe, orblunt during the 30 days before the survey)"
+    },
+    {
+      "key": "Used 1+ times indoor tanning",
+      "qkey": "qnindoortanning",
+      "text": "Used 1+ times indoor tanning(such as a sunlamp, sunbed, or tanning booth (not counting getting a spray-on tan) one or more times during the 12 months before the survey)"
+    },
+    {
+      "key": "Used an IUD (e.g., Mirena or ParaGard) or implant (e.g., Implanon or Nexplanon)",
+      "qkey": "qniudimp",
+      "text": "Used an IUD (e.g., Mirena or ParaGard) or implant (e.g., Implanon or Nexplanon)(before last sexual intercourse to prevent pregnancy, among students who were currently sexually active)"
+    },
+    {
+      "key": "Drank one or more glasses per day of milk",
+      "qkey": "qnmilk1",
+      "text": "Drank one or more glasses per day of milk(during the 7 days before the survey)"
+    },
+    {
+      "key": "Drank two or more glasses per day of milk",
+      "qkey": "qnmilk2",
+      "text": "Drank two or more glasses per day of milk(during the 7 days before the survey)"
+    },
+    {
+      "key": "Drank three or more glasses per day of milk",
+      "qkey": "qnmilk3",
+      "text": "Drank three or more glasses per day of milk(during the 7 days before the survey)"
+    },
+    {
+      "key": "Strengthened muscles 3+ of past 7 days",
+      "qkey": "qnmusclestrength",
+      "text": "Strengthened muscles 3+ of past 7 days(such as, push-ups, sit-ups, or weight lifting, during the 7 days before the survey)"
+    },
+    {
+      "key": "Were Obese",
+      "qkey": "qnobese",
+      "text": "Were Obese(>= 95th percentile for body mass index, based on sex- and age-specific reference data from the 2000 CDC growth charts)"
+    },
+    {
+      "key": "Used birth control pills; an IUD or implant; or a shot, patch, or birth control ring",
+      "qkey": "qnothhpl",
+      "text": "Used birth control pills; an IUD or implant; or a shot, patch, or birth control ring(before last sexual intercourse to prevent pregnancy, among students who were currently sexually active)"
+    },
+    {
+      "key": "Were Overweight",
+      "qkey": "qnowt",
+      "text": "Were Overweight(>= 85th percentile but <95th percentile for body mass index, based on sex- and age-specific reference data from the 2000 CDC growth charts)"
+    },
+    {
+      "key": "Did not participate in at least 60 minutes of physical activity on at least 1 day",
+      "qkey": "qnpa0day",
+      "text": "Did not participate in at least 60 minutes of physical activity on at least 1 day(doing any kind of physical activity that increased their heart rate and made them breathe hard some of the time during the 7 days before the survey)"
+    },
+    {
+      "key": "Were physically active at least 60 minutes per day on all 7 days",
+      "qkey": "qnpa7day",
+      "text": "Were physically active at least 60 minutes per day on all 7 days(doing any kind of physical activity that increased their heart rate and made them breathe hard some of the time during the 7 days before the survey)"
+    },
+    {
+      "key": "Used a shot (e.g., Depo-Provera), patch (e.g., OrthoEvra), or birth control ring (e.g., NuvaRing)",
+      "qkey": "qnshparg",
+      "text": "Used a shot (e.g., Depo-Provera), patch (e.g., OrthoEvra), or birth control ring (e.g., NuvaRing)(before last sexual intercourse to prevent pregnancy, among students who were currently sexually active)"
+    },
+    {
+      "key": "Drank a can, bottle, or glass of soda or pop one or more times per day",
+      "qkey": "qnsoda1",
+      "text": "Drank a can, bottle, or glass of soda or pop one or more times per day(not counting diet soda or diet pop, during the 7 days before the survey)"
+    },
+    {
+      "key": "Drank a can, bottle, or glass of soda or pop two or more times per day",
+      "qkey": "qnsoda2",
+      "text": "Drank a can, bottle, or glass of soda or pop two or more times per day(not counting diet soda or diet pop, during the 7 days before the survey)"
+    },
+    {
+      "key": "Drank a can, bottle, or glass of soda or pop three or more times per day",
+      "qkey": "qnsoda3",
+      "text": "Drank a can, bottle, or glass of soda or pop three or more times per day(not counting diet soda or diet pop, during the 7 days before the survey)"
+    },
+    {
+      "key": "Drank a can, bottle, or glass of a sports drink one or more times per day",
+      "qkey": "qnspdrk1",
+      "text": "Drank a can, bottle, or glass of a sports drink one or more times per day(not counting low calorie sports drinks during the 7 days before the survey)"
+    },
+    {
+      "key": "Drank a can, bottle, or glass of a sports drink two or more times per day",
+      "qkey": "qnspdrk2",
+      "text": "Drank a can, bottle, or glass of a sports drink two or more times per day(not counting low calorie sports drinks during the 7 days before the survey)"
+    },
+    {
+      "key": "Drank a can, bottle, or glass of a sports drink three or more times per day",
+      "qkey": "qnspdrk3",
+      "text": "Drank a can, bottle, or glass of a sports drink three or more times per day(not counting low calorie sports drinks during the 7 days before the survey)"
+    },
+    {
+      "key": "Did not drink a can, bottle, or glass of a sports drink",
+      "qkey": "qnsportsdrink",
+      "text": "Did not drink a can, bottle, or glass of a sports drink(not counting low calorie sports drinks during the 7 days before the survey)"
+    },
+    {
+      "key": "Had a sunburn",
+      "qkey": "qnsunburn",
+      "text": "Had a sunburn(one or more times during the 12 months before the survey, counting even a small part of the skin turning red or hurting for 12 hours or more after being outside in the sun or after using a sunlamp or other indoor tanning device)"
+    },
+    {
+      "key": "Currently smoked cigarettes or cigars",
+      "qkey": "qntob2",
+      "text": "Currently smoked cigarettes or cigars(on at least 1 day during the 30 days before the survey)"
+    },
+    {
+      "key": "Currently used cigarettes, cigars, or smokeless tobacco",
+      "qkey": "qntob3",
+      "text": "Currently used cigarettes, cigars, or smokeless tobacco(on at least 1 day during the 30 days before the survey)"
+    },
+    {
+      "key": "Currently used tobacco",
+      "qkey": "qntob4",
+      "text": "Currently used tobacco(current cigarette, smokeless tobacco, cigar, or electronic vapor products use on at least 1 day during the 30 days before the survey)"
+    },
+    {
+      "key": "Did not eat vegetables",
+      "qkey": "qnveg0",
+      "text": "Did not eat vegetables(green salad, potatoes (excluding French fries, fried potatoes, or potato chips), carrots, or other vegetables, during the 7 days before the survey)"
+    },
+    {
+      "key": "Ate vegetables one or more times per day",
+      "qkey": "qnveg1",
+      "text": "Ate vegetables one or more times per day(green salad, potatoes (excluding French fries, fried potatoes, or potato chips), carrots, or other vegetables, during the 7 days before the survey)"
+    },
+    {
+      "key": "Ate vegetables two or more times per day",
+      "qkey": "qnveg2",
+      "text": "Ate vegetables two or more times per day(green salad, potatoes (excluding French fries, fried potatoes, or potato chips), carrots, or other vegetables, during the 7 days before the survey)"
+    },
+    {
+      "key": "Ate vegetables three or more times per day",
+      "qkey": "qnveg3",
+      "text": "Ate vegetables three or more times per day(green salad, potatoes (excluding French fries, fried potatoes, or potato chips), carrots, or other vegetables, during the 7 days before the survey)"
+    },
+    {
+      "key": "Did not drink a bottle or glass of plain water",
+      "qkey": "qnwater",
+      "text": "Did not drink a bottle or glass of plain water(during the 7 days before the survey)"
+    },
+    {
+      "key": "Drank one or more glasses per day of water",
+      "qkey": "qnwater1",
+      "text": "Drank one or more glasses per day of water(during the 7 days before the survey)"
+    },
+    {
+      "key": "Drank two or more glasses per day of water",
+      "qkey": "qnwater2",
+      "text": "Drank two or more glasses per day of water(during the 7 days before the survey)"
+    },
+    {
+      "key": "Drank three or more glasses per day of water",
+      "qkey": "qnwater3",
+      "text": "Drank three or more glasses per day of water(during the 7 days before the survey)"
+    }
+  ]
+}

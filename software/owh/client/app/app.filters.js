@@ -17,9 +17,14 @@
         .filter('GenderTitle', function() {
             return function(input) {
                 input = input || '';
-                if(input === 'F') return 'Female';
-                if(input === 'M') return 'Male';
+                if(input === 'Female') return 'Female';
+                if(input === 'Male') return 'Male';
                 return input;
+            };
+        })
+        .filter('isArray', function() {
+            return function (input) {
+                return angular.isArray(input);
             };
         });
 }());

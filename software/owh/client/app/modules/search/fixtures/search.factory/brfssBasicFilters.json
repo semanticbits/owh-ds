@@ -1,0 +1,1319 @@
+[
+  {
+    "key": "topic",
+    "title": "label.brfss.filter.topic",
+    "queryKey": "topic",
+    "primary": false,
+    "value": [],
+    "groupBy": false,
+    "filterType": "checkbox",
+    "autoCompleteOptions": [
+      {
+        "key": "cat_12",
+        "title": "Alcohol Consumption",
+        "$$hashKey": "object:4771",
+        "count": 0
+      },
+      {
+        "key": "cat_47",
+        "title": "Binge Drinking",
+        "$$hashKey": "object:4772",
+        "count": 0
+      },
+      {
+        "key": "cat_50",
+        "title": "Heavy Drinking",
+        "$$hashKey": "object:4773",
+        "count": 0
+      }
+    ],
+    "doNotShowAll": false,
+    "helpText": "label.help.text.brfss.topic",
+    "filterLength": 3,
+    "$$hashKey": "object:4730",
+    "allChecked": true
+  },
+  {
+    "key": "year",
+    "title": "label.filter.year",
+    "queryKey": "year",
+    "primary": false,
+    "value": [
+      "2015"
+    ],
+    "groupBy": false,
+    "defaultGroup": "column",
+    "filterType": "radio",
+    "autoCompleteOptions": [
+      {
+        "key": "2015",
+        "title": "2015",
+        "$$hashKey": "object:4809",
+        "count": 0
+      },
+      {
+        "key": "2014",
+        "title": "2014",
+        "$$hashKey": "object:4810",
+        "count": 0
+      },
+      {
+        "key": "2013",
+        "title": "2013",
+        "$$hashKey": "object:4811",
+        "count": 0
+      },
+      {
+        "key": "2012",
+        "title": "2012",
+        "$$hashKey": "object:4812",
+        "count": 0
+      },
+      {
+        "key": "2011",
+        "title": "2011",
+        "$$hashKey": "object:4813",
+        "count": 0
+      },
+      {
+        "key": "2010",
+        "title": "2010",
+        "$$hashKey": "object:4814",
+        "count": 0
+      },
+      {
+        "key": "2009",
+        "title": "2009",
+        "$$hashKey": "object:4815",
+        "count": 0
+      },
+      {
+        "key": "2008",
+        "title": "2008",
+        "$$hashKey": "object:4816",
+        "count": 0
+      },
+      {
+        "key": "2007",
+        "title": "2007",
+        "$$hashKey": "object:4817",
+        "count": 0
+      },
+      {
+        "key": "2006",
+        "title": "2006",
+        "$$hashKey": "object:4818",
+        "count": 0
+      },
+      {
+        "key": "2005",
+        "title": "2005",
+        "$$hashKey": "object:4819",
+        "count": 0
+      },
+      {
+        "key": "2004",
+        "title": "2004",
+        "$$hashKey": "object:4820",
+        "count": 0
+      },
+      {
+        "key": "2003",
+        "title": "2003",
+        "$$hashKey": "object:4821",
+        "count": 0
+      },
+      {
+        "key": "2002",
+        "title": "2002",
+        "$$hashKey": "object:4822",
+        "count": 0
+      },
+      {
+        "key": "2001",
+        "title": "2001",
+        "$$hashKey": "object:4823",
+        "count": 0
+      },
+      {
+        "key": "2000",
+        "title": "2000",
+        "$$hashKey": "object:4824",
+        "count": 0
+      }
+    ],
+    "doNotShowAll": true,
+    "helpText": "label.help.text.brfss.year",
+    "$$hashKey": "object:4731"
+  },
+  {
+    "key": "sex",
+    "title": "label.filter.gender",
+    "queryKey": "sex",
+    "primary": false,
+    "value": [],
+    "groupBy": false,
+    "filterType": "radio",
+    "defaultGroup": "column",
+    "autoCompleteOptions": [
+      {
+        "key": "Male",
+        "title": "Male",
+        "$$hashKey": "object:5317",
+        "count": 0
+      },
+      {
+        "key": "Female",
+        "title": "Female",
+        "$$hashKey": "object:5318",
+        "count": 0
+      }
+    ],
+    "doNotShowAll": false,
+    "helpText": "label.help.text.brfss.sex",
+    "$$hashKey": "object:4732"
+  },
+  {
+    "key": "state",
+    "title": "label.brfss.filter.state",
+    "queryKey": "sitecode",
+    "primary": false,
+    "value": [
+      "AL"
+    ],
+    "groupBy": false,
+    "filterType": "radio",
+    "defaultGroup": "column",
+    "autoCompleteOptions": [
+      {
+        "key": "AL",
+        "title": "Alabama",
+        "$$hashKey": "object:4895",
+        "count": 0
+      },
+      {
+        "key": "AK",
+        "title": "Alaska",
+        "$$hashKey": "object:4896",
+        "count": 0
+      },
+      {
+        "key": "AZ",
+        "title": "Arizona",
+        "$$hashKey": "object:4897",
+        "count": 0
+      },
+      {
+        "key": "AR",
+        "title": "Arkansas",
+        "$$hashKey": "object:4898",
+        "count": 0
+      },
+      {
+        "key": "CA",
+        "title": "California",
+        "$$hashKey": "object:4899",
+        "count": 0
+      },
+      {
+        "key": "CO",
+        "title": "Colorado",
+        "$$hashKey": "object:4900",
+        "count": 0
+      },
+      {
+        "key": "CT",
+        "title": "Connecticut",
+        "$$hashKey": "object:4901",
+        "count": 0
+      },
+      {
+        "key": "DE",
+        "title": "Delaware",
+        "$$hashKey": "object:4902",
+        "count": 0
+      },
+      {
+        "key": "DC",
+        "title": "District of Columbia",
+        "$$hashKey": "object:4903",
+        "count": 0
+      },
+      {
+        "key": "FL",
+        "title": "Florida",
+        "$$hashKey": "object:4904",
+        "count": 0
+      },
+      {
+        "key": "GA",
+        "title": "Georgia",
+        "$$hashKey": "object:4905",
+        "count": 0
+      },
+      {
+        "key": "HI",
+        "title": "Hawaii",
+        "$$hashKey": "object:4906",
+        "count": 0
+      },
+      {
+        "key": "ID",
+        "title": "Idaho",
+        "$$hashKey": "object:4907",
+        "count": 0
+      },
+      {
+        "key": "IL",
+        "title": "Illinois",
+        "$$hashKey": "object:4908",
+        "count": 0
+      },
+      {
+        "key": "IN",
+        "title": "Indiana",
+        "$$hashKey": "object:4909",
+        "count": 0
+      },
+      {
+        "key": "IA",
+        "title": "Iowa",
+        "$$hashKey": "object:4910",
+        "count": 0
+      },
+      {
+        "key": "KS",
+        "title": "Kansas",
+        "$$hashKey": "object:4911",
+        "count": 0
+      },
+      {
+        "key": "KY",
+        "title": "Kentucky",
+        "$$hashKey": "object:4912",
+        "count": 0
+      },
+      {
+        "key": "LA",
+        "title": "Louisiana",
+        "$$hashKey": "object:4913",
+        "count": 0
+      },
+      {
+        "key": "ME",
+        "title": "Maine",
+        "$$hashKey": "object:4914",
+        "count": 0
+      },
+      {
+        "key": "MD",
+        "title": "Maryland",
+        "$$hashKey": "object:4915",
+        "count": 0
+      },
+      {
+        "key": "MA",
+        "title": "Massachusetts",
+        "$$hashKey": "object:4916",
+        "count": 0
+      },
+      {
+        "key": "MI",
+        "title": "Michigan",
+        "$$hashKey": "object:4917",
+        "count": 0
+      },
+      {
+        "key": "MN",
+        "title": "Minnesota",
+        "$$hashKey": "object:4918",
+        "count": 0
+      },
+      {
+        "key": "MS",
+        "title": "Mississippi",
+        "$$hashKey": "object:4919",
+        "count": 0
+      },
+      {
+        "key": "MO",
+        "title": "Missouri",
+        "$$hashKey": "object:4920",
+        "count": 0
+      },
+      {
+        "key": "MT",
+        "title": "Montana",
+        "$$hashKey": "object:4921",
+        "count": 0
+      },
+      {
+        "key": "NE",
+        "title": "Nebraska",
+        "$$hashKey": "object:4922",
+        "count": 0
+      },
+      {
+        "key": "NV",
+        "title": "Nevada",
+        "$$hashKey": "object:4923",
+        "count": 0
+      },
+      {
+        "key": "NH",
+        "title": "New Hampshire",
+        "$$hashKey": "object:4924",
+        "count": 0
+      },
+      {
+        "key": "NJ",
+        "title": "New Jersey",
+        "$$hashKey": "object:4925",
+        "count": 0
+      },
+      {
+        "key": "NM",
+        "title": "New Mexico",
+        "$$hashKey": "object:4926",
+        "count": 0
+      },
+      {
+        "key": "NY",
+        "title": "New York",
+        "$$hashKey": "object:4927",
+        "count": 0
+      },
+      {
+        "key": "NC",
+        "title": "North Carolina",
+        "$$hashKey": "object:4928",
+        "count": 0
+      },
+      {
+        "key": "ND",
+        "title": "North Dakota",
+        "$$hashKey": "object:4929",
+        "count": 0
+      },
+      {
+        "key": "OH",
+        "title": "Ohio",
+        "$$hashKey": "object:4930",
+        "count": 0
+      },
+      {
+        "key": "OK",
+        "title": "Oklahoma",
+        "$$hashKey": "object:4931",
+        "count": 0
+      },
+      {
+        "key": "OR",
+        "title": "Oregon",
+        "$$hashKey": "object:4932",
+        "count": 0
+      },
+      {
+        "key": "PA",
+        "title": "Pennsylvania",
+        "$$hashKey": "object:4933",
+        "count": 0
+      },
+      {
+        "key": "RI",
+        "title": "Rhode Island",
+        "$$hashKey": "object:4934",
+        "count": 0
+      },
+      {
+        "key": "SC",
+        "title": "South Carolina",
+        "$$hashKey": "object:4935",
+        "count": 0
+      },
+      {
+        "key": "SD",
+        "title": "South Dakota",
+        "$$hashKey": "object:4936",
+        "count": 0
+      },
+      {
+        "key": "TN",
+        "title": "Tennessee",
+        "$$hashKey": "object:4937",
+        "count": 0
+      },
+      {
+        "key": "TX",
+        "title": "Texas",
+        "$$hashKey": "object:4938",
+        "count": 0
+      },
+      {
+        "key": "UT",
+        "title": "Utah",
+        "$$hashKey": "object:4939",
+        "count": 0
+      },
+      {
+        "key": "VT",
+        "title": "Vermont",
+        "$$hashKey": "object:4940",
+        "count": 0
+      },
+      {
+        "key": "VA",
+        "title": "Virginia",
+        "$$hashKey": "object:4941",
+        "count": 0
+      },
+      {
+        "key": "WV",
+        "title": "West Virginia",
+        "$$hashKey": "object:4942",
+        "count": 0
+      },
+      {
+        "key": "WA",
+        "title": "Washington",
+        "$$hashKey": "object:4943",
+        "count": 0
+      },
+      {
+        "key": "WI",
+        "title": "Wisconsin",
+        "$$hashKey": "object:4944",
+        "count": 0
+      },
+      {
+        "key": "WY",
+        "title": "Wyoming",
+        "$$hashKey": "object:4945",
+        "count": 0
+      }
+    ],
+    "displaySearchBox": true,
+    "displaySelectedFirst": true,
+    "doNotShowAll": false,
+    "helpText": "label.help.text.brfss.state",
+    "$$hashKey": "object:4733"
+  },
+  {
+    "key": "race",
+    "title": "label.brfss.filter.race_ethnicity",
+    "queryKey": "race",
+    "primary": false,
+    "value": [],
+    "groupBy": "column",
+    "filterType": "radio",
+    "defaultGroup": "column",
+    "autoCompleteOptions": [
+      {
+        "key": "White",
+        "title": "White, non-Hispanic",
+        "$$hashKey": "object:5352",
+        "count": 0
+      },
+      {
+        "key": "Black",
+        "title": "Black, non-Hispanic",
+        "$$hashKey": "object:5353",
+        "count": 0
+      },
+      {
+        "key": "AI/AN",
+        "title": "American Indian or Alaskan Native, non-Hispanic",
+        "$$hashKey": "object:5354",
+        "count": 0
+      },
+      {
+        "key": "Asian",
+        "title": "Asian, non-Hispanic",
+        "$$hashKey": "object:5355",
+        "count": 0
+      },
+      {
+        "key": "NHOPI",
+        "title": "Native Hawaiian or other Pacific Islander, non-Hispanic",
+        "$$hashKey": "object:5356",
+        "count": 0
+      },
+      {
+        "key": "Other Race",
+        "title": "Other, non-Hispanic",
+        "$$hashKey": "object:5357",
+        "count": 0
+      },
+      {
+        "key": "Multiracial non-Hispanic",
+        "title": "Multiracial, non-Hispanic",
+        "$$hashKey": "object:5358",
+        "count": 0
+      },
+      {
+        "key": "Hispanic",
+        "title": "Hispanic",
+        "$$hashKey": "object:5359",
+        "count": 0
+      }
+    ],
+    "doNotShowAll": false,
+    "helpText": "label.help.text.brfss.race_ethnicity",
+    "$$hashKey": "object:4734"
+  },
+  {
+    "key": "age_group",
+    "title": "label.filter.age_group",
+    "queryKey": "age",
+    "primary": false,
+    "value": [],
+    "groupBy": false,
+    "filterType": "radio",
+    "defaultGroup": "column",
+    "autoCompleteOptions": [
+      {
+        "key": "18-24",
+        "title": "Age 18-24",
+        "count": 0
+      },
+      {
+        "key": "25-34",
+        "title": "Age 25-34",
+        "count": 0
+      },
+      {
+        "key": "35-44",
+        "title": "Age 35-44",
+        "count": 0
+      },
+      {
+        "key": "45-54",
+        "title": "Age 45-54",
+        "count": 0
+      },
+      {
+        "key": "55-64",
+        "title": "Age 55-64",
+        "count": 0
+      },
+      {
+        "key": "40-49",
+        "title": "Age 40-49",
+        "count": 0
+      },
+      {
+        "key": "50-59",
+        "title": "Age 50-59",
+        "count": 0
+      },
+      {
+        "key": "60-64",
+        "title": "Age 60-64",
+        "count": 0
+      },
+      {
+        "key": "65+",
+        "title": "Age 65+",
+        "count": 0
+      },
+      {
+        "key": "65-74",
+        "title": "Age 65-74",
+        "count": 0
+      },
+      {
+        "key": "75+",
+        "title": "Age 75+",
+        "count": 0
+      },
+      {
+        "key": "21-30",
+        "title": "Age 21-30",
+        "count": 0
+      },
+      {
+        "key": "31-40",
+        "title": "Age 31-40",
+        "count": 0
+      },
+      {
+        "key": "41-50",
+        "title": "Age 41-50",
+        "count": 0
+      },
+      {
+        "key": "51-60",
+        "title": "Age 51-60",
+        "count": 0
+      },
+      {
+        "key": "61-65",
+        "title": "Age 61-65",
+        "count": 0
+      },
+      {
+        "key": "60-69",
+        "title": "Age 60-69",
+        "count": 0
+      },
+      {
+        "key": "70-74",
+        "title": "Age 70-74",
+        "count": 0
+      },
+      {
+        "key": "70-75",
+        "title": "Age 70-75",
+        "count": 0
+      }
+    ],
+    "doNotShowAll": false,
+    "helpText": "label.help.text.brfss.age_group",
+    "$$hashKey": "object:4735"
+  },
+  {
+    "key": "education",
+    "title": "label.filter.education.attained",
+    "queryKey": "education",
+    "primary": false,
+    "value": [],
+    "groupBy": false,
+    "filterType": "radio",
+    "defaultGroup": "column",
+    "autoCompleteOptions": [
+      {
+        "key": "Less than High School",
+        "title": "Less than H.S.",
+        "count": 0
+      },
+      {
+        "key": "High School Graduate",
+        "title": "High School or Graduate",
+        "count": 0
+      },
+      {
+        "key": "Attended College/Technical School",
+        "title": "Some post-H.S.",
+        "count": 0
+      },
+      {
+        "key": "College/Technical School Graduate",
+        "title": "College graduate",
+        "count": 0
+      }
+    ],
+    "doNotShowAll": false,
+    "helpText": "label.help.text.brfss.education",
+    "$$hashKey": "object:4736"
+  },
+  {
+    "key": "income",
+    "title": "label.filter.household.income",
+    "queryKey": "income",
+    "primary": false,
+    "value": [],
+    "groupBy": false,
+    "filterType": "radio",
+    "defaultGroup": "column",
+    "autoCompleteOptions": [
+      {
+        "key": "<$15k",
+        "title": "Less than $15,000",
+        "count": 0
+      },
+      {
+        "key": "$15k-$25k",
+        "title": "$15,000-$25,000",
+        "count": 0
+      },
+      {
+        "key": "$25k-$35k",
+        "title": "$25,000-$35,000",
+        "count": 0
+      },
+      {
+        "key": "$35,000 -  49,999",
+        "title": "$35,000-$49,999",
+        "count": 0
+      },
+      {
+        "key": "$50k+",
+        "title": "$50,000+",
+        "count": 0
+      }
+    ],
+    "doNotShowAll": false,
+    "helpText": "label.help.text.brfss.income",
+    "$$hashKey": "object:4737"
+  },
+  {
+    "key": "question",
+    "title": "label.brfss.filter.question",
+    "queryKey": "question.path",
+    "aggregationKey": "question.key",
+    "primary": false,
+    "value": [],
+    "groupBy": "row",
+    "filterType": "tree",
+    "autoCompleteOptions": [
+      {
+        "key": "Ever told you that you have a form of depression?",
+        "qkey": "addepev2",
+        "title": "Ever told you that you have a form of depression?",
+        "count": 0
+      },
+      {
+        "key": "What is your age?",
+        "qkey": "age",
+        "title": "What is your age?",
+        "count": 0
+      },
+      {
+        "key": "Are you blind or do you have serious difficulty seeing, even when wearing glasses?",
+        "qkey": "blind",
+        "title": "Are you blind or do you have serious difficulty seeing, even when wearing glasses?",
+        "count": 0
+      },
+      {
+        "key": "Adults who have ever had their blood cholesterol checked",
+        "qkey": "bloodcho",
+        "title": "Adults who have ever had their blood cholesterol checked",
+        "count": 0
+      },
+      {
+        "key": "Ever told you have COPD?",
+        "qkey": "chccopd",
+        "title": "Ever told you have COPD?",
+        "count": 0
+      },
+      {
+        "key": "Ever told you have COPD?",
+        "qkey": "chccopd1",
+        "title": "Ever told you have COPD?",
+        "count": 0
+      },
+      {
+        "key": "Ever told you have kidney disease?",
+        "qkey": "chckidny",
+        "title": "Ever told you have kidney disease?",
+        "count": 0
+      },
+      {
+        "key": "Ever told you had any other types of cancer?",
+        "qkey": "chcocncr",
+        "title": "Ever told you had any other types of cancer?",
+        "count": 0
+      },
+      {
+        "key": "Ever told you had skin cancer?",
+        "qkey": "chcscncr",
+        "title": "Ever told you had skin cancer?",
+        "count": 0
+      },
+      {
+        "key": "Ever told you have vision impairment?",
+        "qkey": "chcvisn1",
+        "title": "Ever told you have vision impairment?",
+        "count": 0
+      },
+      {
+        "key": "Ever told you have vision impairment?",
+        "qkey": "chcvison",
+        "title": "Ever told you have vision impairment?",
+        "count": 0
+      },
+      {
+        "key": "About how long has it been since you last visited a doctor for a routine checkup?",
+        "qkey": "checkup1",
+        "title": "About how long has it been since you last visited a doctor for a routine checkup?",
+        "count": 0
+      },
+      {
+        "key": "Ever told you had angina or coronary heart disease?",
+        "qkey": "cvdcrhd4",
+        "title": "Ever told you had angina or coronary heart disease?",
+        "count": 0
+      },
+      {
+        "key": "Ever told you had a heart attack (myocardial infarction)?",
+        "qkey": "cvdinfr4",
+        "title": "Ever told you had a heart attack (myocardial infarction)?",
+        "count": 0
+      },
+      {
+        "key": "Ever told you had a stroke?",
+        "qkey": "cvdstrk3",
+        "title": "Ever told you had a stroke?",
+        "count": 0
+      },
+      {
+        "key": "Do you have serious difficulty concentrating, remembering, or making decisions?",
+        "qkey": "decide",
+        "title": "Do you have serious difficulty concentrating, remembering, or making decisions?",
+        "count": 0
+      },
+      {
+        "key": "Have you ever been told by a doctor that you have diabetes?",
+        "qkey": "diabete3",
+        "title": "Have you ever been told by a doctor that you have diabetes?",
+        "count": 0
+      },
+      {
+        "key": "Do you have difficulty doing errands alone?",
+        "qkey": "diffalon",
+        "title": "Do you have difficulty doing errands alone?",
+        "count": 0
+      },
+      {
+        "key": "Do you have difficulty dressing or bathing?",
+        "qkey": "diffdres",
+        "title": "Do you have difficulty dressing or bathing?",
+        "count": 0
+      },
+      {
+        "key": "Do you have serious difficulty walking or climbing stairs?",
+        "qkey": "diffwalk",
+        "title": "Do you have serious difficulty walking or climbing stairs?",
+        "count": 0
+      },
+      {
+        "key": "Adults who have had at least one drink of alcohol within the past 30 days",
+        "qkey": "drnkany5",
+        "title": "Adults who have had at least one drink of alcohol within the past 30 days",
+        "count": 0
+      },
+      {
+        "key": "What is the highest grade or year of school you completed?",
+        "qkey": "educa",
+        "title": "What is the highest grade or year of school you completed?",
+        "count": 0
+      },
+      {
+        "key": "What is your employment status?",
+        "qkey": "employ",
+        "title": "What is your employment status?",
+        "count": 0
+      },
+      {
+        "key": "What is your employment status?",
+        "qkey": "employ1",
+        "title": "What is your employment status?",
+        "count": 0
+      },
+      {
+        "key": "How is your general health?",
+        "qkey": "genhlth",
+        "title": "How is your general health?",
+        "count": 0
+      },
+      {
+        "key": "Have you ever been tested for HIV?",
+        "qkey": "hivtst6",
+        "title": "Have you ever been tested for HIV?",
+        "count": 0
+      },
+      {
+        "key": "Do you have any kind of health care coverage?",
+        "qkey": "hlthpln1",
+        "title": "Do you have any kind of health care coverage?",
+        "count": 0
+      },
+      {
+        "key": "What is your annual household income?",
+        "qkey": "income",
+        "title": "What is your annual household income?",
+        "count": 0
+      },
+      {
+        "key": "Have you used the internet in the past 30 days?",
+        "qkey": "internet",
+        "title": "Have you used the internet in the past 30 days?",
+        "count": 0
+      },
+      {
+        "key": "What is your marital status?",
+        "qkey": "marital",
+        "title": "What is your marital status?",
+        "count": 0
+      },
+      {
+        "key": "Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?",
+        "qkey": "medcost",
+        "title": "Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?",
+        "count": 0
+      },
+      {
+        "key": "Do you have one person you think of as your personal doctor or health care provider?",
+        "qkey": "persdoc2",
+        "title": "Do you have one person you think of as your personal doctor or health care provider?",
+        "count": 0
+      },
+      {
+        "key": "Adults who are limited in any activities because of physical, mental, or emotional problems",
+        "qkey": "qlactlm2",
+        "title": "Adults who are limited in any activities because of physical, mental, or emotional problems",
+        "count": 0
+      },
+      {
+        "key": "What is your race/ethnicity?",
+        "qkey": "race",
+        "title": "What is your race/ethnicity?",
+        "count": 0
+      },
+      {
+        "key": "Do you own or rent your home?",
+        "qkey": "renthom1",
+        "title": "Do you own or rent your home?",
+        "count": 0
+      },
+      {
+        "key": "Gender of respondent",
+        "qkey": "sex",
+        "title": "Gender of respondent",
+        "count": 0
+      },
+      {
+        "key": "Have you ever had the shingles or zoster vaccine?",
+        "qkey": "shingle2",
+        "title": "Have you ever had the shingles or zoster vaccine?",
+        "count": 0
+      },
+      {
+        "key": "Since 2005, have you had a tetanus shot?",
+        "qkey": "tetanus",
+        "title": "Since 2005, have you had a tetanus shot?",
+        "count": 0
+      },
+      {
+        "key": "Adults with health problem(s) that requires the use of special equipment",
+        "qkey": "useequip",
+        "title": "Adults with health problem(s) that requires the use of special equipment",
+        "count": 0
+      },
+      {
+        "key": "Do you currently use chewing tobacco, snuff, or snus?",
+        "qkey": "usenow3",
+        "title": "Do you currently use chewing tobacco, snuff, or snus?",
+        "count": 0
+      },
+      {
+        "key": "Have you ever served on active duty in the United States Armed Forces?",
+        "qkey": "veteran3",
+        "title": "Have you ever served on active duty in the United States Armed Forces?",
+        "count": 0
+      },
+      {
+        "key": "Adults aged 65+ who have had all their natural teeth extracted (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_alteth2",
+        "title": "Adults aged 65+ who have had all their natural teeth extracted (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Weight classification by Body Mass Index (BMI) (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_bmi5cat",
+        "title": "Weight classification by Body Mass Index (BMI) (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Adults who have been told they currently have asthma (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_casthm1",
+        "title": "Adults who have been told they currently have asthma (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "How many children live in your household? (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_chldcnt",
+        "title": "How many children live in your household? (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Adults who have had their blood cholesterol checked within the last five years (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_cholchk",
+        "title": "Adults who have had their blood cholesterol checked within the last five years (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Respondents aged 50-75 who have fully met the USPSTF recommendation (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_crcrec",
+        "title": "Respondents aged 50-75 who have fully met the USPSTF recommendation (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Visited the dentist or dental clinic within the past year for any reason (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_denvst2",
+        "title": "Visited the dentist or dental clinic within the past year for any reason (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Adults who have been told they have arthritis (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_drdxar1",
+        "title": "Adults who have been told they have arthritis (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Respondents who have reported having driven after drinking too much (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_drnkdrv",
+        "title": "Respondents who have reported having driven after drinking too much (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Adults that have had any permanent teeth extracted (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_exteth2",
+        "title": "Adults that have had any permanent teeth extracted (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_flshot5",
+        "title": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_flshot6",
+        "title": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Consumed fruit less than one time per day (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_frtlt1",
+        "title": "Consumed fruit less than one time per day (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Adults aged 18-64 who have any kind of health care coverage (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_hcvu651",
+        "title": "Adults aged 18-64 who have any kind of health care coverage (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Are you now limited in any way in any of your usual activities because of arthritis? (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_lmtact1",
+        "title": "Are you now limited in any way in any of your usual activities because of arthritis? (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Does arthritis or joint symptoms interfere with your normal social activities? (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_lmtscl1",
+        "title": "Does arthritis or joint symptoms interfere with your normal social activities? (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Do arthritis or joint symptoms now affect whether you work? (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_lmtwrk1",
+        "title": "Do arthritis or joint symptoms now affect whether you work? (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Adults who have ever been told they have asthma (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_ltasth1",
+        "title": "Adults who have ever been told they have asthma (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Women aged 50-74 who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_mam5021",
+        "title": "Women aged 50-74 who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Women aged 50+ who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_mam502y",
+        "title": "Women aged 50+ who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Respondents that have ever reported having coronary heart disease (chd) or myocardial infarction (mi) (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_michd",
+        "title": "Respondents that have ever reported having coronary heart disease (chd) or myocardial infarction (mi) (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_paindex",
+        "title": "Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_paindx1",
+        "title": "Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_pastae1",
+        "title": "Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_pastaer",
+        "title": "Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Participated Muscle Strengthening exercises more than twice  per week (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_pastrng",
+        "title": "Participated Muscle Strengthening exercises more than twice  per week (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Adults aged 65+ who have ever had a pneumonia vaccination (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_pneumo2",
+        "title": "Adults aged 65+ who have ever had a pneumonia vaccination (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_rfbing5",
+        "title": "Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Adults aged 50+ who have had a blood stool test within the past two years (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_rfblds2",
+        "title": "Adults aged 50+ who have had a blood stool test within the past two years (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Adults aged 50-75 who have had a blood stool test within the past year (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_rfblds3",
+        "title": "Adults aged 50-75 who have had a blood stool test within the past year (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Adults who have had their blood cholesterol checked and have been told it was high (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_rfchol",
+        "title": "Adults who have had their blood cholesterol checked and have been told it was high (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_rfdrhv4",
+        "title": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_rfdrhv5",
+        "title": "Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Health Status (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_rfhlth",
+        "title": "Health Status (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_rfhype5",
+        "title": "Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Women aged 40+ who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_rfmam2y",
+        "title": "Women aged 40+ who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Women aged 18+ who have had a pap test within the past three years (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_rfpap32",
+        "title": "Women aged 18+ who have had a pap test within the past three years (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Women aged 21-65 who have had a pap test in the past three years (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_rfpap33",
+        "title": "Women aged 21-65 who have had a pap test in the past three years (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Men aged 40+ who have had a PSA test within the past two years (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_rfpsa21",
+        "title": "Men aged 40+ who have had a PSA test within the past two years (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Always wears a seat belt? (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_rfseat3",
+        "title": "Always wears a seat belt? (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Adults aged 50+ who have ever had a sigmoidoscopy or colonoscopy (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_rfsigm2",
+        "title": "Adults aged 50+ who have ever had a sigmoidoscopy or colonoscopy (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Adults who are current smokers (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_rfsmok3",
+        "title": "Adults who are current smokers (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Four Level Smoking Status (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_smoker3",
+        "title": "Four Level Smoking Status (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "During the past month, did you participate in any physical activities? (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_totinda",
+        "title": "During the past month, did you participate in any physical activities? (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      },
+      {
+        "key": "Consumed vegetables less than one time per day (variable calculated from one or more BRFSS questions)",
+        "qkey": "x_veglt1",
+        "title": "Consumed vegetables less than one time per day (variable calculated from one or more BRFSS questions)",
+        "count": 0
+      }
+    ],
+    "donotshowOnSearch": true,
+    "questions": [
+      {
+        "id": "cat_12",
+        "text": "Alcohol Consumption",
+        "children": [
+          {
+            "text": "Adults who have had at least one drink of alcohol within the past 30 days",
+            "id": "drnkany5"
+          }
+        ]
+      },
+      {
+        "id": "cat_47",
+        "text": "Binge Drinking",
+        "children": [
+          {
+            "text": "Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+            "id": "x_rfbing5"
+          }
+        ]
+      },
+      {
+        "id": "cat_50",
+        "text": "Heavy Drinking",
+        "children": [
+          {
+            "text": "Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions)",
+            "id": "x_rfdrhv5"
+          },
+          {
+            "text": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
+            "id": "x_rfdrhv4"
+          }
+        ]
+      }
+    ],
+    "selectTitle": "label.brfss.select.question",
+    "updateTitle": "label.brfss.update.question",
+    "iconClass": "fa fa-pie-chart purple-text",
+    "helpText": "label.help.text.brfss.question",
+    "$$hashKey": "object:4724"
+  }
+]
