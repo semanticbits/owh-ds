@@ -12,6 +12,7 @@ RUN npm install
 WORKDIR /usr/local/owh/client
 RUN cd /usr/local/owh/client
 RUN npm install
+RUN bower install --allow-root
 WORKDIR /usr/local/owh
 RUN cd /usr/local/owh/server
 EXPOSE 80:3000
