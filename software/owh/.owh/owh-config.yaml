@@ -1,17 +1,17 @@
 # Default config
 default:
-elastic_search:
-url: 'https://search-owh-prod-j72vdl44huddysgj5y25v4z6su.us-east-1.es.amazonaws.com'
-yrbs:
-queryUrl: 'http://34.232.240.197:7777/stats'
-questionsUrl: 'http://34.232.240.197:7777/questions'
-wonder:
-url: ''http://54.242.94.197/wonder/''
-apix_project: 'OASH-OWH-HIG'
-apix_token: '4f9^fLE32-#NL31dg9%'
-logging:
-level: 'debug'
-fb:
-appID :
-appURL:
-disableQueryCache: false
+  elastic_search:
+    url: 'https://search-owh-prod-j72vdl44huddysgj5y25v4z6su.us-east-1.es.amazonaws.com'
+  yrbs:
+    queryUrl: 'http://34.232.240.197:7777/stats'
+    questionsUrl: 'http://34.232.240.197:7777/questions'
+  wonder:
+    url: 'http://54.242.94.197/wonder'
+    apix_project: 'OASH-OWH-HIG'
+    apix_token: '4f9^fLE32-#NL31dg9%'
+  logging:
+    level: 'debug'
+  fb:
+    appID :
+    appURL:
+  disableQueryCache: false
