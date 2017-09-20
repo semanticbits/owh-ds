@@ -227,7 +227,7 @@ ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected, a
         ];
         Q.all(promises).then( function (resp) {
             var data = searchUtils.populateDataWithMappings(resp[0], 'bridge_race', 'pop', allSelectedFilterOptions, query[0]);
-            var mapData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop', allSelectedFilterOptions, query[1]);
+            var mapData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop');
             data.data.nested.maps = mapData.data.nested.maps;
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'bridge_race');
