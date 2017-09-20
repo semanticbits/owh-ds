@@ -3,7 +3,7 @@ var supertest = require("supertest");
 var expect = require("expect.js");
 var config = require('../config/config');
 
-describe("YRBS API", function () {
+describe.only("YRBS API", function () {
     var yrbs;
     this.timeout(60000);
     beforeEach( function () {
@@ -3843,7 +3843,7 @@ describe("YRBS API", function () {
         });
     });
 
-    it("invokeYRBS service with no grouping", function (){
+    xit("invokeYRBS service with no grouping", function (){
         var apiQuery = {basicSearch:false, 'searchFor': 'mental_health', 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000}]}},
             'query': {'question.path':{ 'value': ['qn8']}}};
 
@@ -3876,7 +3876,7 @@ describe("YRBS API", function () {
         });
     });
 
-    it("invokeYRBS service with grouping and filtering", function (){
+    xit("invokeYRBS service with grouping and filtering", function (){
         var apiQuery = {basicSearch:false, 'searchFor': 'mental_health', 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000},{"key":"yrbsRace","queryKey":"race","size":100000},{"key":"yrbsSex","queryKey":"sex","size":100000}]}},
             'query': {'question.path':{ 'value': ['qn8']}, 'race':{value:['White', 'Black or African American']},'sex':{value:['Female']}}};
 

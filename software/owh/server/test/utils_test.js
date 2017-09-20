@@ -701,77 +701,145 @@ describe("Utils", function(){
     });
 
     it('add missing options for aggregation results using populateDataWithMappings method', function(done){
-        //In this response Race 'Black' has no 'Female' data.
-        var resp = {"hits":{"total":69,"max_score":0,"hits":[]},"aggregations":{"group_table_race":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"White","doc_count":37,"group_table_sex":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Male","doc_count":20},{"key":"Female","doc_count":17}]}},{"key":"American Indian or Alaska Native","doc_count":29,"group_table_sex":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Male","doc_count":21},{"key":"Female","doc_count":8}]}},{"key":"Asian or Pacific Islander","doc_count":2,"group_table_sex":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Female","doc_count":1},{"key":"Male","doc_count":1}]}},{"key":"Black","doc_count":1,"group_table_sex":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Male","doc_count":1}]}}]}}};
-        var countKey = "infant_mortality";
+        var resp = {"took":2,"timed_out":false,"_shards":{"total":5,"successful":5,"failed":0},"hits":{"total":3,"max_score":0,"hits":[]},"aggregations":{"group_table_race":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Black","doc_count":3,"group_table_gender":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Male","doc_count":2},{"key":"Female","doc_count":1}]}}]},"group_chart_0_gender":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Male","doc_count":2,"group_chart_0_race":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Black","doc_count":2}]}},{"key":"Female","doc_count":1,"group_chart_0_race":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Black","doc_count":1}]}}]}}};
+        var countKey = "deaths";
         var countQueryKey = undefined;
-        var allSelectedFilterOptions = {"sex":{"options":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"selectedValues":[]},"race":{"options":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Asian or Pacific Islander","title":"Asian or Pacific Islander","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}],"selectedValues":[]}};
-        var result = searchUtils.populateDataWithMappings(resp, countKey, countQueryKey, allSelectedFilterOptions);
-        //Results should have 'Female' option added for 'Balck' race
-        expect(result.data.nested.table.race[3].name).to.equal('Black');
-        expect(result.data.nested.table.race[3].sex).to.not.equal(undefined);
-        expect(result.data.nested.table.race[3].sex[0].name).to.equal('Male');
-        expect(result.data.nested.table.race[3].sex[0].infant_mortality).to.equal(1);
-        expect(result.data.nested.table.race[3].sex[1].name).to.equal('Female');
-        expect(result.data.nested.table.race[3].sex[1].infant_mortality).to.equal(0);
+        var allSelectedFilterOptions = {"race":{"options":["American Indian","Asian or Pacific Islander","Black","White"]},"gender":{"options":["Female","Male"]}};
+        var query = {"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_gender":{"terms":{"field":"sex","size":0}}}},"group_chart_0_gender":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[{"bool":{"should":[{"match":{"ICD_10_code.path":"A16-A19"}}]}}]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"state":"DC"}}]}}]}}}}};
+        var result = searchUtils.populateDataWithMappings(resp, countKey, countQueryKey, allSelectedFilterOptions, query);
+        expect(result.data.nested.table.race[0].name).to.equal('American Indian');
+        expect(result.data.nested.table.race[0].deaths).to.equal(0);
+        expect(result.data.nested.table.race[0].gender[0].name).to.equal('Female');
+        expect(result.data.nested.table.race[0].gender[0].deaths).to.equal(0);
+        expect(result.data.nested.table.race[0].gender[1].name).to.equal('Male');
+        expect(result.data.nested.table.race[0].gender[1].deaths).to.equal(0);
+
+        expect(result.data.nested.table.race[1].name).to.equal('Asian or Pacific Islander');
+        expect(result.data.nested.table.race[1].deaths).to.equal(0);
+        expect(result.data.nested.table.race[1].gender[0].name).to.equal('Female');
+        expect(result.data.nested.table.race[1].gender[0].deaths).to.equal(0);
+        expect(result.data.nested.table.race[1].gender[1].name).to.equal('Male');
+        expect(result.data.nested.table.race[1].gender[1].deaths).to.equal(0);
+
+        expect(result.data.nested.table.race[2].name).to.equal('Black');
+        expect(result.data.nested.table.race[2].deaths).to.equal(3);
+        expect(result.data.nested.table.race[2].gender[0].name).to.equal('Female');
+        expect(result.data.nested.table.race[2].gender[0].deaths).to.equal(1);
+        expect(result.data.nested.table.race[2].gender[1].name).to.equal('Male');
+        expect(result.data.nested.table.race[2].gender[1].deaths).to.equal(2);
+
+        expect(result.data.nested.table.race[3].name).to.equal('White');
+        expect(result.data.nested.table.race[3].deaths).to.equal(0);
+        expect(result.data.nested.table.race[3].gender[0].name).to.equal('Female');
+        expect(result.data.nested.table.race[3].gender[0].deaths).to.equal(0);
+        expect(result.data.nested.table.race[3].gender[1].name).to.equal('Male');
+        expect(result.data.nested.table.race[3].gender[1].deaths).to.equal(0);
+
         done();
     });
 
-    it('add missing options -  if user selected only one filter option and data not available for that option', function(done){
-        //In this response 'Race' -> 'Black' not available because user put 'Race' on 'Column' and 'Sex' on 'Row' and selected 'Female' option
-        //But for Race 'Black' Female data not available, so we should not show 'Race' -> 'Balck' row on data table.
-       var resp = {"hits":{"total":26,"max_score":0,"hits":[]},"aggregations":{"group_table_race":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"White","doc_count":17,"group_table_sex":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Female","doc_count":17}]}},{"key":"American Indian or Alaska Native","doc_count":8,"group_table_sex":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Female","doc_count":8}]}},{"key":"Asian or Pacific Islander","doc_count":1,"group_table_sex":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Female","doc_count":1}]}}]}}};
-       var countKey = "infant_mortality";
-       var countQueryKey = undefined;
-       var allSelectedFilterOptions = {"sex":{"options":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"selectedValues":["Female"]},"race":{"options":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Asian or Pacific Islander","title":"Asian or Pacific Islander","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}],"selectedValues":[]}};
-        var result = searchUtils.populateDataWithMappings(resp, countKey, countQueryKey, allSelectedFilterOptions);
-        //Results should have 'Female' option added for 'Balck' race
-        expect(result.data.nested.table.race[2].name).to.equal('Asian or Pacific Islander');
-        expect(result.data.nested.table.race[2].sex).to.not.equal(undefined);
-        expect(result.data.nested.table.race[2].sex[0].name).to.equal('Female');
-        expect(result.data.nested.table.race[2].sex[0].infant_mortality).to.equal(1);
-        expect(result.data.nested.table.race[2].sex[1]).to.equal(undefined);
-        //Balck race not available
-        expect(result.data.nested.table.race[3]).to.equal(undefined);
+    it('add missing options for aggregation results using populateDataWithMappings method - crude death rates', function(done){
+        var resp = {"took":1,"timed_out":false,"_shards":{"total":5,"successful":5,"failed":0},"hits":{"total":125,"max_score":0,"hits":[]},"aggregations":{"group_table_race":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"White","doc_count":112,"group_table_gender":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Female","doc_count":60},{"key":"Male","doc_count":52}]}},{"key":"Black","doc_count":13,"group_table_gender":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Female","doc_count":9},{"key":"Male","doc_count":4}]}}]},"group_chart_0_gender":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Female","doc_count":69,"group_chart_0_race":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"White","doc_count":60},{"key":"Black","doc_count":9}]}},{"key":"Male","doc_count":56,"group_chart_0_race":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"White","doc_count":52},{"key":"Black","doc_count":4}]}}]}}};
+        var countKey = "deaths";
+        var countQueryKey = undefined;
+        var allSelectedFilterOptions = {"race":{"options":["American Indian","Asian or Pacific Islander","Black","White"]},"gender":{"options":["Female","Male"]}};
+        var query = {"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_gender":{"terms":{"field":"sex","size":0}}}},"group_chart_0_gender":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"ethnicity_group":"Hispanic"}}]}},{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"state":"DC"}}]}}]}}}}};
+        var result = searchUtils.populateDataWithMappings(resp, countKey, countQueryKey, allSelectedFilterOptions, query);
+        expect(result.data.nested.table.race[0].name).to.equal('American Indian');
+        expect(result.data.nested.table.race[0].deaths).to.equal(0);
+        expect(result.data.nested.table.race[0].gender[0].name).to.equal('Female');
+        expect(result.data.nested.table.race[0].gender[0].deaths).to.equal(0);
+        expect(result.data.nested.table.race[0].gender[1].name).to.equal('Male');
+        expect(result.data.nested.table.race[0].gender[1].deaths).to.equal(0);
+
+        expect(result.data.nested.table.race[1].name).to.equal('Asian or Pacific Islander');
+        expect(result.data.nested.table.race[1].deaths).to.equal(0);
+        expect(result.data.nested.table.race[1].gender[0].name).to.equal('Female');
+        expect(result.data.nested.table.race[1].gender[0].deaths).to.equal(0);
+        expect(result.data.nested.table.race[1].gender[1].name).to.equal('Male');
+        expect(result.data.nested.table.race[1].gender[1].deaths).to.equal(0);
+
+        expect(result.data.nested.table.race[2].name).to.equal('Black');
+        expect(result.data.nested.table.race[2].deaths).to.equal(13);
+        expect(result.data.nested.table.race[2].gender[0].name).to.equal('Female');
+        expect(result.data.nested.table.race[2].gender[0].deaths).to.equal(9);
+        expect(result.data.nested.table.race[2].gender[1].name).to.equal('Male');
+        expect(result.data.nested.table.race[2].gender[1].deaths).to.equal(4);
+
+        expect(result.data.nested.table.race[3].name).to.equal('White');
+        expect(result.data.nested.table.race[3].deaths).to.equal(112);
+        expect(result.data.nested.table.race[3].gender[0].name).to.equal('Female');
+        expect(result.data.nested.table.race[3].gender[0].deaths).to.equal(60);
+        expect(result.data.nested.table.race[3].gender[1].name).to.equal('Male');
+        expect(result.data.nested.table.race[3].gender[1].deaths).to.equal(52);
         done();
     });
 
-    it("get all selected filter options - when user selected 'All' filter option", function(done){
-        var query = {"value": [{"key":"sex","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"defaultGroup":"column","groupBy":"column","filterType":"checkbox","autoCompleteOptions":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"helpText":"label.help.text.infantmort.sex","allChecked":true},{"key":"race","title":"label.filter.race","queryKey":"race","primary":false,"value":[],"defaultGroup":"column","groupBy":"row","filterType":"checkbox","autoCompleteOptions":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Asian or Pacific Islander","title":"Asian or Pacific Islander","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}],"helpText":"label.help.text.race","allChecked":true}]};
-        var apiQuery = {"year_of_death":{"key":"year_of_death","queryKey":"year_of_death","value":["2000"],"primary":false},"state":{"key":"state","queryKey":"state","value":["AK"],"primary":false}};
-       var allOptions = searchUtils.getAllSelectedFilterOptions(query, apiQuery);
-        expect(allOptions.sex).to.not.equal(undefined);
-        expect(allOptions.sex.selectedValues.length).to.equal(0);
-        expect(allOptions.sex.options.length).to.equal(2);
-        expect(allOptions.sex.options[0].key).to.equal('Female');
-        expect(allOptions.sex.options[1].key).to.equal('Male');
+    it('add missing options for aggregation results using populateDataWithMappings method - Age adjusted rates', function(done){
+        var resp = {"took":8,"timed_out":false,"_shards":{"total":5,"successful":5,"failed":0},"hits":{"total":460,"max_score":0,"hits":[]},"aggregations":{"group_table_race":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"White","doc_count":398,"group_table_gender":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Male","doc_count":230},{"key":"Female","doc_count":168}]}},{"key":"Black","doc_count":53,"group_table_gender":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Female","doc_count":27},{"key":"Male","doc_count":26}]}},{"key":"Asian or Pacific Islander","doc_count":7,"group_table_gender":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Female","doc_count":4},{"key":"Male","doc_count":3}]}},{"key":"American Indian","doc_count":2,"group_table_gender":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Male","doc_count":2}]}}]},"group_chart_0_gender":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"Male","doc_count":261,"group_chart_0_race":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"White","doc_count":230},{"key":"Black","doc_count":26},{"key":"Asian or Pacific Islander","doc_count":3},{"key":"American Indian","doc_count":2}]}},{"key":"Female","doc_count":199,"group_chart_0_race":{"doc_count_error_upper_bound":0,"sum_other_doc_count":0,"buckets":[{"key":"White","doc_count":168},{"key":"Black","doc_count":27},{"key":"Asian or Pacific Islander","doc_count":4}]}}]}}};
+        var countKey = "deaths";
+        var countQueryKey = undefined;
+        var allSelectedFilterOptions = {"race":{"options":["American Indian","Asian or Pacific Islander","Black","White"]},"gender":{"options":["Female","Male"]}};
+        var query = {"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_gender":{"terms":{"field":"sex","size":0}}}},"group_chart_0_gender":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"ethnicity_group":"Hispanic"}}]}},{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"state":"AL"}},{"term":{"state":"DC"}}]}}]}}}}};
+        var result = searchUtils.populateDataWithMappings(resp, countKey, countQueryKey, allSelectedFilterOptions, query);
+        expect(result.data.nested.table.race[0].name).to.equal('American Indian');
+        expect(result.data.nested.table.race[0].deaths).to.equal(2);
+        expect(result.data.nested.table.race[0].gender[0].name).to.equal('Female');
+        expect(result.data.nested.table.race[0].gender[0].deaths).to.equal(0);
+        expect(result.data.nested.table.race[0].gender[1].name).to.equal('Male');
+        expect(result.data.nested.table.race[0].gender[1].deaths).to.equal(2);
+
+        expect(result.data.nested.table.race[1].name).to.equal('Asian or Pacific Islander');
+        expect(result.data.nested.table.race[1].deaths).to.equal(7);
+        expect(result.data.nested.table.race[1].gender[0].name).to.equal('Female');
+        expect(result.data.nested.table.race[1].gender[0].deaths).to.equal(4);
+        expect(result.data.nested.table.race[1].gender[1].name).to.equal('Male');
+        expect(result.data.nested.table.race[1].gender[1].deaths).to.equal(3);
+
+        expect(result.data.nested.table.race[2].name).to.equal('Black');
+        expect(result.data.nested.table.race[2].deaths).to.equal(53);
+        expect(result.data.nested.table.race[2].gender[0].name).to.equal('Female');
+        expect(result.data.nested.table.race[2].gender[0].deaths).to.equal(27);
+        expect(result.data.nested.table.race[2].gender[1].name).to.equal('Male');
+        expect(result.data.nested.table.race[2].gender[1].deaths).to.equal(26);
+
+        expect(result.data.nested.table.race[3].name).to.equal('White');
+        expect(result.data.nested.table.race[3].deaths).to.equal(398);
+        expect(result.data.nested.table.race[3].gender[0].name).to.equal('Female');
+        expect(result.data.nested.table.race[3].gender[0].deaths).to.equal(168);
+        expect(result.data.nested.table.race[3].gender[1].name).to.equal('Male');
+        expect(result.data.nested.table.race[3].gender[1].deaths).to.equal(230);
+        done();
+    });
+
+    it("get all selected filter options - In this case user group by filters 'gender' and 'race' and selected year '2015' and state 'District of columbia'", function(done){
+        var query = {"key":"deaths","tableView":"number_of_deaths","allFilters":[{"key":"agegroup","title":"label.filter.agegroup","queryKey":"age_5_interval","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.demographics","filterType":"slider","autoCompleteOptions":[],"showChart":true,"sliderOptions":{},"sliderValue":"-10;105","defaultGroup":"row","helpText":"label.help.text.mortality.age"},{"key":"hispanicOrigin","title":"label.filter.hispanicOrigin","queryKey":"hispanic_origin","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.demographics","filterType":"checkbox","autoCompleteOptions":[],"defaultGroup":"row","helpText":"label.help.text.mortality.ethnicity","allChecked":true,"filterLength":13},{"key":"race","title":"label.filter.race","queryKey":"race","primary":false,"value":[],"groupBy":"row","type":"label.filter.group.demographics","showChart":true,"defaultGroup":"column","filterType":"checkbox","autoCompleteOptions":[{"key":"American Indian","title":"American Indian or Alaska Native","disabled":false},{"key":"Asian or Pacific Islander","title":"Asian or Pacific Islander","disabled":false},{"key":"Black","title":"Black or African American","disabled":false},{"key":"White","title":"White","disabled":false}],"helpText":"label.help.text.mortality.race","allChecked":true,"filterLength":4},{"key":"gender","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"groupBy":"column","type":"label.filter.group.demographics","groupByDefault":"column","showChart":true,"filterType":"checkbox","autoCompleteOptions":[{"key":"Female","title":"Female","disabled":false},{"key":"Male","title":"Male","disabled":false}],"defaultGroup":"column","helpText":"label.help.text.mortality.sex","allChecked":true},{"key":"year","title":"label.filter.year","queryKey":"current_year","primary":false,"value":["2015"],"groupBy":false,"type":"label.filter.group.year.month","filterType":"checkbox","autoCompleteOptions":[{"key":"2015","title":"2015"},{"key":"2014","title":"2014"},{"key":"2013","title":"2013"},{"key":"2012","title":"2012"},{"key":"2011","title":"2011"},{"key":"2010","title":"2010"},{"key":"2009","title":"2009"},{"key":"2008","title":"2008"},{"key":"2007","title":"2007"},{"key":"2006","title":"2006"},{"key":"2005","title":"2005"},{"key":"2004","title":"2004"},{"key":"2003","title":"2003"},{"key":"2002","title":"2002"},{"key":"2001","title":"2001"},{"key":"2000","title":"2000"}],"defaultGroup":"row","helpText":"label.help.text.mortality.year","allChecked":false,"filterLength":16},{"key":"month","title":"label.filter.month","queryKey":"month_of_death","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.year.month","defaultGroup":"row","filterType":"checkbox","autoCompleteOptions":[],"helpText":"label.help.text.mortality.month","allChecked":true},{"key":"weekday","title":"label.filter.weekday","queryKey":"week_of_death","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.weekday.autopsy.pod","filterType":"checkbox","autoCompleteOptions":[],"defaultGroup":"row","helpText":"label.help.text.mortality.day","allChecked":true},{"key":"autopsy","title":"label.filter.autopsy","queryKey":"autopsy","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.weekday.autopsy.pod","filterType":"checkbox","autoCompleteOptions":[],"defaultGroup":"row","helpText":"label.help.text.mortality.autopsy","allChecked":true},{"key":"placeofdeath","title":"label.filter.pod","queryKey":"place_of_death","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.weekday.autopsy.pod","filterType":"checkbox","autoCompleteOptions":[],"defaultGroup":"row","helpText":"label.help.text.mortality.pod","allChecked":true},{"key":"state","title":"label.filter.state","queryKey":"state","primary":false,"value":["DC"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[],"defaultGroup":"column","displaySearchBox":true,"displaySelectedFirst":true,"helpText":"label.help.text.mortality.state","allChecked":false},{"key":"census-region","title":"label.filter.censusRegion","queryKey":"census_region|census_division","primary":false,"value":[],"queryType":"compound","titles":["label.filter.censusRegion","label.filter.censusDivision"],"queryKeys":["census_region","census_division"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[],"defaultGroup":"column","displaySearchBox":true,"displaySelectedFirst":false,"helpText":"label.help.text.mortality.state","allChecked":true},{"key":"hhs-region","title":"label.filter.HHSRegion","queryKey":"hhs_region","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[],"defaultGroup":"column","displaySearchBox":true,"displaySelectedFirst":true,"helpText":"label.help.text.mortality.state","allChecked":true},{"key":"ucd-chapter-10","title":"label.filter.ucd","queryKey":"ICD_10_code","primary":true,"value":[],"groupBy":false,"type":"label.filter.group.ucd","groupKey":"ucd","autoCompleteOptions":[],"filterType":"conditions","selectTitle":"select.label.filter.ucd","updateTitle":"update.label.filter.ucd","aggregationKey":"ICD_10_code.path","groupOptions":[{"key":"row","title":"Row","tooltip":"Select to view as rows on data table"},{"key":false,"title":"Off","tooltip":"Select to hide on data table"}],"helpText":"label.help.text.mortality.ucd"},{"key":"mcd-chapter-10","title":"label.filter.mcd","queryKey":"ICD_10_code","primary":false,"value":{"set1":[],"set2":[]},"groupBy":false,"type":"label.filter.group.mcd","groupKey":"mcd","autoCompleteOptions":[],"filterType":"conditions","selectTitle":"select.label.filter.mcd","updateTitle":"update.label.filter.mcd","aggregationKey":"record_axis_condn.path","groupOptions":[{"key":"row","title":"Row","tooltip":"Select to view as rows on data table"},{"key":false,"title":"Off","tooltip":"Select to hide on data table"}],"helpText":"label.help.text.mortality.mcd"}],"sideFilters":[]};
+       var allOptions = searchUtils.getAllSelectedFilterOptions(query);
+        expect(allOptions.gender).to.not.equal(undefined);
+        expect(allOptions.gender.options.length).to.equal(2);
+        expect(allOptions.gender.options[0]).to.equal('Female');
+        expect(allOptions.gender.options[1]).to.equal('Male');
         expect(allOptions.race).to.not.equal(undefined);
-        expect(allOptions.race.selectedValues.length).to.equal(0);
         expect(allOptions.race.options.length).to.equal(4);
-        expect(allOptions.race.options[0].key).to.equal('American Indian or Alaska Native');
-        expect(allOptions.race.options[1].key).to.equal('Asian or Pacific Islander');
-        expect(allOptions.race.options[2].key).to.equal('Black');
-        expect(allOptions.race.options[3].key).to.equal('White');
+        expect(allOptions.race.options[0]).to.equal('American Indian');
+        expect(allOptions.race.options[1]).to.equal('Asian or Pacific Islander');
+        expect(allOptions.race.options[2]).to.equal('Black');
+        expect(allOptions.race.options[3]).to.equal('White');
         done();
     });
 
-    it("get all selected filter options - when user selected other than 'All' option", function(done){
-        var query = {"value": [{"key":"sex","title":"label.filter.gender","queryKey":"sex","primary":false,"value":[],"defaultGroup":"column","groupBy":"column","filterType":"checkbox","autoCompleteOptions":[{"key":"Female","title":"Female","count":0},{"key":"Male","title":"Male","count":0}],"helpText":"label.help.text.infantmort.sex","allChecked":true},{"key":"race","title":"label.filter.race","queryKey":"race","primary":false,"value":[],"defaultGroup":"column","groupBy":"row","filterType":"checkbox","autoCompleteOptions":[{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native","count":0},{"key":"Asian or Pacific Islander","title":"Asian or Pacific Islander","count":0},{"key":"Black","title":"Black or African American","count":0},{"key":"White","title":"White","count":0}],"helpText":"label.help.text.race","allChecked":true}]};
-        var apiQuery = {"sex":{"key":"sex","queryKey":"sex","value":["Female"],"primary":false},"year_of_death":{"key":"year_of_death","queryKey":"year_of_death","value":["2000"],"primary":false},"state":{"key":"state","queryKey":"state","value":["AK"],"primary":false}};
-        var allOptions = searchUtils.getAllSelectedFilterOptions(query, apiQuery);
-        expect(allOptions.sex).to.not.equal(undefined);
-        expect(allOptions.sex.selectedValues.length).to.equal(1);
-        expect(allOptions.sex.selectedValues[0]).to.equal('Female');
-        expect(allOptions.sex.options.length).to.equal(2);
-        expect(allOptions.sex.options[0].key).to.equal('Female');
-        expect(allOptions.sex.options[1].key).to.equal('Male');
+    it("get all selected filter options - In this case user group by filters 'gender' and 'race' and selected gender 'Female', year '2015' and state 'District of columbia'", function(done){
+        var query = {"key":"deaths","tableView":"number_of_deaths","allFilters":[{"key":"agegroup","title":"label.filter.agegroup","queryKey":"age_5_interval","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.demographics","filterType":"slider","autoCompleteOptions":[],"showChart":true,"sliderOptions":{},"sliderValue":"-10;105","defaultGroup":"row","helpText":"label.help.text.mortality.age"},{"key":"hispanicOrigin","title":"label.filter.hispanicOrigin","queryKey":"hispanic_origin","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.demographics","filterType":"checkbox","autoCompleteOptions":[],"defaultGroup":"row","helpText":"label.help.text.mortality.ethnicity","allChecked":true,"filterLength":13},{"key":"race","title":"label.filter.race","queryKey":"race","primary":false,"value":[],"groupBy":"row","type":"label.filter.group.demographics","showChart":true,"defaultGroup":"column","filterType":"checkbox","autoCompleteOptions":[{"key":"American Indian","title":"American Indian or Alaska Native","disabled":false},{"key":"Asian or Pacific Islander","title":"Asian or Pacific Islander","disabled":false},{"key":"Black","title":"Black or African American","disabled":false},{"key":"White","title":"White","disabled":false}],"helpText":"label.help.text.mortality.race","allChecked":true,"filterLength":4},{"key":"gender","title":"label.filter.gender","queryKey":"sex","primary":false,"value":["Female"],"groupBy":"column","type":"label.filter.group.demographics","groupByDefault":"column","showChart":true,"filterType":"checkbox","autoCompleteOptions":[{"key":"Female","title":"Female","disabled":false},{"key":"Male","title":"Male","disabled":false}],"defaultGroup":"column","helpText":"label.help.text.mortality.sex","allChecked":true},{"key":"year","title":"label.filter.year","queryKey":"current_year","primary":false,"value":["2015"],"groupBy":false,"type":"label.filter.group.year.month","filterType":"checkbox","autoCompleteOptions":[{"key":"2015","title":"2015"},{"key":"2014","title":"2014"},{"key":"2013","title":"2013"},{"key":"2012","title":"2012"},{"key":"2011","title":"2011"},{"key":"2010","title":"2010"},{"key":"2009","title":"2009"},{"key":"2008","title":"2008"},{"key":"2007","title":"2007"},{"key":"2006","title":"2006"},{"key":"2005","title":"2005"},{"key":"2004","title":"2004"},{"key":"2003","title":"2003"},{"key":"2002","title":"2002"},{"key":"2001","title":"2001"},{"key":"2000","title":"2000"}],"defaultGroup":"row","helpText":"label.help.text.mortality.year","allChecked":false,"filterLength":16},{"key":"month","title":"label.filter.month","queryKey":"month_of_death","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.year.month","defaultGroup":"row","filterType":"checkbox","autoCompleteOptions":[],"helpText":"label.help.text.mortality.month","allChecked":true},{"key":"weekday","title":"label.filter.weekday","queryKey":"week_of_death","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.weekday.autopsy.pod","filterType":"checkbox","autoCompleteOptions":[],"defaultGroup":"row","helpText":"label.help.text.mortality.day","allChecked":true},{"key":"autopsy","title":"label.filter.autopsy","queryKey":"autopsy","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.weekday.autopsy.pod","filterType":"checkbox","autoCompleteOptions":[],"defaultGroup":"row","helpText":"label.help.text.mortality.autopsy","allChecked":true},{"key":"placeofdeath","title":"label.filter.pod","queryKey":"place_of_death","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.weekday.autopsy.pod","filterType":"checkbox","autoCompleteOptions":[],"defaultGroup":"row","helpText":"label.help.text.mortality.pod","allChecked":true},{"key":"state","title":"label.filter.state","queryKey":"state","primary":false,"value":["DC"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[],"defaultGroup":"column","displaySearchBox":true,"displaySelectedFirst":true,"helpText":"label.help.text.mortality.state","allChecked":false},{"key":"census-region","title":"label.filter.censusRegion","queryKey":"census_region|census_division","primary":false,"value":[],"queryType":"compound","titles":["label.filter.censusRegion","label.filter.censusDivision"],"queryKeys":["census_region","census_division"],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[],"defaultGroup":"column","displaySearchBox":true,"displaySelectedFirst":false,"helpText":"label.help.text.mortality.state","allChecked":true},{"key":"hhs-region","title":"label.filter.HHSRegion","queryKey":"hhs_region","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.location","filterType":"checkbox","autoCompleteOptions":[],"defaultGroup":"column","displaySearchBox":true,"displaySelectedFirst":true,"helpText":"label.help.text.mortality.state","allChecked":true},{"key":"ucd-chapter-10","title":"label.filter.ucd","queryKey":"ICD_10_code","primary":true,"value":[],"groupBy":false,"type":"label.filter.group.ucd","groupKey":"ucd","autoCompleteOptions":[],"filterType":"conditions","selectTitle":"select.label.filter.ucd","updateTitle":"update.label.filter.ucd","aggregationKey":"ICD_10_code.path","groupOptions":[{"key":"row","title":"Row","tooltip":"Select to view as rows on data table"},{"key":false,"title":"Off","tooltip":"Select to hide on data table"}],"helpText":"label.help.text.mortality.ucd"},{"key":"mcd-chapter-10","title":"label.filter.mcd","queryKey":"ICD_10_code","primary":false,"value":{"set1":[],"set2":[]},"groupBy":false,"type":"label.filter.group.mcd","groupKey":"mcd","autoCompleteOptions":[],"filterType":"conditions","selectTitle":"select.label.filter.mcd","updateTitle":"update.label.filter.mcd","aggregationKey":"record_axis_condn.path","groupOptions":[{"key":"row","title":"Row","tooltip":"Select to view as rows on data table"},{"key":false,"title":"Off","tooltip":"Select to hide on data table"}],"helpText":"label.help.text.mortality.mcd"}],"sideFilters":[]};
+        var allOptions = searchUtils.getAllSelectedFilterOptions(query);
+        expect(allOptions.gender).to.not.equal(undefined);
+        expect(allOptions.gender.options.length).to.equal(1);
+        expect(allOptions.gender.options[0]).to.equal('Female');
         expect(allOptions.race).to.not.equal(undefined);
-        expect(allOptions.race.selectedValues.length).to.equal(0);
         expect(allOptions.race.options.length).to.equal(4);
-        expect(allOptions.race.options[0].key).to.equal('American Indian or Alaska Native');
-        expect(allOptions.race.options[1].key).to.equal('Asian or Pacific Islander');
-        expect(allOptions.race.options[2].key).to.equal('Black');
-        expect(allOptions.race.options[3].key).to.equal('White');
+        expect(allOptions.race.options[0]).to.equal('American Indian');
+        expect(allOptions.race.options[1]).to.equal('Asian or Pacific Islander');
+        expect(allOptions.race.options[2]).to.equal('Black');
+        expect(allOptions.race.options[3]).to.equal('White');
         done();
     });
 

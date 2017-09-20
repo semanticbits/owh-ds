@@ -3,9 +3,9 @@
         .module('owh.fact-sheet')
         .controller('FactSheetController', FactSheetController);
 
-    FactSheetController.$inject = ['$scope', '$state', 'factSheetService', '$filter', 'SearchService'];
+    FactSheetController.$inject = ['$scope', '$state', 'factSheetService', '$filter', 'SearchService', '$rootScope'];
 
-    function FactSheetController($scope, $state, factSheetService, $filter, SearchService) {
+    function FactSheetController($scope, $state, factSheetService, $filter, SearchService, $rootScope) {
         var fsc = this;
         fsc.fsTypes = {
             //minority_health: 'Minority Health',
@@ -661,6 +661,7 @@
             return fsc.states[key];
         }
         $scope.redirectToMortalityPage = function(){
+            $rootScope.acceptDUR = false;
             $state.go('search');
         }
     }
