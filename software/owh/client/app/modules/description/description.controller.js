@@ -261,6 +261,7 @@
                             answer:"The population estimates are a slight modification of the annual time series of July 1 county population estimates (by age, sex, race, and Hispanic origin) produced by the Population Estimates Program of the U.S. Bureau of the Census (Census Bureau) with support from the National Cancer Institute (NCI) through an interagency agreement.<br/><br/>"
                         },
                         {
+                            isRateInfo:true,
                             question:"What are Crude Rates? How are they calculated?",
                             answer:"Crude Rates are expressed as the number of cases reported each calendar year per 100,000 population." +
                             "<p>Crude Rate = Count / Population * 100,000</p>" +
@@ -332,6 +333,7 @@
                             answer:"The population estimates are a slight modification of the annual time series of July 1 county population estimates (by age, sex, race, and Hispanic origin) produced by the Population Estimates Program of the U.S. Bureau of the Census (Census Bureau) with support from the National Cancer Institute (NCI) through an interagency agreement.<br/><br/>"
                         },
                         {
+                            isRateInfo:true,
                             question:"What are Crude Rates? How are they calculated?",
                             answer:"Crude Rates are expressed as the number of cases reported each calendar year per 100,000 population." +
                             "<p>Crude Rate = Count / Population * 100,000</p>" +
