@@ -5,8 +5,9 @@
   "dataset":"deaths",
   "data":[
     {
+      "namelong":"White     ",
       "name":"White     ",
-      "x":[
+      "xlong":[
         "Unknown",
         "Spaniard",
         "South American",
@@ -19,6 +20,20 @@
         "Cuban",
         "Central and South American",
         "Central American"
+      ],
+      "x":[
+        "Unknown",
+        "Spaniard",
+        "S American",
+        "P Rican",
+        "Other",
+        "Non-Hispanic",
+        "Mexican",
+        "L American",
+        "Dominican",
+        "Cuban",
+        "C/SA",
+        "C American"
       ],
       "y":[
         6888,
@@ -56,8 +71,9 @@
       }
     },
     {
+      "namelong":"Black     ",
       "name":"Black     ",
-      "x":[
+      "xlong":[
         "Unknown",
         "Spaniard",
         "South American",
@@ -70,6 +86,20 @@
         "Cuban",
         "Central and South American",
         "Central American"
+      ],
+      "x":[
+        "Unknown",
+        "Spaniard",
+        "S American",
+        "P Rican",
+        "Other",
+        "Non-Hispanic",
+        "Mexican",
+        "L American",
+        "Dominican",
+        "Cuban",
+        "C/SA",
+        "C American"
       ],
       "y":[
         1867,
@@ -107,8 +137,9 @@
       }
     },
     {
-      "name":"Asian or Pacific Islander     ",
-      "x":[
+      "namelong":"Asian or Pacific Islander     ",
+      "name":"API     ",
+      "xlong":[
         "Unknown",
         "Spaniard",
         "South American",
@@ -121,6 +152,20 @@
         "Cuban",
         "Central and South American",
         "Central American"
+      ],
+      "x":[
+        "Unknown",
+        "Spaniard",
+        "S American",
+        "P Rican",
+        "Other",
+        "Non-Hispanic",
+        "Mexican",
+        "L American",
+        "Dominican",
+        "Cuban",
+        "C/SA",
+        "C American"
       ],
       "y":[
         280,
@@ -158,8 +203,9 @@
       }
     },
     {
+      "namelong":"American Indian     ",
       "name":"American Indian     ",
-      "x":[
+      "xlong":[
         "Unknown",
         "Spaniard",
         "South American",
@@ -172,6 +218,20 @@
         "Cuban",
         "Central and South American",
         "Central American"
+      ],
+      "x":[
+        "Unknown",
+        "Spaniard",
+        "S American",
+        "P Rican",
+        "Other",
+        "Non-Hispanic",
+        "Mexican",
+        "L American",
+        "Dominican",
+        "Cuban",
+        "C/SA",
+        "C American"
       ],
       "y":[
         64,
@@ -212,23 +272,22 @@
   "layout":{
     "width":128,
     "autosize":true,
-    "showlegend":false,
-    "margin":{
-      "l":20,
-      "r":10,
-      "b":20,
-      "t":20
+    "showlegend":true,
+    "legend":{
+      "orientation":"h",
+      "y":1.25,
+      "x":0.4
     },
     "xaxis":{
       "visible":true,
       "titlefont":{
         "size":15
       },
-      "exponentformat":"none",
+      "exponentformat":"auto",
       "tickangle":45,
       "showline":true,
       "gridcolor":"#bdbdbd",
-      "showticklabels":false,
+      "showticklabels":true,
       "fixedrange":true,
       "title":"label.filter.hispanicOrigin"
     },
@@ -237,14 +296,20 @@
       "titlefont":{
         "size":15
       },
-      "exponentformat":"none",
+      "exponentformat":"auto",
       "tickangle":45,
       "ticksuffix":"   ",
       "showline":true,
       "gridcolor":"#bdbdbd",
-      "showticklabels":false,
+      "showticklabels":true,
       "fixedrange":true,
       "title":"Deaths"
+    },
+    "margin":{
+      "l":75,
+      "r":10,
+      "b":100,
+      "t":50
     },
     "barmode":"bar"
   },

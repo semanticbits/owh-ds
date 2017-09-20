@@ -24,15 +24,224 @@
         };
         return service;
 
+
+        function getAbbreviation(label){
+            var chartAbbreviations = {'American Indian or Alaska Native':'AI/AN',
+            'Asian or Pacific Islander':'API',
+            'Black or African American':'Black',
+            'Native Hawaiian or Other Pacific Islander':'NHOPI',
+            'Multiple Race':'MultiRace',
+            'Non Hispanic':'Non Hisp.',
+            'Hispanic or Latino':'Hispanic',
+            'Central and South American':'C/SA',
+            'Central American':'C American',
+            'Cuban':'Cuban',
+            'Dominican':'Dominican',
+            'Latin American':'L American',
+            'Mexican':'Mexican',
+            'Puerto Rican':'P Rican',
+            'South American':'S American',
+            'Spaniard':'Spaniard',
+            'Other Hispanic':'Other',
+            'Decedent’s home':'Home',
+            'Hospital, Clinic or Medical Center-  Dead on Arrival':'Hosp-Dead',
+            'Hospital, Clinic or Medical Center-  Inpatient':'Hosp-Inpatient',
+            'Hospital, Clinic or Medical Center-  Outpatient or admitted to Emergency Room':'Hosp-Outpatient',
+            'Hospital, Clinic or Medical Center-  Patient status unknown':'Hosp-Unknown',
+            'Nursing home/long term care':'N Home',
+            'Hospice facility':'Hospice',
+            'Place of death unknown':'Unknown',
+            'Under 20 weeks':'Under 20w',
+            '20 - 27 weeks':'20-27w',
+            '28 - 31 weeks':'28-31w',
+            '32 - 35 weeks':'32-35w',
+            '36 weeks':'36w',
+            '37 - 39 weeks':'37-39w',
+            '40 weeks':'40w',
+            '41 weeks':'41w',
+            '42 weeks and over':'42w+',
+            '100 - 199 grams':'100-199gm',
+            '200 - 299 grams':'200-299gm',
+            '300 - 399 grams':'300-399gm',
+            '400 - 499 grams':'400-499gm',
+            '500 - 599 grams':'500-599gm',
+            'Quadruplet':'Quadr',
+            'Quintuplet or higher':'Quin or High',
+            '1st child born alive to mother':'1st',
+            '2nd child born alive to mother':'2nd',
+            '3rd child born alive to mother':'3rd',
+            '4th child born alive to mother':'4th',
+            '5th child born alive to mother':'5th',
+            '6th child born alive to mother':'6th',
+            '7th child born alive to mother':'7th',
+            '8 or more live births':'8th or more',
+            'In Hospital':'In Hosp',
+            'Freestanding Birthing Center':'FBC',
+            'Clinic / Doctor’s Office':'Clinic/DO',
+            'Doctor of Medicine (MD)':'MD',
+            'Doctor of Osteopathy (DO)':'DO',
+            'Certified Nurse Midwife (CNM)':'CNM',
+            'Other Midwife':'Midwife',
+            'Unknown or not stated':'Unknown',
+            'Unknown or Not Stated':'Unknown',
+            '0 – 8 years':'0-8y',
+            '9 – 11 years':'9-11y',
+            '12 years':'12y',
+            '13 – 15 years':'13-15y',
+            '16 years and over':'16y+',
+            '8th grade or less':'8th or less',
+            '9th through 12th grade with no diploma':'9-12',
+            'High school graduate or GED completed':'High school/GED',
+            'Some college credit, but not a degree':'Some college',
+            'Associate degree (AA,AS)':'AA,AS',
+            'Bachelor’s degree (BA, AB, BS)':'Bachelor’s',
+            'Master’s degree (MA, MS, MEng, MEd, MSW, MBA)':'Master’s',
+            'Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)':'PHD,EdD',
+            'Sunday':'Sun',
+            'Monday':'Mon',
+            'Tuesday':'Tue',
+            'Wednesday':'Wed',
+            'Thursday':'Thur',
+            'Friday':'Fri',
+            'Saturday':'Sat',
+            'January':'Jan',
+            'February':'Feb',
+            'March':'Mar',
+            'April':'Apr',
+            'May':'May',
+            'June':'Jun',
+            'July':'Jul',
+            'August':'Aug',
+            'September':'Sep',
+            'October':'Oct',
+            'November':'Nov',
+            'December':'Dec',
+            'Census Region 1: Northeast':'CENS-R1',
+            'Division 1: New England':'CENS-D1',
+            'Division 2: Middle Atlantic':'CENS-D2',
+            'Census Region 2: Midwest':'CENS-R2',
+            'Division 3: East North Central':'CENS-D3',
+            'Division 4: West North Central':'CENS-D4',
+            'Census Region 3: South':'CENS-R3',
+            'Division 5: South Atlantic':'CENS-D5',
+            'Division 6: East South Central':'CENS-D6',
+            'Division 7: West South Central':'CENS-D7',
+            'Census Region 4: West':'CENS-R4',
+            'Division 8: Mountain':'CENS-D8',
+            'Division 9: Pacific':'CENS-D9',
+            'HHS Region #1 CT, ME, MA, NH, RI, VT':'HHS1',
+            'HHS Region #2 NJ, NY':'HHS2',
+            'HHS Region #3 DE, DC, MD, PA, VA, WV':'HHS3',
+            'HHS Region #4 AL, FL, GA, KY, MS, NC, SC, TN':'HHS4',
+            'HHS Region #5 IL, IN, MI, MN, OH, WI':'HHS5',
+            'HHS Region #6 AR, LA, NM, OK, TX':'HHS6',
+            'HHS Region #7 IA, KS, MO, NE':'HHS7',
+            'HHS Region #8 CO, MT, ND, SD, UT, WY':'HHS8',
+            'HHS Region #9 AZ, CA, HI, NV':'HHS9',
+            'HHS Region #10 AK, ID, OR, WA':'HHS10',
+            'Alabama':'AL',
+            'Alaska':'AK',
+            'Arizona':'AZ',
+            'Arkansas':'AR',
+            'California':'CA',
+            'Colorado':'CO',
+            'Connecticut':'CT',
+            'Delaware':'DE',
+            'District of Columbia':'DC',
+            'Florida':'FL',
+            'Georgia':'GA',
+            'Hawaii':'HI',
+            'Idaho':'ID',
+            'Illinois':'IL',
+            'Indiana':'IN',
+            'Iowa':'IA',
+            'Kansas':'KS',
+            'Kentucky':'KY',
+            'Louisiana':'LA',
+            'Maine':'ME',
+            'Maryland':'MD',
+            'Massachusetts':'MA',
+            'Michigan':'MI',
+            'Minnesota':'MN',
+            'Mississippi':'MS',
+            'Missouri':'MO',
+            'Montana':'MT',
+            'Nebraska':'NE',
+            'Nevada':'NV',
+            'New Hampshire':'NH',
+            'New Jersey':'NJ',
+            'New Mexico':'NM',
+            'New York':'NY',
+            'North Carolina':'NC',
+            'North Dakota':'ND',
+            'Ohio':'OH',
+            'Oklahoma':'OK',
+            'Oregon':'OR',
+            'Pennsylvania':'PA',
+            'Rhode Island':'RI',
+            'South Carolina':'SC',
+            'South Dakota':'SD',
+            'Tennessee':'TN',
+            'Texas':'TX',
+            'Utah':'UT',
+            'Vermont':'VT',
+            'Virginia':'VA',
+            'Washington':'WA',
+            'West Virginia':'WV',
+            'Wisconsin':'WI',
+            'Wyoming':'WY',
+            '1st month':'1st',
+            '2nd month':'2nd',
+            '3rd month':'3rd',
+            '4th month':'4th',
+            '5th month':'5th',
+            '6th month':'6th',
+            '7th month':'7th',
+            '8th month':'8th',
+            '9th month':'9th',
+            '10th month':'10th',
+            'Age not stated': 'Not stated',
+            '100+ years':'100+',
+            '95 - 99 years':'95-99',
+            '90 - 94 years':'90-94',
+            '85 - 89 years':'85-89',
+            '80 - 84 years':'80-84',
+            '75 - 79 years':'75-79',
+            '70 - 74 years':'70-74',
+            '65 - 69 years':'65-69',
+            '60 - 64 years':'60-64',
+            '55 - 59 years':'55-59',
+            '50 - 54 years':'50-54',
+            '45 - 49 years':'45-49',
+            '40 - 44 years':'40-44',
+            '35 - 39 years':'35-39',
+            '30 - 34 years':'30-34',
+            '25 - 29 years':'25-29',
+            '20 - 24 years':'20-24',
+            '15 - 19 years':'15-19',
+            '10 - 14 years':'10-14',
+            '5 - 9 years':'5-9',
+            '1 - 4 years':'1-4',
+            '< 1 year':'<1',
+
+            };
+                var abbrv = chartAbbreviations[label];
+                return abbrv?abbrv:label;
+        }
+
         // plotly layout for quick view
         function quickChartLayout(){
                 return {
                     width: $window.innerWidth * 0.32,
                     autosize: true,
-                    showlegend: false,
-                    margin: {l:20, r:10, b:20, t:20},
-                    xaxis: {visible: true, titlefont:{size: 15}, exponentformat: 'none', tickangle: 45, showline: true, gridcolor: '#bdbdbd', showticklabels: false, fixedrange: true},
-                    yaxis: {visible: true, titlefont:{size: 15}, exponentformat: 'none', tickangle: 45, ticksuffix: '   ',showline: true,gridcolor: '#bdbdbd', showticklabels: false, fixedrange: true}
+                    showlegend: true,
+                    legend : {orientation: "h",
+                        y: 1.25,
+                        x: .4,
+                    },
+                    xaxis: {visible: true, titlefont:{size: 15}, exponentformat: 'auto', tickangle: 45, showline: true, gridcolor: '#bdbdbd', showticklabels: true, fixedrange: true},
+                    yaxis: {visible: true, titlefont:{size: 15}, exponentformat: 'auto', tickangle: 45, ticksuffix: '   ',showline: true,gridcolor: '#bdbdbd', showticklabels: true, fixedrange: true},
+                    margin : {l:100, r:10, b:100, t:50}
                 }       
         }
 
@@ -188,16 +397,18 @@
             var layout = quickChartLayout();
             layout.xaxis.title = getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel)
             layout.yaxis.title = $translate.instant(filter2.title);
+            layout.margin.b = 50;
             var longtitle = getLongChartTitle(primaryFilter, filter1, filter2);
             layout.barmode = (stacked && longtitle.indexOf('Rates') < 0)?'stack':'bar';
             var plotydata = [];
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
                 // The additional white space on the name is added as a hack for fixing the legend string getting cut off issue
-                var reg = {name: trace.key + '     ', x: [], y: [], text: [], orientation: 'h',  hoverinfo: 'none', type: 'bar',  marker :{color: colors[i%colors.length]}};
+                var reg = {namelong: trace.key + '     ', name: getAbbreviation(trace.key) + '     ', x: [], y: [], ylong:[], text: [], orientation: 'h',  hoverinfo: 'none', type: 'bar',  marker :{color: colors[i%colors.length]}};
                 for (var j = trace.values.length - 1 ; j >=0 ; j-- ){
                     var value  = trace.values[j];
-                    reg.y.push(value.label);
+                    reg.y.push(getAbbreviation(value.label));
+                    reg.ylong.push(value.label);
                     reg.x.push(value.value < 0?0:value.value);
                     reg.text.push(getSuppressedCount(value.value, primaryFilter));
                 }
@@ -209,6 +420,7 @@
         function plotlyVerticalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip){
             var chartdata = verticalChart(filter1, filter2, data, primaryFilter, stacked, postFixToTooltip);
             var layout = quickChartLayout();
+            layout.margin.l = 75;
             layout.xaxis.title = $translate.instant(filter2.title);
             layout.yaxis.title = getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel);
             var colors = getColorPallete();    
@@ -218,10 +430,11 @@
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
                 // The additional white space on the name is added as a hack for fixing the legend string getting cut off issue
-                var reg = {name: trace.key+ '     ', x: [], y: [], text: [], orientation: 'v', type: 'bar', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
+                var reg = {namelong: trace.key+ '     ', name: getAbbreviation(trace.key)+ '     ', xlong:[], x: [], y: [], text: [], orientation: 'v', type: 'bar', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
                 for (var j = trace.values.length - 1 ; j >=0 ; j-- ){
                     var value  = trace.values[j];
-                    reg.x.push(value.x);
+                    reg.x.push(getAbbreviation(value.x));
+                    reg.xlong.push(value.x);
                     reg.y.push(value.y < 0 ? 0:value.y);
                     reg.text.push(getSuppressedCount(value.y, primaryFilter));
 
@@ -239,10 +452,11 @@
             layout.xaxis.type = "category";
             var colors = getColorPallete();    
             var linedata = chartdata.data();
-            var plotydata = {name: linedata[0].key, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
+            var plotydata = {namelong: linedata[0].key, name: getAbbreviation(linedata[0].key), xlong: [], x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
             for (var i = linedata[0].values.length -1 ; i >= 0 ; i-- ){
                 var value  = linedata[0].values[i];
-                plotydata.x.push(value.x);
+                plotydata.x.push(getAbbreviation(value.x));
+                plotydata.xlong.push(value.x);
                 plotydata.y.push(value.y < 0 ? 0:value.y);
                 plotydata.text.push(getSuppressedCount(value.y, primaryFilter));
             }
@@ -251,6 +465,8 @@
 
         function plotlyMultiLineChart(filter1, filter2, data, primaryFilter){
             var layout = quickChartLayout();
+            layout.margin.b = 50;
+            layout.margin.l = 50;
             layout.xaxis.title = $translate.instant(filter2.title);
             layout.xaxis.type = "category";
             layout.yaxis.title = getAxisLabel(primaryFilter.tableView, primaryFilter.chartAxisLabel);
@@ -260,7 +476,7 @@
             angular.forEach(utilService.getSelectedAutoCompleteOptions(filter1), function (primaryOption,index) {
                     var eachPrimaryData = utilService.findByKeyAndValue(data[filter1.key], 'name', primaryOption.key);
 
-                    var plotlyseries= {name: primaryOption.title, x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[index%colors.length]}};
+                    var plotlyseries= {namelong: primaryOption.title, name: getAbbreviation(primaryOption.title), xlong: [], x: [], y: [], text:[], type: 'scatter', hoverinfo: 'none', marker :{color: colors[index%colors.length]}};
                     if(eachPrimaryData && eachPrimaryData[filter2.key]) {
                         angular.forEach(utilService.getSelectedAutoCompleteOptions(filter2) , function (secondaryOption,j) {
                             if (!secondaryOption.disabled) {
@@ -270,7 +486,8 @@
                                     value = getValueFromData(primaryFilter, eachSecondaryData);
                                 }
                                 if (value !== undefined) {
-                                    plotlyseries.x.push(secondaryOption.key);
+                                    plotlyseries.x.push(getAbbreviation(secondaryOption.key));
+                                    plotlyseries.xlong.push(secondaryOption.key);
                                     plotlyseries.y.push(value < 0 ? 0:value);
                                     plotlyseries.text.push(getSuppressedCount(value, primaryFilter));
                                 }
@@ -294,8 +511,9 @@
             for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
                 var trace = chartdata.data[i];
                 // The additional white space on the name is added as a hack for fixing the legend string getting cut off issue
-                var reg = {name: trace.label + '     ', x: [], y: [], text: [], orientation: 'h', type: 'bar', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
-                    reg.y.push(trace.label); 
+                var reg = {namelong: trace.label, name: getAbbreviation(trace.label) + '     ', x: [], ylong: [], y: [], text: [], orientation: 'h', type: 'bar', hoverinfo: 'none', marker :{color: colors[i%colors.length]}};
+                    reg.y.push(getAbbreviation(trace.label));
+                    reg.ylong.push(trace.label);
                     reg.x.push(trace.value<0?0:trace.value);
                     reg.text.push(getSuppressedCount(trace.value, primaryFilter));
                 
@@ -585,7 +803,16 @@
                 graphTitle = graphTitle ? graphTitle : (chartData.length > 1? 'label.graph.expanded': chartData[0].title);
                 var expandedChartData = [];
                 angular.forEach(chartdata, function(eachChartData) {
-                        var layout = utilService.clone(eachChartData.layout);
+                       var layout = utilService.clone(eachChartData.layout);
+                       var plotlydata = utilService.clone(eachChartData.data);
+                       plotlydata.forEach(function (data) {
+                           data.name = data.namelong;
+                           if (data.xlong){
+                               data.x = data.xlong;
+                           }else {
+                               data.y = data.ylong;
+                           }
+                       });
                         // Set chart title
                        layout.title = eachChartData.longtitle;
                        layout.width = 1000;
@@ -610,6 +837,8 @@
                        layout.margin = {l:200, r:10, b:200, t:150};
                        layout.xaxis.visible= true;
                        layout.yaxis.visible= true;
+                       layout.yaxis.exponentformat = 'none'
+                       layout.xaxis.exponentformat = 'none'
                        layout.xaxis.showticklabels= true;
                        layout.yaxis.showticklabels= true;
 
@@ -624,7 +853,7 @@
                             layout.barmode = 'bar';
                        }
 
-                    expandedChartData.push({layout:layout, dataset:eachChartData.dataset, data: eachChartData.data, longtitle: eachChartData.longtitle, charttype: eachChartData.charttype});
+                    expandedChartData.push({layout:layout, dataset:eachChartData.dataset, data: plotlydata, longtitle: eachChartData.longtitle, charttype: eachChartData.charttype});
 
                 });
 
