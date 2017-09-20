@@ -18,12 +18,12 @@
             <ui-select multiple ng-model="mc.selectedFilter.value"
                        theme="bootstrap" name="filter" id="filter" class="flex-grow"
                        on-select="mc.groupByFiltersUpdated($item, true)" on-remove="mc.groupByFiltersUpdated($item, false)">
-                <ui-select-choices class="ui-select-choices" group-by="'type'" ui-disable-choice="option.disableFilter"
-                                   repeat="option as option in mc.selectedFilter.allFilters | filter : mc.excludeDisabled | filter: $select.search">
+                <ui-select-choices class="ui-select-choices" ui-disable-choice="option.disableFilter"
+                                   repeat="option as option in []">
                     <div ng-bind-html="option.title | translate | highlight: $select.search"></div>
                 </ui-select-choices>
                 <ui-select-match class="ui-select-match" allow-clear="true"
-                                 placeholder="Click here to type">{{$item.title | translate}}
+                                 placeholder="">{{$item.title | translate}}
                 </ui-select-match>
             </ui-select>
         <!--<div class="icon-position"><i class="fa fa-angle-down font-30 karat"></i></div>-->
