@@ -12,45 +12,46 @@ var merge = require('merge');
  * @param countKey
  */
 function addMissingFilterOptions(filter, aggResults, countKey) {
-    function updateMissingOptions(eachOption) {
-        var isOptionAvailable = false;
-        aggResults.forEach(function (eachAggOption) {
-            if (eachAggOption.name === eachOption) {
-                isOptionAvailable = true;
+    if (filter.options.length != aggResults.length) {
+        filter.options.forEach(function (eachOption) {
+            var isOptionAvailable = false;
+            aggResults.forEach(function (eachAggOption) {
+                if (eachAggOption.name === eachOption) {
+                    isOptionAvailable = true;
+                }
+            });
+            //Adding missing options
+            //For example {name:'Female', countKey: 0 } or {name:'White', countKey: 0 }
+            if (!isOptionAvailable) {
+                var missingOption = {};
+                missingOption["name"] = eachOption;
+                missingOption[countKey] = 0;
+                aggResults.push(missingOption);
             }
         });
-        //Adding missing options
-        //For example {name:'Female', countKey: 0 } or {name:'White', countKey: 0 }
-        if (!isOptionAvailable) {
-            var missingOption = {};
-            missingOption["name"] = eachOption;
-            missingOption[countKey] = 0;
-            aggResults.push(missingOption);
-        }
-    }
-
-    /**
-     * If filter options length and result options length not equal that means some options are missing
-     * Then only we will call updateMissingOptions method to add missing options
-     */
-    if (filter.options.length > 0 && aggResults.length > 0 && filter.options.length != aggResults.length) {
-        //If user selected other than 'All' option for a filter
-        if(filter.selectedValues.length > 0) {
-            //Then add missing option if it is in selectedValues
-            filter.selectedValues.forEach(function(eachSelectedOption){
-                updateMissingOptions(eachSelectedOption);
-            });
-        }
-        else {
-            //if user selected 'All' option for a filter then add all missing options
-            filter.options.forEach(function (eachOption) {
-                updateMissingOptions(eachOption.key);
-            });
-        }
     }
 }
 
-var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelectedFilterOptions) {
+/**
+ * Get selected aggregation keys from give query json object
+ * @param query
+ * @return Array of selected aggregation keys
+ */
+function getAggregationKeys(query) {
+    var aggKeys = [];
+    for (key in query) {
+        if (!!query[key] && typeof(query[key])=="object") {
+            if(key.indexOf('group_table_') > -1) {
+                var groupKeyRegex = /group_table_/;
+                aggKeys.push(key.split(groupKeyRegex)[1]);
+            }
+            aggKeys.push.apply(aggKeys, getAggregationKeys(query[key]));
+        }
+    }
+    return aggKeys;
+}
+
+var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelectedFilterOptions, query) {
   var result = {
         data: {
             simple: {},
@@ -64,6 +65,11 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelect
             total: resp? resp.hits.total : 0
         }
     };
+   //Get selected aggregation keys, so that we can add missing filters and filter options nested level
+    var SelectedAggregationKeys = [];
+    if(query) {
+      SelectedAggregationKeys = getAggregationKeys(query);
+    }
     if(resp && resp.aggregations) {
         var data = resp.aggregations;
         Object.keys(data).forEach(function (key) {
@@ -71,7 +77,8 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelect
             if (key.indexOf('group_table_') > -1) {
                 var groupKeyRegex = /group_table_/;
                 dataKey = key.split(groupKeyRegex)[1];
-                result.data.nested.table[dataKey] = populateAggregatedData(data[key].buckets, countKey, 1, undefined, countQueryKey, groupKeyRegex, dataKey, allSelectedFilterOptions);
+
+                result.data.nested.table[dataKey] = populateAggregatedData(data[key].buckets, countKey, 1, undefined, countQueryKey, groupKeyRegex, dataKey, allSelectedFilterOptions, SelectedAggregationKeys, 'group_table_');
             }
             if (key.indexOf('group_chart_') > -1) {
                 var keySplits = key.split("_");
@@ -240,42 +247,66 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
     }
 };
 
-var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQueryKey, regex, dataKey, allSelectedFilterOptions) {
+var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQueryKey, regex, dataKey, allSelectedFilterOptions, groupFilters, groupKey) {
     var result = [];
-    for(var index in buckets) {
+    //Preparing a new bucket to add buckets for missing filters
+    var newBuckets = [];
+    if(allSelectedFilterOptions) {
+        allSelectedFilterOptions[dataKey].options.forEach(function(eachFilterOption){
+            //If any filter option not available in buckets then add it to
+            if(findIndexByKeyAndValue(buckets, 'key', eachFilterOption) === -1){
+                var newObj = {};
+                newObj.key = eachFilterOption;
+                newObj.doc_count = 0;
+                if(groupFilters && groupFilters.length > 1) {
+                    newObj[groupKey+groupFilters[1]] = {buckets: []};
+                }
+                newBuckets.push(newObj);
+            }
+            //If filter option available in buckets then add it
+            else {
+                newBuckets.push(buckets[findIndexByKeyAndValue(buckets, 'key', eachFilterOption)]);
+            }
+        });
+    }
+    //If selected filter options not provided we will add any buckets for missing filter options
+    else {
+        newBuckets.push.apply(newBuckets, buckets);
+    }
+    for(var index in newBuckets) {
         // console.log(buckets[index]);
         //ignoring key -9 for blank data.
-        if (buckets[index].key!=='-9') {
-            var aggregation = new Aggregation(buckets[index], countKey, countQueryKey);
+        if (newBuckets[index].key!=='-9') {
+            var aggregation = new Aggregation(newBuckets[index], countKey, countQueryKey);
 
             aggregation[countKey] = aggregation[countKey];
-            var innerObjKey = isValueHasGroupData(buckets[index]);
+            var innerObjKey = isValueHasGroupData(newBuckets[index]);
             // take from pop.value instead of doc_count for census data
             if(countKey === 'pop' || countKey === 'cancer_population') {
-                aggregation = {name: buckets[index]['key']};
-                if(buckets[index]['pop']) {
-                    aggregation[countKey] = buckets[index]['pop'].value;
+                aggregation = {name: newBuckets[index]['key']};
+                if(newBuckets[index]['pop']) {
+                    aggregation[countKey] = newBuckets[index]['pop'].value;
                 } else {
-                    aggregation[countKey] = sumBucketProperty(buckets[index][innerObjKey], 'pop');
+                    aggregation[countKey] = sumBucketProperty(newBuckets[index][innerObjKey], 'pop');
 
                 }
             }
             if(countKey === 'bridge_race') {
-                aggregation = {name: buckets[index]['key']};
-                if(buckets[index]['group_count_pop']) {
-                    aggregation[countKey] = buckets[index]['group_count_pop'].value;
+                aggregation = {name: newBuckets[index]['key']};
+                if(newBuckets[index]['group_count_pop']) {
+                    aggregation[countKey] = newBuckets[index]['group_count_pop'].value;
                 } else {
-                    aggregation[countKey] = sumBucketProperty(buckets[index][innerObjKey], 'group_count_pop');
+                    aggregation[countKey] = sumBucketProperty(newBuckets[index][innerObjKey], 'group_count_pop');
                 }
             }
             if( innerObjKey ) {
                 //if you want to split group key by regex
                 if (regex && (regex.test('group_table_') || regex.test('group_chart_'))) {
-                    aggregation[innerObjKey.split(regex)[1]] =  populateAggregatedData(buckets[index][innerObjKey].buckets,
-                        countKey, splitIndex, map, countQueryKey, regex, innerObjKey.split(regex)[1], allSelectedFilterOptions);
+                    aggregation[innerObjKey.split(regex)[1]] =  populateAggregatedData(newBuckets[index][innerObjKey].buckets,
+                        countKey, splitIndex, map, countQueryKey, regex, innerObjKey.split(regex)[1], allSelectedFilterOptions, groupFilters  ? groupFilters.slice(1): undefined, groupKey);
                 } else {//by default split group key by underscore and retrieve key based on index
                     //adding slice and join because some keys are delimited by underscore so need to be reconstructed
-                    aggregation[innerObjKey.split("_").slice(splitIndex).join('_')] =  populateAggregatedData(buckets[index][innerObjKey].buckets, countKey, splitIndex, map, countQueryKey);
+                    aggregation[innerObjKey.split("_").slice(splitIndex).join('_')] =  populateAggregatedData(newBuckets[index][innerObjKey].buckets, countKey, splitIndex, map, countQueryKey);
                 }
 
             }
@@ -290,21 +321,8 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
     * So we are adding missing 'Female' data (like this {name:'Female', countkey: 0})]
     * Here we are adding missing options for 'Infant_mortality' only
     **/
-    if(countKey == 'infant_mortality' && regex && regex.test('group_table_') && allSelectedFilterOptions && allSelectedFilterOptions[dataKey] != undefined) {
-        var hasNestedAggObject = false;
-        /**
-         * Checking if results has nested objects, if yes ignore addMissingFilterOptions call
-         * For example [{"name":"White","countKey":xx,"sex":[{"name":"Female","countKey":xx}]},{"name":"American Indian or Alaska Native","countKey":xxxx,"sex":[{..}, {..}]}...}]
-         */
-        result.forEach(function (eachAggOption) {
-            for ( var key in eachAggOption ) {
-                if (typeof eachAggOption[key] === 'object' && eachAggOption[key][0].hasOwnProperty(countKey)) {
-                    hasNestedAggObject = true;
-                    return;
-                }
-            }
-        });
-        !hasNestedAggObject && addMissingFilterOptions(allSelectedFilterOptions[dataKey], result, countKey);
+    if(regex && regex.test('group_table_') && allSelectedFilterOptions && allSelectedFilterOptions[dataKey] != undefined) {
+       addMissingFilterOptions(allSelectedFilterOptions[dataKey], result, countKey);
     }
     return result;
 };
@@ -873,15 +891,24 @@ function mapAndGroupOptionResults (options, results) {
  * @param q
  * @return all filter options ex: {{'sex':['Female', 'Male']}, {'race':[......]} ... }
  */
-function getAllSelectedFilterOptions(q, apiQuery) {
+function getAllSelectedFilterOptions(q) {
     var allOptions = {};
-    q.value.forEach(function(eachValue){
-        //Ex: 'sex', 'race' etc..
-        allOptions[eachValue.key] = {"options": [], 'selectedValues': apiQuery[eachValue.key]?apiQuery[eachValue.key].value:[]};
-        eachValue.autoCompleteOptions.forEach(function(eachOption){
-            //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
-            allOptions[eachValue.key].options.push(eachOption);
-        });
+    q.allFilters.forEach(function(eachFilter){
+        if(eachFilter.groupBy) {
+            allOptions[eachFilter.key] = {"options": []};
+            if(eachFilter.value.length > 0){
+                eachFilter.value.forEach(function(eachOption){
+                    //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
+                    allOptions[eachFilter.key].options.push(eachOption);
+                });
+            }
+            else {
+                eachFilter.autoCompleteOptions.forEach(function(eachOption){
+                    //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
+                    allOptions[eachFilter.key].options.push(eachOption.key);
+                });
+            }
+        }
     });
     return allOptions;
 }
