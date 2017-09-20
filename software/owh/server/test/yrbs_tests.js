@@ -3924,7 +3924,7 @@ describe("YRBS API", function () {
         });
     });
 
-    it("invokeYRBS service for precomputed results with grouping", function (){
+    xit("invokeYRBS service for precomputed results with grouping", function (){
         var apiQuery = {basicSearch:true, 'searchFor': 'mental_health', 'yrbsBasic': true, 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000},{"key":"yrbsSex","queryKey":"sex","size":100000}]}},
             'query': {'question.path':{ 'value': ['qn8']}, 'year':{value:['2015']}}};
 
@@ -4026,7 +4026,7 @@ describe("YRBS API", function () {
         });
     });
 
-    it("invokeYRBS service for brfss for suppressed data", function (){
+    xit("invokeYRBS service for brfss for suppressed data", function (){
         var apiQuery = {basicSearch:true, "searchFor":"brfss","query":{"year":{"key":"year","queryKey":"year","value":["2015"],"primary":false},"sitecode":{"key":"state","queryKey":"sitecode","value":["AL"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["drnkany5","x_rfbing5","x_rfdrhv5"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"race","queryKey":"race","size":0}],"charts":[],"maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}},"pagination":{"from":0,"size":10000}};
         return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
             var q = resp.table.question[0];
