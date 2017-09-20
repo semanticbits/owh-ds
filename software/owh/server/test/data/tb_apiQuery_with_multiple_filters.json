@@ -1,0 +1,110 @@
+{
+  "searchFor": "tb",
+  "countQueryKey": "cases",
+  "query": {
+    "sex": {
+      "key": "sex",
+      "queryKey": "sex",
+      "value": "Both sexes",
+      "primary": false
+    },
+    "race_ethnicity": {
+      "key": "race",
+      "queryKey": "race_ethnicity",
+      "value": "All races/ethnicities",
+      "primary": false
+    },
+    "current_year": {
+      "key": "current_year",
+      "queryKey": "current_year",
+      "value": "2015",
+      "primary": false
+    },
+    "age_group": {
+      "key": "age_group",
+      "queryKey": "age_group",
+      "value": "All age groups",
+      "primary": false
+    },
+    "state": {
+      "key": "state",
+      "queryKey": "state",
+      "value": "National",
+      "primary": false
+    }
+  },
+  "aggregations": {
+    "simple": [],
+    "nested": {
+      "table": [
+        {
+          "key": "race",
+          "queryKey": "race_ethnicity",
+          "size": 0
+        },
+        {
+          "key": "age_group",
+          "queryKey": "age_group",
+          "size": 0
+        },
+        {
+          "key": "sex",
+          "queryKey": "sex",
+          "size": 0
+        }
+      ],
+      "charts": [
+        [
+          {
+            "key": "age_group",
+            "queryKey": "age_group",
+            "size": 0
+          },
+          {
+            "key": "race",
+            "queryKey": "race_ethnicity",
+            "size": 0
+          }
+        ],
+        [
+          {
+            "key": "sex",
+            "queryKey": "sex",
+            "size": 0
+          },
+          {
+            "key": "race",
+            "queryKey": "race_ethnicity",
+            "size": 0
+          }
+        ],
+        [
+          {
+            "key": "sex",
+            "queryKey": "sex",
+            "size": 0
+          },
+          {
+            "key": "age_group",
+            "queryKey": "age_group",
+            "size": 0
+          }
+        ]
+      ],
+      "maps": [
+        [
+          {
+            "key": "states",
+            "queryKey": "state",
+            "size": 0
+          },
+          {
+            "key": "sex",
+            "queryKey": "sex",
+            "size": 0
+          }
+        ]
+      ]
+    }
+  }
+}

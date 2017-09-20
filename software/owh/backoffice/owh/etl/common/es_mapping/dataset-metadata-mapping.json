@@ -1,0 +1,21 @@
+{
+  "dsmetadata": {
+    "_source": {
+      "enabled": true
+    },
+    "properties": {
+      "dataset":{
+        "type":"string", "index":"not_analyzed"
+      },
+      "year":{
+        "type":"string", "index":"not_analyzed"
+      },
+      "filter_name":{
+        "type":"string", "index":"not_analyzed"
+      },
+      "permissible_values":{
+        "type":"string", "index":"not_analyzed"
+      }
+    }
+  }
+}

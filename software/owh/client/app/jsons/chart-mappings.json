@@ -8,5 +8,8 @@
   "race&autopsy": "verticalStack",
   "gender&autopsy": "verticalBar",
   "agegroup&autopsy": "horizontalBar",
-  "gender&placeofdeath": "verticalStack"
+  "gender&placeofdeath": "verticalStack",
+  "gender&state": "horizontalStack",
+  "gender&hhs-region": "horizontalStack",
+  "race&hhs-region":"horizontalStack",
 }

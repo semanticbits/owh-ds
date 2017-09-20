@@ -3,15 +3,15 @@ __author__ = "Biju Joseph"
 import logging
 
 import elasticsearch
-import elasticsearch.helpers
-
+import time
+from elasticsearch.helpers import bulk, scan
 from repositories import Repository
 
 logger = logging.getLogger('elastic')
-
+logging.getLogger('elasticsearch').setLevel("WARN")
 INDEX_SETTINGS = {
      "settings": {
-        "refresh_interval" : "60s"
+        "refresh_interval" : "-1"
      }
 }
 
@@ -53,8 +53,10 @@ class ElasticSearchRepository(Repository, object):
 
         try:
             # Create the index
+            logging.info('Creating index %s', self.index_name)
             self.es.indices.create(index= self.index_name, body=INDEX_SETTINGS, ignore=400)
-
+            logging.info('Index created successfully. Waiting for shard allocations..')
+            time.sleep(10)
             #specify the mapping
             self.create_mappings(mapping)
             self.es.indices.clear_cache(index=self.index_name)
@@ -92,8 +94,12 @@ class ElasticSearchRepository(Repository, object):
         Returns:
             The elastic search response object
         """
-        res = self.es.bulk(index= self.index_name, body= obj, refresh=True, request_timeout = 30)
+        res = self.es.bulk(index= self.index_name, body= obj, request_timeout = 30)
         return res
+
+    def refresh_index(self):
+        """Refresh the index"""
+        return self.es.indices.refresh(index=self.index_name)
 
     def search(self, criteria, sort, pagination):
         return self.es.search(index=self.index_name, body=criteria)
@@ -103,3 +109,33 @@ class ElasticSearchRepository(Repository, object):
 
     def get_record_by_id(self, id):
         return self.es.get(index=self.index_name, doc_type=self.name, id=id)
+
+    def delete_records_by_query(self, q):
+        """Delete records in the index matching the given query"""
+        # FIXME: The delete function is not working as expected, the results vary by ES version
+        # in 1.5.x, the delete action doesn't work at all, in 2.4.x it delete more records than specified
+        # will need to use a newer version of ES
+        # set the elasticsearh log to WARN to avoid too many logs from the scan
+        logging.getLogger('elasticsearch').setLevel("WARN")
+        bulk_deletes = []
+        for result in scan(self.es,
+           query=q,
+           index=self.index_name,
+           doc_type=self.name,
+           _source=True,
+           track_scores=False,
+           scroll='5m'):
+            logger.info(result)
+            result['_op_type'] = 'delete'
+            bulk_deletes.append(result)
+        result = bulk(self.es, bulk_deletes)
+        logging.getLogger('elasticsearch').setLevel("INFO")
+        self.refresh_index()
+        return result
+
+    def delete_records_for_year(self, year):
+        """Delete records with attribute current_year = year"""
+
+        logger.warn("Deleting data for year %d", year)
+        query={"query":{"match": {"current_year": str(year)}}}
+        return self.delete_records_by_query(query)

@@ -657,121 +657,121 @@
       "Injurious suicide attempt"
     ]
   },
-  "tobbacco use": {
-    "key": "Tobbaco use",
+  "tobacco use": {
+    "key": "Tobacco use",
     "path": [
-      "Tobbaco use"
+      "Tobacco use"
     ]
   },
   "Ever Tried Cigarette Smoking(even one or two puffs)": {
     "key": "Ever cigarette use",
     "path": [
-      "Tobbaco use",
+      "Tobacco use",
       "Ever cigarette use"
     ]
   },
   "Smoked A Whole Cigarette Before Age 13 Years(for the first time)": {
     "key": "Initiation of cigarette use",
     "path": [
-      "Tobbaco use",
+      "Tobacco use",
       "Initiation of cigarette use"
     ]
   },
   "Currently Smoked Cigarettes(on at least 1 day during the 30 days before the survey)": {
     "key": "Current cigarette use",
     "path": [
-      "Tobbaco use",
+      "Tobacco use",
       "Current cigarette use"
     ]
   },
   "Currently Smoked Cigarettes Frequently(on 20 or more days during the 30 days before the survey)": {
     "key": "Frequent cigarette use",
     "path": [
-      "Tobbaco use",
+      "Tobacco use",
       "Frequent cigarette use"
     ]
   },
   "Smoked More Than 10 Cigarettes Per Day(on the days they smoked during the 30 days before the survey, among students who currently smoked cigarettes)": {
     "key": "Smoked >10 cigarettes",
     "path": [
-      "Tobbaco use",
+      "Tobacco use",
       "Smoked >10 cigarettes"
     ]
   },
   "Currently Smoked Cigarettes Daily(on all 30 days during the 30 days before the survey)": {
     "key": "Current daily cigarette use",
     "path": [
-      "Tobbaco use",
+      "Tobacco use",
       "Current daily cigarette use"
     ]
   },
   "Usually Obtained Their Own Cigarettes By Buying Them In A Store Or Gas Station(during the 30 days before the survey, among students who currently smoked cigarettes and who were aged <18 years)": {
     "key": "Cigarettes from store",
     "path": [
-      "Tobbaco use",
+      "Tobacco use",
       "Cigarettes from store"
     ]
   },
   "Usually Obtained Their Own Cigarettes By Buying On The Internet(during the 30 days before the survey, among students who currently smoked cigarettes and who were aged <18 years)": {
     "key": "Cigarettes from Internet",
     "path": [
-      "Tobbaco use",
+      "Tobacco use",
       "Cigarettes from Internet"
     ]
   },
   "Did Not Try To Quit Smoking Cigarettes(during the 12 months before the survey, among students who currently smoked cigarettes)": {
     "key": "Smoking cessation",
     "path": [
-      "Tobbaco use",
+      "Tobacco use",
       "Smoking cessation"
     ]
   },
   "Currently Used Smokeless Tobacco(chewing tobacco, snuff, or dip on at least 1 day during the 30 days before the survey)": {
     "key": "Current smokeless tobacco use",
     "path": [
-      "Tobbaco use",
+      "Tobacco use",
       "Current smokeless tobacco use"
     ]
   },
   "Currently Smoked Cigars(cigars, cigarillos, or little cigars on at least 1 day during the 30 days before the survey)": {
     "key": "Current cigar use",
     "path": [
-      "Tobbaco use",
+      "Tobacco use",
       "Current cigar use"
     ]
   },
   "Ever Used Electronic Vapor Products(including e-cigarettes, e-cigars, e-pipes, vape pipes, vaping pens, e-hookahs, and hookah pens)": {
     "key": "Electronic vapor product use",
     "path": [
-      "Tobbaco use",
+      "Tobacco use",
       "Electronic vapor product use"
     ]
   },
   "Currently Used Electronic Vapor Products(including e-cigarettes, e-cigars, e-pipes, vape pipes, vaping pens, e-hookahs, and hookah pens on at least 1 day during the 30 days before the survey)": {
     "key": "Current electronic vapor product use",
     "path": [
-      "Tobbaco use",
+      "Tobacco use",
       "Current electronic vapor product use"
     ]
   },
   "Currently Smoked Cigarettes Or Cigars(on at least 1 day during the 30 days before the survey)": {
     "key": "Current cigarette or cigar use",
     "path": [
-      "Tobbaco use",
+      "Tobacco use",
       "Current cigarette or cigar use"
     ]
   },
   "Currently Used Cigarettes, Cigars, Or Smokeless Tobacco(on at least 1 day during the 30 days before the survey)": {
     "key": "Current cigarette, cigar, or smokeless tobacco use",
     "path": [
-      "Tobbaco use",
+      "Tobacco use",
       "Current cigarette, cigar, or smokeless tobacco use"
     ]
   },
   "Currently Used Tobacco(current cigarette, smokeless tobacco, cigar, or electronic vapor products use on at least 1 day during the 30 days before the survey)": {
     "key": "Current tobacco use",
     "path": [
-      "Tobbaco use",
+      "Tobacco use",
       "Current tobacco use"
     ]
   }

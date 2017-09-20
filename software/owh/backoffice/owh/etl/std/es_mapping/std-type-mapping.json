@@ -1,0 +1,37 @@
+{
+  "std": {
+    "include_in_all": false,
+    "_source": {
+      "enabled": false
+    },
+    "properties": {
+      "current_year": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "race_ethnicity": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "disease": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "state": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "sex": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "age_group": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "transmission": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "cases": {
+        "type":"integer", "index":"not_analyzed"
+      },
+      "pop": {
+        "type":"integer", "index":"not_analyzed"
+      }
+    }
+  }
+}

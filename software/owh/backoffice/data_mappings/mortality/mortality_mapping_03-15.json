@@ -1,0 +1,635 @@
+{
+  "datafiletype": "fwf",
+  "columns": [
+    {
+      "type": "simple",
+      "column": "residence",
+      "start": 20,
+      "stop": 20,
+      "field": "Residence Status"
+    },
+    {
+      "type": "map",
+      "column": "month_of_death",
+      "start": 65,
+      "stop": 66,
+      "field": "Month of Death",
+      "mappings": {
+        "10": "October",
+        "11": "November",
+        "12": "December",
+        "01": "January",
+        "02": "February",
+        "03": "March",
+        "04": "April",
+        "05": "May",
+        "06": "June",
+        "07": "July",
+        "08": "August",
+        "09": "September"
+      }
+    },
+    {
+      "type": "map",
+      "column": "sex",
+      "start": 69,
+      "stop": 69,
+      "field": "Sex",
+      "mappings": {
+        "M": "Male",
+        "F": "Female"
+      }
+    },
+    {
+      "type": "range",
+      "column": "age_5_interval",
+      "start": 77,
+      "stop": 78,
+      "field": "Age Recode 27",
+      "mappings": {
+        "01-02": "1 year",
+        "03-06": "1-4years",
+        "07-07": "5-9years",
+        "08-08": "10-14years",
+        "09-09": "15-19years",
+        "10-10": "20-24years",
+        "11-11": "25-29years",
+        "12-12": "30-34years",
+        "13-13": "35-39years",
+        "14-14": "40-44years",
+        "15-15": "45-49years",
+        "16-16": "50-54years",
+        "17-17": "55-59years",
+        "18-18": "60-64years",
+        "19-19": "65-69years",
+        "20-20": "70-74years",
+        "21-21": "75-79years",
+        "22-22": "80-84years",
+        "23-23": "85-89years",
+        "24-24": "90-94years",
+        "25-25": "95-99years",
+        "26-26": "z100 years and over",
+        "27-27": "Age not stated"
+      }
+    },
+    {
+      "type": "map",
+      "column": "age",
+      "start": 79,
+      "stop": 80,
+      "field": "Age Recode 12",
+      "mappings": {
+        "01": "Under 1 year (includes not stated infant ages)",
+        "02": "1 -  4 years",
+        "03": "5 -  14 years",
+        "04": "15 - 24 years",
+        "05": "25 - 34 years",
+        "06": "35 - 44 years",
+        "07": "45 - 54 years",
+        "08": "55 - 64 years",
+        "09": "65 - 74 years",
+        "10": "75 - 84 years",
+        "11": "85 years and over",
+        "12": "Age not stated"
+      }
+    },
+    {
+      "type": "map",
+      "column": "infant_age",
+      "start": 81,
+      "stop": 82,
+      "field": "Infant Age Recode 22",
+      "mappings": {
+        "Blank": "Age 1 year and over or not stated",
+        "01": "Under 1 hour (includes not stated hours and minutes)",
+        "02": "1 - 23 hours",
+        "03": "1 day (includes not stated days)",
+        "04": "2 days",
+        "05": "3 days",
+        "06": "4 days",
+        "07": "5 days",
+        "08": "6 days",
+        "09": "7-13 days (includes not stated weeks)",
+        "10": "14 - 20 days",
+        "11": "21 - 27 days",
+        "12": "1 month (includes not stated months)",
+        "13": "2 months",
+        "14": "3 months",
+        "15": "4 months",
+        "16": "5 months",
+        "17": "6 months",
+        "18": "7 months",
+        "19": "8 months",
+        "20": "9 months",
+        "21": "10 months",
+        "22": "11 months"
+      }
+    },
+    {
+      "type": "map",
+      "column": "place_of_death",
+      "start": 83,
+      "stop": 83,
+      "field": "Place of Death and Decedent’s Status",
+      "mappings": {
+        "1": "Hospital, clinic or Medical Center - Inpatient",
+        "2": "Hospital, Clinic or Medical Center - Outpatient or admitted to Emergency Room",
+        "3": "Hospital, Clinic or Medical Center - Dead on Arrival",
+        "4": "Decedent’s home",
+        "5": "Hospice facility",
+        "6": "Nursing home/long term care",
+        "7": "Other",
+        "9": "Place of death unknown"
+      }
+    },
+    {
+      "type": "map",
+      "column": "week_of_death",
+      "start": 85,
+      "stop": 85,
+      "field": "Day of Week of Death",
+      "mappings": {
+        "1": "Sunday",
+        "2": "Monday",
+        "3": "Tuesday",
+        "4": "Wednesday",
+        "5": "Thursday",
+        "6": "Friday",
+        "7": "Saturday",
+        "9": "Unknown"
+      }
+    },
+    {
+      "type": "simple",
+      "column": "current_year",
+      "start": 102,
+      "stop": 105,
+      "field": "Current Data Year"
+    },
+    {
+      "type": "map",
+      "column": "autopsy",
+      "start": 109,
+      "stop": 109,
+      "field": "Autopsy",
+      "mappings": {
+        "Y": "Yes",
+        "N": "No",
+        "U": "Unknown"
+      }
+    },
+    {
+      "type": "simple",
+      "column": "ICD_10_code",
+      "start": 146,
+      "stop": 149,
+      "field": "ICD Code (10th Revision)",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "ICD_113_code",
+      "start": 154,
+      "stop": 156,
+      "field": "113 Cause Recode",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "ICD_130_code",
+      "start": 157,
+      "stop": 159,
+      "field": "130 Infant Cause Recode",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "entity_axis_condn_count",
+      "start": 163,
+      "stop": 164,
+      "field": "Number of Entity-Axis Conditions",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC1",
+      "start": 165,
+      "stop": 171,
+      "field": "EAC1",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC2",
+      "start": 172,
+      "stop": 178,
+      "field": "EAC2",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC3",
+      "start": 179,
+      "stop": 185,
+      "field": "EAC3",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC4",
+      "start": 186,
+      "stop": 192,
+      "field": "EAC4",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC5",
+      "start": 193,
+      "stop": 199,
+      "field": "EAC5",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC6",
+      "start": 200,
+      "stop": 206,
+      "field": "EAC6",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC7",
+      "start": 207,
+      "stop": 213,
+      "field": "EAC7",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC8",
+      "start": 214,
+      "stop": 220,
+      "field": "EAC8",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC9",
+      "start": 221,
+      "stop": 227,
+      "field": "EAC9",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC10",
+      "start": 228,
+      "stop": 234,
+      "field": "EAC10",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC11",
+      "start": 235,
+      "stop": 241,
+      "field": "EAC11",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC12",
+      "start": 242,
+      "stop": 248,
+      "field": "EAC12",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC13",
+      "start": 249,
+      "stop": 255,
+      "field": "EAC13",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC14",
+      "start": 256,
+      "stop": 262,
+      "field": "EAC14",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC15",
+      "start": 263,
+      "stop": 269,
+      "field": "EAC15",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC16",
+      "start": 270,
+      "stop": 276,
+      "field": "EAC16",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC17",
+      "start": 277,
+      "stop": 283,
+      "field": "EAC17",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC18",
+      "start": 284,
+      "stop": 290,
+      "field": "EAC18",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "EAC19",
+      "start": 291,
+      "stop": 297,
+      "field": "EAC19"
+    },
+    {
+      "type": "simple",
+      "column": "EAC20",
+      "start": 298,
+      "stop": 304,
+      "field": "EAC20",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "record_axis_condn_count",
+      "start": 341,
+      "stop": 342,
+      "field": "Number of Record-Axis Conditions",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC1",
+      "start": 344,
+      "stop": 348,
+      "field": "RAC1",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC2",
+      "start": 349,
+      "stop": 353,
+      "field": "RAC2",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC3",
+      "start": 354,
+      "stop": 358,
+      "field": "RAC3",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC4",
+      "start": 359,
+      "stop": 363,
+      "field": "RAC4",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC5",
+      "start": 364,
+      "stop": 368,
+      "field": "RAC5",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC6",
+      "start": 369,
+      "stop": 373,
+      "field": "RAC6",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC7",
+      "start": 374,
+      "stop": 378,
+      "field": "RAC7",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC8",
+      "start": 379,
+      "stop": 383,
+      "field": "RAC8",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC9",
+      "start": 384,
+      "stop": 388,
+      "field": "RAC9",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC10",
+      "start": 389,
+      "stop": 393,
+      "field": "RAC10",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC11",
+      "start": 394,
+      "stop": 398,
+      "field": "RAC11",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC12",
+      "start": 399,
+      "stop": 403,
+      "field": "RAC12",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC13",
+      "start": 404,
+      "stop": 408,
+      "field": "RAC13",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC14",
+      "start": 409,
+      "stop": 413,
+      "field": "RAC14",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC15",
+      "start": 414,
+      "stop": 418,
+      "field": "RAC15",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC16",
+      "start": 419,
+      "stop": 433,
+      "field": "RAC16",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC17",
+      "start": 424,
+      "stop": 428,
+      "field": "RAC17",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC18",
+      "start": 429,
+      "stop": 433,
+      "field": "RAC18",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC19",
+      "start": 434,
+      "stop": 438,
+      "field": "RAC19",
+      "mappings": {}
+    },
+    {
+      "type": "simple",
+      "column": "RAC20",
+      "start": 439,
+      "stop": 443,
+      "field": "RAC20",
+      "mappings": {}
+    },
+    {
+      "type": "range",
+      "column": "race",
+      "start": 450,
+      "stop": 450,
+      "field": "Race Recode 5",
+      "mappings": {
+        "1-1": "White",
+        "2-2": "Black",
+        "3-3": "American Indian",
+        "4-5": "Asian or Pacific Islander"
+      }
+    },
+    {
+      "type": "range",
+      "column": "hispanic_origin",
+      "start": 484,
+      "stop": 486,
+      "field": "Hispanic Origin",
+      "mappings": {
+        "220": "Central and South American",
+        "100-199": "Non-Hispanic",
+        "200-209": "Spaniard",
+        "210-219": "Mexican",
+        "260-269": "Puerto Rican",
+        "270-274": "Cuban",
+        "275-279": "Dominican",
+        "221-230": "Central American",
+        "231-249": "South American",
+        "250-259": "Latin American",
+        "280-299": "Other Hispanic",
+        "996-999": "Unknown"
+      }
+    },
+    {
+      "column": "state",
+      "type": "map",
+      "start": 29,
+      "stop": 30,
+      "field": "State",
+      "mappings": {
+        "AL": "AL",
+        "AK": "AK",
+        "AZ": "AZ",
+        "AR": "AR",
+        "CA": "CA",
+        "CO": "CO",
+        "CT": "CT",
+        "DE": "DE",
+        "DC": "DC",
+        "FL": "FL",
+        "GA": "GA",
+        "HI": "HI",
+        "ID": "ID",
+        "IL": "IL",
+        "IN": "IN",
+        "IA": "IA",
+        "KS": "KS",
+        "KY": "KY",
+        "LA": "LA",
+        "ME": "ME",
+        "MD": "MD",
+        "MA": "MA",
+        "MI": "MI",
+        "MN": "MN",
+        "MS": "MS",
+        "MO": "MO",
+        "MT": "MT",
+        "NE": "NE",
+        "NV": "NV",
+        "NH": "NH",
+        "NJ": "NJ",
+        "NM": "NM",
+        "NY": "NY",
+        "NC": "NC",
+        "ND": "ND",
+        "OH": "OH",
+        "OK": "OK",
+        "OR": "OR",
+        "PA": "PA",
+        "RI": "RI",
+        "SC": "SC",
+        "SD": "SD",
+        "TN": "TN",
+        "TX": "TX",
+        "UT": "UT",
+        "VT": "VT",
+        "VA": "VA",
+        "WA": "WA",
+        "WV": "WV",
+        "WI": "WI",
+        "WY": "WY"
+      }
+    }
+  ]
+}

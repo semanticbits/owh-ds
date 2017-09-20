@@ -1,18 +1,41 @@
-<div class="usa-grid-full" style="width: 250px">
+<div class="usa-grid-full" style="width: 550px;">
     <div class="usa-width-one-whole">
-        <div class="usa-width-two-thirds" style="display: table">
-            <div class="usa-width-one-whole">
+
+        <div class="usa-width-one-whole marker-popup-header" ng-bind="properties.name"></div>
+        <div ng-if="properties.sex">
+            <div class="usa-width-one-whole margin-top-10">
                 <div class="usa-width-two-thirds marker-label">Year(s)</div>
-                <div class="usa-width-one-third">{{properties.years().join();}}</div>
+                <div class="usa-width-one-third marker-years">{{properties.years}}</div>
             </div>
-            <div class="usa-width-one-whole" ng-repeat="eachCat in properties.sex">
+            <div class="usa-width-one-whole margin-top-5" ng-repeat="eachCat in properties.sex">
                 <div class="usa-width-two-thirds marker-label" ng-bind="eachCat.name | GenderTitle"></div>
-                <div class="usa-width-one-third" ng-bind="eachCat.deaths | number"></div>
+                <div class="usa-width-one-third">
+                    <span ng-if="eachCat.deaths !== 'suppressed' && ( properties.tableView === 'crude_death_rates' || properties.tableView === 'age-adjusted_death_rates')"
+                          ng-bind="eachCat['rate']"></span>
+                    <span ng-if="eachCat.deaths !== 'suppressed' && properties.tableView !== 'crude_death_rates' && properties.tableView !== 'age-adjusted_death_rates' "
+                          ng-bind="eachCat[key] | number"></span>
+                    <span ng-if="eachCat[key] === 'suppressed'">Suppressed</span>
+                    <span ng-if="!eachCat[key] || eachCat[key] == 'na'"
+                          ng-bind="'label.not.available' | translate"></span>
+                </div>
             </div>
-            <div class="usa-width-one-whole">
-                <div class="usa-width-two-thirds marker-label">Total Deaths</div>
-                <div class="usa-width-one-third">{{properties.totalCount | number}}</div>
+            <div class="usa-width-one-whole margin-top-5 padding-top-5 border-top-default padding-bottom-10">
+                <div class="usa-width-two-thirds marker-label">
+                    <span ng-if="properties.tableView === 'number_of_deaths'">Total Deaths</span>
+                    <span ng-if="properties.tableView !== 'number_of_deaths'">Total</span>
+                </div>
+                <div class="usa-width-one-third" ng-if="properties.tableView === 'number_of_deaths'">
+                    <span ng-if="properties[properties.tableView] === 'suppressed'">Suppressed</span>
+                    <span ng-if="properties[properties.tableView] !== 'suppressed'">{{properties.deaths | number}}</span>
+                </div>
+                <div class="usa-width-one-third" ng-if="properties.tableView !== 'number_of_deaths'">
+                    <span ng-if="properties[properties.tableView] === 'suppressed'">Suppressed</span>
+                    <span ng-if="properties[properties.tableView] !== 'suppressed'">{{properties[properties.tableView] | number}}</span>
+                </div>
             </div>
+        </div>
+        <div ng-if="!properties.sex">
+            <span ng-bind="'label.data.not.available' | translate"></span>
         </div>
     </div>
 </div>

@@ -1,0 +1,85 @@
+{
+  "infant_mortality": {
+    "_source": {
+      "enabled": false
+    },
+    "include_in_all": false,
+    "properties": {
+      "state":{
+        "type":"string", "index":"not_analyzed"
+      },
+      "year_of_death": {
+          "type":"string", "index":"not_analyzed"
+      },
+      "sex":{
+        "type":"string", "index":"not_analyzed"
+      },
+      "race": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "hispanic_origin": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "marital_status": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "mother_age_5_interval":{
+        "type":"string", "index":"not_analyzed"
+      },
+      "mother_education":{
+        "type":"string", "index":"not_analyzed"
+      },
+      "gestation_weekly":{
+        "type":"string", "index":"not_analyzed"
+      },
+      "gestation_recode10": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "gestation_recode11": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "prenatal_care": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "birth_weight_r12": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "birth_plurality": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "live_birth": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "birth_place": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "delivery_method": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "medical_attendant": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "infant_age_at_death": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "ICD_10_code": {
+        "properties": {
+            "code":    { "type": "string", "index":"not_analyzed"  },
+            "path": { "type": "string", "index":"not_analyzed"  }
+          }
+      },
+      "ICD_130_code": {
+          "type":"string", "index":"not_analyzed"
+      },
+      "census_region": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "hhs_region": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "census_division": {
+        "type":"string", "index":"not_analyzed"
+      }
+    }
+  }
+}

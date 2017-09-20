@@ -1,0 +1,52 @@
+{
+  "cancer_incident": {
+    "include_in_all": false,
+    "_source": {
+      "enabled": true
+    },
+    "properties": {
+      "current_year": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "state": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "sex": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "race": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "hispanic_origin": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "age_group": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "cbsa": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "childhood_cancer": {
+        "properties": {
+            "code": { "type": "string", "index":"not_analyzed"  },
+            "path": { "type": "string", "index":"not_analyzed"  }
+          }
+      },
+      "cancer_site": {
+        "properties": {
+            "code": { "type": "string", "index":"not_analyzed"  },
+            "path": { "type": "string", "index":"not_analyzed"  }
+          }
+      },
+      "census_region": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "hhs_region": {
+        "type":"string", "index":"not_analyzed"
+      },
+      "census_division": {
+        "type":"string", "index":"not_analyzed"
+      }
+    }
+  }
+}

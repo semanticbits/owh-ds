@@ -1,0 +1,974 @@
+[
+  {
+    "size": 0,
+    "aggregations": {
+      "group_table_age_group": {
+        "terms": {
+          "field": "age_group",
+          "size": 0
+        },
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_table_sex": {
+                "terms": {
+                  "field": "sex",
+                  "size": 0
+                },
+                "aggregations": {
+                  "group_count_cases": {
+                    "sum": {
+                      "field": "cases"
+                    }
+                  }
+                }
+              },
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        }
+      },
+      "group_count_cases": {
+        "sum": {
+          "field": "cases"
+        }
+      }
+    },
+    "query": {
+      "filtered": {
+        "query": {
+          "bool": {
+            "must": []
+          }
+        },
+        "filter": {
+          "bool": {
+            "must": [
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "disease": "HIV, stage 3 (AIDS)"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "age_group": "All age groups"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "transmission": "Nostratification"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "current_year": "2015"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "state": "National"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  [
+    {
+      "size": 0,
+      "aggregations": {
+        "group_table_age_group": {
+          "terms": {
+            "field": "age_group",
+            "size": 0
+          },
+          "aggregations": {
+            "group_table_race": {
+              "terms": {
+                "field": "race_ethnicity",
+                "size": 0
+              },
+              "aggregations": {
+                "group_table_sex": {
+                  "terms": {
+                    "field": "sex",
+                    "size": 0
+                  },
+                  "aggregations": {
+                    "pop": {
+                      "sum": {
+                        "field": "pop"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "disease": "HIV, stage 3 (AIDS)"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "age_group": "All age groups"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "transmission": "No stratification"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "National"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
+        "group_chart_0_age_group": {
+          "terms": {
+            "field": "age_group",
+            "size": 0
+          },
+          "aggregations": {
+            "group_chart_0_race": {
+              "terms": {
+                "field": "race_ethnicity",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "disease": "HIV, stage 3 (AIDS)"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "age_group": "All age groups"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "transmission": "No stratification"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "National"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "sex": "Both sexes"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
+        "group_chart_1_sex": {
+          "terms": {
+            "field": "sex",
+            "size": 0
+          },
+          "aggregations": {
+            "group_chart_1_age_group": {
+              "terms": {
+                "field": "age_group",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "disease": "HIV, stage 3 (AIDS)"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "age_group": "All age groups"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "transmission": "No stratification"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "National"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "race_ethnicity": "All races/ethnicities"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
+        "group_chart_2_sex": {
+          "terms": {
+            "field": "sex",
+            "size": 0
+          },
+          "aggregations": {
+            "group_chart_2_race": {
+              "terms": {
+                "field": "race_ethnicity",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "disease": "HIV, stage 3 (AIDS)"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "age_group": "All age groups"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "transmission": "No stratification"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "National"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  {
+    "size": 0,
+    "aggregations": {
+      "group_maps_0_states": {
+        "terms": {
+          "field": "state",
+          "size": 0
+        },
+        "aggregations": {
+          "group_maps_0_sex": {
+            "terms": {
+              "field": "sex",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        }
+      },
+      "group_count_cases": {
+        "sum": {
+          "field": "cases"
+        }
+      }
+    },
+    "query": {
+      "filtered": {
+        "query": {
+          "bool": {
+            "must": []
+          }
+        },
+        "filter": {
+          "bool": {
+            "must": [
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "disease": "HIV, stage 3 (AIDS)"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "age_group": "All age groups"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "transmission": "No stratification"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "current_year": "2015"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  [
+    {
+      "size": 0,
+      "aggregations": {
+        "group_chart_0_age_group": {
+          "terms": {
+            "field": "age_group",
+            "size": 0
+          },
+          "aggregations": {
+            "group_chart_0_race": {
+              "terms": {
+                "field": "race_ethnicity",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_cases": {
+                  "sum": {
+                    "field": "cases"
+                  }
+                }
+              }
+            },
+            "group_count_cases": {
+              "sum": {
+                "field": "cases"
+              }
+            }
+          }
+        },
+        "group_count_cases": {
+          "sum": {
+            "field": "cases"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "disease": "HIV, stage 3 (AIDS)"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "age_group": "All age groups"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "transmission": "No stratification"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "National"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "sex": "Both sexes"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
+        "group_chart_1_sex": {
+          "terms": {
+            "field": "sex",
+            "size": 0
+          },
+          "aggregations": {
+            "group_chart_1_age_group": {
+              "terms": {
+                "field": "age_group",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_cases": {
+                  "sum": {
+                    "field": "cases"
+                  }
+                }
+              }
+            },
+            "group_count_cases": {
+              "sum": {
+                "field": "cases"
+              }
+            }
+          }
+        },
+        "group_count_cases": {
+          "sum": {
+            "field": "cases"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "disease": "HIV, stage 3 (AIDS)"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "age_group": "All age groups"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "transmission": "No stratification"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "National"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "race_ethnicity": "All races/ethnicities"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
+        "group_chart_2_sex": {
+          "terms": {
+            "field": "sex",
+            "size": 0
+          },
+          "aggregations": {
+            "group_chart_2_race": {
+              "terms": {
+                "field": "race_ethnicity",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_cases": {
+                  "sum": {
+                    "field": "cases"
+                  }
+                }
+              }
+            },
+            "group_count_cases": {
+              "sum": {
+                "field": "cases"
+              }
+            }
+          }
+        },
+        "group_count_cases": {
+          "sum": {
+            "field": "cases"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "disease": "HIV, stage 3 (AIDS)"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "age_group": "All age groups"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "transmission": "No stratification"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "National"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+]

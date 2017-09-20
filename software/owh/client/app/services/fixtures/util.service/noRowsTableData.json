@@ -14,14 +14,14 @@
         "showChart": true,
         "autoCompleteOptions": [
           {
-            "key": "F",
+            "key": "Female",
             "title": "Female",
             "deaths": "6,362,211",
             "count": 6362211,
             "deathsPercentage": 49.81
           },
           {
-            "key": "M",
+            "key": "Male",
             "title": "Male",
             "deaths": "6,410,289",
             "count": 6410289,
@@ -37,11 +37,11 @@
   "data": {
     "gender": [
       {
-        "name": "M",
+        "name": "Male",
         "deaths": 107460
       },
       {
-        "name": "F",
+        "name": "Female",
         "deaths": 50390
       }
     ]
@@ -55,29 +55,31 @@
     "headers": [
       [
         {
-          "title": "Female",
+          "title": "label.filter.gender: Female",
           "colspan": 1,
           "rowspan": 1,
-          "isData": true
+          "isData": true,
+          "helpText": "Female"
         },
         {
-          "title": "Male",
+          "title": "label.filter.gender: Male",
           "colspan": 1,
           "rowspan": 1,
-          "isData": true
+          "isData": true,
+          "helpText": "Male"
         }
       ]
     ],
     "data": [
       [
         {
-          "title": "50,390",
+          "title": 50390,
           "isCount": true,
           "rowspan": 1,
           "colspan": 1
         },
         {
-          "title": "107,460",
+          "title": 107460,
           "isCount": true,
           "rowspan": 1,
           "colspan": 1

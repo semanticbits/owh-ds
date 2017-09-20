@@ -1,0 +1,7006 @@
+{
+  "bridge_race": {
+    "gender_population": {
+      "size": 0,
+      "aggregations": {
+        "group_table_sex": {
+          "terms": {
+            "field": "sex",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "$state$"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "nonHispanicRace_population": {
+      "size": 0,
+      "aggregations": {
+        "group_table_race": {
+          "terms": {
+            "field": "race",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "ethnicity_group": "Non-Hispanic"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "race": "Black"
+                        }
+                      },
+                      {
+                        "term": {
+                          "race": "White"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "$state$"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "race_population": {
+      "size": 0,
+      "aggregations": {
+        "group_table_race": {
+          "terms": {
+            "field": "race",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "race": "American Indian"
+                        }
+                      },
+                      {
+                        "term": {
+                          "race": "Asian or Pacific Islander"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "$state$"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "hispanic_population":{
+      "size": 0,
+      "aggregations": {
+        "group_table_ethnicity": {
+          "terms": {
+            "field": "ethnicity_group",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "ethnicity_group": "Hispanic"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "$state$"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "age_population": {
+      "size": 0,
+      "aggregations": {
+        "group_table_agegroup": {
+          "terms": {
+            "field": "age_5_interval",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "$state$"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "age_5_interval": "10-14 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "15-19 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "20-24 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "25-29 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "30-34 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "35-39 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "40-44 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "45-49 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "50-54 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "55-59 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "60-64 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "65-69 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "70-74 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "75-79 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "80-84 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "age_5_interval": "85+ years"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "infant_mortality": {
+    "query": {
+      "year_of_death": {
+        "key": "year_of_death",
+        "queryKey": "year_of_death",
+        "value": [
+          "2014"
+        ],
+        "primary": false
+      },
+      "state": {
+        "key": "state",
+        "queryKey": "state",
+        "value": [
+          "$state$"
+        ],
+        "primary": false
+      }
+    },
+    "aggregations": {
+      "simple": [],
+      "nested": {
+        "table": [
+          {
+            "key": "year_of_death",
+            "queryKey": "current_year",
+            "size": 0
+          }
+        ]
+      }
+    }
+  },
+  "tuberculosis": [
+    {
+    "size": 0,
+    "aggregations": {
+      "group_table_race": {
+        "terms": {
+          "field": "race_ethnicity",
+          "size": 0
+        },
+        "aggregations": {
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        }
+      },
+      "group_count_cases": {
+        "sum": {
+          "field": "cases"
+        }
+      }
+    },
+    "query": {
+      "filtered": {
+        "query": {
+          "bool": {
+            "must": []
+          }
+        },
+        "filter": {
+          "bool": {
+            "must": [
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "sex": "Both sexes"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "transmission": "No stratification"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "current_year": "2015"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "age_group": "All age groups"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "state": "$state$"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+    {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+    }
+  ],
+  "std": {
+    "chlamydia": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Chlamydia"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Chlamydia"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "Gonorrhea": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Gonorrhea"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Gonorrhea"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "Primary and Secondary Syphilis":[
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Primary and Secondary Syphilis"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Primary and Secondary Syphilis"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "Early Latent Syphilis": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Early Latent Syphilis"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Early Latent Syphilis"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "Congenital Syphilis": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Congenital Syphilis"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Congenital Syphilis"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "aids": {
+    "AIDS Diagnoses": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "HIV, stage 3 (AIDS)"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "HIV, stage 3 (AIDS)"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "AIDS Deaths": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "HIV, stage 3 (AIDS) deaths"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2014"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "HIV, stage 3 (AIDS) deaths"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2014"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "AIDS Prevalence": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Persons living with HIV, stage 3 (AIDS)"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2014"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Persons living with HIV, stage 3 (AIDS)"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2014"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "HIV Diagnoses": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "HIV diagnoses"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "HIV diagnoses"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "HIV Deaths": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "HIV deaths"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2014"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "HIV deaths"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2014"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "HIV Prevalence": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_cases": {
+                "sum": {
+                  "field": "cases"
+                }
+              }
+            }
+          },
+          "group_count_cases": {
+            "sum": {
+              "field": "cases"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Persons living with diagnosed HIV"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2014"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_race": {
+            "terms": {
+              "field": "race_ethnicity",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Both sexes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "disease": "Persons living with diagnosed HIV"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age_group": "All age groups"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2014"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "detailMortality": {
+    "Total": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "searchFor": "deaths",
+        "query": {
+          "current_year": {
+            "key": "year",
+            "queryKey": "current_year",
+            "value": [
+              "2015"
+            ],
+            "primary": false
+          },
+          "state": {
+            "key": "state",
+            "queryKey": "state",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "year",
+                "queryKey": "current_year",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        }
+      }
+    ],
+    "C50-C50": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C50-C50"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "searchFor": "deaths",
+        "query": {
+          "ICD_10_code": {
+            "key": "ucd-chapter-10",
+            "queryKey": "ICD_10_code.path",
+            "value": [
+              "C50-C50"
+            ],
+            "primary": true
+          },
+          "current_year": {
+            "key": "year",
+            "queryKey": "current_year",
+            "value": [
+              "2015"
+            ],
+            "primary": false
+          },
+          "state": {
+            "key": "state",
+            "queryKey": "state",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "year",
+                "queryKey": "current_year",
+                "size": 0
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "C00-C97": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C00-C14"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C15-C26"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C30-C39"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C40-C41"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C43-C44"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C45-C49"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C50-C50"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C51-C58"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C60-C63"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C64-C68"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C69-C72"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C73-C75"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C76-C80"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C81-C96"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C97-C97"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "searchFor": "deaths",
+        "query": {
+          "ICD_10_code": {
+            "key": "ucd-chapter-10",
+            "queryKey": "ICD_10_code.path",
+            "value": [
+              "C00-C14",
+              "C15-C26",
+              "C30-C39",
+              "C40-C41",
+              "C43-C44",
+              "C45-C49",
+              "C50-C50",
+              "C51-C58",
+              "C60-C63",
+              "C64-C68",
+              "C69-C72",
+              "C73-C75",
+              "C76-C80",
+              "C81-C96",
+              "C97-C97"
+            ],
+            "primary": true
+          },
+          "current_year": {
+            "key": "year",
+            "queryKey": "current_year",
+            "value": [
+              "2015"
+            ],
+            "primary": false
+          },
+          "state": {
+            "key": "state",
+            "queryKey": "state",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "year",
+                "queryKey": "current_year",
+                "size": 0
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "C53": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "match": {
+                            "ICD_10_code.path": "C53"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "searchFor": "deaths",
+        "query": {
+          "ICD_10_code": {
+            "key": "ucd-chapter-10",
+            "queryKey": "ICD_10_code.path",
+            "value": [
+              "C53"
+            ],
+            "primary": true
+          },
+          "current_year": {
+            "key": "year",
+            "queryKey": "current_year",
+            "value": [
+              "2015"
+            ],
+            "primary": false
+          },
+          "state": {
+            "key": "state",
+            "queryKey": "state",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "year",
+                "queryKey": "current_year",
+                "size": 0
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "I160-I169": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "match": {
+                            "ICD_10_code.path": "I60-I69"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "searchFor": "deaths",
+        "query": {
+          "ICD_10_code": {
+            "key": "ucd-chapter-10",
+            "queryKey": "ICD_10_code.path",
+            "value": [
+              "I60-I69"
+            ],
+            "primary": true
+          },
+          "current_year": {
+            "key": "year",
+            "queryKey": "current_year",
+            "value": [
+              "2015"
+            ],
+            "primary": false
+          },
+          "state": {
+            "key": "state",
+            "queryKey": "state",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "year",
+                "queryKey": "current_year",
+                "size": 0
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "J40-47-60": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "match": {
+                            "ICD_10_code.path": "J40-J47"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "searchFor": "deaths",
+        "query": {
+          "ICD_10_code": {
+            "key": "ucd-chapter-10",
+            "queryKey": "ICD_10_code.path",
+            "value": [
+              "J40-J47"
+            ],
+            "primary": true
+          },
+          "current_year": {
+            "key": "year",
+            "queryKey": "current_year",
+            "value": [
+              "2015"
+            ],
+            "primary": false
+          },
+          "state": {
+            "key": "state",
+            "queryKey": "state",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "year",
+                "queryKey": "current_year",
+                "size": 0
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "drug-induced": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should":  [
+                        {
+                          "match": {
+                            "ICD_10_code.path": "D52.1"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "D59.0"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "D59.2"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "D61.1"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "D64.2"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "E06.4"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "E16.0"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "E23.1"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "E24.2"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "E27.3"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "E66.1"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "F11"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "F12"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "F13"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "F14"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "F15"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "F16"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "F17"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "F18"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "F19"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "G21.1"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "G24.0"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "G25.1"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "G25.4"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "G25.6"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "G44.4"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "G62.0"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "G72.0"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "I95.2"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "J70.2"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "J70.3"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "J70.4"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "K85.3"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "L10.5"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "L27.0"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "L27.1"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "M10.2"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "M32.0"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "M80.4"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "M81.4"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "M83.5"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "M87.1"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "R50.2"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "R78.1"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "R78.2"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "R78.3"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "R78.4"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "R78.5"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X40"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X41"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X42"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X43"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X44"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X60"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X61"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X62"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X63"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X64"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X85"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y10"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y11"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y12"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y13"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y14"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "E24.4"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "F10"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "G31.2"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "G62.1"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "G72.1"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "I42.6"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "K29.2"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "K70"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "K85.2"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "K86.0"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "R78.0"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X45"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X65"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y15"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "searchFor": "deaths",
+        "query": {
+          "ICD_10_code": {
+            "key": "ucd-chapter-10",
+            "queryKey": "ICD_10_code.path",
+            "value": [
+              "D52.1",
+              "D59.0",
+              "D59.2",
+              "D61.1",
+              "D64.2",
+              "E06.4",
+              "E16.0",
+              "E23.1",
+              "E24.2",
+              "E27.3",
+              "E66.1",
+              "F11",
+              "F12",
+              "F13",
+              "F14",
+              "F15",
+              "F16",
+              "F17",
+              "F18",
+              "F19",
+              "G21.1",
+              "G24.0",
+              "G25.1",
+              "G25.4",
+              "G25.6",
+              "G44.4",
+              "G62.0",
+              "G72.0",
+              "I95.2",
+              "J70.2",
+              "J70.3",
+              "J70.4",
+              "K85.3",
+              "L10.5",
+              "L27.0",
+              "L27.1",
+              "M10.2",
+              "M32.0",
+              "M80.4",
+              "M81.4",
+              "M83.5",
+              "M87.1",
+              "R50.2",
+              "R78.1",
+              "R78.2",
+              "R78.3",
+              "R78.4",
+              "R78.5",
+              "X40",
+              "X41",
+              "X42",
+              "X43",
+              "X44",
+              "X60",
+              "X61",
+              "X62",
+              "X63",
+              "X64",
+              "X85",
+              "Y10",
+              "Y11",
+              "Y12",
+              "Y13",
+              "Y14",
+              "E24.4",
+              "F10",
+              "G31.2",
+              "G62.1",
+              "G72.1",
+              "I42.6",
+              "K29.2",
+              "K70",
+              "K85.2",
+              "K86.0",
+              "R78.0",
+              "X45",
+              "X65",
+              "Y15"
+            ],
+            "primary": true
+          },
+          "current_year": {
+            "key": "year",
+            "queryKey": "current_year",
+            "value": [
+              "2015"
+            ],
+            "primary": false
+          },
+          "state": {
+            "key": "state",
+            "queryKey": "state",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "year",
+                "queryKey": "current_year",
+                "size": 0
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "Suicide": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should":  [
+                        {
+                          "match": {
+                            "ICD_10_code.path": "U03.0"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "U03.9"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X60"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X61"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X62"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X63"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X64"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X65"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X66"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X67"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X68"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X69"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X70"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X71"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X72"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X73"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X74"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X75"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X76"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X77"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X78"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X79"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X80"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X81"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X82"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X83"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X84"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X87.0"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "searchFor": "deaths",
+        "query": {
+          "ICD_10_code": {
+            "key": "ucd-chapter-10",
+            "queryKey": "ICD_10_code.path",
+            "value": [
+              "U03.0",
+              "U03.9",
+              "X60",
+              "X61",
+              "X62",
+              "X63",
+              "X64",
+              "X65",
+              "X66",
+              "X67",
+              "X68",
+              "X69",
+              "X70",
+              "X71",
+              "X72",
+              "X73",
+              "X74",
+              "X75",
+              "X76",
+              "X77",
+              "X78",
+              "X79",
+              "X80",
+              "X81",
+              "X82",
+              "X83",
+              "X84",
+              "Y87.0"
+            ],
+            "primary": true
+          },
+          "current_year": {
+            "key": "year",
+            "queryKey": "current_year",
+            "value": [
+              "2015"
+            ],
+            "primary": false
+          },
+          "state": {
+            "key": "state",
+            "queryKey": "state",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "year",
+                "queryKey": "current_year",
+                "size": 0
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "Homicide": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should":  [
+                        {
+                          "match": {
+                            "ICD_10_code.path": "U01"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "U02"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X85"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X86"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X87"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X88"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X89"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X90"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X91"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X92"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X93"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X94"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X95"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X96"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X97"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X98"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "X99"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y00"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y01"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y02"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y03"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y04"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y05"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y06.0"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y06.1"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y06.2"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y06.8"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y06.9"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y07.0"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y07.1"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y07.2"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y07.3"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y07.8"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y07.9"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y08"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y09"
+                          }
+                        },
+                        {
+                          "match": {
+                            "ICD_10_code.path": "Y87.1"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "searchFor": "deaths",
+        "query": {
+          "ICD_10_code": {
+            "key": "ucd-chapter-10",
+            "queryKey": "ICD_10_code.path",
+            "value": [
+              "U01",
+              "U02",
+              "X85",
+              "X86",
+              "X87",
+              "X88",
+              "X89",
+              "X90",
+              "X91",
+              "X92",
+              "X93",
+              "X94",
+              "X95",
+              "X96",
+              "X97",
+              "X98",
+              "X99",
+              "Y00",
+              "Y01",
+              "Y02",
+              "Y03",
+              "Y04",
+              "Y05",
+              "Y06.0",
+              "Y06.1",
+              "Y06.2",
+              "Y06.8",
+              "Y06.9",
+              "Y07.0",
+              "Y07.1",
+              "Y07.2",
+              "Y07.3",
+              "Y07.8",
+              "Y07.9",
+              "Y08",
+              "Y09",
+              "Y87.1"
+            ],
+            "primary": true
+          },
+          "current_year": {
+            "key": "year",
+            "queryKey": "current_year",
+            "value": [
+              "2015"
+            ],
+            "primary": false
+          },
+          "state": {
+            "key": "state",
+            "queryKey": "state",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "year",
+                "queryKey": "current_year",
+                "size": 0
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "B20-B24": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "match": {
+                            "ICD_10_code.path": "B20-B24"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "searchFor": "deaths",
+        "query": {
+          "ICD_10_code": {
+            "key": "ucd-chapter-10",
+            "queryKey": "ICD_10_code.path",
+            "value": [
+              "B20-B24"
+            ],
+            "primary": true
+          },
+          "current_year": {
+            "key": "year",
+            "queryKey": "current_year",
+            "value": [
+              "2015"
+            ],
+            "primary": false
+          },
+          "state": {
+            "key": "state",
+            "queryKey": "state",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "year",
+                "queryKey": "current_year",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "natality": {
+    "birthRates": [
+      {
+      "size": 0,
+      "aggregations": {
+        "group_table_current_year": {
+          "terms": {
+            "field": "current_year",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "$state$"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "fertilityRates": [
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          },
+          "group_count_pop": {
+            "sum": {
+              "field": "pop"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "age": "15"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "16"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "17"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "18"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "19"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "20"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "21"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "22"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "23"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "24"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "25"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "26"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "27"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "28"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "29"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "30"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "31"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "32"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "33"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "34"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "35"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "36"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "37"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "38"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "37"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "38"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "39"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "40"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "41"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "42"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "43"
+                          }
+                        },
+                        {
+                          "term": {
+                            "age": "44"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Female"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "vaginal": {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          },
+          "group_count_pop": {
+            "sum": {
+              "field": "pop"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "delivery_method": "Vaginal"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+    "cesarean": {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          },
+          "group_count_pop": {
+            "sum": {
+              "field": "pop"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "delivery_method": "Cesarean"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2015"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "MD"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+    "lowBirthWeight": {
+      "size": 0,
+      "aggregations": {
+        "group_table_current_year": {
+          "terms": {
+            "field": "current_year",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "birth_weight_r4": "1499 grams or less"
+                        }
+                      },
+                      {
+                        "term": {
+                          "birth_weight_r4": "1500 - 2499 grams"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "MD"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "twinBirth": {
+      "size": 0,
+      "aggregations": {
+        "group_table_current_year": {
+          "terms": {
+            "field": "current_year",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "birth_plurality": "Twin"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "MD"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "totalBirthsByYear": {
+      "size": 0,
+      "aggregations": {
+        "group_table_current_year": {
+          "terms": {
+            "field": "current_year",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "MD"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "cancer": {
+    "mortality-incidence": {
+      "Breast": [
+          {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "$state$"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "cancer_site.path": "26000"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+          {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2014"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+        ],
+      "Colon and Rectum": [
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "$state$"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "cancer_site.path": "21041-21052"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "$state$"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "Lung and Bronchus": [
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "$state$"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "cancer_site.path": "22030"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "$state$"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "Melanoma of the Skin": [
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "$state$"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "cancer_site.path": "25010"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "$state$"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "Cervix Uteri": [
+          {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "$state$"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "cancer_site.path": "27010"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+          {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Female"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2014"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+        ],
+      "Ovary": [
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "$state$"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "cancer_site.path": "27040"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "sex": "Female"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "$state$"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "Prostate": [
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_current_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2014"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "$state$"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "cancer_site.path": "28010-28040"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Male"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2014"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+      ]
+    }
+  },
+  "yrbs": {
+    "alcohol": {
+      "basicSearch":true,
+      "searchFor": "mental_health",
+      "query": {
+        "year": {
+          "key": "year",
+          "queryKey": "year",
+          "value": "2015",
+          "primary": false
+        },
+        "sitecode": {
+          "key": "yrbsState",
+          "queryKey": "sitecode",
+          "value": "$state$",
+          "primary": false
+        },
+        "question.path": {
+          "key": "question",
+          "queryKey": "question.key",
+          "value": [
+            "qn43",
+            "qndaycig",
+            "qn49",
+            "qn63",
+            "qn30",
+            "qn69"
+          ],
+          "primary": false
+        }
+      },
+      "aggregations": {
+        "simple": [],
+        "nested": {
+          "table": [
+            {
+              "key": "question",
+              "queryKey": "question.key",
+              "size": 0
+            }
+          ],
+          "charts": [],
+          "maps": [
+            [
+              {
+                "key": "states",
+                "queryKey": "state",
+                "size": 0
+              },
+              {
+                "key": "sex",
+                "queryKey": "sex",
+                "size": 0
+              }
+            ]
+          ]
+        }
+      },
+      "yrbsBasic": true,
+      "pagination": {
+        "from": 0,
+        "size": 10000
+      }
+    }
+  },
+  "brfss": {
+    "query_2015": {
+      "basicSearch":true,
+      "searchFor": "brfss",
+      "query": {
+        "year": {
+          "key": "year",
+          "queryKey": "year",
+          "value": [
+            "2015"
+          ],
+          "primary": false
+        },
+        "sitecode": {
+          "key": "state",
+          "queryKey": "sitecode",
+          "value": "$state$",
+          "primary": false
+        },
+        "question.path": {
+          "key": "question",
+          "queryKey": "question.key",
+          "value": [
+            "_BMI5CAT",
+            "_RFSMOK3",
+            "_FRTLT1",
+            "_VEGLT1",
+            "_RFDRHV5"
+          ],
+          "primary": false
+        }
+      },
+      "aggregations": {
+        "simple": [],
+        "nested": {
+          "table": [
+            {
+              "key": "question",
+              "queryKey": "question.key",
+              "size": 0
+            }
+          ],
+          "charts": [],
+          "maps": [
+            [
+              {
+                "key": "states",
+                "queryKey": "state",
+                "size": 0
+              },
+              {
+                "key": "sex",
+                "queryKey": "sex",
+                "size": 0
+              }
+            ]
+          ]
+        }
+      },
+      "pagination": {
+        "from": 0,
+        "size": 10000
+      }
+    },
+    "query_2009": {
+      "searchFor": "brfss",
+      "query": {
+        "year": {
+          "key": "year",
+          "queryKey": "year",
+          "value": "2009",
+          "primary": false
+        },
+        "sitecode": {
+          "key": "state",
+          "queryKey": "sitecode",
+          "value": "$state$",
+          "primary": false
+        },
+        "question.path": {
+          "key": "question",
+          "queryKey": "question.key",
+          "value": [
+            "_RFPAVIG"
+          ],
+          "primary": false
+        }
+      },
+      "aggregations": {
+        "simple": [],
+        "nested": {
+          "table": [
+            {
+              "key": "question",
+              "queryKey": "question.key",
+              "size": 0
+            }
+          ],
+          "charts": [],
+          "maps": [
+            [
+              {
+                "key": "states",
+                "queryKey": "state",
+                "size": 0
+              },
+              {
+                "key": "sex",
+                "queryKey": "sex",
+                "size": 0
+              }
+            ]
+          ]
+        }
+      },
+      "pagination": {
+        "from": 0,
+        "size": 10000
+      }
+    }
+  },
+  "prams": {
+    "Pregnant women": {
+      "qn30": {
+        "searchFor": "prams",
+        "query": {
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2009",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_26"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn31"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "state",
+                "queryKey": "sitecode",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
+      },
+      "qn16": {
+        "searchFor": "prams",
+        "query": {
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2009",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_11"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn16"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "state",
+                "queryKey": "sitecode",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
+      },
+      "qn21": {
+        "searchFor": "prams",
+        "query": {
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2009",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_29"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn21"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "state",
+                "queryKey": "sitecode",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
+      }
+    },
+    "Women": {
+      "qn16": {
+        "searchFor": "prams",
+        "query": {
+          "BOC20": {
+            "key": "previous_births",
+            "queryKey": "BOC20",
+            "value": "PRV1",
+            "primary": false
+          },
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2009",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_11"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn16"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "state",
+                "queryKey": "sitecode",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
+      },
+      "qn5": {
+        "searchFor": "prams",
+        "query": {
+          "BOC20": {
+            "key": "previous_births",
+            "queryKey": "BOC20",
+            "value": "PRV1",
+            "primary": false
+          },
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2009",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_43"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn5"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "state",
+                "queryKey": "sitecode",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
+      },
+      "qn133": {
+        "searchFor": "prams",
+        "query": {
+          "BOC20": {
+            "key": "previous_births",
+            "queryKey": "BOC20",
+            "value": "PRV1",
+            "primary": false
+          },
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2009",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_12"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn133"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "state",
+                "queryKey": "sitecode",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
+      }
+    }
+  }
+}

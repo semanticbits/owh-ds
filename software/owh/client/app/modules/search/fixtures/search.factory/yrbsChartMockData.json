@@ -1,0 +1,427 @@
+{
+  "selectedQuestion":{
+    "title": "Seriously considered attempting suicide(during the 12 months before the survey)",
+    "key": "Seriously considered attempting suicide",
+    "qkey": "qn27"
+  },
+  "chartData1":{
+    "data":{
+      "resultData":{
+        "table":{
+          "question": [
+            {
+              "name": "qn27",
+              "mental_health": {
+                "mean": "17.7",
+                "ci_l": "16.6",
+                "ci_u": "18.9",
+                "count": 15434
+              },
+              "race": [
+                {
+                  "name": "Am Indian / Alaska Native",
+                  "mental_health": {
+                    "mean": "20.9",
+                    "ci_l": "13.3",
+                    "ci_u": "31.3",
+                    "count": 161
+                  }
+                },
+                {
+                  "name": "Asian",
+                  "mental_health": {
+                    "mean": "17.7",
+                    "ci_l": "13.2",
+                    "ci_u": "23.4",
+                    "count": 617
+                  }
+                },
+                {
+                  "name": "Black or African American",
+                  "mental_health": {
+                    "mean": "14.5",
+                    "ci_l": "12.6",
+                    "ci_u": "16.7",
+                    "count": 1647
+                  }
+                },
+                {
+                  "name": "Hispanic/Latino",
+                  "mental_health": {
+                    "mean": "18.8",
+                    "ci_l": "17.0",
+                    "ci_u": "20.9",
+                    "count": 5061
+                  }
+                },
+                {
+                  "name": "Multiple - Non-Hispanic",
+                  "mental_health": {
+                    "mean": "26.6",
+                    "ci_l": "21.3",
+                    "ci_u": "32.7",
+                    "count": 729
+                  }
+                },
+                {
+                  "name": "Native Hawaiian/other PI",
+                  "mental_health": {
+                    "mean": "20.1",
+                    "ci_l": "9.4",
+                    "ci_u": "37.9",
+                    "count": 98
+                  }
+                },
+                {
+                  "name": "White",
+                  "mental_health": {
+                    "mean": "17.2",
+                    "ci_l": "15.3",
+                    "ci_u": "19.3",
+                    "count": 6782
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "chartData2":{
+    "data":{
+      "resultData":{
+        "table":{
+          "question": [
+            {
+              "name": "qn27",
+              "mental_health": {
+                "mean": "17.7",
+                "ci_l": "16.6",
+                "ci_u": "18.9",
+                "count": 15434
+              },
+              "sex": [
+                {
+                  "name": "Female",
+                  "race": [
+                    {
+                      "name": "Am Indian / Alaska Native",
+                      "mental_health": {
+                        "mean": "33.1",
+                        "ci_l": "20.6",
+                        "ci_u": "48.4",
+                        "count": 64
+                      }
+                    },
+                    {
+                      "name": "Asian",
+                      "mental_health": {
+                        "mean": "21.3",
+                        "ci_l": "15.2",
+                        "ci_u": "29.0",
+                        "count": 303
+                      }
+                    },
+                    {
+                      "name": "Black or African American",
+                      "mental_health": {
+                        "mean": "18.7",
+                        "ci_l": "15.1",
+                        "ci_u": "22.9",
+                        "count": 813
+                      }
+                    },
+                    {
+                      "name": "Hispanic/Latino",
+                      "mental_health": {
+                        "mean": "25.6",
+                        "ci_l": "22.6",
+                        "ci_u": "28.8",
+                        "count": 2533
+                      }
+                    },
+                    {
+                      "name": "Multiple - Non-Hispanic",
+                      "mental_health": {
+                        "mean": "33.8",
+                        "ci_l": "25.9",
+                        "ci_u": "42.6",
+                        "count": 386
+                      }
+                    },
+                    {
+                      "name": "Native Hawaiian/other PI",
+                      "mental_health": {
+                        "mean": "23.5",
+                        "ci_l": "4.7",
+                        "ci_u": "65.9",
+                        "count": 24
+                      }
+                    },
+                    {
+                      "name": "White",
+                      "mental_health": {
+                        "mean": "22.8",
+                        "ci_l": "19.7",
+                        "ci_u": "26.2",
+                        "count": 3426
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Male",
+                  "race": [
+                    {
+                      "name": "Am Indian / Alaska Native",
+                      "mental_health": {
+                        "mean": "13.3",
+                        "ci_l": "5.9",
+                        "ci_u": "27.2",
+                        "count": 96
+                      }
+                    },
+                    {
+                      "name": "Asian",
+                      "mental_health": {
+                        "mean": "14.9",
+                        "ci_l": "9.4",
+                        "ci_u": "22.8",
+                        "count": 314
+                      }
+                    },
+                    {
+                      "name": "Black or African American",
+                      "mental_health": {
+                        "mean": "11.0",
+                        "ci_l": "9.0",
+                        "ci_u": "13.4",
+                        "count": 825
+                      }
+                    },
+                    {
+                      "name": "Hispanic/Latino",
+                      "mental_health": {
+                        "mean": "12.4",
+                        "ci_l": "10.5",
+                        "ci_u": "14.7",
+                        "count": 2509
+                      }
+                    },
+                    {
+                      "name": "Multiple - Non-Hispanic",
+                      "mental_health": {
+                        "mean": "19.4",
+                        "ci_l": "12.8",
+                        "ci_u": "28.3",
+                        "count": 338
+                      }
+                    },
+                    {
+                      "name": "Native Hawaiian/other PI",
+                      "mental_health": {
+                        "mean": "14.9",
+                        "ci_l": "5.9",
+                        "ci_u": "32.5",
+                        "count": 72
+                      }
+                    },
+                    {
+                      "name": "White",
+                      "mental_health": {
+                        "mean": "11.6",
+                        "ci_l": "9.8",
+                        "ci_u": "13.5",
+                        "count": 3337
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "selectedFilters1":[
+    {
+      "key": "yrbsRace",
+      "title": "label.yrbs.filter.race",
+      "queryKey": "race",
+      "primary": false,
+      "value": [],
+      "groupBy": "column",
+      "autoCompleteOptions": [
+        {
+          "key": "Am Indian / Alaska Native",
+          "title": "American Indian or Alaska Native",
+          "$$hashKey": "object:1437"
+        },
+        {
+          "key": "Asian",
+          "title": "Asian",
+          "$$hashKey": "object:1438"
+        },
+        {
+          "key": "Black or African American",
+          "title": "Black or African American",
+          "$$hashKey": "object:1439"
+        },
+        {
+          "key": "Hispanic/Latino",
+          "title": "Hispanic or Latino",
+          "$$hashKey": "object:1440"
+        },
+        {
+          "key": "Native Hawaiian/other PI",
+          "title": "Native Hawaiian or Other Pacific Islander",
+          "$$hashKey": "object:1441"
+        },
+        {
+          "key": "White",
+          "title": "White",
+          "$$hashKey": "object:1442"
+        },
+        {
+          "key": "Multiple - Non-Hispanic",
+          "title": "Multiple Race",
+          "$$hashKey": "object:1443"
+        }
+      ],
+      "defaultGroup": "column",
+      "allChecked": true,
+      "$$hashKey": "object:1932"
+    }, {
+      "key": "question",
+      "title": "label.yrbs.filter.question",
+      "queryKey": "question.path",
+      "aggregationKey": "question.key",
+      "primary": false,
+      "value": [],
+      "groupBy": "row",
+      "filterType": "tree",
+      "autoCompleteOptions": [
+        {
+          "key": "Seriously considered attempting suicide",
+          "qkey": "qn27",
+          "title": "Seriously considered attempting suicide(during the 12 months before the survey)",
+          "$$hashKey": "object:2657"
+        },
+        {
+          "key": "Texted or e-mailed while driving a car or other vehicle",
+          "qkey": "qn12",
+          "title": "Texted or e-mailed while driving a car or other vehicle(on at least 1 day during the 30 days before the survey, among students who had driven a car or other vehicle during the 30 days before the survey)",
+          "$$hashKey": "object:1579"
+        }
+      ],
+      "donotshowOnSearch": true,
+      "selectTitle": "select.label.yrbs.filter.question",
+      "updateTitle": "update.label.yrbs.filter.question",
+      "iconClass": "purple-text",
+      "$$hashKey": "object:1933"
+    }],
+  "selectedFilters2":[
+    {
+      "key": "yrbsRace",
+      "title": "label.yrbs.filter.race",
+      "queryKey": "race",
+      "primary": false,
+      "value": [],
+      "groupBy": "column",
+      "autoCompleteOptions": [
+        {
+          "key": "Am Indian / Alaska Native",
+          "title": "American Indian or Alaska Native",
+          "$$hashKey": "object:3105"
+        },
+        {
+          "key": "Asian",
+          "title": "Asian",
+          "$$hashKey": "object:3106"
+        },
+        {
+          "key": "Black or African American",
+          "title": "Black or African American",
+          "$$hashKey": "object:3107"
+        },
+        {
+          "key": "Hispanic/Latino",
+          "title": "Hispanic or Latino",
+          "$$hashKey": "object:3108"
+        },
+        {
+          "key": "Native Hawaiian/other PI",
+          "title": "Native Hawaiian or Other Pacific Islander",
+          "$$hashKey": "object:3109"
+        },
+        {
+          "key": "White",
+          "title": "White",
+          "$$hashKey": "object:3110"
+        },
+        {
+          "key": "Multiple - Non-Hispanic",
+          "title": "Multiple Race",
+          "$$hashKey": "object:3111"
+        }
+      ],
+      "defaultGroup": "column",
+      "$$hashKey": "object:2902",
+      "allChecked": true
+    },
+    {
+      "key": "question",
+      "title": "label.yrbs.filter.question",
+      "queryKey": "question.path",
+      "aggregationKey": "question.key",
+      "primary": false,
+      "value": [],
+      "groupBy": "row",
+      "filterType": "tree",
+      "autoCompleteOptions": [
+        {
+          "key": "Seriously considered attempting suicide",
+          "qkey": "qn27",
+          "title": "Seriously considered attempting suicide(during the 12 months before the survey)",
+          "$$hashKey": "object:2657"
+        },
+        {
+          "key": "Texted or e-mailed while driving a car or other vehicle",
+          "qkey": "qn12",
+          "title": "Texted or e-mailed while driving a car or other vehicle(on at least 1 day during the 30 days before the survey, among students who had driven a car or other vehicle during the 30 days before the survey)",
+          "$$hashKey": "object:1579"
+        }
+      ],
+      "donotshowOnSearch": true,
+      "selectTitle": "select.label.yrbs.filter.question",
+      "updateTitle": "update.label.yrbs.filter.question",
+      "iconClass": "purple-text",
+      "$$hashKey": "object:2903"
+    },
+    {
+      "key": "yrbsSex",
+      "title": "label.yrbs.filter.sex",
+      "queryKey": "sex",
+      "primary": false,
+      "value": [],
+      "groupBy": "column",
+      "autoCompleteOptions": [
+        {
+          "key": "Female",
+          "title": "Female",
+          "$$hashKey": "object:3072"
+        },
+        {
+          "key": "Male",
+          "title": "Male",
+          "$$hashKey": "object:3073"
+        }
+      ],
+      "defaultGroup": "column",
+      "$$hashKey": "object:2900",
+      "allChecked": true
+    }
+  ]
+}

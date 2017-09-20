@@ -6,11 +6,11 @@ data_file:
   aws_access_key_id: 'your aws accesskey'
   aws_secret_access_key: 'your aws secret key'
   aws_s3_bucket_name: 'owh-data'
-  aws_s3_directory: 'test'
+  aws_s3_directory: 'datasets/mortality'
 elastic_search:
   host: 127.0.0.1
   port: 9200
-  bulk_load_size: 5000
-  index: owh
+  bulk_load_size: 10000
+  index: owh_mortality
   type: mortality
   type_mapping: mortality-type-mapping.json

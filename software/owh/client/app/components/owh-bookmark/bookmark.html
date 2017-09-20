@@ -1,0 +1,11 @@
+<!--for now showing only for number_of_deaths, latter will be enabled for all-->
+<div class="usa-width-one-sixth bookmark-div"
+     ng-class="{'margin-left-20' : (bmc.tableView=='mental_health' || bmc.tableView=='bridge_race')}">
+    <div class="button_wrapper">
+        <a id="bookmark-button" class="usa-button-outline usa-button-active bookmark-button" href="#"
+           title="HIG Search" ng-show="bmc.isFirefoxBrowser();"
+           rel="sidebar"> <span class="fa fa-star-o"></span> <span translate="label.bookmark.search"></span></a>
+        <a class="usa-button-outline usa-button-active bookmark-button" ng-show="!bmc.isFirefoxBrowser();"
+           ng-click="bmc.showBookmarkAlert();"><span class="fa fa-star-o"></span> <span translate="label.bookmark.search"></span></a>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+var YRBSSearchPage = function() {
+    var ysp = this;
+
+    ysp.yrbsOption = element(by.cssContainingText('a', 'Youth Risk Behavior'));
+    ysp.sideFilterUnOrderedList = element(by.css('.side-filters'));
+    //ysp.selectQuestionsButton = element(by.cssContainingText('button', 'Select Questions'));
+    ysp.updateQuestionsButton = element(by.cssContainingText('button', 'Update Questions'));
+    ysp.addSelectedQuestionsButton = element(by.cssContainingText('button', 'Filter Selected Questions'));
+    ysp.searchQuestionsBox = element(by.id('search_text'));
+    ysp.clearSelectedQuestionsButton = element(by.cssContainingText('button', 'CLEAR'));
+    ysp.owhTable = element(by.className('owh-data-table'));
+    ysp.sexualIdentity = element(by.partialLinkText('Sexual Identity'));
+    ysp.sexualContact = element(by.partialLinkText('Sex of Sexual Contacts'));
+    ysp.raceOptionsLink = element(by.partialLinkText('Race/Ethnicity'));
+
+    ysp.selectQuestionsButton = function(val) {
+        var elm = element(by.cssContainingText('button', val));
+        browser.executeScript("arguments[0].scrollIntoView();", elm);
+        return element(by.cssContainingText('button', val));
+    };
+
+    ysp.closePopup = function() {
+        element(by.id("modal-close")).click();
+    };
+    ysp.getCategoryBars = function() {
+        return element.all(by.className('owh-question__title'));
+    };
+
+    ysp.getCategoryContents = function() {
+        return element.all(by.className('owh-question__table'));
+    };
+
+    ysp.getShowMoreLinks = function() {
+        return element.all(by.className('owh-question__show'));
+    };
+
+    ysp.getCategoryQuestions = function() {
+        return element.all(by.className('owh-question__question'));
+    };
+
+    ysp.getExpandLinks = function() {
+        return element.all(by.className('owh-question__title'));
+    };
+
+    ysp.getShowOnlyLinks = function() {
+        return element.all(by.className('owh-question__show-only'));
+    };
+
+    ysp.getQuestionContent = function() {
+        return element.all(by.className('owh-question__content'));
+    };
+
+    ysp.getTableRowData = function(rowNumber) {
+        return ysp.owhTable.element(by.tagName('tbody')).all(by.tagName('tr')).get(rowNumber).all(by.tagName('td')).getText();
+    };
+
+    ysp.getOptions = function(filterType) {
+        return element(by.cssContainingText('a', filterType)).element(by.xpath('ancestor::label')).element(by.xpath('following-sibling::ul')).all(by.tagName('li'));
+    };
+
+    ysp.getTableHeaderData = function() {
+        return ysp.owhTable.element(by.tagName('thead')).all(by.tagName('tr')).get(rowNumber).all(by.tagName('th')).getText();
+    };
+
+    ysp.getSelectedTopic = function () {
+        var elm = element(by.model('mc.selectedShowFilter'));
+        return elm.$('[selected]');
+    };
+};
+
+module.exports = new YRBSSearchPage;

@@ -43,7 +43,7 @@
         "queryKey": "race",
         "primary": false,
         "value": [
-          "1"
+          "White"
         ],
         "groupBy": "row",
         "type": "label.filter.group.demographics",
@@ -51,35 +51,28 @@
         "defaultGroup": "column",
         "autoCompleteOptions": [
           {
-            "key": "3",
+            "key": "American Indian",
             "title": "American Indian",
             "deaths": "83,206",
             "count": 83206,
             "deathsPercentage": 0.65
           },
           {
-            "key": "4",
+            "key": "Asian or Pacific Islander",
             "title": "Asian or Pacific Islander",
             "deaths": "284,525",
             "count": 284525,
             "deathsPercentage": 2.23
           },
           {
-            "key": "2",
+            "key": "Black",
             "title": "Black",
             "deaths": "1,486,573",
             "count": 1486573,
             "deathsPercentage": 11.64
           },
           {
-            "key": "0",
-            "title": "Other (Puerto Rico only)",
-            "deaths": 0,
-            "count": 0,
-            "deathsPercentage": 0
-          },
-          {
-            "key": "1",
+            "key": "White",
             "title": "White",
             "deaths": "10,918,196",
             "count": 10918196,
@@ -102,14 +95,14 @@
         "showChart": true,
         "autoCompleteOptions": [
           {
-            "key": "F",
+            "key": "Female",
             "title": "Female",
             "deaths": "6,362,211",
             "count": 6362211,
             "deathsPercentage": 49.81
           },
           {
-            "key": "M",
+            "key": "Male",
             "title": "Male",
             "deaths": "6,410,289",
             "count": 6410289,
@@ -179,7 +172,7 @@
             "queryKey": "race",
             "primary": false,
             "value": [
-              "1"
+              "White"
             ],
             "groupBy": "row",
             "type": "label.filter.group.demographics",
@@ -187,35 +180,28 @@
             "defaultGroup": "column",
             "autoCompleteOptions": [
               {
-                "key": "3",
+                "key": "American Indian",
                 "title": "American Indian",
                 "deaths": "83,206",
                 "count": 83206,
                 "deathsPercentage": 0.65
               },
               {
-                "key": "4",
+                "key": "Asian or Pacific Islander",
                 "title": "Asian or Pacific Islander",
                 "deaths": "284,525",
                 "count": 284525,
                 "deathsPercentage": 2.23
               },
               {
-                "key": "2",
+                "key": "Black",
                 "title": "Black",
                 "deaths": "1,486,573",
                 "count": 1486573,
                 "deathsPercentage": 11.64
               },
               {
-                "key": "0",
-                "title": "Other (Puerto Rico only)",
-                "deaths": 0,
-                "count": 0,
-                "deathsPercentage": 0
-              },
-              {
-                "key": "1",
+                "key": "White",
                 "title": "White",
                 "deaths": "10,918,196",
                 "count": 10918196,
@@ -277,14 +263,14 @@
             "showChart": true,
             "autoCompleteOptions": [
               {
-                "key": "F",
+                "key": "Female",
                 "title": "Female",
                 "deaths": "6,362,211",
                 "count": 6362211,
                 "deathsPercentage": 49.81
               },
               {
-                "key": "M",
+                "key": "Male",
                 "title": "Male",
                 "deaths": "6,410,289",
                 "count": 6410289,
@@ -347,14 +333,14 @@
             "showChart": true,
             "autoCompleteOptions": [
               {
-                "key": "F",
+                "key": "Female",
                 "title": "Female",
                 "deaths": "6,362,211",
                 "count": 6362211,
                 "deathsPercentage": 49.81
               },
               {
-                "key": "M",
+                "key": "Male",
                 "title": "Male",
                 "deaths": "6,410,289",
                 "count": 6410289,
@@ -370,7 +356,7 @@
             "queryKey": "race",
             "primary": false,
             "value": [
-              "1"
+              "White"
             ],
             "groupBy": "row",
             "type": "label.filter.group.demographics",
@@ -378,35 +364,28 @@
             "defaultGroup": "column",
             "autoCompleteOptions": [
               {
-                "key": "3",
+                "key": "American Indian",
                 "title": "American Indian",
                 "deaths": "83,206",
                 "count": 83206,
                 "deathsPercentage": 0.65
               },
               {
-                "key": "4",
+                "key": "Asian or Pacific Islander",
                 "title": "Asian or Pacific Islander",
                 "deaths": "284,525",
                 "count": 284525,
                 "deathsPercentage": 2.23
               },
               {
-                "key": "2",
+                "key": "Black",
                 "title": "Black",
                 "deaths": "1,486,573",
                 "count": 1486573,
                 "deathsPercentage": 11.64
               },
               {
-                "key": "0",
-                "title": "Other (Puerto Rico only)",
-                "deaths": 0,
-                "count": 0,
-                "deathsPercentage": 0
-              },
-              {
-                "key": "1",
+                "key": "White",
                 "title": "White",
                 "deaths": "10,918,196",
                 "count": 10918196,
@@ -427,7 +406,7 @@
         "deaths": 157850,
         "race": [
           {
-            "name": "1",
+            "name": "White",
             "deaths": 157850,
             "gender": [
               {
@@ -475,36 +454,41 @@
           "title": "label.filter.race"
         },
         {
-          "title": "Female",
+          "title": "label.filter.gender: Female",
           "colspan": 1,
           "rowspan": 1,
-          "isData": true
+          "isData": true,
+          "helpText": "Female"
         },
         {
-          "title": "Male",
+          "title": "label.filter.gender: Male",
           "colspan": 1,
           "rowspan": 1,
-          "isData": true
+          "isData": true,
+          "helpText": "Male"
         },
         {
           "title": "Number of Deaths",
           "colspan": 1,
           "rowspan": 2,
+          "isTotal":true,
           "isData": true
         }
       ],
       [
         {
-          "title": "2014",
+          "title": "label.filter.year: 2014",
           "colspan": 1,
           "rowspan": 1,
-          "isData": true
+          "isData": true,
+          "helpText": "2014"
         },
         {
-          "title": "2014",
+          "title": "label.filter.year: 2014",
           "colspan": 1,
           "rowspan": 1,
-          "isData": true
+          "isData": true,
+          "helpText": "2014"
         }
       ]
     ],
@@ -522,24 +506,27 @@
           "isCount": false,
           "rowspan": 1,
           "colspan": 1,
-          "key": "1"
+          "key": "White"
         },
         {
-          "title": "0",
-          "percentage": 0,
-          "isCount": false
+        "title":"na",
+        "isCount":true,
+        "standardPop":"na",
+        "pop":"n/a"
         },
         {
-          "title": "0",
-          "percentage": 0,
-          "isCount": false
+          "title":"na",
+          "isCount":true,
+          "standardPop":"na",
+          "pop":"n/a"
         },
         {
-          "title": "157,850",
+          "title": 157850,
           "isCount": true,
           "rowspan": 1,
           "colspan": 1,
-          "isBold": true
+          "isBold": true,
+          "isTotal":true
         }
       ],
       [
@@ -551,7 +538,7 @@
           "isBold": true
         },
         {
-          "title": "157,850",
+          "title": 157850,
           "percentage": 1.2358582892934038,
           "isCount": true,
           "rowspan": 1,

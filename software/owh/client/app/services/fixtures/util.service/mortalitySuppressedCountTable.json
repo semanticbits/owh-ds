@@ -1,0 +1,80 @@
+{
+  "headers":{
+    "rowHeaders": [
+      {
+        "key": "race",
+        "title": "label.filter.race",
+        "queryKey": "race",
+        "primary": false,
+        "value": [
+          "American Indian"
+        ],
+        "groupBy": "row",
+        "type": "label.filter.group.demographics",
+        "showChart": true,
+        "defaultGroup": "column",
+        "autoCompleteOptions": [
+          {
+            "key": "American Indian",
+            "title": "American Indian",
+            "deaths": "suppressed",
+            "count": "suppressed",
+            "deathsPercentage": null
+          }
+        ],
+        "allChecked": false
+      }
+    ],
+    "columnHeaders": [
+      {
+        "key": "gender",
+        "title": "label.filter.gender",
+        "queryKey": "sex",
+        "primary": false,
+        "value": [],
+        "groupBy": "column",
+        "type": "label.filter.group.demographics",
+        "groupByDefault": "column",
+        "showChart": true,
+        "autoCompleteOptions": [
+          {
+            "key": "Female",
+            "title": "Female",
+            "deaths": "suppressed",
+            "count": "suppressed",
+            "deathsPercentage": null
+          },
+          {
+            "key": "Male",
+            "title": "Male",
+            "deaths": 10,
+            "count": 10,
+            "deathsPercentage": 55.56
+          }
+        ],
+        "defaultGroup": "column",
+        "allChecked": true
+      }
+    ]
+  },
+  "data":{
+    "race": [
+      {
+        "name": "American Indian",
+        "deaths": "suppressed",
+        "gender": [
+          {
+            "name": "Male",
+            "deaths": 10
+          },
+          {
+            "name": "Female",
+            "deaths": "suppressed"
+          }
+        ]
+      }
+    ]
+  },
+  "countLabel": "Total",
+  "calculateRowTotal":true
+}

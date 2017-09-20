@@ -16,19 +16,35 @@
         //TODO: move these route definitions inside of their respective modules
         //Routes
         $stateProvider.state('home', {
-            url:'/',
-            templateUrl: 'app/modules/home/home.html',
-            controller: 'HomeController',
-            controllerAs: 'hc'
+                url:'/',
+                templateUrl: 'app/modules/home/home.html',
+                controller: 'HomeController',
+                controllerAs: 'hc'
         }).state('search', {
-                url:'/search',
+                url:'/search/:queryID',
                 templateUrl: 'app/modules/search/search.html',
                 controller: 'SearchController',
                 controllerAs: 'sc',
-                params: {primaryFilterKey: 'deaths'}
+                params: {primaryFilterKey: 'deaths', allFilters: null, selectedFilters: null, tableView: 'number_of_deaths', cacheQuery: false},
+                onEnter: function () {
+                    $('html, body').animate({ scrollTop: -10000 }, 100);
+                }
+        }).state('description',  {
+                url:'/description/:dataSetKey',
+                templateUrl: 'app/modules/description/description.html',
+                controller: 'DescriptionController',
+                controllerAs: 'dc'
+        }).state('factsheets',  {
+                url:'/factsheets',
+                templateUrl: 'app/modules/factsheet/factsheet.html',
+                controller: 'FactSheetController',
+                controllerAs: 'fsc'
+        }).state('404',  {
+                url:'/404',
+                templateUrl: '404.html'
         });
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/404');
 
         // configures staticFilesLoader
         $translateProvider.useStaticFilesLoader({

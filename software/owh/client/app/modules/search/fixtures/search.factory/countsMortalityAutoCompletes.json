@@ -4,61 +4,61 @@
     "simple": {
       "placeofdeath": [
         {
-          "name": "1",
+          "name": "Hospital, clinic or Medical Center - Inpatient1",
           "deaths": 4013568
         },
         {
-          "name": "4",
+          "name": "Decedent’s home",
           "deaths": 3610576
         },
         {
-          "name": "6",
+          "name": "Nursing home/long term care",
           "deaths": 2607395
         },
         {
-          "name": "2",
+          "name": "Hospital, Clinic or Medical Center - Outpatient or admitted to Emergency Room2",
           "deaths": 869355
         },
         {
-          "name": "7",
+          "name": "Other",
           "deaths": 837276
         },
         {
-          "name": "5",
+          "name": "Hospital, clinic or Medical Center - Patient status unknown'",
           "deaths": 751689
         },
         {
-          "name": "3",
+          "name": "Hospital, Clinic or Medical Center - Dead on Arrival",
           "deaths": 73283
         },
         {
-          "name": "9",
+          "name": "Place of death unknown",
           "deaths": 9358
         }
       ],
       "hispanicOrigin": [
         {
-          "name": "100-199",
+          "name": "Non-Hispanic",
           "deaths": 11946443
         },
         {
-          "name": "210-219",
+          "name": "Mexican",
           "deaths": 445300
         },
         {
-          "name": "260-269",
+          "name": "Puerto Rican",
           "deaths": 101372
         },
         {
-          "name": "270-274",
+          "name": "Cuban",
           "deaths": 73151
         },
         {
-          "name": "280-299",
+          "name": "Other Hispanic",
           "deaths": 71941
         },
         {
-          "name": "996-999",
+          "name": "Unknown",
           "deaths": 36983
         },
         {
@@ -88,83 +88,87 @@
       ],
       "race": [
         {
-          "name": "1",
+          "name": "White",
           "deaths": 10918196
         },
         {
-          "name": "2",
+          "name": "Black",
           "deaths": 1486573
         },
         {
-          "name": "4",
+          "name": "Asian or Pacific Islander",
           "deaths": 284525
         },
         {
-          "name": "3",
+          "name": "American Indian",
           "deaths": 83206
         }
       ],
       "gender": [
         {
-          "name": "M",
+          "name": "Male",
           "deaths": 6410289
         },
         {
-          "name": "F",
+          "name": "Female",
           "deaths": 6362211
         }
       ],
       "month": [
         {
-          "name": "01",
+          "name": "January",
           "deaths": 1188225
         },
         {
-          "name": "12",
+          "name": "December",
           "deaths": 1155071
         },
         {
-          "name": "03",
+          "name": "March",
           "deaths": 1128809
         },
         {
-          "name": "11",
+          "name": "November",
           "deaths": 1061378
         },
         {
-          "name": "10",
+          "name": "October",
           "deaths": 1060011
         },
         {
-          "name": "02",
+          "name": "February",
           "deaths": 1052406
         },
         {
-          "name": "04",
+          "name": "April",
           "deaths": 1049859
         },
         {
-          "name": "05",
+          "name": "May",
           "deaths": 1048883
         },
         {
-          "name": "07",
+          "name": "July",
           "deaths": 1020885
         },
         {
-          "name": "08",
+          "name": "August",
           "deaths": 1016567
         },
         {
-          "name": "06",
+          "name": "June",
           "deaths": 995236
         },
         {
-          "name": "09",
+          "name": "September",
           "deaths": 995170
         }
       ],
       "year": [
+        {
+          "name": "2015",
+          "deaths": 2630800
+        },
         {
           "name": "2014",
           "deaths": 2630800
@@ -188,35 +192,35 @@
       ],
       "weekday": [
         {
-          "name": "6",
+          "name": "Friday",
           "deaths": 1848002
         },
         {
-          "name": "7",
+          "name": "Saturday",
           "deaths": 1845915
         },
         {
-          "name": "2",
+          "name": "Monday",
           "deaths": 1827655
         },
         {
-          "name": "4",
+          "name": "Wednesday",
           "deaths": 1816256
         },
         {
-          "name": "3",
+          "name": "Tuesday",
           "deaths": 1812061
         },
         {
-          "name": "5",
+          "name": "Thursday",
           "deaths": 1811070
         },
         {
-          "name": "1",
+          "name": "Sunday",
           "deaths": 1810734
         },
         {
-          "name": "9",
+          "name": "Unknown",
           "deaths": 807
         }
       ],
@@ -238,39 +242,39 @@
       ],
       "agegroup": [
         {
-          "name": "23-23",
+          "name": "85-89 years",
           "deaths": 1919437
         },
         {
-          "name": "22-22",
+          "name": "80-84 years",
           "deaths": 1746347
         },
         {
-          "name": "24-24",
+          "name": "90-94 years",
           "deaths": 1413054
         },
         {
-          "name": "21-21",
+          "name": "75-79 years",
           "deaths": 1378719
         },
         {
-          "name": "20-20",
+          "name": "70-74 years",
           "deaths": 1156326
         },
         {
-          "name": "19-19",
+          "name": "65-69 years",
           "deaths": 1028578
         },
         {
-          "name": "18-18",
+          "name": "60-64 years",
           "deaths": 909577
         },
         {
-          "name": "17-17",
+          "name": "55-59 years",
           "deaths": 745316
         },
         {
-          "name": "25-25",
+          "name": "95-99 years",
           "deaths": 562427
         },
         {

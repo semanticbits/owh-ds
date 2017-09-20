@@ -1,42 +1,28 @@
 <!--<owh-nested-accordion accordion-data="otc.dataToAccordion"></owh-nested-accordion>-->
-<table>
-    <thead>
-    <tr ng-repeat="eachHeaderRow in otc.dataToMixedTable.headers">
-        <th ng-repeat="eachHeader in eachHeaderRow" ng-bind="eachHeader.title" colspan="{{eachHeader.colspan}}" rowspan="{{eachHeader.rowspan}}" ng-class="{'text-right': eachHeader.isData && eachHeader.colspan <= 3, 'text-center': eachHeader.colspan > 3}"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="eachRow in otc.dataToMixedTable.data track by $index">
-        <td ng-repeat="eachColumn in eachRow track by $index" colspan="{{eachColumn.colspan}}" rowspan="{{eachColumn.rowspan}}" ng-class="{'bold-class': eachColumn.isBold, 'text-right': eachColumn.isCount}">
-            <span ng-if="!eachColumn.isCount" ng-bind-html="eachColumn.title"></span>
-            <i class="cursor-pointer {{eachColumn.iconClass}}" ng-if="eachColumn.iconClass" ng-click="eachColumn.onIconClick(eachColumn.key)"></i>
-            <label class="custom-label" ng-if="eachColumn.isCount">
-                <span ng-bind="eachColumn.title" class="count-value"></span>
-                <span ng-show="$index != eachRow.length - 1 && eachColumn.percentage != undefined" class="count-value">({{eachColumn.percentage}}%)</span>
-            </label>
-            <span ng-if="eachColumn.isCount" class="inline-bar" style="width: {{eachColumn.percentage}}%"></span>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<!--
-<table>
-    <thead>
-        <tr>
-            <th ng-repeat="header in otc.headers" ng-bind="header.title | translate"></th>
-            <th ng-bind="otc.countLabel | translate"></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="eachRowData in otc.dataToTable track by $index" class="{{eachRowData.cssClass}}">
-            <td ng-repeat="header in otc.headers">
-                <i class="fa fa-angle-down fa-2x cursor-pointer" ng-if="$index === eachRowData.collapsibleIndex && eachRowData.allowCollapse" ng-click="otc.toggle($event, eachRowData.childCssClass)"></i>
-                <span ng-bind="eachRowData[header.key]"></span>
-            </td>
-            <td>
-                <span ng-bind="eachRowData[otc.countKey]" class="count-value"></span>
-                <span class="inline-bar border-1" style="width: {{eachRowData[otc.countKey + 'Percentage']}}%"></span>
-            </td>
-        </tr>
-    </tbody>
-</table>-->
+<div class="clusterize">
+    <div class="clusterize-headers">
+        <table id="headers-table" class="owh-data-table">
+            <thead>
+            <tr ng-repeat="eachHeaderRow in otc.tableData.headers">
+                <th ng-repeat="eachHeader in eachHeaderRow" ng-bind="($last && (otc.tableData.headers.length == 1 || eachHeader.rowspan != 1) && (otc.tableView == 'crude_death_rates' || otc.tableView == 'age-adjusted_death_rates')) ? 'Total' : eachHeader.title" colspan="{{eachHeader.colspan}}" rowspan="{{eachHeader.rowspan}}" ng-class="{'text-right': eachHeader.isCount && eachHeader.colspan <= 3}"></th>
+                <!--<th ng-repeat="eachHeader in eachHeaderRow"  colspan="{{eachHeader.colspan}}" rowspan="{{eachHeader.rowspan}}" ng-class="{'text-right': eachHeader.isCount && eachHeader.colspan <= 3}"></th>-->
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div id="clusterize-table">
+        <table>
+            <tbody id="content-area" class="clusterize-content">
+                <!--<tr ng-repeat="eachRow in otc.tableData.data track by $index" ng-init="$outerIndex = $index" post-repeat-directive>-->
+                    <!--<td ng-repeat="eachColumn in eachRow track by $index" colspan="{{eachColumn.colspan}}" rowspan="{{eachColumn.rowspan}}" ng-class="{'bold-class': eachColumn.isBold, 'text-right': eachColumn.isCount}">-->
+                        <!--<owh-table-cell cell="eachColumn"-->
+                            <!--table-view="{{ otc.tableView }}"-->
+                            <!--row="eachRow"-->
+                            <!--row-index="$outerIndex"-->
+                            <!--col-index="$index"></owh-table-cell>-->
+                    <!--</td>-->
+                <!--</tr>-->
+            </tbody>
+        </table>
+    </div>
+</div>

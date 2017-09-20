@@ -1,100 +1,104 @@
 {
-  "data": [
+  "charttype":"multiBarChart",
+  "title":"label.filter.gender and label.filter.race",
+  "longtitle":"chart.title.measure.deaths by label.filter.gender and label.filter.race in undefined for undefined",
+  "dataset":"deaths",
+  "data":[
     {
-      "key": "Female",
-      "values": [
-        {
-          "x": "American Indian",
-          "y": 8185
-        },
-        {
-          "x": "Asian or Pacific Islander",
-          "y": 30068
-        },
-        {
-          "x": "Black",
-          "y": 151344
-        },
-        {
-          "x": "Other (Puerto Rico only)",
-          "y": 0
-        },
-        {
-          "x": "White",
-          "y": 1109971
-        }
+      "name":"Male     ",
+      "x":[
+        "White",
+        "Black",
+        "Asian or Pacific Islander",
+        "American Indian"
       ],
-      "color": "#fe66ff"
+      "y":[
+        1131379,
+        157972,
+        32035,
+        9846
+      ],
+      "text":[
+        "1,131,379",
+        "157,972",
+        "32,035",
+        "9,846"
+      ],
+      "orientation":"v",
+      "type":"bar",
+      "hoverinfo":"none",
+      "marker":{
+        "color":"#65c2ff"
+      }
     },
     {
-      "key": "Male",
-      "values": [
-        {
-          "x": "American Indian",
-          "y": 9846
-        },
-        {
-          "x": "Asian or Pacific Islander",
-          "y": 32035
-        },
-        {
-          "x": "Black",
-          "y": 157972
-        },
-        {
-          "x": "Other (Puerto Rico only)",
-          "y": 0
-        },
-        {
-          "x": "White",
-          "y": 1131379
-        }
+      "name":"Female     ",
+      "x":[
+        "White",
+        "Black",
+        "Asian or Pacific Islander",
+        "American Indian"
       ],
-      "color": "#009aff"
+      "y":[
+        1109971,
+        151344,
+        30068,
+        8185
+      ],
+      "text":[
+        "1,109,971",
+        "151,344",
+        "30,068",
+        "8,185"
+      ],
+      "orientation":"v",
+      "type":"bar",
+      "hoverinfo":"none",
+      "marker":{
+        "color":"#ED93CB"
+      }
     }
   ],
-  "title": "label.title.gender.race",
-  "options": {
-    "chart": {
-      "type": "multiBarChart",
-      "height": 250,
-      "width": 350,
-      "margin": {
-        "top": 5,
-        "right": 5,
-        "bottom": 45,
-        "left": 45
+  "layout":{
+    "width":128,
+    "autosize":true,
+    "showlegend":false,
+    "margin":{
+      "l":20,
+      "r":10,
+      "b":20,
+      "t":20
+    },
+    "xaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
       },
-      "showMaxMin": false,
-      "showLegend": false,
-      "showControls": false,
-      "showValues": false,
-      "showXAxis": true,
-      "showYAxis": true,
-      "reduceXTicks": false,
-      "legend": {
-        "width": 200,
-        "expanded": true
+      "exponentformat":"none",
+      "tickangle":45,
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "fixedrange":true,
+      "title":"label.filter.race"
+    },
+    "yaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
       },
-      "staggerLabels": true,
-      "rotateLabels": 70,
-      "clipEdge": true,
-      "duration": 500,
-      "stacked": true,
-      "xAxis": {
-        "axisLabelDistance": -20,
-        "axisLabel": "label.filter.race",
-        "margin": {
-          "top": 60
-        }
-      },
-      "yAxis": {
-        "axisLabelDistance": -20,
-        "axisLabel": "Deaths"
-      },
-      "useInteractiveGuideline": false,
-      "interactive": false,
-      "tooltip": {}
-    }
+      "exponentformat":"none",
+      "tickangle":45,
+      "ticksuffix":"   ",
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "fixedrange":true,
+      "title":"Deaths"
+    },
+    "barmode":"stack"
+  },
+  "options":{
+    "displayModeBar":false
   }
 }

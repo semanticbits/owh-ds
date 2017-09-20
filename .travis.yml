@@ -1,16 +1,10 @@
 language: node_js
 node_js:
-  - '4.4'
+  - "node"
+  
 services:
   - docker
 
-cache:
-  directories:
-  - node_modules
-  - software/owh/server/node_modules
-  - software/owh/client/node_modules
-  - bower_components
-  - software/owh/client/bower_components
 addons:
   code_climate:
     repo_token: aa4bb84528f703e93a68f03079e9870898d452659e9498bbba8fb043c66e3083
@@ -20,16 +14,19 @@ env:
     - AWS_ACCESS_KEY_ID=$OWH_ACCESS_KEY
     - AWS_SECRET_ACCESS_KEY=$OWH_ACCESS_SECRET
     - NODE_ENV=test
-  
+
 before_install:
-  - curl -O https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.4.0/elasticsearch-2.4.0.deb && sudo dpkg -i --force-confnew elasticsearch-2.4.0.deb && sudo service elasticsearch restart
-  - docker info
-  - openssl aes-256-cbc -K $encrypted_515f2799f321_key -iv $encrypted_515f2799f321_iv -in .owh/owh-config.yaml.enc -out .owh/owh-config.yaml -d
+  - docker info  
+  - mkdir -p .owh/logs
+  - openssl aes-256-cbc -K $encrypted_24a8a70e72ba_key -iv $encrypted_24a8a70e72ba_iv -in .owh/owh-config.yaml.enc -out .owh/owh-config.yaml -d
   - pip install awscli
   - export PATH=$PATH:$HOME/.local/bin
-   
+
 install:
   - cd software/owh/server
+  - nvm install node
+  - nvm use node
+  - node --version
   - npm install
   - npm install --dev
   - cd  ../client
@@ -42,15 +39,21 @@ install:
 
 before_script:
   - sleep 10
-  - curl http://localhost:9200/  # To verify ElasticSearch running
-  - curl -XPUT 'http://localhost:9200/owh' #create index 'owh' in ElasticSearch
-  - "curl -XPUT \"http://localhost:9200/owh/_settings\" -d '{ \"index\" : { \"max_result_window\" : 1000000000}}\'" #increase result window - forgive the nasty esacping.
+  - curl http://54.242.94.197/esdev  # To verify ElasticSearch running 
+  - curl http://54.242.94.197/stats/questions?d=yrbss # check connection to YRBS dev service
+  - java -version
+  - echo $JAVA_HOME
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - npm start > /dev/null &
   - ./node_modules/protractor/bin/webdriver-manager update
   - sleep 1 #give server time to start
 
+group: deprecated-2017Q2
+language: java
+jdk:
+  - oraclejdk8
+  
 script:
   - npm run-script test-single-run
   - ls
@@ -61,12 +64,18 @@ script:
   - npm start > /dev/null &
   - sleep 10
   - cd ../client
-  - ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox
+  #- ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Factsheets
+  # - ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Yrbs,@PRAMS,@Home
+  #- ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Natality,@Mortality
+  #- ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@CancerIncidence,@Common,@Infant
+  #- ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Census,@AIDS
+  #- ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@STD,@TB,@DataDocumentation
 
 after_success:
   - cd ..
   - lcov-result-merger './**/lcov.info' 'merged-lcov.info'
   - codeclimate-test-reporter < "merged-lcov.info"
+  - aws s3 sync client/cucumber-test-reports s3://owh-cucumber-report --acl public-read
 
 before_deploy:
 
@@ -75,6 +84,7 @@ before_deploy:
   - cp -R $TRAVIS_BUILD_DIR/deployment/* $TRAVIS_BUILD_DIR/software/owh
   # End the nasty bit.
   - aws s3 sync s3://owh-config-dev $TRAVIS_BUILD_DIR/software/owh
+  - mkdir -p $TRAVIS_BUILD_DIR/software/owh/.owh/logs
   - docker-compose up -d
   - docker-compose build
   - docker images

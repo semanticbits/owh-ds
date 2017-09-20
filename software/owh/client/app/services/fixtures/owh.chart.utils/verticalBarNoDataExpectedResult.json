@@ -1,47 +1,51 @@
 {
-  "data": [],
-  "title": "label.title.gender.race",
-  "options": {
-    "chart": {
-      "type": "multiBarChart",
-      "height": 250,
-      "width": 350,
-      "margin": {
-        "top": 5,
-        "right": 5,
-        "bottom": 45,
-        "left": 45
+  "charttype":"multiBarChart",
+  "title":"label.filter.gender and label.filter.race",
+  "longtitle":"chart.title.measure.deaths by label.filter.gender and label.filter.race in undefined for undefined",
+  "dataset":"deaths",
+  "data":[
+
+  ],
+  "layout":{
+    "width":128,
+    "autosize":true,
+    "showlegend":false,
+    "margin":{
+      "l":20,
+      "r":10,
+      "b":20,
+      "t":20
+    },
+    "xaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
       },
-      "showMaxMin": false,
-      "showLegend": false,
-      "showControls": false,
-      "showValues": false,
-      "showXAxis": true,
-      "showYAxis": true,
-      "reduceXTicks": false,
-      "legend": {
-        "width": 200,
-        "expanded": true
+      "exponentformat":"none",
+      "tickangle":45,
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "fixedrange":true,
+      "title":"label.filter.race"
+    },
+    "yaxis":{
+      "visible":true,
+      "titlefont":{
+        "size":15
       },
-      "staggerLabels": true,
-      "rotateLabels": 70,
-      "clipEdge": true,
-      "duration": 500,
-      "stacked": false,
-      "xAxis": {
-        "axisLabelDistance": -20,
-        "axisLabel": "label.filter.race",
-        "margin": {
-          "top": 60
-        }
-      },
-      "yAxis": {
-        "axisLabelDistance": -20,
-        "axisLabel": "Deaths"
-      },
-      "useInteractiveGuideline": false,
-      "interactive": false,
-      "tooltip": {}
-    }
+      "exponentformat":"none",
+      "tickangle":45,
+      "ticksuffix":"   ",
+      "showline":true,
+      "gridcolor":"#bdbdbd",
+      "showticklabels":false,
+      "fixedrange":true,
+      "title":"Deaths"
+    },
+    "barmode":"bar"
+  },
+  "options":{
+    "displayModeBar":false
   }
 }

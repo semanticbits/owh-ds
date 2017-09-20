@@ -34,6 +34,38 @@
       'fetch' : {
         method : 'GET',
         url: '/fb/'
+      },
+      'generateHashCode' : {
+        method : 'POST',
+        url: '/generateHashCode'
+      },
+      'getFBAppID' : {
+        method : 'GET',
+        url: '/getFBAppID'
+      },
+      'getYRBSQuestionsTree' : {
+        method : 'GET',
+        url: '/yrbsQuestionsTree'
+      },
+      'getPRAMSQuestionsTree': {
+          method: 'GET',
+          url: '/pramsQuestionsTree'
+      },
+      'getBRFSQuestionsTree': {
+          method: 'GET',
+          url: '/brfsQuestionsTree'
+      },
+      'getDsMetadata' : {
+        method : 'GET',
+        url: '/dsmetadata/:dataset'
+      },
+      'convertSVGtoPNG' : {
+        method : 'POST',
+        url: '/svgtopng'
+      },
+      'getFactSheet' : {
+          method : 'GET',
+          url: '/factsheet'
       }
     }
   }
