@@ -3,7 +3,7 @@ var supertest = require("supertest");
 var expect = require("expect.js");
 var config = require('../config/config');
 
-describe.only("YRBS API", function () {
+describe("YRBS API", function () {
     var yrbs;
     this.timeout(60000);
     beforeEach( function () {
