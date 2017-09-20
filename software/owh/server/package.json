@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "prestart": "npm install",
-    "start": "nodemon --debug=3001 ./bin/www",
+    "start": "node ./bin/www",
     "debug": "nodemon --inspect=3001 ./bin/www ",
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive test"
   },
