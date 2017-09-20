@@ -1,0 +1,35 @@
+sudo: required 
+
+language: node_js
+node_js:
+  - "node"
+
+services:
+  - docker
+
+env:
+  global:
+    - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PROD
+    - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PROD
+#    - NODE_ENV=test
+
+install:
+  - docker info
+  - mkdir -p .owh/logs
+  - sudo pip install awscli
+  - export PATH=$PATH:$HOME/.local/bin
+
+script:
+  - cd $TRAVIS_BUILD_DIR/software/owh
+  - cp -R $TRAVIS_BUILD_DIR/deployment/* $TRAVIS_BUILD_DIR/software/owh
+  - mkdir -p $TRAVIS_BUILD_DIR/software/owh/.owh/logs
+
+after_success:
+  - docker --version  # document the version travis is using
+  - eval $(aws ecr get-login --region us-east-1) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
+  - docker build -t owh-prod .
+  - docker tag owh-prod:latest 498284886784.dkr.ecr.us-east-1.amazonaws.com/owh-prod:latest
+  - docker push 498284886784.dkr.ecr.us-east-1.amazonaws.com/owh-prod:latest
+  - sh script.sh
+
+

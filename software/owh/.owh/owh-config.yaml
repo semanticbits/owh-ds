@@ -1,12 +1,12 @@
 # Default config
 default: 
   elastic_search:
-    url: 'http://localhost:9200/'
+    url: 'https://search-owh-prod-j72vdl44huddysgj5y25v4z6su.us-east-1.es.amazonaws.com'
   yrbs:
-    queryUrl: ''
-    questionsUrl: ''
+    queryUrl: 'http://34.232.240.197:7777/stats' 
+    questionsUrl: 'http://34.232.240.197:7777/questions'
   wonder:
-    url: 'http://54.242.94.197/wonder/'
+    url: 'https://search-owh-prod-j72vdl44huddysgj5y25v4z6su.us-east-1.es.amazonaws.com/wonder/'
     apix_project: ''
     apix_token: ''
   logging:
