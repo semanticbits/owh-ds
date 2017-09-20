@@ -30,6 +30,7 @@ after_success:
   - docker build -t owh-prod .
   - docker tag owh-prod:latest 498284886784.dkr.ecr.us-east-1.amazonaws.com/owh-prod:latest
   - docker push 498284886784.dkr.ecr.us-east-1.amazonaws.com/owh-prod:latest
+  - cd $TRAVIS_BUILD_DIR
   - sh script.sh
 
 
