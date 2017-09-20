@@ -206,7 +206,7 @@ function search(q) {
     } else if (preparedQuery.apiQuery.searchFor === 'infant_mortality') {
         //Get all selected filter options
         var allSelectedFilterOptions = [];
-        var selectedYears = searchUtils.getYearFilter(q.allFilters, 'year_of_death');
+        var selectedYears = searchUtils.getTargetFilterValue(q.allFilters, 'year_of_death');
         var groupByOptions = searchUtils.getSelectedGroupByOptions(q.allFilters);
         var options = selectedYears.reduce(function (prev, year) {
             var clone = JSON.parse(JSON.stringify(groupByOptions));

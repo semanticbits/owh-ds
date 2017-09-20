@@ -298,6 +298,32 @@ describe("Search controller: ", function () {
         expect(searchController.filters.selectedPrimaryFilter.allFilters[0].autoCompleteOptions[1].key).toEqual('Dominican');
     });
 
+    it('changeViewFilter should disable ucd mcd grouping for crude_death_rates and age adjusted rate', function() {
+        spyOn(searchController, 'search');
+        var ucdfilter = {
+            query_key: 'ucd-chapter-10',
+            key: 'ucd-chapter-10'
+        };
+        var mcdfilter = {
+            query_key: 'mcd-chapter-10',
+            key: 'mcd-chapter-10'
+        };
+
+        searchController.filters = {selectedPrimaryFilter: {data: {}, allFilters: [ucdfilter, mcdfilter], sideFilters: [{sideFilters:[{allowGrouping: true,filters: ucdfilter},{allowGrouping: true,filters: mcdfilter}]}]}};
+
+        searchController.changeViewFilter({key: 'crude_death_rates'});
+        expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].sideFilters[0].allowGrouping).toEqual(false);
+        expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].sideFilters[1].allowGrouping).toEqual(false);
+
+        searchController.changeViewFilter({key: 'number_of_deaths'});
+        expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].sideFilters[0].allowGrouping).toEqual(true);
+        expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].sideFilters[1].allowGrouping).toEqual(true);
+
+        searchController.changeViewFilter({key: 'age-adjusted_death_rates'});
+        expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].sideFilters[0].allowGrouping).toEqual(false);
+        expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].sideFilters[1].allowGrouping).toEqual(false);
+    });
+
     it('should reset topic filter on changeViewFilter for prams class', function() {
         var utilService = $injector.get('utilService');
         var pramsFilters  =filters.search[4];
