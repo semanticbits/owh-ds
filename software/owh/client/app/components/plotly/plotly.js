@@ -41,16 +41,16 @@
         graph.on('plotly_hover', function(data){
             var hi = {};
             if(data.points[0].data.type==='bar' && data.points[0].data.orientation === 'h'){
-                hi.name = data.points[0].yaxis.title+": "+data.points[0].y;
+                hi.name = data.points[0].yaxis.title+": "+data.points[0].data.ylong[data.points[0].pointNumber];
                 hi.points = [];
                 data.points.forEach(function (p) {
-                    hi.points.push({name:p.data.name, value:p.text.toLocaleString(), color:p.data.marker.color});
+                    hi.points.push({name:p.data.namelong, value:p.text.toLocaleString(), color:p.data.marker.color});
                 });
             }else { //line or vertical bar
-                hi.name = data.points[0].xaxis.title+": "+data.points[0].x;
+                hi.name = data.points[0].xaxis.title+": "+data.points[0].data.xlong[data.points[0].pointNumber];
                 hi.points = [];
                 data.points.forEach(function (p) {
-                    hi.points.push({name:p.data.name, value:p.text.toLocaleString(), color:p.data.marker.color});
+                    hi.points.push({name:p.data.namelong, value:p.text.toLocaleString(), color:p.data.marker.color});
                 });
             }
             hi.points.sort(function(a, b) {

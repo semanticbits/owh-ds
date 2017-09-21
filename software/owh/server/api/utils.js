@@ -384,9 +384,9 @@ function suppressCounts (obj, countKey, dataType, suppressKey, maxValue, dataset
             dataType = property;
         }
 
-        if (obj[property].constructor === Object) {
+        if (obj[property] && obj[property].constructor === Object) {
             suppressCounts(obj[property], countKey, dataType, suppressKey, maxValue, dataset);
-        } else if (obj[property].constructor === Array) {
+        } else if (obj[property] && obj[property].constructor === Array) {
             obj[property].forEach(function(arrObj) {
                 suppressCounts(arrObj, countKey, dataType, suppressKey, maxValue, dataset);
             });
