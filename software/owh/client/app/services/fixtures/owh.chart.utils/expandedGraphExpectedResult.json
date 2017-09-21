@@ -4,11 +4,11 @@
       "width":1000,
       "autosize":true,
       "showlegend":true,
-      "margin":{
-        "l":200,
-        "r":10,
-        "b":200,
-        "t":150
+      "legend":{
+        "orientation":"v",
+        "x":1.01,
+        "y":0.4,
+        "traceorder":"reversed"
       },
       "xaxis":{
         "visible":true,
@@ -37,19 +37,20 @@
         "fixedrange":true,
         "title":"label.filter.race"
       },
+      "margin":{
+        "l":200,
+        "r":10,
+        "b":200,
+        "t":150
+      },
       "barmode":"stack",
       "title":"chart.title.measure.deaths by label.filter.gender and label.filter.race in undefined for undefined",
-      "height":750,
-      "legend":{
-        "orientation":"v",
-        "x":1.01,
-        "y":0.4,
-        "traceorder":"reversed"
-      }
+      "height":750
     },
     "dataset":"deaths",
     "data":[
       {
+        "namelong":"Male     ",
         "name":"Male     ",
         "x":[
           1131379,
@@ -58,6 +59,12 @@
           9846
         ],
         "y":[
+          "White",
+          "Black",
+          "Asian or Pacific Islander",
+          "American Indian"
+        ],
+        "ylong":[
           "White",
           "Black",
           "Asian or Pacific Islander",
@@ -77,6 +84,7 @@
         }
       },
       {
+        "namelong":"Female     ",
         "name":"Female     ",
         "x":[
           1109971,
@@ -85,6 +93,12 @@
           8185
         ],
         "y":[
+          "White",
+          "Black",
+          "Asian or Pacific Islander",
+          "American Indian"
+        ],
+        "ylong":[
           "White",
           "Black",
           "Asian or Pacific Islander",
@@ -112,11 +126,11 @@
       "width":1000,
       "autosize":true,
       "showlegend":true,
-      "margin":{
-        "l":200,
-        "r":10,
-        "b":200,
-        "t":150
+      "legend":{
+        "orientation":"v",
+        "x":1.01,
+        "y":0.4,
+        "traceorder":"reversed"
       },
       "xaxis":{
         "visible":true,
@@ -146,21 +160,25 @@
         "title":"label.filter.race",
         "type":"category"
       },
+      "margin":{
+        "l":200,
+        "r":10,
+        "b":200,
+        "t":150
+      },
       "title":"chart.title.measure.deaths by label.filter.race in undefined for undefined",
-      "height":750,
-      "legend":{
-        "orientation":"v",
-        "x":1.01,
-        "y":0.4,
-        "traceorder":"reversed"
-      }
+      "height":750
     },
     "dataset":"deaths",
     "data":[
       {
-        "name":"White     ",
+        "namelong":"White",
+        "name":"White",
         "x":[
           2241350
+        ],
+        "ylong":[
+          "White"
         ],
         "y":[
           "White"
@@ -176,9 +194,13 @@
         }
       },
       {
-        "name":"Black     ",
+        "namelong":"Black",
+        "name":"Black",
         "x":[
           309316
+        ],
+        "ylong":[
+          "Black"
         ],
         "y":[
           "Black"
@@ -194,9 +216,13 @@
         }
       },
       {
-        "name":"Asian or Pacific Islander     ",
+        "namelong":"Asian or Pacific Islander",
+        "name":"Asian or Pacific Islander",
         "x":[
           62103
+        ],
+        "ylong":[
+          "Asian or Pacific Islander"
         ],
         "y":[
           "Asian or Pacific Islander"
@@ -212,9 +238,13 @@
         }
       },
       {
-        "name":"American Indian     ",
+        "namelong":"American Indian",
+        "name":"American Indian",
         "x":[
           18031
+        ],
+        "ylong":[
+          "American Indian"
         ],
         "y":[
           "American Indian"

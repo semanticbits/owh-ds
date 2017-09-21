@@ -5,9 +5,13 @@
   "dataset":"deaths",
   "data":[
     {
+      "namelong":"White",
       "name":"White     ",
       "x":[
         2241350
+      ],
+      "ylong":[
+        "White"
       ],
       "y":[
         "White"
@@ -23,9 +27,13 @@
       }
     },
     {
+      "namelong":"Black",
       "name":"Black     ",
       "x":[
         309316
+      ],
+      "ylong":[
+        "Black"
       ],
       "y":[
         "Black"
@@ -41,12 +49,16 @@
       }
     },
     {
-      "name":"Asian or Pacific Islander     ",
+      "namelong":"Asian or Pacific Islander",
+      "name":"API     ",
       "x":[
         62103
       ],
-      "y":[
+      "ylong":[
         "Asian or Pacific Islander"
+      ],
+      "y":[
+        "API"
       ],
       "text":[
         "62,103"
@@ -59,9 +71,13 @@
       }
     },
     {
+      "namelong":"American Indian",
       "name":"American Indian     ",
       "x":[
         18031
+      ],
+      "ylong":[
+        "American Indian"
       ],
       "y":[
         "American Indian"
@@ -80,23 +96,22 @@
   "layout":{
     "width":128,
     "autosize":true,
-    "showlegend":false,
-    "margin":{
-      "l":20,
-      "r":10,
-      "b":20,
-      "t":20
+    "showlegend":true,
+    "legend":{
+      "orientation":"h",
+      "y":1.25,
+      "x":0.4
     },
     "xaxis":{
       "visible":true,
       "titlefont":{
         "size":15
       },
-      "exponentformat":"none",
+      "exponentformat":"auto",
       "tickangle":45,
       "showline":true,
       "gridcolor":"#bdbdbd",
-      "showticklabels":false,
+      "showticklabels":true,
       "fixedrange":true,
       "title":"Deaths"
     },
@@ -105,15 +120,21 @@
       "titlefont":{
         "size":15
       },
-      "exponentformat":"none",
+      "exponentformat":"auto",
       "tickangle":45,
       "ticksuffix":"   ",
       "showline":true,
       "gridcolor":"#bdbdbd",
-      "showticklabels":false,
+      "showticklabels":true,
       "fixedrange":true,
       "title":"label.filter.race",
       "type":"category"
+    },
+    "margin":{
+      "l":100,
+      "r":10,
+      "b":100,
+      "t":50
     }
   },
   "options":{

@@ -218,19 +218,19 @@
                     dataDescription: "Cancer incidence data are collected from cancer registries, based on oncology reports from health care providers. Cancer incidence and death counts, rates, cancer classification, age, race, and gender. Charts and maps are also available. The data are updated annually.\n\nCancer incidence and mortality data are available for the United States, state by age group, race, ethnicity, gender and cancer site for the years 2000-2014.",
                     suppression: "<ul>" +
                       "<li>Data are suppressed if the figures represent fewer than 16 cases for the specific category:" +
-                        "<ul>" +
+                        "<ul class='sub'>" +
                           "<li>Suppress if case count less than 16 or if the standard error of the rate is approximately 25% or more as large as the rate </li>" +
                           "<li>Suppress if case count in one of the stratified category is less than 16 (e.g. cancer type stratified by sex: if male case count is 19 and female is 7, suppress both male and female)</li>" +
                         "</ul>" +
                       "</li>" +
                       "<li>Suppress if population is less than 50,000 within race- and ethnic-specific categories.</li>" +
                       "<li>Data are suppressed at the state level for certain race and ethnicity groups:" +
-                        "<ol>" +
+                        "<ul class='sub'>" +
                           "<li>Hispanic ethnicity cannot be broken out for Delaware, Kentucky, and Massachusetts.</li>" +
                           "<li>American Indian or Alaskan Native data cannot be broken out for Delaware, Illinois, Kentucky, New Jersey, and New York.</li>" +
                           "<li>Asian or Pacific Islander data cannot be broken out for Delaware, Illinois, and Kentucky.</li>" +
                           "<li>For 2013 & 2014, Arkansas Hispanic and API must be suppressed</li>" +
-                        "</ol>" +
+                        "</ul>" +
                       "</li>" +
                       "<li>States decide whether to suppress data for specific race and ethnicity categories. The suppression criteria may vary in previous releases of these data</li>" +
                     "</ul>",
@@ -289,28 +289,8 @@
                     topics: "Cancer, Deaths, Prostate Cancer",
                     dataDescription: "Cancer mortality data are derived from death certificates. Cancer incidence and death counts, rates, cancer classification, age, race, and gender. Charts and maps are also available. The data are updated annually. Cancer incidence and mortality data are available for the United States, state by age group, race, ethnicity, gender and cancer site for the years 2000- 2014.",
                     suppression: "<ul>" +
-                      "<li>Data are suppressed if the figures represent fewer than 16 cases for the specific category:" +
-                        "<ul>" +
-                          "<li>Suppress if case count less than 16 or if the standard error of the rate is approximately 25% or more as large as the rate </li>" +
-                          "<li>Suppress if case count in one of the stratified category is less than 16 (e.g. cancer type stratified by sex: if male case count is 19 and female is 7, suppress both male and female)</li>" +
-                        "</ul>" +
-                      "</li>" +
-                      "<li>Suppress if population is less than 50,000 within race- and ethnic-specific categories.</li>" +
-                      "<li>Data are suppressed at the state level for certain race and ethnicity groups:" +
-                        "<ol>" +
-                          "<li>Hispanic ethnicity cannot be broken out for Delaware, Kentucky, and Massachusetts.</li>" +
-                          "<li>American Indian or Alaskan Native data cannot be broken out for Delaware, Illinois, Kentucky, New Jersey, and New York.</li>" +
-                          "<li>Asian or Pacific Islander data cannot be broken out for Delaware, Illinois, and Kentucky.</li>" +
-                          "<li>For 2013 & 2014, Arkansas Hispanic and API must be suppressed</li>" +
-                        "</ol>" +
-                      "</li>" +
-                      "<li>States decide whether to suppress data for specific race and ethnicity categories. The suppression criteria may vary in previous releases of these data</li>" +
-                    "</ul>",
-                    source: "The United States Cancer Statistics (USCS) are the official federal statistics on cancer incidence from registries having high-quality data and cancer mortality statistics for 50 states and the District of Columbia. USCS are produced by the Centers for Disease Control and Prevention (CDC) and the National Cancer Institute (NCI), in collaboration with the North American Association of Central Cancer Registries (NAACCR). Data are provided by:" +
-                    "<ul>" +
-                      "<li>The Centers for Disease Control and Prevention National Program of Cancer Registries (NPCR) </li>" +
-                      "<li>The National Cancer Institute Surveillance, Epidemiology and End Results (SEER) program.</li>" +
-                    "</ul>",
+                      "<li>Data are suppressed if the figures represent fewer than 16 cases for the specific category." +"</li>"+
+                      "</ul>",
                     isRateCalculation: true,
                     filters: [
                         {name: "Cancer Counts", description: "Cancer case reports in this data set are counted by or summed by the cancer reported. For example, a single person with more than one primary cancer verified by a medical doctor is counted as a case report for each type of primary cancer reported. Having more than one primary cancer occurs in less than 20% of the population. The counts report the frequency of verified cancer diagnoses in the selected population and time period."},
@@ -338,18 +318,6 @@
                             answer:"Crude Rates are expressed as the number of cases reported each calendar year per 100,000 population." +
                             "<p>Crude Rate = Count / Population * 100,000</p>" +
                             "<p>The population estimates for the denominators of incidence rates are race-specific (all races, white, black, and Asian/ Pacific Islander) and sex-specific county population estimates aggregated to the state or metropolitan area level.</p>"
-                        },
-                        {
-                            question: "Why are some states disabled for certain years?",
-                            answer: "The following combination of states and years did not meet the United States Cancer Statistics (USCS) publication standard or did not allow permission for their data to be used.  These data are not included in the data set:" +
-                            "<ul>" +
-                              "<li>Arkansas, 2000</li>" +
-                              "<li>District of Columbia, 2002</li>" +
-                              "<li>Kansas, 2000-2014</li>" +
-                              "<li>Mississippi, 2000-2002</li>" +
-                              "<li>Nevada, 2011</li>" +
-                              "<li>South Dakota, 2000</li>" +
-                            "</ul>"
                         }
                     ]
                 },
