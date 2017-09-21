@@ -1,3 +1,4 @@
+
 # Default config
 default:
   elastic_search:
@@ -6,7 +7,7 @@ default:
     queryUrl: 'http://34.232.240.197:7777/stats'
     questionsUrl: 'http://34.232.240.197:7777/questions'
   wonder:
-    url: 'http://54.242.94.197/wonder'
+    url: 'http://54.242.94.197/wonder/'
     apix_project: 'OASH-OWH-HIG'
     apix_token: '4f9^fLE32-#NL31dg9%'
   logging:
