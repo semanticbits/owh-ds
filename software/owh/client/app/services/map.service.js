@@ -61,9 +61,11 @@
                         stateDeathTotals.push(state[primaryFilter.key]);
                     }
                     feature.properties.showRates = primaryFilter.showRates;
-                    feature.properties.tableView = primaryFilter.tableView;
                     feature.properties[primaryFilter.key] =  state[primaryFilter.key];
+                } else {
+                    feature.properties[primaryFilter.key] = 'n/a';
                 }
+                feature.properties.tableView = primaryFilter.tableView;
                 feature.properties.years = angular.isArray(years)? years.join(', ') : years;
             });
             var minMaxValueObj = utilService.getMinAndMaxValue(stateDeathTotals);

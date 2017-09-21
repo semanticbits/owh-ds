@@ -1050,7 +1050,7 @@ function createCancerIncidenceSuppressionRules (years, states, stateGroupBy) {
         [ ['Asian or Pacific Islander'], ['DE', 'IL', 'KY'] ],
         [ ['Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown'], ['DE', 'KY', 'MA'] ]
     ];
-    var stateSelectedRules;
+    var stateSelectedRules = [];
 
     if (states.length && !stateGroupBy) {
         var stateRules = {

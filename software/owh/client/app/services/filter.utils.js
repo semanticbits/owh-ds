@@ -1747,7 +1747,7 @@
                             }
                         })
                         return states;
-                    })(stateOptions),
+                    })(utilService.clone(stateOptions)),
                     defaultGroup:'column',
                     helpText: 'label.help.text.cancer_incidence.state'
                 }

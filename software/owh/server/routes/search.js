@@ -292,7 +292,6 @@ function search(q) {
                 var stateGroupBy = searchUtils.getTargetFilter(q.allFilters, 'state').groupBy;
                 var statesSelected = searchUtils.getTargetFilterValue(q.allFilters, 'state');
                 var rules = searchUtils.createCancerIncidenceSuppressionRules(years, statesSelected, stateGroupBy);
-                console.log('rules >>>>>>>>>', JSON.stringify(rules))
                 searchUtils.applyCustomSuppressions(results.data.nested, rules, 'cancer_incident');
             }
 

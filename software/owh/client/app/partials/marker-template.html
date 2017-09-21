@@ -37,6 +37,7 @@
                 </div>
                 <div class="usa-width-one-third" ng-if="properties.tableView !== 'number_of_deaths'">
                     <span ng-if="properties[properties.tableView] === 'suppressed'">Suppressed</span>
+                    <span ng-if="properties[properties.tableView] === 'n/a'">Not Avaliable</span>
                     <span ng-if="properties[properties.tableView] !== 'suppressed'">{{properties[properties.tableView] | number}}</span>
                 </div>
             </div>
