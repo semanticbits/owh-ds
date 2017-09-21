@@ -13,6 +13,7 @@ WORKDIR /usr/local/owh/client
 RUN cd /usr/local/owh/client
 RUN npm install
 RUN bower install --allow-root
+RUN npm install -g bunyan
 WORKDIR /usr/local/owh
 RUN cd /usr/local/owh/server
 EXPOSE 80:3000
