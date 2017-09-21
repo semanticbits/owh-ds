@@ -125,10 +125,10 @@ describe('chart utils', function(){
 
         var result = chartUtils.horizontalBar(filter1, filter2, data, primaryFilter);
         var barData = result.data;
-        expect(barData[1].y[3]).toEqual('American Indian or Alaska Native');
+        expect(barData[1].y[3]).toEqual('AI/AN');
         expect(barData[1].x[3]).toEqual('6.6');
 
-        expect(barData[1].y[2]).toEqual('Asian or Pacific Islander');
+        expect(barData[1].y[2]).toEqual('API');
         expect(barData[1].x[2]).toEqual('3.5');
 
     });
@@ -137,7 +137,7 @@ describe('chart utils', function(){
         var filter = {"key":"state","title":"label.prams.filter.state","queryKey":"sitecode","value":["AK"],"autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]};
         var data = {"question":[{"name":"qn365","-1":{"sitecode":[{"name":"AK","prams":{"mean":"23.0","ci_l":"0","ci_u":"0"}},{"name":"AK","prams":{"mean":"21.0","ci_l":"0","ci_u":"0"}}]},"NO (UNCHECKED)":{"sitecode":[{"name":"AK","prams":{"mean":"97.4","ci_l":"96.0","ci_u":"98.3"}},{"name":"AK","prams":{"mean":"97.1","ci_l":"95.6","ci_u":"98.1"}}]},"YES (CHECKED)":{"sitecode":[{"name":"AK","prams":{"mean":"2.6","ci_l":"1.7","ci_u":"4.0"}},{"name":"AK","prams":{"mean":"2.9","ci_l":"1.9","ci_u":"4.4"}}]}}]};
         var primaryFilter = {key:'prams', chartAxisLabel: 'Percentage', allFilters:[{topic:[]}, {year:[]}, {state:[]}, {ques:[]}, {value:[]}]};
-        var expectedOutput = {"charttype":"multiBarHorizontalChart","title":"label.prams.filter.state and label.prams.filter.state","longtitle":"chart.title.measure.prams by label.prams.filter.state in undefined for undefined","dataset":"prams","data":[{"name":"Percentage - YES (CHECKED)     ","x":[2.6],"y":["Alaska"],"text":["2.6"],"orientation":"h","hoverinfo":"none","type":"bar","marker":{"color":"#65c2ff"}},{"name":"Percentage - NO (UNCHECKED)     ","x":[97.4],"y":["Alaska"],"text":["97.4"],"orientation":"h","hoverinfo":"none","type":"bar","marker":{"color":"#ED93CB"}}],"layout":{"width":128,"autosize":true,"showlegend":false,"margin":{"l":20,"r":10,"b":20,"t":20},"xaxis":{"visible":true,"titlefont":{"size":15},"exponentformat":"none","tickangle":45,"showline":true,"gridcolor":"#bdbdbd","showticklabels":false,"fixedrange":true,"title":"Percentage"},"yaxis":{"visible":true,"titlefont":{"size":15},"exponentformat":"none","tickangle":45,"ticksuffix":"   ","showline":true,"gridcolor":"#bdbdbd","showticklabels":false,"fixedrange":true,"title":"label.prams.filter.state"},"barmode":"bar"},"options":{"displayModeBar":false}};
+        var expectedOutput = {"charttype":"multiBarHorizontalChart","title":"label.prams.filter.state and label.prams.filter.state","longtitle":"chart.title.measure.prams by label.prams.filter.state in undefined for undefined","dataset":"prams","data":[{"namelong":"Percentage - YES (CHECKED)     ","name":"Percentage - YES (CHECKED)     ","x":[2.6],"y":["AK"],"ylong":["Alaska"],"text":["2.6"],"orientation":"h","hoverinfo":"none","type":"bar","marker":{"color":"#65c2ff"}},{"namelong":"Percentage - NO (UNCHECKED)     ","name":"Percentage - NO (UNCHECKED)     ","x":[97.4],"y":["AK"],"ylong":["Alaska"],"text":["97.4"],"orientation":"h","hoverinfo":"none","type":"bar","marker":{"color":"#ED93CB"}}],"layout":{"width":128,"autosize":true,"showlegend":true,"legend":{"orientation":"h","y":1.25,"x":0.4},"xaxis":{"visible":true,"titlefont":{"size":15},"exponentformat":"auto","tickangle":45,"showline":true,"gridcolor":"#bdbdbd","showticklabels":true,"fixedrange":true,"title":"Percentage"},"yaxis":{"visible":true,"titlefont":{"size":15},"exponentformat":"auto","tickangle":45,"ticksuffix":"   ","showline":true,"gridcolor":"#bdbdbd","showticklabels":true,"fixedrange":true,"title":"label.prams.filter.state"},"margin":{"l":100,"r":10,"b":50,"t":50},"barmode":"bar"},"options":{"displayModeBar":false}};
         var result = chartUtils.horizontalBar(filter, filter, data, primaryFilter);
         expect(JSON.stringify(result)).toEqual(JSON.stringify(expectedOutput));
     });

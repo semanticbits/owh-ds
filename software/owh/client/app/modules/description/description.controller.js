@@ -1,4 +1,4 @@
-(function(){
+﻿(function(){
     angular
         .module('owh.description')
         .controller('DescriptionController', DescriptionController);
@@ -17,7 +17,7 @@
                     image: 'natality-icon.svg',
                     yrsAvail: '2000-2015',
                     topics: 'Births, Babies, Birth Rates, Fertility Rates, Prenatal Care',
-                    dataDescription:"This dataset has counts and rates of births occurring within the United States to U.S. residents and nonresidents. State and county are defined by the mother's place of residence recorded on the birth certificate. Data elements include demographics, and maternal risk factors. Population is Live Births in United States.",
+                    dataDescription:"This dataset has counts and rates of births occurring within the United States to U.S. residents and nonresidents. State is defined by the mother's place of residence recorded on the birth certificate. Data elements include demographics, and maternal risk factors. Population is Live Births in United States.",
                     suppression:"Vital statistics data are suppressed due to confidentiality constraints, in order to protect personal privacy. All sub-national data representing zero to nine (0-9) births are suppressed. Corresponding population denominator data are also suppressed when the figure represents fewer than ten persons.",
                     source: "The Natality data set is provided by the U.S. Department of Health and Human Services (US HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS).",
                     isRateCalculation: true,
@@ -83,12 +83,12 @@
                         {
                             isRateInfo:true,
                             question:"How are Birth Rates and Fertility Rates calculated?",
-                            answer:"Birth rates are calculated as the number of births divided by total population in the given year(s). When the numerator is sub-set by mother's race, location, or year of birth, then the same sub-set for race, location and year applies to the denominator population. If the data are sub-set by any other variable, then birth rates and denominator data are not available.<br/>Note:" +
+                            answer:"Birth rates are calculated as the number of births divided by total population in the given year(s). When the numerator is sub-set by mother's race, location, or year of birth, then the same sub-set for race, location and year applies to the denominator population. If the data are sub-set by any other variable, then birth rates and denominator data are not available.<br/>Notes:" +
                             "<ul>" +
                             "<li>Birth rates are available for the Natality data beginning in year 2003.</li>" +
                             "<li>Birth rates are only available for the total population, or for mother's race, mother's place of residence and the year of birth. If data are grouped by any other variable, or limited for any other variable, then birth rates are not calculated.</li>" +
                             "</ul>" +
-                            "Fertility rates are calculated as the number of births divided by the number of females age 15 - 44 years old in the given year(s). When the numerator is sub-set by mother's age, mother's race, location, or year of birth, then the same sub-set for age, race, location and year applies to the denominator population. If data are sub-set by any other variable, then fertility rates and denominator data are not available.<br/>Note:" +
+                            "Fertility rates are calculated as the number of births divided by the number of females age 15 - 44 years old in the given year(s). When the numerator is sub-set by mother's age, mother's race, location, or year of birth, then the same sub-set for age, race, location and year applies to the denominator population. If data are sub-set by any other variable, then fertility rates and denominator data are not available.<br/>Notes:" +
                             "<ul>" +
                             "<li>Fertility rates are available for the Natality data since year 2003.</li>" +
                             "<li>Fertility rates are only available for the total population, or for mother's age, mother's race, mother's place of residence and the year of birth. If data are grouped by any other variable, or limited for any other variable, then fertility rates are not calculated. Comparable denominator data are not available for the other variables.</li>" +
@@ -104,6 +104,10 @@
                             "<li>Natality data for the United States are limited to births occurring within the United States to U.S. residents and nonresidents. Births to non-residents of the United State are excluded from all tabulations by place of residence. Births occurring to U.S. citizens outside the United States are not included.</li>" +
                             "<li>All Natality data are reported in conformance to the reporting criteria of the mother's place of residence, rather than the actual criteria on the birth certificate issued by the reporting area of occurrence. For example, if a baby was born in Texas to a mother legally residing in California, then only those data items reported by California are included in the data set. The original Natality 2004 public use dataset includes data fields from the birth certificate, with an associated reporting flag for each field to indicate whether the mother's place of residence reports this item.</li>" +
                             "</ul>"
+                        },
+                        {
+                            question:"Why are some filters disabled for Birth Rates and Fertility Rate calculations?",
+                            answer:"The Birth Rates data are available by Year, Race, State, Census Region, Census Division, HHS Region. The Fertility Rates data are available by Year, Race, Age of Mother, State, Census Region, Census Division, HHS Region. These data are not available for filters that show up as disabled.",
                         }
                     ]
                 },
@@ -113,7 +117,7 @@
                     image: 'detailed-mortality-icon.svg',
                     yrsAvail: '2000-2015',
                     topics: 'Multiple Causes of Death, Cancer, Diabetes, Deaths, Sexually Transmitted Diseases, Tuberculosis, Alcohol and Other Drug Use, Obesity, Overweight, Weight Control, Tobacco Use, HIV/AIDS, Prostate Cancer, Population Data',
-                    dataDescription: 'The mortality data are based on death certificates for U.S. residents. Each death certificate identifies a single underlying cause of death and demographic data. The number of deaths, crude death rates or age-adjusted death rates, and 95% confidence intervals and standard errors for death rates can be obtained by place of residence (total U.S., region, and state), age group (single-year-of age, 5-year age groups, 10-year age groups), race (4 groups), Hispanic ethnicity, gender, year, cause-of-death (4-digit ICD-10 code or group of codes), injury intent and injury mechanism, drug/alcohol induced causes. Data are also available for place of death, month and week day of death, and whether an autopsy was performed.',
+                    dataDescription: 'The mortality data are based on death certificates for U.S. residents. Each death certificate identifies a single underlying cause of death and demographic data. The number of deaths, crude death rates or age-adjusted death rates can be obtained by place of residence (total U.S., region, and state), 5-year age groups, race (4 groups), Hispanic ethnicity, gender, year, cause-of-death (4-digit ICD-10 code or group of codes), injury intent and injury mechanism, drug/alcohol induced causes. Data are also available for place of death, month and week day of death, and whether an autopsy was performed.',
                     suppression: 'Vital statistics data are suppressed due to confidentiality constraints, in order to protect personal privacy. As of May 23, 2011, all sub-national data representing zero to nine (0-9) deaths or births are suppressed. Corresponding sub-national denominator population figures are also suppressed when the population represents fewer than ten persons.',
                     source: 'The Detailed Mortality data are compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative; the data set is produced by the U.S. Department of Health and Human Services (US HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS), Division of Vital Statistics (DVS), Mortality Statistics Branch.',
                     isRateCalculation: true,
@@ -146,7 +150,7 @@
                             "<li>The archive population estimates for years 2001 - 2009 are postcensal estimates of the July 1 resident population.</li>" +
                             "<li>The 2011 - 2015 population estimates are postcensal estimates of the July 1 resident population.</li>" +
                             "</ul>" +
-                            "Note that these estimates are based on bridged-race categories. The population estimates are by geographic unit (total United States, State, and county), year, race (white, black, other races), sex, and age group (13 age groups). To permit the calculation of infant mortality rates, NCHS live-birth data are included on the file.<br/><br/>"
+                            "Note that these estimates are based on bridged-race categories. The population estimates are by geographic unit (total United States, State), year, race (white, black, other races), sex, and age group. To permit the calculation of infant mortality rates, NCHS live-birth data are included on the file.<br/><br/>"
                         },
                         {
                             isRateInfo:true,
@@ -156,14 +160,13 @@
                             "<p>R' = S i ( Psi / Ps ) Ri</p>where <b>Psi</b> is the standard population for age group <b>i</b> and <b>Ps</b> is the total U.S. standard population (all ages combined).<br/><br/>"
                         },
                         {
-                            question:"How are Crude Rates calculated? ",
+                            question:"How are Crude Rates calculated?",
                             answer:"Crude Rates are expressed as the number of deaths reported each calendar year per the factor you select. The default factor is per 100,000 population, reporting the death rate per 100,000 persons." +
                             "<p>Crude Rate = Count / Population * 100,000</p>"
                         },
                         {
                             question:"What are the suppression rules for Crude Death Rates?",
-                            answer:"Infant's weight at birth is available in 3 sets of categories, through 8165 grams, or Not stated:" +
-                            "<ul>" +
+                            answer:"<ul>" +
                             "<li>Rates for small populations should be interpreted with caution.</li>" +
                             "<li>Rates are suppressed for sub-national data representing zero to nine (0-9) deaths. Corresponding sub-national denominator population figures are also suppressed when the population represents fewer than 10 persons.</li>" +
                             "<li>Rates are marked as <i>unreliable</i> when the death count is less than 20.</li>" +
@@ -178,6 +181,10 @@
                             "<li>Rates are marked as not applicable when the denominator population figure is unavailable, such as not stated or unknown age or ethnicity.</li>" +
                             "<li>Deaths of persons with not stated or unknown age are not included in the calculation of age-adjusted rates.</li>" +
                             "</ul>"
+                        },
+                        {
+                            question:"Why are some filters disabled for Crude Rates and Age Adjusted Rate calculations?",
+                            answer:"The Crude Rates and Fertility Rates data are limited to certain items. These data are not available for filters that show up as disabled.",
                         }
                     ]
                 },
@@ -189,8 +196,8 @@
                     topics: 'Demographics, Population Data',
                     dataDescription: "The estimates result from bridging the 31 race categories used in Census 2000, as specified in the 1997 Office of Management and Budget (OMB) standards for the collection of data on race and ethnicity, to the four race categories specified under the 1977 standards (Asian or Pacific Islander, Black or African American, American Indian or Alaska Native, White).",
                     source: "Data source is United States Department of Health and Human Services (HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS), Bridged-Race Population Estimates, United States July 1st resident population by state, county, age, sex, bridged-race, and Hispanic origin." +
-                    "<ul><li>2010 to 2015 (Vintage 2015) postcensal estimates of the July 1 resident population by year, county, single-year of age groups, bridged-race, sex, and Hispanic originreleased by NCHS on June 28, 2016.</li>" +
-                    "<li>2000 to 2009 revised intercensal estimates of the July 1 resident population by year, county, single-year of age groups, bridged-race, sex, and Hispanic origin released by NCHS on October 26, 2012.</li>" +
+                    "<ul><li>2010 to 2015 (Vintage 2015) postcensal estimates of the July 1 resident population by year, five-year of age groups, bridged-race, sex, and Hispanic originreleased by NCHS on June 28, 2016.</li>" +
+                    "<li>2000 to 2009 revised intercensal estimates of the July 1 resident population by year, five-year of age groups, bridged-race, sex, and Hispanic origin released by NCHS on October 26, 2012.</li>" +
                     "</ul>",
                     filters: [
                         {name: "Year", description: "This field indicates July 1st estimates for 2000 through last year of the series"},
@@ -229,8 +236,8 @@
                     "</ul>",
                     source: "The United States Cancer Statistics (USCS) are the official federal statistics on cancer incidence from registries having high-quality data and cancer mortality statistics for 50 states and the District of Columbia. USCS are produced by the Centers for Disease Control and Prevention (CDC) and the National Cancer Institute (NCI), in collaboration with the North American Association of Central Cancer Registries (NAACCR). Data are provided by:" +
                     "<ul>" +
-                      "<li>The Centers for Disease Control and Prevention National Program of Cancer Registries (NPCR) </li>" +
-                      "<li>The National Cancer Institute Surveillance, Epidemiology and End Results (SEER) program.</li>" +
+                    "<li>The Centers for Disease Control and Prevention National Program of Cancer Registries (NPCR) </li>" +
+                  "<li>The National Cancer Institute Surveillance, Epidemiology and End Results (SEER) program.</li>" +
                     "</ul>",
                     isRateCalculation: true,
                     filters: [
@@ -352,7 +359,7 @@
                     topics: "Infants, Sexually Transmitted Diseases, Chlamydia, Gonorrhea, Primary and Secondary Syphilis, Early Latent Syphilis, Congenital Syphilis",
                     dataDescription: "STD morbidity data presented in this report are compiled from a combination of data reported on standardized hard copy reporting forms and electronic data received through the National Electronic Tele­communications System for Surveillance (NETSS) for diagnosis years 2000 through 2015.",
                     suppression: "For STD data, the data suppression rule is applied when the numerator for a given state is 3 or less. When suppressed, data are only displayed by state totals and breakdown by demographic characteristics is not permitted.",
-                    source: "The CDC collects, analyzes, and disseminates surveillance data on STD diagnoses. The NCHHSTP AtlasPlus presents chlamydia, gonorrhea, congenital syphilis, and primary and secondary syphilis case report data submitted from all 50 states, the District of Columbia for the years 2000 to 2015 and early latent syphilis case report data for 2003-2015. STD data are presented by disease, year of diagnosis, reporting area (state or territory), age group, race/ethnicity, and sex.",
+                    source: "The CDC collects, analyzes, and disseminates surveillance data on STD diagnoses. The NCHHSTP AtlasPlus presents chlamydia, gonorrhea, congenital syphilis, and primary and secondary syphilis case report data submitted from all 50 states, the District of Columbia for the years 2000 to 2015 and early latent syphilis case report data for 2003-2015. STD data are presented by disease, year of diagnosis, reporting area (state), age group, race/ethnicity, and sex.",
                     isRateCalculation: true,
                     filters: [
                         {name: "Cases", description: "Cases of a given STD refer to confirmed diagnoses during a given time period"},
@@ -370,6 +377,11 @@
                             isRateInfo:true,
                             question:"How are Rates calculated?",
                             answer:"Each rate was calculated by dividing the number of STD cases for the calendar year by the population for that calendar year and then multiplying the number by 100,000."
+                        },
+                        {
+                            isRateInfo:false,
+                            question:"What are the scenarios where data is not available?",
+                            answer:"<u>Race/Ethnicity</u><ul><li>Data are not available for the Race/Ethnicity stratification over National data for the years 2007-2010 for all diseases</li><li>No data are available for Race/Ethnicity stratification for 2000-2006 for all diseases</li></ul><p>When specific race/ethnicity data are presented in this atlas, the following OMB compliant categories are reported: American Indian or Alaska Native, Asian, Black or African American, Hispanic or Latino, Native Hawaiian or Other Pacific Islander, White and multirace. States began reporting these OMB compliant race categories in different years. Therefore, specific race/ethnicity categories are presented for a state only in the years when that state reported 97% or more of its cases with OMB compliant race/ethnicity categories. In addition, when presenting 5-year trend data, only states that reported 97% of more of their cases with OMB compliant race/ethnicity categories for all five years are included.</p><u>Additional Scenarios:</u><ul><li>National data are not available for the years 2000-2002 for Early Latent Syphilis</li><li>Population data are not available when Race/Ethnicity is Unknown, hence the Rates are not applicable</li><li>Only aggregate data are available for Congenital Syphilis. No demographic filter can be applied on these data</li></ul>"
                         }
                     ]
                 },
@@ -379,7 +391,7 @@
                     image: 'tuberculosis-icon.svg',
                     yrsAvail: '2000-2015',
                     topics: "Tuberculosis",
-                    dataDescription: "TB data are presented by year of disease confirmation, reporting area (state/territory or county), age group, race/ethnicity, sex, and whether or not the patient was born in the United States. The most common site of infection is the lung, but other organs may be involved. Nationally notifiable TB surveillance data are collected and compiled from reports sent to CDC’s Division of TB Elimination by the TB control programs and health departments in all 50 states, the District of Columbia, U.S. dependencies and possessions, and independent nations in free association with the United States.",
+                    dataDescription: "TB data are presented by year of disease confirmation, reporting area (state), age group, race/ethnicity, sex, and whether or not the patient was born in the United States. The most common site of infection is the lung, but other organs may be involved. Nationally notifiable TB surveillance data are collected and compiled from reports sent to CDC’s Division of TB Elimination by the TB control programs and health departments in all 50 states, the District of Columbia, U.S. dependencies and possessions, and independent nations in free association with the United States.",
                     suppression: "Data are not suppressed at the state level; TB data can be viewed in aggregate format or one-way stratifications (i.e., by age group, sex, race/ethnicity, or country of birth [U.S.-born or foreign-born]).",
                     source: "The CDC collects, analyzes, and disseminates surveillance data on newly reported cases of tuberculosis (TB) disease in the United States. The Atlas presents TB case report data submitted from all 50 states, the District of Columbia for the years 2000 to 2015.",
                     isRateCalculation: true,
@@ -399,6 +411,11 @@
                             isRateInfo:true,
                             question:"How are Rates calculated?",
                             answer:"TB Rates are expressed as the number of cases reported each calendar year per 100,000 populations."
+                        },
+                        {
+                            isRateInfo:false,
+                            question:"Why cannot I apply more than one demographic filter on State data?",
+                            answer:"TB data can be viewed in aggregate format or one-way stratifications (i.e., by age group, sex, race/ethnicity, or country of birth [U.S.-born or foreign-born]). When the state filter is applied, then only one of the demographic filters can be applied as data are not available."
                         }
                     ]
                 },
@@ -510,6 +527,10 @@
                             question:"How are Rates calculated?",
                             answer:"This represents the rates for deaths of children under 1 year of age, occurring within the United States to U.S. residents" +
                             "<p>Rates = (Counts of deaths of children under 1 year of age) / Live births (age under 365 days) to a mother who is a resident of the United States</p>"
+                        },
+                        {
+                            question:"Why can I not pick years from two groups?",
+                            answer:"Different sets of years have different filter options available. Hence the years under one set cannot be combined and compared with other set. The years 2000-2014 are divided into three sets 2000-2002, 2003-2006 and 2007-2014"
                         }
                     ]
                 },
@@ -597,6 +618,10 @@
                         {
                             question:"What does PRAMS do with the information?",
                             answer:"The information collected from the mothers is used to develop health programs and policies; help doctors and nurses improve care; and make better use of health resources."
+                        },
+                        {
+                            question:"Why are results not available for every state?",
+                            answer:"Results are not available from every state for several reasons. Firstly, Eleven states (Arizona, Connecticut, District of Columbia, Idaho, Indiana, Iowa, Kansas, Kentucky, Nevada, New Hampshire, Virginia) do not participate in the PRAMS. Secondly, data is not available for some states in certain years (See Availability of PRAMS Data For Analysis by State and Year: <a href='https://www.cdc.gov/prams/pramstat/state-availability-year.html' target='_blank'>https://www.cdc.gov/prams/pramstat/state-availability-year.html</a>)"
                         }
                     ]
                 },

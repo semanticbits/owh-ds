@@ -79,7 +79,8 @@ describe("Elastic Search", function () {
                     }
                 }
             }];
-        return new elasticSearch().aggregateDeaths(query, true).then(function (response) {
+        var allSelectedOptions = {"race":{"options":["American Indian", "Asian or Pacific Islander","Black","White"]},"gender":{"options":["Female","Male"]}};
+        return new elasticSearch().aggregateDeaths(query, true, allSelectedOptions).then(function (response) {
             var data = response.data.nested.table;
 
             expect(data.race[0].name).to.eql("American Indian");
@@ -111,6 +112,96 @@ describe("Elastic Search", function () {
             expect(stateData[50].sex[1].name).to.eql('Male');
             expect(stateData[50].sex[1].deaths).to.be(2550);
         });
+    });
+
+    it('should suppress mortality state counts when counts are less', function(done){
+        var mortalityESQuery = {"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_gender":{"terms":{"field":"sex","size":0}}}},"group_chart_0_gender":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"state":"DC"}}]}}]}}}}};
+        var censusQuery = {"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_gender":{"terms":{"field":"sex","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}},"group_chart_0_gender":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"state":"DC"}}]}}]}}}}};
+        var mapQuery = {"size":0,"aggregations":{"group_maps_0_states":{"terms":{"field":"state","size":0},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}}}};
+        var query = [mortalityESQuery, censusQuery, mapQuery];
+        var selectedOptions = {"race":{"options":["American Indian","Asian or Pacific Islander","Black","White"]},"gender":{"options":["Female","Male"]}};
+        new elasticSearch().aggregateDeaths(query, true, selectedOptions).then(function (results) {
+            var tableData = results.data.nested.table;
+            expect(tableData.race[0].name).to.equal('American Indian');
+            expect(tableData.race[0].deaths).to.equal('suppressed');
+            expect(tableData.race[0].pop).to.equal(4583);
+            expect(tableData.race[0].gender.length).to.equal(2);
+            expect(tableData.race[0].gender[0].name).to.equal('Female');
+            expect(tableData.race[0].gender[0].deaths).to.equal('suppressed');
+            expect(tableData.race[0].gender[0].pop).to.equal(2308);
+            expect(tableData.race[0].gender[1].name).to.equal('Male');
+            expect(tableData.race[0].gender[1].deaths).to.equal('suppressed');
+            expect(tableData.race[0].gender[1].pop).to.equal(2275);
+            expect(tableData.race[1].name).to.equal('Asian or Pacific Islander');
+            expect(tableData.race[1].deaths).to.equal(58);
+            expect(tableData.race[1].pop).to.equal(32075);
+            expect(tableData.race[1].gender.length).to.equal(2);
+            expect(tableData.race[1].gender[0].name).to.equal('Female');
+            expect(tableData.race[1].gender[0].deaths).to.equal(34);
+            expect(tableData.race[1].gender[0].pop).to.equal(18388);
+            expect(tableData.race[1].gender[1].name).to.equal('Male');
+            expect(tableData.race[1].gender[1].deaths).to.equal(24);
+            expect(tableData.race[1].gender[1].pop).to.equal(13687);
+            done();
+        });
+
+    });
+
+    it('should suppress mortality state counts when some filter options are not available', function(done){
+        var mortalityESQuery = {"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_gender":{"terms":{"field":"sex","size":0}}}},"group_chart_0_gender":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0}}}}},"query":{"filtered":{"query":{"bool":{"must":[{"bool":{"should":[{"match":{"ICD_10_code.path":"A16-A19"}}]}}]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"state":"DC"}}]}}]}}}}};
+        var censusQuery = {"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":0},"aggregations":{"group_table_gender":{"terms":{"field":"sex","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}},"group_chart_0_gender":{"terms":{"field":"sex","size":0},"aggregations":{"group_chart_0_race":{"terms":{"field":"race","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"state":"DC"}}]}}]}}}}} ;
+        var mapQuery = {"size":0,"aggregations":{"group_maps_0_states":{"terms":{"field":"state","size":0},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":0},"aggregations":{"pop":{"sum":{"field":"pop"}}}}}}},"query":{"filtered":{"query":{"bool":{"must":[{"bool":{"should":[{"match":{"ICD_10_code.path":"A16-A19"}}]}}]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2015"}}]}}]}}}}};
+        var query = [mortalityESQuery, censusQuery, mapQuery];
+        var selectedOptions = {"race":{"options":["American Indian","Asian or Pacific Islander","Black","White"]},"gender":{"options":["Female","Male"]}};
+        new elasticSearch().aggregateDeaths(query, true, selectedOptions).then(function (results) {
+            var tableData = results.data.nested.table;
+            expect(tableData.race[0].name).to.equal('American Indian');
+            expect(tableData.race[0].deaths).to.equal('suppressed');
+            expect(tableData.race[0].pop).to.equal(4583);
+            expect(tableData.race[0].gender.length).to.equal(2);
+            expect(tableData.race[0].gender[0].name).to.equal('Female');
+            expect(tableData.race[0].gender[0].deaths).to.equal('suppressed');
+            expect(tableData.race[0].gender[0].pop).to.equal(2308);
+            expect(tableData.race[0].gender[1].name).to.equal('Male');
+            expect(tableData.race[0].gender[1].deaths).to.equal('suppressed');
+            expect(tableData.race[0].gender[1].pop).to.equal(2275);
+            expect(tableData.race[1].name).to.equal('Asian or Pacific Islander');
+            expect(tableData.race[1].deaths).to.equal('suppressed');
+            expect(tableData.race[1].pop).to.equal(32075);
+            expect(tableData.race[1].gender.length).to.equal(2);
+            expect(tableData.race[1].gender[0].name).to.equal('Female');
+            expect(tableData.race[1].gender[0].deaths).to.equal('suppressed');
+            expect(tableData.race[1].gender[0].pop).to.equal(18388);
+            expect(tableData.race[1].gender[1].name).to.equal('Male');
+            expect(tableData.race[1].gender[1].deaths).to.equal('suppressed');
+            expect(tableData.race[1].gender[1].pop).to.equal(13687);
+
+            expect(tableData.race[2].name).to.equal('Black');
+            expect(tableData.race[2].deaths).to.equal('suppressed');
+            expect(tableData.race[2].pop).to.equal(333883);
+            expect(tableData.race[2].gender.length).to.equal(2);
+            expect(tableData.race[2].gender[0].name).to.equal('Female');
+            expect(tableData.race[2].gender[0].deaths).to.equal('suppressed');
+            expect(tableData.race[2].gender[0].pop).to.equal(182093);
+            expect(tableData.race[2].gender[1].name).to.equal('Male');
+            expect(tableData.race[2].gender[1].deaths).to.equal('suppressed');
+            expect(tableData.race[2].gender[1].pop).to.equal(151790);
+
+            expect(tableData.race[3].name).to.equal('White');
+            expect(tableData.race[3].deaths).to.equal('suppressed');
+            expect(tableData.race[3].pop).to.equal(301687);
+            expect(tableData.race[3].gender.length).to.equal(2);
+            expect(tableData.race[3].gender[0].name).to.equal('Female');
+            expect(tableData.race[3].gender[0].deaths).to.equal('suppressed');
+            expect(tableData.race[3].gender[0].pop).to.equal(150838);
+            expect(tableData.race[3].gender[1].name).to.equal('Male');
+            expect(tableData.race[3].gender[1].deaths).to.equal('suppressed');
+            expect(tableData.race[3].gender[1].pop).to.equal(150849);
+
+
+            done();
+        });
+
     });
 
     it('should suppress mortality state counts if it falls below 10', function () {
