@@ -149,7 +149,7 @@ function mergeCensusRecursively(mort, census, countKey) {
 }
 
 
-ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
+ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected, allSelectedFilterOptions){
     var self = this;
     var deferred = Q.defer();
     if(query[1]){
@@ -168,7 +168,7 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
             promises.push(new wonder('D77').invokeWONDER(query.wonderQuery));
         }
         Q.all(promises).then( function (respArray) {
-            var data = searchUtils.populateDataWithMappings(respArray[0], 'deaths');
+            var data = searchUtils.populateDataWithMappings(respArray[0], 'deaths', undefined, allSelectedFilterOptions, query[0]);
             var mapData = searchUtils.populateDataWithMappings(respArray[2], 'deaths');
             data.data.nested.maps = mapData.data.nested.maps;
             self.mergeWithCensusData(data, respArray[1], 'pop');
@@ -215,7 +215,7 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected){
 /**
  * This method is used to get the bridge race data(census) based on passed in query
  */
-ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected) {
+ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected, allSelectedFilterOptions) {
     var self = this;
     var deferred = Q.defer();
     if(query[1]) {
@@ -226,13 +226,13 @@ ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected) {
             this.executeMultipleESQueries(query[2], census_index, census_type)
         ];
         Q.all(promises).then( function (resp) {
-            var data = searchUtils.populateDataWithMappings(resp[0], 'bridge_race', 'pop');
+            var data = searchUtils.populateDataWithMappings(resp[0], 'bridge_race', 'pop', allSelectedFilterOptions, query[0]);
             var mapData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop');
             data.data.nested.maps = mapData.data.nested.maps;
             if (isStateSelected) {
-                searchUtils.applySuppressions(data, 'bridge_race');
+                searchUtils.applySuppressions(data, 'bridge_race', 0);
             } else {
-                searchUtils.applySuppressions(mapData, 'bridge_race');
+                searchUtils.applySuppressions(mapData, 'bridge_race', 0);
             }
             deferred.resolve(data);
         }, function (err) {
@@ -259,7 +259,7 @@ ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected) {
 /**
  * This method is used to fetch the natality data
  */
-ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected){
+ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected, allSelectedFilterOptions){
     //get tge elastic search client for natality index
     var self = this;
     var deferred = Q.defer();
@@ -272,7 +272,7 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected)
         ];
         Q.all(promises).then( function (resp) {
 
-            var data = searchUtils.populateDataWithMappings(resp[0], 'natality');
+            var data = searchUtils.populateDataWithMappings(resp[0], 'natality', undefined, allSelectedFilterOptions, query[0]);
             self.mergeWithCensusData(data, resp[1], 'pop');
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'natality');
@@ -477,7 +477,7 @@ ElasticClient.prototype.getDsMetadata = function (dataset, years) {
     return deferred.promise;
 };
 
-ElasticClient.prototype.aggregateCancerData = function (query, cancer_index) {
+ElasticClient.prototype.aggregateCancerData = function (query, cancer_index, allSelectedFilterOptions) {
     var index = cancer_index === cancer_incident_type ? cancer_incident_index : cancer_mortality_index;
     var type = cancer_index === cancer_incident_type ? cancer_incident_type : cancer_mortality_type;
     logger.debug("Cancer ES Query for "+ index+ " :"+ JSON.stringify( query[0]));
@@ -487,7 +487,7 @@ ElasticClient.prototype.aggregateCancerData = function (query, cancer_index) {
     if (query[1]) promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[1]));
 
     return Q.all(promises).spread(function (queryResponse, mapResponse, populationResponse) {
-        var data = searchUtils.populateDataWithMappings(queryResponse, type);
+        var data = searchUtils.populateDataWithMappings(queryResponse, type, undefined, allSelectedFilterOptions, query[0]);
         var pop = searchUtils.populateDataWithMappings(populationResponse, cancer_population_type);
         var popIndex = searchUtils.createPopIndex(pop.data.nested.table, cancer_population_type);
         searchUtils.attachPopulation(data.data.nested.table, popIndex, '');

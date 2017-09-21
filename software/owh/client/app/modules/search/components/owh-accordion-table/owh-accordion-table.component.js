@@ -12,13 +12,14 @@
                 showCi: '<',
                 showUf: '<',
                 showCharts:'<',
-                primaryKey: '@'
+                primaryKey: '<'
             }
         });
     OWHAccordionTableController.$inject = ['$scope', 'utilService', '$rootScope'];
     function OWHAccordionTableController($scope, utilService, $rootScope) {
         var oatc = this;
         oatc.categoryFilter = null;
+        oatc.isShowCounts = isShowCounts;
 
         var questionDefaults = {
             "Tobacco Use": [/^Currently Used E/, /^Currently Used C/], // SP
@@ -124,5 +125,14 @@
 
             return suppressed;
         };
+
+        function isShowCounts(mean) {
+            //for YRBS show counts all the time
+            if(oatc.primaryKey === 'mental_health') {
+                return true;
+            } else {
+                return mean != 'suppressed' && mean != 'na';
+            }
+        }
     }
 }());

@@ -201,60 +201,60 @@
                 "topic": ['cat_32', 'cat_21', 'cat_44']
             },
             alcohol_consumption: {
-                "topic": ['cat_12', 'cat_47', 'cat_50']
+                "topic": ['cat_12', 'cat_51', 'cat_53']
             },
             cholesterol_awareness: {
-                "topic": ['cat_3', 'cat_49']
+                "topic": ['cat_3', 'cat_52']
             },
             chronic_health_indicator:{
-                "topic": ['cat_36', 'cat_32', 'cat_10', 'cat_4', 'cat_0', 'cat_11',
+                "topic": ['cat_38', 'cat_32', 'cat_10', 'cat_4', 'cat_0', 'cat_11',
                     'cat_5', 'cat_6', 'cat_7', 'cat_8']
             },
             healthcare_access_coverage: {
-                "topic": ['cat_21', 'cat_17', 'cat_9', 'cat_22', 'cat_41']
+                "topic": ['cat_21', 'cat_17', 'cat_9', 'cat_22', 'cat_45']
             },
             colorectal_cancer_screening:{
-                "topic": ['cat_48', 'cat_56', 'cat_34']
+                "topic": ['cat_42', 'cat_34', 'cat_44', 'cat_35']
             },
             brfs_demographics:{
                 "topic": ['cat_1', 'cat_2', 'cat_13','cat_14', 'cat_18', 'cat_19',
                     'cat_20', 'cat_33', 'cat_23', 'cat_24', 'cat_25', 'cat_29']
             },
             fruits_vegetables:{
-                "topic": ['cat_40', 'cat_60']
+                "topic": ['cat_43', 'cat_62']
             },
             health_status:{
-                "topic": ['cat_51', 'cat_15']
+                "topic": ['cat_54', 'cat_15']
             },
             hiv_aids:{
                 "topic": ['cat_16']
             },
             hypertension_awareness:{
-                "topic": ['cat_52']
+                "topic": ['cat_55']
             },
             immunization:{
-                "topic": ['cat_39', 'cat_46', 'cat_27', 'cat_26']
+                "topic": ['cat_41', 'cat_50', 'cat_27', 'cat_26']
             },
             injury:{
-                "topic": ['cat_37', 'cat_55']
+                "topic": ['cat_39', 'cat_58']
             },
             oral_health:{
-                "topic": ['cat_30', 'cat_35', 'cat_38']
+                "topic": ['cat_30', 'cat_37', 'cat_40']
             },
             overweight_and_ovesity:{
                 "topic": ['cat_31']
             },
             prostate_cancer:{
-                "topic": ['cat_54']
+                "topic": ['cat_57']
             },
             tobbaco_use:{
-                "topic": ['cat_57', 'cat_28', 'cat_57']
+                "topic": ['cat_59', 'cat_28', 'cat_60']
             },
             womens_health:{
-                "topic": ['cat_42', 'cat_53']
+                "topic": ['cat_46', 'cat_56']
             },
             physical_activity:{
-                "topic": ['cat_44', 'cat_59', 'cat_43', 'cat_45']
+                "topic": ['cat_48', 'cat_61', 'cat_47', 'cat_49']
             }
 
         };
