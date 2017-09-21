@@ -66,9 +66,34 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelect
         }
     };
    //Get selected aggregation keys, so that we can add missing filters and filter options nested level
-    var SelectedAggregationKeys = [];
+    var tableAggKeys = [];
+    var chartAggKeys = {};
+    var mapAggKeys = [];
     if(query) {
-      SelectedAggregationKeys = getAggregationKeys(query);
+      tableAggKeys = getAggregationKeys(query);
+      //To capture selected chart aggregation keys, so that we can add missing filters and filter options for chart data
+      Object.keys(query.aggregations).forEach(function(eachAggKey){
+          if(eachAggKey.indexOf('group_chart_') > -1){
+              var keySplits = eachAggKey.split("_");
+              var groupKeyRegex = /group_chart_\d_/;
+              chartAggKeys[keySplits[2]] = [];
+              chartAggKeys[keySplits[2]].push(eachAggKey.split(groupKeyRegex)[1]);
+              Object.keys(query.aggregations[eachAggKey].aggregations).forEach(function(nestedAggKey){
+                  if(nestedAggKey.indexOf('group_chart_') > -1) {
+                      chartAggKeys[Number(keySplits[2])].push(nestedAggKey.split(groupKeyRegex)[1])
+                  }
+              });
+          }
+          else if(eachAggKey.indexOf('group_maps_') >  -1){
+              var groupKeyRegex = /group_maps_\d_/;
+              mapAggKeys.push(eachAggKey.split(groupKeyRegex)[1]);
+              Object.keys(query.aggregations[eachAggKey].aggregations).forEach(function(nestedAggKey){
+                  if(nestedAggKey.indexOf('group_maps_') > -1) {
+                      mapAggKeys.push(nestedAggKey.split(groupKeyRegex)[1]);
+                  }
+              });
+          }
+      });
     }
     if(resp && resp.aggregations) {
         var data = resp.aggregations;
@@ -77,8 +102,7 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelect
             if (key.indexOf('group_table_') > -1) {
                 var groupKeyRegex = /group_table_/;
                 dataKey = key.split(groupKeyRegex)[1];
-
-                result.data.nested.table[dataKey] = populateAggregatedData(data[key].buckets, countKey, 1, undefined, countQueryKey, groupKeyRegex, dataKey, allSelectedFilterOptions, SelectedAggregationKeys, 'group_table_');
+                result.data.nested.table[dataKey] = populateAggregatedData(data[key].buckets, countKey, 1, undefined, countQueryKey, groupKeyRegex, dataKey, allSelectedFilterOptions, tableAggKeys, 'group_table_');
             }
             if (key.indexOf('group_chart_') > -1) {
                 var keySplits = key.split("_");
@@ -86,23 +110,27 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelect
                 dataKey = key.split(groupKeyRegex)[1];
                 var dataIndex = Number(keySplits[2]);
                 var aggData = {};
-                aggData[dataKey] = populateAggregatedData(data[key].buckets, countKey, 3, undefined, countQueryKey, groupKeyRegex);
+                aggData[dataKey] = populateAggregatedData(data[key].buckets, countKey, 3, undefined, countQueryKey, groupKeyRegex, dataKey, allSelectedFilterOptions, chartAggKeys[dataIndex], 'group_chart_'+keySplits[2]+'_');
                 result.data.nested.charts[dataIndex] = aggData;
             }
             if (key.indexOf('group_maps_') > -1) {
                 var keySplits = key.split("_");
-                dataKey = keySplits[3];
-                var dataIndex = Number(keySplits[2]);
+                var groupKeyRegex = /group_maps_\d_/;
+                dataKey = key.split(groupKeyRegex)[1];
                 var aggData = {};
-                // console.log("dataIndex: "+JSON.stringify(data[key].buckets));
-                aggData[dataKey] = populateAggregatedData(data[key].buckets, countKey, 3, true, countQueryKey);
-                // console.log("data");
-                // console.log(dataIndex);
-                // console.log(dataKey);
+                var allSelectedFilterOptionsForMap = {};
+                if(mapAggKeys.length > 0) {
+                    allSelectedFilterOptionsForMap[mapAggKeys[0]] = {"options":["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA",
+                        "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]};
+                    allSelectedFilterOptionsForMap[mapAggKeys[1]] = {"options":['Female', 'Male']};
+                    aggData[dataKey] = populateAggregatedData(data[key].buckets, countKey, 3, true, countQueryKey, groupKeyRegex, dataKey, allSelectedFilterOptionsForMap, mapAggKeys, 'group_maps_'+keySplits[2]+'_');
+                }
+                else {
+                    aggData[dataKey] = populateAggregatedData(data[key].buckets, countKey, 3, true, countQueryKey);
+                }
                 result.data.nested.maps[dataKey]= aggData[dataKey];
-                // console.log("done");
             } else {
-                result.data.simple[key] = populateAggregatedData(data[key].buckets, countKey, undefined, undefined, countQueryKey);
+                result.data.simple[key] = populateAggregatedData(data[key].buckets, countKey, undefined, undefined, countQueryKey, undefined, key, allSelectedFilterOptions);
             }
         });
     }
@@ -110,7 +138,7 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelect
     return result;
 };
 
-var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, allSelectedFilterOptions, wonderQuery, isStateSelected) {
+var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, wonderQuery, isStateSelected) {
     var result = {
         data: {
             simple: {},
@@ -251,21 +279,22 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
     var result = [];
     //Preparing a new bucket to add buckets for missing filters
     var newBuckets = [];
-    if(allSelectedFilterOptions) {
-        allSelectedFilterOptions[dataKey].options.forEach(function(eachFilterOption){
+    if(allSelectedFilterOptions && allSelectedFilterOptions[dataKey]) {
+        allSelectedFilterOptions[dataKey].options.forEach(function (eachFilterOption) {
+            var foundFilterOptionAt = findIndexByKeyAndValue(buckets, 'key', eachFilterOption);
             //If any filter option not available in buckets then add it to
-            if(findIndexByKeyAndValue(buckets, 'key', eachFilterOption) === -1){
+            if (foundFilterOptionAt === -1) {
                 var newObj = {};
                 newObj.key = eachFilterOption;
                 newObj.doc_count = 0;
-                if(groupFilters && groupFilters.length > 1) {
-                    newObj[groupKey+groupFilters[1]] = {buckets: []};
+                if (groupFilters && groupFilters.length > 1) {
+                    newObj[groupKey + groupFilters[1]] = {buckets: []};
                 }
                 newBuckets.push(newObj);
             }
             //If filter option available in buckets then add it
             else {
-                newBuckets.push(buckets[findIndexByKeyAndValue(buckets, 'key', eachFilterOption)]);
+                newBuckets.push(buckets[foundFilterOptionAt]);
             }
         });
     }
@@ -301,7 +330,7 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
             }
             if( innerObjKey ) {
                 //if you want to split group key by regex
-                if (regex && (regex.test('group_table_') || regex.test('group_chart_'))) {
+                if (regex && (regex.test('group_table_') || regex.test('group_chart_0_') || regex.test('group_maps_0_'))) {
                     aggregation[innerObjKey.split(regex)[1]] =  populateAggregatedData(newBuckets[index][innerObjKey].buckets,
                         countKey, splitIndex, map, countQueryKey, regex, innerObjKey.split(regex)[1], allSelectedFilterOptions, groupFilters  ? groupFilters.slice(1): undefined, groupKey);
                 } else {//by default split group key by underscore and retrieve key based on index
@@ -321,7 +350,7 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
     * So we are adding missing 'Female' data (like this {name:'Female', countkey: 0})]
     * Here we are adding missing options for 'Infant_mortality' only
     **/
-    if(regex && regex.test('group_table_') && allSelectedFilterOptions && allSelectedFilterOptions[dataKey] != undefined) {
+    if(regex && (regex.test('group_table_') || regex.test('group_chart_0_') || regex.test('group_maps_0_')) && allSelectedFilterOptions && allSelectedFilterOptions[dataKey] != undefined) {
        addMissingFilterOptions(allSelectedFilterOptions[dataKey], result, countKey);
     }
     return result;
@@ -891,23 +920,56 @@ function mapAndGroupOptionResults (options, results) {
  * @param q
  * @return all filter options ex: {{'sex':['Female', 'Male']}, {'race':[......]} ... }
  */
-function getAllSelectedFilterOptions(q) {
+function getAllSelectedFilterOptions(q, datasetName) {
     var allOptions = {};
     q.allFilters.forEach(function(eachFilter){
         if(eachFilter.groupBy) {
             allOptions[eachFilter.key] = {"options": []};
-            if(eachFilter.value.length > 0){
-                eachFilter.value.forEach(function(eachOption){
-                    //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
-                    allOptions[eachFilter.key].options.push(eachOption);
-                });
+            if(['std', 'td', 'aids'].indexOf(datasetName) > -1) {
+                var diseaseDataSetsAllOptions = getAllOptionValues();
+                if(eachFilter.value && diseaseDataSetsAllOptions.indexOf(eachFilter.value) === -1){
+                    allOptions[eachFilter.key].options.push(eachFilter.value);
+                }
+                else {
+                    eachFilter.autoCompleteOptions.forEach(function(eachOption){
+                        allOptions[eachFilter.key].options.push(eachOption.key);
+                    });
+                }
             }
             else {
-                eachFilter.autoCompleteOptions.forEach(function(eachOption){
-                    //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
-                    allOptions[eachFilter.key].options.push(eachOption.key);
-                });
+                if(eachFilter.value.length > 0){
+                    eachFilter.value.forEach(function(eachOption){
+                        //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
+                        allOptions[eachFilter.key].options.push(eachOption);
+                    });
+                }
+                else {
+                    eachFilter.autoCompleteOptions.forEach(function(eachOption){
+                        //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
+                        allOptions[eachFilter.key].options.push(eachOption.key);
+                    });
+                }
             }
+        }
+    });
+    return allOptions;
+}
+
+
+/**
+ * To get all filter options which are showing totals in side filter section
+ * @param q
+ * @return Return list of objects. Each object will have key as filter key and value is JSON object with all it's filter options
+ */
+function getAllFilterOptions(q) {
+    var allOptions = {};
+    q.allFilters.forEach(function(eachFilter){
+        if(['ucd-chapter-10', 'hhs-region', 'mcd-chapter-10'].indexOf(eachFilter.key) === -1) {
+            allOptions[eachFilter.key] = {"options": []};
+            eachFilter.autoCompleteOptions.forEach(function(eachOption){
+                //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
+                allOptions[eachFilter.key].options.push(eachOption.key);
+            });
         }
     });
     return allOptions;
@@ -1087,6 +1149,7 @@ module.exports.getTargetFilter = getTargetFilter;
 module.exports.getTargetFilterValue = getTargetFilterValue;
 module.exports.mapAndGroupOptionResults = mapAndGroupOptionResults;
 module.exports.getAllSelectedFilterOptions = getAllSelectedFilterOptions;
+module.exports.getAllFilterOptions = getAllFilterOptions;
 module.exports.suppressStateTotals = suppressStateTotals;
 module.exports.isFilterApplied = isFilterApplied;
 module.exports.findAllAppliedFilters = findAllAppliedFilters;

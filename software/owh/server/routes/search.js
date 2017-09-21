@@ -127,13 +127,15 @@ function search(q) {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         //Get all selected filter options
         var allSelectedFilterOptions = searchUtils.getAllSelectedFilterOptions(q);
+        var allFilterOptions = searchUtils.getAllFilterOptions(q);
         logger.debug("Detail Mortality - selected filters and filter options: ", JSON.stringify(allSelectedFilterOptions));
+        logger.debug("Detail Mortality - All Filters and filter options: ", JSON.stringify(allFilterOptions));
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
         // Invoke WONDER only for age_adjusted_rates view
         if(q.tableView == 'age-adjusted_death_rates') {
             finalQuery.wonderQuery = preparedQuery.apiQuery;
         }
-        new elasticSearch().aggregateDeaths(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
+        new elasticSearch().aggregateDeaths(sideFilterQuery, isStateSelected, allFilterOptions).then(function (sideFilterResults) {
             new elasticSearch().aggregateDeaths(finalQuery, isStateSelected, allSelectedFilterOptions).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
@@ -204,8 +206,6 @@ function search(q) {
         });
 
     } else if (preparedQuery.apiQuery.searchFor === 'infant_mortality') {
-        //Get all selected filter options
-        var allSelectedFilterOptions = [];
         var selectedYears = searchUtils.getTargetFilterValue(q.allFilters, 'year_of_death');
         var groupByOptions = searchUtils.getSelectedGroupByOptions(q.allFilters);
         var options = selectedYears.reduce(function (prev, year) {
@@ -218,7 +218,7 @@ function search(q) {
 
         var es = new elasticSearch();
         var promises = [
-            es.aggregateInfantMortalityData(preparedQuery.apiQuery, isStateSelected, allSelectedFilterOptions, selectedYears)
+            es.aggregateInfantMortalityData(preparedQuery.apiQuery, isStateSelected, selectedYears)
         ];
       Q.all(promises).then(function (response) {
             var resData = {};
@@ -234,6 +234,8 @@ function search(q) {
     } else if (preparedQuery.apiQuery.searchFor === 'std' ||
         preparedQuery.apiQuery.searchFor === 'tb' ||
         preparedQuery.apiQuery.searchFor === 'aids') {
+        var allSelectedFilterOptions = searchUtils.getAllSelectedFilterOptions(q, preparedQuery.apiQuery.searchFor);
+        logger.debug(preparedQuery.apiQuery.searchFor +" - Selected filters and filter options: ", JSON.stringify(allSelectedFilterOptions));
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true, searchUtils.getAllOptionValues());
         sideFilterTotalCountQuery = queryBuilder.addCountsToAutoCompleteOptions(q);
         sideFilterTotalCountQuery.countQueryKey = 'cases';
@@ -247,7 +249,7 @@ function search(q) {
             indexName = 'owh_aids'; indexType = 'aids';
         }
         new elasticSearch().aggregateDiseaseData(sideFilterQuery, preparedQuery.apiQuery.searchFor, indexName, indexType, isStateSelected).then(function (sideFilterResults) {
-            new elasticSearch().aggregateDiseaseData(finalQuery, preparedQuery.apiQuery.searchFor, indexName, indexType, isStateSelected).then(function (response) {
+            new elasticSearch().aggregateDiseaseData(finalQuery, preparedQuery.apiQuery.searchFor, indexName, indexType, isStateSelected, allSelectedFilterOptions).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
                 resData.resultData = response.data;

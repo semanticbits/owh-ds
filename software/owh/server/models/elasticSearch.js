@@ -169,7 +169,7 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected, allSe
         }
         Q.all(promises).then( function (respArray) {
             var data = searchUtils.populateDataWithMappings(respArray[0], 'deaths', undefined, allSelectedFilterOptions, query[0]);
-            var mapData = searchUtils.populateDataWithMappings(respArray[2], 'deaths');
+            var mapData = searchUtils.populateDataWithMappings(respArray[2], 'deaths', undefined, allSelectedFilterOptions, query[2]);
             data.data.nested.maps = mapData.data.nested.maps;
             self.mergeWithCensusData(data, respArray[1], 'pop');
             mergeCensusRecursively(data.data.nested.maps, respArray[3].data.nested.maps, 'pop');
@@ -196,7 +196,7 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected, allSe
     else {
         logger.debug("Mortality ES Query: "+ JSON.stringify( query[0]));
         this.executeESQuery(mortality_index, mortality_type,query[0]).then(function (resp) {
-            var data = searchUtils.populateDataWithMappings(resp, 'deaths');
+            var data = searchUtils.populateDataWithMappings(resp, 'deaths', undefined, allSelectedFilterOptions);
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'deaths');
             } else if (data.data.simple.state) {
@@ -302,7 +302,7 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected,
     return deferred.promise;
 };
 
-ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateSelected, allSelectedFilterOptions, selectedYears) {
+ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateSelected, selectedYears) {
     var self = this;
     var deferred = Q.defer();
     var dbID;
@@ -323,7 +323,7 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
         logger.debug("Invoking wonder query with this query JSON: ", JSON.stringify(query));
         promises.push(new wonder(dbID).invokeWONDER(query));
         Q.all(promises).then(function (resp) {
-            var data = searchUtils.populateWonderDataWithMappings(resp[0], 'infant_mortality', undefined, allSelectedFilterOptions, query, isStateSelected);
+            var data = searchUtils.populateWonderDataWithMappings(resp[0], 'infant_mortality', undefined, query, isStateSelected);
             isStateSelected && searchUtils.applySuppressions(data, 'infant_mortality');
             deferred.resolve(data);
 
@@ -335,7 +335,7 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
     return deferred.promise;
 };
 
-ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, indexName, indexType, isStateSelected) {
+ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, indexName, indexType, isStateSelected, allSelectedFilterOptions) {
     var self = this;
     var deferred = Q.defer();
     if(query[1]) {
@@ -357,7 +357,7 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
             promises.push(self.executeESQuery(indexName, indexType, chartQuery));
         });
         Q.all(promises).then( function (resp) {
-            var data = searchUtils.populateDataWithMappings(resp[0], diseaseName, 'cases');
+            var data = searchUtils.populateDataWithMappings(resp[0], diseaseName, 'cases', allSelectedFilterOptions, query[0]);
             var mapData = searchUtils.populateDataWithMappings(resp[1], diseaseName, 'cases');
             //get each chart query response and populate data with mappings
             for(i=0; i< query[3].length; i++ ){
