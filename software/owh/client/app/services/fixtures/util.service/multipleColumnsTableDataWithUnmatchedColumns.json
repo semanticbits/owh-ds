@@ -471,6 +471,7 @@
           "title": "Number of Deaths",
           "colspan": 1,
           "rowspan": 2,
+          "isTotal":true,
           "isData": true
         }
       ],
@@ -508,19 +509,24 @@
           "key": "White"
         },
         {
-          "title": "Not Available",
-          "isCount": true
+        "title":"na",
+        "isCount":true,
+        "standardPop":"na",
+        "pop":"n/a"
         },
         {
-          "title": "Not Available",
-          "isCount": true
+          "title":"na",
+          "isCount":true,
+          "standardPop":"na",
+          "pop":"n/a"
         },
         {
           "title": 157850,
           "isCount": true,
           "rowspan": 1,
           "colspan": 1,
-          "isBold": true
+          "isBold": true,
+          "isTotal":true
         }
       ],
       [

@@ -431,7 +431,8 @@
                 tableHeaders[0].push({
                     title: countLabel,
                     colspan: 1,
-                    rowspan: colHeaders.headers.length > 0 ? colHeaders.headers.length : 1
+                    rowspan: colHeaders.headers.length > 0 ? colHeaders.headers.length : 1,
+                    isTotal: true
                 });
             }
             //mark each data column header as isData to set alignment
@@ -635,7 +636,7 @@
             return tableData;
         }
 
-        function prepareCountCell(count, data, countKey, totalCount, calculatePercentage, secondaryCountKeys, bold) {
+        function prepareCountCell(count, data, countKey, totalCount, calculatePercentage, secondaryCountKeys, isTotal) {
             var title = Number(count);
             if(isNaN(title)) {
                 title = count;
@@ -647,8 +648,9 @@
                 rowspan: 1,
                 colspan: 1
             };
-            if(bold) {
-                cell['isBold'] = true;
+            if(isTotal) {
+                cell.isBold = true;
+                cell.isTotal = true;
             }
             //add additional data to the cell, used for population
             if(secondaryCountKeys) {
@@ -735,7 +737,7 @@
                             if(eachOptionLength <= 0) {
                                 eachOptionLength = getOptionDataLength(columnHeaders.slice(1));
                             }
-                            tableData = tableData.concat(getArrayWithDefaultValue(eachOptionLength, {title: 'Not Available', percentage: percentage , isCount: true}));
+                            tableData = tableData.concat(getArrayWithDefaultValue(eachOptionLength,{title: 'na',isCount: true, standardPop: 'na', pop:'n/a'}));
                         }
                     }
                 });
