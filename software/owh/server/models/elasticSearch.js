@@ -230,9 +230,9 @@ ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected, a
             var mapData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop');
             data.data.nested.maps = mapData.data.nested.maps;
             if (isStateSelected) {
-                searchUtils.applySuppressions(data, 'bridge_race');
+                searchUtils.applySuppressions(data, 'bridge_race', 0);
             } else {
-                searchUtils.applySuppressions(mapData, 'bridge_race');
+                searchUtils.applySuppressions(mapData, 'bridge_race', 0);
             }
             deferred.resolve(data);
         }, function (err) {

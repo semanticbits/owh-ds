@@ -5,7 +5,11 @@
   "dataset":"deaths",
   "data":[
     {
+      "namelong":"Population",
       "name":"Population",
+      "xlong":[
+
+      ],
       "x":[
 
       ],
@@ -25,23 +29,22 @@
   "layout":{
     "width":128,
     "autosize":true,
-    "showlegend":false,
-    "margin":{
-      "l":20,
-      "r":10,
-      "b":20,
-      "t":20
+    "showlegend":true,
+    "legend":{
+      "orientation":"h",
+      "y":1.25,
+      "x":0.4
     },
     "xaxis":{
       "visible":true,
       "titlefont":{
         "size":15
       },
-      "exponentformat":"none",
+      "exponentformat":"auto",
       "tickangle":45,
       "showline":true,
       "gridcolor":"#bdbdbd",
-      "showticklabels":false,
+      "showticklabels":true,
       "fixedrange":true,
       "title":"Year",
       "type":"category"
@@ -51,14 +54,20 @@
       "titlefont":{
         "size":15
       },
-      "exponentformat":"none",
+      "exponentformat":"auto",
       "tickangle":45,
       "ticksuffix":"   ",
       "showline":true,
       "gridcolor":"#bdbdbd",
-      "showticklabels":false,
+      "showticklabels":true,
       "fixedrange":true,
       "title":"Population"
+    },
+    "margin":{
+      "l":100,
+      "r":10,
+      "b":100,
+      "t":50
     }
   },
   "options":{

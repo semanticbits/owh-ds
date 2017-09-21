@@ -14,7 +14,8 @@
                 tableName: '&',
                 selectedFilter: '<',
                 filterValues: '<',
-                searchResults: '&'
+                searchResults: '&',
+                imageSource: '&'
             }
         });
 
@@ -35,6 +36,21 @@
         mc.groupByFiltersUpdated = groupByFiltersUpdated;
         mc.excludeDisabled = function (filter) { return !(filter.disableFilter || mc.selectedFilter.value.some(function(val){return val.key === filter.key})) }
 
+        var imagePaths = {
+          deaths: '../images/icons/detailed-mortality-icon.svg',
+          mental_health: '../images/icons/yrbss-icon.svg',
+          bridge_race: '../images/icons/bridged-race-icon.svg',
+          natality: '../images/icons/natality-icon.svg',
+          prams: '../images/icons/prams-icon.svg',
+          infant_mortality: '../images/icons/infant-mortality-icon.svg',
+          std: '../images/icons/std-icon.svg',
+          tb: '../images/icons/tuberculosis-icon.svg',
+          aids: '../images/icons/aids-hiv-icon.svg',
+          cancer_incident: '../images/icons/cancer-incidence-icon.svg',
+          cancer_mortality: '../images/icons/cancer-mortality-icon.svg',
+          brfss: '../images/icons/brfss-icon.svg'
+        };
+
         mc.$onChanges = function() {
             var filters = [];
             if(['number_of_deaths', 'crude_death_rates',
@@ -48,6 +64,7 @@
                     mc.selectedShowFilter = filter;
                 }
             });
+            mc.imageSource = imagePaths[mc.selectedFilter.key];
         };
         function showMenu() {
             mc.displayMenu = !mc.displayMenu;
