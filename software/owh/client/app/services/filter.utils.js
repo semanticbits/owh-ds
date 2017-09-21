@@ -678,28 +678,28 @@
 
         var gestationalGroup1 = [
             { key: "Under 20 weeks", title: "Under 20 weeks" },
-            { key: "20 - 27 weeks", title: "20 - 27 weeks" },
-            { key: "28 - 31 weeks", title: "28 - 31 weeks" },
-            { key: "32 - 33 weeks", title: "32 - 33 weeks" },
-            { key: "34 - 36 weeks", title: "34 - 36 weeks" },
-            { key: "37 - 38 weeks", title: "37 - 38 weeks" },
+            { key: "20-27 weeks", title: "20 - 27 weeks" },
+            { key: "28-31 weeks", title: "28 - 31 weeks" },
+            { key: "32-33 weeks", title: "32 - 33 weeks" },
+            { key: "34-36 weeks", title: "34 - 36 weeks" },
+            { key: "37-38 weeks", title: "37 - 38 weeks" },
             { key: "39 weeks", title: "39 weeks" },
             { key: "40 weeks", title: "40 weeks" },
             { key: "41 weeks", title: "41 weeks" },
-            { key: "42 weeks and over", title: "42 weeks and over" },
+            { key: "42 or more weeks", title: "42 weeks and over" },
             { key: "Unknown", title: "Unknown" }
         ];
 
         var gestationalGroup2 = [
             { key: "Under 20 weeks" , title: "Under 20 weeks" },
-            { key: "20 - 27 weeks" , title: "20 - 27 weeks" },
-            { key: "28 - 31 weeks" , title: "28 - 31 weeks" },
-            { key: "32 - 35 weeks" , title: "32 - 35 weeks" },
+            { key: "20-27 weeks" , title: "20 - 27 weeks" },
+            { key: "28-31 weeks" , title: "28 - 31 weeks" },
+            { key: "32-35 weeks" , title: "32 - 35 weeks" },
             { key: "36 weeks" , title: "36 weeks" },
-            { key: "37 - 39 weeks" , title: "37 - 39 weeks" },
+            { key: "37-39 weeks" , title: "37 - 39 weeks" },
             { key: "40 weeks" , title: "40 weeks" },
             { key: "41 weeks" , title: "41 weeks" },
-            { key: "42 weeks and over" , title: "42 weeks and over" },
+            { key: "42 weeks or more" , title: "42 weeks and over" },
             { key: "Unknown" , title: "Unknown" }
         ];
 
@@ -1072,10 +1072,10 @@
 
             var infantDeathAge = [
                 { key: "Under 1 hour", title: "Under 1 hour" },
-                { key: "1-23 hours", title: "1-23 hours" },
-                { key: "1-6 days", title: "1-6 days" },
-                { key: "7-27 days", title: "7-27 days" },
-                { key: "28 days and over", title: "28 days and over" }
+                { key: "1 - 23 hours", title: "1-23 hours" },
+                { key: "1 - 6 days", title: "1-6 days" },
+                { key: "7 - 27 days", title: "7-27 days" },
+                { key: "28 - 364 days", title: "28 days and over" }
             ];
 
             var infantRaceOptions = [

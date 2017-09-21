@@ -227,7 +227,7 @@ ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected, a
         ];
         Q.all(promises).then( function (resp) {
             var data = searchUtils.populateDataWithMappings(resp[0], 'bridge_race', 'pop', allSelectedFilterOptions, query[0]);
-            var mapData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop');
+            var mapData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop', allSelectedFilterOptions, query[2]);
             data.data.nested.maps = mapData.data.nested.maps;
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'bridge_race', 0);
@@ -243,7 +243,7 @@ ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected, a
     else {
         logger.debug("ES Query for side filter counts :"+ JSON.stringify( query[0]));
         this.executeESQuery(census_index, census_type, query[0]).then(function (response) {
-            var results = searchUtils.populateDataWithMappings(response, 'bridge_race', 'pop');
+            var results = searchUtils.populateDataWithMappings(response, 'bridge_race', 'pop', undefined, allSelectedFilterOptions);
             if (isStateSelected) {
                 searchUtils.applySuppressions(results, 'bridge_race');
             }
@@ -286,7 +286,7 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected,
     else {
         logger.debug("Natality ES Query: "+ JSON.stringify( query[0]));
         this.executeESQuery(natality_index, natality_type, query[0]).then(function (resp) {;
-            var data = searchUtils.populateDataWithMappings(resp, 'natality');
+            var data = searchUtils.populateDataWithMappings(resp, 'natality', undefined, allSelectedFilterOptions);
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'natality');
             } else if (data.data.simple.state) {
@@ -358,7 +358,7 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
         });
         Q.all(promises).then( function (resp) {
             var data = searchUtils.populateDataWithMappings(resp[0], diseaseName, 'cases', allSelectedFilterOptions, query[0]);
-            var mapData = searchUtils.populateDataWithMappings(resp[1], diseaseName, 'cases');
+            var mapData = searchUtils.populateDataWithMappings(resp[1], diseaseName, 'cases', allSelectedFilterOptions, query[2]);
             //get each chart query response and populate data with mappings
             for(i=0; i< query[3].length; i++ ){
                 //chart response index depends on population query array length
@@ -392,7 +392,7 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
     else {
         logger.debug("ES Query for "+ diseaseName+ " :"+ JSON.stringify( query[0]));
         this.executeESQuery(indexName, indexType, query[0]).then(function (response) {
-            var data = searchUtils.populateDataWithMappings(response, diseaseName, 'cases');
+            var data = searchUtils.populateDataWithMappings(response, diseaseName, 'cases', allSelectedFilterOptions);
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);

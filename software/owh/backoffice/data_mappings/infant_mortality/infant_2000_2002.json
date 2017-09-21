@@ -113,15 +113,15 @@
       "column": "gestation_recode10",
       "mappings": {
         "01": "Under 20 weeks",
-        "02": "20 - 27 weeks",
-        "03": "28 - 31 weeks",
-        "04": "32 - 35 weeks",
+        "02": "20-27 weeks",
+        "03": "28-31 weeks",
+        "04": "32-35 weeks",
         "05": "36 weeks",
-        "06": "37 - 39 weeks",
+        "06": "37-39 weeks",
         "07": "40 weeks",
         "08": "41 weeks",
-        "09": "42 weeks and over",
-        "10": "Not stated"
+        "09": "42 weeks or more",
+        "10": "Unknown"
       }
     },
     {
@@ -129,15 +129,15 @@
       "column": "gestation_recode11",
       "mappings": {
         "17-19": "Under 20 weeks",
-        "20-27": "20 - 27 weeks",
-        "28-31": "28 - 31 weeks",
-        "32-33": "32 - 33 weeks",
-        "34-36": "34 - 36 weeks",
-        "37-38": "37 - 38 weeks",
+        "20-27": "20-27 weeks",
+        "28-31": "28-31 weeks",
+        "32-33": "32-33 weeks",
+        "34-36": "34-36 weeks",
+        "37-38": "37-38 weeks",
         "39-39": "39 weeks",
         "40-40": "40 weeks",
         "41-41": "41 weeks",
-        "42-47": "42 weeks and over",
+        "42-47": "42 or more weeks",
         "99-99": "Unknown"
       }
     },
@@ -237,10 +237,10 @@
       "type": "map",
       "mappings": {
         "1": "Under 1 hour",
-        "2": "1-23 hours",
-        "3": "1-6 days",
-        "4": "7-27 days",
-        "5": "28 days and over"
+        "2": "1 - 23 hours",
+        "3": "1 - 6 days",
+        "4": "7 - 27 days",
+        "5": "28 - 364 days"
       }
     },
     {
