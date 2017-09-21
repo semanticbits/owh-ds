@@ -5,11 +5,18 @@
   "dataset":"deaths",
   "data":[
     {
+      "namelong":"Male     ",
       "name":"Male     ",
-      "x":[
+      "xlong":[
         "White",
         "Black",
         "Asian or Pacific Islander",
+        "American Indian"
+      ],
+      "x":[
+        "White",
+        "Black",
+        "API",
         "American Indian"
       ],
       "y":[
@@ -32,11 +39,18 @@
       }
     },
     {
+      "namelong":"Female     ",
       "name":"Female     ",
-      "x":[
+      "xlong":[
         "White",
         "Black",
         "Asian or Pacific Islander",
+        "American Indian"
+      ],
+      "x":[
+        "White",
+        "Black",
+        "API",
         "American Indian"
       ],
       "y":[
@@ -62,23 +76,22 @@
   "layout":{
     "width":128,
     "autosize":true,
-    "showlegend":false,
-    "margin":{
-      "l":20,
-      "r":10,
-      "b":20,
-      "t":20
+    "showlegend":true,
+    "legend":{
+      "orientation":"h",
+      "y":1.25,
+      "x":0.4
     },
     "xaxis":{
       "visible":true,
       "titlefont":{
         "size":15
       },
-      "exponentformat":"none",
+      "exponentformat":"auto",
       "tickangle":45,
       "showline":true,
       "gridcolor":"#bdbdbd",
-      "showticklabels":false,
+      "showticklabels":true,
       "fixedrange":true,
       "title":"label.filter.race"
     },
@@ -87,14 +100,20 @@
       "titlefont":{
         "size":15
       },
-      "exponentformat":"none",
+      "exponentformat":"auto",
       "tickangle":45,
       "ticksuffix":"   ",
       "showline":true,
       "gridcolor":"#bdbdbd",
-      "showticklabels":false,
+      "showticklabels":true,
       "fixedrange":true,
       "title":"Deaths"
+    },
+    "margin":{
+      "l":75,
+      "r":10,
+      "b":100,
+      "t":50
     },
     "barmode":"bar"
   },

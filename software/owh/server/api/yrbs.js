@@ -50,9 +50,9 @@ yrbs.prototype.invokeYRBSService = function(apiQuery){
             }
         });
         if(apiQuery.searchFor == 'mental_health') {
-            //searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexualOrientationSelected, apiQuery.isChartorMapQuery);
+            searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexualOrientationSelected, apiQuery.isChartorMapQuery);
         } else if(apiQuery.searchFor == 'brfss') {
-            //searchUtils.applyBRFSSuppression({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery);
+            searchUtils.applyBRFSSuppression({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery);
         }
         deferred.resolve(data);
     }, function (error) {
@@ -395,7 +395,7 @@ yrbs.prototype.getYRBSQuestionsTree = function () {
     } else {
         invokeYRBS(config.yrbs.questionsUrl + '?d=prams').then(function(response) {
             logger.info("Getting PRAMS questions from YRBS service");
-            var data = prepareQuestionTree(response, true);
+            var data = prepareQuestionTree(response.questions, true);
             // Cache the result only if it is valid
             if (data.questionsList.length > 0) {
                 cachedPramsQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};

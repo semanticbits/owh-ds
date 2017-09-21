@@ -1954,6 +1954,24 @@ div.interested-in-filter:focus {
 	display: none;
 }
 
+.suppression{
+	padding-left: 20px;
+}
+
+ul.sub {
+	padding-left: 20px;
+}
+
+.suppression ul li{
+	list-style-type: disc;
+	padding-left: 10px;
+	display: list-item;
+}
+
+.suppression ul:before, .suppression ul:after, .suppression ul li:before, .suppression ul li:after {
+	display: none;
+}
+
 select.tableViewDropDown:focus {
 	box-shadow: inset 0 0 0 2px #8c56b7 !important;
 	z-index: 1;
