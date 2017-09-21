@@ -22,8 +22,9 @@ install:
 script:
   - cd $TRAVIS_BUILD_DIR/software/owh
   - cp -R $TRAVIS_BUILD_DIR/deployment/* $TRAVIS_BUILD_DIR/software/owh
+  - aws s3 sync s3://owh-config-prod $TRAVIS_BUILD_DIR/software/owh 
   - mkdir -p $TRAVIS_BUILD_DIR/software/owh/.owh/logs
-
+  
 after_success:
   - docker --version  # document the version travis is using
   - eval $(aws ecr get-login --region us-east-1) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
