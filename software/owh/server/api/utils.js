@@ -123,6 +123,7 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelect
                     allSelectedFilterOptionsForMap[mapAggKeys[0]] = {"options":["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA",
                         "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]};
                     allSelectedFilterOptionsForMap[mapAggKeys[1]] = {"options":['Female', 'Male']};
+                    (countKey === 'std' || countKey === 'tb' || countKey === 'aids') && allSelectedFilterOptionsForMap[mapAggKeys[1]].options.unshift('Both sexes');
                     aggData[dataKey] = populateAggregatedData(data[key].buckets, countKey, 3, true, countQueryKey, groupKeyRegex, dataKey, allSelectedFilterOptionsForMap, mapAggKeys, 'group_maps_'+keySplits[2]+'_');
                 }
                 else {
@@ -230,21 +231,19 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
     };
     var result = {};
     if (wonderResponse.Total){
-        if(wonderResponse.Total['infant_mortality'] != 0) {
-            if(keyMap[key]){
-                key = keyMap[key];
-            }
-            result['name'] = key.trim();
-            result.infant_mortality = wonderResponse.Total['deathRate'] === 'Suppressed' ? 'suppressed': wonderResponse.Total['infant_mortality'];
-            result['deathRate'] = wonderResponse.Total['deathRate'] === 'Suppressed' ? 'suppressed': wonderResponse.Total['deathRate'];
-            result['pop'] = isNaN(wonderResponse.Total['births']) ? 'suppressed' : wonderResponse.Total['births'];
-            result [filterKeys[0]] = [];
-            Object.keys(wonderResponse).forEach(function (key) {
-                if (key != 'Total') {
-                    result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function (x, i) { return i !== 0;}), isStateSelected));
-                }
-            });
+        if(keyMap[key]){
+            key = keyMap[key];
         }
+        result['name'] = key.trim();
+        result.infant_mortality = wonderResponse.Total['deathRate'] === 'Suppressed' ? 'suppressed': wonderResponse.Total['infant_mortality'];
+        result['deathRate'] = wonderResponse.Total['deathRate'] === 'Suppressed' ? 'suppressed': wonderResponse.Total['deathRate'];
+        result['pop'] = isNaN(wonderResponse.Total['births']) ? 'suppressed' : wonderResponse.Total['births'];
+        result [filterKeys[0]] = [];
+        Object.keys(wonderResponse).forEach(function (key) {
+            if (key != 'Total') {
+                result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function (x, i) { return i !== 0;}), isStateSelected));
+            }
+        });
         return result;
     }
     else if(isStateSelected && !wonderResponse.hasOwnProperty('infant_mortality')) {
@@ -262,15 +261,13 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
         return result;
     }
     else {
-        if(wonderResponse['infant_mortality'] != 0) {
-            if(keyMap[key]){
-                key = keyMap[key];
-            }
-            result['name'] = key.trim();
-            result.infant_mortality = wonderResponse['deathRate'] === 'Suppressed' ? 'suppressed' : wonderResponse['infant_mortality'];
-            result['deathRate'] = wonderResponse['deathRate'] === 'Suppressed' ? 'suppressed' : wonderResponse['deathRate'];
-            result['pop'] = isNaN(wonderResponse['births']) ? 'suppressed' : wonderResponse['births'];
+        if(keyMap[key]){
+            key = keyMap[key];
         }
+        result['name'] = key.trim();
+        result.infant_mortality = wonderResponse['deathRate'] === 'Suppressed' ? 'suppressed' : wonderResponse['infant_mortality'];
+        result['deathRate'] = wonderResponse['deathRate'] === 'Suppressed' ? 'suppressed' : wonderResponse['deathRate'];
+        result['pop'] = isNaN(wonderResponse['births']) ? 'suppressed' : wonderResponse['births'];
         return result;
     }
 };
@@ -925,7 +922,7 @@ function getAllSelectedFilterOptions(q, datasetName) {
     q.allFilters.forEach(function(eachFilter){
         if(eachFilter.groupBy) {
             allOptions[eachFilter.key] = {"options": []};
-            if(['std', 'td', 'aids'].indexOf(datasetName) > -1) {
+            if(['std', 'tb', 'aids'].indexOf(datasetName) > -1) {
                 var diseaseDataSetsAllOptions = getAllOptionValues();
                 if(eachFilter.value && diseaseDataSetsAllOptions.indexOf(eachFilter.value) === -1){
                     allOptions[eachFilter.key].options.push(eachFilter.value);

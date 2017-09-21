@@ -48,7 +48,7 @@
         "6": "35-39 years",
         "7": "40-44 years",
         "8": "45-49 years",
-        "9": "50-54 years"
+        "9": "50 years and over"
       }
     },
     {
@@ -62,11 +62,11 @@
         "2": "9th through 12th grade with no diploma",
         "3": "High school graduate or GED completed",
         "4": "Some college credit, but not a degree",
-        "5": "Associate degree (AA,AS)",
-        "6": "Bachelor’s degree (BA, AB, BS)",
-        "7": "Master’s degree (MA, MS, MEng, MEd, MSW, MBA)",
-        "8": "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
-        "9": "Unknown"
+        "5": "Associate degree (AA, AS)",
+        "6": "Bachelor's degree (BA, AB, BS)",
+        "7": "Master's degree (MA, MS)",
+        "8": "Doctorate (PHD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
+        "9": "Unknown/Not on certificate"
       }
     },
     {
@@ -230,7 +230,7 @@
       "mappings": {
         "1": "In Hospital",
         "2": "Not in Hospital",
-        "3": "Unknown or Not Stated"
+        "3": "Unknown or not Stated"
       }
     },
     {
@@ -369,7 +369,7 @@
         "5": "Other and Unknown Hispanic",
         "6": "Non-Hispanic White",
         "7": "Non-Hispanic Black",
-        "8": "Non-Hispanic Other Races",
+        "8": "Non-Hispanic other races",
         "9": "Origin unknown or not stated"
       }
     }

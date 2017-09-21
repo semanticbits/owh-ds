@@ -1069,6 +1069,28 @@
             return natalityFilters;
         }
         function getInfantMortalityDataFilters () {
+            var infantHispanicOptions =  [
+                { "key": "Mexican", "title": "Mexican" },
+                { "key": "Puerto Rican", "title": "Puerto Rican" },
+                { "key": "Cuban", "title": "Cuban" },
+                { "key": "Central or South American", "title": "Central or South American" },
+                { "key": "Other and Unknown Hispanic", "title": "Other and Unknown Hispanic" },
+                { "key": "Non-Hispanic White", "title": "Non-Hispanic White" },
+                { "key": "Non-Hispanic Black", "title": "Non-Hispanic Black" },
+                { "key": "Non-Hispanic other races", "title": "Non-Hispanic Other Races" },
+                { "key": "Origin unknown or not stated", "title": "Origin unknown or not stated" }
+            ];
+            var infantAgeR9Options =  [
+                { "key": "Under 15 years", "title": "Under 15 years" },
+                { "key": "15-19 years", "title": "15-19 years" },
+                { "key": "20-24 years", "title": "20-24 years" },
+                { "key": "25-29 years", "title": "25-29 years" },
+                { "key": "30-34 years", "title": "30-34 years" },
+                { "key": "35-39 years", "title": "35-39 years" },
+                { "key": "40-44 years", "title": "40-44 years" },
+                { "key": "45-49 years", "title": "45-49 years" },
+                { "key": "50 years and over", "title": "50 years and over" }
+            ];
 
             var infantDeathAge = [
                 { key: "Under 1 hour", title: "Under 1 hour" },
@@ -1088,6 +1110,24 @@
                 { "key": "Hawaiian", "title": "Hawaiian" },
                 { "key": "Japanese", "title": "Japanese" },
                 { "key": "Other Asian", "title": "Other Asian" }
+            ];
+
+            var infantEducationOptions = [
+                {key:'0 -  8 years', title:'0 – 8 years'},
+                {key:'9 - 11 years', title:'9 – 11 years'},
+                {key:'12 years', title:'12 years'},
+                {key:'13 - 15 years', title:'13 – 15 years'},
+                {key:'16 years and over', title:'16 years and over'},
+                {key:'Not stated/Not on certificate', title:'Not stated/Not on certificate'},
+                {key:'8th grade or less', title:'8th grade or less'},
+                {key:'9th through 12th grade with no diploma', title:'9th through 12th grade with no diploma'},
+                {key:'High school graduate or GED completed', title:'High school graduate or GED completed'},
+                {key:'Some college credit, but not a degree', title:'Some college credit, but not a degree'},
+                {key:'Associate degree (AA, AS)', title:'Associate degree (AA,AS)'},
+                {key:"Bachelor's degree (BA, AB, BS)", title:"Bachelor's degree (BA, AB, BS)"},
+                {key:"Master's degree (MA, MS)", title:"Master's degree (MA, MS)"},
+                {key:'Doctorate (PHD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)', title:'Doctorate (PHD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)'},
+                {key:'Unknown/Not on certificate', title:'Unknown/Not on certificate'}
             ];
 
             return [
@@ -1114,11 +1154,11 @@
 
                 {key: 'hispanic_origin', title: 'label.filter.hispanicOrigin', queryKey:"hispanic_origin",
                     primary: false, value: [], defaultGroup:'row', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: hispanicOptions, helpText:"label.help.text.ethnicity"},
+                    autoCompleteOptions: infantHispanicOptions, helpText:"label.help.text.ethnicity"},
 
                 {key: 'mother_age_5_interval', title: 'label.filter.age_of_mother', queryKey:"mother_age_5_interval",
                     primary: false, value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: ageR9Options, helpText:"label.help.text.infantmort.age.group"},
+                    autoCompleteOptions: infantAgeR9Options, helpText:"label.help.text.infantmort.age.group"},
 
                 {key: 'marital_status', title: 'label.filter.maritalStatus', queryKey:"marital_status", primary: false,
                     value: [], defaultGroup:'column', groupBy:false, filterType: "checkbox",
@@ -1126,7 +1166,7 @@
 
                 {key: 'mother_education', title: 'label.filter.education', queryKey:"mother_education", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: educationOptions, helpText:"label.help.text.mother.education"},
+                    autoCompleteOptions: infantEducationOptions, helpText:"label.help.text.mother.education"},
 
                 // Birth Characteristics
                 {key: 'gestation_recode11', title: 'label.filter.infant_mortality.gestation_recode11', queryKey:"gestation_recode11",

@@ -684,13 +684,13 @@ describe("Elastic Search", function () {
             expect(resp.data.nested.table.race[0].sex[0].pop).equal(stdAggreFinalQueryResp.data.nested.table.race[0].sex[0].pop);
 
             var states = resp.data.nested.maps.states;
-            expect(states[0].name).equal('AK');
-            expect(states[0].sex[0].name).equal('Both sexes');
-            expect(states[0].sex[0].std).equal(11320);
-            expect(states[0].sex[1].name).equal('Female');
-            expect(states[0].sex[1].std).equal(7572);
-            expect(states[0].sex[2].name).equal('Male');
-            expect(states[0].sex[2].std).equal(3742);
+            expect(states[1].name).equal('AK');
+            expect(states[1].sex[0].name).equal('Both sexes');
+            expect(states[1].sex[0].std).equal(11320);
+            expect(states[1].sex[1].name).equal('Female');
+            expect(states[1].sex[1].std).equal(7572);
+            expect(states[1].sex[2].name).equal('Male');
+            expect(states[1].sex[2].std).equal(3742);
 
             done();
         })
@@ -823,7 +823,7 @@ describe("Elastic Search", function () {
 
     it("should aggregate tb data for each filter", function (done){
         var query = {"size":0,"aggregations":{"current_year":{"terms":{"field":"current_year","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"group_count_cases":{"sum":{"field":"cases"}},"sex":{"terms":{"field":"sex","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"race":{"terms":{"field":"race_ethnicity","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"age_group":{"terms":{"field":"age_group","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}},"state":{"terms":{"field":"state","size":0},"aggregations":{"group_count_cases":{"sum":{"field":"cases"}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"sex":"Both sexes"}}]}},{"bool":{"should":[{"term":{"race_ethnicity":"All races/ethnicities"}}]}},{"bool":{"should":[{"term":{"current_year":"2015"}}]}},{"bool":{"should":[{"term":{"age_group":"All age groups"}}]}},{"bool":{"should":[{"term":{"state":"National"}}]}}]}}}}};
-        new elasticSearch().aggregateDiseaseData([query], 'tb', 'owh_tb', 'tb').then(function (resp) {
+        new elasticSearch().aggregateDiseaseData([query], 'tb', 'owh_tb', 'tb', false, ).then(function (resp) {
             //SideFilter counts: current_year
             expect(resp.data.simple.current_year[0].name).equal('2015');
             expect(resp.data.simple.current_year[0].tb).equal(19087);
