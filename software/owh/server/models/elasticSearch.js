@@ -243,7 +243,7 @@ ElasticClient.prototype.aggregateCensusData = function(query, isStateSelected, a
     else {
         logger.debug("ES Query for side filter counts :"+ JSON.stringify( query[0]));
         this.executeESQuery(census_index, census_type, query[0]).then(function (response) {
-            var results = searchUtils.populateDataWithMappings(response, 'bridge_race', 'pop', undefined, allSelectedFilterOptions);
+            var results = searchUtils.populateDataWithMappings(response, 'bridge_race', 'pop', allSelectedFilterOptions);
             if (isStateSelected) {
                 searchUtils.applySuppressions(results, 'bridge_race');
             }
