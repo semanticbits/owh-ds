@@ -170,7 +170,6 @@ function search(q) {
     } else if (preparedQuery.apiQuery.searchFor === "bridge_race") {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         var allSelectedFilterOptions = searchUtils.getAllSelectedFilterOptions(q);
-        var allFilterOptions = searchUtils.getAllFilterOptions(q);
         logger.debug("Bridge Race - Selected filters and filter options: ", JSON.stringify(allSelectedFilterOptions));
         logger.debug("Bridge Race - All Filters and filter options: ", JSON.stringify(allFilterOptions));
         //build query for total counts that will be displyed in side filters
@@ -178,7 +177,7 @@ function search(q) {
         sideFilterTotalCountQuery.countQueryKey = 'pop';
         var sideFilterQuery = queryBuilder.buildSearchQuery(sideFilterTotalCountQuery, true);
 
-        new elasticSearch().aggregateCensusData(sideFilterQuery, isStateSelected, allFilterOptions).then(function (sideFilterResults) {
+        new elasticSearch().aggregateCensusData(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
             new elasticSearch().aggregateCensusData(finalQuery, isStateSelected, allSelectedFilterOptions).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;

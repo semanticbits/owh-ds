@@ -131,12 +131,7 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelect
                 }
                 result.data.nested.maps[dataKey]= aggData[dataKey];
             } else {
-                if(countKey == 'bridge_race') {
-                    result.data.simple[key] = populateAggregatedData(data[key].buckets, countKey, undefined, undefined, countQueryKey, undefined, key, allSelectedFilterOptions, [key, 'pop'], 'group_count_');
-                }
-                else {
-                    result.data.simple[key] = populateAggregatedData(data[key].buckets, countKey, undefined, undefined, countQueryKey, undefined, key, allSelectedFilterOptions);
-                }
+                result.data.simple[key] = populateAggregatedData(data[key].buckets, countKey, undefined, undefined, countQueryKey, undefined, key, allSelectedFilterOptions);
             }
         });
     }
