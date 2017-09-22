@@ -120,7 +120,9 @@ function search(q) {
     var finalQuery = '';
 
     var stateFilter = queryBuilder.findFilterByKeyAndValue(q.allFilters, 'key', 'state');
-    var isStateSelected = queryBuilder.isFilterApplied(stateFilter);
+    var censusRegion = queryBuilder.findFilterByKeyAndValue(q.allFilters, 'key', 'census-region');
+    var hhsRegion = queryBuilder.findFilterByKeyAndValue(q.allFilters, 'key', 'hhs-region');
+    var isStateSelected = queryBuilder.isFilterApplied(stateFilter) || queryBuilder.isFilterApplied(censusRegion) || queryBuilder.isFilterApplied(hhsRegion);
 
     logger.debug("Incoming query: ", JSON.stringify(preparedQuery));
     if (preparedQuery.apiQuery.searchFor === "deaths") {

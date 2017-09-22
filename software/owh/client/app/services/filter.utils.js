@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
     'use strict';
 
     angular
@@ -849,11 +849,11 @@
 
             var ageSliderOptions =  {
                 from: 0,
-                to: 85,
+                to: 90,
                 step: 5,
                 threshold: 0,
-                scale: [0, '', 10, '', 20, '', 30, '', 40, '', 50, '', 60, '', 70, '', 80, '>85'],
-                modelLabels: {85: '>85'},
+                scale: [0, '', 10, '', 20, '', 30, '', 40, '', 50, '', 60, '', 70, '', 80, '>85', ''],
+                modelLabels: {85: '', 90: '>85'},
                 css: {
                     background: {'background-color': '#ccc'}, before: {'background-color': '#ccc'},
                     default: {'background-color': 'white'}, after: {'background-color': '#ccc'},

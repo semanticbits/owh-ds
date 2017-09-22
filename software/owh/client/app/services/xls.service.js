@@ -281,7 +281,7 @@
                         var rateVisibility = getRateVisibility(cell.title, cell.pop, tableView);
 
                         if (rateVisibility === 'visible') {
-                            rateValue = tableView === 'number_of_infant_deaths' ? cell.deathRate : cell.title / cell.pop * 100000;
+                            rateValue = tableView === 'number_of_infant_deaths' ? cell.deathRate : (cell.ageAdjustedRate ? cell.ageAdjustedRate : cell.title / cell.pop * 100000);
                         }
                         else if (rateVisibility === 'suppressed') {
                             rateValue = 'Suppressed';
