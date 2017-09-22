@@ -25,7 +25,7 @@
                         {name: "Births", description: "The birth counts in the data represent births that occurred in the 50 United States and the district of Columbia, for the legal place of residence of the decedent."},
                         {name: "Birth Rates", description: "Birth rates are calculated as the number of births divided by total population in the given year(s)."},
                         {name: "Fertility Rates", description: "Fertility rates are calculated as the number of births divided by the number of females age 15 - 44 years old in the given year(s)"},
-                        {name: "Population", description: "The population estimates are bridged-race estimates based on Bureau of the Census estimates of total U.S., State, and county resident populations"},
+                        {name: "Population", description: "The population estimates are bridged-race estimates based on Bureau of the Census estimates of total U.S., State resident populations"},
                         {name: "Year", description: "This field indicates year of birth"},
                         {name: "Sex", description: "This field indicates the sex of the child as recorded on the birth certificate."},
                         {name: "Month", description: "This field indicates month of birth"},
@@ -125,7 +125,7 @@
                         {name: "Deaths", description: "The death counts in the data represent deaths that occurred in the 50 United States and the district of Columbia, for the legal place of residence of the decedent."},
                         {name: "Crude Death Rates", description: "Crude Rates are expressed as the number of deaths reported each calendar year per the factor you select. The default factor is per 100,000 population, reporting the death rate per 100,000 persons."},
                         {name: "Age Adjusted Death Rates", description: "Age-adjusted death rates are weighted averages of the age-specific death rates, where the weights represent a fixed population by age."},
-                        {name: "Population", description: "The population estimates are U.S. Census Bureau estimates of U.S. national, state, and county resident populations."},
+                        {name: "Population", description: "The population estimates are U.S. Census Bureau estimates of U.S. national, state resident populations."},
                         {name: "Year", description: "This field indicates the year of occurrence of death."},
                         {name: "Sex", description: "This field indicates the sex of the deceased."},
                         {name: "Race", description: "This field indicates the race of the deceased"},
@@ -155,8 +155,9 @@
                         {
                             isRateInfo:true,
                             question:"How are Age Adjusted Rates calculated?",
-                            answer:"<p>Age-adjusted death rates are weighted averages of the age-specific death rates, where the weights represent a fixed population by age. They are used to compare relative mortality risk among groups and over time. An age-adjusted rate represents the rate that would have existed had the age-specific rates of the particular year prevailed in a population whose age distribution was the same as that of the fixed population. Age-adjusted rates should be viewed as relative indexes rather than as direct or actual measures of mortality risk. The rates of almost all causes of death vary by age. Age adjustment is a technique for &quot;removing&quot; the effects of age from crude rates, so as to allow meaningful comparisons across populations with different underlying age structures. For example, comparing the crude rate of heart disease in Florida to that of California is misleading, because the relatively older population in Florida will lead to a higher crude death rate, even if the age-specific rates of heart disease in Florida and California are the same. For such a comparison, age-adjusted rates are preferable. Age-adjusted rates should be viewed as relative indexes rather than as direct or actual measures of mortality risk.</p>" +
-                            "<p>The National Center for Health Statistics (NCHS) age-adjusts death rates using the direct method. That is, by applying age-specific death rates (Ri) to the U.S. standard population age distribution.</p>" +
+                            answer:"<p>Age-adjusted death rates are weighted averages of the age-specific death rates, where the weights represent a fixed population by age. They are used to compare relative mortality risk among groups and over time. An age-adjusted rate represents the rate that would have existed had the age-specific rates of the particular year prevailed in a population whose age distribution was the same as that of the fixed population. Age-adjusted rates should be viewed as relative indexes rather than as direct or actual measures of mortality risk.</p>" +
+                            "<p>The rates of almost all causes of death vary by age. Age adjustment is a technique for \"removing\" the effects of age from crude rates, so as to allow meaningful comparisons across populations with different underlying age structures. For example, comparing the crude rate of heart disease in Florida to that of California is misleading, because the relatively older population in Florida will lead to a higher crude death rate, even if the age-specific rates of heart disease in Florida and California are the same. For such a comparison, age-adjusted rates are preferable. Age-adjusted rates should be viewed as relative indexes rather than as direct or actual measures of mortality risk.</p>" +
+                            "<p>The National Center for Health Statistics (NCHS) age-adjusted death rates using the direct method. That is, by applying age-specific death rates (Ri) to the U.S. standard population age distribution.</p>" +
                             "<p>R' = S i ( Psi / Ps ) Ri</p>where <b>Psi</b> is the standard population for age group <b>i</b> and <b>Ps</b> is the total U.S. standard population (all ages combined).<br/><br/>"
                         },
                         {
@@ -195,9 +196,9 @@
                     yrsAvail: '2000-2015',
                     topics: 'Demographics, Population Data',
                     dataDescription: "The estimates result from bridging the 31 race categories used in Census 2000, as specified in the 1997 Office of Management and Budget (OMB) standards for the collection of data on race and ethnicity, to the four race categories specified under the 1977 standards (Asian or Pacific Islander, Black or African American, American Indian or Alaska Native, White).",
-                    source: "Data source is United States Department of Health and Human Services (HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS), Bridged-Race Population Estimates, United States July 1st resident population by state, county, age, sex, bridged-race, and Hispanic origin." +
-                    "<ul><li>2010 to 2015 (Vintage 2015) postcensal estimates of the July 1 resident population by year, five-year of age groups, bridged-race, sex, and Hispanic originreleased by NCHS on June 28, 2016.</li>" +
-                    "<li>2000 to 2009 revised intercensal estimates of the July 1 resident population by year, five-year of age groups, bridged-race, sex, and Hispanic origin released by NCHS on October 26, 2012.</li>" +
+                    source: "Data source is United States Department of Health and Human Services (HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS), Bridged-Race Population Estimates, United States July 1st resident population by state, age, sex, bridged-race, and Hispanic origin." +
+                    "<ul><li>2010 to 2015 (Vintage 2015) postcensal estimates of the July 1 resident population by five-year of age groups, bridged-race, sex, and Hispanic originreleased by NCHS on June 28, 2016.</li>" +
+                    "<li>2000 to 2009 revised intercensal estimates of the July 1 resident population by five-year of age groups, bridged-race, sex, and Hispanic origin released by NCHS on October 26, 2012.</li>" +
                     "</ul>",
                     filters: [
                         {name: "Year", description: "This field indicates July 1st estimates for 2000 through last year of the series"},
@@ -258,14 +259,14 @@
                     additionalInfo:[
                         {
                             question:"What are the population sources?",
-                            answer:"The population estimates are a slight modification of the annual time series of July 1 county population estimates (by age, sex, race, and Hispanic origin) produced by the Population Estimates Program of the U.S. Bureau of the Census (Census Bureau) with support from the National Cancer Institute (NCI) through an interagency agreement.<br/><br/>"
+                            answer:"The population estimates are a slight modification of the annual time series of July 1 population estimates (by age, sex, race, and Hispanic origin) produced by the Population Estimates Program of the U.S. Bureau of the Census (Census Bureau) with support from the National Cancer Institute (NCI) through an interagency agreement.<br/><br/>"
                         },
                         {
                             isRateInfo:true,
                             question:"What are Crude Rates? How are they calculated?",
                             answer:"Crude Rates are expressed as the number of cases reported each calendar year per 100,000 population." +
                             "<p>Crude Rate = Count / Population * 100,000</p>" +
-                            "<p>The population estimates for the denominators of incidence rates are race-specific (all races, white, black, and Asian/ Pacific Islander) and sex-specific county population estimates aggregated to the state or metropolitan area level.</p>"
+                            "<p>The population estimates for the denominators of incidence rates are race-specific (all races, white, black, and Asian/ Pacific Islander) and sex-specific population estimates aggregated to the state or metropolitan area level.</p>"
                         },
                         {
                             question: "Why are some states disabled for certain years?",
@@ -302,7 +303,6 @@
                         {name: "Ethnicity", description: "This field indicates the ethnicity of the patient"},
                         {name: "Age Group", description: "This field indicates the age group of the patient"},
                         {name: "Cancer Sites", description: "This field indicates the primary cancer site that is the organ of origin within the body where a given cancer occurs in an individual"},
-                        {name: "Childhood Cancers", description: "This field indicates the childhood cancer that are usually studied in children who are less than age 20"},
                         {name: "Leading Cancer Sites", description: "This field contains a list of only the top or leading cancer sites, meaning the primary cancers with the highest incidence for each race and sex"},
                         {name: "State", description: "This field indicates the State of patient's residence at the time the case was submitted to the registry"},
                         {name: "Census Regions", description: "The United States is split into 4 Census Regions: Northeast, Midwest, South and West. Census Divisions are multi-state groups, sub-sets of Census Regions. You can group by Census Division, or select any combination of individual Census Divisions"}
@@ -310,14 +310,14 @@
                     additionalInfo:[
                         {
                             question:"What are the population sources?",
-                            answer:"The population estimates are a slight modification of the annual time series of July 1 county population estimates (by age, sex, race, and Hispanic origin) produced by the Population Estimates Program of the U.S. Bureau of the Census (Census Bureau) with support from the National Cancer Institute (NCI) through an interagency agreement.<br/><br/>"
+                            answer:"The population estimates are a slight modification of the annual time series of July 1 population estimates (by age, sex, race, and Hispanic origin) produced by the Population Estimates Program of the U.S. Bureau of the Census (Census Bureau) with support from the National Cancer Institute (NCI) through an interagency agreement.<br/><br/>"
                         },
                         {
                             isRateInfo:true,
                             question:"What are Crude Rates? How are they calculated?",
                             answer:"Crude Rates are expressed as the number of cases reported each calendar year per 100,000 population." +
                             "<p>Crude Rate = Count / Population * 100,000</p>" +
-                            "<p>The population estimates for the denominators of incidence rates are race-specific (all races, white, black, and Asian/ Pacific Islander) and sex-specific county population estimates aggregated to the state or metropolitan area level.</p>"
+                            "<p>The population estimates for the denominators of incidence rates are race-specific (all races, white, black, and Asian/ Pacific Islander) and sex-specific population estimates aggregated to the state or metropolitan area level.</p>"
                         }
                     ]
                 },
