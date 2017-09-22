@@ -684,13 +684,13 @@ describe("Elastic Search", function () {
             expect(resp.data.nested.table.race[0].sex[0].pop).equal(stdAggreFinalQueryResp.data.nested.table.race[0].sex[0].pop);
 
             var states = resp.data.nested.maps.states;
-            expect(states[1].name).equal('AK');
-            expect(states[1].sex[0].name).equal('Both sexes');
-            expect(states[1].sex[0].std).equal(11320);
-            expect(states[1].sex[1].name).equal('Female');
-            expect(states[1].sex[1].std).equal(7572);
-            expect(states[1].sex[2].name).equal('Male');
-            expect(states[1].sex[2].std).equal(3742);
+            expect(states[0].name).equal('AK');
+            expect(states[0].sex[0].name).equal('Both sexes');
+            expect(states[0].sex[0].std).equal(11320);
+            expect(states[0].sex[1].name).equal('Female');
+            expect(states[0].sex[1].std).equal(7572);
+            expect(states[0].sex[2].name).equal('Male');
+            expect(states[0].sex[2].std).equal(3742);
 
             done();
         })
