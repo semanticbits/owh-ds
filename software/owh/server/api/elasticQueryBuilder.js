@@ -382,7 +382,7 @@ function findFilterByKeyAndValue(a, key, value) {
  */
 function isFilterApplied(a) {
     if (a) {
-        return (a.value.length > 0 && a.value != 'National') || a.groupBy;
+        return (a.value.length > 0 && a.value != 'National') || a.groupBy === 'row' || a.groupBy === 'column';
     }
     return false;
 }

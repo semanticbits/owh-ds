@@ -8,7 +8,7 @@
             <div class="label margin-right-10" ng-bind="'label.interested.in' | translate"></div>
 
             <div id="selectedPrimaryFilterDiv" class="dropdown-heading flex-grow">
-                <img src="../images/icons/bridged-race-icon.svg">
+                <img ng-src="{{ mc.imageSource }}">
                 <span ng-bind="mc.selectedFilter.header"></span>
             </div>
             <i class="material-icons keyboard-arrow-down-black">keyboard_arrow_down</i>

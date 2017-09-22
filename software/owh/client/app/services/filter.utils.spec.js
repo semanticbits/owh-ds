@@ -26,7 +26,7 @@ describe('filterUtils', function(){
             var bridgeRaceFilters = filterUtils.getBridgeDataFilters();
             //Slider lower and upper bounds
             expect(bridgeRaceFilters[2].sliderOptions.from).toEqual(0);
-            expect(bridgeRaceFilters[2].sliderOptions.to).toEqual(85);
+            expect(bridgeRaceFilters[2].sliderOptions.to).toEqual(90);
 
             bridgeRaceFilters[2].sliderOptions.callback('5;19');
 
