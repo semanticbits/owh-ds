@@ -247,21 +247,26 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
     }
 };
 
-var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQueryKey, regex, dataKey, allSelectedFilterOptions, groupFilters, groupKey) {
+var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQueryKey, regex, dataKey, allSelectedFilterOptions, groupFilters, groupKey, parentOpt) {
     var result = [];
     //Preparing a new bucket to add buckets for missing filters
     var newBuckets = [];
+    var regDivMap = {'CENS-D1':'CENS-R1','CENS-D2':'CENS-R1','CENS-D3':'CENS-R2','CENS-D4':'CENS-R2','CENS-D5':'CENS-R3',
+        'CENS-D6':'CENS-R3','CENS-D7':'CENS-R3','CENS-D8':'CENS-R4','CENS-D9':'CENS-R4'}
     if(allSelectedFilterOptions) {
         allSelectedFilterOptions[dataKey].options.forEach(function(eachFilterOption){
             //If any filter option not available in buckets then add it to
             if(findIndexByKeyAndValue(buckets, 'key', eachFilterOption) === -1){
-                var newObj = {};
-                newObj.key = eachFilterOption;
-                newObj.doc_count = 0;
-                if(groupFilters && groupFilters.length > 1) {
-                    newObj[groupKey+groupFilters[1]] = {buckets: []};
+                // For cencus devision, add only divisions corresponding the parent region
+                if(dataKey !== 'census-region|census_division' || regDivMap[eachFilterOption] === parentOpt) {
+                    var newObj = {};
+                    newObj.key = eachFilterOption;
+                    newObj.doc_count = 0;
+                    if(groupFilters && groupFilters.length > 1) {
+                        newObj[groupKey+groupFilters[1]] = {buckets: []};
+                    }
+                    newBuckets.push(newObj);
                 }
-                newBuckets.push(newObj);
             }
             //If filter option available in buckets then add it
             else {
@@ -303,7 +308,7 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
                 //if you want to split group key by regex
                 if (regex && (regex.test('group_table_') || regex.test('group_chart_'))) {
                     aggregation[innerObjKey.split(regex)[1]] =  populateAggregatedData(newBuckets[index][innerObjKey].buckets,
-                        countKey, splitIndex, map, countQueryKey, regex, innerObjKey.split(regex)[1], allSelectedFilterOptions, groupFilters  ? groupFilters.slice(1): undefined, groupKey);
+                        countKey, splitIndex, map, countQueryKey, regex, innerObjKey.split(regex)[1], allSelectedFilterOptions, groupFilters  ? groupFilters.slice(1): undefined, groupKey,newBuckets[index].key );
                 } else {//by default split group key by underscore and retrieve key based on index
                     //adding slice and join because some keys are delimited by underscore so need to be reconstructed
                     aggregation[innerObjKey.split("_").slice(splitIndex).join('_')] =  populateAggregatedData(newBuckets[index][innerObjKey].buckets, countKey, splitIndex, map, countQueryKey);
@@ -321,7 +326,7 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
     * So we are adding missing 'Female' data (like this {name:'Female', countkey: 0})]
     * Here we are adding missing options for 'Infant_mortality' only
     **/
-    if(regex && regex.test('group_table_') && allSelectedFilterOptions && allSelectedFilterOptions[dataKey] != undefined) {
+    if(regex && regex.test('group_table_') && allSelectedFilterOptions && allSelectedFilterOptions[dataKey] != undefined && dataKey !== 'census-region|census_division') {
        addMissingFilterOptions(allSelectedFilterOptions[dataKey], result, countKey);
     }
     return result;
@@ -895,18 +900,39 @@ function getAllSelectedFilterOptions(q) {
     var allOptions = {};
     q.allFilters.forEach(function(eachFilter){
         if(eachFilter.groupBy) {
-            allOptions[eachFilter.key] = {"options": []};
-            if(eachFilter.value.length > 0){
-                eachFilter.value.forEach(function(eachOption){
-                    //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
-                    allOptions[eachFilter.key].options.push(eachOption);
-                });
-            }
-            else {
-                eachFilter.autoCompleteOptions.forEach(function(eachOption){
-                    //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
-                    allOptions[eachFilter.key].options.push(eachOption.key);
-                });
+            if(eachFilter.key != 'census-region'){
+                allOptions[eachFilter.key] = {"options": []};
+                if(eachFilter.value.length > 0){
+                    eachFilter.value.forEach(function(eachOption){
+                        //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
+                        allOptions[eachFilter.key].options.push(eachOption);
+                    });
+                }
+                else {
+                    eachFilter.autoCompleteOptions.forEach(function(eachOption){
+                        //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
+                        allOptions[eachFilter.key].options.push(eachOption.key);
+                    });
+                }
+            }else { // Handle census_region filter as it is a two level filter
+                var cesregOpts = allOptions['census-region|census_region'] = {"options": []};
+                var cesdivOpts = allOptions['census-region|census_division'] = {"options": []};
+                if(eachFilter.value.length > 0){
+                    eachFilter.value.forEach(function(eachOption){
+                        if(eachOption[5] === 'R') { // If the value is region value, add to region list, else to division
+                            cesregOpts.options.push(eachOption);
+                        }else {
+                            cesdivOpts.options.push(eachOption)
+                        }
+                    });
+                }
+                else {
+                    eachFilter.autoCompleteOptions.forEach(function(eachOption){
+                        //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
+                        cesregOpts.options.push(eachOption.key);
+                        cesdivOpts.options = cesdivOpts.options.concat(eachOption.options.map(function (o){return o.key;}));
+                    });
+                }
             }
         }
     });
