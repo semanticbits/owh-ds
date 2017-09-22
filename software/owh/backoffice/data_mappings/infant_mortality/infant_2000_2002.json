@@ -155,7 +155,7 @@
         "07": "7th month",
         "08": "8th month",
         "09": "9th month",
-        "99": "Unknown or not stated"
+        "99": "Not stated/Not on certificate"
       }
     },
     {
@@ -173,7 +173,7 @@
         "09": "4000 - 4499 grams",
         "10": "4500 - 4999 grams",
         "11": "5000 - 8165 grams",
-        "12": "Unknown or not stated"
+        "12": "Not stated"
       }
     },
     {
@@ -196,7 +196,7 @@
         "03-03": "3rd child born alive to mother",
         "04-04": "4th child born alive to mother",
         "05-05": "5th child born alive to mother",
-        "06-31": "6th or more children born alive to mother",
+        "06-31": "6th child and over born alive to mother",
         "99-99": "Unknown or not stated"
       }
     },
@@ -204,9 +204,9 @@
       "column": "birth_place",
       "type": "range",
       "mappings": {
-        "1-1": "In Hospital",
-        "2-5": "Not in Hospital",
-        "9-9": "Unknown or Not Stated"
+        "1": "In Hospital",
+        "2": "Not in Hospital",
+        "3": "Unknown or Not Stated"
       }
     },
     {
@@ -214,19 +214,17 @@
       "type": "map",
       "mappings": {
         "1": "Vaginal",
-        "2": "Vaginal",
         "3": "Cesarean",
-        "4": "Cesarean",
-        "5": "Not stated"
+        "5": "Not Stated"
       }
     },
     {
       "column": "medical_attendant",
       "type": "map",
       "mappings": {
-        "1": "Doctor of Medicine (MD)",
-        "2": "Doctor of Osteopathy (DO)",
-        "3": "Certified Nurse Midwife (CNM)",
+        "1": "Doctor of Medicine(MD)",
+        "2": "Doctor of Osteopathy(DO)",
+        "3": "Certified Nurse Midwife(CNM)",
         "4": "Other Midwife",
         "5": "Other",
         "9": "Unknown or not stated"
