@@ -695,6 +695,7 @@
             childScope.lng = lng;
             childScope.properties = properties;
             childScope.key = key;
+            childScope.totalLabel = mapService.getTotalLabel(properties.tableView);
             var ele = angular.element('<div></div>');
             ele.html($templateCache.get('app/partials/marker-template.html'));
             var compileEle = $compile(ele.contents())(childScope);
@@ -833,6 +834,8 @@
             selectedPrimaryFilter.chartAxisLabel = chartOption.axisLabel;
             selectedPrimaryFilter.chartView = chartOption.key;
             selectedPrimaryFilter.chartData = searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
+            selectedPrimaryFilter.showRates = (chartView === 'disease_rate');
+            mapService.updateStatesDeaths(sc.filters.selectedPrimaryFilter, sc.filters.selectedPrimaryFilter.nestedData.maps, undefined, sc.mapOptions);
         }
 
         function findNameByKeyAndValue(key) {

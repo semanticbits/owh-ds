@@ -112,6 +112,7 @@ ElasticClient.prototype.executeMultipleESQueries = function(query, index, type){
 ElasticClient.prototype.mergeWithCensusData = function(data, censusData, countKey){
     mergeCensusRecursively(data.data.nested.table, censusData.data.nested.table, countKey);
     mergeCensusRecursively(data.data.nested.charts, censusData.data.nested.charts, countKey);
+    mergeCensusRecursively(data.data.nested.maps, censusData.data.nested.maps, countKey);
 };
 
 
@@ -372,7 +373,13 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
             for(i=0; i< query[1].length; i++) {
                 //Merging all population response
                 //When i == 0 prepare 'populationResponse' and then merge 'x.data.nested.charts' into 'populationResponse' variable
-                i == 0 ? populationResponse = resp[i+2] : populationResponse.data.nested.charts.push(resp[i + 2].data.nested.charts[i-1]);
+                if(i == 0) {
+                    populationResponse = resp[i+2]
+                } else if(i == 1) {
+                    populationResponse.data.nested.table = resp[i + 2].data.nested.table;
+                } else {
+                    populationResponse.data.nested.charts.push(resp[i + 2].data.nested.charts[i-2]);
+                }
             }
             self.mergeWithCensusData(data, populationResponse, 'pop');
             if (diseaseName === 'std' || diseaseName === 'aids') {
