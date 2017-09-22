@@ -1069,13 +1069,62 @@
             return natalityFilters;
         }
         function getInfantMortalityDataFilters () {
+            var infantGestationalGroup1 = [
+                { key: "Under 20 weeks", title: "Under 20 weeks" },
+                { key: "20-27 weeks", title: "20 - 27 weeks" },
+                { key: "28-31 weeks", title: "28 - 31 weeks" },
+                { key: "32-33 weeks", title: "32 - 33 weeks" },
+                { key: "34-36 weeks", title: "34 - 36 weeks" },
+                { key: "37-38 weeks", title: "37 - 38 weeks" },
+                { key: "39 weeks", title: "39 weeks" },
+                { key: "40 weeks", title: "40 weeks" },
+                { key: "41 weeks", title: "41 weeks" },
+                { key: "42 or more weeks", title: "42 weeks and over" },
+                { key: "Unknown", title: "Unknown" }
+            ];
+
+            var infantGestationalGroup2 = [
+                { key: "Under 20 weeks" , title: "Under 20 weeks" },
+                { key: "20-27 weeks" , title: "20 - 27 weeks" },
+                { key: "28-31 weeks" , title: "28 - 31 weeks" },
+                { key: "32-35 weeks" , title: "32 - 35 weeks" },
+                { key: "36 weeks" , title: "36 weeks" },
+                { key: "37-39 weeks" , title: "37 - 39 weeks" },
+                { key: "40 weeks" , title: "40 weeks" },
+                { key: "41 weeks" , title: "41 weeks" },
+                { key: "42 weeks or more" , title: "42 weeks and over" },
+                { key: "Unknown" , title: "Unknown" }
+            ];
+
+            var infantHispanicOptions =  [
+                { "key": "Mexican", "title": "Mexican" },
+                { "key": "Puerto Rican", "title": "Puerto Rican" },
+                { "key": "Cuban", "title": "Cuban" },
+                { "key": "Central or South American", "title": "Central or South American" },
+                { "key": "Other and Unknown Hispanic", "title": "Other and Unknown Hispanic" },
+                { "key": "Non-Hispanic White", "title": "Non-Hispanic White" },
+                { "key": "Non-Hispanic Black", "title": "Non-Hispanic Black" },
+                { "key": "Non-Hispanic other races", "title": "Non-Hispanic Other Races" },
+                { "key": "Origin unknown or not stated", "title": "Origin unknown or not stated" }
+            ];
+            var infantAgeR9Options =  [
+                { "key": "Under 15 years", "title": "Under 15 years" },
+                { "key": "15-19 years", "title": "15-19 years" },
+                { "key": "20-24 years", "title": "20-24 years" },
+                { "key": "25-29 years", "title": "25-29 years" },
+                { "key": "30-34 years", "title": "30-34 years" },
+                { "key": "35-39 years", "title": "35-39 years" },
+                { "key": "40-44 years", "title": "40-44 years" },
+                { "key": "45-49 years", "title": "45-49 years" },
+                { "key": "50 years and over", "title": "50 years and over" }
+            ];
 
             var infantDeathAge = [
                 { key: "Under 1 hour", title: "Under 1 hour" },
-                { key: "1-23 hours", title: "1-23 hours" },
-                { key: "1-6 days", title: "1-6 days" },
-                { key: "7-27 days", title: "7-27 days" },
-                { key: "28 days and over", title: "28 days and over" }
+                { key: "1 - 23 hours", title: "1-23 hours" },
+                { key: "1 - 6 days", title: "1-6 days" },
+                { key: "7 - 27 days", title: "7-27 days" },
+                { key: "28 - 364 days", title: "28 days and over" }
             ];
 
             var infantRaceOptions = [
@@ -1088,6 +1137,88 @@
                 { "key": "Hawaiian", "title": "Hawaiian" },
                 { "key": "Japanese", "title": "Japanese" },
                 { "key": "Other Asian", "title": "Other Asian" }
+            ];
+
+            var infantEducationOptions = [
+                {key:'0 -  8 years', title:'0 – 8 years'},
+                {key:'9 - 11 years', title:'9 – 11 years'},
+                {key:'12 years', title:'12 years'},
+                {key:'13 - 15 years', title:'13 – 15 years'},
+                {key:'16 years and over', title:'16 years and over'},
+                {key:'Not stated/Not on certificate', title:'Not stated/Not on certificate'},
+                {key:'8th grade or less', title:'8th grade or less'},
+                {key:'9th through 12th grade with no diploma', title:'9th through 12th grade with no diploma'},
+                {key:'High school graduate or GED completed', title:'High school graduate or GED completed'},
+                {key:'Some college credit, but not a degree', title:'Some college credit, but not a degree'},
+                {key:'Associate degree (AA, AS)', title:'Associate degree (AA,AS)'},
+                {key:"Bachelor's degree (BA, AB, BS)", title:"Bachelor's degree (BA, AB, BS)"},
+                {key:"Master's degree (MA, MS)", title:"Master's degree (MA, MS)"},
+                {key:'Doctorate (PHD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)', title:'Doctorate (PHD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)'},
+                {key:'Unknown/Not on certificate', title:'Unknown/Not on certificate'}
+            ];
+            var infantPrenatalCareMonthOptions = [
+                { "key": "No prenatal care", "title": "No prenatal care" },
+                { "key": "1st month", "title": "1st month" },
+                { "key": "2nd month", "title": "2nd month" },
+                { "key": "3rd month", "title": "3rd month" },
+                { "key": "4th month", "title": "4th month" },
+                { "key": "5th month", "title": "5th month" },
+                { "key": "6th month", "title": "6th month" },
+                { "key": "7th month", "title": "7th month" },
+                { "key": "8th month", "title": "8th month" },
+                { "key": "9th month", "title": "9th month" },
+                { "key": "10th month", "title": "10th month" },
+                { "key": "Not stated/Not on certificate", "title": "Not stated/Not on certificate"}
+            ];
+            var infantBirthWeightR12Options = [
+                {key:'499 grams or less', title:'499 grams or less'},
+                {key:'500 - 999 grams', title:'500 - 999 grams'},
+                {key:'1000 - 1499 grams', title:'1000 - 1499 grams'},
+                {key:'1500 - 1999 grams', title:'1500 - 1999 grams'},
+                {key:'2000 - 2499 grams', title:'2000 - 2499 grams'},
+                {key:'2500 - 2999 grams', title:'2500 - 2999 grams'},
+                {key:'3000 - 3499 grams', title:'3000 - 3499 grams'},
+                {key:'3500 - 3999 grams', title:'3500 - 3999 grams'},
+                {key:'4000 - 4499 grams', title:'4000 - 4499 grams'},
+                {key:'4500 - 4999 grams', title:'4500 - 4999 grams'},
+                {key:'5000 - 8165 grams', title:'5000 - 8165 grams'},
+                {key:'Not stated', title:'Not Stated'}
+            ];
+            var infantLiveBirthOrderOptions = [
+                {key:'1st child born alive to mother', title:'1st child born alive to mother'},
+                {key:'2nd child born alive to mother', title:'2nd child born alive to mother'},
+                {key:'3rd child born alive to mother', title:'3rd child born alive to mother'},
+                {key:'4th child born alive to mother', title:'4th child born alive to mother'},
+                {key:'5th child born alive to mother', title:'5th child born alive to mother'},
+                {key:'6th child and over born alive to mother', title:'6th child and over born alive to mother'},
+                {key:'Unknown or not stated', title:'Unknown or not stated'}
+            ];
+
+            var infantBirthPlaceOptions = [
+                {key:'In Hospital', title:'In Hospital'},
+                {key:'Not in Hospital', title:'Not in Hospital'},
+                {key:'Unknown or Not Stated', title:'Unknown or Not Stated'}
+            ];
+
+            var infantDeliveryMethodOptions = [
+                {key:'Cesarean', title:'Cesarean'},
+                {key:'Vaginal', title:'Vaginal'},
+                {key:'Not Stated', title:'Not stated'}
+            ];
+
+            var infantMedicalAttendantOptions = [
+                {key:'Doctor of Medicine(MD)', title:'Doctor of Medicine (MD)'},
+                {key:'Doctor of Osteopathy(DO)', title:'Doctor of Osteopathy (DO)'},
+                {key:'Certified Nurse Midwife(CNM)', title:'Certified Nurse Midwife (CNM)'},
+                {key:'Other Midwife', title:'Other Midwife'},
+                {key:'Other', title:'Other'},
+                {key:'Unknown or not stated', title:'Unknown or not stated'}
+            ];
+
+            var infantMaritalStatusOptions = [
+                {key:'Married', title:'Married'},
+                {key:'Unmarried', title:'Unmarried'},
+                {key:'Unknown or not Stated', title:'Unknown or not Stated'}
             ];
 
             return [
@@ -1114,29 +1245,29 @@
 
                 {key: 'hispanic_origin', title: 'label.filter.hispanicOrigin', queryKey:"hispanic_origin",
                     primary: false, value: [], defaultGroup:'row', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: hispanicOptions, helpText:"label.help.text.ethnicity"},
+                    autoCompleteOptions: infantHispanicOptions, helpText:"label.help.text.ethnicity"},
 
                 {key: 'mother_age_5_interval', title: 'label.filter.age_of_mother', queryKey:"mother_age_5_interval",
                     primary: false, value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: ageR9Options, helpText:"label.help.text.infantmort.age.group"},
+                    autoCompleteOptions: infantAgeR9Options, helpText:"label.help.text.infantmort.age.group"},
 
                 {key: 'marital_status', title: 'label.filter.maritalStatus', queryKey:"marital_status", primary: false,
                     value: [], defaultGroup:'column', groupBy:false, filterType: "checkbox",
-                    autoCompleteOptions: maritalStatusOptions, helpText:"label.help.text.marital.status"},
+                    autoCompleteOptions: infantMaritalStatusOptions, helpText:"label.help.text.marital.status"},
 
                 {key: 'mother_education', title: 'label.filter.education', queryKey:"mother_education", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: educationOptions, helpText:"label.help.text.mother.education"},
+                    autoCompleteOptions: infantEducationOptions, helpText:"label.help.text.mother.education"},
 
                 // Birth Characteristics
                 {key: 'gestation_recode11', title: 'label.filter.infant_mortality.gestation_recode11', queryKey:"gestation_recode11",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
-                    filterType: "checkbox", autoCompleteOptions: gestationalGroup1,
+                    filterType: "checkbox", autoCompleteOptions: infantGestationalGroup1,
                     helpText:"label.help.text.gestational.group.one"},
 
                 {key: 'gestation_recode10', title: 'label.filter.infant_mortality.gestation_recode10', queryKey:"gestation_recode10",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
-                    filterType: "checkbox", autoCompleteOptions: gestationalGroup2,
+                    filterType: "checkbox", autoCompleteOptions: infantGestationalGroup2,
                     helpText:"label.help.text.gestational.group.two"},
 
                 {key: 'gestation_weekly', title: 'label.filter.infant_mortality.gestation_weekly', queryKey:"gestation_weekly",
@@ -1146,32 +1277,32 @@
 
                 {key: 'prenatal_care', title: 'label.filter.monthPrenatalCareBegan', queryKey:"prenatal_care",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
-                    filterType: "checkbox", autoCompleteOptions: prenatalCareMonthOptions,
+                    filterType: "checkbox", autoCompleteOptions: infantPrenatalCareMonthOptions,
                     helpText:"label.help.text.prenatal.care"},
 
                 {key: 'birth_weight', title: 'label.filter.birthWeight', queryKey:"birth_weight_r12", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: birthWeightR12Options, helpText: "label.help.text.birth.weight"},
+                    autoCompleteOptions: infantBirthWeightR12Options, helpText: "label.help.text.birth.weight"},
 
                 {key: 'birth_plurality', title: 'label.filter.plurality', queryKey:"birth_plurality", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: birthPluralityOptions, helpText:"label.help.text.birth.plurality"},
+                    autoCompleteOptions: infantBirthPlaceOptions, helpText:"label.help.text.birth.plurality"},
 
                 {key: 'live_birth', title: 'label.filter.liveBirthOrder', queryKey:"live_birth", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: liveBirthOrderOptions, helpText:"label.help.text.live.birth.order"},
+                    autoCompleteOptions: infantLiveBirthOrderOptions, helpText:"label.help.text.live.birth.order"},
 
                 {key: 'birth_place', title: 'label.filter.birthPlace', queryKey:"birth_place", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: birthPlaceOptions, helpText:"label.help.text.birth.place"},
+                    autoCompleteOptions: infantBirthPlaceOptions, helpText:"label.help.text.birth.place"},
 
                 {key: 'delivery_method', title: 'label.filter.deliveryMethod', queryKey:"delivery_method", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: deliveryMethodOptions, helpText:"label.help.text.delivery.method"},
+                    autoCompleteOptions: infantDeliveryMethodOptions, helpText:"label.help.text.delivery.method"},
 
                 {key: 'medical_attendant', title: 'label.filter.medicalAttendant', queryKey:"medical_attendant", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: medicalAttendantOptions, helpText:"label.help.text.medical.attendant"},
+                    autoCompleteOptions: infantMedicalAttendantOptions, helpText:"label.help.text.medical.attendant"},
 
                 // Location
                 {key: 'state', title: 'label.filter.state', queryKey: 'state', primary: false,

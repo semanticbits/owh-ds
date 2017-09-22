@@ -217,7 +217,20 @@ describe("Build elastic search queries", function(){
                         }
                     ],
                     "charts": [],
-                    "maps": []
+                    "maps": [
+                        [
+                            {
+                                "key": "state",
+                                "queryKey": "state",
+                                "size": 0
+                            },
+                            {
+                                "key": "sex",
+                                "queryKey": "sex",
+                                "size": 0
+                            }
+                        ]
+                    ]
                 }
             }
         };
@@ -232,6 +245,7 @@ describe("Build elastic search queries", function(){
     it("Build search query for STD sidefilters count", function(done){
         var allOptionValues = ["Both sexes", "All races/ethnicities", "All age groups", "National"];
         var params = {
+            'filterCountsQuery':true,
             "searchFor": "std",
             "aggregations": {
                 "simple": [

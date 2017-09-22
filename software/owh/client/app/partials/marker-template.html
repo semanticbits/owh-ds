@@ -9,7 +9,7 @@
             </div>
             <div class="usa-width-one-whole margin-top-5" ng-repeat="eachCat in properties.sex">
                 <div class="usa-width-two-thirds marker-label" ng-bind="eachCat.name | GenderTitle"></div>
-                <div class="usa-width-one-third">
+                <div class="usa-width-one-third" ng-if="!properties.showRates">
                     <span ng-if="eachCat.deaths !== 'suppressed' && ( properties.tableView === 'crude_death_rates' || properties.tableView === 'age-adjusted_death_rates')"
                           ng-bind="eachCat['rate']"></span>
                     <span ng-if="eachCat.deaths !== 'suppressed' && properties.tableView !== 'crude_death_rates' && properties.tableView !== 'age-adjusted_death_rates' "
@@ -18,11 +18,18 @@
                     <span ng-if="!eachCat[key] || eachCat[key] == 'na'"
                           ng-bind="'label.not.available' | translate"></span>
                 </div>
+                <div class="usa-width-one-third" ng-if="properties.showRates">
+                    <span ng-if="eachCat['rate'] && eachCat['rate'] !== 'suppressed'"
+                          ng-bind="eachCat['rate']"></span>
+                    <span ng-if="eachCat['rate'] === 'suppressed'">Suppressed</span>
+                    <span ng-if="!eachCat['rate']"
+                          ng-bind="'label.not.available' | translate"></span>
+                </div>
             </div>
-            <div class="usa-width-one-whole margin-top-5 padding-top-5 border-top-default padding-bottom-10">
+            <div class="usa-width-one-whole margin-top-5 padding-top-5 border-top-default padding-bottom-10"
+                ng-if="!properties.showRates">
                 <div class="usa-width-two-thirds marker-label">
-                    <span ng-if="properties.tableView === 'number_of_deaths'">Total Deaths</span>
-                    <span ng-if="properties.tableView !== 'number_of_deaths'">Total</span>
+                    <span ng-bind="totalLabel"></span>
                 </div>
                 <div class="usa-width-one-third" ng-if="properties.tableView === 'number_of_deaths'">
                     <span ng-if="properties[properties.tableView] === 'suppressed'">Suppressed</span>

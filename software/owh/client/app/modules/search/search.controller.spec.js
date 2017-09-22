@@ -766,14 +766,16 @@ describe("Search controller: ", function () {
         expect(JSON.stringify(searchController.filters.yrbsAdvancedFilters[4].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.questionsList));
     }));
 
-    it("On chart view change for std", inject(function(searchFactory) {
+    it("On chart view change for std", inject(function(searchFactory, mapService) {
         var deferred = $q.defer();
 
         var utilService = $injector.get('utilService');
         searchController.filters = filters;
         filters.selectedPrimaryFilter = filters.search[6];
+        filters.selectedPrimaryFilter.nestedData = {maps:{}};
         filters.primaryFilters = utilService.findAllByKeyAndValue(searchController.filters.search, 'primary', true);
         spyOn(searchFactory, 'prepareChartData').and.returnValue(deferred.promise);
+        spyOn(mapService, 'updateStatesDeaths');
         searchController.onChartViewChange('disease_rate');
         expect(searchController.filters.selectedPrimaryFilter.chartAxisLabel).toEqual('Rates');
         expect(searchController.filters.selectedPrimaryFilter.chartView).toEqual('disease_rate');
