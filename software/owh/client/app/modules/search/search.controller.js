@@ -799,7 +799,6 @@
             } else if (dataset === 'brfss') {
                 sc.filters.selectedPrimaryFilter.allFilters = sc.filters.brfsBasicFilters;
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[11].basicSideFilters[0].sideFilters;
-                sc.filters.selectedPrimaryFilter.tableView = 'alcohol_consumption';
             }
 
             sc.search(true);
@@ -820,7 +819,6 @@
             } else if (dataset === 'brfss') {
                 sc.filters.selectedPrimaryFilter.allFilters = sc.filters.brfsAdvancedFilters;
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[11].advancedSideFilters[0].sideFilters;
-                sc.filters.selectedPrimaryFilter.tableView = 'alcohol_consumption'
             }
 
             sc.search(true);
