@@ -292,7 +292,8 @@
         "Thursday",
         "Wednesday",
         "Saturday",
-        "Friday"
+        "Friday",
+        "Unknown"
       ],
       "filter_name": "weekday",
       "year": "2015",
@@ -472,7 +473,7 @@
     "_source": {
       "permissible_values": [
         "Vaginal",
-        "Unknown",
+        "Not stated",
         "Cesarean"
       ],
       "filter_name": "delivery_method",
