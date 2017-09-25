@@ -42,7 +42,8 @@
                         rowspan="{{ eachColumn.rowspan }}" ng-style="eachColumn.style"
                         ng-if="!eachColumn.key" ng-class="{'bold-class': $index == 1}">
                         <div class="owh-question__content" ng-class="{'text-right': $index > 1}">
-                            <span ng-if="!eachColumn.title.mean" ng-bind-html="eachColumn.title"></span>
+                            <span ng-if="!eachColumn.title.mean && eachColumn.title !=='na'">{{eachColumn.title | capitalize}}</span>
+                            <span ng-if="!eachColumn.title.mean && eachColumn.title ==='na'">Not applicable</span>
                             <div ng-if="eachColumn.title.mean">
                                 {{eachColumn.title.mean == 'suppressed' ? 'Suppressed' :
                                 (eachColumn.title.mean == 'na'? 'No response' : eachColumn.title.mean + '%')}}

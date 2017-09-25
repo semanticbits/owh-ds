@@ -18,8 +18,9 @@
 <div class="usa-grid border-top-default content-wrapper" ng-class="{'allow-inline-charting': sc.filters.allowInlineCharting}">
     <div class="usa-width-one-whole bottom-pane flex-container">
         <div class="usa-width-one-fourth side-pane-padding border-right-default owh-side-menu" ng-hide="!sc.sideMenu.visible">
-            <div ng-show="sc.filters.selectedPrimaryFilter.key === 'mental_health' ||
-                sc.filters.selectedPrimaryFilter.key === 'brfss'" class="yrbs_search_links">
+            <div class="yrbs_search_links"
+                 ng-show="sc.filters.selectedPrimaryFilter.key === 'mental_health'
+                || sc.filters.selectedPrimaryFilter.key === 'brfss'">
                 <a class="advanced-search-toggle"
                    ng-click="sc.switchToBasicSearch(sc.filters.selectedPrimaryFilter.key);"
                    ng-if="!sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu" href="javascript:void(0)">
