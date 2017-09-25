@@ -311,8 +311,8 @@
         function getTotalLabel(key) {
 
             var totalLableMap = {
-                number_of_deaths:'Total Deaths', crude_death_rates:'Total Deaths',
-                'age-adjusted_death_rates':'Total Deaths', bridge_race:'Total',
+                number_of_deaths:'Total Deaths', crude_death_rates:'Total',
+                'age-adjusted_death_rates':'Total', bridge_race:'Total',
                 cancer_incident:'Total', crude_cancer_incidence_rates:'Total',
                 cancer_mortality:'Total', crude_cancer_death_rates: 'Total',
                 std:'Total', tb:'Total', aids:'Total'
