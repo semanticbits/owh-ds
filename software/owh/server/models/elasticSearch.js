@@ -487,20 +487,33 @@ ElasticClient.prototype.getDsMetadata = function (dataset, years) {
 ElasticClient.prototype.aggregateCancerData = function (query, cancer_index, allSelectedFilterOptions) {
     var index = cancer_index === cancer_incident_type ? cancer_incident_index : cancer_mortality_index;
     var type = cancer_index === cancer_incident_type ? cancer_incident_type : cancer_mortality_type;
-    logger.debug("Cancer ES Query for "+ index+ " :"+ JSON.stringify( query[0]));
     var promises = [ this.executeESQuery(index, type, query[0]) ];
 
-    if (query[2]) promises.push(this.executeESQuery(index, type, query[2]));
-    if (query[1]) promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[1]));
+    logger.debug("Cancer ES Query for " + index + " :" + JSON.stringify(query[0]));
 
-    return Q.all(promises).spread(function (queryResponse, mapResponse, populationResponse) {
+    if (query[1]) promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[1]));
+    if (query[2]) {
+        promises.push(this.executeESQuery(index, type, query[2]));
+        promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[2]));
+    }
+
+    return Q.all(promises).spread(function (queryResponse, populationResponse, mapResponse, populationMapResponse) {
         var data = searchUtils.populateDataWithMappings(queryResponse, type, undefined, allSelectedFilterOptions, query[0]);
         var pop = searchUtils.populateDataWithMappings(populationResponse, cancer_population_type);
         var popIndex = searchUtils.createPopIndex(pop.data.nested.table, cancer_population_type);
         searchUtils.attachPopulation(data.data.nested.table, popIndex, '');
-        if (mapResponse) {
-          var mapData = searchUtils.populateDataWithMappings(mapResponse, type);
-          data.data.nested.maps = mapData.data.nested.maps;
+        if (data.data.nested.charts.length) {
+            data.data.nested.charts.forEach(function (chart, idx) {
+                var eachPopIndex = searchUtils.createPopIndex(pop.data.nested.charts[idx], cancer_population_type);
+                searchUtils.attachPopulation(chart, eachPopIndex, '');
+            });
+        }
+        if (mapResponse && populationMapResponse) {
+            var mapData = searchUtils.populateDataWithMappings(mapResponse, type, undefined, allSelectedFilterOptions, query[2]);
+            var popMapData = searchUtils.populateDataWithMappings(populationMapResponse, cancer_population_type);
+            var popMapIndex = searchUtils.createPopIndex(popMapData.data.nested.maps, cancer_population_type);
+            searchUtils.attachPopulation(mapData.data.nested.maps, popMapIndex, '');
+            data.data.nested.maps = mapData.data.nested.maps;
         }
         return data;
     }).catch(function (error) {

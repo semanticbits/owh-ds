@@ -406,7 +406,7 @@ function suppressCounts (obj, countKey, dataType, suppressKey, maxValue, dataset
             } else {// supress value
                 obj[key] = suppressedVal;
             }
-        } else if ((countKey === 'cancer_incident' || countKey === 'cancer_mortality') && obj.pop) {  //Apply cancer SE suppression
+        } else if (countKey === 'cancer_incident' && obj.pop) {  //Apply cancer SE suppression
             var se = Math.sqrt(obj[countKey]) / obj.pop * 100000;
             obj['se'] = se;
             if (se >= 25) {
@@ -1002,9 +1002,9 @@ function isFilterApplied (filter) {
     return value || groupBy;
 }
 
-function findAllAppliedFilters (allFilters) {
+function findAllAppliedFilters (allFilters, ignoredFilterKeys) {
     return allFilters.reduce(function (applied, filter) {
-        if ([ 'current_year', 'state' ].indexOf(filter.key) !== -1) return applied
+        if (ignoredFilterKeys.indexOf(filter.key) !== -1) return applied
         if (isFilterApplied(filter)) return applied.concat(filter.key)
         return applied
     }, [])
@@ -1048,19 +1048,19 @@ function createCancerIncidenceSuppressionRules (years, states, stateGroupBy) {
     var rules = [
         [ ['American Indian/Alaska Native'], ['DE','IL','KY','NJ','NY'] ],
         [ ['Asian or Pacific Islander'], ['DE', 'IL', 'KY'] ],
-        [ ['Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown'], ['DE', 'KY', 'MA'] ]
+        [ ['Hispanic', 'Non-Hispanic', 'Invalid'], ['DE', 'KY', 'MA'] ]
     ];
     var stateSelectedRules = [];
 
     if (states.length && !stateGroupBy) {
         var stateRules = {
-          AR: [ 'Asian or Pacific Islander', 'Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown' ],
-          DE: [ 'American Indian/Alaska Native', 'Asian or Pacific Islander', 'Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown' ],
+          AR: [ 'Asian or Pacific Islander', 'Hispanic', 'Non-Hispanic', 'Invalid' ],
+          DE: [ 'American Indian/Alaska Native', 'Asian or Pacific Islander', 'Hispanic', 'Non-Hispanic', 'Invalid' ],
           IL: [ 'American Indian/Alaska Native', 'Asian or Pacific Islander' ],
-          KY: [ 'American Indian/Alaska Native', 'Asian or Pacific Islander', 'Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown' ],
+          KY: [ 'American Indian/Alaska Native', 'Asian or Pacific Islander', 'Hispanic', 'Non-Hispanic', 'Invalid' ],
           NJ: [ 'American Indian/Alaska Native' ],
           NY: [ 'American Indian/Alaska Native' ],
-          MA: [ 'Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown' ]
+          MA: [ 'Hispanic', 'Non-Hispanic', 'Invalid' ]
         }
         stateSelectedRules = states.reduce(function (prev, state) {
             if (stateRules[state] && state !== 'AR') {
@@ -1078,7 +1078,7 @@ function createCancerIncidenceSuppressionRules (years, states, stateGroupBy) {
 
     if (years.indexOf('2013') !== -1 || years.indexOf('2014') !== -1) {
         rules.push(
-            [ ['Hispanic', 'Non-Hispanic', 'Invalid', 'Unknown'], ['AR'] ],
+            [ ['Hispanic', 'Non-Hispanic', 'Invalid'], ['AR'] ],
             [ ['Asian or Pacific Islander'], ['AR'] ]
         );
     }
@@ -1104,6 +1104,94 @@ function applyCustomSuppressions (data, rules, countKey) {
     rules.forEach(function (rule) {
         data.charts.forEach(function (chart) {
             searchTree(chart, rule, { countKey: countKey, suppressionValue: 0 }, []);
+        });
+    });
+}
+
+function applyCustomMapSuppressions (mapData, allFilters) {
+    var mapSuppressionIndex = {
+      'American Indian/Alaska Native': ['DE','IL','KY','NJ','NY'],
+      'Asian or Pacific Islander': ['DE', 'IL', 'KY'],
+      'Hispanic': ['DE', 'KY', 'MA'],
+      'Non-Hispanic': ['DE', 'KY', 'MA'],
+      'Invalid': ['DE', 'KY', 'MA']
+    };
+    var yearFilter = getTargetFilter(allFilters, 'current_year');
+    var isARSuppressionRequired = yearFilter.allChecked || !!~yearFilter.value.indexOf('2013') || !!~yearFilter.value.indexOf('2014');
+    var selectedRaceOptions = getTargetFilter(allFilters, 'race').value;
+    var selectedHispanicOptions = getTargetFilter(allFilters, 'hispanic_origin').value;
+    var mapSuppressionRules = selectedRaceOptions.concat(selectedHispanicOptions)
+        .reduce(function (states, option) {
+            if (~Object.keys(mapSuppressionIndex).indexOf(option)) {
+                states = states.concat(mapSuppressionIndex[option]);
+            }
+            if (isARSuppressionRequired && ~['American Indian/Alaska Native', 'Hispanic', 'Non-Hispanic', 'Invalid'].indexOf(option)) {
+                states = states.concat('AR');
+            }
+            return states;
+        }, [])
+        .reduce(function (unique, option) {
+            if (!~unique.indexOf(option)) return unique.concat([[option]]);
+            return unique;
+        }, [])
+    mapSuppressionRules.forEach(function (rule) {
+        searchTree(mapData, rule, { countKey: 'cancer_incident', suppressionValue: 'suppressed' }, []);
+    });
+}
+
+function applyCustomSidebarTotalSuppressions (sidebarTotals, allFilters) {
+    var stateSuppressionIndex = {
+      DE: [ 'American Indian/Alaska Native', 'Asian or Pacific Islander', 'Hispanic', 'Non-Hispanic', 'Invalid' ],
+      IL: [ 'American Indian/Alaska Native', 'Asian or Pacific Islander' ],
+      KY: [ 'American Indian/Alaska Native', 'Asian or Pacific Islander', 'Hispanic', 'Non-Hispanic', 'Invalid' ],
+      NJ: [ 'American Indian/Alaska Native' ],
+      NY: [ 'American Indian/Alaska Native' ],
+      MA: [ 'Hispanic', 'Non-Hispanic', 'Invalid' ]
+    };
+    var yearFilter = getTargetFilter(allFilters, 'current_year');
+    var isARSuppressionRequired = yearFilter.allChecked || !!~yearFilter.value.indexOf('2013') || !!~yearFilter.value.indexOf('2014');
+
+    var selectedStateOptions = getTargetFilter(allFilters, 'state').value;
+    var selectedRaceOptions = getTargetFilter(allFilters, 'race').value;
+    var selectedHispanicOptions = getTargetFilter(allFilters, 'hispanic_origin').value;
+    var selectedDemographicFilterOptions = selectedRaceOptions.concat(selectedHispanicOptions);
+
+    var allSidebarOptions = [ 'current_year', 'sex', 'race', 'hispanic_origin', 'age_group' ].reduce(function (allOptions, key) {
+        return allOptions.concat(getTargetFilter(allFilters, key).autoCompleteOptions.map(function (autoCompleteOption) {
+            return autoCompleteOption.key;
+        }));
+    }, []);
+
+    var sidebarSuppressionRules = selectedStateOptions
+        .reduce(function (options, state) {
+            if (~Object.keys(stateSuppressionIndex).indexOf(state)) {
+                var selectedSuppressedOption = stateSuppressionIndex[state].some(function (suppressedOption) {
+                    return ~selectedDemographicFilterOptions.indexOf(suppressedOption);
+                });
+                options = options.concat(selectedSuppressedOption ? allSidebarOptions : stateSuppressionIndex[state]);
+            }
+            if (isARSuppressionRequired && state === 'AR') {
+                var arkansasSuppressedOptions = [ 'Asian or Pacific Islander', 'Hispanic', 'Non-Hispanic', 'Invalid' ];
+                var selectedSuppressedAROption = arkansasSuppressedOptions.some(function (suppressedOption) {
+                    return ~selectedDemographicFilterOptions.indexOf(suppressedOption);
+                });
+                options = options.concat(selectedSuppressedAROption ? allSidebarOptions : arkansasSuppressedOptions);
+            }
+            return options;
+        }, [])
+        .reduce(function (unique, option) {
+            if (!~unique.indexOf(option)) return unique.concat([[option]]);
+            return unique;
+        }, [])
+    sidebarSuppressionRules.forEach(function (rule) {
+        searchTree(sidebarTotals, rule, { countKey: 'cancer_incident', suppressionValue: 'suppressed' }, []);
+    });
+}
+
+function applySidebarCountLimitSuppressions (sidebarTotals, countKey) {
+    [ 'sex', 'race', 'hispanic_origin', 'age_group' ].forEach(function (key) {
+        sidebarTotals[key].forEach(function (option) {
+            option[countKey] = option[countKey] < 16 ? 'suppressed' : option[countKey];
         });
     });
 }
@@ -1179,6 +1267,9 @@ module.exports.recursivelySuppressOptions = recursivelySuppressOptions;
 module.exports.searchTree = searchTree;
 module.exports.createCancerIncidenceSuppressionRules = createCancerIncidenceSuppressionRules;
 module.exports.applyCustomSuppressions = applyCustomSuppressions;
+module.exports.applyCustomMapSuppressions = applyCustomMapSuppressions;
+module.exports.applyCustomSidebarTotalSuppressions = applyCustomSidebarTotalSuppressions;
+module.exports.applySidebarCountLimitSuppressions = applySidebarCountLimitSuppressions;
 module.exports.attachPopulation = attachPopulation;
 module.exports.createPopIndex = createPopIndex;
 module.exports.applyPopulationSpecificSuppression = applyPopulationSpecificSuppression;
