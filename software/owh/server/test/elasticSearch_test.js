@@ -261,7 +261,7 @@ describe("Elastic Search", function () {
         });
     });
 
-    //Comment until we run natality ETL on esdev with latest data mappings. 
+    //Comment until we run natality ETL on esdev with latest data mappings.
     /*it("should fetch metadata for 2015", function (){
         var natalityMetadata = require('./data/natality_matadata.json');
         var sortFn = function (a, b){
