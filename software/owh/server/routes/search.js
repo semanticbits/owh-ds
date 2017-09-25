@@ -178,7 +178,7 @@ function search(q) {
         sideFilterTotalCountQuery.countQueryKey = 'pop';
         var sideFilterQuery = queryBuilder.buildSearchQuery(sideFilterTotalCountQuery, true);
 
-        new elasticSearch().aggregateCensusData(sideFilterQuery, isStateSelected, allFilterOptions).then(function (sideFilterResults) {
+        new elasticSearch().aggregateCensusData(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
             new elasticSearch().aggregateCensusData(finalQuery, isStateSelected, allSelectedFilterOptions).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
@@ -268,36 +268,44 @@ function search(q) {
             });
         });
     } else if (preparedQuery.apiQuery.searchFor === 'cancer_incident' || preparedQuery.apiQuery.searchFor === 'cancer_mortality') {
+        var allFilterOptions = searchUtils.getAllFilterOptions(q);
         var allSelectedFilterOptions = searchUtils.getAllSelectedFilterOptions(q);
+        logger.debug("Cancer -  All Filters and filter options: ", JSON.stringify(allFilterOptions));
         logger.debug("Cancer - Selected filters and filter options: ", JSON.stringify(allSelectedFilterOptions));
+
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         var dataset = preparedQuery.apiQuery.searchFor;
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
         var es = new elasticSearch();
         Q.all([
-            es.aggregateCancerData(sideFilterQuery, dataset),
+            es.aggregateCancerData(sideFilterQuery, dataset, allFilterOptions),
             es.aggregateCancerData(finalQuery, dataset, allSelectedFilterOptions)
         ]).spread(function (sideFilterResults, results) {
             var resData = {};
             resData.queryJSON = q;
-
             searchUtils.applySuppressions(results, dataset, 16);
 
             var isStateFilterApplied = searchUtils.isFilterApplied(stateFilter);
-            var appliedFilters = searchUtils.findAllAppliedFilters(q.allFilters);
+            var appliedFilters = searchUtils.findAllAppliedFilters(q.allFilters, [ 'current_year', 'state' ]);
             if (dataset === 'cancer_incident' && isStateFilterApplied && appliedFilters.length) {
                 var years = searchUtils.getTargetFilterValue(q.allFilters, 'current_year');
                 var stateGroupBy = searchUtils.getTargetFilter(q.allFilters, 'state').groupBy;
                 var statesSelected = searchUtils.getTargetFilterValue(q.allFilters, 'state');
                 var rules = searchUtils.createCancerIncidenceSuppressionRules(years, statesSelected, stateGroupBy);
-                console.log('rules >>>>>>>>>', JSON.stringify(rules))
                 searchUtils.applyCustomSuppressions(results.data.nested, rules, 'cancer_incident');
+            }
+
+            if (dataset === 'cancer_incident') {
+                searchUtils.applyCustomMapSuppressions(results.data.nested.maps, q.allFilters);
+                searchUtils.applyCustomSidebarTotalSuppressions(sideFilterResults.data.simple, q.allFilters);
             }
 
             var hasDemographicFilters = searchUtils.hasFilterApplied(q.allFilters, [ 'race', 'hispanic_origin' ]);
             if (dataset === 'cancer_incident' && hasDemographicFilters) {
                 searchUtils.applyPopulationSpecificSuppression(results.data.nested.table, 'cancer_incident');
             }
+
+            searchUtils.applySidebarCountLimitSuppressions(sideFilterResults.data.simple, dataset);
 
             resData.resultData = results.data;
             resData.resultData.headers = preparedQuery.headers;

@@ -96,7 +96,7 @@
   "label.filter.group.weekday.autopsy.pod": "Weekday, Autopsy, Place of Death",
   "label.filter.group.ucd": "Underlying Cause of Death",
   "label.filter.group.mcd": "Multiple Causes of death",
-  "label.filter.yearly.estimate": "Yearly July 1st Estimates",
+  "label.filter.yearly.estimate": "Year",
   "label.result.header": "Deaths: {{years}} (years)",
   "label.tree.selected": "Selected {{entityName}}(s)",
   "label.tree.search": "Search {{entityName}}",

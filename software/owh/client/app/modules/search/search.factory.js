@@ -3872,6 +3872,7 @@
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    dontShowCounts: true,
                                     filters: utilService.findByKeyAndValue(filters.cancerMortalityFilters, 'key', 'state')
                                 }
                             ]

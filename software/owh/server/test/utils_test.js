@@ -905,15 +905,15 @@ describe("Utils", function(){
         });
 
         it('should return an array', function () {
-            expect(searchUtils.findAllAppliedFilters(mock)).to.be.a('array');
+            expect(searchUtils.findAllAppliedFilters(mock, [])).to.be.a('array');
         });
 
         it('should return the keys of applied filters', function () {
-            expect(searchUtils.findAllAppliedFilters(mock)).to.eql([ 'race', 'sex' ]);
+            expect(searchUtils.findAllAppliedFilters(mock, [])).to.eql([ 'current_year', 'race', 'sex' ]);
         });
 
-        it('should ignore the current_year and state filters', function () {
-            expect(searchUtils.findAllAppliedFilters(mock.slice(0, 2))).to.be.empty();
+        it('should be able to ignore keys passed in', function () {
+            expect(searchUtils.findAllAppliedFilters(mock.slice(0, 2), [ 'current_year', 'state' ])).to.be.empty();
         });
     });
 

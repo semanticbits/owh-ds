@@ -32,13 +32,13 @@
                 var state = utilService.findByKeyAndValue(data.states, 'name', feature.properties.abbreviation);
                 if (utilService.isValueNotEmpty(state)){
                     feature.properties.sex = state.sex;
-                    if(primaryFilter.tableView === 'crude_death_rates') {
+                    if(primaryFilter.tableView === 'crude_death_rates' || primaryFilter.tableView === 'crude_cancer_incidence_rates' || primaryFilter.tableView === 'crude_cancer_death_rates') {
                         //calculate male and female rate
                         angular.forEach(feature.properties.sex, function(eachGender){
                             eachGender['rate'] = $filter('number')(eachGender[primaryFilter.key]/eachGender['pop'] * 1000000 / 10, 1);
                         });
                         var crudeDeathRate = Math.round(state[primaryFilter.key]/state['pop'] * 1000000) / 10 ;
-                        feature.properties.rate = crudeDeathRate;
+                        feature.properties.rate = isNaN(crudeDeathRate) ? 'n/a' : crudeDeathRate;
                         stateDeathTotals.push(crudeDeathRate);
                     }
                     else if(primaryFilter.tableView === 'age-adjusted_death_rates') {
@@ -61,9 +61,9 @@
                         stateDeathTotals.push(state[primaryFilter.key]);
                     }
                     feature.properties.showRates = primaryFilter.showRates;
-                    feature.properties.tableView = primaryFilter.tableView;
                     feature.properties[primaryFilter.key] =  state[primaryFilter.key];
                 }
+                feature.properties.tableView = primaryFilter.tableView;
                 feature.properties.years = angular.isArray(years)? years.join(', ') : years;
             });
             var minMaxValueObj = utilService.getMinAndMaxValue(stateDeathTotals);
@@ -94,14 +94,12 @@
 
         //get map feature colors
         function getColor(d, ranges) {
-            // var ranges = utilService.generateMapLegendRanges(sc.filters.selectedPrimaryFilter.mapData.mapMinValue,
-            //     sc.filters.selectedPrimaryFilter.mapData.mapMaxValue);
             return d > ranges[6] ? '#aa7ed4' :
-                d > ranges[5]  ?  '#5569de':
-                    d > ranges[4]  ?  '#6f9af1':
-                        d > ranges[3]  ?  '#8bd480':
-                            d > ranges[2]  ?  '#ea8484':
-                                d > ranges[1]  ?  '#f3af60': '#fff280';
+                   d > ranges[5] ? '#5569de' :
+                   d > ranges[4] ? '#6f9af1' :
+                   d > ranges[3] ? '#8bd480' :
+                   d > ranges[2] ? '#ea8484' :
+                   d > ranges[1] ? '#f3af60' : '#fff280';
         }
 
         //return map feature styling configuration parameters
@@ -109,7 +107,11 @@
             var ranges = utilService.generateMapLegendRanges(primaryFilter.mapData.mapMinValue,
                 primaryFilter.mapData.mapMaxValue);
             return function style(feature) {
-                var total = primaryFilter.tableView === 'crude_death_rates' || primaryFilter.tableView === 'age-adjusted_death_rates' ? feature.properties.rate : feature.properties[primaryFilter.key];
+                var total = primaryFilter.tableView === 'crude_death_rates' ||
+                            primaryFilter.tableView === 'age-adjusted_death_rates' ||
+                            primaryFilter.tableView === 'crude_cancer_incidence_rates' ||
+                            primaryFilter.tableView === 'crude_cancer_death_rates'
+                            ? feature.properties.rate : feature.properties[primaryFilter.key];
                 return {
                     fillColor: getColor(total, ranges),
                     weight: 0.8,
