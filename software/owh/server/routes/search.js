@@ -10,7 +10,7 @@ var dsmetadata = require('../api/dsmetadata');
 var factSheet = require('../api/factSheet');
 var Q = require('q');
 var config = require('../config/config');
-var svgtopng = require('svg2png');
+/*var svgtopng = require('svg2png');*/
 var fs = require('fs');
 
 var queryCache = new qc();
