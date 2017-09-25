@@ -713,11 +713,15 @@ describe("Search controller: ", function () {
                 "id": "qn365"
             }
         ];
-        searchController.filters = {pramsFilters: [{},{},{},{},{"key": "question", autoCompleteOptions:[]}]};
+        searchController.filters =  {
+            pramsBasicFilters: [{"key": "question", autoCompleteOptions:[]}],
+            pramsAdvanceFilters: [{"key": "question", autoCompleteOptions:[]}]
+        };
 
         $rootScope.$broadcast('pramsQuestionsLoaded', $rootScope.pramsQuestionsList);
         //should collect questions from selected topic of a class only
-        expect(JSON.stringify(searchController.filters.pramsFilters[4].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.pramsQuestionsList));
+        expect(JSON.stringify(searchController.filters.pramsBasicFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.pramsQuestionsList));
+        expect(JSON.stringify(searchController.filters.pramsAdvanceFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.pramsQuestionsList));
     }));
 
     it("should listen for brfsQuestionsLoaded event", inject(function () {

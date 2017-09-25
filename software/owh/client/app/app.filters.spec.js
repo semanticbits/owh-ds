@@ -2,13 +2,14 @@
 
 /*group of common test goes here as describe*/
 describe('OWH Filters: ', function(){
-    var toUpperCase,toLowerCase,genderTitle;
+    var toUpperCase,toLowerCase,genderTitle, capitalize;
 
     beforeEach(module('owh'));
-    beforeEach(inject(function(_ToUpperCaseFilter_,_ToLowerCaseFilter_,_GenderTitleFilter_) {
+    beforeEach(inject(function(_ToUpperCaseFilter_,_ToLowerCaseFilter_,_GenderTitleFilter_, _capitalizeFilter_) {
         toUpperCase = _ToUpperCaseFilter_;
         toLowerCase = _ToLowerCaseFilter_;
         genderTitle = _GenderTitleFilter_;
+        capitalize = _capitalizeFilter_;
     }));
 
     it('Should convert to upper case', inject(function() {
@@ -28,5 +29,11 @@ describe('OWH Filters: ', function(){
         expect(genderTitle("Female")).toBe('Female');
         expect(genderTitle("X")).toBe('X');
         expect(toLowerCase(undefined)).toBe('');
+    }));
+
+    it('Should capitalize a sentence', inject(function() {
+        expect(capitalize("unable to work")).toBe('Unable to work');
+        expect(capitalize("stats service is super fast")).toBe('Stats service is super fast');
+        expect(capitalize(undefined)).toBe('');
     }));
 });

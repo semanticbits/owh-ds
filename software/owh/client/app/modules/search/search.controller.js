@@ -412,8 +412,10 @@
         });
 
         $scope.$on('pramsQuestionsLoaded', function() {
-            var questionFilter = utilService.findFilterByKeyAndValue(sc.filters.pramsFilters, 'key', 'question');
-            questionFilter.autoCompleteOptions = $rootScope.pramsQuestionsList;
+            var basicQuesFilter = utilService.findFilterByKeyAndValue(sc.filters.pramsBasicFilters, 'key', 'question');
+            basicQuesFilter.autoCompleteOptions = $rootScope.pramsQuestionsList;
+            var advanceQuesFilter = utilService.findFilterByKeyAndValue(sc.filters.pramsAdvanceFilters, 'key', 'question');
+            advanceQuesFilter.autoCompleteOptions = $rootScope.pramsQuestionsList;
         });
 
         $scope.$on('brfsQuestionsLoaded', function() {
@@ -791,9 +793,13 @@
             if(dataset === 'mental_health') {
                 sc.filters.selectedPrimaryFilter.allFilters = sc.filters.yrbsBasicFilters;
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[1].basicSideFilters;
+            } else if (dataset === 'prams') {
+                sc.filters.selectedPrimaryFilter.allFilters = sc.filters.pramsBasicFilters;
+                sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[4].basicSideFilters[0].sideFilters;
             } else if (dataset === 'brfss') {
                 sc.filters.selectedPrimaryFilter.allFilters = sc.filters.brfsBasicFilters;
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[11].basicSideFilters[0].sideFilters;
+                sc.filters.selectedPrimaryFilter.tableView = 'alcohol_consumption';
             }
 
             sc.search(true);
@@ -808,9 +814,13 @@
             if(dataset === 'mental_health') {
                 sc.filters.selectedPrimaryFilter.allFilters = sc.filters.yrbsAdvancedFilters;
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[1].advancedSideFilters;
+            } else if (dataset === 'prams') {
+                sc.filters.selectedPrimaryFilter.allFilters = sc.filters.pramsAdvanceFilters;
+                sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[4].advancedSideFilters[0].sideFilters;
             } else if (dataset === 'brfss') {
                 sc.filters.selectedPrimaryFilter.allFilters = sc.filters.brfsAdvancedFilters;
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[11].advancedSideFilters[0].sideFilters;
+                sc.filters.selectedPrimaryFilter.tableView = 'alcohol_consumption'
             }
 
             sc.search(true);

@@ -53,6 +53,14 @@
                     primaryFilter.allFilters = filters.yrbsAdvancedFilters;
                     primaryFilter.sideFilters = primaryFilter.advancedSideFilters;
                 }
+            } else if(primaryFilter.key == 'prams') {
+                if (response.data.queryJSON.showBasicSearchSideMenu) {
+                    primaryFilter.allFilters = filters.pramsBasicFilters;
+                    primaryFilter.sideFilters = primaryFilter.basicSideFilters[0].sideFilters;
+                } else {
+                    primaryFilter.allFilters = filters.pramsAdvanceFilters;
+                    primaryFilter.sideFilters = primaryFilter.advancedSideFilters[0].sideFilters;
+                }
             } else if(primaryFilter.key == 'brfss') {
                 if (response.data.queryJSON.showBasicSearchSideMenu) {
                     primaryFilter.allFilters = filters.brfsBasicFilters;
@@ -2026,22 +2034,14 @@
             filters.pramsStateOptions =  [
                 { "key": "AL", "title": "Alabama" },
                 { "key": "AK", "title": "Alaska" },
-                { "key": "AZB", "title": "Arizona" },
                 { "key": "AR", "title": "Arkansas" },
                 { "key": "CA", "title": "California" },
                 { "key": "CO", "title": "Colorado" },
-                { "key": "CT", "title": "Connecticut" },
                 { "key": "DE", "title": "Delaware" },
-                //{ "key": "", "title": "District of Columbia" },
                 { "key": "FL", "title": "Florida" },
                 { "key": "GA", "title": "Georgia" },
                 { "key": "HI", "title": "Hawaii" },
-                { "key": "ID", "title": "Idaho" },
                 { "key": "IL", "title": "Illinois" },
-                { "key": "IN", "title": "Indiana"},
-                { "key": "IA", "title": "Iowa" },
-                { "key": "KS", "title": "Kansas" },
-                { "key": "KY", "title": "Kentucky" },
                 { "key": "LA", "title": "Louisiana" },
                 { "key": "ME", "title": "Maine" },
                 { "key": "MD", "title": "Maryland" },
@@ -2052,8 +2052,6 @@
                 { "key": "MO", "title": "Missouri" },
                 { "key": "MT", "title": "Montana" },
                 { "key": "NE", "title": "Nebraska" },
-                { "key": "NV", "title": "Nevada" },
-                { "key": "NH", "title": "New Hampshire" },
                 { "key": "NJ", "title": "New Jersey" },
                 { "key": "NM", "title": "New Mexico" },
                 { "key": "NY", "title": "New York(excluding NYC)" },
@@ -2061,6 +2059,7 @@
                 { "key": "ND", "title": "North Dakota" },
                 { "key": "OH", "title": "Ohio" },
                 { "key": "OK", "title": "Oklahoma" },
+                { "key": "OR", "title": "Oregon" },
                 { "key": "PA", "title": "Pennsylvania" },
                 { "key": "RI", "title": "Rhode Island" },
                 { "key": "SC", "title": "South Carolina" },
@@ -2069,31 +2068,36 @@
                 { "key": "TX", "title": "Texas" },
                 { "key": "UT", "title": "Utah" },
                 { "key": "VT", "title": "Vermont" },
-                { "key": "VA", "title": "Virginia" },
                 { "key": "WV", "title": "West Virginia" },
                 { "key": "WI", "title": "Wisconsin" },
                 { "key": "WY", "title": "Wyoming" }
             ];
 
             filters.pramsYearOptions = [
+                { "key": "2011", "title": "2011" },
+                { "key": "2010", "title": "2010" },
                 { "key": "2009", "title": "2009" },
+                { "key": "2008", "title": "2008" },
                 { "key": "2007", "title": "2007" },
-            ];
-
-            filters.pramsBreakoutOptions = [
-
+                { "key": "2006", "title": "2006" },
+                { "key": "2005", "title": "2005" },
+                { "key": "2004", "title": "2004" },
+                { "key": "2003", "title": "2003" },
+                { "key": "2002", "title": "2002" },
+                { "key": "2001", "title": "2001" },
+                { "key": "2000", "title": "2000" }
             ];
 
             filters.pramsAdequacyOptions = [
-                {"key": "PNC1", "title": "Adequate PNC"},
-                {"key": "PNC3", "title": "Intermediate PNC"},
-                {"key": "PNC2", "title": "Inadequate PNC"},
-                {"key": "PNC4", "title": "Unknown PNC"}
+                {"key": "adequate pnc", "title": "Adequate PNC"},
+                {"key": "inadequate pnc", "title": "Intermediate PNC"},
+                {"key": "intermediate pnc", "title": "Inadequate PNC"},
+                {"key": "unknown pnc", "title": "Unknown PNC"}
             ];
 
             filters.pramsBirthWeightOptions = [
-                {"key": "BWT1", "title": "LBW (<= 2500g)"},
-                {"key": "BWT2", "title": "NBW (>2500g)"}
+                {"key": "LBW", "title": "LBW (<= 2500g)"},
+                {"key": "NBW", "title": "NBW (>2500g)"}
             ];
 
             filters.pramsIncomeOptions = [
@@ -2104,89 +2108,90 @@
             ];
 
             filters.pramsMaritalStatusOptions = [
-                {"key": "MA1", "title": "Married"},
-                {"key": "MA2", "title": "Other"}
+                {"key": "married", "title": "Married"},
+                {"key": "other", "title": "Other"}
             ];
 
             filters.pramsMaternalAgeGroupingsOptions = [
-                {"key": "AGE1", "title": "Age < 18"},
-                {"key": "AGE2", "title": "Age 18 - 24"},
-                {"key": "AGE3", "title": "Age 25 - 29"},
-                {"key": "AGE4", "title": "Age 30 - 44"},
-                {"key": "AGE5", "title": "Age 45+"}
+                {"key": "<18", "title": "Age < 18"},
+                {"key": "18-24", "title": "Age 18 - 24"},
+                {"key": "25-29", "title": "Age 25 - 29"},
+                {"key": "30-44", "title": "Age 30 - 44"},
+                {"key": "45+", "title": "Age 45+"}
             ];
 
             filters.pramsMaternalAgeYearsOptions = [
-                {"key": "AGE1844ALL", "title": "Age 18-44"}
+                {"key": "18-44", "title": "Age 18-44"}
             ];
 
             filters.pramsMaternalAge3Options = [
-                {"key": "AYR1", "title": "< 20 yrs"},
-                {"key": "AYR2", "title": "20-29 yrs"},
-                {"key": "AYR3", "title": "30+ yrs"}
+                {"key": "<20", "title": "< 20 yrs"},
+                {"key": "20-29", "title": "20-29 yrs"},
+                {"key": "30+", "title": "30+ yrs"}
             ];
 
             filters.pramsMaternalAge4Options = [
-                {"key": "AYR1", "title": "< 20 yrs"},
-                {"key": "AYR4", "title": "20-24 yrs"},
-                {"key": "AYR5", "title": "25-34 yrs"},
-                {"key": "AYR6", "title": "35+ yrs"}
+                {"key": "<20", "title": "< 20 yrs"},
+                {"key": "20-24", "title": "20-24 yrs"},
+                {"key": "25-34", "title": "25-34 yrs"},
+                {"key": "35+", "title": "35+ yrs"}
             ];
 
             filters.pramsMaternalEducationOptions = [
-                {"key": "12YR1", "title": "<12 yrs"},
-                {"key": "12YR3", "title": "12 yrs"},
-                {"key": "12YR2", "title": ">12 yrs"}
+                {"key": "<12yrs", "title": "<12 yrs"},
+                {"key": ">12yrs", "title": "12 yrs"},
+                {"key": "12yrs", "title": ">12 yrs"}
             ];
 
             filters.pramsMaternalRaceOptions = [
-                {"key": "ETH4", "title": "White, Non-Hispanic"},
-                {"key": "ETH1", "title": "Black, Non-Hispanic"},
-                {"key": "ETH2", "title": "Hispanic"},
-                {"key": "ETH3", "title": "Other, Non- Hispanic"}
+                {"key": "White", "title": "White, Non-Hispanic"},
+                {"key": "Black", "title": "Black, Non-Hispanic"},
+                {"key": "Hispanic", "title": "Hispanic"},
+                {"key": "Other Race", "title": "Other, Non- Hispanic"}
             ];
 
             filters.pramsMedicaidOptions = [
-                {"key": "MED1", "title": "Medicaid"},
-                {"key": "MED2", "title": "Non-Medicaid"}
+                {"key": "Medicaid", "title": "Medicaid"},
+                {"key": "non-Medicaid", "title": "Non-Medicaid"}
             ];
 
             filters.pramsMotherHispanicOptions = [
-                {"key": "HIS1", "title": "Hispanic"},
-                {"key": "HIS2", "title": "Non-Hispanic"}
+                {"key": "Hispanic", "title": "Hispanic"},
+                {"key": "non-Hispanic", "title": "Non-Hispanic"}
             ];
 
             filters.pramsPreviousBirthsOptions = [
-                {"key": "PRV0", "title": "0"},
-                {"key": "PRV1", "title": "1 or more"}
+                {"key": "Zero", "title": "0"},
+                {"key": "One or more", "title": "1 or more"}
             ];
 
             filters.pramsWicPregnancyOptions = [
-                {"key": "WIC2", "title": "WIC"},
-                {"key": "WIC1", "title": "Non-WIC"}
+                {"key": "WIC", "title": "WIC"},
+                {"key": "non-WIC", "title": "Non-WIC"}
             ];
 
             filters.pramsPregnancyIntendednessOptions = [
-                {"key": "IND1", "title": "Intended"},
-                {"key": "IND2", "title": "Unintended"}
+                {"key": "intended", "title": "Intended"},
+                {"key": "unintended", "title": "Unintended"}
             ];
 
             filters.pramsSmokedBeforeOptions = [
-                {"key": "SMK1", "title": "Non-Smoker"},
-                {"key": "SMK2", "title": "Smoker"}
+                {"key": "non-smoker", "title": "Non-Smoker"},
+                {"key": "smoker", "title": "Smoker"}
             ];
 
             filters.pramsSmokedLastOptions = [
-                {"key": "SMK1", "title": "Non-Smoker"},
-                {"key": "SMK2", "title": "Smoker"}
+                {"key": "non-smoker", "title": "Non-Smoker"},
+                {"key": "smoker", "title": "Smoker"}
             ];
 
-            filters.pramsFilters = [
+            filters.pramsBasicFilters = [
                 {key: 'topic', title: 'label.prams.filter.topic', queryKey:"topic",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsTopicOptions, doNotShowAll: true, helpText: "label.help.text.prams.topic"},
-                {key: 'year', title: 'label.prams.filter.year', queryKey:"year",primary: false, value: ['2009'], groupBy: false,defaultGroup:"column",
+                {key: 'year', title: 'label.prams.filter.year', queryKey:"year",primary: false, value: ['2011'], groupBy: false,defaultGroup:"column",
                     filterType: 'radio',autoCompleteOptions: filters.pramsYearOptions, doNotShowAll: false, helpText: "label.help.text.prams.year"},
-                {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [], groupBy: 'column',defaultGroup:"column",
+                {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [],
+                    displaySearchBox:true, displaySelectedFirst:true, groupBy: 'column',defaultGroup:"column",
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsStateOptions, doNotShowAll: false, helpText: "label.help.text.prams.state"},
                 { key: 'question', title: 'label.prams.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
                     filterType: 'tree', autoCompleteOptions: $rootScope.pramsQuestionsList, donotshowOnSearch:true,
@@ -2197,40 +2202,92 @@
                         showChartForQuestion(filters.selectedPrimaryFilter, question);
                     }
                 },
-                {key: 'adequacy', title: 'label.prams.filter.adequacy', queryKey:"BOC18",primary: false, value: [], groupBy: false,disableFilter: true,
+                {key: 'adequacy', title: 'label.prams.filter.adequacy', queryKey:"prenatal_care",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsAdequacyOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.adequacy"},
-                {key: 'birth_weight', title: 'label.prams.filter.birth_weight', queryKey:"BOC1",primary: false, value: [], groupBy: false,disableFilter: true,
+                {key: 'birth_weight', title: 'label.prams.filter.birth_weight', queryKey:"birth_weight",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsBirthWeightOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.weight"},
                 {key: 'income', title: 'label.prams.filter.income', queryKey:"BOC14",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsIncomeOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.income"},
-                {key: 'marital_status', title: 'label.prams.filter.marital_status', queryKey:"BOC3",primary: false, value: [], groupBy: false,disableFilter: true,
+                {key: 'marital_status', title: 'label.prams.filter.marital_status', queryKey:"marital_status",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsMaritalStatusOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.marital"},
-                {key: 'maternal_age_groupings', title: 'label.prams.filter.maternal_age_groupings', queryKey:"BOC17",primary: false, value: [], groupBy: false,disableFilter: true,
+                {key: 'maternal_age_groupings', title: 'label.prams.filter.maternal_age_groupings', queryKey:"maternal_age_18to44grp",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAgeGroupingsOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.age.one"},
-                {key: 'maternal_age_years', title: 'label.prams.filter.maternal_age_years', queryKey:"BOC16",primary: false, value: [], groupBy: false,disableFilter: true,
+                {key: 'maternal_age_years', title: 'label.prams.filter.maternal_age_years', queryKey:"maternal_age_18to44",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAgeYearsOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.age.two"},
-                {key: 'maternal_age_3', title: 'label.prams.filter.maternal_age_3', queryKey:"BOC19",primary: false, value: [], groupBy: false,disableFilter: true,
+                {key: 'maternal_age_3', title: 'label.prams.filter.maternal_age_3', queryKey:"maternal_age_3lvl",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAge3Options, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.age.three"},
-                {key: 'maternal_age_4', title: 'label.prams.filter.maternal_age_4', queryKey:"BOC4",primary: false, value: [], groupBy: false,disableFilter: true,
+                {key: 'maternal_age_4', title: 'label.prams.filter.maternal_age_4', queryKey:"maternal_age_4lvl",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsMaternalAge4Options, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.age.four"},
-                {key: 'maternal_education', title: 'label.prams.filter.maternal_education', queryKey:"BOC5",primary: false, value: [], groupBy: false,disableFilter: true,
+                {key: 'maternal_education', title: 'label.prams.filter.maternal_education', queryKey:"maternal_education",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsMaternalEducationOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.edu"},
-                {key: 'maternal_race', title: 'label.prams.filter.maternal_race', queryKey:"BOC6",primary: false, value: [], groupBy: false,disableFilter: true,
+                {key: 'maternal_race', title: 'label.prams.filter.maternal_race', queryKey:"maternal_race",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsMaternalRaceOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.race"},
-                {key: 'medicaid', title: 'label.prams.filter.medicaid', queryKey:"BOC9",primary: false, value: [], groupBy: false,disableFilter: true,
+                {key: 'medicaid', title: 'label.prams.filter.medicaid', queryKey:"medicaid_recip",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsMedicaidOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.medicaid"},
-                {key: 'mother_hispanic', title: 'label.prams.filter.mother_hispanic', queryKey:"BOC8",primary: false, value: [], groupBy: false,disableFilter: true,
+                {key: 'mother_hispanic', title: 'label.prams.filter.mother_hispanic', queryKey:"mother_hispanic",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsMotherHispanicOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.hispanic"},
-                {key: 'previous_births', title: 'label.prams.filter.previous_births', queryKey:"BOC20",primary: false, value: [], groupBy: false,disableFilter: true,
+                {key: 'previous_births', title: 'label.prams.filter.previous_births', queryKey:"prev_live_births",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsPreviousBirthsOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.births"},
-                {key: 'wic_pregnancy', title: 'label.prams.filter.wic_pregnancy', queryKey:"BOC10",primary: false, value: [], groupBy: false,disableFilter: true,
+                {key: 'wic_pregnancy', title: 'label.prams.filter.wic_pregnancy', queryKey:"wic_during_preg",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsWicPregnancyOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.wic"},
-                {key: 'pregnancy_intendedness', title: 'label.prams.filter.pregnancy_intendedness', queryKey:"BOC11",primary: false, value: [], groupBy: false,disableFilter: true,
+                {key: 'pregnancy_intendedness', title: 'label.prams.filter.pregnancy_intendedness', queryKey:"preg_intend",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsPregnancyIntendednessOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.intend"},
-                {key: 'smoked_before', title: 'label.prams.filter.smoked_before', queryKey:"BOC12",primary: false, value: [], groupBy: false,disableFilter: true,
+                {key: 'smoked_before', title: 'label.prams.filter.smoked_before', queryKey:"smoked_3mo_pre_preg",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsSmokedBeforeOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.smoked.before"},
-                {key: 'smoked_last', title: 'label.prams.filter.smoked_last', queryKey:"BOC13",primary: false, value: [], groupBy: false,disableFilter: true,
+                {key: 'smoked_last', title: 'label.prams.filter.smoked_last', queryKey:"smoked_last_tri",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsSmokedLastOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.smoked.last"}
+            ];
+            filters.pramsAdvanceFilters = [
+                {key: 'topic', title: 'label.prams.filter.topic', queryKey:"topic",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsTopicOptions, doNotShowAll: true, helpText: "label.help.text.prams.topic"},
+                {key: 'year', title: 'label.prams.filter.year', queryKey:"year",primary: false, value: ['2011'], groupBy: false,defaultGroup:"column",
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsYearOptions, doNotShowAll: false, helpText: "label.help.text.prams.year"},
+                {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [],
+                    displaySearchBox:true, displaySelectedFirst:true, groupBy: 'column',defaultGroup:"column",
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsStateOptions, doNotShowAll: false, helpText: "label.help.text.prams.state"},
+                { key: 'question', title: 'label.prams.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
+                    filterType: 'tree', autoCompleteOptions: $rootScope.pramsQuestionsList, donotshowOnSearch:true,
+                    //add questions property to pass into owh-tree component
+                    questions: $rootScope.pramsQuestions,
+                    selectTitle: 'select.label.yrbs.filter.question', updateTitle: 'update.label.yrbs.filter.question',  iconClass: 'purple-text', helpText: 'label.help.text.prams.question',
+                    onIconClick: function(question) {
+                        showChartForQuestion(filters.selectedPrimaryFilter, question);
+                    }
+                },
+                {key: 'adequacy', title: 'label.prams.filter.adequacy', queryKey:"prenatal_care",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsAdequacyOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.adequacy"},
+                {key: 'birth_weight', title: 'label.prams.filter.birth_weight', queryKey:"birth_weight",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsBirthWeightOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.weight"},
+                {key: 'income', title: 'label.prams.filter.income', queryKey:"BOC14",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsIncomeOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.income"},
+                {key: 'marital_status', title: 'label.prams.filter.marital_status', queryKey:"marital_status",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsMaritalStatusOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.marital"},
+                {key: 'maternal_age_groupings', title: 'label.prams.filter.maternal_age_groupings', queryKey:"maternal_age_18to44grp",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsMaternalAgeGroupingsOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.age.one"},
+                {key: 'maternal_age_years', title: 'label.prams.filter.maternal_age_years', queryKey:"maternal_age_18to44",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsMaternalAgeYearsOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.age.two"},
+                {key: 'maternal_age_3', title: 'label.prams.filter.maternal_age_3', queryKey:"maternal_age_3lvl",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsMaternalAge3Options, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.age.three"},
+                {key: 'maternal_age_4', title: 'label.prams.filter.maternal_age_4', queryKey:"maternal_age_4lvl",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsMaternalAge4Options, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.age.four"},
+                {key: 'maternal_education', title: 'label.prams.filter.maternal_education', queryKey:"maternal_education",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsMaternalEducationOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.edu"},
+                {key: 'maternal_race', title: 'label.prams.filter.maternal_race', queryKey:"maternal_race",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsMaternalRaceOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.race"},
+                {key: 'medicaid', title: 'label.prams.filter.medicaid', queryKey:"medicaid_recip",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsMedicaidOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.medicaid"},
+                {key: 'mother_hispanic', title: 'label.prams.filter.mother_hispanic', queryKey:"mother_hispanic",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsMotherHispanicOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.hispanic"},
+                {key: 'previous_births', title: 'label.prams.filter.previous_births', queryKey:"prev_live_births",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsPreviousBirthsOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.births"},
+                {key: 'wic_pregnancy', title: 'label.prams.filter.wic_pregnancy', queryKey:"wic_during_preg",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsWicPregnancyOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.wic"},
+                {key: 'pregnancy_intendedness', title: 'label.prams.filter.pregnancy_intendedness', queryKey:"preg_intend",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsPregnancyIntendednessOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.intend"},
+                {key: 'smoked_before', title: 'label.prams.filter.smoked_before', queryKey:"smoked_3mo_pre_preg",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsSmokedBeforeOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.smoked.before"},
+                {key: 'smoked_last', title: 'label.prams.filter.smoked_last', queryKey:"smoked_last_tri",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsSmokedLastOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.smoked.last"}
             ];
 
             filters.brfsTopicOptions = [
@@ -3131,114 +3188,247 @@
                     searchResults: invokeStatsService, dontShowInlineCharting: true,
                     additionalHeaders:filters.yrbsAdditionalHeaders, tableView:'delivery',
                     chartAxisLabel:'Percentage', countLabel: 'Total',
-                    showBasicSearchSideMenu: true, runOnFilterChange: true, allFilters: filters.pramsFilters, // Default to basic filter
-                    sideFilters:[
+                    showBasicSearchSideMenu: true, runOnFilterChange: true, allFilters: filters.pramsBasicFilters, // Default to basic filter
+                    advancedSideFilters:[
                         {
+                            sideFilters:[
+                                {
 
-                            sideFilters: [
-                                {
-                                    filterGroup: false,
-                                    collapse: false,
-                                    allowGrouping: false,
-                                    dontShowCounts: true,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'topic')
+                                    sideFilters: [
+                                        {
+                                            filterGroup: false,
+                                            collapse: false,
+                                            allowGrouping: false,
+                                            dontShowCounts: true,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'topic')
+                                        },
+                                        {
+                                            filterGroup: false,
+                                            collapse: false,
+                                            allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts: true,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'year')
+                                        },
+                                        {
+                                            filterGroup: false,
+                                            collapse: false,
+                                            allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts: true,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'state')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'question')
+                                        }
+                                    ]
                                 },
                                 {
-                                    filterGroup: false,
-                                    collapse: false,
-                                    allowGrouping: true,
-                                    groupOptions: filters.columnGroupOptions,
-                                    dontShowCounts: true,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'year')
-                                },
-                                {
-                                    filterGroup: false,
-                                    collapse: false,
-                                    allowGrouping: true,
-                                    groupOptions: filters.columnGroupOptions,
-                                    dontShowCounts: true,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'state')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'question')
+                                    category: 'Breakout',
+                                    exclusive: true,
+                                    sideFilters: [
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'adequacy')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'birth_weight')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'income')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'marital_status')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'maternal_age_groupings')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'maternal_age_years')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'maternal_age_3')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'maternal_age_4')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'maternal_education')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'maternal_race')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'medicaid')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'mother_hispanic')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'previous_births')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'wic_pregnancy')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'pregnancy_intendedness')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'smoked_before')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'smoked_last')
+                                        }
+                                    ]
+
                                 }
                             ]
-                        },
+                        }
+                    ],
+                    basicSideFilters:[
                         {
-                            category: 'Breakout',
-                            exclusive: true,
-                            sideFilters: [
+                            sideFilters:[
                                 {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'adequacy')
+
+                                    sideFilters: [
+                                        {
+                                            filterGroup: false,
+                                            collapse: false,
+                                            allowGrouping: false,
+                                            dontShowCounts: true,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'topic')
+                                        },
+                                        {
+                                            filterGroup: false,
+                                            collapse: false,
+                                            allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts: true,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'year')
+                                        },
+                                        {
+                                            filterGroup: false,
+                                            collapse: false,
+                                            allowGrouping: true,
+                                            groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts: true,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'state')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'question')
+                                        }
+                                    ]
                                 },
                                 {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'birth_weight')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'income')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'marital_status')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'maternal_age_groupings')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'maternal_age_years')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'maternal_age_3')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'maternal_age_4')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'maternal_education')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'maternal_race')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'medicaid')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'mother_hispanic')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'previous_births')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'wic_pregnancy')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'pregnancy_intendedness')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'smoked_before')
-                                },
-                                {
-                                    filterGroup: false, collapse: false, allowGrouping: false,
-                                    filters: utilService.findByKeyAndValue(filters.pramsFilters, 'key', 'smoked_last')
+                                    category: 'Breakout',
+                                    exclusive: true,
+                                    sideFilters: [
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'adequacy')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'birth_weight')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'income')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'marital_status')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'maternal_age_groupings')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'maternal_age_years')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'maternal_age_3')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'maternal_age_4')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'maternal_education')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'maternal_race')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'medicaid')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'mother_hispanic')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'previous_births')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'wic_pregnancy')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'pregnancy_intendedness')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'smoked_before')
+                                        },
+                                        {
+                                            filterGroup: false, collapse: false, allowGrouping: false,
+                                            filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'smoked_last')
+                                        }
+                                    ]
                                 }
                             ]
-
                         }
                     ]
                 },
@@ -3839,6 +4029,7 @@
 
             filters.search[1].sideFilters = filters.search[1].basicSideFilters; //Set the default side filters for YRBS to basic
             filters.search[11].sideFilters = filters.search[11].basicSideFilters[0].sideFilters; //Set the default side filters for BRFSS to basic
+            filters.search[4].sideFilters = filters.search[4].basicSideFilters[0].sideFilters; //Set the default side filters for PRAMS to basic
             return filters;
         }
 

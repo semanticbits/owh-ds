@@ -138,11 +138,11 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
                 if(apiQuery.searchFor === 'mental_health') {
                     qry += 'd=yrbss&' // yrbs dataset
                 } else if(apiQuery.searchFor === 'prams') {
-                    qry += 'd=prams&' // yrbs dataset
+                    qry += 'd=prams&' // prams dataset
                 } else if(apiQuery.searchFor === 'brfss') {
-                    qry += 'd=brfss&' // yrbs dataset
+                    qry += 'd=brfss&' // brfss dataset
                 }
-                if(apiQuery.basicSearch || apiQuery.searchFor === 'prams') {
+                if(apiQuery.basicSearch) {
                     qry +='s=1&';
                 } else {
                     qry +='s=0&';

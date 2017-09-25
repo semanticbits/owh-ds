@@ -22,7 +22,7 @@ describe("YRBS API", function () {
     });
 
     it("buildYRBSQueries with grouping param for basic query", function (){
-        var apiQuery = {'searchFor': 'prams', 'yrbsBasic': true, 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000},{"key":"yrbsSex","queryKey":"sex","size":100000},{"key":"yrbsRace","queryKey":"race","size":100000}]}},
+        var apiQuery = {basicSearch:true, 'searchFor': 'prams', 'yrbsBasic': true, 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000},{"key":"yrbsSex","queryKey":"sex","size":100000},{"key":"yrbsRace","queryKey":"race","size":100000}]}},
             'query': {'question.path':{ 'value': ['qn1', 'qn2', 'qn3']}}};
         var result = yrbs.buildYRBSQueries(apiQuery);
         expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams&s=1&q=qn1&v=sex,race',config.yrbs.queryUrl+'?d=prams&s=1&q=qn2&v=sex,race',config.yrbs.queryUrl+'?d=prams&s=1&q=qn3&v=sex,race']);
