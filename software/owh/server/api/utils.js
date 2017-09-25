@@ -943,13 +943,11 @@ function getAllSelectedFilterOptions(q, datasetName) {
             else if(eachFilter.key != 'census-region'){
                 if(eachFilter.value.length > 0){
                     eachFilter.value.forEach(function(eachOption){
-                        //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
                         allOptions[eachFilter.key].options.push(eachOption);
                     });
                 }
                 else {
                     eachFilter.autoCompleteOptions.forEach(function(eachOption){
-                        //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
                         allOptions[eachFilter.key].options.push(eachOption.key);
                     });
                 }
