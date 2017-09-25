@@ -139,7 +139,7 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelect
     return result;
 };
 
-var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, allSelectedFilterOptions, wonderQuery, isStateSelected) {
+var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, wonderQuery, isStateSelected) {
     var result = {
         data: {
             simple: {},
@@ -231,21 +231,19 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
     };
     var result = {};
     if (wonderResponse.Total){
-        if(wonderResponse.Total['infant_mortality'] != 0) {
-            if(keyMap[key]){
-                key = keyMap[key];
-            }
-            result['name'] = key.trim();
-            result.infant_mortality = wonderResponse.Total['deathRate'] === 'Suppressed' ? 'suppressed': wonderResponse.Total['infant_mortality'];
-            result['deathRate'] = wonderResponse.Total['deathRate'] === 'Suppressed' ? 'suppressed': wonderResponse.Total['deathRate'];
-            result['pop'] = isNaN(wonderResponse.Total['births']) ? 'suppressed' : wonderResponse.Total['births'];
-            result [filterKeys[0]] = [];
-            Object.keys(wonderResponse).forEach(function (key) {
-                if (key != 'Total') {
-                    result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function (x, i) { return i !== 0;}), isStateSelected));
-                }
-            });
+        if(keyMap[key]){
+            key = keyMap[key];
         }
+        result['name'] = key.trim();
+        result.infant_mortality = wonderResponse.Total['deathRate'] === 'Suppressed' ? 'suppressed': wonderResponse.Total['infant_mortality'];
+        result['deathRate'] = wonderResponse.Total['deathRate'] === 'Suppressed' ? 'suppressed': wonderResponse.Total['deathRate'];
+        result['pop'] = isNaN(wonderResponse.Total['births']) ? 'suppressed' : wonderResponse.Total['births'];
+        result [filterKeys[0]] = [];
+        Object.keys(wonderResponse).forEach(function (key) {
+            if (key != 'Total') {
+                result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function (x, i) { return i !== 0;}), isStateSelected));
+            }
+        });
         return result;
     }
     else if(isStateSelected && !wonderResponse.hasOwnProperty('infant_mortality')) {
@@ -936,7 +934,7 @@ function getAllSelectedFilterOptions(q, datasetName) {
                 }
                 else {
                     eachFilter.autoCompleteOptions.forEach(function(eachOption){
-                        allOptions[eachFilter.key].options.push(eachOption.key);
+                        !eachOption.disabled && allOptions[eachFilter.key].options.push(eachOption.key);
                     });
                 }
             }
@@ -948,7 +946,7 @@ function getAllSelectedFilterOptions(q, datasetName) {
                 }
                 else {
                     eachFilter.autoCompleteOptions.forEach(function(eachOption){
-                        allOptions[eachFilter.key].options.push(eachOption.key);
+                        !eachOption.disabled && allOptions[eachFilter.key].options.push(eachOption.key);
                     });
                 }
             }else{

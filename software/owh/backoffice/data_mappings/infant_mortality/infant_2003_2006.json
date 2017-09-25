@@ -203,7 +203,7 @@
       "mappings": {
         "1": "In Hospital",
         "2": "Not in Hospital",
-        "3": "Not Stated"
+        "3": "Unknown or Not Stated"
       }
     },
     {
@@ -214,7 +214,7 @@
         "2": "Vaginal",
         "3": "Cesarean",
         "4": "Cesarean",
-        "5": "Not stated",
+        "5": "Not Stated",
         "6": "Vaginal",
         "7": "Cesarean"
       }
