@@ -127,6 +127,7 @@
         "07": "7th month",
         "08": "8th month",
         "09": "9th month",
+        "10": "10th month",
         "99": "Unknown or not stated"
       }
     },
@@ -148,7 +149,7 @@
         "09": "4000 - 4499 grams",
         "10": "4500 - 4999 grams",
         "11": "5000 - 8165 grams",
-        "12": "Not Stated"
+        "12": "Not stated"
       }
     },
     {

@@ -176,7 +176,8 @@
         "4": "Wednesday",
         "5": "Thursday",
         "6": "Friday",
-        "7": "Saturday"
+        "7": "Saturday",
+        "9": "Unknown"
       }
     },
     {
@@ -393,7 +394,7 @@
       "mappings": {
         "1": "Vaginal",
         "2": "Cesarean",
-        "9": "Unknown"
+        "9": "Not stated"
       }
     },
     {

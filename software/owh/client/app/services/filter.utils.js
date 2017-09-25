@@ -53,7 +53,8 @@
             { "key": "Wednesday", "title": "Wednesday" },
             { "key": "Thursday", "title": "Thursday" },
             { "key": "Friday", "title": "Friday" },
-            { "key": "Saturday", "title": "Saturday" }
+            { "key": "Saturday", "title": "Saturday" },
+            { "key": "Unknown",  "title": "Unknown" }
         ];
 
         var prenatalCareMonthOptions = [
@@ -158,6 +159,7 @@
             { "key": "37 - 39 weeks", "title": "37 - 39 weeks" },
             { "key": "40 weeks", "title": "40 weeks" },
             { "key": "41 weeks", "title": "41 weeks" },
+            { "key": "42 weeks and over", "title": "42 weeks and over" },
             { "key": "Not stated", "title": "Not stated" }
         ];
 
@@ -268,7 +270,7 @@
             {key:'7900 - 7999 grams', title:'7900 - 7999 grams'},
             {key:'8000 - 8099 grams', title:'8000 - 8099 grams'},
             {key:'8100 - 8165 grams', title:'8100 - 8165 grams'},
-            {key:'Not Stated', title:'Not Stated'}
+            {key:'Not stated', title:'Not Stated'}
         ];
 
         var birthWeightR12Options = [
@@ -324,8 +326,7 @@
         var deliveryMethodOptions = [
             {key:'Cesarean', title:'Cesarean'},
             {key:'Vaginal', title:'Vaginal'},
-            {key:'Not stated', title:'Not stated'},
-            {key:'Unknown', title:'Unknown'}
+            {key:'Not stated', title:'Not stated'}
         ];
 
         var medicalAttendantOptions = [

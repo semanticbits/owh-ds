@@ -212,8 +212,6 @@ function search(q) {
         });
 
     } else if (preparedQuery.apiQuery.searchFor === 'infant_mortality') {
-        //Get all selected filter options
-        var allSelectedFilterOptions = [];
         var selectedYears = searchUtils.getTargetFilterValue(q.allFilters, 'year_of_death');
         var groupByOptions = searchUtils.getSelectedGroupByOptions(q.allFilters);
         var options = selectedYears.reduce(function (prev, year) {
@@ -226,7 +224,7 @@ function search(q) {
 
         var es = new elasticSearch();
         var promises = [
-            es.aggregateInfantMortalityData(preparedQuery.apiQuery, isStateSelected, allSelectedFilterOptions, selectedYears)
+            es.aggregateInfantMortalityData(preparedQuery.apiQuery, isStateSelected, selectedYears)
         ];
       Q.all(promises).then(function (response) {
             var resData = {};
@@ -259,8 +257,8 @@ function search(q) {
         } else if (preparedQuery.apiQuery.searchFor === 'aids') {
             indexName = 'owh_aids'; indexType = 'aids';
         }
-        new elasticSearch().aggregateDiseaseData(sideFilterQuery, preparedQuery.apiQuery.searchFor, indexName, indexType, isStateSelected).then(function (sideFilterResults) {
-            new elasticSearch().aggregateDiseaseData(finalQuery, preparedQuery.apiQuery.searchFor, indexName, indexType, isStateSelected).then(function (response) {
+        new elasticSearch().aggregateDiseaseData(sideFilterQuery, preparedQuery.apiQuery.searchFor, indexName, indexType, isStateSelected, allFilterOptions).then(function (sideFilterResults) {
+            new elasticSearch().aggregateDiseaseData(finalQuery, preparedQuery.apiQuery.searchFor, indexName, indexType, isStateSelected, allSelectedFilterOptions).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
                 resData.resultData = response.data;
