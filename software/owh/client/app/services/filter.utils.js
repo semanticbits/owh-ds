@@ -1287,7 +1287,7 @@
 
                 {key: 'birth_plurality', title: 'label.filter.plurality', queryKey:"birth_plurality", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
-                    autoCompleteOptions: infantBirthPlaceOptions, helpText:"label.help.text.birth.plurality"},
+                    autoCompleteOptions: birthPluralityOptions, helpText:"label.help.text.birth.plurality"},
 
                 {key: 'live_birth', title: 'label.filter.liveBirthOrder', queryKey:"live_birth", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
