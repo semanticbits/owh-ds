@@ -8,9 +8,26 @@ var stdSideFilterCountQuery = require('./data/std_sidefilter_count_query.json');
 var stdApiQueryWithMultipleFilters = require('./data/std_apiQuery_with_multiple_filters.json');
 var tbApiQueryWithMultipleFilters = require('./data/tb_apiQuery_with_multiple_filters.json');
 var aidsApiQueryWithMultipleFilters = require('./data/aids_apiQuery_with_multiple_filters.json');
+var infantMortalityRawQuery = require('./data/infant_mortality_raw_query.json');
 
 describe("Build elastic search queries", function(){
-     it("Build search query with empty query and aggregations", function(done){
+
+    it("build API query", function(done){
+        var q = infantMortalityRawQuery;
+        var preparedQuery = elasticQueryBuilder.buildAPIQuery(q);
+        expect(preparedQuery.headers.rowHeaders[0].key).to.eql('race');
+        expect(preparedQuery.headers.rowHeaders[1].key).to.eql('hispanic_origin');
+        expect(preparedQuery.headers.columnHeaders[0].key).to.eql('sex');
+        expect(preparedQuery.headers.chartHeaders[0].headers[0].key).to.eql('hispanic_origin');
+        expect(preparedQuery.headers.chartHeaders[0].headers[1].key).to.eql('race');
+        expect(preparedQuery.headers.chartHeaders[1].headers[0].key).to.eql('sex');
+        expect(preparedQuery.headers.chartHeaders[1].headers[1].key).to.eql('race');
+        expect(preparedQuery.headers.chartHeaders[2].headers[0].key).to.eql('sex');
+        expect(preparedQuery.headers.chartHeaders[2].headers[1].key).to.eql('hispanic_origin');
+        done();
+    });
+
+    it("Build search query with empty query and aggregations", function(done){
         var params = {query:{}, aggregations:{}};
         var result = elasticQueryBuilder.buildSearchQuery(params, true)
         var query = result[0];

@@ -555,9 +555,9 @@ function sortByKey(array, key, asc) {
         var x = typeof(key) === 'function' ? key(a) : a[key];
         var y = typeof(key) === 'function' ? key(b) : b[key];
         if(asc===undefined || asc === true) {
-            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+            return ((x < y) ? -1 : ((x > y) ? 1 : (a.key < b.key)? 1: -1));
         }else {
-            return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+            return ((x > y) ? -1 : ((x < y) ? 1 : (a.key < b.key)? -1: 1));
         }
     });
 }
