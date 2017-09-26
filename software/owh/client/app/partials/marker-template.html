@@ -24,7 +24,7 @@
                     <span ng-if="!eachCat.rate" ng-bind="'label.not.available' | translate"></span>
                 </div>
             </div>
-            <div class="usa-width-one-whole margin-top-5 padding-top-5 border-top-default padding-bottom-10" ng-if="!properties.showRates">
+            <div class="usa-width-one-whole margin-top-5 padding-top-5 border-top-default padding-bottom-10" ng-if="!properties.showRates && ['std', 'tb', 'aids'].indexOf(properties.tableView) < 0">
                 <div class="usa-width-two-thirds marker-label">
                     <span ng-bind="totalLabel"></span>
                 </div>

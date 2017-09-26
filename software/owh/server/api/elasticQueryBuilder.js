@@ -930,7 +930,7 @@ var chartMappings = {
 };
 
 var prepareMapAggregations = function() {
-    var chartAggregations = [];
+    var mapAggregations = [];
     var primaryGroupQuery = {
         key: "states",
         queryKey: "state",
@@ -941,8 +941,8 @@ var prepareMapAggregations = function() {
         queryKey: "sex",
         size: 0
     };
-    chartAggregations.push([primaryGroupQuery, secondaryGroupQuery]);
-    return chartAggregations;
+    mapAggregations.push([primaryGroupQuery, secondaryGroupQuery]);
+    return mapAggregations;
 }
 
 function addCountsToAutoCompleteOptions(primaryFilter) {
@@ -985,15 +985,7 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery, d
 
     if (aggregations['nested'] && aggregations['nested']['maps']) {
         mapQuery = { "size":0, aggregations: {} };
-        //prepare aggregations
-        for(var index in aggregations['nested']['maps']) {
-            if(datasetName == 'deaths' || datasetName == 'cancer_incident' || datasetName == 'cancer_mortality') {
-                mapQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_');
-            }
-            else {
-                mapQuery.aggregations = generateNestedAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_', countQueryKey, true);
-            }
-        }
+
         //add quey criteria
         mapQuery.query = {filtered:{}};
         mapQuery.query.filtered.query = clone(primaryQuery);
@@ -1007,6 +999,44 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery, d
                 mustFilters.splice(index, 1);
             }
         });
+        //prepare aggregations
+        for(var index in aggregations['nested']['maps']) {
+            if(datasetName == 'deaths' || datasetName == 'cancer_incident' || datasetName == 'cancer_mortality') {
+                mapQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_');
+            }
+            else if(datasetName === 'std' || datasetName === 'tb' || datasetName === 'aids') {
+                var filterAllValueMap = {"sex":"Both sexes", "race_ethnicity": "All races/ethnicities", "age_group": "All age groups", "state": "National", "transmission": "No stratification"};
+                var selectedFilterKeys = [];
+                mapQuery.aggregations = generateNestedAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_', countQueryKey, true);
+                if(aggregations['nested']['table']) {
+                    aggregations['nested']['table'].forEach(function(eachFilter){
+                        if(selectedFilterKeys.indexOf(eachFilter.queryKey) < 0 && eachFilter.queryKey !== 'sex' && eachFilter.queryKey !== 'state' ) {
+                            selectedFilterKeys.push(eachFilter.queryKey);
+                        }
+                    });
+                    selectedFilterKeys.forEach(function(eachKey){
+                        var isFilterQueryPresent = false;
+                        //check if 'eachKey' already present in must filter
+                        //That means if user selected other than 'race -> All races/ethnicities', 'age_group -> All age groups' and 'state -> National' filters then 'isKeyPresent' set to 'true'
+                        for(var i in mustFilters){
+                            if(mustFilters[i].bool.should[0].term[eachKey] != undefined) {
+                                isFilterQueryPresent = true;
+                                break;
+                            }
+                        }
+                        //If filter value available meaning if filter is 'race', 'ageGroup' etc..
+                        if(!isFilterQueryPresent && filterAllValueMap[eachKey]) {
+                            var boolQuery = buildBoolQuery(eachKey, [filterAllValueMap[eachKey]]);
+                            !isEmptyObject(boolQuery) && mustFilters.push(boolQuery);
+                        }
+                    });
+                }
+            }
+            else {
+                mapQuery.aggregations = generateNestedAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_', countQueryKey, true);
+            }
+        }
+
     }
 
     return mapQuery;

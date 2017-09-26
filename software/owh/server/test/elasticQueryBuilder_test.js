@@ -367,6 +367,12 @@ describe("Build elastic search queries", function(){
         expect(resultQuery[3][2].aggregations.group_chart_2_sex.terms.field).to.eql('sex');
         expect(resultQuery[3][2].aggregations.group_chart_2_sex.aggregations.group_chart_2_race).to.not.eql(undefined);
         expect(resultQuery[3][2].aggregations.group_chart_2_sex.aggregations.group_chart_2_race.terms.field).to.eql('race_ethnicity');
+        //Map query
+        expect(resultQuery[2].aggregations.group_maps_0_states).to.not.eql(undefined);
+        expect(resultQuery[2].query.filtered.filter.bool.must[0].bool.should[0].term.disease).to.eql('Chlamydia');
+        expect(resultQuery[2].query.filtered.filter.bool.must[1].bool.should[0].term.current_year).to.eql('2015');
+        expect(resultQuery[2].query.filtered.filter.bool.must[2].bool.should[0].term.age_group).to.eql('All age groups');
+        expect(resultQuery[2].query.filtered.filter.bool.must[3].bool.should[0].term.race_ethnicity).to.eql('All races/ethnicities');
         done();
     });
 
