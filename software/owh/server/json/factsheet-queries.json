@@ -6455,67 +6455,12 @@
           "key": "question",
           "queryKey": "question.key",
           "value": [
-            "_BMI5CAT",
-            "_RFSMOK3",
-            "_FRTLT1",
-            "_VEGLT1",
-            "_RFDRHV5"
-          ],
-          "primary": false
-        }
-      },
-      "aggregations": {
-        "simple": [],
-        "nested": {
-          "table": [
-            {
-              "key": "question",
-              "queryKey": "question.key",
-              "size": 0
-            }
-          ],
-          "charts": [],
-          "maps": [
-            [
-              {
-                "key": "states",
-                "queryKey": "state",
-                "size": 0
-              },
-              {
-                "key": "sex",
-                "queryKey": "sex",
-                "size": 0
-              }
-            ]
-          ]
-        }
-      },
-      "pagination": {
-        "from": 0,
-        "size": 10000
-      }
-    },
-    "query_2009": {
-      "searchFor": "brfss",
-      "query": {
-        "year": {
-          "key": "year",
-          "queryKey": "year",
-          "value": "2009",
-          "primary": false
-        },
-        "sitecode": {
-          "key": "state",
-          "queryKey": "sitecode",
-          "value": "$state$",
-          "primary": false
-        },
-        "question.path": {
-          "key": "question",
-          "queryKey": "question.key",
-          "value": [
-            "_RFPAVIG"
+            "x_bmi5cat",
+            "x_rfsmok3",
+            "x_frtlt1",
+            "x_veglt1",
+            "x_rfdrhv5",
+            "x_paindx1"
           ],
           "primary": false
         }
@@ -6556,12 +6501,13 @@
   "prams": {
     "Pregnant women": {
       "qn30": {
+        "basicSearch":true,
         "searchFor": "prams",
         "query": {
           "year": {
             "key": "year",
             "queryKey": "year",
-            "value": "2009",
+            "value": "2011",
             "primary": false
           },
           "topic": {
@@ -6627,12 +6573,13 @@
         }
       },
       "qn16": {
+        "basicSearch":true,
         "searchFor": "prams",
         "query": {
           "year": {
             "key": "year",
             "queryKey": "year",
-            "value": "2009",
+            "value": "2011",
             "primary": false
           },
           "topic": {
@@ -6698,12 +6645,13 @@
         }
       },
       "qn21": {
+        "basicSearch":true,
         "searchFor": "prams",
         "query": {
           "year": {
             "key": "year",
             "queryKey": "year",
-            "value": "2009",
+            "value": "2011",
             "primary": false
           },
           "topic": {
@@ -6771,18 +6719,19 @@
     },
     "Women": {
       "qn16": {
+        "basicSearch":true,
         "searchFor": "prams",
         "query": {
-          "BOC20": {
+          "prev_live_births": {
             "key": "previous_births",
-            "queryKey": "BOC20",
-            "value": "PRV1",
+            "queryKey": "prev_live_births",
+            "value": "One or more",
             "primary": false
           },
           "year": {
             "key": "year",
             "queryKey": "year",
-            "value": "2009",
+            "value": "2011",
             "primary": false
           },
           "topic": {
@@ -6848,18 +6797,19 @@
         }
       },
       "qn5": {
+        "basicSearch":true,
         "searchFor": "prams",
         "query": {
-          "BOC20": {
+          "prev_live_births": {
             "key": "previous_births",
-            "queryKey": "BOC20",
-            "value": "PRV1",
+            "queryKey": "prev_live_births",
+            "value": "One or more",
             "primary": false
           },
           "year": {
             "key": "year",
             "queryKey": "year",
-            "value": "2009",
+            "value": "2011",
             "primary": false
           },
           "topic": {
@@ -6925,18 +6875,19 @@
         }
       },
       "qn133": {
+        "basicSearch":true,
         "searchFor": "prams",
         "query": {
-          "BOC20": {
+          "prev_live_births": {
             "key": "previous_births",
-            "queryKey": "BOC20",
-            "value": "PRV1",
+            "queryKey": "prev_live_births",
+            "value": "One or more",
             "primary": false
           },
           "year": {
             "key": "year",
             "queryKey": "year",
-            "value": "2009",
+            "value": "2011",
             "primary": false
           },
           "topic": {

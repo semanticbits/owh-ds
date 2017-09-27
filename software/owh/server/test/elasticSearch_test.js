@@ -261,8 +261,7 @@ describe("Elastic Search", function () {
         });
     });
 
-    //Comment until we run natality ETL on esdev with latest data mappings.
-    /*it("should fetch metadata for 2015", function (){
+    it("should fetch metadata for 2015", function (){
         var natalityMetadata = require('./data/natality_matadata.json');
         var sortFn = function (a, b){
             if (a._source.filter_name > b._source.filter_name) { return 1; }
@@ -279,7 +278,7 @@ describe("Elastic Search", function () {
                expect(JSON.stringify(filter._source.permissible_values)).to.eql(JSON.stringify(natalityResults[index]._source.permissible_values));
             });
         });
-    });*/
+    });
 
     it("Check aggregate natality data", function (){
         var query = [{"size":0,"aggregations":{"group_table_race":{"terms":{"field":"race","size":100000},"aggregations":{"group_table_sex":{"terms":{"field":"sex","size":100000}}}},"group_maps_0_states":{"terms":{"field":"state","size":100000},"aggregations":{"group_maps_0_sex":{"terms":{"field":"sex","size":100000}}}}},"query":{"filtered":{"query":{"bool":{"must":[]}},"filter":{"bool":{"must":[{"bool":{"should":[{"term":{"current_year":"2014"}}]}}]}}}}}];

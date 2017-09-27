@@ -1,11 +1,11 @@
 var factSheet = require('../api/factSheet');
 var expect = require("expect.js");
 
-describe("Fact sheet", function () {
+describe.only("Fact sheet", function () {
 
     this.timeout(80000);
 
-    xit("prepare FactSheet", function (done){
+    it("prepare FactSheet", function (done){
         new factSheet().prepareFactSheet('MD', 'State Health').then(function (resp) {
             expect(resp.totalGenderPop).to.eql(6006401);
             expect(resp.state).to.eql("MD");
@@ -41,12 +41,12 @@ describe("Fact sheet", function () {
             expect(resp.yrbs[2].data).to.eql("18.8%");
             //brfss
             expect(resp.brfss[1].question).to.eql("Adults who are current smokers");
-            expect(resp.brfss[1].data).to.eql("13.4%");
+            expect(resp.brfss[1].data).to.eql("15.1%");
             //prams
             expect(resp.prams.pregnantWoment[0].question).to.eql("Smoking cigarettes during the last three months of pregnancy");
-            expect(resp.prams.pregnantWoment[0].data).to.eql("9.1%");
+            expect(resp.prams.pregnantWoment[0].data).to.eql("7.0%");
             expect(resp.prams.women[0].question).to.eql("With one or more previous live births who reported unintended pregnancy");
-            expect(resp.prams.women[0].data).to.eql("45.5%");
+            expect(resp.prams.women[0].data).to.eql("46.7%");
             done();
         })
     });
