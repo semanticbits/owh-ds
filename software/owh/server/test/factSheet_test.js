@@ -1,7 +1,7 @@
 var factSheet = require('../api/factSheet');
 var expect = require("expect.js");
 
-describe.only("Fact sheet", function () {
+describe("Fact sheet", function () {
 
     this.timeout(80000);
 
