@@ -439,10 +439,10 @@
                         <span ng-class="option.disabled?'disable-click':'count-label'"
                               translate="{{title}}"></span>
                         <span class="pull-right count-value"
-                              ng-if="!sfic.filter.dontShowCounts && option.count != 'suppressed'"
+                              ng-if="!sfic.filter.dontShowCounts && option.count != 'suppressed' && (group.value.length === 0 || group.value.indexOf(option.key) >= 0 )"
                               ng-bind="option.count | number"></span>
                         <span class="pull-right count-value"
-                              ng-if="!sfic.filter.dontShowCounts && option.count === 'suppressed'">Suppressed</span>
+                              ng-if="!sfic.filter.dontShowCounts && option.count === 'suppressed' && (group.value.length === 0 || group.value.indexOf(option.key) >= 0)">Suppressed</span>
                     </label>
                 </div>
 
@@ -608,7 +608,7 @@
                            ng-init="title = option.title">
                         <span ng-class="option.disabled?'disable-click':'count-label'"
                               translate="{{title}}"></span>
-                        <span class="pull-right count-value" ng-if="!sfic.filter.dontShowCounts"
+                        <span class="pull-right count-value" ng-if="!sfic.filter.dontShowCounts && (group.value.length === 0 || group.value === option.key)"
                               ng-bind="option.count | number"></span>
                     </label>
                 </div>
