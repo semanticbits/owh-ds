@@ -382,13 +382,15 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
                 }
             }
             self.mergeWithCensusData(data, populationResponse, 'pop');
-            if (diseaseName === 'std' || diseaseName === 'aids') {
-                var threshold = diseaseName === 'std'? 4 : 0;
+            if (diseaseName === 'std') {
+                var threshold = 4;
                 if (isStateSelected) {
                     searchUtils.applySuppressions(data, indexType, threshold)
                 } else {
                     searchUtils.applySuppressions(mapData, indexType, threshold)
                 }
+            } else if (diseaseName === 'aids') {
+                searchUtils.applySuppressions(data, indexType, 0);
             }
             deferred.resolve(data);
         }, function (err) {

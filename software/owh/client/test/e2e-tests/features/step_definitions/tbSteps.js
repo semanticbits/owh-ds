@@ -201,6 +201,18 @@ var tbStepDefinitionsWrapper = function () {
             expect(rowData[3]).to.contains('Not Applicable');
         }).then(next);
     });
+
+    this.When(/^I select Alabama state from tb state filter$/, function (next) {
+        element.all(by.css('label[for=tb_state_AL]')).then(function(elements, index) {
+            elements[1].click();
+        }).then(next);
+    });
+
+    this.When(/^I select National state option from tb state filter$/, function (next) {
+        element.all(by.css('label[for=tb_state_National]')).then(function(elements, index) {
+            elements[1].click();
+        }).then(next);
+    });
 };
 
 module.exports = tbStepDefinitionsWrapper;
