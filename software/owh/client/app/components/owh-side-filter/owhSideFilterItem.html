@@ -482,10 +482,10 @@
                                    ng-init="title = subOption.title">
                                 <span class="count-label" translate="{{title}}"></span>
                                 <span class="pull-right count-value"
-                                      ng-if="!sfic.filter.dontShowCounts && subOption.count != 'suppressed'"
+                                      ng-if="!sfic.filter.dontShowCounts && subOption.count != 'suppressed' && (group.value.length === 0 || group.value.indexOf(subOption.key) >= 0)"
                                       ng-bind="subOption.count | number"></span>
                                 <span class="pull-right count-value"
-                                      ng-if="!sfic.filter.dontShowCounts && subOption.count === 'suppressed'">Suppressed</span>
+                                      ng-if="!sfic.filter.dontShowCounts && subOption.count === 'suppressed' && (group.value.length === 0 || group.value.indexOf(subOption.key) >= 0)">Suppressed</span>
                             </label>
                         </li>
                     </ul>
