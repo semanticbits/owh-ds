@@ -1143,7 +1143,6 @@
                 filters = filters.concat(category.sideFilters);
             });
             var stateFilter = $filter('filter')(filters, {filters : {key: 'state'}})[0];
-            var currentFilter = $filter('filter')(filters, {filters : {key: filter.key}})[0];
 
             var demographicFilters = ['sex', 'race', 'age_group', 'transmission'];
             var activeFilters = filters.reduce(function (active, filter) {
@@ -1166,8 +1165,9 @@
                         }
                     });
                 });
-                //put current filter on row, if it's not state filter
-                filter.key != 'state'? currentFilter.filters.groupBy = 'row': '';
+                //put current active filter on row, if it's not state filter
+                var currentFilter = $filter('filter')(filters, {filters : {key: activeFilters[0]}})[0];
+                currentFilter.key != 'state'? currentFilter.filters.groupBy = 'row': '';
             } else {
                 // Enable all demographic filters
                 demographicFilters.forEach(function (demoFilter) {
