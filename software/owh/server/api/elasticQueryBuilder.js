@@ -953,7 +953,9 @@ function addCountsToAutoCompleteOptions(primaryFilter) {
     var filters = [];
     primaryFilter.sideFilters.forEach(function (category) {
         category.sideFilters.forEach(function (eachSideFilter) {
-            filters = filters.concat(eachSideFilter.filterGroup ? eachSideFilter.filters : [eachSideFilter.filters]);
+            if(!eachSideFilter.dontShowCounts) { // Query for side filter count only if showing counts
+                filters = filters.concat(eachSideFilter.filterGroup ? eachSideFilter.filters : [eachSideFilter.filters]);
+            }
         });
     });
     filters.forEach(function (eachFilter) {

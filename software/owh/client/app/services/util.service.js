@@ -388,20 +388,37 @@
 
         function getSelectedAutoCompleteOptions(filter, queryKey) {
             var filterValue = filter.value;
+            var autoCompleteOptions;
             if(angular.isArray(filterValue)) {
-                if(queryKey) {
-                    return isValueNotEmpty(filterValue)
-                        ? findAllByKeyAndValuesArray(filter.autoCompleteOptions, 'qkey', filter.value)
-                        : filter.autoCompleteOptions
+                if(isValueNotEmpty(filterValue)) {
+                    autoCompleteOptions= findAllByKeyAndValuesArray(filter.autoCompleteOptions, queryKey?'qkey':'key', filter.value);
+                     // Look up in the subOptions
+                        filter.autoCompleteOptions.forEach(function(opt){
+                          if(opt.options){
+                             autoCompleteOptions = autoCompleteOptions.concat (findAllByKeyAndValuesArray(opt.options, queryKey?'qkey':'key', filter.value));
+                          }
+                        })
+
                 } else {
-                    return isValueNotEmpty(filterValue)
-                        ? findAllByKeyAndValuesArray(filter.autoCompleteOptions, 'key', filter.value)
-                        : filter.autoCompleteOptions
+                    autoCompleteOptions= filter.autoCompleteOptions
                 }
+               
             } else {
                 var selectedOption = findByKeyAndValue(filter.autoCompleteOptions, 'key', filterValue);
-                return selectedOption ? [selectedOption]: filter.autoCompleteOptions;
+                autoCompleteOptions = selectedOption ? [selectedOption]: filter.autoCompleteOptions;
+
             }
+            
+            // Append suboptions
+            var cleanOptions = []
+            autoCompleteOptions.forEach(function(opt){
+                    if(opt.options){
+                           cleanOptions = cleanOptions.concat (opt.options);
+                    }else{
+                            cleanOptions.push(opt);
+                    }
+            })
+            return cleanOptions;
 
         }
 

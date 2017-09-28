@@ -1334,4 +1334,46 @@ describe('utilService', function(){
           expect(utils.findByKeyAndValue(mockFilters.sideFilters[7].filters.autoCompleteOptions, 'key', 'NV').disabled).toBeFalsy();
         });
     });
+
+    it('getSelectedAutoCompleteOptions returns suboptions', function (){
+        var filter = {"key":"hispanicOrigin","title":"label.filter.hispanicOrigin","queryKey":"hispanic_origin","primary":false,
+             "value":['Hispanic', 'Unknown' ],"groupBy":true,"type":"label.filter.group.demographics","filterType":"checkbox","autoCompleteOptions":[
+            {"key":"Hispanic","title":"Hispanic", options:[
+                {"key":"Central American","title":"Central American"},
+                {"key":"Central and South American","title":"Central and South American"},
+                {"key":"Cuban","title":"Cuban"},
+                {"key":"Dominican","title":"Dominican"},
+                {"key":"Latin American","title":"Latin American"},
+                {"key":"Mexican","title":"Mexican"},
+                {"key":"Other Hispanic","title":"Other Hispanic"},
+                {"key":"Puerto Rican","title":"Puerto Rican"},
+                {"key":"South American","title":"South American"},
+                {"key":"Spaniard","title":"Spaniard"}]},
+            {"key":"Unknown","title":"Unknown"},
+            {"key":"Non-Hispanic","title":"Non-Hispanic"},],"defaultGroup":"row","helpText":"label.help.text.mortality.ethnicity","filterLength":13};
+
+            var options = utils.getSelectedAutoCompleteOptions(filter);
+            expect(options.length).toEqual(11);
+    } );
+
+    it('getSelectedAutoCompleteOptions no values selected returns suboptions', function (){
+        var filter = {"key":"hispanicOrigin","title":"label.filter.hispanicOrigin","queryKey":"hispanic_origin","primary":false,
+            "value":[],"groupBy":true,"type":"label.filter.group.demographics","filterType":"checkbox","autoCompleteOptions":[
+                {"key":"Hispanic","title":"Hispanic", options:[
+                    {"key":"Central American","title":"Central American"},
+                    {"key":"Central and South American","title":"Central and South American"},
+                    {"key":"Cuban","title":"Cuban"},
+                    {"key":"Dominican","title":"Dominican"},
+                    {"key":"Latin American","title":"Latin American"},
+                    {"key":"Mexican","title":"Mexican"},
+                    {"key":"Other Hispanic","title":"Other Hispanic"},
+                    {"key":"Puerto Rican","title":"Puerto Rican"},
+                    {"key":"South American","title":"South American"},
+                    {"key":"Spaniard","title":"Spaniard"}]},
+                {"key":"Unknown","title":"Unknown"},
+                {"key":"Non-Hispanic","title":"Non-Hispanic"},],"defaultGroup":"row","helpText":"label.help.text.mortality.ethnicity","filterLength":13};
+
+        var options = utils.getSelectedAutoCompleteOptions(filter);
+        expect(options.length).toEqual(12);
+    } );
 });
