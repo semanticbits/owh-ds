@@ -59,3 +59,16 @@ Feature: TB page
     When  I select groupBy "Row" option for "Country of Birth" filter
     Then I see country of birth results on data table
 
+  Scenario: Mutually exclusive demographic filters
+    Given I am on search page
+    And  I change 'I'm interested in' dropdown value to "Tuberculosis"
+    When I expand "Sex" filter section
+    And filter "Sex" and option "Female" selected
+    And I expand "State" filter section
+    And I select Alabama state from tb state filter
+    Then filter "Race/Ethnicity" should be disabled
+    And filter "Age Groups" should be disabled
+    And filter "Country of Birth" should be disabled
+    When I select National state option from tb state filter
+    Then all side filters should be enabled
+

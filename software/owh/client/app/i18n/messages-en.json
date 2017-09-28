@@ -572,5 +572,6 @@
   "label.help.text.brfss.race_ethnicity": "This field indicates the race or ethnicity of the survey respondents",
   "label.help.text.brfss.age_group": "This field indicates the age-group of the survey respondents",
   "label.help.text.brfss.education": "This field indicates the education attained by the survey respondents",
-  "label.help.text.brfss.income": "This field indicates the household income of the survey respondents"
+  "label.help.text.brfss.income": "This field indicates the household income of the survey respondents",
+  "datadoc.tb.data.filter.restrictions":"TB data can be viewed in aggregate format or one-way stratifications (i.e., by Sex, Race/Ethnicity, Age group or Country of birth)."
 }
