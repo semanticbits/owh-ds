@@ -3690,26 +3690,31 @@
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.tbFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'sex')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.tbFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'race')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.tbFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'age_group')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.tbFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'transmission')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    onFilterChange: utilService.tbFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.tbFilters, 'key', 'state')
                                 }
 
