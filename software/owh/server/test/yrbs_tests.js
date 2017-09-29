@@ -313,7 +313,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6325,
                     "q": "qn41",
-                    "count": 15049,
+                    "sample_size": 15049,
                     "ci_l": 0.6047,
                     "se": 0.0136
                 },
@@ -328,7 +328,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6142,
                     "q": "qn41",
-                    "count": 7424,
+                    "sample_size": 7424,
                     "ci_l": 0.5895,
                     "se": 0.0121,
                     "sex": "Male"
@@ -344,7 +344,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6534,
                     "q": "qn41",
-                    "count": 7518,
+                    "sample_size": 7518,
                     "ci_l": 0.6135,
                     "se": 0.0193,
                     "sex": "Female"
@@ -360,7 +360,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6325,
                     "q": "qn41",
-                    "count": 15049,
+                    "sample_size": 15049,
                     "ci_l": 0.6047,
                     "se": 0.0136
                 },
@@ -375,7 +375,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6142,
                     "q": "qn41",
-                    "count": 7424,
+                    "sample_size": 7424,
                     "ci_l": 0.5895,
                     "se": 0.0121,
                     "sex": "Male"
@@ -391,7 +391,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6534,
                     "q": "qn41",
-                    "count": 7518,
+                    "sample_size": 7518,
                     "ci_l": 0.6135,
                     "se": 0.0193,
                     "sex": "Female"
@@ -425,7 +425,7 @@ describe("YRBS API", function () {
                         },
                         "mean": 0.0432,
                         "q": "qn45",
-                        "count": 11597,
+                        "sample_size": 11597,
                         "ci_l": 0.0355,
                         "se": 0.0041
                     },
@@ -440,7 +440,7 @@ describe("YRBS API", function () {
                         },
                         "mean": 0.0606,
                         "q": "qn45",
-                        "count": 5694,
+                        "sample_size": 5694,
                         "ci_l": 0.0493,
                         "se": 0.0061,
                         "sex": "Male"
@@ -456,7 +456,7 @@ describe("YRBS API", function () {
                         },
                         "mean": 0.0253,
                         "q": "qn45",
-                        "count": 5815,
+                        "sample_size": 5815,
                         "ci_l": 0.0191,
                         "se": 0.0035,
                         "sex": "Female"
@@ -472,7 +472,7 @@ describe("YRBS API", function () {
                         },
                         "mean": 0.0432,
                         "q": "qn45",
-                        "count": 11597,
+                        "sample_size": 11597,
                         "ci_l": 0.0355,
                         "se": 0.0041
                     },
@@ -487,7 +487,7 @@ describe("YRBS API", function () {
                         },
                         "mean": 0.0606,
                         "q": "qn45",
-                        "count": 5694,
+                        "sample_size": 5694,
                         "ci_l": 0.0493,
                         "se": 0.0061,
                         "sex": "Male"
@@ -503,7 +503,7 @@ describe("YRBS API", function () {
                         },
                         "mean": 0.0253,
                         "q": "qn45",
-                        "count": 5815,
+                        "sample_size": 5815,
                         "ci_l": 0.0191,
                         "se": 0.0035,
                         "sex": "Female"
@@ -690,7 +690,7 @@ describe("YRBS API", function () {
                         },
                         "mean": 0.0432,
                         "q": "qn45",
-                        "count": 11597,
+                        "sample_size": 11597,
                         "ci_l": 0.0355,
                         "se": 0.0041
                     },
@@ -705,7 +705,7 @@ describe("YRBS API", function () {
                         },
                         "mean": 0.0432,
                         "q": "qn45",
-                        "count": 11597,
+                        "sample_size": 11597,
                         "ci_l": 0.0355,
                         "se": 0.0041
                     }
@@ -731,7 +731,7 @@ describe("YRBS API", function () {
                         "response": true,
                         "mean": 0.441,
                         "q": "qn46",
-                        "count": 4436,
+                        "sample_size": 4436,
                         "ci_l": 0.419
                     },
                     {
@@ -740,7 +740,7 @@ describe("YRBS API", function () {
                         "response": false,
                         "mean": 0.559,
                         "q": "qn46",
-                        "count": 4436,
+                        "sample_size": 4436,
                         "ci_l": 0.5358
                     }
                 ],
@@ -816,7 +816,7 @@ describe("YRBS API", function () {
                         "response": true,
                         "mean": 0.043,
                         "q": "qn45",
-                        "count": 11597,
+                        "sample_size": 11597,
                         "ci_l": 0.0364
                     },
                     {
@@ -825,7 +825,7 @@ describe("YRBS API", function () {
                         "response": false,
                         "mean": 0.957,
                         "q": "qn45",
-                        "count": 11597,
+                        "sample_size": 11597,
                         "ci_l": 0.9488
                     }
                 ],
@@ -850,7 +850,7 @@ describe("YRBS API", function () {
                         "response": true,
                         "mean": 0.441,
                         "q": "qn46",
-                        "count": 4436,
+                        "sample_size": 4436,
                         "ci_l": 0.419
                     },
                     {
@@ -859,7 +859,7 @@ describe("YRBS API", function () {
                         "response": false,
                         "mean": 0.559,
                         "q": "qn46",
-                        "count": 4436,
+                        "sample_size": 4436,
                         "ci_l": 0.5358
                     }
                 ],
@@ -936,7 +936,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.061,
                     "q": "qn45",
-                    "count": 5694,
+                    "sample_size": 5694,
                     "ci_l": 0.0506,
                     "sex": "Male"
                 },
@@ -946,7 +946,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.025,
                     "q": "qn45",
-                    "count": 5815,
+                    "sample_size": 5815,
                     "ci_l": 0.0193,
                     "sex": "Female"
                 },
@@ -956,7 +956,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.043,
                     "q": "qn45",
-                    "count": 11597,
+                    "sample_size": 11597,
                     "ci_l": 0.0364,
                     "sex": "Total"
                 },
@@ -966,7 +966,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.939,
                     "q": "qn45",
-                    "count": 5694,
+                    "sample_size": 5694,
                     "ci_l": 0.9276,
                     "sex": "Male"
                 },
@@ -976,7 +976,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.975,
                     "q": "qn45",
-                    "count": 5815,
+                    "sample_size": 5815,
                     "ci_l": 0.9668,
                     "sex": "Female"
                 },
@@ -986,7 +986,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.957,
                     "q": "qn45",
-                    "count": 11597,
+                    "sample_size": 11597,
                     "ci_l": 0.9488,
                     "sex": "Total"
                 }
@@ -1091,7 +1091,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.497,
                     "q": "qn46",
-                    "count": 626,
+                    "sample_size": 626,
                     "ci_l": 0.4595,
                     "sex": "Female"
                 },
@@ -1101,7 +1101,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.503,
                     "q": "qn46",
-                    "count": 626,
+                    "sample_size": 626,
                     "ci_l": 0.4647,
                     "sex": "Female"
                 }
@@ -1183,7 +1183,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.485,
                     "q": "qn46",
-                    "count": 2321,
+                    "sample_size": 2321,
                     "ci_l": 0.4581,
                     "race": "Total",
                     "sex": "Female"
@@ -1194,7 +1194,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 37,
+                    "sample_size": 37,
                     "ci_l": -1,
                     "race": "Asian",
                     "sex": "Male"
@@ -1205,7 +1205,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.402,
                     "q": "qn46",
-                    "count": 156,
+                    "sample_size": 156,
                     "ci_l": 0.2883,
                     "race": "Black or African American",
                     "sex": "Male"
@@ -1216,7 +1216,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 20,
+                    "sample_size": 20,
                     "ci_l": -1,
                     "race": "Am Indian / Alaska Native",
                     "sex": "Female"
@@ -1227,7 +1227,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 25,
+                    "sample_size": 25,
                     "ci_l": -1,
                     "race": "Native Hawaiian/other PI",
                     "sex": "Total"
@@ -1238,7 +1238,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.507,
                     "q": "qn46",
-                    "count": 1162,
+                    "sample_size": 1162,
                     "ci_l": 0.4697,
                     "race": "White",
                     "sex": "Female"
@@ -1249,7 +1249,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.462,
                     "q": "qn46",
-                    "count": 192,
+                    "sample_size": 192,
                     "ci_l": 0.3784,
                     "race": "Black or African American",
                     "sex": "Female"
@@ -1260,7 +1260,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 93,
+                    "sample_size": 93,
                     "ci_l": -1,
                     "race": "Multiple - Non-Hispanic",
                     "sex": "Male"
@@ -1271,7 +1271,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.434,
                     "q": "qn46",
-                    "count": 146,
+                    "sample_size": 146,
                     "ci_l": 0.3294,
                     "race": "Multiple - Non-Hispanic",
                     "sex": "Female"
@@ -1282,7 +1282,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 21,
+                    "sample_size": 21,
                     "ci_l": -1,
                     "race": "Native Hawaiian/other PI",
                     "sex": "Male"
@@ -1293,7 +1293,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.407,
                     "q": "qn46",
-                    "count": 241,
+                    "sample_size": 241,
                     "ci_l": 0.3197,
                     "race": "Multiple - Non-Hispanic",
                     "sex": "Total"
@@ -1304,7 +1304,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.441,
                     "q": "qn46",
-                    "count": 4436,
+                    "sample_size": 4436,
                     "ci_l": 0.419,
                     "race": "Total",
                     "sex": "Total"
@@ -1315,7 +1315,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.416,
                     "q": "qn46",
-                    "count": 1025,
+                    "sample_size": 1025,
                     "ci_l": 0.3631,
                     "race": "White",
                     "sex": "Male"
@@ -1326,7 +1326,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 37,
+                    "sample_size": 37,
                     "ci_l": -1,
                     "race": "Asian",
                     "sex": "Female"
@@ -1337,7 +1337,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 36,
+                    "sample_size": 36,
                     "ci_l": -1,
                     "race": "Am Indian / Alaska Native",
                     "sex": "Male"
@@ -1348,7 +1348,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.433,
                     "q": "qn46",
-                    "count": 349,
+                    "sample_size": 349,
                     "ci_l": 0.3573,
                     "race": "Black or African American",
                     "sex": "Total"
@@ -1359,7 +1359,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.459,
                     "q": "qn46",
-                    "count": 737,
+                    "sample_size": 737,
                     "ci_l": 0.4167,
                     "race": "Hispanic/Latino",
                     "sex": "Female"
@@ -1370,7 +1370,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 2,
+                    "sample_size": 2,
                     "ci_l": -1,
                     "race": "Native Hawaiian/other PI",
                     "sex": "Female"
@@ -1381,7 +1381,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.399,
                     "q": "qn46",
-                    "count": 2088,
+                    "sample_size": 2088,
                     "ci_l": 0.3676,
                     "race": "Total",
                     "sex": "Male"
@@ -1392,7 +1392,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.413,
                     "q": "qn46",
-                    "count": 1422,
+                    "sample_size": 1422,
                     "ci_l": 0.3798,
                     "race": "Hispanic/Latino",
                     "sex": "Total"
@@ -1403,7 +1403,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.365,
                     "q": "qn46",
-                    "count": 681,
+                    "sample_size": 681,
                     "ci_l": 0.3186,
                     "race": "Hispanic/Latino",
                     "sex": "Male"
@@ -1414,7 +1414,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 74,
+                    "sample_size": 74,
                     "ci_l": -1,
                     "race": "Asian",
                     "sex": "Total"
@@ -1425,7 +1425,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": 0.461,
                     "q": "qn46",
-                    "count": 2193,
+                    "sample_size": 2193,
                     "ci_l": 0.4284,
                     "race": "White",
                     "sex": "Total"
@@ -1436,7 +1436,7 @@ describe("YRBS API", function () {
                     "response": true,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 57,
+                    "sample_size": 57,
                     "ci_l": -1,
                     "race": "Am Indian / Alaska Native",
                     "sex": "Total"
@@ -1447,7 +1447,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.515,
                     "q": "qn46",
-                    "count": 2321,
+                    "sample_size": 2321,
                     "ci_l": 0.4884,
                     "race": "Total",
                     "sex": "Female"
@@ -1458,7 +1458,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 37,
+                    "sample_size": 37,
                     "ci_l": -1,
                     "race": "Asian",
                     "sex": "Male"
@@ -1469,7 +1469,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.598,
                     "q": "qn46",
-                    "count": 156,
+                    "sample_size": 156,
                     "ci_l": 0.473,
                     "race": "Black or African American",
                     "sex": "Male"
@@ -1480,7 +1480,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 20,
+                    "sample_size": 20,
                     "ci_l": -1,
                     "race": "Am Indian / Alaska Native",
                     "sex": "Female"
@@ -1491,7 +1491,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 25,
+                    "sample_size": 25,
                     "ci_l": -1,
                     "race": "Native Hawaiian/other PI",
                     "sex": "Total"
@@ -1502,7 +1502,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.493,
                     "q": "qn46",
-                    "count": 1162,
+                    "sample_size": 1162,
                     "ci_l": 0.4564,
                     "race": "White",
                     "sex": "Female"
@@ -1513,7 +1513,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.538,
                     "q": "qn46",
-                    "count": 192,
+                    "sample_size": 192,
                     "ci_l": 0.4515,
                     "race": "Black or African American",
                     "sex": "Female"
@@ -1524,7 +1524,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 93,
+                    "sample_size": 93,
                     "ci_l": -1,
                     "race": "Multiple - Non-Hispanic",
                     "sex": "Male"
@@ -1535,7 +1535,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.566,
                     "q": "qn46",
-                    "count": 146,
+                    "sample_size": 146,
                     "ci_l": 0.4544,
                     "race": "Multiple - Non-Hispanic",
                     "sex": "Female"
@@ -1546,7 +1546,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 21,
+                    "sample_size": 21,
                     "ci_l": -1,
                     "race": "Native Hawaiian/other PI",
                     "sex": "Male"
@@ -1557,7 +1557,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.593,
                     "q": "qn46",
-                    "count": 241,
+                    "sample_size": 241,
                     "ci_l": 0.4988,
                     "race": "Multiple - Non-Hispanic",
                     "sex": "Total"
@@ -1568,7 +1568,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.559,
                     "q": "qn46",
-                    "count": 4436,
+                    "sample_size": 4436,
                     "ci_l": 0.5358,
                     "race": "Total",
                     "sex": "Total"
@@ -1579,7 +1579,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.584,
                     "q": "qn46",
-                    "count": 1025,
+                    "sample_size": 1025,
                     "ci_l": 0.5299,
                     "race": "White",
                     "sex": "Male"
@@ -1590,7 +1590,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 37,
+                    "sample_size": 37,
                     "ci_l": -1,
                     "race": "Asian",
                     "sex": "Female"
@@ -1601,7 +1601,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 36,
+                    "sample_size": 36,
                     "ci_l": -1,
                     "race": "Am Indian / Alaska Native",
                     "sex": "Male"
@@ -1612,7 +1612,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.567,
                     "q": "qn46",
-                    "count": 349,
+                    "sample_size": 349,
                     "ci_l": 0.4873,
                     "race": "Black or African American",
                     "sex": "Total"
@@ -1623,7 +1623,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.541,
                     "q": "qn46",
-                    "count": 737,
+                    "sample_size": 737,
                     "ci_l": 0.4974,
                     "race": "Hispanic/Latino",
                     "sex": "Female"
@@ -1634,7 +1634,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 2,
+                    "sample_size": 2,
                     "ci_l": -1,
                     "race": "Native Hawaiian/other PI",
                     "sex": "Female"
@@ -1645,7 +1645,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.601,
                     "q": "qn46",
-                    "count": 2088,
+                    "sample_size": 2088,
                     "ci_l": 0.5683,
                     "race": "Total",
                     "sex": "Male"
@@ -1656,7 +1656,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.587,
                     "q": "qn46",
-                    "count": 1422,
+                    "sample_size": 1422,
                     "ci_l": 0.552,
                     "race": "Hispanic/Latino",
                     "sex": "Total"
@@ -1667,7 +1667,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.635,
                     "q": "qn46",
-                    "count": 681,
+                    "sample_size": 681,
                     "ci_l": 0.5862,
                     "race": "Hispanic/Latino",
                     "sex": "Male"
@@ -1678,7 +1678,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 74,
+                    "sample_size": 74,
                     "ci_l": -1,
                     "race": "Asian",
                     "sex": "Total"
@@ -1689,7 +1689,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": 0.539,
                     "q": "qn46",
-                    "count": 2193,
+                    "sample_size": 2193,
                     "ci_l": 0.5053,
                     "race": "White",
                     "sex": "Total"
@@ -1700,7 +1700,7 @@ describe("YRBS API", function () {
                     "response": false,
                     "mean": -1,
                     "q": "qn46",
-                    "count": 57,
+                    "sample_size": 57,
                     "ci_l": -1,
                     "race": "Am Indian / Alaska Native",
                     "sex": "Total"
@@ -2040,7 +2040,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6325,
                     "q": "qn41",
-                    "count": 15049,
+                    "sample_size": 15049,
                     "ci_l": 0.6047,
                     "se": 0.0136
                 },
@@ -2055,7 +2055,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.634,
                     "race": "Hispanic/Latino",
-                    "count": 2430,
+                    "sample_size": 2430,
                     "ci_l": 0.5998,
                     "q": "qn41",
                     "se": 0.0166,
@@ -2072,7 +2072,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.73,
                     "race": "Native Hawaiian/other PI",
-                    "count": 71,
+                    "sample_size": 71,
                     "ci_l": 0.5819,
                     "q": "qn41",
                     "se": 0.0629,
@@ -2089,7 +2089,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.4212,
                     "race": "Asian",
-                    "count": 308,
+                    "sample_size": 308,
                     "ci_l": 0.347,
                     "q": "qn41",
                     "se": 0.0374,
@@ -2106,7 +2106,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6618,
                     "race": "Multiple - Non-Hispanic",
-                    "count": 331,
+                    "sample_size": 331,
                     "ci_l": 0.5813,
                     "q": "qn41",
                     "se": 0.0379,
@@ -2123,7 +2123,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6174,
                     "race": "Am Indian / Alaska Native",
-                    "count": 63,
+                    "sample_size": 63,
                     "ci_l": 0.4572,
                     "q": "qn41",
                     "se": 0.0721,
@@ -2140,7 +2140,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6402,
                     "race": "White",
-                    "count": 3266,
+                    "sample_size": 3266,
                     "ci_l": 0.6092,
                     "q": "qn41",
                     "se": 0.015,
@@ -2157,7 +2157,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.4449,
                     "race": "Asian",
-                    "count": 302,
+                    "sample_size": 302,
                     "ci_l": 0.3676,
                     "q": "qn41",
                     "se": 0.0386,
@@ -2174,7 +2174,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6534,
                     "q": "qn41",
-                    "count": 7518,
+                    "sample_size": 7518,
                     "ci_l": 0.6135,
                     "se": 0.0193,
                     "sex": "Female"
@@ -2190,7 +2190,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6863,
                     "race": "Hispanic/Latino",
-                    "count": 2473,
+                    "sample_size": 2473,
                     "ci_l": 0.6529,
                     "q": "qn41",
                     "se": 0.0161,
@@ -2207,7 +2207,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.3912,
                     "race": "Native Hawaiian/other PI",
-                    "count": 22,
+                    "sample_size": 22,
                     "ci_l": 0.1501,
                     "q": "qn41",
                     "se": 0.1301,
@@ -2224,7 +2224,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.7523,
                     "race": "Multiple - Non-Hispanic",
-                    "count": 376,
+                    "sample_size": 376,
                     "ci_l": 0.6803,
                     "q": "qn41",
                     "se": 0.0327,
@@ -2241,7 +2241,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.7752,
                     "race": "Am Indian / Alaska Native",
-                    "count": 92,
+                    "sample_size": 92,
                     "ci_l": 0.6118,
                     "q": "qn41",
                     "se": 0.0665,
@@ -2258,7 +2258,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6672,
                     "race": "White",
-                    "count": 3386,
+                    "sample_size": 3386,
                     "ci_l": 0.6042,
                     "q": "qn41",
                     "se": 0.03,
@@ -2275,7 +2275,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6142,
                     "q": "qn41",
-                    "count": 7424,
+                    "sample_size": 7424,
                     "ci_l": 0.5895,
                     "se": 0.0121,
                     "sex": "Male"
@@ -2291,7 +2291,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.5103,
                     "race": "Black or African American",
-                    "count": 776,
+                    "sample_size": 776,
                     "ci_l": 0.4527,
                     "q": "qn41",
                     "se": 0.0284,
@@ -2308,7 +2308,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.579,
                     "race": "Black or African American",
-                    "count": 776,
+                    "sample_size": 776,
                     "ci_l": 0.5177,
                     "q": "qn41",
                     "se": 0.0296,
@@ -2325,7 +2325,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6325,
                     "q": "qn41",
-                    "count": 15049,
+                    "sample_size": 15049,
                     "ci_l": 0.6047,
                     "se": 0.0136
                 },
@@ -2340,7 +2340,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.634,
                     "race": "Hispanic/Latino",
-                    "count": 2430,
+                    "sample_size": 2430,
                     "ci_l": 0.5998,
                     "q": "qn41",
                     "se": 0.0166,
@@ -2357,7 +2357,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.73,
                     "race": "Native Hawaiian/other PI",
-                    "count": 71,
+                    "sample_size": 71,
                     "ci_l": 0.5819,
                     "q": "qn41",
                     "se": 0.0629,
@@ -2374,7 +2374,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.4212,
                     "race": "Asian",
-                    "count": 308,
+                    "sample_size": 308,
                     "ci_l": 0.347,
                     "q": "qn41",
                     "se": 0.0374,
@@ -2391,7 +2391,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6618,
                     "race": "Multiple - Non-Hispanic",
-                    "count": 331,
+                    "sample_size": 331,
                     "ci_l": 0.5813,
                     "q": "qn41",
                     "se": 0.0379,
@@ -2408,7 +2408,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6174,
                     "race": "Am Indian / Alaska Native",
-                    "count": 63,
+                    "sample_size": 63,
                     "ci_l": 0.4572,
                     "q": "qn41",
                     "se": 0.0721,
@@ -2425,7 +2425,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6402,
                     "race": "White",
-                    "count": 3266,
+                    "sample_size": 3266,
                     "ci_l": 0.6092,
                     "q": "qn41",
                     "se": 0.015,
@@ -2442,7 +2442,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.4449,
                     "race": "Asian",
-                    "count": 302,
+                    "sample_size": 302,
                     "ci_l": 0.3676,
                     "q": "qn41",
                     "se": 0.0386,
@@ -2459,7 +2459,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6534,
                     "q": "qn41",
-                    "count": 7518,
+                    "sample_size": 7518,
                     "ci_l": 0.6135,
                     "se": 0.0193,
                     "sex": "Female"
@@ -2475,7 +2475,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6863,
                     "race": "Hispanic/Latino",
-                    "count": 2473,
+                    "sample_size": 2473,
                     "ci_l": 0.6529,
                     "q": "qn41",
                     "se": 0.0161,
@@ -2492,7 +2492,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.3912,
                     "race": "Native Hawaiian/other PI",
-                    "count": 22,
+                    "sample_size": 22,
                     "ci_l": 0.1501,
                     "q": "qn41",
                     "se": 0.1301,
@@ -2509,7 +2509,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.7523,
                     "race": "Multiple - Non-Hispanic",
-                    "count": 376,
+                    "sample_size": 376,
                     "ci_l": 0.6803,
                     "q": "qn41",
                     "se": 0.0327,
@@ -2526,7 +2526,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.7752,
                     "race": "Am Indian / Alaska Native",
-                    "count": 92,
+                    "sample_size": 92,
                     "ci_l": 0.6118,
                     "q": "qn41",
                     "se": 0.0665,
@@ -2543,7 +2543,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6672,
                     "race": "White",
-                    "count": 3386,
+                    "sample_size": 3386,
                     "ci_l": 0.6042,
                     "q": "qn41",
                     "se": 0.03,
@@ -2560,7 +2560,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.6142,
                     "q": "qn41",
-                    "count": 7424,
+                    "sample_size": 7424,
                     "ci_l": 0.5895,
                     "se": 0.0121,
                     "sex": "Male"
@@ -2576,7 +2576,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.5103,
                     "race": "Black or African American",
-                    "count": 776,
+                    "sample_size": 776,
                     "ci_l": 0.4527,
                     "q": "qn41",
                     "se": 0.0284,
@@ -2593,7 +2593,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.579,
                     "race": "Black or African American",
-                    "count": 776,
+                    "sample_size": 776,
                     "ci_l": 0.5177,
                     "q": "qn41",
                     "se": 0.0296,
@@ -2634,7 +2634,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.8136,
                     "q": "qn8",
-                    "count": 8757,
+                    "sample_size": 8757,
                     "ci_l": 0.7696,
                     "se": 0.0201
                 },
@@ -2650,7 +2650,7 @@ describe("YRBS API", function () {
                     "sexpart": "Same sex only",
                     "mean": 0.8125,
                     "q": "qn8",
-                    "count": 47,
+                    "sample_size": 47,
                     "ci_l": 0.5407,
                     "se": 0.0966,
                     "sex": "Male"
@@ -2667,7 +2667,7 @@ describe("YRBS API", function () {
                     "sexpart": "Never had sex",
                     "mean": 0.7222,
                     "q": "qn8",
-                    "count": 1789,
+                    "sample_size": 1789,
                     "ci_l": 0.6564,
                     "se": 0.0306,
                     "sex": "Female"
@@ -2684,7 +2684,7 @@ describe("YRBS API", function () {
                     "sexpart": "Opposite sex only",
                     "mean": 0.9032,
                     "q": "qn8",
-                    "count": 2481,
+                    "sample_size": 2481,
                     "ci_l": 0.8722,
                     "se": 0.0135,
                     "sex": "Male"
@@ -2701,7 +2701,7 @@ describe("YRBS API", function () {
                     "sexpart": "Both Sexes",
                     "mean": 0.813,
                     "q": "qn8",
-                    "count": 93,
+                    "sample_size": 93,
                     "ci_l": 0.6691,
                     "se": 0.0571,
                     "sex": "Male"
@@ -2718,7 +2718,7 @@ describe("YRBS API", function () {
                     "sexpart": "Both Sexes",
                     "mean": 0.9179,
                     "q": "qn8",
-                    "count": 268,
+                    "sample_size": 268,
                     "ci_l": 0.8746,
                     "se": 0.0176,
                     "sex": "Female"
@@ -2734,7 +2734,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.8014,
                     "q": "qn8",
-                    "count": 3951,
+                    "sample_size": 3951,
                     "ci_l": 0.7511,
                     "se": 0.0229,
                     "sex": "Female"
@@ -2751,7 +2751,7 @@ describe("YRBS API", function () {
                     "sexpart": "Never had sex",
                     "mean": 0.7238,
                     "q": "qn8",
-                    "count": 1785,
+                    "sample_size": 1785,
                     "ci_l": 0.6643,
                     "se": 0.0278,
                     "sex": "Male"
@@ -2767,7 +2767,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.8244,
                     "q": "qn8",
-                    "count": 4769,
+                    "sample_size": 4769,
                     "ci_l": 0.7819,
                     "se": 0.0193,
                     "sex": "Male"
@@ -2784,7 +2784,7 @@ describe("YRBS API", function () {
                     "sexpart": "Opposite sex only",
                     "mean": 0.8698,
                     "q": "qn8",
-                    "count": 1523,
+                    "sample_size": 1523,
                     "ci_l": 0.828,
                     "se": 0.0184,
                     "sex": "Female"
@@ -2801,7 +2801,7 @@ describe("YRBS API", function () {
                     "sexpart": "Same sex only",
                     "mean": 0.857,
                     "q": "qn8",
-                    "count": 88,
+                    "sample_size": 88,
                     "ci_l": 0.6843,
                     "se": 0.0606,
                     "sex": "Female"
@@ -2817,7 +2817,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.8136,
                     "q": "qn8",
-                    "count": 8757,
+                    "sample_size": 8757,
                     "ci_l": 0.7696,
                     "se": 0.0201
                 },
@@ -2833,7 +2833,7 @@ describe("YRBS API", function () {
                     "sexpart": "Same sex only",
                     "mean": 0.8125,
                     "q": "qn8",
-                    "count": 47,
+                    "sample_size": 47,
                     "ci_l": 0.5407,
                     "se": 0.0966,
                     "sex": "Male"
@@ -2850,7 +2850,7 @@ describe("YRBS API", function () {
                     "sexpart": "Never had sex",
                     "mean": 0.7222,
                     "q": "qn8",
-                    "count": 1789,
+                    "sample_size": 1789,
                     "ci_l": 0.6564,
                     "se": 0.0306,
                     "sex": "Female"
@@ -2867,7 +2867,7 @@ describe("YRBS API", function () {
                     "sexpart": "Opposite sex only",
                     "mean": 0.9032,
                     "q": "qn8",
-                    "count": 2481,
+                    "sample_size": 2481,
                     "ci_l": 0.8722,
                     "se": 0.0135,
                     "sex": "Male"
@@ -2884,7 +2884,7 @@ describe("YRBS API", function () {
                     "sexpart": "Both Sexes",
                     "mean": 0.813,
                     "q": "qn8",
-                    "count": 93,
+                    "sample_size": 93,
                     "ci_l": 0.6691,
                     "se": 0.0571,
                     "sex": "Male"
@@ -2901,7 +2901,7 @@ describe("YRBS API", function () {
                     "sexpart": "Both Sexes",
                     "mean": 0.9179,
                     "q": "qn8",
-                    "count": 268,
+                    "sample_size": 268,
                     "ci_l": 0.8746,
                     "se": 0.0176,
                     "sex": "Female"
@@ -2917,7 +2917,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.8014,
                     "q": "qn8",
-                    "count": 3951,
+                    "sample_size": 3951,
                     "ci_l": 0.7511,
                     "se": 0.0229,
                     "sex": "Female"
@@ -2934,7 +2934,7 @@ describe("YRBS API", function () {
                     "sexpart": "Never had sex",
                     "mean": 0.7238,
                     "q": "qn8",
-                    "count": 1785,
+                    "sample_size": 1785,
                     "ci_l": 0.6643,
                     "se": 0.0278,
                     "sex": "Male"
@@ -2950,7 +2950,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.8244,
                     "q": "qn8",
-                    "count": 4769,
+                    "sample_size": 4769,
                     "ci_l": 0.7819,
                     "se": 0.0193,
                     "sex": "Male"
@@ -2967,7 +2967,7 @@ describe("YRBS API", function () {
                     "sexpart": "Opposite sex only",
                     "mean": 0.8698,
                     "q": "qn8",
-                    "count": 1523,
+                    "sample_size": 1523,
                     "ci_l": 0.828,
                     "se": 0.0184,
                     "sex": "Female"
@@ -2984,7 +2984,7 @@ describe("YRBS API", function () {
                     "sexpart": "Same sex only",
                     "mean": 0.857,
                     "q": "qn8",
-                    "count": 88,
+                    "sample_size": 88,
                     "ci_l": 0.6843,
                     "se": 0.0606,
                     "sex": "Female"
@@ -3240,7 +3240,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.8136,
                     "q": "qn8",
-                    "count": 8757,
+                    "sample_size": 8757,
                     "ci_l": 0.7696,
                     "se": 0.0201
                 },
@@ -3256,7 +3256,7 @@ describe("YRBS API", function () {
                     "sexid": "Bisexual",
                     "mean": 0.8549,
                     "q": "qn8",
-                    "count": 355,
+                    "sample_size": 355,
                     "ci_l": 0.7868,
                     "se": 0.0287,
                     "sex": "Female"
@@ -3273,7 +3273,7 @@ describe("YRBS API", function () {
                     "sexid": "Not Sure",
                     "mean": 0.781,
                     "q": "qn8",
-                    "count": 99,
+                    "sample_size": 99,
                     "ci_l": 0.658,
                     "se": 0.0519,
                     "sex": "Male"
@@ -3290,7 +3290,7 @@ describe("YRBS API", function () {
                     "sexid": "Gay or Lesbian",
                     "mean": 0.7125,
                     "q": "qn8",
-                    "count": 65,
+                    "sample_size": 65,
                     "ci_l": 0.483,
                     "se": 0.0977,
                     "sex": "Male"
@@ -3307,7 +3307,7 @@ describe("YRBS API", function () {
                     "sexid": "Heterosexual",
                     "mean": 0.7946,
                     "q": "qn8",
-                    "count": 3134,
+                    "sample_size": 3134,
                     "ci_l": 0.741,
                     "se": 0.0243,
                     "sex": "Female"
@@ -3323,7 +3323,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.8014,
                     "q": "qn8",
-                    "count": 3951,
+                    "sample_size": 3951,
                     "ci_l": 0.7511,
                     "se": 0.0229,
                     "sex": "Female"
@@ -3340,7 +3340,7 @@ describe("YRBS API", function () {
                     "sexid": "Not Sure",
                     "mean": 0.7779,
                     "q": "qn8",
-                    "count": 132,
+                    "sample_size": 132,
                     "ci_l": 0.6542,
                     "se": 0.0524,
                     "sex": "Female"
@@ -3357,7 +3357,7 @@ describe("YRBS API", function () {
                     "sexid": "Heterosexual",
                     "mean": 0.8256,
                     "q": "qn8",
-                    "count": 4233,
+                    "sample_size": 4233,
                     "ci_l": 0.7794,
                     "se": 0.0209,
                     "sex": "Male"
@@ -3373,7 +3373,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.8244,
                     "q": "qn8",
-                    "count": 4769,
+                    "sample_size": 4769,
                     "ci_l": 0.7819,
                     "se": 0.0193,
                     "sex": "Male"
@@ -3390,7 +3390,7 @@ describe("YRBS API", function () {
                     "sexid": "Gay or Lesbian",
                     "mean": 0.748,
                     "q": "qn8",
-                    "count": 82,
+                    "sample_size": 82,
                     "ci_l": 0.5641,
                     "se": 0.0766,
                     "sex": "Female"
@@ -3407,7 +3407,7 @@ describe("YRBS API", function () {
                     "sexid": "Bisexual",
                     "mean": 0.8049,
                     "q": "qn8",
-                    "count": 99,
+                    "sample_size": 99,
                     "ci_l": 0.6787,
                     "se": 0.0517,
                     "sex": "Male"
@@ -3423,7 +3423,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.8136,
                     "q": "qn8",
-                    "count": 8757,
+                    "sample_size": 8757,
                     "ci_l": 0.7696,
                     "se": 0.0201
                 },
@@ -3439,7 +3439,7 @@ describe("YRBS API", function () {
                     "sexid": "Bisexual",
                     "mean": 0.8549,
                     "q": "qn8",
-                    "count": 355,
+                    "sample_size": 355,
                     "ci_l": 0.7868,
                     "se": 0.0287,
                     "sex": "Female"
@@ -3456,7 +3456,7 @@ describe("YRBS API", function () {
                     "sexid": "Not Sure",
                     "mean": 0.781,
                     "q": "qn8",
-                    "count": 99,
+                    "sample_size": 99,
                     "ci_l": 0.658,
                     "se": 0.0519,
                     "sex": "Male"
@@ -3473,7 +3473,7 @@ describe("YRBS API", function () {
                     "sexid": "Gay or Lesbian",
                     "mean": 0.7125,
                     "q": "qn8",
-                    "count": 65,
+                    "sample_size": 65,
                     "ci_l": 0.483,
                     "se": 0.0977,
                     "sex": "Male"
@@ -3490,7 +3490,7 @@ describe("YRBS API", function () {
                     "sexid": "Heterosexual",
                     "mean": 0.7946,
                     "q": "qn8",
-                    "count": 3134,
+                    "sample_size": 3134,
                     "ci_l": 0.741,
                     "se": 0.0243,
                     "sex": "Female"
@@ -3506,7 +3506,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.8014,
                     "q": "qn8",
-                    "count": 3951,
+                    "sample_size": 3951,
                     "ci_l": 0.7511,
                     "se": 0.0229,
                     "sex": "Female"
@@ -3523,7 +3523,7 @@ describe("YRBS API", function () {
                     "sexid": "Not Sure",
                     "mean": 0.7779,
                     "q": "qn8",
-                    "count": 132,
+                    "sample_size": 132,
                     "ci_l": 0.6542,
                     "se": 0.0524,
                     "sex": "Female"
@@ -3540,7 +3540,7 @@ describe("YRBS API", function () {
                     "sexid": "Heterosexual",
                     "mean": 0.8256,
                     "q": "qn8",
-                    "count": 4233,
+                    "sample_size": 4233,
                     "ci_l": 0.7794,
                     "se": 0.0209,
                     "sex": "Male"
@@ -3556,7 +3556,7 @@ describe("YRBS API", function () {
                     },
                     "mean": 0.8244,
                     "q": "qn8",
-                    "count": 4769,
+                    "sample_size": 4769,
                     "ci_l": 0.7819,
                     "se": 0.0193,
                     "sex": "Male"
@@ -3573,7 +3573,7 @@ describe("YRBS API", function () {
                     "sexid": "Gay or Lesbian",
                     "mean": 0.748,
                     "q": "qn8",
-                    "count": 82,
+                    "sample_size": 82,
                     "ci_l": 0.5641,
                     "se": 0.0766,
                     "sex": "Female"
@@ -3590,7 +3590,7 @@ describe("YRBS API", function () {
                     "sexid": "Bisexual",
                     "mean": 0.8049,
                     "q": "qn8",
-                    "count": 99,
+                    "sample_size": 99,
                     "ci_l": 0.6787,
                     "se": 0.0517,
                     "sex": "Male"
@@ -3830,15 +3830,15 @@ describe("YRBS API", function () {
             expect(q0.Yes.mental_health.mean).to.eql(87.4);
             expect(q0.Yes.mental_health.ci_l).to.eql(86.5);
             expect(q0.Yes.mental_health.ci_u).to.eql(88.3);
-            expect(q0.Yes.mental_health.count).to.eql(108472);
+            expect(q0.Yes.mental_health.count).to.eql(121103);
             var sex = sortByKey(q0.Yes.sex,'name',true);
             expect(sex.length).to.eql(2);
             expect(sex[0].name).to.eql("Female");
             expect(sex[1].name).to.eql("Male");
             var female = sortByKey(sex[0].race, 'name', true);
-            expect(female).to.eql([{"name":"Am Indian / Alaska Native","mental_health":{"mean":"88.4","ci_l":"83.0","ci_u":"92.2","count":459}},{"name":"Asian","mental_health":{"mean":"76.8","ci_l":"72.9","ci_u":"80.2","count":1196}},{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11036}},{"name":"Hispanic/Latino","mental_health":{"mean":"89.6","ci_l":"88.5","ci_u":"90.6","count":12822}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"82.1","ci_l":"77.5","ci_u":"85.9","count":1156}},{"name":"Native Hawaiian/other PI","mental_health":{"mean":"81.3","ci_l":"71.9","ci_u":"88.1","count":235}},{"name":"Total","mental_health":{"mean":"86.3","ci_l":"85.1","ci_u":"87.3","count":48037}},{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":20174}}]);
+            expect(female).to.eql([{"name":"Am Indian / Alaska Native","mental_health":{"mean":"88.4","ci_l":"83.0","ci_u":"92.2","count":519}},{"name":"Asian","mental_health":{"mean":"76.8","ci_l":"72.9","ci_u":"80.2","count":1541}},{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11670}},{"name":"Hispanic/Latino","mental_health":{"mean":"89.6","ci_l":"88.5","ci_u":"90.6","count":14016}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"82.1","ci_l":"77.5","ci_u":"85.9","count":1370}},{"name":"Native Hawaiian/other PI","mental_health":{"mean":"81.3","ci_l":"71.9","ci_u":"88.1","count":274}},{"name":"Total","mental_health":{"mean":"86.3","ci_l":"85.1","ci_u":"87.3","count":54197}},{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":23714}}]);
             var male = sortByKey(sex[1].race, 'name', true);
-            expect(male).to.eql([{"name":"Am Indian / Alaska Native","mental_health":{"mean":"91.5","ci_l":"87.3","ci_u":"94.3","count":762}},{"name":"Asian","mental_health":{"mean":"81.3","ci_l":"78.1","ci_u":"84.1","count":1723}},{"name":"Black or African American","mental_health":{"mean":"94.4","ci_l":"93.7","ci_u":"95.1","count":13195}},{"name":"Hispanic/Latino","mental_health":{"mean":"91.5","ci_l":"90.6","ci_u":"92.3","count":16300}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"83.9","ci_l":"78.7","ci_u":"88.0","count":1300}},{"name":"Native Hawaiian/other PI","mental_health":{"mean":"81.2","ci_l":"73.2","ci_u":"87.3","count":356}},{"name":"Total","mental_health":{"mean":"88.3","ci_l":"87.4","ci_u":"89.1","count":60164}},{"name":"White","mental_health":{"mean":"86.8","ci_l":"85.7","ci_u":"87.9","count":25169}}]);
+            expect(male).to.eql([{"name":"Am Indian / Alaska Native","mental_health":{"mean":"91.5","ci_l":"87.3","ci_u":"94.3","count":832}},{"name":"Asian","mental_health":{"mean":"81.3","ci_l":"78.1","ci_u":"84.1","count":2115}},{"name":"Black or African American","mental_health":{"mean":"94.4","ci_l":"93.7","ci_u":"95.1","count":13866}},{"name":"Hispanic/Latino","mental_health":{"mean":"91.5","ci_l":"90.6","ci_u":"92.3","count":17566}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"83.9","ci_l":"78.7","ci_u":"88.0","count":1509}},{"name":"Native Hawaiian/other PI","mental_health":{"mean":"81.2","ci_l":"73.2","ci_u":"87.3","count":417}},{"name":"Total","mental_health":{"mean":"88.3","ci_l":"87.4","ci_u":"89.1","count":66586}},{"name":"White","mental_health":{"mean":"86.8","ci_l":"85.7","ci_u":"87.9","count":28769}}]);
         });
     });
 
@@ -3857,7 +3857,7 @@ describe("YRBS API", function () {
                                     "mean": "87.4",
                                     "ci_l": "86.5",
                                     "ci_u": "88.3",
-                                    "count": 108472
+                                    "count": 121103
                                 }
                             },
                             "No": {
@@ -3865,7 +3865,7 @@ describe("YRBS API", function () {
                                     "mean": "12.6",
                                     "ci_l": "11.7",
                                     "ci_u": "13.5",
-                                    "count": 12631
+                                    "count": 121103
                                 }
                             }
                         }
@@ -3881,13 +3881,13 @@ describe("YRBS API", function () {
 
         return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
             var q0=resp.table.question[0];
-            expect(q0.Yes.mental_health).to.eql({"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":31210});
+            expect(q0.Yes.mental_health).to.eql({"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":35384});
             expect(q0.Yes.sex.length).to.eql(2);
             var sex = sortByKey(q0.Yes.sex, 'name', true);
             expect(sex[0].name).to.eql("Female");
             var race = sortByKey(sex[0].race, 'name', true);
-            expect(race).to.eql([{"name":"Am Indian / Alaska Native","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Asian","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11036}},{"name":"Hispanic/Latino","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Native Hawaiian/other PI","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Total","mental_health":{"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":31210}},{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":20174}}]);
-            expect(q0.No.mental_health).to.eql({"mean":"13.9","ci_l":"12.7","ci_u":"15.1","count":4174});
+            expect(race).to.eql([{"name":"Am Indian / Alaska Native","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Asian","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11670}},{"name":"Hispanic/Latino","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Native Hawaiian/other PI","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Total","mental_health":{"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":35384}},{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":23714}}]);
+            expect(q0.No.mental_health).to.eql({"mean":"13.9","ci_l":"12.7","ci_u":"15.1","count":35384});
             expect(sex[0].name).to.eql("Female");
             var race = sortByKey(sex[0].race, 'name', true);
             expect([{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11670}},{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":23714}}]);
@@ -3900,7 +3900,7 @@ describe("YRBS API", function () {
 
         return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
             var q0=resp.table.question[0];
-            expect(q0.Yes.mental_health).to.eql({"mean":"81.6","ci_l":"77.4","ci_u":"85.1","count":9072});
+            expect(q0.Yes.mental_health).to.eql({"mean":"81.6","ci_l":"77.4","ci_u":"85.1","count":10156});
             var race = sortByKey(q0.Yes.race,'name',true);
             expect(race[0].name).to.eql("Am Indian / Alaska Native");
             expect(race[1].name).to.eql("Asian");
@@ -3996,15 +3996,15 @@ describe("YRBS API", function () {
             var race = sortByKey(q0.Yes.race,'name',true);
             expect(race[5].name).to.eql("Native Hawaiian/other PI");
             expect(race[5].mental_health.mean).to.eql("suppressed");
-            expect(race[5].mental_health.count).to.eql("4");
+            expect(race[5].mental_health.count).to.eql("16");
 
             expect(race[1].name).to.eql("Asian");
-            expect(race[1].mental_health.mean).to.eql("suppressed");
-            expect(race[1].mental_health.count).to.eql("7");
+            expect(race[1].mental_health.mean).to.eql("15.8");
+            expect(race[1].mental_health.count).to.eql("81");
 
             expect(race[2].name).to.eql("Black or African American");
             expect(race[2].mental_health.mean).to.not.eql("suppressed");
-            expect(race[2].mental_health.count).to.eql("80");
+            expect(race[2].mental_health.count).to.eql("394");
         });
     });
 
@@ -4019,11 +4019,11 @@ describe("YRBS API", function () {
             var race = sortByKey(q0.Yes.race,'name',true);
             expect(race[5].name).to.eql("Native Hawaiian/other PI");
             expect(race[5].mental_health.mean).to.eql("-1");
-            expect(race[5].mental_health.count).to.eql("4");
+            expect(race[5].mental_health.count).to.eql("16");
 
             expect(race[1].name).to.eql("Asian");
-            expect(race[1].mental_health.mean).to.eql("-1");
-            expect(race[1].mental_health.count).to.eql("7");
+            expect(race[1].mental_health.mean).to.eql("15.8");
+            expect(race[1].mental_health.count).to.eql("81");
         });
     });
 
