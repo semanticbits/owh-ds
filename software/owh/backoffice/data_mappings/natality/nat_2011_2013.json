@@ -27,37 +27,6 @@
       }
     },
     {
-      "column": "race",
-      "type": "map",
-      "start": 143,
-      "stop": 143,
-      "field": "Mother’s Race",
-      "mappings": {
-        "1": "White",
-        "2": "Black",
-        "3": "American Indian or Alaska Native",
-        "4": "Asian or Pacific Islander"
-      }
-    },
-    {
-      "column": "mother_age_5year_interval",
-      "type": "map",
-      "start": 93,
-      "stop": 93,
-      "field": "Mother’s Age 5 Year Interval",
-      "mappings": {
-        "1": "Under 15 years",
-        "2": "15-19 years",
-        "3": "20-24 years",
-        "4": "25-29 years",
-        "5": "30-34 years",
-        "6": "35-39 years",
-        "7": "40-44 years",
-        "8": "45-49 years",
-        "9": "50-54 years"
-      }
-    },
-    {
       "column": "mother_age_1year_interval",
       "type": "range",
       "start": 89,
@@ -104,6 +73,37 @@
       }
     },
     {
+      "column": "mother_age_5year_interval",
+      "type": "map",
+      "start": 93,
+      "stop": 93,
+      "field": "Mother’s Age 5 Year Interval",
+      "mappings": {
+        "1": "Under 15 years",
+        "2": "15-19 years",
+        "3": "20-24 years",
+        "4": "25-29 years",
+        "5": "30-34 years",
+        "6": "35-39 years",
+        "7": "40-44 years",
+        "8": "45-49 years",
+        "9": "50-54 years"
+      }
+    },
+    {
+      "column": "race",
+      "type": "map",
+      "start": 143,
+      "stop": 143,
+      "field": "Mother’s Race",
+      "mappings": {
+        "1": "White",
+        "2": "Black",
+        "3": "American Indian or Alaska Native",
+        "4": "Asian or Pacific Islander"
+      }
+    },
+    {
       "column": "marital_status",
       "type": "map",
       "start": 153,
@@ -118,16 +118,19 @@
     {
       "column": "mother_education",
       "type": "map",
-      "start": 158,
-      "stop": 158,
+      "start": 155,
+      "stop": 155,
       "field": "Mother’s Education",
       "mappings": {
-        "1": "0 - 8 years",
-        "2": "9 - 11 years",
-        "3": "12 years",
-        "4": "13 - 15 years",
-        "5": "16 years and over",
-        "6": "Not stated",
+        "1": "8th grade or less",
+        "2": "9th through 12th grade with no diploma",
+        "3": "High school graduate or GED completed",
+        "4": "Some college credit, but not a degree",
+        "5": "Associate degree (AA,AS)",
+        "6": "Bachelor’s degree (BA, AB, BS)",
+        "7": "Master’s degree (MA, MS, MEng, MEd, MSW, MBA)",
+        "8": "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
+        "9": "Unknown",
         "": "Not on certificate"
       }
     },
@@ -297,21 +300,8 @@
         "7800-7899": "7800 - 7899 grams",
         "7900-7999": "7900 - 7999 grams",
         "8000-8099": "8000 - 8099 grams",
-        "8100-8165": "8100 - 8165 grams",
+        "8100-8199": "8100 - 8165 grams",
         "9999": "Not stated"
-      }
-    },
-    {
-      "column": "birth_weight_r4",
-      "type": "map",
-      "start": 473,
-      "stop": 473,
-      "field": "Birth Weight",
-      "mappings": {
-        "1": "1499 grams or less",
-        "2": "1500 - 2499 grams",
-        "3": "2500 - 8165 grams",
-        "4": "Unknown or not stated"
       }
     },
     {
@@ -336,6 +326,33 @@
       }
     },
     {
+      "column": "birth_weight_r4",
+      "type": "map",
+      "start": 473,
+      "stop": 473,
+      "field": "Birth Weight Recode 4",
+      "mappings": {
+        "1": "1499 grams or less",
+        "2": "1500 - 2499 grams",
+        "3": "2500 - 8165 grams",
+        "4": "Unknown or not stated"
+      }
+    },
+    {
+      "column": "birth_plurality",
+      "type": "map",
+      "start": 423,
+      "stop": 423,
+      "field": "Plurality or Multiple Birth",
+      "mappings": {
+        "1": "Single",
+        "2": "Twin",
+        "3": "Triplet",
+        "4": "Quadruplet",
+        "5": "Quintuplet or higher"
+      }
+    },
+    {
       "column": "live_birth",
       "type": "map",
       "start": 212,
@@ -351,20 +368,6 @@
         "7": "7th child born alive to mother",
         "8": "8 or more live births",
         "9": "Unknown or not stated"
-      }
-    },
-    {
-      "column": "birth_plurality",
-      "type": "map",
-      "start": 423,
-      "stop": 423,
-      "field": "Plurality or Multiple Birth",
-      "mappings": {
-        "1": "Single",
-        "2": "Twin",
-        "3": "Triplet",
-        "4": "Quadruplet",
-        "5": "Quintuplet or higher"
       }
     },
     {
@@ -410,32 +413,6 @@
       }
     },
     {
-      "column": "anemia",
-      "type": "map",
-      "start": 328,
-      "stop": 328,
-      "field": "Anemia",
-      "mappings": {
-        "1": "Yes",
-        "2": "No",
-        "": "Not on certificate",
-        "9": "Unknown"
-      }
-    },
-    {
-      "column": "cardiac_disease",
-      "type": "map",
-      "start": 329,
-      "stop": 329,
-      "field": "Cardiac Disease",
-      "mappings": {
-        "1": "Yes",
-        "2": "No",
-        "": "Not on certificate",
-        "9": "Unknown"
-      }
-    },
-    {
       "column": "chronic_hypertension",
       "type": "map",
       "start": 335,
@@ -444,8 +421,8 @@
       "mappings": {
         "1": "Yes",
         "2": "No",
-        "": "Not on certificate",
-        "9": "Unknown"
+        "9": "Unknown",
+        "": "Not on certificate"
       }
     },
     {
@@ -457,60 +434,8 @@
       "mappings": {
         "1": "Yes",
         "2": "No",
-        "": "Not on certificate",
-        "9": "Unknown"
-      }
-    },
-    {
-      "column": "eclampsia",
-      "type": "map",
-      "start": 337,
-      "stop": 337,
-      "field": "Eclampsia",
-      "mappings": {
-        "1": "Yes",
-        "2": "No",
-        "": "Not on certificate",
-        "9": "Unknown"
-      }
-    },
-    {
-      "column": "hydramnios_oligohydramnios",
-      "type": "map",
-      "start": 333,
-      "stop": 333,
-      "field": "Hydramnios / Oligohydramnios",
-      "mappings": {
-        "1": "Yes",
-        "2": "No",
-        "": "Not on certificate",
-        "9": "Unknown"
-      }
-    },
-    {
-      "column": "incompetent_cervix",
-      "type": "map",
-      "start": 338,
-      "stop": 338,
-      "field": "Incompetent Cervix",
-      "mappings": {
-        "1": "Yes",
-        "2": "No",
-        "": "Not on certificate",
-        "9": "Unknown"
-      }
-    },
-    {
-      "column": "lung_disease",
-      "type": "map",
-      "start": 330,
-      "stop": 330,
-      "field": "Lung Disease",
-      "mappings": {
-        "1": "Yes",
-        "2": "No",
-        "": "Not on certificate",
-        "9": "Unknown"
+        "9": "Unknown",
+        "": "Not on certificate"
       }
     },
     {
@@ -522,20 +447,33 @@
       "mappings": {
         "1": "Yes",
         "2": "No",
-        "": "Not on certificate",
-        "9": "Unknown"
+        "9": "Unknown",
+        "": "Not on certificate"
+      }
+    },
+    {
+      "column": "eclampsia",
+      "type": "map",
+      "start": 337,
+      "stop": 337,
+      "field": "Eclampsia",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "9": "Unknown",
+        "": "Not on certificate"
       }
     },
     {
       "column": "tobacco_use",
       "type": "map",
-      "start": 290,
-      "stop": 290,
+      "start": 294,
+      "stop": 294,
       "field": "Tobacco use",
       "mappings": {
-        "1": "Yes",
-        "2": "No",
-        "9": "Not stated",
+        "Y": "Yes",
+        "N": "No",
+        "U": "Unknown or not stated",
         "": "Not on certificate"
       }
     },
