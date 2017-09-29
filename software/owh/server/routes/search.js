@@ -120,20 +120,24 @@ function search(q) {
     var finalQuery = '';
 
     var stateFilter = queryBuilder.findFilterByKeyAndValue(q.allFilters, 'key', 'state');
-    var isStateSelected = queryBuilder.isFilterApplied(stateFilter);
+    var censusRegion = queryBuilder.findFilterByKeyAndValue(q.allFilters, 'key', 'census-region');
+    var hhsRegion = queryBuilder.findFilterByKeyAndValue(q.allFilters, 'key', 'hhs-region');
+    var isStateSelected = queryBuilder.isFilterApplied(stateFilter) || queryBuilder.isFilterApplied(censusRegion) || queryBuilder.isFilterApplied(hhsRegion);
 
     logger.debug("Incoming query: ", JSON.stringify(preparedQuery));
     if (preparedQuery.apiQuery.searchFor === "deaths") {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         //Get all selected filter options
         var allSelectedFilterOptions = searchUtils.getAllSelectedFilterOptions(q);
+        var allFilterOptions = searchUtils.getAllFilterOptions(q);
         logger.debug("Detail Mortality - selected filters and filter options: ", JSON.stringify(allSelectedFilterOptions));
+        logger.debug("Detail Mortality - All Filters and filter options: ", JSON.stringify(allFilterOptions));
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
         // Invoke WONDER only for age_adjusted_rates view
         if(q.tableView == 'age-adjusted_death_rates') {
             finalQuery.wonderQuery = preparedQuery.apiQuery;
         }
-        new elasticSearch().aggregateDeaths(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
+        new elasticSearch().aggregateDeaths(sideFilterQuery, isStateSelected, allFilterOptions).then(function (sideFilterResults) {
             new elasticSearch().aggregateDeaths(finalQuery, isStateSelected, allSelectedFilterOptions).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
@@ -166,7 +170,9 @@ function search(q) {
     } else if (preparedQuery.apiQuery.searchFor === "bridge_race") {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         var allSelectedFilterOptions = searchUtils.getAllSelectedFilterOptions(q);
+        var allFilterOptions = searchUtils.getAllFilterOptions(q);
         logger.debug("Bridge Race - Selected filters and filter options: ", JSON.stringify(allSelectedFilterOptions));
+        logger.debug("Bridge Race - All Filters and filter options: ", JSON.stringify(allFilterOptions));
         //build query for total counts that will be displyed in side filters
         var sideFilterTotalCountQuery = queryBuilder.addCountsToAutoCompleteOptions(q);
         sideFilterTotalCountQuery.countQueryKey = 'pop';
@@ -185,9 +191,11 @@ function search(q) {
     } else if (preparedQuery.apiQuery.searchFor === "natality") {
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         var allSelectedFilterOptions = searchUtils.getAllSelectedFilterOptions(q);
+        var allFilterOptions = searchUtils.getAllFilterOptions(q);
         logger.debug("Natality - Selected filters and filter options: ", JSON.stringify(allSelectedFilterOptions));
+        logger.debug("Natality - All Filters and filter options: ", JSON.stringify(allFilterOptions));
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
-        new elasticSearch().aggregateNatalityData(sideFilterQuery, isStateSelected).then(function (sideFilterResults) {
+        new elasticSearch().aggregateNatalityData(sideFilterQuery, isStateSelected, allFilterOptions).then(function (sideFilterResults) {
             if(q.tableView === 'fertility_rates' && finalQuery[1]) {
                 var query1 = JSON.stringify(finalQuery[1]);
                 //For Natality Fertility Rates add mother's age filter
@@ -204,8 +212,6 @@ function search(q) {
         });
 
     } else if (preparedQuery.apiQuery.searchFor === 'infant_mortality') {
-        //Get all selected filter options
-        var allSelectedFilterOptions = [];
         var selectedYears = searchUtils.getTargetFilterValue(q.allFilters, 'year_of_death');
         var groupByOptions = searchUtils.getSelectedGroupByOptions(q.allFilters);
         var options = selectedYears.reduce(function (prev, year) {
@@ -218,7 +224,7 @@ function search(q) {
 
         var es = new elasticSearch();
         var promises = [
-            es.aggregateInfantMortalityData(preparedQuery.apiQuery, isStateSelected, allSelectedFilterOptions, selectedYears)
+            es.aggregateInfantMortalityData(preparedQuery.apiQuery, isStateSelected, selectedYears)
         ];
       Q.all(promises).then(function (response) {
             var resData = {};
@@ -234,9 +240,14 @@ function search(q) {
     } else if (preparedQuery.apiQuery.searchFor === 'std' ||
         preparedQuery.apiQuery.searchFor === 'tb' ||
         preparedQuery.apiQuery.searchFor === 'aids') {
+        var allSelectedFilterOptions = searchUtils.getAllSelectedFilterOptions(q, preparedQuery.apiQuery.searchFor);
+        var allFilterOptions = searchUtils.getAllFilterOptions(q);
+        logger.debug(preparedQuery.apiQuery.searchFor +" - Selected filters and filter options: ", JSON.stringify(allSelectedFilterOptions));
+        logger.debug(preparedQuery.apiQuery.searchFor +" -  All Filters and filter options: ", JSON.stringify(allFilterOptions));
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true, searchUtils.getAllOptionValues());
         sideFilterTotalCountQuery = queryBuilder.addCountsToAutoCompleteOptions(q);
         sideFilterTotalCountQuery.countQueryKey = 'cases';
+        sideFilterTotalCountQuery.filterCountsQuery = true;
         sideFilterQuery = queryBuilder.buildSearchQuery(sideFilterTotalCountQuery, true);
         var indexName, indexType;
         if (preparedQuery.apiQuery.searchFor === 'std') {
@@ -246,8 +257,8 @@ function search(q) {
         } else if (preparedQuery.apiQuery.searchFor === 'aids') {
             indexName = 'owh_aids'; indexType = 'aids';
         }
-        new elasticSearch().aggregateDiseaseData(sideFilterQuery, preparedQuery.apiQuery.searchFor, indexName, indexType, isStateSelected).then(function (sideFilterResults) {
-            new elasticSearch().aggregateDiseaseData(finalQuery, preparedQuery.apiQuery.searchFor, indexName, indexType, isStateSelected).then(function (response) {
+        new elasticSearch().aggregateDiseaseData(sideFilterQuery, preparedQuery.apiQuery.searchFor, indexName, indexType, isStateSelected, allFilterOptions).then(function (sideFilterResults) {
+            new elasticSearch().aggregateDiseaseData(finalQuery, preparedQuery.apiQuery.searchFor, indexName, indexType, isStateSelected, allSelectedFilterOptions).then(function (response) {
                 var resData = {};
                 resData.queryJSON = q;
                 resData.resultData = response.data;
@@ -257,36 +268,44 @@ function search(q) {
             });
         });
     } else if (preparedQuery.apiQuery.searchFor === 'cancer_incident' || preparedQuery.apiQuery.searchFor === 'cancer_mortality') {
+        var allFilterOptions = searchUtils.getAllFilterOptions(q);
         var allSelectedFilterOptions = searchUtils.getAllSelectedFilterOptions(q);
+        logger.debug("Cancer -  All Filters and filter options: ", JSON.stringify(allFilterOptions));
         logger.debug("Cancer - Selected filters and filter options: ", JSON.stringify(allSelectedFilterOptions));
+
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         var dataset = preparedQuery.apiQuery.searchFor;
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
         var es = new elasticSearch();
         Q.all([
-            es.aggregateCancerData(sideFilterQuery, dataset),
+            es.aggregateCancerData(sideFilterQuery, dataset, allFilterOptions),
             es.aggregateCancerData(finalQuery, dataset, allSelectedFilterOptions)
         ]).spread(function (sideFilterResults, results) {
             var resData = {};
             resData.queryJSON = q;
-
             searchUtils.applySuppressions(results, dataset, 16);
 
             var isStateFilterApplied = searchUtils.isFilterApplied(stateFilter);
-            var appliedFilters = searchUtils.findAllAppliedFilters(q.allFilters);
+            var appliedFilters = searchUtils.findAllAppliedFilters(q.allFilters, [ 'current_year', 'state' ]);
             if (dataset === 'cancer_incident' && isStateFilterApplied && appliedFilters.length) {
                 var years = searchUtils.getTargetFilterValue(q.allFilters, 'current_year');
                 var stateGroupBy = searchUtils.getTargetFilter(q.allFilters, 'state').groupBy;
                 var statesSelected = searchUtils.getTargetFilterValue(q.allFilters, 'state');
                 var rules = searchUtils.createCancerIncidenceSuppressionRules(years, statesSelected, stateGroupBy);
-                console.log('rules >>>>>>>>>', JSON.stringify(rules))
                 searchUtils.applyCustomSuppressions(results.data.nested, rules, 'cancer_incident');
+            }
+
+            if (dataset === 'cancer_incident') {
+                searchUtils.applyCustomMapSuppressions(results.data.nested.maps, q.allFilters);
+                searchUtils.applyCustomSidebarTotalSuppressions(sideFilterResults.data.simple, q.allFilters);
             }
 
             var hasDemographicFilters = searchUtils.hasFilterApplied(q.allFilters, [ 'race', 'hispanic_origin' ]);
             if (dataset === 'cancer_incident' && hasDemographicFilters) {
                 searchUtils.applyPopulationSpecificSuppression(results.data.nested.table, 'cancer_incident');
             }
+
+            searchUtils.applySidebarCountLimitSuppressions(sideFilterResults.data.simple, dataset);
 
             resData.resultData = results.data;
             resData.resultData.headers = preparedQuery.headers;

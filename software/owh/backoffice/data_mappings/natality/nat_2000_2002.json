@@ -17,7 +17,7 @@
       "mappings": {
         "01-01": "White",
         "02-02": "Black",
-        "03-03": "American Indian or Alaska Native",
+        "03-03": "American Indian",
         "04-78": "Asian or Pacific Islander"
       }
     },
@@ -64,10 +64,10 @@
       "stop": 85,
       "field": "Mother’s Education",
       "mappings": {
-        "1": "0 – 8 years",
-        "2": "9 – 11 years",
+        "1": "0 - 8 years",
+        "2": "9 - 11 years",
         "3": "12 years",
-        "4": "13 – 15 years",
+        "4": "13 - 15 years",
         "5": "16 years and over",
         "6": "Not stated"
       }
@@ -127,6 +127,7 @@
         "07": "7th month",
         "08": "8th month",
         "09": "9th month",
+        "10": "10th month",
         "99": "Unknown or not stated"
       }
     },
@@ -291,7 +292,8 @@
       "mappings": {
         "1": "Yes",
         "2": "No",
-        "9": "Unknown or not stated"
+        "9": "Not stated",
+        "": "Not on certificate"
       }
     },
     {

@@ -16,7 +16,7 @@
         "5": "Other and Unknown Hispanic",
         "6": "Non-Hispanic White",
         "7": "Non-Hispanic Black",
-        "8": "Non-Hispanic Other Races",
+        "8": "Non-Hispanic other races",
         "9": "Origin unknown or not stated"
       }
     },
@@ -36,7 +36,7 @@
       "mappings": {
         "1": "Married",
         "2": "Unmarried",
-        "9": "Unknown or not stated"
+        "9": "Unknown or not Stated"
       }
     },
     {
@@ -51,20 +51,19 @@
         "6": "35-39 years",
         "7": "40-44 years",
         "8": "45-49 years",
-        "9": "50-54 years"
+        "9": "50 years and over"
       }
     },
     {
       "type": "map",
       "column": "mother_education",
       "mappings": {
-        "1": "0 – 8 years",
-        "2": "9 – 11 years",
+        "1": "0 -  8 years",
+        "2": "9 - 11 years",
         "3": "12 years",
-        "4": "13 – 15 years",
+        "4": "13 - 15 years",
         "5": "16 years and over",
-        "6": "Not stated",
-        "": "Not on certificate"
+        "6": "Not stated/Not on certificate"
       }
     },
     {
@@ -110,14 +109,14 @@
       "column": "gestation_recode10",
       "mappings": {
         "01": "Under 20 weeks",
-        "02": "20 - 27 weeks",
-        "03": "28 - 31 weeks",
-        "04": "32 - 35 weeks",
+        "02": "20-27 weeks",
+        "03": "28-31 weeks",
+        "04": "32-35 weeks",
         "05": "36 weeks",
-        "06": "37 - 39 weeks",
+        "06": "37-39 weeks",
         "07": "40 weeks",
         "08": "41 weeks",
-        "09": "42 weeks and over",
+        "09": "42 weeks or more",
         "10": "Unknown"
       }
     },
@@ -126,15 +125,15 @@
       "column": "gestation_recode11",
       "mappings": {
         "17-19": "Under 20 weeks",
-        "20-27": "20 - 27 weeks",
-        "28-31": "28 - 31 weeks",
-        "32-33": "32 - 33 weeks",
-        "34-36": "34 - 36 weeks",
-        "37-38": "37 - 38 weeks",
+        "20-27": "20-27 weeks",
+        "28-31": "28-31 weeks",
+        "32-33": "32-33 weeks",
+        "34-36": "34-36 weeks",
+        "37-38": "37-38 weeks",
         "39-39": "39 weeks",
         "40-40": "40 weeks",
         "41-41": "41 weeks",
-        "42-47": "42 weeks and over",
+        "42-47": "42 or more weeks",
         "99-99": "Unknown"
       }
     },
@@ -153,8 +152,7 @@
         "08": "8th month",
         "09": "9th month",
         "10": "10th month",
-        "99": "Unknown or not stated",
-        "": "Not on certificate"
+        "99": "Not stated/Not on certificate"
       }
     },
     {
@@ -172,7 +170,7 @@
         "4000-4499": "4000 - 4499 grams",
         "4500-4999": "4500 - 4999 grams",
         "5000-8165": "5000 - 8165 grams",
-        "9999-9999": "Unknown or not stated"
+        "9999-9999": "Not stated"
       }
     },
     {
@@ -195,7 +193,7 @@
         "3-3": "3rd child born alive to mother",
         "4-4": "4th child born alive to mother",
         "5-5": "5th child born alive to mother",
-        "6-8": "6th or more children born alive to mother",
+        "6-8": "6th child and over born alive to mother",
         "9-9": "Unknown or not stated"
       }
     },
@@ -216,7 +214,7 @@
         "2": "Vaginal",
         "3": "Cesarean",
         "4": "Cesarean",
-        "5": "Not stated",
+        "5": "Not Stated",
         "6": "Vaginal",
         "7": "Cesarean"
       }
@@ -225,9 +223,9 @@
       "column": "medical_attendant",
       "type": "map",
       "mappings": {
-        "1": "Doctor of Medicine (MD)",
-        "2": "Doctor of Osteopathy (DO)",
-        "3": "Certified Nurse Midwife (CNM)",
+        "1": "Doctor of Medicine(MD)",
+        "2": "Doctor of Osteopathy(DO)",
+        "3": "Certified Nurse Midwife(CNM)",
         "4": "Other Midwife",
         "5": "Other",
         "9": "Unknown or not stated"
@@ -238,10 +236,10 @@
       "type": "map",
       "mappings": {
         "1": "Under 1 hour",
-        "2": "1-23 hours",
-        "3": "1-6 days",
-        "4": "7-27 days",
-        "5": "28 days and over"
+        "2": "1 - 23 hours",
+        "3": "1 - 6 days",
+        "4": "7 - 27 days",
+        "5": "28 - 364 days"
       }
     },
     {

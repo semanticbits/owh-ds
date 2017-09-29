@@ -176,6 +176,22 @@ describe('mapService', function(){
             expect($rootScope.states.features[0].properties.tableView).toEqual("age-adjusted_death_rates");
             expect($rootScope.states.features[0].properties.deaths).toEqual(31617);
         }));
+
+        it('should display rates for std', inject(function ($rootScope, utilService){
+            var primaryFilters = {"showRates":true, "tableView":"aids", "key":"aids","title":"label.filter.aids","primary":true, "mapData": {}, "value":[{"key":"year","title":"label.filter.year","queryKey":"current_year","primary":false,"value":["2015"],"groupBy":false,"type":"label.filter.group.year.month","filterType":"checkbox","autoCompleteOptions":[{"key":"2015","title":"2015"},{"key":"2014","title":"2014"},{"key":"2013","title":"2013"},{"key":"2012","title":"2012"},{"key":"2011","title":"2011"},{"key":"2010","title":"2010"},{"key":"2009","title":"2009"},{"key":"2008","title":"2008"},{"key":"2007","title":"2007"},{"key":"2006","title":"2006"},{"key":"2005","title":"2005"},{"key":"2004","title":"2004"},{"key":"2003","title":"2003"},{"key":"2002","title":"2002"},{"key":"2001","title":"2001"},{"key":"2000","title":"2000"}]}]};
+            var mapData = {"states":[{"name":"AK","aids":52,"sex":[{"name":"Both sexes","aids":28,"pop":1200028,"rate":"2.3"},{"name":"Female","aids":6,"pop":565934,"rate":"1.1"},{"name":"Male","aids":18,"pop":634094,"rate":"2.8"}],"pop":2400056},{"name":"AL","aids":1269,"sex":[{"name":"Both sexes","aids":642,"pop":8123732,"rate":"7.9"},{"name":"Female","aids":151,"pop":4226528,"rate":"3.6"},{"name":"Male","aids":476,"pop":3897204,"rate":"12.2"}],"pop":16247464},{"name":"AR","aids":540,"sex":[{"name":"Both sexes","aids":276,"pop":4919048,"rate":"5.6"},{"name":"Female","aids":65,"pop":2523522,"rate":"2.6"},{"name":"Male","aids":199,"pop":2395526,"rate":"8.3"}],"pop":9838096}]};
+            var mapOption = {selectedMapSize:'big'};
+            spyOn(utilService, 'getMinAndMaxValue').and.returnValue({"minValue":4316,"maxValue":259206});
+            mapService.updateStatesDeaths(primaryFilters, mapData,  undefined, mapOption);
+            expect($rootScope.states.features.length).not.toBeUndefined();
+            expect($rootScope.states.features[0].properties.name).toEqual("Arkansas");
+            expect($rootScope.states.features[0].properties.abbreviation).toEqual("AR");
+            expect($rootScope.states.features[0].properties.rate).toEqual('5.6');
+            expect($rootScope.states.features[0].properties.sex[0].name).toEqual("Both sexes");
+            expect($rootScope.states.features[0].properties.sex[0].pop).toEqual(4919048);
+            expect($rootScope.states.features[0].properties.sex[1].name).toEqual("Female");
+            expect($rootScope.states.features[0].properties.sex[1].pop).toEqual(2523522);
+        }));
     });
 
     it("getMapTitle should return appropriate map title", function () {

@@ -6,12 +6,12 @@ logger = logging.getLogger('natality_etl')
 
 # data mappings config file map for natality data files
 data_mapping_configs = {'Natl00us.pt2':'nat_2000_2002.json', 'Nat01us.pt2':'nat_2000_2002.json', 'Nat02us.dat':'nat_2000_2002.json',
-                        'Nat03uspt2.dat': 'nat_2003_2004.json', 'NAT04USpt2.dat':'nat_2003_2004.json',
+                        'Nat03uspt2.dat': 'nat_2003.json', 'NAT04USpt2.dat':'nat_2004.json',
                         'NAT05USgeo.dat': 'nat_2005_2006.json', 'NAT06USgeo.dat': 'nat_2005_2006.json',
-                        'VS07NATL.DETAILUS.GEO': 'nat_2007_2013.json', 'VS08NATL.DETAILUS.GEO':'nat_2007_2013.json',
-                        'vs09natl.detailus.GEO':'nat_2007_2013.json', 'vs2010natl.detailus.GEO.c20120221.r20121119': 'nat_2007_2013.json',
-                        'vs2011natl.LimGeo_2013_08_27':'nat_2007_2013.json', 'Nat2012LimGeoUS_2014_02_03':'nat_2007_2013.json',
-                        'Nat2013US.LimGeo':'nat_2007_2013.json', 'Nat2014US.LimGeo.c20150514.r20151022.txt':'nat_2014_2015.json',
+                        'VS07NATL.DETAILUS.GEO': 'nat_2007_2010.json', 'VS08NATL.DETAILUS.GEO':'nat_2007_2010.json',
+                        'vs09natl.detailus.GEO':'nat_2007_2010.json', 'vs2010natl.detailus.GEO.c20120221.r20121119': 'nat_2007_2010.json',
+                        'vs2011natl.LimGeo_2013_08_27':'nat_2011_2013.json', 'Nat2012LimGeoUS_2014_02_03':'nat_2011_2013.json',
+                        'Nat2013US.LimGeo':'nat_2011_2013.json', 'Nat2014US.LimGeo.c20150514.r20151022.txt':'nat_2014_2015.json',
                         'Nat2015US.LimGeo.c20160517.r20160919.txt': 'nat_2014_2015.json'}
 
 class NatalityETL (ETL):
@@ -71,17 +71,17 @@ class NatalityETL (ETL):
         self.loadDataSetMetaData('natality', '2000', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2000_2002.json'))
         self.loadDataSetMetaData('natality', '2001', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2000_2002.json'))
         self.loadDataSetMetaData('natality', '2002', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2000_2002.json'))
-        self.loadDataSetMetaData('natality', '2003', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2003_2004.json'))
-        self.loadDataSetMetaData('natality', '2004', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2003_2004.json'))
+        self.loadDataSetMetaData('natality', '2003', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2003.json'))
+        self.loadDataSetMetaData('natality', '2004', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2004.json'))
         self.loadDataSetMetaData('natality', '2005', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2005_2006.json'))
         self.loadDataSetMetaData('natality', '2006', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2005_2006.json'))
-        self.loadDataSetMetaData('natality', '2007', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2007_2013.json'))
-        self.loadDataSetMetaData('natality', '2008', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2007_2013.json'))
-        self.loadDataSetMetaData('natality', '2009', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2007_2013.json'))
-        self.loadDataSetMetaData('natality', '2010', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2007_2013.json'))
-        self.loadDataSetMetaData('natality', '2011', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2007_2013.json'))
-        self.loadDataSetMetaData('natality', '2012', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2007_2013.json'))
-        self.loadDataSetMetaData('natality', '2013', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2007_2013.json'))
+        self.loadDataSetMetaData('natality', '2007', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2007_2010.json'))
+        self.loadDataSetMetaData('natality', '2008', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2007_2010.json'))
+        self.loadDataSetMetaData('natality', '2009', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2007_2010.json'))
+        self.loadDataSetMetaData('natality', '2010', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2007_2010.json'))
+        self.loadDataSetMetaData('natality', '2011', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2011_2013.json'))
+        self.loadDataSetMetaData('natality', '2012', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2011_2013.json'))
+        self.loadDataSetMetaData('natality', '2013', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2011_2013.json'))
         self.loadDataSetMetaData('natality', '2014', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2014_2015.json'))
         self.loadDataSetMetaData('natality', '2015', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2014_2015.json'))
 

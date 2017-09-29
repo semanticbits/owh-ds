@@ -18,8 +18,9 @@
 <div class="usa-grid border-top-default content-wrapper" ng-class="{'allow-inline-charting': sc.filters.allowInlineCharting}">
     <div class="usa-width-one-whole bottom-pane flex-container">
         <div class="usa-width-one-fourth side-pane-padding border-right-default owh-side-menu" ng-hide="!sc.sideMenu.visible">
-            <div ng-show="sc.filters.selectedPrimaryFilter.key === 'mental_health' ||
-                sc.filters.selectedPrimaryFilter.key === 'brfss'" class="yrbs_search_links">
+            <div class="yrbs_search_links"
+                 ng-show="sc.filters.selectedPrimaryFilter.key === 'mental_health'
+                || sc.filters.selectedPrimaryFilter.key === 'brfss'">
                 <a class="advanced-search-toggle"
                    ng-click="sc.switchToBasicSearch(sc.filters.selectedPrimaryFilter.key);"
                    ng-if="!sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu" href="javascript:void(0)">
@@ -156,6 +157,8 @@
                     <p id="death-rate-disclaimer" class="dark-link" ng-if="sc.tableView === 'crude_death_rates'" ng-bind=" 'label.crude.death.rates.statement' | translate"></p>
                     <p id="birth-rate-disclaimer" class="dark-link" ng-if="sc.tableView === 'birth_rates'" ng-bind=" 'label.crude.brith.rates.statement' | translate"></p>
                     <p id="std-disclaimer" class="dark-link" ng-if="sc.tableView === 'std' || sc.tableView === 'disease_rate'" ng-bind=" 'label.std.national.data.available.for.few.years.statement' | translate"></p>
+                    <p id="tb-disclaimer" class="dark-link" ng-if="sc.tableView === 'tb'" ng-bind=" 'datadoc.tb.data.filter.restrictions' | translate"></p>
+
                     <owh-table table-data="sc.tableData" show-percentage="sc.tableData.calculatePercentage"
                                ng-if="(sc.filters.selectedPrimaryFilter.headers && sc.filters.selectedPrimaryFilter.key === 'deaths' ||
                                sc.filters.selectedPrimaryFilter.key === 'bridge_race' ||
