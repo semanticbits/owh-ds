@@ -2118,7 +2118,7 @@
                 {"key": "18-24", "title": "Age 18 - 24"},
                 {"key": "25-29", "title": "Age 25 - 29"},
                 {"key": "30-44", "title": "Age 30 - 44"},
-                {"key": "45+", "title": "Age 45+"}
+                {"key": "45 plus", "title": "Age 45+"}
             ];
 
             filters.pramsMaternalAgeYearsOptions = [
@@ -2128,14 +2128,14 @@
             filters.pramsMaternalAge3Options = [
                 {"key": "<20", "title": "< 20 yrs"},
                 {"key": "20-29", "title": "20-29 yrs"},
-                {"key": "30+", "title": "30+ yrs"}
+                {"key": "30 plus", "title": "30+ yrs"}
             ];
 
             filters.pramsMaternalAge4Options = [
                 {"key": "<20", "title": "< 20 yrs"},
                 {"key": "20-24", "title": "20-24 yrs"},
                 {"key": "25-34", "title": "25-34 yrs"},
-                {"key": "35+", "title": "35+ yrs"}
+                {"key": "35 plus", "title": "35+ yrs"}
             ];
 
             filters.pramsMaternalEducationOptions = [
@@ -2162,8 +2162,8 @@
             ];
 
             filters.pramsPreviousBirthsOptions = [
-                {"key": "Zero", "title": "0"},
-                {"key": "One or more", "title": "1 or more"}
+                {"key": "zero", "title": "0"},
+                {"key": "one or more", "title": "1 or more"}
             ];
 
             filters.pramsWicPregnancyOptions = [
