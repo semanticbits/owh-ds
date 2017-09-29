@@ -4058,6 +4058,11 @@ describe("YRBS API", function () {
 
     it("getYRBSQuestionsTree from yrbs service", function (){
         return yrbs.getYRBSQuestionsTree().then(function (response) {
+            expect(response.questionTree[0].text).to.eql("Alcohol and Other Drug Use");
+            expect(response.questionTree[0].children.length).to.eql(21);
+            expect(response.questionTree[0].children[0].id).to.eql('qn43');
+            expect(response.questionTree[0].children[0].text).to.eql('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+
             expect(response.questionTree[7].text).to.eql("Unintentional Injuries and Violence");
             expect(response.questionTree[6].text).to.eql("Tobacco Use");
             expect(response.questionTree[0].text).to.eql("Alcohol and Other Drug Use");
@@ -4075,6 +4080,7 @@ describe("YRBS API", function () {
 
             //Verify questionsList
             expect(response.questionsList[0].qkey).to.eql("qn10");
+            expect(response.questionsList[0].title).to.eql("Rode with a driver who had been drinking alcohol(in a car or other vehicle one or more times during the 30 days before the survey)");
             expect(response.questionsList[1].qkey).to.eql("qn11");
             expect(response.questionsList[0].title).to.eql("Rode with a driver who had been drinking alcohol(in a car or other vehicle one or more times during the 30 days before the survey)");
             expect(response.questionsList[1].title).to.eql("Drove when drinking alcohol(in a car or other vehicle one or more times during the 30 days before the survey, among students who had driven a car or other vehicle during the 30 days before the survey)");

@@ -444,17 +444,14 @@ function prepareQuestionTree(questions,  prams) {
     var questionKeys = [];
     //sort prams questions based on qKey
     if(prams) {
-        var keys = Object.keys(questions);
-        keys.sort();
-        var newQuestions = {};
-        for(var i = 0; i < keys.length; i++) {
-            newQuestions[keys[i]] = questions[keys[i]];
-        }
-        questions = newQuestions;
+        questions = questions.sort(function(q1, q2) {
+            var x = q1.qid, y = q2.qid;
+            return x < y ? -1 : x > y ? 1 : 0;
+        })
     }
     //iterate through questions
-    for (var qKey in questions) {
-        var quesObj = questions[qKey];
+    for (var i = 0; i < questions.length; i++) {
+        var quesObj = questions[i];
         var qCategory = prams? quesObj.subtopic : quesObj.topic;
         if (qCategory && qCategoryMap[qCategory] == undefined) {
             qCategoryMap[qCategory] = {id: 'cat_' + catCount, text: qCategory, children: []};
@@ -462,27 +459,27 @@ function prepareQuestionTree(questions,  prams) {
         }
 
         if (quesObj.description !== undefined) {
-            var question = {text:quesObj.question +"("+quesObj.description+")", id:qKey};
+            var question = {text:quesObj.question +"("+quesObj.description+")", id:quesObj.qid};
             qCategoryMap[qCategory].children.push(question);
             //capture all questions into questionsList
 
             if (quesObj.description) {
-                questionsList.push({key : quesObj.question, qkey : qKey, title : quesObj.question +"("+quesObj.description+")"});
+                questionsList.push({key : quesObj.question, qkey : quesObj.qid, title : quesObj.question +"("+quesObj.description+")"});
             }
 
             else {
-                questionsList.push({key : quesObj.question, qkey : qKey, title : quesObj.question});
+                questionsList.push({key : quesObj.question, qkey : quesObj.qid, title : quesObj.question});
             }
 
         } else if(prams) {
             //skip duplicate question keys
-            if(questionKeys.indexOf(qKey) >= 0) {
+            if(questionKeys.indexOf(quesObj.qid) >= 0) {
                 continue;
             }
-            var question = {text:quesObj.question, id: qKey};
+            var question = {text:quesObj.question, id: quesObj.qid};
             qCategoryMap[qCategory].children.push(question);
-            questionsList.push({key: quesObj.question, qkey: qKey, title: quesObj.question});
-            questionKeys.push(qKey);
+            questionsList.push({key: quesObj.question, qkey: quesObj.qid, title: quesObj.question});
+            questionKeys.push(quesObj.qid);
         }
     }
 
