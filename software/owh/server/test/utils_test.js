@@ -843,6 +843,54 @@ describe("Utils", function(){
         done();
     });
 
+    it("get all filter options with suboptions ", function(done){
+        var query = {"key":"deaths","tableView":"number_of_deaths","allFilters":[{"key":"hispanicOrigin","title":"label.filter.hispanicOrigin","queryKey":"hispanic_origin","primary":false,"value":[],"groupBy":false,"type":"label.filter.group.demographics","filterType":"checkbox","autoCompleteOptions":[
+            {"key":"Hispanic","title":"Hispanic", options:[
+            {"key":"Central American","title":"Central American"},
+            {"key":"Central and South American","title":"Central and South American"},
+            {"key":"Cuban","title":"Cuban"},
+            {"key":"Dominican","title":"Dominican"},
+            {"key":"Latin American","title":"Latin American"},
+            {"key":"Mexican","title":"Mexican"},
+            {"key":"Other Hispanic","title":"Other Hispanic"},
+            {"key":"Puerto Rican","title":"Puerto Rican"},
+            {"key":"South American","title":"South American"},
+            {"key":"Spaniard","title":"Spaniard"}]},
+            {"key":"Unknown","title":"Unknown"},
+            {"key":"Non-Hispanic","title":"Non-Hispanic"},],"defaultGroup":"row","helpText":"label.help.text.mortality.ethnicity","allChecked":true,"filterLength":13}],"sideFilters":[]};
+        var allOptions = searchUtils.getAllFilterOptions(query);
+        expect(allOptions.hispanicOrigin).to.not.equal(undefined);
+        expect(allOptions.hispanicOrigin.options.length).to.equal(13);
+        expect(allOptions.hispanicOrigin.options[0]).to.equal('Hispanic');
+        expect(allOptions.hispanicOrigin.options[12]).to.equal('Non-Hispanic');
+        expect(allOptions.hispanicOrigin.options[10]).to.equal('Spaniard');
+        done();
+    });
+
+    it("get all selected filter options with suboptions ", function(done){
+        var query = {"key":"deaths","tableView":"number_of_deaths","allFilters":[{"key":"hispanicOrigin","title":"label.filter.hispanicOrigin","queryKey":"hispanic_origin","primary":false,"value":['Hispanic', 'Cuban','Puerto Rican', 'Unknown' ],"groupBy":true,"type":"label.filter.group.demographics","filterType":"checkbox","autoCompleteOptions":[
+            {"key":"Hispanic","title":"Hispanic", options:[
+                {"key":"Central American","title":"Central American"},
+                {"key":"Central and South American","title":"Central and South American"},
+                {"key":"Cuban","title":"Cuban"},
+                {"key":"Dominican","title":"Dominican"},
+                {"key":"Latin American","title":"Latin American"},
+                {"key":"Mexican","title":"Mexican"},
+                {"key":"Other Hispanic","title":"Other Hispanic"},
+                {"key":"Puerto Rican","title":"Puerto Rican"},
+                {"key":"South American","title":"South American"},
+                {"key":"Spaniard","title":"Spaniard"}]},
+            {"key":"Unknown","title":"Unknown"},
+            {"key":"Non-Hispanic","title":"Non-Hispanic"},],"defaultGroup":"row","helpText":"label.help.text.mortality.ethnicity","filterLength":13}],"sideFilters":[]};
+        var allOptions = searchUtils.getAllSelectedFilterOptions(query, 'deaths');
+        expect(allOptions.hispanicOrigin).to.not.equal(undefined);
+        expect(allOptions.hispanicOrigin.options.length).to.equal(4);
+        expect(allOptions.hispanicOrigin.options[0]).to.equal('Hispanic');
+        expect(allOptions.hispanicOrigin.options[2]).to.equal('Puerto Rican');
+        expect(allOptions.hispanicOrigin.options[3]).to.equal('Unknown');
+        done();
+    });
+
     it('get all filter options for STD', function(done){
         var q = {"key":"std","title":"label.filter.std","primary":true,"value":[],"header":"Sexually Transmitted Diseases/Infections","allFilters":[{"key":"current_year","title":"label.filter.year","queryKey":"current_year","primary":false,"value":"2015","defaultValue":"2015","groupBy":false,"filterType":"radio","defaultGroup":"column","autoCompleteOptions":[{"key":"2015","title":"2015"},{"key":"2014","title":"2014"},{"key":"2013","title":"2013"},{"key":"2012","title":"2012"},{"key":"2011","title":"2011"},{"key":"2010","title":"2010"},{"key":"2009","title":"2009"},{"key":"2008","title":"2008"},{"key":"2007","title":"2007"},{"key":"2006","title":"2006"},{"key":"2005","title":"2005"},{"key":"2004","title":"2004"},{"key":"2003","title":"2003"},{"key":"2002","title":"2002"},{"key":"2001","title":"2001"},{"key":"2000","title":"2000"}],"doNotShowAll":true,"helpText":"label.std.help.text.year"},{"key":"disease","title":"label.filter.disease","queryKey":"disease","primary":false,"value":"Chlamydia","defaultValue":"Chlamydia","groupBy":false,"filterType":"radio","defaultGroup":"row","autoCompleteOptions":[{"key":"Chlamydia","title":"Chlamydia"},{"key":"Gonorrhea","title":"Gonorrhea"},{"key":"Primary and Secondary Syphilis","title":"Primary and Secondary Syphilis"},{"key":"Early LatentSyphilis","title":"Early Latent Syphilis"},{"key":"Congenital Syphilis","title":"Congenital Syphilis"}],"doNotShowAll":true,"helpText":"label.std.help.text.disease"},{"key":"state","title":"label.filter.state","queryKey":"state","primary":false,"value":"National","defaultValue":"National","groupBy":false,"filterType":"radio","displaySearchBox":true,"displaySelectedFirst":true,"autoCompleteOptions":[{"key":"National","title":"National"},{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"},{"key":"AZ","title":"Arizona"},{"key":"AR","title":"Arkansas"},{"key":"CA","title":"California"},{"key":"CO","title":"Colorado"},{"key":"CT","title":"Connecticut"},{"key":"DE","title":"Delaware"},{"key":"DC","title":"District of Columbia"},{"key":"FL","title":"Florida"},{"key":"GA","title":"Georgia"},{"key":"HI","title":"Hawaii"},{"key":"ID","title":"Idaho"},{"key":"IL","title":"Illinois"},{"key":"IN","title":"Indiana"},{"key":"IA","title":"Iowa"},{"key":"KS","title":"Kansas"},{"key":"KY","title":"Kentucky"},{"key":"LA","title":"Louisiana"},{"key":"ME","title":"Maine"},{"key":"MD","title":"Maryland"},{"key":"MA","title":"Massachusetts"},{"key":"MI","title":"Michigan"},{"key":"MN","title":"Minnesota"},{"key":"MS","title":"Mississippi"},{"key":"MO","title":"Missouri"},{"key":"MT","title":"Montana"},{"key":"NE","title":"Nebraska"},{"key":"NV","title":"Nevada"},{"key":"NH","title":"New Hampshire"},{"key":"NJ","title":"New Jersey"},{"key":"NM","title":"New Mexico"},{"key":"NY","title":"New York"},{"key":"NC","title":"North Carolina"},{"key":"ND","title":"North Dakota"},{"key":"OH","title":"Ohio"},{"key":"OK","title":"Oklahoma"},{"key":"OR","title":"Oregon"},{"key":"PA","title":"Pennsylvania"},{"key":"RI","title":"Rhode Island"},{"key":"SC","title":"South Carolina"},{"key":"SD","title":"South Dakota"},{"key":"TN","title":"Tennessee"},{"key":"TX","title":"Texas"},{"key":"UT","title":"Utah"},{"key":"VT","title":"Vermont"},{"key":"VA","title":"Virginia"},{"key":"WA","title":"Washington"},{"key":"WV","title":"West Virginia"},{"key":"WI","title":"Wisconsin"},{"key":"WY","title":"Wyoming"}],"doNotShowAll":true,"defaultGroup":"row","helpText":"label.std.help.text.state"},{"key":"age_group","title":"label.filter.agegroup","queryKey":"age_group","primary":false,"value":"All age groups","defaultValue":"All age groups","groupBy":false,"filterType":"radio","defaultGroup":"row","autoCompleteOptions":[{"key":"All age groups","title":"All age groups"},{"key":"0-14","title":"0-14"},{"key":"15-19","title":"15-19"},{"key":"20-24","title":"20-24"},{"key":"25-29","title":"25-29"},{"key":"30-34","title":"30-34"},{"key":"35-39","title":"35-39"},{"key":"40-44","title":"40-44"},{"key":"45-54","title":"45-54"},{"key":"55-64","title":"55-64"},{"key":"65+","title":"65+"},{"key":"Unknown","title":"Unknown"}],"doNotShowAll":true,"helpText":"label.std.help.text.age.group"},{"key":"race","title":"label.yrbs.filter.race","queryKey":"race_ethnicity","primary":false,"value":"All races/ethnicities","defaultValue":"All races/ethnicities","groupBy":"row","filterType":"radio","defaultGroup":"row","autoCompleteOptions":[{"key":"All races/ethnicities","title":"All races/ethnicities"},{"key":"American Indian or Alaska Native","title":"American Indian or Alaska Native"},{"key":"Asian","title":"Asian"},{"key":"Black or African American","title":"Black or African American"},{"key":"Hispanic or Latino","title":"Hispanic or Latino"},{"key":"Native Hawaiian or Other PacificIslander","title":"Native Hawaiian or Other Pacific Islander"},{"key":"White","title":"White"},{"key":"Multiple races","title":"Multiple races"},{"key":"Unknown","title":"Unknown"}],"doNotShowAll":true,"helpText":"label.std.help.text.race.ethnicity"},{"key":"sex","title":"label.filter.gender","queryKey":"sex","primary":false,"value":"Both sexes","defaultValue":"Both sexes","groupBy":"column","defaultGroup":"column","filterType":"radio","autoCompleteOptions":[{"key":"Both sexes","title":"Both sexes"},{"key":"Female","title":"Female"},{"key":"Male","title":"Male"}],"doNotShowAll":true,"helpText":"label.std.help.text.sex"}],"showMap":true,"mapData":{},"chartAxisLabel":"Cases","tableView":"std","countLabel":"Number of Cases","chartViewOptions":[{"key":"cases","title":"Cases","axisLabel":"Cases","tooltip":"Select to view as cases on charts"},{"key":"disease_rate","title":"Rates","axisLabel":"Rates","tooltip":"Select to view as rates on charts"}],"chartView":"cases","runOnFilterChange":true,"applySuppression":true,"countQueryKey":"cases","sideFilters":[]};
         var allOptions = searchUtils.getAllFilterOptions(q);
@@ -1026,7 +1074,7 @@ describe("Utils", function(){
             var rules = [[ 'option', 'option2']];
             searchUtils.applyCustomSuppressions(data, rules, 'countKey');
             expect(data.table.filter1[0].filter2[0].countKey).to.eql('suppressed');
-            expect(data.charts[0].filter1[0].filter2[0].countKey).to.eql(0);
+            expect(data.charts[0].filter1[0].filter2[0].countKey).to.eql(-1);
         });
     });
 

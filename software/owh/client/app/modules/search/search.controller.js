@@ -556,6 +556,7 @@
                     if (filter.filters.key === 'ucd-chapter-10' || filter.filters.key === "mcd-chapter-10"){
                         if(selectedFilter.key === 'crude_death_rates' || selectedFilter.key === 'age-adjusted_death_rates') {
                             filter.allowGrouping = false;
+                            filter.filters.groupBy = false;
                         } else if (selectedFilter.key === 'number_of_deaths'){
                             filter.allowGrouping = true;
                         }

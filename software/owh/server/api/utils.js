@@ -946,7 +946,12 @@ function getAllSelectedFilterOptions(q, datasetName) {
                 }
                 else {
                     eachFilter.autoCompleteOptions.forEach(function(eachOption){
-                        !eachOption.disabled && allOptions[eachFilter.key].options.push(eachOption.key);
+                        if(!eachOption.disabled) {
+                            allOptions[eachFilter.key].options.push(eachOption.key);
+                            if (eachOption.options) {
+                                allOptions[eachFilter.key].options = allOptions[eachFilter.key].options.concat(eachOption.options.map(function (opt)  { return opt.key; }));
+                            }
+                        }
                     });
                 }
             }else{
@@ -963,7 +968,6 @@ function getAllSelectedFilterOptions(q, datasetName) {
                 }
                 else {
                     eachFilter.autoCompleteOptions.forEach(function(eachOption){
-                        //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
                         cesregOpts.options.push(eachOption.key);
                         cesdivOpts.options = cesdivOpts.options.concat(eachOption.options.map(function (o){return o.key;}));
                     });
@@ -986,8 +990,10 @@ function getAllFilterOptions(q) {
         if(['ucd-chapter-10', 'hhs-region', 'mcd-chapter-10'].indexOf(eachFilter.key) === -1) {
             allOptions[eachFilter.key] = {"options": []};
             eachFilter.autoCompleteOptions.forEach(function(eachOption){
-                //Ex: 'Female', 'Male', 'Asian or Pacific Islander', 'Black' etc..
                 allOptions[eachFilter.key].options.push(eachOption.key);
+                if (eachOption.options) {
+                    allOptions[eachFilter.key].options = allOptions[eachFilter.key].options.concat(eachOption.options.map(function (opt)  { return opt.key; }));
+                }
             });
         }
     });
@@ -1101,7 +1107,7 @@ function applyCustomSuppressions (data, rules, countKey) {
     })
     rules.forEach(function (rule) {
         data.charts.forEach(function (chart) {
-            searchTree(chart, rule, { countKey: countKey, suppressionValue: 0 }, []);
+            searchTree(chart, rule, { countKey: countKey, suppressionValue: -1 }, []);
         });
     });
 }
