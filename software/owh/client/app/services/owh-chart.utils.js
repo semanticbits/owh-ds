@@ -427,7 +427,7 @@
                 if (filter.key === 'state' || filter.key === 'yrbsState'){
                      if(Array.isArray(filter.value) && filter.value.length > 3){
                          statefilter = 'selected States';
-                     } else if(filter.value.length > 0){
+                     } else if(filter.value.length > 0 && filter.value !== 'National'){
                          statefilter = getSelectedOptionTitlesOfFilter(filter);
                      } else {
                          statefilter = 'US'
