@@ -3231,86 +3231,103 @@
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'adequacy')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'birth_weight')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'income')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'marital_status')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'maternal_age_groupings')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'maternal_age_years')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'maternal_age_3')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'maternal_age_4')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'maternal_education')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'maternal_race')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'medicaid')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'mother_hispanic')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'previous_births')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'wic_pregnancy')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'pregnancy_intendedness')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'smoked_before')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsAdvanceFilters, 'key', 'smoked_last')
                                         }
                                     ]
@@ -3360,70 +3377,87 @@
                                     sideFilters: [
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'adequacy')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'birth_weight')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'income')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'marital_status')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'maternal_age_groupings')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'maternal_age_years')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'maternal_age_3')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'maternal_age_4')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'maternal_education')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'maternal_race')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'medicaid')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'mother_hispanic')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'previous_births')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'wic_pregnancy')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'pregnancy_intendedness')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'smoked_before')
                                         },
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: false,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'smoked_last')
                                         }
                                     ]
@@ -3931,26 +3965,31 @@
                                         {
                                             filterGroup: false, collapse: false,
                                             allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'sex')
                                         },
                                         {
                                             filterGroup: false, collapse: false,
                                             allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'race')
                                         },
                                         {
                                             filterGroup: false, collapse: false,
                                             allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'age_group')
                                         },
                                         {
                                             filterGroup: false, collapse: false,
                                             allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'education')
                                         },
                                         {
                                             filterGroup: false, collapse: false,
                                             allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.brfsAdvancedFilters, 'key', 'income')
                                         }
                                     ]
@@ -3999,29 +4038,34 @@
                                             filterGroup: false, collapse: false,
                                             allowGrouping: true, groupOptions: filters.columnGroupOptions,
                                             onFilterChange: utilService.brfsFilterChange,
+                                            dontShowCounts:true,
                                             filters: utilService.findByKeyAndValue(filters.brfsBasicFilters, 'key', 'sex')
                                         },
                                         {
                                             filterGroup: false, collapse: false,
                                             allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             onFilterChange: utilService.brfsFilterChange,
                                             filters: utilService.findByKeyAndValue(filters.brfsBasicFilters, 'key', 'race')
                                         },
                                         {
                                             filterGroup: false, collapse: false,
                                             allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             onFilterChange: utilService.brfsFilterChange,
                                             filters: utilService.findByKeyAndValue(filters.brfsBasicFilters, 'key', 'age_group')
                                         },
                                         {
                                             filterGroup: false, collapse: false,
                                             allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             onFilterChange: utilService.brfsFilterChange,
                                             filters: utilService.findByKeyAndValue(filters.brfsBasicFilters, 'key', 'education')
                                         },
                                         {
                                             filterGroup: false, collapse: false,
                                             allowGrouping: true, groupOptions: filters.columnGroupOptions,
+                                            dontShowCounts:true,
                                             onFilterChange: utilService.brfsFilterChange,
                                             filters: utilService.findByKeyAndValue(filters.brfsBasicFilters, 'key', 'income')
                                         }
