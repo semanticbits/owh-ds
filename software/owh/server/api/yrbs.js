@@ -207,7 +207,7 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
         }
 
         if(isTotalCell(r, precompgroups, precomputed)){
-            q[responseKey][key]= resultCellObject(r);
+            q[responseKey][key]= resultCellObject(r, key);
         }else if(!isSubTotalCell(r, precompgroups, precomputed)){
             var cell = q[responseKey];
             // The result table is always nested in the order Sex (sex), Grade (grade), Race (race7) and  Year (year)
@@ -252,7 +252,7 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
                 cell = getResultCell(cell, 'sitecode', r.sitecode);
             }
 
-            cell[key] = resultCellObject(r);
+            cell[key] = resultCellObject(r, key);
 
             // If the result has only one column then there is no separate total column value available in pre-computed results
             // so assign the cell result to total as well
@@ -313,14 +313,15 @@ function getResultCell (currentcell, cellkey, cellvalue){
     return newcell;
 }
 
-function resultCellObject (response) {
+function resultCellObject (response, key) {
     var prec = 1;
-    return {
+    var result = {
         mean: toRoundedPercentage(response.mean, prec),
         ci_l: toRoundedPercentage(response.ci_l, prec),
-        ci_u: toRoundedPercentage(response.ci_u, prec),
-        count: response.count != undefined ? response.count : response.sample_size
+        ci_u: toRoundedPercentage(response.ci_u, prec)
     };
+    key == 'mental_health' ? result.count = response.sample_size : result.count = response.count;
+    return result;
 }
 
 function toRoundedPercentage(num, prec){
