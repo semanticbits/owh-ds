@@ -91,6 +91,7 @@
             { "key": "Cuban", "title": "Cuban" },
             { "key": "Central or South American", "title": "Central or South American" },
             { "key": "Other and Unknown Hispanic", "title": "Other and Unknown Hispanic" },
+            { "key": "Non-Hispanic", "title": "Non-Hispanic" },
             { "key": "Non-Hispanic White", "title": "Non-Hispanic White" },
             { "key": "Non-Hispanic Black", "title": "Non-Hispanic Black" },
             { "key": "Non-Hispanic Other Races", "title": "Non-Hispanic Other Races" },
@@ -170,10 +171,10 @@
         ];
 
         var educationOptions = [
-            {key:'0 – 8 years', title:'0 – 8 years'},
-            {key:'9 – 11 years', title:'9 – 11 years'},
+            {key:'0 - 8 years', title:'0 - 8 years'},
+            {key:'9 - 11 years', title:'9 - 11 years'},
             {key:'12 years', title:'12 years'},
-            {key:'13 – 15 years', title:'13 – 15 years'},
+            {key:'13 - 15 years', title:'13 - 15 years'},
             {key:'16 years and over', title:'16 years and over'},
             {key:'Not stated', title:'Not stated'},
             {key:'8th grade or less', title:'8th grade or less'},
@@ -402,9 +403,8 @@
         var tobaccoOptions = [
             {key:'Yes', title:'Yes'},
             {key:'No', title:'No'},
-            {key:'Not on certificate', title:'Not on certificate'},
-            {key:'Unknown', title:'Unknown'},
-            {key:'Unknown or not stated', title:'Unknown or not stated'}
+            {key:'Not stated', title:'Not Stated'},
+            {key:'Not on certificate', title:'Not on certificate'}
         ];
 
         var stateOptions =  [

@@ -27,49 +27,16 @@
       }
     },
     {
-      "column": "mother_age_1year_interval",
-      "type": "range",
-      "start": 89,
-      "stop": 90,
-      "field": "Mother’s Single Year of Age",
+      "column": "race",
+      "type": "map",
+      "start": 143,
+      "stop": 143,
+      "field": "Mother’s Race",
       "mappings": {
-        "12-14": "Under 15 years",
-        "15-15": "15 years",
-        "16-16": "16 years",
-        "17-17": "17 years",
-        "18-18": "18 years",
-        "19-19": "19 years",
-        "20-20": "20 years",
-        "21-21": "21 years",
-        "22-22": "22 years",
-        "23-23": "23 years",
-        "24-24": "24 years",
-        "25-25": "25 years",
-        "26-26": "26 years",
-        "27-27": "27 years",
-        "28-28": "28 years",
-        "29-29": "29 years",
-        "30-30": "30 years",
-        "31-31": "31 years",
-        "32-32": "32 years",
-        "33-33": "33 years",
-        "34-34": "34 years",
-        "35-35": "35 years",
-        "36-36": "36 years",
-        "37-37": "37 years",
-        "38-38": "38 years",
-        "39-39": "39 years",
-        "40-40": "40 years",
-        "41-41": "41 years",
-        "42-42": "42 years",
-        "43-43": "43 years",
-        "44-44": "44 years",
-        "45-45": "45 years",
-        "46-46": "46 years",
-        "47-47": "47 years",
-        "48-48": "48 years",
-        "49-49": "49 years",
-        "50-50": "50-54 years"
+        "1": "White",
+        "2": "Black",
+        "3": "American Indian or Alaska Native",
+        "4": "Asian or Pacific Islander"
       }
     },
     {
@@ -91,16 +58,49 @@
       }
     },
     {
-      "column": "race",
-      "type": "map",
-      "start": 143,
-      "stop": 143,
-      "field": "Mother’s Race",
+      "column": "mother_age_1year_interval",
+      "type": "range",
+      "start": 89,
+      "stop": 90,
+      "field": "Mother’s Single Year of Age",
       "mappings": {
-        "1": "White",
-        "2": "Black",
-        "3": "American Indian or Alaska Native",
-        "4": "Asian or Pacific Islander"
+        "01-01": "Under 15 years",
+        "02-02": "15 years",
+        "03-03": "16 years",
+        "04-04": "17 years",
+        "05-05": "18 years",
+        "06-06": "19 years",
+        "07-07": "20 years",
+        "08-08": "21 years",
+        "09-09": "22 years",
+        "10-10": "23 years",
+        "11-11": "24 years",
+        "12-12": "25 years",
+        "13-13": "26 years",
+        "14-14": "27 years",
+        "15-15": "28 years",
+        "16-16": "29 years",
+        "17-17": "30 years",
+        "18-18": "31 years",
+        "19-19": "32 years",
+        "20-20": "33 years",
+        "21-21": "34 years",
+        "22-22": "35 years",
+        "23-23": "36 years",
+        "24-24": "37 years",
+        "25-25": "38 years",
+        "26-26": "39 years",
+        "27-27": "40 years",
+        "28-28": "41 years",
+        "29-29": "42 years",
+        "30-30": "43 years",
+        "31-31": "44 years",
+        "32-32": "45 years",
+        "33-33": "46 years",
+        "34-34": "47 years",
+        "35-35": "48 years",
+        "36-36": "49 years",
+        "37-41": "50-54 years"
       }
     },
     {
@@ -118,19 +118,16 @@
     {
       "column": "mother_education",
       "type": "map",
-      "start": 155,
-      "stop": 155,
+      "start": 158,
+      "stop": 158,
       "field": "Mother’s Education",
       "mappings": {
-        "1": "8th grade or less",
-        "2": "9th through 12th grade with no diploma",
-        "3": "High school graduate or GED completed",
-        "4": "Some college credit, but not a degree",
-        "5": "Associate degree (AA,AS)",
-        "6": "Bachelor’s degree (BA, AB, BS)",
-        "7": "Master’s degree (MA, MS, MEng, MEd, MSW, MBA)",
-        "8": "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
-        "9": "Unknown",
+        "1": "0 - 8 years",
+        "2": "9 - 11 years",
+        "3": "12 years",
+        "4": "13 - 15 years",
+        "5": "16 years and over",
+        "6": "Not stated",
         "": "Not on certificate"
       }
     },
@@ -194,8 +191,8 @@
     {
       "column": "prenatal_care",
       "type": "map",
-      "start": 245,
-      "stop": 246,
+      "start": 256,
+      "stop": 257,
       "field": "Month Prenatal Care Began",
       "mappings": {
         "00": "No prenatal care",
@@ -300,8 +297,21 @@
         "7800-7899": "7800 - 7899 grams",
         "7900-7999": "7900 - 7999 grams",
         "8000-8099": "8000 - 8099 grams",
-        "8100-8199": "8100 - 8165 grams",
+        "8100-8165": "8100 - 8165 grams",
         "9999": "Not stated"
+      }
+    },
+    {
+      "column": "birth_weight_r4",
+      "type": "map",
+      "start": 473,
+      "stop": 473,
+      "field": "Birth Weight",
+      "mappings": {
+        "1": "1499 grams or less",
+        "2": "1500 - 2499 grams",
+        "3": "2500 - 8165 grams",
+        "4": "Unknown or not stated"
       }
     },
     {
@@ -326,33 +336,6 @@
       }
     },
     {
-      "column": "birth_weight_r4",
-      "type": "map",
-      "start": 473,
-      "stop": 473,
-      "field": "Birth Weight Recode 4",
-      "mappings": {
-        "1": "1499 grams or less",
-        "2": "1500 - 2499 grams",
-        "3": "2500 - 8165 grams",
-        "4": "Unknown or not stated"
-      }
-    },
-    {
-      "column": "birth_plurality",
-      "type": "map",
-      "start": 423,
-      "stop": 423,
-      "field": "Plurality or Multiple Birth",
-      "mappings": {
-        "1": "Single",
-        "2": "Twin",
-        "3": "Triplet",
-        "4": "Quadruplet",
-        "5": "Quintuplet or higher"
-      }
-    },
-    {
       "column": "live_birth",
       "type": "map",
       "start": 212,
@@ -368,6 +351,20 @@
         "7": "7th child born alive to mother",
         "8": "8 or more live births",
         "9": "Unknown or not stated"
+      }
+    },
+    {
+      "column": "birth_plurality",
+      "type": "map",
+      "start": 423,
+      "stop": 423,
+      "field": "Plurality or Multiple Birth",
+      "mappings": {
+        "1": "Single",
+        "2": "Twin",
+        "3": "Triplet",
+        "4": "Quadruplet",
+        "5": "Quintuplet or higher"
       }
     },
     {
@@ -388,20 +385,24 @@
     {
       "column": "delivery_method",
       "type": "map",
-      "start": 403,
-      "stop": 403,
+      "start": 401,
+      "stop": 401,
       "field": "Delivery method",
       "mappings": {
         "1": "Vaginal",
-        "2": "Cesarean",
-        "9": "Not stated"
+        "2": "Vaginal",
+        "3": "Cesarean",
+        "4": "Cesarean",
+        "5": "Not stated",
+        "6": "Vaginal",
+        "7": "Cesarean"
       }
     },
     {
       "column": "medical_attendant",
       "type": "map",
-      "start": 410,
-      "stop": 410,
+      "start": 408,
+      "stop": 408,
       "field": "Medical Attendant",
       "mappings": {
         "1": "Doctor of Medicine (MD)",
@@ -413,6 +414,32 @@
       }
     },
     {
+      "column": "anemia",
+      "type": "map",
+      "start": 328,
+      "stop": 328,
+      "field": "Anemia",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "cardiac_disease",
+      "type": "map",
+      "start": 329,
+      "stop": 329,
+      "field": "Cardiac Disease",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
       "column": "chronic_hypertension",
       "type": "map",
       "start": 335,
@@ -421,8 +448,8 @@
       "mappings": {
         "1": "Yes",
         "2": "No",
-        "9": "Unknown",
-        "": "Not on certificate"
+        "8": "Not on certificate",
+        "9": "Unknown"
       }
     },
     {
@@ -434,21 +461,8 @@
       "mappings": {
         "1": "Yes",
         "2": "No",
-        "9": "Unknown",
-        "": "Not on certificate"
-      }
-    },
-    {
-      "column": "pregnancy_hypertension",
-      "type": "map",
-      "start": 336,
-      "stop": 336,
-      "field": "Pregnancy Associated Hypertension",
-      "mappings": {
-        "1": "Yes",
-        "2": "No",
-        "9": "Unknown",
-        "": "Not on certificate"
+        "8": "Not on certificate",
+        "9": "Unknown"
       }
     },
     {
@@ -460,20 +474,72 @@
       "mappings": {
         "1": "Yes",
         "2": "No",
-        "9": "Unknown",
-        "": "Not on certificate"
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "hydramnios_oligohydramnios",
+      "type": "map",
+      "start": 333,
+      "stop": 333,
+      "field": "Hydramnios / Oligohydramnios",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "incompetent_cervix",
+      "type": "map",
+      "start": 338,
+      "stop": 338,
+      "field": "Incompetent Cervix",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "lung_disease",
+      "type": "map",
+      "start": 330,
+      "stop": 330,
+      "field": "Lung Disease",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "pregnancy_hypertension",
+      "type": "map",
+      "start": 336,
+      "stop": 336,
+      "field": "Pregnancy Associated Hypertension",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
       }
     },
     {
       "column": "tobacco_use",
       "type": "map",
-      "start": 294,
-      "stop": 294,
+      "start": 290,
+      "stop": 290,
       "field": "Tobacco use",
       "mappings": {
-        "Y": "Yes",
-        "N": "No",
-        "U": "Unknown or not stated",
+        "1": "Yes",
+        "2": "No",
+        "9": "Not stated",
         "": "Not on certificate"
       }
     },

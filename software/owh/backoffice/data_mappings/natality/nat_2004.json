@@ -385,20 +385,24 @@
     {
       "column": "delivery_method",
       "type": "map",
-      "start": 403,
-      "stop": 403,
+      "start": 401,
+      "stop": 401,
       "field": "Delivery method",
       "mappings": {
         "1": "Vaginal",
-        "2": "Cesarean",
-        "9": "Not stated"
+        "2": "Vaginal",
+        "3": "Cesarean",
+        "4": "Cesarean",
+        "5": "Not stated",
+        "6": "Vaginal",
+        "7": "Cesarean"
       }
     },
     {
       "column": "medical_attendant",
       "type": "map",
-      "start": 410,
-      "stop": 410,
+      "start": 408,
+      "stop": 408,
       "field": "Medical Attendant",
       "mappings": {
         "1": "Doctor of Medicine (MD)",
@@ -412,6 +416,7 @@
     {
       "column": "anemia",
       "type": "map",
+      "comment": "For 2004 not on certificate is blank",
       "start": 328,
       "stop": 328,
       "field": "Anemia",
