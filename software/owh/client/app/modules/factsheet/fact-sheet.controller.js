@@ -551,7 +551,7 @@
                       },
                       layout: lightHorizontalLines
                       },
-                      {text: 'Sources: 2009, CDC PRAMS', style: 'info'},
+                      {text: 'Sources: 2011, CDC PRAMS', style: 'info'},
                       {image: fsc.imageDataURLs.brfs, width: 50, height: 50, pageBreak: 'before', style: 'dataset-image'},
                       {text: 'Behavioral Risk Factors', style: 'heading'},
                       {
@@ -564,7 +564,7 @@
                       },
                       layout: lightHorizontalLines
                       },
-                      {text: 'Source:  2015, CDC BRFSS; † 2009, CDC BRFSS', style: 'info'},
+                      {text: 'Source:  2015, CDC BRFSS', style: 'info'},
                       {image: fsc.imageDataURLs.yrbs, width: 50, height: 50, style: 'dataset-image'},
                       {text: 'Teen Health', style: 'heading'},
                       {

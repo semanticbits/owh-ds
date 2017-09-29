@@ -1,0 +1,598 @@
+{
+  "apiQuery": {
+    "searchFor": "infant_mortality",
+    "query": {
+      "year_of_death": {
+        "key": "year_of_death",
+        "queryKey": "year_of_death",
+        "value": [
+          "2014"
+        ],
+        "primary": false
+      }
+    },
+    "aggregations": {
+      "simple": [],
+      "nested": {
+        "table": [
+          {
+            "key": "race",
+            "queryKey": "race",
+            "size": 0
+          },
+          {
+            "key": "hispanic_origin",
+            "queryKey": "hispanic_origin",
+            "size": 0
+          },
+          {
+            "key": "sex",
+            "queryKey": "sex",
+            "size": 0
+          }
+        ],
+        "charts": [
+          [
+            {
+              "key": "hispanic_origin",
+              "queryKey": "hispanic_origin",
+              "size": 0
+            },
+            {
+              "key": "race",
+              "queryKey": "race",
+              "size": 0
+            }
+          ],
+          [
+            {
+              "key": "sex",
+              "queryKey": "sex",
+              "size": 0
+            },
+            {
+              "key": "race",
+              "queryKey": "race",
+              "size": 0
+            }
+          ],
+          [
+            {
+              "key": "sex",
+              "queryKey": "sex",
+              "size": 0
+            },
+            {
+              "key": "hispanic_origin",
+              "queryKey": "hispanic_origin",
+              "size": 0
+            }
+          ]
+        ],
+        "maps": [
+          [
+            {
+              "key": "states",
+              "queryKey": "state",
+              "size": 0
+            },
+            {
+              "key": "sex",
+              "queryKey": "sex",
+              "size": 0
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "headers": {
+    "rowHeaders": [
+      {
+        "key": "race",
+        "title": "label.filter.race",
+        "queryKey": "race",
+        "primary": false,
+        "value": [],
+        "defaultGroup": "column",
+        "groupBy": "row",
+        "filterType": "checkbox",
+        "autoCompleteOptions": [
+          {
+            "key": "American Indian or Alaska Native",
+            "title": "American Indian or Alaska Native",
+            "count": 0,
+            "disabled": false
+          },
+          {
+            "key": "Asian or Pacific Islander",
+            "title": "Asian or Pacific Islander",
+            "count": 0,
+            "disabled": false
+          },
+          {
+            "key": "Black or African American",
+            "title": "Black or African American",
+            "count": 0,
+            "disabled": false
+          },
+          {
+            "key": "White",
+            "title": "White",
+            "count": 0,
+            "disabled": false
+          },
+          {
+            "key": "Chinese",
+            "title": "Chinese",
+            "count": 0,
+            "disabled": true
+          },
+          {
+            "key": "Filipino",
+            "title": "Filipino",
+            "count": 0,
+            "disabled": true
+          },
+          {
+            "key": "Hawaiian",
+            "title": "Hawaiian",
+            "count": 0,
+            "disabled": true
+          },
+          {
+            "key": "Japanese",
+            "title": "Japanese",
+            "count": 0,
+            "disabled": true
+          },
+          {
+            "key": "Other Asian",
+            "title": "Other Asian",
+            "count": 0,
+            "disabled": true
+          }
+        ],
+        "helpText": "label.help.text.race",
+        "allChecked": true
+      },
+      {
+        "key": "hispanic_origin",
+        "title": "label.filter.hispanicOrigin",
+        "queryKey": "hispanic_origin",
+        "primary": false,
+        "value": [],
+        "defaultGroup": "row",
+        "groupBy": "row",
+        "filterType": "checkbox",
+        "autoCompleteOptions": [
+          {
+            "key": "Mexican",
+            "title": "Mexican",
+            "count": 0,
+            "disabled": false
+          },
+          {
+            "key": "Puerto Rican",
+            "title": "Puerto Rican",
+            "count": 0,
+            "disabled": false
+          },
+          {
+            "key": "Cuban",
+            "title": "Cuban",
+            "count": 0,
+            "disabled": false
+          },
+          {
+            "key": "Central or South American",
+            "title": "Central or South American",
+            "count": 0,
+            "disabled": false
+          },
+          {
+            "key": "Other and Unknown Hispanic",
+            "title": "Other and Unknown Hispanic",
+            "count": 0,
+            "disabled": false
+          },
+          {
+            "key": "Non-Hispanic White",
+            "title": "Non-Hispanic White",
+            "count": 0,
+            "disabled": false
+          },
+          {
+            "key": "Non-Hispanic Black",
+            "title": "Non-Hispanic Black",
+            "count": 0,
+            "disabled": false
+          },
+          {
+            "key": "Non-Hispanic other races",
+            "title": "Non-Hispanic Other Races",
+            "count": 0,
+            "disabled": false
+          },
+          {
+            "key": "Origin unknown or not stated",
+            "title": "Origin unknown or not stated",
+            "count": 0,
+            "disabled": false
+          }
+        ],
+        "helpText": "label.help.text.ethnicity",
+        "allChecked": true
+      }
+    ],
+    "columnHeaders": [
+      {
+        "key": "sex",
+        "title": "label.filter.gender",
+        "queryKey": "sex",
+        "primary": false,
+        "value": [],
+        "defaultGroup": "column",
+        "groupBy": "column",
+        "filterType": "checkbox",
+        "autoCompleteOptions": [
+          {
+            "key": "Female",
+            "title": "Female",
+            "count": 0,
+            "disabled": false
+          },
+          {
+            "key": "Male",
+            "title": "Male",
+            "count": 0,
+            "disabled": false
+          }
+        ],
+        "helpText": "label.help.text.infantmort.sex",
+        "allChecked": true
+      }
+    ],
+    "chartHeaders": [
+      {
+        "headers": [
+          {
+            "key": "hispanic_origin",
+            "title": "label.filter.hispanicOrigin",
+            "queryKey": "hispanic_origin",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "row",
+            "groupBy": "row",
+            "filterType": "checkbox",
+            "autoCompleteOptions": [
+              {
+                "key": "Mexican",
+                "title": "Mexican",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Puerto Rican",
+                "title": "Puerto Rican",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Cuban",
+                "title": "Cuban",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Central or South American",
+                "title": "Central or South American",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Other and Unknown Hispanic",
+                "title": "Other and Unknown Hispanic",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Non-Hispanic White",
+                "title": "Non-Hispanic White",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Non-Hispanic Black",
+                "title": "Non-Hispanic Black",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Non-Hispanic other races",
+                "title": "Non-Hispanic Other Races",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Origin unknownor not stated",
+                "title": "Origin unknown or not stated",
+                "count": 0,
+                "disabled": false
+              }
+            ],
+            "helpText": "label.help.text.ethnicity",
+            "allChecked": true
+          },
+          {
+            "key": "race",
+            "title": "label.filter.race",
+            "queryKey": "race",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": "row",
+            "filterType": "checkbox",
+            "autoCompleteOptions": [
+              {
+                "key": "American Indian or Alaska Native",
+                "title": "American Indian or Alaska Native",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Asian or Pacific Islander",
+                "title": "Asian or Pacific Islander",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Black or African American",
+                "title": "Black or African American",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "White",
+                "title": "White",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Chinese",
+                "title": "Chinese",
+                "count": 0,
+                "disabled": true
+              },
+              {
+                "key": "Filipino",
+                "title": "Filipino",
+                "count": 0,
+                "disabled": true
+              },
+              {
+                "key": "Hawaiian",
+                "title": "Hawaiian",
+                "count": 0,
+                "disabled": true
+              },
+              {
+                "key": "Japanese",
+                "title": "Japanese",
+                "count": 0,
+                "disabled": true
+              },
+              {
+                "key": "Other Asian",
+                "title": "Other Asian",
+                "count": 0,
+                "disabled": true
+              }
+            ],
+            "helpText": "label.help.text.race",
+            "allChecked": true
+          }
+        ],
+        "chartType": "horizontalBar"
+      },
+      {
+        "headers": [
+          {
+            "key": "sex",
+            "title": "label.filter.gender",
+            "queryKey": "sex",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": "column",
+            "filterType": "checkbox",
+            "autoCompleteOptions": [
+              {
+                "key": "Female",
+                "title": "Female",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Male",
+                "title": "Male",
+                "count": 0,
+                "disabled": false
+              }
+            ],
+            "helpText": "label.help.text.infantmort.sex",
+            "allChecked": true
+          },
+          {
+            "key": "race",
+            "title": "label.filter.race",
+            "queryKey": "race",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": "row",
+            "filterType": "checkbox",
+            "autoCompleteOptions": [
+              {
+                "key": "American Indian or Alaska Native",
+                "title": "American Indian or Alaska Native",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Asian or Pacific Islander",
+                "title": "Asian or Pacific Islander",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Black or African American",
+                "title": "Black or African American",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "White",
+                "title": "White",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Chinese",
+                "title": "Chinese",
+                "count": 0,
+                "disabled": true
+              },
+              {
+                "key": "Filipino",
+                "title": "Filipino",
+                "count": 0,
+                "disabled": true
+              },
+              {
+                "key": "Hawaiian",
+                "title": "Hawaiian",
+                "count": 0,
+                "disabled": true
+              },
+              {
+                "key": "Japanese",
+                "title": "Japanese",
+                "count": 0,
+                "disabled": true
+              },
+              {
+                "key": "Other Asian",
+                "title": "Other Asian",
+                "count": 0,
+                "disabled": true
+              }
+            ],
+            "helpText": "label.help.text.race",
+            "allChecked": true
+          }
+        ],
+        "chartType": "horizontalBar"
+      },
+      {
+        "headers": [
+          {
+            "key": "sex",
+            "title": "label.filter.gender",
+            "queryKey": "sex",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "column",
+            "groupBy": "column",
+            "filterType": "checkbox",
+            "autoCompleteOptions": [
+              {
+                "key": "Female",
+                "title": "Female",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Male",
+                "title": "Male",
+                "count": 0,
+                "disabled": false
+              }
+            ],
+            "helpText": "label.help.text.infantmort.sex",
+            "allChecked": true
+          },
+          {
+            "key": "hispanic_origin",
+            "title": "label.filter.hispanicOrigin",
+            "queryKey": "hispanic_origin",
+            "primary": false,
+            "value": [],
+            "defaultGroup": "row",
+            "groupBy": "row",
+            "filterType": "checkbox",
+            "autoCompleteOptions": [
+              {
+                "key": "Mexican",
+                "title": "Mexican",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Puerto Rican",
+                "title": "Puerto Rican",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Cuban",
+                "title": "Cuban",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Central or South American",
+                "title": "Central or South American",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Other and Unknown Hispanic",
+                "title": "Other and Unknown Hispanic",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Non-Hispanic White",
+                "title": "Non-Hispanic White",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Non-Hispanic Black",
+                "title": "Non-Hispanic Black",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Non-Hispanic other races",
+                "title": "Non-Hispanic Other Races",
+                "count": 0,
+                "disabled": false
+              },
+              {
+                "key": "Origin unknown or not stated",
+                "title": "Origin unknown or not stated",
+                "count": 0,
+                "disabled": false
+              }
+            ],
+            "helpText": "label.help.text.ethnicity",
+            "allChecked": true
+          }
+        ],
+        "chartType": "horizontalStack"
+      }
+    ]
+  }
+}

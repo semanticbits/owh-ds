@@ -117,7 +117,21 @@ var wonderParamCodeMap = {
         'census-region': 'D77.V10',
         'census-region|census_region-group':'D77.V10-level1',
         'census-region|census_division-group':'D77.V10-level2',
-        'hhs-region': 'D77.V27',
+        'hhs-region':{
+            key:'D77.V27',
+            "values": {
+                'HHS-1':'HHS1',
+                'HHS-2':'HHS2',
+                'HHS-3':'HHS3',
+                'HHS-4':'HHS4',
+                'HHS-5':'HHS5',
+                'HHS-6':'HHS6',
+                'HHS-7':'HHS7',
+                'HHS-8':'HHS8',
+                'HHS-9':'HHS9',
+                'HHS-10':'HHS10'
+            }
+        },
         'hhs-region-group': 'D77.V27-level1',
     },
     "D69": {

@@ -96,7 +96,7 @@
   "label.filter.group.weekday.autopsy.pod": "Weekday, Autopsy, Place of Death",
   "label.filter.group.ucd": "Underlying Cause of Death",
   "label.filter.group.mcd": "Multiple Causes of death",
-  "label.filter.yearly.estimate": "Yearly July 1st Estimates",
+  "label.filter.yearly.estimate": "Year",
   "label.result.header": "Deaths: {{years}} (years)",
   "label.tree.selected": "Selected {{entityName}}(s)",
   "label.tree.search": "Search {{entityName}}",
@@ -521,9 +521,9 @@
   "datadoc.datasource.infant_mortality":"The Linked Birth/Infant Death Records data are compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative; the data are produced by the U.S. Department of Health and Human Services (HHS), Centers for Disease Control and Prevention (CDC), National Center For Health Statistics (NCHS).",
   "datadoc.citation.infant_mortality":"Health Information Gateway, Office on Women's Health, HHS, 5/26/2017.",
   "datadoc.notes.infant_mortality":"This data collection provides counts and rates for deaths of children under 1 year of age, occurring within the United States to U.S. residents. Data are available by state of mother's residence, child's age, underlying cause of death, gender, birth weight, birth plurality, birth order, gestational age at birth, period of prenatal care, maternal race and ethnicity, maternal age, maternal education and marital status. The term \"Suppressed\" replaces sub-national death counts, births counts and death rates, when the figure represents zero to nine (0-9) persons.",
-  "datadoc.datasource.aids":"CDC collects, analyzes, and disseminates surveillance data on diagnoses of HIV infection; these data are the nation’s source of information on HIV in the United States. Numbers and rates and presented based on the date of diagnosis of HIV infection and infection classified as stage 3 (AIDS) (from the beginning of the epidemic through December 31, 2015; reported as of June 30, 2016).",
+  "datadoc.datasource.aids":"CDC collects, analyzes, and disseminates surveillance data on diagnoses of HIV infection; these data are the nation's source of information on HIV in the United States. Numbers and rates and presented based on the date of diagnosis of HIV infection and infection classified as stage 3 (AIDS) (from the beginning of the epidemic through December 31, 2015; reported as of June 30, 2016).",
   "datadoc.citation.aids":"Health Information Gateway, Office on Women's Health, HHS, 5/26/2017.",
-  "datadoc.notes.aids":"These data are the nation’s source of information on HIV in the United States. Numbers and rates and presented based on the date of diagnosis of HIV infection and infection classified as stage 3 (AIDS) (from the beginning of the epidemic through December 31, 2015; reported as of June 30, 2016). Data on diagnoses of HIV infection should be interpreted with caution. Data may not be representative of all persons with HIV because not all infected persons have been tested. Also, many states offer anonymous testing; the results of anonymous tests are not reported to the confidential name-based HIV registries of state and local health departments.",
+  "datadoc.notes.aids":"These data are the nation's source of information on HIV in the United States. Numbers and rates and presented based on the date of diagnosis of HIV infection and infection classified as stage 3 (AIDS) (from the beginning of the epidemic through December 31, 2015; reported as of June 30, 2016). Data on diagnoses of HIV infection should be interpreted with caution. Data may not be representative of all persons with HIV because not all infected persons have been tested. Also, many states offer anonymous testing; the results of anonymous tests are not reported to the confidential name-based HIV registries of state and local health departments.",
   "datadoc.datasource.tb":"The CDC collects, analyzes, and disseminates surveillance data on newly reported cases of tuberculosis (TB) disease in the United States. The Atlas presents TB case report data submitted from all 50 states, the District of Columbia for the years 2000 to 2015.",
   "datadoc.citation.":"Health Information Gateway, Office on Women's Health, HHS, 5/26/2017.",
   "datadoc.notes.tb":"TB data are presented by year of disease confirmation, reporting area (state), age group, race/ethnicity, sex, and whether or not the patient was born in the United States. The most common site of infection is the lung, but other organs may be involved. Nationally notifiable TB surveillance data are collected and compiled from reports sent to CDC’s Division of TB Elimination by the TB control programs and health departments in all 50 states, the District of Columbia, U.S. dependencies and possessions, and independent nations in free association with the United States. TB data can be viewed in aggregate format or one-way stratifications (i.e., by age group, sex, race/ethnicity, or country of birth [U.S.-born or foreign-born]).",
@@ -572,5 +572,6 @@
   "label.help.text.brfss.race_ethnicity": "This field indicates the race or ethnicity of the survey respondents",
   "label.help.text.brfss.age_group": "This field indicates the age-group of the survey respondents",
   "label.help.text.brfss.education": "This field indicates the education attained by the survey respondents",
-  "label.help.text.brfss.income": "This field indicates the household income of the survey respondents"
+  "label.help.text.brfss.income": "This field indicates the household income of the survey respondents",
+  "datadoc.tb.data.filter.restrictions":"TB data can be viewed in aggregate format or one-way stratifications (i.e., by Sex, Race/Ethnicity, Age group or Country of birth)."
 }

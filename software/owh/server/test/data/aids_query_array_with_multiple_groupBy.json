@@ -122,6 +122,102 @@
     {
       "size": 0,
       "aggregations": {
+        "group_maps_0_states": {
+          "terms": {
+            "field": "state",
+            "size": 0
+          },
+          "aggregations": {
+            "group_table_sex": {
+              "terms": {
+                "field": "sex",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "disease": "HIV, stage 3 (AIDS)"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "age_group": "All age groups"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "transmission": "No stratification"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "National"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
         "group_table_age_group": {
           "terms": {
             "field": "age_group",

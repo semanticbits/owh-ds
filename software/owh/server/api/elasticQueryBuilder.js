@@ -223,12 +223,18 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     searchQueryArray.push(elasticQuery);
     //Prepare chart query for disease datasets 'std', 'tb' and 'aids'.
     if(params.searchFor == 'std' || params.searchFor == 'tb' || params.searchFor == 'aids') {
-        var charQueryArray = buildChartQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, censusQuery, params.searchFor);
+        var chartQueryArray = buildChartQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, censusQuery, params.searchFor);
+        console.log(chartQueryArray)
+        if (!params.filterCountsQuery) {
+            var mapPopQuery = getPopulationQueryForMap(params.aggregations);
+            mapPopQuery.query = mapQuery.query;
+            chartQueryArray[0].splice(0, 0, mapPopQuery );
+        }
         //'Population' query
-        searchQueryArray.push(charQueryArray[0]);
+        searchQueryArray.push(chartQueryArray[0]);
         searchQueryArray.push(mapQuery);
         //Chart 'Cases' query
-        searchQueryArray.push(charQueryArray[1]);
+        searchQueryArray.push(chartQueryArray[1]);
     }
     else {
         searchQueryArray.push(censusQuery);
@@ -376,7 +382,7 @@ function findFilterByKeyAndValue(a, key, value) {
  */
 function isFilterApplied(a) {
     if (a) {
-        return (a.value.length > 0 && a.value != 'National') || a.groupBy;
+        return (a.value.length > 0 && a.value != 'National') || a.groupBy === 'row' || a.groupBy === 'column';
     }
     return false;
 }
@@ -408,7 +414,9 @@ function buildAPIQuery(primaryFilter) {
     }
 
     // For YRBS query capture the basisc/advanced search view
-    if(primaryFilter.key === 'mental_health' || primaryFilter.key === 'brfss'){
+    if(primaryFilter.key === 'mental_health'
+        || primaryFilter.key === 'prams'
+        || primaryFilter.key === 'brfss'){
         if(primaryFilter.showBasicSearchSideMenu) {
             apiQuery.basicSearch = true;
         }
@@ -547,9 +555,9 @@ function sortByKey(array, key, asc) {
         var x = typeof(key) === 'function' ? key(a) : a[key];
         var y = typeof(key) === 'function' ? key(b) : b[key];
         if(asc===undefined || asc === true) {
-            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+            return ((x < y) ? -1 : ((x > y) ? 1 : (a.key < b.key)? 1: -1));
         }else {
-            return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+            return ((x > y) ? -1 : ((x < y) ? 1 : (a.key < b.key)? -1: 1));
         }
     });
 }
@@ -922,7 +930,7 @@ var chartMappings = {
 };
 
 var prepareMapAggregations = function() {
-    var chartAggregations = [];
+    var mapAggregations = [];
     var primaryGroupQuery = {
         key: "states",
         queryKey: "state",
@@ -933,8 +941,8 @@ var prepareMapAggregations = function() {
         queryKey: "sex",
         size: 0
     };
-    chartAggregations.push([primaryGroupQuery, secondaryGroupQuery]);
-    return chartAggregations;
+    mapAggregations.push([primaryGroupQuery, secondaryGroupQuery]);
+    return mapAggregations;
 }
 
 function addCountsToAutoCompleteOptions(primaryFilter) {
@@ -945,7 +953,9 @@ function addCountsToAutoCompleteOptions(primaryFilter) {
     var filters = [];
     primaryFilter.sideFilters.forEach(function (category) {
         category.sideFilters.forEach(function (eachSideFilter) {
-            filters = filters.concat(eachSideFilter.filterGroup ? eachSideFilter.filters : [eachSideFilter.filters]);
+            if(!eachSideFilter.dontShowCounts) { // Query for side filter count only if showing counts
+                filters = filters.concat(eachSideFilter.filterGroup ? eachSideFilter.filters : [eachSideFilter.filters]);
+            }
         });
     });
     filters.forEach(function (eachFilter) {
@@ -977,15 +987,7 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery, d
 
     if (aggregations['nested'] && aggregations['nested']['maps']) {
         mapQuery = { "size":0, aggregations: {} };
-        //prepare aggregations
-        for(var index in aggregations['nested']['maps']) {
-            if(datasetName == 'deaths' || datasetName == 'cancer_incident' || datasetName == 'cancer_mortality') {
-                mapQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_');
-            }
-            else {
-                mapQuery.aggregations = generateNestedAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_', countQueryKey, true);
-            }
-        }
+
         //add quey criteria
         mapQuery.query = {filtered:{}};
         mapQuery.query.filtered.query = clone(primaryQuery);
@@ -999,6 +1001,44 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery, d
                 mustFilters.splice(index, 1);
             }
         });
+        //prepare aggregations
+        for(var index in aggregations['nested']['maps']) {
+            if(datasetName == 'deaths' || datasetName == 'cancer_incident' || datasetName == 'cancer_mortality') {
+                mapQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_');
+            }
+            else if(datasetName === 'std' || datasetName === 'tb' || datasetName === 'aids') {
+                var filterAllValueMap = {"sex":"Both sexes", "race_ethnicity": "All races/ethnicities", "age_group": "All age groups", "state": "National", "transmission": "No stratification"};
+                var selectedFilterKeys = [];
+                mapQuery.aggregations = generateNestedAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_', countQueryKey, true);
+                if(aggregations['nested']['table']) {
+                    aggregations['nested']['table'].forEach(function(eachFilter){
+                        if(selectedFilterKeys.indexOf(eachFilter.queryKey) < 0 && eachFilter.queryKey !== 'sex' && eachFilter.queryKey !== 'state' ) {
+                            selectedFilterKeys.push(eachFilter.queryKey);
+                        }
+                    });
+                    selectedFilterKeys.forEach(function(eachKey){
+                        var isFilterQueryPresent = false;
+                        //check if 'eachKey' already present in must filter
+                        //That means if user selected other than 'race -> All races/ethnicities', 'age_group -> All age groups' and 'state -> National' filters then 'isKeyPresent' set to 'true'
+                        for(var i in mustFilters){
+                            if(mustFilters[i].bool.should[0].term[eachKey] != undefined) {
+                                isFilterQueryPresent = true;
+                                break;
+                            }
+                        }
+                        //If filter value available meaning if filter is 'race', 'ageGroup' etc..
+                        if(!isFilterQueryPresent && filterAllValueMap[eachKey]) {
+                            var boolQuery = buildBoolQuery(eachKey, [filterAllValueMap[eachKey]]);
+                            !isEmptyObject(boolQuery) && mustFilters.push(boolQuery);
+                        }
+                    });
+                }
+            }
+            else {
+                mapQuery.aggregations = generateNestedAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_', countQueryKey, true);
+            }
+        }
+
     }
 
     return mapQuery;
@@ -1087,6 +1127,12 @@ function buildChartQuery(aggregations, countQueryKey, primaryQuery, filterQuery,
     }
     //List of 'Population query' and 'Cases query'
     return [chartPopulationQueryArray, chartCasesQueryArray];
+}
+
+function getPopulationQueryForMap(aggregations) {
+    var populationQuery = { "size":0, aggregations: {} };
+    populationQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['maps'][0], 'group_maps_' + 0 + '_');
+    return populationQuery
 }
 
 

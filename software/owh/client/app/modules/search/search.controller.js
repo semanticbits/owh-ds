@@ -412,8 +412,10 @@
         });
 
         $scope.$on('pramsQuestionsLoaded', function() {
-            var questionFilter = utilService.findFilterByKeyAndValue(sc.filters.pramsFilters, 'key', 'question');
-            questionFilter.autoCompleteOptions = $rootScope.pramsQuestionsList;
+            var basicQuesFilter = utilService.findFilterByKeyAndValue(sc.filters.pramsBasicFilters, 'key', 'question');
+            basicQuesFilter.autoCompleteOptions = $rootScope.pramsQuestionsList;
+            var advanceQuesFilter = utilService.findFilterByKeyAndValue(sc.filters.pramsAdvanceFilters, 'key', 'question');
+            advanceQuesFilter.autoCompleteOptions = $rootScope.pramsQuestionsList;
         });
 
         $scope.$on('brfsQuestionsLoaded', function() {
@@ -554,6 +556,7 @@
                     if (filter.filters.key === 'ucd-chapter-10' || filter.filters.key === "mcd-chapter-10"){
                         if(selectedFilter.key === 'crude_death_rates' || selectedFilter.key === 'age-adjusted_death_rates') {
                             filter.allowGrouping = false;
+                            filter.filters.groupBy = false;
                         } else if (selectedFilter.key === 'number_of_deaths'){
                             filter.allowGrouping = true;
                         }
@@ -695,6 +698,7 @@
             childScope.lng = lng;
             childScope.properties = properties;
             childScope.key = key;
+            childScope.totalLabel = mapService.getTotalLabel(properties.tableView);
             var ele = angular.element('<div></div>');
             ele.html($templateCache.get('app/partials/marker-template.html'));
             var compileEle = $compile(ele.contents())(childScope);
@@ -790,6 +794,9 @@
             if(dataset === 'mental_health') {
                 sc.filters.selectedPrimaryFilter.allFilters = sc.filters.yrbsBasicFilters;
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[1].basicSideFilters;
+            } else if (dataset === 'prams') {
+                sc.filters.selectedPrimaryFilter.allFilters = sc.filters.pramsBasicFilters;
+                sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[4].basicSideFilters[0].sideFilters;
             } else if (dataset === 'brfss') {
                 sc.filters.selectedPrimaryFilter.allFilters = sc.filters.brfsBasicFilters;
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[11].basicSideFilters[0].sideFilters;
@@ -807,6 +814,9 @@
             if(dataset === 'mental_health') {
                 sc.filters.selectedPrimaryFilter.allFilters = sc.filters.yrbsAdvancedFilters;
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[1].advancedSideFilters;
+            } else if (dataset === 'prams') {
+                sc.filters.selectedPrimaryFilter.allFilters = sc.filters.pramsAdvanceFilters;
+                sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[4].advancedSideFilters[0].sideFilters;
             } else if (dataset === 'brfss') {
                 sc.filters.selectedPrimaryFilter.allFilters = sc.filters.brfsAdvancedFilters;
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[11].advancedSideFilters[0].sideFilters;
@@ -833,6 +843,8 @@
             selectedPrimaryFilter.chartAxisLabel = chartOption.axisLabel;
             selectedPrimaryFilter.chartView = chartOption.key;
             selectedPrimaryFilter.chartData = searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
+            selectedPrimaryFilter.showRates = (chartView === 'disease_rate');
+            mapService.updateStatesDeaths(sc.filters.selectedPrimaryFilter, sc.filters.selectedPrimaryFilter.nestedData.maps, undefined, sc.mapOptions);
         }
 
         function findNameByKeyAndValue(key) {

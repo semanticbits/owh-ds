@@ -47,6 +47,12 @@
             'Puerto Rican':'P Rican',
             'South American':'S American',
             'Spaniard':'Spaniard',
+            'Origin unknown or not stated':'Unknown',
+            'Non-Hispanic Other Races':'NH-Other',
+            'Non-Hispanic White':'NH-White',
+            'Non-Hispanic Black':'NH-Black',
+            'Other and Unknown Hispanic':'Other Hisp',
+            'Central or South American':'C/SA',
             'Other Hispanic':'Other',
             'Decedent’s home':'Home',
             'Hospital, Clinic or Medical Center-  Dead on Arrival':'Hosp-Dead',
@@ -164,16 +170,16 @@
             'Census Region 4: West':'CENS-R4',
             'Division 8: Mountain':'CENS-D8',
             'Division 9: Pacific':'CENS-D9',
-            'HHS Region #1 CT, ME, MA, NH, RI, VT':'HHS1',
-            'HHS Region #2 NJ, NY':'HHS2',
-            'HHS Region #3 DE, DC, MD, PA, VA, WV':'HHS3',
-            'HHS Region #4 AL, FL, GA, KY, MS, NC, SC, TN':'HHS4',
-            'HHS Region #5 IL, IN, MI, MN, OH, WI':'HHS5',
-            'HHS Region #6 AR, LA, NM, OK, TX':'HHS6',
-            'HHS Region #7 IA, KS, MO, NE':'HHS7',
-            'HHS Region #8 CO, MT, ND, SD, UT, WY':'HHS8',
-            'HHS Region #9 AZ, CA, HI, NV':'HHS9',
-            'HHS Region #10 AK, ID, OR, WA':'HHS10',
+            'HHS Region #1  CT, ME, MA, NH, RI, VT':'HHS1',
+            'HHS Region #2  NJ, NY':'HHS2',
+            'HHS Region #3  DE, DC, MD, PA, VA, WV':'HHS3',
+            'HHS Region #4  AL, FL, GA, KY, MS, NC, SC, TN':'HHS4',
+            'HHS Region #5  IL, IN, MI, MN, OH, WI':'HHS5',
+            'HHS Region #6  AR, LA, NM, OK, TX':'HHS6',
+            'HHS Region #7  IA, KS, MO, NE':'HHS7',
+            'HHS Region #8  CO, MT, ND, SD, UT, WY':'HHS8',
+            'HHS Region #9  AZ, CA, HI, NV':'HHS9',
+            'HHS Region #10  AK, ID, OR, WA':'HHS10',
             'Alabama':'AL',
             'Alaska':'AK',
             'Arizona':'AZ',
@@ -268,9 +274,97 @@
             'Heterosexual contact':'Heterosexual',
             'Injection drug use':'Injection',
             'Male-to-male sexual contact':'Male-to-male',
-            'Male-to-male sexual contact and injection drug use':'M-to-M/Inject'
-
-
+            'Male-to-male sexual contact and injection drug use':'M-to-M/Inject',
+            '600 - 699 grams':'600-699gm',
+            '700 - 799 grams':'700-799gm',
+            '800 - 899 grams':'800-899gm',
+            '900 - 999 grams':'900-999gm',
+            '1000 - 1099 grams':'1000-1099gm',
+            '1100 - 1199 grams':'1100-1199gm',
+            '1200 - 1299 grams':'1200-1299gm',
+            '1300 - 1399 grams':'1300-1399gm',
+            '1400 - 1499 grams':'1400-1499gm',
+            '1500 - 1599 grams':'1500-1599gm',
+            '1600 - 1699 grams':'1600-1699gm',
+            '1700 - 1799 grams':'1700-1799gm',
+            '1800 - 1899 grams':'1800-1899gm',
+            '1900 - 1999 grams':'1900-1999gm',
+            '2000 - 2099 grams':'2000-2099gm',
+            '2100 - 2199 grams':'2100-2199gm',
+            '2200 - 2299 grams':'2200-2299gm',
+            '2300 - 2399 grams':'2300-2399gm',
+            '2400 - 2499 grams':'2400-2499gm',
+            '2500 - 2599 grams':'2500-2599gm',
+            '2600 - 2699 grams':'2600-2699gm',
+            '2700 - 2799 grams':'2700-2799gm',
+            '2800 - 2899 grams':'2800-2899gm',
+            '2900 - 2999 grams':'2900-2999gm',
+            '3000 - 3099 grams':'3000-3099gm',
+            '3100 - 3199 grams':'3100-3199gm',
+            '3200 - 3299 grams':'3200-3299gm',
+            '3300 - 3399 grams':'3300-3399gm',
+            '3400 - 3499 grams':'3400-3499gm',
+            '3500 - 3599 grams':'3500-3599gm',
+            '3600 - 3699 grams':'3600-3699gm',
+            '3700 - 3799 grams':'3700-3799gm',
+            '3800 - 3899 grams':'3800-3899gm',
+            '3900 - 3999 grams':'3900-3999gm',
+            '4000 - 4099 grams':'4000-4099gm',
+            '4100 - 4199 grams':'4100-4199gm',
+            '4200 - 4299 grams':'4200-4299gm',
+            '4300 - 4399 grams':'4300-4399gm',
+            '4400 - 4499 grams':'4400-4499gm',
+            '4500 - 4599 grams':'4500-4599gm',
+            '4600 - 4699 grams':'4600-4699gm',
+            '4700 - 4799 grams':'4700-4799gm',
+            '4800 - 4899 grams':'4800-4899gm',
+            '4900 - 4999 grams':'4900-4999gm',
+            '5000 - 5099 grams':'5000-5099gm',
+            '5100 - 5199 grams':'5100-5199gm',
+            '5200 - 5299 grams':'5200-5299gm',
+            '5300 - 5399 grams':'5300-5399gm',
+            '5400 - 5499 grams':'5400-5499gm',
+            '5500 - 5599 grams':'5500-5599gm',
+            '5600 - 5699 grams':'5600-5699gm',
+            '5700 - 5799 grams':'5700-5799gm',
+            '5800 - 5899 grams':'5800-5899gm',
+            '5900 - 5999 grams':'5900-5999gm',
+            '6000 - 6099 grams':'6000-6099gm',
+            '6100 - 6199 grams':'6100-6199gm',
+            '6200 - 6299 grams':'6200-6299gm',
+            '6300 - 6399 grams':'6300-6399gm',
+            '6400 - 6499 grams':'6400-6499gm',
+            '6500 - 6599 grams':'6500-6599gm',
+            '6600 - 6699 grams':'6600-6699gm',
+            '6700 - 6799 grams':'6700-6799gm',
+            '6800 - 6899 grams':'6800-6899gm',
+            '6900 - 6999 grams':'6900-6999gm',
+            '7000 - 7099 grams':'7000-7099gm',
+            '7100 - 7199 grams':'7100-7199gm',
+            '7200 - 7299 grams':'7200-7299gm',
+            '7300 - 7399 grams':'7300-7399gm',
+            '7400 - 7499 grams':'7400-7499gm',
+            '7500 - 7599 grams':'7500-7599gm',
+            '7600 - 7699 grams':'7600-7699gm',
+            '7700 - 7799 grams':'7700-7799gm',
+            '7800 - 7899 grams':'7800-7899gm',
+            '7900 - 7999 grams':'7900-7999gm',
+            '8000 - 8099 grams':'8000-8099gm',
+            '8100 - 8165 grams':'8100-8165gm',
+            '1499 grams or less':'<1500gm',
+            '1500 - 2499 grams':'1500-2499gm',
+            '2500 grams or more':'2500gm+',
+            '499 grams or less':'<500gm',
+            '500 - 999 grams':'500-999gm',
+            '1000 - 1499 grams':'1000-1499gm',
+            '1500 - 1999 grams':'1500-1999gm',
+            '2000 - 2499 grams':'2000-2499gm',
+            '2500 - 2999 grams':'2500-2999gm',
+            '3000 - 3499 grams':'3000-3499gm',
+            '3500 - 3999 grams':'3500-3999gm',
+            '4000 - 4499 grams':'4000-4499gm',
+            '4500 - 4999 grams':'4500-4999gm',
+            '5000 - 8165 grams':'5000-8165gm'
             };
                 var abbrv = chartAbbreviations[label];
                 return abbrv?abbrv:label;
@@ -333,7 +427,7 @@
                 if (filter.key === 'state' || filter.key === 'yrbsState'){
                      if(Array.isArray(filter.value) && filter.value.length > 3){
                          statefilter = 'selected States';
-                     } else if(filter.value.length > 0){
+                     } else if(filter.value.length > 0 && filter.value !== 'National'){
                          statefilter = getSelectedOptionTitlesOfFilter(filter);
                      } else {
                          statefilter = 'US'
@@ -461,6 +555,15 @@
                 }
                 plotydata.push(reg);
             }
+            if(plotydata.length > 7){
+                layout.legend = {
+                    orientation: "v",
+                    x: 1.01,
+                    y: .4,
+                };
+                layout.margin.r = 100;
+                layout.margin.t = 50;
+            }
             return { charttype:chartdata.options.chart.type, title: chartdata.title, longtitle: longtitle, dataset: chartdata.dataset, data:plotydata, layout: layout, options: {displayModeBar: false}};
         }
 
@@ -487,6 +590,13 @@
 
                 }
                 plotydata.push(reg);
+            }
+            if(plotydata.length > 7){
+                layout.legend = {
+                    orientation: "v",
+                    x: 1.01,
+                    y: .4,
+                };
             }
             return { charttype:chartdata.options.chart.type, title:chartdata.title, longtitle: longtitle, dataset: chartdata.dataset, data:plotydata, layout: layout, options: {displayModeBar: false}};
         }
@@ -565,6 +675,13 @@
                     reg.text.push(getSuppressedCount(trace.value, primaryFilter));
                 
                 plotydata.push(reg);
+            }
+            if(plotydata.length > 7){
+                layout.legend = {
+                    orientation: "v",
+                    x: 1.01,
+                    y: .4,
+                };
             }
             return { charttype:chartdata.options.chart.type, title: chartdata.title, longtitle: getLongChartTitle(primaryFilter, filter, null), dataset: chartdata.dataset, data:plotydata, layout: layout, options: {displayModeBar: false}};
 

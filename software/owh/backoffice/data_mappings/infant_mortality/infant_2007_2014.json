@@ -30,7 +30,7 @@
       "mappings": {
         "1": "Married",
         "2": "Unmarried",
-        "9": "Unknown or not stated"
+        "9": "Unknown or not Stated"
       }
     },
     {
@@ -48,7 +48,7 @@
         "6": "35-39 years",
         "7": "40-44 years",
         "8": "45-49 years",
-        "9": "50-54 years"
+        "9": "50 years and over"
       }
     },
     {
@@ -62,11 +62,11 @@
         "2": "9th through 12th grade with no diploma",
         "3": "High school graduate or GED completed",
         "4": "Some college credit, but not a degree",
-        "5": "Associate degree (AA,AS)",
-        "6": "Bachelor’s degree (BA, AB, BS)",
-        "7": "Master’s degree (MA, MS, MEng, MEd, MSW, MBA)",
-        "8": "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
-        "9": "Unknown"
+        "5": "Associate degree (AA, AS)",
+        "6": "Bachelor's degree (BA, AB, BS)",
+        "7": "Master's degree (MA, MS)",
+        "8": "Doctorate (PHD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
+        "9": "Unknown/Not on certificate"
       }
     },
     {
@@ -118,14 +118,14 @@
       "field": "Gestational Age Group2",
       "mappings": {
         "17-19": "Under 20 weeks",
-        "20-27": "20 - 27 weeks",
-        "28-31": "28 - 31 weeks",
-        "32-35": "32 - 35 weeks",
+        "20-27": "20-27 weeks",
+        "28-31": "28-31 weeks",
+        "32-35": "32-35 weeks",
         "36-36": "36 weeks",
-        "37-39": "37 - 39 weeks",
+        "37-39": "37-39 weeks",
         "40-40": "40 weeks",
         "41-41": "41 weeks",
-        "42-47": "42 weeks and over",
+        "42-47": "42 weeks or more",
         "99-99": "Unknown"
       }
     },
@@ -137,15 +137,15 @@
       "field": "Gestational Age Group1",
       "mappings": {
         "01": "Under 20 weeks",
-        "02": "20 - 27 weeks",
-        "03": "28 - 31 weeks",
-        "04": "32 - 33 weeks",
-        "05": "34 - 36 weeks",
-        "06": "37 - 38 weeks",
+        "02": "20-27 weeks",
+        "03": "28-31 weeks",
+        "04": "32-33 weeks",
+        "05": "34-36 weeks",
+        "06": "37-38 weeks",
         "07": "39 weeks",
         "08": "40 weeks",
         "09": "41 weeks",
-        "10": "42 weeks and over",
+        "10": "42 or more weeks",
         "99": "Unknown"
       }
     },
@@ -167,7 +167,7 @@
         "08": "8th month",
         "09": "9th month",
         "10": "10th month",
-        "99": "Unknown or not stated"
+        "99": "Not stated/Not on certificate"
       }
     },
     {
@@ -188,7 +188,7 @@
         "4000-4499": "4000 - 4499 grams",
         "4500-4999": "4500 - 4999 grams",
         "5000-8165": "5000 - 8165 grams",
-        "9999-9999": "Unknown or not stated"
+        "9999-9999": "Not stated"
       }
     },
     {
@@ -217,7 +217,7 @@
         "3-3": "3rd child born alive to mother",
         "4-4": "4th child born alive to mother",
         "5-5": "5th child born alive to mother",
-        "6-8": "6th or more children born alive to mother",
+        "6-8": "6th child and over born alive to mother",
         "9-9": "Unknown or not stated"
       }
     },
@@ -242,7 +242,7 @@
       "mappings": {
         "1": "Vaginal",
         "2": "Cesarean",
-        "9": "Not stated"
+        "9": "Not Stated"
       }
     },
     {
@@ -252,9 +252,9 @@
       "stop": 433,
       "field": "Medical Attendant",
       "mappings": {
-        "1": "Doctor of Medicine (MD)",
-        "2": "Doctor of Osteopathy (DO)",
-        "3": "Certified Nurse Midwife (CNM)",
+        "1": "Doctor of Medicine(MD)",
+        "2": "Doctor of Osteopathy(DO)",
+        "3": "Certified Nurse Midwife(CNM)",
         "4": "Other Midwife",
         "5": "Other",
         "9": "Unknown or not stated"
@@ -268,10 +268,10 @@
       "field": "Infant Age Recode 5",
       "mappings": {
         "1": "Under 1 hour",
-        "2": "1-23 hours",
-        "3": "1-6 days",
-        "4": "7-27 days",
-        "5": "28 days and over"
+        "2": "1 - 23 hours",
+        "3": "1 - 6 days",
+        "4": "7 - 27 days",
+        "5": "28 - 364 days"
       }
     },
     {
@@ -369,7 +369,7 @@
         "5": "Other and Unknown Hispanic",
         "6": "Non-Hispanic White",
         "7": "Non-Hispanic Black",
-        "8": "Non-Hispanic Other Races",
+        "8": "Non-Hispanic other races",
         "9": "Origin unknown or not stated"
       }
     }

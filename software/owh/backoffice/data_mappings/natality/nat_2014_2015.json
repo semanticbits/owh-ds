@@ -21,7 +21,7 @@
         "3": "Cuban",
         "4": "Central or South American",
         "5": "Other and Unknown Hispanic",
-        "9": "Hispanic origin not stated"
+        "9": "Origin unknown or not stated"
       }
     },
     {
@@ -97,7 +97,7 @@
       "mappings": {
         "1": "White",
         "2": "Black",
-        "3": "American Indian or Alaska Native",
+        "3": "American Indian",
         "4": "Asian or Pacific Islander"
       }
     },
@@ -172,7 +172,8 @@
         "4": "Wednesday",
         "5": "Thursday",
         "6": "Friday",
-        "7": "Saturday"
+        "7": "Saturday",
+        "9": "Unknown"
       }
     },
     {
@@ -389,7 +390,7 @@
       "mappings": {
         "1": "Vaginal",
         "2": "Cesarean",
-        "9": "Unknown"
+        "9": "Not stated"
       }
     },
     {
@@ -468,7 +469,7 @@
       "mappings": {
         "Y": "Yes",
         "N": "No",
-        "U": "Unknown or not stated"
+        "U": "Not stated"
       }
     },
     {

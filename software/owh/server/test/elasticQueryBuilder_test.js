@@ -8,9 +8,26 @@ var stdSideFilterCountQuery = require('./data/std_sidefilter_count_query.json');
 var stdApiQueryWithMultipleFilters = require('./data/std_apiQuery_with_multiple_filters.json');
 var tbApiQueryWithMultipleFilters = require('./data/tb_apiQuery_with_multiple_filters.json');
 var aidsApiQueryWithMultipleFilters = require('./data/aids_apiQuery_with_multiple_filters.json');
+var infantMortalityRawQuery = require('./data/infant_mortality_raw_query.json');
 
 describe("Build elastic search queries", function(){
-     it("Build search query with empty query and aggregations", function(done){
+
+    it("build API query", function(done){
+        var q = infantMortalityRawQuery;
+        var preparedQuery = elasticQueryBuilder.buildAPIQuery(q);
+        expect(preparedQuery.headers.rowHeaders[0].key).to.eql('race');
+        expect(preparedQuery.headers.rowHeaders[1].key).to.eql('hispanic_origin');
+        expect(preparedQuery.headers.columnHeaders[0].key).to.eql('sex');
+        expect(preparedQuery.headers.chartHeaders[0].headers[0].key).to.eql('hispanic_origin');
+        expect(preparedQuery.headers.chartHeaders[0].headers[1].key).to.eql('race');
+        expect(preparedQuery.headers.chartHeaders[1].headers[0].key).to.eql('sex');
+        expect(preparedQuery.headers.chartHeaders[1].headers[1].key).to.eql('race');
+        expect(preparedQuery.headers.chartHeaders[2].headers[0].key).to.eql('sex');
+        expect(preparedQuery.headers.chartHeaders[2].headers[1].key).to.eql('hispanic_origin');
+        done();
+    });
+
+    it("Build search query with empty query and aggregations", function(done){
         var params = {query:{}, aggregations:{}};
         var result = elasticQueryBuilder.buildSearchQuery(params, true)
         var query = result[0];
@@ -217,7 +234,20 @@ describe("Build elastic search queries", function(){
                         }
                     ],
                     "charts": [],
-                    "maps": []
+                    "maps": [
+                        [
+                            {
+                                "key": "state",
+                                "queryKey": "state",
+                                "size": 0
+                            },
+                            {
+                                "key": "sex",
+                                "queryKey": "sex",
+                                "size": 0
+                            }
+                        ]
+                    ]
                 }
             }
         };
@@ -232,6 +262,7 @@ describe("Build elastic search queries", function(){
     it("Build search query for STD sidefilters count", function(done){
         var allOptionValues = ["Both sexes", "All races/ethnicities", "All age groups", "National"];
         var params = {
+            'filterCountsQuery':true,
             "searchFor": "std",
             "aggregations": {
                 "simple": [
@@ -336,6 +367,12 @@ describe("Build elastic search queries", function(){
         expect(resultQuery[3][2].aggregations.group_chart_2_sex.terms.field).to.eql('sex');
         expect(resultQuery[3][2].aggregations.group_chart_2_sex.aggregations.group_chart_2_race).to.not.eql(undefined);
         expect(resultQuery[3][2].aggregations.group_chart_2_sex.aggregations.group_chart_2_race.terms.field).to.eql('race_ethnicity');
+        //Map query
+        expect(resultQuery[2].aggregations.group_maps_0_states).to.not.eql(undefined);
+        expect(resultQuery[2].query.filtered.filter.bool.must[0].bool.should[0].term.disease).to.eql('Chlamydia');
+        expect(resultQuery[2].query.filtered.filter.bool.must[1].bool.should[0].term.current_year).to.eql('2015');
+        expect(resultQuery[2].query.filtered.filter.bool.must[2].bool.should[0].term.age_group).to.eql('All age groups');
+        expect(resultQuery[2].query.filtered.filter.bool.must[3].bool.should[0].term.race_ethnicity).to.eql('All races/ethnicities');
         done();
     });
 

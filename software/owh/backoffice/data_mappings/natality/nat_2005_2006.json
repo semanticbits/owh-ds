@@ -35,7 +35,7 @@
       "mappings": {
         "1": "White",
         "2": "Black",
-        "3": "American Indian or Alaska Native",
+        "3": "American Indian",
         "4": "Asian or Pacific Islander"
       }
     },
@@ -122,10 +122,10 @@
       "stop": 158,
       "field": "Mother’s Education",
       "mappings": {
-        "1": "0 – 8 years",
-        "2": "9 – 11 years",
+        "1": "0 - 8 years",
+        "2": "9 - 11 years",
         "3": "12 years",
-        "4": "13 – 15 years",
+        "4": "13 - 15 years",
         "5": "16 years and over",
         "6": "Not stated",
         "": "Not on certificate"
@@ -173,7 +173,8 @@
         "4": "Wednesday",
         "5": "Thursday",
         "6": "Friday",
-        "7": "Saturday"
+        "7": "Saturday",
+        "9": "Unknown"
       }
     },
     {
@@ -190,8 +191,8 @@
     {
       "column": "prenatal_care",
       "type": "map",
-      "start": 245,
-      "stop": 246,
+      "start": 256,
+      "stop": 257,
       "field": "Month Prenatal Care Began",
       "mappings": {
         "00": "No prenatal care",
@@ -296,7 +297,8 @@
         "7800-7899": "7800 - 7899 grams",
         "7900-7999": "7900 - 7999 grams",
         "8000-8099": "8000 - 8099 grams",
-        "8100-8165": "8100 - 8165 grams"
+        "8100-8165": "8100 - 8165 grams",
+        "9999": "Not stated"
       }
     },
     {
@@ -307,8 +309,8 @@
       "field": "Birth Weight",
       "mappings": {
         "1": "1499 grams or less",
-        "2": "1500 – 2499 grams",
-        "3": "2500 grams or more",
+        "2": "1500 - 2499 grams",
+        "3": "2500 - 8165 grams",
         "4": "Unknown or not stated"
       }
     },
@@ -336,8 +338,8 @@
     {
       "column": "live_birth",
       "type": "map",
-      "start": 217,
-      "stop": 217,
+      "start": 212,
+      "stop": 212,
       "field": "Live Birth Order",
       "mappings": {
         "1": "1st child born alive to mother",
@@ -389,7 +391,7 @@
       "mappings": {
         "1": "Vaginal",
         "2": "Cesarean",
-        "9": "Unknown"
+        "9": "Not stated"
       }
     },
     {
@@ -416,7 +418,7 @@
       "mappings": {
         "1": "Yes",
         "2": "No",
-        "8": "Not on certificate",
+        "": "Not on certificate",
         "9": "Unknown"
       }
     },
@@ -429,7 +431,7 @@
       "mappings": {
         "1": "Yes",
         "2": "No",
-        "8": "Not on certificate",
+        "": "Not on certificate",
         "9": "Unknown"
       }
     },
@@ -442,7 +444,7 @@
       "mappings": {
         "1": "Yes",
         "2": "No",
-        "8": "Not on certificate",
+        "": "Not on certificate",
         "9": "Unknown"
       }
     },
@@ -455,7 +457,7 @@
       "mappings": {
         "1": "Yes",
         "2": "No",
-        "8": "Not on certificate",
+        "": "Not on certificate",
         "9": "Unknown"
       }
     },
@@ -468,7 +470,7 @@
       "mappings": {
         "1": "Yes",
         "2": "No",
-        "8": "Not on certificate",
+        "": "Not on certificate",
         "9": "Unknown"
       }
     },
@@ -481,7 +483,7 @@
       "mappings": {
         "1": "Yes",
         "2": "No",
-        "8": "Not on certificate",
+        "": "Not on certificate",
         "9": "Unknown"
       }
     },
@@ -494,7 +496,7 @@
       "mappings": {
         "1": "Yes",
         "2": "No",
-        "8": "Not on certificate",
+        "": "Not on certificate",
         "9": "Unknown"
       }
     },
@@ -507,7 +509,7 @@
       "mappings": {
         "1": "Yes",
         "2": "No",
-        "8": "Not on certificate",
+        "": "Not on certificate",
         "9": "Unknown"
       }
     },
@@ -520,20 +522,20 @@
       "mappings": {
         "1": "Yes",
         "2": "No",
-        "8": "Not on certificate",
+        "": "Not on certificate",
         "9": "Unknown"
       }
     },
     {
       "column": "tobacco_use",
       "type": "map",
-      "start": 294,
-      "stop": 294,
+      "start": 290,
+      "stop": 290,
       "field": "Tobacco use",
       "mappings": {
-        "Y": "Yes",
-        "N": "No",
-        "U": "Unknown or not stated",
+        "1": "Yes",
+        "2": "No",
+        "9": "Not stated",
         "": "Not on certificate"
       }
     },

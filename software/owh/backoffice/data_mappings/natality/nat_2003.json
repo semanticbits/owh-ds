@@ -1,0 +1,687 @@
+{
+  "datafiletype": "fwf",
+  "columns": [
+    {
+      "type": "simple",
+      "column": "residence",
+      "start": 138,
+      "stop": 138,
+      "field": "Residence Status"
+    },
+    {
+      "column": "hispanic_origin",
+      "type": "map",
+      "start": 149,
+      "stop": 149,
+      "field": "Mother’s Hispanic Origin",
+      "mappings": {
+        "1": "Mexican",
+        "2": "Puerto Rican",
+        "3": "Cuban",
+        "4": "Central or South American",
+        "5": "Other and Unknown Hispanic",
+        "6": "Non-Hispanic White",
+        "7": "Non-Hispanic Black",
+        "8": "Non-Hispanic Other Races",
+        "9": "Origin unknown or not stated"
+      }
+    },
+    {
+      "column": "race",
+      "type": "map",
+      "start": 143,
+      "stop": 143,
+      "field": "Mother’s Race",
+      "mappings": {
+        "1": "White",
+        "2": "Black",
+        "3": "American Indian",
+        "4": "Asian or Pacific Islander"
+      }
+    },
+    {
+      "column": "mother_age_5year_interval",
+      "type": "map",
+      "start": 93,
+      "stop": 93,
+      "field": "Mother’s Age 5 Year Interval",
+      "mappings": {
+        "1": "Under 15 years",
+        "2": "15-19 years",
+        "3": "20-24 years",
+        "4": "25-29 years",
+        "5": "30-34 years",
+        "6": "35-39 years",
+        "7": "40-44 years",
+        "8": "45-49 years",
+        "9": "50-54 years"
+      }
+    },
+    {
+      "column": "mother_age_1year_interval",
+      "type": "range",
+      "start": 89,
+      "stop": 90,
+      "field": "Mother’s Single Year of Age",
+      "mappings": {
+        "01-01": "Under 15 years",
+        "02-02": "15 years",
+        "03-03": "16 years",
+        "04-04": "17 years",
+        "05-05": "18 years",
+        "06-06": "19 years",
+        "07-07": "20 years",
+        "08-08": "21 years",
+        "09-09": "22 years",
+        "10-10": "23 years",
+        "11-11": "24 years",
+        "12-12": "25 years",
+        "13-13": "26 years",
+        "14-14": "27 years",
+        "15-15": "28 years",
+        "16-16": "29 years",
+        "17-17": "30 years",
+        "18-18": "31 years",
+        "19-19": "32 years",
+        "20-20": "33 years",
+        "21-21": "34 years",
+        "22-22": "35 years",
+        "23-23": "36 years",
+        "24-24": "37 years",
+        "25-25": "38 years",
+        "26-26": "39 years",
+        "27-27": "40 years",
+        "28-28": "41 years",
+        "29-29": "42 years",
+        "30-30": "43 years",
+        "31-31": "44 years",
+        "32-32": "45 years",
+        "33-33": "46 years",
+        "34-34": "47 years",
+        "35-35": "48 years",
+        "36-36": "49 years",
+        "37-41": "50-54 years"
+      }
+    },
+    {
+      "column": "marital_status",
+      "type": "map",
+      "start": 153,
+      "stop": 153,
+      "field": "Marital Status",
+      "mappings": {
+        "1": "Married",
+        "2": "Unmarried",
+        "9": "Unknown or not Stated"
+      }
+    },
+    {
+      "column": "mother_education",
+      "type": "map",
+      "start": 158,
+      "stop": 158,
+      "field": "Mother’s Education",
+      "mappings": {
+        "1": "0 - 8 years",
+        "2": "9 - 11 years",
+        "3": "12 years",
+        "4": "13 - 15 years",
+        "5": "16 years and over",
+        "6": "Not stated",
+        "": "Not on certificate"
+      }
+    },
+    {
+      "column": "current_year",
+      "type": "simple",
+      "start": 15,
+      "stop": 18,
+      "field": "Birth Year",
+      "mappings": {}
+    },
+    {
+      "column": "month",
+      "type": "map",
+      "start": 19,
+      "stop": 20,
+      "field": "Birth Month",
+      "mappings": {
+        "01": "January",
+        "02": "February",
+        "03": "March",
+        "04": "April",
+        "05": "May",
+        "06": "June",
+        "07": "July",
+        "08": "August",
+        "09": "September",
+        "10": "October",
+        "11": "November",
+        "12": "December"
+      }
+    },
+    {
+      "column": "weekday",
+      "type": "map",
+      "start": 29,
+      "stop": 29,
+      "field": "Birth Day of Week",
+      "mappings": {
+        "1": "Sunday",
+        "2": "Monday",
+        "3": "Tuesday",
+        "4": "Wednesday",
+        "5": "Thursday",
+        "6": "Friday",
+        "7": "Saturday",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "sex",
+      "type": "map",
+      "start": 436,
+      "stop": 436,
+      "field": "Sex of Infant",
+      "mappings": {
+        "M": "Male",
+        "F": "Female"
+      }
+    },
+    {
+      "column": "prenatal_care",
+      "type": "map",
+      "start": 256,
+      "stop": 257,
+      "field": "Month Prenatal Care Began",
+      "mappings": {
+        "00": "No prenatal care",
+        "01": "1st month",
+        "02": "2nd month",
+        "03": "3rd month",
+        "04": "4th month",
+        "05": "5th month",
+        "06": "6th month",
+        "07": "7th month",
+        "08": "8th month",
+        "09": "9th month",
+        "10": "10th month",
+        "99": "Unknown or not stated",
+        "": "Not on certificate"
+      }
+    },
+    {
+      "column": "birth_weight",
+      "type": "range",
+      "start": 463,
+      "stop": 466,
+      "field": "Birth Weight",
+      "mappings": {
+        "100-199": "100 - 199 grams",
+        "200-299": "200 - 299 grams",
+        "300-399": "300 - 399 grams",
+        "400-499": "400 - 499 grams",
+        "500-599": "500 - 599 grams",
+        "600-699": "600 - 699 grams",
+        "700-799": "700 - 799 grams",
+        "800-899": "800 - 899 grams",
+        "900-999": "900 - 999 grams",
+        "1000-1099": "1000 - 1099 grams",
+        "1100-1199": "1100 - 1199 grams",
+        "1200-1299": "1200 - 1299 grams",
+        "1300-1399": "1300 - 1399 grams",
+        "1400-1499": "1400 - 1499 grams",
+        "1500-1599": "1500 - 1599 grams",
+        "1600-1699": "1600 - 1699 grams",
+        "1700-1799": "1700 - 1799 grams",
+        "1800-1899": "1800 - 1899 grams",
+        "1900-1999": "1900 - 1999 grams",
+        "2000-2099": "2000 - 2099 grams",
+        "2100-2199": "2100 - 2199 grams",
+        "2200-2299": "2200 - 2299 grams",
+        "2300-2399": "2300 - 2399 grams",
+        "2400-2499": "2400 - 2499 grams",
+        "2500-2599": "2500 - 2599 grams",
+        "2600-2699": "2600 - 2699 grams",
+        "2700-2799": "2700 - 2799 grams",
+        "2800-2899": "2800 - 2899 grams",
+        "2900-2999": "2900 - 2999 grams",
+        "3000-3099": "3000 - 3099 grams",
+        "3100-3199": "3100 - 3199 grams",
+        "3200-3299": "3200 - 3299 grams",
+        "3300-3399": "3300 - 3399 grams",
+        "3400-3499": "3400 - 3499 grams",
+        "3500-3599": "3500 - 3599 grams",
+        "3600-3699": "3600 - 3699 grams",
+        "3700-3799": "3700 - 3799 grams",
+        "3800-3899": "3800 - 3899 grams",
+        "3900-3999": "3900 - 3999 grams",
+        "4000-4099": "4000 - 4099 grams",
+        "4100-4199": "4100 - 4199 grams",
+        "4200-4299": "4200 - 4299 grams",
+        "4300-4399": "4300 - 4399 grams",
+        "4400-4499": "4400 - 4499 grams",
+        "4500-4599": "4500 - 4599 grams",
+        "4600-4699": "4600 - 4699 grams",
+        "4700-4799": "4700 - 4799 grams",
+        "4800-4899": "4800 - 4899 grams",
+        "4900-4999": "4900 - 4999 grams",
+        "5000-5099": "5000 - 5099 grams",
+        "5100-5199": "5100 - 5199 grams",
+        "5200-5299": "5200 - 5299 grams",
+        "5300-5399": "5300 - 5399 grams",
+        "5400-5499": "5400 - 5499 grams",
+        "5500-5599": "5500 - 5599 grams",
+        "5600-5699": "5600 - 5699 grams",
+        "5700-5799": "5700 - 5799 grams",
+        "5800-5899": "5800 - 5899 grams",
+        "5900-5999": "5900 - 5999 grams",
+        "6000-6099": "6000 - 6099 grams",
+        "6100-6199": "6100 - 6199 grams",
+        "6200-6299": "6200 - 6299 grams",
+        "6300-6399": "6300 - 6399 grams",
+        "6400-6499": "6400 - 6499 grams",
+        "6500-6599": "6500 - 6599 grams",
+        "6600-6699": "6600 - 6699 grams",
+        "6700-6799": "6700 - 6799 grams",
+        "6800-6899": "6800 - 6899 grams",
+        "6900-6999": "6900 - 6999 grams",
+        "7000-7099": "7000 - 7099 grams",
+        "7100-7199": "7100 - 7199 grams",
+        "7200-7299": "7200 - 7299 grams",
+        "7300-7399": "7300 - 7399 grams",
+        "7400-7499": "7400 - 7499 grams",
+        "7500-7599": "7500 - 7599 grams",
+        "7600-7699": "7600 - 7699 grams",
+        "7700-7799": "7700 - 7799 grams",
+        "7800-7899": "7800 - 7899 grams",
+        "7900-7999": "7900 - 7999 grams",
+        "8000-8099": "8000 - 8099 grams",
+        "8100-8165": "8100 - 8165 grams",
+        "9999": "Not stated"
+      }
+    },
+    {
+      "column": "birth_weight_r4",
+      "type": "map",
+      "start": 473,
+      "stop": 473,
+      "field": "Birth Weight",
+      "mappings": {
+        "1": "1499 grams or less",
+        "2": "1500 - 2499 grams",
+        "3": "2500 - 8165 grams",
+        "4": "Unknown or not stated"
+      }
+    },
+    {
+      "column": "birth_weight_r12",
+      "type": "map",
+      "start": 471,
+      "stop": 472,
+      "field": "Birth Weight Recode 12",
+      "mappings": {
+        "01": "499 grams or less",
+        "02": "500 - 999 grams",
+        "03": "1000 - 1499 grams",
+        "04": "1500 - 1999 grams",
+        "05": "2000 - 2499 grams",
+        "06": "2500 - 2999 grams",
+        "07": "3000 - 3499 grams",
+        "08": "3500 - 3999 grams",
+        "09": "4000 - 4499 grams",
+        "10": "4500 - 4999 grams",
+        "11": "5000 - 8165 grams",
+        "12": "Not Stated"
+      }
+    },
+    {
+      "column": "live_birth",
+      "type": "map",
+      "start": 212,
+      "stop": 212,
+      "field": "Live Birth Order",
+      "mappings": {
+        "1": "1st child born alive to mother",
+        "2": "2nd child born alive to mother",
+        "3": "3rd child born alive to mother",
+        "4": "4th child born alive to mother",
+        "5": "5th child born alive to mother",
+        "6": "6th child born alive to mother",
+        "7": "7th child born alive to mother",
+        "8": "8 or more live births",
+        "9": "Unknown or not stated"
+      }
+    },
+    {
+      "column": "birth_plurality",
+      "type": "map",
+      "start": 423,
+      "stop": 423,
+      "field": "Plurality or Multiple Birth",
+      "mappings": {
+        "1": "Single",
+        "2": "Twin",
+        "3": "Triplet",
+        "4": "Quadruplet",
+        "5": "Quintuplet or higher"
+      }
+    },
+    {
+      "column": "birth_place",
+      "type": "map",
+      "start": 42,
+      "stop": 42,
+      "field": "Birth Place",
+      "mappings": {
+        "1": "In Hospital",
+        "2": "Freestanding Birthing Center",
+        "3": "Clinic / Doctor’s Office",
+        "4": "Residence",
+        "5": "Other",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "delivery_method",
+      "type": "map",
+      "start": 401,
+      "stop": 401,
+      "field": "Delivery method",
+      "mappings": {
+        "1": "Vaginal",
+        "2": "Vaginal",
+        "3": "Cesarean",
+        "4": "Cesarean",
+        "5": "Not stated",
+        "6": "Vaginal",
+        "7": "Cesarean"
+      }
+    },
+    {
+      "column": "medical_attendant",
+      "type": "map",
+      "start": 408,
+      "stop": 408,
+      "field": "Medical Attendant",
+      "mappings": {
+        "1": "Doctor of Medicine (MD)",
+        "2": "Doctor of Osteopathy (DO)",
+        "3": "Certified Nurse Midwife (CNM)",
+        "4": "Other Midwife",
+        "5": "Other",
+        "9": "Unknown or not stated"
+      }
+    },
+    {
+      "column": "anemia",
+      "type": "map",
+      "start": 328,
+      "stop": 328,
+      "field": "Anemia",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "cardiac_disease",
+      "type": "map",
+      "start": 329,
+      "stop": 329,
+      "field": "Cardiac Disease",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "chronic_hypertension",
+      "type": "map",
+      "start": 335,
+      "stop": 335,
+      "field": "Chronic Hypertension",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "diabetes",
+      "type": "map",
+      "start": 331,
+      "stop": 331,
+      "field": "Diabetes",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "eclampsia",
+      "type": "map",
+      "start": 337,
+      "stop": 337,
+      "field": "Eclampsia",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "hydramnios_oligohydramnios",
+      "type": "map",
+      "start": 333,
+      "stop": 333,
+      "field": "Hydramnios / Oligohydramnios",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "incompetent_cervix",
+      "type": "map",
+      "start": 338,
+      "stop": 338,
+      "field": "Incompetent Cervix",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "lung_disease",
+      "type": "map",
+      "start": 330,
+      "stop": 330,
+      "field": "Lung Disease",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "pregnancy_hypertension",
+      "type": "map",
+      "start": 336,
+      "stop": 336,
+      "field": "Pregnancy Associated Hypertension",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "8": "Not on certificate",
+        "9": "Unknown"
+      }
+    },
+    {
+      "column": "tobacco_use",
+      "type": "map",
+      "start": 290,
+      "stop": 290,
+      "field": "Tobacco use",
+      "mappings": {
+        "1": "Yes",
+        "2": "No",
+        "9": "Not stated",
+        "": "Not on certificate"
+      }
+    },
+    {
+      "column": "state",
+      "type": "map",
+      "start": 109,
+      "stop": 110,
+      "field": "State",
+      "mappings": {
+        "AL": "AL",
+        "AK": "AK",
+        "AZ": "AZ",
+        "AR": "AR",
+        "CA": "CA",
+        "CO": "CO",
+        "CT": "CT",
+        "DE": "DE",
+        "DC": "DC",
+        "FL": "FL",
+        "GA": "GA",
+        "HI": "HI",
+        "ID": "ID",
+        "IL": "IL",
+        "IN": "IN",
+        "IA": "IA",
+        "KS": "KS",
+        "KY": "KY",
+        "LA": "LA",
+        "ME": "ME",
+        "MD": "MD",
+        "MA": "MA",
+        "MI": "MI",
+        "MN": "MN",
+        "MS": "MS",
+        "MO": "MO",
+        "MT": "MT",
+        "NE": "NE",
+        "NV": "NV",
+        "NH": "NH",
+        "NJ": "NJ",
+        "NM": "NM",
+        "NY": "NY",
+        "NC": "NC",
+        "ND": "ND",
+        "OH": "OH",
+        "OK": "OK",
+        "OR": "OR",
+        "PA": "PA",
+        "RI": "RI",
+        "SC": "SC",
+        "SD": "SD",
+        "TN": "TN",
+        "TX": "TX",
+        "UT": "UT",
+        "VT": "VT",
+        "VA": "VA",
+        "WA": "WA",
+        "WV": "WV",
+        "WI": "WI",
+        "WY": "WY"
+      }
+    },
+    {
+      "type": "map",
+      "column": "gestation_weekly",
+      "start": 451,
+      "stop": 452,
+      "field": "LMP Gestation - Detail in Weeks",
+      "mappings": {
+        "17": "17 weeks",
+        "18": "18 weeks",
+        "19": "19 weeks",
+        "20": "20 weeks",
+        "21": "21 weeks",
+        "22": "22 weeks",
+        "23": "23 weeks",
+        "24": "24 weeks",
+        "25": "25 weeks",
+        "26": "26 weeks",
+        "27": "27 weeks",
+        "28": "28 weeks",
+        "29": "29 weeks",
+        "30": "30 weeks",
+        "31": "31 weeks",
+        "32": "32 weeks",
+        "33": "33 weeks",
+        "34": "34 weeks",
+        "35": "35 weeks",
+        "36": "36 weeks",
+        "37": "37 weeks",
+        "38": "38 weeks",
+        "39": "39 weeks",
+        "40": "40 weeks",
+        "41": "41 weeks",
+        "42": "42 weeks",
+        "43": "43 weeks",
+        "44": "44 weeks",
+        "45": "45 weeks",
+        "46": "46 weeks",
+        "47": "47 weeks",
+        "99": "Unknown"
+      }
+    },
+    {
+      "type": "range",
+      "column": "gestation_recode11",
+      "start": 451,
+      "stop": 452,
+      "field": "LMP Gestational Age Group2",
+      "mappings": {
+        "17-19": "Under 20 weeks",
+        "20-27": "20 - 27 weeks",
+        "28-31": "28 - 31 weeks",
+        "32-33": "32 - 33 weeks",
+        "34-36": "34 - 36 weeks",
+        "37-38": "37 - 38 weeks",
+        "39-39": "39 weeks",
+        "40-40": "40 weeks",
+        "41-41": "41 weeks",
+        "42-47": "42 weeks and over",
+        "99-99": "Unknown"
+      }
+    },
+    {
+      "type": "range",
+      "column": "gestation_recode10",
+      "start": 451,
+      "stop": 452,
+      "field": "LMP Gestational Age Group1",
+      "mappings": {
+        "17-19": "Under 20 weeks",
+        "20-27": "20 - 27 weeks",
+        "28-31": "28 - 31 weeks",
+        "32-35": "32 - 35 weeks",
+        "36-36": "36 weeks",
+        "37-39": "37 - 39 weeks",
+        "40-40": "40 weeks",
+        "41-41": "41 weeks",
+        "42-47": "42 weeks and over",
+        "99-99": "Unknown"
+      }
+    }
+  ]
+}
