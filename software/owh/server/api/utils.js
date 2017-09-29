@@ -404,13 +404,14 @@ function suppressCounts (obj, countKey, dataType, suppressKey, maxValue, dataset
             } else {// supress value
                 obj[key] = suppressedVal;
             }
-        } else if (countKey === 'cancer_incident' && obj.pop) {  //Apply cancer SE suppression
-            var se = Math.sqrt(obj[countKey]) / obj.pop * 100000;
-            obj['se'] = se;
-            if (se >= 25) {
-                obj[key] = suppressedVal;
-            }
         }
+        // else if (countKey === 'cancer_incident' && obj.pop) {  //Apply cancer SE suppression
+        //     var se = Math.sqrt(obj[countKey]) / obj.pop * 100000;
+        //     // obj['se'] = se;
+        //     if (se/(obj[countKey]/ obj.pop) > 0.25) {
+        //         obj[key] = suppressedVal;
+        //     }
+        // }
     }
 };
 
