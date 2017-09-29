@@ -1074,7 +1074,7 @@ describe("Utils", function(){
             var rules = [[ 'option', 'option2']];
             searchUtils.applyCustomSuppressions(data, rules, 'countKey');
             expect(data.table.filter1[0].filter2[0].countKey).to.eql('suppressed');
-            expect(data.charts[0].filter1[0].filter2[0].countKey).to.eql(0);
+            expect(data.charts[0].filter1[0].filter2[0].countKey).to.eql(-1);
         });
     });
 

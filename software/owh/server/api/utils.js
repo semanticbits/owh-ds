@@ -1107,7 +1107,7 @@ function applyCustomSuppressions (data, rules, countKey) {
     })
     rules.forEach(function (rule) {
         data.charts.forEach(function (chart) {
-            searchTree(chart, rule, { countKey: countKey, suppressionValue: 0 }, []);
+            searchTree(chart, rule, { countKey: countKey, suppressionValue: -1 }, []);
         });
     });
 }
