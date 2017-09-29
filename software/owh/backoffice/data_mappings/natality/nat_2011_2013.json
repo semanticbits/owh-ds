@@ -99,7 +99,7 @@
       "mappings": {
         "1": "White",
         "2": "Black",
-        "3": "American Indian or Alaska Native",
+        "3": "American Indian",
         "4": "Asian or Pacific Islander"
       }
     },
@@ -473,7 +473,7 @@
       "mappings": {
         "Y": "Yes",
         "N": "No",
-        "U": "Unknown or not stated",
+        "U": "Not stated",
         "": "Not on certificate"
       }
     },

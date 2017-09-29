@@ -79,7 +79,7 @@
         ];
 
         var raceOptions =  [
-            { "key": "American Indian or Alaska Native", "title": "American Indian or Alaska Native" },
+            { "key": "American Indian", "title": "American Indian or Alaska Native" },
             { "key": "Asian or Pacific Islander", "title": "Asian or Pacific Islander" },
             { "key": "Black", "title": "Black or African American" },
             { "key": "White", "title": "White" }
