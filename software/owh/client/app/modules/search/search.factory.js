@@ -2068,6 +2068,7 @@
                 { "key": "TX", "title": "Texas" },
                 { "key": "UT", "title": "Utah" },
                 { "key": "VT", "title": "Vermont" },
+                { "key": "WA", "title": "Washington" },
                 { "key": "WV", "title": "West Virginia" },
                 { "key": "WI", "title": "Wisconsin" },
                 { "key": "WY", "title": "Wyoming" }
@@ -2139,8 +2140,8 @@
 
             filters.pramsMaternalEducationOptions = [
                 {"key": "<12yrs", "title": "<12 yrs"},
-                {"key": ">12yrs", "title": "12 yrs"},
-                {"key": "12yrs", "title": ">12 yrs"}
+                {"key": "12yrs", "title": "12 yrs"},
+                {"key": ">12yrs", "title": ">12 yrs"}
             ];
 
             filters.pramsMaternalRaceOptions = [

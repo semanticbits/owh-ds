@@ -6725,7 +6725,7 @@
           "prev_live_births": {
             "key": "previous_births",
             "queryKey": "prev_live_births",
-            "value": "One or more",
+            "value": "one or more",
             "primary": false
           },
           "year": {
@@ -6803,7 +6803,7 @@
           "prev_live_births": {
             "key": "previous_births",
             "queryKey": "prev_live_births",
-            "value": "One or more",
+            "value": "one or more",
             "primary": false
           },
           "year": {
@@ -6881,7 +6881,7 @@
           "prev_live_births": {
             "key": "previous_births",
             "queryKey": "prev_live_births",
-            "value": "One or more",
+            "value": "one or more",
             "primary": false
           },
           "year": {
