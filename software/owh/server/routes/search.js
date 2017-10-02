@@ -10,7 +10,7 @@ var dsmetadata = require('../api/dsmetadata');
 var factSheet = require('../api/factSheet');
 var Q = require('q');
 var config = require('../config/config');
-var svgtopng = require('svg2png');
+//var svgtopng = require('svg2png');
 var fs = require('fs');
 
 var queryCache = new qc();
@@ -58,8 +58,14 @@ var searchRouter = function(app, rConfig) {
         });
     });
 
-    app.get('/pramsQuestionsTree', function (req, res) {
-        new yrbs().getPramsQuestionsTree().then(function(response) {
+    app.get('/pramsBasicQuestionsTree', function (req, res) {
+        new yrbs().getPramsBasicQuestionsTree().then(function(response) {
+            res.send(new result('OK', response, "success"));
+        });
+    });
+
+    app.get('/pramsAdvancesQuestionsTree', function (req, res) {
+        new yrbs().getPramsAdvanceQuestionsTree().then(function(response) {
             res.send(new result('OK', response, "success"));
         });
     });
