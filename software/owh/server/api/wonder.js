@@ -1540,7 +1540,9 @@ function addOptionParams(wreq, locationFilter, dbID){
         addParamToWONDERReq(wreq, 'O_location', locationFilter || 'D77.V9');
         addParamToWONDERReq(wreq, 'O_precision', '1');
         addParamToWONDERReq(wreq, 'O_rate_per', '100000');
+        addParamToWONDERReq(wreq, 'O_show_suppressed', 'true');
         addParamToWONDERReq(wreq, 'O_show_totals', 'true');
+        addParamToWONDERReq(wreq, 'O_show_zeros', 'true');
         addParamToWONDERReq(wreq, 'O_ucd', 'D77.V2');
         addParamToWONDERReq(wreq, 'O_mcd', 'D77.V13');
         addParamToWONDERReq(wreq, 'O_urban', 'D77.V19');
