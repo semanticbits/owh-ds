@@ -197,8 +197,8 @@
                                 cell += '</span>';
                             } else {
                                 cell += '<span>';
-                                if(column.pop && angular.isNumber(column.pop)) {
-                                    cell += $filter('number')(column.pop);
+                                if(column.standardPop && angular.isNumber(column.standardPop)) {
+                                    cell += $filter('number')(column.standardPop);
                                 } else {
                                     cell += 'Not Available';
                                 }
