@@ -12,7 +12,7 @@
         "Puerto Rican",
         "Other and Unknown Hispanic",
         "Central or South American",
-        "Hispanic origin not stated"
+        "Origin unknown or not stated"
       ],
       "filter_name": "hispanic_origin",
       "year": "2015",
@@ -230,7 +230,7 @@
     "_source": {
       "permissible_values": [
         "Yes",
-        "Unknown or not stated",
+        "Not stated",
         "No"
       ],
       "filter_name": "tobacco_use",
@@ -270,7 +270,7 @@
     "_source": {
       "permissible_values": [
         "White",
-        "American Indian or Alaska Native",
+        "American Indian",
         "Black",
         "Asian or Pacific Islander"
       ],
