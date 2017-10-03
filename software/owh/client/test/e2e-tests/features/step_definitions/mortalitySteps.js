@@ -113,7 +113,7 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^the percentages get re\-calculated based on all the information displayed in a given row$/, function (next) {
         browser.actions().mouseMove(element(by.tagName('owh-table'))).perform();
-        mortalityPage.getTableRowData(9).then(function(value){
+        mortalityPage.getTableRowData(11).then(function(value){
             expect(value[1]).to.equal('93 (6.5%)');
         }).then(next);
     });
@@ -124,7 +124,7 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^percentages are displayed in the same column\/cell in parenthesis$/, function (next) {
         browser.actions().mouseMove(element(by.tagName('owh-table'))).perform();
-        mortalityPage.getTableRowData(9).then(function(value){
+        mortalityPage.getTableRowData(11).then(function(value){
             expect(value[1]).to.equal('93 (6.5%)');
         }).then(next);
     });
@@ -182,7 +182,7 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^when that option is toggled, the percentages are either displayed\/hidden$/, function (next) {
         mortalityPage.hidePecentageButton.click();
-        mortalityPage.getTableRowData(9).then(function(value){
+        mortalityPage.getTableRowData(11).then(function(value){
             expect(value[1]).to.equal('93');
         }).then(next);
     });
@@ -204,7 +204,7 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.Then(/^the Rates and Percentages should have a one decimal precision$/, function (next) {
-        mortalityPage.getTableRowData(9).then(function(value){
+        mortalityPage.getTableRowData(11).then(function(value){
             expect(value[1]).to.equal('93 (6.5%)');
         }).then(next);
     });
