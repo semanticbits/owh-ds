@@ -37,7 +37,8 @@ describe('search factory ', function(){
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 1111111111111111}});
         questionsTreeJson = __fixtures__['app/modules/search/fixtures/search.factory/questionsTree'];
         $httpBackend.whenGET('/yrbsQuestionsTree').respond(questionsTreeJson);
-        $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('/pramsBasicQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('/pramsAdvancesQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
         $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
         $rootScope.questionsList = questionsTreeJson.questionsList;
@@ -777,20 +778,21 @@ describe('search factory ', function(){
     });
 
     describe('prams search', function () {
-        var response;
+        var response, basicFilters;
         beforeAll(function() {
-            //get the filters
-            primaryFilter = filters.search[4];
-            primaryFilter.data = [];
-            filters.primaryFilters = [primaryFilter];
-            //prepare mock response
             response = __fixtures__['app/modules/search/fixtures/search.factory/pramsFilterResponse'];
+            basicFilters = __fixtures__['app/modules/search/fixtures/search.factory/pramsBasicFilters'];
+        });
+
+        beforeEach(function() {
+            deferred = $q.defer();
         });
 
         it('updateFiltersAndData for prams', function () {
             var groupOptions = {"delivery":{"topic":['cat_45', 'cat_39', 'cat_0']}};
+
             spyOn(utils, 'getValuesByKeyIncludingKeyAndValue').and.returnValue([]);
-            $rootScope.pramsQuestions = [{"id":"cat_45","text":"Delivery - Method","children":[{"text":"How was your new baby delivered?","id":"qn96"}]},{"id":"cat_39","text":"Delivery - Payment","children":[{"text":"Indicator of no insurance to pay for delivery","id":"qn365"},{"text":"Indicator of whether delivery was paid for by insurance purchased directly","id":"qn366"},{"text":"Indicator of whether delivery was paid for by insurance through an employer","id":"qn367"},{"text":"Indicator of whether delivery was paid for by insurance through the military","id":"qn364"},{"text":"Indicator of whether other sources paid for delivery","id":"qn319"},{"text":"Indicator of whether personal income paid for delivery","id":"qn318"},{"text":"Indicator of whether private insurance paid for delivery","id":"qn317"}]},{"id":"cat_0","text":"Hospital Length of Stay","children":[{"text":"Indicator of baby being discharged from hospital within 48 hours of birth. (for vaginal deliveries only)","id":"qn1"},{"text":"Indicator of baby born in a hospital","id":"qn168"},{"text":"Indicator of mother delivering in a hospital","id":"qn169"}]},{"id":"cat_33","text":"Abuse - Mental","children":[{"text":"(*PCH) During the 12 months before pregnancy  did your husband or partner threaten you  limit your activities against your will  or make you feel unsafe in any other way?","id":"qn231"}]},{"id":"cat_44","text":"WIC","children":[{"text":"During your pregnancy  were you on WIC (Special Supplemental Nutrition Program for Women  Infants and Children)?","id":"qn43"}]}];
+            $rootScope.pramsBasicQuestions = [{"id":"cat_45","text":"Delivery - Method","children":[{"text":"How was your new baby delivered?","id":"qn96"}]},{"id":"cat_39","text":"Delivery - Payment","children":[{"text":"Indicator of no insurance to pay for delivery","id":"qn365"},{"text":"Indicator of whether delivery was paid for by insurance purchased directly","id":"qn366"},{"text":"Indicator of whether delivery was paid for by insurance through an employer","id":"qn367"},{"text":"Indicator of whether delivery was paid for by insurance through the military","id":"qn364"},{"text":"Indicator of whether other sources paid for delivery","id":"qn319"},{"text":"Indicator of whether personal income paid for delivery","id":"qn318"},{"text":"Indicator of whether private insurance paid for delivery","id":"qn317"}]},{"id":"cat_0","text":"Hospital Length of Stay","children":[{"text":"Indicator of baby being discharged from hospital within 48 hours of birth. (for vaginal deliveries only)","id":"qn1"},{"text":"Indicator of baby born in a hospital","id":"qn168"},{"text":"Indicator of mother delivering in a hospital","id":"qn169"}]},{"id":"cat_33","text":"Abuse - Mental","children":[{"text":"(*PCH) During the 12 months before pregnancy  did your husband or partner threaten you  limit your activities against your will  or make you feel unsafe in any other way?","id":"qn231"}]},{"id":"cat_44","text":"WIC","children":[{"text":"During your pregnancy  were you on WIC (Special Supplemental Nutrition Program for Women  Infants and Children)?","id":"qn43"}]}];
             var result = searchFactory.updateFiltersAndData(filters, response, groupOptions);
             expect(JSON.stringify(result.primaryFilter.data.question)).toEqual(JSON.stringify(response.data.resultData.table.question));
             expect(result.primaryFilter.allFilters[3].questions.length).toEqual(groupOptions.delivery.topic.length);

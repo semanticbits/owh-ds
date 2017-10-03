@@ -47,9 +47,13 @@
         method : 'GET',
         url: '/yrbsQuestionsTree'
       },
-      'getPRAMSQuestionsTree': {
+      'getPRAMSBasicQuestions': {
           method: 'GET',
-          url: '/pramsQuestionsTree'
+          url: '/pramsBasicQuestionsTree'
+      },
+      'getPRAMSAdvanceQuestions': {
+          method: 'GET',
+          url: '/pramsAdvancesQuestionsTree'
       },
       'getBRFSQuestionsTree': {
           method: 'GET',
