@@ -126,7 +126,14 @@
                             }
                             var rateVisibility = getRateVisibility(column.title, column.pop, otc.tableView);
                             if(otc.tableView === 'age-adjusted_death_rates') {
-                                cell += '<span>' + (column.ageAdjustedRate ? column.ageAdjustedRate : 'Not Available') + '</span>';
+                                cell += '<span>'
+                                if(column.ageAdjustedRate){
+                                    cell += column.title === 'suppressed' ? 'Suppressed' : column.ageAdjustedRate;
+                                }
+                                else {
+                                    cell += 'Not Available'
+                                }
+                                cell += '</span>';
                             }
                             else {
                                 cell += '<span>'
