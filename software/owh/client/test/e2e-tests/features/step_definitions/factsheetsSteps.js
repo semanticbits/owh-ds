@@ -61,11 +61,11 @@ var factsheetsDefinitionsWrapper = function () {
         });
         fsp.getTableRowData('prams-table-1', 0).then(function(data){
             expect(data[0]).to.contains('Smoking cigarettes during the last three months of pregnancy');
-            expect(data[1]).to.contains('9.1%');
+            expect(data[1]).to.contains('7.0%');
         });
         fsp.getTableRowData('brfss-table', 0).then(function(data){
             expect(data[0]).to.contains('Were Obese (BMI 30.0 - 99.8)');
-            expect(data[1]).to.contains('29.8%');
+            expect(data[1]).to.contains('28.9%');
         });
         fsp.getTableRowData('yrbs-table', 0).then(function(data){
             expect(data[0]).to.contains('Currently use alcohol');

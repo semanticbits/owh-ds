@@ -539,7 +539,7 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^I should see total for Non\-Hispanic$/, function (next) {
         mortalityPage.getSideFilterTotals().then(function(elements) {
-            expect(elements[8].getInnerHtml()).to.eventually.equal('2,522,201');
+            expect(elements[6].getInnerHtml()).to.eventually.equal('2,522,201');
         }).then(next);
     });
 
@@ -840,6 +840,8 @@ var mortalityStepDefinitionsWrapper = function () {
             });
             mortalityPage.getTableCellData(0,1).then(function(data){
                 expect(data).not.to.contains('Not Available');
+                expect(data).to.contains('51,909');
+                expect(data).to.contains('4,858,979');
                 expect(data).to.contains('924.5');
             });
             mortalityPage.getTableCellData(50,0).then(function(data){
@@ -847,6 +849,8 @@ var mortalityStepDefinitionsWrapper = function () {
             });
             mortalityPage.getTableCellData(50,1).then(function(data){
                 expect(data).not.to.contains('Not Available');
+                expect(data).to.contains('4,778');
+                expect(data).to.contains('586,107');
                 expect(data).to.contains('748.3');
             });
         }).then(next);
@@ -854,8 +858,8 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.When(/^I see all state age adjusted rate data by columns in the result table$/, function (next) {
         mortalityPage.getTableHeaders().then(function(value) {
-            expect(value).to.contains('Alabama');
-            expect(value).to.contains('Wyoming');
+            expect(value).to.contains('State: Alabama');
+            expect(value).to.contains('State: Wyoming');
             mortalityPage.getTableCellData(0,0).then(function(data){
                 expect(data).to.contains('924.5');
             });
@@ -925,9 +929,9 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^I see total is also being suppressed$/, function (next) {
         mortalityPage.getTableHeaders().then(function(data){
-            expect(data[21]).to.equals('Number of Deaths');
+            expect(data[24]).to.equals('Number of Deaths');
         });
-        mortalityPage.getTableCellData(0,21).then(function(data){
+        mortalityPage.getTableCellData(0,24).then(function(data){
             expect(data).to.contains('Suppressed');
         }).then(next);
     });
@@ -1076,11 +1080,11 @@ var mortalityStepDefinitionsWrapper = function () {
         mortalityPage.getTableRowDataCells(2).then(function (elements) {
             expect(elements[0].getText()).to.eventually.equal('Black or African American');
             //20 - 24 years
-            expect(elements[1].getText()).to.eventually.contains('83 (0.7%)');
+            expect(elements[1].getText()).to.eventually.contains('169 (1.5%)');
             //25 - 29 years
-            expect(elements[2].getText()).to.eventually.contains('169 (1.5%)');
+            expect(elements[2].getText()).to.eventually.contains('187 (1.6%)');
             //30 - 34 years
-            expect(elements[3].getText()).to.eventually.contains('187 (1.6%)');
+            expect(elements[3].getText()).to.eventually.contains('212 (1.9%)');
         }).then(next);
     });
 
