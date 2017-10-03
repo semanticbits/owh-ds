@@ -63,7 +63,7 @@
                 } else {
                     filters = mc.showMeOptions[mc.selectedFilter.key][1].advance;
                 }
-            }else {
+            } else {
                 filters = mc.showMeOptions[mc.selectedFilter.key];
             }
             angular.forEach(filters, function(filter) {

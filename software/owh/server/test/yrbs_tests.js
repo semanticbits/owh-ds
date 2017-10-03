@@ -10,7 +10,7 @@ describe("YRBS API", function () {
         yrbs = new y();
     });
 
-    it("buildYRBSQueries with grouping param", function (){
+    it("buildYRBSQueries with grouping yrbss", function (){
         var apiQuery = { basicSearch:true, 'searchFor': 'mental_health', 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000},{"key":"yrbsSex","queryKey":"sex","size":100000},{"key":"yrbsRace","queryKey":"race","size":100000}]}},
             'query': {'question.path':{ 'value': ['qn1', 'qn2', 'qn3']}}};
         var result = yrbs.buildYRBSQueries(apiQuery);
@@ -29,7 +29,7 @@ describe("YRBS API", function () {
 
     });
 
-    it("buildYRBSQueries with all grouping params", function (){
+    it("buildYRBSQueries with all grouping yrbss", function (){
         var apiQuery = {basicSearch:true, 'searchFor': 'mental_health', 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000},{"key":"yrbsGrade","queryKey":"grade","size":100000},{"key":"yrbsSex","queryKey":"sex","size":100000},{"key":"yrbsRace","queryKey":"race","size":100000}]}},
             'query': {'question.path':{ 'value': ['qn1', 'qn2', 'qn3']}}};
         var result = yrbs.buildYRBSQueries(apiQuery);
@@ -37,7 +37,7 @@ describe("YRBS API", function () {
 
     });
 
-    it("buildYRBSQueries with no grouping params", function (){
+    it("buildYRBSQueries with no grouping yrbss", function (){
         var apiQuery = {basicSearch:true, 'searchFor': 'mental_health', 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000}]}},
             'query': {'question.path':{ 'value': ['qn1', 'qn2', 'qn3']}}};
         var result = yrbs.buildYRBSQueries(apiQuery);
@@ -45,7 +45,7 @@ describe("YRBS API", function () {
 
     });
 
-    it("buildYRBSQueries with only filtering params", function (){
+    it("buildYRBSQueries with only filtering yrbss", function (){
         var apiQuery = {basicSearch:true, 'searchFor': 'mental_health', 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000}]}},
             'query': {'question.path':{ 'value': ['qn1', 'qn2', 'qn3']}, 'race':{value:['White', 'Black or African American']}}};
         var result = yrbs.buildYRBSQueries(apiQuery);
@@ -54,7 +54,7 @@ describe("YRBS API", function () {
     });
 
 
-    it("buildYRBSQueries with grouping and filtering params", function (){
+    it("buildYRBSQueries with grouping and filtering yrbss", function (){
         var apiQuery = {basicSearch:true, 'searchFor': 'mental_health', 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000},{"key":"yrbsRace","queryKey":"race","size":100000}]}},
             'query': {'question.path':{ 'value': ['qn1', 'qn2', 'qn3']}, 'race':{value:['White', 'Black or African American']}}};
         var result = yrbs.buildYRBSQueries(apiQuery);
@@ -62,7 +62,7 @@ describe("YRBS API", function () {
 
     });
 
-    it("buildYRBSQueries with multiple grouping and filtering params", function (){
+    it("buildYRBSQueries with multiple grouping and filtering yrbss", function (){
         var apiQuery = {basicSearch:true, 'searchFor': 'mental_health', 'aggregations':{'nested':{'table':[{"key":"question","queryKey":"question.key","size":100000},{"key":"yrbsRace","queryKey":"race","size":100000},{"key":"yrbsSex","queryKey":"sex","size":100000}]}},
             'query': {'question.path':{ 'value': ['qn1', 'qn2', 'qn3']}, 'race':{value:['White', 'Black or African American']},'sex':{value:['Female']}}};
         var result = yrbs.buildYRBSQueries(apiQuery);
@@ -101,6 +101,140 @@ describe("YRBS API", function () {
         var result = yrbs.buildYRBSQueries(apiQuery);
         expect(result).to.eql( [config.yrbs.queryUrl+'?d=yrbss&s=1&q=qn8&v=sexid&f=sexid:Bisexual,Heterosexual']);
 
+    });
+
+    it("buildYRBSQueries with group by birth_weight for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year",
+            "value":["2014"],"primary":false}, "question.path":{"key":"question","queryKey":"question.key",
+                "value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"adequacy","queryKey":"prenatal_care","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=prenatal_care&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=prenatal_care&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=prenatal_care&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by birth_weight for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"state","queryKey":"sitecode","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=sitecode&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=sitecode&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=sitecode&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by year for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"year","queryKey":"year","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=year&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=year&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=year&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by year for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"year","queryKey":"year","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=year&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=year&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=year&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by wic_during_preg for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"wic_during_preg","queryKey":"wic_during_preg","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=wic_during_preg&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=wic_during_preg&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=wic_during_preg&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by smoked_last_tri for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"smoked_last_tri","queryKey":"smoked_last_tri","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=smoked_last_tri&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=smoked_last_tri&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=smoked_last_tri&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by smoked_3mo_pre_preg for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"smoked_3mo_pre_preg","queryKey":"smoked_3mo_pre_preg","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=smoked_3mo_pre_preg&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=smoked_3mo_pre_preg&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=smoked_3mo_pre_preg&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by prev_live_births for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"prev_live_births","queryKey":"prev_live_births","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=prev_live_births&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=prev_live_births&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=prev_live_births&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by preg_intend for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"preg_intend","queryKey":"preg_intend","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=preg_intend&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=preg_intend&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=preg_intend&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by mother_hispanic for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"mother_hispanic","queryKey":"mother_hispanic","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=mother_hispanic&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=mother_hispanic&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=mother_hispanic&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by medicaid_recip for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"medicaid_recip","queryKey":"medicaid_recip","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=medicaid_recip&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=medicaid_recip&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=medicaid_recip&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by medicaid_recip for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"medicaid_recip","queryKey":"medicaid_recip","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=medicaid_recip&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=medicaid_recip&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=medicaid_recip&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by maternal_race for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"maternal_race","queryKey":"maternal_race","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=maternal_race&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=maternal_race&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=maternal_race&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by maternal_race for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"maternal_race","queryKey":"maternal_race","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=maternal_race&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=maternal_race&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=maternal_race&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by maternal_education for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"maternal_education","queryKey":"maternal_education","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=maternal_education&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=maternal_education&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=maternal_education&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by maternal_age_4lvl for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"maternal_age_4lvl","queryKey":"maternal_age_4lvl","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=maternal_age_4lvl&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=maternal_age_4lvl&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=maternal_age_4lvl&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by maternal_age_3lvl for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"maternal_age_3lvl","queryKey":"maternal_age_3lvl","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=maternal_age_3lvl&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=maternal_age_3lvl&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=maternal_age_3lvl&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by maternal_age_18to44grp for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"maternal_age_18to44grp","queryKey":"maternal_age_18to44grp","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=maternal_age_18to44grp&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=maternal_age_18to44grp&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=maternal_age_18to44grp&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by maternal_age_18to44 for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"maternal_age_18to44","queryKey":"maternal_age_18to44","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=maternal_age_18to44&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=maternal_age_18to44&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=maternal_age_18to44&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by marital_status for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"marital_status","queryKey":"marital_status","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=marital_status&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=marital_status&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=marital_status&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by birth_weight for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"birth_weight","queryKey":"birth_weight","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=birth_weight&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=birth_weight&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=birth_weight&f=year:2014']);
+    });
+
+    it("buildYRBSQueries with group by income for prams advance query", function (){
+        var apiQuery = {"searchFor":"prams","query":{"year":{"key":"year","queryKey":"year","value":["2014"],"primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["pd_comp","nohosp_b","nohosp_m"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"income","queryKey":"income","size":0}]}},"pagination":{"from":0,"size":10000}};
+        var result = yrbs.buildYRBSQueries(apiQuery);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=pd_comp&v=income&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_b&v=income&f=year:2014',config.yrbs.queryUrl+'?d=prams_p2011&s=0&q=nohosp_m&v=income&f=year:2014']);
     });
 
     it("buildYRBSQueries with age_group filtering and grouping", function (){
@@ -4087,8 +4221,8 @@ describe("YRBS API", function () {
         });
     });
 
-    it("should get prams questions tree", function (){
-        return yrbs.getPramsQuestionsTree().then(function (response) {
+    it("should get prams questions tree for pre-computed data", function (){
+        return yrbs.getPramsBasicQuestionsTree().then(function (response) {
 
             expect(response.questionTree[0].text).to.eql("Abuse - Mental");
             expect(response.questionTree[0].children.length).to.eql(1);
@@ -4109,7 +4243,34 @@ describe("YRBS API", function () {
             //270 questions
             expect(response.questionsList.length).to.eql(270);
 
-            yrbs.getPramsQuestionsTree().then(function (cachedResponse) {
+            yrbs.getPramsBasicQuestionsTree().then(function (cachedResponse) {
+                expect(JSON.stringify(response)).to.eql(JSON.stringify(cachedResponse));
+            });
+        });
+    });
+
+    it("should get prams questions tree for raw data", function (){
+        return yrbs.getPramsAdvanceQuestionsTree().then(function (response) {
+
+            expect(response.questionTree[0].text).to.eql("Abuse - Physical");
+            expect(response.questionTree[0].children.length).to.eql(3);
+            expect(response.questionTree[0].children[0].text).to.eql("(*PCH) During the 12 months before you got pregnant, did your husband or partner push, hit, slap, kick, choke, or physically hurt you in any other way?");
+
+            expect(response.questionTree[1].text).to.eql("Alcohol Use");
+            expect(response.questionTree[1].children.length).to.eql(7);
+            expect(response.questionTree[1].children[0].text).to.eql("(*PCH) Indicator of drinking alcohol during the three months before pregnancy");
+            expect(response.questionTree[1].children[6].text).to.eql("Indicator of whether mother reported having any alcoholic drinks during the last 3 months of pregnancy");
+
+            expect(response.questionTree[2].text).to.eql("Assisted Reproduction");
+            expect(response.questionTree[2].children.length).to.eql(1);
+            expect(response.questionTree[2].children[0].text).to.eql("(*PCH) Indicator of receiving any fertility drugs or treatment");
+
+            //39 topics
+            expect(response.questionTree.length).to.eql(39);
+            //185 questions
+            expect(response.questionsList.length).to.eql(185);
+
+            yrbs.getPramsAdvanceQuestionsTree().then(function (cachedResponse) {
                 expect(JSON.stringify(response)).to.eql(JSON.stringify(cachedResponse));
             });
         });
