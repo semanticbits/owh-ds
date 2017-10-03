@@ -63,15 +63,33 @@
                 {key: 'birth_rates', title: 'Birth Rates'},
                 {key: 'fertility_rates', title: 'Fertility Rates'}],
             prams: [
-                {key: 'delivery', title: 'Delivery'},
-                {key: 'demographics', title: 'Demographics'},
-                {key: 'family_planning', title: 'Family Planning'},
-                {key: 'flu', title: 'Flu'},
-                {key: 'infant_health', title: 'Infant Health'},
-                {key: 'maternal_behavior', title: 'Maternal Behavior/Health'},
-                {key: 'maternal_experiences', title: 'Maternal Experiences'},
-                {key: 'prenatal_care', title: 'Prenatal Care'},
-                {key: 'insurance_medicaid_services', title: 'Insurance/Medicaid/Services'}],
+                {
+                    basic:[
+                        {key: 'basic_delivery', title: 'Delivery'},
+                        {key: 'basic_demographics', title: 'Demographics'},
+                        {key: 'basic_family_planning', title: 'Family Planning'},
+                        {key: 'basic_flu', title: 'Flu'},
+                        {key: 'basic_infant_health', title: 'Infant Health'},
+                        {key: 'basic_maternal_behavior', title: 'Maternal Behavior/Health'},
+                        {key: 'basic_maternal_experiences', title: 'Maternal Experiences'},
+                        {key: 'basic_prenatal_care', title: 'Prenatal Care'},
+                        {key: 'basic_insurance_medicaid_services', title: 'Insurance/Medicaid/Services'}
+                    ]
+                },
+                {
+                    advance:[
+                        {key: 'advance_delivery', title: 'Delivery'},
+                        {key: 'advance_demographics', title: 'Demographics'},
+                        {key: 'advance_family_planning', title: 'Family Planning'},
+                        {key: 'advance_flu', title: 'Flu'},
+                        {key: 'advance_infant_health', title: 'Infant Health'},
+                        {key: 'advance_maternal_behavior', title: 'Maternal Behavior/Health'},
+                        {key: 'advance_maternal_experiences', title: 'Maternal Experiences'},
+                        {key: 'advance_prenatal_care', title: 'Prenatal Care'},
+                        {key: 'advance_insurance_medicaid_services', title: 'Insurance/Medicaid/Services'}
+                    ]
+                }
+            ],
             brfss: [
                 {key: 'alcohol_consumption', title: 'Alcohol Consumption'},
                 {key: 'cholesterol_awareness', title: 'Cholesterol Awareness'},
@@ -173,32 +191,56 @@
             natality:{},
             prams:{},
             brfss:{},
-            delivery: {
+            basic_delivery: {
                 "topic": ['cat_45', 'cat_39', 'cat_0']
             },
-            demographics: {
+            basic_demographics: {
                 "topic": ['cat_15', 'cat_38']
             },
-            family_planning: {
+            basic_family_planning: {
                 "topic": ['cat_31', 'cat_20', 'cat_28', 'cat_11']
             },
-            flu: {
+            basic_flu: {
                 "topic": ['cat_3', 'cat_5', 'cat_8', 'cat_7']
             },
-            infant_health: {
+            basic_infant_health: {
                 "topic": ['cat_43', 'cat_1', 'cat_24', 'cat_19', 'cat_14', 'cat_25', 'cat_6']
             },
-            maternal_behavior: {
+            basic_maternal_behavior: {
                 "topic": ['cat_2', 'cat_13', 'cat_34', 'cat_12', 'cat_18', 'cat_9', 'cat_17', 'cat_35', 'cat_23', 'cat_10', 'cat_22', 'cat_26']
             },
-            maternal_experiences: {
+            basic_maternal_experiences: {
                 "topic": ['cat_29', 'cat_33', 'cat_42', 'cat_27']
             },
-            prenatal_care: {
+            basic_prenatal_care: {
                 "topic": ['cat_37', 'cat_30', 'cat_4', 'cat_40', 'cat_36', 'cat_16']
             },
-            insurance_medicaid_services: {
+            basic_insurance_medicaid_services: {
                 "topic": ['cat_32', 'cat_21', 'cat_44']
+            },
+            advance_delivery: {
+                "topic": ['cat_26', 'cat_24']
+            },
+            advance_demographics: {
+                "topic": ['cat_22', 'cat_17']
+            },
+            advance_family_planning: {
+                "topic": ['cat_1', 'cat_3', 'cat_2', 'cat_27']
+            },
+            advance_infant_health: {
+                "topic": ['cat_4', 'cat_32', 'cat_5', 'cat_18', 'cat_33']
+            },
+            advance_maternal_behavior: {
+                "topic": ['cat_15', 'cat_21', 'cat_9', 'cat_7', 'cat_6', 'cat_13', 'cat_23', 'cat_14', 'cat_10', 'cat_8', 'cat_31', 'cat_34']
+            },
+            advance_maternal_experiences: {
+                "topic": ['cat_25', 'cat_35']
+            },
+            advance_prenatal_care: {
+                "topic": ['cat_36', 'cat_12', 'cat_29', 'cat_28']
+            },
+            advance_insurance_medicaid_services: {
+                "topic": ['cat_11', 'cat_20', 'cat_38']
             },
             alcohol_consumption: {
                 "topic": ['cat_12', 'cat_51', 'cat_53']
@@ -298,8 +340,13 @@
             angular.forEach(pramsFilter.sideFilters[0].sideFilters, function(filter){
                 if(filter.filters.key === 'topic') {
                     if (sc.filters.selectedPrimaryFilter.key == 'prams') {
-                        filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
-                        searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup['delivery']);
+                        if (sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu) {
+                            filter.filters.autoCompleteOptions = sc.filters.pramsPrecTopicOptions;
+                            searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup['basic_delivery'])
+                        } else {
+                            filter.filters.autoCompleteOptions = sc.filters.pramsRawTopicOptions;
+                            searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup['advance_delivery'])
+                        }
                     } else if (sc.filters.selectedPrimaryFilter.key == 'brfss') {
                         filter.filters.autoCompleteOptions = sc.filters.brfsTopicOptions;
                     }
@@ -348,7 +395,8 @@
                 || sc.filters.selectedPrimaryFilter.key === 'mental_health'
                 || sc.filters.selectedPrimaryFilter.key === 'brfss') {
 
-                var statQuestions = searchFactory.getQuestionsByDataset(sc.filters.selectedPrimaryFilter.key);
+                var statQuestions = searchFactory.getQuestionsByDataset(sc.filters.selectedPrimaryFilter.key,
+                                                                        sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu);
 
                 angular.forEach(sc.filters.selectedPrimaryFilter.sideFilters[0].sideFilters, function(filter) {
                     if(filter.filters.key === 'topic') {
@@ -411,11 +459,14 @@
             sc.filters.yrbsAdvancedFilters[4].autoCompleteOptions = $rootScope.questionsList;
         });
 
-        $scope.$on('pramsQuestionsLoaded', function() {
+        $scope.$on('pramsBasicQuestionsLoaded', function() {
             var basicQuesFilter = utilService.findFilterByKeyAndValue(sc.filters.pramsBasicFilters, 'key', 'question');
-            basicQuesFilter.autoCompleteOptions = $rootScope.pramsQuestionsList;
+            basicQuesFilter.autoCompleteOptions = $rootScope.pramsBasicQuestionsList;
+        });
+
+        $scope.$on('pramsAdvanceQuestionsLoaded', function() {
             var advanceQuesFilter = utilService.findFilterByKeyAndValue(sc.filters.pramsAdvanceFilters, 'key', 'question');
-            advanceQuesFilter.autoCompleteOptions = $rootScope.pramsQuestionsList;
+            advanceQuesFilter.autoCompleteOptions = $rootScope.pramsAdvanceQuestionsList;
         });
 
         $scope.$on('brfsQuestionsLoaded', function() {
@@ -566,7 +617,11 @@
                         //clear selected topics on class change
                         filter.filters.value = [];
                         if (sc.filters.selectedPrimaryFilter.key == 'prams') {
-                            filter.filters.autoCompleteOptions = sc.filters.pramsTopicOptions;
+                            if (sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu) {
+                                filter.filters.autoCompleteOptions = sc.filters.pramsPrecTopicOptions;
+                            } else {
+                                filter.filters.autoCompleteOptions = sc.filters.pramsRawTopicOptions;
+                            }
                         } else {
                             filter.filters.autoCompleteOptions = sc.filters.brfsTopicOptions;
                         }
@@ -797,6 +852,8 @@
             } else if (dataset === 'prams') {
                 sc.filters.selectedPrimaryFilter.allFilters = sc.filters.pramsBasicFilters;
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[4].basicSideFilters[0].sideFilters;
+                sc.filters.selectedPrimaryFilter.tableView = 'basic_delivery';
+                sc.tableView = 'basic_delivery';
             } else if (dataset === 'brfss') {
                 sc.filters.selectedPrimaryFilter.allFilters = sc.filters.brfsBasicFilters;
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[11].basicSideFilters[0].sideFilters;
@@ -817,6 +874,8 @@
             } else if (dataset === 'prams') {
                 sc.filters.selectedPrimaryFilter.allFilters = sc.filters.pramsAdvanceFilters;
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[4].advancedSideFilters[0].sideFilters;
+                sc.filters.selectedPrimaryFilter.tableView = 'advance_delivery';
+                sc.tableView = 'advance_delivery';
             } else if (dataset === 'brfss') {
                 sc.filters.selectedPrimaryFilter.allFilters = sc.filters.brfsAdvancedFilters;
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[11].advancedSideFilters[0].sideFilters;

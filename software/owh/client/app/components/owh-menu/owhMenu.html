@@ -26,7 +26,6 @@
                                  placeholder="">{{$item.title | translate}}
                 </ui-select-match>
             </ui-select>
-        <!--<div class="icon-position"><i class="fa fa-angle-down font-30 karat"></i></div>-->
     </div>
     <div class="usa-width- alt-filter border-none">
             <div class="label margin-right-10" ng-if="mc.selectedFilter.key === 'mental_health'">
@@ -41,19 +40,26 @@
                         && mc.selectedFilter.key !== 'prams' && mc.selectedFilter.key !== 'brfss'">
                 <label for="tableView" ng-bind="'label.show.me' | translate" ng-if="mc.showMeOptions[mc.selectedFilter.key]"></label>
             </div>
-            <!--<div class="label-form select"></div>-->
-            <!--<div class="black-one-line dropdown-heading" ng-bind="mc.tableName({filterName: mc.selectedFilter.key, opt: mc.selectedFilter.tableView})">Select categories</div>-->
-            <select id="tableView" ng-model="mc.selectedShowFilter" ng-if="mc.showMeOptions[mc.selectedFilter.key]"
+            <select id="tableView" ng-model="mc.selectedShowFilter"
+                    ng-if="mc.selectedFilter.key !== 'prams' && mc.showMeOptions[mc.selectedFilter.key]"
                     ng-options="item.title for item in mc.showMeOptions[mc.selectedFilter.key]"
                     ng-change="mc.onViewFilter({selectedFilter: mc.selectedShowFilter})"
                     class="add-on-element gray-border margin-0 tableViewDropDown">
             </select>
-        <!--<div class="icon-position"><i class="fa fa-angle-down font-30 karat"></i></div>-->
+
+            <select id="tableView" ng-model="mc.selectedShowFilter"
+                    ng-if="mc.selectedFilter.key === 'prams' && mc.isBasicSearch"
+                    ng-options="item.title for item in mc.showMeOptions[mc.selectedFilter.key][0].basic"
+                    ng-change="mc.onViewFilter({selectedFilter: mc.selectedShowFilter})"
+                    class="add-on-element gray-border margin-0 tableViewDropDown">
+            </select>
+            <select id="tableView" ng-model="mc.selectedShowFilter"
+                    ng-if="mc.selectedFilter.key === 'prams' && !mc.isBasicSearch"
+                    ng-options="item.title for item in mc.showMeOptions[mc.selectedFilter.key][1].advance"
+                    ng-change="mc.onViewFilter({selectedFilter: mc.selectedShowFilter})"
+                    class="add-on-element gray-border margin-0 tableViewDropDown">
+            </select>
     </div>
-    <!-- <div class="refresh"><i class="material-icons refresh-icon-black" title="Reset Filters">refresh</i></div> -->
-   <!-- <div class="pull-right width-5-percentile" style="margin-right: 10px;">
-        <i class="clear-button fa fa-toggle-left font-30"></i>
-    </div>-->
 
     <div class="dropdown-submenu" ng-show="mc.displayCategory">
         <ul class="flex-container" style="text-align: center">

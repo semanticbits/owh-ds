@@ -104,16 +104,16 @@
                 primaryFilter.data = response.data.resultData.table;
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 primaryFilter.headers = buildQueryForYRBS(primaryFilter, true).headers;
-                var questions = getQuestionsByDataset(primaryFilter.key);
-                tableData.data = categorizeQuestions(tableData.data, questions);
                 primaryFilter.showBasicSearchSideMenu = response.data.queryJSON.showBasicSearchSideMenu;
+                var questions = getQuestionsByDataset(primaryFilter.key, primaryFilter.showBasicSearchSideMenu);
+                tableData.data = categorizeQuestions(tableData.data, questions);
                 primaryFilter.runOnFilterChange = response.data.queryJSON.runOnFilterChange;
                 if(response.data.queryJSON) {
                     populateSelectedFilters(primaryFilter, response.data.queryJSON.sideFilters);
                 }
                 //update questions based on topics
                 var topics = groupOptions[tableView].topic;
-                var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question')
+                var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question');
                 questionFilter.questions = getQuestionsByTopics(topics, questions);
 
                 var topicFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'topic');
@@ -212,10 +212,11 @@
          * Get the questions based on current data-set
          * @param dataset -> name of data-set
          */
-        function getQuestionsByDataset(dataset) {
+        function getQuestionsByDataset(dataset, isBasicSearch) {
             var questions = [];
             if (dataset === 'prams') {
-                questions = $rootScope.pramsQuestions;
+                isBasicSearch ? questions = $rootScope.pramsBasicQuestions
+                    : questions = $rootScope.pramsAdvanceQuestions;
             } else if (dataset === 'brfss') {
                 questions = $rootScope.brfsQuestions;
             }
@@ -1982,7 +1983,7 @@
             filters.cancerIncidenceFilters = filterUtils.cancerIncidenceFilters();
             filters.cancerMortalityFilters = filterUtils.cancerMortalityFilters();
 
-            filters.pramsTopicOptions = [
+            filters.pramsPrecTopicOptions = [
                 {"key": "cat_33", "title": "Abuse - Mental"},
                 {"key": "cat_29", "title": "Abuse - Physical"},
                 {"key": "cat_2", "title": "Alcohol Use"},
@@ -2031,7 +2032,49 @@
                 {"key": "cat_44", "title": "WIC"}
             ];
 
-            filters.pramsStateOptions =  [
+            filters.pramsRawTopicOptions = [
+                { "key": "cat_25", "title": "Abuse - Physical" },
+                { "key": "cat_15", "title": "Alcohol Use" },
+                { "key": "cat_1",  "title": "Assisted Reproduction" },
+                { "key": "cat_4",  "title": "Breastfeeding" },
+                { "key": "cat_3",  "title": "Contraception - Conception" },
+                { "key": "cat_2",  "title": "Contraception - Postpartum" },
+                { "key": "cat_0",  "title": "Control" },
+                { "key": "cat_26", "title": "Delivery - Payment" },
+                { "key": "cat_21", "title": "HIV Test" },
+                { "key": "cat_19", "title": "Health Insurance - Maternal" },
+                { "key": "cat_37", "title": "Home Visitation" },
+                { "key": "cat_24", "title": "Hospital Length of Stay" },
+                { "key": "cat_22", "title": "Household Characteristics" },
+                { "key": "cat_16", "title": "Immunizations" },
+                { "key": "cat_17", "title": "Income" },
+                { "key": "cat_32", "title": "Infant Health Care" },
+                { "key": "cat_11", "title": "Insurance Coverage" },
+                { "key": "cat_9",  "title": "Maternal Health Care" },
+                { "key": "cat_20", "title": "Medicaid" },
+                { "key": "cat_7",  "title": "Mental Health" },
+                { "key": "cat_5",  "title": "Morbidity - Infant" },
+                { "key": "cat_6",  "title": "Morbidity - Maternal" },
+                { "key": "cat_13", "title": "Multivitamin Use" },
+                { "key": "cat_23", "title": "Obesity" },
+                { "key": "cat_14", "title": "Oral Health" },
+                { "key": "cat_10", "title": "Preconception Health" },
+                { "key": "cat_8",  "title": "Preconception Morbidity" },
+                { "key": "cat_31", "title": "Pregnancy History" },
+                { "key": "cat_27", "title": "Pregnancy Intention" },
+                { "key": "cat_18", "title": "Pregnancy Outcome" },
+                { "key": "cat_36", "title": "Prenatal Care - Content" },
+                { "key": "cat_12", "title": "Prenatal Care - Initiation" },
+                { "key": "cat_29", "title": "Prenatal Care - Payment" },
+                { "key": "cat_28", "title": "Prenatal Care - Visits" },
+                { "key": "cat_30", "title": "Prenatal Care -Payment" },
+                { "key": "cat_33", "title": "Sleep Behaviors" },
+                { "key": "cat_35", "title": "Stress" },
+                { "key": "cat_34", "title": "Tobacco Use" },
+                { "key": "cat_38", "title": "WIC" }
+            ];
+
+            filters.pramsBasicSearchStateOptions =  [
                 { "key": "AL", "title": "Alabama" },
                 { "key": "AK", "title": "Alaska" },
                 { "key": "AR", "title": "Arkansas" },
@@ -2074,7 +2117,45 @@
                 { "key": "WY", "title": "Wyoming" }
             ];
 
-            filters.pramsYearOptions = [
+            filters.pramsRawDataStateOptions =  [
+                { "key": "AL", "title": "Alabama" },
+                { "key": "AK", "title": "Alaska" },
+                { "key": "AR", "title": "Arkansas" },
+                { "key": "CO", "title": "Colorado" },
+                { "key": "CT", "title": "Connecticut" },
+                { "key": "DE", "title": "Delaware" },
+                { "key": "GA", "title": "Georgia" },
+                { "key": "HI", "title": "Hawaii" },
+                { "key": "IL", "title": "Illinois" },
+                { "key": "IA", "title": "Iowa" },
+                { "key": "ME", "title": "Maine" },
+                { "key": "MD", "title": "Maryland" },
+                { "key": "MA", "title": "Massachusetts" },
+                { "key": "MI", "title": "Michigan" },
+                { "key": "MN", "title": "Minnesota" },
+                { "key": "MO", "title": "Missouri" },
+                { "key": "NE", "title": "Nebraska" },
+                { "key": "NH", "title": "New Hampshire" },
+                { "key": "NJ", "title": "New Jersey" },
+                { "key": "NM", "title": "New Mexico" },
+                { "key": "NY", "title": "New York(excluding NYC)" },
+                { "key": "OH", "title": "Ohio" },
+                { "key": "OK", "title": "Oklahoma" },
+                { "key": "OR", "title": "Oregon" },
+                { "key": "PA", "title": "Pennsylvania" },
+                { "key": "RI", "title": "Rhode Island" },
+                { "key": "TN", "title": "Tennessee" },
+                { "key": "UT", "title": "Utah" },
+                { "key": "VT", "title": "Vermont" },
+                { "key": "WA", "title": "Washington" },
+                { "key": "WV", "title": "West Virginia" },
+                { "key": "WI", "title": "Wisconsin" },
+                { "key": "WY", "title": "Wyoming" }
+            ];
+
+
+
+            filters.pramsBasicSearchYearOptions = [
                 { "key": "2011", "title": "2011" },
                 { "key": "2010", "title": "2010" },
                 { "key": "2009", "title": "2009" },
@@ -2087,6 +2168,12 @@
                 { "key": "2002", "title": "2002" },
                 { "key": "2001", "title": "2001" },
                 { "key": "2000", "title": "2000" }
+            ];
+
+            filters.pramsRawDataYearOptions = [
+                { "key": "2014", "title": "2014" },
+                { "key": "2013", "title": "2013" },
+                { "key": "2012", "title": "2012" }
             ];
 
             filters.pramsAdequacyOptions = [
@@ -2155,6 +2242,10 @@
                 {"key": "Medicaid", "title": "Medicaid"},
                 {"key": "non-Medicaid", "title": "Non-Medicaid"}
             ];
+            filters.pramsRawDataMedicaidOptions = [
+                {"key": "Yes", "title": "Medicaid"},
+                {"key": "No", "title": "Non-Medicaid"}
+            ];
 
             filters.pramsMotherHispanicOptions = [
                 {"key": "Hispanic", "title": "Hispanic"},
@@ -2188,16 +2279,16 @@
 
             filters.pramsBasicFilters = [
                 {key: 'topic', title: 'label.prams.filter.topic', queryKey:"topic",primary: false, value: [], groupBy: false,disableFilter: true,
-                    filterType: 'checkbox',autoCompleteOptions: filters.pramsTopicOptions, doNotShowAll: true, helpText: "label.help.text.prams.topic"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsPrecTopicOptions, doNotShowAll: false, helpText: "label.help.text.prams.topic"},
                 {key: 'year', title: 'label.prams.filter.year', queryKey:"year",primary: false, value: ['2011'], groupBy: false,defaultGroup:"column",
-                    filterType: 'radio',autoCompleteOptions: filters.pramsYearOptions, doNotShowAll: false, helpText: "label.help.text.prams.year"},
+                    filterType: 'radio',autoCompleteOptions: filters.pramsBasicSearchYearOptions, doNotShowAll: false, helpText: "label.help.text.prams.year"},
                 {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [],
                     displaySearchBox:true, displaySelectedFirst:true, groupBy: 'column',defaultGroup:"column",
-                    filterType: 'checkbox',autoCompleteOptions: filters.pramsStateOptions, doNotShowAll: false, helpText: "label.help.text.prams.state"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsBasicSearchStateOptions, doNotShowAll: false, helpText: "label.help.text.prams.state"},
                 { key: 'question', title: 'label.prams.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
-                    filterType: 'tree', autoCompleteOptions: $rootScope.pramsQuestionsList, donotshowOnSearch:true,
+                    filterType: 'tree', autoCompleteOptions: $rootScope.pramsBasicQuestionsList, donotshowOnSearch:true,
                     //add questions property to pass into owh-tree component
-                    questions: $rootScope.pramsQuestions,
+                    questions: $rootScope.pramsBasicQuestions,
                     selectTitle: 'select.label.yrbs.filter.question', updateTitle: 'update.label.yrbs.filter.question',  iconClass: 'purple-text', helpText: 'label.help.text.prams.question',
                     onIconClick: function(question) {
                         showChartForQuestion(filters.selectedPrimaryFilter, question);
@@ -2240,16 +2331,16 @@
             ];
             filters.pramsAdvanceFilters = [
                 {key: 'topic', title: 'label.prams.filter.topic', queryKey:"topic",primary: false, value: [], groupBy: false,disableFilter: true,
-                    filterType: 'checkbox',autoCompleteOptions: filters.pramsTopicOptions, doNotShowAll: true, helpText: "label.help.text.prams.topic"},
-                {key: 'year', title: 'label.prams.filter.year', queryKey:"year",primary: false, value: ['2011'], groupBy: false,defaultGroup:"column",
-                    filterType: 'checkbox',autoCompleteOptions: filters.pramsYearOptions, doNotShowAll: false, helpText: "label.help.text.prams.year"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsRawTopicOptions, doNotShowAll: false, helpText: "label.help.text.prams.topic"},
+                {key: 'year', title: 'label.prams.filter.year', queryKey:"year",primary: false, value: ['2014'], groupBy: false,defaultGroup:"column",
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsRawDataYearOptions, doNotShowAll: false, helpText: "label.help.text.prams.year"},
                 {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [],
                     displaySearchBox:true, displaySelectedFirst:true, groupBy: 'column',defaultGroup:"column",
-                    filterType: 'checkbox',autoCompleteOptions: filters.pramsStateOptions, doNotShowAll: false, helpText: "label.help.text.prams.state"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsRawDataStateOptions, doNotShowAll: false, helpText: "label.help.text.prams.state"},
                 { key: 'question', title: 'label.prams.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
-                    filterType: 'tree', autoCompleteOptions: $rootScope.pramsQuestionsList, donotshowOnSearch:true,
+                    filterType: 'tree', autoCompleteOptions: $rootScope.pramsAdvanceQuestionsList, donotshowOnSearch:true,
                     //add questions property to pass into owh-tree component
-                    questions: $rootScope.pramsQuestions,
+                    questions: $rootScope.pramsAdvanceQuestions,
                     selectTitle: 'select.label.yrbs.filter.question', updateTitle: 'update.label.yrbs.filter.question',  iconClass: 'purple-text', helpText: 'label.help.text.prams.question',
                     onIconClick: function(question) {
                         showChartForQuestion(filters.selectedPrimaryFilter, question);
@@ -2276,7 +2367,7 @@
                 {key: 'maternal_race', title: 'label.prams.filter.maternal_race', queryKey:"maternal_race",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsMaternalRaceOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.race"},
                 {key: 'medicaid', title: 'label.prams.filter.medicaid', queryKey:"medicaid_recip",primary: false, value: [], groupBy: false,disableFilter: true,
-                    filterType: 'checkbox',autoCompleteOptions: filters.pramsMedicaidOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.medicaid"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsRawDataMedicaidOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.medicaid"},
                 {key: 'mother_hispanic', title: 'label.prams.filter.mother_hispanic', queryKey:"mother_hispanic",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsMotherHispanicOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.hispanic"},
                 {key: 'previous_births', title: 'label.prams.filter.previous_births', queryKey:"prev_live_births",primary: false, value: [], groupBy: false,disableFilter: true,
@@ -3187,7 +3278,7 @@
                 {
                     key: 'prams', title: 'label.prams.title', primary: true, value:[], header:"Pregnancy Risk Assessment",
                     searchResults: invokeStatsService, dontShowInlineCharting: true,
-                    additionalHeaders:filters.yrbsAdditionalHeaders, tableView:'delivery',
+                    additionalHeaders:filters.yrbsAdditionalHeaders, tableView:'basic_delivery',
                     chartAxisLabel:'Percentage', countLabel: 'Total',
                     showBasicSearchSideMenu: true, runOnFilterChange: true, allFilters: filters.pramsBasicFilters, // Default to basic filter
                     advancedSideFilters:[

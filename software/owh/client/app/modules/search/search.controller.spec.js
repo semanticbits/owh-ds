@@ -25,7 +25,8 @@ describe("Search controller: ", function () {
             $httpBackend.whenPOST('/search').respond( $templateCache.get('app/partials/marker-template.html'));
             $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 11111}});
             $httpBackend.whenGET('/yrbsQuestionsTree').respond({});
-            $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
+            $httpBackend.whenGET('/pramsBasicQuestionsTree').respond({data: { }});
+            $httpBackend.whenGET('/pramsAdvancesQuestionsTree').respond({data: { }});
             $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
             $httpBackend.whenGET('app/modules/home/home.html').respond({});
             $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
@@ -543,9 +544,27 @@ describe("Search controller: ", function () {
 
     }));
 
-    it('switch to brfss basic filter', inject(function() {
+    it('switch to prams basic filter', inject(function() {
         spyOn(searchController, 'search');
         searchController.filters.selectedPrimaryFilter = searchController.filters.search[11]; //select YRBS
+        searchController.switchToBasicSearch('prams');
+        expect(searchController.filters.selectedPrimaryFilter.showBasicSearchSideMenu).toEqual(true);
+        expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].sideFilters[0].filters.filterType).toEqual('checkbox');
+        expect(searchController.search).toHaveBeenCalledWith(true);
+    }));
+
+    it('switch to prams advanced filter', inject(function() {
+        spyOn(searchController, 'search');
+        searchController.filters.selectedPrimaryFilter = searchController.filters.search[11]; //select YRBS
+        searchController.switchToAdvancedSearch('prams');
+        expect(searchController.filters.selectedPrimaryFilter.showBasicSearchSideMenu).toEqual(false);
+        expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].sideFilters[0].filters.filterType).toEqual('checkbox');
+        expect(searchController.search).toHaveBeenCalledWith(true);
+    }));
+
+    it('switch to brfss basic filter', inject(function() {
+        spyOn(searchController, 'search');
+        searchController.filters.selectedPrimaryFilter = searchController.filters.search[4]; //select YRBS
         searchController.switchToBasicSearch('brfss');
         expect(searchController.filters.selectedPrimaryFilter.showBasicSearchSideMenu).toEqual(true);
         expect(searchController.filters.selectedPrimaryFilter.sideFilters[0].sideFilters[0].filters.filterType).toEqual('checkbox');
@@ -604,7 +623,7 @@ describe("Search controller: ", function () {
 
         searchController.filters = {selectedPrimaryFilter: pramsFilters};
 
-        $rootScope.pramsQuestions = [
+        $rootScope.pramsBasicQuestions = [
             {
                 "id": "cat_45",
                 "text": "Delivery - Method",
@@ -656,7 +675,7 @@ describe("Search controller: ", function () {
 
         var deferred = $q.defer();
 
-        $rootScope.pramsQuestions = [
+        $rootScope.pramsBasicQuestions = [
             {
                 "id": "cat_45",
                 "text": "Delivery - Method",
@@ -703,7 +722,7 @@ describe("Search controller: ", function () {
 
     it("should listen for pramsQuestionsLoaded event", inject(function () {
 
-        $rootScope.pramsQuestionsList = [
+        $rootScope.pramsBasicQuestionsList = [
             {
                 "text": "Indicator of whether personal income paid for delivery",
                 "id": "qn318"
@@ -718,10 +737,32 @@ describe("Search controller: ", function () {
             pramsAdvanceFilters: [{"key": "question", autoCompleteOptions:[]}]
         };
 
-        $rootScope.$broadcast('pramsQuestionsLoaded', $rootScope.pramsQuestionsList);
+        $rootScope.$broadcast('pramsBasicQuestionsLoaded', $rootScope.pramsBasicQuestionsList);
         //should collect questions from selected topic of a class only
-        expect(JSON.stringify(searchController.filters.pramsBasicFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.pramsQuestionsList));
-        expect(JSON.stringify(searchController.filters.pramsAdvanceFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.pramsQuestionsList));
+        expect(JSON.stringify(searchController.filters.pramsBasicFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.pramsBasicQuestionsList));
+        //expect(JSON.stringify(searchController.filters.pramsAdvanceFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.pramsBasicQuestionsList));
+    }));
+
+    it("should listen for pramsQuestionsLoaded event", inject(function () {
+
+        $rootScope.pramsAdvanceQuestionsList = [
+            {
+                "text": "Indicator of whether personal income paid for delivery",
+                "id": "qn318"
+            },
+            {
+                "text": "Indicator of no insurance to pay for delivery",
+                "id": "qn365"
+            }
+        ];
+        searchController.filters =  {
+            pramsBasicFilters: [{"key": "question", autoCompleteOptions:[]}],
+            pramsAdvanceFilters: [{"key": "question", autoCompleteOptions:[]}]
+        };
+
+        $rootScope.$broadcast('pramsAdvanceQuestionsLoaded', $rootScope.pramsAdvanceQuestionsList);
+        //should collect questions from selected topic of a class only
+        expect(JSON.stringify(searchController.filters.pramsAdvanceFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.pramsAdvanceQuestionsList));
     }));
 
     it("should listen for brfsQuestionsLoaded event", inject(function () {
