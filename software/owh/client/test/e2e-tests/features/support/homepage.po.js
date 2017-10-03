@@ -2,6 +2,7 @@ var OwhHomepage = function() {
     var hp = this;
     //explore button in Quick Health Data Online Box
     hp.quickHealthExploreBtn = element( by.css('.usa-button-secondary'));
+    hp.acceptButton = element( by.id('acceptDataUseRestrictions'));
 
     //Birth Explore link in Women's Health section
     hp.birthExplorerLink = element( by.cssContainingText('div', "Pregnancy Risk Assessment Monitoring System (PRAMS)"));

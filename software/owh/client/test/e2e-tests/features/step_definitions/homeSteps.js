@@ -23,6 +23,7 @@ var homeStepDefinitionsWrapper = function () {
 
     this.When(/^I click on Explore button in Health Information Gateway section$/, function () {
         homePage.quickHealthExploreBtn.click();
+        homePage.acceptButton.click();
         return browser.waitForAngular();
 
     });

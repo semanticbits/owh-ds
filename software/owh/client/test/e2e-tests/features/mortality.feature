@@ -135,7 +135,7 @@ Scenario: Check box- Hispanic Sub Categories
 Scenario: Side filter total suppression
   Given I am on search page
   And I expand "Race" filter section
-  And I expand "State" filter section
+  When I expand "State" filter section in mortality page
   And  user select "American Indian or Alaska Native" option in "Race" filter
   And user clicks on "+ 48 more" more link for "State" filter
   Then I see count for few states are suppressed
@@ -212,8 +212,8 @@ Scenario: Select 'All' years
 
 Scenario: Suppression
   Given I am on search page
-  And I expands the State filter
-  When I select Alabama state from state filter
+  When I expand "State" filter section in mortality page
+  And I select Alabama state from state filter
   And I select groupBy "Off" option for "Sex" filter
   And I select groupBy "Column" option for "Age Groups" filter
   Then I see cell values being suppressed for American Indian race

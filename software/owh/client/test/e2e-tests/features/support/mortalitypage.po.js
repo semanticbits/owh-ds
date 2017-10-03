@@ -25,13 +25,13 @@ var MortalitySearchPage = function() {
     msp.tableViewDropdown = element(by.model('ots.selectedShowFilter'));
     msp.mainSearch = element(by.tagName('owh-menu'));
     msp.deathRateDisclaimer = element(by.id('death-rate-disclaimer'));
-    msp.ethnicityHispanicOption = element(by.id('deaths_hispanicOrigin_Hispanic')).element(by.xpath('..'));
-    msp.ethnicityDominicanOption = element(by.id('deaths_hispanicOrigin_Dominican')).element(by.xpath('..'));
-    msp.ethnicitySpaniardOption = element(by.id('deaths_hispanicOrigin_Spaniard')).element(by.xpath('..'));
+    msp.ethnicityHispanicOption = element(by.id('_hispanicOrigin_Hispanic')).element(by.xpath('..'));
+    msp.ethnicityDominicanOption = element(by.id('_hispanicOrigin_Dominican')).element(by.xpath('..'));
+    msp.ethnicitySpaniardOption = element(by.id('_hispanicOrigin_Spaniard')).element(by.xpath('..'));
     msp.showMoreYears = element(by.cssContainingText('a', '+ 13 more'));
     msp.expandEthnicity = element(by.cssContainingText('a', 'Ethnicity'));
-    msp.ethnicityUnknownOption = element(by.id('deaths_hispanicOrigin_Unknown')).element(by.xpath('..'));
-    msp.ethnicityNonHispanicOption = element(by.id('deaths_hispanicOrigin_Non-Hispanic')).element(by.xpath('..'));
+    msp.ethnicityUnknownOption = element(by.id('_hispanicOrigin_Unknown')).element(by.xpath('..'));
+    msp.ethnicityNonHispanicOption = element(by.id('_hispanicOrigin_Non-Hispanic')).element(by.xpath('..'));
     msp.bookmarkButton = element(by.cssContainingText('a', 'Bookmark this Search'));
 
     msp.getSelectedFilterType = function() {
@@ -44,16 +44,16 @@ var MortalitySearchPage = function() {
 
     msp.isVisualizationDisplayed = function(){
         //Verify visualization css classes present or not
-        return element(by.css('.nvd3-svg')).isPresent() &&
-               element(by.css('.nv-y.nv-axis')).isPresent() &&
-               element(by.css('.nv-x.nv-axis')).isPresent()
+        return element(by.tagName('ploty')).isPresent() &&
+               element(by.css('.js-plotly-plot')).isPresent() &&
+               element(by.css('.plot-container')).isPresent()
     };
 
     msp.getAxisLabelsForMinimizedVisualization= function () {
         //Verify Visualization has 'nv-axislabel' css class for both axis
         //minimized visualization has id starts with '.chart_'
-        var axis_x_label = element(by.id('chart_0_1')).element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-x.nv-axis')).element(by.css('.nv-axislabel'));
-        var axis_y_label = element(by.id('chart_0_1')).element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-y.nv-axis')).element(by.css('.nv-axislabel'));
+        var axis_x_label = element(by.id('chart_0_1')).element(by.css('.xtitle'));
+        var axis_y_label = element(by.id('chart_0_1')).element(by.css('.ytitle'));
         return [axis_x_label, axis_y_label];
     };
     msp.getAxisLabelsForExpandedVisualization= function () {
@@ -61,8 +61,8 @@ var MortalitySearchPage = function() {
         //expanded visualization has id starts with '.chart_expanded_'
         var chart = element(by.id('chart_expanded_0'));
         browser.executeScript("arguments[0].scrollIntoView();", chart);
-        var axis_x_label = chart.element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-x.nv-axis')).element(by.css('.nv-axislabel'));
-        var axis_y_label = chart.element(by.css('.nvd3.nv-wrap.nv-multiBarHorizontalChart')).element(by.css('.nv-y.nv-axis')).element(by.css('.nv-axislabel'));
+        var axis_x_label = chart.element(by.css('.xtitle'));
+        var axis_y_label = chart.element(by.css('.ytitle'));
         return [axis_x_label, axis_y_label]
     };
     msp.getTableHeaders = function() {

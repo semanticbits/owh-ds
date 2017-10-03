@@ -18,8 +18,10 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^labels are displayed on both the axes for minimized visualization$/, function () {
         var labelArray = mortalityPage.getAxisLabelsForMinimizedVisualization();
-        expect(labelArray[0].getText()).to.eventually.equal('Race');
-        return expect(labelArray[1].getText()).to.eventually.equal('Deaths');
+        //X Axis
+        expect(labelArray[0].getText()).to.eventually.equal('Deaths');
+        //Y Axis
+        return expect(labelArray[1].getText()).to.eventually.equal('Race');
     });
 
     this.When(/^user expand visualization$/, function (next) {
@@ -29,12 +31,16 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^labels are displayed on both the axes for expanded visualization$/, function () {
         var labelArray = mortalityPage.getAxisLabelsForExpandedVisualization();
-        expect(labelArray[0].getText()).to.eventually.equal('Race');
-        return expect(labelArray[1].getText()).to.eventually.equal('Deaths');
+        //X-Axis
+        expect(labelArray[0].getText()).to.eventually.equal('Deaths');
+        //Y Axis
+        return expect(labelArray[1].getText()).to.eventually.equal('Race');
     });
 
     this.Given(/^I am on search page$/, function () {
-        return browser.get('/search/');
+        browser.get('/search/');
+        element( by.id('acceptDataUseRestrictions')).click();
+        return browser.waitForAngular();
     });
 
     this.Then(/^user sees side filter$/, function () {
@@ -108,7 +114,7 @@ var mortalityStepDefinitionsWrapper = function () {
     this.Then(/^the percentages get re\-calculated based on all the information displayed in a given row$/, function (next) {
         browser.actions().mouseMove(element(by.tagName('owh-table'))).perform();
         mortalityPage.getTableRowData(9).then(function(value){
-            expect(value[1]).to.equal('98 (9.4%)');
+            expect(value[1]).to.equal('93 (6.5%)');
         }).then(next);
     });
 
@@ -119,7 +125,7 @@ var mortalityStepDefinitionsWrapper = function () {
     this.Then(/^percentages are displayed in the same column\/cell in parenthesis$/, function (next) {
         browser.actions().mouseMove(element(by.tagName('owh-table'))).perform();
         mortalityPage.getTableRowData(9).then(function(value){
-            expect(value[1]).to.equal('98 (9.4%)');
+            expect(value[1]).to.equal('93 (6.5%)');
         }).then(next);
     });
 
@@ -131,12 +137,16 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^they're displayed same as before and nothing changes$/, function () {
         var labelArray = mortalityPage.getAxisLabelsForMinimizedVisualization();
-        expect(labelArray[0].getText()).to.eventually.equal('Race');
-        expect(labelArray[1].getText()).to.eventually.equal('Deaths');
+        //X-Axis
+        expect(labelArray[0].getText()).to.eventually.equal('Deaths');
+        //Y-Axis
+        expect(labelArray[1].getText()).to.eventually.equal('Race');
         mortalityPage.expandVisualizationLink.click();
         labelArray = mortalityPage.getAxisLabelsForExpandedVisualization();
-        expect(labelArray[0].getText()).to.eventually.equal('Race');
-        return expect(labelArray[1].getText()).to.eventually.equal('Deaths');
+        //X-Axis
+        expect(labelArray[0].getText()).to.eventually.equal('Deaths');
+        //Y-Axis
+        return expect(labelArray[1].getText()).to.eventually.equal('Race');
     });
 
     /* this.When(/^I export the data table into excel or csv$/, function () {
@@ -173,7 +183,7 @@ var mortalityStepDefinitionsWrapper = function () {
     this.Then(/^when that option is toggled, the percentages are either displayed\/hidden$/, function (next) {
         mortalityPage.hidePecentageButton.click();
         mortalityPage.getTableRowData(9).then(function(value){
-            expect(value[1]).to.equal('98');
+            expect(value[1]).to.equal('93');
         }).then(next);
     });
 
@@ -195,7 +205,7 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^the Rates and Percentages should have a one decimal precision$/, function (next) {
         mortalityPage.getTableRowData(9).then(function(value){
-            expect(value[1]).to.equal('98 (9.4%)');
+            expect(value[1]).to.equal('93 (6.5%)');
         }).then(next);
     });
 
@@ -441,11 +451,11 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.When(/^user checks some options under hispanic group$/, function (next) {
-        element(by.id('deaths_hispanicOrigin_Cuban')).element(by.xpath('..')).click();
+        element(by.id('_hispanicOrigin_Cuban')).element(by.xpath('..')).click();
         browser.sleep(300);
-        element(by.id('deaths_hispanicOrigin_Latin American')).element(by.xpath('..')).click();
+        element(by.id('_hispanicOrigin_Latin American')).element(by.xpath('..')).click();
         browser.sleep(400);
-        element(by.id('deaths_hispanicOrigin_Puerto Rican')).element(by.xpath('..')).click()
+        element(by.id('_hispanicOrigin_Puerto Rican')).element(by.xpath('..')).click()
             .then(next);
     });
 
@@ -812,7 +822,7 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.When(/^user selects Alaska state$/, function (then) {
-        element(by.id('deaths_state_AK')).click()
+        element(by.id('_state_AK')).click()
             .then(next);
     });
 
@@ -899,7 +909,7 @@ var mortalityStepDefinitionsWrapper = function () {
     });
 
     this.When(/^I select Alabama state from state filter$/, function (next) {
-        element.all(by.css('label[for=deaths_state_AL]')).then(function(elements, index) {
+        element.all(by.css('label[for=_state_AL]')).then(function(elements, index) {
             elements[1].click();
         }).then(next);
     });
@@ -915,9 +925,9 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^I see total is also being suppressed$/, function (next) {
         mortalityPage.getTableHeaders().then(function(data){
-            expect(data[22]).to.equals('Number of Deaths');
+            expect(data[21]).to.equals('Number of Deaths');
         });
-        mortalityPage.getTableCellData(0,22).then(function(data){
+        mortalityPage.getTableCellData(0,21).then(function(data){
             expect(data).to.contains('Suppressed');
         }).then(next);
     });
@@ -940,21 +950,21 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^labels "([^"]*)" and "([^"]*)" are displayed on minimized visualization$/, function (arg1, arg2) {
         var labelArray = mortalityPage.getAxisLabelsForMinimizedVisualization();
-        expect(labelArray[0].getText()).to.eventually.equal(arg1);
-        return expect(labelArray[1].getText()).to.eventually.equal(arg2);
+        expect(labelArray[0].getText()).to.eventually.equal(arg2);
+        return expect(labelArray[1].getText()).to.eventually.equal(arg1);
     });
 
     this.Then(/^labels "([^"]*)" and "([^"]*)" are displayed on expanded visualization$/, function (arg1, arg2, next) {
         var chart = element(by.className('custom-modal-header'));
         browser.executeScript("arguments[0].scrollIntoView();", chart);
-        /*var labelArray = mortalityPage.getAxisLabelsForExpandedVisualization();
-        expect(labelArray[0].getText()).to.eventually.equal(arg1);
-        expect(labelArray[1].getText()).to.eventually.equal(arg2);*/
+        var labelArray = mortalityPage.getAxisLabelsForExpandedVisualization();
+        expect(labelArray[0].getText()).to.eventually.equal(arg2);
+        expect(labelArray[1].getText()).to.eventually.equal(arg1);
         element(by.name('close')).click().then(next);
     });
 
     this.When(/^I select State "([^"]*)"$/, function (arg1, next) {
-        element.all(by.css('label[for=deaths_state_'+arg1+']')).then(function(elements, index) {
+        element.all(by.css('label[for=_state_'+arg1+']')).then(function(elements, index) {
             elements[1].click();
         }).then(next);
     });
@@ -1042,7 +1052,7 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.When(/^I select Age Groups from '20' to '100'$/, function (next) {
         element(by.className('jslider-scale')).all(by.tagName('span')).then(function(elements){
-            elements[5].click();
+            elements[6].click();
         }).then(next);
     });
 
@@ -1053,25 +1063,25 @@ var mortalityStepDefinitionsWrapper = function () {
         }).then(next);
     });
 
-    this.Then(/^mortality data table should display results for Age Group$/, function () {
+    this.Then(/^mortality data table should display results for Age Group$/, function (next) {
         mortalityPage.getTableRowDataCells(0).then(function (elements) {
             expect(elements[0].getText()).to.eventually.equal('American Indian or Alaska Native');
-            //15 - 19 years
-            expect(elements[1].getText()).to.eventually.contains('Not Available');
             //20 - 24 years
-            expect(elements[2].getText()).to.eventually.contains('Suppressed');
+            expect(elements[1].getText()).to.eventually.contains('Suppressed');
             //25 - 29 years
-            expect(elements[3].getText()).to.eventually.contains('Not Available');
+            expect(elements[2].getText()).to.eventually.contains('Suppressed');
+            //30 - 34 years
+            expect(elements[3].getText()).to.eventually.contains('Suppressed');
         });
         mortalityPage.getTableRowDataCells(2).then(function (elements) {
             expect(elements[0].getText()).to.eventually.equal('Black or African American');
-            //15 - 19 years
-            expect(elements[1].getText()).to.eventually.contains('83 (0.7%)');
             //20 - 24 years
-            expect(elements[2].getText()).to.eventually.contains('169 (1.5%)');
+            expect(elements[1].getText()).to.eventually.contains('83 (0.7%)');
             //25 - 29 years
+            expect(elements[2].getText()).to.eventually.contains('169 (1.5%)');
+            //30 - 34 years
             expect(elements[3].getText()).to.eventually.contains('187 (1.6%)');
-        });
+        }).then(next);
     });
 
     this.Then(/^I see data in data table grouped by Underlying Cause of Death and Race$/, function (next) {
@@ -1117,8 +1127,8 @@ var mortalityStepDefinitionsWrapper = function () {
 
     this.Then(/^I see count for few states are suppressed$/, function (next) {
         mortalityPage.getSideFilterTotals().then(function(elements) {
-            expect(elements[41].getInnerHtml()).to.eventually.equal('Suppressed');
-            expect(elements[62].getInnerHtml()).to.eventually.equal('Suppressed');
+            expect(elements[37].getInnerHtml()).to.eventually.equal('Suppressed');
+            expect(elements[58].getInnerHtml()).to.eventually.equal('Suppressed');
         }).then(next);
     });
 
@@ -1153,5 +1163,11 @@ var mortalityStepDefinitionsWrapper = function () {
         }).then(next);
     });
 
+
+    this.When(/^I expand "([^"]*)" filter section in mortality page$/, function (arg1, next) {
+        element.all(by.partialLinkText(arg1)).then(function(stateEles){
+            stateEles[1].click();
+        }).then(next);
+    });
 };
 module.exports = mortalityStepDefinitionsWrapper;

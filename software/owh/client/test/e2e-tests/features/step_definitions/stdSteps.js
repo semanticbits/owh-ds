@@ -110,9 +110,9 @@ var stdStepDefinitionsWrapper = function () {
     this.Then(/^I should see grouped and stacked controls on expaned visualization$/, function () {
         var ele = element(by.id('chart_expanded_0'));
         browser.executeScript("arguments[0].scrollIntoView();", ele);
-        expect(element(by.className('nv-controlsWrap ')).isPresent()).to.eventually.equal(true);
-        expect(element(by.cssContainingText('text', 'Grouped')).isDisplayed()).to.eventually.equal(true);
-        return expect(element(by.cssContainingText('text', 'Stacked')).isDisplayed()).to.eventually.equal(true);
+        expect(element(by.className('chart-view-toggle')).isPresent()).to.eventually.equal(true);
+        expect(element(by.cssContainingText('span', 'Grouped')).isDisplayed()).to.eventually.equal(true);
+        return expect(element(by.cssContainingText('span', 'Stacked')).isDisplayed()).to.eventually.equal(true);
     });
 
     this.Then(/^I should not see grouped and stacked controls on expanded visualization$/, function () {
