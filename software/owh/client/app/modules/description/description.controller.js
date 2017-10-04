@@ -197,7 +197,7 @@
                     dataDescription: "The estimates result from bridging the 31 race categories used in Census 2000, as specified in the 1997 Office of Management and Budget (OMB) standards for the collection of data on race and ethnicity, to the four race categories specified under the 1977 standards (Asian or Pacific Islander, Black or African American, American Indian or Alaska Native, White).",
                     source: "Data source is United States Department of Health and Human Services (HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS), Bridged-Race Population Estimates, United States July 1st resident population by state, age, sex, bridged-race, and Hispanic origin." +
                     "<ul><li>2010 to 2015 (Vintage 2015) postcensal estimates of the July 1 resident population by five-year of age groups, bridged-race, sex, and Hispanic originreleased by NCHS on June 28, 2016.</li>" +
-                    "<li>2000 to 2009 revised intercensal estimates of the July 1 resident population by year, five-year of age groups, bridged-race, sex, and Hispanic origin released by NCHS on October 26, 2012.</li>" +
+                    "<li>2000 to 2009 revised intercensal estimates of the July 1 resident population by five-year of age groups, bridged-race, sex, and Hispanic origin released by NCHS on October 26, 2012.</li>" +
                     "</ul>",
                     filters: [
                         {name: "Year", description: "This field indicates July 1st estimates for 2000 through last year of the series"},
@@ -264,8 +264,7 @@
                             isRateInfo:true,
                             question:"What are Crude Rates? How are they calculated?",
                             answer:"Crude Rates are expressed as the number of cases reported each calendar year per 100,000 population." +
-                            "<p>Crude Rate = Count / Population * 100,000</p>" +
-                            "<p>The population estimates for the denominators of incidence rates are race-specific (all races, white, black, and Asian/ Pacific Islander) and sex-specific county population estimates aggregated to the state or metropolitan area level.</p>"
+                            "<p>Crude Rate = Count / Population * 100,000</p>"
                         },
                         {
                             question: "Why are some states disabled for certain years?",
@@ -316,8 +315,7 @@
                             isRateInfo:true,
                             question:"What are Crude Rates? How are they calculated?",
                             answer:"Crude Rates are expressed as the number of cases reported each calendar year per 100,000 population." +
-                            "<p>Crude Rate = Count / Population * 100,000</p>" +
-                            "<p>The population estimates for the denominators of incidence rates are race-specific (all races, white, black, and Asian/ Pacific Islander) and sex-specific county population estimates aggregated to the state or metropolitan area level.</p>"
+                            "<p>Crude Rate = Count / Population * 100,000</p>"
                         }
                     ]
                 },
