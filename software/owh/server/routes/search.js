@@ -58,8 +58,14 @@ var searchRouter = function(app, rConfig) {
         });
     });
 
-    app.get('/pramsQuestionsTree', function (req, res) {
-        new yrbs().getPramsQuestionsTree().then(function(response) {
+    app.get('/pramsBasicQuestionsTree', function (req, res) {
+        new yrbs().getPramsBasicQuestionsTree().then(function(response) {
+            res.send(new result('OK', response, "success"));
+        });
+    });
+
+    app.get('/pramsAdvancesQuestionsTree', function (req, res) {
+        new yrbs().getPramsAdvanceQuestionsTree().then(function(response) {
             res.send(new result('OK', response, "success"));
         });
     });

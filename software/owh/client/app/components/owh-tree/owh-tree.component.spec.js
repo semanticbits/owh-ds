@@ -26,10 +26,10 @@ describe('owhTree component: ', function() {
         $httpBackend.whenGET('app/components/owh-tree/owhTree.html').respond( $templateCache.get('app/components/owh-tree/owhTree.html'));
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 1111111111111111}});
         $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: { }});
-        $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('/pramsBasicQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('/pramsAdvancesQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
         $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
-
     });
 
 
