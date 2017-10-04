@@ -55,7 +55,7 @@ yrbs.prototype.invokeYRBSService = function(apiQuery){
         } else if(apiQuery.searchFor == 'brfss') {
             searchUtils.applyBRFSSuppression({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery);
         } else if(apiQuery.searchFor == 'prams') {
-            //searchUtils.applyPRAMSuppressions({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery);
+            searchUtils.applyPRAMSuppressions({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery);
         }
         deferred.resolve(data);
     }, function (error) {
@@ -249,7 +249,7 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
         var responseKey = responseKeyMap[r.response]?responseKeyMap[r.response]:r.response;
 
         // skip NA responses for PRAMS
-        if (responseKey == 'NA') {
+        if (responseKey == 'nan') {
             continue;
         }
 
