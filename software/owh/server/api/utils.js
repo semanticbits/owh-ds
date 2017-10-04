@@ -487,6 +487,23 @@ function applyYRBSSuppressions(obj, countKey, suppressKey, isSexFiltersSelected,
 };
 
 /**
+ * To suppress YRBS Basic and Advanced search data
+ * @param obj
+ * @param countKey
+ * @param suppressKey
+ * @param isSexFiltersSelected
+ */
+function applyPRAMSuppressions(obj, countKey, suppressKey, isChartorMapQuery ) {
+    var dataType;
+    if(isChartorMapQuery){
+        dataType = 'charts';
+    }
+    var maxValue = 30;
+    suppressCounts(obj.data, countKey, dataType, suppressKey, maxValue);
+    suppressTotalCounts(obj.data, countKey, dataType, suppressKey);
+};
+
+/**
  * Suppression for BRFSS
  * @param obj
  * @param countKey
@@ -1257,6 +1274,7 @@ module.exports.mergeWonderResponseWithInfantESData = mergeWonderResponseWithInfa
 module.exports.applySuppressions = applySuppressions;
 module.exports.applyYRBSSuppressions = applyYRBSSuppressions;
 module.exports.applyBRFSSuppression = applyBRFSSuppression;
+module.exports.applyPRAMSuppressions = applyPRAMSuppressions;
 module.exports.getAllOptionValues = getAllOptionValues;
 module.exports.getSelectedGroupByOptions = getSelectedGroupByOptions;
 module.exports.getTargetFilter = getTargetFilter;

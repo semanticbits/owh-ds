@@ -32,6 +32,10 @@
       "ageAdjustedRate": "Unreliable",
       "standardPop": 6887
     },
+    "District of Columbia": {
+      "ageAdjustedRate": "Suppressed",
+      "standardPop": 4583
+    },
     "Florida": {
       "ageAdjustedRate": "278.2",
       "standardPop": 112647
@@ -112,6 +116,10 @@
       "ageAdjustedRate": "511.6",
       "standardPop": 55401
     },
+    "New Hampshire": {
+      "ageAdjustedRate": "Suppressed",
+      "standardPop": 4955
+    },
     "New Jersey": {
       "ageAdjustedRate": "122.0",
       "standardPop": 63250
@@ -183,6 +191,10 @@
     "Washington": {
       "ageAdjustedRate": "843.5",
       "standardPop": 163021
+    },
+    "West Virginia": {
+      "ageAdjustedRate": "Suppressed",
+      "standardPop": 4654
     },
     "Wisconsin": {
       "ageAdjustedRate": "889.9",

@@ -4,7 +4,8 @@ var config = require('../config/config');
 var request = require('request');
 var searchUtils = require('../api/utils');
 var cahcedQuestions = null;
-var cachedPramsQuestions = null;
+var cachedPramsBasicQuestions = null;
+var cachedPramsAdvanceQuestions = null;
 var cachedBRFSQuestions = null;
 function yrbs() {
 }
@@ -53,6 +54,8 @@ yrbs.prototype.invokeYRBSService = function(apiQuery){
             searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexualOrientationSelected, apiQuery.isChartorMapQuery);
         } else if(apiQuery.searchFor == 'brfss') {
             searchUtils.applyBRFSSuppression({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery);
+        } else if(apiQuery.searchFor == 'prams') {
+            //searchUtils.applyPRAMSuppressions({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery);
         }
         deferred.resolve(data);
     }, function (error) {
@@ -105,6 +108,54 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
     }if(aggrsKeys.indexOf('income') >= 0){
         sortedKeys.push('income');
     }
+    if(aggrsKeys.indexOf('birth_weight') >= 0){
+        sortedKeys.push('birth_weight');
+    }
+    if(aggrsKeys.indexOf('marital_status') >= 0){
+        sortedKeys.push('marital_status');
+    }
+    if(aggrsKeys.indexOf('maternal_age_18to44') >= 0){
+        sortedKeys.push('maternal_age_18to44');
+    }
+    if(aggrsKeys.indexOf('maternal_age_18to44grp') >= 0){
+        sortedKeys.push('maternal_age_18to44grp');
+    }
+    if(aggrsKeys.indexOf('maternal_age_3lvl') >= 0){
+        sortedKeys.push('maternal_age_3lvl');
+    }
+    if(aggrsKeys.indexOf('maternal_age_4lvl') >= 0){
+        sortedKeys.push('maternal_age_4lvl');
+    }
+    if(aggrsKeys.indexOf('maternal_education') >= 0){
+        sortedKeys.push('maternal_education');
+    }
+    if(aggrsKeys.indexOf('maternal_race') >= 0){
+        sortedKeys.push('maternal_race');
+    }
+    if(aggrsKeys.indexOf('medicaid_recip') >= 0){
+        sortedKeys.push('medicaid_recip');
+    }
+    if(aggrsKeys.indexOf('mother_hispanic') >= 0){
+        sortedKeys.push('mother_hispanic');
+    }
+    if(aggrsKeys.indexOf('preg_intend') >= 0){
+        sortedKeys.push('preg_intend');
+    }
+    if(aggrsKeys.indexOf('prenatal_care') >= 0){
+        sortedKeys.push('prenatal_care');
+    }
+    if(aggrsKeys.indexOf('prev_live_births') >= 0){
+        sortedKeys.push('prev_live_births');
+    }
+    if(aggrsKeys.indexOf('smoked_3mo_pre_preg') >= 0){
+        sortedKeys.push('smoked_3mo_pre_preg');
+    }
+    if(aggrsKeys.indexOf('smoked_last_tri') >= 0){
+        sortedKeys.push('smoked_last_tri');
+    }
+    if(aggrsKeys.indexOf('wic_during_preg') >= 0){
+        sortedKeys.push('wic_during_preg');
+    }
     if(aggrsKeys.indexOf('year') >= 0){
         sortedKeys.push('year');
     }
@@ -136,11 +187,11 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
             for (var i = 0; i < selectedQs.length; i++) {
                 var qry = config.yrbs.queryUrl+'?'; //Base url
                 if(apiQuery.searchFor === 'mental_health') {
-                    qry += 'd=yrbss&' // yrbs dataset
+                    qry += 'd=yrbss&'; // yrbs dataset
                 } else if(apiQuery.searchFor === 'prams') {
-                    qry += 'd=prams&' // prams dataset
+                    apiQuery.basicSearch ? qry += 'd=prams&' : qry += 'd=prams_p2011&'; // prams dataset
                 } else if(apiQuery.searchFor === 'brfss') {
-                    qry += 'd=brfss&' // brfss dataset
+                    qry += 'd=brfss&'; // brfss dataset
                 }
                 if(apiQuery.basicSearch) {
                     qry +='s=1&';
@@ -244,6 +295,54 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
                 cell = getResultCell(cell, 'income', r.income);
             }
 
+            if ('birth_weight' in r && response.vars.indexOf('birth_weight') != -1) {
+                cell = getResultCell(cell, 'birth_weight', r.birth_weight);
+            }
+            if ('marital_status' in r && response.vars.indexOf('marital_status') != -1) {
+                cell = getResultCell(cell, 'marital_status', r.marital_status);
+            }
+            if ('maternal_age_18to44' in r && response.vars.indexOf('maternal_age_18to44') != -1) {
+                cell = getResultCell(cell, 'maternal_age_18to44', r['maternal_age_18to44']);
+            }
+            if ('maternal_age_18to44grp' in r && response.vars.indexOf('maternal_age_18to44grp') != -1) {
+                cell = getResultCell(cell, 'maternal_age_18to44grp', r['maternal_age_18to44grp']);
+            }
+            if ('maternal_age_3lvl' in r && response.vars.indexOf('maternal_age_3lvl') != -1) {
+                cell = getResultCell(cell, 'maternal_age_3lvl', r['maternal_age_3lvl']);
+            }
+            if ('maternal_age_4lvl' in r && response.vars.indexOf('maternal_age_4lvl') != -1) {
+                cell = getResultCell(cell, 'maternal_age_4lvl', r['maternal_age_4lvl']);
+            }
+            if ('maternal_education' in r && response.vars.indexOf('maternal_education') != -1) {
+                cell = getResultCell(cell, 'maternal_education', r['maternal_education']);
+            }
+            if ('maternal_race' in r && response.vars.indexOf('maternal_race') != -1) {
+                cell = getResultCell(cell, 'maternal_race', r['maternal_race']);
+            }
+            if ('medicaid_recip' in r && response.vars.indexOf('medicaid_recip') != -1) {
+                cell = getResultCell(cell, 'medicaid_recip', r['medicaid_recip']);
+            }
+            if ('mother_hispanic' in r && response.vars.indexOf('mother_hispanic') != -1) {
+                cell = getResultCell(cell, 'mother_hispanic', r['mother_hispanic']);
+            }
+            if ('preg_intend' in r && response.vars.indexOf('preg_intend') != -1) {
+                cell = getResultCell(cell, 'preg_intend', r['preg_intend']);
+            }
+            if ('prenatal_care' in r && response.vars.indexOf('prenatal_care') != -1) {
+                cell = getResultCell(cell, 'prenatal_care', r['prenatal_care']);
+            }
+            if ('prev_live_births' in r && response.vars.indexOf('prev_live_births') != -1) {
+                cell = getResultCell(cell, 'prev_live_births', r['prev_live_births']);
+            }
+            if ('smoked_3mo_pre_preg' in r && response.vars.indexOf('smoked_3mo_pre_preg') != -1) {
+                cell = getResultCell(cell, 'smoked_3mo_pre_preg', r['smoked_3mo_pre_preg']);
+            }
+            if ('smoked_last_tri' in r && response.vars.indexOf('smoked_last_tri') != -1) {
+                cell = getResultCell(cell, 'smoked_last_tri', r['smoked_last_tri']);
+            }
+            if ('wic_during_preg' in r && response.vars.indexOf('wic_during_preg') != -1) {
+                cell = getResultCell(cell, 'wic_during_preg', r['wic_during_preg']);
+            }
             // Prams filters
             if ('year' in r && response.vars.indexOf('year') != -1) {
                 cell = getResultCell(cell, 'year', r.year);
@@ -388,20 +487,43 @@ yrbs.prototype.getYRBSQuestionsTree = function () {
  * Get questions for PRAMS
  * @returns {*\promise}
  */
-    yrbs.prototype.getPramsQuestionsTree = function () {
+    yrbs.prototype.getPramsBasicQuestionsTree = function () {
     var deferred = Q.defer();
-    if(cachedPramsQuestions) {
+    if(cachedPramsBasicQuestions) {
         logger.info("Returning cached PRAMS questions");
-        deferred.resolve(cachedPramsQuestions);
+        deferred.resolve(cachedPramsBasicQuestions);
     } else {
         invokeYRBS(config.yrbs.questionsUrl + '?d=prams').then(function(response) {
             logger.info("Getting PRAMS questions from YRBS service");
             var data = prepareQuestionTree(response.questions, true);
             // Cache the result only if it is valid
             if (data.questionsList.length > 0) {
-                cachedPramsQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
+                cachedPramsBasicQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
             }
-            deferred.resolve(cachedPramsQuestions);
+            deferred.resolve(cachedPramsBasicQuestions);
+        });
+    }
+    return deferred.promise;
+};
+
+/**
+* Get questions for PRAMS
+* @returns {*\promise}
+*/
+yrbs.prototype.getPramsAdvanceQuestionsTree = function () {
+    var deferred = Q.defer();
+    if(cachedPramsAdvanceQuestions) {
+        logger.info("Returning cached PRAMS questions");
+        deferred.resolve(cachedPramsAdvanceQuestions);
+    } else {
+        invokeYRBS(config.yrbs.questionsUrl + '?d=prams_p2011').then(function(response) {
+            logger.info("Getting PRAMS questions from YRBS service");
+            var data = prepareQuestionTree(response.questions, true);
+            // Cache the result only if it is valid
+            if (data.questionsList.length > 0) {
+                cachedPramsAdvanceQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
+            }
+            deferred.resolve(cachedPramsAdvanceQuestions);
         });
     }
     return deferred.promise;

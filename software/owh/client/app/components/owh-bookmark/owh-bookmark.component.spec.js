@@ -30,7 +30,8 @@ describe('bookmark component: ', function() {
         $httpBackend.whenGET('app/components/owh-bookmark/bookmark.html').respond( $templateCache.get('app/components/owh-bookmark/bookmark.html'));
         $httpBackend.whenGET('/getFBAppID').respond({data: { fbAppID: 11111}});
         $httpBackend.whenGET('/yrbsQuestionsTree').respond({data: { }});
-        $httpBackend.whenGET('/pramsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('/pramsBasicQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('/pramsAdvancesQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
         $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
     });

@@ -369,13 +369,25 @@
         });
 
         /*
-            Get PRAMS questions
+            Get PRAMS questions for basic search view
          */
-        API.getPRAMSQuestionsTree().$promise.then(function(response){
+        API.getPRAMSBasicQuestions().$promise.then(function(response){
             console.log('prams questions response', response);
-            $rootScope.pramsQuestions = response.data.questionTree;
-            $rootScope.pramsQuestionsList = response.data.questionsList;
-            $rootScope.$broadcast("pramsQuestionsLoaded");
+            $rootScope.pramsBasicQuestions = response.data.questionTree;
+            $rootScope.pramsBasicQuestionsList = response.data.questionsList;
+            $rootScope.$broadcast("pramsBasicQuestionsLoaded");
+        }).catch(function(error){
+            console.log(" Failed to get PRAMS questions from stats service ", error);
+        });
+
+        /*
+            Get PRAMS questions for advance search view
+         */
+        API.getPRAMSAdvanceQuestions().$promise.then(function(response){
+            console.log('prams questions response', response);
+            $rootScope.pramsAdvanceQuestions = response.data.questionTree;
+            $rootScope.pramsAdvanceQuestionsList = response.data.questionsList;
+            $rootScope.$broadcast("pramsAdvanceQuestionsLoaded");
 
         }).catch(function(error){
             console.log(" Failed to get PRAMS questions from stats service ", error);
