@@ -624,20 +624,14 @@
         var stdAgeGroupOptions = [
             {"key": "All age groups", "title": "All age groups"},
             {"key": "0-14", "title": "0-14"},
-            {"key": "05-14", "title": "05-14"},
-            {"key": "13-24", "title": "13-24"},
             {"key": "15-19", "title": "15-19"},
-            {"key": "15-24", "title": "15-24"},
             {"key": "20-24", "title": "20-24"},
             {"key": "25-29", "title": "25-29"},
-            {"key": "25-34", "title": "25-34"},
             {"key": "30-34", "title": "30-34"},
             {"key": "35-39", "title": "35-39"},
-            {"key": "35-44", "title": "35-44"},
             {"key": "40-44", "title": "40-44"},
             {"key": "45-54", "title": "45-54"},
             {"key": "55-64", "title": "55-64"},
-            {"key": "55+", "title": "55+"},
             {"key": "65+", "title": "65+"},
             {"key": "Unknown", "title": "Unknown"}
         ];
@@ -1400,21 +1394,12 @@
                 {"key": "All age groups", "title": "All age groups"},
                 {"key": "Age 15 and older", "title": "Age 15 and older"},
                 {"key": "0-4", "title": "0-4"},
-                {"key": "0-14", "title": "0-14"},
                 {"key": "05-14", "title": "05-14"},
-                {"key": "13-24", "title": "13-24"},
-                {"key": "15-19", "title": "15-19"},
                 {"key": "15-24", "title": "15-24"},
-                {"key": "20-24", "title": "20-24"},
-                {"key": "25-29", "title": "25-29"},
                 {"key": "25-34", "title": "25-34"},
-                {"key": "30-34", "title": "30-34"},
-                {"key": "35-39", "title": "35-39"},
                 {"key": "35-44", "title": "35-44"},
-                {"key": "40-44", "title": "40-44"},
                 {"key": "45-54", "title": "45-54"},
                 {"key": "55-64", "title": "55-64"},
-                {"key": "55+", "title": "55+"},
                 {"key": "65+", "title": "65+"}
             ];
             var countryOfBirth =  [
