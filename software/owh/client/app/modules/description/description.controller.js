@@ -418,6 +418,7 @@
                         {name: "Age Group", description: "This field indicates the age group of the patient. HIV surveillance data include adults and adolescents only (persons aged 13 years and older)"},
                         {name: "Transmission Category", description: "This field indicates the classification of cases that summarizes a person’s possible HIV risk factor"}
                     ],
+                    note: "<span class='bold-class'>Note:</span> Data on diagnoses of HIV infection should be interpreted with caution. Data may not be representative of all persons with HIV because not all infected persons have been tested. Also, many states offer anonymous testing; the results of anonymous tests are not reported to the confidential name-based HIV registries of state and local health departments. The data presented provide minimum number of persons for whom HIV infection has been diagnosed and reported to the National HIV Surveillance System. In addition, because surveillance practices differ, the reporting and the updating of a person’s clinical and vital status differ among states. The completeness of reporting of HIV diagnoses is estimated at more than 80%.<br/><br/>",
                     additionalInfo:[
                         {
                             question:"Can I get more information on AIDS/HIV age groups?",
@@ -589,7 +590,7 @@
                         },
                         {
                             question:"Why are results not available for every state?",
-                            answer:"Results are not available from every state for several reasons. Firstly, Eleven states (Arizona, Connecticut, District of Columbia, Idaho, Indiana, Iowa, Kansas, Kentucky, Nevada, New Hampshire, Virginia) do not participate in the PRAMS. Secondly, data are not available for some states in certain years (See Availability of PRAMS Data For Analysis by State and Year: <a href='https://www.cdc.gov/prams/pramstat/state-availability-year.html' target='_blank'>https://www.cdc.gov/prams/pramstat/state-availability-year.html</a>)"
+                            answer:"Results are not available from every state for several reasons. Firstly, 11 states (Arizona, Connecticut, District of Columbia, Idaho, Indiana, Iowa, Kansas, Kentucky, Nevada, New Hampshire, Virginia) do not participate in the PRAMS. Secondly, data are not available for some states in certain years (See Availability of PRAMS Data For Analysis by State and Year: <a href='https://www.cdc.gov/prams/pramstat/state-availability-year.html' target='_blank'>https://www.cdc.gov/prams/pramstat/state-availability-year.html</a>)"
                         }
                     ]
                 },
