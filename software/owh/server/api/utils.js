@@ -398,6 +398,10 @@ function suppressCounts (obj, countKey, dataType, suppressKey, maxValue, dataset
             } else if(obj.mean == 0 && obj.count == 0) {
                 obj.mean = naVal; //no response
             }
+        } else if(dataset === 'prams') {
+            if(obj.mean == 0 && obj.count == null) {
+                obj.mean = suppressedVal;
+            }
         } else if(obj[countKey] != undefined && obj[countKey] < value) {
             if(countKey === 'std' && obj[countKey] === 0) {
                 obj[countKey] = naVal;
@@ -499,9 +503,8 @@ function applyPRAMSuppressions(obj, countKey, suppressKey, isChartorMapQuery ) {
         dataType = 'charts';
     }
     var maxValue = 30;
-    suppressCounts(obj.data, countKey, dataType, suppressKey, maxValue);
-    suppressTotalCounts(obj.data, countKey, dataType, suppressKey);
-};
+    suppressCounts(obj.data, countKey, dataType, suppressKey, maxValue, 'prams');
+}
 
 /**
  * Suppression for BRFSS
