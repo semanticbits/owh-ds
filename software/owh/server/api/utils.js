@@ -367,11 +367,11 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
  * @param suppressKey - if suppressKey passed then set 'obj[suppresskey]' to 'suppressed'
  * @param maxValue
  */
-function suppressCounts (obj, countKey, dataType, suppressKey, maxValue, dataset) {
+function suppressCounts (obj, countKey, dataType, suppressKey, maxValue, dataset, isBasicSearch) {
     var key = suppressKey ? suppressKey : countKey;
     var value = maxValue !== undefined ? maxValue : 10;
     var suppressedVal = 'suppressed';
-    var naVal = 'na'
+    var naVal = 'na';
     // Set supressed and na value for charts to -1 and -2 respectively;
     if(dataType === 'charts'){
         suppressedVal = -1;
@@ -387,19 +387,29 @@ function suppressCounts (obj, countKey, dataType, suppressKey, maxValue, dataset
         }
 
         if (obj[property] && obj[property].constructor === Object) {
-            suppressCounts(obj[property], countKey, dataType, suppressKey, maxValue, dataset);
+            suppressCounts(obj[property], countKey, dataType, suppressKey, maxValue, dataset, isBasicSearch);
         } else if (obj[property] && obj[property].constructor === Array) {
             obj[property].forEach(function(arrObj) {
-                suppressCounts(arrObj, countKey, dataType, suppressKey, maxValue, dataset);
+                suppressCounts(arrObj, countKey, dataType, suppressKey, maxValue, dataset, isBasicSearch);
             });
         } else if(dataset === 'brfss') {
-            if(obj.mean == 0 && obj.count != 0) {
-                obj.mean = suppressedVal;
-            } else if(obj.mean == 0 && obj.count == 0) {
-                obj.mean = naVal; //no response
+            if(isBasicSearch) {
+                if(obj.mean == 0 && obj.count != 0) {
+                    obj.mean = suppressedVal;
+                } else if(obj.mean == 0 && obj.count == 0) {
+                    obj.mean = naVal; //no response
+                }
+            } else if(!isBasicSearch) {
+                var rse = obj.se*100 / obj.mean;
+                if(obj.sampleSize < 50 || rse > 0.3) {
+                    obj.mean = suppressedVal;
+                }
             }
         } else if(dataset === 'prams') {
-            if(obj.mean == 0 && obj.count == null) {
+            //for basic search
+            if(isBasicSearch && obj.mean == 0 && obj.count == null) {
+                obj.mean = suppressedVal;
+            } else if(!isBasicSearch && obj.sampleSize < 30) {//for advance search
                 obj.mean = suppressedVal;
             }
         } else if(obj[countKey] != undefined && obj[countKey] < value) {
@@ -497,13 +507,13 @@ function applyYRBSSuppressions(obj, countKey, suppressKey, isSexFiltersSelected,
  * @param suppressKey
  * @param isSexFiltersSelected
  */
-function applyPRAMSuppressions(obj, countKey, suppressKey, isChartorMapQuery ) {
+function applyPRAMSuppressions(obj, countKey, suppressKey, isChartorMapQuery, isBasicSearch ) {
     var dataType;
     if(isChartorMapQuery){
         dataType = 'charts';
     }
     var maxValue = 30;
-    suppressCounts(obj.data, countKey, dataType, suppressKey, maxValue, 'prams');
+    suppressCounts(obj.data, countKey, dataType, suppressKey, maxValue, 'prams', isBasicSearch);
 }
 
 /**
@@ -513,12 +523,12 @@ function applyPRAMSuppressions(obj, countKey, suppressKey, isChartorMapQuery ) {
  * @param suppressKey
  * @param isChartorMapQuery
  */
-function applyBRFSSuppression(obj, countKey, suppressKey, isChartorMapQuery ) {
+function applyBRFSSuppression(obj, countKey, suppressKey, isChartorMapQuery, isBasicSearch ) {
     var dataType;
     if(isChartorMapQuery){
         dataType = 'charts';
     }
-    suppressCounts(obj.data, countKey, dataType, suppressKey, undefined, 'brfss');
+    suppressCounts(obj.data, countKey, dataType, suppressKey, undefined, 'brfss', isBasicSearch);
 }
 
 /**
