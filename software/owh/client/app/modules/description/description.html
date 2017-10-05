@@ -40,6 +40,7 @@
 
                 <div class="usa-width-one-whole margin-top-10 additional-info" ng-if="dataset.additionalInfo">
                     <h3 class="dark-purple-text">Additional Information:</h3>
+                    <div ng-if="dataset.note" ng-bind-html="dataset.note"></div>
                     <div ng-repeat="info in dataset.additionalInfo">
                         <div ng-class="{'rate-info-section': info.isRateInfo == true}"
                              ng-bind="info.question" class="bold-class"></div>
