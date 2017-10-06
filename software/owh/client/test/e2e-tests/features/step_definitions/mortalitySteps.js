@@ -29,12 +29,16 @@ var mortalityStepDefinitionsWrapper = function () {
             .then(next);
     });
 
-    this.Then(/^labels are displayed on both the axes for expanded visualization$/, function () {
+    this.Then(/^labels are displayed on both the axes for expanded visualization$/, function (next) {
         var labelArray = mortalityPage.getAxisLabelsForExpandedVisualization();
-        //X-Axis
-        expect(labelArray[0].getText()).to.eventually.equal('Deaths');
-        //Y Axis
-        return expect(labelArray[1].getText()).to.eventually.equal('Race');
+        labelArray[0].getText().then(function(xAxisLabel){
+            console.log("Expanded chart X-Axis label ", xAxisLabel);
+            expect(xAxisLabel).to.equal('Deaths');
+        });
+        labelArray[1].getText().then(function(yAxisLabel){
+            console.log("Expanded chart Y-Axis label ", yAxisLabel);
+            expect(yAxisLabel).to.equal('Race');
+        }).then(next);
     });
 
     this.Given(/^I am on search page$/, function () {
@@ -135,18 +139,26 @@ var mortalityStepDefinitionsWrapper = function () {
         }).then(next);
     });
 
-    this.Then(/^they're displayed same as before and nothing changes$/, function () {
+    this.Then(/^they're displayed same as before and nothing changes$/, function (next) {
         var labelArray = mortalityPage.getAxisLabelsForMinimizedVisualization();
-        //X-Axis
-        expect(labelArray[0].getText()).to.eventually.equal('Deaths');
-        //Y-Axis
-        expect(labelArray[1].getText()).to.eventually.equal('Race');
+        labelArray[0].getText().then(function(xAxisLabel){
+            console.log("X-Axis label ", xAxisLabel);
+            expect(xAxisLabel).to.equal('Deaths');
+        });
+        labelArray[1].getText().then(function(yAxisLabel){
+            console.log("Y-Axis label ", yAxisLabel);
+            expect(yAxisLabel).to.equal('Race');
+        });
         mortalityPage.expandVisualizationLink.click();
         labelArray = mortalityPage.getAxisLabelsForExpandedVisualization();
-        //X-Axis
-        expect(labelArray[0].getText()).to.eventually.equal('Deaths');
-        //Y-Axis
-        return expect(labelArray[1].getText()).to.eventually.equal('Race');
+        labelArray[0].getText().then(function(xAxisLabel){
+            console.log("Expanded chart X-Axis label ", xAxisLabel);
+            expect(xAxisLabel).to.equal('Deaths');
+        });
+        labelArray[1].getText().then(function(yAxisLabel){
+            console.log("Expanded chart Y-Axis label ", yAxisLabel);
+            expect(yAxisLabel).to.equal('Race');
+        }).then(next);
     });
 
     /* this.When(/^I export the data table into excel or csv$/, function () {
@@ -428,7 +440,10 @@ var mortalityStepDefinitionsWrapper = function () {
 
         elm.all(by.tagName('li')).then(function(elmnts) {
             for(var i = 0; i < 10; i++) {
-                expect(elmnts[i].element(by.tagName('input')).isSelected()).to.eventually.equal(true);
+                elmnts[i].element(by.tagName('input')).isSelected().then(function(isSelected){
+                    console.log(" Hispanic child check boxes selected ", isSelected);
+                    expect(isSelected).to.equal(true);
+                });
             }
         }).then(next);
 
