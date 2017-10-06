@@ -81,7 +81,6 @@
                         {key: 'advance_delivery', title: 'Delivery'},
                         {key: 'advance_demographics', title: 'Demographics'},
                         {key: 'advance_family_planning', title: 'Family Planning'},
-                        {key: 'advance_flu', title: 'Flu'},
                         {key: 'advance_infant_health', title: 'Infant Health'},
                         {key: 'advance_maternal_behavior', title: 'Maternal Behavior/Health'},
                         {key: 'advance_maternal_experiences', title: 'Maternal Experiences'},

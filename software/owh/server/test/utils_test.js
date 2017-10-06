@@ -581,6 +581,54 @@ describe("Utils", function(){
 
     });
 
+    it("Apply suppression for prams basic search", function (done) {
+       var result = [{"name":"qn365","no":{"sitecode":[{"name":"AR","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"CO","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"DE","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"GA","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"HI","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"MA","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"MD","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"ME","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"MI","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"MN","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"MO","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"NE","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"NJ","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"NM","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"NY","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"OK","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"OR","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"PA","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"RI","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"XX","prams":{"mean":"99.6","ci_l":"97.6","ci_u":"99.9","count":94}},{"name":"UT","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"VT","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"WA","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"WI","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"WV","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"WY","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"YC","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}}],"prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},"yes":{"sitecode":[{"name":"AR","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"CO","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"DE","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"GA","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"HI","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"MA","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"MD","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"ME","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"MI","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"MN","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"MO","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"NE","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"NJ","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"NM","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"NY","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"OK","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"OR","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"PA","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"RI","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"XX","prams":{"mean":"0.4","ci_l":"0.1","ci_u":"2.4","count":1}},{"name":"UT","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"VT","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"WA","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"WI","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"WV","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"WY","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}},{"name":"YC","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}}],"prams":{"mean":"0","ci_l":"0","ci_u":"0","count":null}}}];
+
+       searchUtils.applyPRAMSuppressions({data: result}, 'count', 'mean', false, true);
+        expect(result[0].no.sitecode[0].name).equal("AR");
+        expect(result[0].no.sitecode[0].prams.mean).equal("suppressed");
+
+        expect(result[0].no.sitecode[1].name).equal("CO");
+        expect(result[0].no.sitecode[1].prams.mean).equal("suppressed");
+        done();
+    });
+
+    it("Apply suppression for prams advance search", function (done) {
+       var result = [{"name":"pd_comp","No":{"sitecode":[{"name":"AK","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":0,"sampleSize":0,"se":null}},{"name":"AL","prams":{"mean":"96.3","ci_l":"2.3","ci_u":"100.0","count":841,"sampleSize":875,"se":0.0197}},{"name":"AR","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":0,"sampleSize":0,"se":null}},{"name":"CO","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":0,"sampleSize":0,"se":null}},{"name":"CT","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":0,"sampleSize":0,"se":null}},{"name":"DE","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":0,"sampleSize":0,"se":null}},{"name":"GA","prams":{"mean":"0","ci_l":"0","ci_u":"0","count":0,"sampleSize":0,"se":null}}],"prams":{"mean":"2.8","ci_l":"1.8","ci_u":"4.4","count":171,"sampleSize":5977,"se":0.0056}}}];
+
+       searchUtils.applyPRAMSuppressions({data: result}, 'count', 'mean', false, false);
+        expect(result[0].No.sitecode[0].name).equal("AK");
+        expect(result[0].No.sitecode[0].prams.mean).equal("suppressed");
+        expect(result[0].No.sitecode[0].prams.sampleSize).equal(0);
+
+        expect(result[0].No.sitecode[1].name).equal("AL");
+        expect(result[0].No.sitecode[1].prams.mean).equal("96.3");
+        expect(result[0].No.sitecode[1].prams.sampleSize).equal(875);
+        done();
+    });
+
+    it("Apply suppression for brfss advance search", function (done) {
+       var result = [{"name":"x_rfbing5","no":{"race":[{"name":"AI/AN","brfss":{"mean":"89.1","ci_l":"73.4","ci_u":"96.0","count":97,"sampleSize":106,"se":0.0533}},{"name":"Asian","brfss":{"mean":"94.7","ci_l":"72.8","ci_u":"99.2","count":32,"sampleSize":34,"se":0.0467}},{"name":"Black","brfss":{"mean":"87.3","ci_l":"84.9","ci_u":"89.4","count":1694,"sampleSize":1880,"se":0.0114}},{"name":"Hispanic","brfss":{"mean":"86.6","ci_l":"75.1","ci_u":"93.2","count":82,"sampleSize":93,"se":0.0445}},{"name":"Multiracial non-Hispanic","brfss":{"mean":"89.0","ci_l":"76.1","ci_u":"95.3","count":70,"sampleSize":77,"se":0.0458}},{"name":"NHOPI","brfss":{"mean":"100.0","ci_l":"0","ci_u":"0","count":4,"sampleSize":4,"se":0}},{"name":"Other Race","brfss":{"mean":"85.9","ci_l":"62.2","ci_u":"95.7","count":48,"sampleSize":51,"se":0.0789}},{"name":"White","brfss":{"mean":"88.8","ci_l":"87.5","ci_u":"90.0","count":4721,"sampleSize":5161,"se":0.0064}}],"brfss":{"mean":"88.4","ci_l":"87.3","ci_u":"89.4","count":6822,"sampleSize":7487,"se":0.0055}},"yes":{"race":[{"name":"AI/AN","brfss":{"mean":"10.9","ci_l":"4.0","ci_u":"26.6","count":9,"sampleSize":106,"se":0.0533}},{"name":"Asian","brfss":{"mean":"5.3","ci_l":"0.8","ci_u":"27.2","count":2,"sampleSize":34,"se":0.0467}},{"name":"Black","brfss":{"mean":"12.7","ci_l":"10.6","ci_u":"15.1","count":186,"sampleSize":1880,"se":0.0114}},{"name":"Hispanic","brfss":{"mean":"13.4","ci_l":"6.8","ci_u":"24.9","count":11,"sampleSize":93,"se":0.0445}},{"name":"Multiracial non-Hispanic","brfss":{"mean":"11.0","ci_l":"4.7","ci_u":"23.9","count":7,"sampleSize":77,"se":0.0458}},{"name":"NHOPI","brfss":{"mean":"0","ci_l":"0","ci_u":"0","count":0,"sampleSize":4,"se":0}},{"name":"Other Race","brfss":{"mean":"14.1","ci_l":"4.3","ci_u":"37.8","count":3,"sampleSize":51,"se":0.0789}},{"name":"White","brfss":{"mean":"11.2","ci_l":"10.0","ci_u":"12.5","count":440,"sampleSize":5161,"se":0.0064}}],"brfss":{"mean":"11.6","ci_l":"10.6","ci_u":"12.7","count":665,"sampleSize":7487,"se":0.0055}}}];
+
+       searchUtils.applyBRFSSuppression({data: result}, 'count', 'mean', false, false);
+        console.log(result[0].yes.race);
+        expect(result[0].yes.race[0].name).equal("AI/AN");
+        expect(result[0].yes.race[0].brfss.mean).equal('suppressed');
+        expect(result[0].yes.race[0].brfss.sampleSize).equal(106);
+
+        expect(result[0].yes.race[1].name).equal("Asian");
+        expect(result[0].yes.race[1].brfss.mean).equal("suppressed");
+        expect(result[0].yes.race[1].brfss.sampleSize).equal(34);
+
+        expect(result[0].yes.race[2].name).equal("Black");
+        expect(result[0].yes.race[2].brfss.mean).equal('12.7');
+        expect(result[0].yes.race[2].brfss.se).equal(0.0114);
+        expect(result[0].yes.race[2].brfss.sampleSize).equal(1880);
+        done();
+    });
+
+
+
     it("Get 'All' options values", function(done){
         var values = searchUtils.getAllOptionValues();
         expect(values[0]).equal("Both sexes");

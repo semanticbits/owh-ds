@@ -704,15 +704,15 @@ describe("Elastic Search", function () {
         var query = [casesQuery, populationQuery, mapQuery, chartQuery];
         new elasticSearch().aggregateDiseaseData(query, 'std', 'owh_std', 'std').then(function (resp) {
             //Chart 0 -> age_group vs race
-            expect(resp.data.nested.charts[0].age_group[16].name).equal("All age groups");
-            expect(resp.data.nested.charts[0].age_group[16].race[0].name).equal("All races/ethnicities");
-            expect(resp.data.nested.charts[0].age_group[16].race[0].std).equal(1526658);
-            expect(resp.data.nested.charts[0].age_group[16].race[0].pop).equal(318857056);
+            expect(resp.data.nested.charts[0].age_group[10].name).equal("All age groups");
+            expect(resp.data.nested.charts[0].age_group[10].race[0].name).equal("All races/ethnicities");
+            expect(resp.data.nested.charts[0].age_group[10].race[0].std).equal(1526658);
+            expect(resp.data.nested.charts[0].age_group[10].race[0].pop).equal(318857056);
             //Chart 1 -> sex vs age_group
             expect(resp.data.nested.charts[1].sex[0].name).equal("Both sexes");
-            expect(resp.data.nested.charts[1].sex[0].age_group[16].name).equal("All age groups");
-            expect(resp.data.nested.charts[1].sex[0].age_group[16].std).equal(1526658);
-            expect(resp.data.nested.charts[1].sex[0].age_group[16].pop).equal(318857056);
+            expect(resp.data.nested.charts[1].sex[0].age_group[10].name).equal("All age groups");
+            expect(resp.data.nested.charts[1].sex[0].age_group[10].std).equal(1526658);
+            expect(resp.data.nested.charts[1].sex[0].age_group[10].pop).equal(318857056);
             //Chart 2 -> sex vs race
             expect(resp.data.nested.charts[2].sex[0].name).equal("Both sexes");
             expect(resp.data.nested.charts[2].sex[0].race[0].name).equal("All races/ethnicities");
@@ -846,10 +846,10 @@ describe("Elastic Search", function () {
         var query = [casesQuery, populationQuery, mapQuery, chartQuery];
         new elasticSearch().aggregateDiseaseData(query, 'tb', 'owh_tb', 'tb').then(function (resp) {
             //Chart 0 -> age_group vs race
-            expect(resp.data.nested.charts[0].age_group[18].name).equal("All age groups");
-            expect(resp.data.nested.charts[0].age_group[18].race[0].name).equal("All races/ethnicities");
-            expect(resp.data.nested.charts[0].age_group[18].race[0].tb).equal(19087);
-            expect(resp.data.nested.charts[0].age_group[18].race[0].pop).equal(321418820);
+            expect(resp.data.nested.charts[0].age_group[9].name).equal("All age groups");
+            expect(resp.data.nested.charts[0].age_group[9].race[0].name).equal("All races/ethnicities");
+            expect(resp.data.nested.charts[0].age_group[9].race[0].tb).equal(19087);
+            expect(resp.data.nested.charts[0].age_group[9].race[0].pop).equal(321418820);
             //Chart 1 -> sex vs age_group
             expect(resp.data.nested.charts[1].sex[0].name).equal("Both sexes");
             expect(resp.data.nested.charts[1].sex[0].race[0].name).equal("All races/ethnicities");
@@ -857,9 +857,9 @@ describe("Elastic Search", function () {
             expect(resp.data.nested.charts[1].sex[0].race[0].pop).equal(321418820);
             //Chart 2 -> sex vs race
             expect(resp.data.nested.charts[2].sex[0].name).equal("Both sexes");
-            expect(resp.data.nested.charts[2].sex[0].age_group[18].name).equal("All age groups");
-            expect(resp.data.nested.charts[2].sex[0].age_group[18].tb).equal(19087);
-            expect(resp.data.nested.charts[2].sex[0].age_group[18].pop).equal(321418820);
+            expect(resp.data.nested.charts[2].sex[0].age_group[9].name).equal("All age groups");
+            expect(resp.data.nested.charts[2].sex[0].age_group[9].tb).equal(19087);
+            expect(resp.data.nested.charts[2].sex[0].age_group[9].pop).equal(321418820);
             done();
         })
     });
