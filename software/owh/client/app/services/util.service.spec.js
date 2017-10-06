@@ -1139,6 +1139,79 @@ describe('utilService', function(){
         expect(year_2002.disabled).toBeTruthy();
     }));
 
+    it('PRAMS: should update income options on year change', function () {
+        var yearFilter = {"key":"year","title":"label.prams.filter.year","queryKey":"year","primary":false,"value":"","groupBy":false,"defaultGroup":"column","filterType":"radio","autoCompleteOptions":[{"key":"2011","title":"2011","$$hashKey":"object:4455","count":0},{"key":"2010","title":"2010","$$hashKey":"object:4456","count":0},{"key":"2009","title":"2009","$$hashKey":"object:4457","count":0},{"key":"2008","title":"2008","$$hashKey":"object:4458","count":0},{"key":"2007","title":"2007","$$hashKey":"object:4459","count":0},{"key":"2006","title":"2006","$$hashKey":"object:4460","count":0},{"key":"2005","title":"2005","$$hashKey":"object:4461","count":0},{"key":"2004","title":"2004","$$hashKey":"object:4462","count":0},{"key":"2003","title":"2003","$$hashKey":"object:4463","count":0},{"key":"2002","title":"2002","$$hashKey":"object:4464","count":0},{"key":"2001","title":"2001","$$hashKey":"object:4465","count":0},{"key":"2000","title":"2000","$$hashKey":"object:4466","count":0}],"doNotShowAll":false,"helpText":"label.help.text.prams.year","$$hashKey":"object:9998"};
+        var sideFilters = [{"sideFilters":[{"filterGroup":false,"collapse":false,"allowGrouping":true,"groupOptions":[{"key":"column","title":"Column","tooltip":"Select to view as columns on data table","$$hashKey":"object:4446"},{"key":false,"title":"Off","tooltip":"Select to hide on data table","$$hashKey":"object:4447"}],"dontShowCounts":true,"filters":{"key":"year","title":"label.prams.filter.year","queryKey":"year","primary":false,"value":"2003","groupBy":false,"defaultGroup":"column","filterType":"radio","autoCompleteOptions":[{"key":"2011","title":"2011","$$hashKey":"object:4455","count":0},{"key":"2010","title":"2010","$$hashKey":"object:4456","count":0},{"key":"2009","title":"2009","$$hashKey":"object:4457","count":0},{"key":"2008","title":"2008","$$hashKey":"object:4458","count":0},{"key":"2007","title":"2007","$$hashKey":"object:4459","count":0},{"key":"2006","title":"2006","$$hashKey":"object:4460","count":0},{"key":"2005","title":"2005","$$hashKey":"object:4461","count":0},{"key":"2004","title":"2004","$$hashKey":"object:4462","count":0},{"key":"2003","title":"2003","$$hashKey":"object:4463","count":0},{"key":"2002","title":"2002","$$hashKey":"object:4464","count":0},{"key":"2001","title":"2001","$$hashKey":"object:4465","count":0},{"key":"2000","title":"2000","$$hashKey":"object:4466","count":0}],"doNotShowAll":false,"helpText":"label.help.text.prams.year","$$hashKey":"object:9998"},"$$hashKey":"object:4392","showAll":true}],"$$hashKey":"object:4386"},{"category":"Breakout","exclusive":true,"sideFilters":[{"filterGroup":false,"collapse":false,"allowGrouping":false,"dontShowCounts":true,"filters":{"key":"income","title":"label.prams.filter.income.post2003","queryKey":"income","primary":false,"value":"$10k-$25k","groupBy":false,"disableFilter":true,"filterType":"radio","allAutoCompleteOptions":{"pre2004":[{"key":"<$15k","title":"<=$15,000"},{"key":"<$16k","title":"<=$15,999"},{"key":"<$16.8k","title":"<=$16,799"},{"key":"<$17k","title":"<=$17,000"},{"key":"<$18k","title":"<=$18,000"},{"key":"$15k-$25k","title":"$15,000-$24,999"},{"key":"$16k-$25k","title":"$16,000-$24,999"},{"key":"$16.8k-$25.2k","title":"$16,800-$25,199"}],"post2003":[{"key":"<$10k","title":"Less than $10,000","count":0,"$$hashKey":"object:9411"},{"key":"$10k-$25k","title":"$10,000 to $24,999","count":0,"$$hashKey":"object:9412"},{"key":"$25k-$50k","title":"$25,000 to $49,999","count":0,"$$hashKey":"object:9413"},{"key":"$50k plus","title":"$50,000 or more","count":0,"$$hashKey":"object:9414"}]},"autoCompleteOptions":[{"key":"<$10k","title":"Less than $10,000","count":0},{"key":"$10k-$25k","title":"$10,000 to $24,999","count":0},{"key":"$25k-$50k","title":"$25,000 to $49,999","count":0},{"key":"$50k plus","title":"$50,000 or more","count":0}],"doNotShowAll":false,"helpText":"label.help.text.prams.breakouts.income"},"$$hashKey":"object:4888"}],"$$hashKey":"object:4387"}];
+        var pre2004Incomes = [
+           {
+               "key": "<$15k",
+               "title": "<=$15,000"
+           },
+           {
+               "key": "<$16k",
+               "title": "<=$15,999"
+           },
+           {
+               "key": "<$16.8k",
+               "title": "<=$16,799"
+           },
+           {
+               "key": "<$17k",
+               "title": "<=$17,000"
+           },
+           {
+               "key": "<$18k",
+               "title": "<=$18,000"
+           },
+           {
+               "key": "$15k-$25k",
+               "title": "$15,000-$24,999"
+           },
+           {
+               "key": "$16k-$25k",
+               "title": "$16,000-$24,999"
+           },
+           {
+               "key": "$16.8k-$25.2k",
+               "title": "$16,800-$25,199"
+           }
+       ];
+        var post2003Incomes = [
+           {
+               "key": "<$10k",
+               "title": "Less than $10,000",
+               "count": 0,
+               "$$hashKey": "object:9411"
+           },
+           {
+               "key": "$10k-$25k",
+               "title": "$10,000 to $24,999",
+               "count": 0,
+               "$$hashKey": "object:9412"
+           },
+           {
+               "key": "$25k-$50k",
+               "title": "$25,000 to $49,999",
+               "count": 0,
+               "$$hashKey": "object:9413"
+           },
+           {
+               "key": "$50k plus",
+               "title": "$50,000 or more",
+               "count": 0,
+               "$$hashKey": "object:9414"
+           }
+       ];
+        yearFilter.value = '2003';
+        utils.pramsFilterChange(yearFilter, sideFilters);
+        expect(JSON.stringify(sideFilters[1].sideFilters[0].filters.autoCompleteOptions)).toEqual (JSON.stringify(pre2004Incomes));
+
+        yearFilter.value = '2007';
+        utils.pramsFilterChange(yearFilter, sideFilters);
+        expect(JSON.stringify(sideFilters[1].sideFilters[0].filters.autoCompleteOptions)).toEqual (JSON.stringify(post2003Incomes));
+
+    });
+
     it('getICD10Chapters returns epmty list when icd codes are not loaded', function () {
         expect(utils.getICD10Chapters()).toEqual ([]);
     });
