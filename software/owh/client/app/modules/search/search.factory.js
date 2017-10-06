@@ -2188,11 +2188,40 @@
                 {"key": "NBW", "title": "NBW (>2500g)"}
             ];
 
-            filters.pramsIncomeOptions = [
-                {"key": "INC39", "title": "Less than $10,000"},
-                {"key": "INC36", "title": "$10,000 to $24,999"},
-                {"key": "INC37", "title": "$25,000 to $49,999"},
-                {"key": "INC38", "title": "$50,000 or more"}
+            filters.pramsPrecIncomeOptions = {
+                pre2004: [
+                    {"key": "<$15k", "title": "<=$15,000"},
+                    {"key": "<$16k", "title": "<=$15,999"},
+                    {"key": "<$16.8k", "title": "<=$16,799"},
+                    {"key": "<$17k", "title": "<=$17,000"},
+                    {"key": "<$18k", "title": "<=$18,000"},
+                    {"key": "$15k-$25k", "title": "$15,000-$24,999"},
+                    {"key": "$16k-$25k", "title": "$16,000-$24,999"},
+                    {"key": "$16.8k-$25.2k", "title": "$16,800-$25,199"}
+                ],
+                post2003: [
+                    {"key": "<$10k", "title": "Less than $10,000"},
+                    {"key": "$10k-$25k", "title": "$10,000 to $24,999"},
+                    {"key": "$25k-$50k", "title": "$25,000 to $49,999"},
+                    {"key": "$50k plus", "title": "$50,000 or more"}
+                ]
+            };
+
+            filters.pramsRawDataIncomeOptions = [
+                {"key": "<$10k", "title": "Less than $10,000"},
+                {"key": "<$15k", "title": "<$15k"},
+                {"key": "<$17k", "title": "<$17k"},
+                {"key": "<$18k", "title": "<$18k"},
+                {"key": "$64k-$77k", "title": "$64k-$77k"},
+                {"key": "$65k-$69k", "title": "$65k-$69k"},
+                {"key": "$67k-$79k", "title": "$67k-$79k"},
+                {"key": "$69k-$84k", "title": "$69k-$84k"},
+                {"key": "$77k-$90k", "title": "$77k-$90k"},
+                {"key": "$79k plus", "title": "$79k plus"},
+                {"key": "$79k-$100k", "title": "$79k-$100k"},
+                {"key": "$84k-$98k", "title": "$84k-$98k"},
+                {"key": "$90k plus", "title": "$90k plus"},
+                {"key": "$98k plus", "title": "$98k plus"}
             ];
 
             filters.pramsMaritalStatusOptions = [
@@ -2298,8 +2327,9 @@
                     filterType: 'radio',autoCompleteOptions: filters.pramsAdequacyOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.adequacy"},
                 {key: 'birth_weight', title: 'label.prams.filter.birth_weight', queryKey:"birth_weight",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsBirthWeightOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.weight"},
-                {key: 'income', title: 'label.prams.filter.income', queryKey:"BOC14",primary: false, value: [], groupBy: false,disableFilter: true,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsIncomeOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.income"},
+                {key: 'income', title: 'label.prams.filter.income.post2003', queryKey:"income",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'radio', allAutoCompleteOptions: filters.pramsPrecIncomeOptions, autoCompleteOptions: filters.pramsPrecIncomeOptions.post2003,
+                    doNotShowAll: false, helpText: "label.help.text.prams.breakouts.income"},
                 {key: 'marital_status', title: 'label.prams.filter.marital_status', queryKey:"marital_status",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsMaritalStatusOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.marital"},
                 {key: 'maternal_age_groupings', title: 'label.prams.filter.maternal_age_groupings', queryKey:"maternal_age_18to44grp",primary: false, value: [], groupBy: false,disableFilter: true,
@@ -2350,8 +2380,9 @@
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsAdequacyOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.adequacy"},
                 {key: 'birth_weight', title: 'label.prams.filter.birth_weight', queryKey:"birth_weight",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsBirthWeightOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.weight"},
-                {key: 'income', title: 'label.prams.filter.income', queryKey:"BOC14",primary: false, value: [], groupBy: false,disableFilter: true,
-                    filterType: 'checkbox',autoCompleteOptions: filters.pramsIncomeOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.income"},
+                {key: 'income', title: 'label.prams.filter.income.post2003', queryKey:"income",primary: false, value: [], groupBy: false,disableFilter: true,
+                    filterType: 'checkbox', autoCompleteOptions: filters.pramsRawDataIncomeOptions,
+                    doNotShowAll: false, helpText: "label.help.text.prams.breakouts.income"},
                 {key: 'marital_status', title: 'label.prams.filter.marital_status', queryKey:"marital_status",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsMaritalStatusOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.marital"},
                 {key: 'maternal_age_groupings', title: 'label.prams.filter.maternal_age_groupings', queryKey:"maternal_age_18to44grp",primary: false, value: [], groupBy: false,disableFilter: true,
@@ -3447,6 +3478,7 @@
                                             allowGrouping: true,
                                             groupOptions: filters.columnGroupOptions,
                                             dontShowCounts: true,
+                                            onFilterChange: utilService.pramsFilterChange,
                                             filters: utilService.findByKeyAndValue(filters.pramsBasicFilters, 'key', 'year')
                                         },
                                         {
