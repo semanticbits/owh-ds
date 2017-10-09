@@ -213,8 +213,16 @@
                     selectedFilter.selectedNodes[propertyKey] = filter.selectedNodes;
                     selectedFilter.value[propertyKey] = filter.value;
                     if(selectedFilter.key === 'mcd-chapter-10'){
-                        selectedFilter.autoCompleteOptions = selectedFilter.selectedValues.set1.map(function(val){return {key:val.id, title:val.text}});
-                        selectedFilter.autoCompleteOptions = selectedFilter.autoCompleteOptions.concat(selectedFilter.selectedValues.set2.map(function(val){return {key:val.id, title:val.text}}))
+                        if(selectedFilter.selectedValues.set1) {
+                            selectedFilter.autoCompleteOptions = selectedFilter.selectedValues.set1.map(function (val) {
+                                return {key: val.id, title: val.text}
+                            });
+                        }
+                        if(selectedFilter.selectedValues.set2) {
+                            selectedFilter.autoCompleteOptions = selectedFilter.autoCompleteOptions.concat(selectedFilter.selectedValues.set2.map(function (val) {
+                                return {key: val.id, title: val.text}
+                            }));
+                        }
                     }
                 }
             });
@@ -229,8 +237,11 @@
             filter.selectedNodes.length = 0;
             filter.selectedValues.length = 0;
             filter.value.length = 0;
-            if(filter.key === 'ucd-chapter-10' || filter.key === 'mcd-chapter-10') {
-                filter.autoCompleteOptions = utilService.getICD10Chapters();
+            if(filter.key === 'ucd-chapter-10') {
+                filter.autoCompleteOptions = utilService.getICD10ChaptersForUCD();
+            }
+            if(filter.key === 'mcd-chapter-10') {
+                filter.autoCompleteOptions = utilService.getICD10ChaptersForMCD();
             }
 
             //  Run the filter call back only if runOnFilterChange is true
@@ -249,7 +260,7 @@
             filter.selectedNodes[propertyKey].length = 0;
             filter.selectedValues[propertyKey].length = 0;
             filter.value[propertyKey].length = 0;
-            filter.autoCompleteOptions = utilService.getICD10Chapters();
+            filter.autoCompleteOptions = utilService.getICD10ChaptersForMCD();
             //  Run the filter call back only if runOnFilterChange is true
             if (sfic.runOnFilterChange) {
                 sfic.onFilter();

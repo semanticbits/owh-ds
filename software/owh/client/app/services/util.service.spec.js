@@ -3,7 +3,7 @@
 /*group of common test goes here as describe*/
 describe('utilService', function(){
     var utils, list, tableData, multipleColumnsTableData, noColumnsTableData, noRowsTableData,
-        multipleColumnsTableDataWithUnmatchedColumns, singleValuedTableData, $q, $scope, filterUtils, icd10codes, $rootScope;
+        multipleColumnsTableDataWithUnmatchedColumns, singleValuedTableData, $q, $scope, filterUtils, ucd_icd10codes, mcd_icd10codes, $rootScope;
 
     beforeEach(module('owh'));
 
@@ -36,7 +36,8 @@ describe('utilService', function(){
 
         singleValuedTableData = __fixtures__['app/services/fixtures/util.service/noRowsTableData'];
 
-        icd10codes  = __fixtures__['app/services/fixtures/util.service/conditions-ICD-10'];
+        ucd_icd10codes  = __fixtures__['app/services/fixtures/util.service/ucd-conditions-ICD-10'];
+        mcd_icd10codes  = __fixtures__['app/services/fixtures/util.service/mcd-conditions-ICD-10'];
 
         $httpBackend.whenGET('app/i18n/messages-en.json').respond({});
         $httpBackend.whenGET('app/partials/marker-template.html').respond( {});
@@ -46,7 +47,8 @@ describe('utilService', function(){
         $httpBackend.whenGET('/pramsAdvancesQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('app/modules/home/home.html').respond({data: { }});
-        $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
+        $httpBackend.whenGET('jsons/ucd-conditions-ICD-10.json').respond({data: []});
+        $httpBackend.whenGET('jsons/mcd-conditions-ICD-10.json').respond({data: []});
     }));
 
     it('test utils isValueNotEmpty for undefined', function () {
@@ -1213,13 +1215,20 @@ describe('utilService', function(){
     });
 
     it('getICD10Chapters returns epmty list when icd codes are not loaded', function () {
-        expect(utils.getICD10Chapters()).toEqual ([]);
+        expect(utils.getICD10ChaptersForUCD()).toEqual ([]);
+        expect(utils.getICD10ChaptersForMCD()).toEqual ([]);
     });
 
-    it('getICD10Chapters returns icd10 chapters', function () {
-        $rootScope.conditionsICD10 = icd10codes.conditionsICD10;
-        expect(utils.getICD10Chapters().length).toEqual(21);
-        expect(utils.getICD10Chapters()).toEqual( [{ "key": "A00-B99", "title": "Certain infectious and parasitic diseases(A00-B99)" }, { "key": "C00-D48", "title": "Neoplasms(C00-D48)" }, { "key": "D50-D89", "title": "Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism(D50-D89)" }, { "key": "E00-E89", "title": "Endocrine, nutritional and metabolic diseases(E00-E89)" }, { "key": "F01-F99", "title": "Mental and behavioural disorders(F01-F99)" }, { "key": "G00-G98", "title": "Diseases of the nervous system(G00-G98)" }, { "key": "H00-H59", "title": "Diseases of the eye and adnexa(H00-H59)" }, { "key": "H60-H95", "title": "Diseases of the ear and mastoid process(H60-H95)" }, { "key": "I00-I99", "title": "Diseases of the circulatory system(I00-I99)" }, { "key": "J00-J98", "title": "Diseases of the respiratory system(J00-J98)" }, { "key": "K00-K92", "title": "Diseases of the digestive system(K00-K92)" }, { "key": "L00-L98", "title": "Diseases of the skin and subcutaneous tissue(L00-L98)" }, { "key": "M00-M99", "title": "Diseases of the musculoskeletal system and connective tissue(M00-M99)" }, { "key": "N00-N99", "title": "Diseases of the genitourinary system(N00-N99)" }, { "key": "O00-O99", "title": "Pregnancy, childbirth and the puerperium(O00-O99)" }, { "key": "P00-P96", "title": "Certain conditions originating in the perinatal period(P00-P96)" }, { "key": "Q00-Q99", "title": "Congenital malformations, deformations and chromosomal abnormalities(Q00-Q99)" }, { "key": "R00-R99", "title": "Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified(R00-R99)" }, { "key": "S00-T98", "title": "Injury, poisoning and certain other consequences of external causes(S00-T98)" }, { "key": "U00-U99", "title": "Codes for special purposes(U00-U99)" }, { "key": "V01-Y89", "title": "External causes of morbidity and mortality(V01-Y89)" }]);
+    it('getICD10Chapters returns icd10 chapters for MCD', function () {
+        $rootScope.conditionsICD10ForMCD = mcd_icd10codes.conditionsICD10;
+        expect(utils.getICD10ChaptersForMCD().length).toEqual(21);
+        expect(utils.getICD10ChaptersForMCD()).toEqual([{"key":"A00-B99","title":"Certain infectious and parasitic diseases(A00-B99)"},{"key":"C00-D48","title":"Neoplasms(C00-D48)"},{"key":"D50-D89","title":"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism(D50-D89)"},{"key":"E00-E89","title":"Endocrine, nutritional and metabolic diseases(E00-E89)"},{"key":"F01-F99","title":"Mental and behavioural disorders(F01-F99)"},{"key":"G00-G98","title":"Diseases of the nervous system(G00-G98)"},{"key":"H00-H59","title":"Diseases of the eye and adnexa(H00-H59)"},{"key":"H60-H95","title":"Diseases of the ear and mastoid process(H60-H95)"},{"key":"I00-I99","title":"Diseases of the circulatory system(I00-I99)"},{"key":"J00-J98","title":"Diseases of the respiratory system(J00-J98)"},{"key":"K00-K92","title":"Diseases of the digestive system(K00-K92)"},{"key":"L00-L98","title":"Diseases of the skin and subcutaneous tissue(L00-L98)"},{"key":"M00-M99","title":"Diseases of the musculoskeletal system and connective tissue(M00-M99)"},{"key":"N00-N99","title":"Diseases of the genitourinary system(N00-N99)"},{"key":"O00-O99","title":"Pregnancy, childbirth and the puerperium(O00-O99)"},{"key":"P00-P96","title":"Certain conditions originating in the perinatal period(P00-P96)"},{"key":"Q00-Q99","title":"Congenital malformations, deformations and chromosomal abnormalities(Q00-Q99)"},{"key":"R00-R99","title":"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified(R00-R99)"},{"key":"S00-T98","title":"Injury, poisoning and certain other consequences of external causes(S00-T98)"},{"key":"U00-U99","title":"Codes for special purposes(U00-U99)"},{"key":"V01-Y89","title":"External causes of morbidity and mortality(V01-Y89)"}]);
+    });
+
+    it('getICD10Chapters returns icd10 chapters for UCD', function () {
+        $rootScope.conditionsICD10ForUCD = ucd_icd10codes.conditionsICD10;
+        expect(utils.getICD10ChaptersForUCD().length).toEqual(20);
+        expect(utils.getICD10ChaptersForUCD()).toEqual( [{"key":"A00-B99","title":"Certain infectious and parasitic diseases(A00-B99)"},{"key":"C00-D48","title":"Neoplasms(C00-D48)"},{"key":"D50-D89","title":"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism(D50-D89)"},{"key":"E00-E88","title":"Endocrine, nutritional and metabolic diseases(E00-E88)"},{"key":"F01-F99","title":"Mental and behavioural disorders(F01-F99)"},{"key":"G00-G98","title":"Diseases of the nervous system(G00-G98)"},{"key":"H00-H57","title":"Diseases of the eye and adnexa(H00-H57)"},{"key":"H60-H93","title":"Diseases of the ear and mastoid process(H60-H93)"},{"key":"I00-I99","title":"Diseases of the circulatory system(I00-I99)"},{"key":"J00-J98","title":"Diseases of the respiratory system(J00-J98)"},{"key":"K00-K92","title":"Diseases of the digestive system(K00-K92)"},{"key":"L00-L98","title":"Diseases of the skin and subcutaneous tissue(L00-L98)"},{"key":"M00-M99","title":"Diseases of the musculoskeletal system and connective tissue(M00-M99)"},{"key":"N00-N98","title":"Diseases of the genitourinary system(N00-N98)"},{"key":"O00-O99","title":"Pregnancy, childbirth and the puerperium(O00-O99)"},{"key":"P00-P96","title":"Certain conditions originating in the perinatal period(P00-P96)"},{"key":"Q00-Q99","title":"Congenital malformations, deformations and chromosomal abnormalities(Q00-Q99)"},{"key":"R00-R99","title":"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified(R00-R99)"},{"key":"U00-U99","title":"Codes for special purposes(U00-U99)"},{"key":"V01-Y89","title":"External causes of morbidity and mortality(V01-Y89)"}]);
     });
 
     describe('Aids Filter Change:', function () {

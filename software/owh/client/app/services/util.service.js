@@ -52,7 +52,8 @@
             removeValuesFromArray: removeValuesFromArray,
             getSelectedFiltersText: getSelectedFiltersText,
             brfsFilterChange: brfsFilterChange,
-            getICD10Chapters:getICD10Chapters,
+            getICD10ChaptersForUCD:getICD10ChaptersForUCD,
+            getICD10ChaptersForMCD: getICD10ChaptersForMCD,
             pramsFilterChange:pramsFilterChange
         };
 
@@ -1380,9 +1381,19 @@
             }
         }
 
-        function getICD10Chapters(){
-            if($rootScope.conditionsICD10) {
-                return $rootScope.conditionsICD10.map(function (cond) {
+        function getICD10ChaptersForUCD(){
+            if($rootScope.conditionsICD10ForUCD) {
+                return $rootScope.conditionsICD10ForUCD.map(function (cond) {
+                    return {key: cond.id, title: cond.text}
+                });
+            }else{
+                return [];
+            }
+        }
+
+        function getICD10ChaptersForMCD(){
+            if($rootScope.conditionsICD10ForMCD) {
+                return $rootScope.conditionsICD10ForMCD.map(function (cond) {
                     return {key: cond.id, title: cond.text}
                 });
             }else{
