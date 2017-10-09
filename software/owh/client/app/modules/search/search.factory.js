@@ -278,7 +278,7 @@
                                     }));
                             }
                             if (!filter.filters.selectedValues.set1 && !filter.filters.selectedValues.set2){
-                                localCategory.sideFilters[index].filters.autoCompleteOptions = utilService.getICD10Chapters();
+                                localCategory.sideFilters[index].filters.autoCompleteOptions = utilService.getICD10ChaptersForMCD();
                             }
 
                         }
@@ -287,8 +287,11 @@
                     else if (localCategory.sideFilters[index].filters.selectedNodes != undefined) {
                         localCategory.sideFilters[index].filters.selectedNodes.length = 0;
                         localCategory.sideFilters[index].filters.selectedValues.length = 0;
-                        if(localCategory.sideFilters[index].filters.key === 'ucd-chapter-10' || localCategory.sideFilters[index].filters.key === 'mcd-chapter-10') {
-                            localCategory.sideFilters[index].filters.autoCompleteOptions = utilService.getICD10Chapters();
+                        if(localCategory.sideFilters[index].filters.key === 'ucd-chapter-10') {
+                            localCategory.sideFilters[index].filters.autoCompleteOptions = utilService.getICD10ChaptersForUCD();
+                        }
+                        else if(localCategory.sideFilters[index].filters.key === 'mcd-chapter-10') {
+                            localCategory.sideFilters[index].filters.autoCompleteOptions = utilService.getICD10ChaptersForMCD();
                         }
                     }
                     addOrFilterToPrimaryFilterValue(filter.filters, primaryFilter);
@@ -781,9 +784,6 @@
             for (var i = 0; i< pFilter.allFilters.length; i++){
                 var filter = utilService.clone(pFilter.allFilters[i]);
                 // Clear autocomplete options for mcd and ucd
-                if( filter.key == "mcd-chapter-10" || filter.key == "ucd-chapter-10" || filter.key == "mcd-filters"){
-                    filter.autoCompleteOptions = [];
-                }
                 removeSearchResults(filter.autoCompleteOptions);
                 req.allFilters.push(filter);
             }
@@ -1960,7 +1960,7 @@
                 /*Underlying Cause of Death*/
                 {key: 'ucd-chapter-10', title: 'label.filter.ucd', queryKey:"ICD_10_code",
                     primary: true, value: [], groupBy: false, type:"label.filter.group.ucd", groupKey:"ucd",
-                    autoCompleteOptions: utilService.getICD10Chapters(), filterType: 'conditions',
+                    autoCompleteOptions: utilService.getICD10ChaptersForUCD(), filterType: 'conditions',
                     selectTitle: 'select.label.filter.ucd', updateTitle: 'update.label.filter.ucd',
                     aggregationKey:"ICD_10_code.path", groupOptions: filters.conditionGroupOptions,
                     helpText: 'label.help.text.mortality.ucd'},
@@ -1968,7 +1968,7 @@
                 /*Multiple Cause of death*/
                 {key: 'mcd-chapter-10', title: 'label.filter.mcd', queryKey:"ICD_10_code",
                     primary: false, value: { 'set1': [], 'set2': []}, groupBy: false, type: "label.filter.group.mcd", groupKey:"mcd",
-                    autoCompleteOptions: utilService.getICD10Chapters(), filterType: 'conditions',
+                    autoCompleteOptions: utilService.getICD10ChaptersForMCD(), filterType: 'conditions',
                     selectTitle: 'select.label.filter.mcd', updateTitle: 'update.label.filter.mcd',
                     aggregationKey: "record_axis_condn.path", groupOptions: filters.conditionGroupOptions,
                     helpText: 'label.help.text.mortality.mcd'}

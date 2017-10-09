@@ -607,6 +607,9 @@ function isValueNotEmpty(value) {
 function getAutoCompleteOptionsLength(filter) {
     //get length when options are nested
     var length = filter.autoCompleteOptions ? filter.autoCompleteOptions.length : 0;
+    if (filter.key === 'ucd-chapter-10' || filter.key === 'mcd-chapter-10') {
+        return 0 ;
+    }
     if(filter.autoCompleteOptions) {
         filter.autoCompleteOptions.forEach(function(option) {
             if(option.options) {

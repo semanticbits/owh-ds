@@ -29,7 +29,8 @@ describe("Search controller: ", function () {
             $httpBackend.whenGET('/pramsAdvancesQuestionsTree').respond({data: { }});
             $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
             $httpBackend.whenGET('app/modules/home/home.html').respond({});
-            $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
+            $httpBackend.whenGET('jsons/ucd-conditions-ICD-10.json').respond({data: []});
+            $httpBackend.whenGET('jsons/mcd-conditions-ICD-10.json').respond({data: []});
             searchResultsResponse = __fixtures__['app/modules/search/fixtures/search.factory/searchResultsResponse'];
             pramsFilters = __fixtures__['app/modules/search/fixtures/search.controller/pramsFilters'];
             $searchFactory = searchFactory;
