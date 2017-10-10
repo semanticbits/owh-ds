@@ -106,7 +106,7 @@ deploy:
   provider:  s3
   access_key_id:  $OWH_ACCESS_KEY
   skip_cleanup:   true
-  on:
+  on: &2
     repo: semanticbits/owh-ds
     branch: develop
     condition: "$TRAVIS_BRANCH" != "deploy/production"
@@ -116,7 +116,7 @@ deploy:
   access_key_id: $OWH_ACCESS_KEY
   application: OwhDev
   deployment_group: $TRAVIS_BRANCH
-  on:
+  on: *2
     condition: "$TRAVIS_BRANCH" != "deploy/production"
 
 after_script:
