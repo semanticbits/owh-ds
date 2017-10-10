@@ -103,21 +103,24 @@ before_deploy:
 
 
 deploy:
-  provider:  s3
-  access_key_id:  $OWH_ACCESS_KEY
-  skip_cleanup:   true
-  on: &2
-#    repo: semanticbits/owh-ds
-    branch: develop
-    condition: "$TRAVIS_BRANCH" != "deploy/production"
+- provider: s3
+  access_key_id: $OWH_ACCESS_KEY
+  secret_access_key: $OWH_ACCESS_SECRET
+  local_dir: dpl_cd_upload
+  skip_cleanup: true
+  on: 
+    condition: $TRAVIS_BRANCH != deploy/production     
+    repo: semanticbits/owh-ds
+    branch:
+     - develop
      # - release (TBD)
   bucket:   sb-owh-deployment
-  provider: codedeploy
+- provider: codedeploy
   access_key_id: $OWH_ACCESS_KEY
   application: OwhDev
   deployment_group: $TRAVIS_BRANCH
-  on: *2
-    condition: "$TRAVIS_BRANCH" != "deploy/production"
+  on: 
+    condition: $TRAVIS_BRANCH != deploy/production   
 
 after_script:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then kill -9 $(fuser -n tcp 3000 2> /dev/null); fi
