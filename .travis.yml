@@ -43,7 +43,7 @@ before_script:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then echo $JAVA_HOME; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then export DISPLAY=:99.0; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sh -e /etc/init.d/xvfb start; fi
-  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm start > /dev/null &; fi
+  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm start > /dev/null & \; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ./node_modules/protractor/bin/webdriver-manager update; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sleep 1; fi #give server time to start
 
