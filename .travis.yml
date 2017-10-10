@@ -107,7 +107,7 @@ deploy:
   access_key_id:  $OWH_ACCESS_KEY
   skip_cleanup:   true
   on: &2
-    repo: semanticbits/owh-ds
+#    repo: semanticbits/owh-ds
     branch: develop
     condition: "$TRAVIS_BRANCH" != "deploy/production"
      # - release (TBD)
