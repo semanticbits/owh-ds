@@ -273,7 +273,8 @@ function search(q) {
                 deferred.resolve(resData);
             });
         });
-    } else if (preparedQuery.apiQuery.searchFor === 'cancer_incident' || preparedQuery.apiQuery.searchFor === 'cancer_mortality') {
+    } else if (preparedQuery.apiQuery.searchFor === 'cancer_incident'
+        || preparedQuery.apiQuery.searchFor === 'cancer_mortality') {
         var allFilterOptions = searchUtils.getAllFilterOptions(q);
         var allSelectedFilterOptions = searchUtils.getAllSelectedFilterOptions(q);
         logger.debug("Cancer -  All Filters and filter options: ", JSON.stringify(allFilterOptions));
@@ -309,6 +310,18 @@ function search(q) {
             var hasDemographicFilters = searchUtils.hasFilterApplied(q.allFilters, [ 'race', 'hispanic_origin' ]);
             if (dataset === 'cancer_incident' && hasDemographicFilters) {
                 searchUtils.applyPopulationSpecificSuppression(results.data.nested.table, 'cancer_incident');
+            }
+
+            if(dataset === 'cancer_mortality') {
+                var cancerSiteFilter = searchUtils.getTargetFilter(q.allFilters, 'site');
+                const kaposiSarcoma = '36020';
+                //if only kaposi sarcoma is selected
+                if(cancerSiteFilter.value.length == 1 && cancerSiteFilter.value[0] == kaposiSarcoma) {
+                    searchUtils.applySuppressions(results, dataset, Infinity);
+                } else if(cancerSiteFilter.value.indexOf(kaposiSarcoma) != -1) {//if kaposi sarcoma and some other cacncer site is selected
+                    var rules = [[kaposiSarcoma]];//Kaposi sarcoma
+                    searchUtils.applyCustomSuppressions(results.data.nested, rules, 'cancer_mortality');
+                }
             }
 
             searchUtils.applySidebarCountLimitSuppressions(sideFilterResults.data.simple, dataset);
