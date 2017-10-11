@@ -6,7 +6,8 @@ data_file:
   aws_access_key_id: 'aws access key'
   aws_secret_access_key: 'aws secret key'
   aws_s3_bucket_name: 'owh-data'
-  aws_s3_directory: 'datasets/icd10'
+  #Update aws_s3_directory value with 'datasets/icd10/UCD' OR 'datasets/icd10/MCD' before running ETL
+  aws_s3_directory: 'datasets/icd10/<Directory Name>'
 # No data is loaded into Elastic search, but since the ETL uses the common ETL framework, the configuration is neede and it creates an empty index
 elastic_search:
   host: 127.0.0.1

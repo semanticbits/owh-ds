@@ -21,8 +21,10 @@ class MortalityIndexer (ETL):
         self._load_icd_code_mappings()
 
     def _load_icd_code_mappings(self):
-        with open(os.path.join(os.path.dirname(__file__),"es_mapping/conditions-ICD-10-mappings.json")) as jf:
-            self.icd_10_code_mappings = json.load(jf, encoding="utf8")
+        with open(os.path.join(os.path.dirname(__file__),"es_mapping/ucd-conditions-ICD-10-mappings.json")) as jf:
+            self.ucd_icd_10_code_mappings = json.load(jf, encoding="utf8")
+        with open(os.path.join(os.path.dirname(__file__),"es_mapping/mcd-conditions-ICD-10-mappings.json")) as jf:
+                    self.mcd_icd_10_code_mappings = json.load(jf, encoding="utf8")
 
     def _check_blanks(self, record):
         for key, value in record.iteritems():
@@ -37,7 +39,7 @@ class MortalityIndexer (ETL):
             condcolname = '%s%d' % (condn_col_prefix, i)
             if record[condcolname]:
                 conditions.append(record[condcolname].upper())
-                parents = self.icd_10_code_mappings.get(record[condcolname].upper())
+                parents = self.mcd_icd_10_code_mappings.get(record[condcolname].upper())
                 if parents:
                     condnheierarchy+= parents
             del record[condcolname]
@@ -93,7 +95,7 @@ class MortalityIndexer (ETL):
 
                 icdcode = record['ICD_10_code'].upper()
                 if (icdcode):
-                    record['ICD_10_code'] = {'code': icdcode, 'path':self.icd_10_code_mappings[icdcode]}
+                    record['ICD_10_code'] = {'code': icdcode, 'path':self.ucd_icd_10_code_mappings[icdcode]}
                 else:
                     record['ICD_10_code'] = self._check_blanks(icdcode)
 
