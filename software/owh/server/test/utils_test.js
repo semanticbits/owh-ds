@@ -1212,7 +1212,7 @@ describe("Utils", function(){
             expect(data.table.race[3].site[0].name).to.eql('31010-31040');
             expect(data.table.race[3].site[0].cancer_mortality).to.eql(14430);
 
-            //other cancer sites should not be suppressed
+            //kaposi sarcoma cancer sites should be suppressed
             expect(data.table.race[0].site[1].name).to.eql('36020');
             expect(data.table.race[0].site[1].cancer_mortality).to.eql('suppressed');
             expect(data.table.race[1].site[1].name).to.eql('36020');
