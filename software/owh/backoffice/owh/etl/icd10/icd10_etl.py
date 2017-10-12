@@ -86,7 +86,7 @@ class ICDETL (ETL):
         logger.info ("Processed %d conditions", recordCount)
         with open('conditions-ICD-10-mappings.json', 'w') as outfile:
             json.dump(self.conditionhierarchy,outfile, sort_keys=True, indent=2, separators=(',', ': '))
-            logger.info ("*** Generated ICD10 data file: %s, copy this file to es_mapping folder of the mortality and infant_mortality ETLs ***  and in mortality es_mapping folder rename this file to ucd-conditions-ICD-10-mappings.json or mcd-conditions-ICD-10-mappings.json based on data files used to generate these mappings",os.getcwd()+'/conditions-ICD-10-mappings.json')
+            logger.info ("*** Generated ICD10 data file: %s, copy this file to es_mapping folder of the mortality ETLs ***  and in mortality es_mapping folder rename this file to ucd-conditions-ICD-10-mappings.json or mcd-conditions-ICD-10-mappings.json based on data files used to generate these mappings",os.getcwd()+'/conditions-ICD-10-mappings.json')
         with open('conditions-ICD-10.json', 'w') as outfile:
             json.dump({'conditionsICD10': self.conditiontree,'conditionsListICD10': self.conditionlist},outfile, indent=2, separators=(',', ': '))
             logger.info ("*** Generated ICD10 data file: %s, copy this file to app/client/jsons folder *** and rename this file to ucd-conditions-ICD-10.json or mcd-conditions-ICD-10.json based on data files used to generate this json file",os.getcwd()+'/conditions-ICD-10.json'),
