@@ -82,7 +82,7 @@
         };
 
         oatc.listRows = function(catagory) {
-            var rows = [], firstRow = [];
+            var rows = [], firstRow = null;
             if(oatc.primaryKey === 'mental_health') {
                 if (catagory.title in questionDefaults) {
 
@@ -104,7 +104,7 @@
                         }
                     }
                 }
-                if (firstRow.length > 0) {
+                if (firstRow != null) {
                     rows.splice(0, 0, firstRow[0]);
                     rows.splice(1, 0, firstRow[1]);
                 }
