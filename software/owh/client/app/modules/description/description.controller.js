@@ -251,7 +251,7 @@
                         {name: "Age Group", description: "This field indicates the age group of the patient"},
                         {name: "Cancer Sites", description: "This field indicates the primary cancer site that is the organ of origin within the body where a given cancer occurs in an individual"},
                         {name: "Childhood Cancers", description: "This field indicates the childhood cancer that are usually studied in children who are less than age 20"},
-                        {name: "Leading Cancer Sites", description: "This field contains a list of only the top or leading cancer sites, meaning the primary cancers with the highest incidence for each race and sex"},
+                        /*{name: "Leading Cancer Sites", description: "This field contains a list of only the top or leading cancer sites, meaning the primary cancers with the highest incidence for each race and sex"},*/
                         {name: "State", description: "This field indicates the State of patient's residence at the time the case was submitted to the registry"},
                         {name: "Census Regions", description: "The United States is split into 4 Census Regions: Northeast, Midwest, South and West. Census Divisions are multi-state groups, sub-sets of Census Regions. You can group by Census Division, or select any combination of individual Census Divisions"}
                     ],
@@ -302,7 +302,7 @@
                         {name: "Age Group", description: "This field indicates the age group of the patient"},
                         {name: "Cancer Sites", description: "This field indicates the primary cancer site that is the organ of origin within the body where a given cancer occurs in an individual"},
                         /*{name: "Childhood Cancers", description: "This field indicates the childhood cancer that are usually studied in children who are less than age 20"},*/
-                        {name: "Leading Cancer Sites", description: "This field contains a list of only the top or leading cancer sites, meaning the primary cancers with the highest incidence for each race and sex"},
+                        /*{name: "Leading Cancer Sites", description: "This field contains a list of only the top or leading cancer sites, meaning the primary cancers with the highest incidence for each race and sex"},*/
                         {name: "State", description: "This field indicates the State of patient's residence at the time the case was submitted to the registry"},
                         {name: "Census Regions", description: "The United States is split into 4 Census Regions: Northeast, Midwest, South and West. Census Divisions are multi-state groups, sub-sets of Census Regions. You can group by Census Division, or select any combination of individual Census Divisions"}
                     ],
