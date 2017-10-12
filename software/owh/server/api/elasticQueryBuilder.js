@@ -201,6 +201,8 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     if(censusQuery) {
         var clonedUserQuery = clone(userQuery);
         if (clonedUserQuery['ICD_10_code']) delete clonedUserQuery['ICD_10_code'];
+        if (clonedUserQuery['ICD_10_code.set1']) delete clonedUserQuery['ICD_10_code.set1'];
+        if (clonedUserQuery['ICD_10_code.set2']) delete clonedUserQuery['ICD_10_code.set2'];
         if (clonedUserQuery['ICD_130_code']) delete clonedUserQuery['ICD_130_code'];
         if (clonedUserQuery['infant_age_at_death']) delete clonedUserQuery['infant_age_at_death'];
         if (clonedUserQuery['cancer_site']) delete clonedUserQuery['cancer_site'];
