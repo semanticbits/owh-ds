@@ -82,28 +82,31 @@
         };
 
         oatc.listRows = function(catagory) {
-            var rows = [], firstRow = null;
+            var rows = [], firstRow = [];
             if(oatc.primaryKey === 'mental_health') {
                 if (catagory.title in questionDefaults) {
 
-
-                    for (var i = 0; i < catagory.questions.length; i++) {
+                    for (var i = 0; i < catagory.questions.length; ) {
                         var question = catagory.questions[i],
                             defaults = questionDefaults[catagory.title];
 
                         if (question[0].title.search(defaults[0]) == 0) {
-                            firstRow = question;
+                            firstRow = [question, catagory.questions[i+1]];
+                            i = i + 2;
 
                         } else if (question[0].title.search(defaults[1]) == 0) {
-                            rows.splice(0, 0, question);
+                            firstRow = [question, catagory.questions[i+1]];
+                            i = i + 2;
 
                         } else {
                             rows.push(question);
+                            i++;
                         }
                     }
                 }
-                if (firstRow != null) {
-                    rows.splice(0, 0, firstRow);
+                if (firstRow.length > 0) {
+                    rows.splice(0, 0, firstRow[0]);
+                    rows.splice(1, 0, firstRow[1]);
                 }
                 return rows;
             } else {

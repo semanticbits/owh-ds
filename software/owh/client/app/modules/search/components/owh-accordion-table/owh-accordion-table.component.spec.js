@@ -107,7 +107,7 @@ describe('owhAccordionTable component: ', function() {
     });
 
     it('should listRows in the proper order', function() {
-        var data = [{questions: [{}, {}]}, {questions: []}]
+        var data = [{questions: [{}, {}]}, {questions: []}];
         var bindings = {
             data: data,
             headers: [[{}, {}], [{}, {}]],
@@ -122,9 +122,8 @@ describe('owhAccordionTable component: ', function() {
         ]};
 
         var list = ctrl.listRows(category);
-
-        expect(list[0][0].title).toEqual('Currently Drinks');
-        expect(list[1][0].title).toEqual('Currently Use');
+        expect(list[0][0].title).toEqual('Currently Use');
+        expect(list[2]).toEqual('Sometimes');
     });
 
     it('question category and help text map should present', function() {
