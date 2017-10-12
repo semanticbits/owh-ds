@@ -123,7 +123,7 @@ describe('owhAccordionTable component: ', function() {
 
         var list = ctrl.listRows(category);
         expect(list[0][0].title).toEqual('Currently Use');
-        expect(list[2]).toEqual('Sometimes');
+        expect(list[2][0].title).toEqual('Sometimes');
     });
 
     it('question category and help text map should present', function() {
