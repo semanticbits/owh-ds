@@ -7,6 +7,10 @@ node_js:
 services:
   - docker
 
+addons:
+  code_climate:
+    repo_token: aa4bb84528f703e93a68f03079e9870898d452659e9498bbba8fb043c66e3083
+
 env:
   global:
     - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then AWS_ACCESS_KEY_ID=$OWH_ACCESS_KEY; fi
@@ -17,17 +21,21 @@ before_install:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then docker info; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then mkdir -p .owh/logs; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then openssl aes-256-cbc -K $encrypted_24a8a70e72ba_key -iv $encrypted_24a8a70e72ba_iv -in .owh/owh-config.yaml.enc -out .owh/owh-config.yaml -d; fi
-  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then pip install awscli; fi
+  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sudo pip install awscli; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then export PATH=$PATH:$HOME/.local/bin; fi
 
 install:
+  - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then docker info; fi
+  - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then mkdir -p .owh/logs; fi
+  - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then sudo pip install awscli; fi
+  - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then export PATH=$PATH:$HOME/.local/bin; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then cd software/owh/server; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then nvm install node; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then nvm use node; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then node --version; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install --dev; fi
-  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then cd  ../client; fi
+  - cd $TRAVIS_BUILD_DIR/software/owh/client
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install --dev; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install -g nodemon; fi
@@ -43,7 +51,10 @@ before_script:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then echo $JAVA_HOME; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then export DISPLAY=:99.0; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sh -e /etc/init.d/xvfb start; fi
-  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then "npm start > /dev/null &"; fi
+#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install; fi
+#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install -g pm2@latest; fi
+#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sudo apt-get install nodejs-legacy; fi
+  - npm start > /dev/null &  
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ./node_modules/protractor/bin/webdriver-manager update; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sleep 1; fi #give server time to start
 
@@ -57,9 +68,9 @@ script:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ls; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ls coverage; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ls 'coverage/PhantomJS 2.1.1 (Linux 0.0.0)'; fi
-  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then cd ../server; fi
+  - cd $TRAVIS_BUILD_DIR/software/owh/
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive test; fi
-  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm start > /dev/null &; fi
+  - npm start > /dev/null &
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sleep 10; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then cd ../client; fi
   #- if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ./node_modules/.bin/protractor test/e2e-tests/protractor.conf.js --browser=firefox --cucumberOpts.tags=@Factsheets; fi
@@ -101,7 +112,6 @@ before_deploy:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ls dpl_tmp; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then rm -rf dpl_tmp; fi
 
-
 deploy:
 - provider: s3
   access_key_id: $OWH_ACCESS_KEY
@@ -120,7 +130,7 @@ deploy:
   application: OwhDev
   deployment_group: $TRAVIS_BRANCH
   on: 
-    condition: $TRAVIS_BRANCH != deploy/production   
+    condition: $TRAVIS_BRANCH != deploy/production  
 
 after_script:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then kill -9 $(fuser -n tcp 3000 2> /dev/null); fi
@@ -133,12 +143,6 @@ env:
   global:
     - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PROD; fi
     - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PROD; fi
-
-install:
-  - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then docker info; fi
-  - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then mkdir -p .owh/logs; fi
-  - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then sudo pip install awscli; fi
-  - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then export PATH=$PATH:$HOME/.local/bin; fi
 
 script:
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then cd $TRAVIS_BUILD_DIR/software/owh; fi
