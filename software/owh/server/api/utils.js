@@ -756,24 +756,25 @@ var mergeAgeAdjustedRates = function(mort, rates) {
         "HHS-9": "HHS Region #9  AZ, CA, HI, NV",
         "HHS-10": "HHS Region #10  AK, ID, OR, WA",
     };
-
-    for(var key in mort) {
-        if(key !== 'natality' && key !== 'deaths' && key !== 'name' && key !== 'pop' && key !== 'ageAdjustedRate' && key !== 'standardPop') {
-            for(var i = 0; i < mort[key].length; i++) {
-                var age = rates[mort[key][i].name];
-                if(!age) {
-                    age = rates[keyMap[mort[key][i].name]];
-                }
-                if(age) {
-                    if (!age['ageAdjustedRate']) { // Nested result. go to the leaf node recursively
-                        if (age['Total']) { // If there is a subtotal, assign subtotal value
-                            mort[key][i]['ageAdjustedRate'] = age['Total'].ageAdjustedRate;
-                            mort[key][i]['standardPop'] = age['Total'].standardPop;
+    if(mort && rates) {
+        for (var key in mort) {
+            if (key !== 'natality' && key !== 'deaths' && key !== 'name' && key !== 'pop' && key !== 'ageAdjustedRate' && key !== 'standardPop') {
+                for (var i = 0; i < mort[key].length; i++) {
+                    var age = rates[mort[key][i].name];
+                    if (!age) {
+                        age = rates[keyMap[mort[key][i].name]];
+                    }
+                    if (age) {
+                        if (!age['ageAdjustedRate']) { // Nested result. go to the leaf node recursively
+                            if (age['Total']) { // If there is a subtotal, assign subtotal value
+                                mort[key][i]['ageAdjustedRate'] = age['Total'].ageAdjustedRate;
+                                mort[key][i]['standardPop'] = age['Total'].standardPop;
+                            }
+                            mergeAgeAdjustedRates(mort[key][i], age);
+                        } else {
+                            mort[key][i]['ageAdjustedRate'] = age.ageAdjustedRate;
+                            mort[key][i]['standardPop'] = age.standardPop;
                         }
-                        mergeAgeAdjustedRates(mort[key][i], age);
-                    }else {
-                        mort[key][i]['ageAdjustedRate'] = age.ageAdjustedRate;
-                        mort[key][i]['standardPop'] = age.standardPop;
                     }
                 }
             }

@@ -22,16 +22,19 @@ var prepareCensusAggregationQuery = function(aggregations, datasetName) {
 
 var generateNestedCensusAggQuery = function(aggregations, groupByKeyStart) {
     var aggQuery = generateCensusAggregationQuery(aggregations[0], groupByKeyStart);
-    if(aggregations.length > 1) {
-        aggQuery[Object.keys(aggQuery)[0]].aggregations = generateNestedCensusAggQuery(aggregations.slice(1), groupByKeyStart);
-    }else{
-        aggQuery[Object.keys(aggQuery)[0]].aggregations = {
-            "pop": {
-                "sum": {
-                    "field": "pop"
+    var aggKeys = Object.keys(aggQuery);
+    if(aggKeys.length > 0) {
+        if (aggregations.length > 1) {
+            aggQuery[Object.keys(aggQuery)[0]].aggregations = generateNestedCensusAggQuery(aggregations.slice(1), groupByKeyStart);
+        } else {
+            aggQuery[Object.keys(aggQuery)[0]].aggregations = {
+                "pop": {
+                    "sum": {
+                        "field": "pop"
+                    }
                 }
-            }
-        };
+            };
+        }
     }
     return aggQuery;
 };
@@ -39,16 +42,18 @@ var generateNestedCensusAggQuery = function(aggregations, groupByKeyStart) {
 var generateCensusAggregationQuery = function( aggQuery, groupByKeyStart ) {
     groupByKeyStart = groupByKeyStart ? groupByKeyStart : '';
     var query = {};
-    //To handle infant_mortality year filter
-    if(aggQuery.queryKey == 'year_of_death'){
-        aggQuery.queryKey = 'current_year';
-    }
-    query[ groupByKeyStart + aggQuery.key] = {
-        "terms": {
-            "field": aggQuery.queryKey,
-            "size": aggQuery.size
+    if(aggQuery) {
+        //To handle infant_mortality year filter
+        if (aggQuery.queryKey == 'year_of_death') {
+            aggQuery.queryKey = 'current_year';
         }
-    };
+        query[groupByKeyStart + aggQuery.key] = {
+            "terms": {
+                "field": aggQuery.queryKey,
+                "size": aggQuery.size
+            }
+        };
+    }
     return query;
 };
 
