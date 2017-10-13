@@ -317,6 +317,7 @@ function search(q) {
                 const kaposiSarcoma = '36020';
                 //if only kaposi sarcoma is selected
                 if(cancerSiteFilter.value.length == 1 && cancerSiteFilter.value[0] == kaposiSarcoma) {
+                    searchUtils.applySuppressions(sideFilterResults, dataset, Infinity);
                     searchUtils.applySuppressions(results, dataset, Infinity);
                 } else if(cancerSiteFilter.value.indexOf(kaposiSarcoma) != -1) {//if kaposi sarcoma and some other cacncer site is selected
                     var rules = [[kaposiSarcoma]];//Kaposi sarcoma
