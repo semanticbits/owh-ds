@@ -730,7 +730,10 @@ function prepareNatalityData(natalityBirthData, natalityFertilityData, vaginalDa
 function prepareDiseaseData(data, countKey) {
     var tbData = data.data.nested.table.race;
     tbData.forEach(function(record, index){
-        if(record[countKey] === 'na') {
+        if(record[countKey] === 0) {
+            record['displayValue'] = 0;
+        }
+        else if(record[countKey] === 'na') {
             record['displayValue'] = 'Not Available';
         }
         else if(record[countKey] === 'suppressed') {
