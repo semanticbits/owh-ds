@@ -65,9 +65,11 @@
         ]};
 
         // Load ICD10 data
-        $http.get('jsons/conditions-ICD-10.json').then(function(res){
-                $rootScope.conditionsICD10 = res.data.conditionsICD10;
-                $rootScope.conditionsListICD10 = res.data.conditionsListICD10;
+        $http.get('jsons/ucd-conditions-ICD-10.json').then(function(res){
+                $rootScope.conditionsICD10ForUCD = res.data.conditionsICD10;
+        });
+        $http.get('jsons/mcd-conditions-ICD-10.json').then(function(res){
+            $rootScope.conditionsICD10ForMCD = res.data.conditionsICD10;
         });
 
         $rootScope.conditionsICD10113 = [];

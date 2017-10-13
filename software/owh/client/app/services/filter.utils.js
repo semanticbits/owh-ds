@@ -621,30 +621,6 @@
             {"key": "2001", "title": "2001"},
             {"key": "2000", "title": "2000"}
         ];
-        var diseaseAgeGroupOptions = [
-            {"key": "All age groups", "title": "All age groups"},
-            {"key": "Age 15 and older", "title": "Age 15 and older"},
-            {"key": "0-4", "title": "0-4"},
-            {"key": "0-14", "title": "0-14"},
-            {"key": "05-14", "title": "05-14"},
-            {"key": "13-24", "title": "13-24"},
-            {"key": "15-19", "title": "15-19"},
-            {"key": "15-24", "title": "15-24"},
-            {"key": "15-39", "title": "15-39"},
-            {"key": "20-24", "title": "20-24"},
-            {"key": "25-29", "title": "25-29"},
-            {"key": "25-34", "title": "25-34"},
-            {"key": "30-34", "title": "30-34"},
-            {"key": "35-39", "title": "35-39"},
-            {"key": "35-44", "title": "35-44"},
-            {"key": "40-44", "title": "40-44"},
-            {"key": "40-59", "title": "40-59"},
-            {"key": "45-54", "title": "45-54"},
-            {"key": "55-64", "title": "55-64"},
-            {"key": "55+", "title": "55+"},
-            {"key": "60+", "title": "60+"},
-            {"key": "65+", "title": "65+"}
-        ];
         var stdAgeGroupOptions = [
             {"key": "All age groups", "title": "All age groups"},
             {"key": "0-14", "title": "0-14"},
@@ -1414,6 +1390,18 @@
          * @return TB side filters array
          */
         function getTBDataFilters() {
+            var tbAgeGroupOptions = [
+                {"key": "All age groups", "title": "All age groups"},
+                {"key": "Age 15 and older", "title": "Age 15 and older"},
+                {"key": "0-4", "title": "0-4"},
+                {"key": "05-14", "title": "05-14"},
+                {"key": "15-24", "title": "15-24"},
+                {"key": "25-34", "title": "25-34"},
+                {"key": "35-44", "title": "35-44"},
+                {"key": "45-54", "title": "45-54"},
+                {"key": "55-64", "title": "55-64"},
+                {"key": "65+", "title": "65+"}
+            ];
             var countryOfBirth =  [
                 {key: 'No stratification', title: 'All countries of birth'},
                 {key: 'Foreign-born', title: 'Foreign-born'},
@@ -1441,7 +1429,7 @@
                     value: 'All age groups',
                     groupBy: false,
                     filterType: 'radio',defaultGroup:"row",
-                    autoCompleteOptions: diseaseAgeGroupOptions,
+                    autoCompleteOptions: tbAgeGroupOptions,
                     doNotShowAll: true,
                     helpText: "label.std.help.text.age.group"
                 },

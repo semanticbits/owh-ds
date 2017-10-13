@@ -3,7 +3,7 @@
 /*group of common test goes here as describe*/
 describe('utilService', function(){
     var utils, list, tableData, multipleColumnsTableData, noColumnsTableData, noRowsTableData,
-        multipleColumnsTableDataWithUnmatchedColumns, singleValuedTableData, $q, $scope, filterUtils, icd10codes, $rootScope;
+        multipleColumnsTableDataWithUnmatchedColumns, singleValuedTableData, $q, $scope, filterUtils, ucd_icd10codes, mcd_icd10codes, $rootScope;
 
     beforeEach(module('owh'));
 
@@ -36,7 +36,8 @@ describe('utilService', function(){
 
         singleValuedTableData = __fixtures__['app/services/fixtures/util.service/noRowsTableData'];
 
-        icd10codes  = __fixtures__['app/services/fixtures/util.service/conditions-ICD-10'];
+        ucd_icd10codes  = __fixtures__['app/services/fixtures/util.service/ucd-conditions-ICD-10'];
+        mcd_icd10codes  = __fixtures__['app/services/fixtures/util.service/mcd-conditions-ICD-10'];
 
         $httpBackend.whenGET('app/i18n/messages-en.json').respond({});
         $httpBackend.whenGET('app/partials/marker-template.html').respond( {});
@@ -46,7 +47,8 @@ describe('utilService', function(){
         $httpBackend.whenGET('/pramsAdvancesQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('app/modules/home/home.html').respond({data: { }});
-        $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
+        $httpBackend.whenGET('jsons/ucd-conditions-ICD-10.json').respond({data: []});
+        $httpBackend.whenGET('jsons/mcd-conditions-ICD-10.json').respond({data: []});
     }));
 
     it('test utils isValueNotEmpty for undefined', function () {
@@ -1139,14 +1141,94 @@ describe('utilService', function(){
         expect(year_2002.disabled).toBeTruthy();
     }));
 
-    it('getICD10Chapters returns epmty list when icd codes are not loaded', function () {
-        expect(utils.getICD10Chapters()).toEqual ([]);
+    it('PRAMS: should update income options on year change', function () {
+        var yearFilter = {"key":"year","title":"label.prams.filter.year","queryKey":"year","primary":false,"value":"","groupBy":false,"defaultGroup":"column","filterType":"radio","autoCompleteOptions":[{"key":"2011","title":"2011","$$hashKey":"object:4455","count":0},{"key":"2010","title":"2010","$$hashKey":"object:4456","count":0},{"key":"2009","title":"2009","$$hashKey":"object:4457","count":0},{"key":"2008","title":"2008","$$hashKey":"object:4458","count":0},{"key":"2007","title":"2007","$$hashKey":"object:4459","count":0},{"key":"2006","title":"2006","$$hashKey":"object:4460","count":0},{"key":"2005","title":"2005","$$hashKey":"object:4461","count":0},{"key":"2004","title":"2004","$$hashKey":"object:4462","count":0},{"key":"2003","title":"2003","$$hashKey":"object:4463","count":0},{"key":"2002","title":"2002","$$hashKey":"object:4464","count":0},{"key":"2001","title":"2001","$$hashKey":"object:4465","count":0},{"key":"2000","title":"2000","$$hashKey":"object:4466","count":0}],"doNotShowAll":false,"helpText":"label.help.text.prams.year","$$hashKey":"object:9998"};
+        var sideFilters = [{"sideFilters":[{"filterGroup":false,"collapse":false,"allowGrouping":true,"groupOptions":[{"key":"column","title":"Column","tooltip":"Select to view as columns on data table","$$hashKey":"object:4446"},{"key":false,"title":"Off","tooltip":"Select to hide on data table","$$hashKey":"object:4447"}],"dontShowCounts":true,"filters":{"key":"year","title":"label.prams.filter.year","queryKey":"year","primary":false,"value":"2003","groupBy":false,"defaultGroup":"column","filterType":"radio","autoCompleteOptions":[{"key":"2011","title":"2011","$$hashKey":"object:4455","count":0},{"key":"2010","title":"2010","$$hashKey":"object:4456","count":0},{"key":"2009","title":"2009","$$hashKey":"object:4457","count":0},{"key":"2008","title":"2008","$$hashKey":"object:4458","count":0},{"key":"2007","title":"2007","$$hashKey":"object:4459","count":0},{"key":"2006","title":"2006","$$hashKey":"object:4460","count":0},{"key":"2005","title":"2005","$$hashKey":"object:4461","count":0},{"key":"2004","title":"2004","$$hashKey":"object:4462","count":0},{"key":"2003","title":"2003","$$hashKey":"object:4463","count":0},{"key":"2002","title":"2002","$$hashKey":"object:4464","count":0},{"key":"2001","title":"2001","$$hashKey":"object:4465","count":0},{"key":"2000","title":"2000","$$hashKey":"object:4466","count":0}],"doNotShowAll":false,"helpText":"label.help.text.prams.year","$$hashKey":"object:9998"},"$$hashKey":"object:4392","showAll":true}],"$$hashKey":"object:4386"},{"category":"Breakout","exclusive":true,"sideFilters":[{"filterGroup":false,"collapse":false,"allowGrouping":false,"dontShowCounts":true,"filters":{"key":"income","title":"label.prams.filter.income.post2003","queryKey":"income","primary":false,"value":"$10k-$25k","groupBy":false,"disableFilter":true,"filterType":"radio","allAutoCompleteOptions":{"pre2004":[{"key":"<$15k","title":"<=$15,000"},{"key":"<$16k","title":"<=$15,999"},{"key":"<$16.8k","title":"<=$16,799"},{"key":"<$17k","title":"<=$17,000"},{"key":"<$18k","title":"<=$18,000"},{"key":"$15k-$25k","title":"$15,000-$24,999"},{"key":"$16k-$25k","title":"$16,000-$24,999"},{"key":"$16.8k-$25.2k","title":"$16,800-$25,199"}],"post2003":[{"key":"<$10k","title":"Less than $10,000","count":0,"$$hashKey":"object:9411"},{"key":"$10k-$25k","title":"$10,000 to $24,999","count":0,"$$hashKey":"object:9412"},{"key":"$25k-$50k","title":"$25,000 to $49,999","count":0,"$$hashKey":"object:9413"},{"key":"$50k plus","title":"$50,000 or more","count":0,"$$hashKey":"object:9414"}]},"autoCompleteOptions":[{"key":"<$10k","title":"Less than $10,000","count":0},{"key":"$10k-$25k","title":"$10,000 to $24,999","count":0},{"key":"$25k-$50k","title":"$25,000 to $49,999","count":0},{"key":"$50k plus","title":"$50,000 or more","count":0}],"doNotShowAll":false,"helpText":"label.help.text.prams.breakouts.income"},"$$hashKey":"object:4888"}],"$$hashKey":"object:4387"}];
+        var pre2004Incomes = [
+           {
+               "key": "<$15k",
+               "title": "<=$15,000"
+           },
+           {
+               "key": "<$16k",
+               "title": "<=$15,999"
+           },
+           {
+               "key": "<$16.8k",
+               "title": "<=$16,799"
+           },
+           {
+               "key": "<$17k",
+               "title": "<=$17,000"
+           },
+           {
+               "key": "<$18k",
+               "title": "<=$18,000"
+           },
+           {
+               "key": "$15k-$25k",
+               "title": "$15,000-$24,999"
+           },
+           {
+               "key": "$16k-$25k",
+               "title": "$16,000-$24,999"
+           },
+           {
+               "key": "$16.8k-$25.2k",
+               "title": "$16,800-$25,199"
+           }
+       ];
+        var post2003Incomes = [
+           {
+               "key": "<$10k",
+               "title": "Less than $10,000",
+               "count": 0,
+               "$$hashKey": "object:9411"
+           },
+           {
+               "key": "$10k-$25k",
+               "title": "$10,000 to $24,999",
+               "count": 0,
+               "$$hashKey": "object:9412"
+           },
+           {
+               "key": "$25k-$50k",
+               "title": "$25,000 to $49,999",
+               "count": 0,
+               "$$hashKey": "object:9413"
+           },
+           {
+               "key": "$50k plus",
+               "title": "$50,000 or more",
+               "count": 0,
+               "$$hashKey": "object:9414"
+           }
+       ];
+        yearFilter.value = '2003';
+        utils.pramsFilterChange(yearFilter, sideFilters);
+        expect(JSON.stringify(sideFilters[1].sideFilters[0].filters.autoCompleteOptions)).toEqual (JSON.stringify(pre2004Incomes));
+
+        yearFilter.value = '2007';
+        utils.pramsFilterChange(yearFilter, sideFilters);
+        expect(JSON.stringify(sideFilters[1].sideFilters[0].filters.autoCompleteOptions)).toEqual (JSON.stringify(post2003Incomes));
+
     });
 
-    it('getICD10Chapters returns icd10 chapters', function () {
-        $rootScope.conditionsICD10 = icd10codes.conditionsICD10;
-        expect(utils.getICD10Chapters().length).toEqual(21);
-        expect(utils.getICD10Chapters()).toEqual( [{ "key": "A00-B99", "title": "Certain infectious and parasitic diseases(A00-B99)" }, { "key": "C00-D48", "title": "Neoplasms(C00-D48)" }, { "key": "D50-D89", "title": "Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism(D50-D89)" }, { "key": "E00-E89", "title": "Endocrine, nutritional and metabolic diseases(E00-E89)" }, { "key": "F01-F99", "title": "Mental and behavioural disorders(F01-F99)" }, { "key": "G00-G98", "title": "Diseases of the nervous system(G00-G98)" }, { "key": "H00-H59", "title": "Diseases of the eye and adnexa(H00-H59)" }, { "key": "H60-H95", "title": "Diseases of the ear and mastoid process(H60-H95)" }, { "key": "I00-I99", "title": "Diseases of the circulatory system(I00-I99)" }, { "key": "J00-J98", "title": "Diseases of the respiratory system(J00-J98)" }, { "key": "K00-K92", "title": "Diseases of the digestive system(K00-K92)" }, { "key": "L00-L98", "title": "Diseases of the skin and subcutaneous tissue(L00-L98)" }, { "key": "M00-M99", "title": "Diseases of the musculoskeletal system and connective tissue(M00-M99)" }, { "key": "N00-N99", "title": "Diseases of the genitourinary system(N00-N99)" }, { "key": "O00-O99", "title": "Pregnancy, childbirth and the puerperium(O00-O99)" }, { "key": "P00-P96", "title": "Certain conditions originating in the perinatal period(P00-P96)" }, { "key": "Q00-Q99", "title": "Congenital malformations, deformations and chromosomal abnormalities(Q00-Q99)" }, { "key": "R00-R99", "title": "Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified(R00-R99)" }, { "key": "S00-T98", "title": "Injury, poisoning and certain other consequences of external causes(S00-T98)" }, { "key": "U00-U99", "title": "Codes for special purposes(U00-U99)" }, { "key": "V01-Y89", "title": "External causes of morbidity and mortality(V01-Y89)" }]);
+    it('getICD10Chapters returns epmty list when icd codes are not loaded', function () {
+        expect(utils.getICD10ChaptersForUCD()).toEqual ([]);
+        expect(utils.getICD10ChaptersForMCD()).toEqual ([]);
+    });
+
+    it('getICD10Chapters returns icd10 chapters for MCD', function () {
+        $rootScope.conditionsICD10ForMCD = mcd_icd10codes.conditionsICD10;
+        expect(utils.getICD10ChaptersForMCD().length).toEqual(21);
+        expect(utils.getICD10ChaptersForMCD()).toEqual([{"key":"A00-B99","title":"Certain infectious and parasitic diseases(A00-B99)"},{"key":"C00-D48","title":"Neoplasms(C00-D48)"},{"key":"D50-D89","title":"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism(D50-D89)"},{"key":"E00-E89","title":"Endocrine, nutritional and metabolic diseases(E00-E89)"},{"key":"F01-F99","title":"Mental and behavioural disorders(F01-F99)"},{"key":"G00-G98","title":"Diseases of the nervous system(G00-G98)"},{"key":"H00-H59","title":"Diseases of the eye and adnexa(H00-H59)"},{"key":"H60-H95","title":"Diseases of the ear and mastoid process(H60-H95)"},{"key":"I00-I99","title":"Diseases of the circulatory system(I00-I99)"},{"key":"J00-J98","title":"Diseases of the respiratory system(J00-J98)"},{"key":"K00-K92","title":"Diseases of the digestive system(K00-K92)"},{"key":"L00-L98","title":"Diseases of the skin and subcutaneous tissue(L00-L98)"},{"key":"M00-M99","title":"Diseases of the musculoskeletal system and connective tissue(M00-M99)"},{"key":"N00-N99","title":"Diseases of the genitourinary system(N00-N99)"},{"key":"O00-O99","title":"Pregnancy, childbirth and the puerperium(O00-O99)"},{"key":"P00-P96","title":"Certain conditions originating in the perinatal period(P00-P96)"},{"key":"Q00-Q99","title":"Congenital malformations, deformations and chromosomal abnormalities(Q00-Q99)"},{"key":"R00-R99","title":"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified(R00-R99)"},{"key":"S00-T98","title":"Injury, poisoning and certain other consequences of external causes(S00-T98)"},{"key":"U00-U99","title":"Codes for special purposes(U00-U99)"},{"key":"V01-Y89","title":"External causes of morbidity and mortality(V01-Y89)"}]);
+    });
+
+    it('getICD10Chapters returns icd10 chapters for UCD', function () {
+        $rootScope.conditionsICD10ForUCD = ucd_icd10codes.conditionsICD10;
+        expect(utils.getICD10ChaptersForUCD().length).toEqual(20);
+        expect(utils.getICD10ChaptersForUCD()).toEqual( [{"key":"A00-B99","title":"Certain infectious and parasitic diseases(A00-B99)"},{"key":"C00-D48","title":"Neoplasms(C00-D48)"},{"key":"D50-D89","title":"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism(D50-D89)"},{"key":"E00-E88","title":"Endocrine, nutritional and metabolic diseases(E00-E88)"},{"key":"F01-F99","title":"Mental and behavioural disorders(F01-F99)"},{"key":"G00-G98","title":"Diseases of the nervous system(G00-G98)"},{"key":"H00-H57","title":"Diseases of the eye and adnexa(H00-H57)"},{"key":"H60-H93","title":"Diseases of the ear and mastoid process(H60-H93)"},{"key":"I00-I99","title":"Diseases of the circulatory system(I00-I99)"},{"key":"J00-J98","title":"Diseases of the respiratory system(J00-J98)"},{"key":"K00-K92","title":"Diseases of the digestive system(K00-K92)"},{"key":"L00-L98","title":"Diseases of the skin and subcutaneous tissue(L00-L98)"},{"key":"M00-M99","title":"Diseases of the musculoskeletal system and connective tissue(M00-M99)"},{"key":"N00-N98","title":"Diseases of the genitourinary system(N00-N98)"},{"key":"O00-O99","title":"Pregnancy, childbirth and the puerperium(O00-O99)"},{"key":"P00-P96","title":"Certain conditions originating in the perinatal period(P00-P96)"},{"key":"Q00-Q99","title":"Congenital malformations, deformations and chromosomal abnormalities(Q00-Q99)"},{"key":"R00-R99","title":"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified(R00-R99)"},{"key":"U00-U99","title":"Codes for special purposes(U00-U99)"},{"key":"V01-Y89","title":"External causes of morbidity and mortality(V01-Y89)"}]);
     });
 
     describe('Aids Filter Change:', function () {

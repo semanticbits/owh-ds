@@ -367,11 +367,11 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
  * @param suppressKey - if suppressKey passed then set 'obj[suppresskey]' to 'suppressed'
  * @param maxValue
  */
-function suppressCounts (obj, countKey, dataType, suppressKey, maxValue, dataset) {
+function suppressCounts (obj, countKey, dataType, suppressKey, maxValue, dataset, isBasicSearch) {
     var key = suppressKey ? suppressKey : countKey;
     var value = maxValue !== undefined ? maxValue : 10;
     var suppressedVal = 'suppressed';
-    var naVal = 'na'
+    var naVal = 'na';
     // Set supressed and na value for charts to -1 and -2 respectively;
     if(dataType === 'charts'){
         suppressedVal = -1;
@@ -387,16 +387,30 @@ function suppressCounts (obj, countKey, dataType, suppressKey, maxValue, dataset
         }
 
         if (obj[property] && obj[property].constructor === Object) {
-            suppressCounts(obj[property], countKey, dataType, suppressKey, maxValue, dataset);
+            suppressCounts(obj[property], countKey, dataType, suppressKey, maxValue, dataset, isBasicSearch);
         } else if (obj[property] && obj[property].constructor === Array) {
             obj[property].forEach(function(arrObj) {
-                suppressCounts(arrObj, countKey, dataType, suppressKey, maxValue, dataset);
+                suppressCounts(arrObj, countKey, dataType, suppressKey, maxValue, dataset, isBasicSearch);
             });
         } else if(dataset === 'brfss') {
-            if(obj.mean == 0 && obj.count != 0) {
+            if(isBasicSearch) {
+                if(obj.mean == 0 && obj.count != 0) {
+                    obj.mean = suppressedVal;
+                } else if(obj.mean == 0 && obj.count == 0) {
+                    obj.mean = naVal; //no response
+                }
+            } else if(!isBasicSearch) {
+                var rse = obj.se*100 / obj.mean;
+                if(obj.sampleSize < 50 || rse > 0.3) {
+                    obj.mean = suppressedVal;
+                }
+            }
+        } else if(dataset === 'prams') {
+            //for basic search
+            if(isBasicSearch && obj.mean == 0 && obj.count == null) {
                 obj.mean = suppressedVal;
-            } else if(obj.mean == 0 && obj.count == 0) {
-                obj.mean = naVal; //no response
+            } else if(!isBasicSearch && obj.sampleSize < 30) {//for advance search
+                obj.mean = suppressedVal;
             }
         } else if(obj[countKey] != undefined && obj[countKey] < value) {
             if(countKey === 'std' && obj[countKey] === 0) {
@@ -493,15 +507,14 @@ function applyYRBSSuppressions(obj, countKey, suppressKey, isSexFiltersSelected,
  * @param suppressKey
  * @param isSexFiltersSelected
  */
-function applyPRAMSuppressions(obj, countKey, suppressKey, isChartorMapQuery ) {
+function applyPRAMSuppressions(obj, countKey, suppressKey, isChartorMapQuery, isBasicSearch ) {
     var dataType;
     if(isChartorMapQuery){
         dataType = 'charts';
     }
     var maxValue = 30;
-    suppressCounts(obj.data, countKey, dataType, suppressKey, maxValue);
-    suppressTotalCounts(obj.data, countKey, dataType, suppressKey);
-};
+    suppressCounts(obj.data, countKey, dataType, suppressKey, maxValue, 'prams', isBasicSearch);
+}
 
 /**
  * Suppression for BRFSS
@@ -510,12 +523,12 @@ function applyPRAMSuppressions(obj, countKey, suppressKey, isChartorMapQuery ) {
  * @param suppressKey
  * @param isChartorMapQuery
  */
-function applyBRFSSuppression(obj, countKey, suppressKey, isChartorMapQuery ) {
+function applyBRFSSuppression(obj, countKey, suppressKey, isChartorMapQuery, isBasicSearch ) {
     var dataType;
     if(isChartorMapQuery){
         dataType = 'charts';
     }
-    suppressCounts(obj.data, countKey, dataType, suppressKey, undefined, 'brfss');
+    suppressCounts(obj.data, countKey, dataType, suppressKey, undefined, 'brfss', isBasicSearch);
 }
 
 /**
@@ -743,24 +756,25 @@ var mergeAgeAdjustedRates = function(mort, rates) {
         "HHS-9": "HHS Region #9  AZ, CA, HI, NV",
         "HHS-10": "HHS Region #10  AK, ID, OR, WA",
     };
-
-    for(var key in mort) {
-        if(key !== 'natality' && key !== 'deaths' && key !== 'name' && key !== 'pop' && key !== 'ageAdjustedRate' && key !== 'standardPop') {
-            for(var i = 0; i < mort[key].length; i++) {
-                var age = rates[mort[key][i].name];
-                if(!age) {
-                    age = rates[keyMap[mort[key][i].name]];
-                }
-                if(age) {
-                    if (!age['ageAdjustedRate']) { // Nested result. go to the leaf node recursively
-                        if (age['Total']) { // If there is a subtotal, assign subtotal value
-                            mort[key][i]['ageAdjustedRate'] = age['Total'].ageAdjustedRate;
-                            mort[key][i]['standardPop'] = age['Total'].standardPop;
+    if(mort && rates) {
+        for (var key in mort) {
+            if (key !== 'natality' && key !== 'deaths' && key !== 'name' && key !== 'pop' && key !== 'ageAdjustedRate' && key !== 'standardPop') {
+                for (var i = 0; i < mort[key].length; i++) {
+                    var age = rates[mort[key][i].name];
+                    if (!age) {
+                        age = rates[keyMap[mort[key][i].name]];
+                    }
+                    if (age) {
+                        if (!age['ageAdjustedRate']) { // Nested result. go to the leaf node recursively
+                            if (age['Total']) { // If there is a subtotal, assign subtotal value
+                                mort[key][i]['ageAdjustedRate'] = age['Total'].ageAdjustedRate;
+                                mort[key][i]['standardPop'] = age['Total'].standardPop;
+                            }
+                            mergeAgeAdjustedRates(mort[key][i], age);
+                        } else {
+                            mort[key][i]['ageAdjustedRate'] = age.ageAdjustedRate;
+                            mort[key][i]['standardPop'] = age.standardPop;
                         }
-                        mergeAgeAdjustedRates(mort[key][i], age);
-                    }else {
-                        mort[key][i]['ageAdjustedRate'] = age.ageAdjustedRate;
-                        mort[key][i]['standardPop'] = age.standardPop;
                     }
                 }
             }

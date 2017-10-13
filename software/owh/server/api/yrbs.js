@@ -53,9 +53,9 @@ yrbs.prototype.invokeYRBSService = function(apiQuery){
         if(apiQuery.searchFor == 'mental_health') {
             searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexualOrientationSelected, apiQuery.isChartorMapQuery);
         } else if(apiQuery.searchFor == 'brfss') {
-            searchUtils.applyBRFSSuppression({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery);
+            searchUtils.applyBRFSSuppression({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery, apiQuery.basicSearch);
         } else if(apiQuery.searchFor == 'prams') {
-            //searchUtils.applyPRAMSuppressions({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery);
+            searchUtils.applyPRAMSuppressions({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery, apiQuery.basicSearch);
         }
         deferred.resolve(data);
     }, function (error) {
@@ -249,7 +249,7 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
         var responseKey = responseKeyMap[r.response]?responseKeyMap[r.response]:r.response;
 
         // skip NA responses for PRAMS
-        if (responseKey == 'NA') {
+        if (responseKey == 'nan') {
             continue;
         }
 
@@ -419,7 +419,13 @@ function resultCellObject (response, key) {
         ci_l: toRoundedPercentage(response.ci_l, prec),
         ci_u: toRoundedPercentage(response.ci_u, prec)
     };
-    key == 'mental_health' ? result.count = response.sample_size : result.count = response.count;
+    if(key == 'mental_health') {
+        result.count = response.sample_size;
+    } else {
+        result.count = response.count;
+        result.sampleSize = response.sample_size;
+        result.se = response.se;
+    }
     return result;
 }
 

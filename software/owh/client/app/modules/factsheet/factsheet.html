@@ -105,7 +105,7 @@
                             <tbody>
                             <tr ng-repeat="eachRecord in fsc.factSheet.detailMortalityData">
                                 <td ng-bind="eachRecord.causeOfDeath"></td>
-                                <td ng-bind="eachRecord.data.deaths | number "></td>
+                                <td ng-bind="eachRecord.data.deaths === 'suppressed' ? 'Suppressed' : ( eachRecord.data.deaths | number )"></td>
                                 <td ng-bind="eachRecord.data.ageAdjustedRate ? eachRecord.data.ageAdjustedRate :'Not Available'"></td>
                             </tr>
                             </tbody>
@@ -305,9 +305,9 @@
                             <tr ng-repeat="eachRecord in fsc.factSheet.cancerData">
                                 <td ng-bind="eachRecord.site"></td>
                                 <td ng-bind="eachRecord.pop == 'Not Available' ? eachRecord.pop : (eachRecord.pop | number)"></td>
-                                <td ng-bind="eachRecord.count == 'Not Available' ? eachRecord.count : (eachRecord.count | number)"></td>
+                                <td ng-bind="eachRecord.count == 'Not Available' || eachRecord.count == 'Suppressed' ? eachRecord.count : (eachRecord.count | number)"></td>
                                 <td ng-bind="eachRecord.incident_rate"></td>
-                                <td ng-bind="eachRecord.deaths | number"></td>
+                                <td ng-bind="eachRecord.deaths === 'Suppressed' ? eachRecord.deaths : ( eachRecord.deaths | number)"></td>
                                 <td ng-bind="eachRecord.mortality_rate"></td>
                             </tr>
                             </tbody>

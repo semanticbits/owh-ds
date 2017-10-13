@@ -110,8 +110,8 @@
                 var total = primaryFilter.tableView === 'crude_death_rates' ||
                             primaryFilter.tableView === 'age-adjusted_death_rates' ||
                             primaryFilter.tableView === 'crude_cancer_incidence_rates' ||
-                            primaryFilter.tableView === 'crude_cancer_death_rates'
-                            ? feature.properties.rate : feature.properties[primaryFilter.key];
+                            primaryFilter.tableView === 'crude_cancer_death_rates' ||
+                            primaryFilter.showRates ? feature.properties.rate : feature.properties[primaryFilter.key];
                 return {
                     fillColor: getColor(total, ranges),
                     weight: 0.8,

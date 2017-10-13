@@ -17,9 +17,12 @@
 
     </div>
     <div class="usa-width-one-whole margin-top-20">
-        <div class="usa-width-one-whole" ng-if="$root.conditionsICD10 &&
-                        (tc.codeKey === 'ucd-chapter-10' || tc.codeKey === 'mcd-chapter-10')">
-            <div id="ucd-chapter-10" should-apply="tc.ac()" js-tree="tc.treeConfig" ng-model="$root.conditionsICD10"
+        <div class="usa-width-one-whole" ng-if="$root.conditionsICD10ForUCD && tc.codeKey === 'ucd-chapter-10'">
+            <div id="ucd-chapter-10" should-apply="tc.ac()" js-tree="tc.treeConfig" ng-model="$root.conditionsICD10ForUCD"
+                 tree="tc.treeInstance" tree-events-obj="tc.treeEventsObj"></div>
+        </div>
+        <div class="usa-width-one-whole" ng-if="$root.conditionsICD10ForMCD && tc.codeKey === 'mcd-chapter-10'">
+            <div id="mcd-chapter-10" should-apply="tc.ac()" js-tree="tc.treeConfig" ng-model="$root.conditionsICD10ForMCD"
                  tree="tc.treeInstance" tree-events-obj="tc.treeEventsObj"></div>
         </div>
 
