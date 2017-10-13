@@ -147,6 +147,7 @@ env:
 script:
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then cd $TRAVIS_BUILD_DIR/software/owh; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then cp -R $TRAVIS_BUILD_DIR/deployment/* $TRAVIS_BUILD_DIR/software/owh; fi
+  - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then aws s3 sync s3://owh-config-prod $TRAVIS_BUILD_DIR/software/owh; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then mkdir -p $TRAVIS_BUILD_DIR/software/owh/.owh/logs; fi
 
 after_success:
