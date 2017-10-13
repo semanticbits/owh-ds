@@ -140,22 +140,25 @@
             }
         }
 
-        // Adds a pie chart to a ppt
+        // Adds a single variable bar chart to a ppt
         function addPieChart(pptx, slide, title, chartdata){
-            var dataChartBar = [{labels: [], values: []}];
-            for (var i = chartdata.data.length - 1 ; i >=0 ; i-- ){
-                dataChartBar[0].labels.push(chartdata.data[i].label);
-                dataChartBar[0].values.push(chartdata.data[i].value);
+            var dataChartBar = [];
+            // Traverse the data in reverse order so that the bars order match in the UI and generate PPT.
+            for (var i = chartdata.data.length -1 ; i >= 0 ; i-- ){
+                var region = chartdata.data[i];
+                var reg = {name: region.name, labels: [], values: region.x};
+                dataChartBar.push(reg);
             }
-
-            slide.addChart( pptx.charts.PIE, dataChartBar, { x:.2, y:.2, w:'95%', h:'85%',
+            slide.addChart( pptx.charts.BAR,dataChartBar, { x:.2, y:.2, w:'95%', h:'85%',
                 showLegend: true, legendPos: 't',
                 showLabel: false,
                 showTitle: true, title: title, titleFontSize: 20,
-                showValue: true,dataLabelFontSize:8,
+                barGrouping:'clustered',
+                showValue: false,dataLabelFontSize:8,dataLabelPosition: 'outEnd',
                 chartColors: chartUtilService.getColorPallete().map(function (color) {
                     return color.substr(1); // strip off the leading #
                 }),
+                barDir: 'bar'
             } );
         }
 
