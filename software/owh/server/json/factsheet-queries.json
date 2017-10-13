@@ -6286,7 +6286,7 @@
                         "should": [
                           {
                             "term": {
-                              "cancer_site.path": "28010-28040"
+                              "cancer_site.path": "28010"
                             }
                           }
                         ]
