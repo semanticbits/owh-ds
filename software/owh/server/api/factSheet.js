@@ -619,6 +619,10 @@ function prepareCancerData(cancerMortalityData, cancerIncidentData) {
             cancerMortalityDeathCounts = 'Suppressed';
             crudeMortalityRate = 'Suppressed';
         }
+        else if(eachRecord.cancer_mortality < 20) {
+            cancerMortalityDeathCounts = eachRecord.cancer_mortality;
+            crudeMortalityRate = 'Unreliable';
+        }
         else {
             cancerMortalityDeathCounts = eachRecord.cancer_mortality;
             crudeMortalityRate = eachRecord.pop != 'n/a' ? Math.round(cancerMortalityDeathCounts / eachRecord.pop * 1000000) / 10 : "Not Available";
@@ -631,6 +635,9 @@ function prepareCancerData(cancerMortalityData, cancerIncidentData) {
         if(incidentData.cancer_incident === 'suppressed'){
             incidentData.cancer_incident = 'Suppressed';
             crudeIncidentRate = 'Suppressed';
+        }
+        else if(incidentData.cancer_incident < 20) {
+            crudeIncidentRate = 'Unreliable';
         }
         else {
             crudeIncidentRate = incidentData.pop != 'n/a' ? Math.round(incidentData.cancer_incident / incidentData.pop * 1000000) / 10 : "Not Available";
