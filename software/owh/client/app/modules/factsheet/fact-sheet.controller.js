@@ -225,7 +225,11 @@
             //Detail Mortality
             var detailsMortalityData = [];
             angular.forEach(fsc.factSheet.detailMortalityData, function(eachRecord){
-                detailsMortalityData.push([eachRecord.causeOfDeath, eachRecord.data.deaths ? $filter('number')(eachRecord.data.deaths): "", eachRecord.data.ageAdjustedRate ? eachRecord.data.ageAdjustedRate : "Not Available"]);
+                var deathCount = "";
+                if(eachRecord.data.deaths){
+                    deathCount = eachRecord.data.deaths === 'suppressed' ? 'Suppressed' : $filter('number')(eachRecord.data.deaths);
+                }
+                detailsMortalityData.push([eachRecord.causeOfDeath, deathCount, eachRecord.data.ageAdjustedRate ? eachRecord.data.ageAdjustedRate : "Not Available"]);
             });
             allTablesData.detailMortality = {
                 headerData: ['Cause of Death', 'Number of Deaths', 'Age-Adjusted Death Rate (per 100,000)'],
@@ -355,7 +359,7 @@
                 eachRow.push($filter('number')(eachRecord.pop));
                 eachRow.push($filter('number')(eachRecord.count));
                 eachRow.push(eachRecord.incident_rate);
-                eachRow.push($filter('number')(eachRecord.deaths));
+                eachRecord.deaths === 'Suppressed' ? eachRow.push(eachRecord.deaths) : eachRow.push($filter('number')(eachRecord.deaths));
                 eachRow.push(eachRecord.mortality_rate);
                 cancerData.push(eachRow);
             });
