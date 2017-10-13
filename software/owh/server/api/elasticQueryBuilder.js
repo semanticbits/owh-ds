@@ -22,16 +22,19 @@ var prepareCensusAggregationQuery = function(aggregations, datasetName) {
 
 var generateNestedCensusAggQuery = function(aggregations, groupByKeyStart) {
     var aggQuery = generateCensusAggregationQuery(aggregations[0], groupByKeyStart);
-    if(aggregations.length > 1) {
-        aggQuery[Object.keys(aggQuery)[0]].aggregations = generateNestedCensusAggQuery(aggregations.slice(1), groupByKeyStart);
-    }else{
-        aggQuery[Object.keys(aggQuery)[0]].aggregations = {
-            "pop": {
-                "sum": {
-                    "field": "pop"
+    var aggKeys = Object.keys(aggQuery);
+    if(aggKeys.length > 0) {
+        if (aggregations.length > 1) {
+            aggQuery[Object.keys(aggQuery)[0]].aggregations = generateNestedCensusAggQuery(aggregations.slice(1), groupByKeyStart);
+        } else {
+            aggQuery[Object.keys(aggQuery)[0]].aggregations = {
+                "pop": {
+                    "sum": {
+                        "field": "pop"
+                    }
                 }
-            }
-        };
+            };
+        }
     }
     return aggQuery;
 };
@@ -39,16 +42,18 @@ var generateNestedCensusAggQuery = function(aggregations, groupByKeyStart) {
 var generateCensusAggregationQuery = function( aggQuery, groupByKeyStart ) {
     groupByKeyStart = groupByKeyStart ? groupByKeyStart : '';
     var query = {};
-    //To handle infant_mortality year filter
-    if(aggQuery.queryKey == 'year_of_death'){
-        aggQuery.queryKey = 'current_year';
-    }
-    query[ groupByKeyStart + aggQuery.key] = {
-        "terms": {
-            "field": aggQuery.queryKey,
-            "size": aggQuery.size
+    if(aggQuery) {
+        //To handle infant_mortality year filter
+        if (aggQuery.queryKey == 'year_of_death') {
+            aggQuery.queryKey = 'current_year';
         }
-    };
+        query[groupByKeyStart + aggQuery.key] = {
+            "terms": {
+                "field": aggQuery.queryKey,
+                "size": aggQuery.size
+            }
+        };
+    }
     return query;
 };
 
@@ -201,6 +206,8 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     if(censusQuery) {
         var clonedUserQuery = clone(userQuery);
         if (clonedUserQuery['ICD_10_code']) delete clonedUserQuery['ICD_10_code'];
+        if (clonedUserQuery['ICD_10_code.set1']) delete clonedUserQuery['ICD_10_code.set1'];
+        if (clonedUserQuery['ICD_10_code.set2']) delete clonedUserQuery['ICD_10_code.set2'];
         if (clonedUserQuery['ICD_130_code']) delete clonedUserQuery['ICD_130_code'];
         if (clonedUserQuery['infant_age_at_death']) delete clonedUserQuery['infant_age_at_death'];
         if (clonedUserQuery['cancer_site']) delete clonedUserQuery['cancer_site'];
@@ -607,6 +614,9 @@ function isValueNotEmpty(value) {
 function getAutoCompleteOptionsLength(filter) {
     //get length when options are nested
     var length = filter.autoCompleteOptions ? filter.autoCompleteOptions.length : 0;
+    if (filter.key === 'ucd-chapter-10' || filter.key === 'mcd-chapter-10') {
+        return 0 ;
+    }
     if(filter.autoCompleteOptions) {
         filter.autoCompleteOptions.forEach(function(option) {
             if(option.options) {

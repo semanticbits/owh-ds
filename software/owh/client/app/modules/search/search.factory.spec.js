@@ -39,7 +39,8 @@ describe('search factory ', function(){
         $httpBackend.whenGET('/yrbsQuestionsTree').respond(questionsTreeJson);
         $httpBackend.whenGET('/pramsBasicQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/pramsAdvancesQuestionsTree').respond({data: { }});
-        $httpBackend.whenGET('jsons/conditions-ICD-10.json').respond({data: []});
+        $httpBackend.whenGET('jsons/ucd-conditions-ICD-10.json').respond({data: []});
+        $httpBackend.whenGET('jsons/mcd-conditions-ICD-10.json').respond({data: []});
         $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
         $rootScope.questionsList = questionsTreeJson.questionsList;
         filters = searchFactory.getAllFilters();

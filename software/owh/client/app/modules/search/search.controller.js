@@ -81,7 +81,6 @@
                         {key: 'advance_delivery', title: 'Delivery'},
                         {key: 'advance_demographics', title: 'Demographics'},
                         {key: 'advance_family_planning', title: 'Family Planning'},
-                        {key: 'advance_flu', title: 'Flu'},
                         {key: 'advance_infant_health', title: 'Infant Health'},
                         {key: 'advance_maternal_behavior', title: 'Maternal Behavior/Health'},
                         {key: 'advance_maternal_experiences', title: 'Maternal Experiences'},
@@ -335,23 +334,6 @@
         function setDefaults() {
             var yearFilter = utilService.findByKeyAndValue(sc.filters.selectedPrimaryFilter.allFilters, 'key', 'year');
             yearFilter.value.push('2015');
-
-            var pramsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'prams');
-            angular.forEach(pramsFilter.sideFilters[0].sideFilters, function(filter){
-                if(filter.filters.key === 'topic') {
-                    if (sc.filters.selectedPrimaryFilter.key == 'prams') {
-                        if (sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu) {
-                            filter.filters.autoCompleteOptions = sc.filters.pramsPrecTopicOptions;
-                            searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup['basic_delivery'])
-                        } else {
-                            filter.filters.autoCompleteOptions = sc.filters.pramsRawTopicOptions;
-                            searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup['advance_delivery'])
-                        }
-                    } else if (sc.filters.selectedPrimaryFilter.key == 'brfss') {
-                        filter.filters.autoCompleteOptions = sc.filters.brfsTopicOptions;
-                    }
-                }
-            });
         }
 
         if(sc.queryID === '') {
@@ -564,6 +546,7 @@
                         sc.tableView = result.tableView;
                         sc.tableData = result.tableData;
                         sc.filters.selectedPrimaryFilter = result.primaryFilter;
+                        sc.filters.selectedPrimaryFilter.tableView = result.tableView;
                     }
                 }
                 deffered.resolve(response);
@@ -627,6 +610,14 @@
                         }
                         searchFactory.groupAutoCompleteOptions(filter.filters, sc.optionsGroup[selectedFilter.key]);
                     } else if (filter.filters.key === 'question') {
+                        if(sc.filters.selectedPrimaryFilter.key === 'mental_health') {
+                            filter.filters.questions = searchFactory.getYrbsQuestionsForTopic(sc.tableView);
+                        } else if(sc.filters.selectedPrimaryFilter.key === 'prams'
+                            || sc.filters.selectedPrimaryFilter.key === 'brfss') {
+                            var statQuestions = searchFactory.getQuestionsByDataset(sc.filters.selectedPrimaryFilter.key,
+                                sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu);
+                            filter.filters.questions = searchFactory.getQuestionsByTopics(sc.optionsGroup[sc.tableView].topic, statQuestions);
+                        }
                         // Clear questions selection and update questions list on class/topic change for PRAMS and YRBS datasets
                         filter.filters.value = [];
                         filter.filters.selectedValues = [];
@@ -854,9 +845,15 @@
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[4].basicSideFilters[0].sideFilters;
                 sc.filters.selectedPrimaryFilter.tableView = 'basic_delivery';
                 sc.tableView = 'basic_delivery';
+                //reset income filter as there are different sets of income filters for pre-comp and raw data
+                sc.filters.selectedPrimaryFilter.allFilters[6].value = '';
+                sc.filters.selectedPrimaryFilter.allFilters[0].autoCompleteOptions = sc.filters.pramsPrecTopicOptions;
             } else if (dataset === 'brfss') {
                 sc.filters.selectedPrimaryFilter.allFilters = sc.filters.brfsBasicFilters;
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[11].basicSideFilters[0].sideFilters;
+                sc.filters.selectedPrimaryFilter.allFilters[0].autoCompleteOptions = sc.filters.brfsTopicOptions;
+                sc.filters.selectedPrimaryFilter.tableView = 'alcohol_consumption';
+                sc.tableView = 'alcohol_consumption';
             }
 
             sc.search(true);
@@ -876,9 +873,15 @@
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[4].advancedSideFilters[0].sideFilters;
                 sc.filters.selectedPrimaryFilter.tableView = 'advance_delivery';
                 sc.tableView = 'advance_delivery';
+                //reset income filter as there are different sets of income filters for pre-comp and raw data
+                sc.filters.selectedPrimaryFilter.allFilters[6].value = '';
+                sc.filters.selectedPrimaryFilter.allFilters[0].autoCompleteOptions = sc.filters.pramsRawTopicOptions;
             } else if (dataset === 'brfss') {
                 sc.filters.selectedPrimaryFilter.allFilters = sc.filters.brfsAdvancedFilters;
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[11].advancedSideFilters[0].sideFilters;
+                sc.filters.selectedPrimaryFilter.allFilters[0].autoCompleteOptions = sc.filters.brfsTopicOptions;
+                sc.filters.selectedPrimaryFilter.tableView = 'alcohol_consumption';
+                sc.tableView = 'alcohol_consumption';
             }
 
             sc.search(true);

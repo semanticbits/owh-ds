@@ -122,7 +122,7 @@
   "label.yrbs.sexual.orientation": "Sexual Orientation",
   "label.yrbs.sexual.identity": "Sexual Identity",
   "label.yrbs.sexual.contact": "Sex of Sexual Contacts",
-  "label.official.us.gov": "An official website of the United States Government. This site is work in progress and may contain inaccuracies. If you don't find what you need, visit {{cdc}}.",
+  "label.official.us.gov": "An official website of the United States Government. This site is work in progress and may contain inaccuracies.",
   "label.site.prototype": "This site is a prototype.",
   "label.learn.more": "Learn more.",
   "label.next.impl": "Work in progress",
@@ -329,7 +329,8 @@
   "label.prams.class": "Class:",
   "label.prams.filter.adequacy": "Adequacy of Prenatal Care",
   "label.prams.filter.birth_weight": "Birth Weight",
-  "label.prams.filter.income": "Income (years 2004 and beyond)",
+  "label.prams.filter.income.post2003": "Income (years 2004 and beyond)",
+  "label.prams.filter.income.pre2004": "Income (years 2000-2003)",
   "label.prams.filter.marital_status": "Marital Status",
   "label.prams.filter.maternal_age_groupings": "Maternal Age- 18 to 44 years in groupings",
   "label.prams.filter.maternal_age_years": "Maternal Age- 18 to 44 years only",
@@ -573,5 +574,5 @@
   "label.help.text.brfss.age_group": "This field indicates the age-group of the survey respondents",
   "label.help.text.brfss.education": "This field indicates the education attained by the survey respondents",
   "label.help.text.brfss.income": "This field indicates the household income of the survey respondents",
-  "datadoc.tb.data.filter.restrictions":"TB data can be viewed in aggregate format or one-way stratifications (i.e., by Sex, Race/Ethnicity, Age group or Country of birth)."
+  "datadoc.tb.data.filter.restrictions":"TB state-level data can be viewed in aggregate format or one-way stratifications (i.e., by Sex, Race/Ethnicity, Age group or Country of birth)."
 }

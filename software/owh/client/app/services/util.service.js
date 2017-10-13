@@ -52,7 +52,9 @@
             removeValuesFromArray: removeValuesFromArray,
             getSelectedFiltersText: getSelectedFiltersText,
             brfsFilterChange: brfsFilterChange,
-            getICD10Chapters:getICD10Chapters
+            getICD10ChaptersForUCD:getICD10ChaptersForUCD,
+            getICD10ChaptersForMCD: getICD10ChaptersForMCD,
+            pramsFilterChange:pramsFilterChange
         };
 
         return service;
@@ -1080,6 +1082,30 @@
             return JSON.parse(JSON.stringify(a));
         };
 
+        function pramsFilterChange(filter, categories) {
+            var sideFilters = [];
+            angular.forEach(categories, function (category) {
+                sideFilters = sideFilters.concat(category.sideFilters);
+            });
+            var incomeFilter = $filter('filter')(sideFilters, {filters : {key: 'income'}})[0];
+            //for 2004-2011
+            if (filter.key === 'year' && filter.value > 2003) {
+                var post2003Incomes = incomeFilter.filters.allAutoCompleteOptions.post2003;
+                if(incomeFilter.filters.autoCompleteOptions[0].key != post2003Incomes[0].key) {
+                    incomeFilter.filters.autoCompleteOptions = post2003Incomes;
+                    incomeFilter.filters.title = 'label.prams.filter.income.post2003';
+                    incomeFilter.filters.value = '';
+                }
+            } else if (filter.key === 'year' && filter.value < 2004) {//for 2000-2003
+                var pre2004Incomes = incomeFilter.filters.allAutoCompleteOptions.pre2004;
+                if(incomeFilter.filters.autoCompleteOptions[0].key != pre2004Incomes[0].key) {
+                    incomeFilter.filters.autoCompleteOptions = incomeFilter.filters.allAutoCompleteOptions.pre2004;
+                    incomeFilter.filters.title = 'label.prams.filter.income.pre2004';
+                    incomeFilter.filters.value = '';
+                }
+            }
+        }
+
         /**
          * This function gets called on STD filter change
          * Enable/Disable filters based on selected filter
@@ -1355,9 +1381,19 @@
             }
         }
 
-        function getICD10Chapters(){
-            if($rootScope.conditionsICD10) {
-                return $rootScope.conditionsICD10.map(function (cond) {
+        function getICD10ChaptersForUCD(){
+            if($rootScope.conditionsICD10ForUCD) {
+                return $rootScope.conditionsICD10ForUCD.map(function (cond) {
+                    return {key: cond.id, title: cond.text}
+                });
+            }else{
+                return [];
+            }
+        }
+
+        function getICD10ChaptersForMCD(){
+            if($rootScope.conditionsICD10ForMCD) {
+                return $rootScope.conditionsICD10ForMCD.map(function (cond) {
                     return {key: cond.id, title: cond.text}
                 });
             }else{

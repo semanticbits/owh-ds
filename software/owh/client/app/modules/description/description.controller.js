@@ -107,7 +107,7 @@
                         },
                         {
                             question:"Why are some filters disabled for Birth Rates and Fertility Rate calculations?",
-                            answer:"The Birth Rates data are available by Year, Race, State, Census Region, Census Division, HHS Region. The Fertility Rates data are available by Year, Race, Age of Mother, State, Census Region, Census Division, HHS Region. These data are not available for filters that show up as disabled.",
+                            answer:"The Birth Rates data are available by Year, Race, State, Census Region, Census Division, HHS Region. The Fertility Rates data are available by Year, Race, Age of Mother, State, Census Region, Census Division, HHS Region. These data are not available for filters that show up as disabled.<br/><br/>",
                         }
                     ]
                 },
@@ -184,7 +184,7 @@
                         },
                         {
                             question:"Why are some filters disabled for Crude Rates and Age Adjusted Rate calculations?",
-                            answer:"The Crude Rates and Fertility Rates data are limited to certain items. These data are not available for filters that show up as disabled.",
+                            answer:"The Crude Rates and Fertility Rates data are limited to certain items. These data are not available for filters that show up as disabled.<br/><br/>",
                         }
                     ]
                 },
@@ -197,7 +197,7 @@
                     dataDescription: "The estimates result from bridging the 31 race categories used in Census 2000, as specified in the 1997 Office of Management and Budget (OMB) standards for the collection of data on race and ethnicity, to the four race categories specified under the 1977 standards (Asian or Pacific Islander, Black or African American, American Indian or Alaska Native, White).",
                     source: "Data source is United States Department of Health and Human Services (HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS), Bridged-Race Population Estimates, United States July 1st resident population by state, age, sex, bridged-race, and Hispanic origin." +
                     "<ul><li>2010 to 2015 (Vintage 2015) postcensal estimates of the July 1 resident population by five-year of age groups, bridged-race, sex, and Hispanic originreleased by NCHS on June 28, 2016.</li>" +
-                    "<li>2000 to 2009 revised intercensal estimates of the July 1 resident population by year, five-year of age groups, bridged-race, sex, and Hispanic origin released by NCHS on October 26, 2012.</li>" +
+                    "<li>2000 to 2009 revised intercensal estimates of the July 1 resident population by five-year of age groups, bridged-race, sex, and Hispanic origin released by NCHS on October 26, 2012.</li>" +
                     "</ul>",
                     filters: [
                         {name: "Year", description: "This field indicates July 1st estimates for 2000 through last year of the series"},
@@ -251,7 +251,7 @@
                         {name: "Age Group", description: "This field indicates the age group of the patient"},
                         {name: "Cancer Sites", description: "This field indicates the primary cancer site that is the organ of origin within the body where a given cancer occurs in an individual"},
                         {name: "Childhood Cancers", description: "This field indicates the childhood cancer that are usually studied in children who are less than age 20"},
-                        {name: "Leading Cancer Sites", description: "This field contains a list of only the top or leading cancer sites, meaning the primary cancers with the highest incidence for each race and sex"},
+                        /*{name: "Leading Cancer Sites", description: "This field contains a list of only the top or leading cancer sites, meaning the primary cancers with the highest incidence for each race and sex"},*/
                         {name: "State", description: "This field indicates the State of patient's residence at the time the case was submitted to the registry"},
                         {name: "Census Regions", description: "The United States is split into 4 Census Regions: Northeast, Midwest, South and West. Census Divisions are multi-state groups, sub-sets of Census Regions. You can group by Census Division, or select any combination of individual Census Divisions"}
                     ],
@@ -264,8 +264,7 @@
                             isRateInfo:true,
                             question:"What are Crude Rates? How are they calculated?",
                             answer:"Crude Rates are expressed as the number of cases reported each calendar year per 100,000 population." +
-                            "<p>Crude Rate = Count / Population * 100,000</p>" +
-                            "<p>The population estimates for the denominators of incidence rates are race-specific (all races, white, black, and Asian/ Pacific Islander) and sex-specific county population estimates aggregated to the state or metropolitan area level.</p>"
+                            "<p>Crude Rate = Count / Population * 100,000</p>"
                         },
                         {
                             question: "Why are some states disabled for certain years?",
@@ -303,7 +302,7 @@
                         {name: "Age Group", description: "This field indicates the age group of the patient"},
                         {name: "Cancer Sites", description: "This field indicates the primary cancer site that is the organ of origin within the body where a given cancer occurs in an individual"},
                         /*{name: "Childhood Cancers", description: "This field indicates the childhood cancer that are usually studied in children who are less than age 20"},*/
-                        {name: "Leading Cancer Sites", description: "This field contains a list of only the top or leading cancer sites, meaning the primary cancers with the highest incidence for each race and sex"},
+                        /*{name: "Leading Cancer Sites", description: "This field contains a list of only the top or leading cancer sites, meaning the primary cancers with the highest incidence for each race and sex"},*/
                         {name: "State", description: "This field indicates the State of patient's residence at the time the case was submitted to the registry"},
                         {name: "Census Regions", description: "The United States is split into 4 Census Regions: Northeast, Midwest, South and West. Census Divisions are multi-state groups, sub-sets of Census Regions. You can group by Census Division, or select any combination of individual Census Divisions"}
                     ],
@@ -316,8 +315,7 @@
                             isRateInfo:true,
                             question:"What are Crude Rates? How are they calculated?",
                             answer:"Crude Rates are expressed as the number of cases reported each calendar year per 100,000 population." +
-                            "<p>Crude Rate = Count / Population * 100,000</p>" +
-                            "<p>The population estimates for the denominators of incidence rates are race-specific (all races, white, black, and Asian/ Pacific Islander) and sex-specific county population estimates aggregated to the state or metropolitan area level.</p>"
+                            "<p>Crude Rate = Count / Population * 100,000</p>"
                         }
                     ]
                 },
@@ -346,7 +344,7 @@
                         {
                             isRateInfo:true,
                             question:"How are Rates calculated?",
-                            answer:"Each rate was calculated by dividing the number of STD cases for the calendar year by the population for that calendar year and then multiplying the number by 100,000."
+                            answer:"Each rate was calculated by dividing the number of STD cases for the calendar year by the population for that calendar year and then multiplying the number by 100,000.<br/><br/>"
                         },
                         {
                             isRateInfo:false,
@@ -380,12 +378,12 @@
                         {
                             isRateInfo:true,
                             question:"How are Rates calculated?",
-                            answer:"TB Rates are expressed as the number of cases reported each calendar year per 100,000 populations."
+                            answer:"TB Rates are expressed as the number of cases reported each calendar year per 100,000 populations.<br/><br/>"
                         },
                         {
                             isRateInfo:false,
                             question:"Why cannot I apply more than one demographic filter on State data?",
-                            answer:"TB data can be viewed in aggregate format or one-way stratifications (i.e., by age group, sex, race/ethnicity, or country of birth [U.S.-born or foreign-born]). When the state filter is applied, then only one of the demographic filters can be applied as data are not available."
+                            answer:"TB data can be viewed in aggregate format or one-way stratifications (i.e., by age group, sex, race/ethnicity, or country of birth [U.S.-born or foreign-born]). When the state filter is applied, then only one of the demographic filters can be applied as data are not available.<br/><br/>"
                         }
                     ]
                 },
@@ -420,10 +418,11 @@
                         {name: "Age Group", description: "This field indicates the age group of the patient. HIV surveillance data include adults and adolescents only (persons aged 13 years and older)"},
                         {name: "Transmission Category", description: "This field indicates the classification of cases that summarizes a person’s possible HIV risk factor"}
                     ],
+                    note: "<span class='bold-class'>Note:</span> Data on diagnoses of HIV infection should be interpreted with caution. Data may not be representative of all persons with HIV because not all infected persons have been tested. Also, many states offer anonymous testing; the results of anonymous tests are not reported to the confidential name-based HIV registries of state and local health departments. The data presented provide minimum number of persons for whom HIV infection has been diagnosed and reported to the National HIV Surveillance System. In addition, because surveillance practices differ, the reporting and the updating of a person’s clinical and vital status differ among states. The completeness of reporting of HIV diagnoses is estimated at more than 80%.<br/><br/>",
                     additionalInfo:[
                         {
                             question:"Can I get more information on AIDS/HIV age groups?",
-                            answer:"The data source only includes data for adults and adolescents (i.e., persons aged 13 years and older). When comparing HIV data with STD and/or TB data, the HIV age group remains ages 13–24. For diagnosis data, age is based on the person’s age at diagnosis (HIV infection or stage 3 [AIDS]). For data on persons living with diagnosed HIV infection or stage 3 (AIDS), the age is based on the person’s age as of December 31 of the queried year. For HIV or AIDS death data, age is based on the person’s age at the time of death. Ten-year age groups are used with HIV surveillance data to ensure data security and confidentiality."
+                            answer:"The data source only includes data for adults and adolescents (i.e., persons aged 13 years and older). When comparing HIV data with STD and/or TB data, the HIV age group remains ages 13–24. For diagnosis data, age is based on the person’s age at diagnosis (HIV infection or stage 3 [AIDS]). For data on persons living with diagnosed HIV infection or stage 3 (AIDS), the age is based on the person’s age as of December 31 of the queried year. For HIV or AIDS death data, age is based on the person’s age at the time of death. Ten-year age groups are used with HIV surveillance data to ensure data security and confidentiality.<br/><br/>"
                         },
                         {
                             question:"What is Transmission Category?",
@@ -446,7 +445,7 @@
                         },
                         {
                             question:"What are the  population sources?",
-                            answer:"The population denominators used to compute the rates for the 50 states, the District of Columbia were based on the Vintage 2009 postcensal estimates file (for the years 2000 to 2009) and the Vintage 2015 file (for years 2010 to 2015) from the U.S. Census Bureau. The denominators used for calculating age-, sex-, and race/ethnicity-specific rates were computed by applying the appropriate vintage estimates for age, sex, and race/ethnicity for the 50 states and the District of Columbia."
+                            answer:"The population denominators used to compute the rates for the 50 states, the District of Columbia were based on the Vintage 2009 postcensal estimates file (for the years 2000 to 2009) and the Vintage 2015 file (for years 2010 to 2015) from the U.S. Census Bureau. The denominators used for calculating age-, sex-, and race/ethnicity-specific rates were computed by applying the appropriate vintage estimates for age, sex, and race/ethnicity for the 50 states and the District of Columbia.<br/><br/>"
                         }
                     ]
                 },
@@ -500,7 +499,7 @@
                         },
                         {
                             question:"Why can I not pick years from two groups?",
-                            answer:"Different sets of years have different filter options available. Hence the years under one set cannot be combined and compared with other set. The years 2000-2014 are divided into three sets 2000-2002, 2003-2006 and 2007-2014"
+                            answer:"Different sets of years have different filter options available. Hence the years under one set cannot be combined and compared with other set. The years 2000-2014 are divided into three sets 2000-2002, 2003-2006 and 2007-2014.<br/><br/>"
                         }
                     ]
                 },
@@ -541,7 +540,7 @@
                          },
                          {
                              question:"How are the YRBSS results used?",
-                             answer:"State, territorial, tribal government, and local agencies and nongovernmental organizations use YRBSS data to set and track progress toward meeting school health and health promotion program goals, support modification of school health curricula or other programs, support new legislation and policies that promote health, and seek funding and other support for new initiatives. CDC and other federal agencies routinely use YRBSS data to assess trends in priority health behaviors among high school students, monitor progress toward achieving national health objectives, and evaluate the contribution of broad prevention efforts in schools and other settings toward helping the nation reduce health risk behaviors among youth."
+                             answer:"State, territorial, tribal government, and local agencies and nongovernmental organizations use YRBSS data to set and track progress toward meeting school health and health promotion program goals, support modification of school health curricula or other programs, support new legislation and policies that promote health, and seek funding and other support for new initiatives. CDC and other federal agencies routinely use YRBSS data to assess trends in priority health behaviors among high school students, monitor progress toward achieving national health objectives, and evaluate the contribution of broad prevention efforts in schools and other settings toward helping the nation reduce health risk behaviors among youth.<br/><br/>"
                          }
                      ]
                 },
@@ -587,11 +586,11 @@
                         },
                         {
                             question:"What does PRAMS do with the information?",
-                            answer:"The information collected from the mothers is used to develop health programs and policies; help doctors and nurses improve care; and make better use of health resources."
+                            answer:"The information collected from the mothers is used to develop health programs and policies; help doctors and nurses improve care; and make better use of health resources.<br/><br/>"
                         },
                         {
                             question:"Why are results not available for every state?",
-                            answer:"Results are not available from every state for several reasons. Firstly, Eleven states (Arizona, Connecticut, District of Columbia, Idaho, Indiana, Iowa, Kansas, Kentucky, Nevada, New Hampshire, Virginia) do not participate in the PRAMS. Secondly, data is not available for some states in certain years (See Availability of PRAMS Data For Analysis by State and Year: <a href='https://www.cdc.gov/prams/pramstat/state-availability-year.html' target='_blank'>https://www.cdc.gov/prams/pramstat/state-availability-year.html</a>)"
+                            answer:"Results are not available from every state for several reasons. Firstly, 11 states (Arizona, Connecticut, District of Columbia, Idaho, Indiana, Iowa, Kansas, Kentucky, Nevada, New Hampshire, Virginia) do not participate in the PRAMS. Secondly, data are not available for some states in certain years (See Availability of PRAMS Data For Analysis by State and Year: <a href='https://www.cdc.gov/prams/pramstat/state-availability-year.html' target='_blank'>https://www.cdc.gov/prams/pramstat/state-availability-year.html</a>)"
                         }
                     ]
                 },
@@ -619,15 +618,15 @@
                     additionalInfo:[
                         {
                             question:"How is the survey conducted?",
-                            answer:"With technical and methodological assistance from CDC, state health departments use in-house interviewers or contract with telephone call centers or universities to administer the BRFSS surveys continuously through the year. The states use a standardized core questionnaire, optional modules, and state-added questions. The survey is conducted using Random Digit Dialing (RDD) techniques on both landlines and cell phones."
+                            answer:"With technical and methodological assistance from CDC, state health departments use in-house interviewers or contract with telephone call centers or universities to administer the BRFSS surveys continuously through the year. The states use a standardized core questionnaire, optional modules, and state-added questions. The survey is conducted using Random Digit Dialing (RDD) techniques on both landlines and cell phones.<br/><br/>"
                         },
                         {
                             question:"Who takes part in the BRFSS survey? Are they compensated?",
-                            answer:"Adults 18 years or older are asked to take part in the survey. Participants are not compensated monetarily but should know that they are taking part in a rewarding endeavor that helps improve the health of U.S. residents. The number of interviews within each state will vary based on funding and the size of regions, such as health districts, within each state"
+                            answer:"Adults 18 years or older are asked to take part in the survey. Participants are not compensated monetarily but should know that they are taking part in a rewarding endeavor that helps improve the health of U.S. residents. The number of interviews within each state will vary based on funding and the size of regions, such as health districts, within each state.<br/><br/>"
                         },
                         {
                             question:"How are BRFSS data weighted? What variables are used when weighting BRFSS data?",
-                            answer:"From the 1980s to 2010, CDC has used a statistical method called post stratification to weight BRFSS survey data to known proportions of age, race and ethnicity, sex, geographic region within a population. In 2011 the BRFSS moved to a new weighting methodology known as iterative proportional fitting or raking. Raking has several advantages over post stratification. First, it allows the introduction of more demographic variables—such as education level, marital status, and homeownership—into the statistical weighting process than would have been possible with post stratification. This advantage reduces the potential for bias and increases the representativeness of estimates. Second, raking allows for the incorporation of a now-crucial variable—telephone ownership (landline and/or cellular telephone)—into the BRFSS weighting methodology. Beginning with the 2011 dataset, raking succeeded post stratification as the BRFSS statistical weighting method. As noted in the previous paragraph, age, sex, categories of ethnicity, geographic regions within states, marital status, education level, home ownership and type of phone ownership are currently used to weight BRFSS data."
+                            answer:"From the 1980s to 2010, CDC has used a statistical method called post stratification to weight BRFSS survey data to known proportions of age, race and ethnicity, sex, geographic region within a population. In 2011 the BRFSS moved to a new weighting methodology known as iterative proportional fitting or raking. Raking has several advantages over post stratification. First, it allows the introduction of more demographic variables—such as education level, marital status, and homeownership—into the statistical weighting process than would have been possible with post stratification. This advantage reduces the potential for bias and increases the representativeness of estimates. Second, raking allows for the incorporation of a now-crucial variable—telephone ownership (landline and/or cellular telephone)—into the BRFSS weighting methodology. Beginning with the 2011 dataset, raking succeeded post stratification as the BRFSS statistical weighting method. As noted in the previous paragraph, age, sex, categories of ethnicity, geographic regions within states, marital status, education level, home ownership and type of phone ownership are currently used to weight BRFSS data.<br/><br/>"
                         }
                     ]
                 }

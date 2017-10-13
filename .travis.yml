@@ -125,5 +125,5 @@ deploy:
   deployment_group: $TRAVIS_BRANCH
   on: *2
 
-after_script:
-  - kill -9 $(fuser -n tcp 3000 2> /dev/null)
+#after_script:
+#  - kill -9 $(fuser -n tcp 3000 2> /dev/null)
