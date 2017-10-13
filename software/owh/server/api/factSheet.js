@@ -549,7 +549,7 @@ function preparePRAMSData(pregnantWomenData, womenData) {
 
     pramsData.women.push({"question": "With one or more previous live births who reported unintended pregnancy", data: womenData[0].table.question[0] && womenData[0].table.question[0]["unintended"] ? womenData[0].table.question[0]["unintended"].sitecode[0].prams.mean + "%" : "NR"});
     pramsData.women.push({"question": "Ever breastfed or pump breast milk to feed after delivery", data: womenData[1].table.question[0] && womenData[1].table.question[0].yes ? womenData[1].table.question[0].yes.sitecode[0].prams.mean + "%" : "NR"});
-    pramsData.women.push({"question": "Ever breastfed or pump breast milk to feed after delivery", data: womenData[2].table.question[0] && womenData[2].table.question[0].yes ? womenData[2].table.question[0].yes.sitecode[0].prams.mean + "%" : "NR"});
+    pramsData.women.push({"question": "Indicator of depression 3 months before pregnancy", data: womenData[2].table.question[0] && womenData[2].table.question[0].yes ? womenData[2].table.question[0].yes.sitecode[0].prams.mean + "%" : "NR"});
     return pramsData;
 }
 
