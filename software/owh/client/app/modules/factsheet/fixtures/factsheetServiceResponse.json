@@ -1,4 +1,6 @@
 {
+"queryJSON":{},
+"resultData": {
   "totalGenderPop": 6006401,
   "gender": [
     {
@@ -751,4 +753,5 @@
       }
     ]
   }
+}
 }

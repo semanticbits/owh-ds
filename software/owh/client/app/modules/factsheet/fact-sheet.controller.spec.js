@@ -18,6 +18,30 @@ describe("FactSheet Controller: ", function() {
 
     });
 
+    it("get factsheet", inject(function(SearchService, $q) {
+         var deferred = $q.defer();
+         var response = {data:"4dcdd1323203ffe625cac68900edc1b5"};
+         deferred.resolve(response);
+         spyOn(SearchService, 'generateHashCode').and.returnValue(deferred.promise);
+         factSheetController.getFactSheet("AL");
+         expect(SearchService.generateHashCode).toHaveBeenCalled();
+    }));
+
+     it('if no query ID found in the URL, show default factsheets page', inject(function(SearchService) {
+        var stateParams = {
+            queryID: ''
+        };
+        $controller('FactSheetController',
+        {
+            $scope:$scope,
+            $stateParams: stateParams
+        });
+        spyOn(SearchService, "generateHashCode").and.returnValue({
+            then: function(){}
+        });
+        expect(SearchService.generateHashCode).not.toHaveBeenCalled();
+    }));
+
    /* it("export factsheet", function(done){
         factSheetController.state = "MaryLand";
         factSheetController.factSheet = factsheetServiceReponse;

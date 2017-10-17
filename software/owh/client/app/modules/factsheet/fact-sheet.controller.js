@@ -187,13 +187,13 @@
         function getFactSheet(state, fsType) {
             if(state) {
                 SearchService.generateHashCode(state).then(function (response) {
-                        $state.go('factsheets', {
-                            queryID: response.data,
-                            state: state,
-                            fsType: fsType,
-                            cacheQuery: true
-                        });
+                    $state.go('factsheets', {
+                        queryID: response.data,
+                        state: state,
+                        fsType: fsType,
+                        cacheQuery: true
                     });
+                });
             }
         }
 
