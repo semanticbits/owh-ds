@@ -279,6 +279,59 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
             if ('sexpart' in r && response.vars.indexOf('sexpart') != -1) {
                 cell = getResultCell(cell, 'sexpart', r.sexpart);
             }
+            if ('education' in r && response.vars.indexOf('education') != -1) {
+                cell = getResultCell(cell, 'education', r.education);
+            }
+            if ('maternal_age_18to44' in r && response.vars.indexOf('maternal_age_18to44') != -1) {
+                cell = getResultCell(cell, 'maternal_age_18to44', r['maternal_age_18to44']);
+            }
+            if ('wic_during_preg' in r && response.vars.indexOf('wic_during_preg') != -1) {
+                cell = getResultCell(cell, 'wic_during_preg', r['wic_during_preg']);
+            }
+            if ('smoked_last_tri' in r && response.vars.indexOf('smoked_last_tri') != -1) {
+                cell = getResultCell(cell, 'smoked_last_tri', r['smoked_last_tri']);
+            }
+            if ('smoked_3mo_pre_preg' in r && response.vars.indexOf('smoked_3mo_pre_preg') != -1) {
+                cell = getResultCell(cell, 'smoked_3mo_pre_preg', r['smoked_3mo_pre_preg']);
+            }
+            if ('prev_live_births' in r && response.vars.indexOf('prev_live_births') != -1) {
+                cell = getResultCell(cell, 'prev_live_births', r['prev_live_births']);
+            }
+            if ('preg_intend' in r && response.vars.indexOf('preg_intend') != -1) {
+                cell = getResultCell(cell, 'preg_intend', r['preg_intend']);
+            }
+            if ('mother_hispanic' in r && response.vars.indexOf('mother_hispanic') != -1) {
+                cell = getResultCell(cell, 'mother_hispanic', r['mother_hispanic']);
+            }
+            if ('medicaid_recip' in r && response.vars.indexOf('medicaid_recip') != -1) {
+                cell = getResultCell(cell, 'medicaid_recip', r['medicaid_recip']);
+            }
+            if ('marital_status' in r && response.vars.indexOf('marital_status') != -1) {
+                cell = getResultCell(cell, 'marital_status', r.marital_status);
+            }
+
+            if ('birth_weight' in r && response.vars.indexOf('birth_weight') != -1) {
+                cell = getResultCell(cell, 'birth_weight', r.birth_weight);
+            }
+            if ('maternal_education' in r && response.vars.indexOf('maternal_education') != -1) {
+                cell = getResultCell(cell, 'maternal_education', r['maternal_education']);
+            }
+            if ('maternal_age_3lvl' in r && response.vars.indexOf('maternal_age_3lvl') != -1) {
+                cell = getResultCell(cell, 'maternal_age_3lvl', r['maternal_age_3lvl']);
+            }
+            if ('maternal_age_4lvl' in r && response.vars.indexOf('maternal_age_4lvl') != -1) {
+                cell = getResultCell(cell, 'maternal_age_4lvl', r['maternal_age_4lvl']);
+            }
+
+            if ('prenatal_care' in r && response.vars.indexOf('prenatal_care') != -1) {
+                cell = getResultCell(cell, 'prenatal_care', r['prenatal_care']);
+            }
+            if ('maternal_age_18to44grp' in r && response.vars.indexOf('maternal_age_18to44grp') != -1) {
+                cell = getResultCell(cell, 'maternal_age_18to44grp', r['maternal_age_18to44grp']);
+            }
+            if ('income' in r && response.vars.indexOf('income') != -1) {
+                cell = getResultCell(cell, 'income', r.income);
+            }
             if ('race' in r && response.vars.indexOf('race') != -1) {
                 cell = getResultCell(cell, 'race', r.race);
             }
@@ -287,61 +340,8 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
                 cell = getResultCell(cell, 'age', r.age);
             }
 
-            if ('education' in r && response.vars.indexOf('education') != -1) {
-                cell = getResultCell(cell, 'education', r.education);
-            }
-
-            if ('income' in r && response.vars.indexOf('income') != -1) {
-                cell = getResultCell(cell, 'income', r.income);
-            }
-
-            if ('birth_weight' in r && response.vars.indexOf('birth_weight') != -1) {
-                cell = getResultCell(cell, 'birth_weight', r.birth_weight);
-            }
-            if ('marital_status' in r && response.vars.indexOf('marital_status') != -1) {
-                cell = getResultCell(cell, 'marital_status', r.marital_status);
-            }
-            if ('maternal_age_18to44' in r && response.vars.indexOf('maternal_age_18to44') != -1) {
-                cell = getResultCell(cell, 'maternal_age_18to44', r['maternal_age_18to44']);
-            }
-            if ('maternal_age_18to44grp' in r && response.vars.indexOf('maternal_age_18to44grp') != -1) {
-                cell = getResultCell(cell, 'maternal_age_18to44grp', r['maternal_age_18to44grp']);
-            }
-            if ('maternal_age_3lvl' in r && response.vars.indexOf('maternal_age_3lvl') != -1) {
-                cell = getResultCell(cell, 'maternal_age_3lvl', r['maternal_age_3lvl']);
-            }
-            if ('maternal_age_4lvl' in r && response.vars.indexOf('maternal_age_4lvl') != -1) {
-                cell = getResultCell(cell, 'maternal_age_4lvl', r['maternal_age_4lvl']);
-            }
-            if ('maternal_education' in r && response.vars.indexOf('maternal_education') != -1) {
-                cell = getResultCell(cell, 'maternal_education', r['maternal_education']);
-            }
             if ('maternal_race' in r && response.vars.indexOf('maternal_race') != -1) {
                 cell = getResultCell(cell, 'maternal_race', r['maternal_race']);
-            }
-            if ('medicaid_recip' in r && response.vars.indexOf('medicaid_recip') != -1) {
-                cell = getResultCell(cell, 'medicaid_recip', r['medicaid_recip']);
-            }
-            if ('mother_hispanic' in r && response.vars.indexOf('mother_hispanic') != -1) {
-                cell = getResultCell(cell, 'mother_hispanic', r['mother_hispanic']);
-            }
-            if ('preg_intend' in r && response.vars.indexOf('preg_intend') != -1) {
-                cell = getResultCell(cell, 'preg_intend', r['preg_intend']);
-            }
-            if ('prenatal_care' in r && response.vars.indexOf('prenatal_care') != -1) {
-                cell = getResultCell(cell, 'prenatal_care', r['prenatal_care']);
-            }
-            if ('prev_live_births' in r && response.vars.indexOf('prev_live_births') != -1) {
-                cell = getResultCell(cell, 'prev_live_births', r['prev_live_births']);
-            }
-            if ('smoked_3mo_pre_preg' in r && response.vars.indexOf('smoked_3mo_pre_preg') != -1) {
-                cell = getResultCell(cell, 'smoked_3mo_pre_preg', r['smoked_3mo_pre_preg']);
-            }
-            if ('smoked_last_tri' in r && response.vars.indexOf('smoked_last_tri') != -1) {
-                cell = getResultCell(cell, 'smoked_last_tri', r['smoked_last_tri']);
-            }
-            if ('wic_during_preg' in r && response.vars.indexOf('wic_during_preg') != -1) {
-                cell = getResultCell(cell, 'wic_during_preg', r['wic_during_preg']);
             }
             // Prams filters
             if ('year' in r && response.vars.indexOf('year') != -1) {
