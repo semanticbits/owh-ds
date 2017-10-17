@@ -13,14 +13,15 @@ addons:
 
 env:
   global:
-    - if '[ "$TRAVIS_BRANCH" != "deploy/production" ]; then 
+    - |
+      if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then 
          AWS_ACCESS_KEY_ID=$OWH_ACCESS_KEY;
          AWS_SECRET_ACCESS_KEY=$OWH_ACCESS_SECRET;
          NODE_ENV=test;
-    else 
+      else 
          AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PROD; 
          AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PROD;
-    fi'
+      fi;
     
 before_install:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then docker info; fi
