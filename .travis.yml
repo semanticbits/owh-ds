@@ -136,7 +136,7 @@ deploy:
   application: OwhDev
   deployment_group: $TRAVIS_BRANCH
   on: 
-    condition: $TRAVIS_BRANCH != deploy/production
+#    condition: $TRAVIS_BRANCH != deploy/production
     all_branches: true
 
 #after_script:
