@@ -68,7 +68,7 @@
         url: '/svgtopng'
       },
       'getFactSheet' : {
-          method : 'GET',
+          method : 'POST',
           url: '/factsheet'
       }
     }
