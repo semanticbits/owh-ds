@@ -141,7 +141,7 @@ deploy:
   deployment_group: $TRAVIS_BRANCH
   on: 
      condition: $TRAVIS_BRANCH != deploy/production
-      all_branches: true
+     all_branches: true
 
 #after_script:
 # - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then kill -9 $(fuser -n tcp 3000 2> /dev/null); fi
