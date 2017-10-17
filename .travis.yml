@@ -130,14 +130,17 @@ deploy:
     branch:
      - develop
      # - release (TBD)
-  bucket:   sb-owh-deployment
+  bucket: sb-owh-deployment
 - provider: codedeploy
   access_key_id: $OWH_ACCESS_KEY
+  secret_access_key: $OWH_ACCESS_SECRET
+  bucket: sb-owh-deployment
+  key: owh-$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER.zip
+  bundle_type: zip
   application: OwhDev
   deployment_group: $TRAVIS_BRANCH
   on: 
-#    condition: $TRAVIS_BRANCH != deploy/production
-#    all_branches: true
+     condition: $TRAVIS_BRANCH != deploy/production
 
 #after_script:
 # - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then kill -9 $(fuser -n tcp 3000 2> /dev/null); fi
