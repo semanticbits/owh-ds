@@ -64,10 +64,10 @@ before_script:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ./node_modules/protractor/bin/webdriver-manager update; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sleep 1; fi #give server time to start
 
-group: if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then deprecated-2017Q2; fi
+group: deprecated-2017Q2
 language: if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then java; fi
 jdk:
-  -  if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then oraclejdk8; fi
+  -  oraclejdk8
 
 script:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm run-script test-single-run; fi
@@ -136,7 +136,8 @@ deploy:
   application: OwhDev
   deployment_group: $TRAVIS_BRANCH
   on: 
-#    condition: $TRAVIS_BRANCH != deploy/production
+    condition: $TRAVIS_BRANCH != deploy/production
+    all_branches: true
 
 #after_script:
 # - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then kill -9 $(fuser -n tcp 3000 2> /dev/null); fi
