@@ -67,7 +67,7 @@ before_script:
 group: deprecated-2017Q2
 language: if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then java; fi
 jdk:
-  -  if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then oraclejdk8; fi
+  - oraclejdk8
 
 script:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm run-script test-single-run; fi
