@@ -35,10 +35,11 @@
                 controller: 'DescriptionController',
                 controllerAs: 'dc'
         }).state('factsheets',  {
-                url:'/factsheets',
+                url:'/factsheets/:queryID',
                 templateUrl: 'app/modules/factsheet/factsheet.html',
                 controller: 'FactSheetController',
-                controllerAs: 'fsc'
+                controllerAs: 'fsc',
+                params: {state: null, fsType: null, cacheQuery: false}
         }).state('404',  {
                 url:'/404',
                 templateUrl: '404.html'
