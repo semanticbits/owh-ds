@@ -13,10 +13,16 @@ addons:
 
 env:
   global:
-    - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then AWS_ACCESS_KEY_ID=$OWH_ACCESS_KEY; fi
-    - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then AWS_SECRET_ACCESS_KEY=$OWH_ACCESS_SECRET; fi
-    - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then NODE_ENV=test; fi
-
+    - |
+      if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then 
+         AWS_ACCESS_KEY_ID=$OWH_ACCESS_KEY;
+         AWS_SECRET_ACCESS_KEY=$OWH_ACCESS_SECRET;
+         NODE_ENV=test;
+      else 
+         AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PROD; 
+         AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PROD;
+      fi;
+    
 before_install:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then docker info; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then mkdir -p .owh/logs; fi
@@ -54,14 +60,14 @@ before_script:
 #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install; fi
 #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install -g pm2@latest; fi
 #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sudo apt-get install nodejs-legacy; fi
-  - npm start > /dev/null &  
+  - npm start > /dev/null &
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ./node_modules/protractor/bin/webdriver-manager update; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sleep 1; fi #give server time to start
 
-group: if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then deprecated-2017Q2; fi
+group: deprecated-2017Q2
 language: if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then java; fi
 jdk:
-  -  if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then oraclejdk8; fi
+  - oraclejdk8
 
 script:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm run-script test-single-run; fi
@@ -87,7 +93,6 @@ after_success:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then aws s3 sync client/cucumber-test-reports s3://owh-cucumber-report --acl public-read; fi
 
 before_deploy:
-
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then cd $TRAVIS_BUILD_DIR/software/owh; fi
   # Dealing with paths that fight each other... start the nasty bit...
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then cp -R $TRAVIS_BUILD_DIR/deployment/* $TRAVIS_BUILD_DIR/software/owh; fi
@@ -111,48 +116,40 @@ before_deploy:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then mv dpl_tmp/owh-${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}.zip dpl_cd_upload/; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ls dpl_tmp; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then rm -rf dpl_tmp; fi
-
+  
 deploy:
-- provider: s3
-  access_key_id: $OWH_ACCESS_KEY
-  secret_access_key: $OWH_ACCESS_SECRET
-  local_dir: dpl_cd_upload
-  skip_cleanup: true
-  on: 
-    condition: $TRAVIS_BRANCH != deploy/production     
-    repo: semanticbits/owh-ds
-    branch:
-     - develop
-     # - release (TBD)
-  bucket:   sb-owh-deployment
-- provider: codedeploy
-  access_key_id: $OWH_ACCESS_KEY
-  application: OwhDev
-  deployment_group: $TRAVIS_BRANCH
-  on: 
-    condition: $TRAVIS_BRANCH != deploy/production  
+  - provider: s3
+    access_key_id: $OWH_ACCESS_KEY
+    secret_access_key: $OWH_ACCESS_SECRET
+    local_dir: dpl_cd_upload
+    skip_cleanup: true
+    on: &2
+      repo: semanticbits/owh-ds
+      branch:
+       - develop
+       # - release (TBD)
+    bucket: sb-owh-deployment
+  - provider: codedeploy
+    access_key_id: $OWH_ACCESS_KEY
+    secret_access_key: $OWH_ACCESS_SECRET
+    bucket: sb-owh-deployment
+    key: owh-$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER.zip
+    bundle_type: zip
+    application: OwhDev
+    deployment_group: $TRAVIS_BRANCH
+    on: *2
 
-after_script:
-  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then kill -9 $(fuser -n tcp 3000 2> /dev/null); fi
-
-language: node_js
-node_js:
-  - "node"
-
-env:
-  global:
-    - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PROD; fi
-    - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PROD; fi
+#after_script:
+#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then kill -9 $(fuser -n tcp 3000 2> /dev/null); fi
 
 script:
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then cd $TRAVIS_BUILD_DIR/software/owh; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then cp -R $TRAVIS_BUILD_DIR/deployment/* $TRAVIS_BUILD_DIR/software/owh; fi
-  - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then aws s3 sync s3://owh-config-prod $TRAVIS_BUILD_DIR/software/owh; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then mkdir -p $TRAVIS_BUILD_DIR/software/owh/.owh/logs; fi
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then docker --version; fi  # document the version travis is using; fi
-  - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then eval $(aws ecr get-login --region us-east-1 --no-include-email); fi #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
+  - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then eval $(aws ecr get-login --region us-east-1); fi #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then docker build -t owh-prod .; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then docker tag owh-prod:latest 498284886784.dkr.ecr.us-east-1.amazonaws.com/owh-prod:latest; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then docker push 498284886784.dkr.ecr.us-east-1.amazonaws.com/owh-prod:latest; fi
