@@ -56,9 +56,9 @@
             return deferred.promise;
         }
 
-        function getFactSheetForState(state, fsType) {
+        function getFactSheetForState(state, fsType, queryID) {
             var deferred = $q.defer();
-            API.getFactSheet({state:state, fsType:fsType}).$promise.then(onComplete).catch(onFailed);
+            API.getFactSheet({state:state, fsType:fsType, qID: queryID}).$promise.then(onComplete).catch(onFailed);
             function onComplete(response) {
                 deferred.resolve(response);
             }

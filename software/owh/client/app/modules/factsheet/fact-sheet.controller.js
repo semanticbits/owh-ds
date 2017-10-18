@@ -3,10 +3,11 @@
         .module('owh.fact-sheet')
         .controller('FactSheetController', FactSheetController);
 
-    FactSheetController.$inject = ['$scope', '$state', 'factSheetService', '$filter', 'SearchService', '$rootScope'];
+    FactSheetController.$inject = ['$scope', '$state', 'factSheetService', '$filter', 'SearchService', '$rootScope', '$stateParams', '$q', '$window'];
 
-    function FactSheetController($scope, $state, factSheetService, $filter, SearchService, $rootScope) {
+    function FactSheetController($scope, $state, factSheetService, $filter, SearchService, $rootScope, $stateParams, $q, $window) {
         var fsc = this;
+        fsc.queryID = $stateParams.queryID;
         fsc.fsTypes = {
             //minority_health: 'Minority Health',
             //womens_health: "Women's Health",
@@ -64,6 +65,8 @@
             "WI": "Wisconsin",
             "WY": "Wyoming"
         };
+        fsc.state = $stateParams.state;
+        fsc.fsType = $stateParams.fsType;
         //To populate select box
         fsc.stateJSON = [
             {id:"AL", text:"Alabama"},
@@ -135,19 +138,61 @@
         fsc.getFactSheet = getFactSheet;
         fsc.exportFactSheet = exportFactSheet;
         fsc.getStateName = getStateName;
+        $scope.update = function(state) {
+            fsc.state = state;
+        };
+        if(fsc.queryID) {
+            getQueryResults(fsc.state, fsc.fsType, fsc.queryID).then(function (response) {
+                if (!response || !response.resultData) {
+                    if (!fsc.cacheQuery) {
+                        // redirect to default query if we were tryint to retrieve a cached query
+                        // and was not found in the cache
+                        $window.alert('Query ' + fsc.queryID + ' could not be found');
+                        $state.go('factsheets', {
+                            queryID: ''
+                        });
+                    }
+                }
+            });
+        }
 
         /**
-         * To get factsheet data from server
+         * To get query results usig queryID. If no results found with this queryID
+         * then server get the results and save results using this queryID and returns results
+         * @param state
+         * @param fsType
+         * @param queryID
+         */
+        function getQueryResults(state, fsType, queryID) {
+            var deffered = $q.defer();
+            factSheetService.prepareFactSheetForState(state, fsType, queryID).then(function (response) {
+                if(response && response.resultData){
+                    fsc.state = response.resultData.state;
+                    fsc.stateName = fsc.states[response.resultData.state];
+                    fsc.stateImg = 'state_' + response.resultData.state + '.svg';
+                    fsc.stateImgUrl = '../../images/state-shapes/state_' + response.resultData.state + '.svg';
+                    fsc.factSheet = response.resultData;
+                }
+                deffered.resolve(response);
+            });
+            return deffered.promise;
+        }
+
+
+        /**
+         * To get fact sheet data from server
          * @param state
          * @param fsType
          */
         function getFactSheet(state, fsType) {
             if(state) {
-                factSheetService.prepareFactSheetForState(state, fsType).then(function (response) {
-                    fsc.state = fsc.states[response.state];
-                    fsc.stateImg = 'state_' + response.state + '.svg';
-                    fsc.stateImgUrl = '../../images/state-shapes/state_' + response.state + '.svg';
-                    fsc.factSheet = response;
+                SearchService.generateHashCode(state).then(function (response) {
+                    $state.go('factsheets', {
+                        queryID: response.data,
+                        state: state,
+                        fsType: fsType,
+                        cacheQuery: true
+                    });
                 });
             }
         }
@@ -467,9 +512,9 @@
                  },
                  pdfDefinition.content = [
                      {image: response.data[0], width: 50, height: 50, style: 'state-image'},
-                     {text: fsc.state+" Health Fact Sheet", style: 'state-heading'},
+                     {text: fsc.stateName+" Health Fact Sheet", style: 'state-heading'},
                      {image: fsc.imageDataURLs.bridgeRace, width: 50, height: 50, style: 'dataset-image'},
-                     {text: "Population in "+fsc.state, style: 'heading'},
+                     {text: "Population in "+fsc.stateName, style: 'heading'},
                      {text: "Total state population: "+$filter('number')(fsc.factSheet.totalGenderPop)+ " ("+$filter('number')(fsc.factSheet.gender[0].bridge_race)+" females; "+$filter('number')(fsc.factSheet.gender[1].bridge_race)+ " males)"},
                      {
                          style: 'table',
@@ -657,7 +702,7 @@
 
                  ];
                  var document = pdfMake.createPdf(pdfDefinition);
-                 document.download(fsc.state+"-factsheet.pdf");
+                 document.download(fsc.stateName+"-factsheet.pdf");
                  return document.docDefinition;
              });
         }

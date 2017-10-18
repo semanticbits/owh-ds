@@ -76,12 +76,43 @@ var searchRouter = function(app, rConfig) {
         });
     });
 
-    app.get('/factsheet', function (req, res) {
-        var state = req.sanitize(req.query.state);
-        var fsType = req.sanitize(req.query.fsType);
-        new factSheet().prepareFactSheet(state, fsType).then(function(response) {
-            res.send(new result('OK', response, "success"));
-        });
+    app.post('/factsheet', function (req, res) {
+       var queryId = req.sanitize(req.body.qID);
+        if (queryId) {
+            queryCache.getCachedQuery(queryId).then(function (r) {
+                if(r && !config.disableQueryCache) {
+                    logger.info("Retrieved query results for query ID " + queryId + " from query cache");
+                    var resData = {};
+                    resData.queryJSON = JSON.parse(r._source.queryJSON);
+                    resData.resultData = JSON.parse(r._source.resultJSON);
+                    res.send(new result('OK', resData, "success"));
+                }
+                else if(req.body.state && req.body.fsType) {
+                    logger.info("Query with ID " + queryId + " not in cache, executing query");
+                    var state = req.sanitize(req.body.state);
+                    var fsType = req.sanitize(req.body.fsType);
+                    res.connection.setTimeout(0);
+                    new factSheet().prepareFactSheet(state, fsType).then(function(response) {
+                        if(!config.disableQueryCache) {
+                            var resData = {};
+                            resData.queryJSON = {};
+                            resData.resultData = response;
+                            queryCache.cacheQuery(queryId, 'fact_sheets', resData);
+                        }
+                        res.send(new result('OK', resData, "success"));
+                    });
+                }
+                else{
+                    logger.warn('Query ID not present, query failed');
+                    res.send(new result('Query ID not present', null, "failed"));
+                }
+            });
+        } else {
+            logger.warn('Query ID not present, query failed');
+            res.send(new result('Query ID not present', null, "failed"));
+        }
+
+
     });
 
     app.get('/dsmetadata/:dataset', function(req, res) {

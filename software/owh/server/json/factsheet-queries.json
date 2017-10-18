@@ -6800,12 +6800,6 @@
         "basicSearch":true,
         "searchFor": "prams",
         "query": {
-          "prev_live_births": {
-            "key": "previous_births",
-            "queryKey": "prev_live_births",
-            "value": "one or more",
-            "primary": false
-          },
           "year": {
             "key": "year",
             "queryKey": "year",
@@ -6878,12 +6872,6 @@
         "basicSearch":true,
         "searchFor": "prams",
         "query": {
-          "prev_live_births": {
-            "key": "previous_births",
-            "queryKey": "prev_live_births",
-            "value": "one or more",
-            "primary": false
-          },
           "year": {
             "key": "year",
             "queryKey": "year",
