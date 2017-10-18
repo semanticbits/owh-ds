@@ -137,7 +137,7 @@ deploy:
     bundle_type: zip
     application: OwhDev
     deployment_group: $TRAVIS_BRANCH
-    on: *2n
+    on: *2
 
 #after_script:
 #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then kill -9 $(fuser -n tcp 3000 2> /dev/null); fi
