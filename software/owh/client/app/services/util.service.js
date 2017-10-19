@@ -413,15 +413,20 @@
             }
             
             // Append suboptions
-            var cleanOptions = []
-            autoCompleteOptions.forEach(function(opt){
-                    if(opt.options){
-                           cleanOptions = cleanOptions.concat (opt.options);
-                    }else{
-                            cleanOptions.push(opt);
+            if(queryKey === 'census_region' || queryKey === 'census_division') {
+                return autoCompleteOptions;
+            }
+            else {
+                var cleanOptions = [];
+                autoCompleteOptions.forEach(function (opt) {
+                    if (opt.options) {
+                        cleanOptions = cleanOptions.concat(opt.options);
+                    } else {
+                        cleanOptions.push(opt);
                     }
-            })
-            return cleanOptions;
+                });
+                return cleanOptions;
+            }
 
         }
 
@@ -492,7 +497,7 @@
                 if(allOptionValues && allOptionValues.indexOf(eachColumnHeader.autoCompleteOptions[0].key) > -1) {
                     eachColumnHeader.autoCompleteOptions.push(eachColumnHeader.autoCompleteOptions.shift());
                 }
-                angular.forEach(getSelectedAutoCompleteOptions(eachColumnHeader), function(eachOption, optionIndex) {
+                angular.forEach(getSelectedAutoCompleteOptions(eachColumnHeader, eachColumnHeader.queryKey), function(eachOption, optionIndex) {
                     if (!includeOnly || !angular.isArray(includeOnly) || includeOnly.indexOf(eachOption.key) >= 0) {
                         var colspan = 1;
                         if(columnHeaders.length > 1) {
@@ -733,7 +738,7 @@
 
                 var eachHeaderData = data[eachColumnHeader.key]?data[eachColumnHeader.key]:data[eachColumnHeader.queryKey];
                 var eachOptionLength = 0;
-                angular.forEach(getSelectedAutoCompleteOptions(eachColumnHeader), function (eachOption, optionIndex) {
+                angular.forEach(getSelectedAutoCompleteOptions(eachColumnHeader, eachColumnHeader.queryKey), function (eachOption, optionIndex) {
                     if (!includeOnly || !angular.isArray(includeOnly) || includeOnly.indexOf(eachOption.key) >= 0) {
                         var matchedData = findByKeyAndValue(eachHeaderData, 'name', eachOption.key);
                         if(matchedData) {
