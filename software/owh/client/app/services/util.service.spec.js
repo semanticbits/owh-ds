@@ -312,9 +312,9 @@ describe('utilService', function(){
     });
 
     it('test utils generateMapLegendLabels', function () {
-        expect(utils.generateMapLegendLabels(10000, 70000)).toEqual([ '> 46,010', '> 40,010', '> 34,010', '> 28,010', '> 22,010', '> 16,010', '< 10,020' ]);
-        expect(utils.generateMapLegendLabels(10000, 10490)).toEqual([ '> 10,310', '> 10,260', '> 10,210', '> 10,160', '> 10,110', '> 10,060', '< 10,020' ]);
-        expect(utils.generateMapLegendLabels(1, 30)).toEqual([ '> 70', '> 60', '> 50', '> 40', '> 30', '> 20', '< 20' ]);
+        expect(utils.generateMapLegendLabels(10000, 70000)).toEqual([ '> 70,000', '> 60,000', '> 50,000', '> 40,000', '> 30,000', '> 20,000', '> 10,000' ]);
+        expect(utils.generateMapLegendLabels(10000, 10490)).toEqual([ '> 10,490', '> 10,408', '> 10,327', '> 10,245', '> 10,163', '> 10,082', '> 10,000' ]);
+        expect(utils.generateMapLegendLabels(1, 30)).toEqual([ '> 30', '> 25', '> 20', '> 16', '> 11', '> 6', '> 1' ]);
     });
 
     it('refreshFilterAndOptions options should set filter option correctly - with category property ', inject(function(SearchService) {

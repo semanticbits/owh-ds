@@ -878,7 +878,7 @@ body {
 }
 
 .custom-legend {
-    width: 875px;
+    width: 80%;
     margin-bottom: 1px !important;
     padding: 5px;
 }
@@ -893,18 +893,17 @@ ul.legend-scale li {
     display: block;
     float: left;
     width: 75px;
-    margin-bottom: 6px;
+    margin-bottom: -5px;
     text-align: center;
     font-size: 90%;
     list-style: none;
-    padding-top: 8px;
 }
 ul.legend-scale li span {
     display: block;
     float: left;
-    height: 25px;
+    height: 10px;
     width: 75px;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 /*header*/

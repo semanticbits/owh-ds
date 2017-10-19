@@ -94,12 +94,12 @@
 
         //get map feature colors
         function getColor(d, ranges) {
-            return d > ranges[6] ? '#aa7ed4' :
-                   d > ranges[5] ? '#5569de' :
-                   d > ranges[4] ? '#6f9af1' :
-                   d > ranges[3] ? '#8bd480' :
-                   d > ranges[2] ? '#ea8484' :
-                   d > ranges[1] ? '#f3af60' : '#fff280';
+            return d >= ranges[6] ? '#aa7ed4' :
+                   d >= ranges[5] ? '#5569de' :
+                   d >= ranges[4] ? '#6f9af1' :
+                   d >= ranges[3] ? '#8bd480' :
+                   d >= ranges[2] ? '#ea8484' :
+                   d >= ranges[1] ? '#f3af60' : '#fff280';
         }
 
         //return map feature styling configuration parameters
