@@ -1299,6 +1299,7 @@ module.exports.getAllFilterOptions = getAllFilterOptions;
 module.exports.suppressStateTotals = suppressStateTotals;
 module.exports.isFilterApplied = isFilterApplied;
 module.exports.findAllAppliedFilters = findAllAppliedFilters;
+module.exports.findIndexByKeyAndValue = findIndexByKeyAndValue;
 module.exports.hasFilterApplied = hasFilterApplied;
 module.exports.recursivelySuppressOptions = recursivelySuppressOptions;
 module.exports.searchTree = searchTree;

@@ -859,9 +859,9 @@
         function generateMapLegendRanges(minValue, maxValue) {
 
             var ranges = [];
-            var counter = (maxValue - minValue)/6;
+            var counter = (maxValue - minValue)/7;
             var temp = minValue;
-            [0, 1, 2, 3, 4, 5, 6].forEach(function(option, index) {
+            [1, 2, 3, 4, 5, 6, 7].forEach(function(option, index) {
                 ranges.push(Math.round(temp, 0));
                 temp = temp + counter;
             });

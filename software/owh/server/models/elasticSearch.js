@@ -131,6 +131,11 @@ function mergeCensusRecursively(mort, census, countKey) {
     if (Array.isArray(census)){
         census.sort(sortFn);
     }
+    if (census && census.states) {
+        //remove national from state list
+        var index  = searchUtils.findIndexByKeyAndValue(census.states, 'name', 'National');
+        index != -1 ? census.states.splice(index, 1):'';
+    }
 
     if(census && census[countKey] && typeof census[countKey] === 'number') {
         //For 'population' and 'births'(for infrant mortality) we are using 'pop' variable only
