@@ -2206,8 +2206,9 @@ Factsheet css
 	z-index: 100;
 	border-radius: 5px;
 }
-
-
 .fact-sheet-generator label {
 	font-weight:bold;
+}
+.clusterize-scroll{
+	max-height: 2000px;
 }
