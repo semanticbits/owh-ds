@@ -188,7 +188,7 @@ describe('mapService', function(){
             expect($rootScope.states.features.length).not.toBeUndefined();
             expect($rootScope.states.features[0].properties.name).toEqual("Arkansas");
             expect($rootScope.states.features[0].properties.abbreviation).toEqual("AR");
-            expect($rootScope.states.features[0].properties.rate).toEqual('5.6');
+            expect($rootScope.states.features[0].properties.rate).toEqual(5.6);
             expect($rootScope.states.features[0].properties.sex[0].name).toEqual("Both sexes");
             expect($rootScope.states.features[0].properties.sex[0].pop).toEqual(4919048);
             expect($rootScope.states.features[0].properties.sex[1].name).toEqual("Female");

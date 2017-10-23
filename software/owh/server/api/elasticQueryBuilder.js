@@ -231,7 +231,6 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     //Prepare chart query for disease datasets 'std', 'tb' and 'aids'.
     if(params.searchFor == 'std' || params.searchFor == 'tb' || params.searchFor == 'aids') {
         var chartQueryArray = buildChartQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, censusQuery, params.searchFor);
-        console.log(chartQueryArray)
         if (!params.filterCountsQuery) {
             var mapPopQuery = getPopulationQueryForMap(params.aggregations);
             mapPopQuery.query = mapQuery.query;
