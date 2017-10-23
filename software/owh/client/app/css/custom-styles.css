@@ -2212,3 +2212,6 @@ Factsheet css
 .clusterize-scroll{
 	max-height: 2000px;
 }
+div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leaflet-control > ul.legend-scale {
+	padding-left: 215px;
+}

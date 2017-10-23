@@ -16,6 +16,8 @@
         sc.downloadXLS = downloadXLS;
         sc.showPhaseTwoGraphs = showPhaseTwoGraphs;
         sc.showExpandedGraph = showExpandedGraph;
+        sc.showExpandedMap = showExpandedMap;
+        sc.showFBDialogForMap = showFBDialogForMap;
         sc.search = search;
         sc.changeViewFilter = changeViewFilter;
         sc.getQueryResults = getQueryResults;
@@ -459,11 +461,6 @@
         });
 
         /**************************************************/
-        var mapExpandControl = mapService.addExpandControl(sc.mapOptions, sc.filters.selectedPrimaryFilter);
-
-        var mapShareControl = mapService.addShareControl();
-
-        /**************************************************/
         //US-states map
         var mapOptions = {
             usa: {
@@ -518,13 +515,6 @@
                 });
             });
         }
-
-        //fit leaflet map to container
-        $timeout(function(){
-            leafletData.getMap().then(function(map) {
-                map.invalidateSize();
-            });
-        }, 1700);
 
         function getQueryResults(queryID) {
             var deffered = $q.defer();
@@ -731,14 +721,17 @@
             });
         }
 
+        //To show and hide minimized Map and Expanded Map
+        sc.togglemap = true;
+
         function showPhaseTwoGraphs(text) {
             searchFactory.showPhaseTwoModal(text);
-        }
+        };
 
         //builds marker popup.
         sc.mapPopup = L.popup({autoPan:false, closeButton:false});
         sc.currentFeature = {};
-        function buildMarkerPopup(lat, lng, properties, map, key, markerPosition) {
+        function buildMarkerPopup(lat, lng, properties, map, key, markerPosition, layer) {
             var childScope = $scope.$new();
             childScope.lat = lat;
             childScope.lng = lng;
@@ -758,9 +751,9 @@
             }
 
             var rotatePopup = function () {
-                $scope.$on("leafletDirectiveMap.popupopen", function (evt, args) {
+                layer.on("popupopen", function (evt, args) {
 
-                    var popup = args.leafletEvent.popup;
+                    var popup = evt.popup;
 
                     var popupHeight = angular.element('#chart_us_map').find('.leaflet-popup-content').height();
 
@@ -780,7 +773,7 @@
                     }
                 });
                 //on popupclose reset pop up position
-                $scope.$on("leafletDirectiveMap.popupclose", function (evt, args) {
+                layer.on("popupclose", function (evt, args) {
                     $('#chart_us_map').removeClass('reverse-popup')
                 })
             };
@@ -789,35 +782,85 @@
 
         }
 
-        $scope.$on("leafletDirectiveGeoJson.mouseover", function (event, args) {
-            var leafEvent = args.leafletEvent;
-            buildMarkerPopup(leafEvent.latlng.lat, leafEvent.latlng.lng, leafEvent.target.feature.properties,
-                args.leafletObject._map, sc.filters.selectedPrimaryFilter.key, leafEvent.containerPoint);
-            sc.currentFeature = leafEvent.target.feature;
-            mapService.highlightFeature(args.leafletObject._map._layers[leafEvent.target._leaflet_id])
+        /**
+         * To attach required events to map and add scale control
+         * @param map
+         */
+        function attachEvents(map) {
+            map.invalidateSize();
+            map.eachLayer(function (layer){
+                layer.on("mouseover", function (event) {
+                    if(event.target.feature) {
+                        buildMarkerPopup(event.latlng.lat, event.latlng.lng, event.target.feature.properties,
+                            event.target._map, sc.filters.selectedPrimaryFilter.key, event.containerPoint, layer);
+                        sc.currentFeature = event.target.feature;
+                        mapService.highlightFeature(event.target._map._layers[event.target._leaflet_id]);
+                    }
+                });
+                layer.on("mouseout", function (event) {
+                    sc.mapPopup._close();
+                    mapService.resetHighlight(event);
+                });
+            });
 
-        });
+            map.whenReady(function (event){
+                var mapScaleControl = mapService.addScaleControl(sc.filters.selectedPrimaryFilter.mapData);
+                event.addControl(new mapScaleControl());
+            });
+        }
 
-        $scope.$on("leafletDirectiveGeoJson.mouseout", function (event, args) {
-            sc.mapPopup._close();
-            mapService.resetHighlight(args);
-        });
-
-        $scope.$on("leafletDirectiveMap.mouseout", function (event, args) {
-            sc.mapPopup._close();
-        });
-
-        $scope.$on("leafletDirectiveMap.load", function (event, args) {
-            var mapScaleControl = mapService.addScaleControl(sc.filters.selectedPrimaryFilter.mapData);
-            args.leafletObject.addControl(new mapShareControl());
-            args.leafletObject.addControl(new mapExpandControl());
-            args.leafletObject.addControl(new mapScaleControl());
-        });
+        $timeout(function(){
+            leafletData.getMap('minimizedMap').then(function(map) {
+                attachEvents(map);
+            });
+        }, 1700);
 
         /*Show expanded graphs with whole set of features*/
         function showExpandedGraph(chartData) {
             var tableView = sc.filters.selectedPrimaryFilter.chartView || sc.filters.selectedPrimaryFilter.tableView;
             chartUtilService.showExpandedGraph([chartData], tableView,null, null, null, sc.filters.selectedPrimaryFilter, null, utilService.getSelectedFiltersText(sc.filters.selectedPrimaryFilter.allFilters, sc.sort[sc.filters.selectedPrimaryFilter.title]));
+        }
+
+        function showExpandedMap(data) {
+            sc.togglemap = !sc.togglemap;
+            var mapTitle = sc.mapService.getMapTitle(sc.filters.selectedPrimaryFilter);
+            var mapData = angular.copy(data);
+            ModalService.showModal({
+                templateUrl: "app/partials/expandedMapModal.html",
+                controllerAs: 'eg',
+                controller: function ($scope, close) {
+                    var eg = this;
+                    eg.mapTitle = mapTitle;
+                    eg.mapData = mapData;
+                    eg.showFBDialogForMap = function(mapID) {
+                        console.log("insided expanded showFB dialog method..........");
+                        showFBDialogForMap(mapID);
+                    };
+                    eg.close = close;
+                },
+                size:650
+            }).then(function (modal) {
+                modal.element.show();
+                leafletData.getMap('expandedMap').then(function(map) {
+                    attachEvents(map);
+                });
+                modal.close.then(function (result) {
+                    modal.element.hide();
+                    sc.togglemap = true;
+                    leafletData.getMap('minimizedMap').then(function(map) {
+                        attachEvents(map);
+                    });
+
+                });
+            });
+        }
+
+        function showFBDialogForMap(mapID) {
+            leafletData.getMap(mapID).then(function (map) {
+                leafletImage(map, function (err, canvas) {
+                    shareUtilService.shareOnFb('chart_us_map', 'OWH - Map', undefined, undefined, canvas.toDataURL());
+                });
+            });
         }
 
         function getChartTitle(title) {
