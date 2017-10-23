@@ -825,6 +825,8 @@
             sc.togglemap = !sc.togglemap;
             var mapTitle = sc.mapService.getMapTitle(sc.filters.selectedPrimaryFilter);
             var mapData = angular.copy(data);
+            mapData.usa.zoom = 3.9;
+            mapData.defaults.maxZoom = 5;
             ModalService.showModal({
                 templateUrl: "app/partials/expandedMapModal.html",
                 controllerAs: 'eg',

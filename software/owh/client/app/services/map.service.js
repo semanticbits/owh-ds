@@ -135,20 +135,6 @@
             }
         }
 
-       function resizeUSAMap(isZoomIn, primaryFilter) {
-            leafletData.getMap().then(function(map) {
-                if(isZoomIn) {
-                    angular.element('div.custom-legend').show();
-                    map.zoomIn();
-                } else {
-                    map.zoomOut();
-                    angular.element('div.custom-legend').hide();
-                }
-                $timeout(function(){ map.invalidateSize()}, 1000);
-            });
-
-        }
-
         /**
          * Add horizontal Legend
          * @param mapData
@@ -163,7 +149,6 @@
 
                     var colors = ['#aa7ed4', '#5569de','#6f9af1','#8bd480','#ea8484','#f3af60','#fff280'];
                     var labels = getLabels(mapData.mapMinValue, mapData.mapMaxValue);
-                    console.log(labels)
                     var legendScale = L.DomUtil.create('ul', 'legend-scale', container);
                     var polygons = [];
                     colors.forEach(function(color, index) {

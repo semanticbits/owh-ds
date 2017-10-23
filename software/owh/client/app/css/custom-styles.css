@@ -2215,3 +2215,7 @@ Factsheet css
 div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leaflet-control > ul.legend-scale {
 	padding-left: 215px;
 }
+
+div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.custom-legend {
+	width: 875px;
+}
