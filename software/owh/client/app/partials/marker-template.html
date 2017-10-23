@@ -15,7 +15,7 @@
                     <span ng-if="eachCat.deaths !== 'suppressed' && ['crude_death_rates', 'age-adjusted_death_rates', 'crude_cancer_incidence_rates', 'crude_cancer_death_rates'].indexOf(properties.tableView) === -1"
                           ng-bind="eachCat[key] | number"></span>
                     <span ng-if="eachCat[key] === 'suppressed'">Suppressed</span>
-                    <span ng-if="!eachCat[key] || eachCat[key] == 'na'"
+                    <span ng-if="(!eachCat[key] && eachCat[key] != 0) || eachCat[key] == 'na'"
                           ng-bind="'label.not.available' | translate"></span>
                 </div>
                 <div class="usa-width-one-third" ng-if="properties.showRates">
@@ -37,7 +37,9 @@
                     <span ng-if="properties.rate === 'n/a'">Not Avaliable</span>
                     <span ng-if="properties.rate !== 'suppressed' && !isNaN(properties.rate)">{{properties.rate | number}}</span>
                 </div>
-                <div class="usa-width-one-third" ng-if="properties.tableView !== 'number_of_deaths' && ['crude_death_rates', 'age-adjusted_death_rates', 'crude_cancer_incidence_rates', 'crude_cancer_death_rates'].indexOf(properties.tableView) === -1">
+                <div class="usa-width-one-third"
+                     ng-if="properties.tableView !== 'number_of_deaths'
+                     && ['crude_death_rates', 'age-adjusted_death_rates', 'crude_cancer_incidence_rates', 'crude_cancer_death_rates'].indexOf(properties.tableView) === -1">
                     <span ng-if="properties[properties.tableView] === 'suppressed'">Suppressed</span>
                     <span ng-if="properties[properties.tableView] === 'n/a'">Not Avaliable</span>
                     <span ng-if="properties[properties.tableView] !== 'suppressed'">{{properties[properties.tableView] | number}}</span>

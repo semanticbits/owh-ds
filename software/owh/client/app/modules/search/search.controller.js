@@ -466,14 +466,14 @@
             usa: {
                 lat: 35,
                 lng: -97,
-                zoom: 3.9
+                zoom: 3.3
             },
             legend: {},
             defaults: {
                 tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
                 scrollWheelZoom: false,
                 minZoom: 3,
-                maxZoom: 5
+                maxZoom: 3.5
             },
             markers: {},
             events: {

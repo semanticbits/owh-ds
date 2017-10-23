@@ -52,9 +52,12 @@
                             eachGender['rate'] = $filter('number')(Math.round((eachGender[primaryFilter.key]) / eachGender['pop'] * 1000000) / 10, 1);
                         });
 
-                        var rate = $filter('number')(Math.round(feature.properties.sex[0][primaryFilter.key] / feature.properties.sex[0]['pop'] * 1000000) / 10, 1);
+                        var rate = Math.round(feature.properties.sex[0][primaryFilter.key] / feature.properties.sex[0]['pop'] * 1000000) / 10;
                         feature.properties.rate = rate;
                         stateDeathTotals.push(rate);
+                    } else if(['std', 'tb', 'aids'].indexOf(primaryFilter.key) != -1) {
+                        //for disease datasets, use both sexes to decide intervals
+                        stateDeathTotals.push(state.sex[0][primaryFilter.key]);
                     } else {
                         stateDeathTotals.push(state[primaryFilter.key]);
                     }
@@ -92,12 +95,12 @@
 
         //get map feature colors
         function getColor(d, ranges) {
-            return d > ranges[6] ? '#aa7ed4' :
-                   d > ranges[5] ? '#5569de' :
-                   d > ranges[4] ? '#6f9af1' :
-                   d > ranges[3] ? '#8bd480' :
-                   d > ranges[2] ? '#ea8484' :
-                   d > ranges[1] ? '#f3af60' : '#fff280';
+            return d >= ranges[6] ? '#aa7ed4' :
+                   d >= ranges[5] ? '#5569de' :
+                   d >= ranges[4] ? '#6f9af1' :
+                   d >= ranges[3] ? '#8bd480' :
+                   d >= ranges[2] ? '#ea8484' :
+                   d >= ranges[1] ? '#f3af60' : '#fff280';
         }
 
         //return map feature styling configuration parameters
@@ -105,11 +108,7 @@
             var ranges = utilService.generateMapLegendRanges(primaryFilter.mapData.mapMinValue,
                 primaryFilter.mapData.mapMaxValue);
             return function style(feature) {
-                var total = primaryFilter.tableView === 'crude_death_rates' ||
-                            primaryFilter.tableView === 'age-adjusted_death_rates' ||
-                            primaryFilter.tableView === 'crude_cancer_incidence_rates' ||
-                            primaryFilter.tableView === 'crude_cancer_death_rates' ||
-                            primaryFilter.showRates ? feature.properties.rate : feature.properties[primaryFilter.key];
+                var total = getTotal(primaryFilter, feature);
                 return {
                     fillColor: getColor(total, ranges),
                     weight: 0.8,
@@ -118,6 +117,21 @@
                     dashArray: '3',
                     fillOpacity: 0.7
                 };
+            }
+        }
+
+
+        function getTotal(primaryFilter, feature) {
+            if(primaryFilter.tableView === 'crude_death_rates'
+                || primaryFilter.tableView === 'age-adjusted_death_rates'
+                || primaryFilter.tableView === 'crude_cancer_incidence_rates'
+                || primaryFilter.tableView === 'crude_cancer_death_rates'
+                || primaryFilter.showRates) {
+                return feature.properties.rate;
+            } else if (['tb', 'std', 'aids'].indexOf(primaryFilter.key) != -1) {
+                return feature.properties.sex[0][primaryFilter.key];
+            } else {
+                return feature.properties[primaryFilter.key];
             }
         }
 
@@ -149,6 +163,7 @@
 
                     var colors = ['#aa7ed4', '#5569de','#6f9af1','#8bd480','#ea8484','#f3af60','#fff280'];
                     var labels = getLabels(mapData.mapMinValue, mapData.mapMaxValue);
+                    console.log(labels)
                     var legendScale = L.DomUtil.create('ul', 'legend-scale', container);
                     var polygons = [];
                     colors.forEach(function(color, index) {
