@@ -1,5 +1,5 @@
 <div id="custom-modal">
-    <div id="overlay">
+    <div id="overlay" class="expandedMapModal">
         <div class="custom-modal-header">
             <div style="width: 85%">
                 <span ng-class="{'small-model-title': eg.mapData.length > 1}" ng-bind="eg.mapTitle"></span>
@@ -22,7 +22,7 @@
             <div class="usa-grid">
                 <leaflet ng-if="!sc.togglemap" id="expandedMap" lf-center="eg.mapData.usa" markers="eg.mapData.markers" events="eg.mapData.events" geojson="eg.mapData.geojson"
                           legend="eg.mapData.legend" controls="eg.mapData.controls" defaults="eg.mapData.defaults" tiles=""
-                height="460px" width="100%"></leaflet>
+                height="700px" width="100%"></leaflet>
             </div>
         </div>
         <div class="custom-modal-footer">

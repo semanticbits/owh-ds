@@ -2216,6 +2216,14 @@ div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leafl
 	padding-left: 215px;
 }
 
+div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leaflet-control > ul.legend-scale > li > span {
+	height: 20px;
+}
+
 div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.custom-legend {
 	width: 875px;
+	padding-bottom: 90px;
+}
+.expandedMapModal {
+	height: 90%;
 }
