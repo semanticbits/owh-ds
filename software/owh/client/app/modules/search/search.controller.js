@@ -804,8 +804,10 @@
             });
 
             map.whenReady(function (event){
-                var mapScaleControl = mapService.addScaleControl(sc.filters.selectedPrimaryFilter.mapData);
-                event.addControl(new mapScaleControl());
+                if(sc.filters.selectedPrimaryFilter) {
+                    var mapScaleControl = mapService.addScaleControl(sc.filters.selectedPrimaryFilter.mapData);
+                    event.addControl(new mapScaleControl());
+                }
             });
         }
 
@@ -821,6 +823,10 @@
             chartUtilService.showExpandedGraph([chartData], tableView,null, null, null, sc.filters.selectedPrimaryFilter, null, utilService.getSelectedFiltersText(sc.filters.selectedPrimaryFilter.allFilters, sc.sort[sc.filters.selectedPrimaryFilter.title]));
         }
 
+        /**
+         * Exanad Map and show in modal
+         * @param data - Map Data
+         */
         function showExpandedMap(data) {
             sc.togglemap = !sc.togglemap;
             var mapTitle = sc.mapService.getMapTitle(sc.filters.selectedPrimaryFilter);
@@ -857,6 +863,10 @@
             });
         }
 
+        /**
+         * To share map on facebook
+         * @param mapID  - Map ID
+         */
         function showFBDialogForMap(mapID) {
             leafletData.getMap(mapID).then(function (map) {
                 leafletImage(map, function (err, canvas) {

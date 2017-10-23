@@ -73,68 +73,6 @@ describe('mapService', function(){
 
         });
 
-        it('should add share control', function () {
-            var mapData = {mapMinValue:40289400, mapMaxValue:58000};
-            var control = mapService.addShareControl(mapData);
-            var map = {zoomIn:function(){}, zoomOut:function(){},
-                getSize:function(){return 12}, eachLayer:function(){}};
-
-            var mapControl = new control();
-            expect(mapControl.options.position).toEqual('topright');
-
-            var shareControl = mapControl.onAdd();
-            expect(shareControl.title).toEqual('label.share.on.fb');
-
-            spyOn(leafletData, 'getMap').and.returnValue(deferred.promise);
-            spyOn(shareUtilService, 'shareOnFb');
-
-            shareControl.onclick();
-
-            deferred.resolve(map);
-            $scope.$apply();
-
-        });
-
-        it('should expand map', function () {
-            var mapData = {mapData : {mapMinValue:40289400, mapMaxValue:58000}};
-            //previous size
-            var mapSize = {selectedMapSize:'small'};
-            var map = {zoomIn:function(){}, zoomOut:function(){}};
-
-            spyOn(leafletData, 'getMap').and.returnValue(deferred.promise);
-
-            var control = mapService.addExpandControl(mapSize, mapData);
-            var mapControl = new control();
-
-            expect(mapControl.options.position).toEqual('topright');
-            var expandControl = mapControl.onAdd();
-            expandControl.onclick();
-            deferred.resolve(map);
-            $scope.$apply();
-            //new size
-            expect(mapSize.selectedMapSize).toEqual('big');
-        });
-
-        it('should collapse map', function () {
-            var mapData = {mapData : {mapMinValue:40289400, mapMaxValue:58000}};
-            //previous size
-            var mapSize = {selectedMapSize:'big'};
-            var map = {zoomIn:function(){}, zoomOut:function(){}};
-
-            spyOn(leafletData, 'getMap').and.returnValue(deferred.promise);
-
-            var control = mapService.addExpandControl(mapSize, mapData);
-            var mapControl = new control();
-
-            expect(mapControl.options.position).toEqual('topright');
-            var expandControl = mapControl.onAdd();
-            expandControl.onclick();
-            deferred.resolve(map);
-            $scope.$apply();
-            //new size
-            expect(mapSize.selectedMapSize).toEqual('small');
-        });
-
         it('should calculate rates for crude death rates', inject(function ($rootScope, utilService){
             var primaryFilters = {"tableView":"crude_death_rates", "key":"deaths","title":"label.filter.mortality","primary":true, "mapData": {}, "value":[{"key":"year","title":"label.filter.year","queryKey":"current_year","primary":false,"value":["2015"],"groupBy":false,"type":"label.filter.group.year.month","filterType":"checkbox","autoCompleteOptions":[{"key":"2015","title":"2015"},{"key":"2014","title":"2014"},{"key":"2013","title":"2013"},{"key":"2012","title":"2012"},{"key":"2011","title":"2011"},{"key":"2010","title":"2010"},{"key":"2009","title":"2009"},{"key":"2008","title":"2008"},{"key":"2007","title":"2007"},{"key":"2006","title":"2006"},{"key":"2005","title":"2005"},{"key":"2004","title":"2004"},{"key":"2003","title":"2003"},{"key":"2002","title":"2002"},{"key":"2001","title":"2001"},{"key":"2000","title":"2000"}],"defaultGroup":"row","helpText":"label.help.text.mortality.year"}]};
             var mapResponseData = {"states":[{"name":"AK","deaths":4316,"sex":[{"name":"Female","deaths":1866,"pop":349407},{"name":"Male","deaths":2450,"pop":389025}],"pop":738432},{"name":"AL","deaths":51909,"sex":[{"name":"Female","deaths":25306,"pop":2505795},{"name":"Male","deaths":26603,"pop":2353184}],"pop":4858979},{"name":"AR","deaths":31617,"sex":[{"name":"Female","deaths":15304,"pop":1515348},{"name":"Male","deaths":16313,"pop":1462856}],"pop":2978204},{"name":"AZ","deaths":54299,"sex":[{"name":"Female","deaths":25401,"pop":3436575},{"name":"Male","deaths":28898,"pop":3391490}],"pop":6828065},{"name":"CA","deaths":259206,"sex":[{"name":"Female","deaths":126124,"pop":19701750},{"name":"Male","deaths":133082,"pop":19443068}],"pop":39144818},{"name":"CO","deaths":36349,"sex":[{"name":"Female","deaths":17659,"pop":2712811},{"name":"Male","deaths":18690,"pop":2743763}],"pop":5456574},{"name":"CT","deaths":30535,"sex":[{"name":"Female","deaths":15870,"pop":1839139},{"name":"Male","deaths":14665,"pop":1751747}],"pop":3590886},{"name":"DC","deaths":4871,"sex":[{"name":"Female","deaths":2375,"pop":353627},{"name":"Male","deaths":2496,"pop":318601}],"pop":672228},{"name":"DE","deaths":8582,"sex":[{"name":"Female","deaths":4208,"pop":488125},{"name":"Male","deaths":4374,"pop":457809}],"pop":945934},{"name":"FL","deaths":191737,"sex":[{"name":"Female","deaths":90998,"pop":10368733},{"name":"Male","deaths":100739,"pop":9902539}],"pop":20271272},{"name":"GA","deaths":79942,"sex":[{"name":"Female","deaths":39415,"pop":5234978},{"name":"Male","deaths":40527,"pop":4979882}],"pop":10214860},{"name":"HI","deaths":11053,"sex":[{"name":"Female","deaths":5243,"pop":706231},{"name":"Male","deaths":5810,"pop":725372}],"pop":1431603},{"name":"IA","deaths":29600,"sex":[{"name":"Female","deaths":15036,"pop":1571873},{"name":"Male","deaths":14564,"pop":1552026}],"pop":3123899},{"name":"ID","deaths":13026,"sex":[{"name":"Female","deaths":6176,"pop":826183},{"name":"Male","deaths":6850,"pop":828747}],"pop":1654930},{"name":"IL","deaths":106872,"sex":[{"name":"Female","deaths":53990,"pop":6545500},{"name":"Male","deaths":52882,"pop":6314495}],"pop":12859995},{"name":"IN","deaths":62713,"sex":[{"name":"Female","deaths":31423,"pop":3357815},{"name":"Male","deaths":31290,"pop":3261865}],"pop":6619680},{"name":"KS","deaths":26664,"sex":[{"name":"Female","deaths":13451,"pop":1458008},{"name":"Male","deaths":13213,"pop":1453633}],"pop":2911641},{"name":"KY","deaths":46564,"sex":[{"name":"Female","deaths":22577,"pop":2245998},{"name":"Male","deaths":23987,"pop":2179094}],"pop":4425092},{"name":"LA","deaths":43716,"sex":[{"name":"Female","deaths":20880,"pop":2386915},{"name":"Male","deaths":22836,"pop":2283809}],"pop":4670724},{"name":"MA","deaths":57806,"sex":[{"name":"Female","deaths":29895,"pop":3498304},{"name":"Male","deaths":27911,"pop":3296118}],"pop":6794422},{"name":"MD","deaths":47247,"sex":[{"name":"Female","deaths":23489,"pop":3095316},{"name":"Male","deaths":23758,"pop":2911085}],"pop":6006401},{"name":"ME","deaths":14479,"sex":[{"name":"Female","deaths":7268,"pop":678071},{"name":"Male","deaths":7211,"pop":651257}],"pop":1329328},{"name":"MI","deaths":95140,"sex":[{"name":"Female","deaths":47515,"pop":5044428},{"name":"Male","deaths":47625,"pop":4878148}],"pop":9922576},{"name":"MN","deaths":42800,"sex":[{"name":"Female","deaths":21704,"pop":2759730},{"name":"Male","deaths":21096,"pop":2729864}],"pop":5489594},{"name":"MO","deaths":59871,"sex":[{"name":"Female","deaths":29488,"pop":3098627},{"name":"Male","deaths":30383,"pop":2985045}],"pop":6083672},{"name":"MS","deaths":31783,"sex":[{"name":"Female","deaths":15395,"pop":1540483},{"name":"Male","deaths":16388,"pop":1451850}],"pop":2992333},{"name":"MT","deaths":9942,"sex":[{"name":"Female","deaths":4688,"pop":513619},{"name":"Male","deaths":5254,"pop":519330}],"pop":1032949},{"name":"NC","deaths":89133,"sex":[{"name":"Female","deaths":44589,"pop":5150777},{"name":"Male","deaths":44544,"pop":4892025}],"pop":10042802},{"name":"ND","deaths":6223,"sex":[{"name":"Female","deaths":3038,"pop":368074},{"name":"Male","deaths":3185,"pop":388853}],"pop":756927},{"name":"NE","deaths":16740,"sex":[{"name":"Female","deaths":8414,"pop":951022},{"name":"Male","deaths":8326,"pop":945168}],"pop":1896190},{"name":"NH","deaths":11984,"sex":[{"name":"Female","deaths":5982,"pop":672952},{"name":"Male","deaths":6002,"pop":657656}],"pop":1330608},{"name":"NJ","deaths":72271,"sex":[{"name":"Female","deaths":37151,"pop":4585897},{"name":"Male","deaths":35120,"pop":4372116}],"pop":8958013},{"name":"NM","deaths":17685,"sex":[{"name":"Female","deaths":8155,"pop":1051688},{"name":"Male","deaths":9530,"pop":1033421}],"pop":2085109},{"name":"NV","deaths":22879,"sex":[{"name":"Female","deaths":10424,"pop":1440294},{"name":"Male","deaths":12455,"pop":1450551}],"pop":2890845},{"name":"NY","deaths":153628,"sex":[{"name":"Female","deaths":78530,"pop":10184278},{"name":"Male","deaths":75098,"pop":9611513}],"pop":19795791},{"name":"OH","deaths":118188,"sex":[{"name":"Female","deaths":59692,"pop":5926893},{"name":"Male","deaths":58496,"pop":5686530}],"pop":11613423},{"name":"OK","deaths":39422,"sex":[{"name":"Female","deaths":19045,"pop":1974214},{"name":"Male","deaths":20377,"pop":1937124}],"pop":3911338},{"name":"OR","deaths":35705,"sex":[{"name":"Female","deaths":17698,"pop":2035807},{"name":"Male","deaths":18007,"pop":1993170}],"pop":4028977},{"name":"PA","deaths":132598,"sex":[{"name":"Female","deaths":67475,"pop":6538129},{"name":"Male","deaths":65123,"pop":6264374}],"pop":12802503},{"name":"RI","deaths":10163,"sex":[{"name":"Female","deaths":5265,"pop":544349},{"name":"Male","deaths":4898,"pop":511949}],"pop":1056298},{"name":"SC","deaths":47198,"sex":[{"name":"Female","deaths":22977,"pop":2517178},{"name":"Male","deaths":24221,"pop":2378968}],"pop":4896146},{"name":"SD","deaths":7731,"sex":[{"name":"Female","deaths":3763,"pop":426493},{"name":"Male","deaths":3968,"pop":431976}],"pop":858469},{"name":"TN","deaths":66570,"sex":[{"name":"Female","deaths":32837,"pop":3382838},{"name":"Male","deaths":33733,"pop":3217461}],"pop":6600299},{"name":"TX","deaths":189654,"sex":[{"name":"Female","deaths":91535,"pop":13831324},{"name":"Male","deaths":98119,"pop":13637790}],"pop":27469114},{"name":"UT","deaths":17334,"sex":[{"name":"Female","deaths":8462,"pop":1488819},{"name":"Male","deaths":8872,"pop":1507100}],"pop":2995919},{"name":"VA","deaths":65577,"sex":[{"name":"Female","deaths":32737,"pop":4258228},{"name":"Male","deaths":32840,"pop":4124765}],"pop":8382993},{"name":"VT","deaths":5919,"sex":[{"name":"Female","deaths":2961,"pop":317516},{"name":"Male","deaths":2958,"pop":308526}],"pop":626042},{"name":"WA","deaths":54595,"sex":[{"name":"Female","deaths":26792,"pop":3585353},{"name":"Male","deaths":27803,"pop":3584998}],"pop":7170351},{"name":"WI","deaths":51264,"sex":[{"name":"Female","deaths":25564,"pop":2903737},{"name":"Male","deaths":25700,"pop":2867600}],"pop":5771337},{"name":"WV","deaths":22752,"sex":[{"name":"Female","deaths":11168,"pop":933068},{"name":"Male","deaths":11584,"pop":911060}],"pop":1844128},{"name":"WY","deaths":4778,"sex":[{"name":"Female","deaths":2228,"pop":287206},{"name":"Male","deaths":2550,"pop":298901}],"pop":586107}]};
