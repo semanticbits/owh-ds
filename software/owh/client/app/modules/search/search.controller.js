@@ -786,7 +786,7 @@
          * To attach required events to map and add scale control
          * @param map
          */
-        function attachEvents(map) {
+        function attachEventsForMap(map) {
             map.invalidateSize();
             map.eachLayer(function (layer){
                 layer.on("mouseover", function (event) {
@@ -804,7 +804,7 @@
             });
 
             map.whenReady(function (event){
-                if(sc.filters.selectedPrimaryFilter) {
+                if(sc.filters.selectedPrimaryFilter && !map.customControl) {
                     var mapScaleControl = mapService.addScaleControl(sc.filters.selectedPrimaryFilter.mapData);
                     event.addControl(new mapScaleControl());
                 }
@@ -813,7 +813,7 @@
 
         $timeout(function(){
             leafletData.getMap('minimizedMap').then(function(map) {
-                attachEvents(map);
+                attachEventsForMap(map);
             });
         }, 1700);
 
@@ -850,13 +850,13 @@
             }).then(function (modal) {
                 modal.element.show();
                 leafletData.getMap('expandedMap').then(function(map) {
-                    attachEvents(map);
+                    attachEventsForMap(map);
                 });
                 modal.close.then(function (result) {
                     modal.element.hide();
                     sc.togglemap = true;
                     leafletData.getMap('minimizedMap').then(function(map) {
-                        attachEvents(map);
+                        attachEventsForMap(map);
                     });
 
                 });

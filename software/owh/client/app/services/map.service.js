@@ -145,6 +145,7 @@
                     position: 'bottomleft'
                 },
                 onAdd: function (map) {
+                    map.customControl = this;
                     var container = L.DomUtil.create('div', 'leaflet-control leaflet-control-custom custom-legend');
 
                     var colors = ['#aa7ed4', '#5569de','#6f9af1','#8bd480','#ea8484','#f3af60','#fff280'];
