@@ -10,8 +10,6 @@
     function mapService($rootScope, $timeout, utilService, leafletData, shareUtilService, $translate, $filter) {
         var service = {
             updateStatesDeaths: updateStatesDeaths,
-            addExpandControl: addExpandControl,
-            addShareControl: addShareControl,
             getMapTitle: getMapTitle,
             addScaleControl: addScaleControl,
             highlightFeature: highlightFeature,
@@ -122,84 +120,19 @@
             }
         }
 
+
         function getTotal(primaryFilter, feature) {
             if(primaryFilter.tableView === 'crude_death_rates'
-            || primaryFilter.tableView === 'age-adjusted_death_rates'
-            || primaryFilter.tableView === 'crude_cancer_incidence_rates'
-            || primaryFilter.tableView === 'crude_cancer_death_rates'
-            || primaryFilter.showRates) {
+                || primaryFilter.tableView === 'age-adjusted_death_rates'
+                || primaryFilter.tableView === 'crude_cancer_incidence_rates'
+                || primaryFilter.tableView === 'crude_cancer_death_rates'
+                || primaryFilter.showRates) {
                 return feature.properties.rate;
             } else if (['tb', 'std', 'aids'].indexOf(primaryFilter.key) != -1) {
                 return feature.properties.sex[0][primaryFilter.key];
             } else {
                 return feature.properties[primaryFilter.key];
             }
-        }
-
-        function addExpandControl(mapOptions, primaryFilter) {
-            return L.Control.extend({
-                options: {
-                    position: 'topright'
-                },
-                onAdd: function (map) {
-                    var container = L.DomUtil.create('i', 'leaflet-bar leaflet-control leaflet-control-custom material-icons fullscreen-exit-icon-purple purple-icon');
-                    container.innerHTML = "fullscreen_exit";
-                    container.onclick = function (event) {
-                        if (mapOptions.selectedMapSize === "small") {
-                            mapOptions.selectedMapSize = "big";
-                            resizeUSAMap(true, primaryFilter);
-                            container.innerHTML = "fullscreen_exit";
-                            angular.element(container).removeClass('fullscreen-icon-purple');
-                            angular.element(container).addClass('fullscreen-exit-icon-purple');
-                        } else if (mapOptions.selectedMapSize === "big") {
-                            mapOptions.selectedMapSize = "small";
-                            resizeUSAMap(false, primaryFilter);
-                            container.innerHTML = "fullscreen";
-                            angular.element(container).removeClass('fullscreen-exit-icon-purple');
-                            angular.element(container).addClass('fullscreen-icon-purple');
-                        }
-                    };
-                    return container;
-                }
-            });
-        }
-
-        function resizeUSAMap(isZoomIn, primaryFilter) {
-            leafletData.getMap().then(function(map) {
-                if(isZoomIn) {
-                    angular.element('div.custom-legend').show();
-                    map.zoomIn();
-                } else {
-                    map.zoomOut();
-                    angular.element('div.custom-legend').hide();
-                }
-                $timeout(function(){ map.invalidateSize()}, 1000);
-            });
-
-        }
-
-        function addShareControl() {
-            return L.Control.extend({
-                options: {
-                    position: 'topright'
-                },
-                onAdd: function (map) {
-                    var container = L.DomUtil.create('i', 'leaflet-bar leaflet-control leaflet-control-custom material-icons share-icon-purple purple-icon');
-                    container.innerHTML = "share";
-                    container.title = $translate.instant('label.share.on.fb');
-                    container.onclick = function (event) {
-                        angular.element(document.getElementById('spindiv')).removeClass('ng-hide');
-                        leafletData.getMap().then(function (map) {
-                            leafletImage(map, function (err, canvas) {
-                                // sc.showFbDialog('chart_us_map', 'OWH - Map', canvas.toDataURL());
-                                shareUtilService.shareOnFb('chart_us_map', 'OWH - Map', undefined, undefined, canvas.toDataURL());
-                            });
-                        });
-
-                    };
-                    return container;
-                }
-            });
         }
 
         /**
@@ -212,11 +145,11 @@
                     position: 'bottomleft'
                 },
                 onAdd: function (map) {
+                    map.customControl = this;
                     var container = L.DomUtil.create('div', 'leaflet-control leaflet-control-custom custom-legend');
 
                     var colors = ['#aa7ed4', '#5569de','#6f9af1','#8bd480','#ea8484','#f3af60','#fff280'];
                     var labels = getLabels(mapData.mapMinValue, mapData.mapMaxValue);
-                    console.log(labels)
                     var legendScale = L.DomUtil.create('ul', 'legend-scale', container);
                     var polygons = [];
                     colors.forEach(function(color, index) {
@@ -279,17 +212,10 @@
          * Reset the feature style
          * @param mapObj
          */
-        function resetHighlight(mapObj) {
-            var layer = mapObj.layer;
-            if(layer) {
-                var map = mapObj.target._map;
-                map._layers[layer._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black', fillOpacity: 0.7});
-            } else {
-                if(mapObj.leafletEvent) {
-                    layer = mapObj.leafletEvent.target;
-                    var map = layer._map;
-                    map._layers[layer._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black', fillOpacity: 0.7});
-                }
+        function resetHighlight(event) {
+            if(event) {
+                    var map = event.target._map;
+                    map._layers[event.target._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black', fillOpacity: 0.7});
             }
         }
 
