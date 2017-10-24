@@ -3338,7 +3338,6 @@
                                 },
                                 {
                                     category: 'Breakout',
-                                    exclusive: true,
                                     sideFilters: [
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
