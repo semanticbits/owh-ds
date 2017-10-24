@@ -1,0 +1,32 @@
+<div id="custom-modal">
+    <div id="overlay" class="expandedMapModal">
+        <div class="custom-modal-header">
+            <div style="width: 85%">
+                <span ng-class="{'small-model-title': eg.mapData.length > 1}" ng-bind="eg.mapTitle"></span>
+            </div>
+            <div style="width: 15%">
+                <span class="custom-modal-button" >
+                    <a name="close" href="javascript:void(0);" ng-click="eg.close()">
+                        <i class="material-icons purple-icon fullscreen-exit-icon-purple" title="Close map">fullscreen_exit</i>
+                    </a>
+                </span>
+                <span  class="custom-modal-button" >
+                    <a title="Facebook" aria-label="Share on Facebook" name="share_fb" ng-click="eg.showFBDialogForMap('expandedMap')"
+                       class="cursor-pointer share-graph" href="javascript:void(0);">
+                        <i class="material-icons purple-icon share-icon-purple" title="{{'label.share.on.fb' | translate}}">share</i>
+                    </a>
+                </span>
+            </div>
+        </div>
+        <div class="custom-modal-body usa-grid">
+            <div class="usa-grid">
+                <leaflet ng-if="!sc.togglemap" id="expandedMap" lf-center="eg.mapData.usa" markers="eg.mapData.markers" events="eg.mapData.events" geojson="eg.mapData.geojson"
+                          legend="eg.mapData.legend" controls="eg.mapData.controls" defaults="eg.mapData.defaults" tiles=""
+                height="700px" width="100%"></leaflet>
+            </div>
+        </div>
+        <div class="custom-modal-footer">
+        </div>
+    </div>
+    <div id="fade"></div>
+</div>

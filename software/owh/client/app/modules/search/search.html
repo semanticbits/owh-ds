@@ -88,10 +88,21 @@
                           ng-class="!chartData.isMap || sc.mapOptions.selectedMapSize==='small'?'usa-width-one-half':'usa-width-one-half margin-bottom-20'">
                         <!-- Map -->
                         <div id="chart_us_map" ng-if="chartData.isMap && sc.filters.selectedPrimaryFilter.showMap">
+
                             <div class="card-header">
                                 <h4 ng-bind="sc.mapService.getMapTitle(sc.filters.selectedPrimaryFilter)" class="graph-title"></h4>
+                                <div class="card-actions">
+                                    <a title="Facebook" aria-label="Share on Facebook" name="share_fb" ng-click="sc.showFBDialogForMap('minimizedMap')"
+                                       class="cursor-pointer share-graph" href="javascript:void(0);">
+                                        <i class="material-icons purple-icon share-icon-purple" title="{{'label.share.on.fb' | translate}}">share</i>
+                                    </a>
+                                    <a title="Map" aria-label="Expand Map" name="expand_graph"
+                                       ng-click="sc.showExpandedMap(chartData)" class="cursor-pointer expand-graph" href="javascript:void(0)">
+                                        <i class="material-icons purple-icon fullscreen-icon-purple" title="Expand Map">fullscreen</i>
+                                    </a>
+                                </div>
                             </div>
-                            <leaflet  lf-center="chartData.usa" markers="chartData.markers" events="chartData.events" geojson="chartData.geojson"
+                            <leaflet id="minimizedMap" ng-if="sc.togglemap" lf-center="chartData.usa" markers="chartData.markers" events="chartData.events" geojson="chartData.geojson"
                                       legend="chartData.legend" controls="chartData.controls" defaults="chartData.defaults" tiles=""
                                       height="{{sc.mapOptions.selectedMapSize==='small'?'450px':'450px'}}" width="{{sc.mapOptions.selectedMapSize==='small'?'auto':'100%'}}"></leaflet>
                         </div>
