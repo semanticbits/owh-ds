@@ -29,8 +29,8 @@
                     <span ng-bind="totalLabel"></span>
                 </div>
                 <div class="usa-width-one-third" ng-if="properties.tableView === 'number_of_deaths'">
-                    <span ng-if="properties[properties.tableView] === 'suppressed'">Suppressed</span>
-                    <span ng-if="properties[properties.tableView] !== 'suppressed'">{{properties.deaths | number}}</span>
+                    <span ng-if="properties.deaths === 'suppressed'">Suppressed</span>
+                    <span ng-if="properties.deaths !== 'suppressed'">{{properties.deaths | number}}</span>
                 </div>
                 <div class="usa-width-one-third" ng-if="['crude_death_rates', 'age-adjusted_death_rates', 'crude_cancer_incidence_rates', 'crude_cancer_death_rates'].indexOf(properties.tableView) !== -1">
                     <span ng-if="properties.rate === 'suppressed'">Suppressed</span>
