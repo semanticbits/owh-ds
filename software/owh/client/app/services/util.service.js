@@ -47,6 +47,7 @@
             stdFilterChange: stdFilterChange,
             aidsFilterChange: aidsFilterChange,
             tbFilterChange: tbFilterChange,
+            regionFilterChange: regionFilterChange,
             infantMortalityFilterChange: infantMortalityFilterChange,
             cancerIncidenceFilterChange: cancerIncidenceFilterChange,
             removeValuesFromArray: removeValuesFromArray,
@@ -396,11 +397,13 @@
                 if(isValueNotEmpty(filterValue)) {
                     autoCompleteOptions= findAllByKeyAndValuesArray(filter.autoCompleteOptions, queryKey?'qkey':'key', filter.value);
                      // Look up in the subOptions
-                        filter.autoCompleteOptions.forEach(function(opt){
-                          if(opt.options){
-                             autoCompleteOptions = autoCompleteOptions.concat (findAllByKeyAndValuesArray(opt.options, queryKey?'qkey':'key', filter.value));
-                          }
+                    if(filter.queryKey !== 'census_region' && filter.queryKey !== 'census_division') {
+                        filter.autoCompleteOptions.forEach(function (opt) {
+                            if (opt.options) {
+                                autoCompleteOptions = autoCompleteOptions.concat(findAllByKeyAndValuesArray(opt.options, queryKey ? 'qkey' : 'key', filter.value));
+                            }
                         })
+                    }
 
                 } else {
                     autoCompleteOptions= filter.autoCompleteOptions
@@ -413,15 +416,20 @@
             }
             
             // Append suboptions
-            var cleanOptions = []
-            autoCompleteOptions.forEach(function(opt){
-                    if(opt.options){
-                           cleanOptions = cleanOptions.concat (opt.options);
-                    }else{
-                            cleanOptions.push(opt);
+            if(filter.queryKey === 'census_region' || filter.queryKey === 'census_division') {
+                return autoCompleteOptions;
+            }
+            else {
+                var cleanOptions = [];
+                autoCompleteOptions.forEach(function (opt) {
+                    if (opt.options) {
+                        cleanOptions = cleanOptions.concat(opt.options);
+                    } else {
+                        cleanOptions.push(opt);
                     }
-            })
-            return cleanOptions;
+                });
+                return cleanOptions;
+            }
 
         }
 
@@ -1413,6 +1421,36 @@
                     option.disabled = false;
                 }
             });
+        }
+
+        /**
+         * To select and un select region filter and division filters
+         * @param filter
+         * @param categories
+         */
+        function regionFilterChange(filter, categories){
+            var filterValue = filter.value;
+            //If use un select all divisions then un select region filter also
+            var selectedFilter = findAllByKeyAndValuesArray(filter.autoCompleteOptions, 'key', filterValue);
+            angular.forEach(selectedFilter, function(eachParentFilter){
+               //If any of division not selected for this parent region filter then un select region filter also
+                var foundFilters = findAllByKeyAndValuesArray(eachParentFilter.options, 'key', filterValue);
+                if(foundFilters.length === 0){
+                  filterValue = filterValue.splice(filterValue.indexOf(eachParentFilter.key), 1)
+                }
+            });
+            //If user select only division then select parent region also
+            if(angular.isArray(filterValue) && filterValue.length > 0) {
+                angular.forEach(filter.autoCompleteOptions, function (eachFilter) {
+                    var foundFilters = findAllByKeyAndValuesArray(eachFilter.options, 'key', filterValue);
+                    //if any one or all divisions selected then parent region should be selected if not selected already
+                    if (foundFilters.length > 0) {
+                        if(filterValue.indexOf(eachFilter.key) < 0 ){
+                            filterValue.push(eachFilter.key);
+                        }
+                    }
+                });
+            }
         }
     }
 }());
