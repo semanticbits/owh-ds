@@ -718,6 +718,11 @@
                 sc.tableView = result.tableView;
                 sc.tableData = result.tableData;
                 sc.filters.selectedPrimaryFilter = result.primaryFilter;
+                $timeout(function(){
+                    leafletData.getMap('minimizedMap').then(function(map) {
+                        attachEventsForMap(map);
+                    });
+                }, 500);
             });
         }
 
@@ -731,7 +736,7 @@
         //builds marker popup.
         sc.mapPopup = L.popup({autoPan:false, closeButton:false});
         sc.currentFeature = {};
-        function buildMarkerPopup(lat, lng, properties, map, key, markerPosition, layer) {
+        function buildMarkerPopup(lat, lng, properties, map, key, markerPosition) {
             var childScope = $scope.$new();
             childScope.lat = lat;
             childScope.lng = lng;
@@ -753,7 +758,7 @@
             }
 
             var rotatePopup = function () {
-                layer.on("popupopen", function (evt, args) {
+                map.on("popupopen", function (evt, args) {
 
                     var popup = evt.popup;
 
@@ -768,15 +773,18 @@
                         //change position if popup does not fit into map-container
                         popup.options.offset = new L.Point(10, popupHeight + 170);
                         angular.element('#chart_us_map').addClass('reverse-popup')
+                        angular.element('#expanded_us_map').addClass('reverse-popup')
                     } else {
                         //revert position
                         popup.options.offset = popup.options.oldOffset;
                         angular.element('#chart_us_map').removeClass('reverse-popup')
+                        angular.element('#expanded_us_map').removeClass('reverse-popup')
                     }
                 });
                 //on popupclose reset pop up position
-                layer.on("popupclose", function (evt, args) {
+                map.on("popupclose", function (evt, args) {
                     $('#chart_us_map').removeClass('reverse-popup')
+                    $('#expanded_us_map').removeClass('reverse-popup')
                 })
             };
 
@@ -792,9 +800,9 @@
             map.invalidateSize();
             map.eachLayer(function (layer){
                 layer.on("mouseover", function (event) {
-                    if(event.target.feature) {
+                    if(sc.filters.selectedPrimaryFilter && event.target.feature) {
                         buildMarkerPopup(event.latlng.lat, event.latlng.lng, event.target.feature.properties,
-                            event.target._map, sc.filters.selectedPrimaryFilter.key, event.containerPoint, layer);
+                            event.target._map, sc.filters.selectedPrimaryFilter.key, event.containerPoint);
                         sc.currentFeature = event.target.feature;
                         mapService.highlightFeature(event.target._map._layers[event.target._leaflet_id]);
                     }
@@ -813,11 +821,6 @@
             });
         }
 
-        $timeout(function(){
-            leafletData.getMap('minimizedMap').then(function(map) {
-                attachEventsForMap(map);
-            });
-        }, 1700);
 
         /*Show expanded graphs with whole set of features*/
         function showExpandedGraph(chartData) {
@@ -843,7 +846,6 @@
                     eg.mapTitle = mapTitle;
                     eg.mapData = mapData;
                     eg.showFBDialogForMap = function(mapID) {
-                        console.log("insided expanded showFB dialog method..........");
                         showFBDialogForMap(mapID);
                     };
                     eg.close = close;
@@ -964,6 +966,11 @@
             selectedPrimaryFilter.chartData = searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
             selectedPrimaryFilter.showRates = (chartView === 'disease_rate');
             mapService.updateStatesDeaths(sc.filters.selectedPrimaryFilter, sc.filters.selectedPrimaryFilter.nestedData.maps, undefined, sc.mapOptions);
+            $timeout(function(){
+                leafletData.getMap('minimizedMap').then(function(map) {
+                    attachEventsForMap(map);
+                });
+            }, 1700);
         }
 
         function findNameByKeyAndValue(key) {

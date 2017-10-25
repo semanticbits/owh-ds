@@ -2222,8 +2222,8 @@ div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leafl
 
 div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.custom-legend {
 	width: 875px;
-	padding-bottom: 90px;
 }
-.expandedMapModal {
-	height: 90%;
+
+div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leaflet-control-attribution {
+	padding-right: 40px;
 }
