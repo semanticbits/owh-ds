@@ -742,9 +742,11 @@
             ele.html($templateCache.get('app/partials/marker-template.html'));
             var compileEle = $compile(ele.contents())(childScope);
             if(sc.currentFeature.properties !== properties || !sc.mapPopup._isOpen) {
-                sc.mapPopup
-                    .setContent(compileEle[0])
-                    .setLatLng(L.latLng(lat, lng)).openOn(map);
+                $timeout(function () {
+                    sc.mapPopup
+                        .setContent(compileEle[0])
+                        .setLatLng(L.latLng(lat, lng)).openOn(map);
+                }, 10);
             } else {
                 sc.mapPopup
                     .setLatLng(L.latLng(lat, lng));

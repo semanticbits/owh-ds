@@ -33,10 +33,10 @@
                     if(primaryFilter.tableView === 'crude_death_rates' || primaryFilter.tableView === 'crude_cancer_incidence_rates' || primaryFilter.tableView === 'crude_cancer_death_rates') {
                         //calculate male and female rate
                         angular.forEach(feature.properties.sex, function(eachGender){
-                            eachGender['rate'] = $filter('number')(eachGender[primaryFilter.key]/eachGender['pop'] * 1000000 / 10, 1);
+                            eachGender['rate'] = eachGender[primaryFilter.key] < 20 ? 'Unreliable' : $filter('number')(eachGender[primaryFilter.key]/eachGender['pop'] * 1000000 / 10, 1);
                         });
-                        var crudeDeathRate = Math.round(state[primaryFilter.key]/state['pop'] * 1000000) / 10 ;
-                        feature.properties.rate = isNaN(crudeDeathRate) ? 'n/a' : crudeDeathRate;
+                        var crudeDeathRate = isNaN(state[primaryFilter.key]) ? state[primaryFilter.key] : Math.round(state[primaryFilter.key]/state['pop'] * 1000000) / 10 ;
+                        feature.properties.rate = crudeDeathRate;
                         stateDeathTotals.push(crudeDeathRate);
                     }
                     else if(primaryFilter.tableView === 'age-adjusted_death_rates') {
