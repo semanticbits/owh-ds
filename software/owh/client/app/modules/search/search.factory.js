@@ -629,6 +629,7 @@
                 "mother_hispanic": "horizontalBar", "previous_births": "horizontalBar",
                 "wic_pregnancy": "horizontalBar", "pregnancy_intendedness": "horizontalBar",
                 "smoked_before": "horizontalBar", "smoked_last": "horizontalBar"
+
             };
 
             var chartTypes = [];
