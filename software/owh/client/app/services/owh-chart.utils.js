@@ -1054,7 +1054,16 @@
                         var chartNames = {'yrbsSex&yrbsRace':'Sex and Race', 'yrbsSex&yrbsGrade':'Sex and Grade',
                             'yrbsGrade&yrbsRace': 'Grade and Race', 'yrbsRace': 'Race', 'race': 'Race/Ethnicity',
                             'yrbsSex': 'Sex', 'yrbsGrade': 'Grade', 'year': 'Year', 'state': 'State', 'yrbsState': 'State',
-                            'income':'Household Income', 'education':'Education Attained', 'age_group':'Age group', 'sex':'Sex'};
+                            'income':'Household Income', 'education':'Education Attained', 'age_group':'Age group', 'sex':'Sex',
+                            'adequacy':'Adequacy of Prenatal Care', 'birth_weight':'Birth Weight',
+                            'marital_status': 'Marital Status', 'maternal_age_groupings':'Maternal Age- 18 to 44 years in groupings',
+                            'maternal_age_years': 'Maternal Age- 18 to 44 years only', 'maternal_age_3':'Maternal Age(3 levels)',
+                            'maternal_age_4': 'Maternal Age (4 levels)', 'maternal_education' : 'Maternal Education',
+                            'maternal_race': 'Maternal Race/Ethnicity', 'medicaid': 'Medicaid Recipient (at any time)',
+                            'mother_hispanic': 'Mother Hispanic', 'previous_births': 'Number of previous live births',
+                            'wic_pregnancy': 'On WIC during pregnancy', 'pregnancy_intendedness': 'Pregnancy Intendedness',
+                            'smoked_before': 'Smoked 3 months before pregnancy', 'smoked_last': 'Smoked last 3 months of pregnancy'
+                        };
 
                         if (chartType.length == 1) {
                             return chartNames[chartType[0]];
