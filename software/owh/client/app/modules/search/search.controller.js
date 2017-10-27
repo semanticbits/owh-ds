@@ -751,7 +751,7 @@
                     sc.mapPopup
                         .setContent(compileEle[0])
                         .setLatLng(L.latLng(lat, lng)).openOn(map);
-                }, 10);
+                }, 50);
             } else {
                 sc.mapPopup
                     .setLatLng(L.latLng(lat, lng));
@@ -1073,5 +1073,11 @@
             });
             return deffered.promise;
         }
+
+        $timeout(function(){
+            leafletData.getMap('minimizedMap').then(function(map) {
+                attachEventsForMap(map);
+            });
+        }, 1000);
     }
 }());
