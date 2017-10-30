@@ -14,10 +14,10 @@ var FactSheet = function() {
 FactSheet.prototype.prepareFactSheet = function (state, fsType) {
     var self = this;
     var deferred = Q.defer();
-    var factSheetQueryString = JSON.stringify(factSheetQueries);
+    var factSheetQueryString = JSON.stringify(factSheetQueries[fsType]);
     var factSheetQueryJSON;
     factSheetQueryJSON = JSON.parse(factSheetQueryString.split("$state$").join(state));
-    if (factSheetQueryJSON && fsType === 'State Health') {
+    if (factSheetQueryJSON) {
         var bridgeRaceQueryObj = factSheetQueryJSON.bridge_race;
         //STD
         var std_chlamydia_esQuery = factSheetQueryJSON.std["chlamydia"][0];
@@ -491,8 +491,9 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var prams_indicator_depression_data = resp[87];
 
             var factSheet = prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
-                raceData, hispanicData, ageGroupData);
+                raceData, hispanicData, ageGroupData, fsType);
             factSheet.state = state;
+            factSheet.fsType = fsType;
             factSheet.infantMortalityData = infantMortalityData;
             factSheet.tuberculosis = prepareDiseaseData(tbData, 'tb');
             factSheet.stdData = [{disease:"Chlamydia", data:prepareDiseaseData(stdChlamydiaData, 'std')},
@@ -543,16 +544,31 @@ function preparePRAMSData(pregnantWomenData, womenData) {
        women: []
     };
 
-    pramsData.pregnantWoment.push({"question": "Smoking cigarettes during the last three months of pregnancy", data: pregnantWomenData[0].table.question[0] && pregnantWomenData[0].table.question[0].yes ? pregnantWomenData[0].table.question[0].yes.sitecode[0].prams.mean + "%" : "NR"});
-    pramsData.pregnantWoment.push({"question": "Intended pregnancy", data: pregnantWomenData[1].table.question[0] && pregnantWomenData[1].table.question[0]["intended"] ? pregnantWomenData[1].table.question[0]["intended"].sitecode[0].prams.mean + "%" : "NR"});
-    pramsData.pregnantWoment.push({"question": "Females reported physical abuse by husband or partner during pregnancy (percent)", data: pregnantWomenData[2].table.question[0] && pregnantWomenData[2].table.question[0].yes ? pregnantWomenData[2].table.question[0].yes.sitecode[0].prams.mean + "%" : "NR"});
+    pramsData.pregnantWoment.push({"question": "Smoking cigarettes during the last three months of pregnancy", data: pregnantWomenData[0].table.question[0] && pregnantWomenData[0].table.question[0].yes ? getMeanDisplayValue(pregnantWomenData[0].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
+    pramsData.pregnantWoment.push({"question": "Intended pregnancy", data: pregnantWomenData[1].table.question[0] && pregnantWomenData[1].table.question[0]["intended"] ? getMeanDisplayValue(pregnantWomenData[1].table.question[0]["intended"].sitecode[0].prams.mean) : "Not applicable"});
+    pramsData.pregnantWoment.push({"question": "Females reported physical abuse by husband or partner during pregnancy (percent)", data: pregnantWomenData[2].table.question[0] && pregnantWomenData[2].table.question[0].yes ? getMeanDisplayValue(pregnantWomenData[2].table.question[0].yes.sitecode[0].prams.mean): "Not applicable"});
 
-    pramsData.women.push({"question": "With one or more previous live births who reported unintended pregnancy", data: womenData[0].table.question[0] && womenData[0].table.question[0]["unintended"] ? womenData[0].table.question[0]["unintended"].sitecode[0].prams.mean + "%" : "NR"});
-    pramsData.women.push({"question": "Ever breastfed or pump breast milk to feed after delivery", data: womenData[1].table.question[0] && womenData[1].table.question[0].yes ? womenData[1].table.question[0].yes.sitecode[0].prams.mean + "%" : "NR"});
-    pramsData.women.push({"question": "Indicator of depression 3 months before pregnancy", data: womenData[2].table.question[0] && womenData[2].table.question[0].yes ? womenData[2].table.question[0].yes.sitecode[0].prams.mean + "%" : "NR"});
+    pramsData.women.push({"question": "With one or more previous live births who reported unintended pregnancy", data: womenData[0].table.question[0] && womenData[0].table.question[0]["unintended"] ? getMeanDisplayValue(womenData[0].table.question[0]["unintended"].sitecode[0].prams.mean) : "Not applicable"});
+    pramsData.women.push({"question": "Ever breastfed or pump breast milk to feed after delivery", data: womenData[1].table.question[0] && womenData[1].table.question[0].yes ? getMeanDisplayValue(womenData[1].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
+    pramsData.women.push({"question": "Indicator of depression 3 months before pregnancy", data: womenData[2].table.question[0] && womenData[2].table.question[0].yes ? getMeanDisplayValue(womenData[2].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
     return pramsData;
 }
 
+function getMeanDisplayValue(data) {
+    var displayValue;
+    if (data) {
+        if (data === 'suppressed') {
+            displayValue = 'Suppressed';
+        }
+        else if (data === 'na') {
+            displayValue = 'NR';
+        }
+        else {
+            displayValue = data + "%";
+        }
+    }
+    return displayValue;
+}
 /**
  * To prepare BRFSS data
  * @param data_2015
@@ -561,25 +577,31 @@ function preparePRAMSData(pregnantWomenData, womenData) {
  */
 function prepareBRFSSData(data_2015){
     var brfssData = [];
+    brfssData.push({question: 'Were Obese (BMI 30.0 - 99.8)', data: 'Not applicable' });
+    brfssData.push({question: 'Adults who are current smokers', data: 'Not applicable'});
+    brfssData.push({question: 'Consumed fruits one or more times a day', data: 'Not applicable'});
+    brfssData.push({question: 'Consumed vegetables one or more times a day', data: 'Not applicable'});
+    brfssData.push({question: 'Are heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)', data: 'Not applicable'});
+    brfssData.push({question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)', data: 'Not applicable'});
     data_2015.table.question.forEach(function(eachRecord){
         switch(eachRecord.name){
             case "x_bmi5cat":
-                brfssData.push({question: 'Were Obese (BMI 30.0 - 99.8)', data: eachRecord["obese (bmi 30.0 - 99.8)"].brfss.mean + "%"});
+                brfssData[0].data = getMeanDisplayValue(eachRecord["obese (bmi 30.0 - 99.8)"].brfss.mean);
                 break;
             case "x_rfsmok3":
-                brfssData.push({question: 'Adults who are current smokers', data: eachRecord.yes.brfss.mean + "%"});
+                brfssData[1].data = getMeanDisplayValue(eachRecord.yes.brfss.mean);
                 break;
             case "x_frtlt1":
-                brfssData.push({question: 'Consumed fruits one or more times a day', data: eachRecord["one or more times per day"].brfss.mean + "%"});
+                brfssData[2].data = getMeanDisplayValue(eachRecord["one or more times per day"].brfss.mean);
                 break;
             case "x_veglt1":
-                brfssData.push({question: 'Consumed vegetables one or more times a day', data: eachRecord["one or more times per day"].brfss.mean + "%"});
+                brfssData[3].data =  getMeanDisplayValue(eachRecord["one or more times per day"].brfss.mean);
                 break;
             case "x_rfdrhv5":
-                brfssData.push({question: 'Are heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)', data: eachRecord["meet criteria for heavy drinking"].brfss.mean + "%"});
+                brfssData[4].data = getMeanDisplayValue(eachRecord["meet criteria for heavy drinking"].brfss.mean);
                 break;
             case "x_paindx1":
-                brfssData.push({question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)', data: eachRecord.yes.brfss.mean + "%"});
+                brfssData[5].data = getMeanDisplayValue(eachRecord.yes.brfss.mean);
                 break;
         }
     });
@@ -593,12 +615,12 @@ function prepareBRFSSData(data_2015){
  */
 function prepareYRBSData(data) {
     var yrbsData = [];
-    yrbsData.push({"question": "Currently use alcohol", data:data.table.question[0] && data.table.question[0].Yes ? data.table.question[0].Yes.mental_health.mean + "%" : "NR"});
-    yrbsData.push({"question": "Currently use cigarettes", data:data.table.question[1] && data.table.question[1].Yes ? data.table.question[1].Yes.mental_health.mean + "%" : "NR"});
-    yrbsData.push({"question": "Currently use marijuana", data:data.table.question[2] && data.table.question[2].Yes ? data.table.question[2].Yes.mental_health.mean + "%" : "NR"});
-    yrbsData.push({"question": "Currently sexually active", data:data.table.question[3] && data.table.question[3].Yes ? data.table.question[3].Yes.mental_health.mean + "%" : "NR"});
-    yrbsData.push({"question": "Attempted suicide", data:data.table.question[4] && data.table.question[4].Yes ? data.table.question[4].Yes.mental_health.mean + "%" : "NR"});
-    yrbsData.push({"question": "Overweight", data:data.table.question[5] && data.table.question[5].Yes ? data.table.question[5].Yes.mental_health.mean + "%" : "NR"});
+    yrbsData.push({"question": "Currently use alcohol", data:data.table.question[0] && data.table.question[0].Yes ? getMeanDisplayValue(data.table.question[0].Yes.mental_health.mean) : "Not applicable"});
+    yrbsData.push({"question": "Currently use cigarettes", data:data.table.question[1] && data.table.question[1].Yes ? getMeanDisplayValue(data.table.question[1].Yes.mental_health.mean) : "Not applicable"});
+    yrbsData.push({"question": "Currently use marijuana", data:data.table.question[2] && data.table.question[2].Yes ? getMeanDisplayValue(data.table.question[2].Yes.mental_health.mean) : "Not applicable"});
+    yrbsData.push({"question": "Currently sexually active", data:data.table.question[3] && data.table.question[3].Yes ? getMeanDisplayValue(data.table.question[3].Yes.mental_health.mean) : "Not applicable"});
+    yrbsData.push({"question": "Attempted suicide", data:data.table.question[4] && data.table.question[4].Yes ? getMeanDisplayValue(data.table.question[4].Yes.mental_health.mean) : "Not applicable"});
+    yrbsData.push({"question": "Overweight", data:data.table.question[5] && data.table.question[5].Yes ? getMeanDisplayValue(data.table.question[5].Yes.mental_health.mean) : "Not applicable"});
     return yrbsData;
 }
 
@@ -767,13 +789,15 @@ function formatNumber (num) {
 }
 
 function prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
-                                       raceData, hispanicData, ageGroupData) {
+                                       raceData, hispanicData, ageGroupData, fsType) {
     var factSheet = {};
-    factSheet.totalGenderPop = 0;
     factSheet.gender = genderData.data.simple.group_table_sex;
-    factSheet.gender.forEach(function (data) {
-        factSheet.totalGenderPop += data.bridge_race;
-    });
+    if(fsType != "Women's Health") {
+        factSheet.totalGenderPop = 0;
+        factSheet.gender.forEach(function (data) {
+            factSheet.totalGenderPop += data.bridge_race;
+        });
+    }
 
     var race = nonHispanicRaceData.data.simple.group_table_race;
     race = race.concat(raceData.data.simple.group_table_race, hispanicData.data.simple.group_table_ethnicity);

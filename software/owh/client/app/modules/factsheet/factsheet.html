@@ -13,14 +13,23 @@
 
             <div class="usa-grid fact-sheet-generator">
                 <div class="usa-width-one-third">
-                    <label for="state">I am interested in looking at the State Health fact sheet for</label>
+                    <label for="state">I am interested in looking at</label>
                     <select name="state" id="state" ng-options="s.id as s.text for s in fsc.stateJSON"
-                            ng-change="update(fsc.state)"  ng-model="fsc.state" required>
+                            ng-change="updateState(fsc.state)"  ng-model="fsc.state" required>
                         <option value="">Select State</option>
                     </select>
                 </div>
                 <div class="usa-width-one-third">
-                    <a class="usa-button-secondary generate-btn" id="generateFactSheetLink" href="#" ng-click="fsc.getFactSheet(fsc.state, fsc.fsTypes.state_health);">
+                    <label for="type">for fact sheet type</label>
+                    <select name="type" id="type"
+                            ng-model="fsc.fsType"
+                            ng-change="updateType(fsc.fsType)"
+                            ng-options="v for (k,v) in fsc.fsTypes" required>
+                        <option value="">Select Type</option>
+                    </select>
+                </div>
+                <div class="usa-width-one-third">
+                    <a class="usa-button-secondary generate-btn" id="generateFactSheetLink" href="#" ng-click="fsc.getFactSheet(fsc.state, fsc.fsType);">
                         Generate fact sheet <i class="material-icons arrow-forward-white">arrow_forward</i>
                     </a>
                 </div>
@@ -38,19 +47,22 @@
                 </div>
                 <div class="factsheet-details">
 
-                    <div ng-if="fsc.factSheet.totalGenderPop" class="bridge-race-factsheet">
+                    <div class="bridge-race-factsheet">
                         <h5 class="bridge-race-heading"><img src="../../images/icons/bridged-race-icon.svg"/>Population in {{fsc.stateName}}</h5>
-                        <p class="bridge-race-description">
+                        <p ng-if="fsc.fsTypeForTable != fsc.fsTypes.womens_health" class="bridge-race-description">
                             Total state population: {{fsc.factSheet.totalGenderPop | number }} ({{fsc.factSheet.gender[0].bridge_race | number }} females; {{fsc.factSheet.gender[1].bridge_race | number}} males)
+                        </p>
+                        <p ng-if="fsc.fsTypeForTable == fsc.fsTypes.womens_health" class="bridge-race-description">
+                            Total state female population: {{fsc.factSheet.gender[0].bridge_race | number }}
                         </p>
                         <div>
                             <table class="bridge-race-table1">
                                 <thead>
                                 <tr>
                                     <th>Racial Distributions of Residents*</th>
-                                    <th>Total</th>
+                                    <th ng-if='fsc.fsTypeForTable != fsc.fsTypes.womens_health'>Total</th>
                                     <th>Black, non-Hispanic</th>
-                                    <th>White, non-Hispanic</th>
+                                    <th ng-if="fsc.fsTypeForTable != fsc.fsTypes.minority_health">White, non-Hispanic</th>
                                     <th>American Indian</th>
                                     <th>Asian/Pacific Islander</th>
                                     <th>Hispanic</th>
@@ -59,7 +71,7 @@
                                 <tbody>
                                 <tr>
                                     <td class="bold-class">Population</td>
-                                    <td>{{fsc.factSheet.totalGenderPop | number }}</td>
+                                    <td ng-if='fsc.fsTypeForTable != fsc.fsTypes.womens_health'>{{fsc.factSheet.totalGenderPop | number }}</td>
                                     <td ng-repeat="race in fsc.factSheet.race" ng-bind="race.bridge_race | number "></td>
                                 </tr>
                                 </tbody>
