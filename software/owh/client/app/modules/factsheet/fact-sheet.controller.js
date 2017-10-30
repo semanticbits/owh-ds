@@ -731,7 +731,7 @@
 
                  ];
                  var document = pdfMake.createPdf(pdfDefinition);
-                 document.download(fsc.stateName+"-factsheet.pdf");
+                 document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
                  return document.docDefinition;
              });
         }
