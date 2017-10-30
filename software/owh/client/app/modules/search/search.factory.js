@@ -614,20 +614,22 @@
             //possible chart combinations
             var chartMappings = {
                 "yrbsSex&yrbsRace": "horizontalBar",
-                "yrbsSex&yrbsGrade": "horizontalBar",
-                "yrbsGrade&yrbsRace": "horizontalBar",
-                "yrbsSex": "horizontalBar",
-                "yrbsRace": "horizontalBar",
-                "race": "horizontalBar",
-                "gender": "horizontalBar",
-                "income": "horizontalBar",
-                "age_group": "horizontalBar",
-                "education": "horizontalBar",
-                "yrbsGrade": "horizontalBar",
-                "yrbsState": "horizontalBar",
-                "year": "horizontalBar",
-                "sex": "horizontalBar",
-                "state": "horizontalBar"  // for PRAMS
+                "yrbsSex&yrbsGrade": "horizontalBar", "yrbsGrade&yrbsRace": "horizontalBar",
+                "yrbsSex": "horizontalBar", "yrbsRace": "horizontalBar",
+                "race": "horizontalBar", "gender": "horizontalBar",
+                "income": "horizontalBar", "age_group": "horizontalBar",
+                "education": "horizontalBar", "yrbsGrade": "horizontalBar",
+                "yrbsState": "horizontalBar", "year": "horizontalBar",
+                "sex": "horizontalBar", "state": "horizontalBar",
+                "adequacy": "horizontalBar" , "birth_weight": "horizontalBar",
+                "marital_status": "horizontalBar", "maternal_age_groupings": "horizontalBar",
+                "maternal_age_years": "horizontalBar", "maternal_age_3": "horizontalBar",
+                "maternal_age_4": "horizontalBar", "maternal_education": "horizontalBar",
+                "maternal_race": "horizontalBar", "medicaid": "horizontalBar",
+                "mother_hispanic": "horizontalBar", "previous_births": "horizontalBar",
+                "wic_pregnancy": "horizontalBar", "pregnancy_intendedness": "horizontalBar",
+                "smoked_before": "horizontalBar", "smoked_last": "horizontalBar"
+
             };
 
             var chartTypes = [];
