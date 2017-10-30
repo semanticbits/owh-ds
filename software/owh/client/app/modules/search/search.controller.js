@@ -762,7 +762,8 @@
 
                     var popup = evt.popup;
 
-                    var popupHeight = angular.element('#chart_us_map').find('.leaflet-popup-content').height();
+                    var popupHeight = angular.element('#chart_us_map').find('.leaflet-popup-content').height()
+                        || angular.element('#expanded_us_map').find('.leaflet-popup-content').height();
 
                     //keep track of old position of popup
                     if(!popup.options.oldOffset) {
@@ -771,20 +772,20 @@
 
                     if(markerPosition.y < 180) {
                         //change position if popup does not fit into map-container
-                        popup.options.offset = new L.Point(10, popupHeight + 170);
-                        angular.element('#chart_us_map').addClass('reverse-popup')
-                        angular.element('#expanded_us_map').addClass('reverse-popup')
+                        popup.options.offset = new L.Point(10, popupHeight + 50);
+                        angular.element('#chart_us_map').addClass('reverse-popup');
+                        angular.element('#expanded_us_map').addClass('reverse-popup');
                     } else {
                         //revert position
                         popup.options.offset = popup.options.oldOffset;
-                        angular.element('#chart_us_map').removeClass('reverse-popup')
-                        angular.element('#expanded_us_map').removeClass('reverse-popup')
+                        angular.element('#chart_us_map').removeClass('reverse-popup');
+                        angular.element('#expanded_us_map').removeClass('reverse-popup');
                     }
                 });
                 //on popupclose reset pop up position
                 map.on("popupclose", function (evt, args) {
-                    $('#chart_us_map').removeClass('reverse-popup')
-                    $('#expanded_us_map').removeClass('reverse-popup')
+                    $('#chart_us_map').removeClass('reverse-popup');
+                    $('#expanded_us_map').removeClass('reverse-popup');
                 })
             };
 
