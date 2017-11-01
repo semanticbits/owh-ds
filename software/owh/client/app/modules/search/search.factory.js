@@ -3884,7 +3884,7 @@
                         {
                             sideFilters: [
                                 {
-                                    filterGroup: false, collapse: true, allowGrouping: true, groupBy: false,
+                                    filterGroup: false, collapse: false, allowGrouping: true, groupBy: false,
                                     groupOptions: filters.groupOptions,
                                     onFilterChange: utilService.aidsFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'disease')
