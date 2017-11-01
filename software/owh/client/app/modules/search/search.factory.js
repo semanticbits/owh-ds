@@ -3780,7 +3780,7 @@
 
 
                                {
-                                   filterGroup: false, collapse: true, allowGrouping: true, groupBy: false,
+                                   filterGroup: false, collapse: false, allowGrouping: true, groupBy: false,
                                    groupOptions: filters.groupOptions,
                                   // refreshFiltersOnChange: true,
                                    onFilterChange: utilService.stdFilterChange,
