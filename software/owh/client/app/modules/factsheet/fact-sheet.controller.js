@@ -140,12 +140,7 @@
         fsc.getFactSheet = getFactSheet;
         fsc.exportFactSheet = exportFactSheet;
         fsc.getStateName = getStateName;
-        $scope.updateState = function(state) {
-            fsc.state = state;
-        };
-        $scope.updateType = function(type) {
-            fsc.fsType = type;
-        };
+        
         if(fsc.queryID) {
             getQueryResults(fsc.state, fsc.fsType, fsc.queryID).then(function (response) {
                 if (!response || !response.resultData) {
