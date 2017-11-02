@@ -9,9 +9,10 @@
         var fsc = this;
         fsc.queryID = $stateParams.queryID;
         fsc.fsTypes = {
-            //minority_health: 'Minority Health',
-            //womens_health: "Women's Health",
-            state_health: "State Health"};
+            state_health: "State Health",
+            womens_health: "Women's Health",
+            minority_health: 'Minority Health'
+        };
         fsc.states = {
             "AL": "Alabama",
             "AK": "Alaska",
@@ -67,6 +68,7 @@
         };
         fsc.state = $stateParams.state;
         fsc.fsType = $stateParams.fsType;
+        fsc.fsTypeForTable = $stateParams.fsType;
         //To populate select box
         fsc.stateJSON = [
             {id:"AL", text:"Alabama"},
@@ -138,9 +140,7 @@
         fsc.getFactSheet = getFactSheet;
         fsc.exportFactSheet = exportFactSheet;
         fsc.getStateName = getStateName;
-        $scope.update = function(state) {
-            fsc.state = state;
-        };
+        
         if(fsc.queryID) {
             getQueryResults(fsc.state, fsc.fsType, fsc.queryID).then(function (response) {
                 if (!response || !response.resultData) {
@@ -168,6 +168,8 @@
             factSheetService.prepareFactSheetForState(state, fsType, queryID).then(function (response) {
                 if(response && response.resultData){
                     fsc.state = response.resultData.state;
+                    fsc.fsType = response.resultData.fsType;
+                    fsc.fsTypeForTable = response.resultData.fsType;
                     fsc.stateName = fsc.states[response.resultData.state];
                     fsc.stateImg = 'state_' + response.resultData.state + '.svg';
                     fsc.stateImgUrl = '../../images/state-shapes/state_' + response.resultData.state + '.svg';
@@ -185,8 +187,8 @@
          * @param fsType
          */
         function getFactSheet(state, fsType) {
-            if(state) {
-                SearchService.generateHashCode(state).then(function (response) {
+            if(state && fsType) {
+                SearchService.generateHashCode({state:state, fsType:fsType}).then(function (response) {
                     $state.go('factsheets', {
                         queryID: response.data,
                         state: state,
@@ -247,7 +249,7 @@
             //Prepare bridgeRace data
             var bridgeRaceTableOneData = [];
             bridgeRaceTableOneData.push('Population');
-            bridgeRaceTableOneData.push($filter('number')(fsc.factSheet.totalGenderPop));
+            fsc.fsTypeForTable !== fsc.fsTypes.womens_health && bridgeRaceTableOneData.push($filter('number')(fsc.factSheet.totalGenderPop));
             angular.forEach(fsc.factSheet.race, function(race){
                 bridgeRaceTableOneData.push($filter('number')(race.bridge_race));
             });
@@ -259,10 +261,25 @@
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[2].bridge_race));
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[3].bridge_race));
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[4].bridge_race));
-            allTablesData.bridgeRaceTable1 = {
-                headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic**', 'White, non-Hispanic', 'American Indian', 'Asian/Pacific Islander', 'Hispanic'],
-                bodyData: bridgeRaceTableOneData
-            };
+             if(fsc.fsTypeForTable === fsc.fsTypes.minority_health) {
+                allTablesData.bridgeRaceTable1 = {
+                    headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic**', 'American Indian',                                         'Asian/Pacific Islander', 'Hispanic'],
+                    bodyData: bridgeRaceTableOneData
+                };
+            }
+            else if(fsc.fsTypeForTable === fsc.fsTypes.womens_health) {
+                 allTablesData.bridgeRaceTable1 = {
+                     headerData: ['Racial Distributions of Residents*', 'Black, non-Hispanic**', 'White, non-Hispanic',                                         'American Indian', 'Asian/Pacific Islander', 'Hispanic'],
+                     bodyData: bridgeRaceTableOneData
+                 };
+            }
+            else {
+                allTablesData.bridgeRaceTable1 = {
+                    headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic**', 'White, non-Hispanic',                                         'American Indian', 'Asian/Pacific Islander', 'Hispanic'],
+                    bodyData: bridgeRaceTableOneData
+                };
+            }
+
             allTablesData.bridgeRaceTable2 = {
                 headerData: ['Age Distributions of Residents', '10-14', '15-19', '20-44', '45-64', '65-84', '85+'],
                 bodyData: bridgeRaceTableTwoData
@@ -431,6 +448,13 @@
                  cancerTableData.unshift(prepareTableHeaders(allTablesData.cancer.headerData));
                  var detailMortalityTableData = prepareTableBody(allTablesData.detailMortality.bodyData);
                  detailMortalityTableData.unshift(prepareTableHeaders(allTablesData.detailMortality.headerData));
+                 var bridgeRaceTotalText = "";
+                 if(fsc.fsType === fsc.fsTypes.womens_health) {
+                     bridgeRaceTotalText = "Total state female population: "+$filter('number')(fsc.factSheet.gender[0].bridge_race);
+                 }
+                 else {
+                     bridgeRaceTotalText = "Total state population: "+$filter('number')(fsc.factSheet.totalGenderPop)+ " ("+$filter('number')(fsc.factSheet.gender[0]                                                           .bridge_race)+" females; "+$filter('number')(fsc.factSheet.gender[1].bridge_race)+ " males)"
+                 }
                  var lightHorizontalLines = {
                      hLineWidth: function (i, node) {
                          return .5;
@@ -515,7 +539,7 @@
                      {text: fsc.stateName+" Health Fact Sheet", style: 'state-heading'},
                      {image: fsc.imageDataURLs.bridgeRace, width: 50, height: 50, style: 'dataset-image'},
                      {text: "Population in "+fsc.stateName, style: 'heading'},
-                     {text: "Total state population: "+$filter('number')(fsc.factSheet.totalGenderPop)+ " ("+$filter('number')(fsc.factSheet.gender[0].bridge_race)+" females; "+$filter('number')(fsc.factSheet.gender[1].bridge_race)+ " males)"},
+                     {text: bridgeRaceTotalText},
                      {
                          style: 'table',
                          table: {
@@ -702,7 +726,7 @@
 
                  ];
                  var document = pdfMake.createPdf(pdfDefinition);
-                 document.download(fsc.stateName+"-factsheet.pdf");
+                 document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
                  return document.docDefinition;
              });
         }
