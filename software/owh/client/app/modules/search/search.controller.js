@@ -574,6 +574,7 @@
                             filter.filters.queryKey = 'hispanic_origin';
                             filter.filters.autoCompleteOptions = sc.filters.hispanicOptions;
                         }
+                        filter.filters.value = [];
                     }
 
                     // Disable grouping for UCD and MCD filters on crude_death_rates and age_adjusted_rates views in mortality
@@ -751,7 +752,7 @@
                     sc.mapPopup
                         .setContent(compileEle[0])
                         .setLatLng(L.latLng(lat, lng)).openOn(map);
-                }, 50);
+                }, 100);
             } else {
                 sc.mapPopup
                     .setLatLng(L.latLng(lat, lng));
@@ -762,7 +763,8 @@
 
                     var popup = evt.popup;
 
-                    var popupHeight = angular.element('#chart_us_map').find('.leaflet-popup-content').height();
+                    var popupHeight = angular.element('#chart_us_map').find('.leaflet-popup-content').height()
+                        || angular.element('#expanded_us_map').find('.leaflet-popup-content').height();
 
                     //keep track of old position of popup
                     if(!popup.options.oldOffset) {
@@ -771,20 +773,20 @@
 
                     if(markerPosition.y < 180) {
                         //change position if popup does not fit into map-container
-                        popup.options.offset = new L.Point(10, popupHeight + 170);
-                        angular.element('#chart_us_map').addClass('reverse-popup')
-                        angular.element('#expanded_us_map').addClass('reverse-popup')
+                        popup.options.offset = new L.Point(10, popupHeight + 50);
+                        angular.element('#chart_us_map').addClass('reverse-popup');
+                        angular.element('#expanded_us_map').addClass('reverse-popup');
                     } else {
                         //revert position
                         popup.options.offset = popup.options.oldOffset;
-                        angular.element('#chart_us_map').removeClass('reverse-popup')
-                        angular.element('#expanded_us_map').removeClass('reverse-popup')
+                        angular.element('#chart_us_map').removeClass('reverse-popup');
+                        angular.element('#expanded_us_map').removeClass('reverse-popup');
                     }
                 });
                 //on popupclose reset pop up position
                 map.on("popupclose", function (evt, args) {
-                    $('#chart_us_map').removeClass('reverse-popup')
-                    $('#expanded_us_map').removeClass('reverse-popup')
+                    $('#chart_us_map').removeClass('reverse-popup');
+                    $('#expanded_us_map').removeClass('reverse-popup');
                 })
             };
 
