@@ -230,7 +230,14 @@
             var measure;
             if(primaryFilter.key == 'mental_health' || primaryFilter.key == 'prams' ||primaryFilter.key == 'brfss'){ //Dont use tableView for stats datasets, as tableView captures topics and not views
                 measure = $translate.instant('chart.title.measure.'+primaryFilter.key);
-            }else{
+            }
+            else if(primaryFilter.key === 'aids' || primaryFilter.key === 'std') {
+                //To get selected disease title and show as map title
+                var diseaseFilter =  utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'disease');
+                var indicatorName = utilService.findByKeyAndValue(diseaseFilter.autoCompleteOptions, 'key', diseaseFilter.value).title;
+                measure= $translate.instant('chart.title.measure.'+(primaryFilter.tableView?primaryFilter.tableView:primaryFilter.key)+'.'+ indicatorName.split(' ').join('') + (primaryFilter.chartView?('.'+primaryFilter.chartView):''));
+            }
+            else{
                 measure= $translate.instant('chart.title.measure.'+(primaryFilter.tableView?primaryFilter.tableView:primaryFilter.key) + (primaryFilter.chartView?('.'+primaryFilter.chartView):''));
             }
 
