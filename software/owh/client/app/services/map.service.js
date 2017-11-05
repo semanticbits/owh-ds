@@ -10,8 +10,6 @@
     function mapService($rootScope, $timeout, utilService, leafletData, shareUtilService, $translate, $filter) {
         var service = {
             updateStatesDeaths: updateStatesDeaths,
-            addExpandControl: addExpandControl,
-            addShareControl: addShareControl,
             getMapTitle: getMapTitle,
             addScaleControl: addScaleControl,
             highlightFeature: highlightFeature,
@@ -35,10 +33,10 @@
                     if(primaryFilter.tableView === 'crude_death_rates' || primaryFilter.tableView === 'crude_cancer_incidence_rates' || primaryFilter.tableView === 'crude_cancer_death_rates') {
                         //calculate male and female rate
                         angular.forEach(feature.properties.sex, function(eachGender){
-                            eachGender['rate'] = $filter('number')(eachGender[primaryFilter.key]/eachGender['pop'] * 1000000 / 10, 1);
+                            eachGender['rate'] = eachGender[primaryFilter.key] < 20 ? 'Unreliable' : $filter('number')(eachGender[primaryFilter.key]/eachGender['pop'] * 1000000 / 10, 1);
                         });
-                        var crudeDeathRate = Math.round(state[primaryFilter.key]/state['pop'] * 1000000) / 10 ;
-                        feature.properties.rate = isNaN(crudeDeathRate) ? 'n/a' : crudeDeathRate;
+                        var crudeDeathRate = isNaN(state[primaryFilter.key]) ? state[primaryFilter.key] : Math.round(state[primaryFilter.key]/state['pop'] * 1000000) / 10 ;
+                        feature.properties.rate = crudeDeathRate;
                         stateDeathTotals.push(crudeDeathRate);
                     }
                     else if(primaryFilter.tableView === 'age-adjusted_death_rates') {
@@ -54,9 +52,12 @@
                             eachGender['rate'] = $filter('number')(Math.round((eachGender[primaryFilter.key]) / eachGender['pop'] * 1000000) / 10, 1);
                         });
 
-                        var rate = $filter('number')(Math.round(feature.properties.sex[0][primaryFilter.key] / feature.properties.sex[0]['pop'] * 1000000) / 10, 1);
+                        var rate = Math.round(feature.properties.sex[0][primaryFilter.key] / feature.properties.sex[0]['pop'] * 1000000) / 10;
                         feature.properties.rate = rate;
                         stateDeathTotals.push(rate);
+                    } else if(['std', 'tb', 'aids'].indexOf(primaryFilter.key) != -1) {
+                        //for disease datasets, use both sexes to decide intervals
+                        stateDeathTotals.push(state.sex[0][primaryFilter.key]);
                     } else {
                         stateDeathTotals.push(state[primaryFilter.key]);
                     }
@@ -94,12 +95,12 @@
 
         //get map feature colors
         function getColor(d, ranges) {
-            return d > ranges[6] ? '#aa7ed4' :
-                   d > ranges[5] ? '#5569de' :
-                   d > ranges[4] ? '#6f9af1' :
-                   d > ranges[3] ? '#8bd480' :
-                   d > ranges[2] ? '#ea8484' :
-                   d > ranges[1] ? '#f3af60' : '#fff280';
+            return d >= ranges[6] ? '#aa7ed4' :
+                   d >= ranges[5] ? '#5569de' :
+                   d >= ranges[4] ? '#6f9af1' :
+                   d >= ranges[3] ? '#8bd480' :
+                   d >= ranges[2] ? '#ea8484' :
+                   d >= ranges[1] ? '#f3af60' : '#fff280';
         }
 
         //return map feature styling configuration parameters
@@ -107,11 +108,7 @@
             var ranges = utilService.generateMapLegendRanges(primaryFilter.mapData.mapMinValue,
                 primaryFilter.mapData.mapMaxValue);
             return function style(feature) {
-                var total = primaryFilter.tableView === 'crude_death_rates' ||
-                            primaryFilter.tableView === 'age-adjusted_death_rates' ||
-                            primaryFilter.tableView === 'crude_cancer_incidence_rates' ||
-                            primaryFilter.tableView === 'crude_cancer_death_rates' ||
-                            primaryFilter.showRates ? feature.properties.rate : feature.properties[primaryFilter.key];
+                var total = getTotal(primaryFilter, feature);
                 return {
                     fillColor: getColor(total, ranges),
                     weight: 0.8,
@@ -123,70 +120,19 @@
             }
         }
 
-        function addExpandControl(mapOptions, primaryFilter) {
-            return L.Control.extend({
-                options: {
-                    position: 'topright'
-                },
-                onAdd: function (map) {
-                    var container = L.DomUtil.create('i', 'leaflet-bar leaflet-control leaflet-control-custom material-icons fullscreen-exit-icon-purple purple-icon');
-                    container.innerHTML = "fullscreen_exit";
-                    container.onclick = function (event) {
-                        if (mapOptions.selectedMapSize === "small") {
-                            mapOptions.selectedMapSize = "big";
-                            resizeUSAMap(true, primaryFilter);
-                            container.innerHTML = "fullscreen_exit";
-                            angular.element(container).removeClass('fullscreen-icon-purple');
-                            angular.element(container).addClass('fullscreen-exit-icon-purple');
-                        } else if (mapOptions.selectedMapSize === "big") {
-                            mapOptions.selectedMapSize = "small";
-                            resizeUSAMap(false, primaryFilter);
-                            container.innerHTML = "fullscreen";
-                            angular.element(container).removeClass('fullscreen-exit-icon-purple');
-                            angular.element(container).addClass('fullscreen-icon-purple');
-                        }
-                    };
-                    return container;
-                }
-            });
-        }
 
-        function resizeUSAMap(isZoomIn, primaryFilter) {
-            leafletData.getMap().then(function(map) {
-                if(isZoomIn) {
-                    angular.element('div.custom-legend').show();
-                    map.zoomIn();
-                } else {
-                    map.zoomOut();
-                    angular.element('div.custom-legend').hide();
-                }
-                $timeout(function(){ map.invalidateSize()}, 1000);
-            });
-
-        }
-
-        function addShareControl() {
-            return L.Control.extend({
-                options: {
-                    position: 'topright'
-                },
-                onAdd: function (map) {
-                    var container = L.DomUtil.create('i', 'leaflet-bar leaflet-control leaflet-control-custom material-icons share-icon-purple purple-icon');
-                    container.innerHTML = "share";
-                    container.title = $translate.instant('label.share.on.fb');
-                    container.onclick = function (event) {
-                        angular.element(document.getElementById('spindiv')).removeClass('ng-hide');
-                        leafletData.getMap().then(function (map) {
-                            leafletImage(map, function (err, canvas) {
-                                // sc.showFbDialog('chart_us_map', 'OWH - Map', canvas.toDataURL());
-                                shareUtilService.shareOnFb('chart_us_map', 'OWH - Map', undefined, undefined, canvas.toDataURL());
-                            });
-                        });
-
-                    };
-                    return container;
-                }
-            });
+        function getTotal(primaryFilter, feature) {
+            if(primaryFilter.tableView === 'crude_death_rates'
+                || primaryFilter.tableView === 'age-adjusted_death_rates'
+                || primaryFilter.tableView === 'crude_cancer_incidence_rates'
+                || primaryFilter.tableView === 'crude_cancer_death_rates'
+                || primaryFilter.showRates) {
+                return feature.properties.rate;
+            } else if (['tb', 'std', 'aids'].indexOf(primaryFilter.key) != -1) {
+                return feature.properties.sex[0][primaryFilter.key];
+            } else {
+                return feature.properties[primaryFilter.key];
+            }
         }
 
         /**
@@ -199,6 +145,7 @@
                     position: 'bottomleft'
                 },
                 onAdd: function (map) {
+                    map.customControl = this;
                     var container = L.DomUtil.create('div', 'leaflet-control leaflet-control-custom custom-legend');
 
                     var colors = ['#aa7ed4', '#5569de','#6f9af1','#8bd480','#ea8484','#f3af60','#fff280'];
@@ -265,17 +212,10 @@
          * Reset the feature style
          * @param mapObj
          */
-        function resetHighlight(mapObj) {
-            var layer = mapObj.layer;
-            if(layer) {
-                var map = mapObj.target._map;
-                map._layers[layer._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black', fillOpacity: 0.7});
-            } else {
-                if(mapObj.leafletEvent) {
-                    layer = mapObj.leafletEvent.target;
-                    var map = layer._map;
-                    map._layers[layer._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black', fillOpacity: 0.7});
-                }
+        function resetHighlight(event) {
+            if(event) {
+                    var map = event.target._map;
+                    map._layers[event.target._leaflet_id].setStyle({weight: 0.8,opacity: 1,color: 'black', fillOpacity: 0.7});
             }
         }
 
@@ -290,7 +230,14 @@
             var measure;
             if(primaryFilter.key == 'mental_health' || primaryFilter.key == 'prams' ||primaryFilter.key == 'brfss'){ //Dont use tableView for stats datasets, as tableView captures topics and not views
                 measure = $translate.instant('chart.title.measure.'+primaryFilter.key);
-            }else{
+            }
+            else if(primaryFilter.key === 'aids' || primaryFilter.key === 'std') {
+                //To get selected disease title and show as map title
+                var diseaseFilter =  utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'disease');
+                var indicatorName = utilService.findByKeyAndValue(diseaseFilter.autoCompleteOptions, 'key', diseaseFilter.value).title;
+                measure= $translate.instant('chart.title.measure.'+(primaryFilter.tableView?primaryFilter.tableView:primaryFilter.key)+'.'+ indicatorName.split(' ').join('') + (primaryFilter.chartView?('.'+primaryFilter.chartView):''));
+            }
+            else{
                 measure= $translate.instant('chart.title.measure.'+(primaryFilter.tableView?primaryFilter.tableView:primaryFilter.key) + (primaryFilter.chartView?('.'+primaryFilter.chartView):''));
             }
 

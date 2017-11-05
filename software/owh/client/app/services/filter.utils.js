@@ -525,10 +525,12 @@
                     {
                         key: "CENS-D1",
                         title: "Division 1: New England",
+                        parentFilterOptionKey: "CENS-R1",
                     },
                     {
                         key: "CENS-D2",
                         title: "Division 2: Middle Atlantic",
+                        parentFilterOptionKey: "CENS-R1",
                     },
                 ]
             },

@@ -13,9 +13,9 @@
 
         return service;
 
-        function prepareFactSheetForState(state, fsType) {
+        function prepareFactSheetForState(state, fsType, queryID) {
             var deferred = $q.defer();
-            SearchService.getFactSheetForState(state, fsType).then(function (response) {
+            SearchService.getFactSheetForState(state, fsType, queryID).then(function (response) {
                 var fsData = response.data;
                 deferred.resolve(fsData);
             });

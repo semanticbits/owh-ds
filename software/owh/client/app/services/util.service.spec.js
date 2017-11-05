@@ -312,9 +312,9 @@ describe('utilService', function(){
     });
 
     it('test utils generateMapLegendLabels', function () {
-        expect(utils.generateMapLegendLabels(10000, 70000)).toEqual([ '> 46,010', '> 40,010', '> 34,010', '> 28,010', '> 22,010', '> 16,010', '< 10,020' ]);
-        expect(utils.generateMapLegendLabels(10000, 10490)).toEqual([ '> 10,310', '> 10,260', '> 10,210', '> 10,160', '> 10,110', '> 10,060', '< 10,020' ]);
-        expect(utils.generateMapLegendLabels(1, 30)).toEqual([ '> 70', '> 60', '> 50', '> 40', '> 30', '> 20', '< 20' ]);
+        expect(utils.generateMapLegendLabels(10000, 70000)).toEqual([ '> 61,429', '> 52,857', '> 44,286', '> 35,714', '> 27,143', '> 18,571', '> 10,000' ]);
+        expect(utils.generateMapLegendLabels(10000, 10490)).toEqual([ '> 10,420', '> 10,350', '> 10,280', '> 10,210', '> 10,140', '> 10,070', '> 10,000' ]);
+        expect(utils.generateMapLegendLabels(1, 30)).toEqual([ '> 26', '> 22', '> 18', '> 13', '> 9', '> 5', '> 1' ]);
     });
 
     it('refreshFilterAndOptions options should set filter option correctly - with category property ', inject(function(SearchService) {
@@ -1504,4 +1504,113 @@ describe('utilService', function(){
         var options = utils.getSelectedAutoCompleteOptions(filter);
         expect(options.length).toEqual(12);
     } );
+
+    it('regionFilterChange method should set right values for selected filters', function(){
+        //If user select only Division 1: New England then parent Region 1 check box checked automatically.
+        var filters = {
+            "key": "census-region",
+            "queryKey": "census_region|census_division",
+            "primary": false,
+            "value": [
+                "CENS-D1"
+            ],
+            "groupBy": "column",
+            "filterType": "checkbox",
+            "autoCompleteOptions": [
+                {
+                    "key": "CENS-R1",
+                    "title": "Census Region 1: Northeast",
+                    "group": true,
+                    "options": [
+                        {
+                            "key": "CENS-D1",
+                            "title": "Division 1: New England"
+                        },
+                        {
+                            "key": "CENS-D2",
+                            "title": "Division 2: Middle Atlantic"
+                        }
+                    ]
+                },
+                {
+                    "key": "CENS-R2",
+                    "title": "Census Region 2: Midwest",
+                    "group": true,
+                    "options": [
+                        {
+                            "key": "CENS-D3",
+                            "title": "Division 3: East North Central"
+                        },
+                        {
+                            "key": "CENS-D4",
+                            "title": "Division 4: West North Central"
+                        }
+                    ]
+                },
+                {
+                    "key": "CENS-R3",
+                    "title": "Census Region 3: South",
+                    "group": true,
+                    "options": [
+                        {
+                            "key": "CENS-D5",
+                            "title": "Division 5: South Atlantic"
+                        },
+                        {
+                            "key": "CENS-D6",
+                            "title": "Division 6: East South Central"
+                        },
+                        {
+                            "key": "CENS-D7",
+                            "title": "Division 7: West South Central"
+                        }
+                    ]
+                },
+                {
+                    "key": "CENS-R4",
+                    "title": "Census Region 4: West",
+                    "group": true,
+                    "options": [
+                        {
+                            "key": "CENS-D8",
+                            "title": "Division 8: Mountain"
+                        },
+                        {
+                            "key": "CENS-D9",
+                            "title": "Division 9: Pacific",
+                            "parentFilterOptionKey": "CENS-R4"
+                        }
+                    ]
+                }
+            ],
+            "defaultGroup": "column"
+        };
+        utils.regionFilterChange(filters);
+        expect(filters.value.length).toEqual(2);
+        expect(filters.value.indexOf('CENS-R1') > -1).toBeTruthy();
+        //If user select one more division in other region then corresponding region should be selected.
+        filters.value.push('CENS-D9');
+        utils.regionFilterChange(filters);
+        expect(filters.value.length).toEqual(4); // CENS-D1, CENS-R1, CENS-D9 and CENS-R4
+        expect(filters.value.indexOf('CENS-R1') > -1).toBeTruthy();
+        expect(filters.value.indexOf('CENS-R4') > -1).toBeTruthy();
+        expect(filters.value.indexOf('CENS-D1') > -1).toBeTruthy();
+        expect(filters.value.indexOf('CENS-D9') > -1).toBeTruthy();
+        expect(filters.value.indexOf('CENS-R2') > -1).toBeFalsy();
+        expect(filters.value.indexOf('CENS-D8') > -1).toBeFalsy();
+        expect(filters.value.indexOf('CENS-D2') > -1).toBeFalsy();
+        //currently Region 1 has only one division selected 'CENS-D1', if user un select that division then un select parent region automcatically.
+        filters.value.splice(filters.value.indexOf('CENS-D1'), 1);
+        utils.regionFilterChange(filters);
+        expect(filters.value.length).toEqual(2); // CENS-D9 and CENS-R4
+        expect(filters.value.indexOf('CENS-R1') > -1).toBeFalsy();
+        expect(filters.value.indexOf('CENS-D1') > -1).toBeFalsy();
+        expect(filters.value.indexOf('CENS-D9') > -1).toBeTruthy();
+        expect(filters.value.indexOf('CENS-R4') > -1).toBeTruthy();
+        expect(filters.value.indexOf('CENS-R2') > -1).toBeFalsy();
+        expect(filters.value.indexOf('CENS-R3') > -1).toBeFalsy();
+        expect(filters.value.indexOf('CENS-D2') > -1).toBeFalsy();
+        expect(filters.value.indexOf('CENS-D3') > -1).toBeFalsy();
+        expect(filters.value.indexOf('CENS-D4') > -1).toBeFalsy();
+    });
 });

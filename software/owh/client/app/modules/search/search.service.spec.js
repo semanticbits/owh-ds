@@ -87,4 +87,29 @@ describe('search service ', function(){
             failFn();
         });
     });
+
+    describe('Factsheets', function () {
+        beforeEach(function() {
+            deferred = $q.defer();
+        });
+
+        it('getFactSheetForState', function () {
+            var thenFn, failFn;
+            var responseFn = {
+                $promise: {
+                    then:function(func) {
+                        thenFn = func;
+                        return {
+                            catch:function(failFc) {
+                                failFn = failFc;
+                            }
+                        }
+                    }
+                }
+            };
+            spyOn(API, 'getFactSheet').and.returnValue(responseFn);
+            searchService.getFactSheetForState({'state':'AK', fsType: 'State Health', queryID: ''});
+            expect(API.getFactSheet).toHaveBeenCalled();
+        });
+    });
 });

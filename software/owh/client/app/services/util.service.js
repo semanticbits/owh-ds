@@ -47,6 +47,7 @@
             stdFilterChange: stdFilterChange,
             aidsFilterChange: aidsFilterChange,
             tbFilterChange: tbFilterChange,
+            regionFilterChange: regionFilterChange,
             infantMortalityFilterChange: infantMortalityFilterChange,
             cancerIncidenceFilterChange: cancerIncidenceFilterChange,
             removeValuesFromArray: removeValuesFromArray,
@@ -396,11 +397,13 @@
                 if(isValueNotEmpty(filterValue)) {
                     autoCompleteOptions= findAllByKeyAndValuesArray(filter.autoCompleteOptions, queryKey?'qkey':'key', filter.value);
                      // Look up in the subOptions
-                        filter.autoCompleteOptions.forEach(function(opt){
-                          if(opt.options){
-                             autoCompleteOptions = autoCompleteOptions.concat (findAllByKeyAndValuesArray(opt.options, queryKey?'qkey':'key', filter.value));
-                          }
+                    if(filter.queryKey !== 'census_region' && filter.queryKey !== 'census_division') {
+                        filter.autoCompleteOptions.forEach(function (opt) {
+                            if (opt.options) {
+                                autoCompleteOptions = autoCompleteOptions.concat(findAllByKeyAndValuesArray(opt.options, queryKey ? 'qkey' : 'key', filter.value));
+                            }
                         })
+                    }
 
                 } else {
                     autoCompleteOptions= filter.autoCompleteOptions
@@ -413,15 +416,20 @@
             }
             
             // Append suboptions
-            var cleanOptions = []
-            autoCompleteOptions.forEach(function(opt){
-                    if(opt.options){
-                           cleanOptions = cleanOptions.concat (opt.options);
-                    }else{
-                            cleanOptions.push(opt);
+            if(filter.queryKey === 'census_region' || filter.queryKey === 'census_division') {
+                return autoCompleteOptions;
+            }
+            else {
+                var cleanOptions = [];
+                autoCompleteOptions.forEach(function (opt) {
+                    if (opt.options) {
+                        cleanOptions = cleanOptions.concat(opt.options);
+                    } else {
+                        cleanOptions.push(opt);
                     }
-            })
-            return cleanOptions;
+                });
+                return cleanOptions;
+            }
 
         }
 
@@ -842,70 +850,6 @@
             return values;
         }
 
-
-        /*function prepareYRBSTableData(data, headers, groupedFilter, yearFilter, aggKey, isAggAtStart) {
-         var tableData = {
-         headers: [[]],
-         data : []
-         };
-         /!*tableData.headers[0].push({
-         title: 'Year',
-         colspan: 1,
-         rowspan: 1
-         });*!/
-         var questionHeaders = findAllByKeyAndValue(headers, 'key', 'question');
-         var otherHeaders = findAllNotContainsKeyAndValue(headers, 'key', 'question');
-         groupedFilter.autoCompleteOptions = otherHeaders.concat(groupedFilter.autoCompleteOptions);
-         groupedFilter.value = [];
-         var columnHeaders = [groupedFilter];
-         if(yearFilter.value.length > 1) {
-         columnHeaders.push(yearFilter)
-         }
-         var selectedYears = getSelectedAutoCompleteOptions(yearFilter);
-         var mixedTableHeaders = {
-         rowHeaders: questionHeaders,
-         columnHeaders: columnHeaders
-         };
-         tableData.headers = prepareMixedTableHeaders(mixedTableHeaders);
-         var totalTablecolspan = 0;
-         if(tableData.headers[0].length > 0) {
-         angular.forEach(tableData.headers[0], function(eachHeader) {
-         totalTablecolspan += eachHeader.colspan;
-         })
-         }
-         angular.forEach(data.aggData, function(questions, questionCategory){
-         var categoryRow = [];
-         categoryRow.push({
-         title: questionCategory,
-         colspan: totalTablecolspan,
-         rowspan:1,
-         isBold: true
-         });
-         tableData.data.push(categoryRow);
-         angular.forEach(questions, function(years, question){
-         var eachTableRow = [];
-         eachTableRow.push({
-         title: question,
-         colspan: 1,
-         rowspan: 1
-         });
-         angular.forEach(selectedYears, function(eachYear) {
-         angular.forEach(groupedFilter.autoCompleteOptions, function(eachOption){
-         var data = years[eachYear.key] ? years[eachYear.key][eachOption.key] : '';
-         eachTableRow.push({
-         title: data,
-         colspan:1,
-         rowspan:1
-         });
-         });
-         });
-         tableData.data.push(eachTableRow);
-         })
-         });
-         return tableData;
-         }*/
-
-
         function getMinAndMaxValue(array) {
             //collect only numbers. exlude strings e.g 'suppressed', 'na'
             var filteredArray = array.filter(function(elm){
@@ -914,22 +858,20 @@
             var sortedArray = filteredArray.sort(function(a,b) {
                 return a-b;
             });
-            return { minValue: sortedArray[0], maxValue: sortedArray[sortedArray.length-1] }
-        }
-
-        //generate legend counters based on result
-        function getLegendCounter(minValue, maxValue) {
-            return (maxValue - minValue)/10;
+            return {
+                minValue: parseFloat(sortedArray[0]),
+                maxValue: parseFloat(sortedArray[sortedArray.length-1])
+            }
         }
 
         function generateMapLegendRanges(minValue, maxValue) {
-            var counter = getLegendCounter(minValue, maxValue);
-            var counterRoundedValue = Math.round(counter/((counter < 5) ? 5 : 10), 0)*10;
-            var minRoundedValue = 10 + Math.round(minValue/10, 0) * 10;
+
             var ranges = [];
-            ranges.push(minRoundedValue + 10);
-            [1, 2, 3, 4, 5, 6].forEach(function(option, index){
-                ranges.push(minRoundedValue + (counterRoundedValue*option));
+            var counter = (maxValue - minValue)/7;
+            var temp = minValue;
+            [1, 2, 3, 4, 5, 6, 7].forEach(function(option, index) {
+                ranges.push(Math.round(temp, 0));
+                temp = temp + counter;
             });
             return ranges;
         }
@@ -941,7 +883,7 @@
             });
             var lastLabelIndex = labels.length-1;
             labels[lastLabelIndex] = labels[lastLabelIndex].replace('>', '');
-            labels[lastLabelIndex] = '<'+ labels[lastLabelIndex];
+            labels[lastLabelIndex] = '>'+ labels[lastLabelIndex];
             return labels;
         }
 
@@ -1479,6 +1421,36 @@
                     option.disabled = false;
                 }
             });
+        }
+
+        /**
+         * To select and un select region filter and division filters
+         * @param filter
+         * @param categories
+         */
+        function regionFilterChange(filter, categories){
+            var filterValue = filter.value;
+            //If use un select all divisions then un select region filter also
+            var selectedFilter = findAllByKeyAndValuesArray(filter.autoCompleteOptions, 'key', filterValue);
+            angular.forEach(selectedFilter, function(eachParentFilter){
+               //If any of division not selected for this parent region filter then un select region filter also
+                var foundFilters = findAllByKeyAndValuesArray(eachParentFilter.options, 'key', filterValue);
+                if(foundFilters.length === 0){
+                  filterValue = filterValue.splice(filterValue.indexOf(eachParentFilter.key), 1)
+                }
+            });
+            //If user select only division then select parent region also
+            if(angular.isArray(filterValue) && filterValue.length > 0) {
+                angular.forEach(filter.autoCompleteOptions, function (eachFilter) {
+                    var foundFilters = findAllByKeyAndValuesArray(eachFilter.options, 'key', filterValue);
+                    //if any one or all divisions selected then parent region should be selected if not selected already
+                    if (foundFilters.length > 0) {
+                        if(filterValue.indexOf(eachFilter.key) < 0 ){
+                            filterValue.push(eachFilter.key);
+                        }
+                    }
+                });
+            }
         }
     }
 }());
