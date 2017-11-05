@@ -2206,8 +2206,24 @@ Factsheet css
 	z-index: 100;
 	border-radius: 5px;
 }
-
-
 .fact-sheet-generator label {
 	font-weight:bold;
+}
+.clusterize-scroll{
+	max-height: 2000px;
+}
+div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leaflet-control > ul.legend-scale {
+	padding-left: 215px;
+}
+
+div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leaflet-control > ul.legend-scale > li > span {
+	height: 20px;
+}
+
+div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.custom-legend {
+	width: 875px;
+}
+
+div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leaflet-control-attribution {
+	padding-right: 40px;
 }

@@ -14,15 +14,15 @@ addons:
 env:
   global:
     - |
-      if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then 
+      if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then
          AWS_ACCESS_KEY_ID=$OWH_ACCESS_KEY;
          AWS_SECRET_ACCESS_KEY=$OWH_ACCESS_SECRET;
          NODE_ENV=test;
-      else 
-         AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PROD; 
+      else
+         AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PROD;
          AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PROD;
       fi;
-    
+
 before_install:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then docker info; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then mkdir -p .owh/logs; fi
@@ -116,7 +116,7 @@ before_deploy:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then mv dpl_tmp/owh-${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}.zip dpl_cd_upload/; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ls dpl_tmp; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then rm -rf dpl_tmp; fi
-  
+
 deploy:
   - provider: s3
     access_key_id: $OWH_ACCESS_KEY

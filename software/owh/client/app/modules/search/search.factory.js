@@ -614,20 +614,22 @@
             //possible chart combinations
             var chartMappings = {
                 "yrbsSex&yrbsRace": "horizontalBar",
-                "yrbsSex&yrbsGrade": "horizontalBar",
-                "yrbsGrade&yrbsRace": "horizontalBar",
-                "yrbsSex": "horizontalBar",
-                "yrbsRace": "horizontalBar",
-                "race": "horizontalBar",
-                "gender": "horizontalBar",
-                "income": "horizontalBar",
-                "age_group": "horizontalBar",
-                "education": "horizontalBar",
-                "yrbsGrade": "horizontalBar",
-                "yrbsState": "horizontalBar",
-                "year": "horizontalBar",
-                "sex": "horizontalBar",
-                "state": "horizontalBar"  // for PRAMS
+                "yrbsSex&yrbsGrade": "horizontalBar", "yrbsGrade&yrbsRace": "horizontalBar",
+                "yrbsSex": "horizontalBar", "yrbsRace": "horizontalBar",
+                "race": "horizontalBar", "gender": "horizontalBar",
+                "income": "horizontalBar", "age_group": "horizontalBar",
+                "education": "horizontalBar", "yrbsGrade": "horizontalBar",
+                "yrbsState": "horizontalBar", "year": "horizontalBar",
+                "sex": "horizontalBar", "state": "horizontalBar",
+                "adequacy": "horizontalBar" , "birth_weight": "horizontalBar",
+                "marital_status": "horizontalBar", "maternal_age_groupings": "horizontalBar",
+                "maternal_age_years": "horizontalBar", "maternal_age_3": "horizontalBar",
+                "maternal_age_4": "horizontalBar", "maternal_education": "horizontalBar",
+                "maternal_race": "horizontalBar", "medicaid": "horizontalBar",
+                "mother_hispanic": "horizontalBar", "previous_births": "horizontalBar",
+                "wic_pregnancy": "horizontalBar", "pregnancy_intendedness": "horizontalBar",
+                "smoked_before": "horizontalBar", "smoked_last": "horizontalBar"
+
             };
 
             var chartTypes = [];
@@ -1507,10 +1509,13 @@
                         {
                             key: "CENS-D1",
                             title: "Division 1: New England",
+                            parentFilterOptionKey: "CENS-R1"
+
                         },
                         {
                             key: "CENS-D2",
                             title: "Division 2: Middle Atlantic",
+                            parentFilterOptionKey: "CENS-R1"
                         },
                     ]
                 },
@@ -2485,18 +2490,7 @@
                 { "key": "2014", "title": "2014" },
                 { "key": "2013", "title": "2013" },
                 { "key": "2012", "title": "2012" },
-                { "key": "2011", "title": "2011" },
-                { "key": "2010", "title": "2010" },
-                { "key": "2009", "title": "2009" },
-                { "key": "2008", "title": "2008" },
-                { "key": "2007", "title": "2007" },
-                { "key": "2006", "title": "2006" },
-                { "key": "2005", "title": "2005" },
-                { "key": "2004", "title": "2004" },
-                { "key": "2003", "title": "2003" },
-                { "key": "2002", "title": "2002" },
-                { "key": "2001", "title": "2001" },
-                { "key": "2000", "title": "2000" }
+                { "key": "2011", "title": "2011" }
             ];
 
             filters.brfsAgeGroupOptions = [
@@ -2534,8 +2528,8 @@
                 {"key": "<$15k", "title": "Less than $15,000"},
                 {"key": "$15k-$25k", "title": "$15,000-$25,000"},
                 {"key": "$25k-$35k", "title": "$25,000-$35,000"},
-                {"key": "$35,000 -  49,999", "title": "$35,000-$49,999"},
-                {"key": "$50k+", "title": "$50,000+"}
+                {"key": "$35k-$50k", "title": "$35,000-$49,999"},
+                {"key": "$50k plus", "title": "$50,000+"}
             ];
 
             filters.brfsRaceOptions = [
@@ -2826,6 +2820,7 @@
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true,
+                                    onFilterChange: utilService.regionFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'census-region')
                                 },
                                 {
@@ -3349,7 +3344,6 @@
                                 },
                                 {
                                     category: 'Breakout',
-                                    exclusive: true,
                                     sideFilters: [
                                         {
                                             filterGroup: false, collapse: false, allowGrouping: true,
@@ -3786,7 +3780,7 @@
 
 
                                {
-                                   filterGroup: false, collapse: true, allowGrouping: true, groupBy: false,
+                                   filterGroup: false, collapse: false, allowGrouping: true, groupBy: false,
                                    groupOptions: filters.groupOptions,
                                   // refreshFiltersOnChange: true,
                                    onFilterChange: utilService.stdFilterChange,
@@ -3890,7 +3884,7 @@
                         {
                             sideFilters: [
                                 {
-                                    filterGroup: false, collapse: true, allowGrouping: true, groupBy: false,
+                                    filterGroup: false, collapse: false, allowGrouping: true, groupBy: false,
                                     groupOptions: filters.groupOptions,
                                     onFilterChange: utilService.aidsFilterChange,
                                     filters: utilService.findByKeyAndValue(filters.aidsFilters, 'key', 'disease')

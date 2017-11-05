@@ -38,7 +38,7 @@
                    </td>
                 </tr>
                 <tr class="owh-question__question">
-                    <td ng-repeat="eachColumn in eachRow" colspan="{{ eachColumn.colspan }}"
+                    <td ng-repeat="eachColumn in eachRow track by $index" colspan="{{ eachColumn.colspan }}"
                         rowspan="{{ eachColumn.rowspan }}" ng-style="eachColumn.style"
                         ng-if="!eachColumn.key" ng-class="{'bold-class': $index == 1}">
                         <div class="owh-question__content" ng-class="{'text-right': $index > 1}">

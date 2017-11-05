@@ -2,11 +2,29 @@
 
 describe("Search controller: ", function () {
     var searchController, $scope, $controller, $httpBackend, $injector, $templateCache, $rootScope,
-        searchResultsResponse, $searchFactory, $q, filters, shareUtilService, $compile, pramsFilters;
+        searchResultsResponse, $searchFactory, $q, filters, shareUtilService, $compile, pramsFilters, ModalService, givenModalDefaults, elementVisible, thenFunction;
 
     beforeEach(function() {
-        module('owh');
-
+        ModalService = jasmine.createSpy('ModalServiceMock');
+        module('owh', function ($provide) {
+            ModalService.showModal = function (modalDefaults) {
+                givenModalDefaults = modalDefaults;
+                givenModalDefaults.element = {
+                    show: function () {
+                        elementVisible = true
+                    },
+                    hide: function () {
+                        elementVisible = false
+                    }
+                };
+                return {
+                    then: function (func) {
+                        thenFunction = func;
+                    }
+                };
+            };
+            $provide.value('ModalService', ModalService);
+        });
         inject(function (_$controller_, _$rootScope_, _$injector_, _$templateCache_, _$q_, searchFactory) {
             // The injector unwraps the underscores (_) from around the parameter names when matching
             $rootScope = _$rootScope_;
@@ -47,6 +65,16 @@ describe("Search controller: ", function () {
         };
         searchController.chartUtilService = chartUtilService;
         searchController.showExpandedGraph([]);
+    });
+
+    it("Should execute showExpandedMap", function() {
+        var mapService = $injector.get('mapService');
+        var mapData = {"usa":{"lat":35,"lng":-97,"zoom":3.3},"legend":{},"defaults":{"tileLayer":"","scrollWheelZoom":false,"minZoom":3,"maxZoom":3.5},"markers":{},"events":{"map":{"enable":["click"],"logic":"emit"}},"controls":{"custom":[]},"isMap":true,"mapMaxValue":259206,"mapMinValue":4316,"geojson":{"data":{"type":"FeatureCollection","features":[]}}};
+        searchController.showExpandedMap(mapData);
+        var ctrl = $controller(givenModalDefaults.controller, { $scope: $scope, close: $q.defer().promise, mapService: mapService});
+        ctrl.element = givenModalDefaults.element;
+        thenFunction(ctrl);
+        expect(elementVisible).toBeTruthy();
     });
 
     //TODO: ignoring for now, but eventually we should re-write this test
