@@ -15,7 +15,7 @@
                 <div class="usa-width-one-third">
                     <label for="state">I am interested in looking at</label>
                     <select name="state" id="state" ng-options="s.id as s.text for s in fsc.stateJSON"
-                            ng-change="updateState(fsc.state)"  ng-model="fsc.state" required>
+                            ng-model="fsc.state" required>
                         <option value="">Select State</option>
                     </select>
                 </div>
@@ -23,7 +23,6 @@
                     <label for="type">for fact sheet type</label>
                     <select name="type" id="type"
                             ng-model="fsc.fsType"
-                            ng-change="updateType(fsc.fsType)"
                             ng-options="v for (k,v) in fsc.fsTypes" required>
                         <option value="">Select Type</option>
                     </select>
@@ -164,7 +163,8 @@
                                 <td ng-bind="eachRecord.data"></td>
                             </tr>
                         </table>
-                        <i>Sources: 2011, CDC PRAMS</i>
+                        <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">Sources: 2011, CDC PRAMS</i>
+                        <i ng-show="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['PRAMS'].message}}</i>
                     </div>
                     <!-- BRFSS -->
                     <br/>
@@ -188,7 +188,8 @@
                                 <td ng-bind="eachRecord.data"></td>
                             </tr>
                         </table>
-                        <i>Sources: 2015, YRBS; NA - Data not available or suppressed , NR - Data not reported</i>
+                        <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">Sources: 2015, YRBS; NA - Data not available or suppressed , NR - Data not reported</i>
+                        <i ng-show="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['YRBS'].message}}</i>
                     </div>
                 </div>
                 <div class="factsheet-part2">
@@ -325,7 +326,8 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i>Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only</i>
+                        <i ng-hide="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only</i>
+                        <i ng-show="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only. {{fsc.notParticipateStates['CancerIncidence'].message}}</i>
                     </div>
                 </div>
             </div>
