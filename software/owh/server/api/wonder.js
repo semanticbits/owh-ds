@@ -157,7 +157,7 @@ var wonderParamCodeMap = {
             "key": 'D69.V2',
             "values": {
                 "White": '2106-3',
-                "Black": '2054-5',
+                "Black or African American": '2054-5',
                 "American Indian or Alaska Native": '1002-5',
                 "Asian or Pacific Islander": 'A-PI'
             }
@@ -515,7 +515,7 @@ var wonderParamCodeMap = {
             "key": 'D31.V2',
             "values": {
                 "White": '2106-3',
-                "Black": '2054-5',
+                "Black or African American": '2054-5',
                 "American Indian or Alaska Native": '1002-5',
                 "Asian or Pacific Islander": 'A-PI'
             }
@@ -856,7 +856,7 @@ var wonderParamCodeMap = {
             "key": 'D18.V2',
             "values": {
                 "White": '2106-3',
-                "Black": '2054-5',
+                "Black or African American": '2054-5',
                 "American Indian or Alaska Native": '1002-5',
                 "Asian or Pacific Islander": 'A-PI'
             }

@@ -179,5 +179,129 @@ describe('mapService', function(){
             }
             ]
         })).toEqual("chart.title.measure.deaths by Sex for selected years");
+        var stdCasesprimaryFilters = {
+            "key": "std",
+            "tableView": "std",
+            "chartView": "cases",
+            "allFilters": [
+                {
+                    "key": "disease",
+                    "title": "label.filter.disease",
+                    "value": "Chlamydia",
+                    "autoCompleteOptions": [
+                        {
+                            "key": "Chlamydia",
+                            "title": "Chlamydia"
+                        },
+                        {
+                            "key": "Gonorrhea",
+                            "title": "Gonorrhea"
+                        },
+                        {
+                            "key": "Primary and Secondary Syphilis",
+                            "title": "Primary and Secondary Syphilis"
+                        },
+                        {
+                            "key": "Early Latent Syphilis",
+                            "title": "Early Latent Syphilis"
+                        },
+                        {
+                            "key": "Congenital Syphilis",
+                            "title": "Congenital Syphilis"
+                        }
+                    ]
+                },
+                {
+                    key: 'year',
+                    value: []
+                }
+            ]
+
+        };
+        expect(mapService.getMapTitle(stdCasesprimaryFilters)).toEqual("chart.title.measure.std.Chlamydia.cases by Sex for selected years");
+        var stdRatesPrimaryFilters = {
+            "key": "std",
+            "tableView": "std",
+            "chartView": "disease_rate",
+            "allFilters": [
+                {
+                    "key": "disease",
+                    "title": "label.filter.disease",
+                    "value": "Chlamydia",
+                    "autoCompleteOptions": [
+                        {
+                            "key": "Chlamydia",
+                            "title": "Chlamydia"
+                        },
+                        {
+                            "key": "Gonorrhea",
+                            "title": "Gonorrhea"
+                        },
+                        {
+                            "key": "Primary and Secondary Syphilis",
+                            "title": "Primary and Secondary Syphilis"
+                        },
+                        {
+                            "key": "Early Latent Syphilis",
+                            "title": "Early Latent Syphilis"
+                        },
+                        {
+                            "key": "Congenital Syphilis",
+                            "title": "Congenital Syphilis"
+                        }
+                    ]
+                },
+                {
+                    key: 'year',
+                    value: []
+                }
+            ]
+
+        };
+        expect(mapService.getMapTitle(stdRatesPrimaryFilters)).toEqual("chart.title.measure.std.Chlamydia.disease_rate by Sex for selected years");
+        var aidsCasesPrimaryFilters = {
+            "key": "aids",
+            "tableView": "aids",
+            "chartView": "cases",
+            "allFilters":[
+                {
+                    "key": "disease",
+                    "title": "label.filter.indicator",
+                    "value": "HIV, stage 3 (AIDS)",
+                    "autoCompleteOptions": [
+                        {
+                            "key": "HIV, stage 3 (AIDS)",
+                            "title": "AIDS Diagnoses"
+                        },
+                        {
+                            "key": "HIV, stage 3 (AIDS) deaths",
+                            "title": "AIDS Deaths"
+                        },
+                        {
+                            "key": "Persons living with HIV, stage 3 (AIDS)",
+                            "title": "AIDS Prevalence"
+                        },
+                        {
+                            "key": "HIV diagnoses",
+                            "title": "HIV Diagnoses"
+                        },
+                        {
+                            "key": "HIV deaths",
+                            "title": "HIV Deaths"
+                        },
+                        {
+                            "key": "Persons living with diagnosed HIV",
+                            "title": "HIV Prevalence"
+                        }
+                    ]
+                },
+                {
+                    key: 'year',
+                    value: []
+                }
+                ]
+
+        };
+        expect(mapService.getMapTitle(aidsCasesPrimaryFilters)).toEqual("chart.title.measure.aids.AIDSDiagnoses.cases by Sex for selected years");
     });
 });

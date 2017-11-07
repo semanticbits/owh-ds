@@ -149,7 +149,7 @@ script:
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then docker --version; fi  # document the version travis is using; fi
-  - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then eval $(aws ecr get-login --region us-east-1); fi #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
+  - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then eval $(aws ecr get-login --no-include-email --region us-east-1); fi #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then docker build -t owh-prod .; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then docker tag owh-prod:latest 498284886784.dkr.ecr.us-east-1.amazonaws.com/owh-prod:latest; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then docker push 498284886784.dkr.ecr.us-east-1.amazonaws.com/owh-prod:latest; fi
