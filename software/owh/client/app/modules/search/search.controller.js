@@ -801,18 +801,20 @@
         function attachEventsForMap(map) {
             map.invalidateSize();
             map.eachLayer(function (layer){
-                layer.on("mouseover", function (event) {
-                    if(sc.filters.selectedPrimaryFilter && event.target.feature) {
-                        buildMarkerPopup(event.latlng.lat, event.latlng.lng, event.target.feature.properties,
-                            event.target._map, sc.filters.selectedPrimaryFilter.key, event.containerPoint);
-                        sc.currentFeature = event.target.feature;
-                        mapService.highlightFeature(event.target._map._layers[event.target._leaflet_id]);
-                    }
-                });
-                layer.on("mouseout", function (event) {
-                    sc.mapPopup._close();
-                    mapService.resetHighlight(event);
-                });
+                if(layer.feature) {
+                    layer.on("mouseover", function (event) {
+                        if(sc.filters.selectedPrimaryFilter && event.target.feature) {
+                            buildMarkerPopup(event.latlng.lat, event.latlng.lng, event.target.feature.properties,
+                                event.target._map, sc.filters.selectedPrimaryFilter.key, event.containerPoint);
+                            sc.currentFeature = event.target.feature;
+                            mapService.highlightFeature(event.target._map._layers[event.target._leaflet_id]);
+                        }
+                    });
+                    layer.on("mouseout", function (event) {
+                        sc.mapPopup._close();
+                        mapService.resetHighlight(event);
+                    });
+                }
             });
 
             map.whenReady(function (event){
