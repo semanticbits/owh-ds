@@ -2228,7 +2228,7 @@ div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leafl
 	padding-right: 40px;
 }
 
-#minimizedMap {
+.unset-position {
 	position: unset !important;
 }
 .map-custom-controls {
