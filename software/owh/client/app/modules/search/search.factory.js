@@ -2833,10 +2833,12 @@
                             sideFilters: [
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true, dontShowCounts: true,
+                                    onFilterChange: utilService.exclusiveGroupingForMCDAndUCD,
                                     filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'ucd-chapter-10')
                                 },
                                 {
                                     filterGroup: false, collapse: true, allowGrouping: true, dontShowCounts: true,
+                                    onFilterChange: utilService.exclusiveGroupingForMCDAndUCD,
                                     filters: utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'mcd-chapter-10')
                                 }
                             ]
