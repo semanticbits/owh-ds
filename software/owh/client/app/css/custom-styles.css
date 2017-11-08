@@ -2239,3 +2239,7 @@ div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leafl
 	z-index: 10;
 	position: relative;
 }
+
+.restriction-modal-body {
+	font-size: 1.4rem;
+}
