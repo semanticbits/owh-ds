@@ -104,9 +104,11 @@
                                 </div>
                             </div>
                             <div class="map-container">
-                                <leaflet id="minimizedMap" ng-if="sc.togglemap" lf-center="chartData.usa" markers="chartData.markers" events="chartData.events" geojson="chartData.geojson"
+                                <leaflet id="minimizedMap" ng-if="sc.togglemap" lf-center="chartData.usa"
+                                         markers="chartData.markers" events="chartData.events" geojson="chartData.geojson"
                                          legend="chartData.legend" controls="chartData.controls" defaults="chartData.defaults" tiles=""
-                                         height="{{sc.mapOptions.selectedMapSize==='small'?'450px':'450px'}}" width="{{sc.mapOptions.selectedMapSize==='small'?'auto':'100%'}}"></leaflet>
+                                         height="{{sc.mapOptions.selectedMapSize==='small'?'450px':'450px'}}"
+                                         width="{{sc.mapOptions.selectedMapSize==='small'?'auto':'100%'}}"></leaflet>
                             </div>
                         </div>
                         <!-- Map -->

@@ -809,10 +809,12 @@
                             sc.currentFeature = event.target.feature;
                             mapService.highlightFeature(event.target._map._layers[event.target._leaflet_id]);
                         }
+                        angular.element('#minimizedMap').addClass('unset-position');
                     });
                     layer.on("mouseout", function (event) {
                         sc.mapPopup._close();
                         mapService.resetHighlight(event);
+                        angular.element('#minimizedMap').removeClass('unset-position');
                     });
                 }
             });
