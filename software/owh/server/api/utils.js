@@ -971,15 +971,16 @@ function getAllSelectedFilterOptions(q, datasetName) {
                 }
             }
             else if(eachFilter.key === 'mcd-chapter-10'){
-                if(eachFilter.value.set1.length > 0){
+                if(eachFilter.value.set1.length > 0 || eachFilter.value.set2.length > 0 ){
                     eachFilter.value.set1.forEach(function(eachOption){
                         allOptions[eachFilter.key].options.push(eachOption);
                     });
-                }
-                else if(eachFilter.value.set2.length > 0){
                     eachFilter.value.set2.forEach(function(eachOption){
-                        allOptions[eachFilter.key].options.push(eachOption);
+                        if(allOptions[eachFilter.key].options.indexOf(eachOption) < 0) {
+                            allOptions[eachFilter.key].options.push(eachOption);
+                        }
                     });
+
                 }
                 else {
                     eachFilter.autoCompleteOptions.forEach(function(eachOption){
