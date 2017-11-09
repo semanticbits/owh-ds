@@ -1613,4 +1613,33 @@ describe('utilService', function(){
         expect(filters.value.indexOf('CENS-D3') > -1).toBeFalsy();
         expect(filters.value.indexOf('CENS-D4') > -1).toBeFalsy();
     });
+
+    it("exclusive grouping for UCD and MCD", function(){
+        var filter = {key: 'ucd-chapter-10',  groupBy: "row"};
+        var categories = [ {}, {}, {
+            sideFilters: [
+                {
+                    filters: {key: 'ucd-chapter-10',  groupBy: false}
+                },
+                {
+                    filters:  {key: 'mcd-chapter-10', groupBy: 'row' }
+                }
+            ]
+        } ];
+        utils.exclusiveGroupingForMCDAndUCD(filter, categories);
+        expect(categories[2].sideFilters[1].filters.groupBy).toBeFalsy();
+        var filter = {key: 'mcd-chapter-10',  groupBy: "row"};
+        var categories = [ {}, {}, {
+            sideFilters: [
+                {
+                    filters: {key: 'ucd-chapter-10',  groupBy: 'row'}
+                },
+                {
+                    filters:  {key: 'mcd-chapter-10', groupBy: false }
+                }
+            ]
+        } ];
+        utils.exclusiveGroupingForMCDAndUCD(filter, categories);
+        expect(categories[2].sideFilters[0].filters.groupBy).toBeFalsy();
+    })
 });

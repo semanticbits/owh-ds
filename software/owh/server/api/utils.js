@@ -970,6 +970,28 @@ function getAllSelectedFilterOptions(q, datasetName) {
                     });
                 }
             }
+            else if(eachFilter.key === 'mcd-chapter-10'){
+                if(eachFilter.value.set1.length > 0){
+                    eachFilter.value.set1.forEach(function(eachOption){
+                        allOptions[eachFilter.key].options.push(eachOption);
+                    });
+                }
+                else if(eachFilter.value.set2.length > 0){
+                    eachFilter.value.set2.forEach(function(eachOption){
+                        allOptions[eachFilter.key].options.push(eachOption);
+                    });
+                }
+                else {
+                    eachFilter.autoCompleteOptions.forEach(function(eachOption){
+                        if(!eachOption.disabled) {
+                            allOptions[eachFilter.key].options.push(eachOption.key);
+                            if (eachOption.options) {
+                                allOptions[eachFilter.key].options = allOptions[eachFilter.key].options.concat(eachOption.options.map(function (opt)  { return opt.key; }));
+                            }
+                        }
+                    });
+                }
+            }
             else if(eachFilter.key != 'census-region'){
                 if(eachFilter.value.length > 0){
                     eachFilter.value.forEach(function(eachOption){
