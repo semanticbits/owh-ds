@@ -7,6 +7,20 @@
 
     function FactSheetController($scope, $state, factSheetService, $filter, SearchService, $rootScope, $stateParams, $q, $window) {
         var fsc = this;
+        fsc.notParticipateStates = {
+            PRAMS: {
+                states: ['AZ', 'CT', 'DC', 'ID', 'IN', 'IA', 'KS', 'KY', 'NV', 'NH', 'VA'],
+                message: "This state did not take part in PRAMS"
+            },
+            YRBS: {
+                states: ['DC', 'MN', 'OR', 'WA'],
+                message: 'This state did not take part in YRBS'
+            },
+            CancerIncidence: {
+                states: ['KS'],
+                message: "The state did not meet the United States Cancer Statistics (USCS) publication standard or did not allow permission for their data to be used."
+            }
+        };
         fsc.queryID = $stateParams.queryID;
         fsc.fsTypes = {
             state_health: "State Health",
@@ -514,6 +528,19 @@
                          fontSize: 8
                      }
                  };
+                 //Prepare source for PRAMS, YRBS and Cancer based on selected state
+                 var PRAMSSource = 'Sources: 2011, CDC PRAMS';
+                 var YRBSSource = 'Sources: 2015, YRBS; NA - Data not available or suppressed , NR - Data not reported';
+                 var CancerSource = 'Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only';
+                 if(fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1) {
+                     PRAMSSource = 'This state did not take part in PRAMS';
+                 }
+                 if(fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1) {
+                     YRBSSource = 'This state did not take part in YRBS';
+                 }
+                 if(fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1) {
+                     CancerSource = 'Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only. The state did not meet the United States Cancer Statistics (USCS) publication standard or did not allow permission for their data to be used.';
+                 }
                  pdfDefinition.footer = function(page, pages) {
                      return {
                          columns: [
@@ -624,7 +651,7 @@
                       },
                       layout: lightHorizontalLines
                       },
-                      {text: 'Sources: 2011, CDC PRAMS', style: 'info'},
+                      {text: PRAMSSource, style: 'info'},
                       {image: fsc.imageDataURLs.brfs, width: 50, height: 50, pageBreak: 'before', style: 'dataset-image'},
                       {text: 'Behavioral Risk Factors', style: 'heading'},
                       {
@@ -650,7 +677,7 @@
                       },
                       layout: lightHorizontalLines
                       },
-                     {text: 'Sources: 2015, YRBS; NA - Data not available or suppressed , NR - Data not reported', style: 'info'},
+                     {text: YRBSSource, style: 'info'},
                      {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image'},
                      {text: 'Birth Outcomes', style: 'heading'},
                      {
@@ -722,7 +749,7 @@
                       },
                       layout: lightHorizontalLines
                       },
-                      {text: 'Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only', style: 'info'}
+                      {text: CancerSource, style: 'info'}
 
                  ];
                  var document = pdfMake.createPdf(pdfDefinition);
