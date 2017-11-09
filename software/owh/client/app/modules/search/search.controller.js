@@ -803,8 +803,6 @@
             map.eachLayer(function (layer){
                 if(layer.feature) {
                     layer.on("mouseover", function (event) {
-                        console.log('layer');
-                        console.log(event.target);
                         if(sc.filters.selectedPrimaryFilter && event.target.feature) {
                             buildMarkerPopup(event.latlng.lat, event.latlng.lng, event.target.feature.properties,
                                 event.target._map, sc.filters.selectedPrimaryFilter.key, event.containerPoint);
