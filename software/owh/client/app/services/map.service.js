@@ -84,7 +84,7 @@
         function getSelectedYears(primaryFilter) {
             var yearFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'current_year') || utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year');
             if (yearFilter) {
-                return utilService.isValueNotEmpty(yearFilter.value) ? yearFilter.value : utilService.getValuesByKey(yearFilter.autoCompleteOptions, 'title');
+                return utilService.isValueNotEmpty(yearFilter.value) ? yearFilter.value : 'All';
             }
         }
 

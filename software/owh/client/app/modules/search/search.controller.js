@@ -738,16 +738,16 @@
         sc.mapPopup = L.popup({autoPan:false, closeButton:false});
         sc.currentFeature = {};
         function buildMarkerPopup(lat, lng, properties, map, key, markerPosition) {
-            var childScope = $scope.$new();
-            childScope.lat = lat;
-            childScope.lng = lng;
-            childScope.properties = properties;
-            childScope.key = key;
-            childScope.totalLabel = mapService.getTotalLabel(properties.tableView);
-            var ele = angular.element('<div></div>');
-            ele.html($templateCache.get('app/partials/marker-template.html'));
-            var compileEle = $compile(ele.contents())(childScope);
             if(sc.currentFeature.properties !== properties || !sc.mapPopup._isOpen) {
+                var childScope = $scope.$new();
+                childScope.lat = lat;
+                childScope.lng = lng;
+                childScope.properties = properties;
+                childScope.key = key;
+                childScope.totalLabel = mapService.getTotalLabel(properties.tableView);
+                var ele = angular.element('<div></div>');
+                ele.html($templateCache.get('app/partials/marker-template.html'));
+                var compileEle = $compile(ele.contents())(childScope);
                 $timeout(function () {
                     sc.mapPopup
                         .setContent(compileEle[0])
