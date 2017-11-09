@@ -752,7 +752,7 @@
                     sc.mapPopup
                         .setContent(compileEle[0])
                         .setLatLng(L.latLng(lat, lng)).openOn(map);
-                }, 10);
+                }, 1);
             } else {
                 sc.mapPopup
                     .setLatLng(L.latLng(lat, lng));
@@ -802,6 +802,8 @@
             map.invalidateSize();
             map.eachLayer(function (layer){
                 if(layer.feature) {
+                    console.log('layer');
+                    console.log(layer);
                     layer.on("mouseover", function (event) {
                         if(sc.filters.selectedPrimaryFilter && event.target.feature) {
                             buildMarkerPopup(event.latlng.lat, event.latlng.lng, event.target.feature.properties,
