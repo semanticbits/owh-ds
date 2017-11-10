@@ -721,7 +721,7 @@
                 sc.filters.selectedPrimaryFilter = result.primaryFilter;
                 $timeout(function(){
                     leafletData.getMap('minimizedMap').then(function(map) {
-                        attachEventsForMap(map);
+                        mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
                     });
                 }, 500);
             });
@@ -732,103 +732,7 @@
 
         function showPhaseTwoGraphs(text) {
             searchFactory.showPhaseTwoModal(text);
-        };
-
-        //builds marker popup.
-        sc.mapPopup = L.popup({autoPan:false, closeButton:false});
-        sc.currentFeature = {};
-        function buildMarkerPopup(lat, lng, properties, map, key, markerPosition) {
-            if(sc.currentFeature.properties !== properties || !sc.mapPopup._isOpen) {
-                var childScope = $scope.$new();
-                childScope.lat = lat;
-                childScope.lng = lng;
-                childScope.properties = properties;
-                childScope.key = key;
-                childScope.totalLabel = mapService.getTotalLabel(properties.tableView);
-                var ele = angular.element('<div></div>');
-                ele.html($templateCache.get('app/partials/marker-template.html'));
-                var compileEle = $compile(ele.contents())(childScope);
-                $timeout(function () {
-                    sc.mapPopup
-                        .setContent(compileEle[0])
-                        .setLatLng(L.latLng(lat, lng)).openOn(map);
-                }, 1);
-            } else {
-                sc.mapPopup
-                    .setLatLng(L.latLng(lat, lng));
-            }
-
-            var rotatePopup = function () {
-                map.on("popupopen", function (evt, args) {
-
-                    var popup = evt.popup;
-
-                    var popupHeight = angular.element('#chart_us_map').find('.leaflet-popup-content').height()
-                        || angular.element('#expanded_us_map').find('.leaflet-popup-content').height();
-
-                    //keep track of old position of popup
-                    if(!popup.options.oldOffset) {
-                        popup.options.oldOffset = popup.options.offset;
-                    }
-
-                    if(markerPosition.y < 180) {
-                        //change position if popup does not fit into map-container
-                        popup.options.offset = new L.Point(10, popupHeight + 50);
-                        angular.element('#chart_us_map').addClass('reverse-popup');
-                        angular.element('#expanded_us_map').addClass('reverse-popup');
-                    } else {
-                        //revert position
-                        popup.options.offset = popup.options.oldOffset;
-                        angular.element('#chart_us_map').removeClass('reverse-popup');
-                        angular.element('#expanded_us_map').removeClass('reverse-popup');
-                    }
-                });
-                //on popupclose reset pop up position
-                map.on("popupclose", function (evt, args) {
-                    $('#chart_us_map').removeClass('reverse-popup');
-                    $('#expanded_us_map').removeClass('reverse-popup');
-                })
-            };
-
-            rotatePopup();
-
         }
-
-        /**
-         * To attach required events to map and add scale control
-         * @param map
-         */
-        function attachEventsForMap(map) {
-            map.invalidateSize();
-            map.eachLayer(function (layer){
-                if(layer.feature) {
-                    layer.off("mouseover");
-                    layer.off("mouseout");
-                    layer.on("mouseover", function (event) {
-                        if(sc.filters.selectedPrimaryFilter && event.target.feature) {
-                            buildMarkerPopup(event.latlng.lat, event.latlng.lng, event.target.feature.properties,
-                                event.target._map, sc.filters.selectedPrimaryFilter.key, event.containerPoint);
-                            sc.currentFeature = event.target.feature;
-                            mapService.highlightFeature(event.target._map._layers[event.target._leaflet_id]);
-                        }
-                        angular.element('#minimizedMap').addClass('unset-position');
-                    });
-                    layer.on("mouseout", function (event) {
-                        sc.mapPopup._close();
-                        mapService.resetHighlight(event);
-                        angular.element('#minimizedMap').removeClass('unset-position');
-                    });
-                }
-            });
-
-            map.whenReady(function (event){
-                if(sc.filters.selectedPrimaryFilter && !map.customControl) {
-                    var mapScaleControl = mapService.addScaleControl(sc.filters.selectedPrimaryFilter.mapData);
-                    event.addControl(new mapScaleControl());
-                }
-            });
-        }
-
 
         /*Show expanded graphs with whole set of features*/
         function showExpandedGraph(chartData) {
@@ -862,13 +766,13 @@
             }).then(function (modal) {
                 modal.element.show();
                 leafletData.getMap('expandedMap').then(function(map) {
-                    attachEventsForMap(map);
+                    mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
                 });
                 modal.close.then(function (result) {
                     modal.element.hide();
                     sc.togglemap = true;
                     leafletData.getMap('minimizedMap').then(function(map) {
-                        attachEventsForMap(map);
+                        mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
                     });
 
                 });
@@ -976,7 +880,7 @@
             mapService.updateStatesDeaths(sc.filters.selectedPrimaryFilter, sc.filters.selectedPrimaryFilter.nestedData.maps, undefined, sc.mapOptions);
             $timeout(function(){
                 leafletData.getMap('minimizedMap').then(function(map) {
-                    attachEventsForMap(map);
+                    mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
                 });
             }, 1700);
         }
@@ -1084,7 +988,7 @@
 
         $timeout(function(){
             leafletData.getMap('minimizedMap').then(function(map) {
-                attachEventsForMap(map);
+                mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
             });
         }, 1000);
     }
