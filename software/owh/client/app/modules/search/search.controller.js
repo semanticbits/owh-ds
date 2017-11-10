@@ -721,7 +721,7 @@
                 sc.filters.selectedPrimaryFilter = result.primaryFilter;
                 $timeout(function(){
                     leafletData.getMap('minimizedMap').then(function(map) {
-                        attachEventsForMap(map);
+                        mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
                     });
                 }, 500);
             });
@@ -860,13 +860,13 @@
             }).then(function (modal) {
                 modal.element.show();
                 leafletData.getMap('expandedMap').then(function(map) {
-                    attachEventsForMap(map);
+                    mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
                 });
                 modal.close.then(function (result) {
                     modal.element.hide();
                     sc.togglemap = true;
                     leafletData.getMap('minimizedMap').then(function(map) {
-                        attachEventsForMap(map);
+                        mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
                     });
 
                 });
@@ -974,7 +974,7 @@
             mapService.updateStatesDeaths(sc.filters.selectedPrimaryFilter, sc.filters.selectedPrimaryFilter.nestedData.maps, undefined, sc.mapOptions);
             $timeout(function(){
                 leafletData.getMap('minimizedMap').then(function(map) {
-                    attachEventsForMap(map);
+                    mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
                 });
             }, 1700);
         }
@@ -1082,7 +1082,7 @@
 
         $timeout(function(){
             leafletData.getMap('minimizedMap').then(function(map) {
-                attachEventsForMap(map);
+                mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
             });
         }, 1000);
     }

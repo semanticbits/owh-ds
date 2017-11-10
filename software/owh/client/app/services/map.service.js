@@ -4,10 +4,12 @@
         .module('owh')
         .service('mapService', mapService);
 
-    mapService.$inject = ['$rootScope', '$timeout', 'utilService', 'leafletData', 'shareUtilService', '$translate', '$filter'];
+    mapService.$inject = ['$rootScope', '$timeout', 'utilService', 'leafletData',
+        '$translate', '$filter', '$templateCache', '$compile'];
 
     //service to provide utilities for leaflet geographical map
-    function mapService($rootScope, $timeout, utilService, leafletData, shareUtilService, $translate, $filter) {
+    function mapService($rootScope, $timeout, utilService, leafletData,
+                        $translate, $filter, $templateCache, $compile) {
         var service = {
             updateStatesDeaths: updateStatesDeaths,
             getMapTitle: getMapTitle,
@@ -15,8 +17,14 @@
             highlightFeature: highlightFeature,
             resetHighlight: resetHighlight,
             setInitialView: setInitialView,
-            getTotalLabel: getTotalLabel
+            getTotalLabel: getTotalLabel,
+            attachEventsForMap: attachEventsForMap
         };
+
+        //builds marker popup.
+        var mapPopup = L.popup({autoPan:false, closeButton:false});
+        var currentFeature = {};
+
         return service;
 
         /*
@@ -265,6 +273,94 @@
                 std:'Total', tb:'Total', aids:'Total'
             };
             return totalLableMap[key];
+        }
+
+        /**
+         * To attach required events to map and add scale control
+         * @param map
+         */
+        function attachEventsForMap(map, primaryFilter) {
+            map.invalidateSize();
+            map.eachLayer(function (layer){
+                if(layer.feature) {
+                    layer.on("mouseover", function (event) {
+                        if(primaryFilter && event.target.feature) {
+                            buildMarkerPopup(event.latlng.lat, event.latlng.lng, event.target.feature.properties,
+                                event.target._map, primaryFilter.key, event.containerPoint);
+                            currentFeature = event.target.feature;
+                            highlightFeature(event.target._map._layers[event.target._leaflet_id]);
+                        }
+                        angular.element('#minimizedMap').addClass('unset-position');
+                    });
+                    layer.on("mouseout", function (event) {
+                        mapPopup._close();
+                        resetHighlight(event);
+                        angular.element('#minimizedMap').removeClass('unset-position');
+                    });
+                }
+            });
+
+            map.whenReady(function (event){
+                if(primaryFilter && !map.customControl) {
+                    var mapScaleControl = addScaleControl(primaryFilter.mapData);
+                    event.addControl(new mapScaleControl());
+                }
+            });
+        }
+
+        function buildMarkerPopup(lat, lng, properties, map, key, markerPosition) {
+            if(currentFeature.properties !== properties || !mapPopup._isOpen) {
+                var childScope = $rootScope.$new();
+                childScope.lat = lat;
+                childScope.lng = lng;
+                childScope.properties = properties;
+                childScope.key = key;
+                childScope.totalLabel = getTotalLabel(properties.tableView);
+                var ele = angular.element('<div></div>');
+                ele.html($templateCache.get('app/partials/marker-template.html'));
+                var compileEle = $compile(ele.contents())(childScope);
+                $timeout(function () {
+                    mapPopup
+                        .setContent(compileEle[0])
+                        .setLatLng(L.latLng(lat, lng)).openOn(map);
+                }, 1);
+            } else {
+                mapPopup
+                    .setLatLng(L.latLng(lat, lng));
+            }
+
+            var rotatePopup = function () {
+                map.on("popupopen", function (evt, args) {
+
+                    var popup = evt.popup;
+
+                    var popupHeight = angular.element('#chart_us_map').find('.leaflet-popup-content').height()
+                        || angular.element('#expanded_us_map').find('.leaflet-popup-content').height();
+
+                    //keep track of old position of popup
+                    if(!popup.options.oldOffset) {
+                        popup.options.oldOffset = popup.options.offset;
+                    }
+
+                    if(markerPosition.y < 180) {
+                        //change position if popup does not fit into map-container
+                        popup.options.offset = new L.Point(10, popupHeight + 50);
+                        angular.element('#chart_us_map').addClass('reverse-popup');
+                        angular.element('#expanded_us_map').addClass('reverse-popup');
+                    } else {
+                        //revert position
+                        popup.options.offset = popup.options.oldOffset;
+                        angular.element('#chart_us_map').removeClass('reverse-popup');
+                        angular.element('#expanded_us_map').removeClass('reverse-popup');
+                    }
+                });
+                //on popupclose reset pop up position
+                map.on("popupclose", function (evt, args) {
+                    $('#chart_us_map').removeClass('reverse-popup');
+                    $('#expanded_us_map').removeClass('reverse-popup');
+                })
+            };
+            rotatePopup();
         }
     }
 }());
