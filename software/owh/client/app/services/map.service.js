@@ -289,14 +289,17 @@
                         if(primaryFilter && event.target.feature) {
                             buildMarkerPopup(event.latlng.lat, event.latlng.lng, event.target.feature.properties,
                                 event.target._map, primaryFilter.key, event.containerPoint);
-                            currentFeature = event.target.feature;
-                            highlightFeature(event.target._map._layers[event.target._leaflet_id]);
+                            if(!L.Browser.ie) {
+                                highlightFeature(event.target._map._layers[event.target._leaflet_id]);
+                            }
                         }
                         angular.element('#minimizedMap').addClass('unset-position');
                     });
                     layer.on("mouseout", function (event) {
                         mapPopup._close();
-                        resetHighlight(event);
+                        if(!L.Browser.ie) {
+                            resetHighlight(event);
+                        }
                         angular.element('#minimizedMap').removeClass('unset-position');
                     });
                 }
