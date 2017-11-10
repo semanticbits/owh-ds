@@ -283,6 +283,8 @@
             map.invalidateSize();
             map.eachLayer(function (layer){
                 if(layer.feature) {
+                    layer.off("mouseover");
+                    layer.off("mouseout");
                     layer.on("mouseover", function (event) {
                         if(primaryFilter && event.target.feature) {
                             buildMarkerPopup(event.latlng.lat, event.latlng.lng, event.target.feature.properties,
