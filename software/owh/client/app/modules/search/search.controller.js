@@ -495,6 +495,7 @@
         var aidsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'aids');
         var cancerIncidenceFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'cancer_incident');
         var cancerMortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'cancer_mortality');
+        var infantMortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'infant_mortality');
 
         angular.extend(mortalityFilter.mapData, mapOptions);
         angular.extend(bridgeRaceFilter.mapData, mapOptions);
@@ -503,6 +504,7 @@
         angular.extend(aidsFilter.mapData, mapOptions);
         angular.extend(cancerIncidenceFilter.mapData, mapOptions);
         angular.extend(cancerMortalityFilter.mapData, mapOptions);
+        angular.extend(infantMortalityFilter.mapData, mapOptions);
 
         function updateCharts() {
             angular.forEach(sc.filters.selectedPrimaryFilter.chartData, function (chartData) {
@@ -876,7 +878,7 @@
             selectedPrimaryFilter.chartAxisLabel = chartOption.axisLabel;
             selectedPrimaryFilter.chartView = chartOption.key;
             selectedPrimaryFilter.chartData = searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
-            selectedPrimaryFilter.showRates = (chartView === 'disease_rate');
+            selectedPrimaryFilter.showRates = (chartView === 'disease_rate' || chartView === 'infant_death_rate');
             mapService.updateStatesDeaths(sc.filters.selectedPrimaryFilter, sc.filters.selectedPrimaryFilter.nestedData.maps, undefined, sc.mapOptions);
             $timeout(function(){
                 leafletData.getMap('minimizedMap').then(function(map) {

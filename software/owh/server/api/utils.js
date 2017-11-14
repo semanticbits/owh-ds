@@ -166,11 +166,16 @@ var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, won
         });
        chartFilterKeys.push(chartAggKeyArray);
     });
+    var mapAggFilterKeys = [];
+    wonderQuery.aggregations.nested.maps[0].forEach(function(eachAgg){
+        mapAggFilterKeys.push(eachAgg.key);
+    });
     if(resp) {
         result.data.nested.table = populateAggregateDataForWonderResponse(resp.table, 'Total', tableFilterKeys, isStateSelected);
         chartFilterKeys.forEach(function(eachChartFilterKeys, index){
             result.data.nested.charts[index] = populateAggregateDataForWonderResponse(resp.charts[index], 'Total', eachChartFilterKeys, isStateSelected);
         });
+        result.data.nested.maps = populateAggregateDataForWonderResponse(resp.maps, 'Total', mapAggFilterKeys, isStateSelected);
     }
     return result;
 };

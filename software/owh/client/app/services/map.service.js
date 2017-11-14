@@ -54,19 +54,55 @@
                         });
                         feature.properties.rate = state['ageAdjustedRate'];
                         stateDeathTotals.push(state['ageAdjustedRate']);
-                    } else if (primaryFilter.showRates) {
-                        //calculate male and female rate
-                        angular.forEach(feature.properties.sex, function(eachGender){
-                            eachGender['rate'] = $filter('number')(Math.round((eachGender[primaryFilter.key]) / eachGender['pop'] * 1000000) / 10, 1);
-                        });
+                    }
+                    else if (primaryFilter.showRates) {
+                        if(primaryFilter.tableView === 'number_of_infant_deaths') {
+                            var suppressTotal = false;
+                            angular.forEach(feature.properties.sex, function(eachGender){
+                                if(eachGender[primaryFilter.key] < 20 || eachGender['deathRate'].indexOf('Unreliable') > 0) {
+                                    eachGender['rate'] = 'Unreliable';
+                                }
+                                else if(eachGender['deathRate'] === 'suppressed') {
+                                    suppressTotal = true;
+                                    eachGender['rate'] = eachGender['deathRate'];
+                                }
+                                else if(eachGender['deathRate'] === 'na') {
+                                    eachGender['rate'] = eachGender['deathRate'];
+                                }
+                                else {
+                                    eachGender['rate'] = $filter('number')(eachGender['deathRate'],1);
+                                }
+                            });
+                            //For Total
+                            if(suppressTotal || state['deathRate'] === 'suppressed') {
+                                feature.properties.rate = 'suppressed';
+                                stateDeathTotals.push('suppressed');
+                            }
+                            else if(state['deathRate'] === 'na') {
+                                feature.properties.rate = state['deathRate'];
+                                stateDeathTotals.push(state['deathRate']);
+                            }
+                            else {
+                                feature.properties.rate = $filter('number')(state['deathRate'], 1);
+                                stateDeathTotals.push($filter('number')(state['deathRate'], 1));
+                            }
 
-                        var rate = Math.round(feature.properties.sex[0][primaryFilter.key] / feature.properties.sex[0]['pop'] * 1000000) / 10;
-                        feature.properties.rate = rate;
-                        stateDeathTotals.push(rate);
+                        }
+                        else {
+                            //calculate male and female rate
+                            angular.forEach(feature.properties.sex, function (eachGender) {
+                                eachGender['rate'] = $filter('number')(Math.round((eachGender[primaryFilter.key]) / eachGender['pop'] * 1000000) / 10, 1);
+                            });
+
+                            var rate = Math.round(feature.properties.sex[0][primaryFilter.key] / feature.properties.sex[0]['pop'] * 1000000) / 10;
+                            feature.properties.rate = rate;
+                            stateDeathTotals.push(rate);
+                        }
                     } else if(['std', 'tb', 'aids'].indexOf(primaryFilter.key) != -1) {
                         //for disease datasets, use both sexes to decide intervals
                         stateDeathTotals.push(state.sex[0][primaryFilter.key]);
-                    } else {
+                    }
+                    else {
                         stateDeathTotals.push(state[primaryFilter.key]);
                     }
                     feature.properties.showRates = primaryFilter.showRates;
@@ -90,7 +126,7 @@
         }
 
         function getSelectedYears(primaryFilter) {
-            var yearFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'current_year') || utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year');
+            var yearFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'current_year') || utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year') || utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year_of_death');
             if (yearFilter) {
                 return utilService.isValueNotEmpty(yearFilter.value) ? yearFilter.value : 'All';
             }
@@ -270,7 +306,7 @@
                 'age-adjusted_death_rates':'Total', bridge_race:'Total',
                 cancer_incident:'Total', crude_cancer_incidence_rates:'Total',
                 cancer_mortality:'Total', crude_cancer_death_rates: 'Total',
-                std:'Total', tb:'Total', aids:'Total'
+                std:'Total', tb:'Total', aids:'Total', number_of_infant_deaths: 'Total'
             };
             return totalLableMap[key];
         }
