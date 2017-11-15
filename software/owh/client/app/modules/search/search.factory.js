@@ -148,7 +148,7 @@
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 var headers = angular.copy(primaryFilter.headers.columnHeaders);
                 headers.push.apply(headers, angular.copy(primaryFilter.headers.rowHeaders));
-                primaryFilter.countLabel = 'Number of Infant Deaths';
+                primaryFilter.countLabel = 'Totals';
                 angular.forEach(headers, function(columnHeader){
                      if(columnHeader.key === 'state') {
                         primaryFilter.countLabel = null;
@@ -1378,7 +1378,7 @@
             ];
 
             filters.deathsRateGroupOptions = [
-                {key:'death',title:'Deaths', axisLabel:'Number of Infant Deaths', tooltip:'Select to view as deaths on charts'},
+                {key:'death',title:'Deaths', axisLabel:'Totals', tooltip:'Select to view as deaths on charts'},
                 {key:'infant_death_rate',title:'Rates', axisLabel:'Rates', tooltip:'Select to view as rates on charts'}
             ];
 
@@ -3590,7 +3590,7 @@
                 {
                     key: 'infant_mortality', title: 'label.filter.infant_mortality', primary: true, value: [], header: 'Infant Mortality',
                     allFilters: filters.infantMortalityFilters, searchResults: searchInfantMortality, showMap: true,
-                    chartAxisLabel: 'Number of Infant Deaths', countLabel: 'Number of Infant Deaths', tableView: 'number_of_infant_deaths',
+                    chartAxisLabel: 'Totals', countLabel: 'Totals', tableView: 'number_of_infant_deaths',
                     runOnFilterChange: true, applySuppression: true, chartView: 'death', mapData: {},
                     chartViewOptions:filters.deathsRateGroupOptions,
                     sideFilters:[

@@ -578,7 +578,7 @@
   "chart.title.measure.prams": "Response %",
   "chart.title.measure.mental_health": "Response %",
   "chart.title.measure.brfss": "Response %",
-  "chart.title.measure.number_of_infant_deaths.death": "Number of Infant Deaths",
+  "chart.title.measure.number_of_infant_deaths.death": "Totals",
   "chart.title.measure.number_of_infant_deaths.infant_death_rate": "Rate of Infant Deaths",
   "chart.title.measure.cancer_incident":"Number of Cancer Incidence",
   "chart.title.measure.cancer_mortality":"Number of Cancer Deaths",

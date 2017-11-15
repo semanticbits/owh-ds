@@ -1645,8 +1645,8 @@
     }
   ],
   "showMap": false,
-  "chartAxisLabel": "Number of Infant Deaths",
-  "countLabel": "Number of Infant Deaths",
+  "chartAxisLabel": "Totals",
+  "countLabel": "Totals",
   "tableView": "number_of_infant_deaths",
   "runOnFilterChange": true,
   "applySuppression": true,
@@ -1655,7 +1655,7 @@
     {
       "key": "death",
       "title": "Deaths",
-      "axisLabel": "Number of Infant Deaths",
+      "axisLabel": "Totals",
       "tooltip": "Select to view as deaths on charts"
     },
     {
@@ -4220,7 +4220,7 @@
             "gridcolor": "#bdbdbd",
             "showticklabels": true,
             "fixedrange": true,
-            "title": "Number of Infant Deaths",
+            "title": "Totals",
             "type": "linear",
             "range": [
               0,

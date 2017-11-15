@@ -14,7 +14,7 @@ Feature: Infant Mortality filters
 
   Scenario: Quick visualizations
     When I see the quick visualizations
-    Then I see label "Race" and "Number of Infant Deaths" are displayed on minimized visualization
+    Then I see label "Race" and "Totals" are displayed on minimized visualization
     When user expand visualization
     Then I should see grouped and stacked controls on expaned visualization
     And I close visualization popup
@@ -25,7 +25,7 @@ Feature: Infant Mortality filters
     Then I see label "Race" and "Rates" are displayed on minimized visualization
     When I click on Deaths chart view toggle button
     And user sees a visualization
-    Then I see label "Race" and "Number of Infant Deaths" are displayed on minimized visualization
+    Then I see label "Race" and "Totals" are displayed on minimized visualization
 
   Scenario: Infant Mortality Side Filters and Defaults
     Then I should see "4" categories in the sidebar
@@ -35,7 +35,7 @@ Feature: Infant Mortality filters
     And the "Race" filter should be toggled to "Row"
 
   Scenario: Infant Mortality Default Table Data for 2014
-    Then the default headers of the table should be "Race, Female, Male, Number of Infant Deaths"
+    Then the default headers of the table should be "Race, Female, Male, Totals"
     And the values in row "0" should be "American Indian or Alaska Native, 146, 195, 341"
     And the values in row "0" should be "American Indian or Alaska Native, 22,120, 22,808, 44,928"
     And the values in row "0" should be "American Indian or Alaska Native, 6.6, 8.6, 7.6"
