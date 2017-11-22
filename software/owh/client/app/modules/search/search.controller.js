@@ -924,11 +924,6 @@
                         createDataSet('cancer_mortality', 'label.filter.cancer_mortality', 'label.cancer_mortality.dsc'),
                         createDataSet('deaths', 'label.filter.mortality', 'label.mortality.dsc.two'),
                         createDataSet('infant_mortality', 'label.filter.infant_mortality', 'label.infant.mortality.dsc')
-                    ]),
-                    createDataSource('label.health.behaviors', 'label.health.behaviors.dsc', 'health-behavior-prevention-icon.svg', 'Health Status and Risk Factors', [
-                        createDataSet('brfss', 'label.brfss.title', 'label.brfs.dsc'),
-                        createDataSet('prams', 'label.prams.title', 'label.prams.dsc'),
-                        createDataSet('mental_health', 'label.yrbs', 'label.yrbs.dsc')
                     ])
                 ]
             }
