@@ -34,8 +34,14 @@
             var years = getSelectedYears(primaryFilter);
             //update states info with trials data
             var stateDeathTotals = [];
-            angular.forEach($rootScope.states.features, function(feature){
-                var state = utilService.findByKeyAndValue(data.states, 'name', feature.properties.abbreviation);
+            angular.forEach($rootScope.states.features, function(feature) {
+                var state;
+                //in yrbs Arizona has different fips code
+                if(primaryFilter.key === 'mental_health' && feature.properties.abbreviation === 'AZ') {
+                    state = utilService.findByKeyAndValue(data.states, 'name', 'AZB');
+                } else {
+                    state = utilService.findByKeyAndValue(data.states, 'name', feature.properties.abbreviation);
+                }
                 if (utilService.isValueNotEmpty(state)){
                     feature.properties.sex = state.sex;
                     if(primaryFilter.tableView === 'crude_death_rates' || primaryFilter.tableView === 'crude_cancer_incidence_rates' || primaryFilter.tableView === 'crude_cancer_death_rates') {
@@ -66,11 +72,23 @@
                     } else if(['std', 'tb', 'aids'].indexOf(primaryFilter.key) != -1) {
                         //for disease datasets, use both sexes to decide intervals
                         stateDeathTotals.push(state.sex[0][primaryFilter.key]);
+                    } else if(primaryFilter.key === 'mental_health' ) {
+                        var res = utilService.findByKeyAndValue(state.responses, 'rKey', data.selectedResponse);
+                        if (angular.isDefined(res)) {
+                            feature.properties.response = res;
+                            stateDeathTotals.push(res.rData.mean);
+                        } else {
+                            feature.properties.response = "NA";
+                            stateDeathTotals.push('NA');
+                        }
+                        feature.properties.isDisabled = false;
                     } else {
                         stateDeathTotals.push(state[primaryFilter.key]);
                     }
                     feature.properties.showRates = primaryFilter.showRates;
                     feature.properties[primaryFilter.key] =  state[primaryFilter.key];
+                } else {
+                    feature.properties.isDisabled = true;
                 }
                 feature.properties.tableView = primaryFilter.tableView;
                 feature.properties.years = angular.isArray(years)? years.join(', ') : years;
@@ -103,6 +121,10 @@
 
         //get map feature colors
         function getColor(d, ranges) {
+
+            if (d == -1) {
+                return '#D3D3D3';
+            }
             return d >= ranges[6] ? '#aa7ed4' :
                    d >= ranges[5] ? '#5569de' :
                    d >= ranges[4] ? '#6f9af1' :
@@ -136,6 +158,15 @@
                 || primaryFilter.tableView === 'crude_cancer_death_rates'
                 || primaryFilter.showRates) {
                 return feature.properties.rate;
+            } else if (primaryFilter.key  === 'mental_health') {
+                if (feature.properties.isDisabled) {
+                    return -1;
+                }
+                if (feature.properties.response.rData) {
+                    return feature.properties.response.rData.mean;
+                } else {
+                    return feature.properties.response;
+                }
             } else if (['tb', 'std', 'aids'].indexOf(primaryFilter.key) != -1) {
                 return feature.properties.sex[0][primaryFilter.key];
             } else {
@@ -286,9 +317,10 @@
                     layer.off("mouseover");
                     layer.off("mouseout");
                     layer.on("mouseover", function (event) {
+                        var isStatDta = ['mental_health', 'prams', 'brfss'].indexOf(primaryFilter.key) != -1;
                         if(primaryFilter && event.target.feature) {
                             buildMarkerPopup(event.latlng.lat, event.latlng.lng, event.target.feature.properties,
-                                event.target._map, primaryFilter.key, event.containerPoint);
+                                event.target._map, primaryFilter.key, event.containerPoint, isStatDta);
                             currentFeature = event.target.feature;
                             highlightFeature(event.target._map._layers[event.target._leaflet_id]);
                         }
@@ -302,7 +334,7 @@
                 }
             });
 
-            map.whenReady(function (event){
+            map.whenReady(function (event) {
                 if(primaryFilter && !map.customControl) {
                     var mapScaleControl = addScaleControl(primaryFilter.mapData);
                     event.addControl(new mapScaleControl());
@@ -310,13 +342,14 @@
             });
         }
 
-        function buildMarkerPopup(lat, lng, properties, map, key, markerPosition) {
+        function buildMarkerPopup(lat, lng, properties, map, key, markerPosition, isStatDta) {
             if(currentFeature.properties !== properties || !mapPopup._isOpen) {
                 var childScope = $rootScope.$new();
                 childScope.lat = lat;
                 childScope.lng = lng;
                 childScope.properties = properties;
                 childScope.key = key;
+                childScope.isStatDta = isStatDta;
                 childScope.totalLabel = getTotalLabel(properties.tableView);
                 var ele = angular.element('<div></div>');
                 ele.html($templateCache.get('app/partials/marker-template.html'));

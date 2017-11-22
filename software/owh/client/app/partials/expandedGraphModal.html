@@ -22,16 +22,20 @@
         </div>
         <div class="custom-modal-body usa-grid">
 
-            <ul class="custom-nav custom-nav-tabs" ng-show="eg.chartTypes.length>1">
+            <ul class="custom-nav custom-nav-tabs">
                 <li ng-repeat="chartType in eg.chartTypes"
                     ng-class="{'active':eg.activeTab? eg.activeTab == eg.getChartName(chartType): $index==0}">
                     <a href="#" ng-click="eg.getYrbsChartData(chartType);"
                        ng-bind="eg.getChartName(chartType);">Expand Graph</a>
                 </li>
+                <li ng-class="{'active': eg.activeTab === 'map'}"
+                    ng-click="eg.activeTab = 'map'">
+                    <a href="#" ng-click="eg.getMapData()">Map</a>
+                </li>
             </ul>
 
             <div class="usa-grid">
-                <div class="usa-width-one-whole" ng-repeat="eachChartData in eg.chartData">
+                <div ng-if="eg.activeTab !== 'map'" class="usa-width-one-whole" ng-repeat="eachChartData in eg.chartData">
                     <div class="text-center margin-top-5" ng-if="eg.chartData.length > 1">
                         <span ng-bind="eachChartData.layout.title" class="graph-title"></span>
                         <a name="share" class="font-20 cursor-pointer" href="javascript:void(0);" ng-click="eg.showFbDialog('chart_expanded_'+$index, eachChartData.title, 'YRBS by', eg.graphTitle)">
@@ -44,6 +48,22 @@
                                        model="eg.barmode">
                     </owh-toggle-switch>
                     <plotly id="chart_expanded_{{$index}}" plotly-data="eachChartData.data" plotly-layout="eachChartData.layout" plotly-options=eachChartData.options barmode="eg.barmode" style="width: 95%; height: 95%; display: inline-block;horiz-align: center;"></plotly>
+                </div>
+                <div class="usa-width-one-whole" id="expanded_us_map" ng-if="eg.activeTab=='map'">
+                    <div class="usa-grid">
+                        <div class="usa-width-one-whole" style="padding-left: 30%;">
+                            <select id="responseSelector" ng-model="eg.selectedResponse" ng-change="eg.getMapDataForResponse()">
+                                <option ng-repeat="res in eg.primaryFilters.responses" value="{{res}}">{{res}}</option>
+                            </select>
+                        </div>
+                        <br>
+                    </div>
+                    <leaflet id="expandedMap" lf-center="eg.primaryFilters.mapData.usa"
+                             markers="eg.primaryFilters.mapData.markers" events="eg.primaryFilters.mapData.events"
+                             geojson="eg.primaryFilters.mapData.geojson"
+                             legend="eg.primaryFilters.mapData.legend" controls="eg.primaryFilters.mapData.controls"
+                             defaults="eg.primaryFilters.mapData.defaults" tiles=""
+                             height="500px" width="100%"></leaflet>
                 </div>
             </div>
         </div>

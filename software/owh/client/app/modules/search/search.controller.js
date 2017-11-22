@@ -4,11 +4,11 @@
         .controller('SearchController', SearchController);
 
     SearchController.$inject = ['$scope', 'utilService', 'searchFactory', '$rootScope',
-        '$templateCache', '$compile', '$filter', 'leafletData', '$timeout', 'chartUtilService', 'shareUtilService',
+        '$filter', 'leafletData', '$timeout', 'chartUtilService', 'shareUtilService',
         '$stateParams', '$state', 'xlsService', '$window', 'mapService', 'ModalService', '$q'];
 
     function SearchController($scope, utilService, searchFactory, $rootScope,
-                                 $templateCache, $compile, $filter, leafletData, $timeout, chartUtilService,
+                                 $filter, leafletData, $timeout, chartUtilService,
                                  shareUtilService, $stateParams, $state, xlsService, $window, mapService, ModalService, $q) {
 
         var sc = this;
@@ -495,6 +495,7 @@
         var aidsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'aids');
         var cancerIncidenceFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'cancer_incident');
         var cancerMortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'cancer_mortality');
+        var yrbsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'mental_health');
 
         angular.extend(mortalityFilter.mapData, mapOptions);
         angular.extend(bridgeRaceFilter.mapData, mapOptions);
@@ -503,6 +504,7 @@
         angular.extend(aidsFilter.mapData, mapOptions);
         angular.extend(cancerIncidenceFilter.mapData, mapOptions);
         angular.extend(cancerMortalityFilter.mapData, mapOptions);
+        angular.extend(yrbsFilter.mapData, mapOptions);
 
         function updateCharts() {
             angular.forEach(sc.filters.selectedPrimaryFilter.chartData, function (chartData) {

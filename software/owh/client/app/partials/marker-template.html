@@ -1,7 +1,7 @@
 <div class="usa-grid-full" style="width: 300px;">
     <div class="usa-width-one-whole">
         <div class="usa-width-one-whole marker-popup-header" ng-bind="properties.name"></div>
-        <div ng-if="properties.sex">
+        <div ng-if="properties.sex && !isStatDta">
             <div class="usa-width-one-whole margin-top-10">
                 <div class="usa-width-two-thirds marker-label">Year(s)</div>
                 <div class="usa-width-one-third marker-years">{{properties.years}}</div>
@@ -45,8 +45,29 @@
                 </div>
             </div>
         </div>
-        <div ng-if="!properties.sex">
-            <span ng-bind="'label.data.not.available' | translate"></span>
+        <div ng-if="isStatDta && !properties.isDisabled">
+            <div class="usa-width-one-whole margin-top-10">
+                <div class="usa-width-two-thirds marker-label">Year(s)</div>
+                <div class="usa-width-one-third marker-years">{{properties.years}}</div>
+            </div>
+            <div class="usa-width-one-whole margin-top-10">
+                <div class="usa-width-two-thirds marker-label">Percentage</div>
+                <div class="usa-width-one-third marker-years"
+                     ng-if="properties.response.rData.mean != 'suppressed'">{{properties.response.rData.mean}}&#37;</div>
+            </div>
+            <div class="usa-width-one-whole margin-top-10">
+                <div class="usa-width-two-thirds marker-label">Confidence Intervals</div>
+                <div class="usa-width-one-third marker-years">{{properties.response.rData.ci_l}}-{{properties.response.rData.ci_u}}</div>
+            </div>
+            <div class="usa-width-one-whole margin-top-10">
+                <div class="usa-width-two-thirds marker-label">Unweighted Frequency</div>
+                <div class="usa-width-one-third marker-years">{{properties.response.rData.count}}</div>
+            </div>
+        </div>
+        <div ng-if="!properties.sex && (!properties.response || properties.isDisabled)">
+            <div class="usa-width-one-whole margin-top-10">
+                <div ng-bind="'label.data.not.available' | translate">{{properties.years}}</div>
+            </div>
         </div>
     </div>
 </div>

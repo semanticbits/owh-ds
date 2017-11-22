@@ -2243,3 +2243,8 @@ div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leafl
 .restriction-modal-body {
 	font-size: 1.4rem;
 }
+
+#responseSelector {
+	width: 300px;
+	padding: 0.7rem 0.7em;
+}

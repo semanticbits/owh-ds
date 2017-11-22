@@ -2,7 +2,7 @@
 
 /*group of common test goes here as describe*/
 describe('chart utils', function(){
-    var chartUtils, shareUtils, searchFactory, diferred, closeDeferred, givenModalDefaults, ModalService, $rootScope, $scope, controllerProvider,
+    var chartUtils, shareUtils, searchFactory, diferred, closeDeferred, diferredMapData, givenModalDefaults, ModalService, $rootScope, $scope, controllerProvider,
         filter1, filter2, filter3, data1, data2, censusRatesData, primaryFilter, postFixToTooltip,
         horizontalStackExpectedResult1, horizontalStackExpectedResult2,
         verticalStackExpectedResult, horizontalBarExpectedResult,
@@ -41,6 +41,7 @@ describe('chart utils', function(){
     beforeEach(inject(function ($injector, _$rootScope_, $controller, _$q_, _$templateCache_) {
         closeDeferred = _$q_.defer();
         diferred = _$q_.defer();
+        diferredMapData = _$q_.defer();
         controllerProvider = $controller;
         $rootScope  = _$rootScope_;
         $scope = $rootScope.$new();
@@ -240,6 +241,23 @@ describe('chart utils', function(){
 
         var chartName = ctrl.getChartName(['year']);
         expect(chartName).toEqual('Year');
+    });
+
+    it('Should get mapdata for a selected yrbss question', function () {
+        var ctrl = controllerProvider(givenModalDefaults.controller,
+            { $scope: $scope, close: closeDeferred.promise});
+
+        var yrbsMockData = __fixtures__['app/modules/search/fixtures/search.factory/yrbsChartMockData'];
+        ctrl.selectedQuestion = {"title":"Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)","isCount":false,"rowspan":2,"colspan":1,"key":"Currently drank alcohol","qkey":"qn43","iconClass":"purple-text"};
+        var filters = searchFactory.getAllFilters();
+        ctrl.primaryFilters =  filters.search[1];
+        ctrl.primaryFilters.responses = ['Yes', 'No'];
+
+        spyOn(searchFactory, 'getMapDataForQuestion').and.returnValue(diferredMapData.promise);
+        ctrl.getMapData(ctrl.primaryFilters, ctrl.selectedQuestion);
+
+        diferredMapData.resolve(yrbsMockData.stateData);
+        $scope.$apply();
     });
 
     it('test chart utils showExpandedGraph for getYrbsChartData', function () {
