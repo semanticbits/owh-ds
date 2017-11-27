@@ -28,7 +28,7 @@
                     <a href="#" ng-click="eg.getYrbsChartData(chartType);"
                        ng-bind="eg.getChartName(chartType);">Expand Graph</a>
                 </li>
-                <li ng-class="{'active': eg.activeTab === 'map'}"
+                <li ng-if="eg.isBasicSearch && eg.showMap" ng-class="{'active': eg.activeTab === 'map'}"
                     ng-click="eg.activeTab = 'map'">
                     <a href="#" ng-click="eg.getMapData()">Map</a>
                 </li>

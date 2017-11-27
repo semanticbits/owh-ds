@@ -1048,6 +1048,8 @@
                     eg.close = close;
                     eg.selectedFiltersTxt = selectedFiltersTxt;
                     eg.barmode = eg.chartData[0].layout.barmode;
+                    eg.isBasicSearch = eg.primaryFilters.showBasicSearchSideMenu;
+                    eg.showMap = eg.primaryFilters.showMap;
 
                     eg.showFbDialog = function(svgIndex, title, section, description) {
                         shareUtilService.shareOnFb(svgIndex, title, section, description);

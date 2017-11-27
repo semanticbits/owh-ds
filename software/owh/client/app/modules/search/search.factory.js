@@ -2911,7 +2911,7 @@
                     key: 'mental_health', title: 'label.risk.behavior', primary: true, value:[], header:"Youth Risk Behavior",
                     searchResults: invokeStatsService, dontShowInlineCharting: true,
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total', tableView:'Alcohol and Other Drug Use',
-                    chartAxisLabel:'Percentage', mapData: {},
+                    chartAxisLabel:'Percentage', showMap:true, mapData: {},
                     showBasicSearchSideMenu: true, runOnFilterChange: true, allFilters: filters.yrbsBasicFilters, // Default to basic filter
                     advancedSideFilters: [
                         {

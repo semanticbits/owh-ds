@@ -124,6 +124,7 @@
                     feature.properties[primaryFilter.key] =  state[primaryFilter.key];
                 } else {
                     feature.properties.isDisabled = true;
+                    feature.properties.sex = undefined;
                 }
                 feature.properties.tableView = primaryFilter.tableView;
                 feature.properties.years = angular.isArray(years)? years.join(', ') : years;
