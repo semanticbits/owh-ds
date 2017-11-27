@@ -446,8 +446,6 @@
   "label.help.text.hiv.agegroup": "This field indicates the age group of the patient. HIV surveillance data include adults and adolescents only (persons aged 13 years and older).",
   "label.help.text.transmission": "This field indicates the classification of cases that summarizes a person's possible HIV risk factor.",
 
-  "label.health.behaviors": "Health Behaviors and Prevention",
-  "label.health.behaviors.dsc": "Find out which health issues are important in measuring the nation's overall well-being",
   "label.births.family": "Births and Family Planning",
   "label.births.family.dsc": "Browse detailed information on birth counts and over 250 maternal and child health indicators and risk factors",
   "label.mortality": "Mortality",
