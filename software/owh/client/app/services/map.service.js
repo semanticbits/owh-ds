@@ -111,7 +111,7 @@
                         var res = utilService.findByKeyAndValue(state.responses, 'rKey', data.selectedResponse);
                         if (angular.isDefined(res)) {
                             feature.properties.response = res;
-                            stateDeathTotals.push(res.rData.mean);
+                            res.rData.mean == -1? stateDeathTotals.push('suppressed'): stateDeathTotals.push(res.rData.mean);
                         } else {
                             feature.properties.response = "NA";
                             stateDeathTotals.push('NA');
