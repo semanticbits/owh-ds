@@ -25,6 +25,7 @@
             buildQueryForYRBS: buildQueryForYRBS,
             prepareMortalityResults: prepareMortalityResults,
             prepareQuestionChart: prepareQuestionChart,
+            getMapDataForQuestion: getMapDataForQuestion,
             populateSideFilterTotals: populateSideFilterTotals,
             updateFiltersAndData: updateFiltersAndData,
             getMixedTable: getMixedTable,
@@ -710,6 +711,66 @@
                         chartData: chartData,
                         chartTypes : chartTypes
                     });
+                });
+            });
+            return deferred.promise;
+        }
+
+        /**
+         * Get the responses for all states and prepare them so as to display in map
+         * @param primaryFilter
+         * @param question
+         * @return promise -> Array of state data
+         * e.g. [{
+         *          name:"AL",
+         *          responses:[
+         *              {resp:'Yes', data:{mean:39,ci_l:12, ci_u:14, count:1234}}
+         *              {resp:'No', data:{mean:49,ci_l:22, ci_u:24, count:1234}}
+         *          ]
+         *      }]
+         */
+        function getMapDataForQuestion(primaryFilter, question) {
+            debugger
+            //make copy of side filters
+            var copiedPrimaryFilter = angular.copy(primaryFilter);
+            //reset all grouping combinations
+            utilService.updateAllByKeyAndValue(copiedPrimaryFilter.allFilters, 'groupBy', false);
+            //get the question filter and update question filter with selected question
+            var questionFilter = utilService.findByKeyAndValue(copiedPrimaryFilter.allFilters, 'key', 'question');
+            questionFilter.value = [question.qkey];
+            if(copiedPrimaryFilter.key === 'prams' || copiedPrimaryFilter.key === 'brfss') {
+                var topicFilter = utilService.findByKeyAndValue(copiedPrimaryFilter.allFilters, 'key', 'topic');
+                topicFilter.questions = [question.qkey];
+            }
+            var stateFilter = utilService.findByKeyAndValue(copiedPrimaryFilter.allFilters, 'queryKey', 'sitecode');
+            stateFilter.groupBy = 'column';
+            stateFilter.getPercent = true;
+            var deferred = $q.defer();
+            generateHashCode(copiedPrimaryFilter).then(function (hash) {
+                //get the chart data
+                SearchService.searchResults(copiedPrimaryFilter, hash).then(function(response) {
+                    var data = response.data.resultData.table.question[0];
+                    delete data.name;
+                    var responseTypes = Object.keys(data);
+                    primaryFilter.responses = responseTypes;
+                    var states = [];
+                    //collect responses for all state
+                    for (var i = 0; i < data[responseTypes[0]].sitecode.length; i++) {
+                        var stateResp = [];
+                        //collect response for each response type for a state
+                        responseTypes.forEach(function (respType) {
+                            stateResp.push( {
+                                    rKey: respType,
+                                    rData: data[respType].sitecode[i].mental_health
+                                });
+                        });
+                        //state response for all response types
+                        states.push({
+                            name:data[responseTypes[0]].sitecode[i].name,
+                            responses: stateResp
+                        });
+                    }
+                    deferred.resolve(states);
                 });
             });
             return deferred.promise;
@@ -2850,7 +2911,7 @@
                     key: 'mental_health', title: 'label.risk.behavior', primary: true, value:[], header:"Youth Risk Behavior",
                     searchResults: invokeStatsService, dontShowInlineCharting: true,
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total', tableView:'Alcohol and Other Drug Use',
-                    chartAxisLabel:'Percentage',
+                    chartAxisLabel:'Percentage', showMap:true, mapData: {},
                     showBasicSearchSideMenu: true, runOnFilterChange: true, allFilters: filters.yrbsBasicFilters, // Default to basic filter
                     advancedSideFilters: [
                         {

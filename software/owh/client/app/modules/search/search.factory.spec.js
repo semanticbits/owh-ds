@@ -387,6 +387,38 @@ describe('search factory ', function(){
 
     });
 
+    describe("Stats map related tests", function () {
+
+        it("should get map data for states", function () {
+
+            var searchDeferred = $q.defer();
+            var hashDeferred = $q.defer();
+
+            spyOn(searchService, 'generateHashCode').and.returnValue(hashDeferred.promise);
+            spyOn(searchService, 'searchResults').and.returnValue(searchDeferred.promise);
+
+            var yrbsMockData = __fixtures__['app/modules/search/fixtures/search.factory/yrbsChartMockData'];
+            var question = {"title":"Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)","isCount":false,"rowspan":2,"colspan":1,"key":"Currently drank alcohol","qkey":"qn43","iconClass":"purple-text"};
+
+            var yrbsFilters =  filters.search[1];
+            searchFactory.getMapDataForQuestion(yrbsFilters, question).then(function (stateData) {
+                expect(stateData[1].name).toEqual('NE');
+                expect(stateData[1].responses[0].rKey).toEqual('Yes');
+                expect(stateData[1].responses[0].rData.mean).toEqual('22.7');
+                expect(stateData[1].responses[0].rData.count).toEqual(1572);
+
+                expect(stateData[1].responses[1].rKey).toEqual('No');
+                expect(stateData[1].responses[1].rData.mean).toEqual('77.3');
+                expect(stateData[1].responses[1].rData.count).toEqual(1572);
+            });
+
+
+            hashDeferred.resolve('06c2b4848fbbc7f4e0ed60a399d1de21');
+            searchDeferred.resolve(yrbsMockData.mapData);
+            $scope.$apply();
+        });
+    });
+
     describe('BRFSS search ->', function() {
         var response, basicFilters;
         beforeAll(function() {
