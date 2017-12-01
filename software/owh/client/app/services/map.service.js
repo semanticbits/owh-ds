@@ -357,17 +357,13 @@
                         if(primaryFilter && event.target.feature) {
                             buildMarkerPopup(event.latlng.lat, event.latlng.lng, event.target.feature.properties,
                                 event.target._map, primaryFilter.key, event.containerPoint, isStatData);
-                            if(!L.Browser.ie) {
-                                highlightFeature(event.target._map._layers[event.target._leaflet_id]);
-                            }
+                               highlightFeature(event.target._map._layers[event.target._leaflet_id]);
                         }
                         angular.element('#minimizedMap').addClass('unset-position');
                     });
                     layer.on("mouseout", function (event) {
                         mapPopup._close();
-                        if(!L.Browser.ie) {
-                            resetHighlight(event);
-                        }
+                        resetHighlight(event);
                         angular.element('#minimizedMap').removeClass('unset-position');
                     });
                 }
@@ -376,7 +372,7 @@
             map.whenReady(function (event) {
                 if(primaryFilter && !map.customControl) {
                     var mapScaleControl = addScaleControl(primaryFilter.mapData);
-                    event.addControl(new mapScaleControl());
+                    event.target.addControl(new mapScaleControl());
                 }
             });
         }
