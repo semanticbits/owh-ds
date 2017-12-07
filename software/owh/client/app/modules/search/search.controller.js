@@ -466,14 +466,14 @@
             usa: {
                 lat: 35,
                 lng: -97,
-                zoom: 3.3
+                zoom: 3.4
             },
             legend: {},
             defaults: {
                 tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
                 scrollWheelZoom: false,
                 minZoom: 3,
-                maxZoom: 3.5
+                maxZoom: 3.4
             },
             markers: {},
             events: {
@@ -752,6 +752,7 @@
             sc.togglemap = !sc.togglemap;
             var mapTitle = sc.mapService.getMapTitle(sc.filters.selectedPrimaryFilter);
             var mapData = angular.copy(data);
+            mapData.usa.lat = 37;
             mapData.usa.zoom = 3.9;
             mapData.defaults.maxZoom = 5;
             ModalService.showModal({
@@ -766,7 +767,7 @@
                     };
                     eg.close = close;
                 },
-                size:650
+                size:600
             }).then(function (modal) {
                 modal.element.show();
                 leafletData.getMap('expandedMap').then(function(map) {

@@ -875,7 +875,7 @@ body {
     position: absolute;
     transform: rotate(180deg);
     top: -20px;
-    left: 135px;
+    left: 160px;
 }
 
 .custom-legend {
@@ -1410,7 +1410,7 @@ ul.legend-scale li span {
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    padding: 5px 0;
+    padding: 80px 0;
 
     /* Position the tooltip */
     position: absolute;

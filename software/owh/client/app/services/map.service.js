@@ -350,8 +350,6 @@
             map.invalidateSize();
             map.eachLayer(function (layer){
                 if(layer.feature) {
-                    layer.off("mouseover");
-                    layer.off("mouseout");
                     layer.on("mouseover", function (event) {
                         var isStatData = ['mental_health', 'prams', 'brfss'].indexOf(primaryFilter.key) != -1;
                         if(primaryFilter && event.target.feature) {
@@ -375,6 +373,7 @@
                     event.target.addControl(new mapScaleControl());
                 }
             });
+            map.dragging.disable();
         }
 
         function buildMarkerPopup(lat, lng, properties, map, key, markerPosition, isStatDta) {
@@ -414,7 +413,7 @@
 
                     if(markerPosition.y < 180) {
                         //change position if popup does not fit into map-container
-                        popup.options.offset = new L.Point(10, popupHeight + 50);
+                        popup.options.offset = new L.Point(10, popupHeight + 75);
                         angular.element('#chart_us_map').addClass('reverse-popup');
                         angular.element('#expanded_us_map').addClass('reverse-popup');
                     } else {
