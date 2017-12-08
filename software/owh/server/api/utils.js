@@ -166,11 +166,16 @@ var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, won
         });
        chartFilterKeys.push(chartAggKeyArray);
     });
+    var mapAggFilterKeys = [];
+    wonderQuery.aggregations.nested.maps[0].forEach(function(eachAgg){
+        mapAggFilterKeys.push(eachAgg.key);
+    });
     if(resp) {
         result.data.nested.table = populateAggregateDataForWonderResponse(resp.table, 'Total', tableFilterKeys, isStateSelected);
         chartFilterKeys.forEach(function(eachChartFilterKeys, index){
             result.data.nested.charts[index] = populateAggregateDataForWonderResponse(resp.charts[index], 'Total', eachChartFilterKeys, isStateSelected);
         });
+        result.data.nested.maps = populateAggregateDataForWonderResponse(resp.maps, 'Total', mapAggFilterKeys, isStateSelected);
     }
     return result;
 };
@@ -967,6 +972,29 @@ function getAllSelectedFilterOptions(q, datasetName) {
                 else {
                     eachFilter.autoCompleteOptions.forEach(function(eachOption){
                         !eachOption.disabled && allOptions[eachFilter.key].options.push(eachOption.key);
+                    });
+                }
+            }
+            else if(eachFilter.key === 'mcd-chapter-10'){
+                if(eachFilter.value.set1.length > 0 || eachFilter.value.set2.length > 0 ){
+                    eachFilter.value.set1.forEach(function(eachOption){
+                        allOptions[eachFilter.key].options.push(eachOption);
+                    });
+                    eachFilter.value.set2.forEach(function(eachOption){
+                        if(allOptions[eachFilter.key].options.indexOf(eachOption) < 0) {
+                            allOptions[eachFilter.key].options.push(eachOption);
+                        }
+                    });
+
+                }
+                else {
+                    eachFilter.autoCompleteOptions.forEach(function(eachOption){
+                        if(!eachOption.disabled) {
+                            allOptions[eachFilter.key].options.push(eachOption.key);
+                            if (eachOption.options) {
+                                allOptions[eachFilter.key].options = allOptions[eachFilter.key].options.concat(eachOption.options.map(function (opt)  { return opt.key; }));
+                            }
+                        }
                     });
                 }
             }

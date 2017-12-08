@@ -75,7 +75,7 @@
             </div>
             <owh-toggle-switch ng-if="sfic.filter.allowGrouping" class="right-float sidebar-switch"
                                options="sfic.filter.filters.groupOptions"
-                               model="group.groupBy" on-change="sfic.runOnFilterChange && sfic.onFilter()"
+                               model="group.groupBy" on-change="sfic.onFilterValueChange()"
                                tooltip="{{'label.group.by.tooltip' | translate}}">
             </owh-toggle-switch>
             <div class="clearfix"></div>
@@ -145,7 +145,7 @@
             </div>
             <owh-toggle-switch ng-if="sfic.filter.allowGrouping" class="right-float sidebar-switch"
                                options="sfic.filter.filters.groupOptions"
-                               model="group.groupBy" on-change="sfic.runOnFilterChange && sfic.onFilter()"
+                               model="group.groupBy" on-change="sfic.onFilterValueChange()"
                                tooltip="{{'label.group.by.tooltip' | translate}}">
             </owh-toggle-switch>
             <div class="clearfix"></div>

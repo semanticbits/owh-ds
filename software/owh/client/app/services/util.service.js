@@ -55,7 +55,8 @@
             brfsFilterChange: brfsFilterChange,
             getICD10ChaptersForUCD:getICD10ChaptersForUCD,
             getICD10ChaptersForMCD: getICD10ChaptersForMCD,
-            pramsFilterChange:pramsFilterChange
+            pramsFilterChange:pramsFilterChange,
+            exclusiveGroupingForMCDAndUCD:exclusiveGroupingForMCDAndUCD
         };
 
         return service;
@@ -1450,6 +1451,30 @@
                         }
                     }
                 });
+            }
+        }
+
+        /**
+         * To make sure only one filter groping allowed for MCD/UCD at a time.
+         * @param filter
+         * @param categories
+         */
+        function exclusiveGroupingForMCDAndUCD(filter, categories) {
+            if(filter.groupBy) {
+                if(filter.key === 'ucd-chapter-10') {
+                    angular.forEach(categories[2].sideFilters, function(filter) {
+                        if(filter.filters.key === 'mcd-chapter-10') {
+                            filter.filters.groupBy = false;
+                        }
+                    });
+                }
+                else if(filter.key === 'mcd-chapter-10') {
+                    angular.forEach(categories[2].sideFilters, function(filter) {
+                        if(filter.filters.key === 'ucd-chapter-10') {
+                            filter.filters.groupBy = false;
+                        }
+                    });
+                }
             }
         }
     }

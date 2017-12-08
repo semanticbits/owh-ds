@@ -1554,6 +1554,7 @@ function addOptionParams(wreq, locationFilter, dbID){
         addParamToWONDERReq(wreq, 'O_V19_fmode', 'freg');
         addParamToWONDERReq(wreq, 'O_V26_fmode', 'freg');
         addParamToWONDERReq(wreq, 'O_gestation', dbID+'.V24');
+        addParamToWONDERReq(wreq, 'O_oe_gestation', dbID+'.V31');
         addParamToWONDERReq(wreq, 'O_icd', dbID+'.V16');
         addParamToWONDERReq(wreq, 'O_javascript', 'on');
         addParamToWONDERReq(wreq, 'O_location', dbID+'.V10');
