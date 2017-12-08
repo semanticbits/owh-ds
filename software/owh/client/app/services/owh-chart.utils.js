@@ -1111,9 +1111,11 @@
                                 map.customControl = false;
                                 angular.element('.custom-legend').remove();
                                 mapService.attachEventsForMap(map, eg.primaryFilters);
+                                map.options.maxZoom = 4;
+                                map.options.minZoom = 3.2;
                             });
-                            eg.primaryFilters.mapData.usa.zoom = 4;
-                            eg.primaryFilters.mapData.defaults.maxZoom = 5;
+                            eg.primaryFilters.mapData.usa.zoom = 3.5;
+                            eg.primaryFilters.mapData.defaults.maxZoom = 4.5;
                         }, 500);
                     };
                 },

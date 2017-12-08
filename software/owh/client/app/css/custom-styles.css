@@ -2247,4 +2247,11 @@ div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leafl
 #responseSelector {
 	width: 300px;
 	padding: 0.7rem 0.7em;
+	float: left;
+}
+
+#responselabel {
+	float: left;
+	margin-top: 0.5rem;
+	padding: 6px;
 }

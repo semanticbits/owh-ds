@@ -753,8 +753,8 @@
             var mapTitle = sc.mapService.getMapTitle(sc.filters.selectedPrimaryFilter);
             var mapData = angular.copy(data);
             mapData.usa.lat = 37;
-            mapData.usa.zoom = 3.9;
-            mapData.defaults.maxZoom = 5;
+            mapData.usa.zoom = 3.5;
+            mapData.defaults.maxZoom = 4.2;
             ModalService.showModal({
                 templateUrl: "app/partials/expandedMapModal.html",
                 controllerAs: 'eg',

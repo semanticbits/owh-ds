@@ -730,7 +730,6 @@
          *      }]
          */
         function getMapDataForQuestion(primaryFilter, question) {
-            debugger
             //make copy of side filters
             var copiedPrimaryFilter = angular.copy(primaryFilter);
             //reset all grouping combinations

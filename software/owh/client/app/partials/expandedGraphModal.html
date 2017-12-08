@@ -52,6 +52,7 @@
                 <div class="usa-width-one-whole" id="expanded_us_map" ng-if="eg.activeTab=='map'">
                     <div class="usa-grid">
                         <div class="usa-width-one-whole" style="padding-left: 30%;">
+                            <label id="responselabel" for="responseSelector">Response:</label>
                             <select id="responseSelector" ng-model="eg.selectedResponse" ng-change="eg.getMapDataForResponse()">
                                 <option ng-repeat="res in eg.primaryFilters.responses" value="{{res}}">{{res}}</option>
                             </select>
