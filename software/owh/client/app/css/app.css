@@ -191,6 +191,7 @@ td .inline-bar {
 .margin-right-10 { margin-right: 10px }
 .margin-right-20 { margin-right: 20px }
 .margin-bottom-10 { margin-bottom: 10px; }
+.margin-bottom-0 { margin-bottom: 0px; }
 .margin-bottom-20 { margin-bottom: 20px; }
 .margin-bottom-30 { margin-bottom: 30px; }
 
@@ -874,7 +875,7 @@ body {
     position: absolute;
     transform: rotate(180deg);
     top: -20px;
-    left: 135px;
+    left: 160px;
 }
 
 .custom-legend {
@@ -1409,7 +1410,7 @@ ul.legend-scale li span {
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    padding: 5px 0;
+    padding: 80px 0;
 
     /* Position the tooltip */
     position: absolute;

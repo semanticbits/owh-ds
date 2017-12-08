@@ -2227,3 +2227,31 @@ div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.custo
 div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leaflet-control-attribution {
 	padding-right: 40px;
 }
+
+.unset-position {
+	position: unset !important;
+}
+.map-custom-controls {
+	z-index: 80;
+	position: relative;
+}
+.map-container {
+	z-index: 10;
+	position: relative;
+}
+
+.restriction-modal-body {
+	font-size: 1.4rem;
+}
+
+#responseSelector {
+	width: 300px;
+	padding: 0.7rem 0.7em;
+	float: left;
+}
+
+#responselabel {
+	float: left;
+	margin-top: 0.5rem;
+	padding: 6px;
+}

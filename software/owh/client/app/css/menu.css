@@ -161,7 +161,7 @@
 
 .primary-filter-bar {
     background: white;
-    z-index: 2;
+    z-index: 89;
     position: relative;
     display: flex;
 }
@@ -225,7 +225,7 @@
         display: flex;
         align-items: stretch;
         background: rgba(246, 246, 246, 1);
-        z-index: 2;
+        z-index: 89;
         position: relative;
         min-height: 60px;
     }

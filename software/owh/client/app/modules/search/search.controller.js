@@ -4,11 +4,11 @@
         .controller('SearchController', SearchController);
 
     SearchController.$inject = ['$scope', 'utilService', 'searchFactory', '$rootScope',
-        '$templateCache', '$compile', '$filter', 'leafletData', '$timeout', 'chartUtilService', 'shareUtilService',
+        '$filter', 'leafletData', '$timeout', 'chartUtilService', 'shareUtilService',
         '$stateParams', '$state', 'xlsService', '$window', 'mapService', 'ModalService', '$q'];
 
     function SearchController($scope, utilService, searchFactory, $rootScope,
-                                 $templateCache, $compile, $filter, leafletData, $timeout, chartUtilService,
+                                 $filter, leafletData, $timeout, chartUtilService,
                                  shareUtilService, $stateParams, $state, xlsService, $window, mapService, ModalService, $q) {
 
         var sc = this;
@@ -466,14 +466,14 @@
             usa: {
                 lat: 35,
                 lng: -97,
-                zoom: 3.3
+                zoom: 3.4
             },
             legend: {},
             defaults: {
                 tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
                 scrollWheelZoom: false,
                 minZoom: 3,
-                maxZoom: 3.5
+                maxZoom: 3.4
             },
             markers: {},
             events: {
@@ -495,6 +495,8 @@
         var aidsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'aids');
         var cancerIncidenceFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'cancer_incident');
         var cancerMortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'cancer_mortality');
+        var infantMortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'infant_mortality');
+        var yrbsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'mental_health');
 
         angular.extend(mortalityFilter.mapData, mapOptions);
         angular.extend(bridgeRaceFilter.mapData, mapOptions);
@@ -503,6 +505,8 @@
         angular.extend(aidsFilter.mapData, mapOptions);
         angular.extend(cancerIncidenceFilter.mapData, mapOptions);
         angular.extend(cancerMortalityFilter.mapData, mapOptions);
+        angular.extend(infantMortalityFilter.mapData, mapOptions);
+        angular.extend(yrbsFilter.mapData, mapOptions);
 
         function updateCharts() {
             angular.forEach(sc.filters.selectedPrimaryFilter.chartData, function (chartData) {
@@ -721,7 +725,7 @@
                 sc.filters.selectedPrimaryFilter = result.primaryFilter;
                 $timeout(function(){
                     leafletData.getMap('minimizedMap').then(function(map) {
-                        attachEventsForMap(map);
+                        mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
                     });
                 }, 500);
             });
@@ -732,97 +736,7 @@
 
         function showPhaseTwoGraphs(text) {
             searchFactory.showPhaseTwoModal(text);
-        };
-
-        //builds marker popup.
-        sc.mapPopup = L.popup({autoPan:false, closeButton:false});
-        sc.currentFeature = {};
-        function buildMarkerPopup(lat, lng, properties, map, key, markerPosition) {
-            var childScope = $scope.$new();
-            childScope.lat = lat;
-            childScope.lng = lng;
-            childScope.properties = properties;
-            childScope.key = key;
-            childScope.totalLabel = mapService.getTotalLabel(properties.tableView);
-            var ele = angular.element('<div></div>');
-            ele.html($templateCache.get('app/partials/marker-template.html'));
-            var compileEle = $compile(ele.contents())(childScope);
-            if(sc.currentFeature.properties !== properties || !sc.mapPopup._isOpen) {
-                $timeout(function () {
-                    sc.mapPopup
-                        .setContent(compileEle[0])
-                        .setLatLng(L.latLng(lat, lng)).openOn(map);
-                }, 100);
-            } else {
-                sc.mapPopup
-                    .setLatLng(L.latLng(lat, lng));
-            }
-
-            var rotatePopup = function () {
-                map.on("popupopen", function (evt, args) {
-
-                    var popup = evt.popup;
-
-                    var popupHeight = angular.element('#chart_us_map').find('.leaflet-popup-content').height()
-                        || angular.element('#expanded_us_map').find('.leaflet-popup-content').height();
-
-                    //keep track of old position of popup
-                    if(!popup.options.oldOffset) {
-                        popup.options.oldOffset = popup.options.offset;
-                    }
-
-                    if(markerPosition.y < 180) {
-                        //change position if popup does not fit into map-container
-                        popup.options.offset = new L.Point(10, popupHeight + 50);
-                        angular.element('#chart_us_map').addClass('reverse-popup');
-                        angular.element('#expanded_us_map').addClass('reverse-popup');
-                    } else {
-                        //revert position
-                        popup.options.offset = popup.options.oldOffset;
-                        angular.element('#chart_us_map').removeClass('reverse-popup');
-                        angular.element('#expanded_us_map').removeClass('reverse-popup');
-                    }
-                });
-                //on popupclose reset pop up position
-                map.on("popupclose", function (evt, args) {
-                    $('#chart_us_map').removeClass('reverse-popup');
-                    $('#expanded_us_map').removeClass('reverse-popup');
-                })
-            };
-
-            rotatePopup();
-
         }
-
-        /**
-         * To attach required events to map and add scale control
-         * @param map
-         */
-        function attachEventsForMap(map) {
-            map.invalidateSize();
-            map.eachLayer(function (layer){
-                layer.on("mouseover", function (event) {
-                    if(sc.filters.selectedPrimaryFilter && event.target.feature) {
-                        buildMarkerPopup(event.latlng.lat, event.latlng.lng, event.target.feature.properties,
-                            event.target._map, sc.filters.selectedPrimaryFilter.key, event.containerPoint);
-                        sc.currentFeature = event.target.feature;
-                        mapService.highlightFeature(event.target._map._layers[event.target._leaflet_id]);
-                    }
-                });
-                layer.on("mouseout", function (event) {
-                    sc.mapPopup._close();
-                    mapService.resetHighlight(event);
-                });
-            });
-
-            map.whenReady(function (event){
-                if(sc.filters.selectedPrimaryFilter && !map.customControl) {
-                    var mapScaleControl = mapService.addScaleControl(sc.filters.selectedPrimaryFilter.mapData);
-                    event.addControl(new mapScaleControl());
-                }
-            });
-        }
-
 
         /*Show expanded graphs with whole set of features*/
         function showExpandedGraph(chartData) {
@@ -838,8 +752,9 @@
             sc.togglemap = !sc.togglemap;
             var mapTitle = sc.mapService.getMapTitle(sc.filters.selectedPrimaryFilter);
             var mapData = angular.copy(data);
-            mapData.usa.zoom = 3.9;
-            mapData.defaults.maxZoom = 5;
+            mapData.usa.lat = 37;
+            mapData.usa.zoom = 3.5;
+            mapData.defaults.maxZoom = 4.2;
             ModalService.showModal({
                 templateUrl: "app/partials/expandedMapModal.html",
                 controllerAs: 'eg',
@@ -852,17 +767,17 @@
                     };
                     eg.close = close;
                 },
-                size:650
+                size:600
             }).then(function (modal) {
                 modal.element.show();
                 leafletData.getMap('expandedMap').then(function(map) {
-                    attachEventsForMap(map);
+                    mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
                 });
                 modal.close.then(function (result) {
                     modal.element.hide();
                     sc.togglemap = true;
                     leafletData.getMap('minimizedMap').then(function(map) {
-                        attachEventsForMap(map);
+                        mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
                     });
 
                 });
@@ -966,11 +881,11 @@
             selectedPrimaryFilter.chartAxisLabel = chartOption.axisLabel;
             selectedPrimaryFilter.chartView = chartOption.key;
             selectedPrimaryFilter.chartData = searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
-            selectedPrimaryFilter.showRates = (chartView === 'disease_rate');
+            selectedPrimaryFilter.showRates = (chartView === 'disease_rate' || chartView === 'infant_death_rate');
             mapService.updateStatesDeaths(sc.filters.selectedPrimaryFilter, sc.filters.selectedPrimaryFilter.nestedData.maps, undefined, sc.mapOptions);
             $timeout(function(){
                 leafletData.getMap('minimizedMap').then(function(map) {
-                    attachEventsForMap(map);
+                    mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
                 });
             }, 1700);
         }
@@ -1012,11 +927,6 @@
                         createDataSet('cancer_mortality', 'label.filter.cancer_mortality', 'label.cancer_mortality.dsc'),
                         createDataSet('deaths', 'label.filter.mortality', 'label.mortality.dsc.two'),
                         createDataSet('infant_mortality', 'label.filter.infant_mortality', 'label.infant.mortality.dsc')
-                    ]),
-                    createDataSource('label.health.behaviors', 'label.health.behaviors.dsc', 'health-behavior-prevention-icon.svg', 'Health Status and Risk Factors', [
-                        createDataSet('brfss', 'label.brfss.title', 'label.brfs.dsc'),
-                        createDataSet('prams', 'label.prams.title', 'label.prams.dsc'),
-                        createDataSet('mental_health', 'label.yrbs', 'label.yrbs.dsc')
                     ])
                 ]
             }
@@ -1078,7 +988,7 @@
 
         $timeout(function(){
             leafletData.getMap('minimizedMap').then(function(map) {
-                attachEventsForMap(map);
+                mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
             });
         }, 1000);
     }

@@ -4,9 +4,11 @@
         .module('owh.services')
         .service('chartUtilService', chartUtilService);
 
-    chartUtilService.$inject = ['$window', '$dateParser', '$filter', '$translate','utilService', 'ModalService'];
+    chartUtilService.$inject = ['$window', '$timeout', '$filter', '$translate','utilService',
+        'ModalService', 'leafletData', 'mapService'];
 
-    function chartUtilService($window, $dateParser, $filter, $translate, utilService, ModalService) {
+    function chartUtilService($window, $timeout, $filter, $translate,
+                              utilService, ModalService, leafletData, mapService) {
         var service = {
             horizontalStack: horizontalStack,
             verticalStack: verticalStack,
@@ -1046,6 +1048,8 @@
                     eg.close = close;
                     eg.selectedFiltersTxt = selectedFiltersTxt;
                     eg.barmode = eg.chartData[0].layout.barmode;
+                    eg.isBasicSearch = eg.primaryFilters.showBasicSearchSideMenu;
+                    eg.showMap = eg.primaryFilters.showMap;
 
                     eg.showFbDialog = function(svgIndex, title, section, description) {
                         shareUtilService.shareOnFb(svgIndex, title, section, description);
@@ -1089,7 +1093,31 @@
                             eg.chartData = updateChart([response.chartData]);
                             eg.activeTab = eg.getChartName(chartType);
                         });
-                    }
+                    };
+
+                    eg.getMapData = function () {
+                        searchFactory.getMapDataForQuestion(eg.primaryFilters, eg.selectedQuestion).then(function (mapData) {
+                            eg.mapData = mapData;
+                            eg.selectedResponse = eg.primaryFilters.responses[0];
+                            eg.getMapDataForResponse();
+                        });
+                    };
+
+                    eg.getMapDataForResponse = function () {
+                        mapService.updateStatesDeaths(eg.primaryFilters,
+                            {states:eg.mapData, selectedResponse: eg.selectedResponse});
+                        $timeout(function() {
+                            leafletData.getMap('expandedMap').then(function(map) {
+                                map.customControl = false;
+                                angular.element('.custom-legend').remove();
+                                mapService.attachEventsForMap(map, eg.primaryFilters);
+                                map.options.maxZoom = 4;
+                                map.options.minZoom = 3.2;
+                            });
+                            eg.primaryFilters.mapData.usa.zoom = 3.5;
+                            eg.primaryFilters.mapData.defaults.maxZoom = 4.5;
+                        }, 500);
+                    };
                 },
                 size:650
             }).then(function (modal) {
