@@ -43,9 +43,10 @@ class OWHTaskSet(TaskSet):
 
     @task(2)
     def search(self):
-        x = randint(0, 4)  # Pick a random number between 0 and 4.
         with open(os.path.join(os.path.dirname(__file__), "./query.json")) as jf:
             self.DATA = json.load(jf, encoding="utf8")
+
+        x = randint(0, len(self.DATA)-1)
 
         print ("Search page request for dataset:", self.DATA[x]['q']['key'])
         self.update_random_filter(self.DATA[x]['q'])
