@@ -48,7 +48,9 @@ install:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install -g istanbul; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install -g codeclimate-test-reporter; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install -g lcov-result-merger; fi
-  - aws help
+  - aws s3 sync s3://owh-config-dev $TRAVIS_BUILD_DIR/software/owh; fi
+  - mkdir -p $TRAVIS_BUILD_DIR/software/owh/.owh/logs; fi
+
 
 before_script:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sleep 10; fi
