@@ -52,6 +52,7 @@ install:
   - cp -R $TRAVIS_BUILD_DIR/deployment/* $TRAVIS_BUILD_DIR/software/owh;
   - aws s3 sync s3://owh-config-dev $TRAVIS_BUILD_DIR/software/owh;
   - mkdir -p $TRAVIS_BUILD_DIR/software/owh/.owh/logs;
+  - docker-compose up -d;
 
 
 before_script:
