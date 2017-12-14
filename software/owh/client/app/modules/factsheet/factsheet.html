@@ -140,7 +140,7 @@
                             <tr>
                                 <td>{{fsc.factSheet.infantMortalityData.infant_mortality | number }}</td>
                                 <td>{{fsc.factSheet.infantMortalityData.births | number }}</td>
-                                <td>{{fsc.factSheet.infantMortalityData.deathRate}}</td>
+                                <td>{{fsc.factSheet.infantMortalityData.deathRate | number:1 }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -243,8 +243,9 @@
                         <table class="tb-table">
                             <thead>
                             <tr>
-                                <th>Total Cases (Rates)</th>
-                                <th ng-repeat="eachRecord in fsc.factSheet.tuberculosis" ng-if="$index > 0 && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
+                                <th ng-if="fsc.fsTypeForTable != fsc.fsTypes.minority_health">Total Cases (Rates)</th>
+                                <th ng-repeat="eachRecord in fsc.factSheet.tuberculosis" ng-if="fsc.fsTypeForTable != fsc.fsTypes.minority_health && $index > 0 && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
+                                <th ng-repeat="eachRecord in fsc.factSheet.tuberculosis" ng-if="fsc.fsTypeForTable == fsc.fsTypes.minority_health && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -264,8 +265,9 @@
                             <thead>
                             <tr>
                                 <th>Disease</th>
-                                <th>Total Cases (Rates)</th>
-                                <th ng-repeat="eachRecord in fsc.factSheet.stdData[0].data" ng-if="$index > 0 && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
+                                <th ng-if="fsc.fsTypeForTable != fsc.fsTypes.minority_health">Total Cases (Rates)</th>
+                                <th ng-repeat="eachRecord in fsc.factSheet.stdData[0].data" ng-if=" fsc.fsTypeForTable != fsc.fsTypes.minority_health && $index > 0 && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
+                                <th ng-repeat="eachRecord in fsc.factSheet.stdData[0].data" ng-if=" fsc.fsTypeForTable == fsc.fsTypes.minority_health && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -286,8 +288,9 @@
                             <thead>
                             <tr>
                                 <th>Indicator</th>
-                                <th>Total Cases (Rates)</th>
-                                <th ng-repeat="eachRecord in fsc.factSheet.hivAIDSData[0].data" ng-if="$index > 0 && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
+                                <th ng-if="fsc.fsTypeForTable != fsc.fsTypes.minority_health">Total Cases (Rates)</th>
+                                <th ng-repeat="eachRecord in fsc.factSheet.hivAIDSData[0].data" ng-if="fsc.fsTypeForTable != fsc.fsTypes.minority_health && $index > 0 && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
+                                <th ng-repeat="eachRecord in fsc.factSheet.hivAIDSData[0].data" ng-if="fsc.fsTypeForTable == fsc.fsTypes.minority_health && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
                             </tr>
                             </thead>
                             <tbody>
