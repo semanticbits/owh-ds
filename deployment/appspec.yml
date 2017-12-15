@@ -8,6 +8,9 @@ permissions:
   - object: /tmp/deploy/scripts
     pattern: "*"
     mode: 777
+  - object: /opt/codedeploy-agent/deployment-root/
+    pattern: "*"
+    mode: 755          
 
 hooks:
   ApplicationStop:
