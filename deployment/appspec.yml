@@ -7,21 +7,18 @@ files:
 permissions:
   - object: /tmp/deploy/scripts
     pattern: "*"
-    mode: 777
-  - object: /opt/codedeploy-agent/deployment-root/
-    pattern: "*"
-    mode: 755          
+    mode: 777       
 
 hooks:
   ApplicationStop:
     - location: scripts/kill_container.sh
       timeout: 400
-      runas: ec2-user
+      runas: root
   AfterInstall:
     - location: scripts/load_images.sh
       timeout: 400
-      runas: ec2-user
+      runas: root
   ApplicationStart:
     - location: scripts/start_container.sh
       timeout: 400
-      runas: ec2-user
+      runas: root
