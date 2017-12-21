@@ -43,32 +43,36 @@ class OWHTaskSet(TaskSet):
                     side_filter['filters']['value'] = filter_option['key']
                     filter['value'] = filter_option['key']
 
-    @task(1)
-    def home_page(self):
-        print "Homepage request.."
-        response = self.client.get("/")
-        print ("Home page request status code:", response.status_code)
-        print "Homepage request completed"
-        print "---------------------------------------------------------------"
+    # @task(1)
+    # def home_page(self):
+    #     print "Homepage request.."
+    #     response = self.client.get("/")
+    #     print ("Home page request status code:", response.status_code)
+    #     print "Homepage request completed"
+    #     print "---------------------------------------------------------------"
 
-    @task(2)
+    @task
     def search(self):
-        with open(os.path.join(os.path.dirname(__file__), "./query.json")) as jf:
-            self.DATA = json.load(jf, encoding="utf8")
+        QUERIES = []
+        with open(os.path.join(os.path.dirname(__file__), "./non_stats_query.json")) as jf:
+            QUERIES = json.load(jf, encoding="utf8")
 
-        x = randint(0, len(self.DATA)-1)
+        x = randint(0, len(QUERIES)-1)
+        print ("Search page request for dataset:", QUERIES[x]['q']['key'])
+        self.update_random_filter(QUERIES[x]['q'])
 
-        print ("Search page request for dataset:", self.DATA[x]['q']['key'])
-        self.update_random_filter(self.DATA[x]['q'])
+        QUERIES[x]['qID'] = str(uuid.uuid4())
 
-        self.DATA[x]['qID'] = str(uuid.uuid4())
-
-        response = self.client.post("/search", data = None, json = self.DATA[x])
+        response = self.client.post("/search", data = None, json = QUERIES[x], auth=("owh-user", "Password@123!"))
         print("Search request status code:", response.status_code)
+        res_data = response.json()
+        if len(res_data['data']['resultData']['nested']['table']) == 0:
+            response.failure("No data")
+
         print "----------------------------------------------------------------"
 
 
 class OWHLocust(HttpLocust):
     task_set = OWHTaskSet
-    min_wait = 15000
-    max_wait = 60000
+    min_wait = 100
+    max_wait = 500
