@@ -43,13 +43,13 @@ class OWHTaskSet(TaskSet):
                     side_filter['filters']['value'] = filter_option['key']
                     filter['value'] = filter_option['key']
 
-    # @task(1)
-    # def home_page(self):
-    #     print "Homepage request.."
-    #     response = self.client.get("/")
-    #     print ("Home page request status code:", response.status_code)
-    #     print "Homepage request completed"
-    #     print "---------------------------------------------------------------"
+    @task(1)
+    def home_page(self):
+        print "Homepage request.."
+        response = self.client.get("/", auth=("owh-user", "Password@123!"))
+        print ("Home page request status code:", response.status_code)
+        print "Homepage request completed"
+        print "---------------------------------------------------------------"
 
     @task
     def search(self):
@@ -74,5 +74,5 @@ class OWHTaskSet(TaskSet):
 
 class OWHLocust(HttpLocust):
     task_set = OWHTaskSet
-    min_wait = 100
-    max_wait = 500
+    min_wait = 500
+    max_wait = 15000
