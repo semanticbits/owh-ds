@@ -76,7 +76,6 @@ var prepareAggregationQuery = function(aggregations, countQueryKey, datasetName)
             }
         }
     }
-    console.log(JSON.stringify(elasticQuery));
     return elasticQuery;
 };
 

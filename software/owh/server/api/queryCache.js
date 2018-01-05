@@ -36,6 +36,10 @@ queryCache.prototype.cacheQuery = function (queryId, dataset, result) {
     }, function (err) {
         logger.warn("Unable to add query "+ hashCode + " to query cache");
         deferred.reject(err);
+    })
+    .catch(function(err){
+        logger.error("Unable to add query "+ hashCode + " to query cache");
+        deferred.reject(err);
     });
     return deferred.promise;
 }

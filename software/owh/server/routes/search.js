@@ -35,7 +35,18 @@ var searchRouter = function(app, rConfig) {
                         res.connection.setTimeout(0); // To avoid the post callback being called multiple times when the search method takes long time
                         search(q).then(function (resp) {
                             if(!config.disableQueryCache) {
-                                queryCache.cacheQuery(queryId, q.key, resp);
+                                queryCache.cacheQuery(queryId, q.key, resp)
+                                    .then(function (cacheQueryResp){
+                                        logger.info("Query results successfully added to queryCache index");
+                                        res.send(new result('OK', resp, "success"));
+                                    }, function (err) {
+                                        logger.error("Failed to insert query results in queryCache index ", err);
+                                        res.send(new result('Error executing query', err, "failed"));
+                                    })
+                                    .catch(function(err){
+                                        logger.error("Failed to insert query results in queryCache index ", err);
+                                        res.send(new result('Error executing query', err, "failed"));
+                                    });
                             }
                             res.send(new result('OK', resp, "success"));
                         }, function (err) {
