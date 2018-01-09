@@ -15,7 +15,8 @@ class OWHTaskSet(TaskSet):
 
         primary_filter['value'] = []
 
-        filters_limit = randint(0, len(primary_filter['sideFilters'][0]['sideFilters']) - 1)
+        #apply 50% of the filters
+        filters_limit = randint(0, len(primary_filter['sideFilters'][0]['sideFilters']) - 1)/2
         for x in range(filters_limit):
             filter_indx = randint(0, len(primary_filter['sideFilters'][0]['sideFilters'])-1)
 
@@ -30,6 +31,7 @@ class OWHTaskSet(TaskSet):
                 side_filter['filters']['groupBy'] = side_filter['filters']['defaultGroup']
                 filter['groupBy'] = filter['defaultGroup']
 
+            #select 50% of the options
             options_limit = randint(0, len(side_filter['filters']['autoCompleteOptions'])/2)
             for i in range(options_limit):
                 filter_option = side_filter['filters']['autoCompleteOptions'][i]
@@ -42,14 +44,6 @@ class OWHTaskSet(TaskSet):
                 else:#for single select(radio filters)
                     side_filter['filters']['value'] = filter_option['key']
                     filter['value'] = filter_option['key']
-
-    @task(1)
-    def home_page(self):
-        print "Homepage request.."
-        response = self.client.get("/", auth=("owh-user", "Password@123!"))
-        print ("Home page request status code:", response.status_code)
-        print "Homepage request completed"
-        print "---------------------------------------------------------------"
 
     @task
     def search(self):

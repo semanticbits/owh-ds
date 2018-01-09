@@ -5,8 +5,6 @@ from random import *
 from locust import HttpLocust, TaskSet, task
 
 class OWHTaskSet(TaskSet):
-    min_wait = 5000
-    max_wait = 120000
 
     def on_start(self):
         with open(os.path.join(os.path.dirname(__file__), "./stats_queries.json")) as jf:
@@ -62,13 +60,12 @@ class OWHTaskSet(TaskSet):
         self.update_random_filter(self.QUERIES[x]['q'])
 
         self.QUERIES[x]['qID'] = str(uuid.uuid4())
+        response = self.client.post("/search", data = None, json = self.QUERIES[x], auth = ("owh-user", "Password@123!"))
+        print("Search request status code:", response.status_code)
+        res_data = response.json()
+        if len(res_data['data']['resultData']['table']['question']) == 0:
+            response.failure("No data")
 
-        with self.client.post("/search", data = None, json = self.QUERIES[x], catch_response=True) as response:
-            res_data = response.json()
-            if len(res_data['data']['resultData']['table']['question']) == 0:
-                response.failure("No data")
-            else:
-                print("Search request status code:", response.status_code)
         print "----------------------------------------------------------------"
 
 
