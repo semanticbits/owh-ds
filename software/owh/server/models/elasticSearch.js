@@ -448,6 +448,9 @@ ElasticClient.prototype.getQueryCache = function(query){
 ElasticClient.prototype.insertQueryData = function (query) {
     var client = this.getClient();
     var deferred = Q.defer();
+    logger.error("Index: ", _queryIndex);
+    logger.error("Type: ", _queryType);
+    logger.error("Query: ", query);
     client.create({
         index: _queryIndex,
         type: _queryType,
@@ -456,9 +459,6 @@ ElasticClient.prototype.insertQueryData = function (query) {
         deferred.resolve(resp);
     }, function(err){
         logger.error("Failed to insert record in queryResults ", err.message);
-        logger.error("Index: ", _queryIndex);
-        logger.error("Type: ", _queryType);
-        logger.error("Query: ", query);
         deferred.reject(err);
     });
     return deferred.promise;
