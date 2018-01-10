@@ -43,7 +43,7 @@ ElasticClient.prototype.getClient = function(database) {
     });*/
 
      var configuration = {};
-     //configuration.apiVersion = '1.5';
+     configuration.apiVersion = '1.7';
     /* configuration.log = [{
      type: 'stdio',
      levels: ['info', 'debug', 'error', 'warning']
