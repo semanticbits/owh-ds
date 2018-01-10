@@ -68,5 +68,5 @@ class OWHTaskSet(TaskSet):
 
 class OWHLocust(HttpLocust):
     task_set = OWHTaskSet
-    min_wait = 500
-    max_wait = 15000
+    min_wait = 5000
+    max_wait = 60000

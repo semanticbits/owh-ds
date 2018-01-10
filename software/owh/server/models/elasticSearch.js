@@ -456,6 +456,8 @@ ElasticClient.prototype.insertQueryData = function (query) {
         deferred.resolve(resp);
     }, function(err){
         logger.error("Failed to insert record in queryResults ", err.message);
+        logger.error("Index: ", _queryIndex);
+        logger.error("Type: ", _queryType);
         deferred.reject(err);
     });
     return deferred.promise;
