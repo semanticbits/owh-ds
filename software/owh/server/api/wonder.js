@@ -1,3 +1,4 @@
+'use strict';
 var logger = require('../config/logging');
 var request = require('request');
 var xmlbuilder = require('xmlbuilder');
@@ -1194,7 +1195,7 @@ function wonder(dbID) {
 function requestWonder(dbID, req) {
     var defer = q.defer();
     request.post({url: config.wonder.url + dbID, form: {request_xml: req}}, function (error, response, body) {
-        result = {};
+        var result = {};
         if (!error && body.indexOf('Processing Error') == -1) {
             result = processWONDERResponse(body, dbID);
             //logger.debug("Age adjusted rates: " + JSON.stringify(result));
@@ -1306,7 +1307,7 @@ function processWONDERResponse(response, dbID){
     var respJson = x.xml2js(response);
     var datatable = findChildElementByName(findChildElementByName(respJson.page, 'response'), 'data-table');
     //console.log(inspect(datatable, {depth : null, colors : true} ));
-    result = {}
+    var result = {}
     if(datatable) {
         for (r in datatable.r) {
             row = datatable.r[r];
@@ -1620,7 +1621,7 @@ function addValueToResultForInfant(keys, rate, pop, births, result){
 }
 
 function findChildElementByName(node, name){
-    for (child in node){
+    for (var child in node){
         if(child === name){
             return  node[child];
         }

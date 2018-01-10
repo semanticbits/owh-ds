@@ -1,3 +1,4 @@
+'use strict';
 var result = require('../models/result');
 var hash = require('object-hash');
 var queryBuilder = require('../api/elasticQueryBuilder');

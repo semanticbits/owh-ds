@@ -1,3 +1,4 @@
+'use strict';
 var Q = require('q');
 var logger = require('../config/logging');
 var elasticSearch = require('../models/elasticSearch');

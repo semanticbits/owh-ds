@@ -1,3 +1,4 @@
+'use strict';
 var Result = function( status, data, pagination, message ) {
     this.status = status;
     this.data = data;

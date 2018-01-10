@@ -1,3 +1,4 @@
+'use strict';
 const util = require('util');
 var merge = require('merge');
 
@@ -257,7 +258,7 @@ var buildTopLevelBoolQuery = function(filters, isQuery) {
             must: []
         }
     };
-    for (var i=0 in filters) { //primary filters
+    for (var i=0; i < filters.length; i++) { //primary filters
         var path = filters[i].queryKey;
         var boolQuery = buildBoolQuery(path, filters[i].value, isQuery, filters[i].caseChange, filters[i].dataType);
         if(!isEmptyObject(boolQuery)) {
@@ -273,7 +274,7 @@ var buildBoolQuery = function(path, value, isQuery, isCaseChange, dataType) {
     //if(value)
     if (path && path !== "" ){
         if (util.isArray(path)){
-            for (var i=0 in path) {
+            for (var i=0; i < path.length; i++) {
                 if (dataType === 'date'){
                     boolQuery.bool['should'] = buildDateQuery(path[i], value)
                 } else if(isQuery) {
@@ -298,7 +299,7 @@ var buildBoolQuery = function(path, value, isQuery, isCaseChange, dataType) {
 var buildMatchQuery = function(path, value, isCaseChange) {
     var matchQuery = [];
     if (util.isArray(value)) {
-        for (var i=0 in value) {
+        for (var i=0; i < value.length; i++) {
             var eachMatchQuery = {match: {}};
             eachMatchQuery.match[path] = isCaseChange ? value[i].toLowerCase() : value[i] ;
             matchQuery.push(eachMatchQuery);
@@ -314,7 +315,7 @@ var buildMatchQuery = function(path, value, isCaseChange) {
 var buildTermQuery = function(path, value, isCaseChange) {
     var termQuery = [];
     if (util.isArray(value)) {
-        for (var i=0 in value) {
+        for (var i=0; i < value.length; i++) {
             var eachMatchQuery = {term: {}};
             eachMatchQuery.term[path] = isCaseChange ? value[i].toLowerCase() : value[i] ;
             termQuery.push(eachMatchQuery);
@@ -679,7 +680,6 @@ function addFiltersToCalcFertilityRates(topLevelQuery) {
 
 var chartMappings = {
     "gender&race": "horizontalStack",
-    "race&agegroup": "verticalStack",
     "gender&agegroup":	"horizontalBar",
     "race&hispanicOrigin": "horizontalStack",
     "gender&hispanicOrigin": "verticalBar",
@@ -691,7 +691,6 @@ var chartMappings = {
     "gender&state": "horizontalStack",
     "gender&hhs-region": "horizontalStack",
     "race&hhs-region": "horizontalStack",
-    "sex&race": "verticalBar",
     "sex&ethnicity": "verticalBar",
     "sex&agegroup": "horizontalStack",
     "sex&state": "verticalBar",
@@ -705,8 +704,6 @@ var chartMappings = {
     "ethnicity&state": "horizontalStack",
     "ethnicity&region": "verticalBar",
     "agegroup&region": "verticalBar",
-    "current_year&sex":"horizontalBar",
-    "current_year&race":"horizontalBar",
     "current_year&ethnicity":"horizontalBar",
     "current_year&agegroup":"horizontalBar",
     "current_year&state":"horizontalBar",

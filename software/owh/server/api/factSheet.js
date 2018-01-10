@@ -1,3 +1,4 @@
+'use strict';
 var elasticSearch = require('../models/elasticSearch');
 var yrbs = require("../api/yrbs");
 var queryBuilder = require('../api/elasticQueryBuilder');

@@ -1,3 +1,4 @@
+'use strict';
 var elasticsearch = require('elasticsearch');
 var searchUtils = require('../api/utils');
 var elasticQueryBuilder = require('../api/elasticQueryBuilder');

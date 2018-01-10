@@ -1,3 +1,4 @@
+'use strict';
 var result = require('../models/result');
 const fs = require("fs");
 var uuid = require('node-uuid');
