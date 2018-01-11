@@ -17,6 +17,10 @@ class OWHTaskSet(TaskSet):
 
         #apply 50% of the filters
         filters_limit = randint(0, len(primary_filter['sideFilters'][0]['sideFilters']) - 1)/2
+
+        if primary_filter['key'] == 'natality':
+            filters_limit = 6
+
         for x in range(filters_limit):
             filter_indx = randint(0, len(primary_filter['sideFilters'][0]['sideFilters'])-1)
 
@@ -50,6 +54,7 @@ class OWHTaskSet(TaskSet):
         QUERIES = []
         with open(os.path.join(os.path.dirname(__file__), "./non_stats_query.json")) as jf:
             QUERIES = json.load(jf, encoding="utf8")
+            jf.close()
 
         x = randint(0, len(QUERIES)-1)
         print ("Search page request for dataset:", QUERIES[x]['q']['key'])

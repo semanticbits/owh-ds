@@ -4641,6 +4641,6245 @@
     }
   },
   {
+    "qID": "",
+    "q": {
+      "key": "natality",
+      "title": "label.filter.natality",
+      "primary": true,
+      "value": [],
+      "header": "Natality",
+      "allFilters": [
+        {
+          "key": "hispanic_origin",
+          "title": "label.filter.hispanicOrigin",
+          "queryKey": "hispanic_origin",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "row",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Mexican",
+              "title": "Mexican",
+              "count": 0
+            },
+            {
+              "key": "Puerto Rican",
+              "title": "Puerto Rican",
+              "count": 0
+            },
+            {
+              "key": "Cuban",
+              "title": "Cuban",
+              "count": 0
+            },
+            {
+              "key": "Central or South American",
+              "title": "Central or South American",
+              "count": 0
+            },
+            {
+              "key": "Other and Unknown Hispanic",
+              "title": "Other and Unknown Hispanic",
+              "count": 0
+            },
+            {
+              "key": "Non-Hispanic",
+              "title": "Non-Hispanic",
+              "count": 0
+            },
+            {
+              "key": "Non-Hispanic White",
+              "title": "Non-Hispanic White",
+              "count": 0
+            },
+            {
+              "key": "Non-Hispanic Black",
+              "title": "Non-Hispanic Black",
+              "count": 0
+            },
+            {
+              "key": "Non-Hispanic Other Races",
+              "title": "Non-Hispanic Other Races",
+              "count": 0
+            },
+            {
+              "key": "Origin unknown or not stated",
+              "title": "Origin unknown or not stated",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.ethnicity",
+          "allChecked": true
+        },
+        {
+          "key": "state",
+          "title": "label.filter.state",
+          "queryKey": "state",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "row",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "displaySearchBox": true,
+          "displaySelectedFirst": true,
+          "autoCompleteOptions": [
+            {
+              "key": "AL",
+              "title": "Alabama",
+              "count": 0
+            },
+            {
+              "key": "AK",
+              "title": "Alaska",
+              "count": 0
+            },
+            {
+              "key": "AZ",
+              "title": "Arizona",
+              "count": 0
+            },
+            {
+              "key": "AR",
+              "title": "Arkansas",
+              "count": 0
+            },
+            {
+              "key": "CA",
+              "title": "California",
+              "count": 0
+            },
+            {
+              "key": "CO",
+              "title": "Colorado",
+              "count": 0
+            },
+            {
+              "key": "CT",
+              "title": "Connecticut",
+              "count": 0
+            },
+            {
+              "key": "DE",
+              "title": "Delaware",
+              "count": 0
+            },
+            {
+              "key": "DC",
+              "title": "District of Columbia",
+              "count": 0
+            },
+            {
+              "key": "FL",
+              "title": "Florida",
+              "count": 0
+            },
+            {
+              "key": "GA",
+              "title": "Georgia",
+              "count": 0
+            },
+            {
+              "key": "HI",
+              "title": "Hawaii",
+              "count": 0
+            },
+            {
+              "key": "ID",
+              "title": "Idaho",
+              "count": 0
+            },
+            {
+              "key": "IL",
+              "title": "Illinois",
+              "count": 0
+            },
+            {
+              "key": "IN",
+              "title": "Indiana",
+              "count": 0
+            },
+            {
+              "key": "IA",
+              "title": "Iowa",
+              "count": 0
+            },
+            {
+              "key": "KS",
+              "title": "Kansas",
+              "count": 0
+            },
+            {
+              "key": "KY",
+              "title": "Kentucky",
+              "count": 0
+            },
+            {
+              "key": "LA",
+              "title": "Louisiana",
+              "count": 0
+            },
+            {
+              "key": "ME",
+              "title": "Maine",
+              "count": 0
+            },
+            {
+              "key": "MD",
+              "title": "Maryland",
+              "count": 0
+            },
+            {
+              "key": "MA",
+              "title": "Massachusetts",
+              "count": 0
+            },
+            {
+              "key": "MI",
+              "title": "Michigan",
+              "count": 0
+            },
+            {
+              "key": "MN",
+              "title": "Minnesota",
+              "count": 0
+            },
+            {
+              "key": "MS",
+              "title": "Mississippi",
+              "count": 0
+            },
+            {
+              "key": "MO",
+              "title": "Missouri",
+              "count": 0
+            },
+            {
+              "key": "MT",
+              "title": "Montana",
+              "count": 0
+            },
+            {
+              "key": "NE",
+              "title": "Nebraska",
+              "count": 0
+            },
+            {
+              "key": "NV",
+              "title": "Nevada",
+              "count": 0
+            },
+            {
+              "key": "NH",
+              "title": "New Hampshire",
+              "count": 0
+            },
+            {
+              "key": "NJ",
+              "title": "New Jersey",
+              "count": 0
+            },
+            {
+              "key": "NM",
+              "title": "New Mexico",
+              "count": 0
+            },
+            {
+              "key": "NY",
+              "title": "New York",
+              "count": 0
+            },
+            {
+              "key": "NC",
+              "title": "North Carolina",
+              "count": 0
+            },
+            {
+              "key": "ND",
+              "title": "North Dakota",
+              "count": 0
+            },
+            {
+              "key": "OH",
+              "title": "Ohio",
+              "count": 0
+            },
+            {
+              "key": "OK",
+              "title": "Oklahoma",
+              "count": 0
+            },
+            {
+              "key": "OR",
+              "title": "Oregon",
+              "count": 0
+            },
+            {
+              "key": "PA",
+              "title": "Pennsylvania",
+              "count": 0
+            },
+            {
+              "key": "RI",
+              "title": "Rhode Island",
+              "count": 0
+            },
+            {
+              "key": "SC",
+              "title": "South Carolina",
+              "count": 0
+            },
+            {
+              "key": "SD",
+              "title": "South Dakota",
+              "count": 0
+            },
+            {
+              "key": "TN",
+              "title": "Tennessee",
+              "count": 0
+            },
+            {
+              "key": "TX",
+              "title": "Texas",
+              "count": 0
+            },
+            {
+              "key": "UT",
+              "title": "Utah",
+              "count": 0
+            },
+            {
+              "key": "VT",
+              "title": "Vermont",
+              "count": 0
+            },
+            {
+              "key": "VA",
+              "title": "Virginia",
+              "count": 0
+            },
+            {
+              "key": "WA",
+              "title": "Washington",
+              "count": 0
+            },
+            {
+              "key": "WV",
+              "title": "West Virginia",
+              "count": 0
+            },
+            {
+              "key": "WI",
+              "title": "Wisconsin",
+              "count": 0
+            },
+            {
+              "key": "WY",
+              "title": "Wyoming",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.natality.state",
+          "allChecked": true
+        },
+        {
+          "key": "census-region",
+          "title": "label.filter.censusRegion",
+          "queryKey": "census_region|census_division",
+          "primary": false,
+          "value": [],
+          "queryType": "compound",
+          "titles": [
+            "label.filter.censusRegion",
+            "label.filter.censusDivision"
+          ],
+          "queryKeys": [
+            "census_region",
+            "census_division"
+          ],
+          "groupBy": false,
+          "type": "label.filter.group.location",
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "CENS-R1",
+              "title": "Census Region 1: Northeast",
+              "group": true,
+              "options": [
+                {
+                  "key": "CENS-D1",
+                  "title": "Division 1: New England",
+                  "parentFilterOptionKey": "CENS-R1",
+                  "count": 0
+                },
+                {
+                  "key": "CENS-D2",
+                  "title": "Division 2: Middle Atlantic",
+                  "parentFilterOptionKey": "CENS-R1",
+                  "count": 0
+                }
+              ],
+              "count": 0,
+              "collapse": true
+            },
+            {
+              "key": "CENS-R2",
+              "title": "Census Region 2: Midwest",
+              "group": true,
+              "options": [
+                {
+                  "key": "CENS-D3",
+                  "title": "Division 3: East North Central",
+                  "parentFilterOptionKey": "CENS-R2",
+                  "count": 0
+                },
+                {
+                  "key": "CENS-D4",
+                  "title": "Division 4: West North Central",
+                  "parentFilterOptionKey": "CENS-R2",
+                  "count": 0
+                }
+              ],
+              "count": 0,
+              "collapse": true
+            },
+            {
+              "key": "CENS-R3",
+              "title": "Census Region 3: South",
+              "group": true,
+              "options": [
+                {
+                  "key": "CENS-D5",
+                  "title": "Division 5: South Atlantic",
+                  "parentFilterOptionKey": "CENS-R3",
+                  "count": 0
+                },
+                {
+                  "key": "CENS-D6",
+                  "title": "Division 6: East South Central",
+                  "parentFilterOptionKey": "CENS-R3",
+                  "count": 0
+                },
+                {
+                  "key": "CENS-D7",
+                  "title": "Division 7: West South Central",
+                  "parentFilterOptionKey": "CENS-R3",
+                  "count": 0
+                }
+              ],
+              "count": 0,
+              "collapse": true
+            },
+            {
+              "key": "CENS-R4",
+              "title": "Census Region 4: West",
+              "group": true,
+              "options": [
+                {
+                  "key": "CENS-D8",
+                  "title": "Division 8: Mountain",
+                  "parentFilterOptionKey": "CENS-R4",
+                  "count": 0
+                },
+                {
+                  "key": "CENS-D9",
+                  "title": "Division 9: Pacific",
+                  "parentFilterOptionKey": "CENS-R4",
+                  "count": 0
+                }
+              ],
+              "count": 0
+            }
+          ],
+          "defaultGroup": "column",
+          "displaySearchBox": true,
+          "displaySelectedFirst": false,
+          "helpText": "label.help.text.mortality.state",
+          "allChecked": true
+        },
+        {
+          "key": "hhs-region",
+          "title": "label.filter.HHSRegion",
+          "queryKey": "hhs_region",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "type": "label.filter.group.location",
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "HHS-1",
+              "title": "HHS Region #1  CT, ME, MA, NH, RI, VT",
+              "count": 0
+            },
+            {
+              "key": "HHS-2",
+              "title": "HHS Region #2  NJ, NY",
+              "count": 0
+            },
+            {
+              "key": "HHS-3",
+              "title": "HHS Region #3  DE, DC, MD, PA, VA, WV",
+              "count": 0
+            },
+            {
+              "key": "HHS-4",
+              "title": "HHS Region #4  AL, FL, GA, KY, MS, NC, SC, TN",
+              "count": 0
+            },
+            {
+              "key": "HHS-5",
+              "title": "HHS Region #5  IL, IN, MI, MN, OH, WI",
+              "count": 0
+            },
+            {
+              "key": "HHS-6",
+              "title": "HHS Region #6  AR, LA, NM, OK, TX",
+              "count": 0
+            },
+            {
+              "key": "HHS-7",
+              "title": "HHS Region #7  IA, KS, MO, NE",
+              "count": 0
+            },
+            {
+              "key": "HHS-8",
+              "title": "HHS Region #8  CO, MT, ND, SD, UT, WY",
+              "count": 0
+            },
+            {
+              "key": "HHS-9",
+              "title": "HHS Region #9  AZ, CA, HI, NV",
+              "count": 0
+            },
+            {
+              "key": "HHS-10",
+              "title": "HHS Region #10  AK, ID, OR, WA",
+              "count": 0
+            }
+          ],
+          "defaultGroup": "column",
+          "displaySearchBox": true,
+          "displaySelectedFirst": true,
+          "helpText": "label.help.text.mortality.state",
+          "allChecked": true
+        },
+        {
+          "key": "mother_age_1year_interval",
+          "title": "label.chart.mother_age.single.year.group",
+          "queryKey": "mother_age_1year_interval",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Under 15 years",
+              "title": "Under 15 years",
+              "count": 0
+            },
+            {
+              "key": "15 years",
+              "title": "15 years",
+              "count": 0
+            },
+            {
+              "key": "16 years",
+              "title": "16 years",
+              "count": 0
+            },
+            {
+              "key": "17 years",
+              "title": "17 years",
+              "count": 0
+            },
+            {
+              "key": "18 years",
+              "title": "18 years",
+              "count": 0
+            },
+            {
+              "key": "19 years",
+              "title": "19 years",
+              "count": 0
+            },
+            {
+              "key": "20 years",
+              "title": "20 years",
+              "count": 0
+            },
+            {
+              "key": "21 years",
+              "title": "21 years",
+              "count": 0
+            },
+            {
+              "key": "22 years",
+              "title": "22 years",
+              "count": 0
+            },
+            {
+              "key": "23 years",
+              "title": "23 years",
+              "count": 0
+            },
+            {
+              "key": "24 years",
+              "title": "24 years",
+              "count": 0
+            },
+            {
+              "key": "25 years",
+              "title": "25 years",
+              "count": 0
+            },
+            {
+              "key": "26 years",
+              "title": "26 years",
+              "count": 0
+            },
+            {
+              "key": "27 years",
+              "title": "27 years",
+              "count": 0
+            },
+            {
+              "key": "28 years",
+              "title": "28 years",
+              "count": 0
+            },
+            {
+              "key": "29 years",
+              "title": "29 years",
+              "count": 0
+            },
+            {
+              "key": "30 years",
+              "title": "30 years",
+              "count": 0
+            },
+            {
+              "key": "31 years",
+              "title": "31 years",
+              "count": 0
+            },
+            {
+              "key": "32 years",
+              "title": "32 years",
+              "count": 0
+            },
+            {
+              "key": "33 years",
+              "title": "33 years",
+              "count": 0
+            },
+            {
+              "key": "34 years",
+              "title": "34 years",
+              "count": 0
+            },
+            {
+              "key": "35 years",
+              "title": "35 years",
+              "count": 0
+            },
+            {
+              "key": "36 years",
+              "title": "36 years",
+              "count": 0
+            },
+            {
+              "key": "37 years",
+              "title": "37 years",
+              "count": 0
+            },
+            {
+              "key": "38 years",
+              "title": "38 years",
+              "count": 0
+            },
+            {
+              "key": "39 years",
+              "title": "39 years",
+              "count": 0
+            },
+            {
+              "key": "40 years",
+              "title": "40 years",
+              "count": 0
+            },
+            {
+              "key": "41 years",
+              "title": "41 years",
+              "count": 0
+            },
+            {
+              "key": "42 years",
+              "title": "42 years",
+              "count": 0
+            },
+            {
+              "key": "43 years",
+              "title": "43 years",
+              "count": 0
+            },
+            {
+              "key": "44 years",
+              "title": "44 years",
+              "count": 0
+            },
+            {
+              "key": "45 years",
+              "title": "45 years",
+              "count": 0
+            },
+            {
+              "key": "46 years",
+              "title": "46 years",
+              "count": 0
+            },
+            {
+              "key": "47 years",
+              "title": "47 years",
+              "count": 0
+            },
+            {
+              "key": "48 years",
+              "title": "48 years",
+              "count": 0
+            },
+            {
+              "key": "49 years",
+              "title": "49 years",
+              "count": 0
+            },
+            {
+              "key": "50-54 years",
+              "title": "50 years and over",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.mother.one.year.age",
+          "disableAgeOptions": [
+            "Under 15 years",
+            "45 years",
+            "46 years",
+            "47 years",
+            "48 years",
+            "49 years",
+            "50-54 years"
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "mother_age_5year_interval",
+          "title": "label.chart.mother_age.five.year.group",
+          "queryKey": "mother_age_5year_interval",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Under 15 years",
+              "title": "Under 15 years",
+              "count": 0
+            },
+            {
+              "key": "15-19 years",
+              "title": "15-19 years",
+              "count": 0
+            },
+            {
+              "key": "20-24 years",
+              "title": "20-24 years",
+              "count": 0
+            },
+            {
+              "key": "25-29 years",
+              "title": "25-29 years",
+              "count": 0
+            },
+            {
+              "key": "30-34 years",
+              "title": "30-34 years",
+              "count": 0
+            },
+            {
+              "key": "35-39 years",
+              "title": "35-39 years",
+              "count": 0
+            },
+            {
+              "key": "40-44 years",
+              "title": "40-44 years",
+              "count": 0
+            },
+            {
+              "key": "45-49 years",
+              "title": "45-49 years",
+              "count": 0
+            },
+            {
+              "key": "50-54 years",
+              "title": "50 years and over",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.mother.five.year.age",
+          "disableAgeOptions": [
+            "Under 15 years",
+            "45-49 years",
+            "50-54 years"
+          ],
+          "allChecked": true
+        },
+        {
+          "key": "race",
+          "title": "label.filter.race",
+          "queryKey": "race",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": "row",
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "American Indian",
+              "title": "American Indian or Alaska Native",
+              "count": 0
+            },
+            {
+              "key": "Asian or Pacific Islander",
+              "title": "Asian or Pacific Islander",
+              "count": 0
+            },
+            {
+              "key": "Black",
+              "title": "Black or African American",
+              "count": 0
+            },
+            {
+              "key": "White",
+              "title": "White",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.race",
+          "allChecked": true
+        },
+        {
+          "key": "marital_status",
+          "title": "label.filter.maritalStatus",
+          "queryKey": "marital_status",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Married",
+              "title": "Married",
+              "count": 0
+            },
+            {
+              "key": "Unmarried",
+              "title": "Unmarried",
+              "count": 0
+            },
+            {
+              "key": "Unknown or not Stated",
+              "title": "Unknown or not Stated",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.marital.status"
+        },
+        {
+          "key": "mother_education",
+          "title": "label.filter.education",
+          "queryKey": "mother_education",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "0 - 8 years",
+              "title": "0 - 8 years",
+              "count": 0
+            },
+            {
+              "key": "9 - 11 years",
+              "title": "9 - 11 years",
+              "count": 0
+            },
+            {
+              "key": "12 years",
+              "title": "12 years",
+              "count": 0
+            },
+            {
+              "key": "13 - 15 years",
+              "title": "13 - 15 years",
+              "count": 0
+            },
+            {
+              "key": "16 years and over",
+              "title": "16 years and over",
+              "count": 0
+            },
+            {
+              "key": "Not stated",
+              "title": "Not stated",
+              "count": 0
+            },
+            {
+              "key": "8th grade or less",
+              "title": "8th grade or less",
+              "count": 0
+            },
+            {
+              "key": "9th through 12th grade with no diploma",
+              "title": "9th through 12th grade with no diploma",
+              "count": 0
+            },
+            {
+              "key": "High school graduate or GED completed",
+              "title": "High school graduate or GED completed",
+              "count": 0
+            },
+            {
+              "key": "Some college credit, but not a degree",
+              "title": "Some college credit, but not a degree",
+              "count": 0
+            },
+            {
+              "key": "Associate degree (AA,AS)",
+              "title": "Associate degree (AA,AS)",
+              "count": 0
+            },
+            {
+              "key": "Bachelor’s degree (BA, AB, BS)",
+              "title": "Bachelor’s degree (BA, AB, BS)",
+              "count": 0
+            },
+            {
+              "key": "Master’s degree (MA, MS, MEng, MEd, MSW, MBA)",
+              "title": "Master’s degree (MA, MS, MEng, MEd, MSW, MBA)",
+              "count": 0
+            },
+            {
+              "key": "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
+              "title": "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            },
+            {
+              "key": "Not on certificate",
+              "title": "Not on certificate",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.mother.education"
+        },
+        {
+          "key": "current_year",
+          "title": "label.filter.year",
+          "queryKey": "current_year",
+          "primary": false,
+          "value": [
+            "2015"
+          ],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "2015",
+              "title": "2015",
+              "count": 0
+            },
+            {
+              "key": "2014",
+              "title": "2014",
+              "count": 0
+            },
+            {
+              "key": "2013",
+              "title": "2013",
+              "count": 0
+            },
+            {
+              "key": "2012",
+              "title": "2012",
+              "count": 0
+            },
+            {
+              "key": "2011",
+              "title": "2011",
+              "count": 0
+            },
+            {
+              "key": "2010",
+              "title": "2010",
+              "count": 0
+            },
+            {
+              "key": "2009",
+              "title": "2009",
+              "count": 0
+            },
+            {
+              "key": "2008",
+              "title": "2008",
+              "count": 0
+            },
+            {
+              "key": "2007",
+              "title": "2007",
+              "count": 0
+            },
+            {
+              "key": "2006",
+              "title": "2006",
+              "count": 0
+            },
+            {
+              "key": "2005",
+              "title": "2005",
+              "count": 0
+            },
+            {
+              "key": "2004",
+              "title": "2004",
+              "count": 0
+            },
+            {
+              "key": "2003",
+              "title": "2003",
+              "count": 0
+            },
+            {
+              "key": "2002",
+              "title": "2002",
+              "count": 0
+            },
+            {
+              "key": "2001",
+              "title": "2001",
+              "count": 0
+            },
+            {
+              "key": "2000",
+              "title": "2000",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.year",
+          "allChecked": false
+        },
+        {
+          "key": "month",
+          "title": "label.filter.month",
+          "queryKey": "month",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "January",
+              "title": "January",
+              "count": 0
+            },
+            {
+              "key": "February",
+              "title": "February",
+              "count": 0
+            },
+            {
+              "key": "March",
+              "title": "March",
+              "count": 0
+            },
+            {
+              "key": "April",
+              "title": "April",
+              "count": 0
+            },
+            {
+              "key": "May",
+              "title": "May",
+              "count": 0
+            },
+            {
+              "key": "June",
+              "title": "June",
+              "count": 0
+            },
+            {
+              "key": "July",
+              "title": "July",
+              "count": 0
+            },
+            {
+              "key": "August",
+              "title": "August",
+              "count": 0
+            },
+            {
+              "key": "September",
+              "title": "September",
+              "count": 0
+            },
+            {
+              "key": "October",
+              "title": "October",
+              "count": 0
+            },
+            {
+              "key": "November",
+              "title": "November",
+              "count": 0
+            },
+            {
+              "key": "December",
+              "title": "December",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.month",
+          "allChecked": true
+        },
+        {
+          "key": "weekday",
+          "title": "label.filter.weekday",
+          "queryKey": "weekday",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Sunday",
+              "title": "Sunday",
+              "count": 0
+            },
+            {
+              "key": "Monday",
+              "title": "Monday",
+              "count": 0
+            },
+            {
+              "key": "Tuesday",
+              "title": "Tuesday",
+              "count": 0
+            },
+            {
+              "key": "Wednesday",
+              "title": "Wednesday",
+              "count": 0
+            },
+            {
+              "key": "Thursday",
+              "title": "Thursday",
+              "count": 0
+            },
+            {
+              "key": "Friday",
+              "title": "Friday",
+              "count": 0
+            },
+            {
+              "key": "Saturday",
+              "title": "Saturday",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.week.day"
+        },
+        {
+          "key": "sex",
+          "title": "label.filter.gender",
+          "queryKey": "sex",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": "column",
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Female",
+              "title": "Female",
+              "count": 0
+            },
+            {
+              "key": "Male",
+              "title": "Male",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.sex"
+        },
+        {
+          "key": "gestational_age_r10",
+          "title": "label.filter.gestational.birth.age",
+          "queryKey": "gestational_age_r10",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Under 20 weeks",
+              "title": "Under 20 weeks",
+              "count": 0
+            },
+            {
+              "key": "20 - 27 weeks",
+              "title": "20 - 27 weeks",
+              "count": 0
+            },
+            {
+              "key": "28 - 31 weeks",
+              "title": "28 - 31 weeks",
+              "count": 0
+            },
+            {
+              "key": "32 - 35 weeks",
+              "title": "32 - 35 weeks",
+              "count": 0
+            },
+            {
+              "key": "36 weeks",
+              "title": "36 weeks",
+              "count": 0
+            },
+            {
+              "key": "37 - 39 weeks",
+              "title": "37 - 39 weeks",
+              "count": 0
+            },
+            {
+              "key": "40 weeks",
+              "title": "40 weeks",
+              "count": 0
+            },
+            {
+              "key": "41 weeks",
+              "title": "41 weeks",
+              "count": 0
+            },
+            {
+              "key": "42 weeks and over",
+              "title": "42 weeks and over",
+              "count": 0
+            },
+            {
+              "key": "Not stated",
+              "title": "Not stated",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.gestational.age"
+        },
+        {
+          "key": "prenatal_care",
+          "title": "label.filter.monthPrenatalCareBegan",
+          "queryKey": "prenatal_care",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "No prenatal care",
+              "title": "No prenatal care",
+              "count": 0
+            },
+            {
+              "key": "1st month",
+              "title": "1st month",
+              "count": 0
+            },
+            {
+              "key": "2nd month",
+              "title": "2nd month",
+              "count": 0
+            },
+            {
+              "key": "3rd month",
+              "title": "3rd month",
+              "count": 0
+            },
+            {
+              "key": "4th month",
+              "title": "4th month",
+              "count": 0
+            },
+            {
+              "key": "5th month",
+              "title": "5th month",
+              "count": 0
+            },
+            {
+              "key": "6th month",
+              "title": "6th month",
+              "count": 0
+            },
+            {
+              "key": "7th month",
+              "title": "7th month",
+              "count": 0
+            },
+            {
+              "key": "8th month",
+              "title": "8th month",
+              "count": 0
+            },
+            {
+              "key": "9th month",
+              "title": "9th month",
+              "count": 0
+            },
+            {
+              "key": "10th month",
+              "title": "10th month",
+              "count": 0
+            },
+            {
+              "key": "Unknown or not stated",
+              "title": "Unknown or not stated",
+              "count": 0
+            },
+            {
+              "key": "Not on certificate",
+              "title": "Not on certificate",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.prenatal.care"
+        },
+        {
+          "key": "birth_weight",
+          "title": "label.filter.birthWeight",
+          "queryKey": "birth_weight",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "100 - 199 grams",
+              "title": "100 - 199 grams",
+              "count": 0
+            },
+            {
+              "key": "200 - 299 grams",
+              "title": "200 - 299 grams",
+              "count": 0
+            },
+            {
+              "key": "300 - 399 grams",
+              "title": "300 - 399 grams",
+              "count": 0
+            },
+            {
+              "key": "400 - 499 grams",
+              "title": "400 - 499 grams",
+              "count": 0
+            },
+            {
+              "key": "500 - 599 grams",
+              "title": "500 - 599 grams",
+              "count": 0
+            },
+            {
+              "key": "600 - 699 grams",
+              "title": "600 - 699 grams",
+              "count": 0
+            },
+            {
+              "key": "700 - 799 grams",
+              "title": "700 - 799 grams",
+              "count": 0
+            },
+            {
+              "key": "800 - 899 grams",
+              "title": "800 - 899 grams",
+              "count": 0
+            },
+            {
+              "key": "900 - 999 grams",
+              "title": "900 - 999 grams",
+              "count": 0
+            },
+            {
+              "key": "1000 - 1099 grams",
+              "title": "1000 - 1099 grams",
+              "count": 0
+            },
+            {
+              "key": "1100 - 1199 grams",
+              "title": "1100 - 1199 grams",
+              "count": 0
+            },
+            {
+              "key": "1200 - 1299 grams",
+              "title": "1200 - 1299 grams",
+              "count": 0
+            },
+            {
+              "key": "1300 - 1399 grams",
+              "title": "1300 - 1399 grams",
+              "count": 0
+            },
+            {
+              "key": "1400 - 1499 grams",
+              "title": "1400 - 1499 grams",
+              "count": 0
+            },
+            {
+              "key": "1500 - 1599 grams",
+              "title": "1500 - 1599 grams",
+              "count": 0
+            },
+            {
+              "key": "1600 - 1699 grams",
+              "title": "1600 - 1699 grams",
+              "count": 0
+            },
+            {
+              "key": "1700 - 1799 grams",
+              "title": "1700 - 1799 grams",
+              "count": 0
+            },
+            {
+              "key": "1800 - 1899 grams",
+              "title": "1800 - 1899 grams",
+              "count": 0
+            },
+            {
+              "key": "1900 - 1999 grams",
+              "title": "1900 - 1999 grams",
+              "count": 0
+            },
+            {
+              "key": "2000 - 2099 grams",
+              "title": "2000 - 2099 grams",
+              "count": 0
+            },
+            {
+              "key": "2100 - 2199 grams",
+              "title": "2100 - 2199 grams",
+              "count": 0
+            },
+            {
+              "key": "2200 - 2299 grams",
+              "title": "2200 - 2299 grams",
+              "count": 0
+            },
+            {
+              "key": "2300 - 2399 grams",
+              "title": "2300 - 2399 grams",
+              "count": 0
+            },
+            {
+              "key": "2400 - 2499 grams",
+              "title": "2400 - 2499 grams",
+              "count": 0
+            },
+            {
+              "key": "2500 - 2599 grams",
+              "title": "2500 - 2599 grams",
+              "count": 0
+            },
+            {
+              "key": "2600 - 2699 grams",
+              "title": "2600 - 2699 grams",
+              "count": 0
+            },
+            {
+              "key": "2700 - 2799 grams",
+              "title": "2700 - 2799 grams",
+              "count": 0
+            },
+            {
+              "key": "2800 - 2899 grams",
+              "title": "2800 - 2899 grams",
+              "count": 0
+            },
+            {
+              "key": "2900 - 2999 grams",
+              "title": "2900 - 2999 grams",
+              "count": 0
+            },
+            {
+              "key": "3000 - 3099 grams",
+              "title": "3000 - 3099 grams",
+              "count": 0
+            },
+            {
+              "key": "3100 - 3199 grams",
+              "title": "3100 - 3199 grams",
+              "count": 0
+            },
+            {
+              "key": "3200 - 3299 grams",
+              "title": "3200 - 3299 grams",
+              "count": 0
+            },
+            {
+              "key": "3300 - 3399 grams",
+              "title": "3300 - 3399 grams",
+              "count": 0
+            },
+            {
+              "key": "3400 - 3499 grams",
+              "title": "3400 - 3499 grams",
+              "count": 0
+            },
+            {
+              "key": "3500 - 3599 grams",
+              "title": "3500 - 3599 grams",
+              "count": 0
+            },
+            {
+              "key": "3600 - 3699 grams",
+              "title": "3600 - 3699 grams",
+              "count": 0
+            },
+            {
+              "key": "3700 - 3799 grams",
+              "title": "3700 - 3799 grams",
+              "count": 0
+            },
+            {
+              "key": "3800 - 3899 grams",
+              "title": "3800 - 3899 grams",
+              "count": 0
+            },
+            {
+              "key": "3900 - 3999 grams",
+              "title": "3900 - 3999 grams",
+              "count": 0
+            },
+            {
+              "key": "4000 - 4099 grams",
+              "title": "4000 - 4099 grams",
+              "count": 0
+            },
+            {
+              "key": "4100 - 4199 grams",
+              "title": "4100 - 4199 grams",
+              "count": 0
+            },
+            {
+              "key": "4200 - 4299 grams",
+              "title": "4200 - 4299 grams",
+              "count": 0
+            },
+            {
+              "key": "4300 - 4399 grams",
+              "title": "4300 - 4399 grams",
+              "count": 0
+            },
+            {
+              "key": "4400 - 4499 grams",
+              "title": "4400 - 4499 grams",
+              "count": 0
+            },
+            {
+              "key": "4500 - 4599 grams",
+              "title": "4500 - 4599 grams",
+              "count": 0
+            },
+            {
+              "key": "4600 - 4699 grams",
+              "title": "4600 - 4699 grams",
+              "count": 0
+            },
+            {
+              "key": "4700 - 4799 grams",
+              "title": "4700 - 4799 grams",
+              "count": 0
+            },
+            {
+              "key": "4800 - 4899 grams",
+              "title": "4800 - 4899 grams",
+              "count": 0
+            },
+            {
+              "key": "4900 - 4999 grams",
+              "title": "4900 - 4999 grams",
+              "count": 0
+            },
+            {
+              "key": "5000 - 5099 grams",
+              "title": "5000 - 5099 grams",
+              "count": 0
+            },
+            {
+              "key": "5100 - 5199 grams",
+              "title": "5100 - 5199 grams",
+              "count": 0
+            },
+            {
+              "key": "5200 - 5299 grams",
+              "title": "5200 - 5299 grams",
+              "count": 0
+            },
+            {
+              "key": "5300 - 5399 grams",
+              "title": "5300 - 5399 grams",
+              "count": 0
+            },
+            {
+              "key": "5400 - 5499 grams",
+              "title": "5400 - 5499 grams",
+              "count": 0
+            },
+            {
+              "key": "5500 - 5599 grams",
+              "title": "5500 - 5599 grams",
+              "count": 0
+            },
+            {
+              "key": "5600 - 5699 grams",
+              "title": "5600 - 5699 grams",
+              "count": 0
+            },
+            {
+              "key": "5700 - 5799 grams",
+              "title": "5700 - 5799 grams",
+              "count": 0
+            },
+            {
+              "key": "5800 - 5899 grams",
+              "title": "5800 - 5899 grams",
+              "count": 0
+            },
+            {
+              "key": "5900 - 5999 grams",
+              "title": "5900 - 5999 grams",
+              "count": 0
+            },
+            {
+              "key": "6000 - 6099 grams",
+              "title": "6000 - 6099 grams",
+              "count": 0
+            },
+            {
+              "key": "6100 - 6199 grams",
+              "title": "6100 - 6199 grams",
+              "count": 0
+            },
+            {
+              "key": "6200 - 6299 grams",
+              "title": "6200 - 6299 grams",
+              "count": 0
+            },
+            {
+              "key": "6300 - 6399 grams",
+              "title": "6300 - 6399 grams",
+              "count": 0
+            },
+            {
+              "key": "6400 - 6499 grams",
+              "title": "6400 - 6499 grams",
+              "count": 0
+            },
+            {
+              "key": "6500 - 6599 grams",
+              "title": "6500 - 6599 grams",
+              "count": 0
+            },
+            {
+              "key": "6600 - 6699 grams",
+              "title": "6600 - 6699 grams",
+              "count": 0
+            },
+            {
+              "key": "6700 - 6799 grams",
+              "title": "6700 - 6799 grams",
+              "count": 0
+            },
+            {
+              "key": "6800 - 6899 grams",
+              "title": "6800 - 6899 grams",
+              "count": 0
+            },
+            {
+              "key": "6900 - 6999 grams",
+              "title": "6900 - 6999 grams",
+              "count": 0
+            },
+            {
+              "key": "7000 - 7099 grams",
+              "title": "7000 - 7099 grams",
+              "count": 0
+            },
+            {
+              "key": "7100 - 7199 grams",
+              "title": "7100 - 7199 grams",
+              "count": 0
+            },
+            {
+              "key": "7200 - 7299 grams",
+              "title": "7200 - 7299 grams",
+              "count": 0
+            },
+            {
+              "key": "7300 - 7399 grams",
+              "title": "7300 - 7399 grams",
+              "count": 0
+            },
+            {
+              "key": "7400 - 7499 grams",
+              "title": "7400 - 7499 grams",
+              "count": 0
+            },
+            {
+              "key": "7500 - 7599 grams",
+              "title": "7500 - 7599 grams",
+              "count": 0
+            },
+            {
+              "key": "7600 - 7699 grams",
+              "title": "7600 - 7699 grams",
+              "count": 0
+            },
+            {
+              "key": "7700 - 7799 grams",
+              "title": "7700 - 7799 grams",
+              "count": 0
+            },
+            {
+              "key": "7800 - 7899 grams",
+              "title": "7800 - 7899 grams",
+              "count": 0
+            },
+            {
+              "key": "7900 - 7999 grams",
+              "title": "7900 - 7999 grams",
+              "count": 0
+            },
+            {
+              "key": "8000 - 8099 grams",
+              "title": "8000 - 8099 grams",
+              "count": 0
+            },
+            {
+              "key": "8100 - 8165 grams",
+              "title": "8100 - 8165 grams",
+              "count": 0
+            },
+            {
+              "key": "Not stated",
+              "title": "Not Stated",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.birth.weight"
+        },
+        {
+          "key": "birth_weight_r4",
+          "title": "label.filter.birth_weight.r4",
+          "queryKey": "birth_weight_r4",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "1499 grams or less",
+              "title": "1499 grams or less",
+              "count": 0
+            },
+            {
+              "key": "1500 - 2499 grams",
+              "title": "1500 - 2499 grams",
+              "count": 0
+            },
+            {
+              "key": "2500 - 8165 grams",
+              "title": "2500 grams or more",
+              "count": 0
+            },
+            {
+              "key": "Unknown or not stated",
+              "title": "Unknown or not stated",
+              "count": 0
+            }
+          ]
+        },
+        {
+          "key": "birth_weight_r12",
+          "title": "label.chart.birth_weight.r12",
+          "queryKey": "birth_weight_r12",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "499 grams or less",
+              "title": "499 grams or less",
+              "count": 0
+            },
+            {
+              "key": "500 - 999 grams",
+              "title": "500 - 999 grams",
+              "count": 0
+            },
+            {
+              "key": "1000 - 1499 grams",
+              "title": "1000 - 1499 grams",
+              "count": 0
+            },
+            {
+              "key": "1500 - 1999 grams",
+              "title": "1500 - 1999 grams",
+              "count": 0
+            },
+            {
+              "key": "2000 - 2499 grams",
+              "title": "2000 - 2499 grams",
+              "count": 0
+            },
+            {
+              "key": "2500 - 2999 grams",
+              "title": "2500 - 2999 grams",
+              "count": 0
+            },
+            {
+              "key": "3000 - 3499 grams",
+              "title": "3000 - 3499 grams",
+              "count": 0
+            },
+            {
+              "key": "3500 - 3999 grams",
+              "title": "3500 - 3999 grams",
+              "count": 0
+            },
+            {
+              "key": "4000 - 4499 grams",
+              "title": "4000 - 4499 grams",
+              "count": 0
+            },
+            {
+              "key": "4500 - 4999 grams",
+              "title": "4500 - 4999 grams",
+              "count": 0
+            },
+            {
+              "key": "5000 - 8165 grams",
+              "title": "5000 - 8165 grams",
+              "count": 0
+            },
+            {
+              "key": "Not Stated",
+              "title": "Not Stated",
+              "count": 0
+            }
+          ]
+        },
+        {
+          "key": "birth_plurality",
+          "title": "label.filter.plurality",
+          "queryKey": "birth_plurality",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Single",
+              "title": "Single",
+              "count": 0
+            },
+            {
+              "key": "Twin",
+              "title": "Twin",
+              "count": 0
+            },
+            {
+              "key": "Triplet",
+              "title": "Triplet",
+              "count": 0
+            },
+            {
+              "key": "Quadruplet",
+              "title": "Quadruplet",
+              "count": 0
+            },
+            {
+              "key": "Quintuplet or higher",
+              "title": "Quintuplet or higher",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.birth.plurality"
+        },
+        {
+          "key": "live_birth",
+          "title": "label.filter.liveBirthOrder",
+          "queryKey": "live_birth",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "1st child born alive to mother",
+              "title": "1st child born alive to mother",
+              "count": 0
+            },
+            {
+              "key": "2nd child born alive to mother",
+              "title": "2nd child born alive to mother",
+              "count": 0
+            },
+            {
+              "key": "3rd child born alive to mother",
+              "title": "3rd child born alive to mother",
+              "count": 0
+            },
+            {
+              "key": "4th child born alive to mother",
+              "title": "4th child born alive to mother",
+              "count": 0
+            },
+            {
+              "key": "5th child born alive to mother",
+              "title": "5th child born alive to mother",
+              "count": 0
+            },
+            {
+              "key": "6th child born alive to mother",
+              "title": "6th child born alive to mother",
+              "count": 0
+            },
+            {
+              "key": "7th child born alive to mother",
+              "title": "7th child born alive to mother",
+              "count": 0
+            },
+            {
+              "key": "8 or more live births",
+              "title": "8 or more live births",
+              "count": 0
+            },
+            {
+              "key": "Unknown or not stated",
+              "title": "Unknown or not stated",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.live.birth.order"
+        },
+        {
+          "key": "birth_place",
+          "title": "label.filter.birthPlace",
+          "queryKey": "birth_place",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "In Hospital",
+              "title": "In Hospital",
+              "count": 0
+            },
+            {
+              "key": "Freestanding Birthing Center",
+              "title": "Freestanding Birthing Center",
+              "count": 0
+            },
+            {
+              "key": "Clinic / Doctor’s Office",
+              "title": "Clinic / Doctor’s Office",
+              "count": 0
+            },
+            {
+              "key": "Residence",
+              "title": "Residence",
+              "count": 0
+            },
+            {
+              "key": "Other",
+              "title": "Other",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.birth.place"
+        },
+        {
+          "key": "delivery_method",
+          "title": "label.filter.deliveryMethod",
+          "queryKey": "delivery_method",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Cesarean",
+              "title": "Cesarean",
+              "count": 0
+            },
+            {
+              "key": "Vaginal",
+              "title": "Vaginal",
+              "count": 0
+            },
+            {
+              "key": "Not stated",
+              "title": "Not stated",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.delivery.method"
+        },
+        {
+          "key": "medical_attendant",
+          "title": "label.filter.medicalAttendant",
+          "queryKey": "medical_attendant",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Doctor of Medicine (MD)",
+              "title": "Doctor of Medicine (MD)",
+              "count": 0
+            },
+            {
+              "key": "Doctor of Osteopathy (DO)",
+              "title": "Doctor of Osteopathy (DO)",
+              "count": 0
+            },
+            {
+              "key": "Certified Nurse Midwife (CNM)",
+              "title": "Certified Nurse Midwife (CNM)",
+              "count": 0
+            },
+            {
+              "key": "Other Midwife",
+              "title": "Other Midwife",
+              "count": 0
+            },
+            {
+              "key": "Other",
+              "title": "Other",
+              "count": 0
+            },
+            {
+              "key": "Unknown or not stated",
+              "title": "Unknown or not stated",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.medical.attendant"
+        },
+        {
+          "key": "anemia",
+          "title": "label.filter.anemia",
+          "queryKey": "anemia",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Yes",
+              "title": "Yes",
+              "count": 0
+            },
+            {
+              "key": "No",
+              "title": "No",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            },
+            {
+              "key": "Not on certificate",
+              "title": "Not on certificate",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.anemia",
+          "allChecked": true
+        },
+        {
+          "key": "cardiac_disease",
+          "title": "label.filter.cardiac.disease",
+          "queryKey": "cardiac_disease",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Yes",
+              "title": "Yes",
+              "count": 0
+            },
+            {
+              "key": "No",
+              "title": "No",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            },
+            {
+              "key": "Not on certificate",
+              "title": "Not on certificate",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.cardiac.disease",
+          "allChecked": true
+        },
+        {
+          "key": "chronic_hypertension",
+          "title": "label.filter.chronicHypertension",
+          "queryKey": "chronic_hypertension",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Yes",
+              "title": "Yes",
+              "count": 0
+            },
+            {
+              "key": "No",
+              "title": "No",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            },
+            {
+              "key": "Not on certificate",
+              "title": "Not on certificate",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.chronic.hypertension"
+        },
+        {
+          "key": "diabetes",
+          "title": "label.filter.diabetes",
+          "queryKey": "diabetes",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Yes",
+              "title": "Yes",
+              "count": 0
+            },
+            {
+              "key": "No",
+              "title": "No",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            },
+            {
+              "key": "Not on certificate",
+              "title": "Not on certificate",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.diabetes"
+        },
+        {
+          "key": "pregnancy_hypertension",
+          "title": "label.filter.pregnancy.hypertension",
+          "queryKey": "pregnancy_hypertension",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Yes",
+              "title": "Yes",
+              "count": 0
+            },
+            {
+              "key": "No",
+              "title": "No",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            },
+            {
+              "key": "Not on certificate",
+              "title": "Not on certificate",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.pregnancy.hypertension"
+        },
+        {
+          "key": "eclampsia",
+          "title": "label.filter.eclampsia",
+          "queryKey": "eclampsia",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Yes",
+              "title": "Yes",
+              "count": 0
+            },
+            {
+              "key": "No",
+              "title": "No",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            },
+            {
+              "key": "Not on certificate",
+              "title": "Not on certificate",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.eclampsia"
+        },
+        {
+          "key": "hydramnios_oligohydramnios",
+          "title": "label.filter.hydramnios.oligohydramnios",
+          "queryKey": "hydramnios_oligohydramnios",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Yes",
+              "title": "Yes",
+              "count": 0
+            },
+            {
+              "key": "No",
+              "title": "No",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            },
+            {
+              "key": "Not on certificate",
+              "title": "Not on certificate",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.hydramnios.oligohydramnios"
+        },
+        {
+          "key": "incompetent_cervix",
+          "title": "label.filter.incompetent.cervix",
+          "queryKey": "incompetent_cervix",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Yes",
+              "title": "Yes",
+              "count": 0
+            },
+            {
+              "key": "No",
+              "title": "No",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            },
+            {
+              "key": "Not on certificate",
+              "title": "Not on certificate",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.incomplete.cervix"
+        },
+        {
+          "key": "lung_disease",
+          "title": "label.filter.lung.disease",
+          "queryKey": "lung_disease",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Yes",
+              "title": "Yes",
+              "count": 0
+            },
+            {
+              "key": "No",
+              "title": "No",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            },
+            {
+              "key": "Not on certificate",
+              "title": "Not on certificate",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.lung.disease"
+        },
+        {
+          "key": "tobacco_use",
+          "title": "label.filter.tobacco.use",
+          "queryKey": "tobacco_use",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Yes",
+              "title": "Yes",
+              "count": 0
+            },
+            {
+              "key": "No",
+              "title": "No",
+              "count": 0
+            },
+            {
+              "key": "Not stated",
+              "title": "Not Stated",
+              "count": 0
+            },
+            {
+              "key": "Not on certificate",
+              "title": "Not on certificate",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.tobacco.use"
+        },
+        {
+          "key": "gestation_recode11",
+          "title": "label.filter.natality.gestation_recode11",
+          "queryKey": "gestation_recode11",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Under 20 weeks",
+              "title": "Under 20 weeks",
+              "count": 0
+            },
+            {
+              "key": "20 - 27 weeks",
+              "title": "20 - 27 weeks",
+              "count": 0
+            },
+            {
+              "key": "28 - 31 weeks",
+              "title": "28 - 31 weeks",
+              "count": 0
+            },
+            {
+              "key": "32 - 33 weeks",
+              "title": "32 - 33 weeks",
+              "count": 0
+            },
+            {
+              "key": "34 - 36 weeks",
+              "title": "34 - 36 weeks",
+              "count": 0
+            },
+            {
+              "key": "37 - 38 weeks",
+              "title": "37 - 38 weeks",
+              "count": 0
+            },
+            {
+              "key": "39 weeks",
+              "title": "39 weeks",
+              "count": 0
+            },
+            {
+              "key": "40 weeks",
+              "title": "40 weeks",
+              "count": 0
+            },
+            {
+              "key": "41 weeks",
+              "title": "41 weeks",
+              "count": 0
+            },
+            {
+              "key": "42 weeks and over",
+              "title": "42 weeks and over",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.gestational.group.two"
+        },
+        {
+          "key": "gestation_recode10",
+          "title": "label.filter.natality.gestation_recode10",
+          "queryKey": "gestation_recode10",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Under 20 weeks",
+              "title": "Under 20 weeks",
+              "count": 0
+            },
+            {
+              "key": "20 - 27 weeks",
+              "title": "20 - 27 weeks",
+              "count": 0
+            },
+            {
+              "key": "28 - 31 weeks",
+              "title": "28 - 31 weeks",
+              "count": 0
+            },
+            {
+              "key": "32 - 35 weeks",
+              "title": "32 - 35 weeks",
+              "count": 0
+            },
+            {
+              "key": "36 weeks",
+              "title": "36 weeks",
+              "count": 0
+            },
+            {
+              "key": "37 - 39 weeks",
+              "title": "37 - 39 weeks",
+              "count": 0
+            },
+            {
+              "key": "40 weeks",
+              "title": "40 weeks",
+              "count": 0
+            },
+            {
+              "key": "41 weeks",
+              "title": "41 weeks",
+              "count": 0
+            },
+            {
+              "key": "42 weeks and over",
+              "title": "42 weeks and over",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.gestational.group.one"
+        },
+        {
+          "key": "gestation_weekly",
+          "title": "label.filter.natality.gestation_weekly",
+          "queryKey": "gestation_weekly",
+          "primary": false,
+          "value": [],
+          "defaultGroup": "column",
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "17 weeks",
+              "title": "17 weeks",
+              "count": 0
+            },
+            {
+              "key": "18 weeks",
+              "title": "18 weeks",
+              "count": 0
+            },
+            {
+              "key": "19 weeks",
+              "title": "19 weeks",
+              "count": 0
+            },
+            {
+              "key": "20 weeks",
+              "title": "20 weeks",
+              "count": 0
+            },
+            {
+              "key": "21 weeks",
+              "title": "21 weeks",
+              "count": 0
+            },
+            {
+              "key": "22 weeks",
+              "title": "22 weeks",
+              "count": 0
+            },
+            {
+              "key": "23 weeks",
+              "title": "23 weeks",
+              "count": 0
+            },
+            {
+              "key": "24 weeks",
+              "title": "24 weeks",
+              "count": 0
+            },
+            {
+              "key": "25 weeks",
+              "title": "25 weeks",
+              "count": 0
+            },
+            {
+              "key": "26 weeks",
+              "title": "26 weeks",
+              "count": 0
+            },
+            {
+              "key": "27 weeks",
+              "title": "27 weeks",
+              "count": 0
+            },
+            {
+              "key": "28 weeks",
+              "title": "28 weeks",
+              "count": 0
+            },
+            {
+              "key": "29 weeks",
+              "title": "29 weeks",
+              "count": 0
+            },
+            {
+              "key": "30 weeks",
+              "title": "30 weeks",
+              "count": 0
+            },
+            {
+              "key": "31 weeks",
+              "title": "31 weeks",
+              "count": 0
+            },
+            {
+              "key": "32 weeks",
+              "title": "32 weeks",
+              "count": 0
+            },
+            {
+              "key": "33 weeks",
+              "title": "33 weeks",
+              "count": 0
+            },
+            {
+              "key": "34 weeks",
+              "title": "34 weeks",
+              "count": 0
+            },
+            {
+              "key": "35 weeks",
+              "title": "35 weeks",
+              "count": 0
+            },
+            {
+              "key": "36 weeks",
+              "title": "36 weeks",
+              "count": 0
+            },
+            {
+              "key": "37 weeks",
+              "title": "37 weeks",
+              "count": 0
+            },
+            {
+              "key": "38 weeks",
+              "title": "38 weeks",
+              "count": 0
+            },
+            {
+              "key": "39 weeks",
+              "title": "39 weeks",
+              "count": 0
+            },
+            {
+              "key": "40 weeks",
+              "title": "40 weeks",
+              "count": 0
+            },
+            {
+              "key": "41 weeks",
+              "title": "41 weeks",
+              "count": 0
+            },
+            {
+              "key": "42 weeks",
+              "title": "42 weeks",
+              "count": 0
+            },
+            {
+              "key": "43 weeks",
+              "title": "43 weeks",
+              "count": 0
+            },
+            {
+              "key": "44 weeks",
+              "title": "44 weeks",
+              "count": 0
+            },
+            {
+              "key": "45 weeks",
+              "title": "45 weeks",
+              "count": 0
+            },
+            {
+              "key": "46 weeks",
+              "title": "46 weeks",
+              "count": 0
+            },
+            {
+              "key": "47 weeks",
+              "title": "47 weeks",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.gestational.weekly"
+        }
+      ],
+      "dontShowInlineCharting": true,
+      "chartAxisLabel": "Births",
+      "countLabel": "Total",
+      "countQueryKey": "pop",
+      "tableView": "number_of_births",
+      "runOnFilterChange": true,
+      "applySuppression": true,
+      "birthAndFertilityRatesDisabledYears": [
+        "2000",
+        "2001",
+        "2002"
+      ],
+      "sideFilters": [
+        {
+          "category": "Birth Characteristics",
+          "sideFilters": [
+            {
+              "filterGroup": false,
+              "collapse": false,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "current_year",
+                "title": "label.filter.year",
+                "queryKey": "current_year",
+                "primary": false,
+                "value": [
+                  "2015"
+                ],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "2015",
+                    "title": "2015",
+                    "count": 0
+                  },
+                  {
+                    "key": "2014",
+                    "title": "2014",
+                    "count": 0
+                  },
+                  {
+                    "key": "2013",
+                    "title": "2013",
+                    "count": 0
+                  },
+                  {
+                    "key": "2012",
+                    "title": "2012",
+                    "count": 0
+                  },
+                  {
+                    "key": "2011",
+                    "title": "2011",
+                    "count": 0
+                  },
+                  {
+                    "key": "2010",
+                    "title": "2010",
+                    "count": 0
+                  },
+                  {
+                    "key": "2009",
+                    "title": "2009",
+                    "count": 0
+                  },
+                  {
+                    "key": "2008",
+                    "title": "2008",
+                    "count": 0
+                  },
+                  {
+                    "key": "2007",
+                    "title": "2007",
+                    "count": 0
+                  },
+                  {
+                    "key": "2006",
+                    "title": "2006",
+                    "count": 0
+                  },
+                  {
+                    "key": "2005",
+                    "title": "2005",
+                    "count": 0
+                  },
+                  {
+                    "key": "2004",
+                    "title": "2004",
+                    "count": 0
+                  },
+                  {
+                    "key": "2003",
+                    "title": "2003",
+                    "count": 0
+                  },
+                  {
+                    "key": "2002",
+                    "title": "2002",
+                    "count": 0
+                  },
+                  {
+                    "key": "2001",
+                    "title": "2001",
+                    "count": 0
+                  },
+                  {
+                    "key": "2000",
+                    "title": "2000",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.year",
+                "allChecked": false
+              },
+              "refreshFiltersOnChange": true
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "month",
+                "title": "label.filter.month",
+                "queryKey": "month",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "January",
+                    "title": "January",
+                    "count": 0
+                  },
+                  {
+                    "key": "February",
+                    "title": "February",
+                    "count": 0
+                  },
+                  {
+                    "key": "March",
+                    "title": "March",
+                    "count": 0
+                  },
+                  {
+                    "key": "April",
+                    "title": "April",
+                    "count": 0
+                  },
+                  {
+                    "key": "May",
+                    "title": "May",
+                    "count": 0
+                  },
+                  {
+                    "key": "June",
+                    "title": "June",
+                    "count": 0
+                  },
+                  {
+                    "key": "July",
+                    "title": "July",
+                    "count": 0
+                  },
+                  {
+                    "key": "August",
+                    "title": "August",
+                    "count": 0
+                  },
+                  {
+                    "key": "September",
+                    "title": "September",
+                    "count": 0
+                  },
+                  {
+                    "key": "October",
+                    "title": "October",
+                    "count": 0
+                  },
+                  {
+                    "key": "November",
+                    "title": "November",
+                    "count": 0
+                  },
+                  {
+                    "key": "December",
+                    "title": "December",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.month",
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "weekday",
+                "title": "label.filter.weekday",
+                "queryKey": "weekday",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Sunday",
+                    "title": "Sunday",
+                    "count": 0
+                  },
+                  {
+                    "key": "Monday",
+                    "title": "Monday",
+                    "count": 0
+                  },
+                  {
+                    "key": "Tuesday",
+                    "title": "Tuesday",
+                    "count": 0
+                  },
+                  {
+                    "key": "Wednesday",
+                    "title": "Wednesday",
+                    "count": 0
+                  },
+                  {
+                    "key": "Thursday",
+                    "title": "Thursday",
+                    "count": 0
+                  },
+                  {
+                    "key": "Friday",
+                    "title": "Friday",
+                    "count": 0
+                  },
+                  {
+                    "key": "Saturday",
+                    "title": "Saturday",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.week.day"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "sex",
+                "title": "label.filter.gender",
+                "queryKey": "sex",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": "column",
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Female",
+                    "title": "Female",
+                    "count": 0
+                  },
+                  {
+                    "key": "Male",
+                    "title": "Male",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.sex"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "gestational_age_r10",
+                "title": "label.filter.gestational.birth.age",
+                "queryKey": "gestational_age_r10",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Under 20 weeks",
+                    "title": "Under 20 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "20 - 27 weeks",
+                    "title": "20 - 27 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "28 - 31 weeks",
+                    "title": "28 - 31 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "32 - 35 weeks",
+                    "title": "32 - 35 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "36 weeks",
+                    "title": "36 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "37 - 39 weeks",
+                    "title": "37 - 39 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "40 weeks",
+                    "title": "40 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "41 weeks",
+                    "title": "41 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "42 weeks and over",
+                    "title": "42 weeks and over",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not stated",
+                    "title": "Not stated",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.gestational.age"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "prenatal_care",
+                "title": "label.filter.monthPrenatalCareBegan",
+                "queryKey": "prenatal_care",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "No prenatal care",
+                    "title": "No prenatal care",
+                    "count": 0
+                  },
+                  {
+                    "key": "1st month",
+                    "title": "1st month",
+                    "count": 0
+                  },
+                  {
+                    "key": "2nd month",
+                    "title": "2nd month",
+                    "count": 0
+                  },
+                  {
+                    "key": "3rd month",
+                    "title": "3rd month",
+                    "count": 0
+                  },
+                  {
+                    "key": "4th month",
+                    "title": "4th month",
+                    "count": 0
+                  },
+                  {
+                    "key": "5th month",
+                    "title": "5th month",
+                    "count": 0
+                  },
+                  {
+                    "key": "6th month",
+                    "title": "6th month",
+                    "count": 0
+                  },
+                  {
+                    "key": "7th month",
+                    "title": "7th month",
+                    "count": 0
+                  },
+                  {
+                    "key": "8th month",
+                    "title": "8th month",
+                    "count": 0
+                  },
+                  {
+                    "key": "9th month",
+                    "title": "9th month",
+                    "count": 0
+                  },
+                  {
+                    "key": "10th month",
+                    "title": "10th month",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown or not stated",
+                    "title": "Unknown or not stated",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not on certificate",
+                    "title": "Not on certificate",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.prenatal.care"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "birth_weight",
+                "title": "label.filter.birthWeight",
+                "queryKey": "birth_weight",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "100 - 199 grams",
+                    "title": "100 - 199 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "200 - 299 grams",
+                    "title": "200 - 299 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "300 - 399 grams",
+                    "title": "300 - 399 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "400 - 499 grams",
+                    "title": "400 - 499 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "500 - 599 grams",
+                    "title": "500 - 599 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "600 - 699 grams",
+                    "title": "600 - 699 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "700 - 799 grams",
+                    "title": "700 - 799 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "800 - 899 grams",
+                    "title": "800 - 899 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "900 - 999 grams",
+                    "title": "900 - 999 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "1000 - 1099 grams",
+                    "title": "1000 - 1099 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "1100 - 1199 grams",
+                    "title": "1100 - 1199 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "1200 - 1299 grams",
+                    "title": "1200 - 1299 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "1300 - 1399 grams",
+                    "title": "1300 - 1399 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "1400 - 1499 grams",
+                    "title": "1400 - 1499 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "1500 - 1599 grams",
+                    "title": "1500 - 1599 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "1600 - 1699 grams",
+                    "title": "1600 - 1699 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "1700 - 1799 grams",
+                    "title": "1700 - 1799 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "1800 - 1899 grams",
+                    "title": "1800 - 1899 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "1900 - 1999 grams",
+                    "title": "1900 - 1999 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "2000 - 2099 grams",
+                    "title": "2000 - 2099 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "2100 - 2199 grams",
+                    "title": "2100 - 2199 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "2200 - 2299 grams",
+                    "title": "2200 - 2299 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "2300 - 2399 grams",
+                    "title": "2300 - 2399 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "2400 - 2499 grams",
+                    "title": "2400 - 2499 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "2500 - 2599 grams",
+                    "title": "2500 - 2599 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "2600 - 2699 grams",
+                    "title": "2600 - 2699 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "2700 - 2799 grams",
+                    "title": "2700 - 2799 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "2800 - 2899 grams",
+                    "title": "2800 - 2899 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "2900 - 2999 grams",
+                    "title": "2900 - 2999 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "3000 - 3099 grams",
+                    "title": "3000 - 3099 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "3100 - 3199 grams",
+                    "title": "3100 - 3199 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "3200 - 3299 grams",
+                    "title": "3200 - 3299 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "3300 - 3399 grams",
+                    "title": "3300 - 3399 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "3400 - 3499 grams",
+                    "title": "3400 - 3499 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "3500 - 3599 grams",
+                    "title": "3500 - 3599 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "3600 - 3699 grams",
+                    "title": "3600 - 3699 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "3700 - 3799 grams",
+                    "title": "3700 - 3799 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "3800 - 3899 grams",
+                    "title": "3800 - 3899 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "3900 - 3999 grams",
+                    "title": "3900 - 3999 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "4000 - 4099 grams",
+                    "title": "4000 - 4099 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "4100 - 4199 grams",
+                    "title": "4100 - 4199 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "4200 - 4299 grams",
+                    "title": "4200 - 4299 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "4300 - 4399 grams",
+                    "title": "4300 - 4399 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "4400 - 4499 grams",
+                    "title": "4400 - 4499 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "4500 - 4599 grams",
+                    "title": "4500 - 4599 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "4600 - 4699 grams",
+                    "title": "4600 - 4699 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "4700 - 4799 grams",
+                    "title": "4700 - 4799 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "4800 - 4899 grams",
+                    "title": "4800 - 4899 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "4900 - 4999 grams",
+                    "title": "4900 - 4999 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "5000 - 5099 grams",
+                    "title": "5000 - 5099 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "5100 - 5199 grams",
+                    "title": "5100 - 5199 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "5200 - 5299 grams",
+                    "title": "5200 - 5299 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "5300 - 5399 grams",
+                    "title": "5300 - 5399 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "5400 - 5499 grams",
+                    "title": "5400 - 5499 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "5500 - 5599 grams",
+                    "title": "5500 - 5599 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "5600 - 5699 grams",
+                    "title": "5600 - 5699 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "5700 - 5799 grams",
+                    "title": "5700 - 5799 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "5800 - 5899 grams",
+                    "title": "5800 - 5899 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "5900 - 5999 grams",
+                    "title": "5900 - 5999 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "6000 - 6099 grams",
+                    "title": "6000 - 6099 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "6100 - 6199 grams",
+                    "title": "6100 - 6199 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "6200 - 6299 grams",
+                    "title": "6200 - 6299 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "6300 - 6399 grams",
+                    "title": "6300 - 6399 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "6400 - 6499 grams",
+                    "title": "6400 - 6499 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "6500 - 6599 grams",
+                    "title": "6500 - 6599 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "6600 - 6699 grams",
+                    "title": "6600 - 6699 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "6700 - 6799 grams",
+                    "title": "6700 - 6799 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "6800 - 6899 grams",
+                    "title": "6800 - 6899 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "6900 - 6999 grams",
+                    "title": "6900 - 6999 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "7000 - 7099 grams",
+                    "title": "7000 - 7099 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "7100 - 7199 grams",
+                    "title": "7100 - 7199 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "7200 - 7299 grams",
+                    "title": "7200 - 7299 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "7300 - 7399 grams",
+                    "title": "7300 - 7399 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "7400 - 7499 grams",
+                    "title": "7400 - 7499 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "7500 - 7599 grams",
+                    "title": "7500 - 7599 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "7600 - 7699 grams",
+                    "title": "7600 - 7699 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "7700 - 7799 grams",
+                    "title": "7700 - 7799 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "7800 - 7899 grams",
+                    "title": "7800 - 7899 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "7900 - 7999 grams",
+                    "title": "7900 - 7999 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "8000 - 8099 grams",
+                    "title": "8000 - 8099 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "8100 - 8165 grams",
+                    "title": "8100 - 8165 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not stated",
+                    "title": "Not Stated",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.birth.weight"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "birth_weight_r4",
+                "title": "label.filter.birth_weight.r4",
+                "queryKey": "birth_weight_r4",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "1499 grams or less",
+                    "title": "1499 grams or less",
+                    "count": 0
+                  },
+                  {
+                    "key": "1500 - 2499 grams",
+                    "title": "1500 - 2499 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "2500 - 8165 grams",
+                    "title": "2500 grams or more",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown or not stated",
+                    "title": "Unknown or not stated",
+                    "count": 0
+                  }
+                ]
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "birth_weight_r12",
+                "title": "label.chart.birth_weight.r12",
+                "queryKey": "birth_weight_r12",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "499 grams or less",
+                    "title": "499 grams or less",
+                    "count": 0
+                  },
+                  {
+                    "key": "500 - 999 grams",
+                    "title": "500 - 999 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "1000 - 1499 grams",
+                    "title": "1000 - 1499 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "1500 - 1999 grams",
+                    "title": "1500 - 1999 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "2000 - 2499 grams",
+                    "title": "2000 - 2499 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "2500 - 2999 grams",
+                    "title": "2500 - 2999 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "3000 - 3499 grams",
+                    "title": "3000 - 3499 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "3500 - 3999 grams",
+                    "title": "3500 - 3999 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "4000 - 4499 grams",
+                    "title": "4000 - 4499 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "4500 - 4999 grams",
+                    "title": "4500 - 4999 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "5000 - 8165 grams",
+                    "title": "5000 - 8165 grams",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not Stated",
+                    "title": "Not Stated",
+                    "count": 0
+                  }
+                ]
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "birth_plurality",
+                "title": "label.filter.plurality",
+                "queryKey": "birth_plurality",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Single",
+                    "title": "Single",
+                    "count": 0
+                  },
+                  {
+                    "key": "Twin",
+                    "title": "Twin",
+                    "count": 0
+                  },
+                  {
+                    "key": "Triplet",
+                    "title": "Triplet",
+                    "count": 0
+                  },
+                  {
+                    "key": "Quadruplet",
+                    "title": "Quadruplet",
+                    "count": 0
+                  },
+                  {
+                    "key": "Quintuplet or higher",
+                    "title": "Quintuplet or higher",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.birth.plurality"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "live_birth",
+                "title": "label.filter.liveBirthOrder",
+                "queryKey": "live_birth",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "1st child born alive to mother",
+                    "title": "1st child born alive to mother",
+                    "count": 0
+                  },
+                  {
+                    "key": "2nd child born alive to mother",
+                    "title": "2nd child born alive to mother",
+                    "count": 0
+                  },
+                  {
+                    "key": "3rd child born alive to mother",
+                    "title": "3rd child born alive to mother",
+                    "count": 0
+                  },
+                  {
+                    "key": "4th child born alive to mother",
+                    "title": "4th child born alive to mother",
+                    "count": 0
+                  },
+                  {
+                    "key": "5th child born alive to mother",
+                    "title": "5th child born alive to mother",
+                    "count": 0
+                  },
+                  {
+                    "key": "6th child born alive to mother",
+                    "title": "6th child born alive to mother",
+                    "count": 0
+                  },
+                  {
+                    "key": "7th child born alive to mother",
+                    "title": "7th child born alive to mother",
+                    "count": 0
+                  },
+                  {
+                    "key": "8 or more live births",
+                    "title": "8 or more live births",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown or not stated",
+                    "title": "Unknown or not stated",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.live.birth.order"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "birth_place",
+                "title": "label.filter.birthPlace",
+                "queryKey": "birth_place",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "In Hospital",
+                    "title": "In Hospital",
+                    "count": 0
+                  },
+                  {
+                    "key": "Freestanding Birthing Center",
+                    "title": "Freestanding Birthing Center",
+                    "count": 0
+                  },
+                  {
+                    "key": "Clinic / Doctor’s Office",
+                    "title": "Clinic / Doctor’s Office",
+                    "count": 0
+                  },
+                  {
+                    "key": "Residence",
+                    "title": "Residence",
+                    "count": 0
+                  },
+                  {
+                    "key": "Other",
+                    "title": "Other",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.birth.place"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "delivery_method",
+                "title": "label.filter.deliveryMethod",
+                "queryKey": "delivery_method",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Cesarean",
+                    "title": "Cesarean",
+                    "count": 0
+                  },
+                  {
+                    "key": "Vaginal",
+                    "title": "Vaginal",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not stated",
+                    "title": "Not stated",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.delivery.method"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "medical_attendant",
+                "title": "label.filter.medicalAttendant",
+                "queryKey": "medical_attendant",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Doctor of Medicine (MD)",
+                    "title": "Doctor of Medicine (MD)",
+                    "count": 0
+                  },
+                  {
+                    "key": "Doctor of Osteopathy (DO)",
+                    "title": "Doctor of Osteopathy (DO)",
+                    "count": 0
+                  },
+                  {
+                    "key": "Certified Nurse Midwife (CNM)",
+                    "title": "Certified Nurse Midwife (CNM)",
+                    "count": 0
+                  },
+                  {
+                    "key": "Other Midwife",
+                    "title": "Other Midwife",
+                    "count": 0
+                  },
+                  {
+                    "key": "Other",
+                    "title": "Other",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown or not stated",
+                    "title": "Unknown or not stated",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.medical.attendant"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "gestation_recode11",
+                "title": "label.filter.natality.gestation_recode11",
+                "queryKey": "gestation_recode11",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Under 20 weeks",
+                    "title": "Under 20 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "20 - 27 weeks",
+                    "title": "20 - 27 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "28 - 31 weeks",
+                    "title": "28 - 31 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "32 - 33 weeks",
+                    "title": "32 - 33 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "34 - 36 weeks",
+                    "title": "34 - 36 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "37 - 38 weeks",
+                    "title": "37 - 38 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "39 weeks",
+                    "title": "39 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "40 weeks",
+                    "title": "40 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "41 weeks",
+                    "title": "41 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "42 weeks and over",
+                    "title": "42 weeks and over",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.gestational.group.two"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "gestation_recode10",
+                "title": "label.filter.natality.gestation_recode10",
+                "queryKey": "gestation_recode10",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Under 20 weeks",
+                    "title": "Under 20 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "20 - 27 weeks",
+                    "title": "20 - 27 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "28 - 31 weeks",
+                    "title": "28 - 31 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "32 - 35 weeks",
+                    "title": "32 - 35 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "36 weeks",
+                    "title": "36 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "37 - 39 weeks",
+                    "title": "37 - 39 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "40 weeks",
+                    "title": "40 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "41 weeks",
+                    "title": "41 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "42 weeks and over",
+                    "title": "42 weeks and over",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.gestational.group.one"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "gestation_weekly",
+                "title": "label.filter.natality.gestation_weekly",
+                "queryKey": "gestation_weekly",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "17 weeks",
+                    "title": "17 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "18 weeks",
+                    "title": "18 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "19 weeks",
+                    "title": "19 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "20 weeks",
+                    "title": "20 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "21 weeks",
+                    "title": "21 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "22 weeks",
+                    "title": "22 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "23 weeks",
+                    "title": "23 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "24 weeks",
+                    "title": "24 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "25 weeks",
+                    "title": "25 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "26 weeks",
+                    "title": "26 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "27 weeks",
+                    "title": "27 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "28 weeks",
+                    "title": "28 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "29 weeks",
+                    "title": "29 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "30 weeks",
+                    "title": "30 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "31 weeks",
+                    "title": "31 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "32 weeks",
+                    "title": "32 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "33 weeks",
+                    "title": "33 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "34 weeks",
+                    "title": "34 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "35 weeks",
+                    "title": "35 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "36 weeks",
+                    "title": "36 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "37 weeks",
+                    "title": "37 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "38 weeks",
+                    "title": "38 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "39 weeks",
+                    "title": "39 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "40 weeks",
+                    "title": "40 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "41 weeks",
+                    "title": "41 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "42 weeks",
+                    "title": "42 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "43 weeks",
+                    "title": "43 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "44 weeks",
+                    "title": "44 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "45 weeks",
+                    "title": "45 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "46 weeks",
+                    "title": "46 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "47 weeks",
+                    "title": "47 weeks",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.gestational.weekly"
+              }
+            }
+          ]
+        },
+        {
+          "category": "Maternal Characteristics",
+          "sideFilters": [
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "race",
+                "title": "label.filter.race",
+                "queryKey": "race",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": "row",
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "American Indian",
+                    "title": "American Indian or Alaska Native",
+                    "count": 0
+                  },
+                  {
+                    "key": "Asian or Pacific Islander",
+                    "title": "Asian or Pacific Islander",
+                    "count": 0
+                  },
+                  {
+                    "key": "Black",
+                    "title": "Black or African American",
+                    "count": 0
+                  },
+                  {
+                    "key": "White",
+                    "title": "White",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.race",
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "filters": {
+                "key": "hispanic_origin",
+                "title": "label.filter.hispanicOrigin",
+                "queryKey": "hispanic_origin",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "row",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Mexican",
+                    "title": "Mexican",
+                    "count": 0
+                  },
+                  {
+                    "key": "Puerto Rican",
+                    "title": "Puerto Rican",
+                    "count": 0
+                  },
+                  {
+                    "key": "Cuban",
+                    "title": "Cuban",
+                    "count": 0
+                  },
+                  {
+                    "key": "Central or South American",
+                    "title": "Central or South American",
+                    "count": 0
+                  },
+                  {
+                    "key": "Other and Unknown Hispanic",
+                    "title": "Other and Unknown Hispanic",
+                    "count": 0
+                  },
+                  {
+                    "key": "Non-Hispanic",
+                    "title": "Non-Hispanic",
+                    "count": 0
+                  },
+                  {
+                    "key": "Non-Hispanic White",
+                    "title": "Non-Hispanic White",
+                    "count": 0
+                  },
+                  {
+                    "key": "Non-Hispanic Black",
+                    "title": "Non-Hispanic Black",
+                    "count": 0
+                  },
+                  {
+                    "key": "Non-Hispanic Other Races",
+                    "title": "Non-Hispanic Other Races",
+                    "count": 0
+                  },
+                  {
+                    "key": "Origin unknown or not stated",
+                    "title": "Origin unknown or not stated",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.ethnicity",
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "marital_status",
+                "title": "label.filter.maritalStatus",
+                "queryKey": "marital_status",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Married",
+                    "title": "Married",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unmarried",
+                    "title": "Unmarried",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown or not Stated",
+                    "title": "Unknown or not Stated",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.marital.status"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "mother_education",
+                "title": "label.filter.education",
+                "queryKey": "mother_education",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "0 - 8 years",
+                    "title": "0 - 8 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "9 - 11 years",
+                    "title": "9 - 11 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "12 years",
+                    "title": "12 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "13 - 15 years",
+                    "title": "13 - 15 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "16 years and over",
+                    "title": "16 years and over",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not stated",
+                    "title": "Not stated",
+                    "count": 0
+                  },
+                  {
+                    "key": "8th grade or less",
+                    "title": "8th grade or less",
+                    "count": 0
+                  },
+                  {
+                    "key": "9th through 12th grade with no diploma",
+                    "title": "9th through 12th grade with no diploma",
+                    "count": 0
+                  },
+                  {
+                    "key": "High school graduate or GED completed",
+                    "title": "High school graduate or GED completed",
+                    "count": 0
+                  },
+                  {
+                    "key": "Some college credit, but not a degree",
+                    "title": "Some college credit, but not a degree",
+                    "count": 0
+                  },
+                  {
+                    "key": "Associate degree (AA,AS)",
+                    "title": "Associate degree (AA,AS)",
+                    "count": 0
+                  },
+                  {
+                    "key": "Bachelor’s degree (BA, AB, BS)",
+                    "title": "Bachelor’s degree (BA, AB, BS)",
+                    "count": 0
+                  },
+                  {
+                    "key": "Master’s degree (MA, MS, MEng, MEd, MSW, MBA)",
+                    "title": "Master’s degree (MA, MS, MEng, MEd, MSW, MBA)",
+                    "count": 0
+                  },
+                  {
+                    "key": "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
+                    "title": "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not on certificate",
+                    "title": "Not on certificate",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.mother.education"
+              }
+            }
+          ]
+        },
+        {
+          "category": "Mother's Age",
+          "exclusive": true,
+          "sideFilters": [
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "mother_age_1year_interval",
+                "title": "label.chart.mother_age.single.year.group",
+                "queryKey": "mother_age_1year_interval",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Under 15 years",
+                    "title": "Under 15 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "15 years",
+                    "title": "15 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "16 years",
+                    "title": "16 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "17 years",
+                    "title": "17 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "18 years",
+                    "title": "18 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "19 years",
+                    "title": "19 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "20 years",
+                    "title": "20 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "21 years",
+                    "title": "21 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "22 years",
+                    "title": "22 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "23 years",
+                    "title": "23 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "24 years",
+                    "title": "24 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "25 years",
+                    "title": "25 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "26 years",
+                    "title": "26 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "27 years",
+                    "title": "27 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "28 years",
+                    "title": "28 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "29 years",
+                    "title": "29 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "30 years",
+                    "title": "30 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "31 years",
+                    "title": "31 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "32 years",
+                    "title": "32 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "33 years",
+                    "title": "33 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "34 years",
+                    "title": "34 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "35 years",
+                    "title": "35 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "36 years",
+                    "title": "36 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "37 years",
+                    "title": "37 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "38 years",
+                    "title": "38 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "39 years",
+                    "title": "39 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "40 years",
+                    "title": "40 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "41 years",
+                    "title": "41 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "42 years",
+                    "title": "42 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "43 years",
+                    "title": "43 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "44 years",
+                    "title": "44 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "45 years",
+                    "title": "45 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "46 years",
+                    "title": "46 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "47 years",
+                    "title": "47 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "48 years",
+                    "title": "48 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "49 years",
+                    "title": "49 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "50-54 years",
+                    "title": "50 years and over",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.mother.one.year.age",
+                "disableAgeOptions": [
+                  "Under 15 years",
+                  "45 years",
+                  "46 years",
+                  "47 years",
+                  "48 years",
+                  "49 years",
+                  "50-54 years"
+                ],
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "mother_age_5year_interval",
+                "title": "label.chart.mother_age.five.year.group",
+                "queryKey": "mother_age_5year_interval",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Under 15 years",
+                    "title": "Under 15 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "15-19 years",
+                    "title": "15-19 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "20-24 years",
+                    "title": "20-24 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "25-29 years",
+                    "title": "25-29 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "30-34 years",
+                    "title": "30-34 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "35-39 years",
+                    "title": "35-39 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "40-44 years",
+                    "title": "40-44 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "45-49 years",
+                    "title": "45-49 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "50-54 years",
+                    "title": "50 years and over",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.mother.five.year.age",
+                "disableAgeOptions": [
+                  "Under 15 years",
+                  "45-49 years",
+                  "50-54 years"
+                ],
+                "allChecked": true
+              }
+            }
+          ]
+        },
+        {
+          "category": "Maternal Risk Factors",
+          "sideFilters": [
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "anemia",
+                "title": "label.filter.anemia",
+                "queryKey": "anemia",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Yes",
+                    "title": "Yes",
+                    "count": 0
+                  },
+                  {
+                    "key": "No",
+                    "title": "No",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not on certificate",
+                    "title": "Not on certificate",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.anemia",
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "cardiac_disease",
+                "title": "label.filter.cardiac.disease",
+                "queryKey": "cardiac_disease",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Yes",
+                    "title": "Yes",
+                    "count": 0
+                  },
+                  {
+                    "key": "No",
+                    "title": "No",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not on certificate",
+                    "title": "Not on certificate",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.cardiac.disease",
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "chronic_hypertension",
+                "title": "label.filter.chronicHypertension",
+                "queryKey": "chronic_hypertension",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Yes",
+                    "title": "Yes",
+                    "count": 0
+                  },
+                  {
+                    "key": "No",
+                    "title": "No",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not on certificate",
+                    "title": "Not on certificate",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.chronic.hypertension"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "diabetes",
+                "title": "label.filter.diabetes",
+                "queryKey": "diabetes",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Yes",
+                    "title": "Yes",
+                    "count": 0
+                  },
+                  {
+                    "key": "No",
+                    "title": "No",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not on certificate",
+                    "title": "Not on certificate",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.diabetes"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "eclampsia",
+                "title": "label.filter.eclampsia",
+                "queryKey": "eclampsia",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Yes",
+                    "title": "Yes",
+                    "count": 0
+                  },
+                  {
+                    "key": "No",
+                    "title": "No",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not on certificate",
+                    "title": "Not on certificate",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.eclampsia"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "hydramnios_oligohydramnios",
+                "title": "label.filter.hydramnios.oligohydramnios",
+                "queryKey": "hydramnios_oligohydramnios",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Yes",
+                    "title": "Yes",
+                    "count": 0
+                  },
+                  {
+                    "key": "No",
+                    "title": "No",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not on certificate",
+                    "title": "Not on certificate",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.hydramnios.oligohydramnios"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "incompetent_cervix",
+                "title": "label.filter.incompetent.cervix",
+                "queryKey": "incompetent_cervix",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Yes",
+                    "title": "Yes",
+                    "count": 0
+                  },
+                  {
+                    "key": "No",
+                    "title": "No",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not on certificate",
+                    "title": "Not on certificate",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.incomplete.cervix"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "lung_disease",
+                "title": "label.filter.lung.disease",
+                "queryKey": "lung_disease",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Yes",
+                    "title": "Yes",
+                    "count": 0
+                  },
+                  {
+                    "key": "No",
+                    "title": "No",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not on certificate",
+                    "title": "Not on certificate",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.lung.disease"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "pregnancy_hypertension",
+                "title": "label.filter.pregnancy.hypertension",
+                "queryKey": "pregnancy_hypertension",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Yes",
+                    "title": "Yes",
+                    "count": 0
+                  },
+                  {
+                    "key": "No",
+                    "title": "No",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not on certificate",
+                    "title": "Not on certificate",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.pregnancy.hypertension"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "tobacco_use",
+                "title": "label.filter.tobacco.use",
+                "queryKey": "tobacco_use",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "column",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Yes",
+                    "title": "Yes",
+                    "count": 0
+                  },
+                  {
+                    "key": "No",
+                    "title": "No",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not stated",
+                    "title": "Not Stated",
+                    "count": 0
+                  },
+                  {
+                    "key": "Not on certificate",
+                    "title": "Not on certificate",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.tobacco.use"
+              }
+            }
+          ]
+        },
+        {
+          "category": "Maternal Residence",
+          "exclusive": true,
+          "ui": "tabbed",
+          "selectedFilter": "state",
+          "sideFilters": [
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "state",
+                "title": "label.filter.state",
+                "queryKey": "state",
+                "primary": false,
+                "value": [],
+                "defaultGroup": "row",
+                "groupBy": false,
+                "filterType": "checkbox",
+                "displaySearchBox": true,
+                "displaySelectedFirst": true,
+                "autoCompleteOptions": [
+                  {
+                    "key": "AL",
+                    "title": "Alabama",
+                    "count": 0
+                  },
+                  {
+                    "key": "AK",
+                    "title": "Alaska",
+                    "count": 0
+                  },
+                  {
+                    "key": "AZ",
+                    "title": "Arizona",
+                    "count": 0
+                  },
+                  {
+                    "key": "AR",
+                    "title": "Arkansas",
+                    "count": 0
+                  },
+                  {
+                    "key": "CA",
+                    "title": "California",
+                    "count": 0
+                  },
+                  {
+                    "key": "CO",
+                    "title": "Colorado",
+                    "count": 0
+                  },
+                  {
+                    "key": "CT",
+                    "title": "Connecticut",
+                    "count": 0
+                  },
+                  {
+                    "key": "DE",
+                    "title": "Delaware",
+                    "count": 0
+                  },
+                  {
+                    "key": "DC",
+                    "title": "District of Columbia",
+                    "count": 0
+                  },
+                  {
+                    "key": "FL",
+                    "title": "Florida",
+                    "count": 0
+                  },
+                  {
+                    "key": "GA",
+                    "title": "Georgia",
+                    "count": 0
+                  },
+                  {
+                    "key": "HI",
+                    "title": "Hawaii",
+                    "count": 0
+                  },
+                  {
+                    "key": "ID",
+                    "title": "Idaho",
+                    "count": 0
+                  },
+                  {
+                    "key": "IL",
+                    "title": "Illinois",
+                    "count": 0
+                  },
+                  {
+                    "key": "IN",
+                    "title": "Indiana",
+                    "count": 0
+                  },
+                  {
+                    "key": "IA",
+                    "title": "Iowa",
+                    "count": 0
+                  },
+                  {
+                    "key": "KS",
+                    "title": "Kansas",
+                    "count": 0
+                  },
+                  {
+                    "key": "KY",
+                    "title": "Kentucky",
+                    "count": 0
+                  },
+                  {
+                    "key": "LA",
+                    "title": "Louisiana",
+                    "count": 0
+                  },
+                  {
+                    "key": "ME",
+                    "title": "Maine",
+                    "count": 0
+                  },
+                  {
+                    "key": "MD",
+                    "title": "Maryland",
+                    "count": 0
+                  },
+                  {
+                    "key": "MA",
+                    "title": "Massachusetts",
+                    "count": 0
+                  },
+                  {
+                    "key": "MI",
+                    "title": "Michigan",
+                    "count": 0
+                  },
+                  {
+                    "key": "MN",
+                    "title": "Minnesota",
+                    "count": 0
+                  },
+                  {
+                    "key": "MS",
+                    "title": "Mississippi",
+                    "count": 0
+                  },
+                  {
+                    "key": "MO",
+                    "title": "Missouri",
+                    "count": 0
+                  },
+                  {
+                    "key": "MT",
+                    "title": "Montana",
+                    "count": 0
+                  },
+                  {
+                    "key": "NE",
+                    "title": "Nebraska",
+                    "count": 0
+                  },
+                  {
+                    "key": "NV",
+                    "title": "Nevada",
+                    "count": 0
+                  },
+                  {
+                    "key": "NH",
+                    "title": "New Hampshire",
+                    "count": 0
+                  },
+                  {
+                    "key": "NJ",
+                    "title": "New Jersey",
+                    "count": 0
+                  },
+                  {
+                    "key": "NM",
+                    "title": "New Mexico",
+                    "count": 0
+                  },
+                  {
+                    "key": "NY",
+                    "title": "New York",
+                    "count": 0
+                  },
+                  {
+                    "key": "NC",
+                    "title": "North Carolina",
+                    "count": 0
+                  },
+                  {
+                    "key": "ND",
+                    "title": "North Dakota",
+                    "count": 0
+                  },
+                  {
+                    "key": "OH",
+                    "title": "Ohio",
+                    "count": 0
+                  },
+                  {
+                    "key": "OK",
+                    "title": "Oklahoma",
+                    "count": 0
+                  },
+                  {
+                    "key": "OR",
+                    "title": "Oregon",
+                    "count": 0
+                  },
+                  {
+                    "key": "PA",
+                    "title": "Pennsylvania",
+                    "count": 0
+                  },
+                  {
+                    "key": "RI",
+                    "title": "Rhode Island",
+                    "count": 0
+                  },
+                  {
+                    "key": "SC",
+                    "title": "South Carolina",
+                    "count": 0
+                  },
+                  {
+                    "key": "SD",
+                    "title": "South Dakota",
+                    "count": 0
+                  },
+                  {
+                    "key": "TN",
+                    "title": "Tennessee",
+                    "count": 0
+                  },
+                  {
+                    "key": "TX",
+                    "title": "Texas",
+                    "count": 0
+                  },
+                  {
+                    "key": "UT",
+                    "title": "Utah",
+                    "count": 0
+                  },
+                  {
+                    "key": "VT",
+                    "title": "Vermont",
+                    "count": 0
+                  },
+                  {
+                    "key": "VA",
+                    "title": "Virginia",
+                    "count": 0
+                  },
+                  {
+                    "key": "WA",
+                    "title": "Washington",
+                    "count": 0
+                  },
+                  {
+                    "key": "WV",
+                    "title": "West Virginia",
+                    "count": 0
+                  },
+                  {
+                    "key": "WI",
+                    "title": "Wisconsin",
+                    "count": 0
+                  },
+                  {
+                    "key": "WY",
+                    "title": "Wyoming",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.natality.state",
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "census-region",
+                "title": "label.filter.censusRegion",
+                "queryKey": "census_region|census_division",
+                "primary": false,
+                "value": [],
+                "queryType": "compound",
+                "titles": [
+                  "label.filter.censusRegion",
+                  "label.filter.censusDivision"
+                ],
+                "queryKeys": [
+                  "census_region",
+                  "census_division"
+                ],
+                "groupBy": false,
+                "type": "label.filter.group.location",
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "CENS-R1",
+                    "title": "Census Region 1: Northeast",
+                    "group": true,
+                    "options": [
+                      {
+                        "key": "CENS-D1",
+                        "title": "Division 1: New England",
+                        "parentFilterOptionKey": "CENS-R1",
+                        "count": 0
+                      },
+                      {
+                        "key": "CENS-D2",
+                        "title": "Division 2: Middle Atlantic",
+                        "parentFilterOptionKey": "CENS-R1",
+                        "count": 0
+                      }
+                    ],
+                    "count": 0,
+                    "collapse": true
+                  },
+                  {
+                    "key": "CENS-R2",
+                    "title": "Census Region 2: Midwest",
+                    "group": true,
+                    "options": [
+                      {
+                        "key": "CENS-D3",
+                        "title": "Division 3: East North Central",
+                        "parentFilterOptionKey": "CENS-R2",
+                        "count": 0
+                      },
+                      {
+                        "key": "CENS-D4",
+                        "title": "Division 4: West North Central",
+                        "parentFilterOptionKey": "CENS-R2",
+                        "count": 0
+                      }
+                    ],
+                    "count": 0,
+                    "collapse": true
+                  },
+                  {
+                    "key": "CENS-R3",
+                    "title": "Census Region 3: South",
+                    "group": true,
+                    "options": [
+                      {
+                        "key": "CENS-D5",
+                        "title": "Division 5: South Atlantic",
+                        "parentFilterOptionKey": "CENS-R3",
+                        "count": 0
+                      },
+                      {
+                        "key": "CENS-D6",
+                        "title": "Division 6: East South Central",
+                        "parentFilterOptionKey": "CENS-R3",
+                        "count": 0
+                      },
+                      {
+                        "key": "CENS-D7",
+                        "title": "Division 7: West South Central",
+                        "parentFilterOptionKey": "CENS-R3",
+                        "count": 0
+                      }
+                    ],
+                    "count": 0,
+                    "collapse": true
+                  },
+                  {
+                    "key": "CENS-R4",
+                    "title": "Census Region 4: West",
+                    "group": true,
+                    "options": [
+                      {
+                        "key": "CENS-D8",
+                        "title": "Division 8: Mountain",
+                        "parentFilterOptionKey": "CENS-R4",
+                        "count": 0
+                      },
+                      {
+                        "key": "CENS-D9",
+                        "title": "Division 9: Pacific",
+                        "parentFilterOptionKey": "CENS-R4",
+                        "count": 0
+                      }
+                    ],
+                    "count": 0
+                  }
+                ],
+                "defaultGroup": "column",
+                "displaySearchBox": true,
+                "displaySelectedFirst": false,
+                "helpText": "label.help.text.mortality.state",
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "hhs-region",
+                "title": "label.filter.HHSRegion",
+                "queryKey": "hhs_region",
+                "primary": false,
+                "value": [],
+                "groupBy": false,
+                "type": "label.filter.group.location",
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "HHS-1",
+                    "title": "HHS Region #1  CT, ME, MA, NH, RI, VT",
+                    "count": 0
+                  },
+                  {
+                    "key": "HHS-2",
+                    "title": "HHS Region #2  NJ, NY",
+                    "count": 0
+                  },
+                  {
+                    "key": "HHS-3",
+                    "title": "HHS Region #3  DE, DC, MD, PA, VA, WV",
+                    "count": 0
+                  },
+                  {
+                    "key": "HHS-4",
+                    "title": "HHS Region #4  AL, FL, GA, KY, MS, NC, SC, TN",
+                    "count": 0
+                  },
+                  {
+                    "key": "HHS-5",
+                    "title": "HHS Region #5  IL, IN, MI, MN, OH, WI",
+                    "count": 0
+                  },
+                  {
+                    "key": "HHS-6",
+                    "title": "HHS Region #6  AR, LA, NM, OK, TX",
+                    "count": 0
+                  },
+                  {
+                    "key": "HHS-7",
+                    "title": "HHS Region #7  IA, KS, MO, NE",
+                    "count": 0
+                  },
+                  {
+                    "key": "HHS-8",
+                    "title": "HHS Region #8  CO, MT, ND, SD, UT, WY",
+                    "count": 0
+                  },
+                  {
+                    "key": "HHS-9",
+                    "title": "HHS Region #9  AZ, CA, HI, NV",
+                    "count": 0
+                  },
+                  {
+                    "key": "HHS-10",
+                    "title": "HHS Region #10  AK, ID, OR, WA",
+                    "count": 0
+                  }
+                ],
+                "defaultGroup": "column",
+                "displaySearchBox": true,
+                "displaySelectedFirst": true,
+                "helpText": "label.help.text.mortality.state",
+                "allChecked": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
     "qID":"",
     "q":{
       "key": "std",
