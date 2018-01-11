@@ -19,7 +19,7 @@ class OWHTaskSet(TaskSet):
         filters_limit = randint(0, len(primary_filter['sideFilters'][0]['sideFilters']) - 1)/2
 
         if primary_filter['key'] == 'natality':
-            filters_limit = 6
+            filters_limit = 5
 
         for x in range(filters_limit):
             filter_indx = randint(0, len(primary_filter['sideFilters'][0]['sideFilters'])-1)
