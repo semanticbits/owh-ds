@@ -23171,5 +23171,4787 @@
       ],
       "initiated": false
     }
+  },
+  {
+    "qID":"",
+    "q":{
+      "key": "cancer_mortality",
+      "title": "label.filter.cancer_mortality",
+      "primary": true,
+      "value": [],
+      "header": "Cancer Mortality",
+      "allFilters": [
+        {
+          "key": "current_year",
+          "title": "label.filter.year",
+          "queryKey": "current_year",
+          "primary": false,
+          "value": [
+            "2014"
+          ],
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "2014",
+              "title": "2014",
+              "natality": 0,
+              "count": 0,
+              "natalityPercentage": 0
+            },
+            {
+              "key": "2013",
+              "title": "2013",
+              "natality": 0,
+              "count": 0,
+              "natalityPercentage": 0
+            },
+            {
+              "key": "2012",
+              "title": "2012",
+              "natality": 0,
+              "count": 0,
+              "natalityPercentage": 0
+            },
+            {
+              "key": "2011",
+              "title": "2011",
+              "natality": 0,
+              "count": 0,
+              "natalityPercentage": 0
+            },
+            {
+              "key": "2010",
+              "title": "2010",
+              "natality": 0,
+              "count": 0,
+              "natalityPercentage": 0
+            },
+            {
+              "key": "2009",
+              "title": "2009",
+              "natality": 0,
+              "count": 0,
+              "natalityPercentage": 0
+            },
+            {
+              "key": "2008",
+              "title": "2008",
+              "natality": 0,
+              "count": 0,
+              "natalityPercentage": 0
+            },
+            {
+              "key": "2007",
+              "title": "2007",
+              "natality": 0,
+              "count": 0,
+              "natalityPercentage": 0
+            },
+            {
+              "key": "2006",
+              "title": "2006",
+              "natality": 0,
+              "count": 0,
+              "natalityPercentage": 0
+            },
+            {
+              "key": "2005",
+              "title": "2005",
+              "natality": 0,
+              "count": 0,
+              "natalityPercentage": 0
+            },
+            {
+              "key": "2004",
+              "title": "2004",
+              "natality": 0,
+              "count": 0,
+              "natalityPercentage": 0
+            },
+            {
+              "key": "2003",
+              "title": "2003",
+              "natality": 0,
+              "count": 0,
+              "natalityPercentage": 0
+            },
+            {
+              "key": "2002",
+              "title": "2002",
+              "natality": 0,
+              "count": 0,
+              "natalityPercentage": 0
+            },
+            {
+              "key": "2001",
+              "title": "2001",
+              "natality": 0,
+              "count": 0,
+              "natalityPercentage": 0
+            },
+            {
+              "key": "2000",
+              "title": "2000",
+              "natality": 0,
+              "count": 0,
+              "natalityPercentage": 0
+            }
+          ],
+          "defaultGroup": "column",
+          "helpText": "label.help.text.cancer_mortality.year",
+          "allChecked": false
+        },
+        {
+          "key": "sex",
+          "title": "label.filter.gender",
+          "queryKey": "sex",
+          "primary": false,
+          "value": [],
+          "groupBy": "column",
+          "defaultGroup": "column",
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Female",
+              "title": "Female",
+              "natality": 1942336,
+              "count": 0,
+              "natalityPercentage": 48.82,
+              "disabled": false
+            },
+            {
+              "key": "Male",
+              "title": "Male",
+              "natality": 2036161,
+              "count": 0,
+              "natalityPercentage": 51.18,
+              "disabled": false
+            }
+          ],
+          "helpText": "label.help.text.cancer_mortality.sex",
+          "allChecked": true
+        },
+        {
+          "key": "race",
+          "title": "label.filter.race",
+          "queryKey": "race",
+          "primary": false,
+          "value": [],
+          "groupBy": "row",
+          "defaultGroup": "row",
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "American Indian/Alaska Native",
+              "title": "American Indian/Alaska Native",
+              "count": 0
+            },
+            {
+              "key": "Asian or Pacific Islander",
+              "title": "Asian or Pacific Islander",
+              "count": 0
+            },
+            {
+              "key": "Black",
+              "title": "Black",
+              "count": 0
+            },
+            {
+              "key": "White",
+              "title": "White",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.cancer_mortality.race",
+          "allChecked": true
+        },
+        {
+          "key": "hispanic_origin",
+          "title": "label.filter.hispanicOrigin",
+          "queryKey": "hispanic_origin",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "defaultGroup": "row",
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "Non-Hispanic",
+              "title": "Non-Hispanic",
+              "count": 0
+            },
+            {
+              "key": "Hispanic",
+              "title": "Hispanic",
+              "count": 0
+            },
+            {
+              "key": "Unknown",
+              "title": "Unknown",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.cancer_mortality.hispanic_origin",
+          "allChecked": true
+        },
+        {
+          "key": "age_group",
+          "title": "label.filter.agegroup",
+          "queryKey": "age_group",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "defaultGroup": "row",
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "00 years",
+              "title": "< 1 years",
+              "count": 0
+            },
+            {
+              "key": "01-04 years",
+              "title": "01-04 years",
+              "count": 0
+            },
+            {
+              "key": "05-09 years",
+              "title": "05-09 years",
+              "count": 0
+            },
+            {
+              "key": "10-14 years",
+              "title": "10-14 years",
+              "count": 0
+            },
+            {
+              "key": "15-19 years",
+              "title": "15-19 years",
+              "count": 0
+            },
+            {
+              "key": "20-24 years",
+              "title": "20-24 years",
+              "count": 0
+            },
+            {
+              "key": "25-29 years",
+              "title": "25-29 years",
+              "count": 0
+            },
+            {
+              "key": "30-34 years",
+              "title": "30-34 years",
+              "count": 0
+            },
+            {
+              "key": "35-39 years",
+              "title": "35-39 years",
+              "count": 0
+            },
+            {
+              "key": "40-44 years",
+              "title": "40-44 years",
+              "count": 0
+            },
+            {
+              "key": "45-49 years",
+              "title": "45-49 years",
+              "count": 0
+            },
+            {
+              "key": "50-54 years",
+              "title": "50-54 years",
+              "count": 0
+            },
+            {
+              "key": "55-59 years",
+              "title": "55-59 years",
+              "count": 0
+            },
+            {
+              "key": "60-64 years",
+              "title": "60-64 years",
+              "count": 0
+            },
+            {
+              "key": "65-69 years",
+              "title": "65-69 years",
+              "count": 0
+            },
+            {
+              "key": "70-74 years",
+              "title": "70-74 years",
+              "count": 0
+            },
+            {
+              "key": "75-79 years",
+              "title": "75-79 years",
+              "count": 0
+            },
+            {
+              "key": "80-84 years",
+              "title": "80-84 years",
+              "count": 0
+            },
+            {
+              "key": "85+ years",
+              "title": "85+ years",
+              "count": 0
+            }
+          ],
+          "helpText": "label.help.text.cancer_mortality.age_group",
+          "allChecked": true
+        },
+        {
+          "key": "site",
+          "title": "label.filter.cancer_site",
+          "queryKey": "cancer_site",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "filterType": "site",
+          "selectTitle": "label.cancer_site.select",
+          "updateTitle": "label.cancer_site.update",
+          "autoCompleteOptions": [
+            {
+              "title": "Oral Cavity and Pharynx",
+              "key": "20010-20100",
+              "count": 0
+            },
+            {
+              "title": "Lip",
+              "key": "20010",
+              "count": 0
+            },
+            {
+              "title": "Tongue",
+              "key": "20020",
+              "count": 0
+            },
+            {
+              "title": "Salivary Gland",
+              "key": "20030",
+              "count": 0
+            },
+            {
+              "title": "Floor of Mouth",
+              "key": "20040",
+              "count": 0
+            },
+            {
+              "title": "Gum and Other Mouth",
+              "key": "20050",
+              "count": 0
+            },
+            {
+              "title": "Nasopharynx",
+              "key": "20060",
+              "count": 0
+            },
+            {
+              "title": "Tonsil",
+              "key": "20070",
+              "count": 0
+            },
+            {
+              "title": "Oropharynx",
+              "key": "20080",
+              "count": 0
+            },
+            {
+              "title": "Hypopharynx",
+              "key": "20090",
+              "count": 0
+            },
+            {
+              "title": "Other Oral Cavity and Pharynx",
+              "key": "20100",
+              "count": 0
+            },
+            {
+              "title": "Digestive System",
+              "key": "21010-21130",
+              "count": 0
+            },
+            {
+              "title": "Esophagus",
+              "key": "21010",
+              "count": 0
+            },
+            {
+              "title": "Stomach",
+              "key": "21020",
+              "count": 0
+            },
+            {
+              "title": "Small Intestine",
+              "key": "21030",
+              "count": 0
+            },
+            {
+              "title": "Colon and Rectum",
+              "key": "21041-21052",
+              "count": 0
+            },
+            {
+              "title": "Colon excluding Rectum",
+              "key": "21041-21049",
+              "count": 0
+            },
+            {
+              "title": "Cecum",
+              "key": "21041",
+              "count": 0
+            },
+            {
+              "title": "Appendix",
+              "key": "21042",
+              "count": 0
+            },
+            {
+              "title": "Ascending Colon",
+              "key": "21043",
+              "count": 0
+            },
+            {
+              "title": "Hepatic Flexure",
+              "key": "21044",
+              "count": 0
+            },
+            {
+              "title": "Transverse Colon",
+              "key": "21045",
+              "count": 0
+            },
+            {
+              "title": "Splenic Flexure",
+              "key": "21046",
+              "count": 0
+            },
+            {
+              "title": "Descending Colon",
+              "key": "21047",
+              "count": 0
+            },
+            {
+              "title": "Sigmoid Colon",
+              "key": "21048",
+              "count": 0
+            },
+            {
+              "title": "Large Intestine, NOS",
+              "key": "21049",
+              "count": 0
+            },
+            {
+              "title": "Rectum and Rectosigmoid Junction",
+              "key": "21051-21052",
+              "count": 0
+            },
+            {
+              "title": "Rectosigmoid Junction",
+              "key": "21051",
+              "count": 0
+            },
+            {
+              "title": "Rectum",
+              "key": "21052",
+              "count": 0
+            },
+            {
+              "title": "Anus, Anal Canal and Anorectum",
+              "key": "21060",
+              "count": 0
+            },
+            {
+              "title": "Liver and Intrahepatic Bile Duc",
+              "key": "21071-21072",
+              "count": 0
+            },
+            {
+              "title": "Liver",
+              "key": "21071",
+              "count": 0
+            },
+            {
+              "title": "Intrahepatic Bile Duct",
+              "key": "21072",
+              "count": 0
+            },
+            {
+              "title": "Gallbladder",
+              "key": "21080",
+              "count": 0
+            },
+            {
+              "title": "Other Biliary",
+              "key": "21090",
+              "count": 0
+            },
+            {
+              "title": "Pancreas",
+              "key": "21100",
+              "count": 0
+            },
+            {
+              "title": "Retroperitoneum",
+              "key": "21110",
+              "count": 0
+            },
+            {
+              "title": "Peritoneum, Omentum and Mesentery",
+              "key": "21120",
+              "count": 0
+            },
+            {
+              "title": "Other Digestive Organs",
+              "key": "21130",
+              "count": 0
+            },
+            {
+              "title": "Respiratory System",
+              "key": "22010-22060",
+              "count": 0
+            },
+            {
+              "title": "Nose, Nasal Cavity and Middle Ear",
+              "key": "22010",
+              "count": 0
+            },
+            {
+              "title": "Larynx",
+              "key": "22020",
+              "count": 0
+            },
+            {
+              "title": "Lung and Bronchus",
+              "key": "22030",
+              "count": 0
+            },
+            {
+              "title": "Pleura",
+              "key": "22050",
+              "count": 0
+            },
+            {
+              "title": "Trachea, Mediastinum and Other Respiratory Organs",
+              "key": "22060",
+              "count": 0
+            },
+            {
+              "title": "Bones and Joints",
+              "key": "23000",
+              "count": 0
+            },
+            {
+              "title": "Soft Tissue including Heart",
+              "key": "24000",
+              "count": 0
+            },
+            {
+              "title": "Skin excluding Basal and Squamous",
+              "key": "25010-25020",
+              "count": 0
+            },
+            {
+              "title": "Melanoma of the Skin",
+              "key": "25010",
+              "count": 0
+            },
+            {
+              "title": "Other Non-Epithelial Skin",
+              "key": "25020",
+              "count": 0
+            },
+            {
+              "title": "Male and Female Breast",
+              "key": "26000",
+              "count": 0
+            },
+            {
+              "title": "Female Breast",
+              "key": "26000-Female",
+              "count": 0
+            },
+            {
+              "title": "Male Breast",
+              "key": "26000-Male",
+              "count": 0
+            },
+            {
+              "title": "Female Genital System",
+              "key": "27010-27070",
+              "count": 0
+            },
+            {
+              "title": "Cervix Uteri",
+              "key": "27010",
+              "count": 0
+            },
+            {
+              "title": "Corpus Uteri",
+              "key": "27020",
+              "count": 0
+            },
+            {
+              "title": "Uterus, NOS",
+              "key": "27030",
+              "count": 0
+            },
+            {
+              "title": "Ovary",
+              "key": "27040",
+              "count": 0
+            },
+            {
+              "title": "Vagina",
+              "key": "27050",
+              "count": 0
+            },
+            {
+              "title": "Vulva",
+              "key": "27060",
+              "count": 0
+            },
+            {
+              "title": "Other Female Genital Organs",
+              "key": "27070",
+              "count": 0
+            },
+            {
+              "title": "Male Genital System",
+              "key": "28010-28040",
+              "count": 0
+            },
+            {
+              "title": "Prostate",
+              "key": "28010",
+              "count": 0
+            },
+            {
+              "title": "Testis",
+              "key": "28020",
+              "count": 0
+            },
+            {
+              "title": "Penis",
+              "key": "28030",
+              "count": 0
+            },
+            {
+              "title": "Other Male Genital Organs",
+              "key": "28040",
+              "count": 0
+            },
+            {
+              "title": "Urinary System",
+              "key": "29010-29040",
+              "count": 0
+            },
+            {
+              "title": "Urinary Bladder, invasive and in situ",
+              "key": "29010",
+              "count": 0
+            },
+            {
+              "title": "Kidney and Renal Pelvis",
+              "key": "29020",
+              "count": 0
+            },
+            {
+              "title": "Ureter",
+              "key": "29030",
+              "count": 0
+            },
+            {
+              "title": "Other Urinary Organs",
+              "key": "29040",
+              "count": 0
+            },
+            {
+              "title": "Eye and Orbit",
+              "key": "30000",
+              "count": 0
+            },
+            {
+              "title": "Brain and Other Nervous System",
+              "key": "31010-31040",
+              "count": 0
+            },
+            {
+              "title": "Brain",
+              "key": "31010",
+              "count": 0
+            },
+            {
+              "title": "Cranial Nerves Other Nervous System",
+              "key": "31040",
+              "count": 0
+            },
+            {
+              "title": "Endocrine System",
+              "key": "32010-32020",
+              "count": 0
+            },
+            {
+              "title": "Thyroid",
+              "key": "32010",
+              "count": 0
+            },
+            {
+              "title": "Other Endocrine including Thymus",
+              "key": "32020",
+              "count": 0
+            },
+            {
+              "title": "Lymphomas",
+              "key": "33011-33042",
+              "count": 0
+            },
+            {
+              "title": "Hodgkin Lymphoma",
+              "key": "33011-33012",
+              "count": 0
+            },
+            {
+              "title": "Hodgkin - Nodal",
+              "key": "33011",
+              "count": 0
+            },
+            {
+              "title": "Hodgkin - Extranodal",
+              "key": "33012",
+              "count": 0
+            },
+            {
+              "title": "Non-Hodgkin Lymphoma",
+              "key": "33041-33042",
+              "count": 0
+            },
+            {
+              "title": "NHL – Nodal",
+              "key": "33041",
+              "count": 0
+            },
+            {
+              "title": "NHL – Extranodal",
+              "key": "33042",
+              "count": 0
+            },
+            {
+              "title": "Myeloma",
+              "key": "34000",
+              "count": 0
+            },
+            {
+              "title": "Leukemias",
+              "key": "35011-35043",
+              "count": 0
+            },
+            {
+              "title": "Acute Lymphocytic Leukemia",
+              "key": "35011",
+              "count": 0
+            },
+            {
+              "title": "Chronic Lymphocytic Leukemia",
+              "key": "35012",
+              "count": 0
+            },
+            {
+              "title": "Acute Myeloid Leukemia",
+              "key": "35021",
+              "count": 0
+            },
+            {
+              "title": "Chronic Myeloid Leukemia",
+              "key": "35022",
+              "count": 0
+            },
+            {
+              "title": "Other Leukemias",
+              "key": "35041-35043",
+              "count": 0
+            },
+            {
+              "title": "Other Lymphocytic Leukemia",
+              "key": "35013",
+              "count": 0
+            },
+            {
+              "title": "Acute Monocytic Leukemia",
+              "key": "35031",
+              "count": 0
+            },
+            {
+              "title": "Other Acute Leukemia",
+              "key": "35041",
+              "count": 0
+            },
+            {
+              "title": "Aleukemic, Subleukemic and NOS",
+              "key": "35043",
+              "count": 0
+            },
+            {
+              "title": "Other Myeloid/Monocytic Leukemia",
+              "key": "35023",
+              "count": 0
+            },
+            {
+              "title": "Mesothelioma",
+              "key": "36010",
+              "count": 0
+            },
+            {
+              "title": "Kaposi Sarcoma",
+              "key": "36020",
+              "count": 0
+            },
+            {
+              "title": "Miscellaneous",
+              "key": "37000",
+              "count": 0
+            }
+          ],
+          "tree": [
+            {
+              "text": "Oral Cavity and Pharynx",
+              "id": "20010-20100",
+              "children": [
+                {
+                  "text": "Lip",
+                  "id": "20010",
+                  "children": [],
+                  "path": [
+                    "20010",
+                    "20010-20100",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Tongue",
+                  "id": "20020",
+                  "children": [],
+                  "path": [
+                    "20020",
+                    "20010-20100",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Salivary Gland",
+                  "id": "20030",
+                  "children": [],
+                  "path": [
+                    "20030",
+                    "20010-20100",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Floor of Mouth",
+                  "id": "20040",
+                  "children": [],
+                  "path": [
+                    "20040",
+                    "20010-20100",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Gum and Other Mouth",
+                  "id": "20050",
+                  "children": [],
+                  "path": [
+                    "20050",
+                    "20010-20100",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Nasopharynx",
+                  "id": "20060",
+                  "children": [],
+                  "path": [
+                    "20060",
+                    "20010-20100",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Tonsil",
+                  "id": "20070",
+                  "children": [],
+                  "path": [
+                    "20070",
+                    "20010-20100",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Oropharynx",
+                  "id": "20080",
+                  "children": [],
+                  "path": [
+                    "20080",
+                    "20010-20100",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Hypopharynx",
+                  "id": "20090",
+                  "children": [],
+                  "path": [
+                    "20090",
+                    "20010-20100",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Other Oral Cavity and Pharynx",
+                  "id": "20100",
+                  "children": [],
+                  "path": [
+                    "20100",
+                    "20010-20100",
+                    "0"
+                  ]
+                }
+              ],
+              "path": [
+                "20010-20100",
+                "0"
+              ]
+            },
+            {
+              "text": "Digestive System",
+              "id": "21010-21130",
+              "children": [
+                {
+                  "text": "Esophagus",
+                  "id": "21010",
+                  "children": [],
+                  "path": [
+                    "21010",
+                    "21010-21130",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Stomach",
+                  "id": "21020",
+                  "children": [],
+                  "path": [
+                    "21020",
+                    "21010-21130",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Small Intestine",
+                  "id": "21030",
+                  "children": [],
+                  "path": [
+                    "21030",
+                    "21010-21130",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Colon and Rectum",
+                  "id": "21041-21052",
+                  "children": [
+                    {
+                      "text": "Colon excluding Rectum",
+                      "id": "21041-21049",
+                      "children": [
+                        {
+                          "text": "Cecum",
+                          "id": "21041",
+                          "children": [],
+                          "path": [
+                            "21041",
+                            "21041-21049",
+                            "21041-21052",
+                            "21010-21130",
+                            "0"
+                          ]
+                        },
+                        {
+                          "text": "Appendix",
+                          "id": "21042",
+                          "children": [],
+                          "path": [
+                            "21042",
+                            "21041-21049",
+                            "21041-21052",
+                            "21010-21130",
+                            "0"
+                          ]
+                        },
+                        {
+                          "text": "Ascending Colon",
+                          "id": "21043",
+                          "children": [],
+                          "path": [
+                            "21043",
+                            "21041-21049",
+                            "21041-21052",
+                            "21010-21130",
+                            "0"
+                          ]
+                        },
+                        {
+                          "text": "Hepatic Flexure",
+                          "id": "21044",
+                          "children": [],
+                          "path": [
+                            "21044",
+                            "21041-21049",
+                            "21041-21052",
+                            "21010-21130",
+                            "0"
+                          ]
+                        },
+                        {
+                          "text": "Transverse Colon",
+                          "id": "21045",
+                          "children": [],
+                          "path": [
+                            "21045",
+                            "21041-21049",
+                            "21041-21052",
+                            "21010-21130",
+                            "0"
+                          ]
+                        },
+                        {
+                          "text": "Splenic Flexure",
+                          "id": "21046",
+                          "children": [],
+                          "path": [
+                            "21046",
+                            "21041-21049",
+                            "21041-21052",
+                            "21010-21130",
+                            "0"
+                          ]
+                        },
+                        {
+                          "text": "Descending Colon",
+                          "id": "21047",
+                          "children": [],
+                          "path": [
+                            "21047",
+                            "21041-21049",
+                            "21041-21052",
+                            "21010-21130",
+                            "0"
+                          ]
+                        },
+                        {
+                          "text": "Sigmoid Colon",
+                          "id": "21048",
+                          "children": [],
+                          "path": [
+                            "21048",
+                            "21041-21049",
+                            "21041-21052",
+                            "21010-21130",
+                            "0"
+                          ]
+                        },
+                        {
+                          "text": "Large Intestine, NOS",
+                          "id": "21049",
+                          "children": [],
+                          "path": [
+                            "21049",
+                            "21041-21049",
+                            "21041-21052",
+                            "21010-21130",
+                            "0"
+                          ]
+                        }
+                      ],
+                      "path": [
+                        "21041-21049",
+                        "21041-21052",
+                        "21010-21130",
+                        "0"
+                      ]
+                    },
+                    {
+                      "text": "Rectum and Rectosigmoid Junction",
+                      "id": "21051-21052",
+                      "children": [
+                        {
+                          "text": "Rectosigmoid Junction",
+                          "id": "21051",
+                          "children": [],
+                          "path": [
+                            "21051",
+                            "21051-21052",
+                            "21041-21052",
+                            "21010-21130",
+                            "0"
+                          ]
+                        },
+                        {
+                          "text": "Rectum",
+                          "id": "21052",
+                          "children": [],
+                          "path": [
+                            "21052",
+                            "21051-21052",
+                            "21041-21052",
+                            "21010-21130",
+                            "0"
+                          ]
+                        }
+                      ],
+                      "path": [
+                        "21051-21052",
+                        "21041-21052",
+                        "21010-21130",
+                        "0"
+                      ]
+                    }
+                  ],
+                  "path": [
+                    "21041-21052",
+                    "21010-21130",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Anus, Anal Canal and Anorectum",
+                  "id": "21060",
+                  "children": [],
+                  "path": [
+                    "21060",
+                    "21010-21130",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Liver and Intrahepatic Bile Duc",
+                  "id": "21071-21072",
+                  "children": [
+                    {
+                      "text": "Liver",
+                      "id": "21071",
+                      "children": [],
+                      "path": [
+                        "21071",
+                        "21071-21072",
+                        "21010-21130",
+                        "0"
+                      ]
+                    },
+                    {
+                      "text": "Intrahepatic Bile Duct",
+                      "id": "21072",
+                      "children": [],
+                      "path": [
+                        "21072",
+                        "21071-21072",
+                        "21010-21130",
+                        "0"
+                      ]
+                    }
+                  ],
+                  "path": [
+                    "21071-21072",
+                    "21010-21130",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Gallbladder",
+                  "id": "21080",
+                  "children": [],
+                  "path": [
+                    "21080",
+                    "21010-21130",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Other Biliary",
+                  "id": "21090",
+                  "children": [],
+                  "path": [
+                    "21090",
+                    "21010-21130",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Pancreas",
+                  "id": "21100",
+                  "children": [],
+                  "path": [
+                    "21100",
+                    "21010-21130",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Retroperitoneum",
+                  "id": "21110",
+                  "children": [],
+                  "path": [
+                    "21110",
+                    "21010-21130",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Peritoneum, Omentum and Mesentery",
+                  "id": "21120",
+                  "children": [],
+                  "path": [
+                    "21120",
+                    "21010-21130",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Other Digestive Organs",
+                  "id": "21130",
+                  "children": [],
+                  "path": [
+                    "21130",
+                    "21010-21130",
+                    "0"
+                  ]
+                }
+              ],
+              "path": [
+                "21010-21130",
+                "0"
+              ]
+            },
+            {
+              "text": "Respiratory System",
+              "id": "22010-22060",
+              "children": [
+                {
+                  "text": "Nose, Nasal Cavity and Middle Ear",
+                  "id": "22010",
+                  "children": [],
+                  "path": [
+                    "22010",
+                    "22010-22060",
+                    "21010-21130",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Larynx",
+                  "id": "22020",
+                  "children": [],
+                  "path": [
+                    "22020",
+                    "22010-22060",
+                    "21010-21130",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Lung and Bronchus",
+                  "id": "22030",
+                  "children": [],
+                  "path": [
+                    "22030",
+                    "22010-22060",
+                    "21010-21130",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Pleura",
+                  "id": "22050",
+                  "children": [],
+                  "path": [
+                    "22050",
+                    "22010-22060",
+                    "21010-21130",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Trachea, Mediastinum and Other Respiratory Organs",
+                  "id": "22060",
+                  "children": [],
+                  "path": [
+                    "22060",
+                    "22010-22060",
+                    "21010-21130",
+                    "0"
+                  ]
+                }
+              ],
+              "path": [
+                "22010-22060",
+                "21010-21130",
+                "0"
+              ]
+            },
+            {
+              "text": "Bones and Joints",
+              "id": "23000",
+              "children": [],
+              "path": [
+                "23000",
+                "0"
+              ]
+            },
+            {
+              "text": "Soft Tissue including Heart",
+              "id": "24000",
+              "children": [],
+              "path": [
+                "24000",
+                "0"
+              ]
+            },
+            {
+              "text": "Skin excluding Basal and Squamous",
+              "id": "25010-25020",
+              "children": [
+                {
+                  "text": "Melanoma of the Skin",
+                  "id": "25010",
+                  "children": [],
+                  "path": [
+                    "25010",
+                    "25010-25020",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Other Non-Epithelial Skin",
+                  "id": "25020",
+                  "children": [],
+                  "path": [
+                    "25020",
+                    "25010-25020",
+                    "0"
+                  ]
+                }
+              ],
+              "path": [
+                "25010-25020",
+                "0"
+              ]
+            },
+            {
+              "text": "Male and Female Breast",
+              "id": "26000",
+              "children": [
+                {
+                  "text": "Female Breast",
+                  "id": "26000-Female",
+                  "children": [],
+                  "path": [
+                    "26000-Female",
+                    "26000",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Male Breast",
+                  "id": "26000-Male",
+                  "children": [],
+                  "path": [
+                    "26000-Male",
+                    "26000",
+                    "0"
+                  ]
+                }
+              ],
+              "path": [
+                "26000",
+                "0"
+              ]
+            },
+            {
+              "text": "Female Genital System",
+              "id": "27010-27070",
+              "children": [
+                {
+                  "text": "Cervix Uteri",
+                  "id": "27010",
+                  "children": [],
+                  "path": [
+                    "27010",
+                    "27010-27070",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Corpus Uteri",
+                  "id": "27020",
+                  "children": [],
+                  "path": [
+                    "27020",
+                    "27010-27070",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Uterus, NOS",
+                  "id": "27030",
+                  "children": [],
+                  "path": [
+                    "27030",
+                    "27010-27070",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Ovary",
+                  "id": "27040",
+                  "children": [],
+                  "path": [
+                    "27040",
+                    "27010-27070",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Vagina",
+                  "id": "27050",
+                  "children": [],
+                  "path": [
+                    "27050",
+                    "27010-27070",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Vulva",
+                  "id": "27060",
+                  "children": [],
+                  "path": [
+                    "27060",
+                    "27010-27070",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Other Female Genital Organs",
+                  "id": "27070",
+                  "children": [],
+                  "path": [
+                    "27070",
+                    "27010-27070",
+                    "0"
+                  ]
+                }
+              ],
+              "path": [
+                "27010-27070",
+                "0"
+              ]
+            },
+            {
+              "text": "Male Genital System",
+              "id": "28010-28040",
+              "children": [
+                {
+                  "text": "Prostate",
+                  "id": "28010",
+                  "children": [],
+                  "path": [
+                    "28010",
+                    "28010-28040",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Testis",
+                  "id": "28020",
+                  "children": [],
+                  "path": [
+                    "28020",
+                    "28010-28040",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Penis",
+                  "id": "28030",
+                  "children": [],
+                  "path": [
+                    "28030",
+                    "28010-28040",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Other Male Genital Organs",
+                  "id": "28040",
+                  "children": [],
+                  "path": [
+                    "28040",
+                    "28010-28040",
+                    "0"
+                  ]
+                }
+              ],
+              "path": [
+                "28010-28040",
+                "0"
+              ]
+            },
+            {
+              "text": "Urinary System",
+              "id": "29010-29040",
+              "children": [
+                {
+                  "text": "Urinary Bladder, invasive and in situ",
+                  "id": "29010",
+                  "children": [],
+                  "path": [
+                    "29010",
+                    "29010-29040",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Kidney and Renal Pelvis",
+                  "id": "29020",
+                  "children": [],
+                  "path": [
+                    "29020",
+                    "29010-29040",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Ureter",
+                  "id": "29030",
+                  "children": [],
+                  "path": [
+                    "29030",
+                    "29010-29040",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Other Urinary Organs",
+                  "id": "29040",
+                  "children": [],
+                  "path": [
+                    "29030",
+                    "29010-29040",
+                    "0"
+                  ]
+                }
+              ],
+              "path": [
+                "29010-29040",
+                "0"
+              ]
+            },
+            {
+              "text": "Eye and Orbit",
+              "id": "30000",
+              "children": [],
+              "path": [
+                "30000",
+                "0"
+              ]
+            },
+            {
+              "text": "Brain and Other Nervous System",
+              "id": "31010-31040",
+              "children": [
+                {
+                  "text": "Brain",
+                  "id": "31010",
+                  "children": [],
+                  "path": [
+                    "31010",
+                    "31010-31040",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Cranial Nerves Other Nervous System",
+                  "id": "31040",
+                  "children": [],
+                  "path": [
+                    "31040",
+                    "31010-31040",
+                    "0"
+                  ]
+                }
+              ],
+              "path": [
+                "31010-31040",
+                "0"
+              ]
+            },
+            {
+              "text": "Endocrine System",
+              "id": "32010-32020",
+              "children": [
+                {
+                  "text": "Thyroid",
+                  "id": "32010",
+                  "children": [],
+                  "path": [
+                    "32010",
+                    "32010-32020",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Other Endocrine including Thymus",
+                  "id": "32020",
+                  "children": [],
+                  "path": [
+                    "32020",
+                    "32010-32020",
+                    "0"
+                  ]
+                }
+              ],
+              "path": [
+                "32010-32020",
+                "0"
+              ]
+            },
+            {
+              "text": "Lymphomas",
+              "id": "33011-33042",
+              "children": [
+                {
+                  "text": "Hodgkin Lymphoma",
+                  "id": "33011-33012",
+                  "children": [
+                    {
+                      "text": "Hodgkin - Nodal",
+                      "id": "33011",
+                      "children": [],
+                      "path": [
+                        "33011",
+                        "33011-33012",
+                        "33011-33042",
+                        "0"
+                      ]
+                    },
+                    {
+                      "text": "Hodgkin - Extranodal",
+                      "id": "33012",
+                      "children": [],
+                      "path": [
+                        "33012",
+                        "33011-33012",
+                        "33011-33042",
+                        "0"
+                      ]
+                    }
+                  ],
+                  "path": [
+                    "33011-33012",
+                    "33011-33042",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Non-Hodgkin Lymphoma",
+                  "id": "33041-33042",
+                  "children": [
+                    {
+                      "text": "NHL – Nodal",
+                      "id": "33041",
+                      "children": [],
+                      "path": [
+                        "33041",
+                        "33041-33042",
+                        "33011-33042",
+                        "0"
+                      ]
+                    },
+                    {
+                      "text": "NHL – Extranodal",
+                      "id": "33042",
+                      "children": [],
+                      "path": [
+                        "33042",
+                        "33041-33042",
+                        "33011-33042",
+                        "0"
+                      ]
+                    }
+                  ],
+                  "path": [
+                    "33041-33042",
+                    "33011-33042",
+                    "0"
+                  ]
+                }
+              ],
+              "path": [
+                "33011-33042",
+                "0"
+              ]
+            },
+            {
+              "text": "Myeloma",
+              "id": "34000",
+              "children": [],
+              "path": [
+                "34000",
+                "0"
+              ]
+            },
+            {
+              "text": "Leukemias",
+              "id": "35011-35043",
+              "children": [
+                {
+                  "text": "Acute Lymphocytic Leukemia",
+                  "id": "35011",
+                  "children": [],
+                  "path": [
+                    "35011",
+                    "35011-35043",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Chronic Lymphocytic Leukemia",
+                  "id": "35012",
+                  "children": [],
+                  "path": [
+                    "35012",
+                    "35011-35043",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Acute Myeloid Leukemia",
+                  "id": "35021",
+                  "children": [],
+                  "path": [
+                    "35021",
+                    "35011-35043",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Chronic Myeloid Leukemia",
+                  "id": "35022",
+                  "children": [],
+                  "path": [
+                    "35022",
+                    "35011-35043",
+                    "0"
+                  ]
+                },
+                {
+                  "text": "Other Leukemias",
+                  "id": "35041-35043",
+                  "children": [
+                    {
+                      "text": "Other Lymphocytic Leukemia",
+                      "id": "35013",
+                      "children": [],
+                      "path": [
+                        "35013",
+                        "35041-35043",
+                        "35011-35043",
+                        "0"
+                      ]
+                    },
+                    {
+                      "text": "Acute Monocytic Leukemia",
+                      "id": "35031",
+                      "children": [],
+                      "path": [
+                        "35031",
+                        "35041-35043",
+                        "35011-35043",
+                        "0"
+                      ]
+                    },
+                    {
+                      "text": "Other Acute Leukemia",
+                      "id": "35041",
+                      "children": [],
+                      "path": [
+                        "35041",
+                        "35041-35043",
+                        "35011-35043",
+                        "0"
+                      ]
+                    },
+                    {
+                      "text": "Aleukemic, Subleukemic and NOS",
+                      "id": "35043",
+                      "children": [],
+                      "path": [
+                        "35043",
+                        "35041-35043",
+                        "35011-35043",
+                        "0"
+                      ]
+                    },
+                    {
+                      "text": "Other Myeloid/Monocytic Leukemia",
+                      "id": "35023",
+                      "children": [],
+                      "path": [
+                        "35023",
+                        "35041-35043",
+                        "35011-35043",
+                        "0"
+                      ]
+                    }
+                  ],
+                  "path": [
+                    "35041-35043",
+                    "35011-35043",
+                    "0"
+                  ]
+                }
+              ],
+              "path": [
+                "35011-35043",
+                "0"
+              ]
+            },
+            {
+              "text": "Mesothelioma",
+              "id": "36010",
+              "children": [],
+              "path": [
+                "36010",
+                "0"
+              ]
+            },
+            {
+              "text": "Kaposi Sarcoma",
+              "id": "36020",
+              "children": [],
+              "path": [
+                "36020",
+                "0"
+              ]
+            },
+            {
+              "text": "Miscellaneous",
+              "id": "37000",
+              "children": [],
+              "path": [
+                "37000",
+                "0"
+              ]
+            }
+          ],
+          "aggregationKey": "cancer_site.path",
+          "defaultGroup": "row",
+          "helpText": "label.help.text.cancer_mortality.cancer_site"
+        },
+        {
+          "key": "state",
+          "title": "label.filter.state",
+          "queryKey": "state",
+          "primary": false,
+          "value": [],
+          "groupBy": false,
+          "filterType": "checkbox",
+          "autoCompleteOptions": [
+            {
+              "key": "AL",
+              "title": "Alabama",
+              "natality": 59657,
+              "count": 0,
+              "natalityPercentage": 1.5,
+              "disabled": false
+            },
+            {
+              "key": "AK",
+              "title": "Alaska",
+              "natality": 11282,
+              "count": 0,
+              "natalityPercentage": 0.28,
+              "disabled": false
+            },
+            {
+              "key": "AZ",
+              "title": "Arizona",
+              "natality": 85351,
+              "count": 0,
+              "natalityPercentage": 2.15,
+              "disabled": false
+            },
+            {
+              "key": "AR",
+              "title": "Arkansas",
+              "natality": 38886,
+              "count": 0,
+              "natalityPercentage": 0.98,
+              "disabled": false
+            },
+            {
+              "key": "CA",
+              "title": "California",
+              "natality": 491748,
+              "count": 0,
+              "natalityPercentage": 12.36,
+              "disabled": false
+            },
+            {
+              "key": "CO",
+              "title": "Colorado",
+              "natality": 66581,
+              "count": 0,
+              "natalityPercentage": 1.67,
+              "disabled": false
+            },
+            {
+              "key": "CT",
+              "title": "Connecticut",
+              "natality": 35746,
+              "count": 0,
+              "natalityPercentage": 0.9,
+              "disabled": false
+            },
+            {
+              "key": "DE",
+              "title": "Delaware",
+              "natality": 11166,
+              "count": 0,
+              "natalityPercentage": 0.28,
+              "disabled": false
+            },
+            {
+              "key": "DC",
+              "title": "District of Columbia",
+              "natality": 9578,
+              "count": 0,
+              "natalityPercentage": 0.24,
+              "disabled": false
+            },
+            {
+              "key": "FL",
+              "title": "Florida",
+              "natality": 224269,
+              "count": 0,
+              "natalityPercentage": 5.64,
+              "disabled": false
+            },
+            {
+              "key": "GA",
+              "title": "Georgia",
+              "natality": 131404,
+              "count": 0,
+              "natalityPercentage": 3.3,
+              "disabled": false
+            },
+            {
+              "key": "HI",
+              "title": "Hawaii",
+              "natality": 18420,
+              "count": 0,
+              "natalityPercentage": 0.46,
+              "disabled": false
+            },
+            {
+              "key": "ID",
+              "title": "Idaho",
+              "natality": 22827,
+              "count": 0,
+              "natalityPercentage": 0.57,
+              "disabled": false
+            },
+            {
+              "key": "IL",
+              "title": "Illinois",
+              "natality": 158116,
+              "count": 0,
+              "natalityPercentage": 3.97,
+              "disabled": false
+            },
+            {
+              "key": "IN",
+              "title": "Indiana",
+              "natality": 84040,
+              "count": 0,
+              "natalityPercentage": 2.11,
+              "disabled": false
+            },
+            {
+              "key": "IA",
+              "title": "Iowa",
+              "natality": 39482,
+              "count": 0,
+              "natalityPercentage": 0.99,
+              "disabled": false
+            },
+            {
+              "key": "KS",
+              "title": "Kansas",
+              "natality": 39154,
+              "count": 0,
+              "natalityPercentage": 0.98,
+              "disabled": false
+            },
+            {
+              "key": "KY",
+              "title": "Kentucky",
+              "natality": 55971,
+              "count": 0,
+              "natalityPercentage": 1.41,
+              "disabled": false
+            },
+            {
+              "key": "LA",
+              "title": "Louisiana",
+              "natality": 64692,
+              "count": 0,
+              "natalityPercentage": 1.63,
+              "disabled": false
+            },
+            {
+              "key": "ME",
+              "title": "Maine",
+              "natality": 12607,
+              "count": 0,
+              "natalityPercentage": 0.32,
+              "disabled": false
+            },
+            {
+              "key": "MD",
+              "title": "Maryland",
+              "natality": 73616,
+              "count": 0,
+              "natalityPercentage": 1.85,
+              "disabled": false
+            },
+            {
+              "key": "MA",
+              "title": "Massachusetts",
+              "natality": 71492,
+              "count": 0,
+              "natalityPercentage": 1.8,
+              "disabled": false
+            },
+            {
+              "key": "MI",
+              "title": "Michigan",
+              "natality": 113312,
+              "count": 0,
+              "natalityPercentage": 2.85,
+              "disabled": false
+            },
+            {
+              "key": "MN",
+              "title": "Minnesota",
+              "natality": 69834,
+              "count": 0,
+              "natalityPercentage": 1.76,
+              "disabled": false
+            },
+            {
+              "key": "MS",
+              "title": "Mississippi",
+              "natality": 38394,
+              "count": 0,
+              "natalityPercentage": 0.97,
+              "disabled": false
+            },
+            {
+              "key": "MO",
+              "title": "Missouri",
+              "natality": 75061,
+              "count": 0,
+              "natalityPercentage": 1.89,
+              "disabled": false
+            },
+            {
+              "key": "MT",
+              "title": "Montana",
+              "natality": 12583,
+              "count": 0,
+              "natalityPercentage": 0.32,
+              "disabled": false
+            },
+            {
+              "key": "NE",
+              "title": "Nebraska",
+              "natality": 26679,
+              "count": 0,
+              "natalityPercentage": 0.67,
+              "disabled": false
+            },
+            {
+              "key": "NV",
+              "title": "Nevada",
+              "natality": 36298,
+              "count": 0,
+              "natalityPercentage": 0.91,
+              "disabled": false
+            },
+            {
+              "key": "NH",
+              "title": "New Hampshire",
+              "natality": 12433,
+              "count": 0,
+              "natalityPercentage": 0.31,
+              "disabled": false
+            },
+            {
+              "key": "NJ",
+              "title": "New Jersey",
+              "natality": 103127,
+              "count": 0,
+              "natalityPercentage": 2.59,
+              "disabled": false
+            },
+            {
+              "key": "NM",
+              "title": "New Mexico",
+              "natality": 25816,
+              "count": 0,
+              "natalityPercentage": 0.65,
+              "disabled": false
+            },
+            {
+              "key": "NY",
+              "title": "New York",
+              "natality": 237274,
+              "count": 0,
+              "natalityPercentage": 5.96,
+              "disabled": false
+            },
+            {
+              "key": "NC",
+              "title": "North Carolina",
+              "natality": 120843,
+              "count": 0,
+              "natalityPercentage": 3.04,
+              "disabled": false
+            },
+            {
+              "key": "ND",
+              "title": "North Dakota",
+              "natality": 11314,
+              "count": 0,
+              "natalityPercentage": 0.28,
+              "disabled": false
+            },
+            {
+              "key": "OH",
+              "title": "Ohio",
+              "natality": 139264,
+              "count": 0,
+              "natalityPercentage": 3.5,
+              "disabled": false
+            },
+            {
+              "key": "OK",
+              "title": "Oklahoma",
+              "natality": 53122,
+              "count": 0,
+              "natalityPercentage": 1.34,
+              "disabled": false
+            },
+            {
+              "key": "OR",
+              "title": "Oregon",
+              "natality": 45655,
+              "count": 0,
+              "natalityPercentage": 1.15,
+              "disabled": false
+            },
+            {
+              "key": "PA",
+              "title": "Pennsylvania",
+              "natality": 141047,
+              "count": 0,
+              "natalityPercentage": 3.55,
+              "disabled": false
+            },
+            {
+              "key": "RI",
+              "title": "Rhode Island",
+              "natality": 10993,
+              "count": 0,
+              "natalityPercentage": 0.28,
+              "disabled": false
+            },
+            {
+              "key": "SC",
+              "title": "South Carolina",
+              "natality": 58139,
+              "count": 0,
+              "natalityPercentage": 1.46,
+              "disabled": false
+            },
+            {
+              "key": "SD",
+              "title": "South Dakota",
+              "natality": 12336,
+              "count": 0,
+              "natalityPercentage": 0.31,
+              "disabled": false
+            },
+            {
+              "key": "TN",
+              "title": "Tennessee",
+              "natality": 81685,
+              "count": 0,
+              "natalityPercentage": 2.05,
+              "disabled": false
+            },
+            {
+              "key": "TX",
+              "title": "Texas",
+              "natality": 403618,
+              "count": 0,
+              "natalityPercentage": 10.14,
+              "disabled": false
+            },
+            {
+              "key": "UT",
+              "title": "Utah",
+              "natality": 50778,
+              "count": 0,
+              "natalityPercentage": 1.28,
+              "disabled": false
+            },
+            {
+              "key": "VT",
+              "title": "Vermont",
+              "natality": 5903,
+              "count": 0,
+              "natalityPercentage": 0.15,
+              "disabled": false
+            },
+            {
+              "key": "VA",
+              "title": "Virginia",
+              "natality": 103303,
+              "count": 0,
+              "natalityPercentage": 2.6,
+              "disabled": false
+            },
+            {
+              "key": "WA",
+              "title": "Washington",
+              "natality": 88990,
+              "count": 0,
+              "natalityPercentage": 2.24,
+              "disabled": false
+            },
+            {
+              "key": "WV",
+              "title": "West Virginia",
+              "natality": 19805,
+              "count": 0,
+              "natalityPercentage": 0.5,
+              "disabled": false
+            },
+            {
+              "key": "WI",
+              "title": "Wisconsin",
+              "natality": 67041,
+              "count": 0,
+              "natalityPercentage": 1.69,
+              "disabled": false
+            },
+            {
+              "key": "WY",
+              "title": "Wyoming",
+              "natality": 7765,
+              "count": 0,
+              "natalityPercentage": 0.2,
+              "disabled": false
+            }
+          ],
+          "doNotShowAll": true,
+          "defaultGroup": "row",
+          "helpText": "label.help.text.cancer_mortality.state"
+        }
+      ],
+      "showMap": true,
+      "countLabel": "Total Deaths",
+      "mapData": {},
+      "chartAxisLabel": "Deaths",
+      "tableView": "cancer_mortality",
+      "runOnFilterChange": true,
+      "sideFilters": [
+        {
+          "sideFilters": [
+            {
+              "filterGroup": false,
+              "collapse": false,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "current_year",
+                "title": "label.filter.year",
+                "queryKey": "current_year",
+                "primary": false,
+                "value": [
+                  "2014"
+                ],
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "2014",
+                    "title": "2014",
+                    "natality": 0,
+                    "count": 0,
+                    "natalityPercentage": 0
+                  },
+                  {
+                    "key": "2013",
+                    "title": "2013",
+                    "natality": 0,
+                    "count": 0,
+                    "natalityPercentage": 0
+                  },
+                  {
+                    "key": "2012",
+                    "title": "2012",
+                    "natality": 0,
+                    "count": 0,
+                    "natalityPercentage": 0
+                  },
+                  {
+                    "key": "2011",
+                    "title": "2011",
+                    "natality": 0,
+                    "count": 0,
+                    "natalityPercentage": 0
+                  },
+                  {
+                    "key": "2010",
+                    "title": "2010",
+                    "natality": 0,
+                    "count": 0,
+                    "natalityPercentage": 0
+                  },
+                  {
+                    "key": "2009",
+                    "title": "2009",
+                    "natality": 0,
+                    "count": 0,
+                    "natalityPercentage": 0
+                  },
+                  {
+                    "key": "2008",
+                    "title": "2008",
+                    "natality": 0,
+                    "count": 0,
+                    "natalityPercentage": 0
+                  },
+                  {
+                    "key": "2007",
+                    "title": "2007",
+                    "natality": 0,
+                    "count": 0,
+                    "natalityPercentage": 0
+                  },
+                  {
+                    "key": "2006",
+                    "title": "2006",
+                    "natality": 0,
+                    "count": 0,
+                    "natalityPercentage": 0
+                  },
+                  {
+                    "key": "2005",
+                    "title": "2005",
+                    "natality": 0,
+                    "count": 0,
+                    "natalityPercentage": 0
+                  },
+                  {
+                    "key": "2004",
+                    "title": "2004",
+                    "natality": 0,
+                    "count": 0,
+                    "natalityPercentage": 0
+                  },
+                  {
+                    "key": "2003",
+                    "title": "2003",
+                    "natality": 0,
+                    "count": 0,
+                    "natalityPercentage": 0
+                  },
+                  {
+                    "key": "2002",
+                    "title": "2002",
+                    "natality": 0,
+                    "count": 0,
+                    "natalityPercentage": 0
+                  },
+                  {
+                    "key": "2001",
+                    "title": "2001",
+                    "natality": 0,
+                    "count": 0,
+                    "natalityPercentage": 0
+                  },
+                  {
+                    "key": "2000",
+                    "title": "2000",
+                    "natality": 0,
+                    "count": 0,
+                    "natalityPercentage": 0
+                  }
+                ],
+                "defaultGroup": "column",
+                "helpText": "label.help.text.cancer_mortality.year",
+                "allChecked": false
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "sex",
+                "title": "label.filter.gender",
+                "queryKey": "sex",
+                "primary": false,
+                "value": [],
+                "groupBy": "column",
+                "defaultGroup": "column",
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Female",
+                    "title": "Female",
+                    "natality": 1942336,
+                    "count": 0,
+                    "natalityPercentage": 48.82,
+                    "disabled": false
+                  },
+                  {
+                    "key": "Male",
+                    "title": "Male",
+                    "natality": 2036161,
+                    "count": 0,
+                    "natalityPercentage": 51.18,
+                    "disabled": false
+                  }
+                ],
+                "helpText": "label.help.text.cancer_mortality.sex",
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "race",
+                "title": "label.filter.race",
+                "queryKey": "race",
+                "primary": false,
+                "value": [],
+                "groupBy": "row",
+                "defaultGroup": "row",
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "American Indian/Alaska Native",
+                    "title": "American Indian/Alaska Native",
+                    "count": 0
+                  },
+                  {
+                    "key": "Asian or Pacific Islander",
+                    "title": "Asian or Pacific Islander",
+                    "count": 0
+                  },
+                  {
+                    "key": "Black",
+                    "title": "Black",
+                    "count": 0
+                  },
+                  {
+                    "key": "White",
+                    "title": "White",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.cancer_mortality.race",
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "hispanic_origin",
+                "title": "label.filter.hispanicOrigin",
+                "queryKey": "hispanic_origin",
+                "primary": false,
+                "value": [],
+                "groupBy": false,
+                "defaultGroup": "row",
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "Non-Hispanic",
+                    "title": "Non-Hispanic",
+                    "count": 0
+                  },
+                  {
+                    "key": "Hispanic",
+                    "title": "Hispanic",
+                    "count": 0
+                  },
+                  {
+                    "key": "Unknown",
+                    "title": "Unknown",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.cancer_mortality.hispanic_origin",
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "age_group",
+                "title": "label.filter.agegroup",
+                "queryKey": "age_group",
+                "primary": false,
+                "value": [],
+                "groupBy": false,
+                "defaultGroup": "row",
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "00 years",
+                    "title": "< 1 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "01-04 years",
+                    "title": "01-04 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "05-09 years",
+                    "title": "05-09 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "10-14 years",
+                    "title": "10-14 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "15-19 years",
+                    "title": "15-19 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "20-24 years",
+                    "title": "20-24 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "25-29 years",
+                    "title": "25-29 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "30-34 years",
+                    "title": "30-34 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "35-39 years",
+                    "title": "35-39 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "40-44 years",
+                    "title": "40-44 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "45-49 years",
+                    "title": "45-49 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "50-54 years",
+                    "title": "50-54 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "55-59 years",
+                    "title": "55-59 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "60-64 years",
+                    "title": "60-64 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "65-69 years",
+                    "title": "65-69 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "70-74 years",
+                    "title": "70-74 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "75-79 years",
+                    "title": "75-79 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "80-84 years",
+                    "title": "80-84 years",
+                    "count": 0
+                  },
+                  {
+                    "key": "85+ years",
+                    "title": "85+ years",
+                    "count": 0
+                  }
+                ],
+                "helpText": "label.help.text.cancer_mortality.age_group",
+                "allChecked": true
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "filters": {
+                "key": "site",
+                "title": "label.filter.cancer_site",
+                "queryKey": "cancer_site",
+                "primary": false,
+                "value": [],
+                "groupBy": false,
+                "filterType": "site",
+                "selectTitle": "label.cancer_site.select",
+                "updateTitle": "label.cancer_site.update",
+                "autoCompleteOptions": [
+                  {
+                    "title": "Oral Cavity and Pharynx",
+                    "key": "20010-20100",
+                    "count": 0
+                  },
+                  {
+                    "title": "Lip",
+                    "key": "20010",
+                    "count": 0
+                  },
+                  {
+                    "title": "Tongue",
+                    "key": "20020",
+                    "count": 0
+                  },
+                  {
+                    "title": "Salivary Gland",
+                    "key": "20030",
+                    "count": 0
+                  },
+                  {
+                    "title": "Floor of Mouth",
+                    "key": "20040",
+                    "count": 0
+                  },
+                  {
+                    "title": "Gum and Other Mouth",
+                    "key": "20050",
+                    "count": 0
+                  },
+                  {
+                    "title": "Nasopharynx",
+                    "key": "20060",
+                    "count": 0
+                  },
+                  {
+                    "title": "Tonsil",
+                    "key": "20070",
+                    "count": 0
+                  },
+                  {
+                    "title": "Oropharynx",
+                    "key": "20080",
+                    "count": 0
+                  },
+                  {
+                    "title": "Hypopharynx",
+                    "key": "20090",
+                    "count": 0
+                  },
+                  {
+                    "title": "Other Oral Cavity and Pharynx",
+                    "key": "20100",
+                    "count": 0
+                  },
+                  {
+                    "title": "Digestive System",
+                    "key": "21010-21130",
+                    "count": 0
+                  },
+                  {
+                    "title": "Esophagus",
+                    "key": "21010",
+                    "count": 0
+                  },
+                  {
+                    "title": "Stomach",
+                    "key": "21020",
+                    "count": 0
+                  },
+                  {
+                    "title": "Small Intestine",
+                    "key": "21030",
+                    "count": 0
+                  },
+                  {
+                    "title": "Colon and Rectum",
+                    "key": "21041-21052",
+                    "count": 0
+                  },
+                  {
+                    "title": "Colon excluding Rectum",
+                    "key": "21041-21049",
+                    "count": 0
+                  },
+                  {
+                    "title": "Cecum",
+                    "key": "21041",
+                    "count": 0
+                  },
+                  {
+                    "title": "Appendix",
+                    "key": "21042",
+                    "count": 0
+                  },
+                  {
+                    "title": "Ascending Colon",
+                    "key": "21043",
+                    "count": 0
+                  },
+                  {
+                    "title": "Hepatic Flexure",
+                    "key": "21044",
+                    "count": 0
+                  },
+                  {
+                    "title": "Transverse Colon",
+                    "key": "21045",
+                    "count": 0
+                  },
+                  {
+                    "title": "Splenic Flexure",
+                    "key": "21046",
+                    "count": 0
+                  },
+                  {
+                    "title": "Descending Colon",
+                    "key": "21047",
+                    "count": 0
+                  },
+                  {
+                    "title": "Sigmoid Colon",
+                    "key": "21048",
+                    "count": 0
+                  },
+                  {
+                    "title": "Large Intestine, NOS",
+                    "key": "21049",
+                    "count": 0
+                  },
+                  {
+                    "title": "Rectum and Rectosigmoid Junction",
+                    "key": "21051-21052",
+                    "count": 0
+                  },
+                  {
+                    "title": "Rectosigmoid Junction",
+                    "key": "21051",
+                    "count": 0
+                  },
+                  {
+                    "title": "Rectum",
+                    "key": "21052",
+                    "count": 0
+                  },
+                  {
+                    "title": "Anus, Anal Canal and Anorectum",
+                    "key": "21060",
+                    "count": 0
+                  },
+                  {
+                    "title": "Liver and Intrahepatic Bile Duc",
+                    "key": "21071-21072",
+                    "count": 0
+                  },
+                  {
+                    "title": "Liver",
+                    "key": "21071",
+                    "count": 0
+                  },
+                  {
+                    "title": "Intrahepatic Bile Duct",
+                    "key": "21072",
+                    "count": 0
+                  },
+                  {
+                    "title": "Gallbladder",
+                    "key": "21080",
+                    "count": 0
+                  },
+                  {
+                    "title": "Other Biliary",
+                    "key": "21090",
+                    "count": 0
+                  },
+                  {
+                    "title": "Pancreas",
+                    "key": "21100",
+                    "count": 0
+                  },
+                  {
+                    "title": "Retroperitoneum",
+                    "key": "21110",
+                    "count": 0
+                  },
+                  {
+                    "title": "Peritoneum, Omentum and Mesentery",
+                    "key": "21120",
+                    "count": 0
+                  },
+                  {
+                    "title": "Other Digestive Organs",
+                    "key": "21130",
+                    "count": 0
+                  },
+                  {
+                    "title": "Respiratory System",
+                    "key": "22010-22060",
+                    "count": 0
+                  },
+                  {
+                    "title": "Nose, Nasal Cavity and Middle Ear",
+                    "key": "22010",
+                    "count": 0
+                  },
+                  {
+                    "title": "Larynx",
+                    "key": "22020",
+                    "count": 0
+                  },
+                  {
+                    "title": "Lung and Bronchus",
+                    "key": "22030",
+                    "count": 0
+                  },
+                  {
+                    "title": "Pleura",
+                    "key": "22050",
+                    "count": 0
+                  },
+                  {
+                    "title": "Trachea, Mediastinum and Other Respiratory Organs",
+                    "key": "22060",
+                    "count": 0
+                  },
+                  {
+                    "title": "Bones and Joints",
+                    "key": "23000",
+                    "count": 0
+                  },
+                  {
+                    "title": "Soft Tissue including Heart",
+                    "key": "24000",
+                    "count": 0
+                  },
+                  {
+                    "title": "Skin excluding Basal and Squamous",
+                    "key": "25010-25020",
+                    "count": 0
+                  },
+                  {
+                    "title": "Melanoma of the Skin",
+                    "key": "25010",
+                    "count": 0
+                  },
+                  {
+                    "title": "Other Non-Epithelial Skin",
+                    "key": "25020",
+                    "count": 0
+                  },
+                  {
+                    "title": "Male and Female Breast",
+                    "key": "26000",
+                    "count": 0
+                  },
+                  {
+                    "title": "Female Breast",
+                    "key": "26000-Female",
+                    "count": 0
+                  },
+                  {
+                    "title": "Male Breast",
+                    "key": "26000-Male",
+                    "count": 0
+                  },
+                  {
+                    "title": "Female Genital System",
+                    "key": "27010-27070",
+                    "count": 0
+                  },
+                  {
+                    "title": "Cervix Uteri",
+                    "key": "27010",
+                    "count": 0
+                  },
+                  {
+                    "title": "Corpus Uteri",
+                    "key": "27020",
+                    "count": 0
+                  },
+                  {
+                    "title": "Uterus, NOS",
+                    "key": "27030",
+                    "count": 0
+                  },
+                  {
+                    "title": "Ovary",
+                    "key": "27040",
+                    "count": 0
+                  },
+                  {
+                    "title": "Vagina",
+                    "key": "27050",
+                    "count": 0
+                  },
+                  {
+                    "title": "Vulva",
+                    "key": "27060",
+                    "count": 0
+                  },
+                  {
+                    "title": "Other Female Genital Organs",
+                    "key": "27070",
+                    "count": 0
+                  },
+                  {
+                    "title": "Male Genital System",
+                    "key": "28010-28040",
+                    "count": 0
+                  },
+                  {
+                    "title": "Prostate",
+                    "key": "28010",
+                    "count": 0
+                  },
+                  {
+                    "title": "Testis",
+                    "key": "28020",
+                    "count": 0
+                  },
+                  {
+                    "title": "Penis",
+                    "key": "28030",
+                    "count": 0
+                  },
+                  {
+                    "title": "Other Male Genital Organs",
+                    "key": "28040",
+                    "count": 0
+                  },
+                  {
+                    "title": "Urinary System",
+                    "key": "29010-29040",
+                    "count": 0
+                  },
+                  {
+                    "title": "Urinary Bladder, invasive and in situ",
+                    "key": "29010",
+                    "count": 0
+                  },
+                  {
+                    "title": "Kidney and Renal Pelvis",
+                    "key": "29020",
+                    "count": 0
+                  },
+                  {
+                    "title": "Ureter",
+                    "key": "29030",
+                    "count": 0
+                  },
+                  {
+                    "title": "Other Urinary Organs",
+                    "key": "29040",
+                    "count": 0
+                  },
+                  {
+                    "title": "Eye and Orbit",
+                    "key": "30000",
+                    "count": 0
+                  },
+                  {
+                    "title": "Brain and Other Nervous System",
+                    "key": "31010-31040",
+                    "count": 0
+                  },
+                  {
+                    "title": "Brain",
+                    "key": "31010",
+                    "count": 0
+                  },
+                  {
+                    "title": "Cranial Nerves Other Nervous System",
+                    "key": "31040",
+                    "count": 0
+                  },
+                  {
+                    "title": "Endocrine System",
+                    "key": "32010-32020",
+                    "count": 0
+                  },
+                  {
+                    "title": "Thyroid",
+                    "key": "32010",
+                    "count": 0
+                  },
+                  {
+                    "title": "Other Endocrine including Thymus",
+                    "key": "32020",
+                    "count": 0
+                  },
+                  {
+                    "title": "Lymphomas",
+                    "key": "33011-33042",
+                    "count": 0
+                  },
+                  {
+                    "title": "Hodgkin Lymphoma",
+                    "key": "33011-33012",
+                    "count": 0
+                  },
+                  {
+                    "title": "Hodgkin - Nodal",
+                    "key": "33011",
+                    "count": 0
+                  },
+                  {
+                    "title": "Hodgkin - Extranodal",
+                    "key": "33012",
+                    "count": 0
+                  },
+                  {
+                    "title": "Non-Hodgkin Lymphoma",
+                    "key": "33041-33042",
+                    "count": 0
+                  },
+                  {
+                    "title": "NHL – Nodal",
+                    "key": "33041",
+                    "count": 0
+                  },
+                  {
+                    "title": "NHL – Extranodal",
+                    "key": "33042",
+                    "count": 0
+                  },
+                  {
+                    "title": "Myeloma",
+                    "key": "34000",
+                    "count": 0
+                  },
+                  {
+                    "title": "Leukemias",
+                    "key": "35011-35043",
+                    "count": 0
+                  },
+                  {
+                    "title": "Acute Lymphocytic Leukemia",
+                    "key": "35011",
+                    "count": 0
+                  },
+                  {
+                    "title": "Chronic Lymphocytic Leukemia",
+                    "key": "35012",
+                    "count": 0
+                  },
+                  {
+                    "title": "Acute Myeloid Leukemia",
+                    "key": "35021",
+                    "count": 0
+                  },
+                  {
+                    "title": "Chronic Myeloid Leukemia",
+                    "key": "35022",
+                    "count": 0
+                  },
+                  {
+                    "title": "Other Leukemias",
+                    "key": "35041-35043",
+                    "count": 0
+                  },
+                  {
+                    "title": "Other Lymphocytic Leukemia",
+                    "key": "35013",
+                    "count": 0
+                  },
+                  {
+                    "title": "Acute Monocytic Leukemia",
+                    "key": "35031",
+                    "count": 0
+                  },
+                  {
+                    "title": "Other Acute Leukemia",
+                    "key": "35041",
+                    "count": 0
+                  },
+                  {
+                    "title": "Aleukemic, Subleukemic and NOS",
+                    "key": "35043",
+                    "count": 0
+                  },
+                  {
+                    "title": "Other Myeloid/Monocytic Leukemia",
+                    "key": "35023",
+                    "count": 0
+                  },
+                  {
+                    "title": "Mesothelioma",
+                    "key": "36010",
+                    "count": 0
+                  },
+                  {
+                    "title": "Kaposi Sarcoma",
+                    "key": "36020",
+                    "count": 0
+                  },
+                  {
+                    "title": "Miscellaneous",
+                    "key": "37000",
+                    "count": 0
+                  }
+                ],
+                "tree": [
+                  {
+                    "text": "Oral Cavity and Pharynx",
+                    "id": "20010-20100",
+                    "children": [
+                      {
+                        "text": "Lip",
+                        "id": "20010",
+                        "children": [],
+                        "path": [
+                          "20010",
+                          "20010-20100",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Tongue",
+                        "id": "20020",
+                        "children": [],
+                        "path": [
+                          "20020",
+                          "20010-20100",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Salivary Gland",
+                        "id": "20030",
+                        "children": [],
+                        "path": [
+                          "20030",
+                          "20010-20100",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Floor of Mouth",
+                        "id": "20040",
+                        "children": [],
+                        "path": [
+                          "20040",
+                          "20010-20100",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Gum and Other Mouth",
+                        "id": "20050",
+                        "children": [],
+                        "path": [
+                          "20050",
+                          "20010-20100",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Nasopharynx",
+                        "id": "20060",
+                        "children": [],
+                        "path": [
+                          "20060",
+                          "20010-20100",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Tonsil",
+                        "id": "20070",
+                        "children": [],
+                        "path": [
+                          "20070",
+                          "20010-20100",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Oropharynx",
+                        "id": "20080",
+                        "children": [],
+                        "path": [
+                          "20080",
+                          "20010-20100",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Hypopharynx",
+                        "id": "20090",
+                        "children": [],
+                        "path": [
+                          "20090",
+                          "20010-20100",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Other Oral Cavity and Pharynx",
+                        "id": "20100",
+                        "children": [],
+                        "path": [
+                          "20100",
+                          "20010-20100",
+                          "0"
+                        ]
+                      }
+                    ],
+                    "path": [
+                      "20010-20100",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Digestive System",
+                    "id": "21010-21130",
+                    "children": [
+                      {
+                        "text": "Esophagus",
+                        "id": "21010",
+                        "children": [],
+                        "path": [
+                          "21010",
+                          "21010-21130",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Stomach",
+                        "id": "21020",
+                        "children": [],
+                        "path": [
+                          "21020",
+                          "21010-21130",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Small Intestine",
+                        "id": "21030",
+                        "children": [],
+                        "path": [
+                          "21030",
+                          "21010-21130",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Colon and Rectum",
+                        "id": "21041-21052",
+                        "children": [
+                          {
+                            "text": "Colon excluding Rectum",
+                            "id": "21041-21049",
+                            "children": [
+                              {
+                                "text": "Cecum",
+                                "id": "21041",
+                                "children": [],
+                                "path": [
+                                  "21041",
+                                  "21041-21049",
+                                  "21041-21052",
+                                  "21010-21130",
+                                  "0"
+                                ]
+                              },
+                              {
+                                "text": "Appendix",
+                                "id": "21042",
+                                "children": [],
+                                "path": [
+                                  "21042",
+                                  "21041-21049",
+                                  "21041-21052",
+                                  "21010-21130",
+                                  "0"
+                                ]
+                              },
+                              {
+                                "text": "Ascending Colon",
+                                "id": "21043",
+                                "children": [],
+                                "path": [
+                                  "21043",
+                                  "21041-21049",
+                                  "21041-21052",
+                                  "21010-21130",
+                                  "0"
+                                ]
+                              },
+                              {
+                                "text": "Hepatic Flexure",
+                                "id": "21044",
+                                "children": [],
+                                "path": [
+                                  "21044",
+                                  "21041-21049",
+                                  "21041-21052",
+                                  "21010-21130",
+                                  "0"
+                                ]
+                              },
+                              {
+                                "text": "Transverse Colon",
+                                "id": "21045",
+                                "children": [],
+                                "path": [
+                                  "21045",
+                                  "21041-21049",
+                                  "21041-21052",
+                                  "21010-21130",
+                                  "0"
+                                ]
+                              },
+                              {
+                                "text": "Splenic Flexure",
+                                "id": "21046",
+                                "children": [],
+                                "path": [
+                                  "21046",
+                                  "21041-21049",
+                                  "21041-21052",
+                                  "21010-21130",
+                                  "0"
+                                ]
+                              },
+                              {
+                                "text": "Descending Colon",
+                                "id": "21047",
+                                "children": [],
+                                "path": [
+                                  "21047",
+                                  "21041-21049",
+                                  "21041-21052",
+                                  "21010-21130",
+                                  "0"
+                                ]
+                              },
+                              {
+                                "text": "Sigmoid Colon",
+                                "id": "21048",
+                                "children": [],
+                                "path": [
+                                  "21048",
+                                  "21041-21049",
+                                  "21041-21052",
+                                  "21010-21130",
+                                  "0"
+                                ]
+                              },
+                              {
+                                "text": "Large Intestine, NOS",
+                                "id": "21049",
+                                "children": [],
+                                "path": [
+                                  "21049",
+                                  "21041-21049",
+                                  "21041-21052",
+                                  "21010-21130",
+                                  "0"
+                                ]
+                              }
+                            ],
+                            "path": [
+                              "21041-21049",
+                              "21041-21052",
+                              "21010-21130",
+                              "0"
+                            ]
+                          },
+                          {
+                            "text": "Rectum and Rectosigmoid Junction",
+                            "id": "21051-21052",
+                            "children": [
+                              {
+                                "text": "Rectosigmoid Junction",
+                                "id": "21051",
+                                "children": [],
+                                "path": [
+                                  "21051",
+                                  "21051-21052",
+                                  "21041-21052",
+                                  "21010-21130",
+                                  "0"
+                                ]
+                              },
+                              {
+                                "text": "Rectum",
+                                "id": "21052",
+                                "children": [],
+                                "path": [
+                                  "21052",
+                                  "21051-21052",
+                                  "21041-21052",
+                                  "21010-21130",
+                                  "0"
+                                ]
+                              }
+                            ],
+                            "path": [
+                              "21051-21052",
+                              "21041-21052",
+                              "21010-21130",
+                              "0"
+                            ]
+                          }
+                        ],
+                        "path": [
+                          "21041-21052",
+                          "21010-21130",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Anus, Anal Canal and Anorectum",
+                        "id": "21060",
+                        "children": [],
+                        "path": [
+                          "21060",
+                          "21010-21130",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Liver and Intrahepatic Bile Duc",
+                        "id": "21071-21072",
+                        "children": [
+                          {
+                            "text": "Liver",
+                            "id": "21071",
+                            "children": [],
+                            "path": [
+                              "21071",
+                              "21071-21072",
+                              "21010-21130",
+                              "0"
+                            ]
+                          },
+                          {
+                            "text": "Intrahepatic Bile Duct",
+                            "id": "21072",
+                            "children": [],
+                            "path": [
+                              "21072",
+                              "21071-21072",
+                              "21010-21130",
+                              "0"
+                            ]
+                          }
+                        ],
+                        "path": [
+                          "21071-21072",
+                          "21010-21130",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Gallbladder",
+                        "id": "21080",
+                        "children": [],
+                        "path": [
+                          "21080",
+                          "21010-21130",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Other Biliary",
+                        "id": "21090",
+                        "children": [],
+                        "path": [
+                          "21090",
+                          "21010-21130",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Pancreas",
+                        "id": "21100",
+                        "children": [],
+                        "path": [
+                          "21100",
+                          "21010-21130",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Retroperitoneum",
+                        "id": "21110",
+                        "children": [],
+                        "path": [
+                          "21110",
+                          "21010-21130",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Peritoneum, Omentum and Mesentery",
+                        "id": "21120",
+                        "children": [],
+                        "path": [
+                          "21120",
+                          "21010-21130",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Other Digestive Organs",
+                        "id": "21130",
+                        "children": [],
+                        "path": [
+                          "21130",
+                          "21010-21130",
+                          "0"
+                        ]
+                      }
+                    ],
+                    "path": [
+                      "21010-21130",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Respiratory System",
+                    "id": "22010-22060",
+                    "children": [
+                      {
+                        "text": "Nose, Nasal Cavity and Middle Ear",
+                        "id": "22010",
+                        "children": [],
+                        "path": [
+                          "22010",
+                          "22010-22060",
+                          "21010-21130",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Larynx",
+                        "id": "22020",
+                        "children": [],
+                        "path": [
+                          "22020",
+                          "22010-22060",
+                          "21010-21130",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Lung and Bronchus",
+                        "id": "22030",
+                        "children": [],
+                        "path": [
+                          "22030",
+                          "22010-22060",
+                          "21010-21130",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Pleura",
+                        "id": "22050",
+                        "children": [],
+                        "path": [
+                          "22050",
+                          "22010-22060",
+                          "21010-21130",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Trachea, Mediastinum and Other Respiratory Organs",
+                        "id": "22060",
+                        "children": [],
+                        "path": [
+                          "22060",
+                          "22010-22060",
+                          "21010-21130",
+                          "0"
+                        ]
+                      }
+                    ],
+                    "path": [
+                      "22010-22060",
+                      "21010-21130",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Bones and Joints",
+                    "id": "23000",
+                    "children": [],
+                    "path": [
+                      "23000",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Soft Tissue including Heart",
+                    "id": "24000",
+                    "children": [],
+                    "path": [
+                      "24000",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Skin excluding Basal and Squamous",
+                    "id": "25010-25020",
+                    "children": [
+                      {
+                        "text": "Melanoma of the Skin",
+                        "id": "25010",
+                        "children": [],
+                        "path": [
+                          "25010",
+                          "25010-25020",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Other Non-Epithelial Skin",
+                        "id": "25020",
+                        "children": [],
+                        "path": [
+                          "25020",
+                          "25010-25020",
+                          "0"
+                        ]
+                      }
+                    ],
+                    "path": [
+                      "25010-25020",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Male and Female Breast",
+                    "id": "26000",
+                    "children": [
+                      {
+                        "text": "Female Breast",
+                        "id": "26000-Female",
+                        "children": [],
+                        "path": [
+                          "26000-Female",
+                          "26000",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Male Breast",
+                        "id": "26000-Male",
+                        "children": [],
+                        "path": [
+                          "26000-Male",
+                          "26000",
+                          "0"
+                        ]
+                      }
+                    ],
+                    "path": [
+                      "26000",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Female Genital System",
+                    "id": "27010-27070",
+                    "children": [
+                      {
+                        "text": "Cervix Uteri",
+                        "id": "27010",
+                        "children": [],
+                        "path": [
+                          "27010",
+                          "27010-27070",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Corpus Uteri",
+                        "id": "27020",
+                        "children": [],
+                        "path": [
+                          "27020",
+                          "27010-27070",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Uterus, NOS",
+                        "id": "27030",
+                        "children": [],
+                        "path": [
+                          "27030",
+                          "27010-27070",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Ovary",
+                        "id": "27040",
+                        "children": [],
+                        "path": [
+                          "27040",
+                          "27010-27070",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Vagina",
+                        "id": "27050",
+                        "children": [],
+                        "path": [
+                          "27050",
+                          "27010-27070",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Vulva",
+                        "id": "27060",
+                        "children": [],
+                        "path": [
+                          "27060",
+                          "27010-27070",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Other Female Genital Organs",
+                        "id": "27070",
+                        "children": [],
+                        "path": [
+                          "27070",
+                          "27010-27070",
+                          "0"
+                        ]
+                      }
+                    ],
+                    "path": [
+                      "27010-27070",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Male Genital System",
+                    "id": "28010-28040",
+                    "children": [
+                      {
+                        "text": "Prostate",
+                        "id": "28010",
+                        "children": [],
+                        "path": [
+                          "28010",
+                          "28010-28040",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Testis",
+                        "id": "28020",
+                        "children": [],
+                        "path": [
+                          "28020",
+                          "28010-28040",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Penis",
+                        "id": "28030",
+                        "children": [],
+                        "path": [
+                          "28030",
+                          "28010-28040",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Other Male Genital Organs",
+                        "id": "28040",
+                        "children": [],
+                        "path": [
+                          "28040",
+                          "28010-28040",
+                          "0"
+                        ]
+                      }
+                    ],
+                    "path": [
+                      "28010-28040",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Urinary System",
+                    "id": "29010-29040",
+                    "children": [
+                      {
+                        "text": "Urinary Bladder, invasive and in situ",
+                        "id": "29010",
+                        "children": [],
+                        "path": [
+                          "29010",
+                          "29010-29040",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Kidney and Renal Pelvis",
+                        "id": "29020",
+                        "children": [],
+                        "path": [
+                          "29020",
+                          "29010-29040",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Ureter",
+                        "id": "29030",
+                        "children": [],
+                        "path": [
+                          "29030",
+                          "29010-29040",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Other Urinary Organs",
+                        "id": "29040",
+                        "children": [],
+                        "path": [
+                          "29030",
+                          "29010-29040",
+                          "0"
+                        ]
+                      }
+                    ],
+                    "path": [
+                      "29010-29040",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Eye and Orbit",
+                    "id": "30000",
+                    "children": [],
+                    "path": [
+                      "30000",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Brain and Other Nervous System",
+                    "id": "31010-31040",
+                    "children": [
+                      {
+                        "text": "Brain",
+                        "id": "31010",
+                        "children": [],
+                        "path": [
+                          "31010",
+                          "31010-31040",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Cranial Nerves Other Nervous System",
+                        "id": "31040",
+                        "children": [],
+                        "path": [
+                          "31040",
+                          "31010-31040",
+                          "0"
+                        ]
+                      }
+                    ],
+                    "path": [
+                      "31010-31040",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Endocrine System",
+                    "id": "32010-32020",
+                    "children": [
+                      {
+                        "text": "Thyroid",
+                        "id": "32010",
+                        "children": [],
+                        "path": [
+                          "32010",
+                          "32010-32020",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Other Endocrine including Thymus",
+                        "id": "32020",
+                        "children": [],
+                        "path": [
+                          "32020",
+                          "32010-32020",
+                          "0"
+                        ]
+                      }
+                    ],
+                    "path": [
+                      "32010-32020",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Lymphomas",
+                    "id": "33011-33042",
+                    "children": [
+                      {
+                        "text": "Hodgkin Lymphoma",
+                        "id": "33011-33012",
+                        "children": [
+                          {
+                            "text": "Hodgkin - Nodal",
+                            "id": "33011",
+                            "children": [],
+                            "path": [
+                              "33011",
+                              "33011-33012",
+                              "33011-33042",
+                              "0"
+                            ]
+                          },
+                          {
+                            "text": "Hodgkin - Extranodal",
+                            "id": "33012",
+                            "children": [],
+                            "path": [
+                              "33012",
+                              "33011-33012",
+                              "33011-33042",
+                              "0"
+                            ]
+                          }
+                        ],
+                        "path": [
+                          "33011-33012",
+                          "33011-33042",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Non-Hodgkin Lymphoma",
+                        "id": "33041-33042",
+                        "children": [
+                          {
+                            "text": "NHL – Nodal",
+                            "id": "33041",
+                            "children": [],
+                            "path": [
+                              "33041",
+                              "33041-33042",
+                              "33011-33042",
+                              "0"
+                            ]
+                          },
+                          {
+                            "text": "NHL – Extranodal",
+                            "id": "33042",
+                            "children": [],
+                            "path": [
+                              "33042",
+                              "33041-33042",
+                              "33011-33042",
+                              "0"
+                            ]
+                          }
+                        ],
+                        "path": [
+                          "33041-33042",
+                          "33011-33042",
+                          "0"
+                        ]
+                      }
+                    ],
+                    "path": [
+                      "33011-33042",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Myeloma",
+                    "id": "34000",
+                    "children": [],
+                    "path": [
+                      "34000",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Leukemias",
+                    "id": "35011-35043",
+                    "children": [
+                      {
+                        "text": "Acute Lymphocytic Leukemia",
+                        "id": "35011",
+                        "children": [],
+                        "path": [
+                          "35011",
+                          "35011-35043",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Chronic Lymphocytic Leukemia",
+                        "id": "35012",
+                        "children": [],
+                        "path": [
+                          "35012",
+                          "35011-35043",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Acute Myeloid Leukemia",
+                        "id": "35021",
+                        "children": [],
+                        "path": [
+                          "35021",
+                          "35011-35043",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Chronic Myeloid Leukemia",
+                        "id": "35022",
+                        "children": [],
+                        "path": [
+                          "35022",
+                          "35011-35043",
+                          "0"
+                        ]
+                      },
+                      {
+                        "text": "Other Leukemias",
+                        "id": "35041-35043",
+                        "children": [
+                          {
+                            "text": "Other Lymphocytic Leukemia",
+                            "id": "35013",
+                            "children": [],
+                            "path": [
+                              "35013",
+                              "35041-35043",
+                              "35011-35043",
+                              "0"
+                            ]
+                          },
+                          {
+                            "text": "Acute Monocytic Leukemia",
+                            "id": "35031",
+                            "children": [],
+                            "path": [
+                              "35031",
+                              "35041-35043",
+                              "35011-35043",
+                              "0"
+                            ]
+                          },
+                          {
+                            "text": "Other Acute Leukemia",
+                            "id": "35041",
+                            "children": [],
+                            "path": [
+                              "35041",
+                              "35041-35043",
+                              "35011-35043",
+                              "0"
+                            ]
+                          },
+                          {
+                            "text": "Aleukemic, Subleukemic and NOS",
+                            "id": "35043",
+                            "children": [],
+                            "path": [
+                              "35043",
+                              "35041-35043",
+                              "35011-35043",
+                              "0"
+                            ]
+                          },
+                          {
+                            "text": "Other Myeloid/Monocytic Leukemia",
+                            "id": "35023",
+                            "children": [],
+                            "path": [
+                              "35023",
+                              "35041-35043",
+                              "35011-35043",
+                              "0"
+                            ]
+                          }
+                        ],
+                        "path": [
+                          "35041-35043",
+                          "35011-35043",
+                          "0"
+                        ]
+                      }
+                    ],
+                    "path": [
+                      "35011-35043",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Mesothelioma",
+                    "id": "36010",
+                    "children": [],
+                    "path": [
+                      "36010",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Kaposi Sarcoma",
+                    "id": "36020",
+                    "children": [],
+                    "path": [
+                      "36020",
+                      "0"
+                    ]
+                  },
+                  {
+                    "text": "Miscellaneous",
+                    "id": "37000",
+                    "children": [],
+                    "path": [
+                      "37000",
+                      "0"
+                    ]
+                  }
+                ],
+                "aggregationKey": "cancer_site.path",
+                "defaultGroup": "row",
+                "helpText": "label.help.text.cancer_mortality.cancer_site"
+              }
+            },
+            {
+              "filterGroup": false,
+              "collapse": true,
+              "allowGrouping": true,
+              "groupOptions": [
+                {
+                  "key": "column",
+                  "title": "Column",
+                  "tooltip": "Select to view as columns on data table"
+                },
+                {
+                  "key": "row",
+                  "title": "Row",
+                  "tooltip": "Select to view as rows on data table"
+                },
+                {
+                  "key": false,
+                  "title": "Off",
+                  "tooltip": "Select to hide on data table"
+                }
+              ],
+              "dontShowCounts": true,
+              "filters": {
+                "key": "state",
+                "title": "label.filter.state",
+                "queryKey": "state",
+                "primary": false,
+                "value": [],
+                "groupBy": false,
+                "filterType": "checkbox",
+                "autoCompleteOptions": [
+                  {
+                    "key": "AL",
+                    "title": "Alabama",
+                    "natality": 59657,
+                    "count": 0,
+                    "natalityPercentage": 1.5,
+                    "disabled": false
+                  },
+                  {
+                    "key": "AK",
+                    "title": "Alaska",
+                    "natality": 11282,
+                    "count": 0,
+                    "natalityPercentage": 0.28,
+                    "disabled": false
+                  },
+                  {
+                    "key": "AZ",
+                    "title": "Arizona",
+                    "natality": 85351,
+                    "count": 0,
+                    "natalityPercentage": 2.15,
+                    "disabled": false
+                  },
+                  {
+                    "key": "AR",
+                    "title": "Arkansas",
+                    "natality": 38886,
+                    "count": 0,
+                    "natalityPercentage": 0.98,
+                    "disabled": false
+                  },
+                  {
+                    "key": "CA",
+                    "title": "California",
+                    "natality": 491748,
+                    "count": 0,
+                    "natalityPercentage": 12.36,
+                    "disabled": false
+                  },
+                  {
+                    "key": "CO",
+                    "title": "Colorado",
+                    "natality": 66581,
+                    "count": 0,
+                    "natalityPercentage": 1.67,
+                    "disabled": false
+                  },
+                  {
+                    "key": "CT",
+                    "title": "Connecticut",
+                    "natality": 35746,
+                    "count": 0,
+                    "natalityPercentage": 0.9,
+                    "disabled": false
+                  },
+                  {
+                    "key": "DE",
+                    "title": "Delaware",
+                    "natality": 11166,
+                    "count": 0,
+                    "natalityPercentage": 0.28,
+                    "disabled": false
+                  },
+                  {
+                    "key": "DC",
+                    "title": "District of Columbia",
+                    "natality": 9578,
+                    "count": 0,
+                    "natalityPercentage": 0.24,
+                    "disabled": false
+                  },
+                  {
+                    "key": "FL",
+                    "title": "Florida",
+                    "natality": 224269,
+                    "count": 0,
+                    "natalityPercentage": 5.64,
+                    "disabled": false
+                  },
+                  {
+                    "key": "GA",
+                    "title": "Georgia",
+                    "natality": 131404,
+                    "count": 0,
+                    "natalityPercentage": 3.3,
+                    "disabled": false
+                  },
+                  {
+                    "key": "HI",
+                    "title": "Hawaii",
+                    "natality": 18420,
+                    "count": 0,
+                    "natalityPercentage": 0.46,
+                    "disabled": false
+                  },
+                  {
+                    "key": "ID",
+                    "title": "Idaho",
+                    "natality": 22827,
+                    "count": 0,
+                    "natalityPercentage": 0.57,
+                    "disabled": false
+                  },
+                  {
+                    "key": "IL",
+                    "title": "Illinois",
+                    "natality": 158116,
+                    "count": 0,
+                    "natalityPercentage": 3.97,
+                    "disabled": false
+                  },
+                  {
+                    "key": "IN",
+                    "title": "Indiana",
+                    "natality": 84040,
+                    "count": 0,
+                    "natalityPercentage": 2.11,
+                    "disabled": false
+                  },
+                  {
+                    "key": "IA",
+                    "title": "Iowa",
+                    "natality": 39482,
+                    "count": 0,
+                    "natalityPercentage": 0.99,
+                    "disabled": false
+                  },
+                  {
+                    "key": "KS",
+                    "title": "Kansas",
+                    "natality": 39154,
+                    "count": 0,
+                    "natalityPercentage": 0.98,
+                    "disabled": false
+                  },
+                  {
+                    "key": "KY",
+                    "title": "Kentucky",
+                    "natality": 55971,
+                    "count": 0,
+                    "natalityPercentage": 1.41,
+                    "disabled": false
+                  },
+                  {
+                    "key": "LA",
+                    "title": "Louisiana",
+                    "natality": 64692,
+                    "count": 0,
+                    "natalityPercentage": 1.63,
+                    "disabled": false
+                  },
+                  {
+                    "key": "ME",
+                    "title": "Maine",
+                    "natality": 12607,
+                    "count": 0,
+                    "natalityPercentage": 0.32,
+                    "disabled": false
+                  },
+                  {
+                    "key": "MD",
+                    "title": "Maryland",
+                    "natality": 73616,
+                    "count": 0,
+                    "natalityPercentage": 1.85,
+                    "disabled": false
+                  },
+                  {
+                    "key": "MA",
+                    "title": "Massachusetts",
+                    "natality": 71492,
+                    "count": 0,
+                    "natalityPercentage": 1.8,
+                    "disabled": false
+                  },
+                  {
+                    "key": "MI",
+                    "title": "Michigan",
+                    "natality": 113312,
+                    "count": 0,
+                    "natalityPercentage": 2.85,
+                    "disabled": false
+                  },
+                  {
+                    "key": "MN",
+                    "title": "Minnesota",
+                    "natality": 69834,
+                    "count": 0,
+                    "natalityPercentage": 1.76,
+                    "disabled": false
+                  },
+                  {
+                    "key": "MS",
+                    "title": "Mississippi",
+                    "natality": 38394,
+                    "count": 0,
+                    "natalityPercentage": 0.97,
+                    "disabled": false
+                  },
+                  {
+                    "key": "MO",
+                    "title": "Missouri",
+                    "natality": 75061,
+                    "count": 0,
+                    "natalityPercentage": 1.89,
+                    "disabled": false
+                  },
+                  {
+                    "key": "MT",
+                    "title": "Montana",
+                    "natality": 12583,
+                    "count": 0,
+                    "natalityPercentage": 0.32,
+                    "disabled": false
+                  },
+                  {
+                    "key": "NE",
+                    "title": "Nebraska",
+                    "natality": 26679,
+                    "count": 0,
+                    "natalityPercentage": 0.67,
+                    "disabled": false
+                  },
+                  {
+                    "key": "NV",
+                    "title": "Nevada",
+                    "natality": 36298,
+                    "count": 0,
+                    "natalityPercentage": 0.91,
+                    "disabled": false
+                  },
+                  {
+                    "key": "NH",
+                    "title": "New Hampshire",
+                    "natality": 12433,
+                    "count": 0,
+                    "natalityPercentage": 0.31,
+                    "disabled": false
+                  },
+                  {
+                    "key": "NJ",
+                    "title": "New Jersey",
+                    "natality": 103127,
+                    "count": 0,
+                    "natalityPercentage": 2.59,
+                    "disabled": false
+                  },
+                  {
+                    "key": "NM",
+                    "title": "New Mexico",
+                    "natality": 25816,
+                    "count": 0,
+                    "natalityPercentage": 0.65,
+                    "disabled": false
+                  },
+                  {
+                    "key": "NY",
+                    "title": "New York",
+                    "natality": 237274,
+                    "count": 0,
+                    "natalityPercentage": 5.96,
+                    "disabled": false
+                  },
+                  {
+                    "key": "NC",
+                    "title": "North Carolina",
+                    "natality": 120843,
+                    "count": 0,
+                    "natalityPercentage": 3.04,
+                    "disabled": false
+                  },
+                  {
+                    "key": "ND",
+                    "title": "North Dakota",
+                    "natality": 11314,
+                    "count": 0,
+                    "natalityPercentage": 0.28,
+                    "disabled": false
+                  },
+                  {
+                    "key": "OH",
+                    "title": "Ohio",
+                    "natality": 139264,
+                    "count": 0,
+                    "natalityPercentage": 3.5,
+                    "disabled": false
+                  },
+                  {
+                    "key": "OK",
+                    "title": "Oklahoma",
+                    "natality": 53122,
+                    "count": 0,
+                    "natalityPercentage": 1.34,
+                    "disabled": false
+                  },
+                  {
+                    "key": "OR",
+                    "title": "Oregon",
+                    "natality": 45655,
+                    "count": 0,
+                    "natalityPercentage": 1.15,
+                    "disabled": false
+                  },
+                  {
+                    "key": "PA",
+                    "title": "Pennsylvania",
+                    "natality": 141047,
+                    "count": 0,
+                    "natalityPercentage": 3.55,
+                    "disabled": false
+                  },
+                  {
+                    "key": "RI",
+                    "title": "Rhode Island",
+                    "natality": 10993,
+                    "count": 0,
+                    "natalityPercentage": 0.28,
+                    "disabled": false
+                  },
+                  {
+                    "key": "SC",
+                    "title": "South Carolina",
+                    "natality": 58139,
+                    "count": 0,
+                    "natalityPercentage": 1.46,
+                    "disabled": false
+                  },
+                  {
+                    "key": "SD",
+                    "title": "South Dakota",
+                    "natality": 12336,
+                    "count": 0,
+                    "natalityPercentage": 0.31,
+                    "disabled": false
+                  },
+                  {
+                    "key": "TN",
+                    "title": "Tennessee",
+                    "natality": 81685,
+                    "count": 0,
+                    "natalityPercentage": 2.05,
+                    "disabled": false
+                  },
+                  {
+                    "key": "TX",
+                    "title": "Texas",
+                    "natality": 403618,
+                    "count": 0,
+                    "natalityPercentage": 10.14,
+                    "disabled": false
+                  },
+                  {
+                    "key": "UT",
+                    "title": "Utah",
+                    "natality": 50778,
+                    "count": 0,
+                    "natalityPercentage": 1.28,
+                    "disabled": false
+                  },
+                  {
+                    "key": "VT",
+                    "title": "Vermont",
+                    "natality": 5903,
+                    "count": 0,
+                    "natalityPercentage": 0.15,
+                    "disabled": false
+                  },
+                  {
+                    "key": "VA",
+                    "title": "Virginia",
+                    "natality": 103303,
+                    "count": 0,
+                    "natalityPercentage": 2.6,
+                    "disabled": false
+                  },
+                  {
+                    "key": "WA",
+                    "title": "Washington",
+                    "natality": 88990,
+                    "count": 0,
+                    "natalityPercentage": 2.24,
+                    "disabled": false
+                  },
+                  {
+                    "key": "WV",
+                    "title": "West Virginia",
+                    "natality": 19805,
+                    "count": 0,
+                    "natalityPercentage": 0.5,
+                    "disabled": false
+                  },
+                  {
+                    "key": "WI",
+                    "title": "Wisconsin",
+                    "natality": 67041,
+                    "count": 0,
+                    "natalityPercentage": 1.69,
+                    "disabled": false
+                  },
+                  {
+                    "key": "WY",
+                    "title": "Wyoming",
+                    "natality": 7765,
+                    "count": 0,
+                    "natalityPercentage": 0.2,
+                    "disabled": false
+                  }
+                ],
+                "doNotShowAll": true,
+                "defaultGroup": "row",
+                "helpText": "label.help.text.cancer_mortality.state"
+              }
+            }
+          ]
+        }
+      ]
+    }
   }
 ]
