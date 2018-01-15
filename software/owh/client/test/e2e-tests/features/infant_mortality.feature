@@ -35,7 +35,7 @@ Feature: Infant Mortality filters
     And the "Race" filter should be toggled to "Row"
 
   Scenario: Infant Mortality Default Table Data for 2014
-    Then the default headers of the table should be "Race, Female, Male, Number of Infant Deaths"
+    Then the default headers of the table should be "Race, Female, Male, Total"
     And the values in row "0" should be "American Indian or Alaska Native, 146, 195, 341"
     And the values in row "0" should be "American Indian or Alaska Native, 22,120, 22,808, 44,928"
     And the values in row "0" should be "American Indian or Alaska Native, 6.6, 8.6, 7.6"
