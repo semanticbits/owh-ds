@@ -70,6 +70,10 @@
       'getFactSheet' : {
           method : 'POST',
           url: '/factsheet'
+      },
+      'getGoogleAnalyticsInfo' : {
+          method: 'GET',
+          url: '/getGoogAnalyInfo'
       }
     }
   }
