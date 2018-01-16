@@ -1,6 +1,6 @@
 FROM node:8.4-wheezy
 
-USER root
+
 RUN mkdir -p /usr/local/owh
 WORKDIR /usr/local/owh
 COPY . /usr/local/owh
