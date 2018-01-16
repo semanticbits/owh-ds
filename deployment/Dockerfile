@@ -1,9 +1,9 @@
 FROM node:8.4-wheezy
 
-USER root
 RUN mkdir -p /usr/local/owh
 WORKDIR /usr/local/owh
 COPY . /usr/local/owh
+RUN npm -g config set user root
 RUN npm install -g bower
 RUN npm install -g nodemon
 RUN chmod 777 /usr/local/owh/scripts/*.sh
