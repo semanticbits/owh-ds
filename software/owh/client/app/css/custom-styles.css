@@ -2228,12 +2228,16 @@ div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leafl
 	padding-right: 40px;
 }
 
+.unset-position {
+	position: unset !important;
+}
 .map-custom-controls {
 	z-index: 80;
 	position: relative;
 }
-.leaflet-container {
-	overflow: visible;
+.map-container {
+	z-index: 10;
+	position: relative;
 }
 
 .restriction-modal-body {

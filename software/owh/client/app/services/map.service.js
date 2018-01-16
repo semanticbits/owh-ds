@@ -357,10 +357,12 @@
                                 event.target._map, primaryFilter.key, event.containerPoint, isStatData);
                                highlightFeature(event.target._map._layers[event.target._leaflet_id]);
                         }
+                        angular.element('#minimizedMap').addClass('unset-position');
                     });
                     layer.on("mouseout", function (event) {
                         mapPopup._close();
                         resetHighlight(event);
+                        angular.element('#minimizedMap').removeClass('unset-position');
                     });
                 }
             });
