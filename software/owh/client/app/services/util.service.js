@@ -879,7 +879,7 @@
 
         function generateMapLegendLabels(minValue, maxValue) {
             var labels = [];
-            generateMapLegendRanges(minValue, maxValue).reverse().forEach(function(option, index){
+            generateMapLegendRanges(minValue, maxValue).forEach(function(option, index){
                 labels.push('> '+ numberWithCommas(option)) ;
             });
             var lastLabelIndex = labels.length-1;
