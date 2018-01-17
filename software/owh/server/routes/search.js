@@ -148,6 +148,21 @@ var searchRouter = function(app, rConfig) {
             });
         }
     });
+
+    app.get('/getGoogAnalyInfo', function (req, res) {
+        if(config.googleAnalytics) {
+            var trackingID = config.googleAnalytics.trackingID;
+            if(trackingID) {
+                res.send(new result('OK', {trackingID: trackingID}, "success"));
+            }
+            else {
+                res.send(new result('TrackingID not found in external configuration', {}, "failed"));
+            }
+        }
+        else {
+            res.send(new result('Google Analytics related information not found in external configuration', {}, "failed"));
+        }
+    });
 };
 
 

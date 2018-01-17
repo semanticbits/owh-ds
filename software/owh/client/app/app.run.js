@@ -3,9 +3,15 @@
     angular
         .module('owh')
         .run(appRun);
-    appRun.$inject = ['$templateCache', '$rootScope', '$http', '$state', '$stateParams', "API"];
+    appRun.$inject = ['$templateCache', '$rootScope', '$http', '$state', '$stateParams', "API", '$location', '$window'];
 
-    function appRun( $templateCache, $rootScope, $http, $state, $stateParams, API ) {
+    /*google analytics*/
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    function appRun( $templateCache, $rootScope, $http, $state, $stateParams, API, $location, $window ) {
         $templateCache.put("bootstrap/select-multiple.tpl.html","<div class=\"ui-select-container ui-select-multiple ui-select-bootstrap dropdown form-control\" ng-class=\"{open: $select.open}\"><div><div class=\"ui-select-match\"></div><input type=\"search\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\" class=\"ui-select-search input-xs\" placeholder=\"{{$select.placeholder}}\" ng-disabled=\"$select.disabled\" ng-hide=\"$select.disabled\" ng-click=\"$select.activate()\" ng-model=\"$select.search\" role=\"combobox\" aria-label=\"{{ $select.baseTitle }}\" ondrop=\"return false;\"></div><div class=\"ui-select-choices\"></div></div>");
         $templateCache.put("bootstrap/choices.tpl.html","<ul class=\"ui-select-choices ui-select-choices-content ui-select-dropdown dropdown-menu\" role=\"listbox\" ng-show=\"$select.open && $select.items.length > 0\"><li class=\"ui-select-choices-group\" id=\"ui-select-choices-{{ $select.generatedId }}\"><div class=\"divider\" ng-show=\"$select.isGrouped && $index > 0\"></div><div ng-show=\"$select.isGrouped\" class=\"ui-select-choices-group-label dropdown-header\" ng-bind=\"$group.name | translate\"></div><div ng-attr-id=\"ui-select-choices-row-{{ $select.generatedId }}-{{$index}}\" class=\"ui-select-choices-row\" ng-class=\"{active: $select.isActive(this), disabled: $select.isDisabled(this)}\" role=\"option\"><a href=\"\" class=\"ui-select-choices-row-inner\"></a></div></li></ul>");
 
@@ -405,6 +411,24 @@
             $rootScope.$broadcast("brfsQuestionsLoaded");
         }).catch(function(error){
             console.log(" Failed to get BRFS questions from stats service ", error);
+        });
+
+
+        /**
+         * To get Google Analytics information like trackingID etc..
+         */
+        API.getGoogleAnalyticsInfo().$promise.then(function(response){
+            // initialise google analytics
+            $window.ga('create', response.data.trackingID, 'auto');
+            $rootScope.$on('$stateChangeSuccess', function (event) {
+                var url = $location.path();
+                if($stateParams.queryID && $stateParams.queryID != '' && $stateParams.primaryFilterKey) {
+                    url = url + '/?dataset='+$stateParams.primaryFilterKey;
+                }
+                $window.ga('send', 'pageview', url);
+            });
+        }).catch(function(error){
+            console.log(" Failed to get google analytics tracking ID ", error);
         });
 
     }
