@@ -422,8 +422,7 @@
             $window.ga('create', response.data.trackingID, 'auto');
             $rootScope.$on('$stateChangeSuccess', function (event) {
                 var url = $location.path();
-                //primaryFilterKey
-                if($stateParams.queryID && $stateParams.queryID != '') {
+                if($stateParams.queryID && $stateParams.queryID != '' && $stateParams.primaryFilterKey) {
                     url = url + '/?dataset='+$stateParams.primaryFilterKey;
                 }
                 $window.ga('send', 'pageview', url);
