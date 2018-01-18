@@ -185,6 +185,7 @@
                     fsc.fsType = response.resultData.fsType;
                     fsc.fsTypeForTable = response.resultData.fsType;
                     fsc.stateName = fsc.states[response.resultData.state];
+                    fsc.factSheetTitle = fsc.stateName+" - "+fsc.fsTypeForTable;
                     fsc.stateImg = 'state_' + response.resultData.state + '.svg';
                     fsc.stateImgUrl = '../../images/state-shapes/state_' + response.resultData.state + '.svg';
                     fsc.factSheet = response.resultData;
@@ -574,7 +575,7 @@
                  },
                  pdfDefinition.content = [
                      {image: response.data[0], width: 50, height: 50, style: 'state-image'},
-                     {text: fsc.stateName+" Health Fact Sheet", style: 'state-heading'},
+                     {text: fsc.factSheetTitle, style: 'state-heading'},
                      {image: fsc.imageDataURLs.bridgeRace, width: 50, height: 50, style: 'dataset-image'},
                      {text: "Population in "+fsc.stateName, style: 'heading'},
                      {text: bridgeRaceTotalText},

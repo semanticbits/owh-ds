@@ -37,7 +37,7 @@
             <div id="factsheet_content" ng-if="fsc.factSheet" class="factsheet-content">
                 <div class="factsheet-header flex-container" id="factsheetHeader">
                     <img id="stateImage" ng-src="{{fsc.stateImgUrl}}" />
-                    <h3 ng-bind="fsc.stateName" class="state-heading"></h3>
+                    <h3 ng-bind="fsc.factSheetTitle" class="state-heading"></h3>
                     <a href="#" id="downloadFactSheetLink" ng-click="fsc.exportFactSheet()" ng-if="fsc.factSheet"
                        class="download-link">
                         <i class="material-icons margin-right-10 pdf-icon">file_download</i>Download fact sheet for
