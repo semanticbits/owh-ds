@@ -64,7 +64,7 @@ before_script:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ./node_modules/protractor/bin/webdriver-manager update; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sleep 1; fi #give server time to start
 
-group: deprecated-2017Q2
+group: deprecated-2017Q4
 language: if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then java; fi
 jdk:
   - oraclejdk8

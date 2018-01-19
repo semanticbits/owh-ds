@@ -389,7 +389,30 @@
         }
 
         function getColorPallete(){
-             return ["#ED93CB", "#65c2ff", "#FFCC9A", "#56b783", "#FF9F4A", "#fdac5c", "#61B861", "#B2E7A7 ", "#DB5859", "#FFB2B0 ", "#AF8DCE", "#D4C4E0 ", "#A98078", "#D3B5AF", "#64D7D6", "#44558F", "#FFE495", "#1684A7 ", "#7577CD", "#6A759B", "#F6EC72", "#F97300 ", "#FD6378", "#390050", "#970747"]
+             return [
+                 "#FF9F4A",
+                 "#45b7ad",
+                 "#7577CD",
+                 "#61B861",
+                 "#B2E7A7",
+                 "#DB5859",
+                 "#FFB2B0",
+                 "#AF8DCE",
+                 "#D4C4E0",
+                 "#47a5fa",
+                 "#A98078",
+                 "#D3B5AF",
+                 "#64D7D6",
+                 "#44558F",
+                 "#FFE495",
+                 "#1684A7",
+                 "#e9b684",
+                 "#6A759B",
+                 "#F6EC72",
+                 "#F97300",
+                 "#FD6378",
+                 "#390050",
+                 "#970747"]
         }
         
         function getSelectedOptionTitlesOfFilter(filter) {

@@ -7,5 +7,5 @@ echo "- Executing in /tmp/deploy -"
 ls
 pwd
 echo "executing compose up"
-docker-compose up -d --no-build
+/usr/local/bin/docker-compose up -d --no-build
 echo "*** completed***"

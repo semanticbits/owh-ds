@@ -185,6 +185,7 @@
                     fsc.fsType = response.resultData.fsType;
                     fsc.fsTypeForTable = response.resultData.fsType;
                     fsc.stateName = fsc.states[response.resultData.state];
+                    fsc.factSheetTitle = fsc.stateName+" - "+fsc.fsTypeForTable;
                     fsc.stateImg = 'state_' + response.resultData.state + '.svg';
                     fsc.stateImgUrl = '../../images/state-shapes/state_' + response.resultData.state + '.svg';
                     fsc.factSheet = response.resultData;
@@ -314,7 +315,8 @@
             //Infant Mortality
             allTablesData.infantMortality = {
                 headerData: ['Deaths', 'Births', 'Death Rate'],
-                bodyData: [$filter('number')(fsc.factSheet.infantMortalityData.infant_mortality), $filter('number')(fsc.factSheet.infantMortalityData.births), $filter('number')(fsc.factSheet.infantMortalityData.deathRate)]
+                bodyData: [$filter('number')(fsc.factSheet.infantMortalityData.infant_mortality), $filter('number')(fsc.factSheet.infantMortalityData.births),
+                    $filter('number')(fsc.factSheet.infantMortalityData.deathRate, 1)]
             };
             //PRAMS
             var pramsTableOneData = [];
@@ -359,8 +361,12 @@
             //Tuberculosis
             var tbHeaderData = [];
             var tbData = [];
-            tbHeaderData.push("Total Cases (Rates)");
+            //For minority health we excluded 'All' and 'White' race so tb results data don't have 'Totals'
+            if(fsc.fsTypeForTable != fsc.fsTypes.minority_health) {
+                tbHeaderData.push("Total Cases (Rates)");
+            }
             angular.forEach(fsc.factSheet.tuberculosis, function(eachRecord, index){
+                fsc.fsTypeForTable === fsc.fsTypes.minority_health && index === 0 ? tbHeaderData.push(eachRecord.name): '';
                 if(index > 0 && eachRecord.name != 'Unknown') {
                     tbHeaderData.push(eachRecord.name);
                 }
@@ -378,8 +384,12 @@
             var stdHeaderData = [];
             var stdData = [];
             stdHeaderData.push("Disease");
-            stdHeaderData.push("Total Cases (Rates)");
+            //For minority health we excluded 'All' and 'White' race so tb results data don't have 'Totals'
+            if(fsc.fsTypeForTable != fsc.fsTypes.minority_health) {
+                stdHeaderData.push("Total Cases (Rates)");
+            }
             angular.forEach(fsc.factSheet.stdData[0].data, function(eachHeader, index){
+                fsc.fsTypeForTable === fsc.fsTypes.minority_health && index === 0 ? stdHeaderData.push(eachHeader.name): '';
                 if(index > 0 && eachHeader.name != 'Unknown') {
                     stdHeaderData.push(eachHeader.name);
                 }
@@ -406,8 +416,10 @@
             var hivHeaderData = [];
             var hivData = [];
             hivHeaderData.push("Indicator");
-            hivHeaderData.push("Total Cases (Rates)");
+            //For minority health we excluded 'All' and 'White' race so tb results data don't have 'Totals'
+            fsc.fsTypeForTable != fsc.fsTypes.minority_health && hivHeaderData.push("Total Cases (Rates)");
             angular.forEach(fsc.factSheet.hivAIDSData[0].data, function(eachHeader, index){
+                fsc.fsTypeForTable === fsc.fsTypes.minority_health && index === 0 ? hivHeaderData.push(eachHeader.name): '';
                 if(index > 0 && eachHeader.name != 'Unknown') {
                     hivHeaderData.push(eachHeader.name);
                 }
@@ -563,7 +575,7 @@
                  },
                  pdfDefinition.content = [
                      {image: response.data[0], width: 50, height: 50, style: 'state-image'},
-                     {text: fsc.stateName+" Health Fact Sheet", style: 'state-heading'},
+                     {text: fsc.factSheetTitle, style: 'state-heading'},
                      {image: fsc.imageDataURLs.bridgeRace, width: 50, height: 50, style: 'dataset-image'},
                      {text: "Population in "+fsc.stateName, style: 'heading'},
                      {text: bridgeRaceTotalText},

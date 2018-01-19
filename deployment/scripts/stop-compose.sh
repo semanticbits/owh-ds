@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-docker-compose down -v
+/usr/local/bin/docker-compose down -v
 docker rmi owh_web

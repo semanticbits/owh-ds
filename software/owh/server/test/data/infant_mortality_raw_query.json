@@ -1646,7 +1646,7 @@
   ],
   "showMap": false,
   "chartAxisLabel": "Number of Infant Deaths",
-  "countLabel": "Number of Infant Deaths",
+  "countLabel": "Total",
   "tableView": "number_of_infant_deaths",
   "runOnFilterChange": true,
   "applySuppression": true,
