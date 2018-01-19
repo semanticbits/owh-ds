@@ -13,5 +13,7 @@
  -    level: 'debug'		
  -  fb:		
  -    appID :		
- -    appURL:		
+ -    appURL:
+ -  googleAnalytics:
+      trackingID: ''
  -  disableQueryCache: false

@@ -2255,3 +2255,9 @@ div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leafl
 	margin-top: 0.5rem;
 	padding: 6px;
 }
+.bridge-race-table1, .bridge-race-table2 {
+	min-width: auto;
+}
+.bridge-race-table1 th, .bridge-race-table2 th {
+	width: 196px;
+}
