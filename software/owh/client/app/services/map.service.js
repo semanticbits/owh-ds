@@ -161,12 +161,12 @@
             if (d == -1) {
                 return '#D3D3D3';
             }
-            return d >= ranges[6] ? '#aa7ed4' :
-                   d >= ranges[5] ? '#5569de' :
-                   d >= ranges[4] ? '#6f9af1' :
+            return d >= ranges[6] ? '#ea8484' :
+                   d >= ranges[5] ? '#f3af60' :
+                   d >= ranges[4] ? '#fff280' :
                    d >= ranges[3] ? '#8bd480' :
-                   d >= ranges[2] ? '#fff280' :
-                   d >= ranges[1] ? '#f3af60' : '#ea8484';
+                   d >= ranges[2] ? '#6f9af1' :
+                   d >= ranges[1] ? '#5569de' : '#aa7ed4';
         }
 
         //return map feature styling configuration parameters
@@ -223,7 +223,7 @@
                     map.customControl = this;
                     var container = L.DomUtil.create('div', 'leaflet-control leaflet-control-custom custom-legend');
 
-                    var colors = ['#ea8484', '#f3af60', '#fff280', '#8bd480', '#6f9af1', '#5569de', '#aa7ed4' ];
+                    var colors = ['#aa7ed4', '#5569de', '#6f9af1', '#8bd480', '#fff280', '#f3af60', '#ea8484' ];
                     var labels = getLabels(mapData.mapMinValue, mapData.mapMaxValue);
                     var legendScale = L.DomUtil.create('ul', 'legend-scale', container);
                     var polygons = [];
