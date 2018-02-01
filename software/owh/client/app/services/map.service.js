@@ -374,6 +374,7 @@
                 }
             });
             map.dragging.disable();
+            map.doubleClickZoom.disable();
         }
 
         function buildMarkerPopup(lat, lng, properties, map, key, markerPosition, isStatDta) {
