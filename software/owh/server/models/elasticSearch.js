@@ -26,7 +26,7 @@ var cancer_population_index = "owh_cancer_population";
 var cancer_population_type = "cancer_population";
 
 //@TODO to work with my local ES DB I changed mapping name to 'queryResults1', revert before check in to 'queryResults'
-var _queryIndex = "owh_querycache";
+var _queryCacheIndex = "owh_cache_test";
 var _queryType = "queryData";
 var mental_health_type = "yrbs";
 var dsmetadata_index = "owh_dsmetadata";
@@ -419,17 +419,17 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
 };
 
 ElasticClient.prototype.getQueryCache = function(query){
-    var client = this.getClient(_queryIndex);
+    var client = this.getClient();
     var deferred = Q.defer();
 
     client.search({
-       index: _queryType,
-       body: query,
-       request_cache:true
+        index: _queryCacheIndex,
+        body: query,
+        request_cache:true
     }).then(function (resp){
         if(resp.hits.hits.length > 0) {
-            deferred.resolve(resp.hits.hits[0])
-        }else{
+            deferred.resolve(prepareCachedResponse(resp.hits.hits));
+        } else {
             deferred.resolve(null);
         }
     }, function(err){
@@ -439,18 +439,41 @@ ElasticClient.prototype.getQueryCache = function(query){
     return deferred.promise;
 };
 
+/**
+ * Prepare response object from cached chart data, table data and query
+ * @param cachedResp
+ */
+function prepareCachedResponse(cachedResp) {
+    var cachedRespObj = {};
+    //result cache
+    var resultCache = searchUtils.findByKeyAndValue(cachedResp, '_type', 'tableData')._source;
+    var chartCache = searchUtils.findByKeyAndValue(cachedResp, '_type', 'chartsData')._source.data;
+    resultCache.data.nested.charts = chartCache;
+
+    cachedRespObj.dataset = resultCache.dataset;
+    cachedRespObj.queryID = resultCache.queryID;
+    cachedRespObj.resultJSON = resultCache.data;
+
+    //query cache
+    cachedRespObj.queryJSON = searchUtils.findByKeyAndValue(cachedResp, '_type', 'queryData')._source.data;
+
+    //side filter cache
+    cachedRespObj.sideFilterResults = searchUtils.findByKeyAndValue(cachedResp, '_type', 'sideFilterData')._source.data;
+
+    return cachedRespObj;
+}
 
 /**
  *
  * @param query
  * @returns {*}
  */
-ElasticClient.prototype.insertQueryData = function (query) {
+ElasticClient.prototype.insertQueryData = function (query, type) {
     var client = this.getClient();
     var deferred = Q.defer();
     client.create({
-        index: _queryIndex,
-        type: _queryType,
+        index: 'owh_cache_test',
+        type: type,
         body: query
     }).then(function (resp){
         deferred.resolve(resp);

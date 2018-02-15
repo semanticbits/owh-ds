@@ -893,6 +893,32 @@ var findIndexByKeyAndValue = function (a, key, value) {
     return -1;
 };
 
+/**
+ * Finds and returns the first object in array of objects by using the key and value
+ * @param a
+ * @param key
+ * @param value
+ * @returns {*}
+ */
+function findByKeyAndValue(a, key, value) {
+    var result = null;
+    if(a){
+        for (var i = 0; i < a.length; i++) {
+            var keyValue = a[i][key];
+            if(keyValue === value ) {return a[i];}
+            else if (a[i].options){ // Check subOptions
+                a[i].options.forEach(function(opt){
+                    if(opt[key] === value){
+                        result= opt;
+                        return;
+                    }
+                });
+            }
+        }
+    }
+    return result;
+}
+
 function numberWithCommas(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
@@ -1328,6 +1354,7 @@ module.exports.suppressStateTotals = suppressStateTotals;
 module.exports.isFilterApplied = isFilterApplied;
 module.exports.findAllAppliedFilters = findAllAppliedFilters;
 module.exports.findIndexByKeyAndValue = findIndexByKeyAndValue;
+module.exports.findByKeyAndValue = findByKeyAndValue;
 module.exports.hasFilterApplied = hasFilterApplied;
 module.exports.recursivelySuppressOptions = recursivelySuppressOptions;
 module.exports.searchTree = searchTree;
