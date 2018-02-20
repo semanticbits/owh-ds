@@ -333,6 +333,10 @@
                         <i ng-show="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only. {{fsc.notParticipateStates['CancerIncidence'].message}}</i>
                     </div>
                 </div>
+                <div class="usa-width-one-whole">
+                    <hr/>
+                    <i>Note: <span ng-bind-html="'label.help.text.factsheet.note' | translate"></span></i>
+                </div>
             </div>
             <div id="editor"></div>
         </div>
