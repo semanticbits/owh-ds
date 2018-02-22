@@ -1,16 +1,16 @@
 -# Default config		
  -default: 		
  -  elastic_search:		
- -    url: 'http://localhost:9200/'		
+ -    url: ''
  -  yrbs:		
  -    queryUrl: ''		
  -    questionsUrl: ''		
  -  wonder:		
- -    url: 'http://34.206.155.198/wonder/'
+ -    url: ''
  -    apix_project: ''		
  -    apix_token: ''		
  -  logging:		
- -    level: 'debug'		
+ -    level: ''
  -  fb:		
  -    appID :		
  -    appURL:
