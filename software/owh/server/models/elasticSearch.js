@@ -30,6 +30,8 @@ var _queryIndex = "owh_querycache";
 var _queryType = "queryData";
 var mental_health_type = "yrbs";
 var dsmetadata_index = "owh_dsmetadata";
+//TODO: once revied, replace with _queryIndex
+var newcache_index = "owh_cache_test";
 var dsmetadata_type = "dsmetadata";
 
 var ElasticClient = function() {
@@ -419,7 +421,7 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
 };
 
 ElasticClient.prototype.getQueryCache = function(query){
-    var client = this.getClient(_queryIndex);
+    var client = this.getClient(newcache_index);
     var deferred = Q.defer();
 
     client.search({
@@ -428,7 +430,7 @@ ElasticClient.prototype.getQueryCache = function(query){
        request_cache:true
     }).then(function (resp){
         if(resp.hits.hits.length > 0) {
-            deferred.resolve(resp.hits.hits[0])
+            deferred.resolve(prepareCachedResponse(resp.hits.hits));
         }else{
             deferred.resolve(null);
         }
@@ -439,6 +441,41 @@ ElasticClient.prototype.getQueryCache = function(query){
     return deferred.promise;
 };
 
+/**
+ * This function searches first object in Elasticsearch response array based on provided key and value
+ * @param esHits
+ * @param key
+ * @param value
+ */
+function findInEsHitsWthKeyAndValue(esHits, key, value) {
+    return esHits.find(function(hit) {
+        return hit._source[key] == value;
+    });
+}
+
+/**
+ * Prepare response object from cached chart data, table data and query
+ * @param cachedResp
+ */
+function prepareCachedResponse(cachedResp) {
+    var cachedRespObj = {};
+    //result cache
+    var resultCache = findInEsHitsWthKeyAndValue(cachedResp, 'datatype', 'result')._source;
+    var chartCache = findInEsHitsWthKeyAndValue(cachedResp, 'datatype', 'chart')._source.dataDoc;
+
+    cachedRespObj.resultJSON = JSON.parse(resultCache.dataDoc);
+    cachedRespObj.resultJSON.nested.charts = JSON.parse(chartCache);
+    cachedRespObj.dataset = resultCache.dataset;
+    cachedRespObj.queryID = resultCache.queryID;
+
+    //query cache
+    cachedRespObj.queryJSON = JSON.parse(findInEsHitsWthKeyAndValue(cachedResp, 'datatype', 'query')._source.dataDoc);
+
+    //side filter cache
+    cachedRespObj.sideFilterResults = JSON.parse(findInEsHitsWthKeyAndValue(cachedResp, 'datatype', 'sitefilter')._source.dataDoc);
+
+    return cachedRespObj;
+}
 
 /**
  *
@@ -449,7 +486,7 @@ ElasticClient.prototype.insertQueryData = function (query) {
     var client = this.getClient();
     var deferred = Q.defer();
     client.create({
-        index: _queryIndex,
+        index: newcache_index,
         type: _queryType,
         body: query
     }).then(function (resp){

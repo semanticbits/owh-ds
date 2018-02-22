@@ -22,23 +22,28 @@ queryCache.prototype.getCachedQuery = function (queryId) {
  * @param sideFilterResults
  */
 queryCache.prototype.cacheQuery = function (queryId, dataset, result) {
-    var insertQuery = {};
-    insertQuery.queryJSON = JSON.stringify(result.queryJSON);
-    insertQuery.resultJSON = JSON.stringify(result.resultData);
-    insertQuery.sideFilterResults = JSON.stringify(result.sideFilterResults);
-    insertQuery.dataset = dataset;
-    insertQuery.lastupdated = new Date();
-    insertQuery.queryID = queryId;
-    var deferred = Q.defer();
-    new elasticSearch().insertQueryData(insertQuery).then(function (resp){
-        logger.info("Qeury with " + queryId + " added to query cache");
-        deferred.resolve(resp);
-    }, function (err) {
-        logger.warn("Unable to add query "+ hashCode + " to query cache");
-        deferred.reject(err);
+    var resultCopy =  JSON.parse((JSON.stringify(result)));
+    var queryCache = {dataset: dataset, datatype:'query', queryID: queryId, lastupdated: new Date()};
+    queryCache.dataDoc = JSON.stringify(resultCopy.queryJSON);
+
+    var chartCache = {dataset: dataset, datatype:'chart', queryID: queryId, lastupdated: new Date() };
+    chartCache.dataDoc = JSON.stringify(resultCopy.resultData.nested.charts);
+    resultCopy.resultData.nested.charts = [];
+
+    var resultCache = {dataset: dataset, datatype:'result', queryID: queryId, lastupdated: new Date()};
+    resultCache.dataDoc = JSON.stringify(resultCopy.resultData);
+
+    var sideFilterCache = {dataset: dataset, datatype:'sitefilter', queryID: queryId, lastupdated: new Date()};
+    sideFilterCache.dataDoc = JSON.stringify(resultCopy.sideFilterResults);
+    var es = new elasticSearch();
+    [queryCache, resultCache, chartCache, sideFilterCache].forEach(function (cache) {
+        es.insertQueryData(cache).then(function (resp){
+            logger.info("Query with " + queryId + " added to query cache");
+        }, function (err) {
+            logger.warn("Unable to add query "+ queryId + " to query cache");
+        });
     });
-    return deferred.promise;
-}
+};
 
 /**
  * Build query cache query sting
