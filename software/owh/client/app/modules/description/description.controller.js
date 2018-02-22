@@ -22,7 +22,7 @@
                     source: "The Natality data set is provided by the U.S. Department of Health and Human Services (US HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS).",
                     isRateCalculation: true,
                     filters: [
-                        {name: "Births", description: "The birth counts in the data represent births that occurred in the 50 United States and the district of Columbia, for the legal place of residence of the decedent."},
+                        {name: "Births", description: "The birth counts in the data represent births that occurred in the 50 United States and the District of Columbia, for the legal place of residence of the decedent."},
                         {name: "Birth Rates", description: "Birth rates are calculated as the number of births divided by total population in the given year(s)."},
                         {name: "Fertility Rates", description: "Fertility rates are calculated as the number of births divided by the number of females age 15 - 44 years old in the given year(s)"},
                         {name: "Population", description: "The population estimates are bridged-race estimates based on Bureau of the Census estimates of total U.S., State resident populations"},
@@ -122,7 +122,7 @@
                     source: 'The Detailed Mortality data are compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative; the data set is produced by the U.S. Department of Health and Human Services (US HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS), Division of Vital Statistics (DVS), Mortality Statistics Branch.',
                     isRateCalculation: true,
                     filters: [
-                        {name: "Deaths", description: "The death counts in the data represent deaths that occurred in the 50 United States and the district of Columbia, for the legal place of residence of the decedent."},
+                        {name: "Deaths", description: "The death counts in the data represent deaths that occurred in the 50 United States and the District of Columbia, for the legal place of residence of the decedent."},
                         {name: "Crude Death Rates", description: "Crude Rates are expressed as the number of deaths reported each calendar year per the factor you select. The default factor is per 100,000 population, reporting the death rate per 100,000 persons."},
                         {name: "Age Adjusted Death Rates", description: "Age-adjusted death rates are weighted averages of the age-specific death rates, where the weights represent a fixed population by age."},
                         {name: "Population", description: "The population estimates are U.S. Census Bureau estimates of U.S. national, state resident populations."},
