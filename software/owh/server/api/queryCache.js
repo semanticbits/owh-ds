@@ -25,18 +25,27 @@ queryCache.prototype.cacheQuery = function (queryId, dataset, result) {
     var resultCopy =  JSON.parse((JSON.stringify(result)));
     var queryCache = {dataset: dataset, datatype:'query', queryID: queryId, lastupdated: new Date()};
     queryCache.dataDoc = JSON.stringify(resultCopy.queryJSON);
+    var es = new elasticSearch();
 
-    var chartCache = {dataset: dataset, datatype:'chart', queryID: queryId, lastupdated: new Date() };
-    chartCache.dataDoc = JSON.stringify(resultCopy.resultData.nested.charts);
-    resultCopy.resultData.nested.charts = [];
+    //for non stats data-sets
+    if (resultCopy.resultData.table == undefined) {
+        var simpleData = {dataset: dataset, datatype:'simple', queryID: queryId, lastupdated: new Date() };
+        simpleData.dataDoc = JSON.stringify(resultCopy.resultData.simple);
+        resultCopy.resultData.simple = [];
+        es.insertQueryData(simpleData).then(function (resp){
+            logger.info("Chart data with " + queryId + " added to query cache");
+        }, function (err) {
+            logger.warn("Unable to add query "+ queryId + " to query cache");
+        });
+    }
 
     var resultCache = {dataset: dataset, datatype:'result', queryID: queryId, lastupdated: new Date()};
     resultCache.dataDoc = JSON.stringify(resultCopy.resultData);
 
     var sideFilterCache = {dataset: dataset, datatype:'sitefilter', queryID: queryId, lastupdated: new Date()};
     sideFilterCache.dataDoc = JSON.stringify(resultCopy.sideFilterResults);
-    var es = new elasticSearch();
-    [queryCache, resultCache, chartCache, sideFilterCache].forEach(function (cache) {
+
+    [queryCache, resultCache, sideFilterCache].forEach(function (cache) {
         es.insertQueryData(cache).then(function (resp){
             logger.info("Query with " + queryId + " added to query cache");
         }, function (err) {

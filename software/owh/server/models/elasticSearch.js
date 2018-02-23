@@ -461,12 +461,14 @@ function prepareCachedResponse(cachedResp) {
     var cachedRespObj = {};
     //result cache
     var resultCache = findInEsHitsWthKeyAndValue(cachedResp, 'datatype', 'result')._source;
-    var chartCache = findInEsHitsWthKeyAndValue(cachedResp, 'datatype', 'chart')._source.dataDoc;
-
     cachedRespObj.resultJSON = JSON.parse(resultCache.dataDoc);
-    cachedRespObj.resultJSON.nested.charts = JSON.parse(chartCache);
     cachedRespObj.dataset = resultCache.dataset;
     cachedRespObj.queryID = resultCache.queryID;
+    //for non stats data-sets
+    if(cachedRespObj.resultJSON.table == undefined) {
+        var simpleCache = findInEsHitsWthKeyAndValue(cachedResp, 'datatype', 'simple')._source.dataDoc;
+        cachedRespObj.resultJSON.simple = JSON.parse(simpleCache);
+    }
 
     //query cache
     cachedRespObj.queryJSON = JSON.parse(findInEsHitsWthKeyAndValue(cachedResp, 'datatype', 'query')._source.dataDoc);
