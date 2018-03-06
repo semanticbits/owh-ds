@@ -431,22 +431,39 @@
                             <thead>
                             <tr>
                                 <th>Cancer Site</th>
-                                <th>Population</th>
-                                <th>Count</th>
-                                <th>Incidence Crude Rates (per 100,000)</th>
-                                <th>Deaths</th>
-                                <th>Mortality Crude Rates (per 100,000)</th>
+                                <th>Measure</th>
+                                <th>American Indian or Alaska Native</th>
+                                <th>Asian or Pacific Islander</th>
+                                <th>Black</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr ng-repeat="eachRecord in fsc.factSheet.cancerData">
-                                <td ng-bind="eachRecord.site"></td>
-                                <td ng-bind="eachRecord.pop == 'Not Available' ? eachRecord.pop : (eachRecord.pop | number)"></td>
-                                <td ng-bind="eachRecord.count == 'Not Available' || eachRecord.count == 'Suppressed' ? eachRecord.count : (eachRecord.count | number)"></td>
-                                <td ng-bind="eachRecord.incident_rate"></td>
-                                <td ng-bind="eachRecord.deaths === 'Suppressed' ? eachRecord.deaths : ( eachRecord.deaths | number)"></td>
-                                <td ng-bind="eachRecord.mortality_rate"></td>
-                            </tr>
+                            <tbody ng-repeat="eachRecord in fsc.factSheet.cancerData">
+                                <tr>
+                                    <td ng-bind="eachRecord.site" rowspan="5"></td>
+                                    <td>Population</td>
+                                    <td ng-repeat="dt in eachRecord.incidence"
+                                        ng-bind="dt.pop === 'suppressed' ? 'Suppressed' : ( dt.pop | number )"></td>
+                                </tr>
+                                <tr>
+                                    <td>Count</td>
+                                    <td ng-repeat="dt in eachRecord.incidence"
+                                        ng-bind="dt.cancer_incident === 'suppressed' ? 'Suppressed' : ( dt.cancer_incident | number )"></td>
+                                </tr>
+                                <tr>
+                                    <td>Incidence Crude Rates (per 100,000)</td>
+                                    <td ng-repeat="dt in eachRecord.incidence"
+                                        ng-bind="fsc.calculateRate(dt.cancer_incident, dt.pop, true)"></td>
+                                </tr>
+                                <tr>
+                                    <td>Deaths</td>
+                                    <td ng-repeat="dt in eachRecord.mortality"
+                                        ng-bind="dt.cancer_mortality === 'suppressed' ? 'Suppressed' : ( dt.cancer_mortality | number )"></td>
+                                </tr>
+                                <tr>
+                                    <td>Mortality Crude Rates (per 100,000)</td>
+                                    <td ng-repeat="dt in eachRecord.mortality"
+                                        ng-bind="fsc.calculateRate(dt.cancer_mortality, dt.pop, true)"></td>
+                                </tr>
                             </tbody>
                         </table>
                         <i ng-hide="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only</i>

@@ -797,12 +797,18 @@
         return displayValue;
     }
 
-    function calculateRate(birthCout, totalPopulation) {
-        if(birthCout === 'suppressed') {
+    function calculateRate(count, totalPopulation, checkReliability) {
+        if(count === 'suppressed') {
             return 'Suppressed';
+        } else if (checkReliability) {
+            if(count < 20) {
+                return 'Unreliable';
+            } else {
+                return totalPopulation != 'n/a' ? Math.round(count / totalPopulation * 1000000) / 10 : "Not Available";
+            }
         }
         else {
-            return totalPopulation ? Math.round(birthCout / totalPopulation * 1000000) / 10 : 0;
+            return totalPopulation ? Math.round(count / totalPopulation * 1000000) / 10 : 0;
         }
     }
 }());
