@@ -14872,8 +14872,8 @@
         "nested": {
           "table": [
             {
-              "key": "year_of_death",
-              "queryKey": "current_year",
+              "key": "race",
+              "queryKey": "race",
               "size": 0
             }
           ]
@@ -18138,13 +18138,13 @@
       ]
     },
     "detailMortality": {
-      "Total": [
-        {
+      "number_of_deaths": {
+        "Total": {
           "size": 0,
           "aggregations": {
-            "group_table_year": {
+            "group_table_race": {
               "terms": {
-                "field": "current_year",
+                "field": "race",
                 "size": 0
               }
             }
@@ -18208,72 +18208,12 @@
             }
           }
         },
-        {
-          "searchFor": "deaths",
-          "query": {
-            "race": {
-              "key": "race",
-              "queryKey": "race",
-              "value": [
-                "American Indian",
-                "Asian or Pacific Islander",
-                "Black"
-              ],
-              "primary": false
-            },
-            "current_year": {
-              "key": "year",
-              "queryKey": "current_year",
-              "value": [
-                "2015"
-              ],
-              "primary": false
-            },
-            "state": {
-              "key": "state",
-              "queryKey": "state",
-              "value": [
-                "$state$"
-              ],
-              "primary": false
-            }
-          },
-          "aggregations": {
-            "simple": [],
-            "nested": {
-              "table": [
-                {
-                  "key": "year",
-                  "queryKey": "current_year",
-                  "size": 0
-                }
-              ],
-              "charts": [],
-              "maps": [
-                [
-                  {
-                    "key": "states",
-                    "queryKey": "state",
-                    "size": 0
-                  },
-                  {
-                    "key": "sex",
-                    "queryKey": "sex",
-                    "size": 0
-                  }
-                ]
-              ]
-            }
-          }
-        }
-      ],
-      "C50-C50": [
-        {
+        "C50-C50": {
           "size": 0,
           "aggregations": {
-            "group_table_year": {
+            "group_table_race": {
               "terms": {
-                "field": "current_year",
+                "field": "race",
                 "size": 0
               }
             }
@@ -18349,65 +18289,12 @@
             }
           }
         },
-        {
-          "searchFor": "deaths",
-          "query": {
-            "race": {
-              "key": "race",
-              "queryKey": "race",
-              "value": [
-                "American Indian",
-                "Asian or Pacific Islander",
-                "Black"
-              ],
-              "primary": false
-            },
-            "ICD_10_code": {
-              "key": "ucd-chapter-10",
-              "queryKey": "ICD_10_code.path",
-              "value": [
-                "C50-C50"
-              ],
-              "primary": true
-            },
-            "current_year": {
-              "key": "year",
-              "queryKey": "current_year",
-              "value": [
-                "2015"
-              ],
-              "primary": false
-            },
-            "state": {
-              "key": "state",
-              "queryKey": "state",
-              "value": [
-                "$state$"
-              ],
-              "primary": false
-            }
-          },
-          "aggregations": {
-            "simple": [],
-            "nested": {
-              "table": [
-                {
-                  "key": "year",
-                  "queryKey": "current_year",
-                  "size": 0
-                }
-              ]
-            }
-          }
-        }
-      ],
-      "C00-C97": [
-        {
+        "C00-C97": {
           "size": 0,
           "aggregations": {
-            "group_table_year": {
+            "group_table_race": {
               "terms": {
-                "field": "current_year",
+                "field": "race",
                 "size": 0
               }
             }
@@ -18553,79 +18440,12 @@
             }
           }
         },
-        {
-          "searchFor": "deaths",
-          "query": {
-            "race": {
-              "key": "race",
-              "queryKey": "race",
-              "value": [
-                "American Indian",
-                "Asian or Pacific Islander",
-                "Black"
-              ],
-              "primary": false
-            },
-            "ICD_10_code": {
-              "key": "ucd-chapter-10",
-              "queryKey": "ICD_10_code.path",
-              "value": [
-                "C00-C14",
-                "C15-C26",
-                "C30-C39",
-                "C40-C41",
-                "C43-C44",
-                "C45-C49",
-                "C50-C50",
-                "C51-C58",
-                "C60-C63",
-                "C64-C68",
-                "C69-C72",
-                "C73-C75",
-                "C76-C80",
-                "C81-C96",
-                "C97-C97"
-              ],
-              "primary": true
-            },
-            "current_year": {
-              "key": "year",
-              "queryKey": "current_year",
-              "value": [
-                "2015"
-              ],
-              "primary": false
-            },
-            "state": {
-              "key": "state",
-              "queryKey": "state",
-              "value": [
-                "$state$"
-              ],
-              "primary": false
-            }
-          },
-          "aggregations": {
-            "simple": [],
-            "nested": {
-              "table": [
-                {
-                  "key": "year",
-                  "queryKey": "current_year",
-                  "size": 0
-                }
-              ]
-            }
-          }
-        }
-      ],
-      "C53": [
-        {
+        "C53": {
           "size": 0,
           "aggregations": {
-            "group_table_year": {
+            "group_table_race": {
               "terms": {
-                "field": "current_year",
+                "field": "race",
                 "size": 0
               }
             }
@@ -18701,65 +18521,12 @@
             }
           }
         },
-        {
-          "searchFor": "deaths",
-          "query": {
-            "race": {
-              "key": "race",
-              "queryKey": "race",
-              "value": [
-                "American Indian",
-                "Asian or Pacific Islander",
-                "Black"
-              ],
-              "primary": false
-            },
-            "ICD_10_code": {
-              "key": "ucd-chapter-10",
-              "queryKey": "ICD_10_code.path",
-              "value": [
-                "C53"
-              ],
-              "primary": true
-            },
-            "current_year": {
-              "key": "year",
-              "queryKey": "current_year",
-              "value": [
-                "2015"
-              ],
-              "primary": false
-            },
-            "state": {
-              "key": "state",
-              "queryKey": "state",
-              "value": [
-                "$state$"
-              ],
-              "primary": false
-            }
-          },
-          "aggregations": {
-            "simple": [],
-            "nested": {
-              "table": [
-                {
-                  "key": "year",
-                  "queryKey": "current_year",
-                  "size": 0
-                }
-              ]
-            }
-          }
-        }
-      ],
-      "I160-I169": [
-        {
+        "I160-I169": {
           "size": 0,
           "aggregations": {
-            "group_table_year": {
+            "group_table_race": {
               "terms": {
-                "field": "current_year",
+                "field": "race",
                 "size": 0
               }
             }
@@ -18835,65 +18602,12 @@
             }
           }
         },
-        {
-          "searchFor": "deaths",
-          "query": {
-            "race": {
-              "key": "race",
-              "queryKey": "race",
-              "value": [
-                "American Indian",
-                "Asian or Pacific Islander",
-                "Black"
-              ],
-              "primary": false
-            },
-            "ICD_10_code": {
-              "key": "ucd-chapter-10",
-              "queryKey": "ICD_10_code.path",
-              "value": [
-                "I60-I69"
-              ],
-              "primary": true
-            },
-            "current_year": {
-              "key": "year",
-              "queryKey": "current_year",
-              "value": [
-                "2015"
-              ],
-              "primary": false
-            },
-            "state": {
-              "key": "state",
-              "queryKey": "state",
-              "value": [
-                "$state$"
-              ],
-              "primary": false
-            }
-          },
-          "aggregations": {
-            "simple": [],
-            "nested": {
-              "table": [
-                {
-                  "key": "year",
-                  "queryKey": "current_year",
-                  "size": 0
-                }
-              ]
-            }
-          }
-        }
-      ],
-      "J40-47-60": [
-        {
+        "J40-47-60": {
           "size": 0,
           "aggregations": {
-            "group_table_year": {
+            "group_table_race": {
               "terms": {
-                "field": "current_year",
+                "field": "race",
                 "size": 0
               }
             }
@@ -18969,65 +18683,12 @@
             }
           }
         },
-        {
-          "searchFor": "deaths",
-          "query": {
-            "race": {
-              "key": "race",
-              "queryKey": "race",
-              "value": [
-                "American Indian",
-                "Asian or Pacific Islander",
-                "Black"
-              ],
-              "primary": false
-            },
-            "ICD_10_code": {
-              "key": "ucd-chapter-10",
-              "queryKey": "ICD_10_code.path",
-              "value": [
-                "J40-J47"
-              ],
-              "primary": true
-            },
-            "current_year": {
-              "key": "year",
-              "queryKey": "current_year",
-              "value": [
-                "2015"
-              ],
-              "primary": false
-            },
-            "state": {
-              "key": "state",
-              "queryKey": "state",
-              "value": [
-                "$state$"
-              ],
-              "primary": false
-            }
-          },
-          "aggregations": {
-            "simple": [],
-            "nested": {
-              "table": [
-                {
-                  "key": "year",
-                  "queryKey": "current_year",
-                  "size": 0
-                }
-              ]
-            }
-          }
-        }
-      ],
-      "drug-induced": [
-        {
+        "drug-induced": {
           "size": 0,
           "aggregations": {
-            "group_table_year": {
+            "group_table_race": {
               "terms": {
-                "field": "current_year",
+                "field": "race",
                 "size": 0
               }
             }
@@ -19488,142 +19149,12 @@
             }
           }
         },
-        {
-          "searchFor": "deaths",
-          "query": {
-            "race": {
-              "key": "race",
-              "queryKey": "race",
-              "value": [
-                "American Indian",
-                "Asian or Pacific Islander",
-                "Black"
-              ],
-              "primary": false
-            },
-            "ICD_10_code": {
-              "key": "ucd-chapter-10",
-              "queryKey": "ICD_10_code.path",
-              "value": [
-                "D52.1",
-                "D59.0",
-                "D59.2",
-                "D61.1",
-                "D64.2",
-                "E06.4",
-                "E16.0",
-                "E23.1",
-                "E24.2",
-                "E27.3",
-                "E66.1",
-                "F11",
-                "F12",
-                "F13",
-                "F14",
-                "F15",
-                "F16",
-                "F17",
-                "F18",
-                "F19",
-                "G21.1",
-                "G24.0",
-                "G25.1",
-                "G25.4",
-                "G25.6",
-                "G44.4",
-                "G62.0",
-                "G72.0",
-                "I95.2",
-                "J70.2",
-                "J70.3",
-                "J70.4",
-                "K85.3",
-                "L10.5",
-                "L27.0",
-                "L27.1",
-                "M10.2",
-                "M32.0",
-                "M80.4",
-                "M81.4",
-                "M83.5",
-                "M87.1",
-                "R50.2",
-                "R78.1",
-                "R78.2",
-                "R78.3",
-                "R78.4",
-                "R78.5",
-                "X40",
-                "X41",
-                "X42",
-                "X43",
-                "X44",
-                "X60",
-                "X61",
-                "X62",
-                "X63",
-                "X64",
-                "X85",
-                "Y10",
-                "Y11",
-                "Y12",
-                "Y13",
-                "Y14",
-                "E24.4",
-                "F10",
-                "G31.2",
-                "G62.1",
-                "G72.1",
-                "I42.6",
-                "K29.2",
-                "K70",
-                "K85.2",
-                "K86.0",
-                "R78.0",
-                "X45",
-                "X65",
-                "Y15"
-              ],
-              "primary": true
-            },
-            "current_year": {
-              "key": "year",
-              "queryKey": "current_year",
-              "value": [
-                "2015"
-              ],
-              "primary": false
-            },
-            "state": {
-              "key": "state",
-              "queryKey": "state",
-              "value": [
-                "$state$"
-              ],
-              "primary": false
-            }
-          },
-          "aggregations": {
-            "simple": [],
-            "nested": {
-              "table": [
-                {
-                  "key": "year",
-                  "queryKey": "current_year",
-                  "size": 0
-                }
-              ]
-            }
-          }
-        }
-      ],
-      "Suicide": [
-        {
+        "Suicide": {
           "size": 0,
           "aggregations": {
-            "group_table_year": {
+            "group_table_race": {
               "terms": {
-                "field": "current_year",
+                "field": "race",
                 "size": 0
               }
             }
@@ -19834,92 +19365,12 @@
             }
           }
         },
-        {
-          "searchFor": "deaths",
-          "query": {
-            "race": {
-              "key": "race",
-              "queryKey": "race",
-              "value": [
-                "American Indian",
-                "Asian or Pacific Islander",
-                "Black"
-              ],
-              "primary": false
-            },
-            "ICD_10_code": {
-              "key": "ucd-chapter-10",
-              "queryKey": "ICD_10_code.path",
-              "value": [
-                "U03.0",
-                "U03.9",
-                "X60",
-                "X61",
-                "X62",
-                "X63",
-                "X64",
-                "X65",
-                "X66",
-                "X67",
-                "X68",
-                "X69",
-                "X70",
-                "X71",
-                "X72",
-                "X73",
-                "X74",
-                "X75",
-                "X76",
-                "X77",
-                "X78",
-                "X79",
-                "X80",
-                "X81",
-                "X82",
-                "X83",
-                "X84",
-                "Y87.0"
-              ],
-              "primary": true
-            },
-            "current_year": {
-              "key": "year",
-              "queryKey": "current_year",
-              "value": [
-                "2015"
-              ],
-              "primary": false
-            },
-            "state": {
-              "key": "state",
-              "queryKey": "state",
-              "value": [
-                "$state$"
-              ],
-              "primary": false
-            }
-          },
-          "aggregations": {
-            "simple": [],
-            "nested": {
-              "table": [
-                {
-                  "key": "year",
-                  "queryKey": "current_year",
-                  "size": 0
-                }
-              ]
-            }
-          }
-        }
-      ],
-      "Homicide": [
-        {
+        "Homicide": {
           "size": 0,
           "aggregations": {
-            "group_table_year": {
+            "group_table_race": {
               "terms": {
-                "field": "current_year",
+                "field": "race",
                 "size": 0
               }
             }
@@ -20175,7 +19626,721 @@
             }
           }
         },
-        {
+        "B20-B24":  {
+          "size": 0,
+          "aggregations": {
+            "group_table_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "match": {
+                              "ICD_10_code.path": "B20-B24"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race": "American Indian"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Asian or Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Black"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2015"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "$state$"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "hispanic":{
+          "size": 0,
+          "aggregations": {
+            "group_table_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "hispanic_origin": "Central American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Central and South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Cuban"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Dominican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Hispanic"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Latin American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Mexican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Other Hispanic"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Puerto Rican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Spaniard"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2015"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "age_adjusted_rates": {
+        "Total":   {
+          "searchFor": "deaths",
+          "query": {
+            "race": {
+              "key": "race",
+              "queryKey": "race",
+              "value": [
+                "American Indian",
+                "Asian or Pacific Islander",
+                "Black"
+              ],
+              "primary": false
+            },
+            "current_year": {
+              "key": "year",
+              "queryKey": "current_year",
+              "value": [
+                "2015"
+              ],
+              "primary": false
+            },
+            "state": {
+              "key": "state",
+              "queryKey": "state",
+              "value": [
+                "$state$"
+              ],
+              "primary": false
+            }
+          },
+          "aggregations": {
+            "simple": [],
+            "nested": {
+              "table": [
+                {
+                  "key": "race",
+                  "queryKey": "race",
+                  "size": 0
+                }
+              ],
+              "charts": [],
+              "maps": [
+                [
+                  {
+                    "key": "states",
+                    "queryKey": "state",
+                    "size": 0
+                  },
+                  {
+                    "key": "sex",
+                    "queryKey": "sex",
+                    "size": 0
+                  }
+                ]
+              ]
+            }
+          }
+        },
+        "C50-C50": {
+          "searchFor": "deaths",
+          "query": {
+            "race": {
+              "key": "race",
+              "queryKey": "race",
+              "value": [
+                "American Indian",
+                "Asian or Pacific Islander",
+                "Black"
+              ],
+              "primary": false
+            },
+            "ICD_10_code": {
+              "key": "ucd-chapter-10",
+              "queryKey": "ICD_10_code.path",
+              "value": [
+                "C50-C50"
+              ],
+              "primary": true
+            },
+            "current_year": {
+              "key": "year",
+              "queryKey": "current_year",
+              "value": [
+                "2015"
+              ],
+              "primary": false
+            },
+            "state": {
+              "key": "state",
+              "queryKey": "state",
+              "value": [
+                "$state$"
+              ],
+              "primary": false
+            }
+          },
+          "aggregations": {
+            "simple": [],
+            "nested": {
+              "table": [
+                {
+                  "key": "race",
+                  "queryKey": "race",
+                  "size": 0
+                }
+              ]
+            }
+          }
+        },
+        "C00-C97": {
+          "searchFor": "deaths",
+          "query": {
+            "race": {
+              "key": "race",
+              "queryKey": "race",
+              "value": [
+                "American Indian",
+                "Asian or Pacific Islander",
+                "Black"
+              ],
+              "primary": false
+            },
+            "ICD_10_code": {
+              "key": "ucd-chapter-10",
+              "queryKey": "ICD_10_code.path",
+              "value": [
+                "C00-C14",
+                "C15-C26",
+                "C30-C39",
+                "C40-C41",
+                "C43-C44",
+                "C45-C49",
+                "C50-C50",
+                "C51-C58",
+                "C60-C63",
+                "C64-C68",
+                "C69-C72",
+                "C73-C75",
+                "C76-C80",
+                "C81-C96",
+                "C97-C97"
+              ],
+              "primary": true
+            },
+            "current_year": {
+              "key": "year",
+              "queryKey": "current_year",
+              "value": [
+                "2015"
+              ],
+              "primary": false
+            },
+            "state": {
+              "key": "state",
+              "queryKey": "state",
+              "value": [
+                "$state$"
+              ],
+              "primary": false
+            }
+          },
+          "aggregations": {
+            "simple": [],
+            "nested": {
+              "table": [
+                {
+                  "key": "race",
+                  "queryKey": "race",
+                  "size": 0
+                }
+              ]
+            }
+          }
+        },
+        "C53": {
+          "searchFor": "deaths",
+          "query": {
+            "race": {
+              "key": "race",
+              "queryKey": "race",
+              "value": [
+                "American Indian",
+                "Asian or Pacific Islander",
+                "Black"
+              ],
+              "primary": false
+            },
+            "ICD_10_code": {
+              "key": "ucd-chapter-10",
+              "queryKey": "ICD_10_code.path",
+              "value": [
+                "C53"
+              ],
+              "primary": true
+            },
+            "current_year": {
+              "key": "year",
+              "queryKey": "current_year",
+              "value": [
+                "2015"
+              ],
+              "primary": false
+            },
+            "state": {
+              "key": "state",
+              "queryKey": "state",
+              "value": [
+                "$state$"
+              ],
+              "primary": false
+            }
+          },
+          "aggregations": {
+            "simple": [],
+            "nested": {
+              "table": [
+                {
+                  "key": "race",
+                  "queryKey": "race",
+                  "size": 0
+                }
+              ]
+            }
+          }
+        },
+        "I160-I169": {
+          "searchFor": "deaths",
+          "query": {
+            "race": {
+              "key": "race",
+              "queryKey": "race",
+              "value": [
+                "American Indian",
+                "Asian or Pacific Islander",
+                "Black"
+              ],
+              "primary": false
+            },
+            "ICD_10_code": {
+              "key": "ucd-chapter-10",
+              "queryKey": "ICD_10_code.path",
+              "value": [
+                "I60-I69"
+              ],
+              "primary": true
+            },
+            "current_year": {
+              "key": "year",
+              "queryKey": "current_year",
+              "value": [
+                "2015"
+              ],
+              "primary": false
+            },
+            "state": {
+              "key": "state",
+              "queryKey": "state",
+              "value": [
+                "$state$"
+              ],
+              "primary": false
+            }
+          },
+          "aggregations": {
+            "simple": [],
+            "nested": {
+              "table": [
+                {
+                  "key": "race",
+                  "queryKey": "race",
+                  "size": 0
+                }
+              ]
+            }
+          }
+        },
+        "J40-47-60": {
+          "searchFor": "deaths",
+          "query": {
+            "race": {
+              "key": "race",
+              "queryKey": "race",
+              "value": [
+                "American Indian",
+                "Asian or Pacific Islander",
+                "Black"
+              ],
+              "primary": false
+            },
+            "ICD_10_code": {
+              "key": "ucd-chapter-10",
+              "queryKey": "ICD_10_code.path",
+              "value": [
+                "J40-J47"
+              ],
+              "primary": true
+            },
+            "current_year": {
+              "key": "year",
+              "queryKey": "current_year",
+              "value": [
+                "2015"
+              ],
+              "primary": false
+            },
+            "state": {
+              "key": "state",
+              "queryKey": "state",
+              "value": [
+                "$state$"
+              ],
+              "primary": false
+            }
+          },
+          "aggregations": {
+            "simple": [],
+            "nested": {
+              "table": [
+                {
+                  "key": "race",
+                  "queryKey": "race",
+                  "size": 0
+                }
+              ]
+            }
+          }
+        },
+        "drug-induced": {
+          "searchFor": "deaths",
+          "query": {
+            "race": {
+              "key": "race",
+              "queryKey": "race",
+              "value": [
+                "American Indian",
+                "Asian or Pacific Islander",
+                "Black"
+              ],
+              "primary": false
+            },
+            "ICD_10_code": {
+              "key": "ucd-chapter-10",
+              "queryKey": "ICD_10_code.path",
+              "value": [
+                "D52.1",
+                "D59.0",
+                "D59.2",
+                "D61.1",
+                "D64.2",
+                "E06.4",
+                "E16.0",
+                "E23.1",
+                "E24.2",
+                "E27.3",
+                "E66.1",
+                "F11",
+                "F12",
+                "F13",
+                "F14",
+                "F15",
+                "F16",
+                "F17",
+                "F18",
+                "F19",
+                "G21.1",
+                "G24.0",
+                "G25.1",
+                "G25.4",
+                "G25.6",
+                "G44.4",
+                "G62.0",
+                "G72.0",
+                "I95.2",
+                "J70.2",
+                "J70.3",
+                "J70.4",
+                "K85.3",
+                "L10.5",
+                "L27.0",
+                "L27.1",
+                "M10.2",
+                "M32.0",
+                "M80.4",
+                "M81.4",
+                "M83.5",
+                "M87.1",
+                "R50.2",
+                "R78.1",
+                "R78.2",
+                "R78.3",
+                "R78.4",
+                "R78.5",
+                "X40",
+                "X41",
+                "X42",
+                "X43",
+                "X44",
+                "X60",
+                "X61",
+                "X62",
+                "X63",
+                "X64",
+                "X85",
+                "Y10",
+                "Y11",
+                "Y12",
+                "Y13",
+                "Y14",
+                "E24.4",
+                "F10",
+                "G31.2",
+                "G62.1",
+                "G72.1",
+                "I42.6",
+                "K29.2",
+                "K70",
+                "K85.2",
+                "K86.0",
+                "R78.0",
+                "X45",
+                "X65",
+                "Y15"
+              ],
+              "primary": true
+            },
+            "current_year": {
+              "key": "year",
+              "queryKey": "current_year",
+              "value": [
+                "2015"
+              ],
+              "primary": false
+            },
+            "state": {
+              "key": "state",
+              "queryKey": "state",
+              "value": [
+                "$state$"
+              ],
+              "primary": false
+            }
+          },
+          "aggregations": {
+            "simple": [],
+            "nested": {
+              "table": [
+                {
+                  "key": "race",
+                  "queryKey": "race",
+                  "size": 0
+                }
+              ]
+            }
+          }
+        },
+        "Suicide": {
+          "searchFor": "deaths",
+          "query": {
+            "race": {
+              "key": "race",
+              "queryKey": "race",
+              "value": [
+                "American Indian",
+                "Asian or Pacific Islander",
+                "Black"
+              ],
+              "primary": false
+            },
+            "ICD_10_code": {
+              "key": "ucd-chapter-10",
+              "queryKey": "ICD_10_code.path",
+              "value": [
+                "U03.0",
+                "U03.9",
+                "X60",
+                "X61",
+                "X62",
+                "X63",
+                "X64",
+                "X65",
+                "X66",
+                "X67",
+                "X68",
+                "X69",
+                "X70",
+                "X71",
+                "X72",
+                "X73",
+                "X74",
+                "X75",
+                "X76",
+                "X77",
+                "X78",
+                "X79",
+                "X80",
+                "X81",
+                "X82",
+                "X83",
+                "X84",
+                "Y87.0"
+              ],
+              "primary": true
+            },
+            "current_year": {
+              "key": "year",
+              "queryKey": "current_year",
+              "value": [
+                "2015"
+              ],
+              "primary": false
+            },
+            "state": {
+              "key": "state",
+              "queryKey": "state",
+              "value": [
+                "$state$"
+              ],
+              "primary": false
+            }
+          },
+          "aggregations": {
+            "simple": [],
+            "nested": {
+              "table": [
+                {
+                  "key": "race",
+                  "queryKey": "race",
+                  "size": 0
+                }
+              ]
+            }
+          }
+        },
+        "Homicide": {
           "searchFor": "deaths",
           "query": {
             "race": {
@@ -20254,98 +20419,15 @@
             "nested": {
               "table": [
                 {
-                  "key": "year",
-                  "queryKey": "current_year",
+                  "key": "race",
+                  "queryKey": "race",
                   "size": 0
                 }
               ]
             }
           }
-        }
-      ],
-      "B20-B24": [
-        {
-          "size": 0,
-          "aggregations": {
-            "group_table_year": {
-              "terms": {
-                "field": "current_year",
-                "size": 0
-              }
-            }
-          },
-          "query": {
-            "filtered": {
-              "query": {
-                "bool": {
-                  "must": [
-                    {
-                      "bool": {
-                        "should": [
-                          {
-                            "match": {
-                              "ICD_10_code.path": "B20-B24"
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              },
-              "filter": {
-                "bool": {
-                  "must": [
-                    {
-                      "bool": {
-                        "should": [
-                          {
-                            "term": {
-                              "race": "American Indian"
-                            }
-                          },
-                          {
-                            "term": {
-                              "race": "Asian or Pacific Islander"
-                            }
-                          },
-                          {
-                            "term": {
-                              "race": "Black"
-                            }
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "bool": {
-                        "should": [
-                          {
-                            "term": {
-                              "current_year": "2015"
-                            }
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "bool": {
-                        "should": [
-                          {
-                            "term": {
-                              "state": "$state$"
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }
         },
-        {
+        "B20-B24": {
           "searchFor": "deaths",
           "query": {
             "race": {
@@ -20388,8 +20470,8 @@
             "nested": {
               "table": [
                 {
-                  "key": "year",
-                  "queryKey": "current_year",
+                  "key": "race",
+                  "queryKey": "race",
                   "size": 0
                 }
               ],
@@ -20410,17 +20492,65 @@
               ]
             }
           }
+        },
+        "hispanic":{
+          "size": 0,
+          "aggregations": {
+            "group_table_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "ethnicity_group": "Hispanic"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2015"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
         }
-      ]
+      }
     },
     "natality": {
       "birthRates": [
         {
           "size": 0,
           "aggregations": {
-            "group_table_current_year": {
+            "group_table_race": {
               "terms": {
-                "field": "current_year",
+                "field": "race",
                 "size": 0
               },
               "aggregations": {
@@ -20499,9 +20629,9 @@
         {
           "size": 0,
           "aggregations": {
-            "group_table_current_year": {
+            "group_table_race": {
               "terms": {
-                "field": "current_year",
+                "field": "race",
                 "size": 0
               },
               "aggregations": {
@@ -20577,9 +20707,9 @@
         {
           "size": 0,
           "aggregations": {
-            "group_table_current_year": {
+            "group_table_race": {
               "terms": {
-                "field": "current_year",
+                "field": "race",
                 "size": 0
               },
               "aggregations": {
@@ -20658,9 +20788,9 @@
         {
           "size": 0,
           "aggregations": {
-            "group_table_current_year": {
+            "group_table_race": {
               "terms": {
-                "field": "current_year",
+                "field": "race",
                 "size": 0
               },
               "aggregations": {
@@ -20912,9 +21042,9 @@
       "vaginal": {
         "size": 0,
         "aggregations": {
-          "group_table_current_year": {
+          "group_table_race": {
             "terms": {
-              "field": "current_year",
+              "field": "race",
               "size": 0
             },
             "aggregations": {
@@ -21004,9 +21134,9 @@
       "cesarean": {
         "size": 0,
         "aggregations": {
-          "group_table_current_year": {
+          "group_table_race": {
             "terms": {
-              "field": "current_year",
+              "field": "race",
               "size": 0
             },
             "aggregations": {
@@ -21096,9 +21226,9 @@
       "lowBirthWeight": {
         "size": 0,
         "aggregations": {
-          "group_table_current_year": {
+          "group_table_race": {
             "terms": {
-              "field": "current_year",
+              "field": "race",
               "size": 0
             },
             "aggregations": {
@@ -21193,9 +21323,9 @@
       "twinBirth": {
         "size": 0,
         "aggregations": {
-          "group_table_current_year": {
+          "group_table_race": {
             "terms": {
-              "field": "current_year",
+              "field": "race",
               "size": 0
             },
             "aggregations": {
@@ -21285,9 +21415,9 @@
       "totalBirthsByYear": {
         "size": 0,
         "aggregations": {
-          "group_table_current_year": {
+          "group_table_race": {
             "terms": {
-              "field": "current_year",
+              "field": "race",
               "size": 0
             },
             "aggregations": {
@@ -21370,9 +21500,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -21450,9 +21580,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 },
                 "aggregations": {
@@ -21528,9 +21658,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -21608,9 +21738,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 },
                 "aggregations": {
@@ -21686,9 +21816,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -21766,9 +21896,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 },
                 "aggregations": {
@@ -21844,9 +21974,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -21924,9 +22054,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 },
                 "aggregations": {
@@ -22002,9 +22132,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -22082,9 +22212,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 },
                 "aggregations": {
@@ -22171,9 +22301,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -22251,9 +22381,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 },
                 "aggregations": {
@@ -22340,9 +22470,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -22420,9 +22550,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 },
                 "aggregations": {
@@ -22559,22 +22689,12 @@
                 "key": "question",
                 "queryKey": "question.key",
                 "size": 0
+              },
+              {
+                "key": "race",
+                "queryKey": "race",
+                "size": 0
               }
-            ],
-            "charts": [],
-            "maps": [
-              [
-                {
-                  "key": "states",
-                  "queryKey": "state",
-                  "size": 0
-                },
-                {
-                  "key": "sex",
-                  "queryKey": "sex",
-                  "size": 0
-                }
-              ]
             ]
           }
         },
@@ -22640,22 +22760,12 @@
                 "key": "question",
                 "queryKey": "question.key",
                 "size": 0
+              },
+              {
+                "key": "race",
+                "queryKey": "race",
+                "size": 0
               }
-            ],
-            "charts": [],
-            "maps": [
-              [
-                {
-                  "key": "states",
-                  "queryKey": "state",
-                  "size": 0
-                },
-                {
-                  "key": "sex",
-                  "queryKey": "sex",
-                  "size": 0
-                }
-              ]
             ]
           }
         },
@@ -22722,25 +22832,10 @@
                   "size": 0
                 },
                 {
-                  "key": "state",
-                  "queryKey": "sitecode",
+                  "key": "maternal_race",
+                  "queryKey": "maternal_race",
                   "size": 0
                 }
-              ],
-              "charts": [],
-              "maps": [
-                [
-                  {
-                    "key": "states",
-                    "queryKey": "state",
-                    "size": 0
-                  },
-                  {
-                    "key": "sex",
-                    "queryKey": "sex",
-                    "size": 0
-                  }
-                ]
               ]
             }
           },
@@ -22804,25 +22899,10 @@
                   "size": 0
                 },
                 {
-                  "key": "state",
-                  "queryKey": "sitecode",
+                  "key": "maternal_race",
+                  "queryKey": "maternal_race",
                   "size": 0
                 }
-              ],
-              "charts": [],
-              "maps": [
-                [
-                  {
-                    "key": "states",
-                    "queryKey": "state",
-                    "size": 0
-                  },
-                  {
-                    "key": "sex",
-                    "queryKey": "sex",
-                    "size": 0
-                  }
-                ]
               ]
             }
           },
@@ -22886,25 +22966,10 @@
                   "size": 0
                 },
                 {
-                  "key": "state",
-                  "queryKey": "sitecode",
+                  "key": "maternal_race",
+                  "queryKey": "maternal_race",
                   "size": 0
                 }
-              ],
-              "charts": [],
-              "maps": [
-                [
-                  {
-                    "key": "states",
-                    "queryKey": "state",
-                    "size": 0
-                  },
-                  {
-                    "key": "sex",
-                    "queryKey": "sex",
-                    "size": 0
-                  }
-                ]
               ]
             }
           },
@@ -22976,25 +23041,10 @@
                   "size": 0
                 },
                 {
-                  "key": "state",
-                  "queryKey": "sitecode",
+                  "key": "maternal_race",
+                  "queryKey": "maternal_race",
                   "size": 0
                 }
-              ],
-              "charts": [],
-              "maps": [
-                [
-                  {
-                    "key": "states",
-                    "queryKey": "state",
-                    "size": 0
-                  },
-                  {
-                    "key": "sex",
-                    "queryKey": "sex",
-                    "size": 0
-                  }
-                ]
               ]
             }
           },
@@ -23058,25 +23108,10 @@
                   "size": 0
                 },
                 {
-                  "key": "state",
-                  "queryKey": "sitecode",
+                  "key": "maternal_race",
+                  "queryKey": "maternal_race",
                   "size": 0
                 }
-              ],
-              "charts": [],
-              "maps": [
-                [
-                  {
-                    "key": "states",
-                    "queryKey": "state",
-                    "size": 0
-                  },
-                  {
-                    "key": "sex",
-                    "queryKey": "sex",
-                    "size": 0
-                  }
-                ]
               ]
             }
           },
@@ -23140,25 +23175,10 @@
                   "size": 0
                 },
                 {
-                  "key": "state",
-                  "queryKey": "sitecode",
+                  "key": "maternal_race",
+                  "queryKey": "maternal_race",
                   "size": 0
                 }
-              ],
-              "charts": [],
-              "maps": [
-                [
-                  {
-                    "key": "states",
-                    "queryKey": "state",
-                    "size": 0
-                  },
-                  {
-                    "key": "sex",
-                    "queryKey": "sex",
-                    "size": 0
-                  }
-                ]
               ]
             }
           },

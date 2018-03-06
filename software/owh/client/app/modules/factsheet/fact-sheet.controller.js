@@ -154,7 +154,9 @@
         fsc.getFactSheet = getFactSheet;
         fsc.exportFactSheet = exportFactSheet;
         fsc.getStateName = getStateName;
-        
+        fsc.getMeanDisplayValue = getMeanDisplayValue;
+        fsc.calculateRate = calculateRate;
+
         if(fsc.queryID) {
             getQueryResults(fsc.state, fsc.fsType, fsc.queryID).then(function (response) {
                 if (!response || !response.resultData) {
@@ -775,6 +777,32 @@
         $scope.redirectToMortalityPage = function(){
             $rootScope.acceptDUR = false;
             $state.go('search');
+        }
+    }
+
+    function getMeanDisplayValue(data) {
+        var displayValue;
+        if (data) {
+            debugger;
+            if (data === 'suppressed') {
+                displayValue = 'Suppressed';
+            }
+            else if (data === 'na') {
+                displayValue = 'NR';
+            }
+            else {
+                displayValue = data + "%";
+            }
+        }
+        return displayValue;
+    }
+
+    function calculateRate(birthCout, totalPopulation) {
+        if(birthCout === 'suppressed') {
+            return 'Suppressed';
+        }
+        else {
+            return totalPopulation ? Math.round(birthCout / totalPopulation * 1000000) / 10 : 0;
         }
     }
 }());
