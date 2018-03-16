@@ -35,7 +35,7 @@
             </div>
 
             <!--for minority factsheets-->
-            <div ng-if="fsc.fsTypes.minority_health == 'Minority Health' && fsc.factSheet" class="factsheet-content">
+            <div ng-if="fsc.fsTypeForTable == fsc.fsTypes.minority_health && fsc.factSheet" class="factsheet-content">
                 <div class="factsheet-header flex-container" id="factsheetHeader">
                     <img id="stateImage" ng-src="{{fsc.stateImgUrl}}" />
                     <h3 ng-bind="fsc.factSheetTitle" class="state-heading"></h3>
@@ -488,7 +488,7 @@
             </div>
 
             <!--for state & women's health factsheet-->
-            <div class="factsheet-content" ng-if="fsc.fsTypes.minority_health != 'Minority Health' && fsc.factSheet">
+            <div class="factsheet-content" ng-if="fsc.fsTypeForTable != fsc.fsTypes.minority_health && fsc.factSheet">
 
                 <div class="factsheet-header flex-container" id="factsheetHeader">
                     <img id="stateImage" ng-src="{{fsc.stateImgUrl}}" />
@@ -500,7 +500,6 @@
                             {{fsc.stateName}} (PDF)
                         </a>
                     </div>
-                    <div>test---------------------------------</div>
                 </div>
                 <div class="factsheet-details">
 
