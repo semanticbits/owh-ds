@@ -45,7 +45,7 @@
                         {{fsc.stateName}} (PDF)
                     </a>
                 </div>
-                <div ng-bind="'minority.factsheet.definition' | translate"></div>
+                <div ng-bind="'minority.factsheet.definition' | translate" class="padding-bottom-10"></div>
                 <div class="factsheet-details">
 
                     <div class="bridge-race-factsheet">
@@ -492,14 +492,12 @@
 
                 <div class="factsheet-header flex-container" id="factsheetHeader">
                     <img id="stateImage" ng-src="{{fsc.stateImgUrl}}" />
-                    <div>
-                        <h3 ng-bind="fsc.factSheetTitle" class="state-heading"></h3>
-                        <a href="#" id="downloadFactSheetLink" ng-click="fsc.exportFactSheet()" ng-if="fsc.factSheet"
-                           class="download-link">
-                            <i class="material-icons margin-right-10 pdf-icon">file_download</i>Download fact sheet for
-                            {{fsc.stateName}} (PDF)
-                        </a>
-                    </div>
+                    <h3 ng-bind="fsc.factSheetTitle" class="state-heading"></h3>
+                    <a href="#" id="downloadFactSheetLink" ng-click="fsc.exportFactSheet()" ng-if="fsc.factSheet"
+                       class="download-link">
+                        <i class="material-icons margin-right-10 pdf-icon">file_download</i>Download fact sheet for
+                        {{fsc.stateName}} (PDF)
+                    </a>
                 </div>
                 <div class="factsheet-details">
 
