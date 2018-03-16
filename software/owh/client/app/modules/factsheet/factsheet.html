@@ -114,7 +114,7 @@
                                 <th>Black or African American</th>
                                 <th>Asian or Pacific Islander</th>
                                 <th>American Indian or Alaska Native</th>
-                                <!--<th>Hispanic</th>-->
+                                <th>Hispanic</th>
                             </tr>
                             </thead>
                             <tbody ng-repeat="eachRecord in fsc.factSheet.detailMortalityData">
@@ -122,12 +122,10 @@
                                     <td ng-bind="eachRecord.causeOfDeath" rowspan="2"></td>
                                     <td>Number of deaths</td>
                                     <td ng-repeat="r in eachRecord.data" ng-bind="r.deaths === 'suppressed' ? 'Suppressed' : ( r.deaths | number )"></td>
-                                    <!--<td></td>-->
                                 </tr>
                                 <tr>
                                     <td>Age Adjusted Rates</td>
                                     <td ng-repeat="r in eachRecord.data" ng-bind="r.ageAdjustedRate ? r.ageAdjustedRate :'Not Available'"></td>
-                                    <!--<td></td>-->
                                 </tr>
                             </tbody>
                         </table>
@@ -144,34 +142,41 @@
                                 <th>American Indian or Alaska Native</th>
                                 <th>Asian or Pacific Islander</th>
                                 <th>Black or African American</th>
+                                <th>Hispanic</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td>Deaths</td>
                                 <td ng-if="fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].infant_mortality"
-                                    ng-bind="fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].infant_mortality"></td>
+                                    ng-bind="fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].infant_mortality | number"></td>
                                 <td ng-if="!fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].infant_mortality">Suppressed</td>
 
                                 <td ng-if="fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].infant_mortality"
-                                    ng-bind="fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].infant_mortality"></td>
+                                    ng-bind="fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].infant_mortality | number"></td>
                                 <td ng-if="!fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].infant_mortality">Suppressed</td>
 
                                 <td ng-if="fsc.factSheet.infantMortalityData['Black or African American'].infant_mortality"
-                                    ng-bind="fsc.factSheet.infantMortalityData['Black or African American'].infant_mortality"></td>
+                                    ng-bind="fsc.factSheet.infantMortalityData['Black or African American'].infant_mortality | number"></td>
                                 <td ng-if="!fsc.factSheet.infantMortalityData['Black or African American'].infant_mortality">Suppressed</td>
+
+                                <td ng-if="fsc.factSheet.infantMortalityData['Hispanic'].infant_mortality"
+                                    ng-bind="fsc.factSheet.infantMortalityData['Hispanic'].infant_mortality | number"></td>
+                                <td ng-if="!fsc.factSheet.infantMortalityData['Hispanic'].infant_mortality">Suppressed</td>
                             </tr>
                             <tr>
                                 <td>Births</td>
-                                <td ng-bind="fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].births"></td>
-                                <td ng-bind="fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].births"></td>
-                                <td ng-bind="fsc.factSheet.infantMortalityData['Black or African American'].births"></td>
+                                <td ng-bind="fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].births | number"></td>
+                                <td ng-bind="fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].births | number"></td>
+                                <td ng-bind="fsc.factSheet.infantMortalityData['Black or African American'].births | number"></td>
+                                <td ng-bind="fsc.factSheet.infantMortalityData['Hispanic'].births | number"></td>
                             </tr>
                             <tr>
                                 <td>Death Rate</td>
                                 <td ng-bind="fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate"></td>
                                 <td ng-bind="fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].deathRate"></td>
                                 <td ng-bind="fsc.factSheet.infantMortalityData['Black or African American'].deathRate"></td>
+                                <td ng-bind="fsc.factSheet.infantMortalityData['Hispanic'].deathRate"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -191,7 +196,8 @@
                             <tbody>
                                 <tr ng-repeat="eachRecord in fsc.factSheet.prams.pregnantWoment" ng-class="{solidBorder: $index == 0}">
                                     <td ng-bind="eachRecord.question"></td>
-                                    <td ng-repeat="dt in eachRecord.data" ng-if="eachRecord.data != 'Not applicable'">{{dt.prams.mean}}%</td>
+                                    <td ng-repeat="dt in eachRecord.data" ng-if="eachRecord.data != 'Not applicable'"
+                                        ng-bind="fsc.getMeanDisplayValue(dt.prams.mean)"></td>
                                     <td ng-if="eachRecord.data == 'Not applicable'">{{eachRecord.data}}</td>
                                     <td ng-if="eachRecord.data == 'Not applicable'">{{eachRecord.data}}</td>
                                     <td ng-if="eachRecord.data == 'Not applicable'">{{eachRecord.data}}</td>
@@ -209,7 +215,9 @@
                             <tbody>
                                 <tr ng-repeat="eachRecord in fsc.factSheet.prams.women" ng-class="{solidBorder: $index == 0}">
                                     <td ng-bind="eachRecord.question"></td>
-                                    <td ng-repeat="dt in eachRecord.data" ng-if="eachRecord.data != 'Not applicable'">{{dt.prams.mean}}%</td>
+                                    <td ng-repeat="dt in eachRecord.data"
+                                        ng-if="eachRecord.data != 'Not applicable'"
+                                        ng-bind="fsc.getMeanDisplayValue(dt.prams.mean)"></td>
                                     <td ng-if="eachRecord.data == 'Not applicable'">{{eachRecord.data}}</td>
                                     <td ng-if="eachRecord.data == 'Not applicable'">{{eachRecord.data}}</td>
                                     <td ng-if="eachRecord.data == 'Not applicable'">{{eachRecord.data}}</td>
@@ -248,7 +256,7 @@
                         <table class="yrbs-table">
                             <thead>
                                 <th>Question</th>
-                                <th>Am Indian / Alaska Native</th>
+                                <th>American Indian or Alaska Native</th>
                                 <th>Asian</th>
                                 <th>Black or African American</th>
                                 <th>Hispanic or Latino</th>
@@ -435,6 +443,7 @@
                                 <th>American Indian or Alaska Native</th>
                                 <th>Asian or Pacific Islander</th>
                                 <th>Black</th>
+                                <th>Hispanic</th>
                             </tr>
                             </thead>
                             <tbody ng-repeat="eachRecord in fsc.factSheet.cancerData">

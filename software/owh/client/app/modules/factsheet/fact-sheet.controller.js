@@ -320,7 +320,7 @@
                 mortalityTableBody.push(rateCounts);
             });
             allTablesData.detailMortality = {
-                headerData: ['Cause of Death', 'Measure', 'Black or African American', 'Asian or Pacific Islander', 'American Indian or Alaska Native'],
+                headerData: ['Cause of Death', 'Measure', 'Black or African American', 'Asian or Pacific Islander', 'American Indian or Alaska Native', 'Hispanic'],
                 bodyData: mortalityTableBody
             };
             //Infant Mortality
@@ -328,27 +328,30 @@
             var infantAIAN = fsc.factSheet.infantMortalityData["American Indian or Alaska Native"];
             var infantAPI  = fsc.factSheet.infantMortalityData["Asian or Pacific Islander"];
             var infantBAA = fsc.factSheet.infantMortalityData["Black or African American"];
+            var hispanic = fsc.factSheet.infantMortalityData["Hispanic"];
             allTablesData.infantMortality = {
-                headerData: ['Measure', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American'],
+                headerData: ['Measure', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic'],
                 bodyData: [
                     [
                         "Deaths",
                         angular.isNumber(infantAIAN.infant_mortality) ? $filter('number')(infantAIAN.infant_mortality): 'Suppressed',
                         angular.isNumber(infantAPI.infant_mortality) ? $filter('number')(infantAPI.infant_mortality): 'Suppressed',
-                        angular.isNumber(infantBAA.infant_mortality) ? $filter('number')(infantBAA.infant_mortality): 'Suppressed'
-
+                        angular.isNumber(infantBAA.infant_mortality) ? $filter('number')(infantBAA.infant_mortality): 'Suppressed',
+                        angular.isNumber(hispanic.infant_mortality) ? $filter('number')(hispanic.infant_mortality): 'Suppressed'
                     ],
                     [
                         "Births",
                         angular.isNumber(infantAIAN.births) ? $filter('number')(infantAIAN.births) : 'Suppressed',
                         angular.isNumber(infantAIAN.births) ? $filter('number')(infantAPI.births) : 'Suppressed',
-                        angular.isNumber(infantAIAN.births) ? $filter('number')(infantBAA.births) : 'Suppressed'
+                        angular.isNumber(infantAIAN.births) ? $filter('number')(infantBAA.births) : 'Suppressed',
+                        angular.isNumber(hispanic.births) ? $filter('number')(hispanic.births) : 'Suppressed'
                     ],
                     [
                         "Death Rate",
                         angular.isNumber(infantAIAN.deathRate) ? $filter('number')(infantAIAN.deathRate, 1) : infantAIAN.deathRate,
                         angular.isNumber(infantAPI.deathRate) ? $filter('number')(infantAPI.deathRate, 1) : infantAPI.deathRate,
-                        angular.isNumber(infantBAA.deathRate) ? $filter('number')(infantBAA.deathRate, 1) : infantBAA.deathRate
+                        angular.isNumber(infantBAA.deathRate) ? $filter('number')(infantBAA.deathRate, 1) : infantBAA.deathRate,
+                        angular.isNumber(hispanic.deathRate) ? $filter('number')(hispanic.deathRate, 1) : hispanic.deathRate
                     ]
                 ]
             };
@@ -590,7 +593,7 @@
                 cancerData.push(deathCounts); cancerData.push(deathsRates);
             });
             allTablesData.cancer = {
-                headerData:  ["Cancer Site", "Measure", "American Indian or Alaska Native", "Asian or Pacific Islander", "Black"],
+                headerData:  ["Cancer Site", "Measure", "American Indian or Alaska Native", "Asian or Pacific Islander", "Black", 'Hispanic'],
                 bodyData: cancerData
             };
             return allTablesData;
