@@ -21,7 +21,7 @@
   "label.filter.censusRegion": "Census Region",
   "label.filter.censusDivision": "Census Division",
   "label.filter.HHSRegion": "HHS Region",
-  "label.filter.natality": "Natality",
+  "label.filter.natality": "Births",
   "label.filter.state": "State",
   "label.filter.county": "County",
   "label.filter.hispanicOrigin": "Ethnicity",
@@ -594,5 +594,6 @@
   "label.help.text.brfss.education": "This field indicates the education attained by the survey respondents",
   "label.help.text.brfss.income": "This field indicates the household income of the survey respondents",
   "label.help.text.factsheet.note": "Please go to the &quot;Explore&quot; tab to see more fine-grained breakdown of results for each of the datasets",
-  "datadoc.tb.data.filter.restrictions":"TB state-level data can be viewed in aggregate format or one-way stratifications (i.e., by Sex, Race/Ethnicity, Age group or Country of birth)."
+  "datadoc.tb.data.filter.restrictions":"TB state-level data can be viewed in aggregate format or one-way stratifications (i.e., by Sex, Race/Ethnicity, Age group or Country of birth).",
+  "minority.factsheet.definition": "This Fact Sheet displays demographic and health status information for the following ethnic and racial groups: African Americans, American Indians and Alaska Natives, Asian Americans, Hispanics, Native Hawaiians and Pacific Islanders."
 }

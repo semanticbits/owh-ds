@@ -13,13 +13,13 @@
         dc.datasetInfo = {
                 natality: {
                     key:"natality",
-                    title: 'Natality',
+                    title: 'Births',
                     image: 'natality-icon.svg',
                     yrsAvail: '2000-2015',
                     topics: 'Births, Babies, Birth Rates, Fertility Rates, Prenatal Care',
                     dataDescription:"This dataset has counts and rates of births occurring within the United States to U.S. residents and nonresidents. State is defined by the mother's place of residence recorded on the birth certificate. Data elements include demographics, and maternal risk factors. Population is Live Births in United States.",
                     suppression:"Vital statistics data are suppressed due to confidentiality constraints, in order to protect personal privacy. All sub-national data representing zero to nine (0-9) births are suppressed. Corresponding population denominator data are also suppressed when the figure represents fewer than ten persons.",
-                    source: "The Natality data set is provided by the U.S. Department of Health and Human Services (US HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS).",
+                    source: "The Births data set is provided by the U.S. Department of Health and Human Services (US HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS).",
                     isRateCalculation: true,
                     filters: [
                         {name: "Births", description: "The birth counts in the data represent births that occurred in the 50 United States and the District of Columbia, for the legal place of residence of the decedent."},
@@ -85,12 +85,12 @@
                             question:"How are Birth Rates and Fertility Rates calculated?",
                             answer:"Birth rates are calculated as the number of births divided by total population in the given year(s). When the numerator is sub-set by mother's race, location, or year of birth, then the same sub-set for race, location and year applies to the denominator population. If the data are sub-set by any other variable, then birth rates and denominator data are not available.<br/>Notes:" +
                             "<ul>" +
-                            "<li>Birth rates are available for the Natality data beginning in year 2003.</li>" +
+                            "<li>Birth rates are available for the Births data beginning in year 2003.</li>" +
                             "<li>Birth rates are only available for the total population, or for mother's race, mother's place of residence and the year of birth. If data are grouped by any other variable, or limited for any other variable, then birth rates are not calculated.</li>" +
                             "</ul>" +
                             "Fertility rates are calculated as the number of births divided by the number of females age 15 - 44 years old in the given year(s). When the numerator is sub-set by mother's age, mother's race, location, or year of birth, then the same sub-set for age, race, location and year applies to the denominator population. If data are sub-set by any other variable, then fertility rates and denominator data are not available.<br/>Notes:" +
                             "<ul>" +
-                            "<li>Fertility rates are available for the Natality data since year 2003.</li>" +
+                            "<li>Fertility rates are available for the Births data since year 2003.</li>" +
                             "<li>Fertility rates are only available for the total population, or for mother's age, mother's race, mother's place of residence and the year of birth. If data are grouped by any other variable, or limited for any other variable, then fertility rates are not calculated. Comparable denominator data are not available for the other variables.</li>" +
                             "</ul>"
                         },
@@ -101,8 +101,8 @@
                             "<li>The term <i>Suppressed</i> replaces sub-national births counts, birth rates and fertility rates, when the figure represents zero to nine (0-9) persons.	Corresponding population denominator data are also suppressed when the figure represents fewer than ten persons.</li>" +
                             "<li>Totals and sub-totals are suppressed when the value falls within scope of the suppression criteria, or when the summary value includes a single suppressed figure, in order to prevent the inadvertent disclosure of suppressed values.</li>" +
                             "<li>The confidentiality constraints are established by the original data providers. For more information, please contact the data providers.</li>" +
-                            "<li>Natality data for the United States are limited to births occurring within the United States to U.S. residents and nonresidents. Births to non-residents of the United State are excluded from all tabulations by place of residence. Births occurring to U.S. citizens outside the United States are not included.</li>" +
-                            "<li>All Natality data are reported in conformance to the reporting criteria of the mother's place of residence, rather than the actual criteria on the birth certificate issued by the reporting area of occurrence. For example, if a baby was born in Texas to a mother legally residing in California, then only those data items reported by California are included in the data set. The original Natality 2004 public use dataset includes data fields from the birth certificate, with an associated reporting flag for each field to indicate whether the mother's place of residence reports this item.</li>" +
+                            "<li>Births data for the United States are limited to births occurring within the United States to U.S. residents and nonresidents. Births to non-residents of the United State are excluded from all tabulations by place of residence. Births occurring to U.S. citizens outside the United States are not included.</li>" +
+                            "<li>All Births data are reported in conformance to the reporting criteria of the mother's place of residence, rather than the actual criteria on the birth certificate issued by the reporting area of occurrence. For example, if a baby was born in Texas to a mother legally residing in California, then only those data items reported by California are included in the data set. The original Births 2004 public use dataset includes data fields from the birth certificate, with an associated reporting flag for each field to indicate whether the mother's place of residence reports this item.</li>" +
                             "</ul>"
                         },
                         {

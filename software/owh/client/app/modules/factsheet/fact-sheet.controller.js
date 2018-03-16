@@ -152,6 +152,7 @@
         };
 
         fsc.getFactSheet = getFactSheet;
+        fsc.exportMinorityFactSheet = exportMinorityFactSheet;
         fsc.exportFactSheet = exportFactSheet;
         fsc.getStateName = getStateName;
         fsc.getMeanDisplayValue = getMeanDisplayValue;
@@ -195,6 +196,318 @@
                 deffered.resolve(response);
             });
             return deffered.promise;
+        }
+
+        /**
+         * To export factsheet data into PDF
+         */
+        function exportFactSheet() {
+            //We can pass multiple images to 'SVGtoPNG' method to generate dataURL
+            var imageNamesForPDF = ["../client/app/images/state-shapes/"+fsc.stateImg];
+            SearchService.SVGtoPNG(imageNamesForPDF).then(function(response){
+                var allTablesData = prepareStateAndWonesTablesData();
+                var hivTableData = prepareTableBody(allTablesData.hiv.bodyData);
+                hivTableData.unshift(prepareTableHeaders(allTablesData.hiv.headerData));
+                var stdTableData = prepareTableBody(allTablesData.std.bodyData);
+                stdTableData.unshift(prepareTableHeaders(allTablesData.std.headerData));
+                var cancerTableData = prepareTableBody(allTablesData.cancer.bodyData);
+                cancerTableData.unshift(prepareTableHeaders(allTablesData.cancer.headerData));
+                var detailMortalityTableData = prepareTableBody(allTablesData.detailMortality.bodyData);
+                detailMortalityTableData.unshift(prepareTableHeaders(allTablesData.detailMortality.headerData));
+                var bridgeRaceTotalText = "";
+                if(fsc.fsType === fsc.fsTypes.womens_health) {
+                    bridgeRaceTotalText = "Total state female population: "+$filter('number')(fsc.factSheet.gender[0].bridge_race);
+                }
+                else {
+                    bridgeRaceTotalText = "Total state population: "+$filter('number')(fsc.factSheet.totalGenderPop)+ " ("+$filter('number')(fsc.factSheet.gender[0]                                                           .bridge_race)+" females; "+$filter('number')(fsc.factSheet.gender[1].bridge_race)+ " males)"
+                }
+                var lightHorizontalLines = {
+                    hLineWidth: function (i, node) {
+                        return .5;
+                    },
+                    vLineWidth: function (i, node) {
+                        return .5;
+                    },
+                    hLineColor: 'gray',
+                    vLineColor: 'gray'
+                };
+                var pdfDefinition = {
+                    styles: {
+                        "dataset-image": {
+                            alignment: 'left',
+                            margin: [0, 0, 55, -35]
+                        },
+                        "state-image": {
+                            alignment: 'left',
+                            margin: [0, 0, 55, -35]
+                        },
+                        "state-heading": {
+                            fontSize: 16,
+                            alignment: 'left',
+                            margin: [50, 0, 0, 0]
+                        },
+                        "footer": {
+                            fontSize: 5,
+                            italics: true
+                        },
+                        "footerLink": {
+                            fontSize: 5,
+                            color: '#6f399a',
+                            italics: true
+                        },
+                        heading: {
+                            fontSize: 10,
+                            bold: true,
+                            decoration: 'underline',
+                            margin: [50, 5, 0, 10]
+                        },
+                        underline: {
+                            decoration: 'underline'
+                        },
+                        "tableHeader": {
+                            bold: true
+                        },
+                        table: {
+                            margin: [0, 2, 0, 2]
+                        },
+                        'info': {
+                            fontSize: 6,
+                            italics: true,
+                            margin: [0, -1, 0, 0]
+                        }
+                    },
+                    defaultStyle: {
+                        fontSize: 8
+                    }
+                };
+                //Prepare source for PRAMS, YRBS and Cancer based on selected state
+                var PRAMSSource = 'Sources: 2011, CDC PRAMS';
+                var YRBSSource = 'Sources: 2015, YRBS; NA - Data not available or suppressed , NR - Data not reported';
+                var CancerSource = 'Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only';
+                if(fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1) {
+                    PRAMSSource = 'This state did not take part in PRAMS';
+                }
+                if(fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1) {
+                    YRBSSource = 'This state did not take part in YRBS';
+                }
+                if(fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1) {
+                    CancerSource = 'Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only. The state did not meet the United States Cancer Statistics (USCS) publication standard or did not allow permission for their data to be used.';
+                }
+                pdfDefinition.footer = function(page, pages) {
+                    return {
+                        columns: [
+                            { text: [
+                                    {text: 'This factsheet is downloaded from', style: 'footer'},
+                                    {text: ' Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
+                                ]
+                            },
+                            {
+                                alignment: 'right',
+                                text: [
+                                    { text: page.toString(), italics: true, style: 'footer' },
+                                    { text: ' of ', italics: true, style: 'footer'},
+                                    { text: pages.toString(), italics: true, style: 'footer' }
+                                ]
+                            }
+                        ],
+                        margin: [10, 0]
+                    };
+                },
+                    pdfDefinition.content = [
+                        {image: response.data[0], width: 50, height: 50, style: 'state-image'},
+                        {text: fsc.factSheetTitle, style: 'state-heading'},
+                        {image: fsc.imageDataURLs.bridgeRace, width: 50, height: 50, style: 'dataset-image'},
+                        {text: "Population in "+fsc.stateName, style: 'heading'},
+                        {text: bridgeRaceTotalText},
+                        {
+                            style: 'table',
+                            table: {
+                                headerRows: 1,
+                                widths: $.map( allTablesData.bridgeRaceTable1.headerData, function (d, i) {
+                                    return '*';
+                                } ),
+                                body: [
+                                    prepareTableHeaders(allTablesData.bridgeRaceTable1.headerData),
+                                    prepareTableBody(allTablesData.bridgeRaceTable1.bodyData)
+                                ]
+                            },
+                            layout: lightHorizontalLines
+                        },
+                        {
+                            style: 'table',
+                            table: {
+                                headerRows: 1,
+                                widths: $.map( allTablesData.bridgeRaceTable2.headerData, function (d, i) {
+                                    return '*';
+                                } ),
+                                body: [
+                                    prepareTableHeaders(allTablesData.bridgeRaceTable2.headerData),
+                                    prepareTableBody(allTablesData.bridgeRaceTable2.bodyData)
+                                ]
+                            },
+                            layout: lightHorizontalLines
+                        },
+                        {text: 'Sources: 2015, U.S. Census Bureau and NCHS; * Racial/ethnic groups may not sum to total', style: 'info'},
+                        {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
+                        {text: 'Mortality',  style: 'heading'},
+                        {
+                            style: 'table',
+                            table: {
+                                widths: $.map( allTablesData.detailMortality.headerData, function (d, i) {
+                                    return '*';
+                                } ),
+                                body: detailMortalityTableData
+
+                            },
+                            layout: lightHorizontalLines
+                        },
+                        {text: 'Source: 2015, NCHS National Vital Statistics System', style: 'info'},
+                        {image: fsc.imageDataURLs.infantMortality, width: 50, height: 50, style: 'dataset-image'},
+                        {text: 'Infant Mortality: (All Causes, Not gender-specific)', style: 'heading'},
+                        {
+                            style: 'table',
+                            table: {
+                                headerRows: 1,
+                                widths: $.map( allTablesData.infantMortality.headerData, function (d, i) {
+                                    return '*';
+                                } ),
+                                body: [
+                                    prepareTableHeaders(allTablesData.infantMortality.headerData),
+                                    prepareTableBody(allTablesData.infantMortality.bodyData)
+                                ]
+                            },
+                            layout: lightHorizontalLines
+                        },
+                        {text: 'Source: 2014  NCHS National Vital Statistics System', style: 'info'},
+                        {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image'},
+                        {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},
+                        {text: 'Pregnant women:', style: 'underline'},
+                        {
+                            style: 'table',
+                            table: {
+                                widths: $.map( allTablesData.pramsTable1.bodyData[0], function (d, i) {
+                                    return '*';
+                                } ),
+                                body: prepareTableBody(allTablesData.pramsTable1.bodyData)
+                            },
+                            layout: lightHorizontalLines
+                        },
+                        {text: 'Women:', style: 'underline'},
+                        {
+                            style: 'table',
+                            table: {
+                                widths: $.map( allTablesData.pramsTable2.bodyData[0], function (d, i) {
+                                    return '*';
+                                } ),
+                                body: prepareTableBody(allTablesData.pramsTable2.bodyData)
+                            },
+                            layout: lightHorizontalLines
+                        },
+                        {text: PRAMSSource, style: 'info'},
+                        {image: fsc.imageDataURLs.brfs, width: 50, height: 50, pageBreak: 'before', style: 'dataset-image'},
+                        {text: 'Behavioral Risk Factors', style: 'heading'},
+                        {
+                            style: 'table',
+                            table: {
+                                widths: $.map( allTablesData.brfss.bodyData[0], function (d, i) {
+                                    return '*';
+                                } ),
+                                body: prepareTableBody(allTablesData.brfss.bodyData)
+                            },
+                            layout: lightHorizontalLines
+                        },
+                        {text: 'Source:  2015, CDC BRFSS', style: 'info'},
+                        {image: fsc.imageDataURLs.yrbs, width: 50, height: 50, style: 'dataset-image'},
+                        {text: 'Teen Health', style: 'heading'},
+                        {
+                            style: 'table',
+                            table: {
+                                widths: $.map( allTablesData.yrbs.bodyData[0], function (d, i) {
+                                    return '*';
+                                } ),
+                                body: prepareTableBody(allTablesData.yrbs.bodyData)
+                            },
+                            layout: lightHorizontalLines
+                        },
+                        {text: YRBSSource, style: 'info'},
+                        {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image'},
+                        {text: 'Births', style: 'heading'},
+                        {
+                            style: 'table',
+                            table: {
+                                widths: $.map( allTablesData.natality.bodyData[0], function (d, i) {
+                                    return '*';
+                                } ),
+                                body: prepareTableBody(allTablesData.natality.bodyData)
+                            },
+                            layout: lightHorizontalLines
+                        },
+                        {text: 'Sources:  2015, NCHS National Vital Statistics System', style: 'info'},
+                        {image: fsc.imageDataURLs.tb, width: 50, height: 50, style: 'dataset-image'},
+                        {text: 'Tuberculosis (Number of new annual reported infections and rate per 100,000)', style: 'heading'},
+                        {text: 'Population: '+$filter('number')(fsc.factSheet.tuberculosis[0].pop)},
+                        {
+                            style: 'table',
+                            table: {
+                                widths: $.map( allTablesData.tb.headerData, function (d, i) {
+                                    return '*';
+                                } ),
+                                body: [
+                                    prepareTableHeaders(allTablesData.tb.headerData),
+                                    prepareTableBody(allTablesData.tb.bodyData)
+                                ]
+                            },
+                            layout: lightHorizontalLines
+                        },
+                        {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
+                        {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
+                        {text: 'Sexually Transmitted Infections (Number of new annual reported infections and rate per 100,000)', style: 'heading'},
+                        {text: 'Population: '+$filter('number')(fsc.factSheet.stdData[0].data[0].pop)},
+                        {
+                            style: 'table',
+                            table: {
+                                widths: $.map( allTablesData.std.headerData, function (d, i) {
+                                    return '*';
+                                } ),
+                                body: stdTableData
+                            },
+                            layout: lightHorizontalLines
+                        },
+                        {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
+                        {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
+                        {text: 'HIV/AIDS (Number of new annual reported infections and rate per 100,000)', style: 'heading'},
+                        {text: 'Population: '+$filter('number')(fsc.factSheet.hivAIDSData[0].data[0].pop)},
+                        {
+                            style: 'table',
+                            table: {
+                                widths: $.map( allTablesData.hiv.headerData, function (d, i) {
+                                    return '*';
+                                } ),
+                                body: hivTableData
+                            },
+                            layout: lightHorizontalLines
+                        },
+                        {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas, *2014', style: 'info'},
+                        {image: fsc.imageDataURLs.cancer, width: 50, height: 50, style: 'dataset-image'},
+                        {text: 'Cancer Statistics', style: 'heading'},
+                        {text: 'Cancer Incidence and Mortality:'},
+                        {
+                            style: 'table',
+                            table: {
+                                widths: $.map( allTablesData.cancer.headerData, function (d, i) {
+                                    return '*';
+                                } ),
+                                body: cancerTableData
+                            },
+                            layout: lightHorizontalLines
+                        },
+                        {text: CancerSource, style: 'info'}
+
+                    ];
+                var document = pdfMake.createPdf(pdfDefinition);
+                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
+                return document.docDefinition;
+            });
         }
 
 
@@ -261,7 +574,7 @@
          * To prepare all table data for PDF generation
          * @return all table data JSON
          */
-        function prepareAllTablesData(){
+        function prepareMinorityTablesData() {
             var allTablesData = {};
             //Prepare bridgeRace data
             var bridgeRaceTableOneData = [];
@@ -600,13 +913,216 @@
         }
 
         /**
+         * To prepare all table data for PDF generation
+         * @return all table data JSON
+         */
+        function prepareStateAndWonesTablesData(){
+            var allTablesData = {};
+            //Prepare bridgeRace data
+            var bridgeRaceTableOneData = [];
+            bridgeRaceTableOneData.push('Population');
+            fsc.fsTypeForTable !== fsc.fsTypes.womens_health && bridgeRaceTableOneData.push($filter('number')(fsc.factSheet.totalGenderPop));
+            angular.forEach(fsc.factSheet.race, function(race){
+                bridgeRaceTableOneData.push($filter('number')(race.bridge_race));
+            });
+            var bridgeRaceTableTwoData = [];
+            bridgeRaceTableTwoData.push('Population');
+            bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[0].bridge_race));
+            bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[1]["15-44 years"][0].bridge_race));
+            bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[1]["15-44 years"][1].bridge_race));
+            bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[2].bridge_race));
+            bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[3].bridge_race));
+            bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[4].bridge_race));
+            if(fsc.fsTypeForTable === fsc.fsTypes.minority_health) {
+                allTablesData.bridgeRaceTable1 = {
+                    headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic**', 'American Indian',                                         'Asian/Pacific Islander', 'Hispanic'],
+                    bodyData: bridgeRaceTableOneData
+                };
+            }
+            else if(fsc.fsTypeForTable === fsc.fsTypes.womens_health) {
+                allTablesData.bridgeRaceTable1 = {
+                    headerData: ['Racial Distributions of Residents*', 'Black, non-Hispanic**', 'White, non-Hispanic',                                         'American Indian', 'Asian/Pacific Islander', 'Hispanic'],
+                    bodyData: bridgeRaceTableOneData
+                };
+            }
+            else {
+                allTablesData.bridgeRaceTable1 = {
+                    headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic**', 'White, non-Hispanic',                                         'American Indian', 'Asian/Pacific Islander', 'Hispanic'],
+                    bodyData: bridgeRaceTableOneData
+                };
+            }
+
+            allTablesData.bridgeRaceTable2 = {
+                headerData: ['Age Distributions of Residents', '10-14', '15-19', '20-44', '45-64', '65-84', '85+'],
+                bodyData: bridgeRaceTableTwoData
+            };
+            //Detail Mortality
+            var detailsMortalityData = [];
+            angular.forEach(fsc.factSheet.detailMortalityData, function(eachRecord){
+                var deathCount = "";
+                if(eachRecord.data.deaths){
+                    deathCount = eachRecord.data.deaths === 'suppressed' ? 'Suppressed' : $filter('number')(eachRecord.data.deaths);
+                }
+                detailsMortalityData.push([eachRecord.causeOfDeath, deathCount, eachRecord.data.ageAdjustedRate ? eachRecord.data.ageAdjustedRate : "Not Available"]);
+            });
+            allTablesData.detailMortality = {
+                headerData: ['Cause of Death', 'Number of Deaths', 'Age-Adjusted Death Rate (per 100,000)'],
+                bodyData: detailsMortalityData
+            };
+            //Infant Mortality
+            allTablesData.infantMortality = {
+                headerData: ['Deaths', 'Births', 'Death Rate'],
+                bodyData: [$filter('number')(fsc.factSheet.infantMortalityData.infant_mortality), $filter('number')(fsc.factSheet.infantMortalityData.births),
+                    $filter('number')(fsc.factSheet.infantMortalityData.deathRate, 1)]
+            };
+            //PRAMS
+            var pramsTableOneData = [];
+            angular.forEach(fsc.factSheet.prams.pregnantWoment, function(eachRecord){
+                pramsTableOneData.push([eachRecord.question, eachRecord.data]);
+            });
+            var pramsTableTwoData = [];
+            angular.forEach(fsc.factSheet.prams.women, function(eachRecord){
+                pramsTableTwoData.push([eachRecord.question, eachRecord.data]);
+            });
+            allTablesData.pramsTable1 = {
+                bodyData: pramsTableOneData
+            };
+            allTablesData.pramsTable2 = {
+                bodyData: pramsTableTwoData
+            };
+            //BRFSS
+            var brfssData = [];
+            angular.forEach(fsc.factSheet.brfss, function(eachRecord){
+                brfssData.push([eachRecord.question, eachRecord.data]);
+            });
+            allTablesData.brfss = {
+                bodyData: brfssData
+            };
+            //YRBS
+            var yrbsData = [];
+            angular.forEach(fsc.factSheet.yrbs, function(eachRecord){
+                yrbsData.push([eachRecord.question, eachRecord.data]);
+            });
+            allTablesData.yrbs = {
+                bodyData: yrbsData
+            };
+            //Natality
+            allTablesData.natality = {
+                bodyData: [["Births", $filter('number')(fsc.factSheet.natalityData.births)],
+                    ["Total Population", $filter('number')(fsc.factSheet.natalityData.population)],
+                    ["Birth Rates (per 100,000)", fsc.factSheet.natalityData.birthRate],
+                    ["Female  Population (Ages 15 to 44)", $filter('number')(fsc.factSheet.natalityData.femalePopulation)],
+                    ["Fertility Rates (per 100,000)", fsc.factSheet.natalityData.fertilityRate],
+                ]
+            };
+            //Tuberculosis
+            var tbHeaderData = [];
+            var tbData = [];
+            //For minority health we excluded 'All' and 'White' race so tb results data don't have 'Totals'
+            if(fsc.fsTypeForTable != fsc.fsTypes.minority_health) {
+                tbHeaderData.push("Total Cases (Rates)");
+            }
+            angular.forEach(fsc.factSheet.tuberculosis, function(eachRecord, index){
+                fsc.fsTypeForTable === fsc.fsTypes.minority_health && index === 0 ? tbHeaderData.push(eachRecord.name): '';
+                if(index > 0 && eachRecord.name != 'Unknown') {
+                    tbHeaderData.push(eachRecord.name);
+                }
+            });
+            angular.forEach(fsc.factSheet.tuberculosis, function(eachRecord){
+                if(eachRecord.name != 'Unknown') {
+                    tbData.push(eachRecord.displayValue);
+                }
+            });
+            allTablesData.tb = {
+                headerData:  tbHeaderData,
+                bodyData: tbData
+            };
+            //STD
+            var stdHeaderData = [];
+            var stdData = [];
+            stdHeaderData.push("Disease");
+            //For minority health we excluded 'All' and 'White' race so tb results data don't have 'Totals'
+            if(fsc.fsTypeForTable != fsc.fsTypes.minority_health) {
+                stdHeaderData.push("Total Cases (Rates)");
+            }
+            angular.forEach(fsc.factSheet.stdData[0].data, function(eachHeader, index){
+                fsc.fsTypeForTable === fsc.fsTypes.minority_health && index === 0 ? stdHeaderData.push(eachHeader.name): '';
+                if(index > 0 && eachHeader.name != 'Unknown') {
+                    stdHeaderData.push(eachHeader.name);
+                }
+            });
+            angular.forEach(fsc.factSheet.stdData, function(eachRecord){
+                var eachRow = [];
+                eachRow.push(eachRecord.disease);
+                angular.forEach(eachRecord.data, function(data){
+                    if(data.name != 'Unknown') {
+                        eachRow.push(data.displayValue);
+                    }
+                });
+                stdData.push(eachRow);
+            });
+            //Add missing empty cells
+            for(i=stdData[stdData.length-1].length; i< stdData[0].length; i++) {
+                stdData[stdData.length-1][i] = "";
+            }
+            allTablesData.std = {
+                headerData:  stdHeaderData,
+                bodyData: stdData
+            };
+            //HIV/AIDS
+            var hivHeaderData = [];
+            var hivData = [];
+            hivHeaderData.push("Indicator");
+            //For minority health we excluded 'All' and 'White' race so tb results data don't have 'Totals'
+            fsc.fsTypeForTable != fsc.fsTypes.minority_health && hivHeaderData.push("Total Cases (Rates)");
+            angular.forEach(fsc.factSheet.hivAIDSData[0].data, function(eachHeader, index){
+                fsc.fsTypeForTable === fsc.fsTypes.minority_health && index === 0 ? hivHeaderData.push(eachHeader.name): '';
+                if(index > 0 && eachHeader.name != 'Unknown') {
+                    hivHeaderData.push(eachHeader.name);
+                }
+            });
+            angular.forEach(fsc.factSheet.hivAIDSData, function(eachRecord) {
+                var eachRow = [];
+                eachRow.push(eachRecord.disease);
+                angular.forEach(eachRecord.data, function(data){
+                    if(data.name != 'Unknown') {
+                        eachRow.push(data.displayValue);
+                    }
+                });
+                hivData.push(eachRow);
+            });
+            allTablesData.hiv = {
+                headerData:  hivHeaderData,
+                bodyData: hivData
+            };
+
+            //Cancer
+            var cancerData = [];
+            angular.forEach(fsc.factSheet.cancerData, function(eachRecord) {
+                var eachRow = [];
+                eachRow.push(eachRecord.site);
+                eachRow.push($filter('number')(eachRecord.pop));
+                eachRecord.count === 'Suppressed' ? eachRow.push(eachRecord.count) : eachRow.push($filter('number')(eachRecord.count));
+                eachRow.push(eachRecord.incident_rate);
+                eachRecord.deaths === 'Suppressed' ? eachRow.push(eachRecord.deaths) : eachRow.push($filter('number')(eachRecord.deaths));
+                eachRow.push(eachRecord.mortality_rate);
+                cancerData.push(eachRow);
+            });
+            allTablesData.cancer = {
+                headerData:  ["Cancer Site", "Population", "Count", "Incidence Crude Rates (per 100,000)", "Deaths", "Mortality Crude Rates (per 100,000)"],
+                bodyData: cancerData
+            };
+            return allTablesData;
+        }
+
+        /**
          * To export factsheet data into PDF
          */
-        function exportFactSheet() {
+        function exportMinorityFactSheet() {
             //We can pass multiple images to 'SVGtoPNG' method to generate dataURL
             var imageNamesForPDF = ["../client/app/images/state-shapes/"+fsc.stateImg];
             SearchService.SVGtoPNG(imageNamesForPDF).then(function(response){
-                var allTablesData = prepareAllTablesData();
+                var allTablesData = prepareMinorityTablesData();
                 var detailMortalityTableData = allTablesData.detailMortality.bodyData;
                 detailMortalityTableData.unshift(prepareTableHeaders(allTablesData.detailMortality.headerData));
 
@@ -854,7 +1370,7 @@
                     },
                     {text: YRBSSource, style: 'info'},
                     {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image'},
-                    {text: 'Birth Outcomes', style: 'heading'},
+                    {text: 'Births', style: 'heading'},
                     {
                         style: 'table',
                         table: {
