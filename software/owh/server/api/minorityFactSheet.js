@@ -598,7 +598,7 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var melanomaCancerPopulation = searchUtils.populateDataWithMappings(resp[110], 'cancer_population');
             var melanomaPopulationIndex = searchUtils.createPopIndex(melanomaCancerPopulation.data.nested.table, 'cancer_population');
             searchUtils.attachPopulation(melanomaCancerMortality.data.nested.table, melanomaPopulationIndex, '');
-            var melanomaMortality = lungCancerMortality.data.nested.table.current_year[0] || {name:'Hispanic', cancer_mortality:0, pop:melanomaCancerPopulation.data.nested.table.current_year[0].cancer_population};
+            var melanomaMortality = melanomaCancerMortality.data.nested.table.current_year[0] || {name:'Hispanic', cancer_mortality:0, pop:melanomaCancerPopulation.data.nested.table.current_year[0].cancer_population};
             melanomaMortality.name = 'Hispanic';
             cancer_mortality_melanoma_data.data.nested.table.race.push(melanomaMortality);
             searchUtils.applySuppressions(cancer_mortality_melanoma_data, 'cancer_mortality', 16);
