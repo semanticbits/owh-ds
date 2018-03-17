@@ -1473,6 +1473,8 @@
     function calculateRate(count, totalPopulation, checkReliability) {
         if(count === 'suppressed') {
             return 'Suppressed';
+        } else if(count === 'Not Available') {
+            return 'Not Available';
         } else if (checkReliability) {
             if(count < 20) {
                 return 'Unreliable';

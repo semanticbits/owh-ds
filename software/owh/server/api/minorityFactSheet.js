@@ -401,7 +401,8 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var detailMortalityTotalHispanicData = searchUtils.populateDataWithMappings(resp[89], 'deaths');
             searchUtils.mergeAgeAdjustedRates(detailMortalityTotalHispanicData.data.nested.table, resp[99].table);
             searchUtils.applySuppressions(detailMortalityTotalHispanicData, 'deaths');
-            var totalHispanic = detailMortalityTotalHispanicData.data.nested.table.year[0];
+            var totalHispanic = detailMortalityTotalHispanicData.data.nested.table.year[0] || {name: Hispanic,
+                deaths: 'suppressed', ageAdjustedRate: 'Not Available', standardPop: 'Not Available'};
             totalHispanic.name = 'Hispanic';
             detailMortalityTotal_Data.data.nested.table.race[3] =  totalHispanic;
 
@@ -413,7 +414,8 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var detailMortalityC00C97HispanicData = searchUtils.populateDataWithMappings(resp[90], 'deaths');
             searchUtils.mergeAgeAdjustedRates(detailMortalityC00C97HispanicData.data.nested.table, resp[101].table);
             searchUtils.applySuppressions(detailMortalityC00C97HispanicData, 'deaths');
-            var C00C97Hispanic = detailMortalityC00C97HispanicData.data.nested.table.year[0];
+            var C00C97Hispanic = detailMortalityC00C97HispanicData.data.nested.table.year[0] || {name: Hispanic,
+                deaths: 'suppressed', ageAdjustedRate: 'Not Available', standardPop: 'Not Available'};
             C00C97Hispanic.name = 'Hispanic';
             detailMortalityC00_C97_Data.data.nested.table.race[3] =  C00C97Hispanic;
 
@@ -425,7 +427,8 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var detailMortalityC50HispanicData = searchUtils.populateDataWithMappings(resp[91], 'deaths');
             searchUtils.mergeAgeAdjustedRates(detailMortalityC50HispanicData.data.nested.table, resp[100].table);
             searchUtils.applySuppressions(detailMortalityC50HispanicData, 'deaths');
-            var c50Hispanic = detailMortalityC50HispanicData.data.nested.table.year[0];
+            var c50Hispanic = detailMortalityC50HispanicData.data.nested.table.year[0] || {name: Hispanic,
+                deaths: 'suppressed', ageAdjustedRate: 'Not Available', standardPop: 'Not Available'};
             c50Hispanic.name = 'Hispanic';
             detailMortalityC50Data.data.nested.table.race[3] =  c50Hispanic;
 
@@ -437,7 +440,8 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var detailMortalityC53HispanicData = searchUtils.populateDataWithMappings(resp[92], 'deaths');
             searchUtils.mergeAgeAdjustedRates(detailMortalityC53HispanicData.data.nested.table, resp[102].table);
             searchUtils.applySuppressions(detailMortalityC53HispanicData, 'deaths');
-            var c53Hispanic = detailMortalityC53HispanicData.data.nested.table.year[0];
+            var c53Hispanic = detailMortalityC53HispanicData.data.nested.table.year[0] || {name: Hispanic,
+                deaths: 'suppressed', ageAdjustedRate: 'Not Available', standardPop: 'Not Available'};
             c53Hispanic.name = 'Hispanic';
             detailMortalityC53_Data.data.nested.table.race[3] =  c53Hispanic;
 
@@ -549,8 +553,8 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var breastCancerPopulation = searchUtils.populateDataWithMappings(resp[104], 'cancer_population');
             cancer_breast_population_index = searchUtils.createPopIndex(breastCancerPopulation.data.nested.table, 'cancer_population');
             searchUtils.attachPopulation(breastCancerMortality.data.nested.table, cancer_breast_population_index, '');
-            var bcMrtality = breastCancerMortality.data.nested.table.current_year[0];
-            bcMrtality.name = 'Hispanic';
+            var bcMrtality = breastCancerMortality.data.nested.table.current_year[0] || {name:'Hispanic', cancer_mortality:0, pop:breastCancerPopulation.data.nested.table.current_year[0].cancer_population};
+            bcMrtality['name'] = 'Hispanic';
             cancer_mortality_breast_data.data.nested.table.race.push(bcMrtality);
             searchUtils.applySuppressions(cancer_mortality_breast_data, 'cancer_mortality', 16);
 
@@ -565,7 +569,7 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var crCancerPopulation = searchUtils.populateDataWithMappings(resp[106], 'cancer_population');
             var crPopulationIndex = searchUtils.createPopIndex(crCancerPopulation.data.nested.table, 'cancer_population');
             searchUtils.attachPopulation(crCancerMortality.data.nested.table, crPopulationIndex, '');
-            var crMortality = crCancerMortality.data.nested.table.current_year[0];
+            var crMortality = crCancerMortality.data.nested.table.current_year[0] || {name:'Hispanic', cancer_mortality:0, pop:crCancerPopulation.data.nested.table.current_year[0].cancer_population};
             crMortality.name = 'Hispanic';
             cancer_mortality_colonAndRectum_data.data.nested.table.race.push(crMortality);
             searchUtils.applySuppressions(cancer_mortality_colonAndRectum_data, 'cancer_mortality', 16);
@@ -581,7 +585,7 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var lungCancerPopulation = searchUtils.populateDataWithMappings(resp[108], 'cancer_population');
             var lungPopulationIndex = searchUtils.createPopIndex(lungCancerPopulation.data.nested.table, 'cancer_population');
             searchUtils.attachPopulation(lungCancerMortality.data.nested.table, lungPopulationIndex, '');
-            var lungMortality = lungCancerMortality.data.nested.table.current_year[0];
+            var lungMortality = lungCancerMortality.data.nested.table.current_year[0] || {name:'Hispanic', cancer_mortality:0, pop:lungCancerPopulation.data.nested.table.current_year[0].cancer_population};
             lungMortality.name = 'Hispanic';
             cancer_mortality_lungAndBronchus_data.data.nested.table.race.push(lungMortality);
             searchUtils.applySuppressions(cancer_mortality_lungAndBronchus_data, 'cancer_mortality', 16);
@@ -597,7 +601,7 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var melanomaCancerPopulation = searchUtils.populateDataWithMappings(resp[110], 'cancer_population');
             var melanomaPopulationIndex = searchUtils.createPopIndex(melanomaCancerPopulation.data.nested.table, 'cancer_population');
             searchUtils.attachPopulation(melanomaCancerMortality.data.nested.table, melanomaPopulationIndex, '');
-            var melanomaMortality = lungCancerMortality.data.nested.table.current_year[0];
+            var melanomaMortality = lungCancerMortality.data.nested.table.current_year[0] || {name:'Hispanic', cancer_mortality:0, pop:melanomaCancerPopulation.data.nested.table.current_year[0].cancer_population};
             melanomaMortality.name = 'Hispanic';
             cancer_mortality_melanoma_data.data.nested.table.race.push(melanomaMortality);
             searchUtils.applySuppressions(cancer_mortality_melanoma_data, 'cancer_mortality', 16);
@@ -613,7 +617,7 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var cervixCancerPopulation = searchUtils.populateDataWithMappings(resp[112], 'cancer_population');
             var cervixPopulationIndex = searchUtils.createPopIndex(cervixCancerPopulation.data.nested.table, 'cancer_population');
             searchUtils.attachPopulation(cervixCancerMortality.data.nested.table, cervixPopulationIndex, '');
-            var cervixMortality = cervixCancerMortality.data.nested.table.current_year[0];
+            var cervixMortality = cervixCancerMortality.data.nested.table.current_year[0] || {name:'Hispanic', cancer_mortality:0, pop:cervixCancerPopulation.data.nested.table.current_year[0].cancer_population};
             cervixMortality.name = 'Hispanic';
             cancer_mortality_cervix_data.data.nested.table.race.push(cervixMortality);
             searchUtils.applySuppressions(cancer_mortality_cervix_data, 'cancer_mortality', 16);
@@ -629,7 +633,7 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var ovaryCancerPopulation = searchUtils.populateDataWithMappings(resp[114], 'cancer_population');
             var ovaryPopulationIndex = searchUtils.createPopIndex(ovaryCancerPopulation.data.nested.table, 'cancer_population');
             searchUtils.attachPopulation(ovaryCancerMortality.data.nested.table, ovaryPopulationIndex, '');
-            var ovaryCancerMortalityData = ovaryCancerMortality.data.nested.table.current_year[0];
+            var ovaryCancerMortalityData = ovaryCancerMortality.data.nested.table.current_year[0] || {name:'Hispanic', cancer_mortality:0, pop:ovaryPopulationIndex.data.nested.table.current_year[0].cancer_population};
             ovaryCancerMortalityData.name = 'Hispanic';
             cancer_mortality_ovary_data.data.nested.table.race.push(ovaryCancerMortalityData);
             searchUtils.applySuppressions(cancer_mortality_ovary_data, 'cancer_mortality', 16);
@@ -645,7 +649,7 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var prostateCancerPopulation = searchUtils.populateDataWithMappings(resp[116], 'cancer_population');
             var prostatePopulationIndex = searchUtils.createPopIndex(prostateCancerPopulation.data.nested.table, 'cancer_population');
             searchUtils.attachPopulation(prostateCancerMortality.data.nested.table, prostatePopulationIndex, '');
-            var prostateCancerMortalityData = prostateCancerMortality.data.nested.table.current_year[0];
+            var prostateCancerMortalityData = prostateCancerMortality.data.nested.table.current_year[0] || {name:'Hispanic', cancer_mortality:0, pop:prostateCancerPopulation.data.nested.table.current_year[0].cancer_population};
             prostateCancerMortalityData.name = 'Hispanic';
             cancer_mortality_prostate_data.data.nested.table.race.push(prostateCancerMortalityData);
             searchUtils.applySuppressions(cancer_mortality_prostate_data, 'cancer_mortality', 16);
@@ -658,7 +662,7 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
 
             var hispanicBreastCancerIncidence = searchUtils.populateDataWithMappings(resp[117], 'cancer_incident');
             searchUtils.attachPopulation(hispanicBreastCancerIncidence.data.nested.table, cancer_breast_population_index, '');
-            var breastCancerIncidenceData = hispanicBreastCancerIncidence.data.nested.table.current_year[0];
+            var breastCancerIncidenceData = hispanicBreastCancerIncidence.data.nested.table.current_year[0] || {name:'Hispanic', cancer_mortality:0, pop:cancer_breast_population_index.data.nested.table.current_year[0].cancer_population};
             breastCancerIncidenceData.name = 'Hispanic';
             cancer_incident_breast_data.data.nested.table.race.push(breastCancerIncidenceData);
             searchUtils.applySuppressions(cancer_incident_breast_data, 'cancer_incident', 16);
@@ -670,7 +674,7 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
 
             var hispanicColonCancerIncidence = searchUtils.populateDataWithMappings(resp[118], 'cancer_incident');
             searchUtils.attachPopulation(hispanicColonCancerIncidence.data.nested.table, crPopulationIndex, '');
-            var colonCancerIncidenceData = hispanicColonCancerIncidence.data.nested.table.current_year[0];
+            var colonCancerIncidenceData = hispanicColonCancerIncidence.data.nested.table.current_year[0] || {name:'Hispanic', cancer_mortality:0, pop:crPopulationIndex.data.nested.table.current_year[0].cancer_population};
             colonCancerIncidenceData.name = 'Hispanic';
             cancer_incident_colonAndRectum_data.data.nested.table.race.push(colonCancerIncidenceData);
             searchUtils.applySuppressions(cancer_incident_colonAndRectum_data, 'cancer_incident', 16);
@@ -682,7 +686,7 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
 
             var hispanicLungCancerIncidence = searchUtils.populateDataWithMappings(resp[119], 'cancer_incident');
             searchUtils.attachPopulation(hispanicLungCancerIncidence.data.nested.table, lungPopulationIndex, '');
-            var lungCancerIncidenceData = hispanicLungCancerIncidence.data.nested.table.current_year[0];
+            var lungCancerIncidenceData = hispanicLungCancerIncidence.data.nested.table.current_year[0] || {name:'Hispanic', cancer_mortality:0, pop:lungPopulationIndex.data.nested.table.current_year[0].cancer_population};
             lungCancerIncidenceData.name = 'Hispanic';
             cancer_incident_lungAndBronchus_data.data.nested.table.race.push(lungCancerIncidenceData);
             searchUtils.applySuppressions(cancer_incident_lungAndBronchus_data, 'cancer_incident', 16);
@@ -694,7 +698,7 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
 
             var hispanicMelanomaCancerIncidence = searchUtils.populateDataWithMappings(resp[120], 'cancer_incident');
             searchUtils.attachPopulation(hispanicMelanomaCancerIncidence.data.nested.table, melanomaPopulationIndex, '');
-            var melanomaCancerIncidenceData = hispanicMelanomaCancerIncidence.data.nested.table.current_year[0];
+            var melanomaCancerIncidenceData = hispanicMelanomaCancerIncidence.data.nested.table.current_year[0] || {name:'Hispanic', cancer_mortality:0, pop:melanomaPopulationIndex.data.nested.table.current_year[0].cancer_population};
             melanomaCancerIncidenceData.name = 'Hispanic';
             cancer_incident_melanoma_data.data.nested.table.race.push(melanomaCancerIncidenceData);
             searchUtils.applySuppressions(cancer_incident_melanoma_data, 'cancer_incident', 16);
@@ -706,7 +710,7 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
 
             var hispanicCervixCancerIncidence = searchUtils.populateDataWithMappings(resp[121], 'cancer_incident');
             searchUtils.attachPopulation(hispanicCervixCancerIncidence.data.nested.table, cervixPopulationIndex, '');
-            var cervixCancerIncidenceData = hispanicCervixCancerIncidence.data.nested.table.current_year[0];
+            var cervixCancerIncidenceData = hispanicCervixCancerIncidence.data.nested.table.current_year[0] || {name:'Hispanic', cancer_mortality:0, pop:cervixPopulationIndex.data.nested.table.current_year[0].cancer_population};
             cervixCancerIncidenceData.name = 'Hispanic';
             cancer_incident_cervix_data.data.nested.table.race.push(cervixCancerIncidenceData);
             searchUtils.applySuppressions(cancer_incident_cervix_data, 'cancer_incident', 16);
@@ -718,7 +722,7 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
 
             var hispanicOvaryCancerIncidence = searchUtils.populateDataWithMappings(resp[122], 'cancer_incident');
             searchUtils.attachPopulation(hispanicOvaryCancerIncidence.data.nested.table, ovaryPopulationIndex, '');
-            var ovaryCancerIncidenceData = hispanicOvaryCancerIncidence.data.nested.table.current_year[0];
+            var ovaryCancerIncidenceData = hispanicOvaryCancerIncidence.data.nested.table.current_year[0] || {name:'Hispanic', cancer_mortality:0, pop:ovaryPopulationIndex.data.nested.table.current_year[0].cancer_population};
             ovaryCancerIncidenceData.name = 'Hispanic';
             cancer_incident_ovary_data.data.nested.table.race.push(ovaryCancerIncidenceData);
             searchUtils.applySuppressions(cancer_incident_ovary_data, 'cancer_incident', 16);
@@ -730,7 +734,7 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
 
             var hispanicProstateCancerIncidence = searchUtils.populateDataWithMappings(resp[123], 'cancer_incident');
             searchUtils.attachPopulation(hispanicProstateCancerIncidence.data.nested.table, prostatePopulationIndex, '');
-            var prostateCancerIncidenceData = hispanicProstateCancerIncidence.data.nested.table.current_year[0];
+            var prostateCancerIncidenceData = hispanicProstateCancerIncidence.data.nested.table.current_year[0] || {name:'Hispanic', cancer_mortality:0, pop:prostatePopulationIndex.data.nested.table.current_year[0].cancer_population};
             prostateCancerIncidenceData.name = 'Hispanic';
             cancer_incident_prostate_data.data.nested.table.race.push(prostateCancerIncidenceData);
             searchUtils.applySuppressions(cancer_incident_prostate_data, 'cancer_incident', 16);
