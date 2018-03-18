@@ -22,7 +22,7 @@
         </div>
         <div class="custom-modal-body usa-grid">
 
-            <ul class="custom-nav custom-nav-tabs">
+            <ul class="custom-nav custom-nav-tabs" ng-if="eg.chartTypes">
                 <li ng-repeat="chartType in eg.chartTypes"
                     ng-class="{'active':eg.activeTab? eg.activeTab == eg.getChartName(chartType): $index==0}">
                     <a href="#" ng-click="eg.getYrbsChartData(chartType);"

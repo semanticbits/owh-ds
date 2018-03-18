@@ -3074,7 +3074,7 @@
                     ]
                 },
                 {
-                    key: 'natality', title: 'label.filter.natality', primary: true, value:[], header:"Natality",
+                    key: 'natality', title: 'label.filter.natality', primary: true, value:[], header:"Births",
                     allFilters: filters.natalityFilters, searchResults: searchNatality, dontShowInlineCharting: true,
                     chartAxisLabel:'Births', countLabel: 'Total',  countQueryKey: 'pop', tableView:'number_of_births',
                     runOnFilterChange: true, applySuppression:true,

@@ -1339,3 +1339,4 @@ module.exports.applySidebarCountLimitSuppressions = applySidebarCountLimitSuppre
 module.exports.attachPopulation = attachPopulation;
 module.exports.createPopIndex = createPopIndex;
 module.exports.applyPopulationSpecificSuppression = applyPopulationSpecificSuppression;
+module.exports.addMissingFilterOptions = addMissingFilterOptions;

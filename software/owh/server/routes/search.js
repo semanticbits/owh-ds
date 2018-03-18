@@ -8,6 +8,7 @@ var logger = require('../config/logging')
 var qc = require('../api/queryCache');
 var dsmetadata = require('../api/dsmetadata');
 var factSheet = require('../api/factSheet');
+var minorityFactSheet = require('../api/minorityFactSheet');
 var Q = require('q');
 var config = require('../config/config');
 var svgtopng = require('svg2png');
@@ -92,15 +93,27 @@ var searchRouter = function(app, rConfig) {
                     var state = req.sanitize(req.body.state);
                     var fsType = req.sanitize(req.body.fsType);
                     res.connection.setTimeout(0);
-                    new factSheet().prepareFactSheet(state, fsType).then(function(response) {
-                        if(!config.disableQueryCache) {
-                            var resData = {};
-                            resData.queryJSON = {};
-                            resData.resultData = response;
-                            queryCache.cacheQuery(queryId, 'fact_sheets', resData);
-                        }
-                        res.send(new result('OK', resData, "success"));
-                    });
+                    if (fsType === 'Minority Health') {
+                        new minorityFactSheet().prepareFactSheet(state, fsType).then(function(response) {
+                            if(!config.disableQueryCache) {
+                                var resData = {};
+                                resData.queryJSON = {};
+                                resData.resultData = response;
+                                queryCache.cacheQuery(queryId, 'fact_sheets', resData);
+                            }
+                            res.send(new result('OK', resData, "success"));
+                        });
+                    } else {
+                        new factSheet().prepareFactSheet(state, fsType).then(function(response) {
+                            if(!config.disableQueryCache) {
+                                var resData = {};
+                                resData.queryJSON = {};
+                                resData.resultData = response;
+                                queryCache.cacheQuery(queryId, 'fact_sheets', resData);
+                            }
+                            res.send(new result('OK', resData, "success"));
+                        });
+                    }
                 }
                 else{
                     logger.warn('Query ID not present, query failed');
