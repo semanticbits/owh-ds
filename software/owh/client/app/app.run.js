@@ -420,10 +420,16 @@
         API.getGoogleAnalyticsInfo().$promise.then(function(response){
             // initialise google analytics
             $window.ga('create', response.data.trackingID, 'auto');
+            var routes = {deaths:'Detailed Mortality', natality:"Natality", bridge_race:"Bridged Race",
+                mental_health: 'YRBSS', 'brfss': 'BRFSS', prams:"PRAMS", cancer_incident: 'Cancer Incidence',
+                cancer_mortality:'Cancer Mortality', infant_mortality:'Infant Mortality', tb: 'TB', std: 'STD',
+                aids:'HIV/AIDS', factsheets: 'Fact Sheets', home: 'Home', description:'Data Documentation'};
             $rootScope.$on('$stateChangeSuccess', function (event) {
                 var url = $location.path();
                 if($stateParams.queryID && $stateParams.queryID != '' && $stateParams.primaryFilterKey) {
-                    url = url + '/?dataset='+$stateParams.primaryFilterKey;
+                    url = url + '/?dataset='+ routes[$stateParams.primaryFilterKey];
+                } else {
+                    url = url + '/?dataset='+routes[$state.current.name];
                 }
                 $window.ga('send', 'pageview', url);
             });

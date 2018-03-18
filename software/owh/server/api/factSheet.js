@@ -90,7 +90,6 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
         //Natality - total 2015 births
         var natality_total_births_esQuery = factSheetQueryJSON.natality["totalBirthsByYear"];
 
-
         //Cancer - Mortality - Incident
         var cancer_Breast_esQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Breast"][0];
         var cancer_Breast_populationQuery = factSheetQueryJSON.cancer["mortality-incidence"]["Breast"][1];
@@ -252,7 +251,7 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             //BRFSS - 2015 - Overweight and Obesity(BMI), Tobbaco use, Fruits and Vegetables, Alcohol Consumption
             new yrbs().invokeYRBSService(brfss_2015_query),
             //PRAMS - 2009 - Smoking cigarettes during the last three months of pregnancy
-           new yrbs().invokeYRBSService(prams_smoking_query),
+            new yrbs().invokeYRBSService(prams_smoking_query),
             //PRAMS - 2009 - Intended pregnancy
             new yrbs().invokeYRBSService(prams_intended_pregnancy_query),
             //PRAMS - 2009 - Females reported physical abuse by husband or partner during pregnancy (percent)
@@ -518,7 +517,7 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
                 {causeOfDeath: "Homicide", data:detailMortalityHomicide_Data.data.nested.table.year[0]},
                 {causeOfDeath: "Human Immunodeficiency Virus(HIV)", data:detailMortalityB20_B24_Data.data.nested.table.year[0]}];
             factSheet.natalityData = prepareNatalityData(natality_BirthRates_Data, natality_fertilityRates_Data, natality_vaginal_Data,
-                                            natality_cesarean_Data, natality_lowBirthWeight_Data, natality_twinBirth_Data, natality_totalBirthPopulation_Data);
+                natality_cesarean_Data, natality_lowBirthWeight_Data, natality_twinBirth_Data, natality_totalBirthPopulation_Data);
             factSheet.cancerData = prepareCancerData(cancer_mortality_data, cancer_incident_data);
             factSheet.yrbs = prepareYRBSData(yrbs_alchohol_data);
             factSheet.brfss = prepareBRFSSData(brfss_2015_data);
@@ -540,8 +539,8 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
  */
 function preparePRAMSData(pregnantWomenData, womenData) {
     var pramsData = {
-       pregnantWoment: [],
-       women: []
+        pregnantWoment: [],
+        women: []
     };
 
     pramsData.pregnantWoment.push({"question": "Smoking cigarettes during the last three months of pregnancy", data: pregnantWomenData[0].table.question[0] && pregnantWomenData[0].table.question[0].yes ? getMeanDisplayValue(pregnantWomenData[0].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
@@ -650,8 +649,8 @@ function prepareCancerData(cancerMortalityData, cancerIncidentData) {
             crudeMortalityRate = eachRecord.pop != 'n/a' ? Math.round(cancerMortalityDeathCounts / eachRecord.pop * 1000000) / 10 : "Not Available";
         }
         incidentData = cancerIncidentData.data.nested.table.current_year[index] ? cancerIncidentData.data.nested.table.current_year[index] : {
-                cancer_incident: 'Not Available',
-                pop: 'n/a'
+            cancer_incident: 'Not Available',
+            pop: 'n/a'
         };
         var incidentPopulation = incidentData.pop == 'n/a' ? 'Not Available' : incidentData.pop;
         if(incidentData.cancer_incident === 'suppressed'){
@@ -668,7 +667,7 @@ function prepareCancerData(cancerMortalityData, cancerIncidentData) {
             case 0:
                 cancerData.push({site:'Breast', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate,  deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
                 break;
-           case 1:
+            case 1:
                 cancerData.push({site:'Colon and Rectum', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
                 break;
             case 2:
