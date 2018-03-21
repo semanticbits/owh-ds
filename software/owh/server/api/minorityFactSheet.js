@@ -953,7 +953,7 @@ function prepareDiseaseData(data, countKey) {
     tbData.forEach(function(record, index){
         if(record[countKey] === 0) {
             record['cases'] = 0;
-            record['rates'] = 'Not Applicable';
+            record['rates'] = '0.0';
         }
         else if(record[countKey] === 'na') {
             record['cases'] = 'Not Available';
