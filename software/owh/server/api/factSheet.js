@@ -498,8 +498,8 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             factSheet.stdData = [{disease:"Chlamydia", data:prepareDiseaseData(stdChlamydiaData, 'std')},
                 {disease:"Gonorrhea", data:prepareDiseaseData(stdGonorrheaData, 'std')},
                 {disease:"Primary and Secondary Syphilis", data:prepareDiseaseData(stdPrimarySyphilisData, 'std')},
-                {disease:"Early Latent Syphilis", data:prepareDiseaseData(stdEarlySyphilisData, 'std')},
-                {disease:"Congenital Syphilis", data:prepareDiseaseData(stdCongenitalData, 'std')}];
+                {disease:"Early Latent Syphilis", data:prepareDiseaseData(stdEarlySyphilisData, 'std')}];
+
             factSheet.hivAIDSData = [{disease:"AIDS Diagnoses", data:prepareDiseaseData(AIDSDiagnosesData, 'aids')},
                 {disease:"AIDS Deaths*", data:prepareDiseaseData(AIDSDeathsData, 'aids')},
                 {disease:"AIDS Prevalence*", data:prepareDiseaseData(AIDSPrevalenceData, 'aids')},
