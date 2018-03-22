@@ -964,7 +964,8 @@ function prepareDiseaseData(data, countKey) {
             record['rates'] = 'Suppressed';
         }
         else {
-            record.rates = record['pop'] ? Math.round(record[countKey] / record['pop'] * 1000000) / 10 : 0;
+            var rate = record['pop'] ? Math.round(record[countKey] / record['pop'] * 1000000) / 10 : 0;
+            record.rates = rate.toFixed(1);
             record['cases'] = formatNumber(record[countKey]);
         }
         //Delete un wanted properties from JSON
