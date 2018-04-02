@@ -6458,8 +6458,6 @@
             "value": [
               "x_bmi5cat",
               "x_rfsmok3",
-              "x_frtlt1",
-              "x_veglt1",
               "x_rfdrhv5",
               "x_paindx1"
             ],
@@ -13866,8 +13864,6 @@
             "value": [
               "x_bmi5cat",
               "x_rfsmok3",
-              "x_frtlt1",
-              "x_veglt1",
               "x_rfdrhv5",
               "x_paindx1"
             ],
@@ -26220,8 +26216,6 @@
             "value": [
               "x_bmi5cat",
               "x_rfsmok3",
-              "x_frtlt1",
-              "x_veglt1",
               "x_rfdrhv5",
               "x_paindx1"
             ],

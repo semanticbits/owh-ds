@@ -102,8 +102,6 @@ function prepareBRFSSData(data){
     var brfssData = [
         { question: 'Were Obese (BMI 30.0 - 99.8)', data: 'Not applicable' },
         { question: 'Adults who are current smokers', data: 'Not applicable' },
-        { question: 'Consumed fruits one or more times a day', data: 'Not applicable' },
-        { question: 'Consumed vegetables one or more times a day', data: 'Not applicable' },
         { question: 'Are heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)', data: 'Not applicable' },
         { question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)', data: 'Not applicable' }
     ];
@@ -117,17 +115,11 @@ function prepareBRFSSData(data){
             case "x_rfsmok3":
                 brfssData[1].data = sortArrayByPropertyAndSortOrder(eachRecord.yes.race, property, sortOrder);
                 break;
-            case "x_frtlt1":
-                brfssData[2].data = sortArrayByPropertyAndSortOrder(eachRecord["one or more times per day"].race, property, sortOrder);
-                break;
-            case "x_veglt1":
-                brfssData[3].data = sortArrayByPropertyAndSortOrder(eachRecord["one or more times per day"].race, property, sortOrder);
-                break;
             case "x_rfdrhv5":
-                brfssData[4].data = sortArrayByPropertyAndSortOrder(eachRecord["meet criteria for heavy drinking"].race, property, sortOrder);
+                brfssData[2].data = sortArrayByPropertyAndSortOrder(eachRecord["meet criteria for heavy drinking"].race, property, sortOrder);
                 break;
             case "x_paindx1":
-                brfssData[5].data = sortArrayByPropertyAndSortOrder(eachRecord.yes.race, property, sortOrder);
+                brfssData[3].data = sortArrayByPropertyAndSortOrder(eachRecord.yes.race, property, sortOrder);
                 break;
         }
     });
