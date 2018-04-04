@@ -823,7 +823,7 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
         var cancerIncidentOvaryData = prepareCancerData(resp[38], resp[21], resp[39], resp[23], 'cancer_incident');
         searchUtils.applyCustomSuppressions(cancerIncidentOvaryData.data.nested, rules, 'cancer_incident');
 
-        var cancerIncidentProstateData = prepareCancerData(resp[40], resp[25], resp[41], resp[27, 'cancer_incident']);
+        var cancerIncidentProstateData = prepareCancerData(resp[40], resp[25], resp[41], resp[27], 'cancer_incident');
         searchUtils.applyCustomSuppressions(cancerIncidentProstateData.data.nested, rules, 'cancer_incident');
 
         var sortOrder = ['American Indian/Alaska Native', 'Asian or Pacific Islander', 'Black', 'Hispanic'];
