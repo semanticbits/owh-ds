@@ -175,24 +175,24 @@
                             </tr>
                             <tr>
                                 <td>Death Rate</td>
-                                <td ng-if="!isNaN(fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate)"
+                                <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate)"
                                     ng-bind="fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate | number:1"></td>
-                                <td ng-if="isNaN(fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate)"
+                                <td ng-if="!fsc.isNumeric(fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate)"
                                     ng-bind="fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate"></td>
 
-                                <td ng-if="!isNaN(fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].deathRate)"
+                                <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].deathRate)"
                                     ng-bind="fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].deathRate | number:1"></td>
-                                <td ng-if="isNaN(fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].deathRate)"
+                                <td ng-if="!fsc.isNumeric(fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].deathRate)"
                                     ng-bind="fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].deathRate"></td>
 
-                                <td ng-if="!isNaN(fsc.factSheet.infantMortalityData['Black or African American'].deathRate)"
+                                <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData['Black or African American'].deathRate)"
                                     ng-bind="fsc.factSheet.infantMortalityData['Black or African American'].deathRate | number:1"></td>
-                                <td ng-if="isNaN(fsc.factSheet.infantMortalityData['Black or African American'].deathRate)"
+                                <td ng-if="!fsc.isNumeric(fsc.factSheet.infantMortalityData['Black or African American'].deathRate)"
                                     ng-bind="fsc.factSheet.infantMortalityData['Black or African American'].deathRate"></td>
 
-                                <td ng-if="!isNaN(fsc.factSheet.infantMortalityData['Hispanic'].deathRate)"
+                                <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData['Hispanic'].deathRate)"
                                     ng-bind="fsc.factSheet.infantMortalityData['Hispanic'].deathRate | number:1"></td>
-                                <td ng-if="isNaN(fsc.factSheet.infantMortalityData['Hispanic'].deathRate)"
+                                <td ng-if="!fsc.isNumeric(fsc.factSheet.infantMortalityData['Hispanic'].deathRate)"
                                     ng-bind="fsc.factSheet.infantMortalityData['Hispanic'].deathRate"></td>
                             </tr>
                             </tbody>

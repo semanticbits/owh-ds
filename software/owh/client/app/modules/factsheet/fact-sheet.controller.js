@@ -157,6 +157,7 @@
         fsc.getStateName = getStateName;
         fsc.getMeanDisplayValue = getMeanDisplayValue;
         fsc.calculateRate = calculateRate;
+        fsc.isNumeric = isNumeric;
 
         if(fsc.queryID) {
             getQueryResults(fsc.state, fsc.fsType, fsc.queryID).then(function (response) {
@@ -1461,7 +1462,7 @@
                 displayValue = 'Suppressed';
             }
             else if (data === 'na') {
-                displayValue = 'NR';
+                displayValue = 'No response';
             }
             else {
                 displayValue = data + "%";
@@ -1485,5 +1486,9 @@
         else {
             return totalPopulation ? Math.round(count / totalPopulation * 1000000) / 10 : 0;
         }
+    }
+
+    function isNumeric(num) {
+        return !isNaN(num);
     }
 }());
