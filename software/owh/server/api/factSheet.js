@@ -579,7 +579,7 @@ function prepareBRFSSData(data_2015){
     brfssData.push({question: 'Were Obese (BMI 30.0 - 99.8)', data: 'Not applicable' });
     brfssData.push({question: 'Adults who are current smokers', data: 'Not applicable'});
     brfssData.push({question: 'Are heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)', data: 'Not applicable'});
-    brfssData.push({question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)', data: 'Not applicable'});
+    brfssData.push({question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable'});
     data_2015.table.question.forEach(function(eachRecord){
         switch(eachRecord.name){
             case "x_bmi5cat":
