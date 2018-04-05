@@ -545,7 +545,7 @@ function preparePRAMSData(pregnantWomenData, womenData) {
 
     pramsData.pregnantWoment.push({"question": "Smoking cigarettes during the last three months of pregnancy", data: pregnantWomenData[0].table.question[0] && pregnantWomenData[0].table.question[0].yes ? getMeanDisplayValue(pregnantWomenData[0].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
     pramsData.pregnantWoment.push({"question": "Intended pregnancy", data: pregnantWomenData[1].table.question[0] && pregnantWomenData[1].table.question[0]["intended"] ? getMeanDisplayValue(pregnantWomenData[1].table.question[0]["intended"].sitecode[0].prams.mean) : "Not applicable"});
-    pramsData.pregnantWoment.push({"question": "Females reported physical abuse by husband or partner during pregnancy (percent)", data: pregnantWomenData[2].table.question[0] && pregnantWomenData[2].table.question[0].yes ? getMeanDisplayValue(pregnantWomenData[2].table.question[0].yes.sitecode[0].prams.mean): "Not applicable"});
+    pramsData.pregnantWoment.push({"question": "Females reported physical abuse by husband or partner during pregnancy", data: pregnantWomenData[2].table.question[0] && pregnantWomenData[2].table.question[0].yes ? getMeanDisplayValue(pregnantWomenData[2].table.question[0].yes.sitecode[0].prams.mean): "Not applicable"});
 
     pramsData.women.push({"question": "With one or more previous live births who reported unintended pregnancy", data: womenData[0].table.question[0] && womenData[0].table.question[0]["unintended"] ? getMeanDisplayValue(womenData[0].table.question[0]["unintended"].sitecode[0].prams.mean) : "Not applicable"});
     pramsData.women.push({"question": "Ever breastfed or pump breast milk to feed after delivery", data: womenData[1].table.question[0] && womenData[1].table.question[0].yes ? getMeanDisplayValue(womenData[1].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
@@ -578,10 +578,8 @@ function prepareBRFSSData(data_2015){
     var brfssData = [];
     brfssData.push({question: 'Were Obese (BMI 30.0 - 99.8)', data: 'Not applicable' });
     brfssData.push({question: 'Adults who are current smokers', data: 'Not applicable'});
-    brfssData.push({question: 'Consumed fruits one or more times a day', data: 'Not applicable'});
-    brfssData.push({question: 'Consumed vegetables one or more times a day', data: 'Not applicable'});
     brfssData.push({question: 'Are heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)', data: 'Not applicable'});
-    brfssData.push({question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)', data: 'Not applicable'});
+    brfssData.push({question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable'});
     data_2015.table.question.forEach(function(eachRecord){
         switch(eachRecord.name){
             case "x_bmi5cat":
@@ -590,17 +588,11 @@ function prepareBRFSSData(data_2015){
             case "x_rfsmok3":
                 brfssData[1].data = getMeanDisplayValue(eachRecord.yes.brfss.mean);
                 break;
-            case "x_frtlt1":
-                brfssData[2].data = getMeanDisplayValue(eachRecord["one or more times per day"].brfss.mean);
-                break;
-            case "x_veglt1":
-                brfssData[3].data =  getMeanDisplayValue(eachRecord["one or more times per day"].brfss.mean);
-                break;
             case "x_rfdrhv5":
-                brfssData[4].data = getMeanDisplayValue(eachRecord["meet criteria for heavy drinking"].brfss.mean);
+                brfssData[2].data = getMeanDisplayValue(eachRecord["meet criteria for heavy drinking"].brfss.mean);
                 break;
             case "x_paindx1":
-                brfssData[5].data = getMeanDisplayValue(eachRecord.yes.brfss.mean);
+                brfssData[3].data = getMeanDisplayValue(eachRecord.yes.brfss.mean);
                 break;
         }
     });
