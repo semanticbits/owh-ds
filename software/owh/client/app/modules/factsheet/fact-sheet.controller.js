@@ -1467,6 +1467,8 @@
             else {
                 displayValue = data + "%";
             }
+        } else {
+            displayValue = "0.0%";
         }
         return displayValue;
     }

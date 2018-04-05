@@ -83,12 +83,24 @@ function preparePRAMSData(pregnantWomenData, womenData) {
         pregnantWoment: [],
         women: []
     };
-
+    var selectedRaces = {options: ['Black', 'Hispanic', 'Other Race']};
     pramsData.pregnantWoment.push({"question": "Smoking cigarettes during the last three months of pregnancy", data: pregnantWomenData[0].table.question[0] && pregnantWomenData[0].table.question[0].yes ? pregnantWomenData[0].table.question[0].yes.maternal_race : "Not applicable"});
     pramsData.pregnantWoment.push({"question": "Intended pregnancy", data: pregnantWomenData[1].table.question[0] && pregnantWomenData[1].table.question[0]["intended"] ? pregnantWomenData[1].table.question[0]["intended"].maternal_race : "Not applicable"});
     pramsData.pregnantWoment.push({"question": "Females reported physical abuse by husband or partner during pregnancy", data: pregnantWomenData[2].table.question[0] && pregnantWomenData[2].table.question[0].yes ? pregnantWomenData[2].table.question[0].yes.maternal_race: "Not applicable"});
     pramsData.women.push({"question": "Ever breastfed or pump breast milk to feed after delivery", data: womenData[1].table.question[0] && womenData[1].table.question[0].yes ? womenData[1].table.question[0].yes.maternal_race : "Not applicable"});
     pramsData.women.push({"question": "Indicator of depression 3 months before pregnancy", data: womenData[2].table.question[0] && womenData[2].table.question[0].yes ? womenData[2].table.question[0].yes.maternal_race : "Not applicable"});
+    pramsData.pregnantWoment.forEach(function (quest, indx) {
+        if(quest.data != 'Not applicable') {
+            searchUtils.addMissingFilterOptions(selectedRaces, quest.data, 'prams');
+            quest.data = sortArrayByPropertyAndSortOrder(quest.data, 'name', selectedRaces.options);
+        }
+    });
+    pramsData.women.forEach(function (quest, indx) {
+        if(quest.data != 'Not applicable') {
+            searchUtils.addMissingFilterOptions(selectedRaces, quest.data, 'prams');
+            quest.data = sortArrayByPropertyAndSortOrder(quest.data, 'name', selectedRaces.options);
+        }
+    });
     return pramsData;
 }
 
