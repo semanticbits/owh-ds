@@ -1003,10 +1003,12 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery, d
         mapQuery.query.filtered.filter = clone(filterQuery);
 
         var mustFilters = mapQuery.query.filtered.filter.bool.must;
-        //We need data for all the states to prepare map,
-        //so if user selects any state, remove it from criteria
+        //We need data for all the states & both sex to prepare map,
+        //so if user selects any state/sex, remove it from criteria
         mustFilters.forEach(function(filter, index) {
             if(filter.bool.should[0].term.state) {
+                mustFilters.splice(index, 1);
+            } else if(filter.bool.should[0].term.sex) {
                 mustFilters.splice(index, 1);
             }
         });
