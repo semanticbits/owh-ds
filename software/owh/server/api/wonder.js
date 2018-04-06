@@ -1310,7 +1310,7 @@ function processWONDERResponse(response, dbID){
     if(datatable) {
         for (r in datatable.r) {
             row = datatable.r[r];
-            cell = row.c;
+            cell = row.c || row;
             var keys = []
           if(cell) {
             for (i = 0; i <= cell.length - 4; i++) {
@@ -1335,7 +1335,7 @@ function processWONDERResponse(response, dbID){
             } else {
                 pop = valCell._dt;
             }
-            if (pop != 'Not Applicable') {
+            if (pop != 'Not Applicable' && pop != 'Suppressed') {
                 pop = parseInt(pop.replace(/,/g, ''));
             }
 
@@ -1347,7 +1347,7 @@ function processWONDERResponse(response, dbID){
                 } else {
                     births = valCell._dt;
                 }
-                if (births != 'Not Applicable') {
+                if (births != 'Not Applicable' && births != 'Suppressed') {
                     births = parseInt(births.replace(/,/g, ''));
                 }
                 addValueToResultForInfant(keys, rate, pop, births, result);

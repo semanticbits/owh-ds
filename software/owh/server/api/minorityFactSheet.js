@@ -331,7 +331,7 @@ function getFactSheetDataForInfants(factSheetQueryJSON) {
         //non-hispanic races
         var infantMortalityData = resp[0].table;
         //hispanic data
-        infantMortalityData['Hispanic'] = resp[1].table.Total;
+        infantMortalityData['Hispanic'] = resp[1].table['2014'];
         deferred.resolve(infantMortalityData);
     }, function (err) {
         logger.error(err.message);
