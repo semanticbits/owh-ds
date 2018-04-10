@@ -332,6 +332,14 @@ function getFactSheetDataForInfants(factSheetQueryJSON) {
         var infantMortalityData = resp[0].table;
         //hispanic data
         infantMortalityData['Hispanic'] = resp[1].table['2014'];
+        //cdc returns NUMBER+(Unreliable) i.e. 5.20 (Unreliable) if data is Unreliable
+        //Convert it into 'Unreliable' string
+        for (var prop in infantMortalityData) {
+            var deathRate = infantMortalityData[prop].deathRate;
+            if (deathRate && deathRate.indexOf('Unreliable') != -1) {
+                infantMortalityData[prop].deathRate = 'Unreliable';
+            }
+        }
         deferred.resolve(infantMortalityData);
     }, function (err) {
         logger.error(err.message);
