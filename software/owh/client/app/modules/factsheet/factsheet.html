@@ -342,12 +342,12 @@
                                         ng-bind="fsc.calculateRate(fertilityRatesData.natality, fertilityRatesData.pop)"></td>
                                 </tr>
                                 <tr>
-                                    <td>Vaginal</td>
+                                    <td>Vaginal rates</td>
                                     <td ng-repeat="vaginalData in fsc.factSheet.natality.vaginalData"
                                         ng-bind="fsc.calculateRate(vaginalData.natality, fsc.factSheet.natality.totalBirthPopulation[$index].natality)"></td>
                                 </tr>
                                 <tr>
-                                    <td>Cesarean</td>
+                                    <td>Cesarean rates</td>
                                     <td ng-repeat="cesareanData in fsc.factSheet.natality.cesareanData"
                                         ng-bind="fsc.calculateRate(cesareanData.natality, fsc.factSheet.natality.totalBirthPopulation[$index].natality)"></td>
                                 </tr>
@@ -691,11 +691,11 @@
                                 <td>{{fsc.factSheet.natalityData.fertilityRate}}</td>
                             </tr>
                             <tr>
-                                <td>Vaginal</td>
+                                <td>Vaginal rates</td>
                                 <td>{{fsc.factSheet.natalityData.vaginalRate}}</td>
                             </tr>
                             <tr>
-                                <td>Cesarean</td>
+                                <td>Cesarean rates</td>
                                 <td>{{fsc.factSheet.natalityData.cesareanRate}}</td>
                             </tr>
                             <tr>

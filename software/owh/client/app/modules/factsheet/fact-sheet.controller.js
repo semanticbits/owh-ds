@@ -761,13 +761,13 @@
                 fertilityRateRow.push(rate);
             });
 
-            var vaginalDeliveryRateRow = ['Vaginal'];
+            var vaginalDeliveryRateRow = ['Vaginal rates'];
             angular.forEach(fsc.factSheet.natality.vaginalData, function (vaginalData, indx) {
                 var rate = fsc.calculateRate(vaginalData.natality, fsc.factSheet.natality.totalBirthPopulation[indx].natality);
                 vaginalDeliveryRateRow.push(rate);
             });
 
-            var cesareanDeliveryRateRow = ['Cesarean'];
+            var cesareanDeliveryRateRow = ['Cesarean rates'];
             angular.forEach(fsc.factSheet.natality.cesareanData, function (cesareanData, indx) {
                 var rate = fsc.calculateRate(cesareanData.natality, fsc.factSheet.natality.totalBirthPopulation[indx].natality);
                 cesareanDeliveryRateRow.push(rate);
