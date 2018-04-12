@@ -220,7 +220,7 @@
                     bridgeRaceTotalText = "Total state female population: "+$filter('number')(fsc.factSheet.gender[0].bridge_race);
                 }
                 else {
-                    bridgeRaceTotalText = "Total state population: "+$filter('number')(fsc.factSheet.totalGenderPop)+ " ("+$filter('number')(fsc.factSheet.gender[0]                                                           .bridge_race)+" females; "+$filter('number')(fsc.factSheet.gender[1].bridge_race)+ " males)"
+                    bridgeRaceTotalText = "Total state population: "+$filter('number')(fsc.factSheet.totalGenderPop);
                 }
                 var lightHorizontalLines = {
                     hLineWidth: function (i, node) {
@@ -283,7 +283,7 @@
                 };
                 //Prepare source for PRAMS, YRBS and Cancer based on selected state
                 var PRAMSSource = 'Sources: 2011, CDC PRAMS';
-                var YRBSSource = 'Sources: 2015, YRBS; NA - Data not available or suppressed , NR - Data not reported';
+                var YRBSSource = 'Sources: 2015, YRBS';
                 var CancerSource = 'Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only';
                 if(fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1) {
                     PRAMSSource = 'This state did not take part in PRAMS';
@@ -445,7 +445,7 @@
                         },
                         {text: 'Sources:  2015, NCHS National Vital Statistics System', style: 'info'},
                         {image: fsc.imageDataURLs.tb, width: 50, height: 50, style: 'dataset-image'},
-                        {text: 'Tuberculosis (Number of new annual reported infections and rate per 100,000)', style: 'heading'},
+                        {text: 'Tuberculosis', style: 'heading'},
                         {text: 'Population: '+$filter('number')(fsc.factSheet.tuberculosis[0].pop)},
                         {
                             style: 'table',
@@ -462,7 +462,7 @@
                         },
                         {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
                         {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
-                        {text: 'Sexually Transmitted Infections (Number of new annual reported infections and rate per 100,000)', style: 'heading'},
+                        {text: 'Sexually Transmitted Infections', style: 'heading'},
                         {text: 'Population: '+$filter('number')(fsc.factSheet.stdData[0].data[0].pop)},
                         {
                             style: 'table',
@@ -476,7 +476,7 @@
                         },
                         {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
                         {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
-                        {text: 'HIV/AIDS (Number of new annual reported infections and rate per 100,000)', style: 'heading'},
+                        {text: 'HIV/AIDS', style: 'heading'},
                         {text: 'Population: '+$filter('number')(fsc.factSheet.hivAIDSData[0].data[0].pop)},
                         {
                             style: 'table',
@@ -592,27 +592,13 @@
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[2].bridge_race));
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[3].bridge_race));
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[4].bridge_race));
-            if(fsc.fsTypeForTable === fsc.fsTypes.minority_health) {
-                allTablesData.bridgeRaceTable1 = {
-                    headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic**', 'American Indian',                                         'Asian/Pacific Islander', 'Hispanic'],
-                    bodyData: bridgeRaceTableOneData
-                };
-            }
-            else if(fsc.fsTypeForTable === fsc.fsTypes.womens_health) {
-                allTablesData.bridgeRaceTable1 = {
-                    headerData: ['Racial Distributions of Residents*', 'Black, non-Hispanic**', 'White, non-Hispanic',                                         'American Indian', 'Asian/Pacific Islander', 'Hispanic'],
-                    bodyData: bridgeRaceTableOneData
-                };
-            }
-            else {
-                allTablesData.bridgeRaceTable1 = {
-                    headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic**', 'White, non-Hispanic',                                         'American Indian', 'Asian/Pacific Islander', 'Hispanic'],
-                    bodyData: bridgeRaceTableOneData
-                };
-            }
+            allTablesData.bridgeRaceTable1 = {
+                headerData: ['Racial Distributions of Minority Residents*', 'Total', 'Black, non-Hispanic', 'American Indian',                                         'Asian or Pacific Islander', 'Hispanic'],
+                bodyData: bridgeRaceTableOneData
+            };
 
             allTablesData.bridgeRaceTable2 = {
-                headerData: ['Age Distributions of Residents', '10-14', '15-19', '20-44', '45-64', '65-84', '85+'],
+                headerData: ['Age Distributions of Minority Residents', '10-14', '15-19', '20-44', '45-64', '65-84', '85+'],
                 bodyData: bridgeRaceTableTwoData
             };
             //Detail Mortality table def
@@ -722,7 +708,7 @@
 
             //YRBS
             allTablesData.yrbs = {
-                headerData: ['Question', 'Am Indian / Alaska Native', 'Asian', 'Black or African American',
+                headerData: ['Question', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
                     'Hispanic or Latino', 'Multiple Race', 'Native Hawaiian or Other Pacific Islander']
             };
             var yrbsTableDt = [];
@@ -749,7 +735,7 @@
                 birthsRow.push(birthCount);
             });
 
-            var populationRow = ['Total Population'];
+            var populationRow = ['Total minority population'];
             angular.forEach(fsc.factSheet.natality.birthRateData, function (birthRateData) {
                 var popCount = birthRateData.pop == 'suppressed'?'Suppressed'
                     : $filter('number')(birthRateData.pop);
@@ -762,7 +748,7 @@
                 birthRateRow.push(rateCt);
             });
 
-            var femalePopulationRow = ['Female Population (Ages 15 to 44)'];
+            var femalePopulationRow = ['Female minority population (Ages 15 to 44)'];
             angular.forEach(fsc.factSheet.natality.fertilityRatesData, function (fertilityRatesData) {
                 var popCount = fertilityRatesData.pop == 'suppressed'?'Suppressed'
                     : $filter('number')(fertilityRatesData.pop);
@@ -934,21 +920,15 @@
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[2].bridge_race));
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[3].bridge_race));
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[4].bridge_race));
-            if(fsc.fsTypeForTable === fsc.fsTypes.minority_health) {
+            if(fsc.fsTypeForTable === fsc.fsTypes.womens_health) {
                 allTablesData.bridgeRaceTable1 = {
-                    headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic**', 'American Indian',                                         'Asian/Pacific Islander', 'Hispanic'],
-                    bodyData: bridgeRaceTableOneData
-                };
-            }
-            else if(fsc.fsTypeForTable === fsc.fsTypes.womens_health) {
-                allTablesData.bridgeRaceTable1 = {
-                    headerData: ['Racial Distributions of Residents*', 'Black, non-Hispanic**', 'White, non-Hispanic',                                         'American Indian', 'Asian/Pacific Islander', 'Hispanic'],
+                    headerData: ['Racial Distributions of Residents*', 'Black, non-Hispanic', 'White, non-Hispanic',                                         'American Indian', 'Asian or Pacific Islander', 'Hispanic'],
                     bodyData: bridgeRaceTableOneData
                 };
             }
             else {
                 allTablesData.bridgeRaceTable1 = {
-                    headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic**', 'White, non-Hispanic',                                         'American Indian', 'Asian/Pacific Islander', 'Hispanic'],
+                    headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic', 'White, non-Hispanic',                                         'American Indian', 'Asian or Pacific Islander', 'Hispanic'],
                     bodyData: bridgeRaceTableOneData
                 };
             }
@@ -1162,7 +1142,7 @@
                     bridgeRaceTotalText = "Total state female population: "+$filter('number')(fsc.factSheet.gender[0].bridge_race);
                 }
                 else {
-                    bridgeRaceTotalText = "Total state population: "+$filter('number')(fsc.factSheet.totalGenderPop)+ " ("+$filter('number')(fsc.factSheet.gender[0]                                                           .bridge_race)+" females; "+$filter('number')(fsc.factSheet.gender[1].bridge_race)+ " males)"
+                    bridgeRaceTotalText = "Total minority state population: "+$filter('number')(fsc.factSheet.totalGenderPop);
                 }
                 var lightHorizontalLines = {
                     hLineWidth: function (i, node) {
@@ -1225,7 +1205,7 @@
                 };
                 //Prepare source for PRAMS, YRBS and Cancer based on selected state
                 var PRAMSSource = 'Sources: 2011, CDC PRAMS';
-                var YRBSSource = 'Sources: 2015, YRBS; NA - Data not available or suppressed , NR - Data not reported';
+                var YRBSSource = 'Sources: 2015, YRBS';
                 var CancerSource = 'Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only';
                 if(fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1) {
                     PRAMSSource = 'This state did not take part in PRAMS';
@@ -1384,7 +1364,7 @@
                     },
                     {text: 'Sources:  2015, NCHS National Vital Statistics System', style: 'info'},
                     {image: fsc.imageDataURLs.tb, width: 50, height: 50, style: 'dataset-image'},
-                    {text: 'Tuberculosis (Number of new annual reported infections and rate per 100,000)', style: 'heading'},
+                    {text: 'Tuberculosis', style: 'heading'},
                     {text: 'Population: '+$filter('number')(fsc.factSheet.tuberculosis[0].pop)},
                     {
                         style: 'table',
@@ -1398,7 +1378,7 @@
                     },
                     {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info', pageBreak: 'after'},
                     {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image'},
-                    {text: 'Sexually Transmitted Infections (Number of new annual reported infections and rate per 100,000)', style: 'heading'},
+                    {text: 'Sexually Transmitted Infections', style: 'heading'},
                     {text: 'Population: '+$filter('number')(fsc.factSheet.stdData[0].data[0].pop)},
                     {
                         style: 'table',
@@ -1412,7 +1392,7 @@
                     },
                     {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
                     {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
-                    {text: 'HIV/AIDS (Number of new annual reported infections and rate per 100,000)', style: 'heading'},
+                    {text: 'HIV/AIDS', style: 'heading'},
                     {text: 'Population: '+$filter('number')(fsc.factSheet.hivAIDSData[0].data[0].pop)},
                     {
                         style: 'table',

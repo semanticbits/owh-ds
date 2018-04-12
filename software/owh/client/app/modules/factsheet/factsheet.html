@@ -50,22 +50,19 @@
 
                     <div class="bridge-race-factsheet">
                         <h5 class="bridge-race-heading"><img src="../../images/icons/bridged-race-icon.svg"/>Population in {{fsc.stateName}}</h5>
-                        <p ng-if="fsc.fsTypeForTable != fsc.fsTypes.womens_health" class="bridge-race-description">
-                            Total state population: {{fsc.factSheet.totalGenderPop | number }} ({{fsc.factSheet.gender[0].bridge_race | number }} females; {{fsc.factSheet.gender[1].bridge_race | number}} males)
-                        </p>
-                        <p ng-if="fsc.fsTypeForTable == fsc.fsTypes.womens_health" class="bridge-race-description">
-                            Total state female population: {{fsc.factSheet.gender[0].bridge_race | number }}
+                        <p class="bridge-race-description">
+                            Total minority state population: {{fsc.factSheet.totalGenderPop | number }}
                         </p>
                         <div>
                             <table class="bridge-race-table1">
                                 <thead>
                                 <tr>
-                                    <th>Racial Distributions of Residents*</th>
+                                    <th>Racial Distributions of Minority Residents*</th>
                                     <th ng-if='fsc.fsTypeForTable != fsc.fsTypes.womens_health'>Total</th>
                                     <th>Black, non-Hispanic</th>
                                     <th ng-if="fsc.fsTypeForTable != fsc.fsTypes.minority_health">White, non-Hispanic</th>
                                     <th>American Indian</th>
-                                    <th>Asian/Pacific Islander</th>
+                                    <th>Asian or Pacific Islander</th>
                                     <th>Hispanic</th>
                                 </tr>
                                 </thead>
@@ -81,7 +78,7 @@
                             <table class="bridge-race-table2" style="background-color: white;">
                                 <thead>
                                 <tr>
-                                    <th>Age Distributions of Residents</th>
+                                    <th>Age Distributions of Minority Residents</th>
                                     <th>10-14</th>
                                     <th>15-19</th>
                                     <th>20-44</th>
@@ -136,7 +133,7 @@
                     <br/>
                     <!-- Infant mortality total deaths, births and rates for 2014 for selected state -->
                     <div class="infant-mortality-factsheet" ng-if="fsc.factSheet.infantMortalityData">
-                        <div class="table-heading"><h5><img src="../../images/icons/infant-mortality-icon.svg"/>Infant Mortality:</h5> <p>(All Causes, Not gender-specific)</p> </div>
+                        <div class="table-heading"><h5><img src="../../images/icons/infant-mortality-icon.svg"/>Infant Mortality</h5> </div>
                         <table class="infant-mortality-table">
                             <thead>
                             <tr>
@@ -297,7 +294,7 @@
                                 <td ng-if="eachRecord.data == 'Not applicable'" ng-bind="eachRecord.data"></td>
                             </tr>
                         </table>
-                        <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">Sources: 2015, YRBS; NA - Data not available or suppressed , NR - Data not reported</i>
+                        <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">Sources: 2015, YRBS</i>
                         <i ng-show="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['YRBS'].message}}</i>
                     </div>
                 </div>
@@ -323,7 +320,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Total Population</td>
+                                    <td>Total minority population</td>
                                     <td ng-repeat="birthRateData in fsc.factSheet.natality.birthRateData">
                                         {{birthRateData.pop=='suppressed'?'Suppressed': birthRateData.pop | number}}
                                     </td>
@@ -334,7 +331,7 @@
                                         ng-bind="fsc.calculateRate(birthRateData.natality, birthRateData.pop)"></td>
                                 </tr>
                                 <tr>
-                                    <td>Female  Population (Ages 15 to 44)</td>
+                                    <td> Female minority population (Ages 15 to 44)</td>
                                     <td ng-repeat="fertilityRatesData in fsc.factSheet.natality.fertilityRatesData">
                                         {{fertilityRatesData.pop=='suppressed'?'Suppressed': fertilityRatesData.pop | number}}
                                     </td>
@@ -370,7 +367,7 @@
                     </div>
                     <!-- Tuberculosis -->
                     <div class="tb-factsheet">
-                        <div class="table-heading"><h5><img src="../../images/icons/tuberculosis-icon.svg"/>Tuberculosis</h5> <p class="smallHeading">(Number of new annual reported infections and rate per 100,000)</p> </div>
+                        <div class="table-heading"><h5><img src="../../images/icons/tuberculosis-icon.svg"/>Tuberculosis</h5></div>
                         <p>Population: {{fsc.factSheet.tuberculosis[0].pop | number}} </p>
                         <table class="tb-table">
                             <thead>
@@ -396,7 +393,7 @@
                     <br/>
                     <!-- STD -->
                     <div class="std-factsheet">
-                        <div class="table-heading"><h5><img src="../../images/icons/std-icon.svg"/>Sexually Transmitted Infections </h5> <p class="smallHeading">(Number of new annual reported infections and rate per 100,000)</p></div>
+                        <div class="table-heading"><h5><img src="../../images/icons/std-icon.svg"/>Sexually Transmitted Infections </h5></div>
                         <p>Population: {{fsc.factSheet.stdData[0].data[0].pop | number}} </p>
                         <table class="std-table">
                             <thead>
@@ -426,7 +423,7 @@
                     <br/>
                     <!-- HIV/AIDS -->
                     <div class="hiv-factsheet">
-                        <div class="table-heading"><h5><img src="../../images/icons/aids-hiv-icon.svg"/>HIV/AIDS</h5>  <p class="smallHeading">(Number of new annual reported infections and rate per 100,000)</p></div>
+                        <div class="table-heading"><h5><img src="../../images/icons/aids-hiv-icon.svg"/>HIV/AIDS</h5></div>
                         <p>Population: {{fsc.factSheet.hivAIDSData[0].data[0].pop | number}}  </p>
                         <table class="hiv-table">
                             <thead>
@@ -525,7 +522,7 @@
                     <div class="bridge-race-factsheet">
                         <h5 class="bridge-race-heading"><img src="../../images/icons/bridged-race-icon.svg"/>Population in {{fsc.stateName}}</h5>
                         <p ng-if="fsc.fsTypeForTable != fsc.fsTypes.womens_health" class="bridge-race-description">
-                            Total state population: {{fsc.factSheet.totalGenderPop | number }} ({{fsc.factSheet.gender[0].bridge_race | number }} females; {{fsc.factSheet.gender[1].bridge_race | number}} males)
+                            Total state population: {{fsc.factSheet.totalGenderPop | number }}
                         </p>
                         <p ng-if="fsc.fsTypeForTable == fsc.fsTypes.womens_health" class="bridge-race-description">
                             Total state female population: {{fsc.factSheet.gender[0].bridge_race | number }}
@@ -539,7 +536,7 @@
                                     <th>Black, non-Hispanic</th>
                                     <th ng-if="fsc.fsTypeForTable != fsc.fsTypes.minority_health">White, non-Hispanic</th>
                                     <th>American Indian</th>
-                                    <th>Asian/Pacific Islander</th>
+                                    <th>Asian or Pacific Islander</th>
                                     <th>Hispanic</th>
                                 </tr>
                                 </thead>
@@ -603,7 +600,7 @@
                     <br/>
                     <!-- Infant mortality total deaths, births and rates for 2014 for selected state -->
                     <div class="infant-mortality-factsheet" ng-if="fsc.factSheet.infantMortalityData">
-                        <div class="table-heading"><h5><img src="../../images/icons/infant-mortality-icon.svg"/>Infant Mortality:</h5> <p>(All Causes, Not gender-specific)</p> </div>
+                        <div class="table-heading"><h5><img src="../../images/icons/infant-mortality-icon.svg"/>Infant Mortality</h5></div>
                         <table class="infant-mortality-table">
                             <thead>
                             <tr>
@@ -664,7 +661,7 @@
                                 <td ng-bind="eachRecord.data"></td>
                             </tr>
                         </table>
-                        <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">Sources: 2015, YRBS; NA - Data not available or suppressed , NR - Data not reported</i>
+                        <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">Sources: 2015, YRBS</i>
                         <i ng-show="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['YRBS'].message}}</i>
                     </div>
                 </div>
@@ -714,7 +711,7 @@
                     </div>
                     <!-- Tuberculosis -->
                     <div class="tb-factsheet">
-                        <div class="table-heading"><h5><img src="../../images/icons/tuberculosis-icon.svg"/>Tuberculosis</h5> <p class="smallHeading">(Number of new annual reported infections and rate per 100,000)</p> </div>
+                        <div class="table-heading"><h5><img src="../../images/icons/tuberculosis-icon.svg"/>Tuberculosis</h5> </div>
                         <p>Population: {{fsc.factSheet.tuberculosis[0].pop | number}} </p>
                         <table class="tb-table">
                             <thead>
@@ -735,7 +732,7 @@
                     <br/>
                     <!-- STD -->
                     <div class="std-factsheet">
-                        <div class="table-heading"><h5><img src="../../images/icons/std-icon.svg"/>Sexually Transmitted Infections </h5> <p class="smallHeading">(Number of new annual reported infections and rate per 100,000)</p></div>
+                        <div class="table-heading"><h5><img src="../../images/icons/std-icon.svg"/>Sexually Transmitted Infections </h5> </div>
                         <p>Population: {{fsc.factSheet.stdData[0].data[0].pop | number}} </p>
                         <table class="std-table">
                             <thead>
@@ -758,7 +755,7 @@
                     <br/>
                     <!-- HIV/AIDS -->
                     <div class="hiv-factsheet">
-                        <div class="table-heading"><h5><img src="../../images/icons/aids-hiv-icon.svg"/>HIV/AIDS</h5>  <p class="smallHeading">(Number of new annual reported infections and rate per 100,000)</p></div>
+                        <div class="table-heading"><h5><img src="../../images/icons/aids-hiv-icon.svg"/>HIV/AIDS</h5></div>
                         <p>Population: {{fsc.factSheet.hivAIDSData[0].data[0].pop | number}}  </p>
                         <table class="hiv-table">
                             <thead>
