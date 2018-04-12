@@ -3,15 +3,15 @@
         .module('owh.description')
         .controller('DescriptionController', DescriptionController);
 
-    DescriptionController.$inject = ['$scope', '$state', '$stateParams'];
+    DescriptionController.$inject = ['$scope', '$state', '$stateParams', '$location'];
 
-    function DescriptionController($scope, $state, $stateParams) {
+    function DescriptionController($scope, $state, $stateParams, $location) {
         var dc = this;
         dc.getDataSetDetails = getDataSetDetails;
         dc.scrollToElement = scrollToElement;
 
         dc.datasetInfo = {
-                natality: {
+                births: {
                     key:"natality",
                     title: 'Births',
                     image: 'natality-icon.svg',
@@ -643,7 +643,10 @@
 
         function getDataSetDetails() {
             var datasetKey = $stateParams.dataSetKey;
-            return dc.datasetInfo[datasetKey]
+            if (datasetKey === 'natality') {
+                $location.path("/description/births").replace();
+            }
+            return dc.datasetInfo[datasetKey];
         }
     }
 }());

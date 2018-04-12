@@ -506,7 +506,7 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
                 {disease:"HIV Diagnoses", data:prepareDiseaseData(HIVDiagnosesData, 'aids')},
                 {disease:"HIV Deaths*", data:prepareDiseaseData(HIVDeathsData, 'aids')},
                 {disease:"HIV Prevalence*", data:prepareDiseaseData(HIVPrevalenceData, 'aids')}];
-            factSheet.detailMortalityData = [{causeOfDeath:"Total (all ages)", data:detailMortalityTotal_Data.data.nested.table.year[0]},
+            factSheet.detailMortalityData = [{causeOfDeath:"Total", data:detailMortalityTotal_Data.data.nested.table.year[0]},
                 {causeOfDeath:"Cancer (Malignant neoplasms)", data:detailMortalityC00_C97_Data.data.nested.table.year[0]},
                 {causeOfDeath: "Breast Cancer (Malignant neoplasms of breast)", data:detailMortalityC50Data.data.nested.table.year[0]},
                 {causeOfDeath: "Cervical Cancer (Malignant neoplasm of cervix uteri)", data:detailMortalityC53_Data.data.nested.table.year[0]},
@@ -576,7 +576,7 @@ function getMeanDisplayValue(data) {
  */
 function prepareBRFSSData(data_2015){
     var brfssData = [];
-    brfssData.push({question: 'Were Obese (BMI 30.0 - 99.8)', data: 'Not applicable' });
+    brfssData.push({question: 'Weight classification by Body Mass Index (BMI) : Obese (bmi 30.0 - 99.8)', data: 'Not applicable' });
     brfssData.push({question: 'Adults who are current smokers', data: 'Not applicable'});
     brfssData.push({question: 'Are heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)', data: 'Not applicable'});
     brfssData.push({question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable'});

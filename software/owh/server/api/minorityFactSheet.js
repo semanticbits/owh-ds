@@ -112,7 +112,7 @@ function preparePRAMSData(pregnantWomenData, womenData) {
  */
 function prepareBRFSSData(data){
     var brfssData = [
-        { question: 'Were Obese (BMI 30.0 - 99.8)', data: 'Not applicable' },
+        { question: 'Weight classification by Body Mass Index (BMI) : Obese (bmi 30.0 - 99.8)', data: 'Not applicable' },
         { question: 'Adults who are current smokers', data: 'Not applicable' },
         { question: 'Are heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)', data: 'Not applicable' },
         { question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable' }
@@ -248,12 +248,10 @@ function prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
                                        raceData, hispanicData, ageGroupData, fsType) {
     var factSheet = {};
     factSheet.gender = genderData.data.simple.group_table_sex;
-    if(fsType != "Women's Health") {
-        factSheet.totalGenderPop = 0;
-        factSheet.gender.forEach(function (data) {
-            factSheet.totalGenderPop += data.bridge_race;
-        });
-    }
+    factSheet.totalGenderPop = 0;
+    factSheet.gender.forEach(function (data) {
+        factSheet.totalGenderPop += data.bridge_race;
+    });
 
     var race = nonHispanicRaceData.data.simple.group_table_race;
     race = race.concat(raceData.data.simple.group_table_race, hispanicData.data.simple.group_table_ethnicity);
@@ -581,7 +579,7 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
         var I60I69Data = prepareDetailMortalityData(resp[16], resp[17], resp[18], resp[19]);
 
         return [
-            {causeOfDeath:"Total (all ages)", data:totalData.data.nested.table.race},
+            {causeOfDeath:"Total", data:totalData.data.nested.table.race},
             {causeOfDeath:"Cancer (Malignant neoplasms)", data:C00C97Data.data.nested.table.race},
             {causeOfDeath: "Breast Cancer (Malignant neoplasms of breast)", data:C50Data.data.nested.table.race},
             {causeOfDeath: "Cervical Cancer (Malignant neoplasm of cervix uteri)", data:C53Data.data.nested.table.race},
