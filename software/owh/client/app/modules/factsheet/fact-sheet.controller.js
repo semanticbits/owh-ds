@@ -994,6 +994,10 @@
                     ["Birth Rates (per 100,000)", fsc.factSheet.natalityData.birthRate],
                     ["Female  Population (Ages 15 to 44)", $filter('number')(fsc.factSheet.natalityData.femalePopulation)],
                     ["Fertility Rates (per 100,000)", fsc.factSheet.natalityData.fertilityRate],
+                    ['Vaginal rates', fsc.factSheet.natalityData.vaginalRate],
+                    ['Cesarean rates', fsc.factSheet.natalityData.cesareanRate],
+                    ['Low birth weight (<2500 gms)', fsc.factSheet.natalityData.lowBirthWeightRate],
+                    ['Twin birth rate', fsc.factSheet.natalityData.twinBirthRate]
                 ]
             };
             //Tuberculosis
