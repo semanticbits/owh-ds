@@ -18336,7 +18336,7 @@
             }
           }
         ],
-        "C50-C50":[
+        "alzheimer":[
           {
             "size": 0,
             "aggregations": {
@@ -18357,7 +18357,7 @@
                           "should": [
                             {
                               "match": {
-                                "ICD_10_code.path": "C50-C50"
+                                "ICD_10_code.path": "G30"
                               }
                             }
                           ]
@@ -18438,7 +18438,7 @@
                           "should": [
                             {
                               "match": {
-                                "ICD_10_code.path": "C50-C50"
+                                "ICD_10_code.path": "G30"
                               }
                             }
                           ]
@@ -18535,7 +18535,7 @@
             }
           }
         ],
-        "C00-C97": [
+        "malignant_neoplasm": [
           {
             "size": 0,
             "aggregations": {
@@ -18875,7 +18875,7 @@
             }
           }
         ],
-        "C53": [
+        "accident": [
           {
             "size": 0,
             "aggregations": {
@@ -18896,7 +18896,137 @@
                           "should": [
                             {
                               "match": {
-                                "ICD_10_code.path": "C53"
+                                "ICD_10_code.path": "V01-V09"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V10-V19"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V20-V29"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V30-V39"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V40-V49"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V50-V59"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V60-V69"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V70-V79"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V80-V89"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V90-V94"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V95-V97"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V98-V99"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "W00-W19"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "W20-W49"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "W50-W64"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "W65-W74"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "W75-W84"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "W85-W99"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "X00-X09"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "X10-X19"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "X20-X29"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "X30-X39"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "X40-X49"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "X50-X57"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "X58-X59"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "Y85"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "Y86"
                               }
                             }
                           ]
@@ -18977,7 +19107,137 @@
                           "should": [
                             {
                               "match": {
-                                "ICD_10_code.path": "C53"
+                                "ICD_10_code.path": "V01-V09"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V10-V19"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V20-V29"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V30-V39"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V40-V49"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V50-V59"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V60-V69"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V70-V79"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V80-V89"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V90-V94"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V95-V97"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "V98-V99"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "W00-W19"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "W20-W49"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "W50-W64"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "W65-W74"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "W75-W84"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "W85-W99"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "X00-X09"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "X10-X19"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "X20-X29"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "X30-X39"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "X40-X49"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "X50-X57"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "X58-X59"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "Y85"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "Y86"
                               }
                             }
                           ]
@@ -19074,7 +19334,7 @@
             }
           }
         ],
-        "I160-I169":[
+        "cerebrovascular":[
           {
             "size": 0,
             "aggregations": {
@@ -19273,7 +19533,7 @@
             }
           }
         ],
-        "J40-47-60":[
+        "chronic_respiratory":[
           {
             "size": 0,
             "aggregations": {
@@ -19472,7 +19732,7 @@
             }
           }
         ],
-        "drug-induced":[
+        "diabetes_mellitus":[
           {
             "size": 0,
             "aggregations": {
@@ -19493,392 +19753,7 @@
                           "should":  [
                             {
                               "match": {
-                                "ICD_10_code.path": "D52.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "D59.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "D59.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "D61.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "D64.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "E06.4"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "E16.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "E23.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "E24.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "E27.3"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "E66.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F11"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F12"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F13"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F14"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F15"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F16"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F17"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F18"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F19"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G21.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G24.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G25.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G25.4"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G25.6"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G44.4"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G62.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G72.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "I95.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "J70.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "J70.3"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "J70.4"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "K85.3"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "L10.5"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "L27.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "L27.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "M10.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "M32.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "M80.4"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "M81.4"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "M83.5"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "M87.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "R50.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "R78.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "R78.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "R78.3"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "R78.4"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "R78.5"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X40"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X41"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X42"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X43"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X44"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X60"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X61"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X62"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X63"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X64"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X85"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y10"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y11"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y12"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y13"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y14"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "E24.4"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F10"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G31.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G62.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G72.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "I42.6"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "K29.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "K70"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "K85.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "K86.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "R78.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X45"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X65"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y15"
+                                "ICD_10_code.path": "E10-E14"
                               }
                             }
                           ]
@@ -19959,392 +19834,7 @@
                           "should":  [
                             {
                               "match": {
-                                "ICD_10_code.path": "D52.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "D59.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "D59.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "D61.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "D64.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "E06.4"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "E16.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "E23.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "E24.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "E27.3"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "E66.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F11"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F12"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F13"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F14"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F15"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F16"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F17"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F18"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F19"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G21.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G24.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G25.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G25.4"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G25.6"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G44.4"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G62.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G72.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "I95.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "J70.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "J70.3"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "J70.4"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "K85.3"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "L10.5"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "L27.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "L27.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "M10.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "M32.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "M80.4"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "M81.4"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "M83.5"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "M87.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "R50.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "R78.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "R78.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "R78.3"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "R78.4"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "R78.5"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X40"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X41"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X42"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X43"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X44"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X60"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X61"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X62"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X63"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X64"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X85"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y10"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y11"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y12"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y13"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y14"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "E24.4"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "F10"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G31.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G62.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "G72.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "I42.6"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "K29.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "K70"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "K85.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "K86.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "R78.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X45"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X65"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y15"
+                                "ICD_10_code.path": "E10-E14"
                               }
                             }
                           ]
@@ -20441,7 +19931,7 @@
             }
           }
         ],
-        "Suicide":[
+        "influenza":[
           {
             "size": 0,
             "aggregations": {
@@ -20462,142 +19952,7 @@
                           "should":  [
                             {
                               "match": {
-                                "ICD_10_code.path": "U03.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "U03.9"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X60"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X61"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X62"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X63"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X64"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X65"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X66"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X67"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X68"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X69"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X70"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X71"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X72"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X73"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X74"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X75"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X76"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X77"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X78"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X79"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X80"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X81"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X82"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X83"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X84"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X87.0"
+                                "ICD_10_code.path": "J09-J18"
                               }
                             }
                           ]
@@ -20678,142 +20033,7 @@
                           "should":  [
                             {
                               "match": {
-                                "ICD_10_code.path": "U03.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "U03.9"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X60"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X61"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X62"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X63"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X64"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X65"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X66"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X67"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X68"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X69"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X70"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X71"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X72"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X73"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X74"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X75"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X76"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X77"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X78"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X79"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X80"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X81"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X82"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X83"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X84"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X87.0"
+                                "ICD_10_code.path": "J09-J18"
                               }
                             }
                           ]
@@ -20910,7 +20130,7 @@
             }
           }
         ],
-        "Homicide":[
+        "nephritis":[
           {
             "size": 0,
             "aggregations": {
@@ -20928,190 +20148,30 @@
                     "must": [
                       {
                         "bool": {
-                          "should":  [
+                          "should": [
                             {
                               "match": {
-                                "ICD_10_code.path": "U01"
+                                "ICD_10_code.path": "N00-N07"
                               }
                             },
                             {
                               "match": {
-                                "ICD_10_code.path": "U02"
+                                "ICD_10_code.path": "N17-N19"
                               }
                             },
                             {
                               "match": {
-                                "ICD_10_code.path": "X85"
+                                "ICD_10_code.path": "N25"
                               }
                             },
                             {
                               "match": {
-                                "ICD_10_code.path": "X86"
+                                "ICD_10_code.path": "N26"
                               }
                             },
                             {
                               "match": {
-                                "ICD_10_code.path": "X87"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X88"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X89"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X90"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X91"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X92"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X93"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X94"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X95"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X96"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X97"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X98"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X99"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y00"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y01"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y02"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y03"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y04"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y05"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y06.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y06.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y06.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y06.8"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y06.9"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y07.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y07.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y07.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y07.3"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y07.8"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y07.9"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y08"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y09"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y87.1"
+                                "ICD_10_code.path": "N27"
                               }
                             }
                           ]
@@ -21189,190 +20249,30 @@
                     "must": [
                       {
                         "bool": {
-                          "should":  [
+                          "should": [
                             {
                               "match": {
-                                "ICD_10_code.path": "U01"
+                                "ICD_10_code.path": "N00-N07"
                               }
                             },
                             {
                               "match": {
-                                "ICD_10_code.path": "U02"
+                                "ICD_10_code.path": "N17-N19"
                               }
                             },
                             {
                               "match": {
-                                "ICD_10_code.path": "X85"
+                                "ICD_10_code.path": "N25"
                               }
                             },
                             {
                               "match": {
-                                "ICD_10_code.path": "X86"
+                                "ICD_10_code.path": "N26"
                               }
                             },
                             {
                               "match": {
-                                "ICD_10_code.path": "X87"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X88"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X89"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X90"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X91"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X92"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X93"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X94"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X95"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X96"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X97"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X98"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "X99"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y00"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y01"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y02"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y03"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y04"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y05"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y06.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y06.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y06.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y06.8"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y06.9"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y07.0"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y07.1"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y07.2"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y07.3"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y07.8"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y07.9"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y08"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y09"
-                              }
-                            },
-                            {
-                              "match": {
-                                "ICD_10_code.path": "Y87.1"
+                                "ICD_10_code.path": "N27"
                               }
                             }
                           ]
@@ -21469,7 +20369,7 @@
             }
           }
         ],
-        "B20-B24":[
+        "suicide":[
           {
             "size": 0,
             "aggregations": {
@@ -21487,10 +20387,20 @@
                     "must": [
                       {
                         "bool": {
-                          "should": [
+                          "should":  [
                             {
                               "match": {
-                                "ICD_10_code.path": "B20-B24"
+                                "ICD_10_code.path": "*U03"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "X60-X84"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "Y870"
                               }
                             }
                           ]
@@ -21568,10 +20478,279 @@
                     "must": [
                       {
                         "bool": {
-                          "should": [
+                          "should":  [
                             {
                               "match": {
-                                "ICD_10_code.path": "B20-B24"
+                                "ICD_10_code.path": "*U03"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "X60-X84"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "Y870"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                "filter": {
+                  "bool": {
+                    "must": [
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
+                                "hispanic_origin": "Central American"
+                              }
+                            },
+                            {
+                              "term": {
+                                "hispanic_origin": "Central and South American"
+                              }
+                            },
+                            {
+                              "term": {
+                                "hispanic_origin": "Cuban"
+                              }
+                            },
+                            {
+                              "term": {
+                                "hispanic_origin": "Dominican"
+                              }
+                            },
+                            {
+                              "term": {
+                                "hispanic_origin": "Latin American"
+                              }
+                            },
+                            {
+                              "term": {
+                                "hispanic_origin": "Mexican"
+                              }
+                            },
+                            {
+                              "term": {
+                                "hispanic_origin": "Other Hispanic"
+                              }
+                            },
+                            {
+                              "term": {
+                                "hispanic_origin": "Puerto Rican"
+                              }
+                            },
+                            {
+                              "term": {
+                                "hispanic_origin": "South American"
+                              }
+                            },
+                            {
+                              "term": {
+                                "hispanic_origin": "Spaniard"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
+                                "current_year": "2015"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
+                                "state": "$state$"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "heart_diseases":[
+          {
+            "size": 0,
+            "aggregations": {
+              "group_table_race": {
+                "terms": {
+                  "field": "race",
+                  "size": 0
+                }
+              }
+            },
+            "query": {
+              "filtered": {
+                "query": {
+                  "bool": {
+                    "must": [
+                      {
+                        "bool": {
+                          "should":  [
+                            {
+                              "match": {
+                                "ICD_10_code.path": "I00-I02"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "I05-I09"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "I11"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "I13"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "I20-I25"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "I26-I28"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "I30-I51"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                "filter": {
+                  "bool": {
+                    "must": [
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
+                                "race": "American Indian"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "Asian or Pacific Islander"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "Black"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
+                                "current_year": "2015"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
+                                "state": "$state$"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "size": 0,
+            "aggregations": {
+              "group_table_year": {
+                "terms": {
+                  "field": "current_year",
+                  "size": 0
+                }
+              }
+            },
+            "query": {
+              "filtered": {
+                "query": {
+                  "bool": {
+                    "must": [
+                      {
+                        "bool": {
+                          "should":  [
+                            {
+                              "match": {
+                                "ICD_10_code.path": "I00-I02"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "I05-I09"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "I11"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "I13"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "I20-I25"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "I26-I28"
+                              }
+                            },
+                            {
+                              "match": {
+                                "ICD_10_code.path": "I30-I51"
                               }
                             }
                           ]
@@ -21786,7 +20965,7 @@
             }
           }
         ],
-        "C50-C50":[
+        "alzheimer":[
           {
             "searchFor": "deaths",
             "query": {
@@ -21804,7 +20983,7 @@
                 "key": "ucd-chapter-10",
                 "queryKey": "ICD_10_code.path",
                 "value": [
-                  "C50-C50"
+                  "G30"
                 ],
                 "primary": true
               },
@@ -21853,7 +21032,7 @@
                 "key": "ucd-chapter-10",
                 "queryKey": "ICD_10_code.path",
                 "value": [
-                  "C50-C50"
+                  "G30"
                 ],
                 "primary": true
               },
@@ -21888,7 +21067,7 @@
             }
           }
         ],
-        "C00-C97":[
+        "malignant_neoplasm":[
           {
             "searchFor": "deaths",
             "query": {
@@ -22018,7 +21197,7 @@
             }
           }
         ],
-        "C53":[
+        "accident":[
           {
             "searchFor": "deaths",
             "query": {
@@ -22036,7 +21215,33 @@
                 "key": "ucd-chapter-10",
                 "queryKey": "ICD_10_code.path",
                 "value": [
-                  "C53"
+                  "V01-V09",
+                  "V10-V19",
+                  "V20-V29",
+                  "V30-V39",
+                  "V40-V49",
+                  "V50-V59",
+                  "V60-V69",
+                  "V70-V79",
+                  "V80-V89",
+                  "V90-V94",
+                  "V95-V97",
+                  "V98-V99",
+                  "W00-W19",
+                  "W20-W49",
+                  "W50-W64",
+                  "W65-W74",
+                  "W75-W84",
+                  "W85-W99",
+                  "X00-X09",
+                  "X10-X19",
+                  "X20-X29",
+                  "X30-X39",
+                  "X40-X49",
+                  "X50-X57",
+                  "X58-X59",
+                  "Y85",
+                  "Y86"
                 ],
                 "primary": true
               },
@@ -22085,7 +21290,33 @@
                 "key": "ucd-chapter-10",
                 "queryKey": "ICD_10_code.path",
                 "value": [
-                  "C53"
+                  "V01-V09",
+                  "V10-V19",
+                  "V20-V29",
+                  "V30-V39",
+                  "V40-V49",
+                  "V50-V59",
+                  "V60-V69",
+                  "V70-V79",
+                  "V80-V89",
+                  "V90-V94",
+                  "V95-V97",
+                  "V98-V99",
+                  "W00-W19",
+                  "W20-W49",
+                  "W50-W64",
+                  "W65-W74",
+                  "W75-W84",
+                  "W85-W99",
+                  "X00-X09",
+                  "X10-X19",
+                  "X20-X29",
+                  "X30-X39",
+                  "X40-X49",
+                  "X50-X57",
+                  "X58-X59",
+                  "Y85",
+                  "Y86"
                 ],
                 "primary": true
               },
@@ -22120,7 +21351,7 @@
             }
           }
         ],
-        "I160-I169":[
+        "cerebrovascular":[
           {
             "searchFor": "deaths",
             "query": {
@@ -22222,7 +21453,7 @@
             }
           }
         ],
-        "J40-47-60":[
+        "chronic_respiratory":[
           {
             "searchFor": "deaths",
             "query": {
@@ -22324,7 +21555,7 @@
             }
           }
         ],
-        "drug-induced":[
+        "diabetes_mellitus":[
           {
             "searchFor": "deaths",
             "query": {
@@ -22342,84 +21573,7 @@
                 "key": "ucd-chapter-10",
                 "queryKey": "ICD_10_code.path",
                 "value": [
-                  "D52.1",
-                  "D59.0",
-                  "D59.2",
-                  "D61.1",
-                  "D64.2",
-                  "E06.4",
-                  "E16.0",
-                  "E23.1",
-                  "E24.2",
-                  "E27.3",
-                  "E66.1",
-                  "F11",
-                  "F12",
-                  "F13",
-                  "F14",
-                  "F15",
-                  "F16",
-                  "F17",
-                  "F18",
-                  "F19",
-                  "G21.1",
-                  "G24.0",
-                  "G25.1",
-                  "G25.4",
-                  "G25.6",
-                  "G44.4",
-                  "G62.0",
-                  "G72.0",
-                  "I95.2",
-                  "J70.2",
-                  "J70.3",
-                  "J70.4",
-                  "K85.3",
-                  "L10.5",
-                  "L27.0",
-                  "L27.1",
-                  "M10.2",
-                  "M32.0",
-                  "M80.4",
-                  "M81.4",
-                  "M83.5",
-                  "M87.1",
-                  "R50.2",
-                  "R78.1",
-                  "R78.2",
-                  "R78.3",
-                  "R78.4",
-                  "R78.5",
-                  "X40",
-                  "X41",
-                  "X42",
-                  "X43",
-                  "X44",
-                  "X60",
-                  "X61",
-                  "X62",
-                  "X63",
-                  "X64",
-                  "X85",
-                  "Y10",
-                  "Y11",
-                  "Y12",
-                  "Y13",
-                  "Y14",
-                  "E24.4",
-                  "F10",
-                  "G31.2",
-                  "G62.1",
-                  "G72.1",
-                  "I42.6",
-                  "K29.2",
-                  "K70",
-                  "K85.2",
-                  "K86.0",
-                  "R78.0",
-                  "X45",
-                  "X65",
-                  "Y15"
+                  "E10-E14"
                 ],
                 "primary": true
               },
@@ -22468,84 +21622,7 @@
                 "key": "ucd-chapter-10",
                 "queryKey": "ICD_10_code.path",
                 "value": [
-                  "D52.1",
-                  "D59.0",
-                  "D59.2",
-                  "D61.1",
-                  "D64.2",
-                  "E06.4",
-                  "E16.0",
-                  "E23.1",
-                  "E24.2",
-                  "E27.3",
-                  "E66.1",
-                  "F11",
-                  "F12",
-                  "F13",
-                  "F14",
-                  "F15",
-                  "F16",
-                  "F17",
-                  "F18",
-                  "F19",
-                  "G21.1",
-                  "G24.0",
-                  "G25.1",
-                  "G25.4",
-                  "G25.6",
-                  "G44.4",
-                  "G62.0",
-                  "G72.0",
-                  "I95.2",
-                  "J70.2",
-                  "J70.3",
-                  "J70.4",
-                  "K85.3",
-                  "L10.5",
-                  "L27.0",
-                  "L27.1",
-                  "M10.2",
-                  "M32.0",
-                  "M80.4",
-                  "M81.4",
-                  "M83.5",
-                  "M87.1",
-                  "R50.2",
-                  "R78.1",
-                  "R78.2",
-                  "R78.3",
-                  "R78.4",
-                  "R78.5",
-                  "X40",
-                  "X41",
-                  "X42",
-                  "X43",
-                  "X44",
-                  "X60",
-                  "X61",
-                  "X62",
-                  "X63",
-                  "X64",
-                  "X85",
-                  "Y10",
-                  "Y11",
-                  "Y12",
-                  "Y13",
-                  "Y14",
-                  "E24.4",
-                  "F10",
-                  "G31.2",
-                  "G62.1",
-                  "G72.1",
-                  "I42.6",
-                  "K29.2",
-                  "K70",
-                  "K85.2",
-                  "K86.0",
-                  "R78.0",
-                  "X45",
-                  "X65",
-                  "Y15"
+                  "E10-E14"
                 ],
                 "primary": true
               },
@@ -22580,7 +21657,7 @@
             }
           }
         ],
-        "Suicide":[
+        "influenza":[
           {
             "searchFor": "deaths",
             "query": {
@@ -22598,34 +21675,7 @@
                 "key": "ucd-chapter-10",
                 "queryKey": "ICD_10_code.path",
                 "value": [
-                  "U03.0",
-                  "U03.9",
-                  "X60",
-                  "X61",
-                  "X62",
-                  "X63",
-                  "X64",
-                  "X65",
-                  "X66",
-                  "X67",
-                  "X68",
-                  "X69",
-                  "X70",
-                  "X71",
-                  "X72",
-                  "X73",
-                  "X74",
-                  "X75",
-                  "X76",
-                  "X77",
-                  "X78",
-                  "X79",
-                  "X80",
-                  "X81",
-                  "X82",
-                  "X83",
-                  "X84",
-                  "Y87.0"
+                  "J09-J18"
                 ],
                 "primary": true
               },
@@ -22674,34 +21724,7 @@
                 "key": "ucd-chapter-10",
                 "queryKey": "ICD_10_code.path",
                 "value": [
-                  "U03.0",
-                  "U03.9",
-                  "X60",
-                  "X61",
-                  "X62",
-                  "X63",
-                  "X64",
-                  "X65",
-                  "X66",
-                  "X67",
-                  "X68",
-                  "X69",
-                  "X70",
-                  "X71",
-                  "X72",
-                  "X73",
-                  "X74",
-                  "X75",
-                  "X76",
-                  "X77",
-                  "X78",
-                  "X79",
-                  "X80",
-                  "X81",
-                  "X82",
-                  "X83",
-                  "X84",
-                  "Y87.0"
+                  "J09-J18"
                 ],
                 "primary": true
               },
@@ -22736,7 +21759,7 @@
             }
           }
         ],
-        "Homicide":[
+        "nephritis":[
           {
             "searchFor": "deaths",
             "query": {
@@ -22754,182 +21777,11 @@
                 "key": "ucd-chapter-10",
                 "queryKey": "ICD_10_code.path",
                 "value": [
-                  "U01",
-                  "U02",
-                  "X85",
-                  "X86",
-                  "X87",
-                  "X88",
-                  "X89",
-                  "X90",
-                  "X91",
-                  "X92",
-                  "X93",
-                  "X94",
-                  "X95",
-                  "X96",
-                  "X97",
-                  "X98",
-                  "X99",
-                  "Y00",
-                  "Y01",
-                  "Y02",
-                  "Y03",
-                  "Y04",
-                  "Y05",
-                  "Y06.0",
-                  "Y06.1",
-                  "Y06.2",
-                  "Y06.8",
-                  "Y06.9",
-                  "Y07.0",
-                  "Y07.1",
-                  "Y07.2",
-                  "Y07.3",
-                  "Y07.8",
-                  "Y07.9",
-                  "Y08",
-                  "Y09",
-                  "Y87.1"
-                ],
-                "primary": true
-              },
-              "current_year": {
-                "key": "year",
-                "queryKey": "current_year",
-                "value": [
-                  "2015"
-                ],
-                "primary": false
-              },
-              "state": {
-                "key": "state",
-                "queryKey": "state",
-                "value": [
-                  "$state$"
-                ],
-                "primary": false
-              }
-            },
-            "aggregations": {
-              "simple": [],
-              "nested": {
-                "table": [
-                  {
-                    "key": "race",
-                    "queryKey": "race",
-                    "size": 0
-                  }
-                ]
-              }
-            }
-          },
-          {
-            "test":"test",
-            "searchFor": "deaths",
-            "query": {
-              "ethnicity_group": {
-                "key": "hispanicOrigin",
-                "queryKey": "ethnicity_group",
-                "value": [
-                  "Hispanic"
-                ],
-                "primary": false
-              },
-              "ICD_10_code": {
-                "key": "ucd-chapter-10",
-                "queryKey": "ICD_10_code.path",
-                "value": [
-                  "U01",
-                  "U02",
-                  "X85",
-                  "X86",
-                  "X87",
-                  "X88",
-                  "X89",
-                  "X90",
-                  "X91",
-                  "X92",
-                  "X93",
-                  "X94",
-                  "X95",
-                  "X96",
-                  "X97",
-                  "X98",
-                  "X99",
-                  "Y00",
-                  "Y01",
-                  "Y02",
-                  "Y03",
-                  "Y04",
-                  "Y05",
-                  "Y06.0",
-                  "Y06.1",
-                  "Y06.2",
-                  "Y06.8",
-                  "Y06.9",
-                  "Y07.0",
-                  "Y07.1",
-                  "Y07.2",
-                  "Y07.3",
-                  "Y07.8",
-                  "Y07.9",
-                  "Y08",
-                  "Y09",
-                  "Y87.1"
-                ],
-                "primary": true
-              },
-              "current_year": {
-                "key": "year",
-                "queryKey": "current_year",
-                "value": [
-                  "2015"
-                ],
-                "primary": false
-              },
-              "state": {
-                "key": "state",
-                "queryKey": "state",
-                "value": [
-                  "$state$"
-                ],
-                "primary": false
-              }
-            },
-            "aggregations": {
-              "simple": [],
-              "nested": {
-                "table": [
-                  {
-                    "key": "year",
-                    "queryKey": "current_year",
-                    "size": 0
-                  }
-                ]
-              }
-            }
-          }
-        ],
-        "B20-B24":[
-          {
-            "searchFor": "deaths",
-            "query": {
-              "race": {
-                "key": "race",
-                "queryKey": "race",
-                "value": [
-                  "American Indian",
-                  "Asian or Pacific Islander",
-                  "Black"
-                ],
-                "primary": false
-              },
-              "ICD_10_code": {
-                "key": "ucd-chapter-10",
-                "queryKey": "ICD_10_code.path",
-                "value": [
-                  "B20-B24"
+                  "N00-N07",
+                  "N17-N19",
+                  "N25",
+                  "N26",
+                  "N27"
                 ],
                 "primary": true
               },
@@ -22993,7 +21845,233 @@
                 "key": "ucd-chapter-10",
                 "queryKey": "ICD_10_code.path",
                 "value": [
-                  "B20-B24"
+                  "N00-N07",
+                  "N17-N19",
+                  "N25",
+                  "N26",
+                  "N27"
+                ],
+                "primary": true
+              },
+              "current_year": {
+                "key": "year",
+                "queryKey": "current_year",
+                "value": [
+                  "2015"
+                ],
+                "primary": false
+              },
+              "state": {
+                "key": "state",
+                "queryKey": "state",
+                "value": [
+                  "$state$"
+                ],
+                "primary": false
+              }
+            },
+            "aggregations": {
+              "simple": [],
+              "nested": {
+                "table": [
+                  {
+                    "key": "year",
+                    "queryKey": "current_year",
+                    "size": 0
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "suicide":[
+          {
+            "searchFor": "deaths",
+            "query": {
+              "race": {
+                "key": "race",
+                "queryKey": "race",
+                "value": [
+                  "American Indian",
+                  "Asian or Pacific Islander",
+                  "Black"
+                ],
+                "primary": false
+              },
+              "ICD_10_code": {
+                "key": "ucd-chapter-10",
+                "queryKey": "ICD_10_code.path",
+                "value": [
+                  "U03.0",
+                  "U03.9",
+                  "X60-X84",
+                  "Y87.0"
+                ],
+                "primary": true
+              },
+              "current_year": {
+                "key": "year",
+                "queryKey": "current_year",
+                "value": [
+                  "2015"
+                ],
+                "primary": false
+              },
+              "state": {
+                "key": "state",
+                "queryKey": "state",
+                "value": [
+                  "$state$"
+                ],
+                "primary": false
+              }
+            },
+            "aggregations": {
+              "simple": [],
+              "nested": {
+                "table": [
+                  {
+                    "key": "race",
+                    "queryKey": "race",
+                    "size": 0
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "searchFor": "deaths",
+            "query": {
+              "ethnicity_group": {
+                "key": "hispanicOrigin",
+                "queryKey": "ethnicity_group",
+                "value": [
+                  "Hispanic"
+                ],
+                "primary": false
+              },
+              "ICD_10_code": {
+                "key": "ucd-chapter-10",
+                "queryKey": "ICD_10_code.path",
+                "value": [
+                  "U03.0",
+                  "U03.9",
+                  "X60-X84",
+                  "Y87.0"
+                ],
+                "primary": true
+              },
+              "current_year": {
+                "key": "year",
+                "queryKey": "current_year",
+                "value": [
+                  "2015"
+                ],
+                "primary": false
+              },
+              "state": {
+                "key": "state",
+                "queryKey": "state",
+                "value": [
+                  "$state$"
+                ],
+                "primary": false
+              }
+            },
+            "aggregations": {
+              "simple": [],
+              "nested": {
+                "table": [
+                  {
+                    "key": "year",
+                    "queryKey": "current_year",
+                    "size": 0
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "heart_diseases":[
+          {
+            "searchFor": "deaths",
+            "query": {
+              "race": {
+                "key": "race",
+                "queryKey": "race",
+                "value": [
+                  "American Indian",
+                  "Asian or Pacific Islander",
+                  "Black"
+                ],
+                "primary": false
+              },
+              "ICD_10_code": {
+                "key": "ucd-chapter-10",
+                "queryKey": "ICD_10_code.path",
+                "value": [
+                  "I00-I02",
+                  "I05-I09",
+                  "I11",
+                  "I13",
+                  "I20-I25",
+                  "I26-I28",
+                  "I30-I51"
+                ],
+                "primary": true
+              },
+              "current_year": {
+                "key": "year",
+                "queryKey": "current_year",
+                "value": [
+                  "2015"
+                ],
+                "primary": false
+              },
+              "state": {
+                "key": "state",
+                "queryKey": "state",
+                "value": [
+                  "$state$"
+                ],
+                "primary": false
+              }
+            },
+            "aggregations": {
+              "simple": [],
+              "nested": {
+                "table": [
+                  {
+                    "key": "race",
+                    "queryKey": "race",
+                    "size": 0
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "searchFor": "deaths",
+            "query": {
+              "ethnicity_group": {
+                "key": "hispanicOrigin",
+                "queryKey": "ethnicity_group",
+                "value": [
+                  "Hispanic"
+                ],
+                "primary": false
+              },
+              "ICD_10_code": {
+                "key": "ucd-chapter-10",
+                "queryKey": "ICD_10_code.path",
+                "value": [
+                  "I00-I02",
+                  "I05-I09",
+                  "I11",
+                  "I13",
+                  "I20-I25",
+                  "I26-I28",
+                  "I30-I51"
                 ],
                 "primary": true
               },

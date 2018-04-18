@@ -495,49 +495,53 @@ function getAIDSDataForFactSheets(factSheetQueryJSON) {
 function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
     //Number of deaths
     var mortalityTotalESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["Total"][0];
-    var c50ESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["C50-C50"][0];
-    var c00c97ESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["C00-C97"][0];
-    var c53ESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["C53"][0];
-    var i160i169ESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["I160-I169"][0];
-    var j40j60ESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["J40-47-60"][0];
-    var drugInducedESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["drug-induced"][0];
-    var suicideESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["Suicide"][0];
-    var homicideESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["Homicide"][0];
-    var b20b24ESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["B20-B24"][0];
+    var alzheimerESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["alzheimer"][0];
+    var malignantNeoplasmESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["malignant_neoplasm"][0];
+    var accidentESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["accident"][0];
+    var cerebrovascularESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["cerebrovascular"][0];
+    var chronicRespiratoryESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["chronic_respiratory"][0];
+    var diabetesMellitusESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["diabetes_mellitus"][0];
+    var suicideESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["suicide"][0];
+    var influenzaESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["influenza"][0];
+    var nephritisESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["nephritis"][0];
+    var heartDiseaseESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["heart_diseases"][0];
 
     var totalHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["Total"][1];
-    var c50HispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["C50-C50"][1];
-    var c00c97HispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["C00-C97"][1];
-    var c53HispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["C53"][1];
-    var i160i169HispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["I160-I169"][1];
-    var j40j60HispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["J40-47-60"][1];
-    var drugInducedHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["drug-induced"][1];
-    var suicideHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["Suicide"][1];
-    var homicideHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["Homicide"][1];
-    var b20b24HispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["B20-B24"][1];
+    var alzheimerHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["alzheimer"][1];
+    var malignantNeoplasmHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["malignant_neoplasm"][1];
+    var accidentHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["accident"][1];
+    var cerebrovascularHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["cerebrovascular"][1];
+    var chronicRespiratoryHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["chronic_respiratory"][1];
+    var diabetesMellitusHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["diabetes_mellitus"][1];
+    var suicideHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["suicide"][1];
+    var influenzaHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["influenza"][1];
+    var nephritisHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["nephritis"][1];
+    var heartDiseaseHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["heart_diseases"][1];
 
     //Age adjusted death rates
     var mortalityTotalWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["Total"][0];
-    var c50WonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["C50-C50"][0];
-    var c00c97WonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["C00-C97"][0];
-    var c53WonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["C53"][0];
-    var i160i169WonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["I160-I169"][0];
-    var j40j60WonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["J40-47-60"][0];
-    var drugInducedWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["drug-induced"][0];
-    var suicideWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["Suicide"][0];
-    var homicideWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["Homicide"][0];
-    var b20b24WonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["B20-B24"][0];
+    var alzheimerWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["alzheimer"][0];
+    var malignantNeoplasmWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["malignant_neoplasm"][0];
+    var accidentWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["accident"][0];
+    var cerebrovascularWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["cerebrovascular"][0];
+    var chronicRespiratoryWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["chronic_respiratory"][0];
+    var diabetesMellitusWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["diabetes_mellitus"][0];
+    var suicideWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["suicide"][0];
+    var influenzaWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["influenza"][0];
+    var nephritisWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["nephritis"][0];
+    var heartDiseaseWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["heart_diseases"][0];
 
     var totalHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["Total"][1];
-    var c50HispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["C50-C50"][1];
-    var c00c97HispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["C00-C97"][1];
-    var c53HispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["C53"][1];
-    var i160i169HispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["I160-I169"][1];
-    var j40j60HispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["J40-47-60"][1];
-    var drugInducedHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["drug-induced"][1];
-    var suicideHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["Suicide"][1];
-    var homicideHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["Homicide"][1];
-    var b20b24HispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["B20-B24"][1];
+    var alzheimerHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["alzheimer"][1];
+    var malignantNeoplasmHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["malignant_neoplasm"][1];
+    var accidentHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["accident"][1];
+    var cerebrovascularHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["cerebrovascular"][1];
+    var chronicRespiratoryHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["chronic_respiratory"][1];
+    var diabetesMellitusHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["diabetes_mellitus"][1];
+    var suicideHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["suicide"][1];
+    var influenzaHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["influenza"][1];
+    var nephritisHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["nephritis"][1];
+    var heartDiseaseHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["heart_diseases"][1];
 
     var es = new elasticSearch();
     var querySet1 = [
@@ -547,89 +551,95 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
         es.executeMultipleESQueries(totalHispanicESQuery, 'owh_mortality', 'mortality'),
         new wonder('D77').invokeWONDER(totalHispanicWonderQuery),
 
-        es.executeMultipleESQueries(c00c97ESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(c00c97WonderQuery),
-        es.executeMultipleESQueries(c00c97HispanicESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(c00c97HispanicWonderQuery),
+        es.executeMultipleESQueries(malignantNeoplasmESQuery, 'owh_mortality', 'mortality'),
+        new wonder('D77').invokeWONDER(malignantNeoplasmWonderQuery),
+        es.executeMultipleESQueries(malignantNeoplasmHispanicESQuery, 'owh_mortality', 'mortality'),
+        new wonder('D77').invokeWONDER(malignantNeoplasmHispanicWonderQuery),
 
-        es.executeMultipleESQueries(c50ESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(c50WonderQuery),
-        es.executeMultipleESQueries(c50HispanicESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(c50HispanicWonderQuery),
+        es.executeMultipleESQueries(chronicRespiratoryESQuery, 'owh_mortality', 'mortality'),
+        new wonder('D77').invokeWONDER(chronicRespiratoryWonderQuery),
+        es.executeMultipleESQueries(chronicRespiratoryHispanicESQuery, 'owh_mortality', 'mortality'),
+        new wonder('D77').invokeWONDER(chronicRespiratoryHispanicWonderQuery),
 
-        es.executeMultipleESQueries(c53ESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(c53WonderQuery),
-        es.executeMultipleESQueries(c53HispanicESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(c53HispanicWonderQuery),
+        es.executeMultipleESQueries(accidentESQuery, 'owh_mortality', 'mortality'),
+        new wonder('D77').invokeWONDER(accidentWonderQuery),
+        es.executeMultipleESQueries(accidentHispanicESQuery, 'owh_mortality', 'mortality'),
+        new wonder('D77').invokeWONDER(accidentHispanicWonderQuery),
 
-        es.executeMultipleESQueries(i160i169ESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(i160i169WonderQuery),
-        es.executeMultipleESQueries(i160i169HispanicESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(i160i169HispanicWonderQuery)
+        es.executeMultipleESQueries(cerebrovascularESQuery, 'owh_mortality', 'mortality'),
+        new wonder('D77').invokeWONDER(cerebrovascularWonderQuery),
+        es.executeMultipleESQueries(cerebrovascularHispanicESQuery, 'owh_mortality', 'mortality'),
+        new wonder('D77').invokeWONDER(cerebrovascularHispanicWonderQuery),
+
+        es.executeMultipleESQueries(heartDiseaseESQuery, 'owh_mortality', 'mortality'),
+        new wonder('D77').invokeWONDER(heartDiseaseWonderQuery),
+        es.executeMultipleESQueries(heartDiseaseHispanicESQuery, 'owh_mortality', 'mortality'),
+        new wonder('D77').invokeWONDER(heartDiseaseHispanicWonderQuery)
 
 
     ];
     var deferred = Q.defer();
     Q.all(querySet1).then(function (resp) {
-
         var totalData = prepareDetailMortalityData(resp[0], resp[1], resp[2], resp[3]);
-        var C00C97Data = prepareDetailMortalityData(resp[4], resp[5], resp[6], resp[7]);
-        var C50Data = prepareDetailMortalityData(resp[8], resp[9], resp[10], resp[11]);
-        var C53Data = prepareDetailMortalityData(resp[12], resp[13], resp[14], resp[15]);
-        var I60I69Data = prepareDetailMortalityData(resp[16], resp[17], resp[18], resp[19]);
+        var malignantNeoplasmData = prepareDetailMortalityData(resp[4], resp[5], resp[6], resp[7]);
+        var chronicRespiratoryData = prepareDetailMortalityData(resp[8], resp[9], resp[10], resp[11]);
+        var accidentData = prepareDetailMortalityData(resp[12], resp[13], resp[14], resp[15]);
+        var cerebroVascularData = prepareDetailMortalityData(resp[16], resp[17], resp[18], resp[19]);
+        var heartDiseaseData = prepareDetailMortalityData(resp[20], resp[21], resp[22], resp[23]);
 
         return [
             {causeOfDeath:"Total", data:totalData.data.nested.table.race},
-            {causeOfDeath:"Cancer (Malignant neoplasms)", data:C00C97Data.data.nested.table.race},
-            {causeOfDeath: "Breast Cancer (Malignant neoplasms of breast)", data:C50Data.data.nested.table.race},
-            {causeOfDeath: "Cervical Cancer (Malignant neoplasm of cervix uteri)", data:C53Data.data.nested.table.race},
-            {causeOfDeath: "Cerebrovascular diseases (Stroke)", data:I60I69Data.data.nested.table.race}
+            {causeOfDeath:"Diseases of heart", data:heartDiseaseData.data.nested.table.race},
+            {causeOfDeath:"Malignant neoplasms", data:malignantNeoplasmData.data.nested.table.race},
+            {causeOfDeath: "Chronic lower respiratory disease", data:chronicRespiratoryData.data.nested.table.race},
+            {causeOfDeath: "Accidents (unintentional injuries)", data:accidentData.data.nested.table.race},
+            {causeOfDeath: "Cerebrovascular diseases", data:cerebroVascularData.data.nested.table.race}
         ];
     }).then(function (set1Data) {
         var executeSet2Queries = function () {
             var querySet2 = [
-                es.executeMultipleESQueries(j40j60ESQuery, 'owh_mortality', 'mortality'),
-                new wonder('D77').invokeWONDER(j40j60WonderQuery),
-                es.executeMultipleESQueries(j40j60HispanicESQuery, 'owh_mortality', 'mortality'),
-                new wonder('D77').invokeWONDER(j40j60HispanicWonderQuery),
+                es.executeMultipleESQueries(alzheimerESQuery, 'owh_mortality', 'mortality'),
+                new wonder('D77').invokeWONDER(alzheimerWonderQuery),
+                es.executeMultipleESQueries(alzheimerHispanicESQuery, 'owh_mortality', 'mortality'),
+                new wonder('D77').invokeWONDER(alzheimerHispanicWonderQuery),
 
-                es.executeMultipleESQueries(drugInducedESQuery, 'owh_mortality', 'mortality'),
-                new wonder('D77').invokeWONDER(drugInducedWonderQuery),
-                es.executeMultipleESQueries(drugInducedHispanicESQuery, 'owh_mortality', 'mortality'),
-                new wonder('D77').invokeWONDER(drugInducedHispanicWonderQuery),
+                es.executeMultipleESQueries(diabetesMellitusESQuery, 'owh_mortality', 'mortality'),
+                new wonder('D77').invokeWONDER(diabetesMellitusWonderQuery),
+                es.executeMultipleESQueries(diabetesMellitusHispanicESQuery, 'owh_mortality', 'mortality'),
+                new wonder('D77').invokeWONDER(diabetesMellitusHispanicWonderQuery),
 
                 es.executeMultipleESQueries(suicideESQuery, 'owh_mortality', 'mortality'),
                 new wonder('D77').invokeWONDER(suicideWonderQuery),
                 es.executeMultipleESQueries(suicideHispanicESQuery, 'owh_mortality', 'mortality'),
                 new wonder('D77').invokeWONDER(suicideHispanicWonderQuery),
 
-                es.executeMultipleESQueries(homicideESQuery, 'owh_mortality', 'mortality'),
-                new wonder('D77').invokeWONDER(homicideWonderQuery),
-                es.executeMultipleESQueries(homicideHispanicESQuery, 'owh_mortality', 'mortality'),
-                new wonder('D77').invokeWONDER(homicideHispanicWonderQuery),
+                es.executeMultipleESQueries(influenzaESQuery, 'owh_mortality', 'mortality'),
+                new wonder('D77').invokeWONDER(influenzaWonderQuery),
+                es.executeMultipleESQueries(influenzaHispanicESQuery, 'owh_mortality', 'mortality'),
+                new wonder('D77').invokeWONDER(influenzaHispanicWonderQuery),
 
-                es.executeMultipleESQueries(b20b24ESQuery, 'owh_mortality', 'mortality'),
-                new wonder('D77').invokeWONDER(b20b24WonderQuery),
-                es.executeMultipleESQueries(b20b24HispanicESQuery, 'owh_mortality', 'mortality'),
-                new wonder('D77').invokeWONDER(b20b24HispanicWonderQuery)
+                es.executeMultipleESQueries(nephritisESQuery, 'owh_mortality', 'mortality'),
+                new wonder('D77').invokeWONDER(nephritisWonderQuery),
+                es.executeMultipleESQueries(nephritisHispanicESQuery, 'owh_mortality', 'mortality'),
+                new wonder('D77').invokeWONDER(nephritisHispanicWonderQuery)
             ];
             var defr = Q.defer();
             Q.all(querySet2).then(function (resp) {
-                var J40J47J60Data = prepareDetailMortalityData(resp[0], resp[1], resp[2], resp[3]);
+                var alzheimerData = prepareDetailMortalityData(resp[0], resp[1], resp[2], resp[3]);
 
-                var drugInducedData = prepareDetailMortalityData(resp[4], resp[5], resp[6], resp[7]);
+                var diabetesMellitusData = prepareDetailMortalityData(resp[4], resp[5], resp[6], resp[7]);
 
                 var suicideData = prepareDetailMortalityData(resp[8], resp[9], resp[10], resp[11]);
 
-                var homicideData = prepareDetailMortalityData(resp[12], resp[13], resp[14], resp[15]);
+                var influenzaData = prepareDetailMortalityData(resp[12], resp[13], resp[14], resp[15]);
 
-                var B20B24Data = prepareDetailMortalityData(resp[16], resp[17], resp[18], resp[19]);
+                var nephritisData = prepareDetailMortalityData(resp[16], resp[17], resp[18], resp[19]);
                 var data = set1Data.concat([
-                    {causeOfDeath: "Chronic Lower Respiratory Disease", data:J40J47J60Data.data.nested.table.race},
-                    {causeOfDeath: "Alcohol or Drug Induced", data:drugInducedData.data.nested.table.race},
-                    {causeOfDeath: "Suicide", data:suicideData.data.nested.table.race},
-                    {causeOfDeath: "Homicide", data:homicideData.data.nested.table.race},
-                    {causeOfDeath: "Human Immunodeficiency Virus(HIV)", data:B20B24Data.data.nested.table.race}
+                    {causeOfDeath: "Alzheimer's disease", data:alzheimerData.data.nested.table.race},
+                    {causeOfDeath: "Diabetes mellitus", data:diabetesMellitusData.data.nested.table.race},
+                    {causeOfDeath: "Influenza and pneumonia", data:influenzaData.data.nested.table.race},
+                    {causeOfDeath: "Nephritis, nephrotic syndrome and nephrosis", data:nephritisData.data.nested.table.race},
+                    {causeOfDeath: "Intentional self-harm (suicide)", data:suicideData.data.nested.table.race}
                 ]);
                 defr.resolve(data);
             });
@@ -657,6 +667,7 @@ function prepareDetailMortalityData(raceCountData, raceRateData, hispanicCountDa
     var hispanic = hispanicData.data.nested.table.year[0] || noDataAvailableObj;
     hispanic.name = 'Hispanic';
     resultantData.data.nested.table.race[3] = hispanic;
+    resultantData.data.nested.table.race = sortArrayByPropertyAndSortOrder(resultantData.data.nested.table.race, 'name', selectedRaces.options);
     return resultantData;
 }
 
