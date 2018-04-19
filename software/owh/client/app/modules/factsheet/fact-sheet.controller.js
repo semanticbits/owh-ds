@@ -593,12 +593,12 @@
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[3].bridge_race));
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[4].bridge_race));
             allTablesData.bridgeRaceTable1 = {
-                headerData: ['Racial Distributions of Minority Residents*', 'Total', 'Black, non-Hispanic', 'American Indian',                                         'Asian or Pacific Islander', 'Hispanic'],
+                headerData: ['Racial distributions of minority residents*', 'Total', 'Black, non-Hispanic', 'American Indian',                                         'Asian or Pacific Islander', 'Hispanic'],
                 bodyData: bridgeRaceTableOneData
             };
 
             allTablesData.bridgeRaceTable2 = {
-                headerData: ['Age Distributions of Minority Residents', '10-14', '15-19', '20-44', '45-64', '65-84', '85+'],
+                headerData: ['Age distributions of minority residents', '10-14', '15-19', '20-44', '45-64', '65-84', '85+'],
                 bodyData: bridgeRaceTableTwoData
             };
             //Detail Mortality table def
@@ -612,7 +612,7 @@
                         eachRecord.data.forEach(function (dt) {
                             var deathCount = dt.deaths === 'suppressed' ? 'Suppressed' : $filter('number')(dt.deaths);
                             deathCounts.push(deathCount);
-                            rateCounts.push(dt.ageAdjustedRate ? dt.ageAdjustedRate : "Not Available");
+                            rateCounts.push(dt.ageAdjustedRate ? dt.ageAdjustedRate : "Not available");
                         });
                     }
                 }
@@ -647,7 +647,7 @@
                         angular.isNumber(hispanic.births) ? $filter('number')(hispanic.births) : 'Suppressed'
                     ],
                     [
-                        "Death Rate",
+                        "Death rate",
                         angular.isNumber(infantAIAN.deathRate) ? $filter('number')(infantAIAN.deathRate, 1) : infantAIAN.deathRate,
                         angular.isNumber(infantAPI.deathRate) ? $filter('number')(infantAPI.deathRate, 1) : infantAPI.deathRate,
                         angular.isNumber(infantBAA.deathRate) ? $filter('number')(infantBAA.deathRate, 1) : infantBAA.deathRate,
@@ -742,7 +742,7 @@
                 populationRow.push(popCount);
             });
 
-            var birthRateRow = ['Birth Rates (per 100,000)'];
+            var birthRateRow = ['Birth rates (per 100,000)'];
             angular.forEach(fsc.factSheet.natality.birthRateData, function (birthRateData) {
                 var rateCt = fsc.calculateRate(birthRateData.natality, birthRateData.pop);
                 birthRateRow.push(rateCt);
@@ -755,7 +755,7 @@
                 femalePopulationRow.push(popCount);
             });
 
-            var fertilityRateRow = ['Fertility Rates (per 100,000)'];
+            var fertilityRateRow = ['Fertility rates (per 100,000)'];
             angular.forEach(fsc.factSheet.natality.fertilityRatesData, function (fertilityRatesData) {
                 var rate = fsc.calculateRate(fertilityRatesData.natality, fertilityRatesData.pop);
                 fertilityRateRow.push(rate);
@@ -773,13 +773,13 @@
                 cesareanDeliveryRateRow.push(rate);
             });
 
-            var birthWeightRateRow = ['Low Birth Weight (<2500 gms)'];
+            var birthWeightRateRow = ['Low birth weight (<2500 gms)'];
             angular.forEach(fsc.factSheet.natality.lowBirthWeightData, function (lowBirthWeightData, indx) {
                 var rate = fsc.calculateRate(lowBirthWeightData.natality, fsc.factSheet.natality.totalBirthPopulation[indx].natality);
                 birthWeightRateRow.push(rate);
             });
 
-            var twinBirthRateRow = ['Twin Birth Rate'];
+            var twinBirthRateRow = ['Twin birth rate'];
             angular.forEach(fsc.factSheet.natality.twinBirthData, function (twinBirthData, indx) {
                 var rate = fsc.calculateRate(twinBirthData.natality, fsc.factSheet.natality.totalBirthPopulation[indx].natality);
                 twinBirthRateRow.push(rate);

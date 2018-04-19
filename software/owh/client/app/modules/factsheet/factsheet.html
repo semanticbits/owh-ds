@@ -57,7 +57,7 @@
                             <table class="bridge-race-table1">
                                 <thead>
                                 <tr>
-                                    <th>Racial Distributions of Minority Residents*</th>
+                                    <th>Racial distributions of minority residents*</th>
                                     <th ng-if='fsc.fsTypeForTable != fsc.fsTypes.womens_health'>Total</th>
                                     <th>Black, non-Hispanic</th>
                                     <th ng-if="fsc.fsTypeForTable != fsc.fsTypes.minority_health">White, non-Hispanic</th>
@@ -78,7 +78,7 @@
                             <table class="bridge-race-table2" style="background-color: white;">
                                 <thead>
                                 <tr>
-                                    <th>Age Distributions of Minority Residents</th>
+                                    <th>Age distributions of minority residents</th>
                                     <th>10-14</th>
                                     <th>15-19</th>
                                     <th>20-44</th>
@@ -123,7 +123,7 @@
                                     <td ng-repeat="r in eachRecord.data" ng-bind="r.deaths === 'suppressed' ? 'Suppressed' : ( r.deaths | number )"></td>
                                 </tr>
                                 <tr>
-                                    <td>Age Adjusted Rates</td>
+                                    <td>Age adjusted rates</td>
                                     <td ng-repeat="r in eachRecord.data" ng-bind="r.ageAdjustedRate ? r.ageAdjustedRate :'Not Available'"></td>
                                 </tr>
                             </tbody>
@@ -175,7 +175,7 @@
                                 <td ng-bind="fsc.factSheet.infantMortalityData['Hispanic'].births | number"></td>
                             </tr>
                             <tr>
-                                <td>Death Rate</td>
+                                <td>Death rate</td>
                                 <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate)"
                                     ng-bind="fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate | number:1"></td>
                                 <td ng-if="!fsc.isNumeric(fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate)"
@@ -326,18 +326,18 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Birth Rates (per 100,000)</td>
+                                    <td>Birth rates (per 100,000)</td>
                                     <td ng-repeat="birthRateData in fsc.factSheet.natality.birthRateData"
                                         ng-bind="fsc.calculateRate(birthRateData.natality, birthRateData.pop)"></td>
                                 </tr>
                                 <tr>
-                                    <td> Female minority population (Ages 15 to 44)</td>
+                                    <td>Female minority population (Ages 15 to 44)</td>
                                     <td ng-repeat="fertilityRatesData in fsc.factSheet.natality.fertilityRatesData">
                                         {{fertilityRatesData.pop=='suppressed'?'Suppressed': fertilityRatesData.pop | number}}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Fertility Rates (per 100,000)</td>
+                                    <td>Fertility rates (per 100,000)</td>
                                     <td ng-repeat="fertilityRatesData in fsc.factSheet.natality.fertilityRatesData"
                                         ng-bind="fsc.calculateRate(fertilityRatesData.natality, fertilityRatesData.pop)"></td>
                                 </tr>
@@ -352,12 +352,12 @@
                                         ng-bind="fsc.calculateRate(cesareanData.natality, fsc.factSheet.natality.totalBirthPopulation[$index].natality)"></td>
                                 </tr>
                                 <tr>
-                                    <td>Low Birth Weight (<2500 gms)</td>
+                                    <td>Low birth weight (<2500 gms)</td>
                                     <td ng-repeat="lowBirthWeightData in fsc.factSheet.natality.lowBirthWeightData"
                                         ng-bind="fsc.calculateRate(lowBirthWeightData.natality, fsc.factSheet.natality.totalBirthPopulation[$index].natality)"></td>
                                 </tr>
                                 <tr>
-                                    <td>Twin Birth Rate</td>
+                                    <td>Twin birth rate</td>
                                     <td ng-repeat="twinBirthData in fsc.factSheet.natality.twinBirthData"
                                         ng-bind="fsc.calculateRate(twinBirthData.natality, fsc.factSheet.natality.totalBirthPopulation[$index].natality)"></td>
                                 </tr>
