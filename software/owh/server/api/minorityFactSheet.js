@@ -696,23 +696,36 @@ function getNatalityDataForFactSeet(factSheetQueryJSON) {
     ];
     var deferred = Q.defer();
     Q.all(promises).then(function (resp) {
+        var sortOrder = ['American Indian', 'Asian or Pacific Islander', 'Black'];
         var birthRatesData = searchUtils.populateDataWithMappings(resp[0], 'natality');
         es.mergeWithCensusData(birthRatesData, resp[1], 'pop');
+        searchUtils.addMissingFilterOptions({ "options": sortOrder}, birthRatesData.data.nested.table.race, 'natality');
         searchUtils.applySuppressions(birthRatesData, 'natality');
+
         var fertilityRatesData = searchUtils.populateDataWithMappings(resp[2], 'natality');
         es.mergeWithCensusData(fertilityRatesData, resp[3], 'pop');
+        searchUtils.addMissingFilterOptions({ "options": sortOrder}, fertilityRatesData.data.nested.table.race, 'natality');
         searchUtils.applySuppressions(fertilityRatesData, 'natality');
+
         var vaginalData = searchUtils.populateDataWithMappings(resp[4], 'natality');
+        searchUtils.addMissingFilterOptions({ "options": sortOrder}, vaginalData.data.nested.table.race, 'natality');
         searchUtils.applySuppressions(vaginalData, 'natality');
+
         var cesareanData = searchUtils.populateDataWithMappings(resp[5], 'natality');
+        searchUtils.addMissingFilterOptions({ "options": sortOrder}, cesareanData.data.nested.table.race, 'natality');
         searchUtils.applySuppressions(cesareanData, 'natality');
+
         var lowBirthWeightData = searchUtils.populateDataWithMappings(resp[6], 'natality');
+        searchUtils.addMissingFilterOptions({ "options": sortOrder}, lowBirthWeightData.data.nested.table.race, 'natality');
         searchUtils.applySuppressions(lowBirthWeightData, 'natality');
+
         var twinBirthData = searchUtils.populateDataWithMappings(resp[7], 'natality');
+        searchUtils.addMissingFilterOptions({ "options": sortOrder}, twinBirthData.data.nested.table.race, 'natality');
         searchUtils.applySuppressions(twinBirthData, 'natality');
+
         var totalBirthPopData = searchUtils.populateDataWithMappings(resp[8], 'natality');
+        searchUtils.addMissingFilterOptions({ "options": sortOrder}, totalBirthPopData.data.nested.table.race, 'natality');
         searchUtils.applySuppressions(totalBirthPopData, 'natality');
-        var sortOrder = ['American Indian', 'Asian or Pacific Islander', 'Black'];
         var natalityData = {
             birthRateData:sortArrayByPropertyAndSortOrder(birthRatesData.data.nested.table.race, 'name', sortOrder),
             fertilityRatesData:sortArrayByPropertyAndSortOrder(fertilityRatesData.data.nested.table.race, 'name', sortOrder),
