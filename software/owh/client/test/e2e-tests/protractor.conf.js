@@ -4,12 +4,14 @@ exports.config = {
   //Sets the amount of time to wait for an asynchronous script to finish execution before throwing an error.
   allScriptsTimeout: 600000,
   //When navigating to a new page using browser.get, Protractor waits for the page to be loaded and the new URL to appear before continuing.
-  getPageTimeout: 600000,
+  getPageTimeout: 800000,
   framework: 'custom',
   frameworkPath: require.resolve('protractor-cucumber-framework'),
 
   specs: [
-      'features/*.feature'
+      //'features/*.feature'
+      'features/factsheets.feature'
+
   ],
   cucumberOpts: {
     // require step definitions
@@ -41,7 +43,10 @@ exports.config = {
       }
   },
 
- baseUrl: process.env.E2E_BASE_URL || 'http://localhost:9900/'
+ //baseUrl: process.env.E2E_BASE_URL || 'http://localhost:9900/'
+
+    baseUrl:'http://owhqa.semanticbits.com/'
+
 
 
 };

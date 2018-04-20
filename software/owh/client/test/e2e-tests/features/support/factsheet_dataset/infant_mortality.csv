@@ -1,4 +1,154 @@
-State,Measure,"American Indian or Alaska Native","Asian or Pacific Islander","Black or African American",Hispanic
-Alabama,Deaths,Suppressed,Suppressed,"256","32"
-Alabama,Births,"200","1,227","18,417","	4,019"
-Alabama,"Death Rate",Suppressed,Suppressed,"13.9","8.0"
+State,Measure,American Indian or Alaska Native,Asian or Pacific Islander,Black or African American,Hispanic
+Alabama,Deaths,Suppressed,Suppressed,256,32
+Alabama,Births,200,"1,227","18,417","4,019"
+Alabama,Death Rate,Suppressed,Suppressed,13.9,8
+Alaska,Deaths,34,Suppressed,Suppressed,Suppressed
+Alaska,Births,"2,450","1,106",548,841
+Alaska,Death Rate,13.9,Suppressed,Suppressed,Suppressed
+Arizona,Deaths,49,21,52,205
+Arizona,Births,"5,473","3,519","5,208","35,034"
+Arizona,Death Rate,9,6,10,5.9
+Arkansas,Deaths,Suppressed,Suppressed,80,21
+Arkansas,Births,301,"1,202","7,376","3,837"
+Arkansas,Death Rate,Suppressed,Suppressed,10.9,5.5
+California,Deaths,18,280,324,998
+California,Births,"3,509","84,224","31,654","237,539"
+California,Death Rate,Unreliable,3.3,10.2,4.2
+Colorado,Deaths,Suppressed,14,39,79
+Colorado,Births,777,"3,010","3,926","17,655"
+Colorado,Death Rate,Suppressed,Unreliable,9.9,4.5
+Connecticut,Deaths,Suppressed,Suppressed,40,58
+Connecticut,Births,308,"2,280","5,154","8,129"
+Connecticut,Death Rate,Suppressed,Suppressed,7.8,7.1
+Delaware,Deaths,Suppressed,Suppressed,30,10
+Delaware,Births,26,644,"2,988","1,541"
+Delaware,Death Rate,Suppressed,Suppressed,10,Unreliable
+District of columbia,Deaths,Suppressed,Suppressed,53,Suppressed
+District of columbia,Births,16,482,"5,026","1,282"
+District of columbia,Death Rate,Suppressed,Suppressed,10.6,Suppressed
+Florida,Deaths,Suppressed,27,539,278
+Florida,Births,406,"7,402","53,148","61,849"
+Florida,Death Rate,Suppressed,3.7,10.1,4.5
+Georgia,Deaths,Suppressed,32,564,96
+Georgia,Births,292,"6,519","47,909","17,242"
+Georgia,Death Rate,Suppressed,4.9,11.8,5.6
+Hawaii,Deaths,Suppressed,57,Suppressed,Suppressed
+Hawaii,Births,30,"11,535",617,"2,764"
+Hawaii,Death Rate,Suppressed,4.9,Suppressed,Suppressed
+Idaho,Deaths,Suppressed,Suppressed,Suppressed,19
+Idaho,Births,429,501,250,"3,651"
+Idaho,Death Rate,Suppressed,Suppressed,Suppressed,Unreliable
+Illinois,Deaths,Suppressed,47,336,189
+Illinois,Births,227,"10,174","28,160","33,803"
+Illinois,Death Rate,Suppressed,4.6,11.9,5.6
+Indiana,Deaths,Suppressed,15,139,42
+Indiana,Births,125,"2,322","10,666","7,239"
+Indiana,Death Rate,Suppressed,Unreliable,13,5.8
+Iowa,Deaths,Suppressed,10,17,17
+Iowa,Births,284,"1,408","2,467","3,315"
+Iowa,Death Rate,Suppressed,Unreliable,Unreliable,Unreliable
+Kansas,Deaths,Suppressed,Suppressed,33,34
+Kansas,Births,347,"1,359","3,097","6,132"
+Kansas,Death Rate,Suppressed,Suppressed,10.7,5.5
+Kentucky,Deaths,Suppressed,Suppressed,73,17
+Kentucky,Births,76,"1,275","5,571","2,819"
+Kentucky,Death Rate,Suppressed,Suppressed,13.1,Unreliable
+Louisiana,Deaths,Suppressed,Suppressed,268,16
+Louisiana,Births,373,"1,537","25,025","4,249"
+Louisiana,Death Rate,Suppressed,Suppressed,10.7,Unreliable
+Maine,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Maine,Births,158,248,450,200
+Maine,Death Rate,Suppressed,Suppressed,Suppressed,Suppressed
+Maryland,Deaths,Suppressed,25,266,54
+Maryland,Births,260,"5,797","25,339","10,974"
+Maryland,Death Rate,Suppressed,4.3,10.5,4.9
+Massachusetts,Deaths,Suppressed,20,68,65
+Massachusetts,Births,151,"6,599","9,276","12,722"
+Massachusetts,Death Rate,Suppressed,3,7.3,5.1
+Michigan,Deaths,Suppressed,26,260,45
+Michigan,Births,784,"4,284","22,237","7,352"
+Michigan,Death Rate,Suppressed,6.1,11.7,6.1
+Minnesota,Deaths,13,31,85,24
+Minnesota,Births,"1,428","5,669","8,033","4,678"
+Minnesota,Death Rate,Unreliable,5.5,10.6,5.1
+Mississippi,Deaths,Suppressed,Suppressed,186,14
+Mississippi,Births,223,583,"17,036","1,547"
+Mississippi,Death Rate,Suppressed,Suppressed,10.9,Unreliable
+Missouri,Deaths,Suppressed,Suppressed,124,25
+Missouri,Births,423,"2,186","11,783","3,959"
+Missouri,Death Rate,Suppressed,Suppressed,10.5,6.3
+Montana,Deaths,16,Suppressed,Suppressed,Suppressed
+Montana,Births,"1,585",169,106,494
+Montana,Death Rate,Unreliable,Suppressed,Suppressed,Suppressed
+Nebraska,Deaths,Suppressed,Suppressed,15,21
+Nebraska,Births,553,"1,048","2,015","4,143"
+Nebraska,Death Rate,Suppressed,Suppressed,Unreliable,5.1
+Nevada,Deaths,Suppressed,14,38,72
+Nevada,Births,475,"3,145","4,603","13,006"
+Nevada,Death Rate,Suppressed,Unreliable,8.3,5.5
+New Hampshire,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+New Hampshire,Births,21,528,259,591
+New Hampshire,Death Rate,Suppressed,Suppressed,Suppressed,Suppressed
+New Jersey,Deaths,Suppressed,28,167,134
+New Jersey,Births,193,"11,977","20,102","27,267"
+New Jersey,Death Rate,Suppressed,2.3,8.3,4.9
+New Mexico,Deaths,18,Suppressed,10,71
+New Mexico,Births,"3,581",578,732,"14,449"
+New Mexico,Death Rate,Unreliable,Suppressed,Unreliable,4.9
+New York,Deaths,Suppressed,76,376,260
+New York,Births,757,"26,786","46,744","55,329"
+New York,Death Rate,Suppressed,2.8,8,4.7
+North Carolina,Deaths,16,21,394,108
+North Carolina,Births,"2,025","5,730","31,963","17,784"
+North Carolina,Death Rate,Unreliable,3.7,12.3,6.1
+North Dakota,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+North Dakota,Births,"1,032",314,504,480
+North Dakota,Death Rate,Suppressed,Suppressed,Suppressed,Suppressed
+Ohio,Deaths,Suppressed,17,325,44
+Ohio,Births,301,"4,232","24,931","6,884"
+Ohio,Death Rate,Suppressed,Unreliable,13,6.4
+Oklahoma,Deaths,45,12,63,42
+Oklahoma,Births,"6,051","1,734","5,296","7,219"
+Oklahoma,Death Rate,7.4,Unreliable,11.9,5.8
+Oregon,Deaths,Suppressed,10,11,49
+Oregon,Births,778,"2,811","1,333","8,524"
+Oregon,Death Rate,Suppressed,Unreliable,Unreliable,5.8
+Pennsylvania,Deaths,Suppressed,21,271,95
+Pennsylvania,Births,368,"7,067","24,024","14,496"
+Pennsylvania,Death Rate,Suppressed,3,11.3,6.6
+Rhode Island,Deaths,Suppressed,Suppressed,11,11
+Rhode Island,Births,130,594,"1,365","2,585"
+Rhode Island,Death Rate,Suppressed,Suppressed,Unreliable,Unreliable
+South Carolina,Deaths,Suppressed,Suppressed,192,20
+South Carolina,Births,193,"1,293","18,598","4,646"
+South Carolina,Death Rate,Suppressed,Suppressed,10.3,4.3
+South Dakota,Deaths,24,Suppressed,Suppressed,Suppressed
+South Dakota,Births,"2,055",271,356,603
+South Dakota,Death Rate,11.7,Suppressed,Suppressed,Suppressed
+Tennessee,Deaths,Suppressed,16,212,28
+Tennessee,Births,240,"2,180","17,791","6,986"
+Tennessee,Death Rate,Suppressed,Unreliable,11.9,4
+Texas,Deaths,Suppressed,97,536,"1,023"
+Texas,Births,"1,168","20,844","51,274","189,462"
+Texas,Death Rate,Suppressed,4.7,10.5,5.4
+Utah,Deaths,Suppressed,Suppressed,Suppressed,50
+Utah,Births,713,"1,850",740,"7,764"
+Utah,Death Rate,Suppressed,Suppressed,Suppressed,6.4
+Vermont,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Vermont,Births,16,163,126,92
+Vermont,Death Rate,Suppressed,Suppressed,Suppressed,Suppressed
+Virginia,Deaths,Suppressed,24,233,60
+Virginia,Births,255,"8,356","22,828","13,490"
+Virginia,Death Rate,Suppressed,2.9,10.2,4.5
+Washington,Deaths,15,37,42,80
+Washington,Births,"2,059","10,306","5,254","15,779"
+Washington,Death Rate,Unreliable,3.6,8,5.1
+West Virginia,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+West Virginia,Births,29,214,813,350
+West Virginia,Death Rate,Suppressed,Suppressed,Suppressed,Suppressed
+Wisconsin,Deaths,Suppressed,12,90,32
+Wisconsin,Births,980,"3,333","7,328","6,375"
+Wisconsin,Death Rate,Suppressed,Unreliable,12.3,5
+Wyoming,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Wyoming,Births,294,108,116,895
+Wyoming,Death Rate,Suppressed,Suppressed,Suppressed,Suppressed
