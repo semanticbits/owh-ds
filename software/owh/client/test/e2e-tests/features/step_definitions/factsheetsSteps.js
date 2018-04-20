@@ -4,15 +4,11 @@ chai.use(chaiAsPromised);
 var expect = chai.expect;
 
 var factsheetsDefinitionsWrapper = function () {
-
     this.setDefaultTimeout(600000);
-
     var fsp = require('../support/factsheets.po')
-
     this.When(/^I navigate to factsheets page$/, function () {
         return fsp.getFactSheetLink.click();
     });
-
     this.Then(/^I should get factsheets page$/, function () {
         expect(fsp.pageHeading.isDisplayed()).to.eventually.equal(true);
         expect(fsp.pageDescription.isDisplayed()).to.eventually.equal(true);
@@ -21,7 +17,6 @@ var factsheetsDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on generate fact sheet link$/, function () {
-
        return fsp.generateFactSheetLink.click();
     });
 
@@ -55,8 +50,6 @@ var factsheetsDefinitionsWrapper = function () {
         fsp.getTableCellData('bridge-race-table1', 0,5).then(function(data){
             expect(data).to.contains('572,373');
         });
-
-
         fsp.getTableHeaders('detail-mortality-table').then(function(headers){
             expect(headers[0]).to.contains('Cause of Death');
             expect(headers[1]).to.contains('Measure');
@@ -114,12 +107,10 @@ var factsheetsDefinitionsWrapper = function () {
             expect(headers[4]).to.contains('Hispanic or Latino');
             expect(headers[5]).to.contains('Multiple Race');
             expect(headers[6]).to.contains('Native Hawaiian or Other Pacific Islander');
-
         });
 
         fsp.getTableCellData('yrbs-table',0,1).then(function(data){
             expect(data).to.contains('29.5%');
-
         });
         fsp.getTableHeaders('natality-table').then(function(headers){
             expect(headers[0]).to.contains('Measure');
@@ -235,7 +226,6 @@ var factsheetsDefinitionsWrapper = function () {
             });
 
             var populations = fsp.loadCsvFile(csvFile);
-            // console.log("populations", populations)
             var p = populations
                 .find(function(p) { return p.State === state});
             fsp.getTableCellData('bridge-race-table1', 0,1).then(function(data){
@@ -278,7 +268,6 @@ var factsheetsDefinitionsWrapper = function () {
             });
 
             var populations = fsp.loadCsvFile(csvFile);
-            // console.log("populations", populations)
             var p = populations
                 .find(function(p) { return p.State === state});
             fsp.getTableCellData('bridge-race-table2', 0,0).then(function(data){
@@ -328,7 +317,7 @@ var factsheetsDefinitionsWrapper = function () {
 
             var imList = infantMortality
                 .filter(function(im){return im.State === state});
-           imList.forEach(function(item,i) {
+            imList.forEach(function(item,i) {
                fsp.getTableCellData('infant-mortality-table',i,0).then(function(data){
              expect(data).to.contains(item.Measure);
 

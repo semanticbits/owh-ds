@@ -9,8 +9,8 @@ exports.config = {
   frameworkPath: require.resolve('protractor-cucumber-framework'),
 
   specs: [
-      //'features/*.feature'
-      'features/factsheets.feature'
+      'features/*.feature'
+      //'features/factsheets.feature'
 
   ],
   cucumberOpts: {
