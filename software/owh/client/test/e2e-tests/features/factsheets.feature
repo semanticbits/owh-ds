@@ -29,7 +29,7 @@ Scenario: Access fact sheet page
 #
 #
 #  Scenario: Generate Minority FactSheet population for all states based upon Racial Distributions of Residents
-#   Then For <state> and type "Minority Health" the generated population data as defined in "population_total.csv" file
+#   Then For <state> and type "Minority Health" the generated population racial distributions data as defined in "population_total.csv" file
 #     |state|
 #     |Alabama|
 #      |Arizona|
@@ -81,7 +81,63 @@ Scenario: Access fact sheet page
 #  |West Virginia|
 #   |Wisconsin|
 #  |Wyoming|
-#
+
+
+
+  Scenario: Generate Minority FactSheet population for all states based upon Age Distributions of Residents
+    Then For <state> and type "Minority Health" the generated population data as defined in "population_age.csv" file
+      |state|
+      |Alabama|
+      |Arizona|
+      |Alaska|
+      |Arkansas|
+      |California|
+      |Colorado|
+      |Connecticut|
+      |Delaware|
+      |District of Columbia|
+      |Florida|
+      |Georgia|
+      |Hawaii|
+      |Idaho|
+      |Illinois|
+      |Indiana|
+      |Iowa|
+      |Kansas|
+      |Kentucky|
+      |Louisiana|
+      |Maryland|
+      |Maine|
+      |Massachusetts|
+      |Michigan|
+      |Minnesota|
+      |Mississippi|
+      |Missouri|
+      |Montana|
+      |Nebraska|
+      |Nevada|
+      |New Hampshire|
+      |New Jersey|
+      |New Mexico|
+      |New York|
+      |North Carolina|
+      |North Dakota|
+      |Ohio|
+      |Oklahoma|
+      |Pennsylvania|
+      |Rhode Island|
+      |South Carolina|
+      |South Dakota|
+      |Tennessee|
+      |Texas|
+      |Utah|
+      |Vermont|
+      |Virginia|
+      |Washington|
+      |West Virginia|
+      |Wisconsin|
+      |Wyoming|
+
 
 
     #  Generate Infant Mortality-Minority Health fact sheet for all states
@@ -141,59 +197,59 @@ Scenario: Access fact sheet page
 
 
 #      #Generate Tuberculosis-Minority Health fact sheet for all states
-  Scenario: Generate Tuberculosis- Minority Health fact sheet for all states
-    Then For <state> and type "Minority Health" the generated Tuberculosis data as defined in "tuberculosis_dataset.csv" file
-      |state|
-      |Alabama|
-      |Alaska|
-      |Arizona|
-     |Arkansas|
-     |California|
-     |Colorado|
-     |Connecticut|
-     |Delaware|
-     |District of Columbia|
-     |Florida|
-     |Georgia|
-     |Hawaii|
-     |Idaho|
-     |Illinois|
-  |Indiana|
-  |Iowa|
-  |Kansas|
-     |Kentucky|
-    |Louisiana|
-    |Maryland|
-    |Maine|
-    |Massachusetts|
-    |Michigan|
-    |Minnesota|
-    |Mississippi|
-    |Missouri|
-    |Montana|
-    |Nebraska|
-    |Nevada|
-  |New Hampshire|
-    |New Jersey|
-    |New Mexico|
-    |New York|
-  |North Carolina|
-  |North Dakota|
-  |Ohio|
-  |Oklahoma|
-  |Pennsylvania|
-  |Rhode Island|
-  |South Carolina|
-  |South Dakota|
-  |Tennessee|
-  |Texas|
-  |Utah|
-  |Vermont|
-  |Virginia|
-  |Washington|
-  |West Virginia|
-   |Wisconsin|
-  |Wyoming|
+#  Scenario: Generate Tuberculosis- Minority Health fact sheet for all states
+#    Then For <state> and type "Minority Health" the generated Tuberculosis data as defined in "tuberculosis_dataset.csv" file
+#      |state|
+#      |Alabama|
+#      |Alaska|
+#      |Arizona|
+#     |Arkansas|
+#     |California|
+#     |Colorado|
+#     |Connecticut|
+#     |Delaware|
+#     |District of Columbia|
+#     |Florida|
+#     |Georgia|
+#     |Hawaii|
+#     |Idaho|
+#     |Illinois|
+#  |Indiana|
+#  |Iowa|
+#  |Kansas|
+#     |Kentucky|
+#    |Louisiana|
+#    |Maryland|
+#    |Maine|
+#    |Massachusetts|
+#    |Michigan|
+#    |Minnesota|
+#    |Mississippi|
+#    |Missouri|
+#    |Montana|
+#    |Nebraska|
+#    |Nevada|
+#  |New Hampshire|
+#    |New Jersey|
+#    |New Mexico|
+#    |New York|
+#  |North Carolina|
+#  |North Dakota|
+#  |Ohio|
+#  |Oklahoma|
+#  |Pennsylvania|
+#  |Rhode Island|
+#  |South Carolina|
+#  |South Dakota|
+#  |Tennessee|
+#  |Texas|
+#  |Utah|
+#  |Vermont|
+#  |Virginia|
+#  |Washington|
+#  |West Virginia|
+#   |Wisconsin|
+#  |Wyoming|
 
 
   #  Generate Births-Minority Health fact sheet for all states except - Delaware, Hawaii, Maine, New Hampshire,Vermont,Wyoming,Kentucky

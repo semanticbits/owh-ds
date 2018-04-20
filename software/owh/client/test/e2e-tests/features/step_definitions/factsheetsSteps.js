@@ -217,14 +217,22 @@ var factsheetsDefinitionsWrapper = function () {
         next();
     });
 
-
-    this.Then(/^For <state> and type "([^"]*)" the generated population data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
+//Population racial distribution
+    this.Then(/^For <state> and type "([^"]*)" the generated population racial distributions data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
         table.rows().forEach(function (row) {
 
             var state = row[0];
             element(by.id('state')).element(by.cssContainingText('option', state)).click();
             fsp.selectFactSheetType(factType);
             fsp.generateFactSheetLink.click();
+            fsp.getTableHeaders('bridge-race-table1').then(function(headers){
+                expect(headers[0]).to.contains('Racial distributions of minority residents*');
+                expect(headers[1]).to.contains('Total');
+                expect(headers[2]).to.contains('Black, non-Hispanic');
+                expect(headers[3]).to.contains('American Indian');
+                expect(headers[4]).to.contains('Asian or Pacific Islander');
+                expect(headers[5]).to.contains('Hispanic');
+            });
 
             var populations = fsp.loadCsvFile(csvFile);
             // console.log("populations", populations)
@@ -249,6 +257,57 @@ var factsheetsDefinitionsWrapper = function () {
         });
         next();
     });
+    //Population Age Distribution
+    this.Then(/^For <state> and type "([^"]*)" the generated population data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
+
+        table.rows().forEach(function (row) {
+
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+
+            fsp.getTableHeaders('bridge-race-table2').then(function(headers){
+                expect(headers[0]).to.contains('Age distributions of minority residents');
+                expect(headers[1]).to.contains('10-14');
+                expect(headers[2]).to.contains('15-19');
+                expect(headers[3]).to.contains('20-44');
+                expect(headers[4]).to.contains('45-64');
+                expect(headers[5]).to.contains('65-84');
+                expect(headers[6]).to.contains('85+');
+            });
+
+            var populations = fsp.loadCsvFile(csvFile);
+            // console.log("populations", populations)
+            var p = populations
+                .find(function(p) { return p.State === state});
+            fsp.getTableCellData('bridge-race-table2', 0,0).then(function(data){
+                expect(data).to.contains(p['Age']);
+            });
+            fsp.getTableCellData('bridge-race-table2', 0,1).then(function(data){
+                expect(data).to.contains(p['10-14']);
+            });
+            fsp.getTableCellData('bridge-race-table2', 0,2).then(function(data){
+                expect(data).to.contains(p['15-19']);
+            });
+            fsp.getTableCellData('bridge-race-table2', 0,3).then(function(data){
+                expect(data).to.contains(p['20-44']);
+            });
+            fsp.getTableCellData('bridge-race-table2', 0,4).then(function(data){
+                expect(data).to.contains((p['45-64']));
+            });
+            fsp.getTableCellData('bridge-race-table2', 0,5).then(function(data){
+                expect(data).to.contains((p['65-84']));
+            });
+            fsp.getTableCellData('bridge-race-table2', 0,6).then(function(data){
+                expect(data).to.contains((p['85+']));
+            });
+            console.log('state =', state)
+        });
+        next();
+
+    });
+
 
     //Infant Mortality data-set
     this.Then(/^For <state> and type "([^"]*)" the generated Infant Mortality data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
@@ -375,9 +434,7 @@ var factsheetsDefinitionsWrapper = function () {
                 fsp.getTableCellData('natality-table', i, 2).then(function (data) {
                     expect(data).to.contains(item['Asian or Pacific Islander']);
                 });
-
                 fsp.getTableCellData('natality-table', i, 3).then(function (data) {
-
                         expect(data).to.contains(item['Black or African American']);
                 });
             });

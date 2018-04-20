@@ -9,7 +9,6 @@ var FactsheetsPage = function() {
     fsp.getFactSheetLink = element(by.css('a[href*="factsheets"]'));
     fsp.pageDescription = element(by.id('pageDescription'));
     fsp.stateSelectBox = element(by.id('state'));
-    //fsp.generateFactSheetLink = element(by.id('generateFactSheetLink'));
     fsp.generateFactSheetLink =  element(by.css('[ng-click="fsc.getFactSheet(fsc.state, fsc.fsType);"]'));
     fsp.downloadFactSheetLink = element(by.id('downloadFactSheetLink'));
 
@@ -18,12 +17,6 @@ var FactsheetsPage = function() {
         element(by.id("type")).click();
         return element(by.cssContainingText('option', typeName)).click();
     };
-    //Click on Generate fact sheet
-   // fsp.generateFactSheetLink = function () {
-       //element(by.css('[ng-click="fsc.getFactSheet(fsc.state, fsc.fsType);"]')).click();
-
-      // return element(by.css('option', state,type));
- //};
 
     fsp.getTableHeaders = function(tableClassName) {
         return element(by.className(tableClassName)).element(by.tagName('thead')).all(by.tagName('th')).getText();
