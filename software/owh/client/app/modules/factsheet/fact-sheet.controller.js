@@ -157,6 +157,7 @@
         fsc.getStateName = getStateName;
         fsc.getMeanDisplayValue = getMeanDisplayValue;
         fsc.calculateRate = calculateRate;
+        fsc.isNumeric = isNumeric;
 
         if(fsc.queryID) {
             getQueryResults(fsc.state, fsc.fsType, fsc.queryID).then(function (response) {
@@ -219,7 +220,7 @@
                     bridgeRaceTotalText = "Total state female population: "+$filter('number')(fsc.factSheet.gender[0].bridge_race);
                 }
                 else {
-                    bridgeRaceTotalText = "Total state population: "+$filter('number')(fsc.factSheet.totalGenderPop)+ " ("+$filter('number')(fsc.factSheet.gender[0]                                                           .bridge_race)+" females; "+$filter('number')(fsc.factSheet.gender[1].bridge_race)+ " males)"
+                    bridgeRaceTotalText = "Total state population: "+$filter('number')(fsc.factSheet.totalGenderPop);
                 }
                 var lightHorizontalLines = {
                     hLineWidth: function (i, node) {
@@ -282,7 +283,7 @@
                 };
                 //Prepare source for PRAMS, YRBS and Cancer based on selected state
                 var PRAMSSource = 'Sources: 2011, CDC PRAMS';
-                var YRBSSource = 'Sources: 2015, YRBS; NA - Data not available or suppressed , NR - Data not reported';
+                var YRBSSource = 'Sources: 2015, YRBS';
                 var CancerSource = 'Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only';
                 if(fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1) {
                     PRAMSSource = 'This state did not take part in PRAMS';
@@ -444,7 +445,7 @@
                         },
                         {text: 'Sources:  2015, NCHS National Vital Statistics System', style: 'info'},
                         {image: fsc.imageDataURLs.tb, width: 50, height: 50, style: 'dataset-image'},
-                        {text: 'Tuberculosis (Number of new annual reported infections and rate per 100,000)', style: 'heading'},
+                        {text: 'Tuberculosis', style: 'heading'},
                         {text: 'Population: '+$filter('number')(fsc.factSheet.tuberculosis[0].pop)},
                         {
                             style: 'table',
@@ -461,7 +462,7 @@
                         },
                         {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
                         {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
-                        {text: 'Sexually Transmitted Infections (Number of new annual reported infections and rate per 100,000)', style: 'heading'},
+                        {text: 'Sexually Transmitted Infections', style: 'heading'},
                         {text: 'Population: '+$filter('number')(fsc.factSheet.stdData[0].data[0].pop)},
                         {
                             style: 'table',
@@ -475,7 +476,7 @@
                         },
                         {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
                         {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
-                        {text: 'HIV/AIDS (Number of new annual reported infections and rate per 100,000)', style: 'heading'},
+                        {text: 'HIV/AIDS', style: 'heading'},
                         {text: 'Population: '+$filter('number')(fsc.factSheet.hivAIDSData[0].data[0].pop)},
                         {
                             style: 'table',
@@ -591,27 +592,13 @@
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[2].bridge_race));
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[3].bridge_race));
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[4].bridge_race));
-            if(fsc.fsTypeForTable === fsc.fsTypes.minority_health) {
-                allTablesData.bridgeRaceTable1 = {
-                    headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic**', 'American Indian',                                         'Asian/Pacific Islander', 'Hispanic'],
-                    bodyData: bridgeRaceTableOneData
-                };
-            }
-            else if(fsc.fsTypeForTable === fsc.fsTypes.womens_health) {
-                allTablesData.bridgeRaceTable1 = {
-                    headerData: ['Racial Distributions of Residents*', 'Black, non-Hispanic**', 'White, non-Hispanic',                                         'American Indian', 'Asian/Pacific Islander', 'Hispanic'],
-                    bodyData: bridgeRaceTableOneData
-                };
-            }
-            else {
-                allTablesData.bridgeRaceTable1 = {
-                    headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic**', 'White, non-Hispanic',                                         'American Indian', 'Asian/Pacific Islander', 'Hispanic'],
-                    bodyData: bridgeRaceTableOneData
-                };
-            }
+            allTablesData.bridgeRaceTable1 = {
+                headerData: ['Racial distributions of minority residents*', 'Total', 'Black, non-Hispanic', 'American Indian',                                         'Asian or Pacific Islander', 'Hispanic'],
+                bodyData: bridgeRaceTableOneData
+            };
 
             allTablesData.bridgeRaceTable2 = {
-                headerData: ['Age Distributions of Residents', '10-14', '15-19', '20-44', '45-64', '65-84', '85+'],
+                headerData: ['Age distributions of minority residents', '10-14', '15-19', '20-44', '45-64', '65-84', '85+'],
                 bodyData: bridgeRaceTableTwoData
             };
             //Detail Mortality table def
@@ -625,7 +612,7 @@
                         eachRecord.data.forEach(function (dt) {
                             var deathCount = dt.deaths === 'suppressed' ? 'Suppressed' : $filter('number')(dt.deaths);
                             deathCounts.push(deathCount);
-                            rateCounts.push(dt.ageAdjustedRate ? dt.ageAdjustedRate : "Not Available");
+                            rateCounts.push(dt.ageAdjustedRate ? dt.ageAdjustedRate : "Not available");
                         });
                     }
                 }
@@ -660,7 +647,7 @@
                         angular.isNumber(hispanic.births) ? $filter('number')(hispanic.births) : 'Suppressed'
                     ],
                     [
-                        "Death Rate",
+                        "Death rate",
                         angular.isNumber(infantAIAN.deathRate) ? $filter('number')(infantAIAN.deathRate, 1) : infantAIAN.deathRate,
                         angular.isNumber(infantAPI.deathRate) ? $filter('number')(infantAPI.deathRate, 1) : infantAPI.deathRate,
                         angular.isNumber(infantBAA.deathRate) ? $filter('number')(infantBAA.deathRate, 1) : infantBAA.deathRate,
@@ -721,7 +708,7 @@
 
             //YRBS
             allTablesData.yrbs = {
-                headerData: ['Question', 'Am Indian / Alaska Native', 'Asian', 'Black or African American',
+                headerData: ['Question', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
                     'Hispanic or Latino', 'Multiple Race', 'Native Hawaiian or Other Pacific Islander']
             };
             var yrbsTableDt = [];
@@ -748,51 +735,51 @@
                 birthsRow.push(birthCount);
             });
 
-            var populationRow = ['Total Population'];
+            var populationRow = ['Total minority population'];
             angular.forEach(fsc.factSheet.natality.birthRateData, function (birthRateData) {
                 var popCount = birthRateData.pop == 'suppressed'?'Suppressed'
                     : $filter('number')(birthRateData.pop);
                 populationRow.push(popCount);
             });
 
-            var birthRateRow = ['Birth Rates (per 100,000)'];
+            var birthRateRow = ['Birth rates (per 100,000)'];
             angular.forEach(fsc.factSheet.natality.birthRateData, function (birthRateData) {
                 var rateCt = fsc.calculateRate(birthRateData.natality, birthRateData.pop);
                 birthRateRow.push(rateCt);
             });
 
-            var femalePopulationRow = ['Female Population (Ages 15 to 44)'];
+            var femalePopulationRow = ['Female minority population (Ages 15 to 44)'];
             angular.forEach(fsc.factSheet.natality.fertilityRatesData, function (fertilityRatesData) {
                 var popCount = fertilityRatesData.pop == 'suppressed'?'Suppressed'
                     : $filter('number')(fertilityRatesData.pop);
                 femalePopulationRow.push(popCount);
             });
 
-            var fertilityRateRow = ['Fertility Rates (per 100,000)'];
+            var fertilityRateRow = ['Fertility rates (per 100,000)'];
             angular.forEach(fsc.factSheet.natality.fertilityRatesData, function (fertilityRatesData) {
                 var rate = fsc.calculateRate(fertilityRatesData.natality, fertilityRatesData.pop);
                 fertilityRateRow.push(rate);
             });
 
-            var vaginalDeliveryRateRow = ['Vaginal'];
+            var vaginalDeliveryRateRow = ['Vaginal rates'];
             angular.forEach(fsc.factSheet.natality.vaginalData, function (vaginalData, indx) {
                 var rate = fsc.calculateRate(vaginalData.natality, fsc.factSheet.natality.totalBirthPopulation[indx].natality);
                 vaginalDeliveryRateRow.push(rate);
             });
 
-            var cesareanDeliveryRateRow = ['Cesarean'];
+            var cesareanDeliveryRateRow = ['Cesarean rates'];
             angular.forEach(fsc.factSheet.natality.cesareanData, function (cesareanData, indx) {
                 var rate = fsc.calculateRate(cesareanData.natality, fsc.factSheet.natality.totalBirthPopulation[indx].natality);
                 cesareanDeliveryRateRow.push(rate);
             });
 
-            var birthWeightRateRow = ['Low Birth Weight (<2500 gms)'];
+            var birthWeightRateRow = ['Low birth weight (<2500 gms)'];
             angular.forEach(fsc.factSheet.natality.lowBirthWeightData, function (lowBirthWeightData, indx) {
                 var rate = fsc.calculateRate(lowBirthWeightData.natality, fsc.factSheet.natality.totalBirthPopulation[indx].natality);
                 birthWeightRateRow.push(rate);
             });
 
-            var twinBirthRateRow = ['Twin Birth Rate'];
+            var twinBirthRateRow = ['Twin birth rate'];
             angular.forEach(fsc.factSheet.natality.twinBirthData, function (twinBirthData, indx) {
                 var rate = fsc.calculateRate(twinBirthData.natality, fsc.factSheet.natality.totalBirthPopulation[indx].natality);
                 twinBirthRateRow.push(rate);
@@ -933,21 +920,15 @@
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[2].bridge_race));
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[3].bridge_race));
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[4].bridge_race));
-            if(fsc.fsTypeForTable === fsc.fsTypes.minority_health) {
+            if(fsc.fsTypeForTable === fsc.fsTypes.womens_health) {
                 allTablesData.bridgeRaceTable1 = {
-                    headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic**', 'American Indian',                                         'Asian/Pacific Islander', 'Hispanic'],
-                    bodyData: bridgeRaceTableOneData
-                };
-            }
-            else if(fsc.fsTypeForTable === fsc.fsTypes.womens_health) {
-                allTablesData.bridgeRaceTable1 = {
-                    headerData: ['Racial Distributions of Residents*', 'Black, non-Hispanic**', 'White, non-Hispanic',                                         'American Indian', 'Asian/Pacific Islander', 'Hispanic'],
+                    headerData: ['Racial Distributions of Residents*', 'Black, non-Hispanic', 'White, non-Hispanic',                                         'American Indian', 'Asian or Pacific Islander', 'Hispanic'],
                     bodyData: bridgeRaceTableOneData
                 };
             }
             else {
                 allTablesData.bridgeRaceTable1 = {
-                    headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic**', 'White, non-Hispanic',                                         'American Indian', 'Asian/Pacific Islander', 'Hispanic'],
+                    headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic', 'White, non-Hispanic',                                         'American Indian', 'Asian or Pacific Islander', 'Hispanic'],
                     bodyData: bridgeRaceTableOneData
                 };
             }
@@ -1013,6 +994,10 @@
                     ["Birth Rates (per 100,000)", fsc.factSheet.natalityData.birthRate],
                     ["Female  Population (Ages 15 to 44)", $filter('number')(fsc.factSheet.natalityData.femalePopulation)],
                     ["Fertility Rates (per 100,000)", fsc.factSheet.natalityData.fertilityRate],
+                    ['Vaginal rates', fsc.factSheet.natalityData.vaginalRate],
+                    ['Cesarean rates', fsc.factSheet.natalityData.cesareanRate],
+                    ['Low birth weight (<2500 gms)', fsc.factSheet.natalityData.lowBirthWeightRate],
+                    ['Twin birth rate', fsc.factSheet.natalityData.twinBirthRate]
                 ]
             };
             //Tuberculosis
@@ -1161,7 +1146,7 @@
                     bridgeRaceTotalText = "Total state female population: "+$filter('number')(fsc.factSheet.gender[0].bridge_race);
                 }
                 else {
-                    bridgeRaceTotalText = "Total state population: "+$filter('number')(fsc.factSheet.totalGenderPop)+ " ("+$filter('number')(fsc.factSheet.gender[0]                                                           .bridge_race)+" females; "+$filter('number')(fsc.factSheet.gender[1].bridge_race)+ " males)"
+                    bridgeRaceTotalText = "Total minority state population: "+$filter('number')(fsc.factSheet.totalGenderPop);
                 }
                 var lightHorizontalLines = {
                     hLineWidth: function (i, node) {
@@ -1224,7 +1209,7 @@
                 };
                 //Prepare source for PRAMS, YRBS and Cancer based on selected state
                 var PRAMSSource = 'Sources: 2011, CDC PRAMS';
-                var YRBSSource = 'Sources: 2015, YRBS; NA - Data not available or suppressed , NR - Data not reported';
+                var YRBSSource = 'Sources: 2015, YRBS';
                 var CancerSource = 'Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only';
                 if(fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1) {
                     PRAMSSource = 'This state did not take part in PRAMS';
@@ -1383,7 +1368,7 @@
                     },
                     {text: 'Sources:  2015, NCHS National Vital Statistics System', style: 'info'},
                     {image: fsc.imageDataURLs.tb, width: 50, height: 50, style: 'dataset-image'},
-                    {text: 'Tuberculosis (Number of new annual reported infections and rate per 100,000)', style: 'heading'},
+                    {text: 'Tuberculosis', style: 'heading'},
                     {text: 'Population: '+$filter('number')(fsc.factSheet.tuberculosis[0].pop)},
                     {
                         style: 'table',
@@ -1397,7 +1382,7 @@
                     },
                     {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info', pageBreak: 'after'},
                     {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image'},
-                    {text: 'Sexually Transmitted Infections (Number of new annual reported infections and rate per 100,000)', style: 'heading'},
+                    {text: 'Sexually Transmitted Infections', style: 'heading'},
                     {text: 'Population: '+$filter('number')(fsc.factSheet.stdData[0].data[0].pop)},
                     {
                         style: 'table',
@@ -1411,7 +1396,7 @@
                     },
                     {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
                     {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
-                    {text: 'HIV/AIDS (Number of new annual reported infections and rate per 100,000)', style: 'heading'},
+                    {text: 'HIV/AIDS', style: 'heading'},
                     {text: 'Population: '+$filter('number')(fsc.factSheet.hivAIDSData[0].data[0].pop)},
                     {
                         style: 'table',
@@ -1461,11 +1446,13 @@
                 displayValue = 'Suppressed';
             }
             else if (data === 'na') {
-                displayValue = 'NR';
+                displayValue = 'No response';
             }
             else {
                 displayValue = data + "%";
             }
+        } else {
+            displayValue = "0.0%";
         }
         return displayValue;
     }
@@ -1485,5 +1472,9 @@
         else {
             return totalPopulation ? Math.round(count / totalPopulation * 1000000) / 10 : 0;
         }
+    }
+
+    function isNumeric(num) {
+        return !isNaN(num);
     }
 }());

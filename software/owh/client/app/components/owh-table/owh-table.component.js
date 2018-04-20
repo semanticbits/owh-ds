@@ -118,8 +118,8 @@
                             cell += '<div id="crudeRateDiv" class="owh-table__left-col usa-width-one-half">'
                             if(rowIndex === 0) {
                                 var rateLabel = { 'crude_death_rates': 'Crude Death Rate', 'age-adjusted_death_rates': 'Age Adjusted Death Rate', 'birth_rates':'Birth Rate', 'fertility_rates':'Fertility Rate' }[otc.tableView] || 'Rate';
-                                var tooltip = { 'crude_death_rates': $translate.instant('label.help.text.rate'),
-                                        'age-adjusted_death_rates': $translate.instant('label.help.text.rate')}[otc.tableView] || 'Rate';
+                                var tooltip = { 'crude_death_rates': $translate.instant('label.help.text.crude.rate'),
+                                        'age-adjusted_death_rates': $translate.instant('label.help.text.age.adjusted.rate')}[otc.tableView] || 'Rate';
 
                                 cell += '<span class="owh-table-span" title="'+tooltip+'">' + rateLabel + '</span>';
 
