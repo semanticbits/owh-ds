@@ -8,6 +8,7 @@ Scenario: Access fact sheet page
   And I navigate to factsheets page
   Then I should get factsheets page
 
+
  Scenario: Generate Factsheet for Maryland
  When I select state "Maryland" from state selectbox
    And I select fact sheet type "Minority Health"
@@ -81,7 +82,6 @@ Scenario: Access fact sheet page
      |West Virginia|
      |Wisconsin|
      |Wyoming|
-
 
 #Population - Age Distribution
   Scenario: Generate Minority FactSheet population for all states based upon Age Distributions of Residents
@@ -197,7 +197,7 @@ Scenario: Access fact sheet page
 
 
       #Generate Tuberculosis-Minority Health fact sheet for all states
-  Scenario: Generate Tuberculosis- Minority Health fact sheet for all states
+   Scenario: Generate Tuberculosis- Minority Health fact sheet for all states
     Then For <state> and type "Minority Health" the generated Tuberculosis data as defined in "tuberculosis_dataset.csv" file
       |state|
       |Alabama|
@@ -251,7 +251,7 @@ Scenario: Access fact sheet page
      |Wisconsin|
      |Wyoming|
 
-#Births- Minority Health fact sheet
+Births- Minority Health fact sheet
     Generate Births-Minority Health fact sheet for all states
     Scenario: Generate Births - Minority Health fact sheet for all states
     Then For <state> and type "Minority Health" the generated Births data as defined in "births_dataset.csv" file

@@ -9,6 +9,7 @@ var FactsheetsPage = function() {
     fsp.getFactSheetLink = element(by.css('a[href*="factsheets"]'));
     fsp.pageDescription = element(by.id('pageDescription'));
     fsp.stateSelectBox = element(by.id('state'));
+    fsp.generateFactSheetLink = element(by.id('generateFactSheetLink'));
     fsp.generateFactSheetLink =  element(by.css('[ng-click="fsc.getFactSheet(fsc.state, fsc.fsType);"]'));
     fsp.downloadFactSheetLink = element(by.id('downloadFactSheetLink'));
 

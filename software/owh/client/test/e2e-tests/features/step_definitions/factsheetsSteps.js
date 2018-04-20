@@ -27,11 +27,11 @@ var factsheetsDefinitionsWrapper = function () {
         expect(element(by.tagName('h3')).getText()).to.eventually.equal("Maryland - Minority Health");
         expect(element(by.className('bridge-race-heading')).getText()).to.eventually.equal("Population in Maryland");
         fsp.getTableHeaders('bridge-race-table1').then(function(headers) {
-            expect(headers[0]).to.contains('Racial Distributions of Residents*');
+            expect(headers[0]).to.contains('Racial distributions of minority residents*');
             expect(headers[1]).to.contains('Total');
             expect(headers[2]).to.contains('Black, non-Hispanic');
             expect(headers[3]).to.contains('American Indian');
-            expect(headers[4]).to.contains('Asian/Pacific Islander');
+            expect(headers[4]).to.contains('Asian or Pacific Islander');
             expect(headers[5]).to.contains('Hispanic');
         });
         fsp.getTableCellData('bridge-race-table1', 0,1).then(function(data){
@@ -53,9 +53,9 @@ var factsheetsDefinitionsWrapper = function () {
         fsp.getTableHeaders('detail-mortality-table').then(function(headers){
             expect(headers[0]).to.contains('Cause of Death');
             expect(headers[1]).to.contains('Measure');
-            expect(headers[2]).to.contains('Black or African American');
+            expect(headers[2]).to.contains('American Indian or Alaska Native');
             expect(headers[3]).to.contains('Asian or Pacific Islander');
-            expect(headers[4]).to.contains('American Indian or Alaska Native');
+            expect(headers[4]).to.contains('Black or African American');
             expect(headers[5]).to.contains('Hispanic');
         });
         fsp.getTableCellData('detail-mortality-table', 0,1).then(function(data){
@@ -96,7 +96,7 @@ var factsheetsDefinitionsWrapper = function () {
         });
 
        fsp.getTableCellData('brfss-table', 0,0).then(function(data){
-            expect (data).to.contains('Were Obese (BMI 30.0 - 99.8)');
+            expect (data).to.contains('Weight classification by Body Mass Index (BMI) : Obese (bmi 30.0 - 99.8)');
           // getElementById("tableid_goes_here").rows[i].cells[j]            expect(data[1]).to.contains('29.8%');
         });
         fsp.getTableHeaders('yrbs-table').then(function(headers){
