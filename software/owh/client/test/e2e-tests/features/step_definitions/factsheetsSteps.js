@@ -17,7 +17,7 @@ var factsheetsDefinitionsWrapper = function () {
     });
 
     this.When(/^I click on generate fact sheet link$/, function () {
-       return fsp.generateFactSheetLink.click();
+        return fsp.generateFactSheetLink.click();
     });
 
     this.Then(/^generated data should be displayed on same factsheets page$/, function (next) {
@@ -26,7 +26,7 @@ var factsheetsDefinitionsWrapper = function () {
         expect(element(by.className('state-heading')).getText()).to.eventually.equal("Maryland - Minority Health");
         expect(element(by.tagName('h3')).getText()).to.eventually.equal("Maryland - Minority Health");
         expect(element(by.className('bridge-race-heading')).getText()).to.eventually.equal("Population in Maryland");
-        fsp.getTableHeaders('bridge-race-table1').then(function(headers) {
+        fsp.getTableHeaders('bridge-race-table1').then(function (headers) {
             expect(headers[0]).to.contains('Racial distributions of minority residents*');
             expect(headers[1]).to.contains('Total');
             expect(headers[2]).to.contains('Black, non-Hispanic');
@@ -34,23 +34,23 @@ var factsheetsDefinitionsWrapper = function () {
             expect(headers[4]).to.contains('Asian or Pacific Islander');
             expect(headers[5]).to.contains('Hispanic');
         });
-        fsp.getTableCellData('bridge-race-table1', 0,1).then(function(data){
+        fsp.getTableCellData('bridge-race-table1', 0, 1).then(function (data) {
             expect(data).to.contains('2,353,855');
         });
 
-        fsp.getTableCellData('bridge-race-table1', 0,2).then(function(data){
+        fsp.getTableCellData('bridge-race-table1', 0, 2).then(function (data) {
             expect(data).to.contains('1,820,087');
         });
-        fsp.getTableCellData('bridge-race-table1', 0,3).then(function(data){
+        fsp.getTableCellData('bridge-race-table1', 0, 3).then(function (data) {
             expect(data).to.contains('39,697');
         });
-        fsp.getTableCellData('bridge-race-table1', 0,4).then(function(data){
+        fsp.getTableCellData('bridge-race-table1', 0, 4).then(function (data) {
             expect(data).to.contains('424,047');
         });
-        fsp.getTableCellData('bridge-race-table1', 0,5).then(function(data){
+        fsp.getTableCellData('bridge-race-table1', 0, 5).then(function (data) {
             expect(data).to.contains('572,373');
         });
-        fsp.getTableHeaders('detail-mortality-table').then(function(headers){
+        fsp.getTableHeaders('detail-mortality-table').then(function (headers) {
             expect(headers[0]).to.contains('Cause of Death');
             expect(headers[1]).to.contains('Measure');
             expect(headers[2]).to.contains('American Indian or Alaska Native');
@@ -58,33 +58,33 @@ var factsheetsDefinitionsWrapper = function () {
             expect(headers[4]).to.contains('Black or African American');
             expect(headers[5]).to.contains('Hispanic');
         });
-        fsp.getTableCellData('detail-mortality-table', 0,1).then(function(data){
-             expect(data).to.contains('Number of deaths');
+        fsp.getTableCellData('detail-mortality-table', 0, 1).then(function (data) {
+            expect(data).to.contains('Number of deaths');
         });
-        fsp.getTableHeaders('infant-mortality-table').then(function(headers){
+        fsp.getTableHeaders('infant-mortality-table').then(function (headers) {
             expect(headers[0]).to.contains('Measure');
             expect(headers[1]).to.contains('American Indian or Alaska Native');
             expect(headers[2]).to.contains('Asian or Pacific Islander');
             expect(headers[3]).to.contains('Black or African American');
             expect(headers[4]).to.contains('Hispanic');
         });
-        fsp.getTableCellData('infant-mortality-table', 0,1).then(function(data){
+        fsp.getTableCellData('infant-mortality-table', 0, 1).then(function (data) {
             expect(data).to.contains('Suppressed');
         });
 
-        fsp.getTableHeaders('prams-table-1').then(function(headers){
+        fsp.getTableHeaders('prams-table-1').then(function (headers) {
             expect(headers[0]).to.contains('Question');
             expect(headers[1]).to.contains('Black, Non-Hispanic');
             expect(headers[2]).to.contains('Hispanic');
             expect(headers[3]).to.contains('Other, Non- Hispanic');
         });
 
-        fsp.getTableCellData('prams-table-1',0,0).then(function(data){
-          expect(data).to.contains('Smoking cigarettes during the last three months of pregnancy');
-          //expect(data).to.contains('9.1%');
+        fsp.getTableCellData('prams-table-1', 0, 0).then(function (data) {
+            expect(data).to.contains('Smoking cigarettes during the last three months of pregnancy');
+            //expect(data).to.contains('9.1%');
         });
 
-        fsp.getTableHeaders('brfss-table').then(function(headers){
+        fsp.getTableHeaders('brfss-table').then(function (headers) {
             expect(headers[0]).to.contains('Question');
             expect(headers[1]).to.contains('American Indian or Alaskan Native, non-Hispanic');
             expect(headers[2]).to.contains('Asian, non-Hispanic');
@@ -95,11 +95,11 @@ var factsheetsDefinitionsWrapper = function () {
             expect(headers[7]).to.contains('Other, non-Hispanic');
         });
 
-       fsp.getTableCellData('brfss-table', 0,0).then(function(data){
-            expect (data).to.contains('Weight classification by Body Mass Index (BMI) : Obese (bmi 30.0 - 99.8)');
-          // getElementById("tableid_goes_here").rows[i].cells[j]            expect(data[1]).to.contains('29.8%');
+        fsp.getTableCellData('brfss-table', 0, 0).then(function (data) {
+            expect(data).to.contains('Weight classification by Body Mass Index (BMI) : Obese (bmi 30.0 - 99.8)');
+            // getElementById("tableid_goes_here").rows[i].cells[j]            expect(data[1]).to.contains('29.8%');
         });
-        fsp.getTableHeaders('yrbs-table').then(function(headers){
+        fsp.getTableHeaders('yrbs-table').then(function (headers) {
             expect(headers[0]).to.contains('Question');
             expect(headers[1]).to.contains('American Indian or Alaska Native');
             expect(headers[2]).to.contains('Asian');
@@ -109,10 +109,10 @@ var factsheetsDefinitionsWrapper = function () {
             expect(headers[6]).to.contains('Native Hawaiian or Other Pacific Islander');
         });
 
-        fsp.getTableCellData('yrbs-table',0,1).then(function(data){
+        fsp.getTableCellData('yrbs-table', 0, 1).then(function (data) {
             expect(data).to.contains('29.5%');
         });
-        fsp.getTableHeaders('natality-table').then(function(headers){
+        fsp.getTableHeaders('natality-table').then(function (headers) {
             expect(headers[0]).to.contains('Measure');
             expect(headers[1]).to.contains('American Indian or Alaska Native');
             expect(headers[2]).to.contains('Asian or Pacific Islander');
@@ -120,11 +120,11 @@ var factsheetsDefinitionsWrapper = function () {
 
         });
 
-        fsp.getTableCellData('natality-table', 0,1).then(function(data){
+        fsp.getTableCellData('natality-table', 0, 1).then(function (data) {
             expect(data).to.contains('279');
         });
 
-        fsp.getTableHeaders('tb-table').then(function(headers){
+        fsp.getTableHeaders('tb-table').then(function (headers) {
             expect(headers[0]).to.contains('Measure');
             expect(headers[1]).to.contains('American Indian or Alaska Native');
             expect(headers[2]).to.contains('Asian');
@@ -134,10 +134,10 @@ var factsheetsDefinitionsWrapper = function () {
             expect(headers[6]).to.contains('Native Hawaiian or Other Pacific Islander');
 
         });
-        fsp.getTableCellData('tb-table', 0,1).then(function(data){
+        fsp.getTableCellData('tb-table', 0, 1).then(function (data) {
             expect(data).to.contains('0');
         });
-        fsp.getTableHeaders('std-table').then(function(headers){
+        fsp.getTableHeaders('std-table').then(function (headers) {
             expect(headers[0]).to.contains('Disease');
             expect(headers[1]).to.contains('Measure');
             expect(headers[2]).to.contains('American Indian or Alaska Native');
@@ -148,10 +148,10 @@ var factsheetsDefinitionsWrapper = function () {
             expect(headers[7]).to.contains('Native Hawaiian or Other Pacific Islander');
 
         });
-        fsp.getTableCellData('std-table', 0,2).then(function(data){
+        fsp.getTableCellData('std-table', 0, 2).then(function (data) {
             expect(data).to.contains('36');
         });
-        fsp.getTableHeaders('hiv-table').then(function(headers){
+        fsp.getTableHeaders('hiv-table').then(function (headers) {
             expect(headers[0]).to.contains('Indicator');
             expect(headers[1]).to.contains('Measure');
             expect(headers[2]).to.contains('American Indian or Alaska Native');
@@ -162,10 +162,10 @@ var factsheetsDefinitionsWrapper = function () {
             expect(headers[7]).to.contains('Native Hawaiian or Other Pacific Islander');
 
         });
-        fsp.getTableCellData('hiv-table', 0, 2).then(function(data){
+        fsp.getTableCellData('hiv-table', 0, 2).then(function (data) {
             expect(data).to.contains('2');
         });
-        fsp.getTableHeaders('cancer-table').then(function(headers){
+        fsp.getTableHeaders('cancer-table').then(function (headers) {
             expect(headers[0]).to.contains('Cancer Site');
             expect(headers[1]).to.contains('Measure');
             expect(headers[2]).to.contains('American Indian or Alaska Native');
@@ -173,7 +173,7 @@ var factsheetsDefinitionsWrapper = function () {
             expect(headers[4]).to.contains('Black');
             expect(headers[5]).to.contains('Hispanic');
         });
-        fsp.getTableCellData('cancer-table', 0, 2).then(function(data){
+        fsp.getTableCellData('cancer-table', 0, 2).then(function (data) {
             expect(data).to.contains('39,007');
         }).then(next);
 
@@ -190,18 +190,19 @@ var factsheetsDefinitionsWrapper = function () {
     });
 
 
-
     this.Then(/^For "([^"]*)" the generated population data as defined in "([^"]*)" file$/, function (state, csvFile, next) {
         //    "csvjson": "^5.0.0",
-       var populations = fsp.loadCsvFile(csvFile);
-       // console.log("populations", populations)
-       var p = populations
-           .find(function(p) { return p.State === state});
+        var populations = fsp.loadCsvFile(csvFile);
+        // console.log("populations", populations)
+        var p = populations
+            .find(function (p) {
+                return p.State === state
+            });
 
-        fsp.getTableCellData('bridge-race-table1', 0,1).then(function(data){
+        fsp.getTableCellData('bridge-race-table1', 0, 1).then(function (data) {
             expect(data).to.contains((p.Total));
         });
-        fsp.getTableCellData('bridge-race-table1', 0,2).then(function(data){
+        fsp.getTableCellData('bridge-race-table1', 0, 2).then(function (data) {
             expect(data).to.contains((p.Black));
         });
 
@@ -216,7 +217,7 @@ var factsheetsDefinitionsWrapper = function () {
             element(by.id('state')).element(by.cssContainingText('option', state)).click();
             fsp.selectFactSheetType(factType);
             fsp.generateFactSheetLink.click();
-            fsp.getTableHeaders('bridge-race-table1').then(function(headers){
+            fsp.getTableHeaders('bridge-race-table1').then(function (headers) {
                 expect(headers[0]).to.contains('Racial distributions of minority residents*');
                 expect(headers[1]).to.contains('Total');
                 expect(headers[2]).to.contains('Black, non-Hispanic');
@@ -227,20 +228,22 @@ var factsheetsDefinitionsWrapper = function () {
 
             var populations = fsp.loadCsvFile(csvFile);
             var p = populations
-                .find(function(p) { return p.State === state});
-            fsp.getTableCellData('bridge-race-table1', 0,1).then(function(data){
+                .find(function (p) {
+                    return p.State === state
+                });
+            fsp.getTableCellData('bridge-race-table1', 0, 1).then(function (data) {
                 expect(data).to.contains((p.Total));
             });
-            fsp.getTableCellData('bridge-race-table1', 0,2).then(function(data){
+            fsp.getTableCellData('bridge-race-table1', 0, 2).then(function (data) {
                 expect(data).to.contains((p.Black));
             });
-            fsp.getTableCellData('bridge-race-table1', 0,3).then(function(data){
+            fsp.getTableCellData('bridge-race-table1', 0, 3).then(function (data) {
                 expect(data).to.contains(p['AmericanIndian']);
             });
-            fsp.getTableCellData('bridge-race-table1', 0,4).then(function(data){
+            fsp.getTableCellData('bridge-race-table1', 0, 4).then(function (data) {
                 expect(data).to.contains(p['Asian']);
             });
-            fsp.getTableCellData('bridge-race-table1', 0,5).then(function(data){
+            fsp.getTableCellData('bridge-race-table1', 0, 5).then(function (data) {
                 expect(data).to.contains((p.Hispanic));
             });
             console.log('state =', state)
@@ -257,7 +260,7 @@ var factsheetsDefinitionsWrapper = function () {
             fsp.selectFactSheetType(factType);
             fsp.generateFactSheetLink.click();
 
-            fsp.getTableHeaders('bridge-race-table2').then(function(headers){
+            fsp.getTableHeaders('bridge-race-table2').then(function (headers) {
                 expect(headers[0]).to.contains('Age distributions of minority residents');
                 expect(headers[1]).to.contains('10-14');
                 expect(headers[2]).to.contains('15-19');
@@ -269,26 +272,28 @@ var factsheetsDefinitionsWrapper = function () {
 
             var populations = fsp.loadCsvFile(csvFile);
             var p = populations
-                .find(function(p) { return p.State === state});
-            fsp.getTableCellData('bridge-race-table2', 0,0).then(function(data){
+                .find(function (p) {
+                    return p.State === state
+                });
+            fsp.getTableCellData('bridge-race-table2', 0, 0).then(function (data) {
                 expect(data).to.contains(p['Age']);
             });
-            fsp.getTableCellData('bridge-race-table2', 0,1).then(function(data){
+            fsp.getTableCellData('bridge-race-table2', 0, 1).then(function (data) {
                 expect(data).to.contains(p['10-14']);
             });
-            fsp.getTableCellData('bridge-race-table2', 0,2).then(function(data){
+            fsp.getTableCellData('bridge-race-table2', 0, 2).then(function (data) {
                 expect(data).to.contains(p['15-19']);
             });
-            fsp.getTableCellData('bridge-race-table2', 0,3).then(function(data){
+            fsp.getTableCellData('bridge-race-table2', 0, 3).then(function (data) {
                 expect(data).to.contains(p['20-44']);
             });
-            fsp.getTableCellData('bridge-race-table2', 0,4).then(function(data){
+            fsp.getTableCellData('bridge-race-table2', 0, 4).then(function (data) {
                 expect(data).to.contains((p['45-64']));
             });
-            fsp.getTableCellData('bridge-race-table2', 0,5).then(function(data){
+            fsp.getTableCellData('bridge-race-table2', 0, 5).then(function (data) {
                 expect(data).to.contains((p['65-84']));
             });
-            fsp.getTableCellData('bridge-race-table2', 0,6).then(function(data){
+            fsp.getTableCellData('bridge-race-table2', 0, 6).then(function (data) {
                 expect(data).to.contains((p['85+']));
             });
             console.log('state =', state)
@@ -301,12 +306,12 @@ var factsheetsDefinitionsWrapper = function () {
     //Infant Mortality data-set
     this.Then(/^For <state> and type "([^"]*)" the generated Infant Mortality data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
         // Write code here that turns the phrase above into concrete actions
-        table.rows().forEach(function(row){
+        table.rows().forEach(function (row) {
             var state = row[0];
-            element(by.id('state')).element(by.cssContainingText('option',state)).click();
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
             fsp.selectFactSheetType(factType);
             fsp.generateFactSheetLink.click();
-            fsp.getTableHeaders('infant-mortality-table').then(function(headers){
+            fsp.getTableHeaders('infant-mortality-table').then(function (headers) {
                 expect(headers[0]).to.contains('Measure');
                 expect(headers[1]).to.contains('American Indian or Alaska Native');
                 expect(headers[2]).to.contains('Asian or Pacific Islander');
@@ -316,38 +321,40 @@ var factsheetsDefinitionsWrapper = function () {
             var infantMortality = fsp.loadCsvFile(csvFile);
 
             var imList = infantMortality
-                .filter(function(im){return im.State === state});
-            imList.forEach(function(item,i) {
-               fsp.getTableCellData('infant-mortality-table',i,0).then(function(data){
-             expect(data).to.contains(item.Measure);
+                .filter(function (im) {
+                    return im.State === state
+                });
+            imList.forEach(function (item, i) {
+                fsp.getTableCellData('infant-mortality-table', i, 0).then(function (data) {
+                    expect(data).to.contains(item.Measure);
 
-             });
+                });
 
-         fsp.getTableCellData('infant-mortality-table',i,1).then(function(data){
-             expect(data).to.contains(item['American Indian or Alaska Native']);
+                fsp.getTableCellData('infant-mortality-table', i, 1).then(function (data) {
+                    expect(data).to.contains(item['American Indian or Alaska Native']);
 
-         });
-         fsp.getTableCellData('infant-mortality-table',i,2).then(function(data){
-             expect(data).to.contains(item['Asian or Pacific Islander']);
+                });
+                fsp.getTableCellData('infant-mortality-table', i, 2).then(function (data) {
+                    expect(data).to.contains(item['Asian or Pacific Islander']);
 
-         });
-         fsp.getTableCellData('infant-mortality-table',i,3).then(function(data){
-             expect(data).to.contains(item['Black or African American']);
-         });
-         fsp.getTableCellData('infant-mortality-table',i,4).then(function(data){
-             expect(data).to.contains(item['Hispanic']);
-         });
-           });
+                });
+                fsp.getTableCellData('infant-mortality-table', i, 3).then(function (data) {
+                    expect(data).to.contains(item['Black or African American']);
+                });
+                fsp.getTableCellData('infant-mortality-table', i, 4).then(function (data) {
+                    expect(data).to.contains(item['Hispanic']);
+                });
+            });
             //console.log('state =', state);
         });
 
-       next();
+        next();
     });
 
     // Tuberculosis dataset-factsheet
     this.Then(/^For <state> and type "([^"]*)" the generated Tuberculosis data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
         // Write code here that turns the phrase above into concrete actions
-        table.rows().forEach(function(row) {
+        table.rows().forEach(function (row) {
             var state = row[0];
             element(by.id('state')).element(by.cssContainingText('option', state)).click();
             fsp.selectFactSheetType(factType);
@@ -364,33 +371,35 @@ var factsheetsDefinitionsWrapper = function () {
 
             var tuberculosis = fsp.loadCsvFile(csvFile);
             var tbData = tuberculosis
-                 .filter(function(tb){return tb.State === state});
-                    tbData.forEach(function(item,i) {
-                        fsp.getTableCellData('tb-factsheet',i,0).then(function(data){
-                            expect(data).to.contains(item.Measure);
-                        });
+                .filter(function (tb) {
+                    return tb.State === state
+                });
+            tbData.forEach(function (item, i) {
+                fsp.getTableCellData('tb-factsheet', i, 0).then(function (data) {
+                    expect(data).to.contains(item.Measure);
+                });
 
-                        fsp.getTableCellData('tb-factsheet',i,1).then(function(data){
-                            expect(data).to.contains(item['American Indian or Alaska Native']);
-                        });
-                        fsp.getTableCellData('tb-factsheet',i,2).then(function(data){
-                            expect(data).to.contains(item.Asian);
-                        });
-                        fsp.getTableCellData('tb-factsheet',i,3).then(function(data){
-                            expect(data).to.contains(item['Black or African American']);
-                        });
-                        fsp.getTableCellData('tb-factsheet',i,4).then(function(data){
-                            expect(data).to.contains(item['Hispanic or Latino']);
-                        });
-                        fsp.getTableCellData('tb-factsheet',i,5).then(function(data){
-                            expect(data).to.contains(item['Multiple races']);
-                        });
-                        fsp.getTableCellData('tb-factsheet',i,6).then(function(data){
-                            expect(data).to.contains(item['Native Hawaiian or Other Pacific Islander']);
-                        });
-                    });
+                fsp.getTableCellData('tb-factsheet', i, 1).then(function (data) {
+                    expect(data).to.contains(item['American Indian or Alaska Native']);
+                });
+                fsp.getTableCellData('tb-factsheet', i, 2).then(function (data) {
+                    expect(data).to.contains(item.Asian);
+                });
+                fsp.getTableCellData('tb-factsheet', i, 3).then(function (data) {
+                    expect(data).to.contains(item['Black or African American']);
+                });
+                fsp.getTableCellData('tb-factsheet', i, 4).then(function (data) {
+                    expect(data).to.contains(item['Hispanic or Latino']);
+                });
+                fsp.getTableCellData('tb-factsheet', i, 5).then(function (data) {
+                    expect(data).to.contains(item['Multiple races']);
+                });
+                fsp.getTableCellData('tb-factsheet', i, 6).then(function (data) {
+                    expect(data).to.contains(item['Native Hawaiian or Other Pacific Islander']);
+                });
             });
-       next();
+        });
+        next();
     });
 //Births-Minority health dataset factsheet
     this.Then(/^For <state> and type "([^"]*)" the generated Births data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
@@ -406,7 +415,6 @@ var factsheetsDefinitionsWrapper = function () {
                 expect(headers[3]).to.contains('Black or African American');
             });
             var birth = fsp.loadCsvFile(csvFile);
-            //console.log(birth);
             var birthData = birth
                 .filter(function (br) {
                     return br.state === state
@@ -415,7 +423,7 @@ var factsheetsDefinitionsWrapper = function () {
             birthData.forEach(function (item, i) {
                 fsp.getTableCellData('natality-table', i, 0).then(function (data) {
                     expect(data).to.contains(item.Measure);
-                   // console.log(item.Measure);
+                    // console.log(item.Measure);
                 });
                 fsp.getTableCellData('natality-table', i, 1).then(function (data) {
                     expect(data).to.contains(item['American Indian or Alaska Native']);
@@ -424,7 +432,7 @@ var factsheetsDefinitionsWrapper = function () {
                     expect(data).to.contains(item['Asian or Pacific Islander']);
                 });
                 fsp.getTableCellData('natality-table', i, 3).then(function (data) {
-                        expect(data).to.contains(item['Black or African American']);
+                    expect(data).to.contains(item['Black or African American']);
                 });
             });
             //console.log('state =', state);
@@ -432,6 +440,119 @@ var factsheetsDefinitionsWrapper = function () {
         next();
     });
 
-    };
+    //Behavioral Risk data set
+    this.Then(/^For <state> and type "([^"]*)" the generated Behavioral Risk data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
+            table.rows().forEach(function (row) {
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+            fsp.getTableHeaders('brfss-table').then(function (headers) {
+                expect(headers[0]).to.contains('Question');
+                expect(headers[1]).to.contains('American Indian or Alaskan Native, non-Hispanic');
+                expect(headers[2]).to.contains('Asian, non-Hispanic');
+                expect(headers[3]).to.contains('Black, non-Hispanic');
+                expect(headers[4]).to.contains('Hispanic');
+                expect(headers[5]).to.contains('Multiracial non-Hispanic');
+                expect(headers[6]).to.contains('Native Hawaiian or other Pacific Islander, non-Hispanic');
+                expect(headers[7]).to.contains('Other, non-Hispanic');
+            });
+            var behavioral_risk_dataset = fsp.loadCsvFile(csvFile);
+            //console.log(birth);
+            var brfssData = behavioral_risk_dataset
+                .filter(function (br) {
+                    return br.state === state
+                });
 
+                brfssData.forEach(function (item, i) {
+                fsp.getTableCellData('brfss-table', i,0).then(function (data) {
+                    expect(data).to.contains(item.Question);
+                });
+                fsp.getTableCellData('brfss-table', i, 1).then(function (data) {
+                    expect(data).to.contains(item.AmericanIndian);
+                });
+                fsp.getTableCellData('brfss-table', i, 2).then(function (data) {
+                    expect(data).to.contains(item.Asian);
+                    console.log("behaviour",(item.Asian));
+                });
+                fsp.getTableCellData('brfss-table', i, 3).then(function (data) {
+                    expect(data).to.contains(item.Black);
+                });
+                fsp.getTableCellData('brfss-table', i, 4).then(function (data) {
+                    expect(data).to.contains(item.Hispanic);
+                });
+                fsp.getTableCellData('brfss-table', i, 5).then(function (data) {
+                        expect(data).to.contains(item.Multiracial);
+                    });
+                fsp.getTableCellData('brfss-table', i, 6).then(function (data) {
+                    expect(data).to.contains(item.NativeHawaiian);
+                });
+                fsp.getTableCellData('brfss-table', i, 7).then(function (data) {
+                    expect(data).to.contains(item.OthernonHispanic);
+                });
+            });
+        });
+
+        next();
+    });
+
+//Teen health- dataset
+
+    this.Then(/^For <state> and type "([^"]*)" the generated teen health data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
+        table.rows().forEach(function (row) {
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+            fsp.getTableHeaders('yrbs-table').then(function (headers) {
+                expect(headers[0]).to.contains('Question');
+                expect(headers[1]).to.contains('American Indian or Alaska Native');
+                expect(headers[2]).to.contains('Asian');
+                expect(headers[3]).to.contains('Black or African American');
+                expect(headers[4]).to.contains('Hispanic or Latino');
+                expect(headers[5]).to.contains('Multiple Race');
+                expect(headers[6]).to.contains('Native Hawaiian or Other Pacific Islander');
+            });
+            var teen_dataset = fsp.loadCsvFile(csvFile);
+            //console.log(teen_dataset);
+            var teenData = teen_dataset
+                .filter(function (th) {
+                    return th.state === state
+                });
+
+            teenData.forEach(function (item, i) {
+                fsp.getTableCellData('yrbs-table', i, 0).then(function (data) {
+                    expect(data).to.contains(item.Question);
+                });
+                fsp.getTableCellData('yrbs-table', i, 1).then(function (data) {
+                    expect(data).to.contains(item.AmericanIndian);
+                });
+                fsp.getTableCellData('yrbs-table', i, 2).then(function (data) {
+                    expect(data).to.contains(item.Asian);
+                });
+                fsp.getTableCellData('yrbs-table', i, 3).then(function (data) {
+                    expect(data).to.contains(item.Black);
+                });
+                fsp.getTableCellData('yrbs-table', i, 4).then(function (data) {
+                    expect(data).to.contains(item.Hispanic);
+                });
+                fsp.getTableCellData('yrbs-table', i, 5).then(function (data) {
+                    expect(data).to.contains(item.MultipleRace);
+                });
+                fsp.getTableCellData('yrbs-table', i, 6).then(function (data) {
+                    expect(data).to.contains(item.NativeHawaiian);
+                });
+
+
+
+            });
+
+        });
+        next();
+
+    });
+
+
+
+};
 module.exports = factsheetsDefinitionsWrapper;

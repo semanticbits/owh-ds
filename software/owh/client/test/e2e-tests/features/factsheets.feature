@@ -251,8 +251,7 @@ Scenario: Access fact sheet page
      |Wisconsin|
      |Wyoming|
 
-Births- Minority Health fact sheet
-    Generate Births-Minority Health fact sheet for all states
+#   #Births- Minority Health fact sheet
     Scenario: Generate Births - Minority Health fact sheet for all states
     Then For <state> and type "Minority Health" the generated Births data as defined in "births_dataset.csv" file
       |state|
@@ -308,7 +307,116 @@ Births- Minority Health fact sheet
 
 
 
+   Generate Behavioral Risk Factors-Minority Health fact sheet for all states
+  Scenario: Generate Behavioral Risk Factors - Minority Health fact sheet for all states
+    Then For <state> and type "Minority Health" the generated Behavioral Risk data as defined in "behavioral_risk_factors_dataset.csv" file
+      |state|
+      |Alabama|
+      |Alaska|
+      |Arizona|
+      |Arkansas|
+      |California|
+      |Colorado|
+      |Connecticut|
+      |Delaware|
+      |District of Columbia|
+      |Florida|
+      |Georgia|
+      |Hawaii|
+      |Idaho|
+      |Illinois|
+      |Indiana|
+      |Iowa|
+      |Kansas|
+      |Kentucky|
+      |Louisiana|
+      |Maryland|
+      |Maine|
+      |Massachusetts|
+      |Michigan|
+      |Minnesota|
+      |Mississippi|
+      |Missouri|
+      |Montana|
+      |Nebraska|
+      |Nevada|
+      |New Hampshire|
+      |New Jersey|
+      |New Mexico|
+      |New York|
+      |North Carolina|
+      |North Dakota|
+      |Ohio|
+      |Oklahoma|
+      |Pennsylvania|
+      |Rhode Island|
+      |South Carolina|
+      |South Dakota|
+      |Tennessee|
+      |Texas|
+      |Utah|
+      |Vermont|
+      |Virginia|
+      |Washington|
+     |West Virginia|
+      |Wisconsin|
+      |Wyoming|
 
+
+ #Generate Teen Health-Minority Health fact sheet for all states
+  Scenario: Generate Teen Health - Minority Health fact sheet for all states
+    Then For <state> and type "Minority Health" the generated teen health data as defined in "teen_health_dataset.csv" file
+      |state|
+      |Alabama|
+      |Alaska|
+      |Arizona|
+      |Arkansas|
+      |California|
+      |Colorado|
+      |Connecticut|
+      |Delaware|
+      |District of Columbia|
+      |Florida|
+      |Georgia|
+      |Hawaii|
+      |Idaho|
+      |Illinois|
+      |Indiana|
+      |Iowa|
+      |Kansas|
+      |Kentucky|
+      |Louisiana|
+      |Maryland|
+      |Maine|
+      |Massachusetts|
+      |Michigan|
+      |Minnesota|
+      |Mississippi|
+      |Missouri|
+      |Montana|
+      |Nebraska|
+      |Nevada|
+      |New Hampshire|
+      |New Jersey|
+      |New Mexico|
+      |New York|
+      |North Carolina|
+      |North Dakota|
+      |Ohio|
+      |Oklahoma|
+      |Pennsylvania|
+      |Rhode Island|
+      |South Carolina|
+      |South Dakota|
+      |Tennessee|
+      |Texas|
+      |Utah|
+      |Vermont|
+      |Virginia|
+      |Washington|
+      |West Virginia|
+      |Wisconsin|
+      |Wyoming|
 
 
 
