@@ -9,7 +9,9 @@ exports.config = {
   frameworkPath: require.resolve('protractor-cucumber-framework'),
 
   specs: [
-      'features/*.feature'
+     'features/*.feature'
+      //'features/factsheets.feature'
+
   ],
   cucumberOpts: {
     // require step definitions
@@ -35,10 +37,16 @@ exports.config = {
   },
 
   capabilities: {
-    'browserName': 'firefox'
+    'browserName': 'chrome',
+      chromeOptions: {
+          args: [ "--disable-gpu", "--window-size=1920,1080" ]
+      }
   },
-  onPrepare: function() {
-    browser.driver.manage().window().maximize();
-  },
-  baseUrl: 'http://localhost:9900/'
+
+ baseUrl: process.env.E2E_BASE_URL || 'http://localhost:9900/'
+
+   // baseUrl:'http://owhqa.semanticbits.com/'
+
+
+
 };
