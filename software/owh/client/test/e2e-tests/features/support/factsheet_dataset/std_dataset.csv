@@ -1,0 +1,9 @@
+state,Disease,Measure,AmericanIndian,Asian,Black,Hispanic,Multipleraces,NativeHawaiian
+Alabama,Chlamydia,Cases,42,62,"13,367",261,43,Suppressed
+Alabama,Chlamydia,Rates,156.2,98.2,1045.5,130.1,63,Suppressed
+Alabama,Gonorrhea,Cases,9,27,"4,504",25,6,Suppressed
+Alabama,Gonorrhea,Rates,33.5,42.8,352.3,12.5,8.8,Suppressed
+Alabama,Primary and Secondary Syphilis,Cases,Suppressed,Suppressed,212,Suppressed,Not Available,Not Available
+Alabama,Primary and Secondary Syphilis,Rates,Suppressed,Suppressed,16.6,Suppressed,Not Available,Not Available
+Alabama,Early Latent Syphilis,Cases,Not Available,Suppressed,129,8,Not Available,Not Available
+Alabama,Early Latent Syphilis,Rates,Not Available,Suppressed,10.1,4,Not Available,Not Available

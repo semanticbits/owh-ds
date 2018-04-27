@@ -20,6 +20,10 @@ var factsheetsDefinitionsWrapper = function () {
         return fsp.generateFactSheetLink.click();
     });
 
+
+    this.Given(/^I click on downloadFactSheetLink$/, function () {
+        return fsp.downloadFactSheetLink.click();
+    });
     this.Then(/^generated data should be displayed on same factsheets page$/, function (next) {
         //browser.wait()
         expect(element(by.className('state-heading')).isDisplayed()).to.eventually.equal(true);
@@ -185,6 +189,7 @@ var factsheetsDefinitionsWrapper = function () {
     });
 
 
+
     this.When(/^I select fact sheet type "([^"]*)"$/, function (factsheetType) {
         return fsp.selectFactSheetType(factsheetType);
     });
@@ -208,6 +213,24 @@ var factsheetsDefinitionsWrapper = function () {
 
         next();
     });
+
+//pdf
+
+    this.Then(/^I select <state> and fact sheet type "([^"]*)" and generated data downloaded file defined in "([^"]*)"$/, function (factType, csvFile, table, next) {
+        table.rows().forEach(function (row) {
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+            fsp.downloadFactSheetLink.click();
+            browser.sleep(1000);
+        });
+        next();
+    });
+
+
+
+
 
 //Population racial distribution
     this.Then(/^For <state> and type "([^"]*)" the generated population racial distributions data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
@@ -325,10 +348,11 @@ var factsheetsDefinitionsWrapper = function () {
                     return im.State === state
                 });
             imList.forEach(function (item, i) {
-                fsp.getTableCellData('infant-mortality-table', i, 0).then(function (data) {
-                    expect(data).to.contains(item.Measure);
 
-                });
+                    fsp.getTableCellData('infant-mortality-table', i, 0).then(function (data) {
+                        expect(data).to.contains(item.Measure);
+
+                    });
 
                 fsp.getTableCellData('infant-mortality-table', i, 1).then(function (data) {
                     expect(data).to.contains(item['American Indian or Alaska Native']);
@@ -543,14 +567,60 @@ var factsheetsDefinitionsWrapper = function () {
                     expect(data).to.contains(item.NativeHawaiian);
                 });
 
-
-
             });
 
         });
         next();
 
     });
+
+    //pdf download
+    this.Then(/^I click on downloadFactSheetLink  and generated data should be displayed on downloaded  page$/, function (table, next) {
+        // Write code here that turns the phrase above into concrete actions
+
+    });
+
+
+    //Sexually Transmitted Infections
+
+    this.Then(/^For <state> and type "([^"]*)" the generated STD data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
+        table.rows().forEach(function (row) {
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+            fsp.getTableHeaders('std-table').then(function (headers) {
+                expect(headers[0]).to.contains('Disease');
+                expect(headers[1]).to.contains('Measure');
+                expect(headers[2]).to.contains('American Indian or Alaska Native');
+                expect(headers[3]).to.contains('Asian');
+                expect(headers[4]).to.contains('Black or African American');
+                expect(headers[5]).to.contains('Hispanic or Latino');
+                expect(headers[6]).to.contains('Multiple races');
+                expect(headers[7]).to.contains('Native Hawaiian or Other Pacific Islander');
+            });
+            var std_dataset = fsp.loadCsvFile(csvFile);
+            var stdData = std_dataset
+                .filter(function (th) {
+                    return th.state === state
+                });
+            stdData.forEach(function (item, i) {
+                //console.log("hello",item[i]);
+               //if (i % 2 === 0) {
+               //
+                  fsp.getTableCellData('std-table', i,0).then(function (data) {
+               //          console.log("manju",data[i]);
+             expect(data).to.contains(item.Disease);
+               //expect(data).to.contain.members((item['Disease']));
+               //expect(data).to.contains(item['Disease','Measure']);
+               //         // element.all(by.css("ul.nav button")).first()
+               //
+                   });
+             // }
+            });
+        });
+        next();
+   });
 
 
 

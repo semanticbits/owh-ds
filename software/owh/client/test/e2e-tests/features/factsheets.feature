@@ -83,7 +83,7 @@ Scenario: Access fact sheet page
      |Wisconsin|
      |Wyoming|
 
-#Population - Age Distribution
+Population - Age Distribution
   Scenario: Generate Minority FactSheet population for all states based upon Age Distributions of Residents
     Then For <state> and type "Minority Health" the generated population data as defined in "population_age.csv" file
       |state|
@@ -419,5 +419,68 @@ Scenario: Access fact sheet page
       |Wyoming|
 
 
+  #Sexually Transmitted Infections
+#  Scenario: Generate Sexually Transmitted Infections- Minority Health fact sheet for all states
+#    Then For <state> and type "Minority Health" the generated STD data as defined in "std_dataset.csv" file
+#      |state|
+#      |Alabama|
+#      |Arizona|
+#      |Alaska|
+#      |Arkansas|
 
+# Generate pdf for all states
+  Scenario: Generate  Minority Health fact sheet pdf for all states
+  Then I select <state> and fact sheet type "Minority Health" and generated data downloaded file defined in "states.csv"
+
+      |state|
+      |Alabama|
+      |Arizona|
+      |Alaska|
+      |Arkansas|
+      |California|
+      |Colorado|
+      |Connecticut|
+      |Delaware|
+      |District of Columbia|
+      |Florida|
+      |Georgia|
+      |Hawaii|
+      |Idaho|
+      |Illinois|
+      |Indiana|
+      |Iowa|
+      |Kansas|
+      |Kentucky|
+      |Louisiana|
+      |Maryland|
+      |Maine|
+      |Massachusetts|
+      |Michigan|
+      |Minnesota|
+      |Mississippi|
+      |Missouri|
+      |Montana|
+      |Nebraska|
+      |Nevada|
+      |New Hampshire|
+      |New Jersey|
+      |New Mexico|
+      |New York|
+      |North Carolina|
+      |North Dakota|
+      |Ohio|
+      |Oklahoma|
+      |Pennsylvania|
+      |Rhode Island|
+      |South Carolina|
+      |South Dakota|
+      |Tennessee|
+      |Texas|
+      |Utah|
+      |Vermont|
+      |Virginia|
+      |Washington|
+      |West Virginia|
+      |Wisconsin|
+      |Wyoming|
 
