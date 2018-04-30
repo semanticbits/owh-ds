@@ -185,7 +185,7 @@ function prepareDiseaseData(data, countKey) {
         }
         else if(record[countKey] === 'na') {
             record['cases'] = 'Not Available';
-            record['rates'] = 'Not Available';
+            record['rates'] = 'Not Applicable';
         }
         else if(record[countKey] === 'suppressed') {
             record['cases'] = 'Suppressed';

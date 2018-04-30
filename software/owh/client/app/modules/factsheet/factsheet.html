@@ -372,7 +372,6 @@
                             <thead>
                             <tr>
                                 <th>Measure</th>
-                                <th ng-repeat="eachRecord in fsc.factSheet.tuberculosis" ng-if="$index > 0 && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
                                 <th ng-repeat="eachRecord in fsc.factSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
                             </tr>
                             </thead>
@@ -399,7 +398,6 @@
                             <tr>
                                 <th>Disease</th>
                                 <th>Measure</th>
-                                <th ng-repeat="eachRecord in fsc.factSheet.stdData[0].data" ng-if="$index > 0 && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
                                 <th ng-repeat="eachRecord in fsc.factSheet.stdData[0].data" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
                             </tr>
                             </thead>
@@ -429,7 +427,6 @@
                             <tr>
                                 <th>Indicator</th>
                                 <th>Measure</th>
-                                <th ng-repeat="eachRecord in fsc.factSheet.hivAIDSData[0].data" ng-if="$index > 0 && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
                                 <th ng-repeat="eachRecord in fsc.factSheet.hivAIDSData[0].data" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
                             </tr>
                             </thead>
