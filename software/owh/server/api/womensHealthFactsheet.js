@@ -391,8 +391,8 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
     var cervixCancerPopulationQuery = factSheetQueryJSON.cancer["cervix_uteri"][1];
     var ovaryCancerESQuery = factSheetQueryJSON.cancer["ovary"][0];
     var ovaryCancerPopulationQuery = factSheetQueryJSON.cancer["ovary"][1];
-    var prostateCancerESQuery = factSheetQueryJSON.cancer["prostate"][0];
-    var prostateCancerPopulationQuery = factSheetQueryJSON.cancer["prostate"][1];
+    var uterusCancerESQuery = factSheetQueryJSON.cancer["uterus"][0];
+    var uterusCancerPopulationQuery = factSheetQueryJSON.cancer["uterus"][1];
     var es = new elasticSearch();
     var promises = [
         //Cancer - Mortality
@@ -408,8 +408,8 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
         es.executeESQuery('owh_cancer_population', 'cancer_population', cervixCancerPopulationQuery),
         es.executeESQuery('owh_cancer_mortality', 'cancer_mortality', ovaryCancerESQuery),
         es.executeESQuery('owh_cancer_population', 'cancer_population', ovaryCancerPopulationQuery),
-        es.executeESQuery('owh_cancer_mortality', 'cancer_mortality', prostateCancerESQuery),
-        es.executeESQuery('owh_cancer_population', 'cancer_population', prostateCancerPopulationQuery),
+        es.executeESQuery('owh_cancer_mortality', 'cancer_mortality', uterusCancerESQuery),
+        es.executeESQuery('owh_cancer_population', 'cancer_population', uterusCancerPopulationQuery),
 
         //Cancer - incident
         es.executeESQuery('owh_cancer_incident', 'cancer_incident', breastCancerESQuery),
@@ -418,7 +418,7 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
         es.executeESQuery('owh_cancer_incident', 'cancer_incident', melanomaCancerESQuery),
         es.executeESQuery('owh_cancer_incident', 'cancer_incident', cervixCancerESQuery),
         es.executeESQuery('owh_cancer_incident', 'cancer_incident', ovaryCancerESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', prostateCancerESQuery)
+        es.executeESQuery('owh_cancer_incident', 'cancer_incident', uterusCancerESQuery)
     ];
     var deferred = Q.defer();
     Q.all(promises).then(function (resp) {
@@ -428,7 +428,7 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
         var melanomaCancerMortalityData = prepareCancerData(resp[6], resp[7], 'cancer_mortality');
         var cervixCancerMortalityData = prepareCancerData(resp[8], resp[9], 'cancer_mortality');
         var ovaryCancerMortalityData = prepareCancerData(resp[10], resp[11], 'cancer_mortality');
-        //var prostateCancerData = prepareCancerData(resp[12], resp[13], 'cancer_mortality');
+        var uterusCancerMortalityData = prepareCancerData(resp[12], resp[13], 'cancer_mortality');
 
         var rules = searchUtils.createCancerIncidenceSuppressionRules(['2014'], true, false);
         var breastCancerIncidentData = prepareCancerData(resp[14], resp[1], 'cancer_incident');
@@ -449,8 +449,8 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
         var ovaryCancerIncidentData = prepareCancerData(resp[19], resp[11], 'cancer_incident');
         searchUtils.applyCustomSuppressions(ovaryCancerIncidentData.data.nested, rules, 'cancer_incident');
 
-        //var prostateCancerIncidentData = prepareCancerData(resp[20], resp[13], 'cancer_incident');
-        //searchUtils.applyCustomSuppressions(prostateCancerIncidentData.data.nested, rules, 'cancer_incident');
+        var uterusCancerIncidentData = prepareCancerData(resp[20], resp[13], 'cancer_incident');
+        searchUtils.applyCustomSuppressions(uterusCancerIncidentData.data.nested, rules, 'cancer_incident');
 
         var data = [
             {
@@ -477,6 +477,10 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
                 site:"Ovary",
                 mortality: ovaryCancerMortalityData.data.nested.table.current_year[0],
                 incidence: ovaryCancerIncidentData.data.nested.table.current_year[0]
+            },{
+                site:"Uterus",
+                mortality: uterusCancerMortalityData.data.nested.table.current_year[0],
+                incidence: uterusCancerIncidentData.data.nested.table.current_year[0]
             }
         ];
         deferred.resolve(data);
