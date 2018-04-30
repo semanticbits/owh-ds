@@ -9,6 +9,7 @@ var qc = require('../api/queryCache');
 var dsmetadata = require('../api/dsmetadata');
 var factSheet = require('../api/factSheet');
 var minorityFactSheet = require('../api/minorityFactSheet');
+var womenHealthFactSheet = require('../api/womensHealthFactsheet');
 var Q = require('q');
 var config = require('../config/config');
 var svgtopng = require('svg2png');
@@ -95,6 +96,16 @@ var searchRouter = function(app, rConfig) {
                     res.connection.setTimeout(0);
                     if (fsType === 'Minority Health') {
                         new minorityFactSheet().prepareFactSheet(state, fsType).then(function(response) {
+                            if(!config.disableQueryCache) {
+                                var resData = {};
+                                resData.queryJSON = {};
+                                resData.resultData = response;
+                                queryCache.cacheQuery(queryId, 'fact_sheets', resData);
+                            }
+                            res.send(new result('OK', resData, "success"));
+                        });
+                    } else if (fsType === "Women's and Girls' Health") {
+                        new womenHealthFactSheet().prepareFactSheet(state, fsType).then(function(response) {
                             if(!config.disableQueryCache) {
                                 var resData = {};
                                 resData.queryJSON = {};

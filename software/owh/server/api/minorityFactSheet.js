@@ -1,20 +1,16 @@
 var elasticSearch = require('../models/elasticSearch');
 var yrbs = require("../api/yrbs");
-var queryBuilder = require('../api/elasticQueryBuilder');
 var factSheetQueries = require('../json/factsheet-queries.json');
 var searchUtils = require('../api/utils');
 var wonder = require("../api/wonder");
 var Q = require('q');
 var logger = require('../config/logging');
-var extend = require('util')._extend;
-var MinorityFactSheet = function() {
-
-};
+var MinorityFactSheet = function() {};
 
 MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
     var self = this;
     var deferred = Q.defer();
-    var factSheetQueryString = JSON.stringify(factSheetQueries[fsType]);
+    var factSheetQueryString = JSON.stringify(factSheetQueries.minority_health);
     var factSheetQueryJSON;
     factSheetQueryJSON = JSON.parse(factSheetQueryString.split("$state$").join(state));
     if (factSheetQueryJSON) {
@@ -494,7 +490,6 @@ function getAIDSDataForFactSheets(factSheetQueryJSON) {
 
 function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
     //Number of deaths
-    var mortalityTotalESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["Total"][0];
     var alzheimerESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["alzheimer"][0];
     var malignantNeoplasmESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["malignant_neoplasm"][0];
     var accidentESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["accident"][0];
@@ -506,7 +501,6 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
     var nephritisESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["nephritis"][0];
     var heartDiseaseESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["heart_diseases"][0];
 
-    var totalHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["Total"][1];
     var alzheimerHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["alzheimer"][1];
     var malignantNeoplasmHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["malignant_neoplasm"][1];
     var accidentHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["accident"][1];
@@ -518,8 +512,6 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
     var nephritisHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["nephritis"][1];
     var heartDiseaseHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["heart_diseases"][1];
 
-    //Age adjusted death rates
-    var mortalityTotalWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["Total"][0];
     var alzheimerWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["alzheimer"][0];
     var malignantNeoplasmWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["malignant_neoplasm"][0];
     var accidentWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["accident"][0];
@@ -531,7 +523,6 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
     var nephritisWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["nephritis"][0];
     var heartDiseaseWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["heart_diseases"][0];
 
-    var totalHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["Total"][1];
     var alzheimerHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["alzheimer"][1];
     var malignantNeoplasmHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["malignant_neoplasm"][1];
     var accidentHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["accident"][1];
@@ -546,11 +537,6 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
     var es = new elasticSearch();
     var querySet1 = [
         //Detail Mortality - Number of deaths
-        es.executeMultipleESQueries(mortalityTotalESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(mortalityTotalWonderQuery),
-        es.executeMultipleESQueries(totalHispanicESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(totalHispanicWonderQuery),
-
         es.executeMultipleESQueries(malignantNeoplasmESQuery, 'owh_mortality', 'mortality'),
         new wonder('D77').invokeWONDER(malignantNeoplasmWonderQuery),
         es.executeMultipleESQueries(malignantNeoplasmHispanicESQuery, 'owh_mortality', 'mortality'),
@@ -580,15 +566,13 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
     ];
     var deferred = Q.defer();
     Q.all(querySet1).then(function (resp) {
-        var totalData = prepareDetailMortalityData(resp[0], resp[1], resp[2], resp[3]);
-        var malignantNeoplasmData = prepareDetailMortalityData(resp[4], resp[5], resp[6], resp[7]);
-        var chronicRespiratoryData = prepareDetailMortalityData(resp[8], resp[9], resp[10], resp[11]);
-        var accidentData = prepareDetailMortalityData(resp[12], resp[13], resp[14], resp[15]);
-        var cerebroVascularData = prepareDetailMortalityData(resp[16], resp[17], resp[18], resp[19]);
-        var heartDiseaseData = prepareDetailMortalityData(resp[20], resp[21], resp[22], resp[23]);
+        var malignantNeoplasmData = prepareDetailMortalityData(resp[0], resp[1], resp[2], resp[3]);
+        var chronicRespiratoryData = prepareDetailMortalityData(resp[4], resp[5], resp[6], resp[7]);
+        var accidentData = prepareDetailMortalityData(resp[8], resp[9], resp[10], resp[11]);
+        var cerebroVascularData = prepareDetailMortalityData(resp[12], resp[13], resp[14], resp[15]);
+        var heartDiseaseData = prepareDetailMortalityData(resp[16], resp[17], resp[18], resp[19]);
 
         return [
-            {causeOfDeath:"Total", data:totalData.data.nested.table.race},
             {causeOfDeath:"Diseases of heart", data:heartDiseaseData.data.nested.table.race},
             {causeOfDeath:"Malignant neoplasms", data:malignantNeoplasmData.data.nested.table.race},
             {causeOfDeath: "Chronic lower respiratory disease", data:chronicRespiratoryData.data.nested.table.race},
