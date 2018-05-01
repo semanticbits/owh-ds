@@ -33,8 +33,8 @@ var FactsheetsPage = function() {
         return element(by.className(tableClassName)).all(by.tagName('tr')).get(row).all(by.tagName('td')).getText();
     };
 
-    fsp.getTableCellFirstData = function(tableClassName, row, column) {
-        return element(by.className(tableClassName)).element(by.tagName('tbody')).all(by.repeater(by.tagName('tr'))).get(row).all(by.tagName('td')).get(column).getText();
+    fsp.getTableBodyCellData = function(tableClassName, bodyIndex, row, column) {
+        return element(by.className(tableClassName)).all(by.tagName('tbody')).get(bodyIndex).all(by.tagName('tr')).get(row).all(by.tagName('td')).get(column).getText();
         //element.all(by.css("ul.nav button")).first()
     };
 

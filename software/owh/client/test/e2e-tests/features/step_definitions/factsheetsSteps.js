@@ -2,6 +2,7 @@ var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 var expect = chai.expect;
+var _ = require('lodash');
 
 var factsheetsDefinitionsWrapper = function () {
     this.setDefaultTimeout(600000);
@@ -227,10 +228,6 @@ var factsheetsDefinitionsWrapper = function () {
         });
         next();
     });
-
-
-
-
 
 //Population racial distribution
     this.Then(/^For <state> and type "([^"]*)" the generated population racial distributions data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
@@ -600,27 +597,203 @@ var factsheetsDefinitionsWrapper = function () {
                 expect(headers[7]).to.contains('Native Hawaiian or Other Pacific Islander');
             });
             var std_dataset = fsp.loadCsvFile(csvFile);
-            var stdData = std_dataset
-                .filter(function (th) {
-                    return th.state === state
+            var stdStateData = std_dataset
+                .filter(function (stdRow) {
+                    return stdRow.state === state
                 });
-            stdData.forEach(function (item, i) {
-                //console.log("hello",item[i]);
-               //if (i % 2 === 0) {
-               //
-                  fsp.getTableCellData('std-table', i,0).then(function (data) {
-               //          console.log("manju",data[i]);
-             expect(data).to.contains(item.Disease);
-               //expect(data).to.contain.members((item['Disease']));
-               //expect(data).to.contains(item['Disease','Measure']);
-               //         // element.all(by.css("ul.nav button")).first()
-               //
-                   });
-             // }
+
+           var diseaseData = _.groupBy(stdStateData, function (o) {
+               return o['Disease'];
+                
+            })
+            Object.keys(diseaseData).forEach(function (disease, bodyIndex) {
+
+                var casesAndRates= diseaseData[disease];
+                casesAndRates.forEach(function (item,i) {
+                    console.log('currrent kk', bodyIndex, i, item);
+
+                    //case - measure - measure
+                    fsp.getTableBodyCellData('std-table',bodyIndex,i,1-i).then(function (data) {
+                        expect(data).to.contains(item['Measure']);
+
+                    });
+
+                    //case - measure - american
+                    fsp.getTableBodyCellData('std-table',bodyIndex,i,2-i).then(function (data) {
+                        expect(data).to.contains(item['AmericanIndian']);
+
+                    });
+
+                    //case - measure - asian
+                    fsp.getTableBodyCellData('std-table',bodyIndex,i,3-i).then(function (data) {
+                        expect(data).to.contains(item['Asian']);
+
+                    });
+                    fsp.getTableBodyCellData('std-table',bodyIndex,i,4-i).then(function (data) {
+                        expect(data).to.contains(item['Black']);
+
+                    });
+                    fsp.getTableBodyCellData('std-table',bodyIndex,i,5-i).then(function (data) {
+                        expect(data).to.contains(item['Hispanic']);
+
+                    });
+                    fsp.getTableBodyCellData('std-table',bodyIndex,i,6-i).then(function (data) {
+                        expect(data).to.contains(item['Multipleraces']);
+
+                    });
+                    fsp.getTableBodyCellData('std-table',bodyIndex,i,7-i).then(function (data) {
+                        expect(data).to.contains(item['NativeHawaiian']);
+
+                    });
+
+                });
             });
+
         });
         next();
    });
+
+
+    //Mortality - Dataset Fact sheet
+
+    this.Then(/^For <state> and type "([^"]*)" the generated Mortality data as defined in "([^"]*)" file$/, function (factType, csvFile, table,next) {
+        table.rows().forEach(function (row) {
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+            fsp.getTableHeaders('detail-mortality-table').then(function (headers) {
+                expect(headers[0]).to.contains('Cause of Death');
+                expect(headers[1]).to.contains('Measure');
+                expect(headers[2]).to.contains('American Indian or Alaska Native');
+                expect(headers[3]).to.contains('Asian or Pacific Islander');
+                expect(headers[4]).to.contains('Black or African American');
+                expect(headers[5]).to.contains('Hispanic');
+            });
+
+            var mortalityDataset = fsp.loadCsvFile(csvFile);
+            var mortalityStateData = mortalityDataset
+                .filter(function (mortalityRow) {
+                    return mortalityRow.state === state
+                });
+
+            var causeOfDeathData = _.groupBy(mortalityStateData, function (o) {
+                //console.log("hello",o);
+                return o['CauseofDeath'];
+            })
+            Object.keys(causeOfDeathData).forEach(function (causeOfDeath, bodyIndex) {
+
+                var totalAndAgeRates = causeOfDeathData[causeOfDeath];
+                totalAndAgeRates.forEach(function (item, i) {
+                    //console.log('currrent kk', bodyIndex, i, item);
+
+                    // measure
+                    fsp.getTableBodyCellData('detail-mortality-table', bodyIndex, i, 1-i).then(function (data) {
+                        //console.log("currentitem",i,data);
+                        expect(data).to.contains(item['Measure']);
+
+                    });
+
+                    fsp.getTableBodyCellData('detail-mortality-table',bodyIndex,i,2-i).then(function (data) {
+                        expect(data).to.contains(item['AmericanIndian']);
+
+                    });
+
+                    fsp.getTableBodyCellData('detail-mortality-table',bodyIndex,i,3-i).then(function (data) {
+                        expect(data).to.contains(item['AsianorPacific']);
+
+                    });
+                    fsp.getTableBodyCellData('detail-mortality-table',bodyIndex,i,4-i).then(function (data) {
+                        expect(data).to.contains(item['BlackorAfrican']);
+
+                    });
+                    fsp.getTableBodyCellData('detail-mortality-table',bodyIndex,i,5-i).then(function (data) {
+                        expect(data).to.contains(item['Hispanic']);
+
+                    });
+                });
+            });
+
+        });
+        next();
+    });
+
+    //HIV-AIDS Data set
+    this.Then(/^For <state> and type "([^"]*)" the generated HIV\-AIDS data as defined in "([^"]*)" file$/, function (factType, csvFile, table,next) {
+        table.rows().forEach(function (row) {
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+            fsp.getTableHeaders('hiv-table').then(function (headers) {
+                expect(headers[0]).to.contains('Indicator');
+                expect(headers[1]).to.contains('Measure');
+                expect(headers[2]).to.contains('American Indian or Alaska Native');
+                expect(headers[3]).to.contains('Asian');
+                expect(headers[4]).to.contains('Black or African American');
+                expect(headers[5]).to.contains('Hispanic or Latino');
+                expect(headers[6]).to.contains('Multiple races');
+                expect(headers[7]).to.contains('Native Hawaiian or Other Pacific Islander');
+            });
+            var hivDataset = fsp.loadCsvFile(csvFile);
+            var hivStateData = hivDataset
+                .filter(function (hivStateRow) {
+                    return hivStateRow.state === state
+                });
+
+            var indicatorData = _.groupBy(hivStateData, function (o) {
+                //console.log("hello",o);
+                return o['Indicator'];
+            })
+            Object.keys(indicatorData).forEach(function (indicator, bodyIndex) {
+
+                var casesAndRates = indicatorData[indicator];
+                casesAndRates.forEach(function (item,i) {
+                    //console.log('currrent kk', bodyIndex, i, item);
+
+                    // measure
+                    fsp.getTableBodyCellData('hiv-table', bodyIndex, i, 1 - i).then(function (data) {
+                        //console.log("currentitem",i,data);
+                        expect(data).to.contains(item['Measure']);
+
+                    });
+
+                    fsp.getTableBodyCellData('hiv-table', bodyIndex, i, 2 - i).then(function (data) {
+                        //console.log(data);
+                        expect(data).to.contains(item['AmericanIndian']);
+
+                    });
+
+                    fsp.getTableBodyCellData('hiv-table', bodyIndex, i, 3 - i).then(function (data) {
+                        //console.log(data);
+                        expect(data).to.contains(item['Asian']);
+
+                    });
+                    fsp.getTableBodyCellData('hiv-table', bodyIndex, i, 4 - i).then(function (data) {
+                        expect(data).to.contains(item['BlackorAfrican']);
+
+                    });
+                    fsp.getTableBodyCellData('hiv-table', bodyIndex, i, 5 - i).then(function (data) {
+                        expect(data).to.contains(item['Hispanic']);
+
+                    });
+                    fsp.getTableBodyCellData('hiv-table', bodyIndex, i, 6 - i).then(function (data) {
+                        expect(data).to.contains(item['Multipleraces']);
+
+                    });
+
+                    fsp.getTableBodyCellData('hiv-table', bodyIndex, i, 7 - i).then(function (data) {
+                        expect(data).to.contains(item['NativeHawaiian']);
+
+                    });
+
+                });
+            });
+
+        });
+       next();
+    });
+
 
 
 
