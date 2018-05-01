@@ -1,15 +1,613 @@
-state,Indicator,Measure,AmericanIndian,Asian,BlackorAfrican,Hispanic,Multipleraces,NativeHawaiian
+state,Indicator,Measure,American Indian or Alaska Native,Asian,Black or African American,Hispanic or Latino,Multiple races,Native Hawaiian or Other Pacific Islander
 Alabama,AIDS Diagnoses,Cases,1,0,217,13,9,0
-Alabama,AIDS Diagnoses,Rates,4.2,0.0,20.6,9.2,20.2,0.0
+Alabama,AIDS Diagnoses,Rates,4.2,0,20.6,9.2,20.2,0
 Alabama,AIDS Deaths*,Cases,0,0,129,7,13,0
-Alabama,AIDS Deaths*,Rates,0,0.0,12.3,5.1,30.1,0.0
+Alabama,AIDS Deaths*,Rates,0,0,12.3,5.1,30.1,0
 Alabama,AIDS Prevalence*,Cases,0,15,"3,557",195,277,2
-Alabama,AIDS Prevalence*,Rates,0.0,28.4,339.9,140.7,641.7,109.8
+Alabama,AIDS Prevalence*,Rates,0,28.4,339.9,140.7,641.7,109.8
 Alabama,HIV Diagnoses,Cases,1,3,343,18,17,0
-Alabama,HIV Diagnoses,Rates,4.2,5.5,32.5,12.7,38.2,0.0
+Alabama,HIV Diagnoses,Rates,4.2,5.5,32.5,12.7,38.2,0
 Alabama,HIV Deaths*,Cases,0,0,160,7,22,0
-Alabama,HIV Deaths*,Rates,0.0,0.0,15.3,5.1,51.0,0.0
+Alabama,HIV Deaths*,Rates,0,0,15.3,5.1,51,0
 Alabama,HIV Prevalence*,Cases,5,31,"7,995",368,545,4
 Alabama,HIV Prevalence*,Rates,21.6,58.8,763.9,265.5,1262.6,219.5
-
-
+Alaska,AIDS Diagnoses,Cases,2,1,4,0,2,0
+Alaska,AIDS Diagnoses,Rates,2.5,2.6,18.6,0,6.5,0
+Alaska,AIDS Deaths*,Cases,3,0,3,0,0,0
+Alaska,AIDS Deaths*,Rates,3.7,0,14,0,0,0
+Alaska,AIDS Prevalence*,Cases,91,13,32,39,19,2
+Alaska,AIDS Prevalence*,Rates,113.5,35.5,149.6,104.9,63,30.6
+Alaska,HIV Diagnoses,Cases,9,1,4,2,0,0
+Alaska,HIV Diagnoses,Rates,11.2,2.6,18.6,5.2,0,0
+Alaska,HIV Deaths*,Cases,4,0,3,0,0,0
+Alaska,HIV Deaths*,Rates,5,0,14,0,0,0
+Alaska,HIV Prevalence*,Cases,148,21,80,63,32,2
+Alaska,HIV Prevalence*,Rates,184.6,57.4,373.9,169.5,106.1,30.6
+Arizona,AIDS Diagnoses,Cases,21,9,52,97,6,1
+Arizona,AIDS Diagnoses,Rates,9.7,5,22.6,6.1,6.9,9.6
+Arizona,AIDS Deaths*,Cases,7,2,18,34,5,0
+Arizona,AIDS Deaths*,Rates,3.3,1.2,8.1,2.2,6,0
+Arizona,AIDS Prevalence*,Cases,295,63,813,"2,171",190,11
+Arizona,AIDS Prevalence*,Rates,138.3,36.4,367.3,140.4,227.7,108.4
+Arizona,HIV Diagnoses,Cases,51,16,130,256,8,5
+Arizona,HIV Diagnoses,Rates,23.6,8.8,56.5,16.1,9.2,48.2
+Arizona,HIV Deaths*,Cases,11,2,24,43,5,0
+Arizona,HIV Deaths*,Rates,5.2,1.2,10.8,2.8,6,0
+Arizona,HIV Prevalence*,Cases,544,166,"1,779","4,273",362,16
+Arizona,HIV Prevalence*,Rates,255,95.8,803.7,276.3,433.8,157.6
+Arkansas,AIDS Diagnoses,Cases,0,0,65,6,6,1
+Arkansas,AIDS Diagnoses,Rates,0,0,17.7,4,17.8,18.5
+Arkansas,AIDS Deaths*,Cases,0,0,42,3,4,0
+Arkansas,AIDS Deaths*,Rates,0,0,11.5,2,12.3,0
+Arkansas,AIDS Prevalence*,Cases,3,7,992,161,131,2
+Arkansas,AIDS Prevalence*,Rates,16.6,19.5,271.5,109.9,403.5,39.6
+Arkansas,HIV Diagnoses,Cases,0,2,135,18,4,2
+Arkansas,HIV Diagnoses,Rates,0,5.3,36.7,11.9,11.9,37.1
+Arkansas,HIV Deaths*,Cases,0,0,50,4,4,0
+Arkansas,HIV Deaths*,Rates,0,0,13.7,2.7,12.3,0
+Arkansas,HIV Prevalence*,Cases,6,16,"2,271",312,228,3
+Arkansas,HIV Prevalence*,Rates,33.3,44.6,621.5,213,702.2,59.4
+California,AIDS Diagnoses,Cases,6,108,377,761,60,6
+California,AIDS Diagnoses,Rates,4.3,2.3,19.9,6.5,8.4,5
+California,AIDS Deaths*,Cases,2,19,290,375,71,0
+California,AIDS Deaths*,Rates,1.4,0.4,15.4,3.3,10.2,0
+California,AIDS Prevalence*,Cases,196,"2,472","12,109","24,959","1,566",135
+California,AIDS Prevalence*,Rates,138.9,53.3,644.4,216.4,224.1,113.4
+California,HIV Diagnoses,Cases,15,299,888,"2,070",80,14
+California,HIV Diagnoses,Rates,10.6,6.3,46.9,17.6,11.1,11.6
+California,HIV Deaths*,Cases,2,22,329,436,91,0
+California,HIV Deaths*,Rates,1.4,0.5,17.5,3.8,13,0
+California,HIV Prevalence*,Cases,360,"4,539","21,050","41,801","2,801",262
+California,HIV Prevalence*,Rates,255.1,97.8,1120.2,362.5,400.9,220.1
+Colorado,AIDS Diagnoses,Cases,0,1,28,57,10,0
+Colorado,AIDS Diagnoses,Rates,0,0.7,15.7,6.5,12.8,0
+Colorado,AIDS Deaths*,Cases,0,2,12,22,3,0
+Colorado,AIDS Deaths*,Rates,0,1.5,6.9,2.6,4,0
+Colorado,AIDS Prevalence*,Cases,29,46,731,"1,207",110,5
+Colorado,AIDS Prevalence*,Rates,99.9,34.2,420,142.2,148.4,87.3
+Colorado,HIV Diagnoses,Cases,3,3,60,114,8,0
+Colorado,HIV Diagnoses,Rates,10,2.1,33.6,13,10.3,0
+Colorado,HIV Deaths*,Cases,0,2,15,26,3,0
+Colorado,HIV Deaths*,Rates,0,1.5,8.6,3.1,4,0
+Colorado,HIV Prevalence*,Cases,60,108,"1,602","2,343",187,13
+Colorado,HIV Prevalence*,Rates,206.7,80.2,920.5,276,252.2,226.9
+Connecticut,AIDS Diagnoses,Cases,0,4,45,42,1,0
+Connecticut,AIDS Diagnoses,Rates,0,3,15.1,9.8,2.6,0
+Connecticut,AIDS Deaths*,Cases,1,0,55,48,1,0
+Connecticut,AIDS Deaths*,Rates,16.5,0,18.7,11.6,2.7,0
+Connecticut,AIDS Prevalence*,Cases,6,41,"2,164","2,213",131,3
+Connecticut,AIDS Prevalence*,Rates,99.3,31.4,734.2,532.7,348.2,291
+Connecticut,HIV Diagnoses,Cases,2,5,99,79,2,0
+Connecticut,HIV Diagnoses,Rates,32.9,3.7,33.2,18.5,5.2,0
+Connecticut,HIV Deaths*,Cases,1,0,61,54,1,0
+Connecticut,HIV Deaths*,Rates,16.5,0,20.7,13,2.7,0
+Connecticut,HIV Prevalence*,Cases,10,84,"3,386","3,414",201,4
+Connecticut,HIV Prevalence*,Rates,165.5,64.4,1148.9,821.7,534.3,388
+Delaware,AIDS Diagnoses,Cases,0,0,40,5,1,0
+Delaware,AIDS Diagnoses,Rates,0,0,24.1,8,8,0
+Delaware,AIDS Deaths*,Cases,0,0,36,7,3,0
+Delaware,AIDS Deaths*,Rates,0,0,22.1,11.6,24.9,0
+Delaware,AIDS Prevalence*,Cases,2,5,"1,184",148,57,1
+Delaware,AIDS Prevalence*,Rates,77.2,17.2,726.9,246.2,473.6,355.9
+Delaware,HIV Diagnoses,Cases,0,0,58,12,2,0
+Delaware,HIV Diagnoses,Rates,0,0,35,19.3,16,0
+Delaware,HIV Deaths*,Cases,0,0,44,9,4,0
+Delaware,HIV Deaths*,Rates,0,0,27,15,33.2,0
+Delaware,HIV Prevalence*,Cases,3,7,"1,890",247,109,1
+Delaware,HIV Prevalence*,Rates,115.7,24.1,1160.4,410.9,905.7,355.9
+District of columbia,AIDS Diagnoses,Cases,0,0,151,17,4,0
+District of columbia,AIDS Diagnoses,Rates,0,0,57.1,29.9,36.4,0
+District of columbia,AIDS Deaths*,Cases,0,0,75,1,4,0
+District of columbia,AIDS Deaths*,Rates,0,0,28.5,1.8,37.5,0
+District of columbia,AIDS Prevalence*,Cases,8,37,"6,279",549,255,3
+District of columbia,AIDS Prevalence*,Rates,620.6,156,2387.3,1000.3,2390.6,1045.3
+District of columbia,HIV Diagnoses,Cases,0,4,278,52,5,1
+District of columbia,HIV Diagnoses,Rates,0,15.9,105.2,91.6,45.5,320.5
+District of columbia,HIV Deaths*,Cases,0,0,97,1,4,0
+District of columbia,HIV Deaths*,Rates,0,0,36.9,1.8,37.5,0
+District of columbia,HIV Prevalence*,Cases,14,79,"11,012","1,091",452,7
+District of columbia,HIV Prevalence*,Rates,1086.1,333.2,4186.8,1987.8,4237.4,2439
+Florida,AIDS Diagnoses,Cases,2,15,"1,147",475,54,0
+Florida,AIDS Diagnoses,Rates,4.4,3.1,44.8,11.6,25.7,0
+Florida,AIDS Deaths*,Cases,0,3,843,261,57,0
+Florida,AIDS Deaths*,Rates,0,0.7,33.6,6.6,28.3,0
+Florida,AIDS Prevalence*,Cases,22,193,"28,007","12,064","1,398",14
+Florida,AIDS Prevalence*,Rates,49,42.1,1116.4,306.4,694,133.4
+Florida,HIV Diagnoses,Cases,5,55,"2,056","1,490",40,10
+Florida,HIV Diagnoses,Rates,10.9,11.5,80.4,36.5,19.1,92.3
+Florida,HIV Deaths*,Cases,0,3,995,304,65,0
+Florida,HIV Deaths*,Rates,0,0.7,39.7,7.7,32.3,0
+Florida,HIV Prevalence*,Cases,60,430,"48,561","22,835","2,205",35
+Florida,HIV Prevalence*,Rates,133.7,93.8,1935.7,579.9,1094.7,333.6
+Georgia,AIDS Diagnoses,Cases,1,2,815,84,22,0
+Georgia,AIDS Diagnoses,Rates,5,0.6,31.9,12.2,20.4,0
+Georgia,AIDS Deaths*,Cases,0,0,459,23,28,0
+Georgia,AIDS Deaths*,Rates,0,0,18.3,3.4,27.1,0
+Georgia,AIDS Prevalence*,Cases,9,92,"17,061","1,693","1,279",4
+Georgia,AIDS Prevalence*,Rates,45.5,29.1,679.9,253.5,1239,77.9
+Georgia,HIV Diagnoses,Cases,2,20,"1,784",162,42,1
+Georgia,HIV Diagnoses,Rates,10,6,69.7,23.5,38.9,19.1
+Georgia,HIV Deaths*,Cases,0,0,552,30,34,0
+Georgia,HIV Deaths*,Rates,0,0,22,4.5,32.9,0
+Georgia,HIV Prevalence*,Cases,23,202,"32,265","3,054","2,057",15
+Georgia,HIV Prevalence*,Rates,116.2,63.9,1285.8,457.3,1992.7,292.2
+Hawaii,AIDS Diagnoses,Cases,0,8,3,4,6,6
+Hawaii,AIDS Diagnoses,Rates,0,1.7,10.6,3.8,3,5.6
+Hawaii,AIDS Deaths*,Cases,0,2,4,3,6,3
+Hawaii,AIDS Deaths*,Rates,0,0.4,15.1,2.9,3,2.8
+Hawaii,AIDS Prevalence*,Cases,4,242,83,184,142,153
+Hawaii,AIDS Prevalence*,Rates,125.4,52.2,313.7,180.5,71.8,144.3
+Hawaii,HIV Diagnoses,Cases,1,20,11,10,18,14
+Hawaii,HIV Diagnoses,Rates,31.1,4.3,38.7,9.5,9,13.1
+Hawaii,HIV Deaths*,Cases,0,2,4,3,7,4
+Hawaii,HIV Deaths*,Rates,0,0.4,15.1,2.9,3.5,3.8
+Hawaii,HIV Prevalence*,Cases,8,408,146,304,241,235
+Hawaii,HIV Prevalence*,Rates,250.8,88,551.9,298.1,121.9,221.6
+Idaho,AIDS Diagnoses,Cases,0,0,5,8,0,0
+Idaho,AIDS Diagnoses,Rates,0,0,57.1,5.5,0,0
+Idaho,AIDS Deaths*,Cases,0,0,2,0,0,0
+Idaho,AIDS Deaths*,Rates,0,0,24,0,0,0
+Idaho,AIDS Prevalence*,Cases,6,1,31,81,15,0
+Idaho,AIDS Prevalence*,Rates,40.6,5.5,371.6,58.2,75.5,0
+Idaho,HIV Diagnoses,Cases,0,3,8,8,0,0
+Idaho,HIV Diagnoses,Rates,0,15.7,91.4,5.5,0,0
+Idaho,HIV Deaths*,Cases,0,0,4,0,0,0
+Idaho,HIV Deaths*,Rates,0,0,47.9,0,0,0
+Idaho,HIV Prevalence*,Cases,14,4,75,157,23,0
+Idaho,HIV Prevalence*,Rates,94.7,21.9,899,112.9,115.7,0
+Illinois,AIDS Diagnoses,Cases,2,13,307,137,22,0
+Illinois,AIDS Diagnoses,Rates,12.5,2.2,20.5,8.3,18.3,0
+Illinois,AIDS Deaths*,Cases,0,1,202,43,30,0
+Illinois,AIDS Deaths*,Rates,0,0.2,13.5,2.7,25.8,0
+Illinois,AIDS Prevalence*,Cases,12,197,"8,528","3,546","1,072",10
+Illinois,AIDS Prevalence*,Rates,75.2,34.8,568,218.9,920.6,346.3
+Illinois,HIV Diagnoses,Cases,4,38,746,304,40,1
+Illinois,HIV Diagnoses,Rates,24.9,6.5,49.7,18.4,33.2,33.6
+Illinois,HIV Deaths*,Cases,0,2,236,47,34,0
+Illinois,HIV Deaths*,Rates,0,0.4,15.7,2.9,29.2,0
+Illinois,HIV Prevalence*,Cases,35,405,"16,301","6,372","1,822",21
+Illinois,HIV Prevalence*,Rates,219.3,71.5,1085.7,393.4,1564.7,727.1
+Indiana,AIDS Diagnoses,Cases,1,8,82,31,10,0
+Indiana,AIDS Diagnoses,Rates,7.7,7,16.7,9.8,14.8,0
+Indiana,AIDS Deaths*,Cases,0,1,46,6,6,0
+Indiana,AIDS Deaths*,Rates,0,0.9,9.5,2,9.3,0
+Indiana,AIDS Prevalence*,Cases,2,66,"1,843",497,190,0
+Indiana,AIDS Prevalence*,Rates,15.5,60.9,380,162,293.2,0
+Indiana,HIV Diagnoses,Cases,1,7,206,51,11,0
+Indiana,HIV Diagnoses,Rates,7.7,6.1,42,16.1,16.3,0
+Indiana,HIV Deaths*,Cases,0,1,54,8,6,0
+Indiana,HIV Deaths*,Rates,0,0.9,11.1,2.6,9.3,0
+Indiana,HIV Prevalence*,Cases,4,145,"3,705",911,355,0
+Indiana,HIV Prevalence*,Rates,31,133.7,764,296.9,547.8,0
+Iowa,AIDS Diagnoses,Cases,0,4,10,11,2,0
+Iowa,AIDS Diagnoses,Rates,0,6.8,12.5,8.8,7.2,0
+Iowa,AIDS Deaths*,Cases,0,1,6,3,2,0
+Iowa,AIDS Deaths*,Rates,0,1.8,7.8,2.5,7.6,0
+Iowa,AIDS Prevalence*,Cases,3,17,239,136,59,0
+Iowa,AIDS Prevalence*,Rates,41.3,30.2,310.3,112.6,223,0
+Iowa,HIV Diagnoses,Cases,0,6,24,17,5,0
+Iowa,HIV Diagnoses,Rates,0,10.2,30,13.6,18.1,0
+Iowa,HIV Deaths*,Cases,0,1,7,3,2,0
+Iowa,HIV Deaths*,Rates,0,1.8,9.1,2.5,7.6,0
+Iowa,HIV Prevalence*,Cases,5,44,439,221,109,0
+Iowa,HIV Prevalence*,Rates,68.8,78.2,570,183,412,0
+Kansas,AIDS Diagnoses,Cases,0,2,16,16,2,0
+Kansas,AIDS Diagnoses,Rates,0,2.9,11.6,6.7,4.6,0
+Kansas,AIDS Deaths*,Cases,0,0,10,1,1,0
+Kansas,AIDS Deaths*,Rates,0,0,7.3,0.4,2.4,0
+Kansas,AIDS Prevalence*,Cases,3,12,345,289,84,0
+Kansas,AIDS Prevalence*,Rates,15.3,18.3,252.7,124.2,198.5,0
+Kansas,HIV Diagnoses,Cases,1,5,44,34,6,0
+Kansas,HIV Diagnoses,Rates,5.1,7.3,31.9,14.2,13.7,0
+Kansas,HIV Deaths*,Cases,0,0,10,2,1,0
+Kansas,HIV Deaths*,Rates,0,0,7.3,0.9,2.4,0
+Kansas,HIV Prevalence*,Cases,11,28,710,488,147,1
+Kansas,HIV Prevalence*,Rates,56.2,42.7,520,209.7,347.4,54.7
+Kentucky,AIDS Diagnoses,Cases,0,0,48,5,8,0
+Kentucky,AIDS Diagnoses,Rates,0,0,16.6,4.7,18.5,0
+Kentucky,AIDS Deaths*,Cases,0,0,21,3,4,1
+Kentucky,AIDS Deaths*,Rates,0,0,7.3,2.9,9.6,52.1
+Kentucky,AIDS Prevalence*,Cases,3,13,"1,081",266,134,0
+Kentucky,AIDS Prevalence*,Rates,37.3,26.9,377.4,255.5,322.6,0
+Kentucky,HIV Diagnoses,Cases,0,5,128,13,9,0
+Kentucky,HIV Diagnoses,Rates,0,9.8,44.2,12.2,20.8,0
+Kentucky,HIV Deaths*,Cases,0,0,33,3,5,1
+Kentucky,HIV Deaths*,Rates,0,0,11.5,2.9,12,52.1
+Kentucky,HIV Prevalence*,Cases,5,38,"2,178",423,228,0
+Kentucky,HIV Prevalence*,Rates,62.1,78.6,760.5,406.3,549,0
+Louisiana,AIDS Diagnoses,Cases,5,2,381,25,7,0
+Louisiana,AIDS Diagnoses,Rates,20.4,2.8,31.8,14.1,17.8,0
+Louisiana,AIDS Deaths*,Cases,0,0,261,9,4,0
+Louisiana,AIDS Deaths*,Rates,0,0,21.9,5.2,10.6,0
+Louisiana,AIDS Prevalence*,Cases,10,26,"6,905",459,167,2
+Louisiana,AIDS Prevalence*,Rates,41.3,38.2,579.3,266,441.1,126.7
+Louisiana,HIV Diagnoses,Cases,9,3,814,63,4,1
+Louisiana,HIV Diagnoses,Rates,36.7,4.3,67.9,35.4,10.2,59.6
+Louisiana,HIV Deaths*,Cases,0,0,324,9,6,0
+Louisiana,HIV Deaths*,Rates,0,0,27.2,5.2,15.8,0
+Louisiana,HIV Prevalence*,Cases,23,62,"12,920",880,313,6
+Louisiana,HIV Prevalence*,Rates,95.1,91.1,1083.9,509.9,826.7,380.2
+Maine,AIDS Diagnoses,Cases,0,0,9,2,0,0
+Maine,AIDS Diagnoses,Rates,0,0,67.2,12.6,0,0
+Maine,AIDS Deaths*,Cases,0,0,1,1,0,0
+Maine,AIDS Deaths*,Rates,0,0,7.7,6.6,0,0
+Maine,AIDS Prevalence*,Cases,5,4,71,46,19,0
+Maine,AIDS Prevalence*,Rates,71.4,30.7,547.8,302.7,140.5,0
+Maine,HIV Diagnoses,Cases,0,0,14,5,0,0
+Maine,HIV Diagnoses,Rates,0,0,104.5,31.5,0,0
+Maine,HIV Deaths*,Cases,0,0,1,1,0,0
+Maine,HIV Deaths*,Rates,0,0,7.7,6.6,0,0
+Maine,HIV Prevalence*,Cases,8,6,181,92,33,0
+Maine,HIV Prevalence*,Rates,114.2,46,1396.4,605.5,244,0
+Maryland,AIDS Diagnoses,Cases,2,7,515,49,27,0
+Maryland,AIDS Diagnoses,Rates,16,2.2,35,11.5,31.2,0
+Maryland,AIDS Deaths*,Cases,0,0,337,27,30,0
+Maryland,AIDS Deaths*,Rates,0,0,23.2,6.5,35.9,0
+Maryland,AIDS Prevalence*,Cases,4,90,"13,061","1,059","1,008",2
+Maryland,AIDS Prevalence*,Rates,32.2,28.7,898.1,256.1,1204.9,78.8
+Maryland,HIV Diagnoses,Cases,3,18,"1,022",99,31,0
+Maryland,HIV Diagnoses,Rates,24,5.5,69.5,23.2,35.8,0
+Maryland,HIV Deaths*,Cases,0,0,405,29,36,1
+Maryland,HIV Deaths*,Rates,0,0,27.8,7,43,39.4
+Maryland,HIV Prevalence*,Cases,21,210,"23,879","1,819","1,641",4
+Maryland,HIV Prevalence*,Rates,169.3,66.9,1641.9,439.9,1961.5,157.6
+Massachusetts,AIDS Diagnoses,Cases,0,7,84,83,6,0
+Massachusetts,AIDS Diagnoses,Rates,0,1.9,21.8,14.3,7.9,0
+Massachusetts,AIDS Deaths*,Cases,0,1,55,53,4,0
+Massachusetts,AIDS Deaths*,Rates,0,0.3,14.6,9.4,5.5,0
+Massachusetts,AIDS Prevalence*,Cases,13,191,"3,350","3,013",202,1
+Massachusetts,AIDS Prevalence*,Rates,126.6,53.5,886.9,536.6,275.9,44
+Massachusetts,HIV Diagnoses,Cases,3,23,183,166,7,0
+Massachusetts,HIV Diagnoses,Rates,29,6.2,47.4,28.5,9.2,0
+Massachusetts,HIV Deaths*,Cases,0,1,62,64,6,0
+Massachusetts,HIV Deaths*,Rates,0,0.3,16.4,11.4,8.2,0
+Massachusetts,HIV Prevalence*,Cases,22,358,"5,578","5,035",339,4
+Massachusetts,HIV Prevalence*,Rates,214.2,100.3,1476.7,896.6,463,176
+Michigan,AIDS Diagnoses,Cases,0,3,215,15,6,0
+Michigan,AIDS Diagnoses,Rates,0,1.2,19.1,4.2,4.5,0
+Michigan,AIDS Deaths*,Cases,0,1,108,9,10,0
+Michigan,AIDS Deaths*,Rates,0,0.4,9.6,2.6,7.8,0
+Michigan,AIDS Prevalence*,Cases,14,47,"4,419",467,279,2
+Michigan,AIDS Prevalence*,Rates,29.9,20.1,391.9,135.3,218.2,92.1
+Michigan,HIV Diagnoses,Cases,0,13,445,43,11,0
+Michigan,HIV Diagnoses,Rates,0,5.3,39.5,12.1,8.3,0
+Michigan,HIV Deaths*,Cases,0,3,146,9,12,0
+Michigan,HIV Deaths*,Rates,0,1.3,12.9,2.6,9.4,0
+Michigan,HIV Prevalence*,Cases,30,111,"8,409",832,483,3
+Michigan,HIV Prevalence*,Rates,64.1,47.4,745.7,241,377.8,138.2
+Minnesota,AIDS Diagnoses,Cases,3,8,57,14,5,0
+Minnesota,AIDS Diagnoses,Rates,6.6,3.8,24.1,7,7.3,0
+Minnesota,AIDS Deaths*,Cases,2,1,18,3,1,0
+Minnesota,AIDS Deaths*,Rates,4.5,0.5,7.9,1.5,1.5,0
+Minnesota,AIDS Prevalence*,Cases,60,65,"1,264",402,135,1
+Minnesota,AIDS Prevalence*,Rates,134.4,32.5,552.4,207,206.2,53.3
+Minnesota,HIV Diagnoses,Cases,0,12,125,24,5,0
+Minnesota,HIV Diagnoses,Rates,0,5.8,52.9,12,7.3,0
+Minnesota,HIV Deaths*,Cases,2,1,27,3,1,0
+Minnesota,HIV Deaths*,Rates,4.5,0.5,11.8,1.5,1.5,0
+Minnesota,HIV Prevalence*,Cases,112,131,"2,599",726,237,5
+Minnesota,HIV Prevalence*,Rates,250.8,65.5,1135.8,373.9,362,266.7
+Mississippi,AIDS Diagnoses,Cases,1,1,208,13,9,0
+Mississippi,AIDS Diagnoses,Rates,8.8,3.8,23.3,19.3,46.9,0
+Mississippi,AIDS Deaths*,Cases,1,0,120,3,10,0
+Mississippi,AIDS Deaths*,Rates,8.9,0,13.5,4.5,53.7,0
+Mississippi,AIDS Prevalence*,Cases,1,7,"3,165",152,225,0
+Mississippi,AIDS Prevalence*,Rates,8.9,27.7,355.2,229.9,1208.1,0
+Mississippi,HIV Diagnoses,Cases,3,3,406,15,6,0
+Mississippi,HIV Diagnoses,Rates,26.4,11.5,45.4,22.2,31.2,0
+Mississippi,HIV Deaths*,Cases,1,0,148,3,11,0
+Mississippi,HIV Deaths*,Rates,8.9,0,16.6,4.5,59.1,0
+Mississippi,HIV Prevalence*,Cases,7,13,"6,539",281,360,1
+Mississippi,HIV Prevalence*,Rates,62.3,51.5,733.8,424.9,1932.9,110.3
+Missouri,AIDS Diagnoses,Cases,0,3,109,10,11,1
+Missouri,AIDS Diagnoses,Rates,0,3,19.1,5.6,14.7,18.1
+Missouri,AIDS Deaths*,Cases,0,0,58,9,7,0
+Missouri,AIDS Deaths*,Rates,0,0,10.2,5.2,9.7,0
+Missouri,AIDS Prevalence*,Cases,9,28,"2,694",339,183,2
+Missouri,AIDS Prevalence*,Rates,41.6,29.3,474.9,196.6,253,37.3
+Missouri,HIV Diagnoses,Cases,0,9,220,22,15,1
+Missouri,HIV Diagnoses,Rates,0,9.1,38.5,12.3,20,18.1
+Missouri,HIV Deaths*,Cases,0,0,73,10,9,0
+Missouri,HIV Deaths*,Rates,0,0,12.9,5.8,12.4,0
+Missouri,HIV Prevalence*,Cases,14,60,"5,045",603,290,3
+Missouri,HIV Prevalence*,Rates,64.7,62.8,889.3,349.7,400.9,55.9
+Montana,AIDS Diagnoses,Cases,0,0,0,2,0,0
+Montana,AIDS Diagnoses,Rates,0,0,0,7.4,0,0
+Montana,AIDS Deaths*,Cases,1,0,1,1,1,0
+Montana,AIDS Deaths*,Rates,2.2,0,23.2,3.9,6.2,0
+Montana,AIDS Prevalence*,Cases,22,0,11,12,19,1
+Montana,AIDS Prevalence*,Rates,47.4,0,254.7,46.6,117.2,162.1
+Montana,HIV Diagnoses,Cases,0,0,1,3,0,0
+Montana,HIV Diagnoses,Rates,0,0,22.1,11,0,0
+Montana,HIV Deaths*,Cases,1,0,2,2,1,0
+Montana,HIV Deaths*,Rates,2.2,0,46.3,7.8,6.2,0
+Montana,HIV Prevalence*,Cases,30,1,18,28,26,2
+Montana,HIV Prevalence*,Rates,64.6,15,416.8,108.8,160.4,324.1
+Nebraska,AIDS Diagnoses,Cases,1,2,10,8,0,0
+Nebraska,AIDS Diagnoses,Rates,8.4,5.7,14.6,5.8,0,0
+Nebraska,AIDS Deaths*,Cases,0,0,7,1,0,0
+Nebraska,AIDS Deaths*,Rates,0,0,10.4,0.8,0,0
+Nebraska,AIDS Prevalence*,Cases,9,15,292,173,36,2
+Nebraska,AIDS Prevalence*,Rates,76.8,45.2,432.9,130.2,199.8,214.6
+Nebraska,HIV Diagnoses,Cases,5,0,17,11,1,0
+Nebraska,HIV Diagnoses,Rates,42,0,24.8,8,5.3,0
+Nebraska,HIV Deaths*,Cases,1,0,9,1,0,0
+Nebraska,HIV Deaths*,Rates,8.5,0,13.3,0.8,0,0
+Nebraska,HIV Prevalence*,Cases,21,27,558,301,52,2
+Nebraska,HIV Prevalence*,Rates,179.2,81.3,827.2,226.6,288.6,214.6
+Nevada,AIDS Diagnoses,Cases,1,8,59,52,3,2
+Nevada,AIDS Diagnoses,Rates,4.8,3.9,29.6,8.5,5,13.8
+Nevada,AIDS Deaths*,Cases,0,0,19,19,10,0
+Nevada,AIDS Deaths*,Rates,0,0,9.9,3.2,17.5,0
+Nevada,AIDS Prevalence*,Cases,25,115,"1,004","1,043",133,14
+Nevada,AIDS Prevalence*,Rates,120.4,58,522.2,175.9,232.2,99.9
+Nevada,HIV Diagnoses,Cases,3,31,122,148,8,6
+Nevada,HIV Diagnoses,Rates,14.3,14.9,61.2,24.1,13.3,41.5
+Nevada,HIV Deaths*,Cases,0,0,23,24,11,0
+Nevada,HIV Deaths*,Rates,0,0,12,4,19.2,0
+Nevada,HIV Prevalence*,Cases,48,239,"1,976","2,008",247,27
+Nevada,HIV Prevalence*,Rates,231.2,120.5,1027.7,338.6,431.3,192.6
+New Hampshire,AIDS Diagnoses,Cases,0,0,2,2,1,0
+New Hampshire,AIDS Diagnoses,Rates,0,0,14.9,5.8,7.7,0
+New Hampshire,AIDS Deaths*,Cases,0,0,1,0,1,0
+New Hampshire,AIDS Deaths*,Rates,0,0,7.6,0,8,0
+New Hampshire,AIDS Prevalence*,Cases,0,8,76,109,26,0
+New Hampshire,AIDS Prevalence*,Rates,0,29.3,580.6,332.8,207.9,0
+New Hampshire,HIV Diagnoses,Cases,0,0,3,1,1,0
+New Hampshire,HIV Diagnoses,Rates,0,0,22.4,2.9,7.7,0
+New Hampshire,HIV Deaths*,Cases,0,0,1,0,1,0
+New Hampshire,HIV Deaths*,Rates,0,0,7.6,0,8,0
+New Hampshire,HIV Prevalence*,Cases,0,12,145,168,39,0
+New Hampshire,HIV Prevalence*,Rates,0,44,1107.7,513,311.8,0
+New Jersey,AIDS Diagnoses,Cases,0,10,307,188,22,0
+New Jersey,AIDS Diagnoses,Rates,0,1.4,31.8,13.6,25.9,0
+New Jersey,AIDS Deaths*,Cases,0,0,260,121,49,0
+New Jersey,AIDS Deaths*,Rates,0,0,27,8.9,59.4,0
+New Jersey,AIDS Prevalence*,Cases,6,144,"8,620","5,184","1,373",5
+New Jersey,AIDS Prevalence*,Rates,55.8,20.8,896.8,383.4,1664.1,203.8
+New Jersey,HIV Diagnoses,Cases,0,26,535,400,22,0
+New Jersey,HIV Diagnoses,Rates,0,3.6,55.4,29,25.9,0
+New Jersey,HIV Deaths*,Cases,0,0,336,162,56,0
+New Jersey,HIV Deaths*,Rates,0,0,35,12,67.9,0
+New Jersey,HIV Prevalence*,Cases,12,292,"16,321","9,701","2,194",11
+New Jersey,HIV Prevalence*,Rates,111.6,42.1,1697.9,717.5,2659.2,448.4
+New Mexico,AIDS Diagnoses,Cases,9,0,0,27,0,0
+New Mexico,AIDS Diagnoses,Rates,6.3,0,0,3.4,0,0
+New Mexico,AIDS Deaths*,Cases,9,0,4,21,3,0
+New Mexico,AIDS Deaths*,Rates,6.3,0,12.3,2.7,14.2,0
+New Mexico,AIDS Prevalence*,Cases,127,6,95,827,48,2
+New Mexico,AIDS Prevalence*,Rates,89.1,22.8,292.6,106.3,227.5,163.3
+New Mexico,HIV Diagnoses,Cases,16,0,5,77,0,0
+New Mexico,HIV Diagnoses,Rates,11.2,0,15.2,9.8,0,0
+New Mexico,HIV Deaths*,Cases,12,0,5,25,3,0
+New Mexico,HIV Deaths*,Rates,8.4,0,15.4,3.2,14.2,0
+New Mexico,HIV Prevalence*,Cases,237,13,189,"1,458",83,2
+New Mexico,HIV Prevalence*,Rates,166.3,49.4,582.2,187.4,393.3,163.3
+New York,AIDS Diagnoses,Cases,1,36,684,483,101,2
+New York,AIDS Diagnoses,Rates,2.1,2.5,28.2,16.3,46.5,27.6
+New York,AIDS Deaths*,Cases,0,3,639,571,168,0
+New York,AIDS Deaths*,Rates,0,0.2,26.5,19.5,79.5,0
+New York,AIDS Prevalence*,Cases,37,811,"31,138","27,275","5,077",2
+New York,AIDS Prevalence*,Rates,76.6,57.5,1289.8,930.9,2401.5,27.9
+New York,HIV Diagnoses,Cases,1,90,"1,255","1,012",165,3
+New York,HIV Diagnoses,Rates,2.1,6.2,51.8,34.1,76,41.4
+New York,HIV Deaths*,Cases,0,7,790,663,198,0
+New York,HIV Deaths*,Rates,0,0.5,32.7,22.6,93.7,0
+New York,HIV Prevalence*,Cases,74,"1,694","51,989","44,010","7,812",14
+New York,HIV Prevalence*,Rates,153.3,120,2153.5,1502.1,3695.2,195
+North Carolina,AIDS Diagnoses,Cases,7,0,508,48,20,0
+North Carolina,AIDS Diagnoses,Rates,7.5,0,28.6,7.4,18.3,0
+North Carolina,AIDS Deaths*,Cases,2,2,240,13,20,0
+North Carolina,AIDS Deaths*,Rates,2.1,0.9,13.7,2.1,19.1,0
+North Carolina,AIDS Prevalence*,Cases,73,44,"8,141","1,045",495,2
+North Carolina,AIDS Prevalence*,Rates,78.4,20.6,464.8,167.4,473.3,38.8
+North Carolina,HIV Diagnoses,Cases,14,12,852,122,30,1
+North Carolina,HIV Diagnoses,Rates,14.9,5.3,48,18.9,27.4,18.8
+North Carolina,HIV Deaths*,Cases,2,2,344,15,25,0
+North Carolina,HIV Deaths*,Rates,2.1,0.9,19.6,2.4,23.9,0
+North Carolina,HIV Prevalence*,Cases,174,142,"18,155","2,140",959,11
+North Carolina,HIV Prevalence*,Rates,186.8,66.5,1036.5,342.8,916.9,213.4
+North Dakota,AIDS Diagnoses,Cases,0,1,6,0,0,0
+North Dakota,AIDS Diagnoses,Rates,0,11.3,44.1,0,0,0
+North Dakota,AIDS Deaths*,Cases,0,0,0,0,2,0
+North Dakota,AIDS Deaths*,Rates,0,0,0,0,24.7,0
+North Dakota,AIDS Prevalence*,Cases,10,2,35,13,6,0
+North Dakota,AIDS Prevalence*,Rates,36.2,24.1,307.4,79.1,74,0
+North Dakota,HIV Diagnoses,Cases,0,1,11,2,1,0
+North Dakota,HIV Diagnoses,Rates,0,11.3,80.9,10.6,11.5,0
+North Dakota,HIV Deaths*,Cases,0,0,0,0,2,0
+North Dakota,HIV Deaths*,Rates,0,0,0,0,24.7,0
+North Dakota,HIV Prevalence*,Cases,14,3,86,21,9,0
+North Dakota,HIV Prevalence*,Rates,50.7,36.2,755.3,127.8,111,0
+Ohio,AIDS Diagnoses,Cases,1,2,172,31,13,0
+Ohio,AIDS Diagnoses,Rates,5.2,1,14.8,10.3,9.5,0
+Ohio,AIDS Deaths*,Cases,0,1,82,8,10,1
+Ohio,AIDS Deaths*,Rates,0,0.5,7.1,2.8,7.6,33.2
+Ohio,AIDS Prevalence*,Cases,7,34,"4,181",603,381,0
+Ohio,AIDS Prevalence*,Rates,36.6,17.7,363.3,207.9,289.5,0
+Ohio,HIV Diagnoses,Cases,2,10,474,48,27,1
+Ohio,HIV Diagnoses,Rates,10.4,5,40.9,16,19.8,31.4
+Ohio,HIV Deaths*,Cases,0,1,106,12,12,1
+Ohio,HIV Deaths*,Rates,0,0.5,9.2,4.1,9.1,33.2
+Ohio,HIV Prevalence*,Cases,15,84,"8,747","1,194",701,1
+Ohio,HIV Prevalence*,Rates,78.4,43.6,760.1,411.6,532.7,33.2
+Oklahoma,AIDS Diagnoses,Cases,17,3,34,19,10,0
+Oklahoma,AIDS Diagnoses,Rates,6.7,4.3,14.5,6.9,7,0
+Oklahoma,AIDS Deaths*,Cases,10,1,24,10,3,0
+Oklahoma,AIDS Deaths*,Rates,4,1.5,10.4,3.8,2.1,0
+Oklahoma,AIDS Prevalence*,Cases,147,24,617,259,150,3
+Oklahoma,AIDS Prevalence*,Rates,58.3,36.4,267.1,97.4,107.3,79.5
+Oklahoma,HIV Diagnoses,Cases,23,9,76,42,18,1
+Oklahoma,HIV Diagnoses,Rates,9,13,32.4,15.2,12.5,25.4
+Oklahoma,HIV Deaths*,Cases,12,1,29,14,5,0
+Oklahoma,HIV Deaths*,Rates,4.8,1.5,12.6,5.3,3.6,0
+Oklahoma,HIV Prevalence*,Cases,287,53,"1,307",502,289,7
+Oklahoma,HIV Prevalence*,Rates,113.8,80.4,565.8,188.8,206.8,185.5
+Oregon,AIDS Diagnoses,Cases,3,4,12,19,2,1
+Oregon,AIDS Diagnoses,Rates,7.9,2.7,20.1,5.1,2.3,7.9
+Oregon,AIDS Deaths*,Cases,0,1,6,8,6,0
+Oregon,AIDS Deaths*,Rates,0,0.7,10.3,2.2,7.2,0
+Oregon,AIDS Prevalence*,Cases,30,51,239,479,90,10
+Oregon,AIDS Prevalence*,Rates,80.7,36.1,411.4,133.7,108.6,83.5
+Oregon,HIV Diagnoses,Cases,3,6,19,33,1,2
+Oregon,HIV Diagnoses,Rates,7.9,4,31.8,8.9,1.2,15.8
+Oregon,HIV Deaths*,Cases,0,1,7,9,6,0
+Oregon,HIV Deaths*,Rates,0,0.7,12,2.5,7.2,0
+Oregon,HIV Prevalence*,Cases,47,114,419,798,159,17
+Oregon,HIV Prevalence*,Rates,126.5,80.6,721.3,222.7,191.8,141.9
+Pennsylvania,AIDS Diagnoses,Cases,0,9,333,84,22,0
+Pennsylvania,AIDS Diagnoses,Rates,0,2.5,29.6,13,18.1,0
+Pennsylvania,AIDS Deaths*,Cases,0,0,232,70,27,0
+Pennsylvania,AIDS Deaths*,Rates,0,0,20.7,11.2,23,0
+Pennsylvania,AIDS Prevalence*,Cases,11,115,"9,181","3,068",861,9
+Pennsylvania,AIDS Prevalence*,Rates,72.5,33.5,820.6,492.6,734.3,313.6
+Pennsylvania,HIV Diagnoses,Cases,2,21,627,157,15,1
+Pennsylvania,HIV Diagnoses,Rates,13.1,5.9,55.7,24.3,12.3,33.9
+Pennsylvania,HIV Deaths*,Cases,1,0,286,84,32,0
+Pennsylvania,HIV Deaths*,Rates,6.6,0,25.6,13.5,27.3,0
+Pennsylvania,HIV Prevalence*,Cases,31,231,"16,251","5,456","1,465",22
+Pennsylvania,HIV Prevalence*,Rates,204.4,67.2,1452.4,875.9,1249.4,766.6
+Rhode Island,AIDS Diagnoses,Cases,1,1,18,13,1,0
+Rhode Island,AIDS Diagnoses,Rates,27,3.2,36.3,11.3,7.1,0
+Rhode Island,AIDS Deaths*,Cases,0,0,8,5,0,0
+Rhode Island,AIDS Deaths*,Rates,0,0,16.4,4.5,0,0
+Rhode Island,AIDS Prevalence*,Cases,4,24,360,410,27,1
+Rhode Island,AIDS Prevalence*,Rates,109.4,80.1,737.3,366.4,199.9,174.5
+Rhode Island,HIV Diagnoses,Cases,0,1,16,21,2,0
+Rhode Island,HIV Diagnoses,Rates,0,3.2,32.2,18.2,14.3,0
+Rhode Island,HIV Deaths*,Cases,0,0,9,6,0,0
+Rhode Island,HIV Deaths*,Rates,0,0,18.4,5.4,0,0
+Rhode Island,HIV Prevalence*,Cases,7,35,524,599,53,1
+Rhode Island,HIV Prevalence*,Rates,191.4,116.8,1073.2,535.3,392.3,174.5
+South Carolina,AIDS Diagnoses,Cases,0,0,276,25,8,0
+South Carolina,AIDS Diagnoses,Rates,0,0,25.4,12.9,17.4,0
+South Carolina,AIDS Deaths*,Cases,0,0,179,11,12,0
+South Carolina,AIDS Deaths*,Rates,0,0,16.6,5.9,27.4,0
+South Carolina,AIDS Prevalence*,Cases,5,18,"6,159",402,230,2
+South Carolina,AIDS Prevalence*,Rates,33.4,29.7,571.2,214.9,525.4,94.7
+South Carolina,HIV Diagnoses,Cases,1,2,477,48,9,1
+South Carolina,HIV Diagnoses,Rates,6.5,3.1,43.8,24.7,19.6,44.4
+South Carolina,HIV Deaths*,Cases,0,0,211,13,11,0
+South Carolina,HIV Deaths*,Rates,0,0,19.6,7,25.1,0
+South Carolina,HIV Prevalence*,Cases,12,32,"11,016",701,345,2
+South Carolina,HIV Prevalence*,Rates,80.1,52.8,1021.7,374.8,788,94.7
+South Dakota,AIDS Diagnoses,Cases,3,0,3,3,0,0
+South Dakota,AIDS Diagnoses,Rates,5.8,0,27,14.2,0,0
+South Dakota,AIDS Deaths*,Cases,1,0,0,0,0,0
+South Dakota,AIDS Deaths*,Rates,1.9,0,0,0,0,0
+South Dakota,AIDS Prevalence*,Cases,36,1,45,14,8,0
+South Dakota,AIDS Prevalence*,Rates,70.2,11.2,400.2,67.6,81.8,0
+South Dakota,HIV Diagnoses,Cases,3,0,6,3,0,0
+South Dakota,HIV Diagnoses,Rates,5.8,0,54,14.2,0,0
+South Dakota,HIV Deaths*,Cases,2,0,0,1,0,0
+South Dakota,HIV Deaths*,Rates,3.9,0,0,4.8,0,0
+South Dakota,HIV Prevalence*,Cases,75,4,110,24,14,0
+South Dakota,HIV Prevalence*,Rates,146.2,44.8,978.2,115.9,143.2,0
+Tennessee,AIDS Diagnoses,Cases,1,0,201,16,7,0
+Tennessee,AIDS Diagnoses,Rates,6.4,0,22.3,6.8,10.8,0
+Tennessee,AIDS Deaths*,Cases,0,0,145,3,9,0
+Tennessee,AIDS Deaths*,Rates,0,0,16.3,1.3,14.6,0
+Tennessee,AIDS Prevalence*,Cases,4,31,"4,437",439,306,2
+Tennessee,AIDS Prevalence*,Rates,25.9,34.4,498.2,192.7,495.3,71.5
+Tennessee,HIV Diagnoses,Cases,2,8,419,42,3,1
+Tennessee,HIV Diagnoses,Rates,12.7,8.5,46.5,17.8,4.6,34
+Tennessee,HIV Deaths*,Cases,0,0,174,6,12,0
+Tennessee,HIV Deaths*,Rates,0,0,19.5,2.6,19.4,0
+Tennessee,HIV Prevalence*,Cases,8,57,"8,975",790,478,7
+Tennessee,HIV Prevalence*,Rates,51.8,63.3,1007.7,346.7,773.8,250.3
+Texas,AIDS Diagnoses,Cases,2,20,756,759,87,0
+Texas,AIDS Diagnoses,Rates,2.6,1.9,28.7,9.4,36.1,0
+Texas,AIDS Deaths*,Cases,0,1,408,304,78,0
+Texas,AIDS Deaths*,Rates,0,0.1,15.9,3.9,33.9,0
+Texas,AIDS Prevalence*,Cases,21,334,"14,744","13,701","1,642",6
+Texas,AIDS Prevalence*,Rates,27.7,33.9,574.1,174.6,714.6,34.4
+Texas,HIV Diagnoses,Cases,5,83,"1,653","1,701",91,5
+Texas,HIV Diagnoses,Rates,6.5,8,62.8,21.1,37.7,27.3
+Texas,HIV Deaths*,Cases,0,2,501,343,90,0
+Texas,HIV Deaths*,Rates,0,0.2,19.5,4.4,39.2,0
+Texas,HIV Prevalence*,Cases,39,728,"28,759","24,339","2,876",18
+Texas,HIV Prevalence*,Rates,51.5,74,1119.8,310.1,1251.6,103.1
+Utah,AIDS Diagnoses,Cases,0,2,4,20,0,0
+Utah,AIDS Diagnoses,Rates,0,3.4,16.9,6.8,0,0
+Utah,AIDS Deaths*,Cases,0,0,0,2,3,0
+Utah,AIDS Deaths*,Rates,0,0,0,0.7,9.1,0
+Utah,AIDS Prevalence*,Cases,14,25,119,317,30,2
+Utah,AIDS Prevalence*,Rates,62.5,44.4,520,112,91,10
+Utah,HIV Diagnoses,Cases,2,7,8,31,0,0
+Utah,HIV Diagnoses,Rates,8.7,11.8,33.8,10.6,0,0
+Utah,HIV Deaths*,Cases,0,0,1,2,3,0
+Utah,HIV Deaths*,Rates,0,0,4.4,0.7,9.1,0
+Utah,HIV Prevalence*,Cases,22,48,232,541,52,4
+Utah,HIV Prevalence*,Rates,98.2,85.2,1013.8,191.2,157.7,20
+Vermont,AIDS Diagnoses,Cases,0,0,3,0,0,0
+Vermont,AIDS Diagnoses,Rates,0,0,50.7,0,0,0
+Vermont,AIDS Deaths*,Cases,0,0,0,0,0,0
+Vermont,AIDS Deaths*,Rates,0,0,0,0,0,0
+Vermont,AIDS Prevalence*,Cases,0,3,32,28,11,1
+Vermont,AIDS Prevalence*,Rates,0,36.5,559.9,313.9,151.8,632.9
+Vermont,HIV Diagnoses,Cases,0,1,0,2,0,0
+Vermont,HIV Diagnoses,Rates,0,11.7,0,21.5,0,0
+Vermont,HIV Deaths*,Cases,0,0,0,0,0,0
+Vermont,HIV Deaths*,Rates,0,0,0,0,0,0
+Vermont,HIV Prevalence*,Cases,1,6,70,37,20,1
+Vermont,HIV Prevalence*,Rates,56.7,73.1,1224.8,414.8,276,632.9
+Virginia,AIDS Diagnoses,Cases,1,6,217,40,10,1
+Virginia,AIDS Diagnoses,Rates,5.1,1.3,16.4,7,7.6,18.5
+Virginia,AIDS Deaths*,Cases,0,0,99,6,15,0
+Virginia,AIDS Deaths*,Rates,0,0,7.5,1.1,11.8,0
+Virginia,AIDS Prevalence*,Cases,9,124,"5,915",961,345,2
+Virginia,AIDS Prevalence*,Rates,46,28.7,450.8,173.5,272.3,38.1
+Virginia,HIV Diagnoses,Cases,1,25,590,105,10,2
+Virginia,HIV Diagnoses,Rates,5.1,5.6,44.5,18.4,7.6,37.1
+Virginia,HIV Deaths*,Cases,0,0,133,7,17,0
+Virginia,HIV Deaths*,Rates,0,0,10.1,1.3,13.4,0
+Virginia,HIV Prevalence*,Cases,19,251,"12,684","1,829",608,5
+Virginia,HIV Prevalence*,Rates,97.1,58,966.6,330.2,479.9,95.3
+Washington,AIDS Diagnoses,Cases,0,8,45,32,7,1
+Washington,AIDS Diagnoses,Rates,0,1.6,20.4,5.1,3.8,2.6
+Washington,AIDS Deaths*,Cases,2,1,18,17,6,0
+Washington,AIDS Deaths*,Rates,2.7,0.2,8.4,2.8,3.4,0
+Washington,AIDS Prevalence*,Cases,85,213,"1,022",932,224,34
+Washington,AIDS Prevalence*,Rates,112.8,44.2,476.2,152.8,126,93.2
+Washington,HIV Diagnoses,Cases,6,34,90,82,9,5
+Washington,HIV Diagnoses,Rates,7.9,6.7,40.8,13,4.9,13.1
+Washington,HIV Deaths*,Cases,3,1,19,21,6,0
+Washington,HIV Deaths*,Rates,4,0.2,8.9,3.4,3.4,0
+Washington,HIV Prevalence*,Cases,132,388,"1,867","1,601",391,56
+Washington,HIV Prevalence*,Rates,175.2,80.6,869.9,262.4,220,153.5
+West Virginia,AIDS Diagnoses,Cases,0,1,7,0,3,0
+West Virginia,AIDS Diagnoses,Rates,0,7.6,12.7,0,17.1,0
+West Virginia,AIDS Deaths*,Cases,0,0,3,0,2,0
+West Virginia,AIDS Deaths*,Rates,0,0,5.5,0,11.8,0
+West Virginia,AIDS Prevalence*,Cases,0,0,237,46,71,0
+West Virginia,AIDS Prevalence*,Rates,0,0,432.7,223.7,420.2,0
+West Virginia,HIV Diagnoses,Cases,1,1,12,2,2,0
+West Virginia,HIV Diagnoses,Rates,29.5,7.6,21.8,9.4,11.4,0
+West Virginia,HIV Deaths*,Cases,0,0,5,0,2,0
+West Virginia,HIV Deaths*,Rates,0,0,9.1,0,11.8,0
+West Virginia,HIV Prevalence*,Cases,1,5,460,93,108,0
+West Virginia,HIV Prevalence*,Rates,29.6,39.1,839.9,452.4,639.2,0
+Wisconsin,AIDS Diagnoses,Cases,1,4,35,14,5,0
+Wisconsin,AIDS Diagnoses,Rates,2.5,3.2,12.4,5.2,9.4,0
+Wisconsin,AIDS Deaths*,Cases,0,0,28,6,5,0
+Wisconsin,AIDS Deaths*,Rates,0,0,10,2.3,9.8,0
+Wisconsin,AIDS Prevalence*,Cases,12,27,"1,122",454,78,0
+Wisconsin,AIDS Prevalence*,Rates,29.9,22.8,399,173.2,152.4,0
+Wisconsin,HIV Diagnoses,Cases,4,7,93,35,5,0
+Wisconsin,HIV Diagnoses,Rates,9.9,5.7,32.8,12.9,9.4,0
+Wisconsin,HIV Deaths*,Cases,0,0,32,7,5,0
+Wisconsin,HIV Deaths*,Rates,0,0,11.4,2.7,9.8,0
+Wisconsin,HIV Prevalence*,Cases,29,71,"2,252",803,138,1
+Wisconsin,HIV Prevalence*,Rates,72.2,59.9,800.8,306.4,269.7,68.3
+Wyoming,AIDS Diagnoses,Cases,0,0,1,0,1,0
+Wyoming,AIDS Diagnoses,Rates,0,0,16.6,0,15.8,0
+Wyoming,AIDS Deaths*,Cases,0,0,0,0,0,0
+Wyoming,AIDS Deaths*,Rates,0,0,0,0,0,0
+Wyoming,AIDS Prevalence*,Cases,9,1,11,32,2,0
+Wyoming,AIDS Prevalence*,Rates,96.9,21.3,164.6,75.9,32.9,0
+Wyoming,HIV Diagnoses,Cases,0,0,2,3,0,0
+Wyoming,HIV Diagnoses,Rates,0,0,33.1,7,0,0
+Wyoming,HIV Deaths*,Cases,0,0,0,0,0,0
+Wyoming,HIV Deaths*,Rates,0,0,0,0,0,0
+Wyoming,HIV Prevalence*,Cases,11,2,23,50,5,0
+Wyoming,HIV Prevalence*,Rates,118.4,42.5,344.2,118.6,82.3,0
