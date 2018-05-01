@@ -215,8 +215,7 @@ var factsheetsDefinitionsWrapper = function () {
         next();
     });
 
-//pdf
-
+       //pdf download
     this.Then(/^I select <state> and fact sheet type "([^"]*)" and generated data downloaded file defined in "([^"]*)"$/, function (factType, csvFile, table, next) {
         table.rows().forEach(function (row) {
             var state = row[0];
@@ -422,7 +421,7 @@ var factsheetsDefinitionsWrapper = function () {
         });
         next();
     });
-//Births-Minority health dataset factsheet
+    //Births-Minority health dataset factsheet
     this.Then(/^For <state> and type "([^"]*)" the generated Births data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
         table.rows().forEach(function (row) {
             var state = row[0];
@@ -479,7 +478,6 @@ var factsheetsDefinitionsWrapper = function () {
                 expect(headers[7]).to.contains('Other, non-Hispanic');
             });
             var behavioral_risk_dataset = fsp.loadCsvFile(csvFile);
-            //console.log(birth);
             var brfssData = behavioral_risk_dataset
                 .filter(function (br) {
                     return br.state === state
@@ -517,7 +515,7 @@ var factsheetsDefinitionsWrapper = function () {
         next();
     });
 
-//Teen health- dataset
+   //Teen health- dataset
 
     this.Then(/^For <state> and type "([^"]*)" the generated teen health data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
         table.rows().forEach(function (row) {
@@ -535,7 +533,6 @@ var factsheetsDefinitionsWrapper = function () {
                 expect(headers[6]).to.contains('Native Hawaiian or Other Pacific Islander');
             });
             var teen_dataset = fsp.loadCsvFile(csvFile);
-            //console.log(teen_dataset);
             var teenData = teen_dataset
                 .filter(function (th) {
                     return th.state === state
@@ -568,12 +565,6 @@ var factsheetsDefinitionsWrapper = function () {
 
         });
         next();
-
-    });
-
-    //pdf download
-    this.Then(/^I click on downloadFactSheetLink  and generated data should be displayed on downloaded  page$/, function (table, next) {
-        // Write code here that turns the phrase above into concrete actions
 
     });
 
@@ -618,13 +609,11 @@ var factsheetsDefinitionsWrapper = function () {
 
                     });
 
-                    //case - measure - american
                     fsp.getTableBodyCellData('std-table',bodyIndex,i,2-i).then(function (data) {
                         expect(data).to.contains(item['AmericanIndian']);
 
                     });
 
-                    //case - measure - asian
                     fsp.getTableBodyCellData('std-table',bodyIndex,i,3-i).then(function (data) {
                         expect(data).to.contains(item['Asian']);
 
@@ -678,16 +667,13 @@ var factsheetsDefinitionsWrapper = function () {
                 });
 
             var causeOfDeathData = _.groupBy(mortalityStateData, function (o) {
-                //console.log("hello",o);
                 return o['CauseofDeath'];
             })
             Object.keys(causeOfDeathData).forEach(function (causeOfDeath, bodyIndex) {
 
                 var totalAndAgeRates = causeOfDeathData[causeOfDeath];
                 totalAndAgeRates.forEach(function (item, i) {
-                    //console.log('currrent kk', bodyIndex, i, item);
 
-                    // measure
                     fsp.getTableBodyCellData('detail-mortality-table', bodyIndex, i, 1-i).then(function (data) {
                         //console.log("currentitem",i,data);
                         expect(data).to.contains(item['Measure']);
@@ -742,7 +728,6 @@ var factsheetsDefinitionsWrapper = function () {
                 });
 
             var indicatorData = _.groupBy(hivStateData, function (o) {
-                //console.log("hello",o);
                 return o['Indicator'];
             })
             Object.keys(indicatorData).forEach(function (indicator, bodyIndex) {
@@ -753,19 +738,16 @@ var factsheetsDefinitionsWrapper = function () {
 
                     // measure
                     fsp.getTableBodyCellData('hiv-table', bodyIndex, i, 1 - i).then(function (data) {
-                        //console.log("currentitem",i,data);
                         expect(data).to.contains(item['Measure']);
 
                     });
 
                     fsp.getTableBodyCellData('hiv-table', bodyIndex, i, 2 - i).then(function (data) {
-                        //console.log(data);
                         expect(data).to.contains(item['AmericanIndian']);
 
                     });
 
                     fsp.getTableBodyCellData('hiv-table', bodyIndex, i, 3 - i).then(function (data) {
-                        //console.log(data);
                         expect(data).to.contains(item['Asian']);
 
                     });
