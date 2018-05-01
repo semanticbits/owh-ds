@@ -743,7 +743,7 @@ var factsheetsDefinitionsWrapper = function () {
                     });
 
                     fsp.getTableBodyCellData('hiv-table', bodyIndex, i, 2 - i).then(function (data) {
-                        expect(data).to.contains(item['AmericanIndian']);
+                        expect(data).to.contains(item['American Indian or Alaska Native']);
 
                     });
 
@@ -752,20 +752,20 @@ var factsheetsDefinitionsWrapper = function () {
 
                     });
                     fsp.getTableBodyCellData('hiv-table', bodyIndex, i, 4 - i).then(function (data) {
-                        expect(data).to.contains(item['BlackorAfrican']);
+                        expect(data).to.contains(item['Black or African American']);
 
                     });
                     fsp.getTableBodyCellData('hiv-table', bodyIndex, i, 5 - i).then(function (data) {
-                        expect(data).to.contains(item['Hispanic']);
+                        expect(data).to.contains(item['Hispanic or Latino']);
 
                     });
                     fsp.getTableBodyCellData('hiv-table', bodyIndex, i, 6 - i).then(function (data) {
-                        expect(data).to.contains(item['Multipleraces']);
+                        expect(data).to.contains(item['Multiple races']);
 
                     });
 
                     fsp.getTableBodyCellData('hiv-table', bodyIndex, i, 7 - i).then(function (data) {
-                        expect(data).to.contains(item['NativeHawaiian']);
+                        expect(data).to.contains(item['Native Hawaiian or Other Pacific Islander']);
 
                     });
 
@@ -776,8 +776,72 @@ var factsheetsDefinitionsWrapper = function () {
        next();
     });
 
+    // Cancer Statistics data set
+    this.Then(/^For <state> and type "([^"]*)" the generated Cancer Statistics data as defined in "([^"]*)" file$/, function (factType, csvFile, table,next) {
+        table.rows().forEach(function (row) {
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+
+            fsp.getTableHeaders('cancer-table').then(function (headers) {
+                expect(headers[0]).to.contains('Cancer Site');
+                expect(headers[1]).to.contains('Measure');
+                expect(headers[2]).to.contains('American Indian or Alaska Native');
+                expect(headers[3]).to.contains('Asian or Pacific Islander');
+                expect(headers[4]).to.contains('Black');
+                expect(headers[5]).to.contains('Hispanic');
+            });
+
+        var cancerDataset = fsp.loadCsvFile(csvFile);
+        var cancerStateData = cancerDataset
+            .filter(function (cancerStateRow) {
+                return cancerStateRow.state === state
+            });
+        var cancerSiteData = _.groupBy(cancerStateData, function (o) {
+            return o['Cancer Site'];
+        });
+
+        Object.keys(cancerSiteData).forEach(function (cancerSite, bodyIndex) {
+
+            var measure = cancerSiteData[cancerSite];
+            console.log("measure",cancerSiteData[cancerSite]);
+            measure.forEach(function (item, i) {
+                console.log('currrent kk', bodyIndex, i, item);
+
+                // measure
+                fsp.getTableBodyCellData('cancer-table', bodyIndex, i, i-1).then(function (data) {
+                    expect(data).to.contains(item['Measure']);
+
+               });
+
+                  fsp.getTableBodyCellData('cancer-table', bodyIndex, i, 2 - i).then(function (data) {
+                    console.log("Hello");
+                    expect(data).to.contains(item['American Indian or Alaska Native']);
+
+                });
+                fsp.getTableBodyCellData('cancer-table', bodyIndex, i, 3 - i).then(function (data) {
+                    expect(data).to.contains(item['Asian or Pacific Islander']);
+
+                });
+                fsp.getTableBodyCellData('cancer-table', bodyIndex, i, 4 - i).then(function (data) {
+                    expect(data).to.contains(item['Black']);
+
+                });
+                fsp.getTableBodyCellData('cancer-table', bodyIndex, i, 5 - i).then(function (data) {
+                    console.log("Hello");
+                    expect(data).to.contains(item['Hispanic']);
+
+                });
 
 
+            });
+        });
+
+    });
+
+        next();
+    });
 
 };
 module.exports = factsheetsDefinitionsWrapper;
