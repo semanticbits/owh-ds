@@ -255,18 +255,14 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             new yrbs().invokeYRBSService(brfss_2015_query),
             //PRAMS - 2009 - Smoking cigarettes during the last three months of pregnancy
             new yrbs().invokeYRBSService(prams_smoking_query),
-            //PRAMS - 2009 - Intended pregnancy
-            new yrbs().invokeYRBSService(prams_intended_pregnancy_query),
             //PRAMS - 2009 - Females reported physical abuse by husband or partner during pregnancy (percent)
             new yrbs().invokeYRBSService(prams_physical_abuse_query),
-            //PRAMS - 2009 - With one or more previous live births who reported unintended pregnancy
-            new yrbs().invokeYRBSService(prams_live_birth_unintended_query),
             //PRAMS - 2009 - Ever breastfed or pump breast milk to feed after delivery
             new yrbs().invokeYRBSService(prams_breast_milk_feed_query),
             //PRAMS - 2009 - Indicator of depression 3 months before pregnancy
             new yrbs().invokeYRBSService(prams_indicator_depression_query),
 
-            //Detail Mortality - Suicide
+            //Detail Mortality - Disease of Heart
             es.executeMultipleESQueries(heartDiseasesESQuery, 'owh_mortality', 'mortality'),
             new wonder('D77').invokeWONDER(heartDiseasesWonderQuery)
         ];
@@ -364,8 +360,8 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             searchUtils.mergeAgeAdjustedRates(suicideData.data.nested.table, resp[49].table);
             searchUtils.applySuppressions(suicideData, 'deaths');
             //For - Detail Mortality - Heart Diseases
-            var heartDiseaseData = searchUtils.populateDataWithMappings(resp[88], 'deaths');
-            searchUtils.mergeAgeAdjustedRates(heartDiseaseData.data.nested.table, resp[89].table);
+            var heartDiseaseData = searchUtils.populateDataWithMappings(resp[86], 'deaths');
+            searchUtils.mergeAgeAdjustedRates(heartDiseaseData.data.nested.table, resp[87].table);
             searchUtils.applySuppressions(heartDiseaseData, 'deaths');
             //Natality - Birth Rates
             var natality_BirthRates_Data = searchUtils.populateDataWithMappings(resp[50], 'natality');
@@ -485,16 +481,12 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var brfss_2015_data = resp[81];
             //PRAMS - 2009 - Smoking cigarettes during the last three months of pregnancy
             var prams_smoking_data = resp[82];
-            //PRAMS - 2009 - Intended pregnancy
-            var prams_intended_pregnancy_data = resp[83];
             //PRAMS - 2009 - Females reported physical abuse by husband or partner during pregnancy (percent)
-            var prams_physical_abuse_data = resp[84];
-            //PRAMS - 2009 - With one or more previous live births who reported unintended pregnancy
-            var prams_live_birth_unintended_data = resp[85];
+            var prams_physical_abuse_data = resp[83];
             //PRAMS - 2009 - Ever breastfed or pump breast milk to feed after delivery
-            var prams_breast_milk_feed_data = resp[86];
+            var prams_breast_milk_feed_data = resp[84];
             //PRAMS - 2009 - Indicator of depression 3 months before pregnancy
-            var prams_indicator_depression_data = resp[87];
+            var prams_indicator_depression_data = resp[85];
 
             var factSheet = prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
                 raceData, hispanicData, ageGroupData, fsType);
@@ -529,7 +521,7 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             factSheet.cancerData = prepareCancerData(cancer_mortality_data, cancer_incident_data);
             factSheet.yrbs = prepareYRBSData(yrbs_alchohol_data);
             factSheet.brfss = prepareBRFSSData(brfss_2015_data);
-            factSheet.prams = preparePRAMSData([prams_smoking_data, prams_intended_pregnancy_data, prams_physical_abuse_data], [prams_live_birth_unintended_data, prams_breast_milk_feed_data, prams_indicator_depression_data]);
+            factSheet.prams = preparePRAMSData([prams_smoking_data, prams_physical_abuse_data], [prams_breast_milk_feed_data, prams_indicator_depression_data]);
             deferred.resolve(factSheet);
         }, function (err) {
             logger.error(err.message);
@@ -552,12 +544,10 @@ function preparePRAMSData(pregnantWomenData, womenData) {
     };
 
     pramsData.pregnantWoment.push({"question": "Smoking cigarettes during the last three months of pregnancy", data: pregnantWomenData[0].table.question[0] && pregnantWomenData[0].table.question[0].yes ? getMeanDisplayValue(pregnantWomenData[0].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
-    pramsData.pregnantWoment.push({"question": "Intended pregnancy", data: pregnantWomenData[1].table.question[0] && pregnantWomenData[1].table.question[0]["intended"] ? getMeanDisplayValue(pregnantWomenData[1].table.question[0]["intended"].sitecode[0].prams.mean) : "Not applicable"});
-    pramsData.pregnantWoment.push({"question": "Females reported physical abuse by husband or partner during pregnancy", data: pregnantWomenData[2].table.question[0] && pregnantWomenData[2].table.question[0].yes ? getMeanDisplayValue(pregnantWomenData[2].table.question[0].yes.sitecode[0].prams.mean): "Not applicable"});
+    pramsData.pregnantWoment.push({"question": "Females reported physical abuse by husband or partner during pregnancy", data: pregnantWomenData[1].table.question[0] && pregnantWomenData[1].table.question[0].yes ? getMeanDisplayValue(pregnantWomenData[1].table.question[0].yes.sitecode[0].prams.mean): "Not applicable"});
 
-    pramsData.women.push({"question": "With one or more previous live births who reported unintended pregnancy", data: womenData[0].table.question[0] && womenData[0].table.question[0]["unintended"] ? getMeanDisplayValue(womenData[0].table.question[0]["unintended"].sitecode[0].prams.mean) : "Not applicable"});
-    pramsData.women.push({"question": "Ever breastfed or pump breast milk to feed after delivery", data: womenData[1].table.question[0] && womenData[1].table.question[0].yes ? getMeanDisplayValue(womenData[1].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
-    pramsData.women.push({"question": "Indicator of depression 3 months before pregnancy", data: womenData[2].table.question[0] && womenData[2].table.question[0].yes ? getMeanDisplayValue(womenData[2].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
+    pramsData.women.push({"question": "Ever breastfed or pump breast milk to feed after delivery", data: womenData[0].table.question[0] && womenData[0].table.question[0].yes ? getMeanDisplayValue(womenData[0].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
+    pramsData.women.push({"question": "Indicator of depression 3 months before pregnancy", data: womenData[1].table.question[0] && womenData[1].table.question[0].yes ? getMeanDisplayValue(womenData[1].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
     return pramsData;
 }
 
@@ -584,7 +574,7 @@ function getMeanDisplayValue(data) {
  */
 function prepareBRFSSData(data_2015){
     var brfssData = [];
-    brfssData.push({question: 'Weight classification by Body Mass Index (BMI) : Obese (bmi 30.0 - 99.8)', data: 'Not applicable' });
+    brfssData.push({question: 'Obese (Body Mass Index 30.0 - 99.8)', data: 'Not applicable' });
     brfssData.push({question: 'Adults who are current smokers', data: 'Not applicable'});
     brfssData.push({question: 'Are heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)', data: 'Not applicable'});
     brfssData.push({question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable'});

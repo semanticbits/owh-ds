@@ -81,18 +81,17 @@ function preparePRAMSData(pregnantWomenData, womenData) {
     };
     var selectedRaces = {options: ['Black', 'Hispanic', 'Other Race']};
     pramsData.pregnantWoment.push({"question": "Smoking cigarettes during the last three months of pregnancy", data: pregnantWomenData[0].table.question[0] && pregnantWomenData[0].table.question[0].yes ? pregnantWomenData[0].table.question[0].yes.maternal_race : "Not applicable"});
-    pramsData.pregnantWoment.push({"question": "Intended pregnancy", data: pregnantWomenData[1].table.question[0] && pregnantWomenData[1].table.question[0]["intended"] ? pregnantWomenData[1].table.question[0]["intended"].maternal_race : "Not applicable"});
-    pramsData.pregnantWoment.push({"question": "Females reported physical abuse by husband or partner during pregnancy", data: pregnantWomenData[2].table.question[0] && pregnantWomenData[2].table.question[0].yes ? pregnantWomenData[2].table.question[0].yes.maternal_race: "Not applicable"});
-    pramsData.women.push({"question": "Ever breastfed or pump breast milk to feed after delivery", data: womenData[1].table.question[0] && womenData[1].table.question[0].yes ? womenData[1].table.question[0].yes.maternal_race : "Not applicable"});
-    pramsData.women.push({"question": "Indicator of depression 3 months before pregnancy", data: womenData[2].table.question[0] && womenData[2].table.question[0].yes ? womenData[2].table.question[0].yes.maternal_race : "Not applicable"});
+    pramsData.pregnantWoment.push({"question": "Females reported physical abuse by husband or partner during pregnancy", data: pregnantWomenData[1].table.question[0] && pregnantWomenData[1].table.question[0].yes ? pregnantWomenData[1].table.question[0].yes.maternal_race: "Not applicable"});
+    pramsData.women.push({"question": "Ever breastfed or pump breast milk to feed after delivery", data: womenData[0].table.question[0] && womenData[0].table.question[0].yes ? womenData[0].table.question[0].yes.maternal_race : "Not applicable"});
+    pramsData.women.push({"question": "Indicator of depression 3 months before pregnancy", data: womenData[1].table.question[0] && womenData[1].table.question[0].yes ? womenData[1].table.question[0].yes.maternal_race : "Not applicable"});
     pramsData.pregnantWoment.forEach(function (quest, indx) {
-        if(quest.data != 'Not applicable') {
+        if(quest.data !== 'Not applicable') {
             searchUtils.addMissingFilterOptions(selectedRaces, quest.data, 'prams');
             quest.data = sortArrayByPropertyAndSortOrder(quest.data, 'name', selectedRaces.options);
         }
     });
     pramsData.women.forEach(function (quest, indx) {
-        if(quest.data != 'Not applicable') {
+        if(quest.data !== 'Not applicable') {
             searchUtils.addMissingFilterOptions(selectedRaces, quest.data, 'prams');
             quest.data = sortArrayByPropertyAndSortOrder(quest.data, 'name', selectedRaces.options);
         }
@@ -108,7 +107,7 @@ function preparePRAMSData(pregnantWomenData, womenData) {
  */
 function prepareBRFSSData(data){
     var brfssData = [
-        { question: 'Weight classification by Body Mass Index (BMI) : Obese (bmi 30.0 - 99.8)', data: 'Not applicable' },
+        { question: 'Obese (Body Mass Index 30.0 - 99.8)', data: 'Not applicable' },
         { question: 'Adults who are current smokers', data: 'Not applicable' },
         { question: 'Are heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)', data: 'Not applicable' },
         { question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable' }
@@ -945,22 +944,18 @@ function getBRFSDataForFactSheet(factSheetQueryJSON) {
 function getPRAMSDataForFactSheet(factSheetQueryJSON) {
     var deferred = Q.defer();
     var smokingQuery = factSheetQueryJSON.prams['Pregnant women']['qn30'];
-    var intendedPregnancyQuery = factSheetQueryJSON.prams['Pregnant women']['qn16'];
     var physicalAbuseQuery = factSheetQueryJSON.prams['Pregnant women']['qn21'];
-    var liveBirthUnintendedQuery = factSheetQueryJSON.prams['Women']['qn16'];
     var breastMilkFeedQuery = factSheetQueryJSON.prams['Women']['qn5'];
     var indicatorDepressionQuery = factSheetQueryJSON.prams['Women']['qn133'];
     var promises = [
         new yrbs().invokeYRBSService(smokingQuery),
-        new yrbs().invokeYRBSService(intendedPregnancyQuery),
         new yrbs().invokeYRBSService(physicalAbuseQuery),
-        new yrbs().invokeYRBSService(liveBirthUnintendedQuery),
         new yrbs().invokeYRBSService(breastMilkFeedQuery),
         new yrbs().invokeYRBSService(indicatorDepressionQuery)
     ];
 
     Q.all(promises).then(function (resp) {
-        var data = preparePRAMSData([resp[0], resp[1], resp[2]], [resp[3], resp[4], resp[5]]);
+        var data = preparePRAMSData([resp[0], resp[1]], [resp[2], resp[3]]);
         deferred.resolve(data);
     }, function (err) {
         logger.error(err.message);

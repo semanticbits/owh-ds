@@ -189,9 +189,7 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
 
 function getPramsDataForFactSheet(factSheetQueryJSON) {
     var smokingQuery = factSheetQueryJSON.prams['qnSmokingCigar'];
-    var intendedPregnancyQuery = factSheetQueryJSON.prams['qnIntendedPregnancy'];
     var physicalAbuseQuery = factSheetQueryJSON.prams['qnPhysicalAbuse'];
-    var liveBirthUnintendedQuery = factSheetQueryJSON.prams['qnLiveBirth'];
     var breastFeedQuery = factSheetQueryJSON.prams['qnBreastFeeding'];
     var indicatorDepressionQuery = factSheetQueryJSON.prams['qnDepressionIndicator'];
     var adequacyOfPrenatalCare = factSheetQueryJSON.prams['qnAdequacyOfPrenatalCare'];
@@ -199,9 +197,7 @@ function getPramsDataForFactSheet(factSheetQueryJSON) {
     var promises = [
         yrbsAPI.invokeYRBSService(adequacyOfPrenatalCare),
         yrbsAPI.invokeYRBSService(smokingQuery),
-        yrbsAPI.invokeYRBSService(intendedPregnancyQuery),
         yrbsAPI.invokeYRBSService(physicalAbuseQuery),
-        yrbsAPI.invokeYRBSService(liveBirthUnintendedQuery),
         yrbsAPI.invokeYRBSService(breastFeedQuery),
         yrbsAPI.invokeYRBSService(indicatorDepressionQuery)
     ];
@@ -210,11 +206,9 @@ function getPramsDataForFactSheet(factSheetQueryJSON) {
         var pramsData = [
             {"question": "Adequacy of Prenatal Care (Kessner index)", data: resp[0].table.question[0] && resp[0].table.question[0]['Adequate pnc'] ? resp[0].table.question[0]['Adequate pnc'].sitecode[0].prams.mean : "Not applicable"},
             {"question": "Smoking cigarettes during the last three months of pregnancy", data: resp[1].table.question[0] && resp[1].table.question[0].yes ? resp[1].table.question[0].yes.sitecode[0].prams.mean : "Not applicable"},
-            {"question": "Intended pregnancy", data: resp[2].table.question[0] && resp[2].table.question[0]["intended"] ? resp[2].table.question[0]["intended"].sitecode[0].prams.mean : "Not applicable"},
-            {"question": "Females reported physical abuse by husband or partner during pregnancy", data: resp[3].table.question[0] && resp[3].table.question[0].yes ? resp[3].table.question[0].yes.sitecode[0].prams.mean: "Not applicable"},
-            {"question": "With one or more previous live births who reported unintended pregnancy", data: resp[4].table.question[0] && resp[4].table.question[0]["unintended"] ? resp[4].table.question[0]["unintended"].sitecode[0].prams.mean : "Not applicable"},
-            {"question": "Ever breastfed or pump breast milk to feed after delivery", data: resp[5].table.question[0] && resp[5].table.question[0].yes ? resp[5].table.question[0].yes.sitecode[0].prams.mean : "Not applicable"},
-            {"question": "Indicator of depression 3 months before pregnancy", data: resp[6].table.question[0] && resp[6].table.question[0].yes ? resp[6].table.question[0].yes.sitecode[0].prams.mean : "Not applicable"}
+            {"question": "Females reported physical abuse by husband or partner during pregnancy", data: resp[2].table.question[0] && resp[2].table.question[0].yes ? resp[2].table.question[0].yes.sitecode[0].prams.mean: "Not applicable"},
+            {"question": "Ever breastfed or pump breast milk to feed after delivery", data: resp[3].table.question[0] && resp[3].table.question[0].yes ? resp[3].table.question[0].yes.sitecode[0].prams.mean : "Not applicable"},
+            {"question": "Indicator of depression 3 months before pregnancy", data: resp[4].table.question[0] && resp[4].table.question[0].yes ? resp[4].table.question[0].yes.sitecode[0].prams.mean : "Not applicable"}
         ];
         deferred.resolve(pramsData);
     }, function (err) {
@@ -243,10 +237,11 @@ function getYrbsDataForFactSheet(factSheetQueryJSON) {
         var data = [
             {"question": "Currently use alcohol", data: resp.table.question[0] && resp.table.question[0].Yes ? resp.table.question[0].Yes.mental_health.mean : "Not applicable"},
             {"question": "Currently use cigarettes", data: resp.table.question[1] && resp.table.question[1].Yes ? resp.table.question[1].Yes.mental_health.mean : "Not applicable"},
-            {"question": "Currently use marijuana", data: resp.table.question[2] && resp.table.question[2].Yes ? resp.table.question[2].Yes.mental_health.mean : "Not applicable"},
-            {"question": "Currently sexually active", data: resp.table.question[3] && resp.table.question[3].Yes ? resp.table.question[3].Yes.mental_health.mean : "Not applicable"},
-            {"question": "Attempted suicide", data: resp.table.question[4] && resp.table.question[4].Yes ? resp.table.question[4].Yes.mental_health.mean : "Not applicable"},
-            {"question": "Overweight", data: resp.table.question[5] && resp.table.question[5].Yes ? resp.table.question[5].Yes.mental_health.mean : "Not applicable"}
+            {"question": "Currently used electronic vapor products", data: resp.table.question[2] && resp.table.question[2].Yes ? resp.table.question[2].Yes.mental_health.mean : "Not applicable"},
+            {"question": "Currently use marijuana", data: resp.table.question[3] && resp.table.question[3].Yes ? resp.table.question[3].Yes.mental_health.mean : "Not applicable"},
+            {"question": "Currently sexually active", data: resp.table.question[4] && resp.table.question[4].Yes ? resp.table.question[4].Yes.mental_health.mean : "Not applicable"},
+            {"question": "Attempted suicide", data: resp.table.question[5] && resp.table.question[5].Yes ? resp.table.question[5].Yes.mental_health.mean : "Not applicable"},
+            {"question": "Overweight", data: resp.table.question[6] && resp.table.question[6].Yes ? resp.table.question[6].Yes.mental_health.mean : "Not applicable"}
         ];
         deferred.resolve(data);
     }, function (err) {
@@ -506,9 +501,9 @@ function prepareCancerData(pop, totalPop, countKey) {
  */
 function prepareBRFSSData(brfssResp) {
     var brfssData = [
-        {question: 'Weight classification by Body Mass Index (BMI) : Obese (bmi 30.0 - 99.8)', data: 'Not applicable' },
+        {question: 'Obese (Body Mass Index 30.0 - 99.8)', data: 'Not applicable' },
         {question: 'Adults who are current smokers', data: 'Not applicable'},
-        {question: 'Are heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)', data: 'Not applicable'},
+        {question: 'Women who are heavy drinkers (having more than 7 drinks per week)', data: 'Not applicable'},
         {question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable'}
     ];
 
