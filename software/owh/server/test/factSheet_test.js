@@ -95,10 +95,10 @@ describe("Fact sheet", function () {
             done();
         })
     });
-    it("prepare FactSheet for VA Women's Health", function (done){
-        new factSheet().prepareFactSheet('VA', "Women's Health").then(function (resp) {
+    it("prepare FactSheet for VA Women's and Girls' Health", function (done){
+        new factSheet().prepareFactSheet('VA', "Women's and Girls' Health").then(function (resp) {
             expect(resp.state).to.eql("VA");
-            expect(resp.fsType).to.eql("Women's Health");
+            expect(resp.fsType).to.eql("Women's and Girls' Health");
             //No Total
             expect(resp.race[0].name).to.eql('Black');
             expect(resp.race[1].name).to.eql('White');

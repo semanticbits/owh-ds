@@ -327,10 +327,6 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var HIVPrevalenceData = searchUtils.populateDataWithMappings(resp[28], 'aids' , 'cases');
             es.mergeWithCensusData(HIVPrevalenceData, resp[29], 'pop');
             searchUtils.applySuppressions(HIVPrevalenceData, 'aids', 0);
-            //For - Detail Mortality - Total
-            var detailMortalityTotal_Data = searchUtils.populateDataWithMappings(resp[30], 'deaths');
-            searchUtils.mergeAgeAdjustedRates(detailMortalityTotal_Data.data.nested.table, resp[31].table);
-            searchUtils.applySuppressions(detailMortalityTotal_Data, 'deaths');
             //For - Detail Mortality - malignantNeoplasm
             var malignantNeoplasmData = searchUtils.populateDataWithMappings(resp[32], 'deaths');
             searchUtils.mergeAgeAdjustedRates(malignantNeoplasmData.data.nested.table, resp[33].table);
@@ -517,7 +513,7 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
                 {disease:"HIV Diagnoses", data:prepareDiseaseData(HIVDiagnosesData, 'aids')},
                 {disease:"HIV Deaths*", data:prepareDiseaseData(HIVDeathsData, 'aids')},
                 {disease:"HIV Prevalence*", data:prepareDiseaseData(HIVPrevalenceData, 'aids')}];
-            factSheet.detailMortalityData = [{causeOfDeath:"Total", data:detailMortalityTotal_Data.data.nested.table.year[0]},
+            factSheet.detailMortalityData = [
                 {causeOfDeath: "Diseases of heart", data:heartDiseaseData.data.nested.table.year[0]},
                 {causeOfDeath: "Malignant neoplasms", data:malignantNeoplasmData.data.nested.table.year[0]},
                 {causeOfDeath: "Chronic lower respiratory diseases", data:chronicRespiratoryData.data.nested.table.year[0]},
