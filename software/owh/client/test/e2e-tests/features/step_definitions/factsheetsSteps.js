@@ -199,7 +199,6 @@ var factsheetsDefinitionsWrapper = function () {
     this.Then(/^For "([^"]*)" the generated population data as defined in "([^"]*)" file$/, function (state, csvFile, next) {
         //    "csvjson": "^5.0.0",
         var populations = fsp.loadCsvFile(csvFile);
-        // console.log("populations", populations)
         var p = populations
             .find(function (p) {
                 return p.State === state
@@ -265,7 +264,7 @@ var factsheetsDefinitionsWrapper = function () {
             fsp.getTableCellData('bridge-race-table1', 0, 5).then(function (data) {
                 expect(data).to.contains((p.Hispanic));
             });
-            console.log('state =', state)
+            //console.log('state =', state)
         });
         next();
     });
@@ -315,7 +314,7 @@ var factsheetsDefinitionsWrapper = function () {
             fsp.getTableCellData('bridge-race-table2', 0, 6).then(function (data) {
                 expect(data).to.contains((p['85+']));
             });
-            console.log('state =', state)
+
         });
         next();
 
@@ -492,7 +491,6 @@ var factsheetsDefinitionsWrapper = function () {
                 });
                 fsp.getTableCellData('brfss-table', i, 2).then(function (data) {
                     expect(data).to.contains(item.Asian);
-                    console.log("behaviour",(item.Asian));
                 });
                 fsp.getTableCellData('brfss-table', i, 3).then(function (data) {
                     expect(data).to.contains(item.Black);
@@ -842,5 +840,46 @@ var factsheetsDefinitionsWrapper = function () {
 
         next();
     });
+
+    //Prenatal Care and Pregnancy Risk (Pregenent Women)
+    this.Then(/^For <state> and type "([^"]*)" the generated Pregenent Women data as defined in "([^"]*)" file$/, function (factType, csvFile, table,next) {
+
+        table.rows().forEach(function (row) {
+
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+            fsp.getTableHeaders('prams-table-1').then(function (headers) {
+                expect(headers[0]).to.contains('Question');
+                expect(headers[1]).to.contains('Black, Non-Hispanic');
+                expect(headers[2]).to.contains('Hispanic');
+                expect(headers[3]).to.contains('Other, Non- Hispanic');
+            });
+            var pramsDataSet = fsp.loadCsvFile(csvFile);
+            var pramsData = pramsDataSet
+                .filter(function (p) {
+                    return p.state === state
+                });
+                pramsData.forEach(function (item, i) {
+                fsp.getTableCellData('prams-table-1', i, 0).then(function (data) {
+                   expect(data).to.contains(item['Question']);
+                });
+
+                fsp.getTableCellData('prams-table-1', i, 1).then(function (data) {
+                   expect(data).to.contains(item['Black, Non-Hispanic']);
+                });
+                fsp.getTableCellData('prams-table-1', i, 2).then(function (data) {
+                    expect(data).to.contains(item['Hispanic']);
+                });
+                fsp.getTableCellData('prams-table-1', i,3).then(function (data) {
+                    expect(data).to.contains(item['Other, Non- Hispanic']);
+                });
+            });
+        });
+
+        next();
+    });
+
 };
 module.exports = factsheetsDefinitionsWrapper;
