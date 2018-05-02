@@ -502,7 +502,7 @@ function prepareBRFSSData(brfssResp) {
     var brfssData = [
         {question: 'Obese (Body Mass Index 30.0 - 99.8)', data: 'Not applicable' },
         {question: 'Adults who are current smokers', data: 'Not applicable'},
-        {question: 'Women who are heavy drinkers (having more than 14 drinks per week and adult women having more than 7 drinks per week)', data: 'Not applicable'},
+        {question: 'Women who are heavy drinkers (having more than 7 drinks per week)', data: 'Not applicable'},
         {question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable'}
     ];
 
