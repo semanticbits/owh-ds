@@ -27,7 +27,8 @@
     "protractor": "^5.3.0",
     "protractor-console": "^2.0.1",
     "protractor-cucumber-framework": "^0.6.0",
-    "shelljs": "^0.6.0"
+    "shelljs": "^0.6.0",
+    "lodash": "^4.17.10"
   },
   "scripts": {
     "postinstall": "bower install",
@@ -40,8 +41,5 @@
     "update-webdriver": "webdriver-manager update",
     "preprotractor": "npm run update-webdriver",
     "protractor": "protractor test/e2e-tests/protractor.conf.js"
-  },
-  "dependencies": {
-    "lodash": "^4.17.10"
   }
 }
