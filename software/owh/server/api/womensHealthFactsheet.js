@@ -189,9 +189,7 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
 
 function getPramsDataForFactSheet(factSheetQueryJSON) {
     var smokingQuery = factSheetQueryJSON.prams['qnSmokingCigar'];
-    var intendedPregnancyQuery = factSheetQueryJSON.prams['qnIntendedPregnancy'];
     var physicalAbuseQuery = factSheetQueryJSON.prams['qnPhysicalAbuse'];
-    var liveBirthUnintendedQuery = factSheetQueryJSON.prams['qnLiveBirth'];
     var breastFeedQuery = factSheetQueryJSON.prams['qnBreastFeeding'];
     var indicatorDepressionQuery = factSheetQueryJSON.prams['qnDepressionIndicator'];
     var adequacyOfPrenatalCare = factSheetQueryJSON.prams['qnAdequacyOfPrenatalCare'];
@@ -199,9 +197,7 @@ function getPramsDataForFactSheet(factSheetQueryJSON) {
     var promises = [
         yrbsAPI.invokeYRBSService(adequacyOfPrenatalCare),
         yrbsAPI.invokeYRBSService(smokingQuery),
-        yrbsAPI.invokeYRBSService(intendedPregnancyQuery),
         yrbsAPI.invokeYRBSService(physicalAbuseQuery),
-        yrbsAPI.invokeYRBSService(liveBirthUnintendedQuery),
         yrbsAPI.invokeYRBSService(breastFeedQuery),
         yrbsAPI.invokeYRBSService(indicatorDepressionQuery)
     ];
@@ -210,11 +206,9 @@ function getPramsDataForFactSheet(factSheetQueryJSON) {
         var pramsData = [
             {"question": "Adequacy of Prenatal Care (Kessner index)", data: resp[0].table.question[0] && resp[0].table.question[0]['Adequate pnc'] ? resp[0].table.question[0]['Adequate pnc'].sitecode[0].prams.mean : "Not applicable"},
             {"question": "Smoking cigarettes during the last three months of pregnancy", data: resp[1].table.question[0] && resp[1].table.question[0].yes ? resp[1].table.question[0].yes.sitecode[0].prams.mean : "Not applicable"},
-            {"question": "Intended pregnancy", data: resp[2].table.question[0] && resp[2].table.question[0]["intended"] ? resp[2].table.question[0]["intended"].sitecode[0].prams.mean : "Not applicable"},
-            {"question": "Females reported physical abuse by husband or partner during pregnancy", data: resp[3].table.question[0] && resp[3].table.question[0].yes ? resp[3].table.question[0].yes.sitecode[0].prams.mean: "Not applicable"},
-            {"question": "With one or more previous live births who reported unintended pregnancy", data: resp[4].table.question[0] && resp[4].table.question[0]["unintended"] ? resp[4].table.question[0]["unintended"].sitecode[0].prams.mean : "Not applicable"},
-            {"question": "Ever breastfed or pump breast milk to feed after delivery", data: resp[5].table.question[0] && resp[5].table.question[0].yes ? resp[5].table.question[0].yes.sitecode[0].prams.mean : "Not applicable"},
-            {"question": "Indicator of depression 3 months before pregnancy", data: resp[6].table.question[0] && resp[6].table.question[0].yes ? resp[6].table.question[0].yes.sitecode[0].prams.mean : "Not applicable"}
+            {"question": "Females reported physical abuse by husband or partner during pregnancy", data: resp[2].table.question[0] && resp[2].table.question[0].yes ? resp[2].table.question[0].yes.sitecode[0].prams.mean: "Not applicable"},
+            {"question": "Ever breastfed or pump breast milk to feed after delivery", data: resp[3].table.question[0] && resp[3].table.question[0].yes ? resp[3].table.question[0].yes.sitecode[0].prams.mean : "Not applicable"},
+            {"question": "Indicator of depression 3 months before pregnancy", data: resp[4].table.question[0] && resp[4].table.question[0].yes ? resp[4].table.question[0].yes.sitecode[0].prams.mean : "Not applicable"}
         ];
         deferred.resolve(pramsData);
     }, function (err) {
