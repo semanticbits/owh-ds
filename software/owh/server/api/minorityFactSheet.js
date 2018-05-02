@@ -1,20 +1,16 @@
 var elasticSearch = require('../models/elasticSearch');
 var yrbs = require("../api/yrbs");
-var queryBuilder = require('../api/elasticQueryBuilder');
 var factSheetQueries = require('../json/factsheet-queries.json');
 var searchUtils = require('../api/utils');
 var wonder = require("../api/wonder");
 var Q = require('q');
 var logger = require('../config/logging');
-var extend = require('util')._extend;
-var MinorityFactSheet = function() {
-
-};
+var MinorityFactSheet = function() {};
 
 MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
     var self = this;
     var deferred = Q.defer();
-    var factSheetQueryString = JSON.stringify(factSheetQueries[fsType]);
+    var factSheetQueryString = JSON.stringify(factSheetQueries.minority_health);
     var factSheetQueryJSON;
     factSheetQueryJSON = JSON.parse(factSheetQueryString.split("$state$").join(state));
     if (factSheetQueryJSON) {
@@ -85,18 +81,17 @@ function preparePRAMSData(pregnantWomenData, womenData) {
     };
     var selectedRaces = {options: ['Black', 'Hispanic', 'Other Race']};
     pramsData.pregnantWoment.push({"question": "Smoking cigarettes during the last three months of pregnancy", data: pregnantWomenData[0].table.question[0] && pregnantWomenData[0].table.question[0].yes ? pregnantWomenData[0].table.question[0].yes.maternal_race : "Not applicable"});
-    pramsData.pregnantWoment.push({"question": "Intended pregnancy", data: pregnantWomenData[1].table.question[0] && pregnantWomenData[1].table.question[0]["intended"] ? pregnantWomenData[1].table.question[0]["intended"].maternal_race : "Not applicable"});
-    pramsData.pregnantWoment.push({"question": "Females reported physical abuse by husband or partner during pregnancy", data: pregnantWomenData[2].table.question[0] && pregnantWomenData[2].table.question[0].yes ? pregnantWomenData[2].table.question[0].yes.maternal_race: "Not applicable"});
-    pramsData.women.push({"question": "Ever breastfed or pump breast milk to feed after delivery", data: womenData[1].table.question[0] && womenData[1].table.question[0].yes ? womenData[1].table.question[0].yes.maternal_race : "Not applicable"});
-    pramsData.women.push({"question": "Indicator of depression 3 months before pregnancy", data: womenData[2].table.question[0] && womenData[2].table.question[0].yes ? womenData[2].table.question[0].yes.maternal_race : "Not applicable"});
+    pramsData.pregnantWoment.push({"question": "Females reported physical abuse by husband or partner during pregnancy", data: pregnantWomenData[1].table.question[0] && pregnantWomenData[1].table.question[0].yes ? pregnantWomenData[1].table.question[0].yes.maternal_race: "Not applicable"});
+    pramsData.women.push({"question": "Ever breastfed or pump breast milk to feed after delivery", data: womenData[0].table.question[0] && womenData[0].table.question[0].yes ? womenData[0].table.question[0].yes.maternal_race : "Not applicable"});
+    pramsData.women.push({"question": "Indicator of depression 3 months before pregnancy", data: womenData[1].table.question[0] && womenData[1].table.question[0].yes ? womenData[1].table.question[0].yes.maternal_race : "Not applicable"});
     pramsData.pregnantWoment.forEach(function (quest, indx) {
-        if(quest.data != 'Not applicable') {
+        if(quest.data !== 'Not applicable') {
             searchUtils.addMissingFilterOptions(selectedRaces, quest.data, 'prams');
             quest.data = sortArrayByPropertyAndSortOrder(quest.data, 'name', selectedRaces.options);
         }
     });
     pramsData.women.forEach(function (quest, indx) {
-        if(quest.data != 'Not applicable') {
+        if(quest.data !== 'Not applicable') {
             searchUtils.addMissingFilterOptions(selectedRaces, quest.data, 'prams');
             quest.data = sortArrayByPropertyAndSortOrder(quest.data, 'name', selectedRaces.options);
         }
@@ -112,7 +107,7 @@ function preparePRAMSData(pregnantWomenData, womenData) {
  */
 function prepareBRFSSData(data){
     var brfssData = [
-        { question: 'Weight classification by Body Mass Index (BMI) : Obese (bmi 30.0 - 99.8)', data: 'Not applicable' },
+        { question: 'Obese (Body Mass Index 30.0 - 99.8)', data: 'Not applicable' },
         { question: 'Adults who are current smokers', data: 'Not applicable' },
         { question: 'Are heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)', data: 'Not applicable' },
         { question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable' }
@@ -189,7 +184,7 @@ function prepareDiseaseData(data, countKey) {
         }
         else if(record[countKey] === 'na') {
             record['cases'] = 'Not Available';
-            record['rates'] = 'Not Available';
+            record['rates'] = 'Not Applicable';
         }
         else if(record[countKey] === 'suppressed') {
             record['cases'] = 'Suppressed';
@@ -494,7 +489,6 @@ function getAIDSDataForFactSheets(factSheetQueryJSON) {
 
 function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
     //Number of deaths
-    var mortalityTotalESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["Total"][0];
     var alzheimerESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["alzheimer"][0];
     var malignantNeoplasmESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["malignant_neoplasm"][0];
     var accidentESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["accident"][0];
@@ -506,7 +500,6 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
     var nephritisESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["nephritis"][0];
     var heartDiseaseESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["heart_diseases"][0];
 
-    var totalHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["Total"][1];
     var alzheimerHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["alzheimer"][1];
     var malignantNeoplasmHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["malignant_neoplasm"][1];
     var accidentHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["accident"][1];
@@ -518,8 +511,6 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
     var nephritisHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["nephritis"][1];
     var heartDiseaseHispanicESQuery = factSheetQueryJSON.detailMortality.number_of_deaths["heart_diseases"][1];
 
-    //Age adjusted death rates
-    var mortalityTotalWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["Total"][0];
     var alzheimerWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["alzheimer"][0];
     var malignantNeoplasmWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["malignant_neoplasm"][0];
     var accidentWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["accident"][0];
@@ -531,7 +522,6 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
     var nephritisWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["nephritis"][0];
     var heartDiseaseWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["heart_diseases"][0];
 
-    var totalHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["Total"][1];
     var alzheimerHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["alzheimer"][1];
     var malignantNeoplasmHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["malignant_neoplasm"][1];
     var accidentHispanicWonderQuery = factSheetQueryJSON.detailMortality.age_adjusted_rates["accident"][1];
@@ -546,11 +536,6 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
     var es = new elasticSearch();
     var querySet1 = [
         //Detail Mortality - Number of deaths
-        es.executeMultipleESQueries(mortalityTotalESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(mortalityTotalWonderQuery),
-        es.executeMultipleESQueries(totalHispanicESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(totalHispanicWonderQuery),
-
         es.executeMultipleESQueries(malignantNeoplasmESQuery, 'owh_mortality', 'mortality'),
         new wonder('D77').invokeWONDER(malignantNeoplasmWonderQuery),
         es.executeMultipleESQueries(malignantNeoplasmHispanicESQuery, 'owh_mortality', 'mortality'),
@@ -580,15 +565,13 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
     ];
     var deferred = Q.defer();
     Q.all(querySet1).then(function (resp) {
-        var totalData = prepareDetailMortalityData(resp[0], resp[1], resp[2], resp[3]);
-        var malignantNeoplasmData = prepareDetailMortalityData(resp[4], resp[5], resp[6], resp[7]);
-        var chronicRespiratoryData = prepareDetailMortalityData(resp[8], resp[9], resp[10], resp[11]);
-        var accidentData = prepareDetailMortalityData(resp[12], resp[13], resp[14], resp[15]);
-        var cerebroVascularData = prepareDetailMortalityData(resp[16], resp[17], resp[18], resp[19]);
-        var heartDiseaseData = prepareDetailMortalityData(resp[20], resp[21], resp[22], resp[23]);
+        var malignantNeoplasmData = prepareDetailMortalityData(resp[0], resp[1], resp[2], resp[3]);
+        var chronicRespiratoryData = prepareDetailMortalityData(resp[4], resp[5], resp[6], resp[7]);
+        var accidentData = prepareDetailMortalityData(resp[8], resp[9], resp[10], resp[11]);
+        var cerebroVascularData = prepareDetailMortalityData(resp[12], resp[13], resp[14], resp[15]);
+        var heartDiseaseData = prepareDetailMortalityData(resp[16], resp[17], resp[18], resp[19]);
 
         return [
-            {causeOfDeath:"Total", data:totalData.data.nested.table.race},
             {causeOfDeath:"Diseases of heart", data:heartDiseaseData.data.nested.table.race},
             {causeOfDeath:"Malignant neoplasms", data:malignantNeoplasmData.data.nested.table.race},
             {causeOfDeath: "Chronic lower respiratory disease", data:chronicRespiratoryData.data.nested.table.race},
@@ -961,22 +944,18 @@ function getBRFSDataForFactSheet(factSheetQueryJSON) {
 function getPRAMSDataForFactSheet(factSheetQueryJSON) {
     var deferred = Q.defer();
     var smokingQuery = factSheetQueryJSON.prams['Pregnant women']['qn30'];
-    var intendedPregnancyQuery = factSheetQueryJSON.prams['Pregnant women']['qn16'];
     var physicalAbuseQuery = factSheetQueryJSON.prams['Pregnant women']['qn21'];
-    var liveBirthUnintendedQuery = factSheetQueryJSON.prams['Women']['qn16'];
     var breastMilkFeedQuery = factSheetQueryJSON.prams['Women']['qn5'];
     var indicatorDepressionQuery = factSheetQueryJSON.prams['Women']['qn133'];
     var promises = [
         new yrbs().invokeYRBSService(smokingQuery),
-        new yrbs().invokeYRBSService(intendedPregnancyQuery),
         new yrbs().invokeYRBSService(physicalAbuseQuery),
-        new yrbs().invokeYRBSService(liveBirthUnintendedQuery),
         new yrbs().invokeYRBSService(breastMilkFeedQuery),
         new yrbs().invokeYRBSService(indicatorDepressionQuery)
     ];
 
     Q.all(promises).then(function (resp) {
-        var data = preparePRAMSData([resp[0], resp[1], resp[2]], [resp[3], resp[4], resp[5]]);
+        var data = preparePRAMSData([resp[0], resp[1]], [resp[2], resp[3]]);
         deferred.resolve(data);
     }, function (err) {
         logger.error(err.message);
