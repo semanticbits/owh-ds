@@ -9,8 +9,8 @@ exports.config = {
   frameworkPath: require.resolve('protractor-cucumber-framework'),
 
   specs: [
-     'features/*.feature'
-      //'features/factsheets.feature'
+   'features/*.feature'
+  //'features/factsheets.feature'
 
   ],
   cucumberOpts: {
@@ -45,7 +45,7 @@ exports.config = {
 
  baseUrl: process.env.E2E_BASE_URL || 'http://localhost:9900/'
 
-   // baseUrl:'http://owhqa.semanticbits.com/'
+ //baseUrl:'http://owhqa.semanticbits.com/'
 
 
 
