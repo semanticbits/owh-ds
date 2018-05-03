@@ -275,7 +275,7 @@
                         'info': {
                             fontSize: 6,
                             italics: true,
-                            margin: [0, -1, 0, 0]
+                            margin: [0, 1, 0, 0]
                         }
                     },
                     defaultStyle: {
@@ -364,6 +364,7 @@
                             layout: lightHorizontalLines
                         },
                         {text: 'Source: 2015, NCHS National Vital Statistics System', style: 'info'},
+                        {text: $filter('translate')('label.help.text.age.adjusted.rate'), style: 'info'},
                         {image: fsc.imageDataURLs.infantMortality, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Infant Mortality: (All Causes, Not gender-specific)', style: 'heading'},
                         {
@@ -959,7 +960,7 @@
                 stdData.push(eachRow);
             });
             allTablesData.std = {
-                headerData: ['Disease', 'Total Rates (Women)'],
+                headerData: ['Disease', 'Total Rates (per 100,000 women)'],
                 bodyData: stdData
             };
             //HIV-AIDS
@@ -970,7 +971,7 @@
                 hivData.push(eachRow);
             });
             allTablesData.hiv = {
-                headerData: ['Indicator', 'Total Rates (Women)'],
+                headerData: ['Indicator', 'Total Rates (per 100,000 women)'],
                 bodyData: hivData
             };
 
@@ -985,7 +986,7 @@
                 cancerData.push(aRow);
             });
             allTablesData.cancer = {
-                headerData:  ["Cancer Site", "Incidence Crude Rates (Women)", "Mortality Crude Rates (Women)"],
+                headerData:  ["Cancer Site", "Incidence Crude Rates (per 100,000 women)", "Mortality Crude Rates (per 100,000 women)"],
                 bodyData: cancerData
             };
             return allTablesData;
@@ -1292,7 +1293,7 @@
                         'info': {
                             fontSize: 6,
                             italics: true,
-                            margin: [0, -1, 0, 0]
+                            margin: [0, 1, 0, 0]
                         }
                     },
                     defaultStyle: {
@@ -1381,6 +1382,7 @@
                         layout: lightHorizontalLines
                     },
                     {text: 'Source: 2015, NCHS National Vital Statistics System', style: 'info'},
+                    {text: $filter('translate')('label.help.text.age.adjusted.rate'), style: 'info'},
                     {image: fsc.imageDataURLs.infantMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Infant Mortality: (All Causes, Not gender-specific)', style: 'heading'},
                     {
@@ -1561,7 +1563,7 @@
                         'underline': { decoration: 'underline' },
                         'tableHeader': { bold: true },
                         'table': { margin: [0, 2, 0, 2]},
-                        'info': { fontSize: 6, italics: true, margin: [0, -1, 0, 0]}
+                        'info': { fontSize: 6, italics: true, margin: [0, 1, 0, 0]}
                     },
                     defaultStyle: { fontSize: 8 }
                 };
@@ -1633,6 +1635,7 @@
                         layout: lightHorizontalLines
                     },
                     {text: 'Source: 2015, NCHS National Vital Statistics System', style: 'info'},
+                    {text: $filter('translate')('label.help.text.age.adjusted.rate'), style: 'info'},
                     {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},
                     {
