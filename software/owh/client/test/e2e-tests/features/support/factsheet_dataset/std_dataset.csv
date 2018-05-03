@@ -4,9 +4,9 @@ Alabama,Chlamydia,Rates,156.2,98.2,1045.5,130.1,63,Suppressed
 Alabama,Gonorrhea,Cases,9,27,"4,504",25,6,Suppressed
 Alabama,Gonorrhea,Rates,33.5,42.8,352.3,12.5,8.8,Suppressed
 Alabama,Primary and Secondary Syphilis,Cases,Suppressed,Suppressed,212,Suppressed,Not Available,Not Available
-Alabama,Primary and Secondary Syphilis,Rates,Suppressed,Suppressed,16.6,Suppressed,Not Available,Not Available
+Alabama,Primary and Secondary Syphilis,Rates,Suppressed,Suppressed,16.6,Suppressed,Not Applicable,Not Applicable
 Alabama,Early Latent Syphilis,Cases,Not Available,Suppressed,129,8,Not Available,Not Available
-Alabama,Early Latent Syphilis,Rates,Not Available,Suppressed,10.1,4,Not Available,Not Available
+Alabama,Early Latent Syphilis,Rates,Not Applicable,Suppressed,10.1,4,Not Applicable,Not Applicable
 Alaska,Chlamydia,Cases,"2,459",200,442,239,Not Available,176
 Alaska,Chlamydia,Rates,2358.3,460.8,1688.9,476.3,Not Applicable,1996.8
 Alaska,Gonorrhea,Cases,639,38,166,34,Not Available,35
@@ -16,21 +16,21 @@ Alaska,Primary and Secondary Syphilis,Rates,Not Applicable,Not Applicable,Not Ap
 Alaska,Early Latent Syphilis,Cases,4,Suppressed,Suppressed,Suppressed,Not Available,Not Available
 Alaska,Early Latent Syphilis,Rates,3.8,Suppressed,Suppressed,Suppressed,Not Applicable,Not Applicable
 Arizona,Chlamydia,Cases,"2,942",252,"2,765","9,828",Not Available,89
-Arizona,Chlamydia,Rates,1080.6,123.7,1011.1,477.9,Not Available,730
+Arizona,Chlamydia,Rates,1080.6,123.7,1011.1,477.9,Not Applicable,730
 Arizona,Gonorrhea,Cases,618,34,"1,416","2,424",Not Available,24
-Arizona,Gonorrhea,Rates,227,16.7,517.8,117.9,Not Available,196.9
+Arizona,Gonorrhea,Rates,227,16.7,517.8,117.9,Not Applicable,196.9
 Arizona,Primary and Secondary Syphilis,Cases,25,5,88,205,Not Available,Suppressed
-Arizona,Primary and Secondary Syphilis,Rates,9.2,2.5,32.2,10,Not Available,Suppressed
+Arizona,Primary and Secondary Syphilis,Rates,9.2,2.5,32.2,10,Not Applicable,Suppressed
 Arizona,Early Latent Syphilis,Cases,20,7,29,142,Not Available,Suppressed
-Arizona,Early Latent Syphilis,Rates,7.3,3.4,10.6,6.9,Not Available,Suppressed
+Arizona,Early Latent Syphilis,Rates,7.3,3.4,10.6,6.9,Not Applicable,Suppressed
 Arkansas,Chlamydia,Cases,38,69,"8,231",901,Not Available,137
-Arkansas,Chlamydia,Rates,172,161.6,1803.3,431.5,Not Available,1810.5
+Arkansas,Chlamydia,Rates,172,161.6,1803.3,431.5,Not Applicable,1810.5
 Arkansas,Gonorrhea,Cases,5,8,"3,080",110,Not Available,7
-Arkansas,Gonorrhea,Rates,22.6,18.7,674.8,52.7,Not Available,92.5
+Arkansas,Gonorrhea,Rates,22.6,18.7,674.8,52.7,Not Applicable,92.5
 Arkansas,Primary and Secondary Syphilis,Cases,Suppressed,Not Available,58,4,Not Available,Not Available
-Arkansas,Primary and Secondary Syphilis,Rates,Suppressed,Not Available,12.7,1.9,Not Available,Not Available
+Arkansas,Primary and Secondary Syphilis,Rates,Suppressed,Not Applicable,12.7,1.9,Not Applicable,Not Applicable
 Arkansas,Early Latent Syphilis,Cases,Not Available,Suppressed,115,12,Not Available,6
-Arkansas,Early Latent Syphilis,Rates,Not Available,Suppressed,25.2,5.7,Not Available,79.3
+Arkansas,Early Latent Syphilis,Rates,Not Applicable,Suppressed,25.2,5.7,Not Applicable,79.3
 California,Chlamydia,Cases,548,"6,602","20,204","49,895",601,666
 California,Chlamydia,Rates,331.4,123.4,910,332.9,59.2,469.4
 California,Gonorrhea,Cases,195,"1,637","10,211","13,915",335,181
@@ -40,69 +40,69 @@ California,Primary and Secondary Syphilis,Rates,12.7,4.4,28.4,12.8,5.3,17.6
 California,Early Latent Syphilis,Cases,14,189,518,"1,833",42,20
 California,Early Latent Syphilis,Rates,8.5,3.5,23.3,12.2,4.1,14.1
 Colorado,Chlamydia,Cases,191,203,"1,844","5,954",Not Available,27
-Colorado,Chlamydia,Rates,551.8,127.2,873.1,524.5,Not Available,384
+Colorado,Chlamydia,Rates,551.8,127.2,873.1,524.5,Not Applicable,384
 Colorado,Gonorrhea,Cases,73,30,715,"1,128",Not Available,5
-Colorado,Gonorrhea,Rates,210.9,18.8,338.6,99.4,Not Available,71.1
+Colorado,Gonorrhea,Rates,210.9,18.8,338.6,99.4,Not Applicable,71.1
 Colorado,Primary and Secondary Syphilis,Cases,Suppressed,Suppressed,27,66,Not Available,Not Available
-Colorado,Primary and Secondary Syphilis,Rates,Suppressed,Suppressed,12.8,5.8,Not Available,Not Available
+Colorado,Primary and Secondary Syphilis,Rates,Suppressed,Suppressed,12.8,5.8,Not Applicable,Not Applicable
 Colorado,Early Latent Syphilis,Cases,4,Suppressed,30,65,Not Available,Not Available
-Colorado,Early Latent Syphilis,Rates,11.6,Suppressed,14.2,5.7,Not Available,Not Available
+Colorado,Early Latent Syphilis,Rates,11.6,Suppressed,14.2,5.7,Not Applicable,Not Applicable
 Connecticut,Chlamydia,Cases,11,44,"2,399",991,4,4
 Connecticut,Chlamydia,Rates,147.5,27.9,675.8,183.1,6.8,301.9
 Connecticut,Gonorrhea,Cases,4,8,758,277,Suppressed,Suppressed
 Connecticut,Gonorrhea,Rates,53.6,5.1,213.5,51.2,Suppressed,Suppressed
 Connecticut,Primary and Secondary Syphilis,Cases,Not Available,Suppressed,40,18,Not Available,Not Available
-Connecticut,Primary and Secondary Syphilis,Rates,Not Available,Suppressed,11.3,3.3,Not Available,Not Available
+Connecticut,Primary and Secondary Syphilis,Rates,Not Applicable,Suppressed,11.3,3.3,Not Applicable,Not Applicable
 Connecticut,Early Latent Syphilis,Cases,Suppressed,Not Available,41,22,Not Available,Not Available
-Connecticut,Early Latent Syphilis,Rates,Suppressed,Not Available,11.6,4.1,Not Available,Not Available
+Connecticut,Early Latent Syphilis,Rates,Suppressed,Not Applicable,11.6,4.1,Not Applicable,Not Applicable
 Delaware,Chlamydia,Cases,Not Available,25,"2,560",402,4,Suppressed
-Delaware,Chlamydia,Rates,Not Available,72.4,1289.7,482.4,19.9,Suppressed
+Delaware,Chlamydia,Rates,Not Applicable,72.4,1289.7,482.4,19.9,Suppressed
 Delaware,Gonorrhea,Cases,Not Available,4,914,56,Not Available,Not Available
-Delaware,Gonorrhea,Rates,Not Available,11.6,460.5,67.2,Not Available,Not Available
+Delaware,Gonorrhea,Rates,Not Applicable,11.6,460.5,67.2,Not Applicable,Not Applicable
 Delaware,Primary and Secondary Syphilis,Cases,Not Available,Not Available,24,4,Not Available,Not Available
-Delaware,Primary and Secondary Syphilis,Rates,Not Available,Not Available,12.1,4.8,Not Available,Not Available
+Delaware,Primary and Secondary Syphilis,Rates,Not Applicable,Not Applicable,12.1,4.8,Not Applicable,Not Applicable
 Delaware,Early Latent Syphilis,Cases,Not Available,Suppressed,17,9,Not Available,Not Available
-Delaware,Early Latent Syphilis,Rates,Not Available,Suppressed,8.6,10.8,Not Available,Not Available
+Delaware,Early Latent Syphilis,Rates,Not Applicable,Suppressed,8.6,10.8,Not Applicable,Not Applicable
 District of columbia,Chlamydia,Cases,Not Available,Not Available,Not Available,Not Available,Not Available,Not Available
-District of columbia,Chlamydia,Rates,Not Available,Not Available,Not Available,Not Available,Not Available,Not Available
+District of columbia,Chlamydia,Rates,Not Applicable,Not Applicable,Not Applicable,Not Applicable,Not Applicable,Not Applicable
 District of columbia,Gonorrhea,Cases,Not Available,Not Available,Not Available,Not Available,Not Available,Not Available
-District of columbia,Gonorrhea,Rates,Not Available,Not Available,Not Available,Not Available,Not Available,Not Available
+District of columbia,Gonorrhea,Rates,Not Applicable,Not Applicable,Not Applicable,Not Applicable,Not Applicable,Not Applicable
 District of columbia,Primary and Secondary Syphilis,Cases,Not Available,Not Available,Not Available,Not Available,Not Available,Not Available
-District of columbia,Primary and Secondary Syphilis,Rates,Not Available,Not Available,Not Available,Not Available,Not Available,Not Available
+District of columbia,Primary and Secondary Syphilis,Rates,Not Applicable,Not Applicable,Not Applicable,Not Applicable,Not Applicable,Not Applicable
 District of columbia,Early Latent Syphilis,Cases,Not Available,Not Available,Not Available,Not Available,Not Available,Not Available
-District of columbia,Early Latent Syphilis,Rates,Not Available,Not Available,Not Available,Not Available,Not Available,Not Available
+District of columbia,Early Latent Syphilis,Rates,Not Applicable,Not Applicable,Not Applicable,Not Applicable,Not Applicable,Not Applicable
 Florida,Chlamydia,Cases,106,483,"34,878","13,660",Not Available,122
-Florida,Chlamydia,Rates,206.2,90.6,1127,285.2,Not Available,965
+Florida,Chlamydia,Rates,206.2,90.6,1127,285.2,Not Applicable,965
 Florida,Gonorrhea,Cases,22,108,"12,558","2,756",Not Available,24
-Florida,Gonorrhea,Rates,42.8,20.3,405.8,57.6,Not Available,189.8
+Florida,Gonorrhea,Rates,42.8,20.3,405.8,57.6,Not Applicable,189.8
 Florida,Primary and Secondary Syphilis,Cases,Suppressed,15,710,530,Not Available,Suppressed
-Florida,Primary and Secondary Syphilis,Rates,Suppressed,2.8,22.9,11.1,Not Available,Suppressed
+Florida,Primary and Secondary Syphilis,Rates,Suppressed,2.8,22.9,11.1,Not Applicable,Suppressed
 Florida,Early Latent Syphilis,Cases,Suppressed,19,780,711,Not Available,Suppressed
-Florida,Early Latent Syphilis,Rates,Suppressed,3.6,25.2,14.8,Not Available,Suppressed
+Florida,Early Latent Syphilis,Rates,Suppressed,3.6,25.2,14.8,Not Applicable,Suppressed
 Georgia,Chlamydia,Cases,35,286,"25,259","1,761",Not Available,10
-Georgia,Chlamydia,Rates,150.3,75.5,815.3,188.3,Not Available,158
+Georgia,Chlamydia,Rates,150.3,75.5,815.3,188.3,Not Applicable,158
 Georgia,Gonorrhea,Cases,10,51,"9,737",257,Not Available,5
-Georgia,Gonorrhea,Rates,42.9,13.5,314.3,27.5,Not Available,79
+Georgia,Gonorrhea,Rates,42.9,13.5,314.3,27.5,Not Applicable,79
 Georgia,Primary and Secondary Syphilis,Cases,Suppressed,9,"1,040",46,Not Available,Not Available
-Georgia,Primary and Secondary Syphilis,Rates,Suppressed,2.4,33.6,4.9,Not Available,Not Available
+Georgia,Primary and Secondary Syphilis,Rates,Suppressed,2.4,33.6,4.9,Not Applicable,Not Applicable
 Georgia,Early Latent Syphilis,Cases,Suppressed,14,"1,080",74,Not Available,Not Available
-Georgia,Early Latent Syphilis,Rates,Suppressed,3.7,34.9,7.9,Not Available,Not Available
+Georgia,Early Latent Syphilis,Rates,Suppressed,3.7,34.9,7.9,Not Applicable,Not Applicable
 Hawaii,Chlamydia,Cases,14,738,286,301,439,904
 Hawaii,Chlamydia,Rates,377.9,143,906.6,210.1,164.2,687.2
 Hawaii,Gonorrhea,Cases,Suppressed,130,83,66,103,170
 Hawaii,Gonorrhea,Rates,Suppressed,25.2,263.1,46.1,38.5,129.2
 Hawaii,Primary and Secondary Syphilis,Cases,Not Available,25,Suppressed,12,11,11
-Hawaii,Primary and Secondary Syphilis,Rates,Not Available,4.8,Suppressed,8.4,4.1,8.4
+Hawaii,Primary and Secondary Syphilis,Rates,Not Applicable,4.8,Suppressed,8.4,4.1,8.4
 Hawaii,Early Latent Syphilis,Cases,Not Available,17,Suppressed,8,6,5
-Hawaii,Early Latent Syphilis,Rates,Not Available,3.3,Suppressed,5.6,2.2,3.8
+Hawaii,Early Latent Syphilis,Rates,Not Applicable,3.3,Suppressed,5.6,2.2,3.8
 Idaho,Chlamydia,Cases,114,24,63,689,11,15
 Idaho,Chlamydia,Rates,616.9,110.6,564.6,350.6,36,562.2
 Idaho,Gonorrhea,Cases,10,8,8,44,Not Available,Suppressed
-Idaho,Gonorrhea,Rates,54.1,36.9,71.7,22.4,Not Available,Suppressed
+Idaho,Gonorrhea,Rates,54.1,36.9,71.7,22.4,Not Applicable,Suppressed
 Idaho,Primary and Secondary Syphilis,Cases,Suppressed,Not Available,Suppressed,8,Not Available,Not Available
-Idaho,Primary and Secondary Syphilis,Rates,Suppressed,Not Available,Suppressed,4.1,Not Available,Not Available
+Idaho,Primary and Secondary Syphilis,Rates,Suppressed,Not Applicable,Suppressed,4.1,Not Applicable,Not Applicable
 Idaho,Early Latent Syphilis,Cases,Not Available,Not Available,Not Available,6,Suppressed,Not Available
-Idaho,Early Latent Syphilis,Rates,Not Available,Not Available,Not Available,3.1,Suppressed,Not Available
+Idaho,Early Latent Syphilis,Rates,Not Applicable,Not Applicable,Not Applicable,3.1,Suppressed,Not Applicable
 Illinois,Chlamydia,Cases,73,662,"29,550","8,733",176,55
 Illinois,Chlamydia,Rates,384.9,99,1620.2,405.6,92.9,1541.5
 Illinois,Gonorrhea,Cases,18,115,"10,134","1,170",65,12
@@ -110,39 +110,39 @@ Illinois,Gonorrhea,Rates,94.9,17.2,555.6,54.3,34.3,336.3
 Illinois,Primary and Secondary Syphilis,Cases,4,18,481,203,Suppressed,Suppressed
 Illinois,Primary and Secondary Syphilis,Rates,21.1,2.7,26.4,9.4,Suppressed,Suppressed
 Illinois,Early Latent Syphilis,Cases,5,16,419,172,Suppressed,Not Available
-Illinois,Early Latent Syphilis,Rates,26.4,2.4,23,8,Suppressed,Not Available
+Illinois,Early Latent Syphilis,Rates,26.4,2.4,23,8,Suppressed,Not Applicable
 Indiana,Chlamydia,Cases,19,176,"10,163","1,645",Not Available,27
-Indiana,Chlamydia,Rates,126.3,136.1,1666.6,380.5,Not Available,1201.6
+Indiana,Chlamydia,Rates,126.3,136.1,1666.6,380.5,Not Applicable,1201.6
 Indiana,Gonorrhea,Cases,9,26,"4,127",258,Not Available,4
-Indiana,Gonorrhea,Rates,59.8,20.1,676.8,59.7,Not Available,178
+Indiana,Gonorrhea,Rates,59.8,20.1,676.8,59.7,Not Applicable,178
 Indiana,Primary and Secondary Syphilis,Cases,Not Available,Suppressed,104,26,Not Available,Not Available
-Indiana,Primary and Secondary Syphilis,Rates,Not Available,Suppressed,17.1,6,Not Available,Not Available
+Indiana,Primary and Secondary Syphilis,Rates,Not Applicable,Suppressed,17.1,6,Not Applicable,Not Applicable
 Indiana,Early Latent Syphilis,Cases,Not Available,4,86,21,Not Available,Suppressed
-Indiana,Early Latent Syphilis,Rates,Not Available,3.1,14.1,4.9,Not Available,Suppressed
+Indiana,Early Latent Syphilis,Rates,Not Applicable,3.1,14.1,4.9,Not Applicable,Suppressed
 Iowa,Chlamydia,Cases,93,173,"2,194",934,148,30
 Iowa,Chlamydia,Rates,1023.4,255.5,2167.2,538,314.8,1301
 Iowa,Gonorrhea,Cases,29,26,774,124,35,Suppressed
 Iowa,Gonorrhea,Rates,319.1,38.4,764.6,71.4,74.4,Suppressed
 Iowa,Primary and Secondary Syphilis,Cases,Not Available,Suppressed,9,8,Suppressed,Not Available
-Iowa,Primary and Secondary Syphilis,Rates,Not Available,Suppressed,8.9,4.6,Suppressed,Not Available
+Iowa,Primary and Secondary Syphilis,Rates,Not Applicable,Suppressed,8.9,4.6,Suppressed,Not Applicable
 Iowa,Early Latent Syphilis,Cases,Not Available,Suppressed,10,6,Suppressed,Not Available
-Iowa,Early Latent Syphilis,Rates,Not Available,Suppressed,9.9,3.5,Suppressed,Not Available
+Iowa,Early Latent Syphilis,Rates,Not Applicable,Suppressed,9.9,3.5,Suppressed,Not Applicable
 Kansas,Chlamydia,Cases,Suppressed,83,"1,718","1,046",31,11
 Kansas,Chlamydia,Rates,Suppressed,105.2,1006.8,317.3,44.4,477.6
 Kansas,Gonorrhea,Cases,Not Available,9,719,189,4,Suppressed
-Kansas,Gonorrhea,Rates,Not Available,11.4,421.4,57.3,5.7,Suppressed
+Kansas,Gonorrhea,Rates,Not Applicable,11.4,421.4,57.3,5.7,Suppressed
 Kansas,Primary and Secondary Syphilis,Cases,Not Available,Not Available,22,13,Suppressed,Not Available
-Kansas,Primary and Secondary Syphilis,Rates,Not Available,Not Available,12.9,3.9,Suppressed,Not Available
+Kansas,Primary and Secondary Syphilis,Rates,Not Applicable,Not Applicable,12.9,3.9,Suppressed,Not Applicable
 Kansas,Early Latent Syphilis,Cases,Not Available,Suppressed,42,29,Suppressed,Not Available
-Kansas,Early Latent Syphilis,Rates,Not Available,Suppressed,24.6,8.8,Suppressed,Not Available
+Kansas,Early Latent Syphilis,Rates,Not Applicable,Suppressed,24.6,8.8,Suppressed,Not Applicable
 Kentucky,Chlamydia,Cases,20,52,"4,530",464,21,6
 Kentucky,Chlamydia,Rates,220.7,87.5,1279.2,311.4,29.3,233.9
 Kentucky,Gonorrhea,Cases,7,15,"1,962",117,9,Suppressed
 Kentucky,Gonorrhea,Rates,77.2,25.2,554,78.5,12.6,Suppressed
 Kentucky,Primary and Secondary Syphilis,Cases,Suppressed,Not Available,62,5,Not Available,Not Available
-Kentucky,Primary and Secondary Syphilis,Rates,Suppressed,Not Available,17.5,3.4,Not Available,Not Available
+Kentucky,Primary and Secondary Syphilis,Rates,Suppressed,Not Applicable,17.5,3.4,Not Applicable,Not Applicable
 Kentucky,Early Latent Syphilis,Cases,Not Available,Not Available,65,6,Suppressed,Suppressed
-Kentucky,Early Latent Syphilis,Rates,Not Available,Not Available,18.4,4,Suppressed,Suppressed
+Kentucky,Early Latent Syphilis,Rates,Not Applicable,Not Applicable,18.4,4,Suppressed,Suppressed
 Louisiana,Chlamydia,Cases,41,152,"21,009",908,177,12
 Louisiana,Chlamydia,Rates,139.6,187.5,1409.3,403.8,280.3,628.6
 Louisiana,Gonorrhea,Cases,13,41,"7,493",137,36,Suppressed

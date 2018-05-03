@@ -84,7 +84,7 @@ Scenario: Access fact sheet page
      |Wisconsin|
      |Wyoming|
 
-#Population - Age Distribution
+##Population - Age Distribution
   Scenario: Generate Minority FactSheet population for all states based upon Age Distributions of Residents
     Then For <state> and type "Minority Health" the generated population data as defined in "population_age.csv" file
       |state|
@@ -252,7 +252,7 @@ Scenario: Access fact sheet page
 
    #  Generate Prenatal Care and Pregnancy Risk (PREGNANT WOMEN) - Minority Health fact sheet for all states
    Scenario: Generate Prenatal Care and Pregnancy Risk (Pregenent Women)-Minority Health fact sheet for all states
-    Then For <state> and type "Minority Health" the generated Pregenent Women data as defined in "pregenent_women_dataset.csv" file
+    Then For <state> and type "Minority Health" the generated Pregenent Women data as defined in "prams_dataset.csv" file
      |state|
      |Alabama|
      |Arizona|
