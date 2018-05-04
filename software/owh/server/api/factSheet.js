@@ -124,17 +124,13 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
         //BRFSS - 2015 - Overweight and Obesity(BMI), Tobbaco use, Fruits and Vegetables, Alcohol Consumption
         var brfss_2015_query = factSheetQueryJSON.brfss.query_2015;
         //PRAMS - 2009 - Smoking cigarettes during the last three months of pregnancy
-        var prams_smoking_query = factSheetQueryJSON.prams['Pregnant women']['qn30'];
-        //PRAMS - 2009 - Intended pregnancy
-        var prams_intended_pregnancy_query = factSheetQueryJSON.prams['Pregnant women']['qn16'];
+        var prams_smoking_query = factSheetQueryJSON.prams['qn30'];
         //PRAMS - 2009 - Females reported physical abuse by husband or partner during pregnancy (percent)
-        var prams_physical_abuse_query = factSheetQueryJSON.prams['Pregnant women']['qn21'];
-        //PRAMS - 2009 - With one or more previous live births who reported unintended pregnancy
-        var prams_live_birth_unintended_query = factSheetQueryJSON.prams['Women']['qn16'];
+        var prams_physical_abuse_query = factSheetQueryJSON.prams['qn21'];
         //PRAMS - 2009 - Ever breastfed or pump breast milk to feed after delivery
-        var prams_breast_milk_feed_query = factSheetQueryJSON.prams['Women']['qn5'];
+        var prams_breast_milk_feed_query = factSheetQueryJSON.prams['qn5'];
         //PRAMS - 2009 - Indicator of depression 3 months before pregnancy
-        var prams_indicator_depression_query = factSheetQueryJSON.prams['Women']['qn133'];
+        var prams_indicator_depression_query = factSheetQueryJSON.prams['qn133'];
 
         var es = new elasticSearch();
         var promises = [
@@ -521,7 +517,7 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             factSheet.cancerData = prepareCancerData(cancer_mortality_data, cancer_incident_data);
             factSheet.yrbs = prepareYRBSData(yrbs_alchohol_data);
             factSheet.brfss = prepareBRFSSData(brfss_2015_data);
-            factSheet.prams = preparePRAMSData([prams_smoking_data, prams_physical_abuse_data], [prams_breast_milk_feed_data, prams_indicator_depression_data]);
+            factSheet.prams = preparePRAMSData([prams_smoking_data, prams_physical_abuse_data, prams_breast_milk_feed_data, prams_indicator_depression_data]);
             deferred.resolve(factSheet);
         }, function (err) {
             logger.error(err.message);
@@ -537,18 +533,13 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
  * @param womenData
  * @return {{pregnantWoment: [], women: []}}
  */
-function preparePRAMSData(pregnantWomenData, womenData) {
-    var pramsData = {
-        pregnantWoment: [],
-        women: []
-    };
-
-    pramsData.pregnantWoment.push({"question": "Smoking cigarettes during the last three months of pregnancy", data: pregnantWomenData[0].table.question[0] && pregnantWomenData[0].table.question[0].yes ? getMeanDisplayValue(pregnantWomenData[0].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
-    pramsData.pregnantWoment.push({"question": "Females reported physical abuse by husband or partner during pregnancy", data: pregnantWomenData[1].table.question[0] && pregnantWomenData[1].table.question[0].yes ? getMeanDisplayValue(pregnantWomenData[1].table.question[0].yes.sitecode[0].prams.mean): "Not applicable"});
-
-    pramsData.women.push({"question": "Ever breastfed or pump breast milk to feed after delivery", data: womenData[0].table.question[0] && womenData[0].table.question[0].yes ? getMeanDisplayValue(womenData[0].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
-    pramsData.women.push({"question": "Indicator of depression 3 months before pregnancy", data: womenData[1].table.question[0] && womenData[1].table.question[0].yes ? getMeanDisplayValue(womenData[1].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
-    return pramsData;
+function preparePRAMSData(pramsData) {
+    return [
+        {"question": "Smoking cigarettes during the last three months of pregnancy", data: pramsData[0].table.question[0] && pramsData[0].table.question[0].yes ? getMeanDisplayValue(pramsData[0].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"},
+        {"question": "Females reported physical abuse by husband or partner during pregnancy", data: pramsData[1].table.question[0] && pramsData[1].table.question[0].yes ? getMeanDisplayValue(pramsData[1].table.question[0].yes.sitecode[0].prams.mean): "Not applicable"},
+        {"question": "Ever breastfed or pump breast milk to feed after delivery", data: pramsData[2].table.question[0] && pramsData[2].table.question[0].yes ? getMeanDisplayValue(pramsData[2].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"},
+        {"question": "Indicator of depression 3 months before pregnancy", data: pramsData[3].table.question[0] && pramsData[3].table.question[0].yes ? getMeanDisplayValue(pramsData[3].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"}
+    ];
 }
 
 function getMeanDisplayValue(data) {

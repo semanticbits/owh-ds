@@ -74,29 +74,21 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
  * @param womenData
  * @return {{pregnantWoment: [], women: []}}
  */
-function preparePRAMSData(pregnantWomenData, womenData) {
-    var pramsData = {
-        pregnantWoment: [],
-        women: []
-    };
+function preparePRAMSData(respData) {
     var selectedRaces = {options: ['Black', 'Hispanic', 'Other Race']};
-    pramsData.pregnantWoment.push({"question": "Smoking cigarettes during the last three months of pregnancy", data: pregnantWomenData[0].table.question[0] && pregnantWomenData[0].table.question[0].yes ? pregnantWomenData[0].table.question[0].yes.maternal_race : "Not applicable"});
-    pramsData.pregnantWoment.push({"question": "Females reported physical abuse by husband or partner during pregnancy", data: pregnantWomenData[1].table.question[0] && pregnantWomenData[1].table.question[0].yes ? pregnantWomenData[1].table.question[0].yes.maternal_race: "Not applicable"});
-    pramsData.women.push({"question": "Ever breastfed or pump breast milk to feed after delivery", data: womenData[0].table.question[0] && womenData[0].table.question[0].yes ? womenData[0].table.question[0].yes.maternal_race : "Not applicable"});
-    pramsData.women.push({"question": "Indicator of depression 3 months before pregnancy", data: womenData[1].table.question[0] && womenData[1].table.question[0].yes ? womenData[1].table.question[0].yes.maternal_race : "Not applicable"});
-    pramsData.pregnantWoment.forEach(function (quest, indx) {
+    var resultData = [
+        {"question": "Smoking cigarettes during the last three months of pregnancy", data: respData[0].table.question[0] && respData[0].table.question[0].yes ? respData[0].table.question[0].yes.maternal_race : "Not applicable"},
+        {"question": "Females reported physical abuse by husband or partner during pregnancy", data: respData[1].table.question[0] && respData[1].table.question[0].yes ? respData[1].table.question[0].yes.maternal_race: "Not applicable"},
+        {"question": "Ever breastfed or pump breast milk to feed after delivery", data: respData[2].table.question[0] && respData[2].table.question[0].yes ? respData[2].table.question[0].yes.maternal_race : "Not applicable"},
+        {"question": "Indicator of depression 3 months before pregnancy", data: respData[3].table.question[0] && respData[3].table.question[0].yes ? respData[3].table.question[0].yes.maternal_race : "Not applicable"}
+    ];
+    resultData.forEach(function (quest, indx) {
         if(quest.data !== 'Not applicable') {
             searchUtils.addMissingFilterOptions(selectedRaces, quest.data, 'prams');
             quest.data = sortArrayByPropertyAndSortOrder(quest.data, 'name', selectedRaces.options);
         }
     });
-    pramsData.women.forEach(function (quest, indx) {
-        if(quest.data !== 'Not applicable') {
-            searchUtils.addMissingFilterOptions(selectedRaces, quest.data, 'prams');
-            quest.data = sortArrayByPropertyAndSortOrder(quest.data, 'name', selectedRaces.options);
-        }
-    });
-    return pramsData;
+    return resultData;
 }
 
 /**
@@ -943,19 +935,15 @@ function getBRFSDataForFactSheet(factSheetQueryJSON) {
 
 function getPRAMSDataForFactSheet(factSheetQueryJSON) {
     var deferred = Q.defer();
-    var smokingQuery = factSheetQueryJSON.prams['Pregnant women']['qn30'];
-    var physicalAbuseQuery = factSheetQueryJSON.prams['Pregnant women']['qn21'];
-    var breastMilkFeedQuery = factSheetQueryJSON.prams['Women']['qn5'];
-    var indicatorDepressionQuery = factSheetQueryJSON.prams['Women']['qn133'];
     var promises = [
-        new yrbs().invokeYRBSService(smokingQuery),
-        new yrbs().invokeYRBSService(physicalAbuseQuery),
-        new yrbs().invokeYRBSService(breastMilkFeedQuery),
-        new yrbs().invokeYRBSService(indicatorDepressionQuery)
+        new yrbs().invokeYRBSService(factSheetQueryJSON.prams['qn30']),//Smoking
+        new yrbs().invokeYRBSService(factSheetQueryJSON.prams['qn21']),//Physical Abuse
+        new yrbs().invokeYRBSService(factSheetQueryJSON.prams['qn5']),//Breast feeding
+        new yrbs().invokeYRBSService(factSheetQueryJSON.prams['qn133'])//indicator of depression
     ];
 
     Q.all(promises).then(function (resp) {
-        var data = preparePRAMSData([resp[0], resp[1]], [resp[2], resp[3]]);
+        var data = preparePRAMSData([resp[0], resp[1], resp[2], resp[3]]);
         deferred.resolve(data);
     }, function (err) {
         logger.error(err.message);

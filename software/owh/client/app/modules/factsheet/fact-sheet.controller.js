@@ -384,25 +384,13 @@
                         {text: 'Source: 2014  NCHS National Vital Statistics System', style: 'info'},
                         {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},
-                        {text: 'Pregnant women:', style: 'underline'},
                         {
                             style: 'table',
                             table: {
-                                widths: $.map( allTablesData.pramsTable1.bodyData[0], function (d, i) {
+                                widths: $.map( allTablesData.pramsTable[0], function (d, i) {
                                     return '*';
                                 } ),
-                                body: prepareTableBody(allTablesData.pramsTable1.bodyData)
-                            },
-                            layout: lightHorizontalLines
-                        },
-                        {text: 'Women:', style: 'underline'},
-                        {
-                            style: 'table',
-                            table: {
-                                widths: $.map( allTablesData.pramsTable2.bodyData[0], function (d, i) {
-                                    return '*';
-                                } ),
-                                body: prepareTableBody(allTablesData.pramsTable2.bodyData)
+                                body: prepareTableBody(allTablesData.pramsTable)
                             },
                             layout: lightHorizontalLines
                         },
@@ -626,7 +614,6 @@
                 bodyData: mortalityTableBody
             };
             //Infant Mortality
-            debugger;
             var infantAIAN = fsc.factSheet.infantMortalityData["American Indian or Alaska Native"];
             var infantAPI  = fsc.factSheet.infantMortalityData["Asian or Pacific Islander"];
             var infantBAA = fsc.factSheet.infantMortalityData["Black or African American"];
@@ -659,9 +646,8 @@
             };
 
             //PRAMS
-            var pregnantWomenTableDt = [];
-
-            angular.forEach(fsc.factSheet.prams.pregnantWoment, function(eachRecord) {
+            var pramsTable = [];
+            angular.forEach(fsc.factSheet.prams, function(eachRecord) {
                 var aRow = [eachRecord.question];
                 if(eachRecord.data != 'Not applicable') {
                     angular.forEach(eachRecord.data, function (dt) {
@@ -670,22 +656,12 @@
                 } else {
                     aRow.push('Not applicable'); aRow.push('Not applicable'); aRow.push('Not applicable');
                 }
-                pregnantWomenTableDt.push(aRow);
+                pramsTable.push(aRow);
             });
-            var pramsWomenTableDt = [];
-            angular.forEach(fsc.factSheet.prams.women, function(eachRecord){
-                var aRow = [eachRecord.question];
-                if(eachRecord.data != 'Not applicable') {
-                    angular.forEach(eachRecord.data, function (dt) {
-                        aRow.push(getMeanDisplayValue(dt.prams.mean));
-                    });
-                } else {
-                    aRow.push('Not applicable'); aRow.push('Not applicable'); aRow.push('Not applicable');
-                }
-                pramsWomenTableDt.push(aRow);
-            });
-            allTablesData.pregnantWomenTableDt = pregnantWomenTableDt;
-            allTablesData.pramsWomenTableDt = pramsWomenTableDt;
+            allTablesData.prams = {
+                headerData: ['Question', 'Black, Non-Hispanic', 'Hispanic', 'Other, Non- Hispanic'],
+                bodyData: pramsTable
+            };
             //BRFSS
             allTablesData.brfss = {
                 headerData: ['Question', 'American Indian or Alaskan Native, non-Hispanic', 'Asian, non-Hispanic', 'Black, non-Hispanic',
@@ -1050,20 +1026,12 @@
                     $filter('number')(fsc.factSheet.infantMortalityData.deathRate, 1)]
             };
             //PRAMS
-            var pramsTableOneData = [];
-            angular.forEach(fsc.factSheet.prams.pregnantWoment, function(eachRecord){
-                pramsTableOneData.push([eachRecord.question, eachRecord.data]);
+            var pramsTableData = [];
+            angular.forEach(fsc.factSheet.prams, function(eachRecord){
+                pramsTableData.push([eachRecord.question, eachRecord.data]);
             });
-            var pramsTableTwoData = [];
-            angular.forEach(fsc.factSheet.prams.women, function(eachRecord){
-                pramsTableTwoData.push([eachRecord.question, eachRecord.data]);
-            });
-            allTablesData.pramsTable1 = {
-                bodyData: pramsTableOneData
-            };
-            allTablesData.pramsTable2 = {
-                bodyData: pramsTableTwoData
-            };
+            allTablesData.pramsTable = pramsTableData;
+
             //BRFSS
             var brfssData = [];
             angular.forEach(fsc.factSheet.brfss, function(eachRecord){
@@ -1207,11 +1175,8 @@
                 var infantMortalityTableData = allTablesData.infantMortality.bodyData;
                 infantMortalityTableData.unshift(prepareTableHeaders(allTablesData.infantMortality.headerData));
 
-                var pregnantWomenTableData = allTablesData.pregnantWomenTableDt;
-                var pramsTableHeaders = prepareTableHeaders(['Question', 'Black, Non-Hispanic', 'Hispanic', 'Other, Non- Hispanic']);
-                pregnantWomenTableData.unshift(pramsTableHeaders);
-                var pramsWomenTableData = allTablesData.pramsWomenTableDt;
-                pramsWomenTableData.unshift(prepareTableHeaders(['Question', 'Black, Non-Hispanic', 'Hispanic', 'Other, Non- Hispanic']));
+                var pramsTableData = allTablesData.prams.bodyData;
+                pramsTableData.unshift(prepareTableHeaders(allTablesData.prams.headerData));
 
                 var brfssTableData = allTablesData.brfss.bodyData;
                 brfssTableData.unshift(prepareTableHeaders(allTablesData.brfss.headerData));
@@ -1399,25 +1364,13 @@
                     {text: 'Source: 2014  NCHS National Vital Statistics System', style: 'info'},
                     {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                     {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},
-                    {text: 'Pregnant women:', style: 'underline'},
                     {
                         style: 'table',
                         table: {
-                            widths: $.map( pregnantWomenTableData[0], function (d, i) {
+                            widths: $.map( allTablesData.prams.headerData, function (d, i) {
                                 return '*';
                             }),
-                            body: pregnantWomenTableData
-                        },
-                        layout: lightHorizontalLines
-                    },
-                    {text: 'Women:', style: 'underline'},
-                    {
-                        style: 'table',
-                        table: {
-                            widths: $.map( pramsWomenTableData[0], function (d, i) {
-                                return '*';
-                            }),
-                            body: pramsWomenTableData
+                            body: pramsTableData
                         },
                         layout: lightHorizontalLines
                     },
@@ -1435,7 +1388,7 @@
                         layout: lightHorizontalLines
                     },
                     {text: 'Source:  2015, CDC BRFSS', style: 'info'},
-                    {image: fsc.imageDataURLs.yrbs, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
+                    {image: fsc.imageDataURLs.yrbs, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Teen Health', style: 'heading'},
                     {
                         style: 'table',
@@ -1474,7 +1427,7 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info', pageBreak: 'after'},
+                    {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
                     {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Sexually Transmitted Infections', style: 'heading'},
                     {text: 'Population: '+$filter('number')(fsc.factSheet.stdData[0].data[0].pop)},
@@ -1488,7 +1441,8 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
+                    {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info',
+                        pageBreak: 'after'},
                     {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'HIV/AIDS', style: 'heading'},
                     {text: 'Population: '+$filter('number')(fsc.factSheet.hivAIDSData[0].data[0].pop)},

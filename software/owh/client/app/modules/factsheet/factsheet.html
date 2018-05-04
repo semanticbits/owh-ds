@@ -203,7 +203,6 @@
                     <!-- Prenatal Care and Pregnancy Risk -->
                     <div class="prams-factsheet">
                         <div class="table-heading"><h5><img src="../../images/icons/natality-icon.svg"/>Prenatal Care and Pregnancy Risk</h5></div>
-                        <h6>Pregnant women</h6>
                         <table class="prams-table-1">
                             <thead>
                                 <th>Question</th>
@@ -212,29 +211,9 @@
                                 <th>Other, Non- Hispanic</th>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="eachRecord in fsc.factSheet.prams.pregnantWoment" ng-class="{solidBorder: $index == 0}">
+                                <tr ng-repeat="eachRecord in fsc.factSheet.prams" ng-class="{solidBorder: $index == 0}">
                                     <td ng-bind="eachRecord.question"></td>
                                     <td ng-repeat="dt in eachRecord.data" ng-if="eachRecord.data != 'Not applicable'"
-                                        ng-bind="fsc.getMeanDisplayValue(dt.prams.mean)"></td>
-                                    <td ng-if="eachRecord.data == 'Not applicable'">{{eachRecord.data}}</td>
-                                    <td ng-if="eachRecord.data == 'Not applicable'">{{eachRecord.data}}</td>
-                                    <td ng-if="eachRecord.data == 'Not applicable'">{{eachRecord.data}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h6>Women</h6>
-                        <table class="prams-table-2">
-                            <thead>
-                            <th>Question</th>
-                            <th>Black, Non-Hispanic</th>
-                            <th>Hispanic</th>
-                            <th>Other, Non- Hispanic</th>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="eachRecord in fsc.factSheet.prams.women" ng-class="{solidBorder: $index == 0}">
-                                    <td ng-bind="eachRecord.question"></td>
-                                    <td ng-repeat="dt in eachRecord.data"
-                                        ng-if="eachRecord.data != 'Not applicable'"
                                         ng-bind="fsc.getMeanDisplayValue(dt.prams.mean)"></td>
                                     <td ng-if="eachRecord.data == 'Not applicable'">{{eachRecord.data}}</td>
                                     <td ng-if="eachRecord.data == 'Not applicable'">{{eachRecord.data}}</td>
@@ -810,16 +789,8 @@
                     <!-- Prenatal Care and Pregnancy Risk -->
                     <div class="prams-factsheet">
                         <div class="table-heading"><h5><img src="../../images/icons/natality-icon.svg"/>Prenatal Care and Pregnancy Risk</h5></div>
-                        <h6>Pregnant women</h6>
                         <table class="prams-table-1">
-                            <tr ng-repeat="eachRecord in fsc.factSheet.prams.pregnantWoment" ng-class="{solidBorder: $index == 0}">
-                                <td ng-bind="eachRecord.question"></td>
-                                <td ng-bind="eachRecord.data"></td>
-                            </tr>
-                        </table>
-                        <h6>Women</h6>
-                        <table class="prams-table-2">
-                            <tr ng-repeat="eachRecord in fsc.factSheet.prams.women" ng-class="{solidBorder: $index == 0}">
+                            <tr ng-repeat="eachRecord in fsc.factSheet.prams" ng-class="{solidBorder: $index == 0}">
                                 <td ng-bind="eachRecord.question"></td>
                                 <td ng-bind="eachRecord.data"></td>
                             </tr>
