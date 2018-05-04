@@ -241,7 +241,8 @@ function getYrbsDataForFactSheet(factSheetQueryJSON) {
             {"question": "Currently use marijuana", data: resp.table.question[3] && resp.table.question[3].Yes ? resp.table.question[3].Yes.mental_health.mean : "Not applicable"},
             {"question": "Currently sexually active", data: resp.table.question[4] && resp.table.question[4].Yes ? resp.table.question[4].Yes.mental_health.mean : "Not applicable"},
             {"question": "Attempted suicide", data: resp.table.question[5] && resp.table.question[5].Yes ? resp.table.question[5].Yes.mental_health.mean : "Not applicable"},
-            {"question": "Overweight", data: resp.table.question[6] && resp.table.question[6].Yes ? resp.table.question[6].Yes.mental_health.mean : "Not applicable"}
+            {"question": "Overweight", data: resp.table.question[6] && resp.table.question[6].Yes ? resp.table.question[6].Yes.mental_health.mean : "Not applicable"},
+            {"question": "Obese", data: resp.table.question[7] && resp.table.question[7].Yes ? resp.table.question[7].Yes.mental_health.mean : "Not applicable"}
         ];
         deferred.resolve(data);
     }, function (err) {
