@@ -880,6 +880,284 @@ var factsheetsDefinitionsWrapper = function () {
 
         next();
     });
+//Womens and Girls health fact sheet
+    this.Then(/^For  select <state> and select type is "([^"]*)" then generated population data as defined in "([^"]*)" file$/, function (factType, csvFile, table,next) {
+        // Write code here that turns the phrase above into concrete actions
+        table.rows().forEach(function (row) {
+
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+            fsp.getTableHeaders('bridge-race-table1').then(function (headers) {
+                expect(headers[0]).to.contains('Racial distributions of female residents');
+                expect(headers[1]).to.contains('Black, non-Hispanic');
+                expect(headers[2]).to.contains('White, non-Hispanic');
+                expect(headers[3]).to.contains('American Indian');
+                expect(headers[4]).to.contains('Asian or Pacific Islander');
+                expect(headers[5]).to.contains('Hispanic');
+            });
+            var populationDataset = fsp.loadCsvFile(csvFile);
+            var p = populationDataset
+                .find(function (p) {
+                    return p.state === state
+                });
+            fsp.getTableCellData('bridge-race-table1', 0,0).then(function (data) {
+                expect(data).to.contains(p['Racialdistributions']);
+            });
+            fsp.getTableCellData('bridge-race-table1', 0, 1).then(function (data) {
+                expect(data).to.contains(p['Black']);
+            });
+            fsp.getTableCellData('bridge-race-table1', 0,2).then(function (data) {
+                expect(data).to.contains(p['White']);
+            });
+            fsp.getTableCellData('bridge-race-table1', 0, 3).then(function (data) {
+                expect(data).to.contains(p['American Indian']);
+            });
+            fsp.getTableCellData('bridge-race-table1', 0, 4).then(function (data) {
+                expect(data).to.contains(p['Asian or Pacific Islander']);
+            });
+            fsp.getTableCellData('bridge-race-table1', 0,5).then(function (data) {
+                expect(data).to.contains(p['Hispanic']);
+            });
+
+        });
+
+        next();
+    });
+
+    //Mortality - Womens Health
+
+    this.Then(/^For  select <state> and select type is "([^"]*)" then generated Mortality data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
+        table.rows().forEach(function (row) {
+
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+
+            fsp.getTableHeaders('detail-mortality-table').then(function (headers) {
+                expect(headers[0]).to.contains('Cause of Death');
+                expect(headers[1]).to.contains('Age-Adjusted Death Rates (Women)');
+            });
+
+            var mortalityDataset = fsp.loadCsvFile(csvFile);
+            var p = mortalityDataset
+                .find(function (p) {
+                    return p.state === state
+                });
+            fsp.getTableCellData('detail-mortality-table', 0, 0).then(function (data) {
+                expect(data).to.contains(p['Cause of Death']);
+            });
+            fsp.getTableCellData('detail-mortality-table', 0, 1).then(function (data) {
+                expect(data).to.contains(p['Age-Adjusted Death Rates (Women)']);
+            });
+
+        });
+
+        next();
+    });
+
+    //Prenatal Care and Pregnancy Risk
+    this.Then(/^For  select <state> and select type is "([^"]*)" then generated PRAMS data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
+            table.rows().forEach(function(row){
+                var state = row[0];
+                element(by.id('state')).element(by.cssContainingText('option', state)).click();
+                fsp.selectFactSheetType(factType);
+                fsp.generateFactSheetLink.click();
+                fsp.getTableHeaders('prams-table-1').then(function (headers) {
+                    expect(headers[0]).to.contains('Survey Question');
+                    expect(headers[1]).to.contains('Percentage (Women)');
+                });
+
+
+                var pramsDataSet = fsp.loadCsvFile(csvFile);
+                var pramsData = pramsDataSet
+                    .filter(function (p) {
+                        return p.state === state
+                    });
+                pramsData.forEach(function (item, i) {
+                    fsp.getTableCellData('prams-table-1', i, 0).then(function (data) {
+                        expect(data).to.contains(item['Survey Question']);
+                    });
+                    fsp.getTableCellData('prams-table-1', i, 1).then(function (data) {
+                        expect(data).to.contains(item['Percentage (Women)']);
+                    });
+                });
+
+        });
+
+        next();
+    });
+
+    //Behavioral Risk Factors - Womens and Girls Health
+    this.Then(/^For  select <state> and select type is "([^"]*)" then generated Behavioral Risk Factors data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
+
+        table.rows().forEach(function (row) {
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+            fsp.getTableHeaders('brfss-table').then(function (headers) {
+                expect(headers[0]).to.contains('Survey Question');
+                expect(headers[1]).to.contains('Percentage (Women)');
+            });
+            var behavioral_risk_dataset = fsp.loadCsvFile(csvFile);
+            var brfssData = behavioral_risk_dataset
+                .filter(function (br) {
+                    return br.state === state
+                });
+
+            brfssData.forEach(function (item, i) {
+                fsp.getTableCellData('brfss-table', i, 0).then(function (data) {
+                    expect(data).to.contains(item['Survey Question']);
+                });
+                fsp.getTableCellData('brfss-table', i, 1).then(function (data) {
+                    expect(data).to.contains(item['Percentage (Women)']);
+                });
+            });
+        });
+
+                next();
+        });
+
+//Teen Health - Womens Health
+    this.Then(/^For  select <state> and select type is "([^"]*)" then generated Teen Health fact sheet data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
+
+        table.rows().forEach(function (row) {
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+            fsp.getTableHeaders('yrbs-table').then(function (headers) {
+                expect(headers[0]).to.contains('Survey Question');
+                expect(headers[1]).to.contains('Percentage (Girls)');
+
+            });
+            var teen_dataset = fsp.loadCsvFile(csvFile);
+            var teenData = teen_dataset
+                .filter(function (th) {
+                    return th.state === state
+                });
+            teenData.forEach(function (item, i) {
+                fsp.getTableCellData('yrbs-table', i, 0).then(function (data) {
+                    expect(data).to.contains(item['Survey Question']);
+                });
+                fsp.getTableCellData('yrbs-table', i, 1).then(function (data) {
+                    expect(data).to.contains(item['Percentage (Girls)']);
+                });
+
+            });
+        });
+
+        next();
+    });
+
+    //Sexually Transmitted Infections- Womens and Girls Health
+
+
+    this.Then(/^For  select <state> and select type is "([^"]*)" then generated STD fact sheet data as defined in "([^"]*)" file$/, function (factType, csvFile, table, next) {
+        table.rows().forEach(function (row) {
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+            fsp.getTableHeaders('std-table').then(function (headers) {
+                expect(headers[0]).to.contains('Disease');
+                expect(headers[1]).to.contains('Total Rates (per 100,000 women)');
+            });
+            var std_dataset = fsp.loadCsvFile(csvFile);
+            var stdData = std_dataset
+                .filter(function (std) {
+                    return std.state === state
+                });
+            stdData.forEach(function (item, i) {
+                fsp.getTableCellData('std-table', i, 0).then(function (data) {
+                    expect(data).to.contains(item['Disease']);
+                });
+                fsp.getTableCellData('std-table', i, 1).then(function (data) {
+                    expect(data).to.contains(item['Total Rates (per 100,000 women)']);
+                });
+            });
+        });
+
+       next();
+    });
+
+// HIV/AIDS Data set - Women's and Girl's  Health fact sheet
+    this.Then(/^For  select <state> and select type is "([^"]*)" then generated HIV\/AIDS fact sheet data as defined in "([^"]*)" file$/, function (factType,csvFile,table,next) {
+        table.rows().forEach(function (row) {
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+            fsp.getTableHeaders('hiv-table').then(function (headers) {
+                expect(headers[0]).to.contains('Indicator');
+                expect(headers[1]).to.contains('Total Rates (per 100,000 women)');
+            });
+            var hiv_dataset = fsp.loadCsvFile(csvFile);
+            var hivData = hiv_dataset
+                .filter(function (hiv) {
+                    return hiv.state === state
+                });
+            hivData.forEach(function (item, i) {
+                fsp.getTableCellData('hiv-table', i, 0).then(function (data) {
+                    expect(data).to.contains(item['Indicator']);
+                });
+                fsp.getTableCellData('hiv-table', i, 1).then(function (data) {
+                    expect(data).to.contains(item['Total Rates (per 100,000 women)']);
+                });
+            });
+        });
+        next();
+    });
+    //Cancer Statistics - Women's and Girl's  Health fact sheet
+    this.Then(/^For  select <state> and select type is "([^"]*)" then generated Cancer Statistics fact sheet data as defined in "([^"]*)" file$/, function (factType,csvFile,table,next) {
+        table.rows().forEach(function (row) {
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+
+            fsp.getTableHeaders('cancer-table').then(function (headers) {
+                expect(headers[0]).to.contains('Cancer Site');
+                expect(headers[1]).to.contains('Incidence Crude Rates (per 100,000 women)');
+                expect(headers[2]).to.contains('Mortality Crude Rates (per 100,000 women)');
+            });
+            var cancer_dataset = fsp.loadCsvFile(csvFile);
+            var cancerData = cancer_dataset
+                .filter(function (cancer) {
+                    return cancer.state === state
+                });
+            cancerData.forEach(function (item, i) {
+                fsp.getTableCellData('cancer-table', i, 0).then(function (data) {
+                    expect(data).to.contains(item['Cancer Site']);
+                });
+                fsp.getTableCellData('cancer-table', i, 1).then(function (data) {
+                    expect(data).to.contains(item['Incidence Crude Rates (per 100,000 women)']);
+                });
+                fsp.getTableCellData('cancer-table', i, 2).then(function (data) {
+                    expect(data).to.contains(item['Mortality Crude Rates (per 100,000 women)']);
+                });
+            });
+
+        });
+
+        next();
+    });
+
+    // pdf download - Women's and Girl's  Health fact sheet
+    this.Then(/^For select <state> and select type is "([^"]*)" then generated fact sheet data as defined in "([^"]*)"$/, function (factType,csvFile,table,next) {
+        table.rows().forEach(function (row) {
+            var state = row[0];
+            element(by.id('state')).element(by.cssContainingText('option', state)).click();
+            fsp.selectFactSheetType(factType);
+            fsp.generateFactSheetLink.click();
+            fsp.downloadFactSheetLink.click();
+            browser.sleep(1000);
+        });
+    });
+
 
 };
 module.exports = factsheetsDefinitionsWrapper;

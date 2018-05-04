@@ -12,7 +12,6 @@ var FactsheetsPage = function() {
     fsp.generateFactSheetLink = element(by.id('generateFactSheetLink'));
     fsp.generateFactSheetLink =  element(by.css('[ng-click="fsc.getFactSheet(fsc.state, fsc.fsType);"]'));
 
-  //fsp.downloadFactSheetLink = element(by.id('downloadFactSheetLink'));
    fsp.downloadFactSheetLink = element(by.id('downloadFactSheetLink'));
 
     //element(by.css('a[href*="downloadFactSheetLink"]')).getText().click();
