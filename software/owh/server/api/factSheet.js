@@ -601,6 +601,7 @@ function prepareYRBSData(data) {
     yrbsData.push({"question": "Currently sexually active", data:data.table.question[3] && data.table.question[3].Yes ? getMeanDisplayValue(data.table.question[3].Yes.mental_health.mean) : "Not applicable"});
     yrbsData.push({"question": "Attempted suicide", data:data.table.question[4] && data.table.question[4].Yes ? getMeanDisplayValue(data.table.question[4].Yes.mental_health.mean) : "Not applicable"});
     yrbsData.push({"question": "Overweight", data:data.table.question[5] && data.table.question[5].Yes ? getMeanDisplayValue(data.table.question[5].Yes.mental_health.mean) : "Not applicable"});
+    yrbsData.push({"question": "Obese", data:data.table.question[6] && data.table.question[6].Yes ? getMeanDisplayValue(data.table.question[6].Yes.mental_health.mean) : "Not applicable"});
     return yrbsData;
 }
 

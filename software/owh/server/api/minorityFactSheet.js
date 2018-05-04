@@ -159,6 +159,10 @@ function prepareYRBSData(data) {
         "question": "Overweight", data:data.table.question[5] && data.table.question[5].Yes ?
             sortArrayByPropertyAndSortOrder(data.table.question[5].Yes.race, property, sortOrder) : "Not applicable"
     });
+    yrbsData.push({
+        "question": "Obese", data:data.table.question[6] && data.table.question[6].Yes ?
+            sortArrayByPropertyAndSortOrder(data.table.question[6].Yes.race, property, sortOrder) : "Not applicable"
+    });
     return yrbsData;
 }
 
