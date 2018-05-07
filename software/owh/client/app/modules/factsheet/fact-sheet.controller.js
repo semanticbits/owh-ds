@@ -583,7 +583,7 @@
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[3].bridge_race));
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[4].bridge_race));
             allTablesData.bridgeRaceTable1 = {
-                headerData: ['Racial distributions of minority residents*', 'Total', 'Black, non-Hispanic', 'American Indian',                                         'Asian or Pacific Islander', 'Hispanic'],
+                headerData: ['Racial distributions of minority residents*', 'Total', 'Black, non-Hispanic', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Hispanic'],
                 bodyData: bridgeRaceTableOneData
             };
 
@@ -649,7 +649,7 @@
             var pramsTable = [];
             angular.forEach(fsc.factSheet.prams, function(eachRecord) {
                 var aRow = [eachRecord.question];
-                if(eachRecord.data != 'Not applicable') {
+                if(eachRecord.data !== 'Not applicable') {
                     angular.forEach(eachRecord.data, function (dt) {
                         aRow.push(getMeanDisplayValue(dt.prams.mean));
                     });
@@ -671,7 +671,7 @@
             var brfssTableDt = [];
             angular.forEach(fsc.factSheet.brfss, function(eachRecord){
                 var aRow = [eachRecord.question];
-                if(eachRecord.data != 'Not applicable') {
+                if(eachRecord.data !== 'Not applicable') {
                     angular.forEach(eachRecord.data, function (dt) {
                         aRow.push(getMeanDisplayValue(dt.brfss.mean));
                     });
@@ -692,7 +692,7 @@
             var yrbsTableDt = [];
             angular.forEach(fsc.factSheet.yrbs, function(eachRecord) {
                 var aRow = [eachRecord.question];
-                if(eachRecord.data != 'Not applicable') {
+                if(eachRecord.data !== 'Not applicable') {
                     angular.forEach(eachRecord.data, function (dt) {
                         aRow.push(getMeanDisplayValue(dt.mental_health.mean));
                     });
@@ -708,14 +708,14 @@
             //Natality
             var birthsRow = ['Births'];
             angular.forEach(fsc.factSheet.natality.birthRateData, function (birthRateData) {
-                var birthCount = birthRateData.natality == 'suppressed'?'Suppressed'
+                var birthCount = birthRateData.natality === 'suppressed'?'Suppressed'
                     : $filter('number')(birthRateData.natality);
                 birthsRow.push(birthCount);
             });
 
             var populationRow = ['Total minority population'];
             angular.forEach(fsc.factSheet.natality.birthRateData, function (birthRateData) {
-                var popCount = birthRateData.pop == 'suppressed'?'Suppressed'
+                var popCount = birthRateData.pop === 'suppressed'?'Suppressed'
                     : $filter('number')(birthRateData.pop);
                 populationRow.push(popCount);
             });
@@ -728,7 +728,7 @@
 
             var femalePopulationRow = ['Female minority population (Ages 15 to 44)'];
             angular.forEach(fsc.factSheet.natality.fertilityRatesData, function (fertilityRatesData) {
-                var popCount = fertilityRatesData.pop == 'suppressed'?'Suppressed'
+                var popCount = fertilityRatesData.pop === 'suppressed'?'Suppressed'
                     : $filter('number')(fertilityRatesData.pop);
                 femalePopulationRow.push(popCount);
             });
@@ -770,14 +770,14 @@
             //Tuberculosis
             var tbHeaderData = ['Measure'];
             angular.forEach(fsc.factSheet.tuberculosis, function(eachRecord, index) {
-                if(eachRecord.name != 'Unknown') {
+                if(eachRecord.name !== 'Unknown') {
                     tbHeaderData.push(eachRecord.name);
                 }
             });
             var tbCases = ['Cases'];
             var tbRates = ['Rates'];
             angular.forEach(fsc.factSheet.tuberculosis, function(eachRecord) {
-                if(eachRecord.name != 'Unknown') {
+                if(eachRecord.name !== 'Unknown') {
                     tbCases.push(eachRecord.cases);
                     tbRates.push(eachRecord.rates);
                 }
@@ -790,7 +790,7 @@
             var stdHeaderData = ['Disease', "Measure"];
             var stdData = [];
             angular.forEach(fsc.factSheet.stdData[0].data, function(eachHeader, index) {
-                if(eachHeader.name != 'Unknown') {
+                if(eachHeader.name !== 'Unknown') {
                     stdHeaderData.push(eachHeader.name);
                 }
             });
@@ -798,7 +798,7 @@
                 var casesRow = [{text:eachRecord.disease, rowSpan: 2}, 'Cases'];
                 var ratesRow = ["", "Rates"];
                 angular.forEach(eachRecord.data, function(data){
-                    if(data.name != 'Unknown') {
+                    if(data.name !== 'Unknown') {
                         casesRow.push(data.cases);
                         ratesRow.push(data.rates);
                     }
@@ -820,7 +820,7 @@
             var hivHeaderData = ['Indicator', 'Measure'];
             var hivData = [];
             angular.forEach(fsc.factSheet.hivAIDSData[0].data, function(eachHeader, index){
-                if(eachHeader.name != 'Unknown') {
+                if(eachHeader.name !== 'Unknown') {
                     hivHeaderData.push(eachHeader.name);
                 }
             });
@@ -828,7 +828,7 @@
                 var casesRow = [{text:eachRecord.disease, rowSpan: 2}, 'Cases'];
                 var ratesRow = ['', 'Rates'];
                 angular.forEach(eachRecord.data, function(data){
-                    if(data.name != 'Unknown') {
+                    if(data.name !== 'Unknown') {
                         casesRow.push(data.cases);
                         ratesRow.push(data.rates);
                     }
@@ -889,7 +889,7 @@
                 bridgeRaceTableData.push($filter('number')(race.bridge_race));
             });
             allTablesData.bridgeRaceTable = {
-                headerData: ['Racial Distributions of female Residents', 'Black, non-Hispanic', 'White, non-Hispanic',                                         'American Indian', 'Asian or Pacific Islander', 'Hispanic'],
+                headerData: ['Racial Distributions of female Residents', 'Black, non-Hispanic', 'White, non-Hispanic', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Hispanic'],
                 bodyData: bridgeRaceTableData
             };
             //Detail Mortality
@@ -905,7 +905,9 @@
             //PRAMS
             var pramsTableData = [];
             angular.forEach(fsc.factSheet.prams, function(eachRecord){
-                pramsTableData.push([eachRecord.question, eachRecord.data]);
+                pramsTableData.push([
+                    eachRecord.question,
+                    eachRecord.data === 'Not applicable'? eachRecord.data : getMeanDisplayValue(eachRecord.data)]);
             });
             allTablesData.pramsTable = {
                 headerData: ['Survey Question', 'Percentage (Women)'],
@@ -914,7 +916,9 @@
             //BRFSS
             var brfssData = [];
             angular.forEach(fsc.factSheet.brfss, function(eachRecord){
-                brfssData.push([eachRecord.question, eachRecord.data]);
+                brfssData.push([
+                    eachRecord.question,
+                    eachRecord.data === 'Not applicable'? eachRecord.data : getMeanDisplayValue(eachRecord.data)])
             });
             allTablesData.brfssTable = {
                 headerData: ['Survey Question', 'Percentage (Women)'],
@@ -923,7 +927,9 @@
             //YRBS
             var yrbsData = [];
             angular.forEach(fsc.factSheet.yrbs, function(eachRecord){
-                yrbsData.push([eachRecord.question, eachRecord.data]);
+                yrbsData.push([
+                    eachRecord.question,
+                    eachRecord.data === 'Not applicable'? eachRecord.data : getMeanDisplayValue(eachRecord.data)])
             });
             allTablesData.yrbsTable = {
                 headerData: ['Survey Question', 'Percentage (Girls)'],
@@ -991,13 +997,13 @@
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[4].bridge_race));
             if(fsc.fsTypeForTable === fsc.fsTypes.womens_health) {
                 allTablesData.bridgeRaceTable1 = {
-                    headerData: ['Racial Distributions of Residents*', 'Black, non-Hispanic', 'White, non-Hispanic',                                         'American Indian', 'Asian or Pacific Islander', 'Hispanic'],
+                    headerData: ['Racial Distributions of Residents*', 'Black, non-Hispanic', 'White, non-Hispanic', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Hispanic'],
                     bodyData: bridgeRaceTableOneData
                 };
             }
             else {
                 allTablesData.bridgeRaceTable1 = {
-                    headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic', 'White, non-Hispanic',                                         'American Indian', 'Asian or Pacific Islander', 'Hispanic'],
+                    headerData: ['Racial Distributions of Residents*', 'Total', 'Black, non-Hispanic', 'White, non-Hispanic', 'American Indian or Alaska Nativ', 'Asian or Pacific Islander', 'Hispanic'],
                     bodyData: bridgeRaceTableOneData
                 };
             }
@@ -1500,7 +1506,7 @@
                 cancerTableData.unshift(prepareTableHeaders(allTablesData.cancer.headerData));
                 var detailMortalityTableData = allTablesData.detailMortality.bodyData;
                 detailMortalityTableData.unshift(prepareTableHeaders(allTablesData.detailMortality.headerData));
-                var bridgeRaceTotalText = "Total female population: "+$filter('number')(fsc.factSheet.gender[0].bridge_race);
+                var bridgeRaceTotalText = "Total state female population: "+$filter('number')(fsc.factSheet.gender[0].bridge_race);
 
                 var lightHorizontalLines = {
                     hLineWidth: function (i, node) {return .5;}, vLineWidth: function (i, node) {return .5;},
@@ -1631,7 +1637,7 @@
                     {text: YRBSSource, style: 'info'},
                     {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Sexually Transmitted Infections', style: 'heading'},
-                    {text: 'Population: '+$filter('number')(fsc.factSheet.stdData[0].data.pop)},
+                    {text: $filter('translate')('factsheet.wh.std.pop') +' '+ $filter('number')(fsc.factSheet.stdData[0].data.pop)},
                     {
                         style: 'table',
                         table: {
@@ -1645,7 +1651,7 @@
                     {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
                     {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'HIV/AIDS', style: 'heading'},
-                    {text: 'Population: '+$filter('number')(fsc.factSheet.hivAIDSData[0].data.pop)},
+                    {text: $filter('translate')('factsheet.wh.aids.pop') +' '+ $filter('number')(fsc.factSheet.hivAIDSData[0].data.pop)},
                     {
                         style: 'table',
                         table: {

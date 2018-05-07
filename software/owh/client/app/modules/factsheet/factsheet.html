@@ -60,7 +60,7 @@
                                     <th>Racial distributions of minority residents*</th>
                                     <th>Total</th>
                                     <th>Black, non-Hispanic</th>
-                                    <th>American Indian</th>
+                                    <th>American Indian or Alaska Native</th>
                                     <th>Asian or Pacific Islander</th>
                                     <th>Hispanic</th>
                                 </tr>
@@ -506,7 +506,7 @@
                                     <th>Racial distributions of female residents</th>
                                     <th>Black, non-Hispanic</th>
                                     <th>White, non-Hispanic</th>
-                                    <th>American Indian</th>
+                                    <th>American Indian or Alaska Native</th>
                                     <th>Asian or Pacific Islander</th>
                                     <th>Hispanic</th>
                                 </tr>
@@ -605,7 +605,7 @@
                     <!-- STD -->
                     <div class="std-factsheet">
                         <div class="table-heading"><h5><img src="../../images/icons/std-icon.svg"/>Sexually Transmitted Infections </h5> </div>
-                        <p>Population: {{fsc.factSheet.stdData[0].data.pop | number}} </p>
+                        <p><span ng-bind="'factsheet.wh.std.pop' | translate"></span> {{fsc.factSheet.stdData[0].data.pop | number}} </p>
                         <table class="std-table">
                             <thead>
                             <tr>
@@ -626,7 +626,7 @@
                     <!-- HIV/AIDS -->
                     <div class="hiv-factsheet">
                         <div class="table-heading"><h5><img src="../../images/icons/aids-hiv-icon.svg"/>HIV/AIDS</h5></div>
-                        <p>Population: {{fsc.factSheet.hivAIDSData[0].data.pop | number}}  </p>
+                        <p><span ng-bind="'factsheet.wh.aids.pop' | translate"></span> {{fsc.factSheet.hivAIDSData[0].data.pop | number}}  </p>
                         <table class="hiv-table">
                             <thead>
                             <tr>
@@ -701,7 +701,7 @@
                                     <th>Total</th>
                                     <th>Black, non-Hispanic</th>
                                     <th>White, non-Hispanic</th>
-                                    <th>American Indian</th>
+                                    <th>American Indian or Alaska Native</th>
                                     <th>Asian or Pacific Islander</th>
                                     <th>Hispanic</th>
                                 </tr>
