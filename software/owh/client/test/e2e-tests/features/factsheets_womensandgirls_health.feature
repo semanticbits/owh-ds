@@ -453,8 +453,8 @@ Feature: Fact sheet page
 
 
   # Generate pdf for all states
-  Scenario: Generate Women's and Girl's pdf for all states
- Then For select <state> and select type is "Women's and Girls' Health" then generated fact sheet data as defined in "states.csv"
+    Scenario: Generate Women's and Girl's pdf for all states
+       Then For select <state> and select type is "Women's and Girls' Health" then generated fact sheet data as defined in "states.csv"
       |state|
       |Alabama|
       |Arizona|
