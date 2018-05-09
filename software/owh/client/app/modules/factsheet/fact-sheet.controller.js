@@ -1715,6 +1715,8 @@
                 return 'Suppressed';
             } else if(count === 'Not available') {
                 return 'Not available';
+            } else if(count === 'na') {
+                return 'Not applicable';
             } else if (checkReliability) {
                 if(count < 20) {
                     return 'Unreliable';
