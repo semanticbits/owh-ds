@@ -1636,7 +1636,7 @@
                     {text: YRBSSource, style: 'info'},
                     {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Sexually Transmitted Infections', style: 'heading'},
-                    {text: $filter('translate')('factsheet.wh.std.pop') +' '+ $filter('number')(fsc.factSheet.stdData[0].data.pop)},
+                    {text: 'Population: '+ $filter('number')(fsc.factSheet.stdData[0].data.pop)},
                     {
                         style: 'table',
                         table: {
@@ -1650,7 +1650,7 @@
                     {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
                     {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'HIV/AIDS', style: 'heading'},
-                    {text: $filter('translate')('factsheet.wh.aids.pop') +' '+ $filter('number')(fsc.factSheet.hivAIDSData[0].data.pop)},
+                    {text: 'Population: '+ $filter('number')(fsc.factSheet.hivAIDSData[0].data.pop)},
                     {
                         style: 'table',
                         table: {
