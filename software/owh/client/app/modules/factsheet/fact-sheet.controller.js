@@ -570,7 +570,7 @@
             //Prepare bridgeRace data
             var bridgeRaceTableOneData = [];
             bridgeRaceTableOneData.push('Population');
-            fsc.fsTypeForTable !== fsc.fsTypes.womens_health && bridgeRaceTableOneData.push($filter('number')(fsc.factSheet.totalGenderPop));
+            fsc.fsTypeForTable !== fsc.fsTypes.womens_health && bridgeRaceTableOneData.push($filter('number')(fsc.factSheet.totalPop));
             angular.forEach(fsc.factSheet.race, function(race){
                 bridgeRaceTableOneData.push($filter('number')(race.bridge_race));
             });
@@ -583,7 +583,7 @@
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[3].bridge_race));
             bridgeRaceTableTwoData.push($filter('number')(fsc.factSheet.ageGroups[4].bridge_race));
             allTablesData.bridgeRaceTable1 = {
-                headerData: ['Racial distributions of minority residents*', 'Total', 'Black, non-Hispanic', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Hispanic'],
+                headerData: ['Racial distributions of minority residents*', 'Total', 'Black or African American', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Hispanic'],
                 bodyData: bridgeRaceTableOneData
             };
 
@@ -805,8 +805,8 @@
                 });
                 if (eachRecord.data.length === 0) {
                     for(var i=1; i < stdHeaderData.length - 1; i++) {
-                        casesRow.push('Not Available');
-                        ratesRow.push('Not Available');
+                        casesRow.push('Not available');
+                        ratesRow.push('Not available');
                     }
                 }
                 stdData.push(casesRow);
@@ -835,8 +835,8 @@
                 });
                 if (eachRecord.data.length === 0) {
                     for(var i=1; i < hivHeaderData.length - 1; i++) {
-                        casesRow.push('Not Available');
-                        ratesRow.push('Not Available');
+                        casesRow.push('Not available');
+                        ratesRow.push('Not available');
                     }
                 }
                 hivData.push(casesRow);
@@ -895,7 +895,7 @@
             //Detail Mortality
             var detailsMortalityData = [];
             angular.forEach(fsc.factSheet.detailMortalityData, function(eachRecord){
-                detailsMortalityData.push([eachRecord.causeOfDeath, eachRecord.data.ageAdjustedRate ? eachRecord.data.ageAdjustedRate : "Not Available"]);
+                detailsMortalityData.push([eachRecord.causeOfDeath, eachRecord.data.ageAdjustedRate ? eachRecord.data.ageAdjustedRate : "Not available"]);
             });
             allTablesData.detailMortality = {
                 headerData: ['Cause of Death', 'Age-Adjusted Death Rates (Women)'],
@@ -1019,7 +1019,7 @@
                 if(eachRecord.data.deaths){
                     deathCount = eachRecord.data.deaths === 'suppressed' ? 'Suppressed' : $filter('number')(eachRecord.data.deaths);
                 }
-                detailsMortalityData.push([eachRecord.causeOfDeath, deathCount, eachRecord.data.ageAdjustedRate ? eachRecord.data.ageAdjustedRate : "Not Available"]);
+                detailsMortalityData.push([eachRecord.causeOfDeath, deathCount, eachRecord.data.ageAdjustedRate ? eachRecord.data.ageAdjustedRate : "Not available"]);
             });
             allTablesData.detailMortality = {
                 headerData: ['Cause of Death', 'Number of Deaths', 'Age-Adjusted Death Rate (per 100,000)'],
@@ -1205,13 +1205,7 @@
                 var cancerTableData = allTablesData.cancer.bodyData;
                 cancerTableData.unshift(prepareTableHeaders(allTablesData.cancer.headerData));
 
-                var bridgeRaceTotalText = "";
-                if(fsc.fsType === fsc.fsTypes.womens_health) {
-                    bridgeRaceTotalText = "Total state female population: "+$filter('number')(fsc.factSheet.gender[0].bridge_race);
-                }
-                else {
-                    bridgeRaceTotalText = "Total minority state population: "+$filter('number')(fsc.factSheet.totalGenderPop);
-                }
+                var bridgeRaceTotalText = "Total minority state population: "+$filter('number')(fsc.factSheet.totalPop);
                 var lightHorizontalLines = {
                     hLineWidth: function (i, node) {
                         return .5;
@@ -1265,6 +1259,9 @@
                             fontSize: 6,
                             italics: true,
                             margin: [0, 1, 0, 0]
+                        },
+                        'factsheet-def': {
+                            margin: [0, 20, 0, 0]
                         }
                     },
                     defaultStyle: {
@@ -1307,6 +1304,8 @@
                 pdfDefinition.content = [
                     {image: response.data[0], width: 50, height: 50, style: 'state-image'},
                     {text: fsc.factSheetTitle, style: 'state-heading'},
+                    {text: $filter('translate')('minority.factsheet.definition'), style:'factsheet-def' },
+                    { canvas: [{ type: 'line', x1: 0, y1: 5, x2: 525-10, y2: 5, lineWidth: 0.1 }] },
                     {image: fsc.imageDataURLs.bridgeRace, width: 50, height: 50, style: 'dataset-image'},
                     {text: "Population in "+fsc.stateName, style: 'heading'},
                     {text: bridgeRaceTotalText},
@@ -1714,13 +1713,13 @@
         function calculateRate(count, totalPopulation, checkReliability) {
             if(count === 'suppressed') {
                 return 'Suppressed';
-            } else if(count === 'Not Available') {
-                return 'Not Available';
+            } else if(count === 'Not available') {
+                return 'Not available';
             } else if (checkReliability) {
                 if(count < 20) {
                     return 'Unreliable';
                 } else {
-                    return totalPopulation != 'n/a' ? $filter('number')(count / totalPopulation * 1000000 / 10, 1) : "Not Available";
+                    return totalPopulation != 'n/a' ? $filter('number')(count / totalPopulation * 1000000 / 10, 1) : "Not available";
                 }
             }
             else {

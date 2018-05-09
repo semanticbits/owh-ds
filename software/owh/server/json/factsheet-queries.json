@@ -11771,7 +11771,7 @@
             "key": "state",
             "queryKey": "sitecode",
             "value": [
-              "AL"
+              "$state$"
             ],
             "primary": false
           },
@@ -11798,21 +11798,6 @@
                 "queryKey": "sitecode",
                 "size": 0
               }
-            ],
-            "charts": [],
-            "maps": [
-              [
-                {
-                  "key": "states",
-                  "queryKey": "state",
-                  "size": 0
-                },
-                {
-                  "key": "sex",
-                  "queryKey": "sex",
-                  "size": 0
-                }
-              ]
             ]
           }
         },
@@ -12114,83 +12099,7 @@
   },
   "minority_health": {
     "bridge_race": {
-      "gender_population": {
-        "size": 0,
-        "aggregations": {
-          "group_table_sex": {
-            "terms": {
-              "field": "sex",
-              "size": 0
-            },
-            "aggregations": {
-              "group_count_pop": {
-                "sum": {
-                  "field": "pop"
-                }
-              }
-            }
-          },
-          "group_count_pop": {
-            "sum": {
-              "field": "pop"
-            }
-          }
-        },
-        "query": {
-          "filtered": {
-            "filter": {
-              "bool": {
-                "must": [
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "race": "American Indian"
-                          }
-                        },
-                        {
-                          "term": {
-                            "race": "Asian or Pacific Islander"
-                          }
-                        },
-                        {
-                          "term": {
-                            "race": "Black"
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "current_year": "2015"
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "state": "$state$"
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        }
-      },
-      "nonHispanicRace_population": {
+      "non_hispanic_race_population": {
         "size": 0,
         "aggregations": {
           "group_table_race": {
@@ -12238,83 +12147,17 @@
                       "should": [
                         {
                           "term": {
-                            "race": "Black"
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "current_year": "2015"
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "state": "$state$"
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        }
-      },
-      "race_population": {
-        "size": 0,
-        "aggregations": {
-          "group_table_race": {
-            "terms": {
-              "field": "race",
-              "size": 0
-            },
-            "aggregations": {
-              "group_count_pop": {
-                "sum": {
-                  "field": "pop"
-                }
-              }
-            }
-          },
-          "group_count_pop": {
-            "sum": {
-              "field": "pop"
-            }
-          }
-        },
-        "query": {
-          "filtered": {
-            "query": {
-              "bool": {
-                "must": []
-              }
-            },
-            "filter": {
-              "bool": {
-                "must": [
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
                             "race": "American Indian"
                           }
                         },
                         {
                           "term": {
                             "race": "Asian or Pacific Islander"
+                          }
+                        },
+                        {
+                          "term": {
+                            "race": "Black"
                           }
                         }
                       ]
@@ -12587,6 +12430,15 @@
               "American Indian or Alaska Native",
               "Asian or Pacific Islander",
               "Black or African American"
+            ],
+            "primary": false
+          },
+          "hispanic_origin": {
+            "key": "hispanic_origin",
+            "queryKey": "hispanic_origin",
+            "value": [
+              "Non-Hispanic Black",
+              "Non-Hispanic Other Races"
             ],
             "primary": false
           },
@@ -15963,6 +15815,17 @@
                           "should": [
                             {
                               "term": {
+                                "ethnicity_group": "Non-Hispanic"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
                                 "race": "American Indian"
                               }
                             },
@@ -16243,6 +16106,17 @@
                             {
                               "term": {
                                 "race": "Black"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
+                                "ethnicity_group": "Non-Hispanic"
                               }
                             }
                           ]
@@ -16653,6 +16527,17 @@
                           "should": [
                             {
                               "term": {
+                                "ethnicity_group": "Non-Hispanic"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
                                 "current_year": "2015"
                               }
                             }
@@ -16982,6 +16867,17 @@
                           "should": [
                             {
                               "term": {
+                                "ethnicity_group": "Non-Hispanic"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
                                 "current_year": "2015"
                               }
                             }
@@ -17181,6 +17077,17 @@
                           "should": [
                             {
                               "term": {
+                                "ethnicity_group": "Non-Hispanic"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
                                 "current_year": "2015"
                               }
                             }
@@ -17380,6 +17287,17 @@
                           "should": [
                             {
                               "term": {
+                                "ethnicity_group": "Non-Hispanic"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
                                 "current_year": "2015"
                               }
                             }
@@ -17579,6 +17497,17 @@
                           "should": [
                             {
                               "term": {
+                                "ethnicity_group": "Non-Hispanic"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
                                 "current_year": "2015"
                               }
                             }
@@ -17798,6 +17727,17 @@
                           "should": [
                             {
                               "term": {
+                                "ethnicity_group": "Non-Hispanic"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
                                 "current_year": "2015"
                               }
                             }
@@ -18027,6 +17967,17 @@
                           "should": [
                             {
                               "term": {
+                                "ethnicity_group": "Non-Hispanic"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
                                 "current_year": "2015"
                               }
                             }
@@ -18266,6 +18217,17 @@
                           "should": [
                             {
                               "term": {
+                                "ethnicity_group": "Non-Hispanic"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
                                 "current_year": "2015"
                               }
                             }
@@ -18438,122 +18400,6 @@
         ]
       },
       "age_adjusted_rates": {
-        "Total":[
-          {
-            "searchFor": "deaths",
-            "query": {
-              "race": {
-                "key": "race",
-                "queryKey": "race",
-                "value": [
-                  "American Indian",
-                  "Asian or Pacific Islander",
-                  "Black"
-                ],
-                "primary": false
-              },
-              "current_year": {
-                "key": "year",
-                "queryKey": "current_year",
-                "value": [
-                  "2015"
-                ],
-                "primary": false
-              },
-              "state": {
-                "key": "state",
-                "queryKey": "state",
-                "value": [
-                  "$state$"
-                ],
-                "primary": false
-              }
-            },
-            "aggregations": {
-              "simple": [],
-              "nested": {
-                "table": [
-                  {
-                    "key": "race",
-                    "queryKey": "race",
-                    "size": 0
-                  }
-                ],
-                "charts": [],
-                "maps": [
-                  [
-                    {
-                      "key": "states",
-                      "queryKey": "state",
-                      "size": 0
-                    },
-                    {
-                      "key": "sex",
-                      "queryKey": "sex",
-                      "size": 0
-                    }
-                  ]
-                ]
-              }
-            }
-          },
-          {
-            "searchFor": "deaths",
-            "query": {
-              "ethnicity_group": {
-                "key": "hispanicOrigin",
-                "queryKey": "ethnicity_group",
-                "value": [
-                  "Hispanic"
-                ],
-                "primary": false
-              },
-              "current_year": {
-                "key": "year",
-                "queryKey": "current_year",
-                "value": [
-                  "2015"
-                ],
-                "primary": false
-              },
-              "state": {
-                "key": "state",
-                "queryKey": "state",
-                "value": [
-                  "$state$"
-                ],
-                "primary": false
-              }
-            },
-            "aggregations": {
-              "simple": [],
-              "nested": {
-                "table": [
-                  {
-                    "key": "year",
-                    "queryKey": "current_year",
-                    "size": 0
-                  }
-                ],
-                "charts": [],
-                "maps": [
-                  [
-                    {
-                      "key": "states",
-                      "queryKey": "state",
-                      "size": 0
-                    },
-                    {
-                      "key": "sex",
-                      "queryKey": "sex",
-                      "size": 0
-                    }
-                  ]
-                ]
-              }
-            }
-          }
-        ],
         "alzheimer":[
           {
             "searchFor": "deaths",
@@ -18565,6 +18411,14 @@
                   "American Indian",
                   "Asian or Pacific Islander",
                   "Black"
+                ],
+                "primary": false
+              },
+              "ethnicity_group": {
+                "key": "hispanicOrigin",
+                "queryKey": "ethnicity_group",
+                "value": [
+                  "Non-Hispanic"
                 ],
                 "primary": false
               },
@@ -18667,6 +18521,14 @@
                   "American Indian",
                   "Asian or Pacific Islander",
                   "Black"
+                ],
+                "primary": false
+              },
+              "ethnicity_group": {
+                "key": "hispanicOrigin",
+                "queryKey": "ethnicity_group",
+                "value": [
+                  "Non-Hispanic"
                 ],
                 "primary": false
               },
@@ -18797,6 +18659,14 @@
                   "American Indian",
                   "Asian or Pacific Islander",
                   "Black"
+                ],
+                "primary": false
+              },
+              "ethnicity_group": {
+                "key": "hispanicOrigin",
+                "queryKey": "ethnicity_group",
+                "value": [
+                  "Non-Hispanic"
                 ],
                 "primary": false
               },
@@ -18954,6 +18824,14 @@
                 ],
                 "primary": false
               },
+              "ethnicity_group": {
+                "key": "hispanicOrigin",
+                "queryKey": "ethnicity_group",
+                "value": [
+                  "Non-Hispanic"
+                ],
+                "primary": false
+              },
               "ICD_10_code": {
                 "key": "ucd-chapter-10",
                 "queryKey": "ICD_10_code.path",
@@ -19053,6 +18931,14 @@
                   "American Indian",
                   "Asian or Pacific Islander",
                   "Black"
+                ],
+                "primary": false
+              },
+              "ethnicity_group": {
+                "key": "hispanicOrigin",
+                "queryKey": "ethnicity_group",
+                "value": [
+                  "Non-Hispanic"
                 ],
                 "primary": false
               },
@@ -19158,6 +19044,14 @@
                 ],
                 "primary": false
               },
+              "ethnicity_group": {
+                "key": "hispanicOrigin",
+                "queryKey": "ethnicity_group",
+                "value": [
+                  "Non-Hispanic"
+                ],
+                "primary": false
+              },
               "ICD_10_code": {
                 "key": "ucd-chapter-10",
                 "queryKey": "ICD_10_code.path",
@@ -19260,6 +19154,14 @@
                 ],
                 "primary": false
               },
+              "ethnicity_group": {
+                "key": "hispanicOrigin",
+                "queryKey": "ethnicity_group",
+                "value": [
+                  "Non-Hispanic"
+                ],
+                "primary": false
+              },
               "ICD_10_code": {
                 "key": "ucd-chapter-10",
                 "queryKey": "ICD_10_code.path",
@@ -19359,6 +19261,14 @@
                   "American Indian",
                   "Asian or Pacific Islander",
                   "Black"
+                ],
+                "primary": false
+              },
+              "ethnicity_group": {
+                "key": "hispanicOrigin",
+                "queryKey": "ethnicity_group",
+                "value": [
+                  "Non-Hispanic"
                 ],
                 "primary": false
               },
@@ -19487,6 +19397,14 @@
                 ],
                 "primary": false
               },
+              "ethnicity_group": {
+                "key": "hispanicOrigin",
+                "queryKey": "ethnicity_group",
+                "value": [
+                  "Non-Hispanic"
+                ],
+                "primary": false
+              },
               "ICD_10_code": {
                 "key": "ucd-chapter-10",
                 "queryKey": "ICD_10_code.path",
@@ -19592,6 +19510,14 @@
                   "American Indian",
                   "Asian or Pacific Islander",
                   "Black"
+                ],
+                "primary": false
+              },
+              "ethnicity_group": {
+                "key": "hispanicOrigin",
+                "queryKey": "ethnicity_group",
+                "value": [
+                  "Non-Hispanic"
                 ],
                 "primary": false
               },
@@ -20697,6 +20623,17 @@
                           "should": [
                             {
                               "term": {
+                                "hispanic_origin": "Non-Hispanic"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
                                 "current_year": "2014"
                               }
                             }
@@ -20774,6 +20711,17 @@
                             {
                               "term": {
                                 "race": "Black"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
+                                "hispanic_origin": "Non-Hispanic"
                               }
                             }
                           ]
@@ -20991,6 +20939,17 @@
                           "should": [
                             {
                               "term": {
+                                "hispanic_origin": "Non-Hispanic"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
                                 "current_year": "2014"
                               }
                             }
@@ -21068,6 +21027,17 @@
                             {
                               "term": {
                                 "race": "Black"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
+                                "hispanic_origin": "Non-Hispanic"
                               }
                             }
                           ]
@@ -21285,6 +21255,17 @@
                           "should": [
                             {
                               "term": {
+                                "hispanic_origin": "Non-Hispanic"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
                                 "current_year": "2014"
                               }
                             }
@@ -21362,6 +21343,17 @@
                             {
                               "term": {
                                 "race": "Black"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
+                                "hispanic_origin": "Non-Hispanic"
                               }
                             }
                           ]
@@ -21579,6 +21571,17 @@
                           "should": [
                             {
                               "term": {
+                                "hispanic_origin": "Non-Hispanic"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
                                 "current_year": "2014"
                               }
                             }
@@ -21656,6 +21659,17 @@
                             {
                               "term": {
                                 "race": "Black"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
+                                "hispanic_origin": "Non-Hispanic"
                               }
                             }
                           ]
@@ -21873,6 +21887,17 @@
                           "should": [
                             {
                               "term": {
+                                "hispanic_origin": "Non-Hispanic"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
                                 "current_year": "2014"
                               }
                             }
@@ -21961,6 +21986,17 @@
                             {
                               "term": {
                                 "sex": "Female"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
+                                "hispanic_origin": "Non-Hispanic"
                               }
                             }
                           ]
@@ -22189,6 +22225,17 @@
                           "should": [
                             {
                               "term": {
+                                "hispanic_origin": "Non-Hispanic"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
                                 "current_year": "2014"
                               }
                             }
@@ -22277,6 +22324,17 @@
                             {
                               "term": {
                                 "sex": "Female"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
+                                "hispanic_origin": "Non-Hispanic"
                               }
                             }
                           ]
@@ -22505,6 +22563,17 @@
                           "should": [
                             {
                               "term": {
+                                "hispanic_origin": "Non-Hispanic"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
                                 "current_year": "2014"
                               }
                             }
@@ -22593,6 +22662,17 @@
                             {
                               "term": {
                                 "sex": "Male"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "bool": {
+                          "should": [
+                            {
+                              "term": {
+                                "hispanic_origin": "Non-Hispanic"
                               }
                             }
                           ]

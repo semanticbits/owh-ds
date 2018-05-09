@@ -595,7 +595,7 @@
   "label.help.text.brfss.education": "This field indicates the education attained by the survey respondents",
   "label.help.text.brfss.income": "This field indicates the household income of the survey respondents",
   "datadoc.tb.data.filter.restrictions":"TB state-level data can be viewed in aggregate format or one-way stratifications (i.e., by Sex, Race/Ethnicity, Age group or Country of birth).",
-  "minority.factsheet.definition": "This fact sheet displays demographic and health status information for the following ethnic and racial groups: African Americans, American Indians and Alaska Natives, Asian Americans, Hispanics, Native Hawaiians and Pacific Islanders.",
+  "minority.factsheet.definition": "This fact sheet displays demographic and health status information for Hispanic individuals of any race and the following non-Hispanic groups: African Americans, American Indians and Alaska Natives, Asian Americans, Native Hawaiians and Pacific Islanders.",
   "factsheet.wh.std.pop" : "Total females diagnosed with Sexually Transmitted Infections:",
   "factsheet.wh.aids.pop" : "Total females diagnosed with HIV/AIDS:"
 }

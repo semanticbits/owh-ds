@@ -51,7 +51,7 @@
                     <div class="bridge-race-factsheet">
                         <h5 class="bridge-race-heading"><img src="../../images/icons/bridged-race-icon.svg"/>Population in {{fsc.stateName}}</h5>
                         <p class="bridge-race-description">
-                            Total minority state population: {{fsc.factSheet.totalGenderPop | number }}
+                            Total minority state population: {{fsc.factSheet.totalPop | number }}
                         </p>
                         <div>
                             <table class="bridge-race-table1">
@@ -59,7 +59,7 @@
                                 <tr>
                                     <th>Racial distributions of minority residents*</th>
                                     <th>Total</th>
-                                    <th>Black, non-Hispanic</th>
+                                    <th>Black or African American</th>
                                     <th>American Indian or Alaska Native</th>
                                     <th>Asian or Pacific Islander</th>
                                     <th>Hispanic</th>
@@ -68,7 +68,7 @@
                                 <tbody>
                                 <tr>
                                     <td class="bold-class">Population</td>
-                                    <td>{{fsc.factSheet.totalGenderPop | number }}</td>
+                                    <td>{{fsc.factSheet.totalPop | number }}</td>
                                     <td ng-repeat="race in fsc.factSheet.race" ng-bind="race.bridge_race | number "></td>
                                 </tr>
                                 </tbody>
