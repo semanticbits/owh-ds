@@ -628,13 +628,13 @@ function prepareCancerData(cancerMortalityData, cancerIncidentData) {
         }
         else {
             cancerMortalityDeathCounts = eachRecord.cancer_mortality;
-            crudeMortalityRate = eachRecord.pop != 'n/a' ? Math.round(cancerMortalityDeathCounts / eachRecord.pop * 1000000) / 10 : "Not Available";
+            crudeMortalityRate = eachRecord.pop != 'n/a' ? Math.round(cancerMortalityDeathCounts / eachRecord.pop * 1000000) / 10 : "Not available";
         }
         incidentData = cancerIncidentData.data.nested.table.current_year[index] ? cancerIncidentData.data.nested.table.current_year[index] : {
-            cancer_incident: 'Not Available',
+            cancer_incident: 'Not available',
             pop: 'n/a'
         };
-        var incidentPopulation = incidentData.pop == 'n/a' ? 'Not Available' : incidentData.pop;
+        var incidentPopulation = incidentData.pop == 'n/a' ? 'Not available' : incidentData.pop;
         if(incidentData.cancer_incident === 'suppressed'){
             incidentData.cancer_incident = 'Suppressed';
             crudeIncidentRate = 'Suppressed';
@@ -643,7 +643,7 @@ function prepareCancerData(cancerMortalityData, cancerIncidentData) {
             crudeIncidentRate = 'Unreliable';
         }
         else {
-            crudeIncidentRate = incidentData.pop != 'n/a' ? Math.round(incidentData.cancer_incident / incidentData.pop * 1000000) / 10 : "Not Available";
+            crudeIncidentRate = incidentData.pop != 'n/a' ? Math.round(incidentData.cancer_incident / incidentData.pop * 1000000) / 10 : "Not available";
         }
         switch(index){
             case 0:
@@ -744,7 +744,7 @@ function prepareDiseaseData(data, countKey) {
             record['displayValue'] = 0;
         }
         else if(record[countKey] === 'na') {
-            record['displayValue'] = 'Not Available';
+            record['displayValue'] = 'Not available';
         }
         else if(record[countKey] === 'suppressed') {
             record['displayValue'] = 'Suppressed';
