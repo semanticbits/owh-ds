@@ -636,7 +636,7 @@
                         angular.isNumber(hispanic.births) ? $filter('number')(hispanic.births) : 'Suppressed'
                     ],
                     [
-                        "Death rate",
+                        "Death rates",
                         angular.isNumber(infantAIAN.deathRate) ? $filter('number')(infantAIAN.deathRate, 1) : infantAIAN.deathRate,
                         angular.isNumber(infantAPI.deathRate) ? $filter('number')(infantAPI.deathRate, 1) : infantAPI.deathRate,
                         angular.isNumber(infantBAA.deathRate) ? $filter('number')(infantBAA.deathRate, 1) : infantBAA.deathRate,
@@ -775,7 +775,7 @@
                 }
             });
             var tbCases = ['Cases'];
-            var tbRates = ['Rates'];
+            var tbRates = ['Rates (per 100,000)'];
             angular.forEach(fsc.factSheet.tuberculosis, function(eachRecord) {
                 if(eachRecord.name !== 'Unknown') {
                     tbCases.push(eachRecord.cases);
@@ -796,7 +796,7 @@
             });
             angular.forEach(fsc.factSheet.stdData, function(eachRecord){
                 var casesRow = [{text:eachRecord.disease, rowSpan: 2}, 'Cases'];
-                var ratesRow = ["", "Rates"];
+                var ratesRow = ["", "Rates (per 100,000)"];
                 angular.forEach(eachRecord.data, function(data){
                     if(data.name !== 'Unknown') {
                         casesRow.push(data.cases);
@@ -826,7 +826,7 @@
             });
             angular.forEach(fsc.factSheet.hivAIDSData, function(eachRecord) {
                 var casesRow = [{text:eachRecord.disease, rowSpan: 2}, 'Cases'];
-                var ratesRow = ['', 'Rates'];
+                var ratesRow = ['', 'Rates (per 100,000)'];
                 angular.forEach(eachRecord.data, function(data){
                     if(data.name !== 'Unknown') {
                         casesRow.push(data.cases);
@@ -1027,7 +1027,7 @@
             };
             //Infant Mortality
             allTablesData.infantMortality = {
-                headerData: ['Deaths', 'Births', 'Death Rate'],
+                headerData: ['Deaths', 'Births', 'Death rates'],
                 bodyData: [$filter('number')(fsc.factSheet.infantMortalityData.infant_mortality), $filter('number')(fsc.factSheet.infantMortalityData.births),
                     $filter('number')(fsc.factSheet.infantMortalityData.deathRate, 1)]
             };
@@ -1057,10 +1057,10 @@
             //Natality
             allTablesData.natality = {
                 bodyData: [["Births", $filter('number')(fsc.factSheet.natalityData.births)],
-                    ["Total Population", $filter('number')(fsc.factSheet.natalityData.population)],
-                    ["Birth Rates (per 100,000)", fsc.factSheet.natalityData.birthRate],
-                    ["Female  Population (Ages 15 to 44)", $filter('number')(fsc.factSheet.natalityData.femalePopulation)],
-                    ["Fertility Rates (per 100,000)", fsc.factSheet.natalityData.fertilityRate],
+                    ["Total population", $filter('number')(fsc.factSheet.natalityData.population)],
+                    ["Birth rates (per 100,000)", fsc.factSheet.natalityData.birthRate],
+                    ["Female  population (Ages 15 to 44)", $filter('number')(fsc.factSheet.natalityData.femalePopulation)],
+                    ["Fertility rates (per 100,000)", fsc.factSheet.natalityData.fertilityRate],
                     ['Vaginal rates', fsc.factSheet.natalityData.vaginalRate],
                     ['Cesarean rates', fsc.factSheet.natalityData.cesareanRate],
                     ['Low birth weight (<2500 gms)', fsc.factSheet.natalityData.lowBirthWeightRate],
