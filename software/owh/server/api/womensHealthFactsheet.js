@@ -204,7 +204,7 @@ function getPramsDataForFactSheet(factSheetQueryJSON) {
     var deferred = Q.defer();
     Q.all(promises).then(function (resp) {
         var pramsData = [
-            {"question": "Adequacy of Prenatal Care (Kessner index)", data: resp[0].table.question[0] && resp[0].table.question[0]['Adequate pnc'] ? resp[0].table.question[0]['Adequate pnc'].sitecode[0].prams.mean : "Not applicable"},
+            {"question": "Adequacy of Prenatal Care (Kessner index)", data: resp[0].table.question[0] && resp[0].table.question[0]['adequate pnc'] ? resp[0].table.question[0]['adequate pnc'].sitecode[0].prams.mean : "Not applicable"},
             {"question": "Smoking cigarettes during the last three months of pregnancy", data: resp[1].table.question[0] && resp[1].table.question[0].yes ? resp[1].table.question[0].yes.sitecode[0].prams.mean : "Not applicable"},
             {"question": "Females reported physical abuse by husband or partner during pregnancy", data: resp[2].table.question[0] && resp[2].table.question[0].yes ? resp[2].table.question[0].yes.sitecode[0].prams.mean: "Not applicable"},
             {"question": "Ever breastfed or pump breast milk to feed after delivery", data: resp[3].table.question[0] && resp[3].table.question[0].yes ? resp[3].table.question[0].yes.sitecode[0].prams.mean : "Not applicable"},
@@ -447,36 +447,37 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
 
         var uterusCancerIncidentData = prepareCancerData(resp[20], resp[13], 'cancer_incident');
         searchUtils.applyCustomSuppressions(uterusCancerIncidentData.data.nested, rules, 'cancer_incident');
+        var naIncidence = {cancer_incident: 'Not available'};
 
         var data = [
             {
                 site:"Breast",
                 mortality: breastCancerMortalityData.data.nested.table.current_year[0],
-                incidence: breastCancerIncidentData.data.nested.table.current_year[0]
+                incidence: breastCancerIncidentData.data.nested.table.current_year[0]? breastCancerIncidentData.data.nested.table.current_year[0]: naIncidence
             },{
                 site:"Lung and Bronchus",
                 mortality: lungCancerMortalityData.data.nested.table.current_year[0],
-                incidence: lungCancerIncidentData.data.nested.table.current_year[0]
+                incidence: lungCancerIncidentData.data.nested.table.current_year[0]? lungCancerIncidentData.data.nested.table.current_year[0]: naIncidence
             },{
                 site:"Colon and Rectum",
                 mortality: colonCancerMortalityData.data.nested.table.current_year[0],
-                incidence: colonCancerIncidentData.data.nested.table.current_year[0]
+                incidence: colonCancerIncidentData.data.nested.table.current_year[0]? colonCancerIncidentData.data.nested.table.current_year[0]: naIncidence
             },{
                 site:"Melanoma of the Skin",
                 mortality: melanomaCancerMortalityData.data.nested.table.current_year[0],
-                incidence: melanomaCancerIncidentData.data.nested.table.current_year[0]
+                incidence: melanomaCancerIncidentData.data.nested.table.current_year[0]? melanomaCancerIncidentData.data.nested.table.current_year[0]: naIncidence
             },{
                 site:"Cervix",
                 mortality: cervixCancerMortalityData.data.nested.table.current_year[0],
-                incidence: cervixCancerIncidentData.data.nested.table.current_year[0]
+                incidence: cervixCancerIncidentData.data.nested.table.current_year[0]? cervixCancerIncidentData.data.nested.table.current_year[0]: naIncidence
             },{
                 site:"Ovary",
                 mortality: ovaryCancerMortalityData.data.nested.table.current_year[0],
-                incidence: ovaryCancerIncidentData.data.nested.table.current_year[0]
+                incidence: ovaryCancerIncidentData.data.nested.table.current_year[0]? ovaryCancerIncidentData.data.nested.table.current_year[0]: naIncidence
             },{
                 site:"Uterus",
                 mortality: uterusCancerMortalityData.data.nested.table.current_year[0],
-                incidence: uterusCancerIncidentData.data.nested.table.current_year[0]
+                incidence: uterusCancerIncidentData.data.nested.table.current_year[0]? uterusCancerIncidentData.data.nested.table.current_year[0]: naIncidence
             }
         ];
         deferred.resolve(data);

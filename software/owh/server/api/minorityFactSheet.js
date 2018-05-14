@@ -17,18 +17,15 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
         //If state 'Arizona' change code to 'AZB' for YRBS,
         if(state === 'AZ') {
             factSheetQueryJSON.yrbs["alcohol"].query.sitecode.value = 'AZB';
-            Object.keys(factSheetQueryJSON.prams["Pregnant women"]).forEach(function(eachKey){
-                factSheetQueryJSON.prams["Pregnant women"][eachKey].query.sitecode.value = ["AZB"];
-            });
-            Object.keys(factSheetQueryJSON.prams["Women"]).forEach(function(eachKey){
-                factSheetQueryJSON.prams["Women"][eachKey].query.sitecode.value = ["AZB"];
+            Object.keys(factSheetQueryJSON.prams).forEach(function(eachKey){
+                factSheetQueryJSON.prams[eachKey].query.sitecode.value = ["AZB"];
             });
         }
 
         var es = new elasticSearch();
 
         var factsheet = {};
-        getBridgeRaceDataForFactSheet(factSheetQueryJSON, fsType).then(function (bridgeRaceData) {
+        getBridgeRaceDataForFactSheet(factSheetQueryJSON).then(function (bridgeRaceData) {
             factsheet = bridgeRaceData;
             return getFactSheetDataForInfants(factSheetQueryJSON);
         }).then(function (infantData) {
@@ -179,8 +176,8 @@ function prepareDiseaseData(data, countKey) {
             record['rates'] = '0.0';
         }
         else if(record[countKey] === 'na') {
-            record['cases'] = 'Not Available';
-            record['rates'] = 'Not Applicable';
+            record['cases'] = 'Not available';
+            record['rates'] = 'Not applicable';
         }
         else if(record[countKey] === 'suppressed') {
             record['cases'] = 'Suppressed';
@@ -207,26 +204,22 @@ function formatNumber (num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 }
 
-function getBridgeRaceDataForFactSheet(factSheetQueryJSON, fsType) {
+function getBridgeRaceDataForFactSheet(factSheetQueryJSON) {
     var deferred = Q.defer();
     var bridgeRaceQueryObj = factSheetQueryJSON.bridge_race;
     var es = new elasticSearch();
     var promises = [
-        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.gender_population),
-        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.nonHispanicRace_population),
-        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.race_population),
+        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.non_hispanic_race_population),
         es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.hispanic_population),
         es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.age_population)
     ];
 
     Q.all(promises).then(function (resp) {
-        var genderData = searchUtils.populateDataWithMappings(resp[0], 'bridge_race', 'pop');
-        var nonHispanicRaceData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop');
-        var raceData = searchUtils.populateDataWithMappings(resp[2], 'bridge_race', 'pop');
-        var hispanicData = searchUtils.populateDataWithMappings(resp[3], 'bridge_race', 'pop');
-        var ageGroupData = searchUtils.populateDataWithMappings(resp[4], 'bridge_race', 'pop');
-        var data =  prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
-            raceData, hispanicData, ageGroupData, fsType);
+        var nonHispanicRaceData = searchUtils.populateDataWithMappings(resp[0], 'bridge_race', 'pop');
+        var hispanicData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop');
+        var ageGroupData = searchUtils.populateDataWithMappings(resp[2], 'bridge_race', 'pop');
+        var data =  prepareFactSheetForPopulation(nonHispanicRaceData, hispanicData, ageGroupData);
+        data.totalPop = resp[0].aggregations.group_count_pop.value + resp[1].aggregations.group_count_pop.value
         deferred.resolve(data);
     }, function (err) {
         logger.error(err.message);
@@ -235,22 +228,15 @@ function getBridgeRaceDataForFactSheet(factSheetQueryJSON, fsType) {
     return deferred.promise;
 }
 
-function prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
-                                       raceData, hispanicData, ageGroupData, fsType) {
+function prepareFactSheetForPopulation(nonHispanicRaceData,
+                                       hispanicData, ageGroupData) {
     var factSheet = {};
-    factSheet.gender = genderData.data.simple.group_table_sex;
-    factSheet.totalGenderPop = 0;
-    factSheet.gender.forEach(function (data) {
-        factSheet.totalGenderPop += data.bridge_race;
-    });
 
     var race = nonHispanicRaceData.data.simple.group_table_race;
-    race = race.concat(raceData.data.simple.group_table_race, hispanicData.data.simple.group_table_ethnicity);
-
+    race = race.concat(hispanicData.data.simple.group_table_ethnicity);
     factSheet.race = race;
 
     factSheet.ageGroups = [];
-
     ageGroupData = ageGroupData.data.simple.group_table_agegroup;
     var ageGroups15to44 = ['15-19 years', '20-24 years', '25-29 years', '30-34 years',
         '35-39 years', '40-44 years'];
@@ -631,7 +617,7 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
 
 function prepareDetailMortalityData(raceCountData, raceRateData, hispanicCountData, hispanicRateDate) {
 
-    var noDataAvailableObj = {name: 'Hispanic', deaths: 'suppressed', ageAdjustedRate: 'Not Available', standardPop: 'Not Available'};
+    var noDataAvailableObj = {name: 'Hispanic', deaths: 'suppressed', ageAdjustedRate: 'Not available', standardPop: 'Not available'};
     var selectedRaces = { "options": [ "American Indian", "Asian or Pacific Islander", "Black", 'Hispanic' ]};
     //race counts & rates data
     var resultantData = searchUtils.populateDataWithMappings(raceCountData, 'deaths');

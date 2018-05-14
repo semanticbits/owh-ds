@@ -51,7 +51,7 @@
                     <div class="bridge-race-factsheet">
                         <h5 class="bridge-race-heading"><img src="../../images/icons/bridged-race-icon.svg"/>Population in {{fsc.stateName}}</h5>
                         <p class="bridge-race-description">
-                            Total minority state population: {{fsc.factSheet.totalGenderPop | number }}
+                            Total minority state population: {{fsc.factSheet.totalPop | number }}
                         </p>
                         <div>
                             <table class="bridge-race-table1">
@@ -59,8 +59,8 @@
                                 <tr>
                                     <th>Racial distributions of minority residents*</th>
                                     <th>Total</th>
-                                    <th>Black, non-Hispanic</th>
-                                    <th>American Indian</th>
+                                    <th>Black or African American</th>
+                                    <th>American Indian or Alaska Native</th>
                                     <th>Asian or Pacific Islander</th>
                                     <th>Hispanic</th>
                                 </tr>
@@ -68,7 +68,7 @@
                                 <tbody>
                                 <tr>
                                     <td class="bold-class">Population</td>
-                                    <td>{{fsc.factSheet.totalGenderPop | number }}</td>
+                                    <td>{{fsc.factSheet.totalPop | number }}</td>
                                     <td ng-repeat="race in fsc.factSheet.race" ng-bind="race.bridge_race | number "></td>
                                 </tr>
                                 </tbody>
@@ -175,7 +175,7 @@
                                 <td ng-bind="fsc.factSheet.infantMortalityData['Hispanic'].births | number"></td>
                             </tr>
                             <tr>
-                                <td>Death rate</td>
+                                <td>Death rates</td>
                                 <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate)"
                                     ng-bind="fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate | number:1"></td>
                                 <td ng-if="!fsc.isNumeric(fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate)"
@@ -361,7 +361,7 @@
                                     <td ng-repeat="eachRecord in  fsc.factSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.cases"></td>
                                 </tr>
                                 <tr>
-                                    <td>Rates</td>
+                                    <td>Rates (per 100,000)</td>
                                     <td ng-repeat="eachRecord in  fsc.factSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.rates"></td>
                                 </tr>
                             </tbody>
@@ -389,7 +389,7 @@
                                         ng-if="eachRaceValue.name != 'Unknown'">{{eachRaceValue.cases}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Rates</td>
+                                    <td>Rates (per 100,000)</td>
                                     <td ng-repeat="eachRaceValue in eachRecord.data"
                                         ng-if="eachRaceValue.name != 'Unknown'">{{eachRaceValue.rates}}</td>
                                 </tr>
@@ -417,7 +417,7 @@
                                     <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown'">{{eachRaceValue.cases}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Rates</td>
+                                    <td>Rates (per 100,000)</td>
                                     <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown'">{{eachRaceValue.rates}}</td>
                                 </tr>
                             </tbody>
@@ -506,7 +506,7 @@
                                     <th>Racial distributions of female residents</th>
                                     <th>Black, non-Hispanic</th>
                                     <th>White, non-Hispanic</th>
-                                    <th>American Indian</th>
+                                    <th>American Indian or Alaska Native</th>
                                     <th>Asian or Pacific Islander</th>
                                     <th>Hispanic</th>
                                 </tr>
@@ -701,7 +701,7 @@
                                     <th>Total</th>
                                     <th>Black, non-Hispanic</th>
                                     <th>White, non-Hispanic</th>
-                                    <th>American Indian</th>
+                                    <th>American Indian or Alaska Native</th>
                                     <th>Asian or Pacific Islander</th>
                                     <th>Hispanic</th>
                                 </tr>
@@ -773,7 +773,7 @@
                             <tr>
                                 <th>Deaths</th>
                                 <th>Births</th>
-                                <th>Death Rate</th>
+                                <th>Death rates</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -834,19 +834,19 @@
                                 <td>{{fsc.factSheet.natalityData.births | number }}</td>
                             </tr>
                             <tr>
-                                <td>Total Population</td>
+                                <td>Total population</td>
                                 <td>{{fsc.factSheet.natalityData.population | number }}</td>
                             </tr>
                             <tr>
-                                <td>Birth Rates (per 100,000)</td>
+                                <td>Birth rates (per 100,000)</td>
                                 <td>{{fsc.factSheet.natalityData.birthRate}}</td>
                             </tr>
                             <tr>
-                                <td>Female  Population (Ages 15 to 44)</td>
+                                <td>Female  population (Ages 15 to 44)</td>
                                 <td>{{fsc.factSheet.natalityData.femalePopulation | number }}</td>
                             </tr>
                             <tr>
-                                <td>Fertility Rates (per 100,000)</td>
+                                <td>Fertility rates (per 100,000)</td>
                                 <td>{{fsc.factSheet.natalityData.fertilityRate}}</td>
                             </tr>
                             <tr>
@@ -858,11 +858,11 @@
                                 <td>{{fsc.factSheet.natalityData.cesareanRate}}</td>
                             </tr>
                             <tr>
-                                <td>Low Birth Weight (<2500 gms)</td>
+                                <td>Low birth weight (<2500 gms)</td>
                                 <td>{{fsc.factSheet.natalityData.lowBirthWeightRate}}</td>
                             </tr>
                             <tr>
-                                <td>Twin Birth Rate</td>
+                                <td>Twin birth rate</td>
                                 <td>{{fsc.factSheet.natalityData.twinBirthRate}}</td>
                             </tr>
                         </table>
