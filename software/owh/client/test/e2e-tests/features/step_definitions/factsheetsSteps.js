@@ -1155,7 +1155,8 @@ var factsheetsDefinitionsWrapper = function () {
             fsp.generateFactSheetLink.click();
             fsp.downloadFactSheetLink.click();
             //browser.sleep(1000);
-        });
+
+    });
         next();
     });
 

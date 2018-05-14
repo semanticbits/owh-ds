@@ -29,7 +29,7 @@ Scenario: Access fact sheet page
   Then For "Arizona" the generated population data as defined in "population_total.csv" file
 
 
-  #Racial distributions of minority residents*
+  # Racial distributions of minority residents*
   Scenario: Generate Minority FactSheet population for all states based upon Racial Distributions of Residents
    Then For <state> and type "Minority Health" the generated population racial distributions data as defined in "population_total.csv" file
      |state|
@@ -139,7 +139,7 @@ Scenario: Access fact sheet page
       |Wisconsin|
       |Wyoming|
 
-     # Mortality Dataset
+  #Mortality Dataset
   Scenario: Generate Mortality - Minority Health fact sheet for all states
     Then For <state> and type "Minority Health" the generated Mortality data as defined in "mortalityDataset.csv" file
       |state|
