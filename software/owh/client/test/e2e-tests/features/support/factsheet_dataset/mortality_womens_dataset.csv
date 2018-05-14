@@ -1,11 +1,511 @@
-state,"Cause of Death","Age-Adjusted Death Rates (Women)"
+state,Cause of Death,Age-Adjusted Death Rates (Women)
 Alabama,Diseases of heart,185.7
 Alabama,Malignant neoplasms,140.8
 Alabama,Chronic lower respiratory diseases,48.6
 Alabama,Accidents (unintentional injuries),33.7
-Alabama,Cerebrovascular diseases,50
+Alabama,Cerebrovascular diseases,50.0
 Alabama,Alzheimer's disease,47.7
 Alabama,Diabetes mellitus,18.5
 Alabama,Influenza and pneumonia,16.7
 Alabama,"Nephritis, nephrotic syndrome and nephrosis",15.9
 Alabama,Intentional self-harm (suicide),6.2
+Alaska,Diseases of heart,117.7
+Alaska,Malignant neoplasms,146.5
+Alaska,Chronic lower respiratory diseases,33.8
+Alaska,Accidents (unintentional injuries),37.9
+Alaska,Cerebrovascular diseases,35.1
+Alaska,Alzheimer's disease,20.8
+Alaska,Diabetes mellitus,16.5
+Alaska,Influenza and pneumonia,7.3
+Alaska,"Nephritis, nephrotic syndrome and nephrosis",10.5
+Alaska,Intentional self-harm (suicide),13.5
+Arizona,Diseases of heart,108.0
+Arizona,Malignant neoplasms,122.1
+Arizona,Chronic lower respiratory diseases,40.5
+Arizona,Accidents (unintentional injuries),34.0
+Arizona,Cerebrovascular diseases,30.3
+Arizona,Alzheimer's disease,40.1
+Arizona,Diabetes mellitus,19.8
+Arizona,Influenza and pneumonia,8.0
+Arizona,"Nephritis, nephrotic syndrome and nephrosis",4.4
+Arizona,Intentional self-harm (suicide),8.9
+Arkansas,Diseases of heart,177.9
+Arkansas,Malignant neoplasms,151.9
+Arkansas,Chronic lower respiratory diseases,57.2
+Arkansas,Accidents (unintentional injuries),31.3
+Arkansas,Cerebrovascular diseases,48.6
+Arkansas,Alzheimer's disease,47.4
+Arkansas,Diabetes mellitus,20.9
+Arkansas,Influenza and pneumonia,18.1
+Arkansas,"Nephritis, nephrotic syndrome and nephrosis",17.0
+Arkansas,Intentional self-harm (suicide),8.4
+California,Diseases of heart,114.1
+California,Malignant neoplasms,124.6
+California,Chronic lower respiratory diseases,30.6
+California,Accidents (unintentional injuries),19.2
+California,Cerebrovascular diseases,35.3
+California,Alzheimer's disease,39.3
+California,Diabetes mellitus,17.1
+California,Influenza and pneumonia,12.9
+California,"Nephritis, nephrotic syndrome and nephrosis",7.3
+California,Intentional self-harm (suicide),4.8
+Colorado,Diseases of heart,100.2
+Colorado,Malignant neoplasms,117.1
+Colorado,Chronic lower respiratory diseases,42.4
+Colorado,Accidents (unintentional injuries),35.8
+Colorado,Cerebrovascular diseases,36.3
+Colorado,Alzheimer's disease,34.7
+Colorado,Diabetes mellitus,13.1
+Colorado,Influenza and pneumonia,10.7
+Colorado,"Nephritis, nephrotic syndrome and nephrosis",7.0
+Colorado,Intentional self-harm (suicide),8.9
+Connecticut,Diseases of heart,118.0
+Connecticut,Malignant neoplasms,128.1
+Connecticut,Chronic lower respiratory diseases,29.5
+Connecticut,Accidents (unintentional injuries),27.0
+Connecticut,Cerebrovascular diseases,26.6
+Connecticut,Alzheimer's disease,21.7
+Connecticut,Diabetes mellitus,11.1
+Connecticut,Influenza and pneumonia,12.5
+Connecticut,"Nephritis, nephrotic syndrome and nephrosis",9.8
+Connecticut,Intentional self-harm (suicide),5.1
+Delaware,Diseases of heart,130.4
+Delaware,Malignant neoplasms,145.5
+Delaware,Chronic lower respiratory diseases,37.1
+Delaware,Accidents (unintentional injuries),30.4
+Delaware,Cerebrovascular diseases,38.5
+Delaware,Alzheimer's disease,23.9
+Delaware,Diabetes mellitus,15.3
+Delaware,Influenza and pneumonia,12.6
+Delaware,"Nephritis, nephrotic syndrome and nephrosis",12.2
+Delaware,Intentional self-harm (suicide),7.1
+District of columbia,Diseases of heart,144.8
+District of columbia,Malignant neoplasms,153.5
+District of columbia,Chronic lower respiratory diseases,19.7
+District of columbia,Accidents (unintentional injuries),25.7
+District of columbia,Cerebrovascular diseases,36.5
+District of columbia,Alzheimer's disease,22.4
+District of columbia,Diabetes mellitus,22.6
+District of columbia,Influenza and pneumonia,15.0
+District of columbia,"Nephritis, nephrotic syndrome and nephrosis",7.2
+District of columbia,Intentional self-harm (suicide),Suppressed
+Florida,Diseases of heart,114.7
+Florida,Malignant neoplasms,127.1
+Florida,Chronic lower respiratory diseases,35.9
+Florida,Accidents (unintentional injuries),30.1
+Florida,Cerebrovascular diseases,36.6
+Florida,Alzheimer's disease,24.2
+Florida,Diabetes mellitus,13.8
+Florida,Influenza and pneumonia,7.4
+Florida,"Nephritis, nephrotic syndrome and nephrosis",8.6
+Florida,Intentional self-harm (suicide),6.8
+Georgia,Diseases of heart,144.4
+Georgia,Malignant neoplasms,135.3
+Georgia,Chronic lower respiratory diseases,41.6
+Georgia,Accidents (unintentional injuries),29.2
+Georgia,Cerebrovascular diseases,44.6
+Georgia,Alzheimer's disease,48.1
+Georgia,Diabetes mellitus,17.7
+Georgia,Influenza and pneumonia,13.6
+Georgia,"Nephritis, nephrotic syndrome and nephrosis",16.7
+Georgia,Intentional self-harm (suicide),5.7
+Hawaii,Diseases of heart,98.4
+Hawaii,Malignant neoplasms,117.7
+Hawaii,Chronic lower respiratory diseases,14.0
+Hawaii,Accidents (unintentional injuries),17.5
+Hawaii,Cerebrovascular diseases,36.2
+Hawaii,Alzheimer's disease,21.9
+Hawaii,Diabetes mellitus,12.0
+Hawaii,Influenza and pneumonia,23.5
+Hawaii,"Nephritis, nephrotic syndrome and nephrosis",8.7
+Hawaii,Intentional self-harm (suicide),5.8
+Idaho,Diseases of heart,123.4
+Idaho,Malignant neoplasms,129.4
+Idaho,Chronic lower respiratory diseases,42.0
+Idaho,Accidents (unintentional injuries),31.2
+Idaho,Cerebrovascular diseases,35.8
+Idaho,Alzheimer's disease,34.7
+Idaho,Diabetes mellitus,18.7
+Idaho,Influenza and pneumonia,11.9
+Idaho,"Nephritis, nephrotic syndrome and nephrosis",7.5
+Idaho,Intentional self-harm (suicide),9.9
+Illinois,Diseases of heart,136.2
+Illinois,Malignant neoplasms,144.5
+Illinois,Chronic lower respiratory diseases,35.9
+Illinois,Accidents (unintentional injuries),22.8
+Illinois,Cerebrovascular diseases,37.1
+Illinois,Alzheimer's disease,27.1
+Illinois,Diabetes mellitus,16.0
+Illinois,Influenza and pneumonia,13.6
+Illinois,"Nephritis, nephrotic syndrome and nephrosis",14.4
+Illinois,Intentional self-harm (suicide),4.3
+Indiana,Diseases of heart,144.0
+Indiana,Malignant neoplasms,149.2
+Indiana,Chronic lower respiratory diseases,52.0
+Indiana,Accidents (unintentional injuries),33.1
+Indiana,Cerebrovascular diseases,38.4
+Indiana,Alzheimer's disease,37.2
+Indiana,Diabetes mellitus,21.9
+Indiana,Influenza and pneumonia,12.4
+Indiana,"Nephritis, nephrotic syndrome and nephrosis",16.8
+Indiana,Intentional self-harm (suicide),5.5
+Iowa,Diseases of heart,125.4
+Iowa,Malignant neoplasms,139.9
+Iowa,Chronic lower respiratory diseases,43.3
+Iowa,Accidents (unintentional injuries),31.5
+Iowa,Cerebrovascular diseases,33.1
+Iowa,Alzheimer's disease,32.0
+Iowa,Diabetes mellitus,21.6
+Iowa,Influenza and pneumonia,13.6
+Iowa,"Nephritis, nephrotic syndrome and nephrosis",6.7
+Iowa,Intentional self-harm (suicide),6.6
+Kansas,Diseases of heart,124.5
+Kansas,Malignant neoplasms,141.6
+Kansas,Chronic lower respiratory diseases,45.6
+Kansas,Accidents (unintentional injuries),32.6
+Kansas,Cerebrovascular diseases,37.4
+Kansas,Alzheimer's disease,27.3
+Kansas,Diabetes mellitus,16.5
+Kansas,Influenza and pneumonia,17.7
+Kansas,"Nephritis, nephrotic syndrome and nephrosis",15.1
+Kansas,Intentional self-harm (suicide),7.1
+Kentucky,Diseases of heart,155.6
+Kentucky,Malignant neoplasms,163.6
+Kentucky,Chronic lower respiratory diseases,59.0
+Kentucky,Accidents (unintentional injuries),45.2
+Kentucky,Cerebrovascular diseases,40.0
+Kentucky,Alzheimer's disease,39.1
+Kentucky,Diabetes mellitus,22.1
+Kentucky,Influenza and pneumonia,16.7
+Kentucky,"Nephritis, nephrotic syndrome and nephrosis",16.6
+Kentucky,Intentional self-harm (suicide),6.5
+Louisiana,Diseases of heart,168.8
+Louisiana,Malignant neoplasms,148.5
+Louisiana,Chronic lower respiratory diseases,39.2
+Louisiana,Accidents (unintentional injuries),36.5
+Louisiana,Cerebrovascular diseases,43.8
+Louisiana,Alzheimer's disease,47.0
+Louisiana,Diabetes mellitus,20.2
+Louisiana,Influenza and pneumonia,14.3
+Louisiana,"Nephritis, nephrotic syndrome and nephrosis",20.1
+Louisiana,Intentional self-harm (suicide),5.5
+Maine,Diseases of heart,121.9
+Maine,Malignant neoplasms,157.3
+Maine,Chronic lower respiratory diseases,50.9
+Maine,Accidents (unintentional injuries),34.8
+Maine,Cerebrovascular diseases,34.1
+Maine,Alzheimer's disease,31.8
+Maine,Diabetes mellitus,17.6
+Maine,Influenza and pneumonia,17.0
+Maine,"Nephritis, nephrotic syndrome and nephrosis",8.3
+Maine,Intentional self-harm (suicide),5.9
+Maryland,Diseases of heart,134.1
+Maryland,Malignant neoplasms,135.0
+Maryland,Chronic lower respiratory diseases,30.0
+Maryland,Accidents (unintentional injuries),19.2
+Maryland,Cerebrovascular diseases,36.3
+Maryland,Alzheimer's disease,18.1
+Maryland,Diabetes mellitus,14.4
+Maryland,Influenza and pneumonia,15.2
+Maryland,"Nephritis, nephrotic syndrome and nephrosis",9.7
+Maryland,Intentional self-harm (suicide),3.6
+Massachusetts,Diseases of heart,108.7
+Massachusetts,Malignant neoplasms,134.7
+Massachusetts,Chronic lower respiratory diseases,33.0
+Massachusetts,Accidents (unintentional injuries),25.9
+Massachusetts,Cerebrovascular diseases,28.1
+Massachusetts,Alzheimer's disease,22.1
+Massachusetts,Diabetes mellitus,12.8
+Massachusetts,Influenza and pneumonia,14.2
+Massachusetts,"Nephritis, nephrotic syndrome and nephrosis",11.8
+Massachusetts,Intentional self-harm (suicide),4.5
+Michigan,Diseases of heart,160.1
+Michigan,Malignant neoplasms,145.9
+Michigan,Chronic lower respiratory diseases,44.2
+Michigan,Accidents (unintentional injuries),29.3
+Michigan,Cerebrovascular diseases,37.3
+Michigan,Alzheimer's disease,33.6
+Michigan,Diabetes mellitus,18.5
+Michigan,Influenza and pneumonia,12.9
+Michigan,"Nephritis, nephrotic syndrome and nephrosis",13.4
+Michigan,Intentional self-harm (suicide),5.9
+Minnesota,Diseases of heart,89.5
+Minnesota,Malignant neoplasms,133.9
+Minnesota,Chronic lower respiratory diseases,33.7
+Minnesota,Accidents (unintentional injuries),31.2
+Minnesota,Cerebrovascular diseases,32.1
+Minnesota,Alzheimer's disease,29.2
+Minnesota,Diabetes mellitus,14.6
+Minnesota,Influenza and pneumonia,10.3
+Minnesota,"Nephritis, nephrotic syndrome and nephrosis",7.9
+Minnesota,Intentional self-harm (suicide),6.0
+Mississippi,Diseases of heart,191.9
+Mississippi,Malignant neoplasms,149.5
+Mississippi,Chronic lower respiratory diseases,51.0
+Mississippi,Accidents (unintentional injuries),38.4
+Mississippi,Cerebrovascular diseases,49.2
+Mississippi,Alzheimer's disease,49.1
+Mississippi,Diabetes mellitus,29.5
+Mississippi,Influenza and pneumonia,20.8
+Mississippi,"Nephritis, nephrotic syndrome and nephrosis",19.6
+Mississippi,Intentional self-harm (suicide),5.7
+Missouri,Diseases of heart,157.5
+Missouri,Malignant neoplasms,148.2
+Missouri,Chronic lower respiratory diseases,49.0
+Missouri,Accidents (unintentional injuries),36.4
+Missouri,Cerebrovascular diseases,40.0
+Missouri,Alzheimer's disease,32.5
+Missouri,Diabetes mellitus,15.7
+Missouri,Influenza and pneumonia,16.2
+Missouri,"Nephritis, nephrotic syndrome and nephrosis",16.9
+Missouri,Intentional self-harm (suicide),7.5
+Montana,Diseases of heart,120.1
+Montana,Malignant neoplasms,137.2
+Montana,Chronic lower respiratory diseases,48.3
+Montana,Accidents (unintentional injuries),38.9
+Montana,Cerebrovascular diseases,31.3
+Montana,Alzheimer's disease,23.1
+Montana,Diabetes mellitus,18.3
+Montana,Influenza and pneumonia,12.5
+Montana,"Nephritis, nephrotic syndrome and nephrosis",8.3
+Montana,Intentional self-harm (suicide),12.9
+Nebraska,Diseases of heart,122.1
+Nebraska,Malignant neoplasms,136.2
+Nebraska,Chronic lower respiratory diseases,45.0
+Nebraska,Accidents (unintentional injuries),25.6
+Nebraska,Cerebrovascular diseases,32.1
+Nebraska,Alzheimer's disease,28.1
+Nebraska,Diabetes mellitus,21.3
+Nebraska,Influenza and pneumonia,15.3
+Nebraska,"Nephritis, nephrotic syndrome and nephrosis",9.1
+Nebraska,Intentional self-harm (suicide),4.9
+Nevada,Diseases of heart,154.3
+Nevada,Malignant neoplasms,140.9
+Nevada,Chronic lower respiratory diseases,52.4
+Nevada,Accidents (unintentional injuries),31.4
+Nevada,Cerebrovascular diseases,37.7
+Nevada,Alzheimer's disease,36.6
+Nevada,Diabetes mellitus,10.6
+Nevada,Influenza and pneumonia,16.9
+Nevada,"Nephritis, nephrotic syndrome and nephrosis",8.8
+Nevada,Intentional self-harm (suicide),9.8
+New Hampshire,Diseases of heart,115.0
+New Hampshire,Malignant neoplasms,140.8
+New Hampshire,Chronic lower respiratory diseases,39.1
+New Hampshire,Accidents (unintentional injuries),36.6
+New Hampshire,Cerebrovascular diseases,27.4
+New Hampshire,Alzheimer's disease,27.8
+New Hampshire,Diabetes mellitus,14.5
+New Hampshire,Influenza and pneumonia,14.7
+New Hampshire,"Nephritis, nephrotic syndrome and nephrosis",11.5
+New Hampshire,Intentional self-harm (suicide),8.9
+New Jersey,Diseases of heart,132.9
+New Jersey,Malignant neoplasms,133.8
+New Jersey,Chronic lower respiratory diseases,28.7
+New Jersey,Accidents (unintentional injuries),19.8
+New Jersey,Cerebrovascular diseases,29.5
+New Jersey,Alzheimer's disease,21.9
+New Jersey,Diabetes mellitus,14.0
+New Jersey,Influenza and pneumonia,11.3
+New Jersey,"Nephritis, nephrotic syndrome and nephrosis",11.6
+New Jersey,Intentional self-harm (suicide),4.0
+New Mexico,Diseases of heart,111.1
+New Mexico,Malignant neoplasms,126.9
+New Mexico,Chronic lower respiratory diseases,39.7
+New Mexico,Accidents (unintentional injuries),45.8
+New Mexico,Cerebrovascular diseases,30.6
+New Mexico,Alzheimer's disease,22.6
+New Mexico,Diabetes mellitus,20.0
+New Mexico,Influenza and pneumonia,11.0
+New Mexico,"Nephritis, nephrotic syndrome and nephrosis",10.5
+New Mexico,Intentional self-harm (suicide),11.9
+New York,Diseases of heart,147.9
+New York,Malignant neoplasms,131.4
+New York,Chronic lower respiratory diseases,28.3
+New York,Accidents (unintentional injuries),17.9
+New York,Cerebrovascular diseases,24.6
+New York,Alzheimer's disease,14.0
+New York,Diabetes mellitus,13.7
+New York,Influenza and pneumonia,17.3
+New York,"Nephritis, nephrotic syndrome and nephrosis",7.4
+New York,Intentional self-harm (suicide),4.0
+North Carolina,Diseases of heart,129.7
+North Carolina,Malignant neoplasms,137.1
+North Carolina,Chronic lower respiratory diseases,41.5
+North Carolina,Accidents (unintentional injuries),32.5
+North Carolina,Cerebrovascular diseases,44.1
+North Carolina,Alzheimer's disease,38.9
+North Carolina,Diabetes mellitus,18.9
+North Carolina,Influenza and pneumonia,16.5
+North Carolina,"Nephritis, nephrotic syndrome and nephrosis",13.3
+North Carolina,Intentional self-harm (suicide),6.1
+North Dakota,Diseases of heart,113.0
+North Dakota,Malignant neoplasms,131.0
+North Dakota,Chronic lower respiratory diseases,35.9
+North Dakota,Accidents (unintentional injuries),27.4
+North Dakota,Cerebrovascular diseases,32.7
+North Dakota,Alzheimer's disease,39.1
+North Dakota,Diabetes mellitus,18.7
+North Dakota,Influenza and pneumonia,15.4
+North Dakota,"Nephritis, nephrotic syndrome and nephrosis",10.6
+North Dakota,Intentional self-harm (suicide),7.2
+Ohio,Diseases of heart,152.2
+Ohio,Malignant neoplasms,150.6
+Ohio,Chronic lower respiratory diseases,45.8
+Ohio,Accidents (unintentional injuries),37.8
+Ohio,Cerebrovascular diseases,40.8
+Ohio,Alzheimer's disease,34.9
+Ohio,Diabetes mellitus,21.2
+Ohio,Influenza and pneumonia,14.9
+Ohio,"Nephritis, nephrotic syndrome and nephrosis",12.7
+Ohio,Intentional self-harm (suicide),5.7
+Oklahoma,Diseases of heart,191.6
+Oklahoma,Malignant neoplasms,153.3
+Oklahoma,Chronic lower respiratory diseases,62.0
+Oklahoma,Accidents (unintentional injuries),42.8
+Oklahoma,Cerebrovascular diseases,42.4
+Oklahoma,Alzheimer's disease,39.7
+Oklahoma,Diabetes mellitus,29.0
+Oklahoma,Influenza and pneumonia,14.7
+Oklahoma,"Nephritis, nephrotic syndrome and nephrosis",13.1
+Oklahoma,Intentional self-harm (suicide),8.7
+Oregon,Diseases of heart,108.1
+Oregon,Malignant neoplasms,141.6
+Oregon,Chronic lower respiratory diseases,41.6
+Oregon,Accidents (unintentional injuries),30.7
+Oregon,Cerebrovascular diseases,37.6
+Oregon,Alzheimer's disease,37.4
+Oregon,Diabetes mellitus,18.2
+Oregon,Influenza and pneumonia,8.2
+Oregon,"Nephritis, nephrotic syndrome and nephrosis",6.6
+Oregon,Intentional self-harm (suicide),8.5
+Pennsylvania,Diseases of heart,142.0
+Pennsylvania,Malignant neoplasms,143.1
+Pennsylvania,Chronic lower respiratory diseases,34.8
+Pennsylvania,Accidents (unintentional injuries),34.3
+Pennsylvania,Cerebrovascular diseases,38.2
+Pennsylvania,Alzheimer's disease,22.8
+Pennsylvania,Diabetes mellitus,17.8
+Pennsylvania,Influenza and pneumonia,14.5
+Pennsylvania,"Nephritis, nephrotic syndrome and nephrosis",13.9
+Pennsylvania,Intentional self-harm (suicide),6.2
+Rhode Island,Diseases of heart,123.1
+Rhode Island,Malignant neoplasms,135.4
+Rhode Island,Chronic lower respiratory diseases,34.9
+Rhode Island,Accidents (unintentional injuries),35.2
+Rhode Island,Cerebrovascular diseases,26.3
+Rhode Island,Alzheimer's disease,31.4
+Rhode Island,Diabetes mellitus,17.2
+Rhode Island,Influenza and pneumonia,14.4
+Rhode Island,"Nephritis, nephrotic syndrome and nephrosis",7.8
+Rhode Island,Intentional self-harm (suicide),4.6
+South Carolina,Diseases of heart,137.3
+South Carolina,Malignant neoplasms,136.6
+South Carolina,Chronic lower respiratory diseases,46.3
+South Carolina,Accidents (unintentional injuries),35.0
+South Carolina,Cerebrovascular diseases,45.7
+South Carolina,Alzheimer's disease,52.6
+South Carolina,Diabetes mellitus,20.0
+South Carolina,Influenza and pneumonia,14.1
+South Carolina,"Nephritis, nephrotic syndrome and nephrosis",13.7
+South Carolina,Intentional self-harm (suicide),7.1
+South Dakota,Diseases of heart,117.2
+South Dakota,Malignant neoplasms,128.9
+South Dakota,Chronic lower respiratory diseases,36.8
+South Dakota,Accidents (unintentional injuries),35.3
+South Dakota,Cerebrovascular diseases,34.2
+South Dakota,Alzheimer's disease,38.4
+South Dakota,Diabetes mellitus,22.2
+South Dakota,Influenza and pneumonia,16.1
+South Dakota,"Nephritis, nephrotic syndrome and nephrosis",4.9
+South Dakota,Intentional self-harm (suicide),11.5
+Tennessee,Diseases of heart,167.5
+Tennessee,Malignant neoplasms,150.3
+Tennessee,Chronic lower respiratory diseases,51.3
+Tennessee,Accidents (unintentional injuries),40.5
+Tennessee,Cerebrovascular diseases,45.3
+Tennessee,Alzheimer's disease,48.0
+Tennessee,Diabetes mellitus,19.8
+Tennessee,Influenza and pneumonia,21.3
+Tennessee,"Nephritis, nephrotic syndrome and nephrosis",12.5
+Tennessee,Intentional self-harm (suicide),6.3
+Texas,Diseases of heart,135.5
+Texas,Malignant neoplasms,126.7
+Texas,Chronic lower respiratory diseases,38.2
+Texas,Accidents (unintentional injuries),24.1
+Texas,Cerebrovascular diseases,42.0
+Texas,Alzheimer's disease,42.7
+Texas,Diabetes mellitus,18.2
+Texas,Influenza and pneumonia,11.4
+Texas,"Nephritis, nephrotic syndrome and nephrosis",13.7
+Texas,Intentional self-harm (suicide),5.7
+Utah,Diseases of heart,133.9
+Utah,Malignant neoplasms,108.5
+Utah,Chronic lower respiratory diseases,31.3
+Utah,Accidents (unintentional injuries),34.9
+Utah,Cerebrovascular diseases,38.5
+Utah,Alzheimer's disease,48.2
+Utah,Diabetes mellitus,19.0
+Utah,Influenza and pneumonia,15.3
+Utah,"Nephritis, nephrotic syndrome and nephrosis",11.9
+Utah,Intentional self-harm (suicide),11.2
+Vermont,Diseases of heart,114.8
+Vermont,Malignant neoplasms,143.9
+Vermont,Chronic lower respiratory diseases,38.1
+Vermont,Accidents (unintentional injuries),29.9
+Vermont,Cerebrovascular diseases,39.5
+Vermont,Alzheimer's disease,37.3
+Vermont,Diabetes mellitus,16.0
+Vermont,Influenza and pneumonia,9.3
+Vermont,"Nephritis, nephrotic syndrome and nephrosis",3.9
+Vermont,Intentional self-harm (suicide),Unreliable
+Virginia,Diseases of heart,122.9
+Virginia,Malignant neoplasms,136.5
+Virginia,Chronic lower respiratory diseases,36.0
+Virginia,Accidents (unintentional injuries),26.6
+Virginia,Cerebrovascular diseases,37.8
+Virginia,Alzheimer's disease,28.6
+Virginia,Diabetes mellitus,17.2
+Virginia,Influenza and pneumonia,13.6
+Virginia,"Nephritis, nephrotic syndrome and nephrosis",13.5
+Virginia,Intentional self-harm (suicide),5.6
+Washington,Diseases of heart,107.2
+Washington,Malignant neoplasms,136.6
+Washington,Chronic lower respiratory diseases,36.8
+Washington,Accidents (unintentional injuries),30.7
+Washington,Cerebrovascular diseases,33.8
+Washington,Alzheimer's disease,48.8
+Washington,Diabetes mellitus,18.2
+Washington,Influenza and pneumonia,9.9
+Washington,"Nephritis, nephrotic syndrome and nephrosis",4.9
+Washington,Intentional self-harm (suicide),8.4
+West Virginia,Diseases of heart,158.4
+West Virginia,Malignant neoplasms,162.3
+West Virginia,Chronic lower respiratory diseases,60.3
+West Virginia,Accidents (unintentional injuries),54.7
+West Virginia,Cerebrovascular diseases,42.4
+West Virginia,Alzheimer's disease,34.7
+West Virginia,Diabetes mellitus,27.3
+West Virginia,Influenza and pneumonia,18.1
+West Virginia,"Nephritis, nephrotic syndrome and nephrosis",18.4
+West Virginia,Intentional self-harm (suicide),7.8
+Wisconsin,Diseases of heart,121.6
+Wisconsin,Malignant neoplasms,135.5
+Wisconsin,Chronic lower respiratory diseases,35.3
+Wisconsin,Accidents (unintentional injuries),35.2
+Wisconsin,Cerebrovascular diseases,34.7
+Wisconsin,Alzheimer's disease,31.5
+Wisconsin,Diabetes mellitus,15.8
+Wisconsin,Influenza and pneumonia,12.8
+Wisconsin,"Nephritis, nephrotic syndrome and nephrosis",11.9
+Wisconsin,Intentional self-harm (suicide),7.1
+Wyoming,Diseases of heart,126.5
+Wyoming,Malignant neoplasms,125.9
+Wyoming,Chronic lower respiratory diseases,54.5
+Wyoming,Accidents (unintentional injuries),44.3
+Wyoming,Cerebrovascular diseases,32.2
+Wyoming,Alzheimer's disease,27.1
+Wyoming,Diabetes mellitus,15.4
+Wyoming,Influenza and pneumonia,14.9
+Wyoming,"Nephritis, nephrotic syndrome and nephrosis",12.9
+Wyoming,Intentional self-harm (suicide),12.0
