@@ -12669,6 +12669,11 @@
                 }
               }
             }
+          },
+          "total_pop": {
+            "sum": {
+              "field": "pop"
+            }
           }
         },
         "query": {
