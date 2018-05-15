@@ -58,17 +58,15 @@
                                 <thead>
                                 <tr>
                                     <th>Racial distributions of minority residents*</th>
-                                    <th>Total</th>
-                                    <th>Black or African American</th>
                                     <th>American Indian or Alaska Native</th>
                                     <th>Asian or Pacific Islander</th>
+                                    <th>Black or African American</th>
                                     <th>Hispanic</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
                                     <td class="bold-class">Population</td>
-                                    <td>{{fsc.factSheet.totalPop | number }}</td>
                                     <td ng-repeat="race in fsc.factSheet.race" ng-bind="race.bridge_race | number "></td>
                                 </tr>
                                 </tbody>
@@ -128,12 +126,14 @@
                             </tbody>
                         </table>
                         <i class="mortality-info">Source: 2015, NCHS National Vital Statistics System</i>
-                        <i style="margin-top: 2px;" class="mortality-info" ng-bind="'label.help.text.age.adjusted.rate' | translate"></i>
+                        <i style="margin-top: 2px;" class="mortality-info" ng-bind="'fs.adge-adjusted.rates.def' | translate"></i>
                     </div>
                     <br/>
                     <!-- Infant mortality total deaths, births and rates for 2014 for selected state -->
                     <div class="infant-mortality-factsheet" ng-if="fsc.factSheet.infantMortalityData">
-                        <div class="table-heading"><h5><img src="../../images/icons/infant-mortality-icon.svg"/>Infant Mortality</h5> </div>
+                        <div class="table-heading"><h5><img src="../../images/icons/infant-mortality-icon.svg"/>Infant Mortality
+                            <div class="fs-dataset-subheading" ng-bind="'fs.rates.per.thousand' | translate"></div></h5>
+                        </div>
                         <table class="infant-mortality-table">
                             <thead>
                             <tr>
@@ -207,8 +207,8 @@
                             <thead>
                                 <th>Question</th>
                                 <th>Black, Non-Hispanic</th>
-                                <th>Hispanic</th>
                                 <th>Other, Non- Hispanic</th>
+                                <th>Hispanic</th>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="eachRecord in fsc.factSheet.prams" ng-class="{solidBorder: $index == 0}">
@@ -234,10 +234,10 @@
                                 <th>American Indian or Alaskan Native, non-Hispanic</th>
                                 <th>Asian, non-Hispanic</th>
                                 <th>Black, non-Hispanic</th>
-                                <th>Hispanic</th>
-                                <th>Multiracial non-Hispanic</th>
                                 <th>Native Hawaiian or other Pacific Islander, non-Hispanic</th>
+                                <th>Multiracial non-Hispanic</th>
                                 <th>Other, non-Hispanic</th>
+                                <th>Hispanic</th>
                             </thead>
                             <tr ng-repeat="eachRecord in fsc.factSheet.brfss" ng-class="{solidBorder: $index == 0}">
                                 <td ng-bind="eachRecord.question"></td>
@@ -256,9 +256,9 @@
                                 <th>American Indian or Alaska Native</th>
                                 <th>Asian</th>
                                 <th>Black or African American</th>
-                                <th>Hispanic or Latino</th>
-                                <th>Multiple Race</th>
                                 <th>Native Hawaiian or Other Pacific Islander</th>
+                                <th>Multiple Race</th>
+                                <th>Hispanic or Latino</th>
                             </thead>
                             <tr ng-repeat="eachRecord in fsc.factSheet.yrbs" ng-class="{solidBorder: $index == 0}">
                                 <td ng-bind="eachRecord.question"></td>
@@ -280,7 +280,10 @@
                 <div class="factsheet-part2">
                     <!-- Natality -->
                     <div class="natality-factsheet">
-                        <h5><img src="../../images/icons/prams-icon.svg" class="margin-right-10"/>Births</h5>
+                        <h5>
+                            <img src="../../images/icons/prams-icon.svg" class="margin-right-10"/>
+                            Births <div class="fs-dataset-subheading" ng-bind="'fs.rates.per.hundredK' | translate"></div>
+                        </h5>
                         <table class="natality-table">
                             <thead>
                                 <tr>
@@ -305,7 +308,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Birth rates (per 100,000)</td>
+                                    <td>Birth rates</td>
                                     <td ng-repeat="birthRateData in fsc.factSheet.natality.birthRateData"
                                         ng-bind="fsc.calculateRate(birthRateData.natality, birthRateData.pop)"></td>
                                 </tr>
@@ -316,7 +319,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Fertility rates (per 100,000)</td>
+                                    <td>Fertility rates</td>
                                     <td ng-repeat="fertilityRatesData in fsc.factSheet.natality.fertilityRatesData"
                                         ng-bind="fsc.calculateRate(fertilityRatesData.natality, fertilityRatesData.pop)"></td>
                                 </tr>
@@ -346,8 +349,12 @@
                     </div>
                     <!-- Tuberculosis -->
                     <div class="tb-factsheet">
-                        <div class="table-heading"><h5><img src="../../images/icons/tuberculosis-icon.svg"/>Tuberculosis</h5></div>
-                        <p>Population: {{fsc.factSheet.tuberculosis[0].pop | number}} </p>
+                        <div class="table-heading">
+                            <h5><img src="../../images/icons/tuberculosis-icon.svg"/>
+                                Tuberculosis <div class="fs-dataset-subheading" ng-bind="'fs.rates.per.hundredK' | translate"></div>
+                            </h5>
+                        </div>
+                        <p>Population: {{fsc.factSheet.tbPopulation | number}}</p>
                         <table class="tb-table">
                             <thead>
                             <tr>
@@ -361,7 +368,7 @@
                                     <td ng-repeat="eachRecord in  fsc.factSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.cases"></td>
                                 </tr>
                                 <tr>
-                                    <td>Rates (per 100,000)</td>
+                                    <td>Rates</td>
                                     <td ng-repeat="eachRecord in  fsc.factSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.rates"></td>
                                 </tr>
                             </tbody>
@@ -371,8 +378,11 @@
                     <br/>
                     <!-- STD -->
                     <div class="std-factsheet">
-                        <div class="table-heading"><h5><img src="../../images/icons/std-icon.svg"/>Sexually Transmitted Infections </h5></div>
-                        <p>Population: {{fsc.factSheet.stdData[0].data[0].pop | number}} </p>
+                        <div class="table-heading">
+                            <h5><img src="../../images/icons/std-icon.svg"/>
+                            Sexually Transmitted Infections
+                            <div class="fs-dataset-subheading" ng-bind="'fs.rates.per.hundredK' | translate"></div></h5>
+                        </div>
                         <table class="std-table">
                             <thead>
                             <tr>
@@ -389,7 +399,7 @@
                                         ng-if="eachRaceValue.name != 'Unknown'">{{eachRaceValue.cases}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Rates (per 100,000)</td>
+                                    <td>Rates</td>
                                     <td ng-repeat="eachRaceValue in eachRecord.data"
                                         ng-if="eachRaceValue.name != 'Unknown'">{{eachRaceValue.rates}}</td>
                                 </tr>
@@ -400,8 +410,9 @@
                     <br/>
                     <!-- HIV/AIDS -->
                     <div class="hiv-factsheet">
-                        <div class="table-heading"><h5><img src="../../images/icons/aids-hiv-icon.svg"/>HIV/AIDS</h5></div>
-                        <p>Population: {{fsc.factSheet.hivAIDSData[0].data[0].pop | number}}  </p>
+                        <div class="table-heading"><h5><img src="../../images/icons/aids-hiv-icon.svg"/>
+                            HIV/AIDS <div class="fs-dataset-subheading" ng-bind="'fs.hiv.rates.per.hundredK' | translate"></div></h5>
+                        </div>
                         <table class="hiv-table">
                             <thead>
                             <tr>
@@ -417,7 +428,7 @@
                                     <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown'">{{eachRaceValue.cases}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Rates (per 100,000)</td>
+                                    <td>Rates</td>
                                     <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown'">{{eachRaceValue.rates}}</td>
                                 </tr>
                             </tbody>
@@ -425,10 +436,12 @@
                         <i>Source: 2015, Estimated Data from the CDC NCHHSTP Atlas, *2014</i>
                     </div>
                     <br/>
-                    <!-- Cancer - Moratlity - Incidence -->
+                    <!-- Cancer - Moratlity & Incidence -->
                     <div class="cancer-factsheet">
-                        <h5><img src="../../images/icons/cancer-incidence-icon.svg"/>Cancer Statistics</h5>
-                        <p>Cancer Incidence and Mortality:</p>
+                        <h5>
+                            <img src="../../images/icons/cancer-incidence-icon.svg"/>
+                            Cancer Statistics <div class="fs-dataset-subheading" ng-bind="'fs.rates.per.hundredK' | translate"></div>
+                        </h5>
                         <table class="cancer-table">
                             <thead>
                             <tr>
@@ -453,7 +466,7 @@
                                         ng-bind="dt.cancer_incident === 'suppressed' ? 'Suppressed' : ( dt.cancer_incident | number )"></td>
                                 </tr>
                                 <tr>
-                                    <td>Incidence Crude Rates (per 100,000)</td>
+                                    <td>Incidence Crude Rates</td>
                                     <td ng-repeat="dt in eachRecord.incidence"
                                         ng-bind="fsc.calculateRate(dt.cancer_incident, dt.pop, true)"></td>
                                 </tr>
@@ -463,7 +476,7 @@
                                         ng-bind="dt.cancer_mortality === 'suppressed' ? 'Suppressed' : ( dt.cancer_mortality | number )"></td>
                                 </tr>
                                 <tr>
-                                    <td>Mortality Crude Rates (per 100,000)</td>
+                                    <td>Mortality Crude Rates</td>
                                     <td ng-repeat="dt in eachRecord.mortality"
                                         ng-bind="fsc.calculateRate(dt.cancer_mortality, dt.pop, true)"></td>
                                 </tr>
@@ -528,7 +541,7 @@
                             <thead>
                             <tr>
                                 <th>Cause of Death</th>
-                                <th>Age-Adjusted Death Rates (Women)</th>
+                                <th>Age-Adjusted Death Rates (per 100,000 women)</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -605,7 +618,6 @@
                     <!-- STD -->
                     <div class="std-factsheet">
                         <div class="table-heading"><h5><img src="../../images/icons/std-icon.svg"/>Sexually Transmitted Infections </h5> </div>
-                        <p>Population: {{fsc.factSheet.stdData[0].data.pop | number}} </p>
                         <table class="std-table">
                             <thead>
                             <tr>
@@ -626,7 +638,6 @@
                     <!-- HIV/AIDS -->
                     <div class="hiv-factsheet">
                         <div class="table-heading"><h5><img src="../../images/icons/aids-hiv-icon.svg"/>HIV/AIDS</h5></div>
-                        <p>Population: {{fsc.factSheet.hivAIDSData[0].data.pop | number}}  </p>
                         <table class="hiv-table">
                             <thead>
                             <tr>
@@ -647,7 +658,6 @@
                     <!-- Cancer - Moratlity - Incidence -->
                     <div class="cancer-factsheet">
                         <h5><img src="../../images/icons/cancer-incidence-icon.svg"/>Cancer Statistics</h5>
-                        <p>Cancer Incidence and Mortality:</p>
                         <table class="cancer-table">
                             <thead>
                             <tr>
@@ -938,7 +948,6 @@
                     <!-- Cancer - Moratlity - Incidence -->
                     <div class="cancer-factsheet">
                         <h5><img src="../../images/icons/cancer-incidence-icon.svg"/>Cancer Statistics</h5>
-                        <p>Cancer Incidence and Mortality:</p>
                         <table class="cancer-table">
                             <thead>
                             <tr>

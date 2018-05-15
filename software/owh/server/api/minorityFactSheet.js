@@ -32,7 +32,8 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
             factsheet.infantMortalityData = infantData;
             return getTBDataForFactSheets(factSheetQueryJSON);
         }).then(function (tbData) {
-            factsheet.tuberculosis = tbData;
+            factsheet.tuberculosis = tbData.data;
+            factsheet.tbPopulation = tbData.population;
             return getSTDDataForFactSheets(factSheetQueryJSON);
         }).then(function (stdData) {
             factsheet.stdData = stdData;
@@ -72,7 +73,7 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
  * @return {{pregnantWoment: [], women: []}}
  */
 function preparePRAMSData(respData) {
-    var selectedRaces = {options: ['Black', 'Hispanic', 'Other Race']};
+    var selectedRaces = {options: ['Black', 'Other Race' ,'Hispanic']};
     var resultData = [
         {"question": "Smoking cigarettes during the last three months of pregnancy", data: respData[0].table.question[0] && respData[0].table.question[0].yes ? respData[0].table.question[0].yes.maternal_race : "Not applicable"},
         {"question": "Females reported physical abuse by husband or partner during pregnancy", data: respData[1].table.question[0] && respData[1].table.question[0].yes ? respData[1].table.question[0].yes.maternal_race: "Not applicable"},
@@ -103,7 +104,7 @@ function prepareBRFSSData(data){
     ];
     data.table.question.forEach(function(eachRecord) {
         var property = 'name';
-        var sortOrder = ['AI/AN', 'Asian', 'Black', 'Hispanic', 'Multiracial non-Hispanic', 'NHOPI', 'Other Race'];
+        var sortOrder = ['AI/AN', 'Asian', 'Black', 'NHOPI', 'Multiracial non-Hispanic', 'Other Race', 'Hispanic'];
         switch(eachRecord.name){
             case "x_bmi5cat":
                 brfssData[0].data = sortArrayByPropertyAndSortOrder(eachRecord["obese (bmi 30.0 - 99.8)"].race, property, sortOrder);
@@ -130,7 +131,7 @@ function prepareBRFSSData(data){
 function prepareYRBSData(data) {
     var yrbsData = [];
     var sortOrder = ['Am Indian / Alaska Native', 'Asian', 'Black or African American',
-        'Hispanic/Latino', 'Multiple - Non-Hispanic', 'Native Hawaiian/other PI'];
+        'Native Hawaiian/other PI', 'Multiple - Non-Hispanic', 'Hispanic/Latino'];
     var property = 'name';
     yrbsData.push({
         "question": "Currently use alcohol", data:data.table.question[0] && data.table.question[0].Yes ?
@@ -169,8 +170,10 @@ function prepareYRBSData(data) {
  * @param countKey
  */
 function prepareDiseaseData(data, countKey) {
-    var tbData = data.data.nested.table.race;
-    tbData.forEach(function(record, index){
+    var sortOrder = ['American Indian or Alaska Native', 'Asian', 'Black or African American',
+    'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino', 'Unknown'];
+    var diseaseData = sortArrayByPropertyAndSortOrder(data.data.nested.table.race, 'name', sortOrder);
+    diseaseData.forEach(function(record, index){
         if(record[countKey] === 0) {
             record['cases'] = 0;
             record['rates'] = '0.0';
@@ -193,7 +196,7 @@ function prepareDiseaseData(data, countKey) {
         //Remove population property except All races population
         index != 0 && delete record['pop'];
     });
-    return tbData;
+    return diseaseData;
 }
 
 /**
@@ -219,7 +222,7 @@ function getBridgeRaceDataForFactSheet(factSheetQueryJSON) {
         var hispanicData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop');
         var ageGroupData = searchUtils.populateDataWithMappings(resp[2], 'bridge_race', 'pop');
         var data =  prepareFactSheetForPopulation(nonHispanicRaceData, hispanicData, ageGroupData);
-        data.totalPop = resp[0].aggregations.group_count_pop.value + resp[1].aggregations.group_count_pop.value
+        data.totalPop = resp[0].aggregations.group_count_pop.value + resp[1].aggregations.group_count_pop.value;
         deferred.resolve(data);
     }, function (err) {
         logger.error(err.message);
@@ -327,14 +330,16 @@ function getTBDataForFactSheets(factSheetQueryJSON) {
     var es = new elasticSearch();
     var promises = [
         es.executeESQuery('owh_tb', 'tb', factSheetQueryJSON.tuberculosis[0]),
-        es.aggregateCensusDataQuery(factSheetQueryJSON.tuberculosis[1], 'owh_tb', "tb", 'pop')
+        es.aggregateCensusDataQuery(factSheetQueryJSON.tuberculosis[1], 'owh_tb', "tb", 'pop'),
+        es.executeESQuery('owh_tb', 'tb', factSheetQueryJSON.tuberculosis[1])
     ];
     var deferred = Q.defer();
     Q.all(promises).then(function (resp) {
         var tbData = searchUtils.populateDataWithMappings(resp[0], 'tb' , 'cases');
         es.mergeWithCensusData(tbData, resp[1], 'pop');
         var data = prepareDiseaseData(tbData, 'tb');
-        deferred.resolve(data);
+        var totalPop = resp[2].aggregations.total_pop.value;
+        deferred.resolve({data:data, population: totalPop});
     }, function (err) {
         logger.error(err.message);
         deferred.reject(err);
