@@ -631,7 +631,6 @@ function prepareCancerData(cancerMortalityData, cancerIncidentData) {
             cancer_incident: 'Not available',
             pop: 'n/a'
         };
-        var incidentPopulation = incidentData.pop == 'n/a' ? 'Not available' : incidentData.pop;
         if(incidentData.cancer_incident === 'suppressed'){
             incidentData.cancer_incident = 'Suppressed';
             crudeIncidentRate = 'Suppressed';
@@ -644,25 +643,25 @@ function prepareCancerData(cancerMortalityData, cancerIncidentData) {
         }
         switch(index){
             case 0:
-                cancerData.push({site:'Breast', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate,  deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
+                cancerData.push({site:'Breast', pop: eachRecord.pop, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate,  deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
                 break;
             case 1:
-                cancerData.push({site:'Colon and Rectum', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
+                cancerData.push({site:'Colon and Rectum', pop: eachRecord.pop, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
                 break;
             case 2:
-                cancerData.push({site:'Lung and Bronchus', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
+                cancerData.push({site:'Lung and Bronchus', pop: eachRecord.pop, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
                 break;
             case 3:
-                cancerData.push({site:'Melanoma of the Skin', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
+                cancerData.push({site:'Melanoma of the Skin', pop: eachRecord.pop, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
                 break;
             case 4:
-                cancerData.push({site:'Cervix Uteri†', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
+                cancerData.push({site:'Cervix Uteri†', pop: eachRecord.pop, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
                 break;
             case 5:
-                cancerData.push({site:'Ovary†', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
+                cancerData.push({site:'Ovary†', pop: eachRecord.pop, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
                 break;
             case 6:
-                cancerData.push({site:'Prostate††', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
+                cancerData.push({site:'Prostate††', pop: eachRecord.pop, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
                 break;
         }
     });

@@ -159,6 +159,7 @@
         fsc.getMeanDisplayValue = getMeanDisplayValue;
         fsc.calculateRate = calculateRate;
         fsc.isNumeric = isNumeric;
+        fsc.getCancerCountDisplayVal = getCancerCountDisplayVal;
 
         if(fsc.queryID) {
             getQueryResults(fsc.state, fsc.fsType, fsc.queryID).then(function (response) {
@@ -853,8 +854,8 @@
                 var deathsRates = ['', 'Mortality Crude Rates'];
                 angular.forEach(eachRecord.incidence, function (incidence) {
                     var populationCount = incidence.pop === 'suppressed' ? 'Suppressed' : $filter('number')(incidence.pop);
-                    var incidenceCount = incidence.cancer_incident === 'suppressed' ? 'Suppressed' : $filter('number')(incidence.cancer_incident);
-                    var incidenceRate = fsc.calculateRate(incidence.cancer_incident, incidence.pop, true);
+                    var incidenceCount = fsc.getCancerCountDisplayVal(incidence.cancer_incident);
+                    var incidenceRate = (fsc.state === 'KS'? 'Not available' : fsc.calculateRate(incidence.cancer_incident, incidence.pop, true));
                     population.push(populationCount); incidenceCounts.push(incidenceCount); incidenceRates.push(incidenceRate);
                 });
 
@@ -1728,6 +1729,17 @@
 
         function isNumeric(num) {
             return !isNaN(num);
+        }
+
+        function getCancerCountDisplayVal(count) {
+            debugger;
+            if (fsc.state === 'KS') {
+                return 'Not available';
+            } else if(count === 'suppressed') {
+              return 'Suppressed';
+            } else {
+                return $filter('number')(count);
+            }
         }
     }
 }());
