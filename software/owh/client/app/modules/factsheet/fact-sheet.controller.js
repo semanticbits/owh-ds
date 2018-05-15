@@ -1149,8 +1149,8 @@
             angular.forEach(fsc.factSheet.cancerData, function(eachRecord) {
                 var eachRow = [];
                 eachRow.push(eachRecord.site);
-                eachRow.push($filter('number')(eachRecord.pop));
-                eachRecord.count === 'Suppressed' ? eachRow.push(eachRecord.count) : eachRow.push($filter('number')(eachRecord.count));
+                eachRow.push(eachRecord.pop === 'Not available' ? eachRecord.pop : $filter('number')(eachRecord.pop));
+                eachRecord.count === 'Not available' || eachRecord.count === 'Suppressed' ? eachRow.push(eachRecord.count) : eachRow.push($filter('number')(eachRecord.count));
                 eachRow.push(eachRecord.incident_rate);
                 eachRecord.deaths === 'Suppressed' ? eachRow.push(eachRecord.deaths) : eachRow.push($filter('number')(eachRecord.deaths));
                 eachRow.push(eachRecord.mortality_rate);
