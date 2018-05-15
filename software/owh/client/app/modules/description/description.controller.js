@@ -3,15 +3,15 @@
         .module('owh.description')
         .controller('DescriptionController', DescriptionController);
 
-    DescriptionController.$inject = ['$scope', '$state', '$stateParams'];
+    DescriptionController.$inject = ['$scope', '$state', '$stateParams', '$location'];
 
-    function DescriptionController($scope, $state, $stateParams) {
+    function DescriptionController($scope, $state, $stateParams, $location) {
         var dc = this;
         dc.getDataSetDetails = getDataSetDetails;
         dc.scrollToElement = scrollToElement;
 
         dc.datasetInfo = {
-                natality: {
+                births: {
                     key:"natality",
                     title: 'Births',
                     image: 'natality-icon.svg',
@@ -196,7 +196,7 @@
                     topics: 'Demographics, Population Data',
                     dataDescription: "The estimates result from bridging the 31 race categories used in Census 2000, as specified in the 1997 Office of Management and Budget (OMB) standards for the collection of data on race and ethnicity, to the four race categories specified under the 1977 standards (Asian or Pacific Islander, Black or African American, American Indian or Alaska Native, White).",
                     source: "Data source is United States Department of Health and Human Services (HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS), Bridged-Race Population Estimates, United States July 1st resident population by state, age, sex, bridged-race, and Hispanic origin." +
-                    "<ul><li>2010 to 2015 (Vintage 2015) postcensal estimates of the July 1 resident population by five-year of age groups, bridged-race, sex, and Hispanic originreleased by NCHS on June 28, 2016.</li>" +
+                    "<ul><li>2010 to 2015 (Vintage 2015) postcensal estimates of the July 1 resident population by five-year of age groups, bridged-race, sex, and Hispanic origin released by NCHS on June 28, 2016.</li>" +
                     "<li>2000 to 2009 revised intercensal estimates of the July 1 resident population by five-year of age groups, bridged-race, sex, and Hispanic origin released by NCHS on October 26, 2012.</li>" +
                     "</ul>",
                     filters: [
@@ -643,7 +643,10 @@
 
         function getDataSetDetails() {
             var datasetKey = $stateParams.dataSetKey;
-            return dc.datasetInfo[datasetKey]
+            if (datasetKey === 'natality') {
+                $location.path("/description/births").replace();
+            }
+            return dc.datasetInfo[datasetKey];
         }
     }
 }());

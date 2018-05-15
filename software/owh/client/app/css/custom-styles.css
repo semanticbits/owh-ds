@@ -2261,3 +2261,11 @@ div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leafl
 .bridge-race-table1 th, .bridge-race-table2 th {
 	width: 196px;
 }
+
+.fs-dataset-subheading {
+	font-weight: normal;
+	font-size: 14px;
+	position: relative;
+	bottom: 2px;
+	display: inline;
+}

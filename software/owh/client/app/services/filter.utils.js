@@ -1286,7 +1286,8 @@
                 // Location
                 {key: 'state', title: 'label.filter.state', queryKey: 'state', primary: false,
                     value: [], defaultGroup: 'column', groupBy: false, filterType: 'checkbox',
-                    autoCompleteOptions: stateOptions, helpText: 'label.help.text.state'}
+                    autoCompleteOptions: stateOptions, helpText: 'label.help.text.state',
+                    displaySearchBox: true, displaySelectedFirst: true}
             ]
         }
 
@@ -1831,6 +1832,8 @@
                     value: [],
                     groupBy: false,
                     filterType: 'checkbox',
+                    displaySearchBox: true,
+                    displaySelectedFirst: true,
                     autoCompleteOptions: stateOptions,
                     doNotShowAll: true,
                     defaultGroup:"row",

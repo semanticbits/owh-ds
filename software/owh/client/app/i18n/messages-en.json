@@ -122,7 +122,7 @@
   "label.yrbs.sexual.orientation": "Sexual Orientation",
   "label.yrbs.sexual.identity": "Sexual Identity",
   "label.yrbs.sexual.contact": "Sex of Sexual Contacts",
-  "label.official.us.gov": "An official website of the United States Government. This site is work in progress and may contain inaccuracies.",
+  "label.official.us.gov": "An official website of the United States Government.",
   "label.site.prototype": "This site is a prototype.",
   "label.learn.more": "Learn more.",
   "label.next.impl": "Work in progress",
@@ -415,7 +415,8 @@
   "label.help.text.prams.breakouts.income": "This field indicates the yearly total household income before taxes.",
   "label.help.text.prams.breakouts.marital": "This field indicates the marital status of the mother." ,
 
-  "label.help.text.rate": "Crude Rates are expressed as the number of deaths reported each calendar year per 100,000 population. (Crude Rate = Count / Population * 100,000).",
+  "label.help.text.crude.rate": "Crude Rates are expressed as the number of deaths reported each calendar year per 100,000 population. (Crude Rate = Count / Population * 100,000).",
+  "label.help.text.age.adjusted.rate": "Age-adjusted death rates are weighted averages of the age-specific death rates, where the weights represent a fixed population by age.",
   "label.help.text.prams.breakouts.age.one": "This field indicates the mother's age: Age < 18, Age 18 - 24, Age 25 - 29, Age 30 - 44, Age 45+",
   "label.help.text.prams.breakouts.age.two": "This field indicates the mother's age: Age 18-44.",
   "label.help.text.prams.breakouts.age.three": "This field indicates the mother's age: <20, 20-29, 30+ yrs.",
@@ -593,7 +594,10 @@
   "label.help.text.brfss.age_group": "This field indicates the age-group of the survey respondents",
   "label.help.text.brfss.education": "This field indicates the education attained by the survey respondents",
   "label.help.text.brfss.income": "This field indicates the household income of the survey respondents",
-  "label.help.text.factsheet.note": "Please go to the &quot;Explore&quot; tab to see more fine-grained breakdown of results for each of the datasets",
   "datadoc.tb.data.filter.restrictions":"TB state-level data can be viewed in aggregate format or one-way stratifications (i.e., by Sex, Race/Ethnicity, Age group or Country of birth).",
-  "minority.factsheet.definition": "This fact sheet displays demographic and health status information for the following ethnic and racial groups: African Americans, American Indians and Alaska Natives, Asian Americans, Hispanics, Native Hawaiians and Pacific Islanders."
+  "minority.factsheet.definition": "This fact sheet displays demographic and health status information for Hispanic individuals of any race and the following non-Hispanic groups: African Americans, American Indians and Alaska Natives, Asian Americans, Native Hawaiians and Pacific Islanders.",
+  "fs.rates.per.hundredK":"(rate per 100,000 population)",
+  "fs.hiv.rates.per.hundredK": "(rate per 100,000 population aged 13 years and older)",
+  "fs.rates.per.thousand":"(rate per 1000 population)",
+  "fs.adge-adjusted.rates.def":"Age-adjusted death rates are weighted averages of the age-specific death rates, where the weights represent a fixed population of 100,000 by age."
 }
