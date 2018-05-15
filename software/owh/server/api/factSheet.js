@@ -113,11 +113,8 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
         //If state 'Arizona' change code to 'AZB' for YRBS,
         if(state === 'AZ') {
             factSheetQueryJSON.yrbs["alcohol"].query.sitecode.value = 'AZB';
-            Object.keys(factSheetQueryJSON.prams["Pregnant women"]).forEach(function(eachKey){
-                factSheetQueryJSON.prams["Pregnant women"][eachKey].query.sitecode.value = ["AZB"];
-            });
-            Object.keys(factSheetQueryJSON.prams["Women"]).forEach(function(eachKey){
-                factSheetQueryJSON.prams["Women"][eachKey].query.sitecode.value = ["AZB"];
+            Object.keys(factSheetQueryJSON.prams).forEach(function(eachKey){
+                factSheetQueryJSON.prams[eachKey].query.sitecode.value = ["AZB"];
             });
         }
         var yrbs_alcohol_stats_query = factSheetQueryJSON.yrbs["alcohol"];
