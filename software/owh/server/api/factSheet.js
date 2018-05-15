@@ -46,33 +46,36 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
         //Detail Mortality - Total
         var mortality_total_esQuery = factSheetQueryJSON.detailMortality["Total"][0];
         var mortality_total_wonderQuery = factSheetQueryJSON.detailMortality["Total"][1];
-        //Detail Mortality - C50-C50
-        var c50_esQuery = factSheetQueryJSON.detailMortality["C50-C50"][0];
-        var c50_wonderQuery = factSheetQueryJSON.detailMortality["C50-C50"][1];
-        //Detail Mortality - C00-C97
-        var c00_c97_esQuery = factSheetQueryJSON.detailMortality["C00-C97"][0];
-        var c00_c97_wonderQuery = factSheetQueryJSON.detailMortality["C00-C97"][1];
-        //Detail Mortality - C53
-        var c53_esQuery = factSheetQueryJSON.detailMortality["C53"][0];
-        var c53_wonderQuery = factSheetQueryJSON.detailMortality["C53"][1];
-        //Detail Mortality - I160-I169
-        var i160_i169_esQuery = factSheetQueryJSON.detailMortality["I160-I169"][0];
-        var i160_i169_wonderQuery = factSheetQueryJSON.detailMortality["I160-I169"][1];
-        //Detail Mortality - J40-J47 and J60
-        var j40_j47_j60_esQuery = factSheetQueryJSON.detailMortality["J40-47-60"][0];
-        var j40_j47_j60_wonderQuery = factSheetQueryJSON.detailMortality["J40-47-60"][1];
-        //Detail Mortality - drug-induced
-        var drug_induced_esQuery = factSheetQueryJSON.detailMortality["drug-induced"][0];
-        var drug_induced_wonderQuery = factSheetQueryJSON.detailMortality["drug-induced"][1];
+        //Detail Mortality - alzheimer
+        var alzheimerESQuery = factSheetQueryJSON.detailMortality["alzheimer"][0];
+        var alzheimerWonderQuery = factSheetQueryJSON.detailMortality["alzheimer"][1];
+        //Detail Mortality - malignant_neoplasm
+        var malignantNeoplasmESQuery = factSheetQueryJSON.detailMortality["malignant_neoplasm"][0];
+        var malignantNeoplasmWonderQuery = factSheetQueryJSON.detailMortality["malignant_neoplasm"][1];
+        //Detail Mortality - accident
+        var accidentESQuery = factSheetQueryJSON.detailMortality["accident"][0];
+        var accidentWonderQuery = factSheetQueryJSON.detailMortality["accident"][1];
+        //Detail Mortality - Cerebrovascular Disease
+        var cerebrovascularESQuery = factSheetQueryJSON.detailMortality["cerebrovascular"][0];
+        var cerebrovascularWonderQuery = factSheetQueryJSON.detailMortality["cerebrovascular"][1];
+        //Detail Mortality - Chronic Respiratory
+        var chronicRespiratoryESQuery = factSheetQueryJSON.detailMortality["chronic_respiratory"][0];
+        var chronicRespiratoryWonderQuery = factSheetQueryJSON.detailMortality["chronic_respiratory"][1];
+        //Detail Mortality - Diabetes Mellitus
+        var diabetesMellitusESQuery = factSheetQueryJSON.detailMortality["diabetes_mellitus"][0];
+        var diabetesMellitusWonderQuery = factSheetQueryJSON.detailMortality["diabetes_mellitus"][1];
+        //Detail Mortality - Influenza
+        var influenzaESQuery = factSheetQueryJSON.detailMortality["influenza"][0];
+        var influenzaWonderQuery = factSheetQueryJSON.detailMortality["influenza"][1];
+        //Detail Mortality - Nephritis
+        var nephritisESQuery = factSheetQueryJSON.detailMortality["nephritis"][0];
+        var nephritisWonderQuery = factSheetQueryJSON.detailMortality["nephritis"][1];
         //Detail Mortality - Suicide
-        var suicide_esQuery = factSheetQueryJSON.detailMortality["Suicide"][0];
-        var suicide_wonderQuery = factSheetQueryJSON.detailMortality["Suicide"][1];
-        //Detail Mortality - Homicide
-        var homicide_esQuery = factSheetQueryJSON.detailMortality["Homicide"][0];
-        var homicide_wonderQuery = factSheetQueryJSON.detailMortality["Homicide"][1];
-        //Detail Mortality - B20-B24
-        var b20_b24_esQuery = factSheetQueryJSON.detailMortality["B20-B24"][0];
-        var b20_b24_wonderQuery = factSheetQueryJSON.detailMortality["B20-B24"][1];
+        var suicideESQuery = factSheetQueryJSON.detailMortality["suicide"][0];
+        var suicideWonderQuery = factSheetQueryJSON.detailMortality["suicide"][1];
+        //Detail Mortality - Heart Diseases
+        var heartDiseasesESQuery = factSheetQueryJSON.detailMortality["heart_diseases"][0];
+        var heartDiseasesWonderQuery = factSheetQueryJSON.detailMortality["heart_diseases"][1];
         //Natality - Brith Rates
         var natality_birthRates_esQuery = factSheetQueryJSON.natality["birthRates"][0];
         var natality_birthRates_populationQuery = factSheetQueryJSON.natality["birthRates"][1];
@@ -110,28 +113,21 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
         //If state 'Arizona' change code to 'AZB' for YRBS,
         if(state === 'AZ') {
             factSheetQueryJSON.yrbs["alcohol"].query.sitecode.value = 'AZB';
-            Object.keys(factSheetQueryJSON.prams["Pregnant women"]).forEach(function(eachKey){
-                factSheetQueryJSON.prams["Pregnant women"][eachKey].query.sitecode.value = ["AZB"];
-            });
-            Object.keys(factSheetQueryJSON.prams["Women"]).forEach(function(eachKey){
-                factSheetQueryJSON.prams["Women"][eachKey].query.sitecode.value = ["AZB"];
+            Object.keys(factSheetQueryJSON.prams).forEach(function(eachKey){
+                factSheetQueryJSON.prams[eachKey].query.sitecode.value = ["AZB"];
             });
         }
         var yrbs_alcohol_stats_query = factSheetQueryJSON.yrbs["alcohol"];
         //BRFSS - 2015 - Overweight and Obesity(BMI), Tobbaco use, Fruits and Vegetables, Alcohol Consumption
         var brfss_2015_query = factSheetQueryJSON.brfss.query_2015;
         //PRAMS - 2009 - Smoking cigarettes during the last three months of pregnancy
-        var prams_smoking_query = factSheetQueryJSON.prams['Pregnant women']['qn30'];
-        //PRAMS - 2009 - Intended pregnancy
-        var prams_intended_pregnancy_query = factSheetQueryJSON.prams['Pregnant women']['qn16'];
+        var prams_smoking_query = factSheetQueryJSON.prams['qn30'];
         //PRAMS - 2009 - Females reported physical abuse by husband or partner during pregnancy (percent)
-        var prams_physical_abuse_query = factSheetQueryJSON.prams['Pregnant women']['qn21'];
-        //PRAMS - 2009 - With one or more previous live births who reported unintended pregnancy
-        var prams_live_birth_unintended_query = factSheetQueryJSON.prams['Women']['qn16'];
+        var prams_physical_abuse_query = factSheetQueryJSON.prams['qn21'];
         //PRAMS - 2009 - Ever breastfed or pump breast milk to feed after delivery
-        var prams_breast_milk_feed_query = factSheetQueryJSON.prams['Women']['qn5'];
+        var prams_breast_milk_feed_query = factSheetQueryJSON.prams['qn5'];
         //PRAMS - 2009 - Indicator of depression 3 months before pregnancy
-        var prams_indicator_depression_query = factSheetQueryJSON.prams['Women']['qn133'];
+        var prams_indicator_depression_query = factSheetQueryJSON.prams['qn133'];
 
         var es = new elasticSearch();
         var promises = [
@@ -180,33 +176,33 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             //Detail Mortality - Total ages
             es.executeMultipleESQueries(mortality_total_esQuery, 'owh_mortality', 'mortality'),
             new wonder('D77').invokeWONDER(mortality_total_wonderQuery),
-            //Detail Mortality - C00-C97
-            es.executeMultipleESQueries(c00_c97_esQuery, 'owh_mortality', 'mortality'),
-            new wonder('D77').invokeWONDER(c00_c97_wonderQuery),
-            //Detail Mortality - C50-C50
-            es.executeMultipleESQueries(c50_esQuery, 'owh_mortality', 'mortality'),
-            new wonder('D77').invokeWONDER(c50_wonderQuery),
-            //Detail Mortality - C53
-            es.executeMultipleESQueries(c53_esQuery, 'owh_mortality', 'mortality'),
-            new wonder('D77').invokeWONDER(c53_wonderQuery),
-            //Detail Mortality - I160-I169
-            es.executeMultipleESQueries(i160_i169_esQuery, 'owh_mortality', 'mortality'),
-            new wonder('D77').invokeWONDER(i160_i169_wonderQuery),
-            //Detail Mortality - J40-J47 and J60
-            es.executeMultipleESQueries(j40_j47_j60_esQuery, 'owh_mortality', 'mortality'),
-            new wonder('D77').invokeWONDER(j40_j47_j60_wonderQuery),
-            //Detail Mortality - Drug induced
-            es.executeMultipleESQueries(drug_induced_esQuery, 'owh_mortality', 'mortality'),
-            new wonder('D77').invokeWONDER(drug_induced_wonderQuery),
+            //Detail Mortality - Malignant Neoplasm
+            es.executeMultipleESQueries(malignantNeoplasmESQuery, 'owh_mortality', 'mortality'),
+            new wonder('D77').invokeWONDER(malignantNeoplasmWonderQuery),
+            //Detail Mortality - alzheimer
+            es.executeMultipleESQueries(alzheimerESQuery, 'owh_mortality', 'mortality'),
+            new wonder('D77').invokeWONDER(alzheimerWonderQuery),
+            //Detail Mortality - accident
+            es.executeMultipleESQueries(accidentESQuery, 'owh_mortality', 'mortality'),
+            new wonder('D77').invokeWONDER(accidentWonderQuery),
+            //Detail Mortality - Cerebrovascular Disease
+            es.executeMultipleESQueries(cerebrovascularESQuery, 'owh_mortality', 'mortality'),
+            new wonder('D77').invokeWONDER(cerebrovascularWonderQuery),
+            //Detail Mortality - Chronic Respiratory
+            es.executeMultipleESQueries(chronicRespiratoryESQuery, 'owh_mortality', 'mortality'),
+            new wonder('D77').invokeWONDER(chronicRespiratoryWonderQuery),
+            //Detail Mortality - Diabetes Mellitus
+            es.executeMultipleESQueries(diabetesMellitusESQuery, 'owh_mortality', 'mortality'),
+            new wonder('D77').invokeWONDER(diabetesMellitusWonderQuery),
+            //Detail Mortality - influenza
+            es.executeMultipleESQueries(influenzaESQuery, 'owh_mortality', 'mortality'),
+            new wonder('D77').invokeWONDER(influenzaWonderQuery),
+            //Detail Mortality - Nephritis
+            es.executeMultipleESQueries(nephritisESQuery, 'owh_mortality', 'mortality'),
+            new wonder('D77').invokeWONDER(nephritisWonderQuery),
             //Detail Mortality - Suicide
-            es.executeMultipleESQueries(suicide_esQuery, 'owh_mortality', 'mortality'),
-            new wonder('D77').invokeWONDER(suicide_wonderQuery),
-            //Detail Mortality - Homicide
-            es.executeMultipleESQueries(homicide_esQuery, 'owh_mortality', 'mortality'),
-            new wonder('D77').invokeWONDER(homicide_wonderQuery),
-            //Detail Mortality - B20-B24
-            es.executeMultipleESQueries(b20_b24_esQuery, 'owh_mortality', 'mortality'),
-            new wonder('D77').invokeWONDER(b20_b24_wonderQuery),
+            es.executeMultipleESQueries(suicideESQuery, 'owh_mortality', 'mortality'),
+            new wonder('D77').invokeWONDER(suicideWonderQuery),
             //Natality - Birth Rates
             es.executeMultipleESQueries(natality_birthRates_esQuery, 'owh_natality', 'natality'),
             es.aggregateCensusDataQuery(natality_birthRates_populationQuery, 'owh_census_rates', "census_rates", 'pop'),
@@ -252,16 +248,16 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             new yrbs().invokeYRBSService(brfss_2015_query),
             //PRAMS - 2009 - Smoking cigarettes during the last three months of pregnancy
             new yrbs().invokeYRBSService(prams_smoking_query),
-            //PRAMS - 2009 - Intended pregnancy
-            new yrbs().invokeYRBSService(prams_intended_pregnancy_query),
             //PRAMS - 2009 - Females reported physical abuse by husband or partner during pregnancy (percent)
             new yrbs().invokeYRBSService(prams_physical_abuse_query),
-            //PRAMS - 2009 - With one or more previous live births who reported unintended pregnancy
-            new yrbs().invokeYRBSService(prams_live_birth_unintended_query),
             //PRAMS - 2009 - Ever breastfed or pump breast milk to feed after delivery
             new yrbs().invokeYRBSService(prams_breast_milk_feed_query),
             //PRAMS - 2009 - Indicator of depression 3 months before pregnancy
-            new yrbs().invokeYRBSService(prams_indicator_depression_query)
+            new yrbs().invokeYRBSService(prams_indicator_depression_query),
+
+            //Detail Mortality - Disease of Heart
+            es.executeMultipleESQueries(heartDiseasesESQuery, 'owh_mortality', 'mortality'),
+            new wonder('D77').invokeWONDER(heartDiseasesWonderQuery)
         ];
 
         Q.all(promises).then( function (resp) {
@@ -320,46 +316,46 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var HIVPrevalenceData = searchUtils.populateDataWithMappings(resp[28], 'aids' , 'cases');
             es.mergeWithCensusData(HIVPrevalenceData, resp[29], 'pop');
             searchUtils.applySuppressions(HIVPrevalenceData, 'aids', 0);
-            //For - Detail Mortality - Total
-            var detailMortalityTotal_Data = searchUtils.populateDataWithMappings(resp[30], 'deaths');
-            searchUtils.mergeAgeAdjustedRates(detailMortalityTotal_Data.data.nested.table, resp[31].table);
-            searchUtils.applySuppressions(detailMortalityTotal_Data, 'deaths');
-            //For - Detail Mortality - C00-C97
-            var detailMortalityC00_C97_Data = searchUtils.populateDataWithMappings(resp[32], 'deaths');
-            searchUtils.mergeAgeAdjustedRates(detailMortalityC00_C97_Data.data.nested.table, resp[33].table);
-            searchUtils.applySuppressions(detailMortalityC00_C97_Data, 'deaths');
-            //For - Detail Mortality - C50-C50
-            var detailMortalityC50Data = searchUtils.populateDataWithMappings(resp[34], 'deaths');
-            searchUtils.mergeAgeAdjustedRates(detailMortalityC50Data.data.nested.table, resp[35].table);
-            searchUtils.applySuppressions(detailMortalityC50Data, 'deaths');
-            //For - Detail Mortality - C53
-            var detailMortalityC53_Data = searchUtils.populateDataWithMappings(resp[36], 'deaths');
-            searchUtils.mergeAgeAdjustedRates(detailMortalityC53_Data.data.nested.table, resp[37].table);
-            searchUtils.applySuppressions(detailMortalityC53_Data, 'deaths');
-            //For - Detail Mortality - I60-69
-            var detailMortalityI60_I69_Data = searchUtils.populateDataWithMappings(resp[38], 'deaths');
-            searchUtils.mergeAgeAdjustedRates(detailMortalityI60_I69_Data.data.nested.table, resp[39].table);
-            searchUtils.applySuppressions(detailMortalityI60_I69_Data, 'deaths');
-            //For - Detail Mortality - J40-J47 and J60
-            var detailMortalityJ40_J47_J60_Data = searchUtils.populateDataWithMappings(resp[40], 'deaths');
-            searchUtils.mergeAgeAdjustedRates(detailMortalityJ40_J47_J60_Data.data.nested.table, resp[41].table);
-            searchUtils.applySuppressions(detailMortalityJ40_J47_J60_Data, 'deaths');
-            //For - Detail Mortality - Drug induced
-            var detailMortalityDrugInduced_Data = searchUtils.populateDataWithMappings(resp[42], 'deaths');
-            searchUtils.mergeAgeAdjustedRates(detailMortalityDrugInduced_Data.data.nested.table, resp[43].table);
-            searchUtils.applySuppressions(detailMortalityDrugInduced_Data, 'deaths');
-            //For - Detail Mortality -Suicide
-            var detailMortalitySuicide_Data = searchUtils.populateDataWithMappings(resp[44], 'deaths');
-            searchUtils.mergeAgeAdjustedRates(detailMortalitySuicide_Data.data.nested.table, resp[45].table);
-            searchUtils.applySuppressions(detailMortalitySuicide_Data, 'deaths');
-            //For - Detail Mortality -Homicide
-            var detailMortalityHomicide_Data = searchUtils.populateDataWithMappings(resp[46], 'deaths');
-            searchUtils.mergeAgeAdjustedRates(detailMortalityHomicide_Data.data.nested.table, resp[47].table);
-            searchUtils.applySuppressions(detailMortalityHomicide_Data, 'deaths');
-            //For - Detail Mortality -B20-B24
-            var detailMortalityB20_B24_Data = searchUtils.populateDataWithMappings(resp[48], 'deaths');
-            searchUtils.mergeAgeAdjustedRates(detailMortalityB20_B24_Data.data.nested.table, resp[49].table);
-            searchUtils.applySuppressions(detailMortalityB20_B24_Data, 'deaths');
+            //For - Detail Mortality - malignantNeoplasm
+            var malignantNeoplasmData = searchUtils.populateDataWithMappings(resp[32], 'deaths');
+            searchUtils.mergeAgeAdjustedRates(malignantNeoplasmData.data.nested.table, resp[33].table);
+            searchUtils.applySuppressions(malignantNeoplasmData, 'deaths');
+            //For - Detail Mortality - alzheimer
+            var alzheimerData = searchUtils.populateDataWithMappings(resp[34], 'deaths');
+            searchUtils.mergeAgeAdjustedRates(alzheimerData.data.nested.table, resp[35].table);
+            searchUtils.applySuppressions(alzheimerData, 'deaths');
+            //For - Detail Mortality - accident
+            var accidentData = searchUtils.populateDataWithMappings(resp[36], 'deaths');
+            searchUtils.mergeAgeAdjustedRates(accidentData.data.nested.table, resp[37].table);
+            searchUtils.applySuppressions(accidentData, 'deaths');
+            //For - Detail Mortality - Cerebrovascular Disease
+            var cerebrovascularData = searchUtils.populateDataWithMappings(resp[38], 'deaths');
+            searchUtils.mergeAgeAdjustedRates(cerebrovascularData.data.nested.table, resp[39].table);
+            searchUtils.applySuppressions(cerebrovascularData, 'deaths');
+            //For - Detail Mortality - Chronic Respiratory
+            var chronicRespiratoryData = searchUtils.populateDataWithMappings(resp[40], 'deaths');
+            searchUtils.mergeAgeAdjustedRates(chronicRespiratoryData.data.nested.table, resp[41].table);
+            searchUtils.applySuppressions(chronicRespiratoryData, 'deaths');
+            //For - Detail Mortality - diabetesMellitus
+            var diabetesMellitusData = searchUtils.populateDataWithMappings(resp[42], 'deaths');
+            searchUtils.mergeAgeAdjustedRates(diabetesMellitusData.data.nested.table, resp[43].table);
+            searchUtils.applySuppressions(diabetesMellitusData, 'deaths');
+            //For - Detail Mortality - Influenza
+            var influenzaData = searchUtils.populateDataWithMappings(resp[44], 'deaths');
+            searchUtils.mergeAgeAdjustedRates(influenzaData.data.nested.table, resp[45].table);
+            searchUtils.applySuppressions(influenzaData, 'deaths');
+            //For - Detail Mortality - Nephritis
+            var nephritisData = searchUtils.populateDataWithMappings(resp[46], 'deaths');
+            searchUtils.mergeAgeAdjustedRates(nephritisData.data.nested.table, resp[47].table);
+            searchUtils.applySuppressions(nephritisData, 'deaths');
+            //For - Detail Mortality - Suicide
+            var suicideData = searchUtils.populateDataWithMappings(resp[48], 'deaths');
+            searchUtils.mergeAgeAdjustedRates(suicideData.data.nested.table, resp[49].table);
+            searchUtils.applySuppressions(suicideData, 'deaths');
+            //For - Detail Mortality - Heart Diseases
+            var heartDiseaseData = searchUtils.populateDataWithMappings(resp[86], 'deaths');
+            searchUtils.mergeAgeAdjustedRates(heartDiseaseData.data.nested.table, resp[87].table);
+            searchUtils.applySuppressions(heartDiseaseData, 'deaths');
             //Natality - Birth Rates
             var natality_BirthRates_Data = searchUtils.populateDataWithMappings(resp[50], 'natality');
             es.mergeWithCensusData(natality_BirthRates_Data, resp[51], 'pop');
@@ -478,16 +474,12 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var brfss_2015_data = resp[81];
             //PRAMS - 2009 - Smoking cigarettes during the last three months of pregnancy
             var prams_smoking_data = resp[82];
-            //PRAMS - 2009 - Intended pregnancy
-            var prams_intended_pregnancy_data = resp[83];
             //PRAMS - 2009 - Females reported physical abuse by husband or partner during pregnancy (percent)
-            var prams_physical_abuse_data = resp[84];
-            //PRAMS - 2009 - With one or more previous live births who reported unintended pregnancy
-            var prams_live_birth_unintended_data = resp[85];
+            var prams_physical_abuse_data = resp[83];
             //PRAMS - 2009 - Ever breastfed or pump breast milk to feed after delivery
-            var prams_breast_milk_feed_data = resp[86];
+            var prams_breast_milk_feed_data = resp[84];
             //PRAMS - 2009 - Indicator of depression 3 months before pregnancy
-            var prams_indicator_depression_data = resp[87];
+            var prams_indicator_depression_data = resp[85];
 
             var factSheet = prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
                 raceData, hispanicData, ageGroupData, fsType);
@@ -498,30 +490,31 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             factSheet.stdData = [{disease:"Chlamydia", data:prepareDiseaseData(stdChlamydiaData, 'std')},
                 {disease:"Gonorrhea", data:prepareDiseaseData(stdGonorrheaData, 'std')},
                 {disease:"Primary and Secondary Syphilis", data:prepareDiseaseData(stdPrimarySyphilisData, 'std')},
-                {disease:"Early Latent Syphilis", data:prepareDiseaseData(stdEarlySyphilisData, 'std')},
-                {disease:"Congenital Syphilis", data:prepareDiseaseData(stdCongenitalData, 'std')}];
+                {disease:"Early Latent Syphilis", data:prepareDiseaseData(stdEarlySyphilisData, 'std')}];
+
             factSheet.hivAIDSData = [{disease:"AIDS Diagnoses", data:prepareDiseaseData(AIDSDiagnosesData, 'aids')},
                 {disease:"AIDS Deaths*", data:prepareDiseaseData(AIDSDeathsData, 'aids')},
                 {disease:"AIDS Prevalence*", data:prepareDiseaseData(AIDSPrevalenceData, 'aids')},
                 {disease:"HIV Diagnoses", data:prepareDiseaseData(HIVDiagnosesData, 'aids')},
                 {disease:"HIV Deaths*", data:prepareDiseaseData(HIVDeathsData, 'aids')},
                 {disease:"HIV Prevalence*", data:prepareDiseaseData(HIVPrevalenceData, 'aids')}];
-            factSheet.detailMortalityData = [{causeOfDeath:"Total (all ages)", data:detailMortalityTotal_Data.data.nested.table.year[0]},
-                {causeOfDeath:"Cancer (Malignant neoplasms)", data:detailMortalityC00_C97_Data.data.nested.table.year[0]},
-                {causeOfDeath: "Breast Cancer (Malignant neoplasms of breast)", data:detailMortalityC50Data.data.nested.table.year[0]},
-                {causeOfDeath: "Cervical Cancer (Malignant neoplasm of cervix uteri)", data:detailMortalityC53_Data.data.nested.table.year[0]},
-                {causeOfDeath: "Cerebrovascular diseases (Stroke)", data:detailMortalityI60_I69_Data.data.nested.table.year[0]},
-                {causeOfDeath: "Chronic Lower Respiratory Disease", data:detailMortalityJ40_J47_J60_Data.data.nested.table.year[0]},
-                {causeOfDeath: "Alcohol or Drug Induced", data:detailMortalityDrugInduced_Data.data.nested.table.year[0]},
-                {causeOfDeath: "Suicide", data:detailMortalitySuicide_Data.data.nested.table.year[0]},
-                {causeOfDeath: "Homicide", data:detailMortalityHomicide_Data.data.nested.table.year[0]},
-                {causeOfDeath: "Human Immunodeficiency Virus(HIV)", data:detailMortalityB20_B24_Data.data.nested.table.year[0]}];
+            factSheet.detailMortalityData = [
+                {causeOfDeath: "Diseases of heart", data:heartDiseaseData.data.nested.table.year[0]},
+                {causeOfDeath: "Malignant neoplasms", data:malignantNeoplasmData.data.nested.table.year[0]},
+                {causeOfDeath: "Chronic lower respiratory diseases", data:chronicRespiratoryData.data.nested.table.year[0]},
+                {causeOfDeath: "Accidents (unintentional injuries)", data:accidentData.data.nested.table.year[0]},
+                {causeOfDeath: "Cerebrovascular diseases", data:cerebrovascularData.data.nested.table.year[0]},
+                {causeOfDeath: "Alzheimer's disease", data:alzheimerData.data.nested.table.year[0]},
+                {causeOfDeath: "Diabetes mellitus", data:diabetesMellitusData.data.nested.table.year[0]},
+                {causeOfDeath: "Influenza and pneumonia", data:influenzaData.data.nested.table.year[0]},
+                {causeOfDeath: "Nephritis, nephrotic syndrome and nephrosis", data:nephritisData.data.nested.table.year[0]},
+                {causeOfDeath: "Intentional self-harm (suicide)", data:suicideData.data.nested.table.year[0]}];
             factSheet.natalityData = prepareNatalityData(natality_BirthRates_Data, natality_fertilityRates_Data, natality_vaginal_Data,
                 natality_cesarean_Data, natality_lowBirthWeight_Data, natality_twinBirth_Data, natality_totalBirthPopulation_Data);
             factSheet.cancerData = prepareCancerData(cancer_mortality_data, cancer_incident_data);
             factSheet.yrbs = prepareYRBSData(yrbs_alchohol_data);
             factSheet.brfss = prepareBRFSSData(brfss_2015_data);
-            factSheet.prams = preparePRAMSData([prams_smoking_data, prams_intended_pregnancy_data, prams_physical_abuse_data], [prams_live_birth_unintended_data, prams_breast_milk_feed_data, prams_indicator_depression_data]);
+            factSheet.prams = preparePRAMSData([prams_smoking_data, prams_physical_abuse_data, prams_breast_milk_feed_data, prams_indicator_depression_data]);
             deferred.resolve(factSheet);
         }, function (err) {
             logger.error(err.message);
@@ -537,20 +530,13 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
  * @param womenData
  * @return {{pregnantWoment: [], women: []}}
  */
-function preparePRAMSData(pregnantWomenData, womenData) {
-    var pramsData = {
-        pregnantWoment: [],
-        women: []
-    };
-
-    pramsData.pregnantWoment.push({"question": "Smoking cigarettes during the last three months of pregnancy", data: pregnantWomenData[0].table.question[0] && pregnantWomenData[0].table.question[0].yes ? getMeanDisplayValue(pregnantWomenData[0].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
-    pramsData.pregnantWoment.push({"question": "Intended pregnancy", data: pregnantWomenData[1].table.question[0] && pregnantWomenData[1].table.question[0]["intended"] ? getMeanDisplayValue(pregnantWomenData[1].table.question[0]["intended"].sitecode[0].prams.mean) : "Not applicable"});
-    pramsData.pregnantWoment.push({"question": "Females reported physical abuse by husband or partner during pregnancy (percent)", data: pregnantWomenData[2].table.question[0] && pregnantWomenData[2].table.question[0].yes ? getMeanDisplayValue(pregnantWomenData[2].table.question[0].yes.sitecode[0].prams.mean): "Not applicable"});
-
-    pramsData.women.push({"question": "With one or more previous live births who reported unintended pregnancy", data: womenData[0].table.question[0] && womenData[0].table.question[0]["unintended"] ? getMeanDisplayValue(womenData[0].table.question[0]["unintended"].sitecode[0].prams.mean) : "Not applicable"});
-    pramsData.women.push({"question": "Ever breastfed or pump breast milk to feed after delivery", data: womenData[1].table.question[0] && womenData[1].table.question[0].yes ? getMeanDisplayValue(womenData[1].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
-    pramsData.women.push({"question": "Indicator of depression 3 months before pregnancy", data: womenData[2].table.question[0] && womenData[2].table.question[0].yes ? getMeanDisplayValue(womenData[2].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"});
-    return pramsData;
+function preparePRAMSData(pramsData) {
+    return [
+        {"question": "Smoking cigarettes during the last three months of pregnancy", data: pramsData[0].table.question[0] && pramsData[0].table.question[0].yes ? getMeanDisplayValue(pramsData[0].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"},
+        {"question": "Females reported physical abuse by husband or partner during pregnancy", data: pramsData[1].table.question[0] && pramsData[1].table.question[0].yes ? getMeanDisplayValue(pramsData[1].table.question[0].yes.sitecode[0].prams.mean): "Not applicable"},
+        {"question": "Ever breastfed or pump breast milk to feed after delivery", data: pramsData[2].table.question[0] && pramsData[2].table.question[0].yes ? getMeanDisplayValue(pramsData[2].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"},
+        {"question": "Indicator of depression 3 months before pregnancy", data: pramsData[3].table.question[0] && pramsData[3].table.question[0].yes ? getMeanDisplayValue(pramsData[3].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"}
+    ];
 }
 
 function getMeanDisplayValue(data) {
@@ -576,12 +562,10 @@ function getMeanDisplayValue(data) {
  */
 function prepareBRFSSData(data_2015){
     var brfssData = [];
-    brfssData.push({question: 'Were Obese (BMI 30.0 - 99.8)', data: 'Not applicable' });
+    brfssData.push({question: 'Obese (Body Mass Index 30.0 - 99.8)', data: 'Not applicable' });
     brfssData.push({question: 'Adults who are current smokers', data: 'Not applicable'});
-    brfssData.push({question: 'Consumed fruits one or more times a day', data: 'Not applicable'});
-    brfssData.push({question: 'Consumed vegetables one or more times a day', data: 'Not applicable'});
     brfssData.push({question: 'Are heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)', data: 'Not applicable'});
-    brfssData.push({question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)', data: 'Not applicable'});
+    brfssData.push({question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable'});
     data_2015.table.question.forEach(function(eachRecord){
         switch(eachRecord.name){
             case "x_bmi5cat":
@@ -590,17 +574,11 @@ function prepareBRFSSData(data_2015){
             case "x_rfsmok3":
                 brfssData[1].data = getMeanDisplayValue(eachRecord.yes.brfss.mean);
                 break;
-            case "x_frtlt1":
-                brfssData[2].data = getMeanDisplayValue(eachRecord["one or more times per day"].brfss.mean);
-                break;
-            case "x_veglt1":
-                brfssData[3].data =  getMeanDisplayValue(eachRecord["one or more times per day"].brfss.mean);
-                break;
             case "x_rfdrhv5":
-                brfssData[4].data = getMeanDisplayValue(eachRecord["meet criteria for heavy drinking"].brfss.mean);
+                brfssData[2].data = getMeanDisplayValue(eachRecord["meet criteria for heavy drinking"].brfss.mean);
                 break;
             case "x_paindx1":
-                brfssData[5].data = getMeanDisplayValue(eachRecord.yes.brfss.mean);
+                brfssData[3].data = getMeanDisplayValue(eachRecord.yes.brfss.mean);
                 break;
         }
     });
@@ -620,6 +598,7 @@ function prepareYRBSData(data) {
     yrbsData.push({"question": "Currently sexually active", data:data.table.question[3] && data.table.question[3].Yes ? getMeanDisplayValue(data.table.question[3].Yes.mental_health.mean) : "Not applicable"});
     yrbsData.push({"question": "Attempted suicide", data:data.table.question[4] && data.table.question[4].Yes ? getMeanDisplayValue(data.table.question[4].Yes.mental_health.mean) : "Not applicable"});
     yrbsData.push({"question": "Overweight", data:data.table.question[5] && data.table.question[5].Yes ? getMeanDisplayValue(data.table.question[5].Yes.mental_health.mean) : "Not applicable"});
+    yrbsData.push({"question": "Obese", data:data.table.question[6] && data.table.question[6].Yes ? getMeanDisplayValue(data.table.question[6].Yes.mental_health.mean) : "Not applicable"});
     return yrbsData;
 }
 
@@ -646,13 +625,12 @@ function prepareCancerData(cancerMortalityData, cancerIncidentData) {
         }
         else {
             cancerMortalityDeathCounts = eachRecord.cancer_mortality;
-            crudeMortalityRate = eachRecord.pop != 'n/a' ? Math.round(cancerMortalityDeathCounts / eachRecord.pop * 1000000) / 10 : "Not Available";
+            crudeMortalityRate = eachRecord.pop != 'n/a' ? Math.round(cancerMortalityDeathCounts / eachRecord.pop * 1000000) / 10 : "Not available";
         }
         incidentData = cancerIncidentData.data.nested.table.current_year[index] ? cancerIncidentData.data.nested.table.current_year[index] : {
-            cancer_incident: 'Not Available',
+            cancer_incident: 'Not available',
             pop: 'n/a'
         };
-        var incidentPopulation = incidentData.pop == 'n/a' ? 'Not Available' : incidentData.pop;
         if(incidentData.cancer_incident === 'suppressed'){
             incidentData.cancer_incident = 'Suppressed';
             crudeIncidentRate = 'Suppressed';
@@ -661,29 +639,29 @@ function prepareCancerData(cancerMortalityData, cancerIncidentData) {
             crudeIncidentRate = 'Unreliable';
         }
         else {
-            crudeIncidentRate = incidentData.pop != 'n/a' ? Math.round(incidentData.cancer_incident / incidentData.pop * 1000000) / 10 : "Not Available";
+            crudeIncidentRate = incidentData.pop != 'n/a' ? Math.round(incidentData.cancer_incident / incidentData.pop * 1000000) / 10 : "Not available";
         }
         switch(index){
             case 0:
-                cancerData.push({site:'Breast', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate,  deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
+                cancerData.push({site:'Breast', pop: eachRecord.pop, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate,  deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
                 break;
             case 1:
-                cancerData.push({site:'Colon and Rectum', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
+                cancerData.push({site:'Colon and Rectum', pop: eachRecord.pop, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
                 break;
             case 2:
-                cancerData.push({site:'Lung and Bronchus', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
+                cancerData.push({site:'Lung and Bronchus', pop: eachRecord.pop, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
                 break;
             case 3:
-                cancerData.push({site:'Melanoma of the Skin', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
+                cancerData.push({site:'Melanoma of the Skin', pop: eachRecord.pop, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
                 break;
             case 4:
-                cancerData.push({site:'Cervix Uteri†', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
+                cancerData.push({site:'Cervix Uteri†', pop: eachRecord.pop, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
                 break;
             case 5:
-                cancerData.push({site:'Ovary†', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
+                cancerData.push({site:'Ovary†', pop: eachRecord.pop, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
                 break;
             case 6:
-                cancerData.push({site:'Prostate††', pop: incidentPopulation, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
+                cancerData.push({site:'Prostate††', pop: eachRecord.pop, count: incidentData.cancer_incident, incident_rate: crudeIncidentRate, deaths: cancerMortalityDeathCounts, mortality_rate: crudeMortalityRate });
                 break;
         }
     });
@@ -762,14 +740,14 @@ function prepareDiseaseData(data, countKey) {
             record['displayValue'] = 0;
         }
         else if(record[countKey] === 'na') {
-            record['displayValue'] = 'Not Available';
+            record['displayValue'] = 'Not available';
         }
         else if(record[countKey] === 'suppressed') {
             record['displayValue'] = 'Suppressed';
         }
         else {
             var rate = record['pop'] ? Math.round(record[countKey] / record['pop'] * 1000000) / 10 : 0;
-            record['displayValue'] = formatNumber(record[countKey]) + " (" + rate + ")";
+            record['displayValue'] = formatNumber(record[countKey]) + " (" + rate.toFixed(1) + ")";
         }
         //Delete un wanted properties from JSON
         delete record[countKey];

@@ -1,0 +1,103 @@
+State,Measure,American Indian or Alaska Native,Asian,Black or African American,Hispanic or Latino,Multiple races,Native Hawaiian or Other Pacific Islander
+Alabama,Cases,0,6,63,21,3,0
+Alabama,Rates,0,9.1,4.9,10.3,4.2,0
+Alaska,Cases,56,9,0,0,0,0
+Alaska,Rates,53.4,20,0,0,0,0
+Arizona,Cases,14,42,19,97,0,1
+Arizona,Rates,5.1,19.7,6.7,4.6,0,8.1
+Arkansas,Cases,0,8,29,10,0,17
+Arkansas,Rates,0,17.6,6.3,4.7,0,222.2
+California,Cases,1,"1,013",98,760,116,10
+California,Rates,0.6,18.4,4.4,5,11.1,6.9
+Colorado,Cases,0,24,14,22,1,0
+Colorado,Rates,0,14.3,6.5,1.9,0.8,0
+Connecticut,Cases,0,25,17,20,0,0
+Connecticut,Rates,0,15.4,4.7,3.6,0,0
+Delaware,Cases,0,6,4,5,2,0
+Delaware,Rates,0,16.5,2,5.9,9.7,0
+District of columbia,Cases,0,3,21,5,0,0
+District of columbia,Rates,0,11,6.7,7,0,0
+Florida,Cases,0,85,221,169,1,1
+Florida,Rates,0,15.3,7,3.4,0.3,7.6
+Georgia,Cases,1,81,157,40,1,0
+Georgia,Rates,4.3,20.2,5,4.2,0.6,0
+Hawaii,Cases,0,87,1,0,2,33
+Hawaii,Rates,0,16.8,3,0,0.7,25
+Idaho,Cases,0,3,1,2,0,0
+Idaho,Rates,0,13,8.7,1,0,0
+Illinois,Cases,0,139,57,91,0,1
+Illinois,Rates,0,20.1,3.1,4.2,0,27.2
+Indiana,Cases,0,38,24,23,0,0
+Indiana,Rates,0,27.4,3.9,5.2,0,0
+Iowa,Cases,1,12,9,6,0,1
+Iowa,Rates,10.8,16.6,8.6,3.4,0,39.5
+Kansas,Cases,0,13,8,6,0,1
+Kansas,Rates,0,15.8,4.7,1.8,0,41.7
+Kentucky,Cases,0,13,13,12,0,1
+Kentucky,Rates,0,20.8,3.6,7.9,0,38.5
+Louisiana,Cases,0,17,39,20,6,0
+Louisiana,Rates,0,20.3,2.6,8.6,9.1,0
+Maine,Cases,0,2,12,0,0,0
+Maine,Rates,0,12.6,65.6,0,0,0
+Maryland,Cases,0,50,71,39,2,1
+Maryland,Rates,0,13,4,6.8,1.5,32.3
+Massachusetts,Cases,0,80,45,35,8,0
+Massachusetts,Rates,0,18.2,9.6,4.6,6.9,0
+Michigan,Cases,1,50,36,10,0,0
+Michigan,Rates,1.8,17,2.6,2.1,0,0
+Minnesota,Cases,4,40,84,9,0,1
+Minnesota,Rates,6.8,15.1,26.5,3.2,0,41.1
+Mississippi,Cases,0,5,51,4,0,0
+Mississippi,Rates,0,16.1,4.6,4.4,0,0
+Missouri,Cases,0,34,15,11,0,10
+Missouri,Rates,0,28.6,2.1,4.4,0,136.1
+Montana,Cases,3,1,1,0,0,0
+Montana,Rates,4.8,12.3,17.7,0,0,0
+Nebraska,Cases,0,9,5,10,4,0
+Nebraska,Rates,0,20.9,5.6,5.1,12.1,0
+Nevada,Cases,0,36,16,19,1,1
+Nevada,Rates,0,15.3,6.6,2.3,1.1,5.7
+New Hampshire,Cases,0,4,4,2,0,0
+New Hampshire,Rates,0,11.6,24,4.4,0,0
+New Jersey,Cases,0,146,49,104,0,0
+New Jersey,Rates,0,17.1,4.2,5.9,0,0
+New Mexico,Cases,7,3,1,27,0,0
+New Mexico,Rates,3.9,9.7,2.6,2.7,0,0
+New York,Cases,0,332,157,194,7,1
+New York,Rates,0,19.6,5.4,5.2,2.1,11.4
+North Carolina,Cases,23,40,61,41,3,0
+North Carolina,Rates,20.3,14.6,2.8,4.5,1.7,0
+North Dakota,Cases,0,3,2,0,0,0
+North Dakota,Rates,0,29.2,11.4,0,0,0
+Ohio,Cases,0,49,49,7,0,1
+Ohio,Rates,0,20.3,3.4,1.7,0,24.7
+Oklahoma,Cases,10,14,7,11,6,1
+Oklahoma,Rates,3.1,16.9,2.4,2.8,2.8,19.1
+Oregon,Cases,1,35,7,10,0,2
+Oregon,Rates,2.2,20.3,9.5,2,0,12.7
+Pennsylvania,Cases,0,78,60,26,1,1
+Pennsylvania,Rates,0,18.3,4.4,3,0.5,27.5
+Rhode Island,Cases,0,9,3,12,0,0
+Rhode Island,Rates,0,24.7,5,7.9,0,0
+South Carolina,Cases,0,12,60,12,0,1
+South Carolina,Rates,0,15.9,4.5,4.5,0,36
+South Dakota,Cases,11,1,2,1,0,0
+South Dakota,Rates,15.4,8.7,13.4,3.2,0,0
+Tennessee,Cases,1,20,50,18,1,0
+Tennessee,Rates,5.6,17.6,4.5,5.3,0.9,0
+Texas,Cases,2,258,250,675,2,6
+Texas,Rates,2.2,20.6,7.7,6.3,0.5,26.3
+Utah,Cases,0,10,4,18,0,1
+Utah,Rates,0,14.1,12.7,4.4,0,3.6
+Vermont,Cases,0,2,1,1,0,0
+Vermont,Rates,0,19.8,13.3,8.7,0,0
+Virginia,Cases,0,94,53,41,0,0
+Virginia,Rates,0,17.5,3.3,5.4,0,0
+Washington,Cases,7,102,35,30,0,9
+Washington,Rates,7.5,17.3,13,3.4,0,18.7
+West Virginia,Cases,0,1,0,1,0,0
+West Virginia,Rates,0,6.6,0,3.6,0,0
+Wisconsin,Cases,1,30,9,15,0,0
+Wisconsin,Rates,2,19.1,2.5,3.9,0,0
+Wyoming,Cases,1,2,0,1,0,0
+Wyoming,Rates,8,35.5,0,1.7,0,0

@@ -324,7 +324,6 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
                     aggregation[countKey] = newBuckets[index]['pop'].value;
                 } else {
                     aggregation[countKey] = sumBucketProperty(newBuckets[index][innerObjKey], 'pop');
-
                 }
             }
             if(countKey === 'bridge_race') {
