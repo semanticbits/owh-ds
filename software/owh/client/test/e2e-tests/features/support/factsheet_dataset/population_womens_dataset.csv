@@ -1,4 +1,4 @@
-states,Racial distributions of female residents,Black,White,American Indian,Asian or Pacific Islander,Hispanic
+state,"Racial distributions of female residents",Black,White,American Indian,Asian or Pacific Islander,Hispanic
 Alabama,Population,"699,235","1,658,524","18,463","40,879","94,095"
 Alaska,Population,"14,250","222,968","60,937","31,372","24,073"
 Arizona,Population,"153,088","1,963,137","196,802","143,349","1,044,013"
@@ -7,7 +7,7 @@ California,Population,"1,227,879","7,714,126","382,459","3,289,643","7,546,766"
 Colorado,Population,"115,982","1,900,648","51,294","111,961","571,114"
 Connecticut,Population,"197,356","1,271,450","11,001","92,173","276,994"
 Delaware,Population,"111,677","313,372","3,492","20,628","41,372"
-District of columbia,Population,"175,863","124,244","2,308","18,388","35,094"
+District of Columbia,Population,"175,863","124,244","2,308","18,388","35,094"
 Florida,Population,"1,690,468","5,800,614","54,102","352,531","2,516,007"
 Georgia,Population,"1,715,008","2,834,092","27,368","228,840","451,478"
 Hawaii,Population,"17,131","171,431","3,311","480,317","71,046"

@@ -903,7 +903,7 @@ var factsheetsDefinitionsWrapper = function () {
                     return p.state === state
                 });
             fsp.getTableCellData('bridge-race-table1', 0,0).then(function (data) {
-                expect(data).to.contains(p['Racialdistributions']);
+                expect(data).to.contains(p['Racial distributions of female residents']);
             });
             fsp.getTableCellData('bridge-race-table1', 0, 1).then(function (data) {
                 expect(data).to.contains(p['Black']);
