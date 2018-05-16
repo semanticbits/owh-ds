@@ -938,7 +938,7 @@ var factsheetsDefinitionsWrapper = function () {
 
             fsp.getTableHeaders('detail-mortality-table').then(function (headers) {
                 expect(headers[0]).to.contains('Cause of Death');
-                expect(headers[1]).to.contains('Age-Adjusted Death Rates (Women)');
+                expect(headers[1]).to.contains('Age-Adjusted Death Rates (per 100,000 women)');
             });
 
             var mortalityDataset = fsp.loadCsvFile(csvFile);
@@ -950,7 +950,7 @@ var factsheetsDefinitionsWrapper = function () {
                 expect(data).to.contains(p['Cause of Death']);
             });
             fsp.getTableCellData('detail-mortality-table', 0, 1).then(function (data) {
-                expect(data).to.contains(p['Age-Adjusted Death Rates (Women)']);
+                expect(data).to.contains(p['Age-Adjusted Death Rates (per 100,000 women)']);
             });
 
         });

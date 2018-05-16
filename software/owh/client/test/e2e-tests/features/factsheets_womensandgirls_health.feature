@@ -63,7 +63,7 @@ Feature: Fact sheet page
       |Wisconsin|
       |Wyoming|
 
-  # Mortality Data Set -Women's and Girl's Health
+# Mortality Data Set -Women's and Girl's Health
   Scenario: Generate Women's and Girl's FactSheet Mortality Dataset  for all states
     Then For  select <state> and select type is "Women's and Girls' Health" then generated Mortality data as defined in "mortality_womens_dataset.csv" file
       |state|
@@ -395,9 +395,9 @@ Feature: Fact sheet page
       |West Virginia|
       |Wisconsin|
       |Wyoming|
-
+#
    # Cancer Statistics Data set  - Womens and Girls Health
-  Scenario: Generate Women's and Girl's Cancer Statistics Fact Sheet for all states
+  Scenario: Generate Women's and Girls' Cancer Statistics Fact Sheet for all states
     Then For  select <state> and select type is "Women's and Girls' Health" then generated Cancer Statistics fact sheet data as defined in "cancer_statistics_womens_dataset.csv" file
       |state|
       |Alabama|

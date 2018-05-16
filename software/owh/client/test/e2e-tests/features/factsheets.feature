@@ -470,7 +470,7 @@ Scenario: Access fact sheet page
       |Kentucky |
 
 
-#      #Generate Tuberculosis-Minority Health fact sheet for all states
+  #Generate Tuberculosis-Minority Health fact sheet for all states
    Scenario: Generate Tuberculosis- Minority Health fact sheet for all states
     Then For <state> and type "Minority Health" the generated Tuberculosis data as defined in "tuberculosis_dataset.csv" file
       |state|
@@ -691,7 +691,7 @@ Scenario: Access fact sheet page
       |Wisconsin|
       |Wyoming|
 
-# Generate pdf for all states
+    #   Generate pdf for all states
   Scenario: Generate  Minority Health fact sheet pdf for all states
   Then I select <state> and fact sheet type "Minority Health" and generated data downloaded file defined in "states.csv"
 
