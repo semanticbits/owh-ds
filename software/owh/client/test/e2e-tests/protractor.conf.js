@@ -10,11 +10,9 @@ exports.config = {
 
   specs: [
     'features/*.feature'
-    // 'features/factsheets.feature'
+    //'features/factsheets.feature'
     //'features/factsheets_womensandgirls_health.feature'
       // 'features/factsheets_state_health.feature'
-
-
   ],
   cucumberOpts: {
     // require step definitions
@@ -46,8 +44,8 @@ exports.config = {
       }
   },
 
-baseUrl: process.env.E2E_BASE_URL || 'http://localhost:9900/'
+//baseUrl: process.env.E2E_BASE_URL || 'http://localhost:9900/'
 
-//baseUrl:'http://owhqa.semanticbits.com/'
+  baseUrl:'http://owhqa.semanticbits.com/'
 
 };

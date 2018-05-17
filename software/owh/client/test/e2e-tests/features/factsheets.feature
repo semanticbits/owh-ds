@@ -29,7 +29,7 @@ Scenario: Access fact sheet page
   Then For "Arizona" the generated population data as defined in "population_total.csv" file
 
 
-  # Racial distributions of minority residents*
+#  Racial distributions of minority residents*
   Scenario: Generate Minority FactSheet population for all states based upon Racial Distributions of Residents
    Then For <state> and type "Minority Health" the generated population racial distributions data as defined in "population_total.csv" file
      |state|
@@ -195,7 +195,7 @@ Scenario: Access fact sheet page
       |Wyoming|
 
 
-    #  Generate Infant Mortality-Minority Health fact sheet for all states
+#  Generate Infant Mortality-Minority Health fact sheet for all states
    Scenario: Generate Infant Mortality-Minority Health fact sheet for all states
     Then For <state> and type "Minority Health" the generated Infant Mortality data as defined in "infant_mortality.csv" file
      |state|
@@ -250,9 +250,9 @@ Scenario: Access fact sheet page
     |Wisconsin|
     |Wyoming|
 
-   #  Generate Prenatal Care and Pregnancy Risk (PREGNANT WOMEN) - Minority Health fact sheet for all states
+   #  Generate Prenatal Care and Pregnancy Risk - Minority Health fact sheet for all states
    Scenario: Generate Prenatal Care and Pregnancy Risk (Pregenent Women)-Minority Health fact sheet for all states
-    Then For <state> and type "Minority Health" the generated Pregenent Women data as defined in "prams_dataset.csv" file
+    Then For <state> and type "Minority Health" the generated Pregenent Women data as defined in "prams_minority_dataset.csv" file
      |state|
      |Alabama|
      |Arizona|
@@ -307,7 +307,7 @@ Scenario: Access fact sheet page
 
 #   Generate Behavioral Risk Factors-Minority Health fact sheet for all states
   Scenario: Generate Behavioral Risk Factors - Minority Health fact sheet for all states
-    Then For <state> and type "Minority Health" the generated Behavioral Risk data as defined in "behavioral_risk_factors_dataset.csv" file
+    Then For <state> and type "Minority Health" the generated Behavioral Risk data as defined in "behavioral_risk_factors_minority_dataset.csv" file
       |state|
       |Alabama|
       |Alaska|
@@ -360,9 +360,9 @@ Scenario: Access fact sheet page
       |Wisconsin|
       |Wyoming|
 
-#Generate Teen Health-Minority Health fact sheet for all states
+  #Generate Teen Health-Minority Health fact sheet for all states
   Scenario: Generate Teen Health - Minority Health fact sheet for all states
-    Then For <state> and type "Minority Health" the generated teen health data as defined in "teen_health_dataset.csv" file
+    Then For <state> and type "Minority Health" the generated teen health data as defined in "teen_health_minority_dataset.csv" file
       |state|
       |Alabama|
       |Alaska|
@@ -621,7 +621,7 @@ Scenario: Access fact sheet page
       |New York|
       |North Carolina|
       |North Dakota|
-      |Ohio|
+     |Ohio|
       |Oklahoma|
       |Pennsylvania|
       |Rhode Island|
@@ -691,7 +691,7 @@ Scenario: Access fact sheet page
       |Wisconsin|
       |Wyoming|
 
-    #   Generate pdf for all states
+    #  Generate pdf for all states
   Scenario: Generate  Minority Health fact sheet pdf for all states
   Then I select <state> and fact sheet type "Minority Health" and generated data downloaded file defined in "states.csv"
 
