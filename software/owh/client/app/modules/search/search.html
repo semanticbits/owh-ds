@@ -30,7 +30,8 @@
                 </a>
                 <a class="advanced-search-toggle"
                    ng-click="sc.switchToAdvancedSearch(sc.filters.selectedPrimaryFilter.key);"
-                   ng-if="sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu"
+                   ng-if="sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu
+                   && sc.filters.selectedPrimaryFilter.key !='prams'"
                    href="javascript:void(0)">
                     <span ng-bind="'label.yrbs.advanced.search' | translate"></span>
                 </a>
@@ -162,6 +163,9 @@
                             <span ng-show="sc.tableData.calculatePercentage === true" ng-bind="'label.mortality.search.table.hide.percentage.button' | translate"></span>
                             <span ng-show="sc.tableData.calculatePercentage === false" ng-bind="'label.mortality.search.table.hidden.percentage.button' | translate"></span>
                         </a>
+                    </div>
+                    <div ng-if="sc.filters.selectedPrimaryFilter.key==='prams'" class="pull-left" style="margin-top:-12px;margin-bottom: 10px;">
+                        <span class="prams-search-baner" ng-bind="'datadocs.prams.advance.search.announcement.txt' | translate"></span>
                     </div>
                     <div class="pull-right margin-bottom-20 margin-right-10 export-links">
                         <a name="download_csv" ng-click="sc.downloadCSV()" title="Download CSV" class="cursor-pointer" href="javascript:void(0)">

@@ -1,251 +1,251 @@
 state,CauseofDeath,Measure,AmericanIndian ,AsianorPacific ,BlackorAfrican,Hispanic
-Alabama,Diseases of heart,Number of deaths,23,13,"2,776",55
-Alabama,Diseases of heart,Age adjusted rates,73.8,Unreliable,237.5,65.4
-Alabama,Malignant neoplasms,Number of deaths,29,22,"2,394",58
-Alabama,Malignant neoplasms,Age adjusted rates,90.9,45.4,194.6,74
+Alabama,Diseases of heart,Number of deaths,23,10,"2,762",55
+Alabama,Diseases of heart,Age adjusted rates,80.2,Unreliable,237.9,65.4
+Alabama,Malignant neoplasms,Number of deaths,28,22,"2,387",58
+Alabama,Malignant neoplasms,Age adjusted rates,93.6,46.7,195.3,74
 Alabama,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,326,Suppressed
-Alabama,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,28.8,Suppressed
-Alabama,Accidents (unintentional injuries),Number of deaths,11,Suppressed,522,46
-Alabama,Accidents (unintentional injuries),Age adjusted rates,Unreliable,Suppressed,40.1,26.4
+Alabama,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,29,Suppressed
+Alabama,Accidents (unintentional injuries),Number of deaths,10,Suppressed,518,46
+Alabama,Accidents (unintentional injuries),Age adjusted rates,Unreliable,Suppressed,40.3,26.4
 Alabama,Cerebrovascular diseases	,Number of deaths,Suppressed,Suppressed,745,12
-Alabama,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,64.5,Unreliable
+Alabama,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,64.9,Unreliable
 Alabama,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,398,Suppressed
-Alabama,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,40.4,Suppressed
-Alabama,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,486,11
+Alabama,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,40.6,Suppressed
+Alabama,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,483,11
 Alabama,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,40.1,Unreliable
-Alabama,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,212,Suppressed
+Alabama,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,210,Suppressed
 Alabama,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,18.3,Suppressed
-Alabama,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,337,Suppressed
-Alabama,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,29.4,Suppressed
-Alabama,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,70,13
+Alabama,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,334,Suppressed
+Alabama,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,29.3,Suppressed
+Alabama,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,68,13
 Alabama,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,5.4,Unreliable
-Alaska,Diseases of heart,Number of deaths,175,33,30,13
-Alaska,Diseases of heart,Age adjusted rates,229.5,93.3,154.3,Unreliable
-Alaska,Malignant neoplasms,Number of deaths,191,48,26,17
-Alaska,Malignant neoplasms,Age adjusted rates,239.2,108.5,136.3,Unreliable
-Alaska,Chronic lower respiratory disease,Number of deaths,47,11,Suppressed,Suppressed
-Alaska,Chronic lower respiratory disease,Age adjusted rates,67.9,Unreliable,Suppressed,Suppressed
-Alaska,Accidents (unintentional injuries),Number of deaths,144,Suppressed,13,17
-Alaska,Accidents (unintentional injuries),Age adjusted rates,134.2,Suppressed,Unreliable,Unreliable
+Alaska,Diseases of heart,Number of deaths,175,33,29,13
+Alaska,Diseases of heart,Age adjusted rates,234.2,95,162.7,Unreliable
+Alaska,Malignant neoplasms,Number of deaths,190,48,25,17
+Alaska,Malignant neoplasms,Age adjusted rates,243.1,110.9,143,Unreliable
+Alaska,Chronic lower respiratory disease,Number of deaths,46,10,Suppressed,Suppressed
+Alaska,Chronic lower respiratory disease,Age adjusted rates,68.4,Unreliable,Suppressed,Suppressed
+Alaska,Accidents (unintentional injuries),Number of deaths,139,Suppressed,13,17
+Alaska,Accidents (unintentional injuries),Age adjusted rates,135.6,Suppressed,Unreliable,Unreliable
 Alaska,Cerebrovascular diseases	,Number of deaths,36,19,Suppressed,Suppressed
-Alaska,Cerebrovascular diseases	,Age adjusted rates,48.8,Unreliable,Suppressed,Suppressed
+Alaska,Cerebrovascular diseases	,Age adjusted rates,49.9,Unreliable,Suppressed,Suppressed
 Alaska,Alzheimer's disease	,Number of deaths,10,Suppressed,Suppressed,Suppressed
 Alaska,Alzheimer's disease	,Age adjusted rates,Unreliable,Suppressed,Suppressed,Suppressed
 Alaska,Diabetes mellitus	,Number of deaths,24,12,Suppressed,Suppressed
-Alaska,Diabetes mellitus	,Age adjusted rates,28.5,Unreliable,Suppressed,Suppressed
+Alaska,Diabetes mellitus	,Age adjusted rates,29,Unreliable,Suppressed,Suppressed
 Alaska,Influenza and pneumonia	,Number of deaths,13,Suppressed,Suppressed,Suppressed
 Alaska,Influenza and pneumonia	,Age adjusted rates,Unreliable,Suppressed,Suppressed,Suppressed
-Alaska,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,11,Suppressed,Suppressed,Suppressed
+Alaska,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,10,Suppressed,Suppressed,Suppressed
 Alaska,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Unreliable,Suppressed,Suppressed,Suppressed
 Alaska,Intentional self-harm (suicide)	,Number of deaths,64,Suppressed,Suppressed,Suppressed
-Alaska,Intentional self-harm (suicide)	,Age adjusted rates,50.1,Suppressed,Suppressed,Suppressed
-Arizona,Diseases of heart,Number of deaths,273,124,391,"1,231"
-Arizona,Diseases of heart,Age adjusted rates,111.2,70.8,169.9,114
-Arizona,Malignant neoplasms,Number of deaths,291,198,348,"1,423"
-Arizona,Malignant neoplasms,Age adjusted rates,114.9,97.3,142.1,117.3
-Arizona,Chronic lower respiratory disease,Number of deaths,38,25,65,214
-Arizona,Chronic lower respiratory disease,Age adjusted rates,14.9,16,32.5,20.8
-Arizona,Accidents (unintentional injuries),Number of deaths,381,45,144,618
-Arizona,Accidents (unintentional injuries),Age adjusted rates,113.6,21.5,47,37.7
-Arizona,Cerebrovascular diseases	,Number of deaths,70,49,96,325
-Arizona,Cerebrovascular diseases	,Age adjusted rates,30.1,28.2,49,30.9
-Arizona,Alzheimer's disease	,Number of deaths,39,27,68,302
-Arizona,Alzheimer's disease	,Age adjusted rates,20.9,17.9,42.7,34.3
-Arizona,Diabetes mellitus	,Number of deaths,173,40,115,528
-Arizona,Diabetes mellitus	,Age adjusted rates,63.6,22.1,47.6,44.1
+Alaska,Intentional self-harm (suicide)	,Age adjusted rates,52.6,Suppressed,Suppressed,Suppressed
+Arizona,Diseases of heart,Number of deaths,261,121,374,"1,231"
+Arizona,Diseases of heart,Age adjusted rates,125.6,73.3,175.1,114
+Arizona,Malignant neoplasms,Number of deaths,267,194,339,"1,423"
+Arizona,Malignant neoplasms,Age adjusted rates,125.5,100.9,148.2,117.3
+Arizona,Chronic lower respiratory disease,Number of deaths,32,23,60,214
+Arizona,Chronic lower respiratory disease,Age adjusted rates,15.1,15.7,31.7,20.8
+Arizona,Accidents (unintentional injuries),Number of deaths,358,42,136,618
+Arizona,Accidents (unintentional injuries),Age adjusted rates,138.2,21.5,50.1,37.7
+Arizona,Cerebrovascular diseases	,Number of deaths,66,49,92,325
+Arizona,Cerebrovascular diseases	,Age adjusted rates,33.3,29.6,49.8,30.9
+Arizona,Alzheimer's disease	,Number of deaths,36,27,68,302
+Arizona,Alzheimer's disease	,Age adjusted rates,21.7,18.7,45,34.3
+Arizona,Diabetes mellitus	,Number of deaths,166,38,110,528
+Arizona,Diabetes mellitus	,Age adjusted rates,73.3,22.1,49.2,44.1
 Arizona,Influenza and pneumonia	,Number of deaths,48,11,31,112
-Arizona,Influenza and pneumonia	,Age adjusted rates,21.7,Unreliable,15.6,10.8
+Arizona,Influenza and pneumonia	,Age adjusted rates,25.1,Unreliable,16.6,10.8
 Arizona,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,39,10,15,72
-Arizona,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,16.9,Unreliable,Unreliable,7
-Arizona,Intentional self-harm (suicide)	,Number of deaths,65,20,29,152
-Arizona,Intentional self-harm (suicide)	,Age adjusted rates,16.1,6.6,7.3,7.4
-Arkansas,Diseases of heart,Number of deaths,11,35,"1,036",49
-Arkansas,Diseases of heart,Age adjusted rates,Unreliable,120.3,267.2,68.7
-Arkansas,Malignant neoplasms,Number of deaths,16,39,862,56
-Arkansas,Malignant neoplasms,Age adjusted rates,Unreliable,106,208.1,57
-Arkansas,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,111,Suppressed
-Arkansas,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,28.5,Suppressed
-Arkansas,Accidents (unintentional injuries),Number of deaths,Suppressed,11,186,37
-Arkansas,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Unreliable,41.5,24.6
-Arkansas,Cerebrovascular diseases	,Number of deaths,Suppressed,18,216,13
-Arkansas,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Unreliable,56.6,Unreliable
-Arkansas,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,133,Suppressed
-Arkansas,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,40.5,Suppressed
-Arkansas,Diabetes mellitus	,Number of deaths,Suppressed,12,183,11
-Arkansas,Diabetes mellitus	,Age adjusted rates,Suppressed,Unreliable,45.5,Unreliable
-Arkansas,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,77,Suppressed
-Arkansas,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,21.2,Suppressed
-Arkansas,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,112,Suppressed
-Arkansas,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,29.7,Suppressed
+Arizona,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,19.8,Unreliable,Unreliable,7
+Arizona,Intentional self-harm (suicide)	,Number of deaths,57,18,27,152
+Arizona,Intentional self-harm (suicide)	,Age adjusted rates,19.3,Unreliable,7.9,7.4
+Arkansas,Diseases of heart,Number of deaths,11,32,"1,022",49
+Arkansas,Diseases of heart,Age adjusted rates,Unreliable,107.9,265,68.7
+Arkansas,Malignant neoplasms,Number of deaths,16,36,853,56
+Arkansas,Malignant neoplasms,Age adjusted rates,Unreliable,97.7,207.4,57
+Arkansas,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,108,Suppressed
+Arkansas,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,27.9,Suppressed
+Arkansas,Accidents (unintentional injuries),Number of deaths,Suppressed,10,184,37
+Arkansas,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Unreliable,41.7,24.6
+Arkansas,Cerebrovascular diseases	,Number of deaths,Suppressed,15,209,13
+Arkansas,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Unreliable,55.2,Unreliable
+Arkansas,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,131,Suppressed
+Arkansas,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,40,Suppressed
+Arkansas,Diabetes mellitus	,Number of deaths,Suppressed,12,181,11
+Arkansas,Diabetes mellitus	,Age adjusted rates,Suppressed,Unreliable,45.3,Unreliable
+Arkansas,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,76,Suppressed
+Arkansas,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,21,Suppressed
+Arkansas,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,110,Suppressed
+Arkansas,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,29.5,Suppressed
 Arkansas,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,23,Suppressed
 Arkansas,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,4.8,Suppressed
-California,Diseases of heart,Number of deaths,407,"5,644","4,892","9,429"
-California,Diseases of heart,Age adjusted rates,86.3,86,201.6,111.9
-California,Malignant neoplasms,Number of deaths,416,"7,080","4,493","10,710"
-California,Malignant neoplasms,Age adjusted rates,81.8,106,178.1,114.9
-California,Chronic lower respiratory disease,Number of deaths,102,909,872,"1,285"
-California,Chronic lower respiratory disease,Age adjusted rates,23.5,14.2,36.1,16.4
-California,Accidents (unintentional injuries),Number of deaths,152,971,962,"3,230"
-California,Accidents (unintentional injuries),Age adjusted rates,21.7,14.9,34.2,24.7
-California,Cerebrovascular diseases	,Number of deaths,97,"2,019","1,157","2,777"
-California,Cerebrovascular diseases	,Age adjusted rates,22.8,31,49.6,33.6
-California,Alzheimer's disease	,Number of deaths,57,"1,116",827,"2,014"
-California,Alzheimer's disease	,Age adjusted rates,16.3,17.1,39.7,27.5
-California,Diabetes mellitus	,Number of deaths,109,"1,185","1,026","2,536"
-California,Diabetes mellitus	,Age adjusted rates,21.6,18.1,41.5,28.8
-California,Influenza and pneumonia	,Number of deaths,24,962,406,"1,135"
-California,Influenza and pneumonia	,Age adjusted rates,5.6,14.9,17.4,14
-California,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,33,453,443,812
-California,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,7.1,6.9,18.2,9.6
-California,Intentional self-harm (suicide)	,Number of deaths,32,393,164,754
-California,Intentional self-harm (suicide)	,Age adjusted rates,4.2,6,5.9,5.1
-Colorado,Diseases of heart,Number of deaths,49,94,300,677
-Colorado,Diseases of heart,Age adjusted rates,101.2,69.9,166.5,115.9
-Colorado,Malignant neoplasms,Number of deaths,44,130,267,829
-Colorado,Malignant neoplasms,Age adjusted rates,79.4,91,146.2,128.9
-Colorado,Chronic lower respiratory disease,Number of deaths,16,18,69,192
-Colorado,Chronic lower respiratory disease,Age adjusted rates,Unreliable,Unreliable,40.5,34.2
-Colorado,Accidents (unintentional injuries),Number of deaths,26,42,95,436
-Colorado,Accidents (unintentional injuries),Age adjusted rates,32.4,26.1,39.6,49.6
-Colorado,Cerebrovascular diseases	,Number of deaths,Suppressed,39,77,198
-Colorado,Cerebrovascular diseases	,Age adjusted rates,Suppressed,30,49.9,35.2
-Colorado,Alzheimer's disease	,Number of deaths,10,22,35,109
-Colorado,Alzheimer's disease	,Age adjusted rates,Unreliable,18.8,27.3,23.6
-Colorado,Diabetes mellitus	,Number of deaths,16,17,60,176
-Colorado,Diabetes mellitus	,Age adjusted rates,Unreliable,Unreliable,31.1,28.4
+California,Diseases of heart,Number of deaths,348,"5,577","4,845","9,429"
+California,Diseases of heart,Age adjusted rates,168.5,86.8,212.6,111.9
+California,Malignant neoplasms,Number of deaths,346,"7,009","4,448","10,710"
+California,Malignant neoplasms,Age adjusted rates,157.2,107.6,187.9,114.9
+California,Chronic lower respiratory disease,Number of deaths,97,896,864,"1,285"
+California,Chronic lower respiratory disease,Age adjusted rates,48,14.3,38,16.4
+California,Accidents (unintentional injuries),Number of deaths,120,945,928,"3,230"
+California,Accidents (unintentional injuries),Age adjusted rates,55.9,15,37,24.7
+California,Cerebrovascular diseases	,Number of deaths,81,"2,004","1,144","2,777"
+California,Cerebrovascular diseases	,Age adjusted rates,41.8,31.5,52,33.6
+California,Alzheimer's disease	,Number of deaths,47,"1,103",818,"2,014"
+California,Alzheimer's disease	,Age adjusted rates,28.2,17.2,41.2,27.5
+California,Diabetes mellitus	,Number of deaths,90,"1,176","1,019","2,536"
+California,Diabetes mellitus	,Age adjusted rates,41.5,18.3,44,28.8
+California,Influenza and pneumonia	,Number of deaths,21,949,403,"1,135"
+California,Influenza and pneumonia	,Age adjusted rates,10.9,15,18.3,14
+California,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,26,447,443,812
+California,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,12.5,7,19.3,9.6
+California,Intentional self-harm (suicide)	,Number of deaths,26,385,156,754
+California,Intentional self-harm (suicide)	,Age adjusted rates,12.6,6.2,6.4,5.1
+Colorado,Diseases of heart,Number of deaths,36,93,297,677
+Colorado,Diseases of heart,Age adjusted rates,140.2,71.7,173.1,115.9
+Colorado,Malignant neoplasms,Number of deaths,35,130,266,829
+Colorado,Malignant neoplasms,Age adjusted rates,122,94.4,152.8,128.9
+Colorado,Chronic lower respiratory disease,Number of deaths,13,17,68,192
+Colorado,Chronic lower respiratory disease,Age adjusted rates,Unreliable,Unreliable,41.9,34.2
+Colorado,Accidents (unintentional injuries),Number of deaths,25,42,92,436
+Colorado,Accidents (unintentional injuries),Age adjusted rates,64.4,27.3,42.3,49.6
+Colorado,Cerebrovascular diseases	,Number of deaths,Suppressed,39,75,198
+Colorado,Cerebrovascular diseases	,Age adjusted rates,Suppressed,31,51,35.2
+Colorado,Alzheimer's disease	,Number of deaths,Suppressed,22,35,109
+Colorado,Alzheimer's disease	,Age adjusted rates,Suppressed,19.4,28.4,23.6
+Colorado,Diabetes mellitus	,Number of deaths,11,16,59,176
+Colorado,Diabetes mellitus	,Age adjusted rates,Unreliable,Unreliable,32.2,28.4
 Colorado,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,22,66
-Colorado,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,13.5,10.9
+Colorado,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,14.2,10.9
 Colorado,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,11,19,75
 Colorado,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Unreliable,Unreliable,13.5
-Colorado,Intentional self-harm (suicide)	,Number of deaths,13,16,29,115
-Colorado,Intentional self-harm (suicide)	,Age adjusted rates,Unreliable,Unreliable,9.7,10.3
-Connecticut,Diseases of heart,Number of deaths,Suppressed,59,503,272
-Connecticut,Diseases of heart,Age adjusted rates,Suppressed,67.5,153.6,103.9
-Connecticut,Malignant neoplasms,Number of deaths,Suppressed,81,529,310
-Connecticut,Malignant neoplasms,Age adjusted rates,Suppressed,72.5,149.2,104.4
-Connecticut,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,85,44
-Connecticut,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,26.5,16.4
-Connecticut,Accidents (unintentional injuries),Number of deaths,Suppressed,18,121,154
-Connecticut,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Unreliable,29.3,33.1
-Connecticut,Cerebrovascular diseases	,Number of deaths,Suppressed,16,111,79
-Connecticut,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Unreliable,35.9,32.5
+Colorado,Intentional self-harm (suicide)	,Number of deaths,12,14,27,115
+Colorado,Intentional self-harm (suicide)	,Age adjusted rates,Unreliable,Unreliable,10.4,10.3
+Connecticut,Diseases of heart,Number of deaths,Suppressed,58,498,272
+Connecticut,Diseases of heart,Age adjusted rates,Suppressed,69,163.2,103.9
+Connecticut,Malignant neoplasms,Number of deaths,Suppressed,80,517,310
+Connecticut,Malignant neoplasms,Age adjusted rates,Suppressed,73.4,157.4,104.4
+Connecticut,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,83,44
+Connecticut,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,27.5,16.4
+Connecticut,Accidents (unintentional injuries),Number of deaths,Suppressed,17,118,154
+Connecticut,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Unreliable,32.1,33.1
+Connecticut,Cerebrovascular diseases	,Number of deaths,Suppressed,16,110,79
+Connecticut,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Unreliable,37.9,32.5
 Connecticut,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,43,35
-Connecticut,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,15.5,17.4
+Connecticut,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,16.4,17.4
 Connecticut,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,82,55
-Connecticut,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,24.9,21.3
-Connecticut,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,25,25
-Connecticut,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,7.4,10.2
-Connecticut,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,78,30
-Connecticut,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,25,11.5
-Connecticut,Intentional self-harm (suicide)	,Number of deaths,Suppressed,11,17,27
+Connecticut,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,26.7,21.3
+Connecticut,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,24,25
+Connecticut,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,7.6,10.2
+Connecticut,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,77,30
+Connecticut,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,26.4,11.5
+Connecticut,Intentional self-harm (suicide)	,Number of deaths,Suppressed,11,15,27
 Connecticut,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Unreliable,Unreliable,5.6
-Delaware,Diseases of heart,Number of deaths,Suppressed,14,310,23
-Delaware,Diseases of heart,Age adjusted rates,Suppressed,Unreliable,172.1,69.9
-Delaware,Malignant neoplasms,Number of deaths,Suppressed,23,327,35
-Delaware,Malignant neoplasms,Age adjusted rates,Suppressed,72.7,167.8,96.2
+Delaware,Diseases of heart,Number of deaths,Suppressed,14,306,23
+Delaware,Diseases of heart,Age adjusted rates,Suppressed,Unreliable,173.3,69.9
+Delaware,Malignant neoplasms,Number of deaths,Suppressed,22,323,35
+Delaware,Malignant neoplasms,Age adjusted rates,Suppressed,71.3,169.5,96.2
 Delaware,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,56,Suppressed
-Delaware,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,31.5,Suppressed
+Delaware,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,32,Suppressed
 Delaware,Accidents (unintentional injuries),Number of deaths,Suppressed,10,72,18
-Delaware,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Unreliable,35,Unreliable
+Delaware,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Unreliable,36.4,Unreliable
 Delaware,Cerebrovascular diseases	,Number of deaths,Suppressed,Suppressed,84,Suppressed
-Delaware,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,49.9,Suppressed
-Delaware,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,36,Suppressed
-Delaware,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,23.9,Suppressed
+Delaware,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,50.8,Suppressed
+Delaware,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,35,Suppressed
+Delaware,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,23.5,Suppressed
 Delaware,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,54,Suppressed
-Delaware,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,27,Suppressed
-Delaware,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,20,Suppressed
-Delaware,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,12,Suppressed
+Delaware,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,27.6,Suppressed
+Delaware,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,19,Suppressed
+Delaware,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,Unreliable,Suppressed
 Delaware,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,50,Suppressed
-Delaware,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,26.4,Suppressed
-Delaware,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,22,Suppressed
+Delaware,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,26.9,Suppressed
+Delaware,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,21,Suppressed
 Delaware,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,9.8,Suppressed
-District of columbia,Diseases of heart,Number of deaths,Suppressed,15,964,20
-District of columbia,Diseases of heart,Age adjusted rates,Suppressed,Unreliable,249.2,58.7
-District of columbia,Malignant neoplasms,Number of deaths,Suppressed,18,803,33
-District of columbia,Malignant neoplasms,Age adjusted rates,Suppressed,Unreliable,208.4,90.9
-District of columbia,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,112,Suppressed
-District of columbia,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,29.2,Not Available
-District of columbia,Accidents (unintentional injuries),Number of deaths,Suppressed,Suppressed,202,Suppressed
+District of columbia,Diseases of heart,Number of deaths,Suppressed,15,953,20
+District of columbia,Diseases of heart,Age adjusted rates,Suppressed,Unreliable,250.7,58.7
+District of columbia,Malignant neoplasms,Number of deaths,Suppressed,18,792,33
+District of columbia,Malignant neoplasms,Age adjusted rates,Suppressed,Unreliable,209.3,90.9
+District of columbia,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,110,Suppressed
+District of columbia,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,29.3,Not available
+District of columbia,Accidents (unintentional injuries),Number of deaths,Suppressed,Suppressed,197,Suppressed
 District of columbia,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Suppressed,54.6,Suppressed
-District of columbia,Cerebrovascular diseases	,Number of deaths,Suppressed,Suppressed,170,Suppressed
-District of columbia,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,45.2,Suppressed
-District of columbia,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,86,Suppressed
+District of columbia,Cerebrovascular diseases	,Number of deaths,Suppressed,Suppressed,168,Suppressed
+District of columbia,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,45.3,Suppressed
+District of columbia,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,85,Suppressed
 District of columbia,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,20.5,Suppressed
-District of columbia,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,146,Suppressed
+District of columbia,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,143,Suppressed
 District of columbia,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,39,Suppressed
 District of columbia,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,75,Suppressed
-District of columbia,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,19.1,Suppressed
+District of columbia,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,19.4,Suppressed
 District of columbia,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,54,Suppressed
-District of columbia,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,13.5,Suppressed
+District of columbia,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,13.7,Suppressed
 District of columbia,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,18,Suppressed
 District of columbia,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,Unreliable,Suppressed
-Florida,Diseases of heart,Number of deaths,45,409,"4,685","5,703"
-Florida,Diseases of heart,Age adjusted rates,51.8,74.4,163.8,124.3
-Florida,Malignant neoplasms,Number of deaths,60,474,"4,718","5,230"
-Florida,Malignant neoplasms,Age adjusted rates,51.7,76.5,156.3,112.2
-Florida,Chronic lower respiratory disease,Number of deaths,25,56,653,975
-Florida,Chronic lower respiratory disease,Age adjusted rates,21.3,10.7,23.3,21.6
-Florida,Accidents (unintentional injuries),Number of deaths,26,116,"1,131","1,409"
-Florida,Accidents (unintentional injuries),Age adjusted rates,23,19.5,33.8,28.6
-Florida,Cerebrovascular diseases	,Number of deaths,11,139,"1,513","1,625"
-Florida,Cerebrovascular diseases	,Age adjusted rates,Unreliable,25.6,55.3,35.6
-Florida,Alzheimer's disease	,Number of deaths,Suppressed,46,464,"1,077"
-Florida,Alzheimer's disease	,Age adjusted rates,Suppressed,10.2,19.3,24
-Florida,Diabetes mellitus	,Number of deaths,13,86,"1,094",838
-Florida,Diabetes mellitus	,Age adjusted rates,Unreliable,14.3,37.2,18.1
-Florida,Influenza and pneumonia	,Number of deaths,Suppressed,27,305,298
-Florida,Influenza and pneumonia	,Age adjusted rates,Suppressed,4.8,10.9,6.6
-Florida,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,42,655,415
-Florida,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,8.1,22.7,9.1
-Florida,Intentional self-harm (suicide)	,Number of deaths,Suppressed,43,173,394
-Florida,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,6.2,4.8,8
-Georgia,Diseases of heart,Number of deaths,13,205,"4,870",205
-Georgia,Diseases of heart,Age adjusted rates,Unreliable,81.4,198.6,64.7
-Georgia,Malignant neoplasms,Number of deaths,13,239,"4,636",269
-Georgia,Malignant neoplasms,Age adjusted rates,Unreliable,81.1,176.9,73.4
-Georgia,Chronic lower respiratory disease,Number of deaths,Suppressed,28,634,27
-Georgia,Chronic lower respiratory disease,Age adjusted rates,Suppressed,12.7,27,10.9
-Georgia,Accidents (unintentional injuries),Number of deaths,Suppressed,58,"1,042",156
-Georgia,Accidents (unintentional injuries),Age adjusted rates,Suppressed,15.6,34.6,19.7
-Georgia,Cerebrovascular diseases	,Number of deaths,Suppressed,94,"1,245",76
-Georgia,Cerebrovascular diseases	,Age adjusted rates,Suppressed,41.8,52.8,24.6
-Georgia,Alzheimer's disease	,Number of deaths,Suppressed,27,631,39
-Georgia,Alzheimer's disease	,Age adjusted rates,Suppressed,15.6,35.2,18.3
-Georgia,Diabetes mellitus	,Number of deaths,Suppressed,27,868,36
-Georgia,Diabetes mellitus	,Age adjusted rates,Suppressed,10.1,34.1,10.4
+Florida,Diseases of heart,Number of deaths,45,406,"4,532","5,703"
+Florida,Diseases of heart,Age adjusted rates,74,76.4,169,124.3
+Florida,Malignant neoplasms,Number of deaths,57,466,"4,596","5,230"
+Florida,Malignant neoplasms,Age adjusted rates,69.1,78.1,162.5,112.2
+Florida,Chronic lower respiratory disease,Number of deaths,24,56,623,975
+Florida,Chronic lower respiratory disease,Age adjusted rates,27.4,11.1,23.7,21.6
+Florida,Accidents (unintentional injuries),Number of deaths,24,108,"1,083","1,409"
+Florida,Accidents (unintentional injuries),Age adjusted rates,38.9,19.1,35,28.6
+Florida,Cerebrovascular diseases	,Number of deaths,10,138,"1,454","1,625"
+Florida,Cerebrovascular diseases	,Age adjusted rates,Unreliable,26.3,56.7,35.6
+Florida,Alzheimer's disease	,Number of deaths,Suppressed,45,440,"1,077"
+Florida,Alzheimer's disease	,Age adjusted rates,Suppressed,10.4,19.5,24
+Florida,Diabetes mellitus	,Number of deaths,11,83,"1,068",838
+Florida,Diabetes mellitus	,Age adjusted rates,Unreliable,14.3,38.7,18.1
+Florida,Influenza and pneumonia	,Number of deaths,Suppressed,26,299,298
+Florida,Influenza and pneumonia	,Age adjusted rates,Suppressed,4.9,11.5,6.6
+Florida,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,41,638,415
+Florida,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,8.1,23.6,9.1
+Florida,Intentional self-harm (suicide)	,Number of deaths,Suppressed,42,157,394
+Florida,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,6.4,4.7,8
+Georgia,Diseases of heart,Number of deaths,11,197,"4,853",205
+Georgia,Diseases of heart,Age adjusted rates,Unreliable,79.5,200.6,64.7
+Georgia,Malignant neoplasms,Number of deaths,13,234,"4,614",269
+Georgia,Malignant neoplasms,Age adjusted rates,Unreliable,81.1,178.4,73.4
+Georgia,Chronic lower respiratory disease,Number of deaths,Suppressed,28,631,27
+Georgia,Chronic lower respiratory disease,Age adjusted rates,Suppressed,12.8,27.2,10.9
+Georgia,Accidents (unintentional injuries),Number of deaths,Suppressed,50,"1,034",156
+Georgia,Accidents (unintentional injuries),Age adjusted rates,Suppressed,14.3,35.2,19.7
+Georgia,Cerebrovascular diseases	,Number of deaths,Suppressed,90,"1,242",76
+Georgia,Cerebrovascular diseases	,Age adjusted rates,Suppressed,41.1,53.4,24.6
+Georgia,Alzheimer's disease	,Number of deaths,Suppressed,27,629,39
+Georgia,Alzheimer's disease	,Age adjusted rates,Suppressed,15.8,35.5,18.3
+Georgia,Diabetes mellitus	,Number of deaths,Suppressed,26,867,36
+Georgia,Diabetes mellitus	,Age adjusted rates,Suppressed,10.1,34.5,10.4
 Georgia,Influenza and pneumonia	,Number of deaths,Suppressed,12,333,Suppressed
-Georgia,Influenza and pneumonia	,Age adjusted rates,Suppressed,Unreliable,14.3,Suppressed
-Georgia,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,39,752,45
-Georgia,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,17.9,32.1,14.3
-Georgia,Intentional self-harm (suicide)	,Number of deaths,Suppressed,35,201,58
-Georgia,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,7.4,6.1,6.7
-Hawaii,Diseases of heart,Number of deaths,Suppressed,"1,852",30,134
-Hawaii,Diseases of heart,Age adjusted rates,Suppressed,133.3,152.6,235.3
-Hawaii,Malignant neoplasms,Number of deaths,Suppressed,"1,637",26,98
-Hawaii,Malignant neoplasms,Age adjusted rates,Suppressed,130,144.8,144.4
-Hawaii,Chronic lower respiratory disease,Number of deaths,Suppressed,181,Suppressed,18
-Hawaii,Chronic lower respiratory disease,Age adjusted rates,Suppressed,12.9,Suppressed,Unreliable
-Hawaii,Accidents (unintentional injuries),Number of deaths,Suppressed,347,15,41
-Hawaii,Accidents (unintentional injuries),Age adjusted rates,Suppressed,30.8,Unreliable,41.1
-Hawaii,Cerebrovascular diseases	,Number of deaths,Suppressed,564,Suppressed,28
-Hawaii,Cerebrovascular diseases	,Age adjusted rates,Suppressed,40.8,Suppressed,54.3
-Hawaii,Alzheimer's disease	,Number of deaths,Suppressed,298,Suppressed,17
-Hawaii,Alzheimer's disease	,Age adjusted rates,Suppressed,17.6,Suppressed,Unreliable
-Hawaii,Diabetes mellitus	,Number of deaths,Suppressed,202,Suppressed,17
-Hawaii,Diabetes mellitus	,Age adjusted rates,Suppressed,16,Suppressed,Unreliable
-Hawaii,Influenza and pneumonia	,Number of deaths,Suppressed,460,Suppressed,15
-Hawaii,Influenza and pneumonia	,Age adjusted rates,Suppressed,30.2,Suppressed,Unreliable
-Hawaii,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,167,Suppressed,17
-Hawaii,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,12.5,Suppressed,Unreliable
-Hawaii,Intentional self-harm (suicide)	,Number of deaths,Suppressed,107,Suppressed,14
-Hawaii,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,11.6,Suppressed,Unreliable
-Idaho,Diseases of heart,Number of deaths,25,18,Suppressed,65
-Idaho,Diseases of heart,Age adjusted rates,116.5,Unreliable,Suppressed,94.1
+Georgia,Influenza and pneumonia	,Age adjusted rates,Suppressed,Unreliable,14.5,Suppressed
+Georgia,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,39,744,45
+Georgia,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,18.1,32.2,14.3
+Georgia,Intentional self-harm (suicide)	,Number of deaths,Suppressed,32,197,58
+Georgia,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,6.9,6.1,6.7
+Hawaii,Diseases of heart,Number of deaths,Suppressed,"1,768",28,134
+Hawaii,Diseases of heart,Age adjusted rates,Suppressed,129.5,153.5,235.3
+Hawaii,Malignant neoplasms,Number of deaths,Suppressed,"1,580",23,98
+Hawaii,Malignant neoplasms,Age adjusted rates,Suppressed,128.4,143.5,144.4
+Hawaii,Chronic lower respiratory disease,Number of deaths,Suppressed,172,Suppressed,18
+Hawaii,Chronic lower respiratory disease,Age adjusted rates,Suppressed,12.3,Suppressed,Unreliable
+Hawaii,Accidents (unintentional injuries),Number of deaths,Suppressed,318,15,41
+Hawaii,Accidents (unintentional injuries),Age adjusted rates,Suppressed,29.5,Unreliable,41.1
+Hawaii,Cerebrovascular diseases	,Number of deaths,Suppressed,545,Suppressed,28
+Hawaii,Cerebrovascular diseases	,Age adjusted rates,Suppressed,40.2,Suppressed,54.3
+Hawaii,Alzheimer's disease	,Number of deaths,Suppressed,290,Suppressed,17
+Hawaii,Alzheimer's disease	,Age adjusted rates,Suppressed,17.2,Suppressed,Unreliable
+Hawaii,Diabetes mellitus	,Number of deaths,Suppressed,193,Suppressed,17
+Hawaii,Diabetes mellitus	,Age adjusted rates,Suppressed,15.6,Suppressed,Unreliable
+Hawaii,Influenza and pneumonia	,Number of deaths,Suppressed,447,Suppressed,15
+Hawaii,Influenza and pneumonia	,Age adjusted rates,Suppressed,29.6,Suppressed,Unreliable
+Hawaii,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,155,Suppressed,17
+Hawaii,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,11.8,Suppressed,Unreliable
+Hawaii,Intentional self-harm (suicide)	,Number of deaths,Suppressed,99,Suppressed,14
+Hawaii,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,11.4,Suppressed,Unreliable
+Idaho,Diseases of heart,Number of deaths,25,17,Suppressed,65
+Idaho,Diseases of heart,Age adjusted rates,144,Unreliable,Suppressed,94.1
 Idaho,Malignant neoplasms,Number of deaths,20,24,Suppressed,69
-Idaho,Malignant neoplasms,Age adjusted rates,87,103,Suppressed,97.7
+Idaho,Malignant neoplasms,Age adjusted rates,108,107.8,Suppressed,97.7
 Idaho,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 Idaho,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
-Idaho,Accidents (unintentional injuries),Number of deaths,19,Suppressed,Suppressed,63
+Idaho,Accidents (unintentional injuries),Number of deaths,18,Suppressed,Suppressed,63
 Idaho,Accidents (unintentional injuries),Age adjusted rates,Unreliable,Suppressed,Suppressed,35.7
 Idaho,Cerebrovascular diseases	,Number of deaths,Suppressed,10,Suppressed,21
 Idaho,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Unreliable,Suppressed,34
@@ -259,132 +259,132 @@ Idaho,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed
 Idaho,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
 Idaho,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,Suppressed,17
 Idaho,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Unreliable
-Illinois,Diseases of heart,Number of deaths,18,444,"3,984",929
-Illinois,Diseases of heart,Age adjusted rates,Unreliable,81.2,225.3,93.9
-Illinois,Malignant neoplasms,Number of deaths,Suppressed,560,"3,865","1,127"
-Illinois,Malignant neoplasms,Age adjusted rates,Suppressed,88.3,211,99.5
-Illinois,Chronic lower respiratory disease,Number of deaths,Suppressed,47,588,93
-Illinois,Chronic lower respiratory disease,Age adjusted rates,Suppressed,9.3,33.2,10.9
-Illinois,Accidents (unintentional injuries),Number of deaths,Suppressed,86,701,389
-Illinois,Accidents (unintentional injuries),Age adjusted rates,Suppressed,13.2,36.2,23
-Illinois,Cerebrovascular diseases	,Number of deaths,Suppressed,145,932,284
-Illinois,Cerebrovascular diseases	,Age adjusted rates,Suppressed,27.6,54.7,30.8
-Illinois,Alzheimer's disease	,Number of deaths,Suppressed,36,384,139
-Illinois,Alzheimer's disease	,Age adjusted rates,Suppressed,8.1,24.9,18.2
-Illinois,Diabetes mellitus	,Number of deaths,Suppressed,81,596,220
-Illinois,Diabetes mellitus	,Age adjusted rates,Suppressed,15,33,20.1
-Illinois,Influenza and pneumonia	,Number of deaths,Suppressed,49,288,89
-Illinois,Influenza and pneumonia	,Age adjusted rates,Suppressed,10.1,16.3,9.1
-Illinois,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,51,485,168
-Illinois,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,9.5,27.7,17.9
-Illinois,Intentional self-harm (suicide)	,Number of deaths,Suppressed,36,98,100
-Illinois,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,4.8,4.9,4.7
-Indiana,Diseases of heart,Number of deaths,Suppressed,57,"1,052",143
-Indiana,Diseases of heart,Age adjusted rates,Suppressed,86.6,208.8,82.1
-Indiana,Malignant neoplasms,Number of deaths,15,63,"1,000",198
-Indiana,Malignant neoplasms,Age adjusted rates,Unreliable,84.2,189.8,99.9
+Illinois,Diseases of heart,Number of deaths,18,442,"3,909",929
+Illinois,Diseases of heart,Age adjusted rates,Unreliable,82.1,225.5,93.9
+Illinois,Malignant neoplasms,Number of deaths,Suppressed,559,"3,845","1,127"
+Illinois,Malignant neoplasms,Age adjusted rates,Suppressed,89.7,213.7,99.5
+Illinois,Chronic lower respiratory disease,Number of deaths,Suppressed,47,585,93
+Illinois,Chronic lower respiratory disease,Age adjusted rates,Suppressed,9.4,33.7,10.9
+Illinois,Accidents (unintentional injuries),Number of deaths,Suppressed,85,677,389
+Illinois,Accidents (unintentional injuries),Age adjusted rates,Suppressed,13.4,36.1,23
+Illinois,Cerebrovascular diseases	,Number of deaths,Suppressed,145,930,284
+Illinois,Cerebrovascular diseases	,Age adjusted rates,Suppressed,28,55.5,30.8
+Illinois,Alzheimer's disease	,Number of deaths,Suppressed,36,382,139
+Illinois,Alzheimer's disease	,Age adjusted rates,Suppressed,8.2,25.1,18.2
+Illinois,Diabetes mellitus	,Number of deaths,Suppressed,80,594,220
+Illinois,Diabetes mellitus	,Age adjusted rates,Suppressed,15.2,33.6,20.1
+Illinois,Influenza and pneumonia	,Number of deaths,Suppressed,49,286,89
+Illinois,Influenza and pneumonia	,Age adjusted rates,Suppressed,10.3,16.5,9.1
+Illinois,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,51,479,168
+Illinois,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Not Available,Not Available,Not Available,17.9
+Illinois,Intentional self-harm (suicide)	,Number of deaths,Suppressed,36,96,100
+Illinois,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,5,5,4.7
+Indiana,Diseases of heart,Number of deaths,Suppressed,55,"1,050",143
+Indiana,Diseases of heart,Age adjusted rates,Suppressed,84.5,211.3,82.1
+Indiana,Malignant neoplasms,Number of deaths,15,61,997,198
+Indiana,Malignant neoplasms,Age adjusted rates,Unreliable,82.3,192,99.9
 Indiana,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,203,17
-Indiana,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,40.8,Unreliable
-Indiana,Accidents (unintentional injuries),Number of deaths,Suppressed,17,248,93
-Indiana,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Unreliable,39.1,25.3
-Indiana,Cerebrovascular diseases	,Number of deaths,Suppressed,21,241,45
-Indiana,Cerebrovascular diseases	,Age adjusted rates,Suppressed,30.4,49.5,28.8
+Indiana,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,41.4,Unreliable
+Indiana,Accidents (unintentional injuries),Number of deaths,Suppressed,17,245,93
+Indiana,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Unreliable,39.8,25.3
+Indiana,Cerebrovascular diseases	,Number of deaths,Suppressed,20,241,45
+Indiana,Cerebrovascular diseases	,Age adjusted rates,Suppressed,28.9,50.2,28.8
 Indiana,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,123,18
-Indiana,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,29.8,Unreliable
+Indiana,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,30,Unreliable
 Indiana,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,251,44
-Indiana,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,49.5,23.2
+Indiana,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,50.2,23.2
 Indiana,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,60,10
-Indiana,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,12.7,Unreliable
-Indiana,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,180,25
-Indiana,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,35.4,15.1
+Indiana,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,12.9,Unreliable
+Indiana,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,179,25
+Indiana,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,35.7,15.1
 Indiana,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,48,33
-Indiana,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,7.3,9.9
+Indiana,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,7.5,9.9
 Iowa,Diseases of heart,Number of deaths,10,25,105,29
-Iowa,Diseases of heart,Age adjusted rates,Unreliable,73.9,183.5,47.8
-Iowa,Malignant neoplasms,Number of deaths,11,39,84,53
-Iowa,Malignant neoplasms,Age adjusted rates,Unreliable,104.9,136.8,83
-Iowa,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,34,Suppressed
-Iowa,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,64.1,Suppressed
-Iowa,Accidents (unintentional injuries),Number of deaths,Suppressed,10,37,48
-Iowa,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Unreliable,35.7,39.3
+Iowa,Diseases of heart,Age adjusted rates,Unreliable,75.1,187.6,47.8
+Iowa,Malignant neoplasms,Number of deaths,10,39,84,53
+Iowa,Malignant neoplasms,Age adjusted rates,Unreliable,106.6,139.9,83
+Iowa,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,33,Suppressed
+Iowa,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,64.9,Suppressed
+Iowa,Accidents (unintentional injuries),Number of deaths,Suppressed,Suppressed,36,48
+Iowa,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Suppressed,36.7,39.3
 Iowa,Cerebrovascular diseases	,Number of deaths,Suppressed,Suppressed,26,14
-Iowa,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,52.1,Unreliable
+Iowa,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,53.2,Unreliable
 Iowa,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 Iowa,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
-Iowa,Diabetes mellitus	,Number of deaths,Suppressed,12,34,12
-Iowa,Diabetes mellitus	,Age adjusted rates,Suppressed,Unreliable,54,Unreliable
+Iowa,Diabetes mellitus	,Number of deaths,Suppressed,11,34,12
+Iowa,Diabetes mellitus	,Age adjusted rates,Suppressed,Unreliable,55.3,Unreliable
 Iowa,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,11,Suppressed
 Iowa,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,Unreliable,Suppressed
 Iowa,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 Iowa,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
 Iowa,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 Iowa,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
-Kansas,Diseases of heart,Number of deaths,60,25,256,118
-Kansas,Diseases of heart,Age adjusted rates,248.7,51.7,177,93.7
-Kansas,Malignant neoplasms,Number of deaths,53,55,291,148
-Kansas,Malignant neoplasms,Age adjusted rates,202.2,101.4,190,99.2
-Kansas,Chronic lower respiratory disease,Number of deaths,16,Suppressed,54,14
-Kansas,Chronic lower respiratory disease,Age adjusted rates,Unreliable,Suppressed,37,Unreliable
-Kansas,Accidents (unintentional injuries),Number of deaths,18,10,75,77
-Kansas,Accidents (unintentional injuries),Age adjusted rates,Unreliable,Unreliable,39.4,32.6
-Kansas,Cerebrovascular diseases	,Number of deaths,12,15,72,42
-Kansas,Cerebrovascular diseases	,Age adjusted rates,Unreliable,Unreliable,52,34
+Kansas,Diseases of heart,Number of deaths,58,23,256,118
+Kansas,Diseases of heart,Age adjusted rates,288.7,48.8,180.6,93.7
+Kansas,Malignant neoplasms,Number of deaths,53,55,286,148
+Kansas,Malignant neoplasms,Age adjusted rates,246.7,103.5,191.5,99.2
+Kansas,Chronic lower respiratory disease,Number of deaths,15,Suppressed,52,14
+Kansas,Chronic lower respiratory disease,Age adjusted rates,Unreliable,Suppressed,36.4,Unreliable
+Kansas,Accidents (unintentional injuries),Number of deaths,17,10,75,77
+Kansas,Accidents (unintentional injuries),Age adjusted rates,Unreliable,Unreliable,41.5,32.6
+Kansas,Cerebrovascular diseases	,Number of deaths,11,15,72,42
+Kansas,Cerebrovascular diseases	,Age adjusted rates,Unreliable,Unreliable,53.1,34
 Kansas,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,33,13
-Kansas,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,28.1,Unreliable
-Kansas,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,83,30
-Kansas,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,59.7,22.6
+Kansas,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,28.5,Unreliable
+Kansas,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,81,30
+Kansas,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,59.8,22.6
 Kansas,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,21,16
-Kansas,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,15.3,Unreliable
+Kansas,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,15.7,Unreliable
 Kansas,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,70,15
-Kansas,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,50.7,Unreliable
-Kansas,Intentional self-harm (suicide)	,Number of deaths,10,Suppressed,22,32
-Kansas,Intentional self-harm (suicide)	,Age adjusted rates,Unreliable,Suppressed,9.4,8.7
-Kentucky,Diseases of heart,Number of deaths,Suppressed,30,599,33
-Kentucky,Diseases of heart,Age adjusted rates,Suppressed,85.1,195.1,56.6
-Kentucky,Malignant neoplasms,Number of deaths,Suppressed,27,631,50
-Kentucky,Malignant neoplasms,Age adjusted rates,Suppressed,62.4,199.7,73.3
+Kansas,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,51.7,Unreliable
+Kansas,Intentional self-harm (suicide)	,Number of deaths,10,Suppressed,18,32
+Kansas,Intentional self-harm (suicide)	,Age adjusted rates,Unreliable,Suppressed,Unreliable,8.7
+Kentucky,Diseases of heart,Number of deaths,Suppressed,29,598,33
+Kentucky,Diseases of heart,Age adjusted rates,Suppressed,85.7,196.8,56.6
+Kentucky,Malignant neoplasms,Number of deaths,Suppressed,26,628,50
+Kentucky,Malignant neoplasms,Age adjusted rates,Suppressed,62.2,200.8,73.3
 Kentucky,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,132,10
-Kentucky,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,45.8,Unreliable
-Kentucky,Accidents (unintentional injuries),Number of deaths,Suppressed,11,159,39
-Kentucky,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Unreliable,44.1,26.3
+Kentucky,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,46.3,Unreliable
+Kentucky,Accidents (unintentional injuries),Number of deaths,Suppressed,11,158,39
+Kentucky,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Unreliable,44.9,26.3
 Kentucky,Cerebrovascular diseases	,Number of deaths,Suppressed,Suppressed,142,Suppressed
-Kentucky,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,47.4,Suppressed
+Kentucky,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,47.9,Suppressed
 Kentucky,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,68,Suppressed
-Kentucky,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,26.8,Suppressed
+Kentucky,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,27,Suppressed
 Kentucky,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,124,Suppressed
-Kentucky,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,38.3,Suppressed
+Kentucky,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,38.7,Suppressed
 Kentucky,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,49,Suppressed
-Kentucky,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,17,Suppressed
+Kentucky,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,17.2,Suppressed
 Kentucky,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,107,Suppressed
-Kentucky,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,36.5,Suppressed
-Kentucky,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,23,Suppressed
-Kentucky,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,5.9,Suppressed
-Louisiana,Diseases of heart,Number of deaths,26,57,"3,259",125
-Louisiana,Diseases of heart,Age adjusted rates,76.7,88.5,254.5,88.1
-Louisiana,Malignant neoplasms,Number of deaths,26,64,"2,932",102
-Louisiana,Malignant neoplasms,Age adjusted rates,79.4,85.6,213.8,71.8
-Louisiana,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,381,16
-Louisiana,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,29.8,Unreliable
-Louisiana,Accidents (unintentional injuries),Number of deaths,14,23,712,74
-Louisiana,Accidents (unintentional injuries),Age adjusted rates,Unreliable,25.7,48.7,33.4
-Louisiana,Cerebrovascular diseases	,Number of deaths,Suppressed,22,779,32
-Louisiana,Cerebrovascular diseases	,Age adjusted rates,Suppressed,37.5,62.3,21.3
-Louisiana,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,376,27
-Louisiana,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,35.9,20.7
-Louisiana,Diabetes mellitus	,Number of deaths,Suppressed,11,491,12
-Louisiana,Diabetes mellitus	,Age adjusted rates,Suppressed,Unreliable,38.1,Unreliable
+Kentucky,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,36.9,Suppressed
+Kentucky,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,22,Suppressed
+Kentucky,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,5.7,Suppressed
+Louisiana,Diseases of heart,Number of deaths,25,54,"3,250",125
+Louisiana,Diseases of heart,Age adjusted rates,83,87.5,256.2,88.1
+Louisiana,Malignant neoplasms,Number of deaths,25,64,"2,922",102
+Louisiana,Malignant neoplasms,Age adjusted rates,83,87.5,215,71.8
+Louisiana,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,380,16
+Louisiana,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,30.1,Unreliable
+Louisiana,Accidents (unintentional injuries),Number of deaths,13,22,705,74
+Louisiana,Accidents (unintentional injuries),Age adjusted rates,Unreliable,26,48.9,33.4
+Louisiana,Cerebrovascular diseases	,Number of deaths,Suppressed,22,776,32
+Louisiana,Cerebrovascular diseases	,Age adjusted rates,Suppressed,38.3,62.7,21.3
+Louisiana,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,375,27
+Louisiana,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,36.1,20.7
+Louisiana,Diabetes mellitus	,Number of deaths,Suppressed,11,490,12
+Louisiana,Diabetes mellitus	,Age adjusted rates,Suppressed,Unreliable,38.4,Unreliable
 Louisiana,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,192,Suppressed
-Louisiana,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,16,Suppressed
-Louisiana,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,496,13
-Louisiana,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,40.3,Unreliable
-Louisiana,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,88,16
+Louisiana,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,16.1,Suppressed
+Louisiana,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,494,13
+Louisiana,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,40.5,Unreliable
+Louisiana,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,87,16
 Louisiana,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,6,Unreliable
 Maine,Diseases of heart,Number of deaths,19,Suppressed,12,Suppressed
 Maine,Diseases of heart,Age adjusted rates,Unreliable,Suppressed,Unreliable,Suppressed
 Maine,Malignant neoplasms,Number of deaths,23,14,14,10
-Maine,Malignant neoplasms,Age adjusted rates,251.8,Unreliable,Unreliable,Unreliable
+Maine,Malignant neoplasms,Age adjusted rates,261.6,Unreliable,Unreliable,Unreliable
 Maine,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
-Maine,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not Available
+Maine,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not available
 Maine,Accidents (unintentional injuries),Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 Maine,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
 Maine,Cerebrovascular diseases	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
@@ -394,197 +394,197 @@ Maine,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,Suppressed,S
 Maine,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 Maine,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
 Maine,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
-Maine,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not Available
+Maine,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not available
 Maine,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 Maine,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
 Maine,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 Maine,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
-Maryland,Diseases of heart,Number of deaths,13,230,"3,210",177
-Maryland,Diseases of heart,Age adjusted rates,Unreliable,71.6,195.5,75.3
-Maryland,Malignant neoplasms,Number of deaths,15,313,"3,065",206
-Maryland,Malignant neoplasms,Age adjusted rates,Unreliable,85.6,176.6,75.9
-Maryland,Chronic lower respiratory disease,Number of deaths,Suppressed,23,351,14
-Maryland,Chronic lower respiratory disease,Age adjusted rates,Suppressed,7.4,22.2,Unreliable
-Maryland,Accidents (unintentional injuries),Number of deaths,Suppressed,45,494,83
-Maryland,Accidents (unintentional injuries),Age adjusted rates,Suppressed,12.6,26.9,19.4
-Maryland,Cerebrovascular diseases	,Number of deaths,Suppressed,82,707,36
-Maryland,Cerebrovascular diseases	,Age adjusted rates,Suppressed,26.1,46.2,17.1
-Maryland,Alzheimer's disease	,Number of deaths,Suppressed,16,201,14
-Maryland,Alzheimer's disease	,Age adjusted rates,Suppressed,Unreliable,15,Unreliable
-Maryland,Diabetes mellitus	,Number of deaths,Suppressed,31,463,23
-Maryland,Diabetes mellitus	,Age adjusted rates,Suppressed,9.3,27.7,8.7
+Maryland,Diseases of heart,Number of deaths,12,224,"3,186",177
+Maryland,Diseases of heart,Age adjusted rates,Unreliable,70.5,196.8,75.3
+Maryland,Malignant neoplasms,Number of deaths,15,309,"3,033",206
+Maryland,Malignant neoplasms,Age adjusted rates,Unreliable,85.7,177.5,75.9
+Maryland,Chronic lower respiratory disease,Number of deaths,Suppressed,23,350,14
+Maryland,Chronic lower respiratory disease,Age adjusted rates,Not Available,Not Available,Not Available,Unreliable
+Maryland,Accidents (unintentional injuries),Number of deaths,Suppressed,41,486,83
+Maryland,Accidents (unintentional injuries),Age adjusted rates,Suppressed,11.8,27.2,19.4
+Maryland,Cerebrovascular diseases	,Number of deaths,Suppressed,82,700,36
+Maryland,Cerebrovascular diseases	,Age adjusted rates,Suppressed,26.4,46.4,17.1
+Maryland,Alzheimer's disease	,Number of deaths,Suppressed,16,198,14
+Maryland,Alzheimer's disease	,Age adjusted rates,Suppressed,Unreliable,14.9,Unreliable
+Maryland,Diabetes mellitus	,Number of deaths,Suppressed,31,459,23
+Maryland,Diabetes mellitus	,Age adjusted rates,Suppressed,9.4,27.9,8.7
 Maryland,Influenza and pneumonia	,Number of deaths,Suppressed,33,247,21
-Maryland,Influenza and pneumonia	,Age adjusted rates,Suppressed,10.5,15.6,9.7
-Maryland,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,26,313,16
-Maryland,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,8.7,19.7,Unreliable
-Maryland,Intentional self-harm (suicide)	,Number of deaths,Suppressed,18,87,18
-Maryland,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Unreliable,4.6,Unreliable
-Massachusetts,Diseases of heart,Number of deaths,12,166,487,290
-Massachusetts,Diseases of heart,Age adjusted rates,Unreliable,59,110.7,80.5
-Massachusetts,Malignant neoplasms,Number of deaths,13,310,602,350
-Massachusetts,Malignant neoplasms,Age adjusted rates,Unreliable,95.1,126.6,86.6
-Massachusetts,Chronic lower respiratory disease,Number of deaths,Suppressed,22,70,50
-Massachusetts,Chronic lower respiratory disease,Age adjusted rates,Suppressed,8.5,15.3,14.3
-Massachusetts,Accidents (unintentional injuries),Number of deaths,Suppressed,52,164,193
-Massachusetts,Accidents (unintentional injuries),Age adjusted rates,Suppressed,15.2,29,28.6
-Massachusetts,Cerebrovascular diseases	,Number of deaths,Suppressed,75,117,73
-Massachusetts,Cerebrovascular diseases	,Age adjusted rates,Suppressed,26.8,27.4,22.4
+Maryland,Influenza and pneumonia	,Age adjusted rates,Suppressed,10.7,15.9,9.7
+Maryland,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,25,312,16
+Maryland,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,8.5,19.9,Unreliable
+Maryland,Intentional self-harm (suicide)	,Number of deaths,Suppressed,17,86,18
+Maryland,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Unreliable,4.7,Unreliable
+Massachusetts,Diseases of heart,Number of deaths,12,163,448,290
+Massachusetts,Diseases of heart,Age adjusted rates,Unreliable,58.9,117.2,80.5
+Massachusetts,Malignant neoplasms,Number of deaths,13,310,561,350
+Massachusetts,Malignant neoplasms,Age adjusted rates,Unreliable,96.8,136.1,86.6
+Massachusetts,Chronic lower respiratory disease,Number of deaths,Suppressed,22,67,50
+Massachusetts,Chronic lower respiratory disease,Age adjusted rates,Suppressed,8.6,16.7,14.3
+Massachusetts,Accidents (unintentional injuries),Number of deaths,Suppressed,52,142,193
+Massachusetts,Accidents (unintentional injuries),Age adjusted rates,Suppressed,15.5,30.4,28.6
+Massachusetts,Cerebrovascular diseases	,Number of deaths,Suppressed,73,106,73
+Massachusetts,Cerebrovascular diseases	,Age adjusted rates,Suppressed,26.6,28.4,22.4
 Massachusetts,Alzheimer's disease	,Number of deaths,Suppressed,41,42,26
-Massachusetts,Alzheimer's disease	,Age adjusted rates,Suppressed,16.4,11.3,8.7
-Massachusetts,Diabetes mellitus	,Number of deaths,Suppressed,32,114,73
-Massachusetts,Diabetes mellitus	,Age adjusted rates,Suppressed,11.3,26.3,19.6
-Massachusetts,Influenza and pneumonia	,Number of deaths,Suppressed,13,42,30
-Massachusetts,Influenza and pneumonia	,Age adjusted rates,Suppressed,Unreliable,9.8,9.2
-Massachusetts,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,29,78,53
-Massachusetts,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,10.4,17.2,14.7
-Massachusetts,Intentional self-harm (suicide)	,Number of deaths,Suppressed,17,30,30
-Massachusetts,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Unreliable,4.6,4.3
-Michigan,Diseases of heart,Number of deaths,108,149,"3,568",322
-Michigan,Diseases of heart,Age adjusted rates,163.4,83.3,265.7,142.1
-Michigan,Malignant neoplasms,Number of deaths,115,184,"2,618",296
-Michigan,Malignant neoplasms,Age adjusted rates,166.1,83.7,190.4,114
-Michigan,Chronic lower respiratory disease,Number of deaths,44,18,486,53
-Michigan,Chronic lower respiratory disease,Age adjusted rates,65,Unreliable,36.6,23.5
-Michigan,Accidents (unintentional injuries),Number of deaths,53,33,651,169
-Michigan,Accidents (unintentional injuries),Age adjusted rates,63,14.3,44.4,43.6
-Michigan,Cerebrovascular diseases	,Number of deaths,17,44,674,73
-Michigan,Cerebrovascular diseases	,Age adjusted rates,Unreliable,25.3,51.4,35.1
+Massachusetts,Alzheimer's disease	,Age adjusted rates,Suppressed,16.7,12.7,8.7
+Massachusetts,Diabetes mellitus	,Number of deaths,Suppressed,32,107,73
+Massachusetts,Diabetes mellitus	,Age adjusted rates,Suppressed,11.5,28.3,19.6
+Massachusetts,Influenza and pneumonia	,Number of deaths,Suppressed,13,39,30
+Massachusetts,Influenza and pneumonia	,Age adjusted rates,Suppressed,Unreliable,10.4,9.2
+Massachusetts,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,29,72,53
+Massachusetts,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,10.6,18.5,14.7
+Massachusetts,Intentional self-harm (suicide)	,Number of deaths,Suppressed,16,26,30
+Massachusetts,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Unreliable,5,4.3
+Michigan,Diseases of heart,Number of deaths,103,146,"3,545",322
+Michigan,Diseases of heart,Age adjusted rates,175.9,82.2,266.3,142.1
+Michigan,Malignant neoplasms,Number of deaths,115,180,"2,607",296
+Michigan,Malignant neoplasms,Age adjusted rates,185.8,82.7,191.4,114
+Michigan,Chronic lower respiratory disease,Number of deaths,44,17,482,53
+Michigan,Chronic lower respiratory disease,Age adjusted rates,72.4,Unreliable,36.6,23.5
+Michigan,Accidents (unintentional injuries),Number of deaths,45,33,642,169
+Michigan,Accidents (unintentional injuries),Age adjusted rates,66,14.5,44.7,43.6
+Michigan,Cerebrovascular diseases	,Number of deaths,17,44,672,73
+Michigan,Cerebrovascular diseases	,Age adjusted rates,Unreliable,25.6,51.6,35.1
 Michigan,Alzheimer's disease	,Number of deaths,15,14,303,45
-Michigan,Alzheimer's disease	,Age adjusted rates,Unreliable,Unreliable,25.3,24.8
-Michigan,Diabetes mellitus	,Number of deaths,20,19,499,74
-Michigan,Diabetes mellitus	,Age adjusted rates,27.2,Unreliable,38,31
-Michigan,Influenza and pneumonia	,Number of deaths,12,Suppressed,254,21
-Michigan,Influenza and pneumonia	,Age adjusted rates,Unreliable,Suppressed,19.5,9.1
+Michigan,Alzheimer's disease	,Age adjusted rates,Unreliable,Unreliable,25.5,24.8
+Michigan,Diabetes mellitus	,Number of deaths,20,19,497,74
+Michigan,Diabetes mellitus	,Age adjusted rates,30.4,Unreliable,38.2,31
+Michigan,Influenza and pneumonia	,Number of deaths,12,Suppressed,253,21
+Michigan,Influenza and pneumonia	,Age adjusted rates,Unreliable,Suppressed,19.6,9.1
 Michigan,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,12,15,394,27
-Michigan,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Unreliable,Unreliable,30,13.9
-Michigan,Intentional self-harm (suicide)	,Number of deaths,17,11,88,43
-Michigan,Intentional self-harm (suicide)	,Age adjusted rates,Unreliable,Unreliable,6.2,9.1
-Minnesota,Diseases of heart,Number of deaths,84,81,173,52
-Minnesota,Diseases of heart,Age adjusted rates,173.6,63,108.2,49.2
-Minnesota,Malignant neoplasms,Number of deaths,108,159,301,128
-Minnesota,Malignant neoplasms,Age adjusted rates,229.4,101.8,182.5,139.4
+Michigan,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Unreliable,Unreliable,30.3,13.9
+Michigan,Intentional self-harm (suicide)	,Number of deaths,16,11,87,43
+Michigan,Intentional self-harm (suicide)	,Age adjusted rates,Unreliable,Unreliable,6.3,9.1
+Minnesota,Diseases of heart,Number of deaths,84,80,171,52
+Minnesota,Diseases of heart,Age adjusted rates,192.6,63,110.4,49.2
+Minnesota,Malignant neoplasms,Number of deaths,106,159,300,128
+Minnesota,Malignant neoplasms,Age adjusted rates,246.5,103.1,186.8,139.4
 Minnesota,Chronic lower respiratory disease,Number of deaths,27,12,50,10
-Minnesota,Chronic lower respiratory disease,Age adjusted rates,59,Unreliable,29.6,Unreliable
-Minnesota,Accidents (unintentional injuries),Number of deaths,79,53,121,46
-Minnesota,Accidents (unintentional injuries),Age adjusted rates,113.1,29.1,51.3,30.6
-Minnesota,Cerebrovascular diseases	,Number of deaths,18,63,61,22
-Minnesota,Cerebrovascular diseases	,Age adjusted rates,Unreliable,47.6,41.6,27.5
+Minnesota,Chronic lower respiratory disease,Age adjusted rates,64.3,Unreliable,30.3,Unreliable
+Minnesota,Accidents (unintentional injuries),Number of deaths,77,53,120,46
+Minnesota,Accidents (unintentional injuries),Age adjusted rates,132.4,29.6,51.7,30.6
+Minnesota,Cerebrovascular diseases	,Number of deaths,17,63,61,22
+Minnesota,Cerebrovascular diseases	,Age adjusted rates,Not Available,Not Available,Not Available,27.5
 Minnesota,Alzheimer's disease	,Number of deaths,Suppressed,11,25,Suppressed
-Minnesota,Alzheimer's disease	,Age adjusted rates,Suppressed,Unreliable,25.8,Suppressed
+Minnesota,Alzheimer's disease	,Age adjusted rates,Suppressed,Unreliable,26.5,Suppressed
 Minnesota,Diabetes mellitus	,Number of deaths,47,36,54,15
-Minnesota,Diabetes mellitus	,Age adjusted rates,89.1,27.4,31.6,Unreliable
+Minnesota,Diabetes mellitus	,Age adjusted rates,98.3,27.7,32.4,Unreliable
 Minnesota,Influenza and pneumonia	,Number of deaths,16,14,10,Suppressed
 Minnesota,Influenza and pneumonia	,Age adjusted rates,Unreliable,Unreliable,Unreliable,Suppressed
-Minnesota,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,10,10,38,11
-Minnesota,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Unreliable,Unreliable,28.7,Unreliable
-Minnesota,Intentional self-harm (suicide)	,Number of deaths,17,23,25,14
-Minnesota,Intentional self-harm (suicide)	,Age adjusted rates,Unreliable,9.7,7.4,Unreliable
+Minnesota,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,10,10,35,11
+Minnesota,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Unreliable,Unreliable,27.3,Unreliable
+Minnesota,Intentional self-harm (suicide)	,Number of deaths,15,23,25,14
+Minnesota,Intentional self-harm (suicide)	,Age adjusted rates,Unreliable,9.8,7.7,Unreliable
 Mississippi,Diseases of heart,Number of deaths,26,22,"2,467",19
-Mississippi,Diseases of heart,Age adjusted rates,224.4,106,263.2,Unreliable
-Mississippi,Malignant neoplasms,Number of deaths,14,28,"2,017",20
-Mississippi,Malignant neoplasms,Age adjusted rates,Unreliable,123.8,202.1,49.7
+Mississippi,Diseases of heart,Age adjusted rates,242.3,108.2,264.9,Unreliable
+Mississippi,Malignant neoplasms,Number of deaths,14,27,"2,017",20
+Mississippi,Malignant neoplasms,Age adjusted rates,Unreliable,123.5,203.4,49.7
 Mississippi,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,322,Suppressed
-Mississippi,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,34.6,Suppressed
-Mississippi,Accidents (unintentional injuries),Number of deaths,Suppressed,11,518,21
-Mississippi,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Unreliable,47.7,28.2
-Mississippi,Cerebrovascular diseases	,Number of deaths,Suppressed,Suppressed,603,Suppressed
-Mississippi,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,64.7,Suppressed
+Mississippi,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,34.8,Suppressed
+Mississippi,Accidents (unintentional injuries),Number of deaths,Suppressed,10,517,21
+Mississippi,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Unreliable,48,28.2
+Mississippi,Cerebrovascular diseases	,Number of deaths,Suppressed,Suppressed,602,Suppressed
+Mississippi,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,65.1,Suppressed
 Mississippi,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,269,Suppressed
-Mississippi,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,34.8,Suppressed
+Mississippi,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,35,Suppressed
 Mississippi,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,526,Suppressed
-Mississippi,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,54.4,Suppressed
+Mississippi,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,54.8,Suppressed
 Mississippi,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,215,Suppressed
-Mississippi,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,23.9,Not Available
+Mississippi,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,24,Not available
 Mississippi,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,291,Suppressed
-Mississippi,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,30.9,Suppressed
+Mississippi,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,31.1,Suppressed
 Mississippi,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,63,Suppressed
-Mississippi,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,5.7,Suppressed
-Missouri,Diseases of heart,Number of deaths,29,64,"1,403",99
-Missouri,Diseases of heart,Age adjusted rates,88.2,82.9,226.1,79.4
-Missouri,Malignant neoplasms,Number of deaths,24,85,"1,314",98
-Missouri,Malignant neoplasms,Age adjusted rates,63.3,94.3,202.3,78.9
-Missouri,Chronic lower respiratory disease,Number of deaths,12,Suppressed,194,18
-Missouri,Chronic lower respiratory disease,Age adjusted rates,Unreliable,Suppressed,31.4,Unreliable
-Missouri,Accidents (unintentional injuries),Number of deaths,11,22,358,46
-Missouri,Accidents (unintentional injuries),Age adjusted rates,Unreliable,18,48.6,23.6
-Missouri,Cerebrovascular diseases	,Number of deaths,Suppressed,24,363,21
-Missouri,Cerebrovascular diseases	,Age adjusted rates,Suppressed,30.9,60.6,19.5
+Mississippi,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,5.8,Suppressed
+Missouri,Diseases of heart,Number of deaths,26,62,"1,393",99
+Missouri,Diseases of heart,Age adjusted rates,88.5,81.6,226.5,79.4
+Missouri,Malignant neoplasms,Number of deaths,23,84,"1,310",98
+Missouri,Malignant neoplasms,Age adjusted rates,69.3,95.4,203.2,78.9
+Missouri,Chronic lower respiratory disease,Number of deaths,12,Suppressed,191,18
+Missouri,Chronic lower respiratory disease,Age adjusted rates,Unreliable,Suppressed,31.2,Unreliable
+Missouri,Accidents (unintentional injuries),Number of deaths,11,22,355,46
+Missouri,Accidents (unintentional injuries),Age adjusted rates,Unreliable,18.5,49,23.6
+Missouri,Cerebrovascular diseases	,Number of deaths,Suppressed,24,362,21
+Missouri,Cerebrovascular diseases	,Age adjusted rates,Suppressed,31.5,61,19.5
 Missouri,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,126,17
-Missouri,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,23.7,Unreliable
-Missouri,Diabetes mellitus	,Number of deaths,Suppressed,14,214,29
-Missouri,Diabetes mellitus	,Age adjusted rates,Suppressed,Unreliable,33,24.8
+Missouri,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,23.9,Unreliable
+Missouri,Diabetes mellitus	,Number of deaths,Suppressed,14,213,29
+Missouri,Diabetes mellitus	,Age adjusted rates,Suppressed,Unreliable,33.1,24.8
 Missouri,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,75,Suppressed
-Missouri,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,12,Suppressed
+Missouri,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,12.1,Suppressed
 Missouri,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,218,12
-Missouri,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,36.2,Unreliable
-Missouri,Intentional self-harm (suicide)	,Number of deaths,Suppressed,13,51,20
+Missouri,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,36.5,Unreliable
+Missouri,Intentional self-harm (suicide)	,Number of deaths,Suppressed,13,50,20
 Missouri,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Unreliable,6.7,8.1
-Montana,Diseases of heart,Number of deaths,100,Suppressed,Suppressed,23
-Montana,Diseases of heart,Age adjusted rates,224.6,Suppressed,Suppressed,136.5
-Montana,Malignant neoplasms,Number of deaths,97,12,Suppressed,19
-Montana,Malignant neoplasms,Age adjusted rates,212.4,Unreliable,Suppressed,Unreliable
-Montana,Chronic lower respiratory disease,Number of deaths,30,Suppressed,Suppressed,Suppressed
-Montana,Chronic lower respiratory disease,Age adjusted rates,85.6,Suppressed,Suppressed,Suppressed
-Montana,Accidents (unintentional injuries),Number of deaths,82,Suppressed,Suppressed,14
-Montana,Accidents (unintentional injuries),Age adjusted rates,126.8,Suppressed,Suppressed,Unreliable
-Montana,Cerebrovascular diseases	,Number of deaths,17,Suppressed,Suppressed,Suppressed
+Montana,Diseases of heart,Number of deaths,97,Suppressed,Suppressed,23
+Montana,Diseases of heart,Age adjusted rates,225.8,Suppressed,Suppressed,136.5
+Montana,Malignant neoplasms,Number of deaths,94,12,Suppressed,19
+Montana,Malignant neoplasms,Age adjusted rates,212.9,Unreliable,Suppressed,Unreliable
+Montana,Chronic lower respiratory disease,Number of deaths,29,Suppressed,Suppressed,Suppressed
+Montana,Chronic lower respiratory disease,Age adjusted rates,83.8,Suppressed,Suppressed,Suppressed
+Montana,Accidents (unintentional injuries),Number of deaths,80,Suppressed,Suppressed,14
+Montana,Accidents (unintentional injuries),Age adjusted rates,133,Suppressed,Suppressed,Unreliable
+Montana,Cerebrovascular diseases	,Number of deaths,16,Suppressed,Suppressed,Suppressed
 Montana,Cerebrovascular diseases	,Age adjusted rates,Unreliable,Suppressed,Suppressed,Suppressed
 Montana,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 Montana,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
 Montana,Diabetes mellitus	,Number of deaths,45,Suppressed,Suppressed,Suppressed
-Montana,Diabetes mellitus	,Age adjusted rates,90.6,Suppressed,Suppressed,Suppressed
+Montana,Diabetes mellitus	,Age adjusted rates,94.5,Suppressed,Suppressed,Suppressed
 Montana,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
-Montana,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not Available
+Montana,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not available
 Montana,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,20,Suppressed,Suppressed,Suppressed
-Montana,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,43.1,Suppressed,Suppressed,Suppressed
-Montana,Intentional self-harm (suicide)	,Number of deaths,21,Suppressed,Suppressed,Suppressed
-Montana,Intentional self-harm (suicide)	,Age adjusted rates,33.2,Suppressed,Suppressed,Suppressed
-Nebraska,Diseases of heart,Number of deaths,10,Suppressed,96,52
-Nebraska,Diseases of heart,Age adjusted rates,Unreliable,Suppressed,155.6,81.3
+Montana,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,44.9,Suppressed,Suppressed,Suppressed
+Montana,Intentional self-harm (suicide)	,Number of deaths,20,Suppressed,Suppressed,Suppressed
+Montana,Intentional self-harm (suicide)	,Age adjusted rates,34.1,Suppressed,Suppressed,Suppressed
+Nebraska,Diseases of heart,Number of deaths,Suppressed,Suppressed,96,52
+Nebraska,Diseases of heart,Age adjusted rates,Suppressed,Suppressed,160.9,81.3
 Nebraska,Malignant neoplasms,Number of deaths,19,30,115,72
-Nebraska,Malignant neoplasms,Age adjusted rates,Unreliable,99.9,189.2,104.3
+Nebraska,Malignant neoplasms,Age adjusted rates,Unreliable,103.1,195.4,104.3
 Nebraska,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,34,Suppressed
-Nebraska,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,58.9,Suppressed
+Nebraska,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,60.8,Suppressed
 Nebraska,Accidents (unintentional injuries),Number of deaths,11,Suppressed,38,44
-Nebraska,Accidents (unintentional injuries),Age adjusted rates,Unreliable,Suppressed,44.1,24.8
+Nebraska,Accidents (unintentional injuries),Age adjusted rates,Unreliable,Suppressed,46.1,24.8
 Nebraska,Cerebrovascular diseases	,Number of deaths,Suppressed,Suppressed,19,20
 Nebraska,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,Unreliable,32.3
 Nebraska,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,12,Suppressed
 Nebraska,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,Unreliable,Suppressed
 Nebraska,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,32,24
-Nebraska,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,54.3,37
+Nebraska,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,56.1,37
 Nebraska,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,12,Suppressed
 Nebraska,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,Unreliable,Suppressed
 Nebraska,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,14,Suppressed
 Nebraska,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,Unreliable,Suppressed
 Nebraska,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 Nebraska,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
-Nevada,Diseases of heart,Number of deaths,49,306,576,468
-Nevada,Diseases of heart,Age adjusted rates,114.7,115.2,253,123.3
-Nevada,Malignant neoplasms,Number of deaths,32,311,393,370
-Nevada,Malignant neoplasms,Age adjusted rates,83.9,106.3,167.1,87
-Nevada,Chronic lower respiratory disease,Number of deaths,Suppressed,44,64,56
-Nevada,Chronic lower respiratory disease,Age adjusted rates,Suppressed,18.1,32.1,17.8
-Nevada,Accidents (unintentional injuries),Number of deaths,25,63,133,198
-Nevada,Accidents (unintentional injuries),Age adjusted rates,49.1,22.4,47,30.5
-Nevada,Cerebrovascular diseases	,Number of deaths,Suppressed,92,86,119
-Nevada,Cerebrovascular diseases	,Age adjusted rates,Suppressed,34.4,41,32.9
+Nevada,Diseases of heart,Number of deaths,44,300,566,468
+Nevada,Diseases of heart,Age adjusted rates,147.8,115.9,261.5,123.3
+Nevada,Malignant neoplasms,Number of deaths,32,305,386,370
+Nevada,Malignant neoplasms,Age adjusted rates,118.1,107.7,171.9,87
+Nevada,Chronic lower respiratory disease,Number of deaths,Suppressed,44,63,56
+Nevada,Chronic lower respiratory disease,Age adjusted rates,Suppressed,18.5,32.9,17.8
+Nevada,Accidents (unintentional injuries),Number of deaths,21,58,128,198
+Nevada,Accidents (unintentional injuries),Age adjusted rates,74.3,21.9,49.4,30.5
+Nevada,Cerebrovascular diseases	,Number of deaths,Suppressed,91,83,119
+Nevada,Cerebrovascular diseases	,Age adjusted rates,Suppressed,34.8,41.5,32.9
 Nevada,Alzheimer's disease	,Number of deaths,Suppressed,31,58,51
-Nevada,Alzheimer's disease	,Age adjusted rates,Suppressed,15.2,36.1,18.9
+Nevada,Alzheimer's disease	,Age adjusted rates,Suppressed,15.5,37.3,18.9
 Nevada,Diabetes mellitus	,Number of deaths,Suppressed,28,53,48
-Nevada,Diabetes mellitus	,Age adjusted rates,Suppressed,9.5,24.3,12
-Nevada,Influenza and pneumonia	,Number of deaths,Suppressed,47,55,47
-Nevada,Influenza and pneumonia	,Age adjusted rates,Suppressed,18.5,25,12.6
+Nevada,Diabetes mellitus	,Age adjusted rates,Suppressed,9.8,25.6,12
+Nevada,Influenza and pneumonia	,Number of deaths,Suppressed,45,55,47
+Nevada,Influenza and pneumonia	,Age adjusted rates,Suppressed,18.2,26.3,12.6
 Nevada,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,24,38,24
-Nevada,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,10.1,18.2,6.6
-Nevada,Intentional self-harm (suicide)	,Number of deaths,Suppressed,32,27,59
-Nevada,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,10.3,8.6,7.8
-New Hampshire,Diseases of heart,Number of deaths,Suppressed,Suppressed,17,Suppressed
+Nevada,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,10.3,19,6.6
+Nevada,Intentional self-harm (suicide)	,Number of deaths,Suppressed,30,24,59
+Nevada,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,10.3,8.5,7.8
+New Hampshire,Diseases of heart,Number of deaths,Suppressed,Suppressed,16,Suppressed
 New Hampshire,Diseases of heart,Age adjusted rates,Suppressed,Suppressed,Unreliable,Suppressed
-New Hampshire,Malignant neoplasms,Number of deaths,Suppressed,17,13,17
+New Hampshire,Malignant neoplasms,Number of deaths,Suppressed,17,12,17
 New Hampshire,Malignant neoplasms,Age adjusted rates,Suppressed,Unreliable,Unreliable,Unreliable
 New Hampshire,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
-New Hampshire,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not Available
+New Hampshire,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not available
 New Hampshire,Accidents (unintentional injuries),Number of deaths,Suppressed,Suppressed,Suppressed,14
 New Hampshire,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Suppressed,Suppressed,Unreliable
 New Hampshire,Cerebrovascular diseases	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
@@ -599,194 +599,194 @@ New Hampshire,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Su
 New Hampshire,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
 New Hampshire,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 New Hampshire,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
-New Jersey,Diseases of heart,Number of deaths,Suppressed,429,"2,180","1,045"
-New Jersey,Diseases of heart,Age adjusted rates,Suppressed,68,183.8,102.5
-New Jersey,Malignant neoplasms,Number of deaths,12,530,"2,138","1,117"
-New Jersey,Malignant neoplasms,Age adjusted rates,Unreliable,74,171.1,97.3
-New Jersey,Chronic lower respiratory disease,Number of deaths,Suppressed,35,314,141
-New Jersey,Chronic lower respiratory disease,Age adjusted rates,Suppressed,6.1,26.7,14.7
-New Jersey,Accidents (unintentional injuries),Number of deaths,Suppressed,101,425,396
-New Jersey,Accidents (unintentional injuries),Age adjusted rates,Suppressed,13.9,31.1,24.9
-New Jersey,Cerebrovascular diseases	,Number of deaths,Suppressed,129,518,262
-New Jersey,Cerebrovascular diseases	,Age adjusted rates,Suppressed,21.6,44.9,25.6
-New Jersey,Alzheimer's disease	,Number of deaths,Suppressed,29,156,114
-New Jersey,Alzheimer's disease	,Age adjusted rates,Suppressed,5.9,15.4,13.1
-New Jersey,Diabetes mellitus	,Number of deaths,Suppressed,84,412,204
-New Jersey,Diabetes mellitus	,Age adjusted rates,Suppressed,13,34.2,18.8
-New Jersey,Influenza and pneumonia	,Number of deaths,Suppressed,31,141,113
-New Jersey,Influenza and pneumonia	,Age adjusted rates,Suppressed,5.5,12.5,11.3
-New Jersey,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,51,276,106
-New Jersey,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,7.8,23.6,10
-New Jersey,Intentional self-harm (suicide)	,Number of deaths,Suppressed,36,56,66
-New Jersey,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,4.3,4,3.8
-New Mexico,Diseases of heart,Number of deaths,161,22,84,"1,154"
-New Mexico,Diseases of heart,Age adjusted rates,105,60,190.3,139.2
-New Mexico,Malignant neoplasms,Number of deaths,186,37,57,"1,157"
-New Mexico,Malignant neoplasms,Age adjusted rates,109.8,98.6,121.2,134.1
-New Mexico,Chronic lower respiratory disease,Number of deaths,22,Suppressed,14,268
-New Mexico,Chronic lower respiratory disease,Age adjusted rates,14.2,Suppressed,Unreliable,33.5
-New Mexico,Accidents (unintentional injuries),Number of deaths,197,Suppressed,25,595
-New Mexico,Accidents (unintentional injuries),Age adjusted rates,93.5,Suppressed,42,64.9
-New Mexico,Cerebrovascular diseases	,Number of deaths,55,Suppressed,16,273
-New Mexico,Cerebrovascular diseases	,Age adjusted rates,36.6,Suppressed,Unreliable,33.9
+New Jersey,Diseases of heart,Number of deaths,Suppressed,427,"2,158","1,045"
+New Jersey,Diseases of heart,Age adjusted rates,Suppressed,69,197.4,102.5
+New Jersey,Malignant neoplasms,Number of deaths,12,525,"2,116","1,117"
+New Jersey,Malignant neoplasms,Age adjusted rates,Unreliable,74.7,184,97.3
+New Jersey,Chronic lower respiratory disease,Number of deaths,Suppressed,34,313,141
+New Jersey,Chronic lower respiratory disease,Age adjusted rates,Suppressed,6.1,28.9,14.7
+New Jersey,Accidents (unintentional injuries),Number of deaths,Suppressed,96,415,396
+New Jersey,Accidents (unintentional injuries),Age adjusted rates,Suppressed,13.6,34.4,24.9
+New Jersey,Cerebrovascular diseases	,Number of deaths,Suppressed,127,516,262
+New Jersey,Cerebrovascular diseases	,Age adjusted rates,Suppressed,21.8,48.4,25.6
+New Jersey,Alzheimer's disease	,Number of deaths,Suppressed,29,155,114
+New Jersey,Alzheimer's disease	,Age adjusted rates,Suppressed,6,16.4,13.1
+New Jersey,Diabetes mellitus	,Number of deaths,Suppressed,84,408,204
+New Jersey,Diabetes mellitus	,Age adjusted rates,Suppressed,13.2,36.7,18.8
+New Jersey,Influenza and pneumonia	,Number of deaths,Suppressed,29,139,113
+New Jersey,Influenza and pneumonia	,Age adjusted rates,Suppressed,5.3,13.3,11.3
+New Jersey,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,50,275,106
+New Jersey,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,7.9,25.4,10
+New Jersey,Intentional self-harm (suicide)	,Number of deaths,Suppressed,36,55,66
+New Jersey,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,4.4,4.5,3.8
+New Mexico,Diseases of heart,Number of deaths,154,18,80,"1,154"
+New Mexico,Diseases of heart,Age adjusted rates,116.5,Unreliable,211,139.2
+New Mexico,Malignant neoplasms,Number of deaths,178,36,56,"1,157"
+New Mexico,Malignant neoplasms,Age adjusted rates,122.4,111.2,136.9,134.1
+New Mexico,Chronic lower respiratory disease,Number of deaths,21,Suppressed,14,268
+New Mexico,Chronic lower respiratory disease,Age adjusted rates,15.7,Suppressed,Unreliable,33.5
+New Mexico,Accidents (unintentional injuries),Number of deaths,191,Suppressed,24,595
+New Mexico,Accidents (unintentional injuries),Age adjusted rates,109.1,Suppressed,53,64.9
+New Mexico,Cerebrovascular diseases	,Number of deaths,54,Suppressed,16,273
+New Mexico,Cerebrovascular diseases	,Age adjusted rates,41.4,Suppressed,Unreliable,33.9
 New Mexico,Alzheimer's disease	,Number of deaths,10,Suppressed,Suppressed,152
 New Mexico,Alzheimer's disease	,Age adjusted rates,Unreliable,Suppressed,Suppressed,19.7
-New Mexico,Diabetes mellitus	,Number of deaths,101,Suppressed,19,288
-New Mexico,Diabetes mellitus	,Age adjusted rates,58.6,Suppressed,Unreliable,33.8
-New Mexico,Influenza and pneumonia	,Number of deaths,41,Suppressed,Suppressed,111
-New Mexico,Influenza and pneumonia	,Age adjusted rates,27.6,Suppressed,Suppressed,13.3
+New Mexico,Diabetes mellitus	,Number of deaths,99,Suppressed,19,288
+New Mexico,Diabetes mellitus	,Age adjusted rates,67,Suppressed,Unreliable,33.8
+New Mexico,Influenza and pneumonia	,Number of deaths,38,Suppressed,Suppressed,111
+New Mexico,Influenza and pneumonia	,Age adjusted rates,29.6,Suppressed,Suppressed,13.3
 New Mexico,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,29,Suppressed,12,128
-New Mexico,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,18.4,Suppressed,Unreliable,15.8
-New Mexico,Intentional self-harm (suicide)	,Number of deaths,50,Suppressed,Suppressed,151
-New Mexico,Intentional self-harm (suicide)	,Age adjusted rates,21.9,Suppressed,Suppressed,15.6
-New York,Diseases of heart,Number of deaths,67,"1,453","6,490","3,402"
-New York,Diseases of heart,Age adjusted rates,44.8,100.6,194.7,134.7
-New York,Malignant neoplasms,Number of deaths,65,"1,514","5,037","2,958"
-New York,Malignant neoplasms,Age adjusted rates,42.2,93,144.2,107.7
-New York,Chronic lower respiratory disease,Number of deaths,11,149,609,423
-New York,Chronic lower respiratory disease,Age adjusted rates,Unreliable,10.8,18,16.7
-New York,Accidents (unintentional injuries),Number of deaths,24,197,766,792
-New York,Accidents (unintentional injuries),Age adjusted rates,10.7,11.5,20.6,22.8
-New York,Cerebrovascular diseases	,Number of deaths,Suppressed,269,838,502
-New York,Cerebrovascular diseases	,Age adjusted rates,Suppressed,18.4,25.4,19.8
-New York,Alzheimer's disease	,Number of deaths,Suppressed,83,280,289
-New York,Alzheimer's disease	,Age adjusted rates,Suppressed,6.5,9.2,12.8
-New York,Diabetes mellitus	,Number of deaths,18,194,"1,001",503
-New York,Diabetes mellitus	,Age adjusted rates,Unreliable,12.9,29.6,18.9
-New York,Influenza and pneumonia	,Number of deaths,Suppressed,236,668,475
-New York,Influenza and pneumonia	,Age adjusted rates,Suppressed,17.4,20.3,19.1
-New York,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,12,84,343,115
-New York,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Unreliable,5.8,10.4,4.4
-New York,Intentional self-harm (suicide)	,Number of deaths,Suppressed,98,152,139
-New York,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,5.2,4.1,3.9
-North Carolina,Diseases of heart,Number of deaths,198,110,"3,715",170
-North Carolina,Diseases of heart,Age adjusted rates,177,73.9,184.6,61
-North Carolina,Malignant neoplasms,Number of deaths,178,187,"3,961",265
-North Carolina,Malignant neoplasms,Age adjusted rates,136.8,108.5,185.3,85.1
-North Carolina,Chronic lower respiratory disease,Number of deaths,51,13,521,17
-North Carolina,Chronic lower respiratory disease,Age adjusted rates,43.8,Unreliable,25.5,Unreliable
-North Carolina,Accidents (unintentional injuries),Number of deaths,82,39,854,177
-North Carolina,Accidents (unintentional injuries),Age adjusted rates,58.9,19.9,39.2,25.1
-North Carolina,Cerebrovascular diseases	,Number of deaths,39,52,"1,156",49
-North Carolina,Cerebrovascular diseases	,Age adjusted rates,37.6,42.1,59.3,20.4
-North Carolina,Alzheimer's disease	,Number of deaths,35,10,546,27
-North Carolina,Alzheimer's disease	,Age adjusted rates,42.6,Unreliable,32.3,14.4
-North Carolina,Diabetes mellitus	,Number of deaths,46,19,890,35
-North Carolina,Diabetes mellitus	,Age adjusted rates,38.5,Unreliable,42.8,12.5
-North Carolina,Influenza and pneumonia	,Number of deaths,13,16,341,21
-North Carolina,Influenza and pneumonia	,Age adjusted rates,Unreliable,Unreliable,17.2,9.8
-North Carolina,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,12,20,603,20
-North Carolina,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Unreliable,15,30.5,7.1
+New Mexico,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,21.2,Suppressed,Unreliable,15.8
+New Mexico,Intentional self-harm (suicide)	,Number of deaths,46,Suppressed,Suppressed,151
+New Mexico,Intentional self-harm (suicide)	,Age adjusted rates,24.9,Suppressed,Suppressed,15.6
+New York,Diseases of heart,Number of deaths,64,"1,419","6,094","3,402"
+New York,Diseases of heart,Age adjusted rates,97.9,100.6,211,134.7
+New York,Malignant neoplasms,Number of deaths,60,"1,485","4,827","2,958"
+New York,Malignant neoplasms,Age adjusted rates,91.9,93.4,160.5,107.7
+New York,Chronic lower respiratory disease,Number of deaths,11,143,566,423
+New York,Chronic lower respiratory disease,Age adjusted rates,Unreliable,10.7,19.4,16.7
+New York,Accidents (unintentional injuries),Number of deaths,23,190,708,792
+New York,Accidents (unintentional injuries),Age adjusted rates,31.3,11.5,22.8,22.8
+New York,Cerebrovascular diseases	,Number of deaths,Suppressed,262,793,502
+New York,Cerebrovascular diseases	,Age adjusted rates,Suppressed,18.4,27.7,19.8
+New York,Alzheimer's disease	,Number of deaths,Suppressed,82,266,289
+New York,Alzheimer's disease	,Age adjusted rates,Suppressed,6.6,9.9,12.8
+New York,Diabetes mellitus	,Number of deaths,15,188,944,503
+New York,Diabetes mellitus	,Age adjusted rates,Unreliable,12.9,32.3,18.9
+New York,Influenza and pneumonia	,Number of deaths,Suppressed,234,624,475
+New York,Influenza and pneumonia	,Age adjusted rates,Suppressed,17.7,21.9,19.1
+New York,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,12,82,338,115
+New York,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Unreliable,5.9,11.8,4.4
+New York,Intentional self-harm (suicide)	,Number of deaths,Suppressed,98,143,139
+New York,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,5.4,4.7,3.9
+North Carolina,Diseases of heart,Number of deaths,197,106,"3,690",170
+North Carolina,Diseases of heart,Age adjusted rates,193.5,72.4,186,61
+North Carolina,Malignant neoplasms,Number of deaths,175,179,"3,930",265
+North Carolina,Malignant neoplasms,Age adjusted rates,149.3,106.3,186.2,85.1
+North Carolina,Chronic lower respiratory disease,Number of deaths,51,13,517,17
+North Carolina,Chronic lower respiratory disease,Age adjusted rates,47.9,Unreliable,25.7,Unreliable
+North Carolina,Accidents (unintentional injuries),Number of deaths,82,35,847,177
+North Carolina,Accidents (unintentional injuries),Age adjusted rates,74.4,18.4,40,25.1
+North Carolina,Cerebrovascular diseases	,Number of deaths,39,50,"1,148",49
+North Carolina,Cerebrovascular diseases	,Age adjusted rates,40.8,41.1,59.6,20.4
+North Carolina,Alzheimer's disease	,Number of deaths,35,10,541,27
+North Carolina,Alzheimer's disease	,Age adjusted rates,45.5,Unreliable,32.3,14.4
+North Carolina,Diabetes mellitus	,Number of deaths,46,18,886,35
+North Carolina,Diabetes mellitus	,Age adjusted rates,42.9,Unreliable,43.2,12.5
+North Carolina,Influenza and pneumonia	,Number of deaths,13,14,338,21
+North Carolina,Influenza and pneumonia	,Age adjusted rates,Unreliable,Unreliable,17.3,9.8
+North Carolina,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,12,19,599,20
+North Carolina,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Unreliable,Unreliable,30.7,7.1
 North Carolina,Intentional self-harm (suicide)	,Number of deaths,17,16,113,40
-North Carolina,Intentional self-harm (suicide)	,Age adjusted rates,Unreliable,Unreliable,4.8,4.8
+North Carolina,Intentional self-harm (suicide)	,Age adjusted rates,Unreliable,Unreliable,5,4.8
 North Dakota,Diseases of heart,Number of deaths,59,Suppressed,10,Suppressed
-North Dakota,Diseases of heart,Age adjusted rates,239.3,Suppressed,Unreliable,Suppressed
-North Dakota,Malignant neoplasms,Number of deaths,43,Suppressed,Suppressed,Suppressed
-North Dakota,Malignant neoplasms,Age adjusted rates,186.8,Suppressed,Suppressed,Suppressed
+North Dakota,Diseases of heart,Age adjusted rates,244.1,Suppressed,Unreliable,Suppressed
+North Dakota,Malignant neoplasms,Number of deaths,42,Suppressed,Suppressed,Suppressed
+North Dakota,Malignant neoplasms,Age adjusted rates,187.4,Suppressed,Suppressed,Suppressed
 North Dakota,Chronic lower respiratory disease,Number of deaths,19,Suppressed,Suppressed,Suppressed
 North Dakota,Chronic lower respiratory disease,Age adjusted rates,Unreliable,Suppressed,Suppressed,Suppressed
-North Dakota,Accidents (unintentional injuries),Number of deaths,37,Suppressed,Suppressed,Suppressed
-North Dakota,Accidents (unintentional injuries),Age adjusted rates,97,Suppressed,Suppressed,Suppressed
+North Dakota,Accidents (unintentional injuries),Number of deaths,36,Suppressed,Suppressed,Suppressed
+North Dakota,Accidents (unintentional injuries),Age adjusted rates,100.6,Suppressed,Suppressed,Suppressed
 North Dakota,Cerebrovascular diseases	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 North Dakota,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
 North Dakota,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 North Dakota,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
-North Dakota,Diabetes mellitus	,Number of deaths,23,Suppressed,Suppressed,Suppressed
+North Dakota,Diabetes mellitus	,Number of deaths,22,Suppressed,Suppressed,Suppressed
 North Dakota,Diabetes mellitus	,Age adjusted rates,96.4,Suppressed,Suppressed,Suppressed
 North Dakota,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
-North Dakota,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not Available
+North Dakota,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not available
 North Dakota,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
-North Dakota,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,Suppressed,Not Available
+North Dakota,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,Suppressed,Not available
 North Dakota,Intentional self-harm (suicide)	,Number of deaths,10,Suppressed,Suppressed,Suppressed
 North Dakota,Intentional self-harm (suicide)	,Age adjusted rates,Unreliable,Suppressed,Suppressed,Suppressed
-Ohio,Diseases of heart,Number of deaths,15,118,"2,987",187
-Ohio,Diseases of heart,Age adjusted rates,Unreliable,79,218.8,97.3
-Ohio,Malignant neoplasms,Number of deaths,24,172,"2,749",177
-Ohio,Malignant neoplasms,Age adjusted rates,61,90.4,195.4,86.2
-Ohio,Chronic lower respiratory disease,Number of deaths,Suppressed,11,510,22
-Ohio,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Unreliable,37.5,12.5
-Ohio,Accidents (unintentional injuries),Number of deaths,Suppressed,39,688,128
-Ohio,Accidents (unintentional injuries),Age adjusted rates,Suppressed,21.1,46.5,38.7
-Ohio,Cerebrovascular diseases	,Number of deaths,Suppressed,48,668,57
-Ohio,Cerebrovascular diseases	,Age adjusted rates,Suppressed,29.9,49.9,32.3
-Ohio,Alzheimer's disease	,Number of deaths,Suppressed,25,322,32
-Ohio,Alzheimer's disease	,Age adjusted rates,Suppressed,21.1,25.9,19.6
-Ohio,Diabetes mellitus	,Number of deaths,Suppressed,19,569,50
-Ohio,Diabetes mellitus	,Age adjusted rates,Suppressed,Unreliable,41.5,23.9
-Ohio,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,198,20
+Ohio,Diseases of heart,Number of deaths,12,118,"2,982",187
+Ohio,Diseases of heart,Age adjusted rates,Unreliable,80.5,221,97.3
+Ohio,Malignant neoplasms,Number of deaths,23,172,"2,744",177
+Ohio,Malignant neoplasms,Age adjusted rates,68.4,91.9,197.2,86.2
+Ohio,Chronic lower respiratory disease,Number of deaths,Suppressed,11,509,22
+Ohio,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Unreliable,37.9,12.5
+Ohio,Accidents (unintentional injuries),Number of deaths,Suppressed,39,680,128
+Ohio,Accidents (unintentional injuries),Age adjusted rates,Suppressed,21.6,46.9,38.7
+Ohio,Cerebrovascular diseases	,Number of deaths,Suppressed,48,667,57
+Ohio,Cerebrovascular diseases	,Age adjusted rates,Suppressed,30.4,50.4,32.3
+Ohio,Alzheimer's disease	,Number of deaths,Suppressed,24,320,32
+Ohio,Alzheimer's disease	,Age adjusted rates,Suppressed,20.6,25.9,19.6
+Ohio,Diabetes mellitus	,Number of deaths,Suppressed,19,566,50
+Ohio,Diabetes mellitus	,Age adjusted rates,Suppressed,Unreliable,41.8,23.9
+Ohio,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,196,20
 Ohio,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,14.7,10.3
-Ohio,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,377,32
-Ohio,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,28.3,16.9
-Ohio,Intentional self-harm (suicide)	,Number of deaths,Suppressed,20,105,22
-Ohio,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,7.5,7,5.2
-Oklahoma,Diseases of heart,Number of deaths,751,57,636,154
-Oklahoma,Diseases of heart,Age adjusted rates,275.9,110.3,259.4,114.2
-Oklahoma,Malignant neoplasms,Number of deaths,602,72,510,139
-Oklahoma,Malignant neoplasms,Age adjusted rates,202.2,120.1,199.3,93
-Oklahoma,Chronic lower respiratory disease,Number of deaths,162,Suppressed,85,20
-Oklahoma,Chronic lower respiratory disease,Age adjusted rates,60.1,Suppressed,35,14.8
-Oklahoma,Accidents (unintentional injuries),Number of deaths,222,13,146,109
-Oklahoma,Accidents (unintentional injuries),Age adjusted rates,65.7,Unreliable,48.4,37.5
-Oklahoma,Cerebrovascular diseases	,Number of deaths,113,20,132,48
-Oklahoma,Cerebrovascular diseases	,Age adjusted rates,41.2,42.8,55.6,39.6
+Ohio,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,376,32
+Ohio,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,28.5,16.9
+Ohio,Intentional self-harm (suicide)	,Number of deaths,Suppressed,19,105,22
+Ohio,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Unreliable,7.2,5.2
+Oklahoma,Diseases of heart,Number of deaths,742,54,633,154
+Oklahoma,Diseases of heart,Age adjusted rates,281.4,105.8,262.8,114.2
+Oklahoma,Malignant neoplasms,Number of deaths,594,71,505,139
+Oklahoma,Malignant neoplasms,Age adjusted rates,206.2,121.6,200.7,93
+Oklahoma,Chronic lower respiratory disease,Number of deaths,162,Suppressed,83,20
+Oklahoma,Chronic lower respiratory disease,Age adjusted rates,61.8,Suppressed,35,14.8
+Oklahoma,Accidents (unintentional injuries),Number of deaths,213,13,146,109
+Oklahoma,Accidents (unintentional injuries),Age adjusted rates,67.8,Unreliable,50,37.5
+Oklahoma,Cerebrovascular diseases	,Number of deaths,112,20,130,48
+Oklahoma,Cerebrovascular diseases	,Age adjusted rates,42.3,43.7,55.4,39.6
 Oklahoma,Alzheimer's disease	,Number of deaths,56,Suppressed,63,Suppressed
-Oklahoma,Alzheimer's disease	,Age adjusted rates,27.5,Suppressed,34.1,Suppressed
-Oklahoma,Diabetes mellitus	,Number of deaths,160,13,143,42
-Oklahoma,Diabetes mellitus	,Age adjusted rates,55.4,Unreliable,56.6,29.7
+Oklahoma,Alzheimer's disease	,Age adjusted rates,28,Suppressed,34.5,Suppressed
+Oklahoma,Diabetes mellitus	,Number of deaths,158,13,143,42
+Oklahoma,Diabetes mellitus	,Age adjusted rates,56.4,Unreliable,57.6,29.7
 Oklahoma,Influenza and pneumonia	,Number of deaths,72,10,25,11
-Oklahoma,Influenza and pneumonia	,Age adjusted rates,27.9,Unreliable,10.3,Unreliable
-Oklahoma,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,67,Suppressed,65,13
-Oklahoma,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,25.1,Suppressed,29.3,Unreliable
-Oklahoma,Intentional self-harm (suicide)	,Number of deaths,72,Suppressed,26,29
-Oklahoma,Intentional self-harm (suicide)	,Age adjusted rates,18.8,Suppressed,7.9,7.4
-Oregon,Diseases of heart,Number of deaths,69,110,70,119
-Oregon,Diseases of heart,Age adjusted rates,135.9,74.6,105.6,68
-Oregon,Malignant neoplasms,Number of deaths,84,185,113,218
-Oregon,Malignant neoplasms,Age adjusted rates,138.6,111,176.2,105.7
+Oklahoma,Influenza and pneumonia	,Age adjusted rates,28.8,Unreliable,10.5,Unreliable
+Oklahoma,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,67,Suppressed,64,13
+Oklahoma,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,25.9,Suppressed,29.3,Unreliable
+Oklahoma,Intentional self-harm (suicide)	,Number of deaths,67,Suppressed,26,29
+Oklahoma,Intentional self-harm (suicide)	,Age adjusted rates,19.2,Suppressed,8.3,7.4
+Oregon,Diseases of heart,Number of deaths,66,109,69,119
+Oregon,Diseases of heart,Age adjusted rates,154.3,75.2,111.3,68
+Oregon,Malignant neoplasms,Number of deaths,78,183,110,218
+Oregon,Malignant neoplasms,Age adjusted rates,152.7,112.3,182.5,105.7
 Oregon,Chronic lower respiratory disease,Number of deaths,21,15,19,14
-Oregon,Chronic lower respiratory disease,Age adjusted rates,36.8,Unreliable,Unreliable,Unreliable
-Oregon,Accidents (unintentional injuries),Number of deaths,32,27,35,79
-Oregon,Accidents (unintentional injuries),Age adjusted rates,37.9,15.4,37.6,26.8
-Oregon,Cerebrovascular diseases	,Number of deaths,19,51,29,47
-Oregon,Cerebrovascular diseases	,Age adjusted rates,Unreliable,34.3,51.8,29.6
+Oregon,Chronic lower respiratory disease,Age adjusted rates,43.3,Unreliable,Unreliable,Unreliable
+Oregon,Accidents (unintentional injuries),Number of deaths,31,27,35,79
+Oregon,Accidents (unintentional injuries),Age adjusted rates,54.1,15.8,41.9,26.8
+Oregon,Cerebrovascular diseases	,Number of deaths,19,51,28,47
+Oregon,Cerebrovascular diseases	,Age adjusted rates,Unreliable,35,52.3,29.6
 Oregon,Alzheimer's disease	,Number of deaths,11,27,11,26
-Oregon,Alzheimer's disease	,Age adjusted rates,Unreliable,19.4,Unreliable,21.1
+Oregon,Alzheimer's disease	,Age adjusted rates,Unreliable,19.7,Unreliable,21.1
 Oregon,Diabetes mellitus	,Number of deaths,15,35,38,43
-Oregon,Diabetes mellitus	,Age adjusted rates,Unreliable,23.4,65.8,23.1
+Oregon,Diabetes mellitus	,Age adjusted rates,Unreliable,23.9,69.5,23.1
 Oregon,Influenza and pneumonia	,Number of deaths,Suppressed,13,Suppressed,Suppressed
 Oregon,Influenza and pneumonia	,Age adjusted rates,Suppressed,Unreliable,Suppressed,Suppressed
-Oregon,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,11,11,11
+Oregon,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,10,11,11
 Oregon,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Unreliable,Unreliable,Unreliable
-Oregon,Intentional self-harm (suicide)	,Number of deaths,11,24,14,25
-Oregon,Intentional self-harm (suicide)	,Age adjusted rates,Unreliable,10,Unreliable,5.5
-Pennsylvania,Diseases of heart,Number of deaths,17,203,"2,797",424
-Pennsylvania,Diseases of heart,Age adjusted rates,Unreliable,74.3,207.7,113.1
-Pennsylvania,Malignant neoplasms,Number of deaths,15,300,"2,708",430
-Pennsylvania,Malignant neoplasms,Age adjusted rates,Unreliable,93.2,197.9,98.4
-Pennsylvania,Chronic lower respiratory disease,Number of deaths,Suppressed,26,440,67
-Pennsylvania,Chronic lower respiratory disease,Age adjusted rates,Suppressed,10.9,33.8,19.3
-Pennsylvania,Accidents (unintentional injuries),Number of deaths,Suppressed,53,694,267
-Pennsylvania,Accidents (unintentional injuries),Age adjusted rates,Suppressed,15.5,46.6,37
-Pennsylvania,Cerebrovascular diseases	,Number of deaths,Suppressed,77,636,135
-Pennsylvania,Cerebrovascular diseases	,Age adjusted rates,Suppressed,28.7,49.5,37.8
-Pennsylvania,Alzheimer's disease	,Number of deaths,Suppressed,29,207,60
-Pennsylvania,Alzheimer's disease	,Age adjusted rates,Suppressed,12.8,17.1,20.6
-Pennsylvania,Diabetes mellitus	,Number of deaths,Suppressed,42,445,100
-Pennsylvania,Diabetes mellitus	,Age adjusted rates,Suppressed,16.1,33,24.9
-Pennsylvania,Influenza and pneumonia	,Number of deaths,Suppressed,27,188,37
-Pennsylvania,Influenza and pneumonia	,Age adjusted rates,Suppressed,10.2,14.4,10.3
-Pennsylvania,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,39,374,50
-Pennsylvania,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,15.9,29,13.9
-Pennsylvania,Intentional self-harm (suicide)	,Number of deaths,Suppressed,34,101,51
-Pennsylvania,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,7.4,6.5,7.3
-Rhode Island,Diseases of heart,Number of deaths,11,20,73,54
-Rhode Island,Diseases of heart,Age adjusted rates,Unreliable,93.1,114.7,84.5
+Oregon,Intentional self-harm (suicide)	,Number of deaths,10,23,13,25
+Oregon,Intentional self-harm (suicide)	,Age adjusted rates,Unreliable,9.9,Unreliable,5.5
+Pennsylvania,Diseases of heart,Number of deaths,15,186,"2,748",424
+Pennsylvania,Diseases of heart,Age adjusted rates,Unreliable,69.9,211.6,113.1
+Pennsylvania,Malignant neoplasms,Number of deaths,15,280,"2,659",430
+Pennsylvania,Malignant neoplasms,Age adjusted rates,Unreliable,88.4,201.5,98.4
+Pennsylvania,Chronic lower respiratory disease,Number of deaths,Suppressed,25,436,67
+Pennsylvania,Chronic lower respiratory disease,Age adjusted rates,Suppressed,10.5,34.7,19.3
+Pennsylvania,Accidents (unintentional injuries),Number of deaths,Suppressed,45,667,267
+Pennsylvania,Accidents (unintentional injuries),Age adjusted rates,Suppressed,13.8,47.8,37
+Pennsylvania,Cerebrovascular diseases	,Number of deaths,Suppressed,73,628,135
+Pennsylvania,Cerebrovascular diseases	,Age adjusted rates,Suppressed,27.9,50.5,37.8
+Pennsylvania,Alzheimer's disease	,Number of deaths,Suppressed,28,205,60
+Pennsylvania,Alzheimer's disease	,Age adjusted rates,Suppressed,12.6,17.3,20.6
+Pennsylvania,Diabetes mellitus	,Number of deaths,Suppressed,39,435,100
+Pennsylvania,Diabetes mellitus	,Age adjusted rates,Suppressed,15.2,33.6,24.9
+Pennsylvania,Influenza and pneumonia	,Number of deaths,Suppressed,27,187,37
+Pennsylvania,Influenza and pneumonia	,Age adjusted rates,Suppressed,10.3,14.8,10.3
+Pennsylvania,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,33,368,50
+Pennsylvania,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,13.8,29.5,13.9
+Pennsylvania,Intentional self-harm (suicide)	,Number of deaths,Suppressed,34,93,51
+Pennsylvania,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,7.6,6.4,7.3
+Rhode Island,Diseases of heart,Number of deaths,10,20,72,54
+Rhode Island,Diseases of heart,Age adjusted rates,Unreliable,97.7,138.5,84.5
 Rhode Island,Malignant neoplasms,Number of deaths,Suppressed,34,68,62
-Rhode Island,Malignant neoplasms,Age adjusted rates,Suppressed,122.7,111.4,85.4
+Rhode Island,Malignant neoplasms,Age adjusted rates,Suppressed,129,137.3,85.4
 Rhode Island,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 Rhode Island,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
-Rhode Island,Accidents (unintentional injuries),Number of deaths,Suppressed,Suppressed,25,56
-Rhode Island,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Suppressed,28.6,43.4
+Rhode Island,Accidents (unintentional injuries),Number of deaths,Suppressed,Suppressed,23,56
+Rhode Island,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Suppressed,34.5,43.4
 Rhode Island,Cerebrovascular diseases	,Number of deaths,Suppressed,Suppressed,18,14
 Rhode Island,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,Unreliable,Unreliable
 Rhode Island,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,13,Suppressed
@@ -799,105 +799,105 @@ Rhode Island,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Sup
 Rhode Island,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
 Rhode Island,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 Rhode Island,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
-South Carolina,Diseases of heart,Number of deaths,23,35,"2,645",69
-South Carolina,Diseases of heart,Age adjusted rates,98.6,57.7,208.8,71.4
-South Carolina,Malignant neoplasms,Number of deaths,14,58,"2,538",94
-South Carolina,Malignant neoplasms,Age adjusted rates,Unreliable,87.8,190,86.8
-South Carolina,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,387,12
-South Carolina,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,30.4,Unreliable
-South Carolina,Accidents (unintentional injuries),Number of deaths,10,15,624,60
-South Carolina,Accidents (unintentional injuries),Age adjusted rates,Unreliable,Unreliable,46.1,24.8
-South Carolina,Cerebrovascular diseases	,Number of deaths,Suppressed,17,774,24
-South Carolina,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Unreliable,63.9,25.6
+South Carolina,Diseases of heart,Number of deaths,23,34,"2,632",69
+South Carolina,Diseases of heart,Age adjusted rates,114.5,58,209.6,71.4
+South Carolina,Malignant neoplasms,Number of deaths,12,57,"2,528",94
+South Carolina,Malignant neoplasms,Age adjusted rates,Unreliable,88.5,190.8,86.8
+South Carolina,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,383,12
+South Carolina,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,30.3,Unreliable
+South Carolina,Accidents (unintentional injuries),Number of deaths,Suppressed,13,618,60
+South Carolina,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Unreliable,46.4,24.8
+South Carolina,Cerebrovascular diseases	,Number of deaths,Suppressed,15,771,24
+South Carolina,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Unreliable,64.1,25.6
 South Carolina,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,402,11
-South Carolina,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,38.4,Unreliable
-South Carolina,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,558,Suppressed
-South Carolina,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,43.4,Suppressed
+South Carolina,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,38.6,Unreliable
+South Carolina,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,557,Suppressed
+South Carolina,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,43.7,Suppressed
 South Carolina,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,185,Suppressed
-South Carolina,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,15.2,Suppressed
-South Carolina,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,344,10
-South Carolina,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,28.2,Unreliable
-South Carolina,Intentional self-harm (suicide)	,Number of deaths,Suppressed,16,72,11
-South Carolina,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Unreliable,5.2,Unreliable
+South Carolina,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,15.3,Suppressed
+South Carolina,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,343,10
+South Carolina,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,28.4,Unreliable
+South Carolina,Intentional self-harm (suicide)	,Number of deaths,Suppressed,15,72,11
+South Carolina,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Unreliable,5.3,Unreliable
 South Dakota,Diseases of heart,Number of deaths,100,Suppressed,Suppressed,Suppressed
-South Dakota,Diseases of heart,Age adjusted rates,220.3,Suppressed,Suppressed,Suppressed
-South Dakota,Malignant neoplasms,Number of deaths,86,Suppressed,10,Suppressed
-South Dakota,Malignant neoplasms,Age adjusted rates,202.6,Suppressed,Unreliable,Suppressed
+South Dakota,Diseases of heart,Age adjusted rates,227.7,Suppressed,Suppressed,Suppressed
+South Dakota,Malignant neoplasms,Number of deaths,85,Suppressed,10,Suppressed
+South Dakota,Malignant neoplasms,Age adjusted rates,207,Suppressed,Unreliable,Suppressed
 South Dakota,Chronic lower respiratory disease,Number of deaths,22,Suppressed,Suppressed,Suppressed
-South Dakota,Chronic lower respiratory disease,Age adjusted rates,61.5,Suppressed,Suppressed,Suppressed
+South Dakota,Chronic lower respiratory disease,Age adjusted rates,63.4,Suppressed,Suppressed,Suppressed
 South Dakota,Accidents (unintentional injuries),Number of deaths,97,Suppressed,Suppressed,Suppressed
-South Dakota,Accidents (unintentional injuries),Age adjusted rates,143.2,Suppressed,Suppressed,Suppressed
+South Dakota,Accidents (unintentional injuries),Age adjusted rates,150.2,Suppressed,Suppressed,Suppressed
 South Dakota,Cerebrovascular diseases	,Number of deaths,17,Suppressed,Suppressed,Suppressed
 South Dakota,Cerebrovascular diseases	,Age adjusted rates,Unreliable,Suppressed,Suppressed,Suppressed
 South Dakota,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 South Dakota,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
 South Dakota,Diabetes mellitus	,Number of deaths,54,Suppressed,Suppressed,Suppressed
-South Dakota,Diabetes mellitus	,Age adjusted rates,115.6,Suppressed,Suppressed,Suppressed
+South Dakota,Diabetes mellitus	,Age adjusted rates,119.3,Suppressed,Suppressed,Suppressed
 South Dakota,Influenza and pneumonia	,Number of deaths,17,Suppressed,Suppressed,Suppressed
-South Dakota,Influenza and pneumonia	,Age adjusted rates,Unreliable,Suppressed,Suppressed,Not Available
+South Dakota,Influenza and pneumonia	,Age adjusted rates,Unreliable,Suppressed,Suppressed,Not available
 South Dakota,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,13,Suppressed,Suppressed,Suppressed
 South Dakota,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Unreliable,Suppressed,Suppressed,Suppressed
-South Dakota,Intentional self-harm (suicide)	,Number of deaths,52,Suppressed,Suppressed,Suppressed
-South Dakota,Intentional self-harm (suicide)	,Age adjusted rates,61,Suppressed,Suppressed,Suppressed
-Tennessee,Diseases of heart,Number of deaths,21,65,"2,190",89
-Tennessee,Diseases of heart,Age adjusted rates,86.8,90.9,239.4,78.4
-Tennessee,Malignant neoplasms,Number of deaths,Suppressed,84,"1,967",121
-Tennessee,Malignant neoplasms,Age adjusted rates,Suppressed,106.8,203.6,88
-Tennessee,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,286,16
-Tennessee,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,31.4,Unreliable
-Tennessee,Accidents (unintentional injuries),Number of deaths,Suppressed,17,446,73
-Tennessee,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Unreliable,40.4,22.8
-Tennessee,Cerebrovascular diseases	,Number of deaths,Suppressed,21,572,23
-Tennessee,Cerebrovascular diseases	,Age adjusted rates,Suppressed,28.6,63.9,19.5
+South Dakota,Intentional self-harm (suicide)	,Number of deaths,51,Suppressed,Suppressed,Suppressed
+South Dakota,Intentional self-harm (suicide)	,Age adjusted rates,63.3,Suppressed,Suppressed,Suppressed
+Tennessee,Diseases of heart,Number of deaths,20,64,"2,176",89
+Tennessee,Diseases of heart,Age adjusted rates,95.3,90.6,239.8,78.4
+Tennessee,Malignant neoplasms,Number of deaths,Suppressed,83,"1,954",121
+Tennessee,Malignant neoplasms,Age adjusted rates,Suppressed,108.3,203.8,88
+Tennessee,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,285,16
+Tennessee,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,31.5,Unreliable
+Tennessee,Accidents (unintentional injuries),Number of deaths,Suppressed,16,443,73
+Tennessee,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Unreliable,40.7,22.8
+Tennessee,Cerebrovascular diseases	,Number of deaths,Suppressed,21,569,23
+Tennessee,Cerebrovascular diseases	,Age adjusted rates,Suppressed,29.2,64.1,19.5
 Tennessee,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,291,15
-Tennessee,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,39.9,Unreliable
-Tennessee,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,382,Suppressed
-Tennessee,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,40.5,Suppressed
+Tennessee,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,40.2,Unreliable
+Tennessee,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,381,Suppressed
+Tennessee,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,40.8,Suppressed
 Tennessee,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,186,Suppressed
-Tennessee,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,21.4,Suppressed
-Tennessee,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,218,Suppressed
-Tennessee,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,24.1,Suppressed
-Tennessee,Intentional self-harm (suicide)	,Number of deaths,Suppressed,14,65,18
-Tennessee,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Unreliable,5.5,Unreliable
-Texas,Diseases of heart,Number of deaths,64,646,"5,528","8,056"
-Texas,Diseases of heart,Age adjusted rates,33.7,77.3,215.9,136.1
-Texas,Malignant neoplasms,Number of deaths,69,872,"4,890","7,696"
-Texas,Malignant neoplasms,Age adjusted rates,35.7,86.6,181,118.8
-Texas,Chronic lower respiratory disease,Number of deaths,22,75,747,902
-Texas,Chronic lower respiratory disease,Age adjusted rates,11.7,9.9,30.7,16.7
-Texas,Accidents (unintentional injuries),Number of deaths,18,152,"1,108","2,755"
-Texas,Accidents (unintentional injuries),Age adjusted rates,Unreliable,13.4,33.9,30.3
-Texas,Cerebrovascular diseases	,Number of deaths,13,242,"1,449","2,150"
-Texas,Cerebrovascular diseases	,Age adjusted rates,Unreliable,29.8,60.6,37.3
-Texas,Alzheimer's disease	,Number of deaths,Suppressed,88,669,"1,558"
-Texas,Alzheimer's disease	,Age adjusted rates,Suppressed,14.1,34.3,32.2
-Texas,Diabetes mellitus	,Number of deaths,13,104,870,"1,898"
-Texas,Diabetes mellitus	,Age adjusted rates,Unreliable,11.9,32.5,30.7
-Texas,Influenza and pneumonia	,Number of deaths,Suppressed,82,364,656
-Texas,Influenza and pneumonia	,Age adjusted rates,Suppressed,10.8,14.9,11.3
-Texas,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,91,709,"1,104"
-Texas,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,12,28.9,18.2
-Texas,Intentional self-harm (suicide)	,Number of deaths,10,84,197,623
-Texas,Intentional self-harm (suicide)	,Age adjusted rates,Unreliable,6,5.5,6.1
-Utah,Diseases of heart,Number of deaths,24,62,21,140
-Utah,Diseases of heart,Age adjusted rates,101.4,102,138.9,106.1
-Utah,Malignant neoplasms,Number of deaths,19,81,29,146
-Utah,Malignant neoplasms,Age adjusted rates,Unreliable,113.8,138.6,93
+Tennessee,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,21.6,Suppressed
+Tennessee,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,215,Suppressed
+Tennessee,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,23.8,Suppressed
+Tennessee,Intentional self-harm (suicide)	,Number of deaths,Suppressed,14,63,18
+Tennessee,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Unreliable,5.4,Unreliable
+Texas,Diseases of heart,Number of deaths,55,633,"5,471","8,056"
+Texas,Diseases of heart,Age adjusted rates,55.3,78,219.9,136.1
+Texas,Malignant neoplasms,Number of deaths,63,862,"4,827","7,696"
+Texas,Malignant neoplasms,Age adjusted rates,63,88.3,184,118.8
+Texas,Chronic lower respiratory disease,Number of deaths,19,73,739,902
+Texas,Chronic lower respiratory disease,Age adjusted rates,Unreliable,9.8,31.2,16.7
+Texas,Accidents (unintentional injuries),Number of deaths,11,146,"1,081","2,755"
+Texas,Accidents (unintentional injuries),Age adjusted rates,Unreliable,13.5,34.7,30.3
+Texas,Cerebrovascular diseases	,Number of deaths,13,237,"1,436","2,150"
+Texas,Cerebrovascular diseases	,Age adjusted rates,Unreliable,30,61.7,37.3
+Texas,Alzheimer's disease	,Number of deaths,Suppressed,85,663,"1,558"
+Texas,Alzheimer's disease	,Age adjusted rates,Suppressed,14,34.8,32.2
+Texas,Diabetes mellitus	,Number of deaths,Suppressed,104,863,"1,898"
+Texas,Diabetes mellitus	,Age adjusted rates,Suppressed,12.2,33.3,30.7
+Texas,Influenza and pneumonia	,Number of deaths,Suppressed,80,358,656
+Texas,Influenza and pneumonia	,Age adjusted rates,Suppressed,11,15.2,11.3
+Texas,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,89,702,"1,104"
+Texas,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,12.2,29.4,18.2
+Texas,Intentional self-harm (suicide)	,Number of deaths,Suppressed,81,190,623
+Texas,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,6.1,5.6,6.1
+Utah,Diseases of heart,Number of deaths,23,61,21,140
+Utah,Diseases of heart,Age adjusted rates,122.4,104,162,106.1
+Utah,Malignant neoplasms,Number of deaths,19,80,29,146
+Utah,Malignant neoplasms,Age adjusted rates,Unreliable,115.5,158,93
 Utah,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,Suppressed,24
 Utah,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,Suppressed,19.5
-Utah,Accidents (unintentional injuries),Number of deaths,28,18,Suppressed,101
-Utah,Accidents (unintentional injuries),Age adjusted rates,61.9,Unreliable,Suppressed,32.1
+Utah,Accidents (unintentional injuries),Number of deaths,26,18,Suppressed,101
+Utah,Accidents (unintentional injuries),Age adjusted rates,85.8,Unreliable,Suppressed,32.1
 Utah,Cerebrovascular diseases	,Number of deaths,Suppressed,19,Suppressed,47
 Utah,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Unreliable,Suppressed,37.4
 Utah,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,Suppressed,31
 Utah,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,Suppressed,30.6
 Utah,Diabetes mellitus	,Number of deaths,19,20,Suppressed,53
-Utah,Diabetes mellitus	,Age adjusted rates,Unreliable,30.9,Suppressed,37.1
+Utah,Diabetes mellitus	,Age adjusted rates,Unreliable,31.9,Suppressed,37.1
 Utah,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,Suppressed,13
 Utah,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Unreliable
 Utah,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,10,Suppressed,24
 Utah,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Unreliable,Suppressed,19.1
-Utah,Intentional self-harm (suicide)	,Number of deaths,16,12,Suppressed,34
+Utah,Intentional self-harm (suicide)	,Number of deaths,16,11,Suppressed,34
 Utah,Intentional self-harm (suicide)	,Age adjusted rates,Unreliable,Unreliable,Suppressed,9
 Vermont,Diseases of heart,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 Vermont,Diseases of heart,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
@@ -910,93 +910,93 @@ Vermont,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Suppres
 Vermont,Cerebrovascular diseases	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 Vermont,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
 Vermont,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
-Vermont,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not Available
+Vermont,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not available
 Vermont,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
-Vermont,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not Available
+Vermont,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not available
 Vermont,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
-Vermont,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not Available
+Vermont,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not available
 Vermont,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
-Vermont,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,Suppressed,Not Available
+Vermont,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,Suppressed,Not available
 Vermont,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
-Vermont,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not Available
-Virginia,Diseases of heart,Number of deaths,23,255,"2,811",174
-Virginia,Diseases of heart,Age adjusted rates,77.8,68.7,185.7,65.4
-Virginia,Malignant neoplasms,Number of deaths,25,375,"2,875",272
-Virginia,Malignant neoplasms,Age adjusted rates,69.8,84.6,182.3,79.6
-Virginia,Chronic lower respiratory disease,Number of deaths,Suppressed,26,387,22
-Virginia,Chronic lower respiratory disease,Age adjusted rates,Suppressed,7.3,26.2,9.5
-Virginia,Accidents (unintentional injuries),Number of deaths,Suppressed,65,557,113
-Virginia,Accidents (unintentional injuries),Age adjusted rates,Suppressed,14.9,33.3,19.9
-Virginia,Cerebrovascular diseases	,Number of deaths,Suppressed,89,691,55
-Virginia,Cerebrovascular diseases	,Age adjusted rates,Suppressed,23.9,47.8,22.6
-Virginia,Alzheimer's disease	,Number of deaths,Suppressed,39,294,34
-Virginia,Alzheimer's disease	,Age adjusted rates,Suppressed,12.7,23,17
-Virginia,Diabetes mellitus	,Number of deaths,Suppressed,56,609,37
-Virginia,Diabetes mellitus	,Age adjusted rates,Suppressed,14.6,39.2,12
-Virginia,Influenza and pneumonia	,Number of deaths,Suppressed,35,214,21
-Virginia,Influenza and pneumonia	,Age adjusted rates,Suppressed,10,14.3,7.8
-Virginia,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,38,467,27
-Virginia,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,10.4,31,10.4
-Virginia,Intentional self-harm (suicide)	,Number of deaths,Suppressed,39,107,25
-Virginia,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,6.3,6.2,3.4
-Washington,Diseases of heart,Number of deaths,143,402,280,238
-Washington,Diseases of heart,Age adjusted rates,159.9,72.3,135.6,82.9
-Washington,Malignant neoplasms,Number of deaths,152,655,345,330
-Washington,Malignant neoplasms,Age adjusted rates,161.7,110.7,155.6,96.1
+Vermont,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not available
+Virginia,Diseases of heart,Number of deaths,22,250,"2,738",174
+Virginia,Diseases of heart,Age adjusted rates,94.2,68.5,183.7,65.4
+Virginia,Malignant neoplasms,Number of deaths,24,371,"2,813",272
+Virginia,Malignant neoplasms,Age adjusted rates,90,84.9,180.8,79.6
+Virginia,Chronic lower respiratory disease,Number of deaths,Suppressed,24,380,22
+Virginia,Chronic lower respiratory disease,Age adjusted rates,Suppressed,6.7,26.1,9.5
+Virginia,Accidents (unintentional injuries),Number of deaths,Suppressed,61,542,113
+Virginia,Accidents (unintentional injuries),Age adjusted rates,Suppressed,14.5,33.5,19.9
+Virginia,Cerebrovascular diseases	,Number of deaths,Suppressed,89,672,55
+Virginia,Cerebrovascular diseases	,Age adjusted rates,Suppressed,24.2,47.1,22.6
+Virginia,Alzheimer's disease	,Number of deaths,Suppressed,39,286,34
+Virginia,Alzheimer's disease	,Age adjusted rates,Suppressed,12.8,22.6,17
+Virginia,Diabetes mellitus	,Number of deaths,Suppressed,55,593,37
+Virginia,Diabetes mellitus	,Age adjusted rates,Suppressed,14.4,38.8,12
+Virginia,Influenza and pneumonia	,Number of deaths,Suppressed,34,207,21
+Virginia,Influenza and pneumonia	,Age adjusted rates,Suppressed,10,14.1,7.8
+Virginia,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,35,459,27
+Virginia,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,9.8,30.9,10.4
+Virginia,Intentional self-harm (suicide)	,Number of deaths,Suppressed,39,106,25
+Virginia,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,6.4,6.4,3.4
+Washington,Diseases of heart,Number of deaths,135,397,276,238
+Washington,Diseases of heart,Age adjusted rates,171.3,72.5,139.2,82.9
+Washington,Malignant neoplasms,Number of deaths,146,645,340,330
+Washington,Malignant neoplasms,Age adjusted rates,177.1,110.5,159.8,96.1
 Washington,Chronic lower respiratory disease,Number of deaths,58,72,49,31
-Washington,Chronic lower respiratory disease,Age adjusted rates,60.6,14.1,23.1,12.2
-Washington,Accidents (unintentional injuries),Number of deaths,116,120,128,184
-Washington,Accidents (unintentional injuries),Age adjusted rates,80.7,18.7,42.4,26.8
-Washington,Cerebrovascular diseases	,Number of deaths,21,169,84,86
-Washington,Cerebrovascular diseases	,Age adjusted rates,29,32.1,41.8,30.3
+Washington,Chronic lower respiratory disease,Age adjusted rates,68.4,14.2,24.1,12.2
+Washington,Accidents (unintentional injuries),Number of deaths,107,115,119,184
+Washington,Accidents (unintentional injuries),Age adjusted rates,101.1,18.5,41.9,26.8
+Washington,Cerebrovascular diseases	,Number of deaths,21,168,83,86
+Washington,Cerebrovascular diseases	,Age adjusted rates,32.3,32.4,42.9,30.3
 Washington,Alzheimer's disease	,Number of deaths,Suppressed,85,61,60
-Washington,Alzheimer's disease	,Age adjusted rates,Suppressed,17.6,42.1,28.9
-Washington,Diabetes mellitus	,Number of deaths,51,122,111,80
-Washington,Diabetes mellitus	,Age adjusted rates,50,21.9,51.6,23.2
+Washington,Alzheimer's disease	,Age adjusted rates,Suppressed,17.7,43.3,28.9
+Washington,Diabetes mellitus	,Number of deaths,50,122,106,80
+Washington,Diabetes mellitus	,Age adjusted rates,56.3,22.2,51.9,23.2
 Washington,Influenza and pneumonia	,Number of deaths,Suppressed,35,24,28
-Washington,Influenza and pneumonia	,Age adjusted rates,Suppressed,6.4,13.7,9.9
+Washington,Influenza and pneumonia	,Age adjusted rates,Suppressed,6.5,14.2,9.9
 Washington,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,13,38,19,20
-Washington,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Unreliable,7.4,Unreliable,6.7
-Washington,Intentional self-harm (suicide)	,Number of deaths,28,58,30,64
-Washington,Intentional self-harm (suicide)	,Age adjusted rates,18.8,8,7.9,7.4
+Washington,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Unreliable,7.5,Unreliable,6.7
+Washington,Intentional self-harm (suicide)	,Number of deaths,25,55,28,64
+Washington,Intentional self-harm (suicide)	,Age adjusted rates,24.1,7.8,8,7.4
 West Virginia,Diseases of heart,Number of deaths,Suppressed,Suppressed,133,Suppressed
-West Virginia,Diseases of heart,Age adjusted rates,Suppressed,Suppressed,198.6,Suppressed
-West Virginia,Malignant neoplasms,Number of deaths,Suppressed,12,140,11
-West Virginia,Malignant neoplasms,Age adjusted rates,Suppressed,Unreliable,199.6,Unreliable
+West Virginia,Diseases of heart,Age adjusted rates,Suppressed,Suppressed,201.4,Suppressed
+West Virginia,Malignant neoplasms,Number of deaths,Suppressed,12,139,11
+West Virginia,Malignant neoplasms,Age adjusted rates,Suppressed,Unreliable,200.6,Unreliable
 West Virginia,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,33,Suppressed
-West Virginia,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,55.7,Not Available
-West Virginia,Accidents (unintentional injuries),Number of deaths,Suppressed,Suppressed,62,Suppressed
-West Virginia,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Suppressed,86.5,Suppressed
+West Virginia,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,56.5,Not available
+West Virginia,Accidents (unintentional injuries),Number of deaths,Suppressed,Suppressed,61,Suppressed
+West Virginia,Accidents (unintentional injuries),Age adjusted rates,Suppressed,Suppressed,87.3,Suppressed
 West Virginia,Cerebrovascular diseases	,Number of deaths,Suppressed,Suppressed,32,Suppressed
-West Virginia,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,49.9,Suppressed
+West Virginia,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,50.6,Suppressed
 West Virginia,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,16,Suppressed
 West Virginia,Alzheimer's disease	,Age adjusted rates,Suppressed,Suppressed,Unreliable,Suppressed
 West Virginia,Diabetes mellitus	,Number of deaths,Suppressed,Suppressed,33,Suppressed
-West Virginia,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,48.2,Suppressed
+West Virginia,Diabetes mellitus	,Age adjusted rates,Suppressed,Suppressed,48.9,Suppressed
 West Virginia,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,10,Suppressed
-West Virginia,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,Unreliable,Not Available
+West Virginia,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,Unreliable,Not available
 West Virginia,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,Suppressed,Suppressed,25,Suppressed
-West Virginia,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,36.7,Not Available
+West Virginia,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Suppressed,Suppressed,37.2,Not available
 West Virginia,Intentional self-harm (suicide)	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
-West Virginia,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not Available
-Wisconsin,Diseases of heart,Number of deaths,83,70,515,99
-Wisconsin,Diseases of heart,Age adjusted rates,181.1,94.8,201.5,73.2
-Wisconsin,Malignant neoplasms,Number of deaths,70,96,536,155
-Wisconsin,Malignant neoplasms,Age adjusted rates,145.9,116.5,200.9,98.9
+West Virginia,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Not available
+Wisconsin,Diseases of heart,Number of deaths,81,70,514,99
+Wisconsin,Diseases of heart,Age adjusted rates,194.5,96.6,206.2,73.2
+Wisconsin,Malignant neoplasms,Number of deaths,69,96,535,155
+Wisconsin,Malignant neoplasms,Age adjusted rates,161,118.8,205.3,98.9
 Wisconsin,Chronic lower respiratory disease,Number of deaths,24,Suppressed,98,12
-Wisconsin,Chronic lower respiratory disease,Age adjusted rates,47.8,Suppressed,39.9,Unreliable
+Wisconsin,Chronic lower respiratory disease,Age adjusted rates,53,Suppressed,40.8,Unreliable
 Wisconsin,Accidents (unintentional injuries),Number of deaths,52,16,208,88
-Wisconsin,Accidents (unintentional injuries),Age adjusted rates,89.1,Unreliable,59.8,32.9
-Wisconsin,Cerebrovascular diseases	,Number of deaths,15,38,116,33
-Wisconsin,Cerebrovascular diseases	,Age adjusted rates,Unreliable,51.1,47.5,24.8
-Wisconsin,Alzheimer's disease	,Number of deaths,Suppressed,13,57,14
-Wisconsin,Alzheimer's disease	,Age adjusted rates,Suppressed,Unreliable,33.9,Unreliable
-Wisconsin,Diabetes mellitus	,Number of deaths,26,16,98,34
-Wisconsin,Diabetes mellitus	,Age adjusted rates,64.1,Unreliable,40.2,25.4
-Wisconsin,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,37,Suppressed
-Wisconsin,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,15.4,Suppressed
+Wisconsin,Accidents (unintentional injuries),Age adjusted rates,105.7,Unreliable,62,32.9
+Wisconsin,Cerebrovascular diseases	,Number of deaths,15,38,115,33
+Wisconsin,Cerebrovascular diseases	,Age adjusted rates,Unreliable,52.1,48.3,24.8
+Wisconsin,Alzheimer's disease	,Number of deaths,Suppressed,12,56,14
+Wisconsin,Alzheimer's disease	,Age adjusted rates,Suppressed,Unreliable,34.1,Unreliable
+Wisconsin,Diabetes mellitus	,Number of deaths,25,16,98,34
+Wisconsin,Diabetes mellitus	,Age adjusted rates,69.3,Unreliable,41.2,25.4
+Wisconsin,Influenza and pneumonia	,Number of deaths,Suppressed,Suppressed,36,Suppressed
+Wisconsin,Influenza and pneumonia	,Age adjusted rates,Suppressed,Suppressed,15.1,Suppressed
 Wisconsin,"Nephritis, nephrotic syndrome and nephrosis	",Number of deaths,11,15,64,17
-Wisconsin,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Unreliable,Unreliable,24.1,Unreliable
+Wisconsin,"Nephritis, nephrotic syndrome and nephrosis	",Age adjusted rates,Unreliable,Unreliable,24.7,Unreliable
 Wisconsin,Intentional self-harm (suicide)	,Number of deaths,Suppressed,12,13,20
 Wisconsin,Intentional self-harm (suicide)	,Age adjusted rates,Suppressed,Unreliable,Unreliable,5.6
 Wyoming,Diseases of heart,Number of deaths,16,Suppressed,10,35
@@ -1006,7 +1006,7 @@ Wyoming,Malignant neoplasms,Age adjusted rates,Unreliable,Suppressed,Suppressed,
 Wyoming,Chronic lower respiratory disease,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 Wyoming,Chronic lower respiratory disease,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
 Wyoming,Accidents (unintentional injuries),Number of deaths,21,Suppressed,Suppressed,29
-Wyoming,Accidents (unintentional injuries),Age adjusted rates,140.2,Suppressed,Suppressed,53.6
+Wyoming,Accidents (unintentional injuries),Age adjusted rates,177.9,Suppressed,Suppressed,53.6
 Wyoming,Cerebrovascular diseases	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
 Wyoming,Cerebrovascular diseases	,Age adjusted rates,Suppressed,Suppressed,Suppressed,Suppressed
 Wyoming,Alzheimer's disease	,Number of deaths,Suppressed,Suppressed,Suppressed,Suppressed
