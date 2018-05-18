@@ -1,0 +1,491 @@
+state,Cancer Site,Measure,American Indian or Alaska Native,Asian or Pacific Islander,Black,Hispanic
+Alabama,Breast,Population,"29,299","70,323","1,299,919","199,106"
+Alabama,Breast,Count,Suppressed,25,895,37
+Alabama,Breast,Incidence Crude Rates,Suppressed,35.6,68.9,18.6
+Alabama,Breast,Deaths,Suppressed,Suppressed,189,Suppressed
+Alabama,Breast,Mortality Crude Rates,Suppressed,Suppressed,15,Suppressed
+Alabama,Cervix Uteri†,Population,"14,944","37,340","694,711","91,687"
+Alabama,Cervix Uteri†,Count,Suppressed,Suppressed,53,Suppressed
+Alabama,Cervix Uteri†,Incidence Crude Rates,Suppressed,Suppressed,7.6,Suppressed
+Alabama,Cervix Uteri†,Deaths,Suppressed,Suppressed,36,Suppressed
+Alabama,Cervix Uteri†,Mortality Crude Rates,Suppressed,Suppressed,5,Suppressed
+Alabama,Colon and Rectum,Population,"29,299","70,323","1,299,919","199,106"
+Alabama,Colon and Rectum,Count,Suppressed,Suppressed,649,26
+Alabama,Colon and Rectum,Incidence Crude Rates,Suppressed,Suppressed,49.9,13.1
+Alabama,Colon and Rectum,Deaths,Suppressed,Suppressed,235,Suppressed
+Alabama,Colon and Rectum,Mortality Crude Rates,Suppressed,Suppressed,18,Suppressed
+Alabama,Lung and Bronchus,Population,"29,299","70,323","1,299,919","199,106"
+Alabama,Lung and Bronchus,Count,Suppressed,Suppressed,719,Suppressed
+Alabama,Lung and Bronchus,Incidence Crude Rates,Suppressed,Suppressed,55.3,Suppressed
+Alabama,Lung and Bronchus,Deaths,Suppressed,Suppressed,603,Suppressed
+Alabama,Lung and Bronchus,Mortality Crude Rates,Suppressed,Suppressed,46,Suppressed
+Alabama,Melanoma of the Skin,Population,"29,299","70,323","1,299,919","199,106"
+Alabama,Melanoma of the Skin,Count,Suppressed,Suppressed,Suppressed,Suppressed
+Alabama,Melanoma of the Skin,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Alabama,Melanoma of the Skin,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Alabama,Melanoma of the Skin,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Alabama,Ovary†,Population,"14,944","37,340","694,711","91,687"
+Alabama,Ovary†,Count,Suppressed,Suppressed,67,Suppressed
+Alabama,Ovary†,Incidence Crude Rates,Suppressed,Suppressed,9.6,Suppressed
+Alabama,Ovary†,Deaths,Suppressed,Suppressed,54,Suppressed
+Alabama,Ovary†,Mortality Crude Rates,Suppressed,Suppressed,8,Suppressed
+Alabama,Prostate††,Population,"14,355","32,983","605,208","107,419"
+Alabama,Prostate††,Count,Suppressed,Suppressed,969,24
+Alabama,Prostate††,Incidence Crude Rates,Suppressed,Suppressed,160.1,22.3
+Alabama,Prostate††,Deaths,Suppressed,Suppressed,162,Suppressed
+Alabama,Prostate††,Mortality Crude Rates,Suppressed,Suppressed,26.8,Suppressed
+Alaska,Breast,Population,"117,002","57,023","32,980","50,618"
+Alaska,Breast,Count,73,25,Suppressed,Suppressed
+Alaska,Breast,Incidence Crude Rates,62.4,43.8,Suppressed,Suppressed
+Alaska,Breast,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Alaska,Breast,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Alaska,Cervix Uteri†,Population,"57,757","29,477","14,231","23,589"
+Alaska,Cervix Uteri†,Count,Suppressed,Suppressed,Suppressed,Suppressed
+Alaska,Cervix Uteri†,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Alaska,Cervix Uteri†,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Alaska,Cervix Uteri†,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Alaska,Colon and Rectum,Population,"117,002","57,023","32,980","50,618"
+Alaska,Colon and Rectum,Count,70,17,Suppressed,Suppressed
+Alaska,Colon and Rectum,Incidence Crude Rates,59.8,Unreliable,Suppressed,Suppressed
+Alaska,Colon and Rectum,Deaths,27,Suppressed,Suppressed,Suppressed
+Alaska,Colon and Rectum,Mortality Crude Rates,23,Suppressed,Suppressed,Suppressed
+Alaska,Lung and Bronchus,Population,"117,002","57,023","32,980","50,618"
+Alaska,Lung and Bronchus,Count,59,Suppressed,Suppressed,Suppressed
+Alaska,Lung and Bronchus,Incidence Crude Rates,50.4,Suppressed,Suppressed,Suppressed
+Alaska,Lung and Bronchus,Deaths,35,Suppressed,Suppressed,Suppressed
+Alaska,Lung and Bronchus,Mortality Crude Rates,30,Suppressed,Suppressed,Suppressed
+Alaska,Melanoma of the Skin,Population,"117,002","57,023","32,980","50,618"
+Alaska,Melanoma of the Skin,Count,Suppressed,Suppressed,Suppressed,Suppressed
+Alaska,Melanoma of the Skin,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Alaska,Melanoma of the Skin,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Alaska,Melanoma of the Skin,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Alaska,Ovary†,Population,"57,757","29,477","14,231","23,589"
+Alaska,Ovary†,Count,Suppressed,Suppressed,Suppressed,Suppressed
+Alaska,Ovary†,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Alaska,Ovary†,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Alaska,Ovary†,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Alaska,Prostate††,Population,"59,245","27,546","18,749","27,029"
+Alaska,Prostate††,Count,18,Suppressed,Suppressed,Suppressed
+Alaska,Prostate††,Incidence Crude Rates,Unreliable,Suppressed,Suppressed,Suppressed
+Alaska,Prostate††,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Alaska,Prostate††,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Arizona,Breast,Population,"284,136","234,157","307,953","2,055,560"
+Arizona,Breast,Count,88,89,136,643
+Arizona,Breast,Incidence Crude Rates,31,38,44.2,31.3
+Arizona,Breast,Deaths,Suppressed,Suppressed,38,111
+Arizona,Breast,Mortality Crude Rates,Suppressed,Suppressed,12,5.4
+Arizona,Cervix Uteri†,Population,"145,857","123,369","146,955","1,022,753"
+Arizona,Cervix Uteri†,Count,Suppressed,Suppressed,Suppressed,61
+Arizona,Cervix Uteri†,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,6
+Arizona,Cervix Uteri†,Deaths,Suppressed,Suppressed,Suppressed,16
+Arizona,Cervix Uteri†,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Unreliable
+Arizona,Colon and Rectum,Population,"284,136","234,157","307,953","2,055,560"
+Arizona,Colon and Rectum,Count,62,44,73,413
+Arizona,Colon and Rectum,Incidence Crude Rates,22,18.8,23.7,20.1
+Arizona,Colon and Rectum,Deaths,23,Suppressed,31,123
+Arizona,Colon and Rectum,Mortality Crude Rates,8,Suppressed,10,6
+Arizona,Lung and Bronchus,Population,"284,136","234,157","307,953","2,055,560"
+Arizona,Lung and Bronchus,Count,47,61,115,319
+Arizona,Lung and Bronchus,Incidence Crude Rates,17,26.1,37.3,15.5
+Arizona,Lung and Bronchus,Deaths,26,45,68,214
+Arizona,Lung and Bronchus,Mortality Crude Rates,9,19,22,10.4
+Arizona,Melanoma of the Skin,Population,"284,136","234,157","307,953","2,055,560"
+Arizona,Melanoma of the Skin,Count,Suppressed,Suppressed,Suppressed,62
+Arizona,Melanoma of the Skin,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,3
+Arizona,Melanoma of the Skin,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Arizona,Melanoma of the Skin,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Arizona,Ovary†,Population,"145,857","123,369","146,955","1,022,753"
+Arizona,Ovary†,Count,21,Suppressed,Suppressed,69
+Arizona,Ovary†,Incidence Crude Rates,14,Suppressed,Suppressed,6.7
+Arizona,Ovary†,Deaths,Suppressed,Suppressed,Suppressed,43
+Arizona,Ovary†,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,4.2
+Arizona,Prostate††,Population,"138,279","110,788","160,998","1,032,807"
+Arizona,Prostate††,Count,52,24,130,340
+Arizona,Prostate††,Incidence Crude Rates,37.6,21.7,80.7,32.9
+Arizona,Prostate††,Deaths,20,Suppressed,18,62
+Arizona,Prostate††,Mortality Crude Rates,14.5,Suppressed,Unreliable,6
+Arkansas,Breast,Population,"24,543","53,988","470,950","208,620"
+Arkansas,Breast,Count,16,24,282,70
+Arkansas,Breast,Incidence Crude Rates,Unreliable,44.5,59.9,33.6
+Arkansas,Breast,Deaths,Suppressed,Suppressed,75,Suppressed
+Arkansas,Breast,Mortality Crude Rates,Suppressed,Suppressed,16,Suppressed
+Arkansas,Cervix Uteri†,Population,"12,500","27,942","246,683","98,494"
+Arkansas,Cervix Uteri†,Count,Suppressed,Suppressed,21,16
+Arkansas,Cervix Uteri†,Incidence Crude Rates,Suppressed,Suppressed,8.5,Unreliable
+Arkansas,Cervix Uteri†,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Arkansas,Cervix Uteri†,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Arkansas,Colon and Rectum,Population,"24,543","53,988","470,950","208,620"
+Arkansas,Colon and Rectum,Count,Suppressed,Suppressed,209,89
+Arkansas,Colon and Rectum,Incidence Crude Rates,Suppressed,Suppressed,44.4,42.7
+Arkansas,Colon and Rectum,Deaths,Suppressed,Suppressed,80,Suppressed
+Arkansas,Colon and Rectum,Mortality Crude Rates,Suppressed,Suppressed,17,Suppressed
+Arkansas,Lung and Bronchus,Population,"24,543","53,988","470,950","208,620"
+Arkansas,Lung and Bronchus,Count,Suppressed,Suppressed,306,100
+Arkansas,Lung and Bronchus,Incidence Crude Rates,Suppressed,Suppressed,65,47.9
+Arkansas,Lung and Bronchus,Deaths,Suppressed,Suppressed,229,Suppressed
+Arkansas,Lung and Bronchus,Mortality Crude Rates,Suppressed,Suppressed,49,Suppressed
+Arkansas,Melanoma of the Skin,Population,"24,543","53,988","470,950","208,620"
+Arkansas,Melanoma of the Skin,Count,Suppressed,Suppressed,Suppressed,Suppressed
+Arkansas,Melanoma of the Skin,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Arkansas,Melanoma of the Skin,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Arkansas,Melanoma of the Skin,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Arkansas,Ovary†,Population,"12,500","27,942","246,683","98,494"
+Arkansas,Ovary†,Count,Suppressed,Suppressed,23,32
+Arkansas,Ovary†,Incidence Crude Rates,Suppressed,Suppressed,9.3,32.5
+Arkansas,Ovary†,Deaths,Suppressed,Suppressed,19,Suppressed
+Arkansas,Ovary†,Mortality Crude Rates,Suppressed,Suppressed,Unreliable,Suppressed
+Arkansas,Prostate††,Population,"12,043","26,046","224,267","110,126"
+Arkansas,Prostate††,Count,Suppressed,Suppressed,345,56
+Arkansas,Prostate††,Incidence Crude Rates,Suppressed,Suppressed,153.8,50.9
+Arkansas,Prostate††,Deaths,Suppressed,Suppressed,41,Suppressed
+Arkansas,Prostate††,Mortality Crude Rates,Suppressed,Suppressed,18.3,Suppressed
+California,Breast,Population,"209,888","5,757,924","2,420,088","14,972,307"
+California,Breast,Count,129,"3,410","1,721","5,038"
+California,Breast,Incidence Crude Rates,62,59.2,71.1,33.6
+California,Breast,Deaths,22,469,408,813
+California,Breast,Mortality Crude Rates,11,8,17,5.4
+California,Cervix Uteri†,Population,"107,279","3,025,049","1,221,249","7,438,126"
+California,Cervix Uteri†,Count,Suppressed,202,78,525
+California,Cervix Uteri†,Incidence Crude Rates,Suppressed,6.7,6.4,7.1
+California,Cervix Uteri†,Deaths,Suppressed,67,38,161
+California,Cervix Uteri†,Mortality Crude Rates,Suppressed,2,3,2.2
+California,Colon and Rectum,Population,"209,888","5,757,924","2,420,088","14,972,307"
+California,Colon and Rectum,Count,81,"2,095","1,011","3,120"
+California,Colon and Rectum,Incidence Crude Rates,39,36.4,41.8,20.8
+California,Colon and Rectum,Deaths,25,675,438,939
+California,Colon and Rectum,Mortality Crude Rates,12,12,18,6.3
+California,Lung and Bronchus,Population,"209,888","5,757,924","2,420,088","14,972,307"
+California,Lung and Bronchus,Count,92,"2,082","1,301","1,959"
+California,Lung and Bronchus,Incidence Crude Rates,44,36.2,53.8,13.1
+California,Lung and Bronchus,Deaths,70,"1,494",959,"1,330"
+California,Lung and Bronchus,Mortality Crude Rates,33,26,40,8.9
+California,Melanoma of the Skin,Population,"209,888","5,757,924","2,420,088","14,972,307"
+California,Melanoma of the Skin,Count,32,86,34,530
+California,Melanoma of the Skin,Incidence Crude Rates,15,1.5,1.4,3.5
+California,Melanoma of the Skin,Deaths,Suppressed,18,Suppressed,64
+California,Melanoma of the Skin,Mortality Crude Rates,Suppressed,Unreliable,Suppressed,0.4
+California,Ovary†,Population,"107,279","3,025,049","1,221,249","7,438,126"
+California,Ovary†,Count,Suppressed,342,131,601
+California,Ovary†,Incidence Crude Rates,Suppressed,11.3,10.7,8.1
+California,Ovary†,Deaths,Suppressed,149,111,313
+California,Ovary†,Mortality Crude Rates,Suppressed,5,9,4.2
+California,Prostate††,Population,"102,609","2,732,875","1,198,839","7,534,181"
+California,Prostate††,Count,75,"1,255","1,567","3,167"
+California,Prostate††,Incidence Crude Rates,73.1,45.9,130.7,42
+California,Prostate††,Deaths,Suppressed,211,347,483
+California,Prostate††,Mortality Crude Rates,Suppressed,7.7,28.9,6.4
+Colorado,Breast,Population,"40,687","184,708","241,748","1,135,350"
+Colorado,Breast,Count,17,74,109,434
+Colorado,Breast,Incidence Crude Rates,Unreliable,40.1,45.1,38.2
+Colorado,Breast,Deaths,Suppressed,Suppressed,22,72
+Colorado,Breast,Mortality Crude Rates,Suppressed,Suppressed,9,6.3
+Colorado,Cervix Uteri†,Population,"20,350","99,485","113,210","557,126"
+Colorado,Cervix Uteri†,Count,Suppressed,Suppressed,Suppressed,44
+Colorado,Cervix Uteri†,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,7.9
+Colorado,Cervix Uteri†,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Colorado,Cervix Uteri†,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Colorado,Colon and Rectum,Population,"40,687","184,708","241,748","1,135,350"
+Colorado,Colon and Rectum,Count,Suppressed,50,78,261
+Colorado,Colon and Rectum,Incidence Crude Rates,Suppressed,27.1,32.3,23
+Colorado,Colon and Rectum,Deaths,Suppressed,Suppressed,25,77
+Colorado,Colon and Rectum,Mortality Crude Rates,Suppressed,Suppressed,10,6.8
+Colorado,Lung and Bronchus,Population,"40,687","184,708","241,748","1,135,350"
+Colorado,Lung and Bronchus,Count,16,44,71,205
+Colorado,Lung and Bronchus,Incidence Crude Rates,Unreliable,23.8,29,18.1
+Colorado,Lung and Bronchus,Deaths,Suppressed,18,57,115
+Colorado,Lung and Bronchus,Mortality Crude Rates,Suppressed,Unreliable,24,10.1
+Colorado,Melanoma of the Skin,Population,"40,687","184,708","241,748","1,135,350"
+Colorado,Melanoma of the Skin,Count,Suppressed,Suppressed,Suppressed,27
+Colorado,Melanoma of the Skin,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,2.4
+Colorado,Melanoma of the Skin,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Colorado,Melanoma of the Skin,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Colorado,Ovary†,Population,"20,350","99,485","113,210","557,126"
+Colorado,Ovary†,Count,Suppressed,Suppressed,Suppressed,46
+Colorado,Ovary†,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,8.3
+Colorado,Ovary†,Deaths,Suppressed,Suppressed,Suppressed,20
+Colorado,Ovary†,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,3.6
+Colorado,Prostate††,Population,"20,337","85,223","128,538","578,224"
+Colorado,Prostate††,Count,Suppressed,27,132,225
+Colorado,Prostate††,Incidence Crude Rates,Suppressed,31.7,102.7,38.9
+Colorado,Prostate††,Deaths,Suppressed,Suppressed,26,31
+Colorado,Prostate††,Mortality Crude Rates,Suppressed,Suppressed,20.2,5.4
+Connecticut,Breast,Population,"9,458","165,835","375,240","540,510"
+Connecticut,Breast,Count,Suppressed,73,244,248
+Connecticut,Breast,Incidence Crude Rates,Suppressed,44,65,45.9
+Connecticut,Breast,Deaths,Suppressed,Suppressed,47,19
+Connecticut,Breast,Mortality Crude Rates,Suppressed,Suppressed,13,Unreliable
+Connecticut,Cervix Uteri†,Population,"4,816","86,151","195,596","270,301"
+Connecticut,Cervix Uteri†,Count,Suppressed,Suppressed,Suppressed,23
+Connecticut,Cervix Uteri†,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,8.5
+Connecticut,Cervix Uteri†,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Connecticut,Cervix Uteri†,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Connecticut,Colon and Rectum,Population,"9,458","165,835","375,240","540,510"
+Connecticut,Colon and Rectum,Count,Suppressed,30,116,138
+Connecticut,Colon and Rectum,Incidence Crude Rates,Suppressed,18.1,30.9,25.5
+Connecticut,Colon and Rectum,Deaths,Suppressed,Suppressed,42,32
+Connecticut,Colon and Rectum,Mortality Crude Rates,Suppressed,Suppressed,11,5.9
+Connecticut,Lung and Bronchus,Population,"9,458","165,835","375,240","540,510"
+Connecticut,Lung and Bronchus,Count,Suppressed,25,146,134
+Connecticut,Lung and Bronchus,Incidence Crude Rates,Suppressed,15.1,38.9,24.8
+Connecticut,Lung and Bronchus,Deaths,Suppressed,17,102,56
+Connecticut,Lung and Bronchus,Mortality Crude Rates,Suppressed,Unreliable,27,10.4
+Connecticut,Melanoma of the Skin,Population,"9,458","165,835","375,240","540,510"
+Connecticut,Melanoma of the Skin,Count,Suppressed,Suppressed,Suppressed,23
+Connecticut,Melanoma of the Skin,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,4.3
+Connecticut,Melanoma of the Skin,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Connecticut,Melanoma of the Skin,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Connecticut,Ovary†,Population,"4,816","86,151","195,596","270,301"
+Connecticut,Ovary†,Count,Suppressed,Suppressed,17,Suppressed
+Connecticut,Ovary†,Incidence Crude Rates,Suppressed,Suppressed,Unreliable,Suppressed
+Connecticut,Ovary†,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Connecticut,Ovary†,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Connecticut,Prostate††,Population,"4,642","79,684","179,644","270,209"
+Connecticut,Prostate††,Count,Suppressed,18,236,142
+Connecticut,Prostate††,Incidence Crude Rates,Suppressed,Unreliable,131.4,52.6
+Connecticut,Prostate††,Deaths,Suppressed,Suppressed,34,Suppressed
+Connecticut,Prostate††,Mortality Crude Rates,Suppressed,Suppressed,18.9,Suppressed
+Delaware,Breast,Population,"3,414","37,110","207,812","82,878"
+Delaware,Breast,Count,Suppressed,16,158,25
+Delaware,Breast,Incidence Crude Rates,Suppressed,Unreliable,76,30.2
+Delaware,Breast,Deaths,Suppressed,Suppressed,24,Suppressed
+Delaware,Breast,Mortality Crude Rates,Suppressed,Suppressed,12,Suppressed
+Delaware,Cervix Uteri†,Population,"1,746","19,215","109,887","40,315"
+Delaware,Cervix Uteri†,Count,Suppressed,Suppressed,Suppressed,Suppressed
+Delaware,Cervix Uteri†,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Delaware,Cervix Uteri†,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Delaware,Cervix Uteri†,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Delaware,Colon and Rectum,Population,"3,414","37,110","207,812","82,878"
+Delaware,Colon and Rectum,Count,Suppressed,Suppressed,88,18
+Delaware,Colon and Rectum,Incidence Crude Rates,Suppressed,Suppressed,42.3,Unreliable
+Delaware,Colon and Rectum,Deaths,Suppressed,Suppressed,28,Suppressed
+Delaware,Colon and Rectum,Mortality Crude Rates,Suppressed,Suppressed,14,Suppressed
+Delaware,Lung and Bronchus,Population,"3,414","37,110","207,812","82,878"
+Delaware,Lung and Bronchus,Count,Suppressed,Suppressed,127,Suppressed
+Delaware,Lung and Bronchus,Incidence Crude Rates,Suppressed,Suppressed,61.1,Suppressed
+Delaware,Lung and Bronchus,Deaths,Suppressed,Suppressed,78,Suppressed
+Delaware,Lung and Bronchus,Mortality Crude Rates,Suppressed,Suppressed,38,Suppressed
+Delaware,Melanoma of the Skin,Population,"3,414","37,110","207,812","82,878"
+Delaware,Melanoma of the Skin,Count,Suppressed,Suppressed,Suppressed,Suppressed
+Delaware,Melanoma of the Skin,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Delaware,Melanoma of the Skin,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Delaware,Melanoma of the Skin,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Delaware,Ovary†,Population,"1,746","19,215","109,887","40,315"
+Delaware,Ovary†,Count,Suppressed,Suppressed,Suppressed,Suppressed
+Delaware,Ovary†,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Delaware,Ovary†,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Delaware,Ovary†,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Delaware,Prostate††,Population,"1,668","17,895","97,925","42,563"
+Delaware,Prostate††,Count,Suppressed,Suppressed,172,22
+Delaware,Prostate††,Incidence Crude Rates,Suppressed,Suppressed,175.6,51.7
+Delaware,Prostate††,Deaths,Suppressed,Suppressed,22,Suppressed
+Delaware,Prostate††,Mortality Crude Rates,Suppressed,Suppressed,22.5,Suppressed
+District of Columbia,Breast,Population,"1,873","28,356","319,890","68,646"
+District of Columbia,Breast,Count,Suppressed,16,290,21
+District of Columbia,Breast,Incidence Crude Rates,Suppressed,Unreliable,90.7,30.6
+District of Columbia,Breast,Deaths,Suppressed,Suppressed,79,Suppressed
+District of Columbia,Breast,Mortality Crude Rates,Suppressed,Suppressed,25,Suppressed
+District of Columbia,Cervix Uteri†,Population,"1,013","16,399","174,898","33,633"
+District of Columbia,Cervix Uteri†,Count,Suppressed,Suppressed,20,Suppressed
+District of Columbia,Cervix Uteri†,Incidence Crude Rates,Suppressed,Suppressed,11.4,Suppressed
+District of Columbia,Cervix Uteri†,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+District of Columbia,Cervix Uteri†,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+District of Columbia,Colon and Rectum,Population,"1,873","28,356","319,890","68,646"
+District of Columbia,Colon and Rectum,Count,Suppressed,Suppressed,191,Suppressed
+District of Columbia,Colon and Rectum,Incidence Crude Rates,Suppressed,Suppressed,59.7,Suppressed
+District of Columbia,Colon and Rectum,Deaths,Suppressed,Suppressed,93,Suppressed
+District of Columbia,Colon and Rectum,Mortality Crude Rates,Suppressed,Suppressed,29,Suppressed
+District of Columbia,Lung and Bronchus,Population,"1,873","28,356","319,890","68,646"
+District of Columbia,Lung and Bronchus,Count,Suppressed,Suppressed,232,Suppressed
+District of Columbia,Lung and Bronchus,Incidence Crude Rates,Suppressed,Suppressed,72.5,Suppressed
+District of Columbia,Lung and Bronchus,Deaths,Suppressed,Suppressed,190,Suppressed
+District of Columbia,Lung and Bronchus,Mortality Crude Rates,Suppressed,Suppressed,59,Suppressed
+District of Columbia,Melanoma of the Skin,Population,"1,873","28,356","319,890","68,646"
+District of Columbia,Melanoma of the Skin,Count,Suppressed,Suppressed,Suppressed,Suppressed
+District of Columbia,Melanoma of the Skin,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+District of Columbia,Melanoma of the Skin,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+District of Columbia,Melanoma of the Skin,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+District of Columbia,Ovary†,Population,"1,013","16,399","174,898","33,633"
+District of Columbia,Ovary†,Count,Suppressed,Suppressed,26,Suppressed
+District of Columbia,Ovary†,Incidence Crude Rates,Suppressed,Suppressed,14.9,Suppressed
+District of Columbia,Ovary†,Deaths,Suppressed,Suppressed,24,Suppressed
+District of Columbia,Ovary†,Mortality Crude Rates,Suppressed,Suppressed,14,Suppressed
+District of Columbia,Prostate††,Population,860,"11,957","144,992","35,013"
+District of Columbia,Prostate††,Count,Suppressed,Suppressed,227,Suppressed
+District of Columbia,Prostate††,Incidence Crude Rates,Suppressed,Suppressed,156.6,Suppressed
+District of Columbia,Prostate††,Deaths,Suppressed,Suppressed,56,Suppressed
+District of Columbia,Prostate††,Mortality Crude Rates,Suppressed,Suppressed,38.6,Suppressed
+Florida,Breast,Population,"57,947","593,219","3,194,110","4,799,378"
+Florida,Breast,Count,29,264,"1,685","2,511"
+Florida,Breast,Incidence Crude Rates,50,44.5,52.8,52.3
+Florida,Breast,Deaths,Suppressed,32,409,415
+Florida,Breast,Mortality Crude Rates,Suppressed,5,13,8.6
+Florida,Cervix Uteri†,Population,"28,913","318,708","1,660,853","2,430,821"
+Florida,Cervix Uteri†,Count,Suppressed,16,139,201
+Florida,Cervix Uteri†,Incidence Crude Rates,Suppressed,Unreliable,8.4,8.3
+Florida,Cervix Uteri†,Deaths,Suppressed,Suppressed,72,56
+Florida,Cervix Uteri†,Mortality Crude Rates,Suppressed,Suppressed,4,2.3
+Florida,Colon and Rectum,Population,"57,947","593,219","3,194,110","4,799,378"
+Florida,Colon and Rectum,Count,Suppressed,119,"1,173","1,626"
+Florida,Colon and Rectum,Incidence Crude Rates,Suppressed,20.1,36.7,33.9
+Florida,Colon and Rectum,Deaths,Suppressed,46,433,524
+Florida,Colon and Rectum,Mortality Crude Rates,Suppressed,8,14,10.9
+Florida,Lung and Bronchus,Population,"57,947","593,219","3,194,110","4,799,378"
+Florida,Lung and Bronchus,Count,23,138,"1,204","1,573"
+Florida,Lung and Bronchus,Incidence Crude Rates,40,23.3,37.7,32.8
+Florida,Lung and Bronchus,Deaths,17,102,856,"1,010"
+Florida,Lung and Bronchus,Mortality Crude Rates,Unreliable,17,27,21
+Florida,Melanoma of the Skin,Population,"57,947","593,219","3,194,110","4,799,378"
+Florida,Melanoma of the Skin,Count,Suppressed,Suppressed,31,248
+Florida,Melanoma of the Skin,Incidence Crude Rates,Suppressed,Suppressed,1,5.2
+Florida,Melanoma of the Skin,Deaths,Suppressed,Suppressed,Suppressed,44
+Florida,Melanoma of the Skin,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,0.9
+Florida,Ovary†,Population,"28,913","318,708","1,660,853","2,430,821"
+Florida,Ovary†,Count,Suppressed,33,124,236
+Florida,Ovary†,Incidence Crude Rates,Suppressed,10.4,7.5,9.7
+Florida,Ovary†,Deaths,Suppressed,17,100,123
+Florida,Ovary†,Mortality Crude Rates,Suppressed,Unreliable,6,5.1
+Florida,Prostate††,Population,"29,034","274,511","1,533,257","2,368,557"
+Florida,Prostate††,Count,Suppressed,101,"1,834","1,820"
+Florida,Prostate††,Incidence Crude Rates,Suppressed,36.8,119.6,76.8
+Florida,Prostate††,Deaths,Suppressed,Suppressed,334,273
+Florida,Prostate††,Mortality Crude Rates,Suppressed,Suppressed,21.8,11.5
+Georgia,Breast,Population,"26,491","408,250","3,166,260","932,643"
+Georgia,Breast,Count,Suppressed,162,"2,077",293
+Georgia,Breast,Incidence Crude Rates,Suppressed,39.7,65.6,31.4
+Georgia,Breast,Deaths,Suppressed,17,460,17
+Georgia,Breast,Mortality Crude Rates,Suppressed,Unreliable,15,Unreliable
+Georgia,Cervix Uteri†,Population,"13,438","210,831","1,684,010","439,072"
+Georgia,Cervix Uteri†,Count,Suppressed,Suppressed,128,28
+Georgia,Cervix Uteri†,Incidence Crude Rates,Suppressed,Suppressed,7.6,6.4
+Georgia,Cervix Uteri†,Deaths,Suppressed,Suppressed,54,Suppressed
+Georgia,Cervix Uteri†,Mortality Crude Rates,Suppressed,Suppressed,3,Suppressed
+Georgia,Colon and Rectum,Population,"26,491","408,250","3,166,260","932,643"
+Georgia,Colon and Rectum,Count,Suppressed,101,"1,218",116
+Georgia,Colon and Rectum,Incidence Crude Rates,Suppressed,24.7,38.5,12.4
+Georgia,Colon and Rectum,Deaths,Suppressed,27,479,25
+Georgia,Colon and Rectum,Mortality Crude Rates,Suppressed,7,15,2.7
+Georgia,Lung and Bronchus,Population,"26,491","408,250","3,166,260","932,643"
+Georgia,Lung and Bronchus,Count,Suppressed,60,"1,447",70
+Georgia,Lung and Bronchus,Incidence Crude Rates,Suppressed,14.7,46,7.5
+Georgia,Lung and Bronchus,Deaths,Suppressed,47,"1,059",24
+Georgia,Lung and Bronchus,Mortality Crude Rates,Suppressed,12,33,2.6
+Georgia,Melanoma of the Skin,Population,"26,491","408,250","3,166,260","932,643"
+Georgia,Melanoma of the Skin,Count,Suppressed,Suppressed,33,37
+Georgia,Melanoma of the Skin,Incidence Crude Rates,Suppressed,Suppressed,1,4
+Georgia,Melanoma of the Skin,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Georgia,Melanoma of the Skin,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Georgia,Ovary†,Population,"13,438","210,831","1,684,010","439,072"
+Georgia,Ovary†,Count,Suppressed,21,130,26
+Georgia,Ovary†,Incidence Crude Rates,Suppressed,10,7.7,5.9
+Georgia,Ovary†,Deaths,Suppressed,Suppressed,86,Suppressed
+Georgia,Ovary†,Mortality Crude Rates,Suppressed,Suppressed,5,Suppressed
+Georgia,Prostate††,Population,"13,053","197,419","1,482,250","493,571"
+Georgia,Prostate††,Count,Suppressed,60,"1,960",120
+Georgia,Prostate††,Incidence Crude Rates,Suppressed,30.4,132.2,24.3
+Georgia,Prostate††,Deaths,Suppressed,Suppressed,313,Suppressed
+Georgia,Prostate††,Mortality Crude Rates,Suppressed,Suppressed,21.1,Suppressed
+Hawaii,Breast,Population,"4,245","929,178","40,956","137,745"
+Hawaii,Breast,Count,Suppressed,806,Suppressed,63
+Hawaii,Breast,Incidence Crude Rates,Suppressed,86.7,Suppressed,45.7
+Hawaii,Breast,Deaths,Suppressed,95,Suppressed,Suppressed
+Hawaii,Breast,Mortality Crude Rates,Suppressed,10,Suppressed,Suppressed
+Hawaii,Cervix Uteri†,Population,"1,847","477,239","16,119","66,247"
+Hawaii,Cervix Uteri†,Count,Suppressed,39,Suppressed,Suppressed
+Hawaii,Cervix Uteri†,Incidence Crude Rates,Suppressed,8.2,Suppressed,Suppressed
+Hawaii,Cervix Uteri†,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Hawaii,Cervix Uteri†,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Hawaii,Colon and Rectum,Population,"4,245","929,178","40,956","137,745"
+Hawaii,Colon and Rectum,Count,Suppressed,480,Suppressed,28
+Hawaii,Colon and Rectum,Incidence Crude Rates,Suppressed,51.7,Suppressed,20.3
+Hawaii,Colon and Rectum,Deaths,Suppressed,176,Suppressed,Suppressed
+Hawaii,Colon and Rectum,Mortality Crude Rates,Suppressed,19,Suppressed,Suppressed
+Hawaii,Lung and Bronchus,Population,"4,245","929,178","40,956","137,745"
+Hawaii,Lung and Bronchus,Count,Suppressed,505,Suppressed,38
+Hawaii,Lung and Bronchus,Incidence Crude Rates,Suppressed,54,Suppressed,27.6
+Hawaii,Lung and Bronchus,Deaths,Suppressed,369,Suppressed,21
+Hawaii,Lung and Bronchus,Mortality Crude Rates,Suppressed,40,Suppressed,15.2
+Hawaii,Melanoma of the Skin,Population,"4,245","929,178","40,956","137,745"
+Hawaii,Melanoma of the Skin,Count,Suppressed,26,Suppressed,Suppressed
+Hawaii,Melanoma of the Skin,Incidence Crude Rates,Suppressed,2.8,Suppressed,Suppressed
+Hawaii,Melanoma of the Skin,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Hawaii,Melanoma of the Skin,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Hawaii,Ovary†,Population,"1,847","477,239","16,119","66,247"
+Hawaii,Ovary†,Count,Suppressed,55,Suppressed,Suppressed
+Hawaii,Ovary†,Incidence Crude Rates,Suppressed,11.5,Suppressed,Suppressed
+Hawaii,Ovary†,Deaths,Suppressed,30,Suppressed,Suppressed
+Hawaii,Ovary†,Mortality Crude Rates,Suppressed,6,Suppressed,Suppressed
+Hawaii,Prostate††,Population,"2,398","451,939","24,837","71,498"
+Hawaii,Prostate††,Count,Suppressed,412,25,18
+Hawaii,Prostate††,Incidence Crude Rates,Suppressed,91.2,100.7,Unreliable
+Hawaii,Prostate††,Deaths,Suppressed,59,Suppressed,Suppressed
+Hawaii,Prostate††,Mortality Crude Rates,Suppressed,13.1,Suppressed,Suppressed
+Idaho,Breast,Population,"21,045","27,975","15,388","196,734"
+Idaho,Breast,Count,Suppressed,Suppressed,Suppressed,55
+Idaho,Breast,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,28
+Idaho,Breast,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Breast,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Cervix Uteri†,Population,"10,547","15,050","6,594","95,076"
+Idaho,Cervix Uteri†,Count,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Cervix Uteri†,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Cervix Uteri†,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Cervix Uteri†,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Colon and Rectum,Population,"21,045","27,975","15,388","196,734"
+Idaho,Colon and Rectum,Count,Suppressed,Suppressed,Suppressed,26
+Idaho,Colon and Rectum,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,13.2
+Idaho,Colon and Rectum,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Colon and Rectum,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Lung and Bronchus,Population,"21,045","27,975","15,388","196,734"
+Idaho,Lung and Bronchus,Count,Suppressed,Suppressed,Suppressed,21
+Idaho,Lung and Bronchus,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,10.7
+Idaho,Lung and Bronchus,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Lung and Bronchus,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Melanoma of the Skin,Population,"21,045","27,975","15,388","196,734"
+Idaho,Melanoma of the Skin,Count,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Melanoma of the Skin,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Melanoma of the Skin,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Melanoma of the Skin,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Ovary†,Population,"10,547","15,050","6,594","95,076"
+Idaho,Ovary†,Count,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Ovary†,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Ovary†,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Ovary†,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Prostate††,Population,"10,498","12,925","8,794","101,658"
+Idaho,Prostate††,Count,Suppressed,Suppressed,Suppressed,20
+Idaho,Prostate††,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,19.7
+Idaho,Prostate††,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Idaho,Prostate††,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Illinois,Breast,Population,"25,250","705,626","1,887,030","2,150,750"
+Illinois,Breast,Count,Suppressed,355,"1,488",679
+Illinois,Breast,Incidence Crude Rates,Suppressed,50.3,78.9,31.6
+Illinois,Breast,Deaths,Suppressed,51,292,73
+Illinois,Breast,Mortality Crude Rates,Suppressed,7,16,3.4
+Illinois,Cervix Uteri†,Population,"13,253","365,554","1,001,178","1,048,097"
+Illinois,Cervix Uteri†,Count,Suppressed,21,105,87
+Illinois,Cervix Uteri†,Incidence Crude Rates,Suppressed,5.7,10.5,8.3
+Illinois,Cervix Uteri†,Deaths,Suppressed,Suppressed,40,18
+Illinois,Cervix Uteri†,Mortality Crude Rates,Suppressed,Suppressed,4,Unreliable
+Illinois,Colon and Rectum,Population,"25,250","705,626","1,887,030","2,150,750"
+Illinois,Colon and Rectum,Count,Suppressed,168,938,393
+Illinois,Colon and Rectum,Incidence Crude Rates,Suppressed,23.8,49.7,18.3
+Illinois,Colon and Rectum,Deaths,Suppressed,34,391,104
+Illinois,Colon and Rectum,Mortality Crude Rates,Suppressed,5,21,4.8
+Illinois,Lung and Bronchus,Population,"25,250","705,626","1,887,030","2,150,750"
+Illinois,Lung and Bronchus,Count,Suppressed,167,"1,320",301
+Illinois,Lung and Bronchus,Incidence Crude Rates,Suppressed,23.7,70,14
+Illinois,Lung and Bronchus,Deaths,Suppressed,117,975,150
+Illinois,Lung and Bronchus,Mortality Crude Rates,Suppressed,17,52,7
+Illinois,Melanoma of the Skin,Population,"25,250","705,626","1,887,030","2,150,750"
+Illinois,Melanoma of the Skin,Count,Suppressed,Suppressed,Suppressed,59
+Illinois,Melanoma of the Skin,Incidence Crude Rates,Suppressed,Suppressed,Suppressed,2.7
+Illinois,Melanoma of the Skin,Deaths,Suppressed,Suppressed,Suppressed,Suppressed
+Illinois,Melanoma of the Skin,Mortality Crude Rates,Suppressed,Suppressed,Suppressed,Suppressed
+Illinois,Ovary†,Population,"13,253","365,554","1,001,178","1,048,097"
+Illinois,Ovary†,Count,Suppressed,27,86,56
+Illinois,Ovary†,Incidence Crude Rates,Suppressed,7.4,8.6,5.3
+Illinois,Ovary†,Deaths,Suppressed,Suppressed,79,21
+Illinois,Ovary†,Mortality Crude Rates,Suppressed,Suppressed,8,2
+Illinois,Prostate††,Population,"11,997","340,072","885,852","1,102,653"
+Illinois,Prostate††,Count,Suppressed,163,"1,288",475
+Illinois,Prostate††,Incidence Crude Rates,Suppressed,47.9,145.4,43.1
+Illinois,Prostate††,Deaths,Suppressed,17,261,44
+Illinois,Prostate††,Mortality Crude Rates,Suppressed,Unreliable,29.5,4
