@@ -2269,3 +2269,8 @@ div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leafl
 	bottom: 2px;
 	display: inline;
 }
+.prams-search-baner {
+	font-style: italic;
+	font-size: 12px;
+	color: #C70039;
+}
