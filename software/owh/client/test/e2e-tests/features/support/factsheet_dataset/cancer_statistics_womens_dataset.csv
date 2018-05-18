@@ -1,0 +1,358 @@
+state,Cancer Site,"Incidence Crude Rates (per 100,000 women)","Mortality Crude Rates (per 100,000 women)"
+Alabama,Breast,147.7,26.7
+Alabama,Lung and Bronchus,64.0,50.8
+Alabama,Colon and Rectum,47.2,16.3
+Alabama,Melanoma of the Skin,16.8,1.9
+Alabama,Cervix,9.8,4.3
+Alabama,Ovary,14.1,10.6
+Alabama,Uterus,24.6,2.2
+Alaska,Breast,123.1,21.2
+Alaska,Lung and Bronchus,41.5,29.5
+Alaska,Colon and Rectum,36.1,13.2
+Alaska,Melanoma of the Skin,11.4,Suppressed
+Alaska,Cervix,Unreliable,Suppressed
+Alaska,Ovary,10.0,Unreliable
+Alaska,Uterus,22.9,Suppressed
+Arizona,Breast,137.1,23.4
+Arizona,Lung and Bronchus,55.7,37.0
+Arizona,Colon and Rectum,35.5,13.9
+Arizona,Melanoma of the Skin,17.0,2.2
+Arizona,Cervix,5.6,2.3
+Arizona,Ovary,13.7,9.2
+Arizona,Uterus,25.4,2.5
+Arkansas,Breast,138.6,28.1
+Arkansas,Lung and Bronchus,83.5,56.4
+Arkansas,Colon and Rectum,46.4,16.2
+Arkansas,Melanoma of the Skin,17.7,2.2
+Arkansas,Cervix,8.8,3.5
+Arkansas,Ovary,12.2,8.3
+Arkansas,Uterus,27.1,2.0
+California,Breast,131.6,22.8
+California,Lung and Bronchus,43.3,30.2
+California,Colon and Rectum,35.0,12.6
+California,Melanoma of the Skin,19.3,1.5
+California,Cervix,7.1,2.4
+California,Ovary,12.5,8.1
+California,Uterus,28.1,2.0
+Colorado,Breast,139.2,20.8
+Colorado,Lung and Bronchus,43.5,30.2
+Colorado,Colon and Rectum,32.9,11.7
+Colorado,Melanoma of the Skin,18.8,2.1
+Colorado,Cervix,6.5,2.0
+Colorado,Ovary,12.8,8.0
+Colorado,Uterus,25.8,1.7
+Connecticut,Breast,176.4,23.8
+Connecticut,Lung and Bronchus,73.0,45.4
+Connecticut,Colon and Rectum,45.2,14.5
+Connecticut,Melanoma of the Skin,21.9,2.2
+Connecticut,Cervix,6.7,2.2
+Connecticut,Ovary,13.3,8.8
+Connecticut,Uterus,35.8,2.5
+Delaware,Breast,174.1,27.7
+Delaware,Lung and Bronchus,84.9,56.7
+Delaware,Colon and Rectum,43.3,15.1
+Delaware,Melanoma of the Skin,27.1,Suppressed
+Delaware,Cervix,9.3,Unreliable
+Delaware,Ovary,13.3,9.5
+Delaware,Uterus,34.0,4.3
+District of columbia,Breast,137.8,29.7
+District of columbia,Lung and Bronchus,47.6,35.2
+District of columbia,Colon and Rectum,39.8,15.6
+District of columbia,Melanoma of the Skin,6.3,Suppressed
+District of columbia,Cervix,9.5,Suppressed
+District of columbia,Ovary,13.0,8.1
+District of columbia,Uterus,29.1,Unreliable
+Florida,Breast,152.8,28.5
+Florida,Lung and Bronchus,74.9,52.0
+Florida,Colon and Rectum,44.4,17.0
+Florida,Melanoma of the Skin,22.0,2.4
+Florida,Cervix,9.0,3.3
+Florida,Ovary,14.3,10.3
+Florida,Uterus,32.4,2.1
+Georgia,Breast,137.7,24.9
+Georgia,Lung and Bronchus,55.0,37.2
+Georgia,Colon and Rectum,38.3,13.6
+Georgia,Melanoma of the Skin,22.4,1.5
+Georgia,Cervix,8.3,2.4
+Georgia,Ovary,12.2,7.6
+Georgia,Uterus,26.4,2.3
+Hawaii,Breast,166.2,22.5
+Hawaii,Lung and Bronchus,49.2,33.6
+Hawaii,Colon and Rectum,48.5,14.0
+Hawaii,Melanoma of the Skin,20.0,Suppressed
+Hawaii,Cervix,8.6,Suppressed
+Hawaii,Ovary,12.4,7.1
+Hawaii,Uterus,34.1,Unreliable
+Idaho,Breast,139.0,23.4
+Idaho,Lung and Bronchus,51.6,37.4
+Idaho,Colon and Rectum,38.7,13.1
+Idaho,Melanoma of the Skin,25.4,Unreliable
+Idaho,Cervix,6.0,Unreliable
+Idaho,Ovary,13.2,7.6
+Idaho,Uterus,27.1,Unreliable
+Illinois,Breast,155.4,26.8
+Illinois,Lung and Bronchus,70.9,47.3
+Illinois,Colon and Rectum,44.5,15.6
+Illinois,Melanoma of the Skin,17.4,2.0
+Illinois,Cervix,8.7,2.8
+Illinois,Ovary,12.9,8.5
+Illinois,Uterus,35.2,2.7
+Indiana,Breast,142.5,25.8
+Indiana,Lung and Bronchus,72.7,52.7
+Indiana,Colon and Rectum,44.3,17.4
+Indiana,Melanoma of the Skin,18.9,2.1
+Indiana,Cervix,7.5,2.2
+Indiana,Ovary,13.3,9.3
+Indiana,Uterus,33.5,3.2
+Iowa,Breast,152.1,25.4
+Iowa,Lung and Bronchus,73.3,47.1
+Iowa,Colon and Rectum,55.3,19.4
+Iowa,Melanoma of the Skin,24.3,2.9
+Iowa,Cervix,8.4,2.4
+Iowa,Ovary,13.9,9.8
+Iowa,Uterus,37.9,5.0
+Kansas,Breast,Not available,24.5
+Kansas,Lung and Bronchus,Not available,48.6
+Kansas,Colon and Rectum,Not available,14.8
+Kansas,Melanoma of the Skin,Not available,3.0
+Kansas,Cervix,Not available,1.8
+Kansas,Ovary,Not available,8.6
+Kansas,Uterus,Not available,1.9
+Kentucky,Breast,154.6,25.8
+Kentucky,Lung and Bronchus,99.4,68.9
+Kentucky,Colon and Rectum,51.5,17.5
+Kentucky,Melanoma of the Skin,26.5,2.9
+Kentucky,Cervix,9.5,2.6
+Kentucky,Ovary,11.2,8.7
+Kentucky,Uterus,33.4,2.5
+Louisiana,Breast,141.6,28.2
+Louisiana,Lung and Bronchus,64.3,47.6
+Louisiana,Colon and Rectum,46.3,18.0
+Louisiana,Melanoma of the Skin,12.8,1.8
+Louisiana,Cervix,9.6,2.9
+Louisiana,Ovary,11.2,7.7
+Louisiana,Uterus,22.7,1.8
+Maine,Breast,177.0,25.5
+Maine,Lung and Bronchus,96.5,59.2
+Maine,Colon and Rectum,50.2,15.5
+Maine,Melanoma of the Skin,27.7,Suppressed
+Maine,Cervix,7.1,Unreliable
+Maine,Ovary,15.5,9.4
+Maine,Uterus,45.2,3.7
+Maryland,Breast,154.2,28.0
+Maryland,Lung and Bronchus,61.0,43.9
+Maryland,Colon and Rectum,39.4,14.8
+Maryland,Melanoma of the Skin,18.6,1.6
+Maryland,Cervix,6.9,2.0
+Maryland,Ovary,11.9,7.8
+Maryland,Uterus,33.9,2.4
+Massachusetts,Breast,168.4,23.5
+Massachusetts,Lung and Bronchus,74.6,46.8
+Massachusetts,Colon and Rectum,40.9,14.5
+Massachusetts,Melanoma of the Skin,18.7,2.4
+Massachusetts,Cervix,5.7,1.5
+Massachusetts,Ovary,14.0,9.0
+Massachusetts,Uterus,34.7,3.4
+Michigan,Breast,145.5,29.1
+Michigan,Lung and Bronchus,74.9,54.7
+Michigan,Colon and Rectum,42.7,17.4
+Michigan,Melanoma of the Skin,18.0,1.9
+Michigan,Cervix,6.2,2.1
+Michigan,Ovary,13.8,10.2
+Michigan,Uterus,35.9,2.8
+Minnesota,Breast,153.7,21.6
+Minnesota,Lung and Bronchus,59.9,43.2
+Minnesota,Colon and Rectum,42.8,14.4
+Minnesota,Melanoma of the Skin,28.5,2.3
+Minnesota,Cervix,5.1,1.5
+Minnesota,Ovary,12.6,8.2
+Minnesota,Uterus,39.1,2.8
+Mississippi,Breast,132.5,28.5
+Mississippi,Lung and Bronchus,67.4,50.1
+Mississippi,Colon and Rectum,48.2,18.8
+Mississippi,Melanoma of the Skin,15.1,1.8
+Mississippi,Cervix,10.7,3.7
+Mississippi,Ovary,11.8,7.0
+Mississippi,Uterus,23.8,Unreliable
+Missouri,Breast,156.8,28.5
+Missouri,Lung and Bronchus,82.4,58.9
+Missouri,Colon and Rectum,44.7,16.0
+Missouri,Melanoma of the Skin,16.3,2.2
+Missouri,Cervix,7.9,2.9
+Missouri,Ovary,11.7,8.2
+Missouri,Uterus,31.1,2.8
+Montana,Breast,163.4,26.3
+Montana,Lung and Bronchus,67.6,56.0
+Montana,Colon and Rectum,45.0,17.3
+Montana,Melanoma of the Skin,29.7,Suppressed
+Montana,Cervix,7.5,Suppressed
+Montana,Ovary,13.6,8.2
+Montana,Uterus,36.7,Suppressed
+Nebraska,Breast,145.0,26.6
+Nebraska,Lung and Bronchus,58.6,40.2
+Nebraska,Colon and Rectum,43.6,17.4
+Nebraska,Melanoma of the Skin,24.6,Unreliable
+Nebraska,Cervix,8.5,2.6
+Nebraska,Ovary,13.8,8.3
+Nebraska,Uterus,30.9,3.0
+Nevada,Breast,123.2,24.9
+Nevada,Lung and Bronchus,62.0,46.9
+Nevada,Colon and Rectum,35.0,14.7
+Nevada,Melanoma of the Skin,12.6,1.8
+Nevada,Cervix,8.1,2.9
+Nevada,Ovary,11.0,9.3
+Nevada,Uterus,22.9,Unreliable
+New Hampshire,Breast,189.4,28.9
+New Hampshire,Lung and Bronchus,79.9,51.3
+New Hampshire,Colon and Rectum,44.2,18.7
+New Hampshire,Melanoma of the Skin,36.3,Unreliable
+New Hampshire,Cervix,5.4,Suppressed
+New Hampshire,Ovary,16.4,9.5
+New Hampshire,Uterus,42.4,4.0
+New Jersey,Breast,163.9,28.0
+New Jersey,Lung and Bronchus,67.0,43.9
+New Jersey,Colon and Rectum,46.7,16.5
+New Jersey,Melanoma of the Skin,20.2,2.1
+New Jersey,Cervix,8.1,2.4
+New Jersey,Ovary,15.1,9.0
+New Jersey,Uterus,39.0,3.1
+New Mexico,Breast,129.6,23.4
+New Mexico,Lung and Bronchus,42.9,32.7
+New Mexico,Colon and Rectum,33.9,13.7
+New Mexico,Melanoma of the Skin,11.7,Suppressed
+New Mexico,Cervix,7.8,2.2
+New Mexico,Ovary,14.6,10.0
+New Mexico,Uterus,29.4,1.9
+New York,Breast,157.9,24.6
+New York,Lung and Bronchus,66.4,40.3
+New York,Colon and Rectum,43.3,15.2
+New York,Melanoma of the Skin,16.7,1.6
+New York,Cervix,8.0,2.9
+New York,Ovary,14.1,9.0
+New York,Uterus,38.7,2.8
+North Carolina,Breast,155.9,25.7
+North Carolina,Lung and Bronchus,70.4,47.0
+North Carolina,Colon and Rectum,38.9,15.0
+North Carolina,Melanoma of the Skin,20.7,2.1
+North Carolina,Cervix,7.7,2.5
+North Carolina,Ovary,11.7,8.0
+North Carolina,Uterus,30.9,3.0
+North Dakota,Breast,127.2,18.3
+North Dakota,Lung and Bronchus,63.5,43.5
+North Dakota,Colon and Rectum,46.3,19.7
+North Dakota,Melanoma of the Skin,18.6,Suppressed
+North Dakota,Cervix,Unreliable,Suppressed
+North Dakota,Ovary,12.5,5.5
+North Dakota,Uterus,33.5,Suppressed
+Ohio,Breast,157.1,29.7
+Ohio,Lung and Bronchus,76.2,53.6
+Ohio,Colon and Rectum,48.1,18.9
+Ohio,Melanoma of the Skin,22.3,2.3
+Ohio,Cervix,8.0,2.9
+Ohio,Ovary,13.4,9.9
+Ohio,Uterus,37.7,3.1
+Oklahoma,Breast,139.4,26.6
+Oklahoma,Lung and Bronchus,72.5,54.2
+Oklahoma,Colon and Rectum,41.3,16.1
+Oklahoma,Melanoma of the Skin,17.4,2.1
+Oklahoma,Cervix,9.1,2.9
+Oklahoma,Ovary,12.1,9.5
+Oklahoma,Uterus,28.1,1.9
+Oregon,Breast,148.2,26.9
+Oregon,Lung and Bronchus,64.5,48.2
+Oregon,Colon and Rectum,38.4,14.0
+Oregon,Melanoma of the Skin,25.7,2.1
+Oregon,Cervix,6.9,2.5
+Oregon,Ovary,14.3,11.9
+Oregon,Uterus,33.5,3.4
+Pennsylvania,Breast,169.0,29.5
+Pennsylvania,Lung and Bronchus,78.7,51.3
+Pennsylvania,Colon and Rectum,49.4,19.1
+Pennsylvania,Melanoma of the Skin,26.2,2.8
+Pennsylvania,Cervix,7.2,2.7
+Pennsylvania,Ovary,15.7,11.3
+Pennsylvania,Uterus,42.8,4.3
+Rhode Island,Breast,164.2,24.3
+Rhode Island,Lung and Bronchus,85.1,58.6
+Rhode Island,Colon and Rectum,44.5,18.2
+Rhode Island,Melanoma of the Skin,25.0,Unreliable
+Rhode Island,Cervix,8.3,Suppressed
+Rhode Island,Ovary,11.9,11.0
+Rhode Island,Uterus,38.2,4.2
+South Carolina,Breast,153.4,29.2
+South Carolina,Lung and Bronchus,66.6,46.4
+South Carolina,Colon and Rectum,39.1,16.2
+South Carolina,Melanoma of the Skin,19.5,2.3
+South Carolina,Cervix,7.9,2.8
+South Carolina,Ovary,11.8,8.0
+South Carolina,Uterus,28.7,2.7
+South Dakota,Breast,143.4,24.1
+South Dakota,Lung and Bronchus,59.9,44.1
+South Dakota,Colon and Rectum,47.2,18.4
+South Dakota,Melanoma of the Skin,26.4,Suppressed
+South Dakota,Cervix,8.5,Suppressed
+South Dakota,Ovary,13.0,9.7
+South Dakota,Uterus,34.2,Suppressed
+Tennessee,Breast,142.4,27.1
+Tennessee,Lung and Bronchus,77.1,55.3
+Tennessee,Colon and Rectum,45.1,16.6
+Tennessee,Melanoma of the Skin,17.5,1.9
+Tennessee,Cervix,8.6,3.2
+Tennessee,Ovary,12.8,9.5
+Tennessee,Uterus,28.9,2.0
+Texas,Breast,114.4,20.5
+Texas,Lung and Bronchus,44.1,30.6
+Texas,Colon and Rectum,32.2,11.8
+Texas,Melanoma of the Skin,9.0,1.2
+Texas,Cervix,9.1,3.0
+Texas,Ovary,11.5,6.4
+Texas,Uterus,22.1,1.6
+Utah,Breast,104.4,18.0
+Utah,Lung and Bronchus,19.5,14.2
+Utah,Colon and Rectum,24.6,8.5
+Utah,Melanoma of the Skin,29.0,1.9
+Utah,Cervix,4.0,Suppressed
+Utah,Ovary,9.9,7.4
+Utah,Uterus,26.0,Unreliable
+Vermont,Breast,177.4,24.8
+Vermont,Lung and Bronchus,82.4,59.1
+Vermont,Colon and Rectum,46.2,17.6
+Vermont,Melanoma of the Skin,33.0,Suppressed
+Vermont,Cervix,Suppressed,Suppressed
+Vermont,Ovary,16.4,11.0
+Vermont,Uterus,43.7,Unreliable
+Virginia,Breast,152.9,27.1
+Virginia,Lung and Bronchus,58.7,41.6
+Virginia,Colon and Rectum,39.3,14.1
+Virginia,Melanoma of the Skin,17.8,1.8
+Virginia,Cervix,7.0,2.0
+Virginia,Ovary,12.0,8.9
+Virginia,Uterus,29.1,2.8
+Washington,Breast,157.4,24.5
+Washington,Lung and Bronchus,60.5,40.7
+Washington,Colon and Rectum,37.4,11.9
+Washington,Melanoma of the Skin,24.8,2.1
+Washington,Cervix,7.1,1.2
+Washington,Ovary,14.6,9.5
+Washington,Uterus,31.7,2.9
+West Virginia,Breast,151.4,32.1
+West Virginia,Lung and Bronchus,95.9,67.3
+West Virginia,Colon and Rectum,58.2,23.0
+West Virginia,Melanoma of the Skin,20.5,2.9
+West Virginia,Cervix,9.5,3.1
+West Virginia,Ovary,17.4,10.4
+West Virginia,Uterus,39.9,4.5
+Wisconsin,Breast,154.3,25.5
+Wisconsin,Lung and Bronchus,68.7,46.7
+Wisconsin,Colon and Rectum,40.6,16.6
+Wisconsin,Melanoma of the Skin,21.6,2.0
+Wisconsin,Cervix,7.2,1.9
+Wisconsin,Ovary,14.0,9.0
+Wisconsin,Uterus,38.6,3.4
+Wyoming,Breast,143.2,18.2
+Wyoming,Lung and Bronchus,54.8,40.2
+Wyoming,Colon and Rectum,32.5,7.7
+Wyoming,Melanoma of the Skin,22.0,Suppressed
+Wyoming,Cervix,Unreliable,Suppressed
+Wyoming,Ovary,14.3,8.7
+Wyoming,Uterus,25.8,Suppressed
