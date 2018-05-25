@@ -258,7 +258,7 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
         }
 
         if(isTotalCell(r, precompgroups, precomputed)){
-            q[responseKey][key]= resultCellObject(r, key);
+            q[responseKey][key]= resultCellObject(r, key, precomputed);
         }else if(!isSubTotalCell(r, precompgroups, precomputed)){
             var cell = q[responseKey];
             if (key === 'mental_health') {
@@ -269,7 +269,7 @@ yrbs.prototype.processQuestionResponse = function(response, precomputed, key){
                 cell = getCellDataForBRFSS(cell, r, response);
             }
 
-            cell[key] = resultCellObject(r, key);
+            cell[key] = resultCellObject(r, key, precomputed);
 
             // If the result has only one column then there is no separate total column value available in pre-computed results
             // so assign the cell result to total as well
@@ -448,7 +448,7 @@ function getResultCell (currentcell, cellkey, cellvalue){
     return newcell;
 }
 
-function resultCellObject (response, key) {
+function resultCellObject (response, key, precomputed) {
     var prec = 1;
     var result = {
         mean: toRoundedPercentage(response.mean, prec),
@@ -457,6 +457,10 @@ function resultCellObject (response, key) {
     };
     if(key == 'mental_health') {
         result.count = response.sample_size;
+    } else if(key == 'prams' && !precomputed) {
+        result.count = response.sample_size;
+        result.sampleSize = response.sample_size;
+        result.se = response.se;
     } else {
         result.count = response.count;
         result.sampleSize = response.sample_size;
