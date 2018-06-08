@@ -511,7 +511,7 @@
                     <div class="bridge-race-factsheet">
                         <h5 class="bridge-race-heading"><img src="../../images/icons/bridged-race-icon.svg"/>Population in {{fsc.stateName}}</h5>
                         <p class="bridge-race-description">
-                            Total state female population: {{fsc.factSheet.gender[0].bridge_race | number }}
+                            Total state female population*: {{fsc.factSheet.gender[0].bridge_race | number }}
                         </p>
                         <div>
                             <table class="bridge-race-table1">
@@ -532,7 +532,7 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <i class="bridge-race-info">Sources: 2015, U.S. Census Bureau and NCHS</i>
+                            <i class="bridge-race-info" ng-bind="'fs.women.health.bridgerace.footnote' | translate"></i>
                         </div>
                     </div>
                     <!--  Detail Mortality - Cause of Death -->
