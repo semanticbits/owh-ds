@@ -1505,7 +1505,7 @@
                 cancerTableData.unshift(prepareTableHeaders(allTablesData.cancer.headerData));
                 var detailMortalityTableData = allTablesData.detailMortality.bodyData;
                 detailMortalityTableData.unshift(prepareTableHeaders(allTablesData.detailMortality.headerData));
-                var bridgeRaceTotalText = "Total state female population: "+$filter('number')(fsc.factSheet.gender[0].bridge_race);
+                var bridgeRaceTotalText = "Total state female population*: "+$filter('number')(fsc.factSheet.gender[0].bridge_race);
 
                 var lightHorizontalLines = {
                     hLineWidth: function (i, node) {return .5;}, vLineWidth: function (i, node) {return .5;},
