@@ -51,7 +51,7 @@ install:
 
 before_script:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sleep 10; fi
-  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then curl http://54.152.6.199/esdev; fi  # To verify ElasticSearch running
+  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then curl http://34.206.155.198/esdev; fi  # To verify ElasticSearch running
   # - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then curl http://54.242.94.197/stats/questions?d=yrbss; fi # check connection to YRBS dev service; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then java -version; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then echo $JAVA_HOME; fi

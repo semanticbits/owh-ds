@@ -19,6 +19,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(helmet());
+app.use(helmet.hsts({
+    maxAge: 31536000 ,
+    preload: true
+}));
 app.use(expressSanitizer());
 
 // view engine setup

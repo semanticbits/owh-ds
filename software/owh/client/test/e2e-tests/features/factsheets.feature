@@ -15,18 +15,6 @@ Scenario: Access fact sheet page
    And I click on generate fact sheet link
  Then generated data should be displayed on same factsheets page
 
-  Scenario: Generate Minority FactSheet "Maryland"
-   When I select state "Maryland" from state selectbox
-   And I select fact sheet type "Minority Health"
-   And I click on generate fact sheet link
-#  Then generated data should be displayed on same factsheets page
-  Then For "Maryland" the generated population data as defined in "population_total.csv" file
-
-  Scenario: Generate Minority FactSheet "Arizona"
-    When I select state "Arizona" from state selectbox
-    And I select fact sheet type "Minority Health"
-    And I click on generate fact sheet link
-  Then For "Arizona" the generated population data as defined in "population_total.csv" file
 
 
 #  Racial distributions of minority residents*
@@ -654,44 +642,9 @@ Scenario: Access fact sheet page
       |Hawaii|
       |Idaho|
       |Illinois|
-      |Indiana|
-      |Iowa|
-      |Kansas|
-      |Kentucky|
-      |Louisiana|
-      |Maryland|
-      |Maine|
-      |Massachusetts|
-      |Michigan|
-      |Minnesota|
-      |Mississippi|
-      |Missouri|
-      |Montana|
-      |Nebraska|
-      |Nevada|
-      |New Hampshire|
-      |New Jersey|
-      |New Mexico|
-      |New York|
-      |North Carolina|
-      |North Dakota|
-      |Ohio|
-      |Oklahoma|
-      |Pennsylvania|
-      |Rhode Island|
-      |South Carolina|
-      |South Dakota|
-      |Tennessee|
-      |Texas|
-      |Utah|
-      |Vermont|
-      |Virginia|
-      |Washington|
-      |West Virginia|
-      |Wisconsin|
-      |Wyoming|
 
-    #  Generate pdf for all states
+
+#      Generate pdf for all states
   Scenario: Generate  Minority Health fact sheet pdf for all states
   Then I select <state> and fact sheet type "Minority Health" and generated data downloaded file defined in "states.csv"
 
