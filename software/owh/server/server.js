@@ -19,9 +19,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(helmet());
-var sixtyDaysInSeconds = 5184000;
 app.use(helmet.hsts({
-    maxAge: sixtyDaysInSeconds
+    maxAge: 31536000 ,
+    preload: true
 }));
 app.use(expressSanitizer());
 
