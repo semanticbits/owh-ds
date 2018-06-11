@@ -1562,6 +1562,7 @@
                 pdfDefinition.content = [
                     {image: response.data[0], width: 50, height: 50, style: 'state-image'},
                     {text: fsc.factSheetTitle, style: 'state-heading'},
+                    { canvas: [{ type: 'line', x1: 0, y1: 5, x2: 525-10, y2: 5, lineWidth: 0.1 }] },
                     {image: fsc.imageDataURLs.bridgeRace, width: 50, height: 50, style: 'dataset-image'},
                     {text: "Population in " + fsc.stateName, style: 'heading'},
                     {text: bridgeRaceTotalText},
@@ -1579,7 +1580,7 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Sources: 2015, U.S. Census Bureau and NCHS', style: 'info'},
+                    {text: $filter('translate')('fs.women.health.bridgerace.footnote'), style: 'info'},
                     {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Mortality',  style: 'heading'},
                     {
