@@ -12,8 +12,7 @@
                     <h1 class="dark-purple-text dataset-name" ng-bind="dataset.title"></h1>
                 </div>
                 <h3 class="dark-purple-text" ng-bind="'label.documentation.about.dataset' | translate"></h3>
-                <div ng-bind-html="dataset.dataDescription"></div><br/>
-                <div ng-if="dataset.announcement" ng-bind="dataset.announcement" class="prams-search-baner"></div>
+                <div ng-bind-html="dataset.dataDescription"></div>
                 <div ng-if="dataset.suppression">
                     <h5>Data Suppression:</h5>
                     <div ng-bind-html="dataset.suppression" class="suppression"></div>
