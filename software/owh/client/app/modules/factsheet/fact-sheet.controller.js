@@ -350,7 +350,7 @@
                             },
                             layout: lightHorizontalLines
                         },
-                        {text: 'Sources: 2015, U.S. Census Bureau and NCHS; * Racial/ethnic groups may not sum to total', style: 'info'},
+                        {text: $filter('translate')('fs.state.health.bridgerace.footnote'), style: 'info'},
                         {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Mortality',  style: 'heading'},
                         {
