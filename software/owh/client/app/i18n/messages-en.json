@@ -602,5 +602,5 @@
   "fs.rates.per.thousand":"(rate per 1000 population)",
   "fs.adge-adjusted.rates.def":"Age-adjusted death rates are weighted averages of the age-specific death rates, where the weights represent a fixed population of 100,000 by age.",
   "fs.women.health.bridgerace.footnote": "Sources: 2015, U.S. Census Bureau and NCHS. *Racial/ethnic groups may not sum to total because American Indian/Alaska Native and Asian/Pacific Islander groups include both Hispanic and non-Hispanic females.",
-  "fs.state.health.bridgerace.footnote": "Sources: 2015, U.S. Census Bureau and NCHS. *Racial/ethnic groups may not sum to total because American Indian/Alaska Native and Asian/Pacific Islander groups include both Hispanics and non-Hispanics"
+  "fs.state.health.bridgerace.footnote": "Sources: 2015, U.S. Census Bureau and NCHS. *Racial/ethnic groups may not sum to total because American Indian/Alaska Native and Asian/Pacific Islander groups include both Hispanics and non-Hispanics."
 }
