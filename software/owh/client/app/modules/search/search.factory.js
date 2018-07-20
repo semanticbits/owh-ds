@@ -2249,9 +2249,13 @@
                 {"key": "unknown pnc", "title": "Unknown PNC"}
             ];
 
-            filters.pramsBirthWeightOptions = [
+            filters.precomputedBirthWeightOptions = [
                 {"key": "LBW", "title": "LBW (<= 2500g)"},
                 {"key": "NBW", "title": "NBW (>2500g)"}
+            ];
+            filters.rawBirthWeightOptions = [
+                {"key": "NBW", "title": "LBW (<= 2500g)"},
+                {"key": "LBW", "title": "NBW (>2500g)"}
             ];
 
             filters.pramsPrecIncomeOptions = {
@@ -2392,7 +2396,7 @@
                 {key: 'adequacy', title: 'label.prams.filter.adequacy', queryKey:"prenatal_care",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio',autoCompleteOptions: filters.pramsAdequacyOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.adequacy"},
                 {key: 'birth_weight', title: 'label.prams.filter.birth_weight', queryKey:"birth_weight",primary: false, value: [], groupBy: false,disableFilter: true,
-                    filterType: 'radio',autoCompleteOptions: filters.pramsBirthWeightOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.weight"},
+                    filterType: 'radio',autoCompleteOptions: filters.precomputedBirthWeightOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.weight"},
                 {key: 'income', title: 'label.prams.filter.income.post2003', queryKey:"income",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'radio', allAutoCompleteOptions: filters.pramsPrecIncomeOptions, autoCompleteOptions: filters.pramsPrecIncomeOptions.post2003,
                     doNotShowAll: false, helpText: "label.help.text.prams.breakouts.income"},
@@ -2445,7 +2449,7 @@
                 {key: 'adequacy', title: 'label.prams.filter.adequacy', queryKey:"prenatal_care",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsAdequacyOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.adequacy"},
                 {key: 'birth_weight', title: 'label.prams.filter.birth_weight', queryKey:"birth_weight",primary: false, value: [], groupBy: false,disableFilter: true,
-                    filterType: 'checkbox',autoCompleteOptions: filters.pramsBirthWeightOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.weight"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.rawBirthWeightOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.weight"},
                 {key: 'income', title: 'label.prams.filter.income.post2003', queryKey:"income",primary: false, value: [], groupBy: false,disableFilter: true,
                     filterType: 'checkbox', autoCompleteOptions: filters.pramsRawDataIncomeOptions,
                     doNotShowAll: false, helpText: "label.help.text.prams.breakouts.income"},
