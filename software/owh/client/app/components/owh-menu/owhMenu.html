@@ -48,13 +48,13 @@
             </select>
 
             <select id="tableView" ng-model="mc.selectedShowFilter"
-                    ng-if="mc.selectedFilter.key === 'prams' && mc.isBasicSearch"
+                    ng-if="(mc.selectedFilter.key === 'prams' || mc.selectedFilter.key === 'brfss') && mc.isBasicSearch"
                     ng-options="item.title for item in mc.showMeOptions[mc.selectedFilter.key][0].basic"
                     ng-change="mc.onViewFilter({selectedFilter: mc.selectedShowFilter})"
                     class="add-on-element gray-border margin-0 tableViewDropDown">
             </select>
             <select id="tableView" ng-model="mc.selectedShowFilter"
-                    ng-if="mc.selectedFilter.key === 'prams' && !mc.isBasicSearch"
+                    ng-if="(mc.selectedFilter.key === 'prams' || mc.selectedFilter.key === 'brfss') && !mc.isBasicSearch"
                     ng-options="item.title for item in mc.showMeOptions[mc.selectedFilter.key][1].advance"
                     ng-change="mc.onViewFilter({selectedFilter: mc.selectedShowFilter})"
                     class="add-on-element gray-border margin-0 tableViewDropDown">

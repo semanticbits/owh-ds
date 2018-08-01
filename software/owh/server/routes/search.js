@@ -72,8 +72,9 @@ var searchRouter = function(app, rConfig) {
         });
     });
 
-    app.get('/brfsQuestionsTree', function (req, res) {
-        new yrbs().getBRFSQuestionsTree().then(function(response) {
+    app.get('/brfsQuestionsTree/:precomputed', function (req, res) {
+        var isPrecomputed = JSON.parse(req.params.precomputed);
+        new yrbs().getBRFSQuestionsTree(isPrecomputed).then(function(response) {
             res.send(new result('OK', response, "success"));
         });
     });

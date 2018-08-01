@@ -276,7 +276,7 @@ describe("YRBS API", function () {
             }
         };
         var result = yrbs.buildYRBSQueries(apiQuery);
-        expect(result).to.eql( [config.yrbs.queryUrl+'?d=brfss&s=1&q=DRNKANY5&f=year:2015|age_group:Age 18-24']);
+        expect(result).to.eql( [config.yrbs.queryUrl+'?d=brfss_pre2011&s=1&q=DRNKANY5&f=year:2015|age_group:Age 18-24']);
     });
 
     it("buildYRBSQueries with gender filtering and grouping", function (){
@@ -4070,14 +4070,14 @@ describe("YRBS API", function () {
         return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
             var q0=resp.table.question[0];
             expect(q0.Yes.mental_health).to.eql({"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":35384});
-            expect(q0.Yes.sex.length).to.eql(2);
+            expect(q0.Yes.sex.length).to.eql(1);
             var sex = sortByKey(q0.Yes.sex, 'name', true);
             expect(sex[0].name).to.eql("Female");
             var race = sortByKey(sex[0].race, 'name', true);
-            expect(race).to.eql([{"name":"Am Indian / Alaska Native","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Asian","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11670}},{"name":"Hispanic/Latino","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Native Hawaiian/other PI","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Total","mental_health":{"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":35384}},{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":23714}}]);
+            expect(race).to.eql([{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11670}},{"name":"Total","mental_health":{"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":35384}},{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":23714}}]);
             expect(q0.No.mental_health).to.eql({"mean":"13.9","ci_l":"12.7","ci_u":"15.1","count":35384});
             expect(sex[0].name).to.eql("Female");
-            var race = sortByKey(sex[0].race, 'name', true);
+            race = sortByKey(sex[0].race, 'name', true);
             expect([{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11670}},{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":23714}}]);
         });
     });
@@ -4090,13 +4090,12 @@ describe("YRBS API", function () {
             var q0=resp.table.question[0];
             expect(q0.Yes.mental_health).to.eql({"mean":"81.6","ci_l":"77.4","ci_u":"85.1","count":10156});
             var race = sortByKey(q0.Yes.race,'name',true);
-            expect(race[0].name).to.eql("Am Indian / Alaska Native");
-            expect(race[1].name).to.eql("Asian");
+            expect(race[0].name).to.eql("Black or African American");
+            expect(race[1].name).to.eql("White");
             var b = sortByKey(race[0].sitecode, 'name', true);
-            expect(b).to.eql([{"name":"AK","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"AL","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"AR","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"AZB","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"CA","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"CT","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"DE","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"FL","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"IA","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"ID","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"IL","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"KS","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"KY","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"MD","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"ME","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"MI","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"MO","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"MS","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"MT","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"NC","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"ND","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"NE","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"NH","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"NJ","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"NV","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"NY","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"OK","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"PA","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"RI","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"SC","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"SD","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"TN","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Total","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"UT","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"VA","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"WI","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"WV","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"WY","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"XX","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}}]);
+            expect(b).to.eql([{"name":"CA","mental_health":{"mean":"suppressed","ci_l":"76.8","ci_u":"96.1","count":38}},{"name":"MO","mental_health":{"mean":"92.8","ci_l":"90.2","ci_u":"94.7","count":1395}},{"name":"Total","mental_health":{"mean":"92.5","ci_l":"90.5","ci_u":"94.1","count":1433}}]);
             var w = sortByKey(race[1].sitecode, 'name', true);
-            expect(w).to.eql([{"name":"AK","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"AL","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"AR","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"AZB","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"CA","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"CT","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"DE","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"FL","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"IA","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"ID","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"IL","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"KS","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"KY","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"MD","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"ME","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"MI","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"MO","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"MS","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"MT","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"NC","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"ND","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"NE","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"NH","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"NJ","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"NV","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"NY","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"OK","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"PA","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"RI","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"SC","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"SD","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"TN","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"Total","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"UT","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"VA","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"WI","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"WV","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"WY","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}},{"name":"XX","mental_health":{"mean":"suppressed","ci_l":"0","ci_u":"0","count":0}}]);
-
+            expect(w).to.eql([{"name":"CA","mental_health":{"mean":"48.8","ci_l":"37.8","ci_u":"59.8","count":240}},{"name":"MO","mental_health":{"mean":"87.8","ci_l":"85.1","ci_u":"90.1","count":8483}},{"name":"Total","mental_health":{"mean":"79.6","ci_l":"74.8","ci_u":"83.8","count":8723}}]);
         });
     });
 
@@ -4221,25 +4220,25 @@ describe("YRBS API", function () {
             var q = resp.table.question[0];
             var yesReponse = q['yes'];
             //suppressed
-            expect(yesReponse.race[4].name).to.eql("Asian");
-            expect(yesReponse.race[4].brfss.mean).to.eql("suppressed");
-            expect(yesReponse.race[4].brfss.ci_l).to.eql(0);
-            expect(yesReponse.race[4].brfss.ci_u).to.eql(0);
-            expect(yesReponse.race[4].brfss.count).to.eql(11);
+            expect(yesReponse.race[3].name).to.eql("Asian");
+            expect(yesReponse.race[3].brfss.mean).to.eql("suppressed");
+            expect(yesReponse.race[3].brfss.ci_l).to.eql(0);
+            expect(yesReponse.race[3].brfss.ci_u).to.eql(0);
+            expect(yesReponse.race[3].brfss.count).to.eql(11);
 
             //No response
-            expect(yesReponse.race[5].name).to.eql("NHOPI");
-            expect(yesReponse.race[5].brfss.mean).to.eql("na");
-            expect(yesReponse.race[5].brfss.ci_l).to.eql(0);
-            expect(yesReponse.race[5].brfss.ci_u).to.eql(0);
-            expect(yesReponse.race[5].brfss.count).to.eql(0);
+            expect(yesReponse.race[0].name).to.eql("native hawaiian or other pacific islander, non-hispanic");
+            expect(yesReponse.race[0].brfss.mean).to.eql("na");
+            expect(yesReponse.race[0].brfss.ci_l).to.eql(0);
+            expect(yesReponse.race[0].brfss.ci_u).to.eql(0);
+            expect(yesReponse.race[0].brfss.count).to.eql(0);
 
             //valid response
-            expect(yesReponse.race[3].name).to.eql("Other Race");
-            expect(yesReponse.race[3].brfss.mean).to.eql(32.9);
-            expect(yesReponse.race[3].brfss.ci_l).to.eql(15.1);
-            expect(yesReponse.race[3].brfss.ci_u).to.eql(50.7);
-            expect(yesReponse.race[3].brfss.count).to.eql(15);
+            expect(yesReponse.race[4].name).to.eql("Other Race");
+            expect(yesReponse.race[4].brfss.mean).to.eql(32.9);
+            expect(yesReponse.race[4].brfss.ci_l).to.eql(15.1);
+            expect(yesReponse.race[4].brfss.ci_u).to.eql(50.7);
+            expect(yesReponse.race[4].brfss.count).to.eql(15);
 
         });
     });
