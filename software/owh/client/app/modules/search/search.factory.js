@@ -48,7 +48,7 @@
             var primaryFilters = filters.primaryFilters;
             //sets primary filter
             var primaryFilter = utilService.findByKeyAndValue(primaryFilters, 'key', response.data.queryJSON.key);
-            if(primaryFilter.key == 'mental_health') {
+            if(primaryFilter.key === 'mental_health') {
                 if (response.data.queryJSON.showBasicSearchSideMenu) {
                     primaryFilter.allFilters = filters.yrbsBasicFilters;
                     primaryFilter.sideFilters = primaryFilter.basicSideFilters;
@@ -56,7 +56,7 @@
                     primaryFilter.allFilters = filters.yrbsAdvancedFilters;
                     primaryFilter.sideFilters = primaryFilter.advancedSideFilters;
                 }
-            } else if(primaryFilter.key == 'prams') {
+            } else if(primaryFilter.key === 'prams') {
                 if (response.data.queryJSON.showBasicSearchSideMenu) {
                     primaryFilter.allFilters = filters.pramsBasicFilters;
                     primaryFilter.sideFilters = primaryFilter.basicSideFilters[0].sideFilters;
@@ -64,7 +64,7 @@
                     primaryFilter.allFilters = filters.pramsAdvanceFilters;
                     primaryFilter.sideFilters = primaryFilter.advancedSideFilters[0].sideFilters;
                 }
-            } else if(primaryFilter.key == 'brfss') {
+            } else if(primaryFilter.key === 'brfss') {
                 if (response.data.queryJSON.showBasicSearchSideMenu) {
                     primaryFilter.allFilters = filters.brfsBasicFilters;
                     primaryFilter.sideFilters = primaryFilter.basicSideFilters[0].sideFilters;
@@ -126,7 +126,7 @@
                 var topicFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'topic');
                 var selectedTopics = [];
                 //iff All topics selected
-                if(topicFilter.value.length == 0) {
+                if(topicFilter.value.length === 0) {
                     selectedTopics = questionFilter.questions;
                 } else {//get selected topic objects only
                     selectedTopics = questionFilter.questions.filter(function(obj){
@@ -142,7 +142,7 @@
                 primaryFilter.chartData = prepareChartData(response.data.resultData.headers, response.data.resultData.nested, primaryFilter);
                 mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
-            else if (response.data.queryJSON.key == 'natality') {
+            else if (response.data.queryJSON.key === 'natality') {
                 primaryFilter.data = response.data.resultData.nested.table;
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
@@ -164,8 +164,8 @@
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
-            else if (response.data.queryJSON.key == 'std' ||
-                response.data.queryJSON.key == 'tb' || response.data.queryJSON.key === 'aids') {
+            else if (response.data.queryJSON.key === 'std' ||
+                response.data.queryJSON.key === 'tb' || response.data.queryJSON.key === 'aids') {
                 primaryFilter.nestedData = response.data.resultData.nested;
                 primaryFilter.data = response.data.resultData.nested.table;
                 populateSideFilterTotals(primaryFilter, response.data);
@@ -2716,7 +2716,8 @@
                 { "key": "2004", "title": "2004" },
                 { "key": "2003", "title": "2003" },
                 { "key": "2002", "title": "2002" },
-                { "key": "2001", "title": "2001" }
+                { "key": "2001", "title": "2001" },
+                { "key": "2000", "title": "2000" }
             ];
             filters.brfsAdvanceYearOptions = [
                 { "key": "2015", "title": "2015" },

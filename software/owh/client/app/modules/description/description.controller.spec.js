@@ -14,9 +14,10 @@ describe("Description Controller: ", function(){
     });
 
     it("Should get Dataset Details", function() {
+        descriptionController= $controller('DescriptionController',{$scope:$scope, $stateParams: {dataSetKey:'births'}});
         var details = descriptionController.getDataSetDetails();
         expect(details.key).toEqual("natality");
-        expect(details.title).toEqual("Natality");
+        expect(details.title).toEqual("Births");
         expect(details.image).toEqual("natality-icon.svg");
 
          descriptionController= $controller('DescriptionController',{$scope:$scope, $stateParams: {dataSetKey:'deaths'}});

@@ -26,7 +26,9 @@ describe('angular-ui-route', function() {
         $httpBackend.whenGET('/pramsAdvancesQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('jsons/ucd-conditions-ICD-10.json').respond({data: []});
         $httpBackend.whenGET('jsons/mcd-conditions-ICD-10.json').respond({data: []});
-        $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('/getGoogAnalyInfo').respond({data: { }});
+        $httpBackend.whenGET('/brfsQuestionsTree/true').respond({data: { }});
+        $httpBackend.whenGET('/brfsQuestionsTree/false').respond({data: { }});
     });
     describe('Testing success response ', function () {
         beforeEach(function() {

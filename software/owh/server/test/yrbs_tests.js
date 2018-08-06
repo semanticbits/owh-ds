@@ -4333,7 +4333,7 @@ describe("YRBS API", function () {
         return yrbs.getBRFSQuestionsTree().then(function (response) {
             expect(response.questionTree[0].text).to.eql("Aerobic Activity");
             expect(response.questionTree[0].children.length).to.eql(2);
-            expect(response.questionTree[0].children[0].text).to.eql("Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)");
+            expect(response.questionTree[0].children[0].text).to.eql("Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)");
 
             expect(response.questionTree[2].text).to.eql("Alcohol Consumption");
             expect(response.questionTree[2].children.length).to.eql(1);
