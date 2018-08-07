@@ -404,13 +404,23 @@
         /*
             Get BRFS questions
          */
-        API.getBRFSQuestionsTree().$promise.then(function(response){
-            console.log('brfs questions response', response);
-            $rootScope.brfsQuestions = response.data.questionTree;
-            $rootScope.brfsQuestionsList = response.data.questionsList;
-            $rootScope.$broadcast("brfsQuestionsLoaded");
+        API.getBRFSQuestionsTree({precomputed:true}).$promise.then(function(response){
+            $rootScope.brfsBasicQuestions = response.data.questionTree;
+            $rootScope.brfsBasicQuestionsList = response.data.questionsList;
+            $rootScope.$broadcast("brfsBasicQuestionsLoaded");
         }).catch(function(error){
-            console.log(" Failed to get BRFS questions from stats service ", error);
+            console.log(" Failed to get BRFS basic questions from stats service ", error);
+        });
+
+        /*
+            Get BRFS questions
+         */
+        API.getBRFSQuestionsTree({precomputed:false}).$promise.then(function(response){
+            $rootScope.brfsAdvanceQuestions = response.data.questionTree;
+            $rootScope.brfsAdvanceQuestionsList = response.data.questionsList;
+            $rootScope.$broadcast("brfsAdvanceQuestionsLoaded");
+        }).catch(function(error){
+            console.log(" Failed to get BRFS advanced questions from stats service ", error);
         });
 
 

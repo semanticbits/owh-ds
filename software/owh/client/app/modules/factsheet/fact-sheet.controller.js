@@ -1733,7 +1733,6 @@
         }
 
         function getCancerCountDisplayVal(count) {
-            debugger;
             if (fsc.state === 'KS') {
                 return 'Not available';
             } else if(count === 'suppressed') {

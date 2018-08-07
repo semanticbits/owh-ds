@@ -1,13 +1,13 @@
 {
-  "charttype":"multiBarHorizontalChart",
-  "title":"label.filter.race and label.filter.hispanicOrigin",
-  "longtitle":"chart.title.measure.deaths by label.filter.race and label.filter.hispanicOrigin in undefined for undefined",
-  "dataset":"deaths",
-  "data":[
+  "charttype": "multiBarHorizontalChart",
+  "title": "label.filter.race and label.filter.hispanicOrigin",
+  "longtitle": "chart.title.measure.deaths by label.filter.race and label.filter.hispanicOrigin in undefined for undefined",
+  "dataset": "deaths",
+  "data": [
     {
-      "namelong":"White     ",
-      "name":"White     ",
-      "x":[
+      "namelong": "White     ",
+      "name": "White     ",
+      "x": [
         6888,
         598,
         5964,
@@ -21,7 +21,7 @@
         2369,
         7026
       ],
-      "y":[
+      "y": [
         "Unknown",
         "Spaniard",
         "S American",
@@ -35,7 +35,7 @@
         "C/SA",
         "C American"
       ],
-      "ylong":[
+      "ylong": [
         "Unknown",
         "Spaniard",
         "South American",
@@ -49,7 +49,7 @@
         "Central and South American",
         "Central American"
       ],
-      "text":[
+      "text": [
         "6,888",
         "598",
         "5,964",
@@ -63,17 +63,17 @@
         "2,369",
         "7,026"
       ],
-      "orientation":"h",
-      "hoverinfo":"none",
-      "type":"bar",
-      "marker":{
-        "color":"#56b783"
+      "orientation": "h",
+      "hoverinfo": "none",
+      "type": "bar",
+      "marker": {
+        "color": "#61B861"
       }
     },
     {
-      "namelong":"Black     ",
-      "name":"Black     ",
-      "x":[
+      "namelong": "Black     ",
+      "name": "Black     ",
+      "x": [
         1867,
         2,
         93,
@@ -87,7 +87,7 @@
         112,
         491
       ],
-      "y":[
+      "y": [
         "Unknown",
         "Spaniard",
         "S American",
@@ -101,7 +101,7 @@
         "C/SA",
         "C American"
       ],
-      "ylong":[
+      "ylong": [
         "Unknown",
         "Spaniard",
         "South American",
@@ -115,7 +115,7 @@
         "Central and South American",
         "Central American"
       ],
-      "text":[
+      "text": [
         "1,867",
         "2",
         "93",
@@ -129,17 +129,17 @@
         "112",
         "491"
       ],
-      "orientation":"h",
-      "hoverinfo":"none",
-      "type":"bar",
-      "marker":{
-        "color":"#FFCC9A"
+      "orientation": "h",
+      "hoverinfo": "none",
+      "type": "bar",
+      "marker": {
+        "color": "#7577CD"
       }
     },
     {
-      "namelong":"Asian or Pacific Islander     ",
-      "name":"API     ",
-      "x":[
+      "namelong": "Asian or Pacific Islander     ",
+      "name": "API     ",
+      "x": [
         280,
         27,
         35,
@@ -153,7 +153,7 @@
         4,
         43
       ],
-      "y":[
+      "y": [
         "Unknown",
         "Spaniard",
         "S American",
@@ -167,7 +167,7 @@
         "C/SA",
         "C American"
       ],
-      "ylong":[
+      "ylong": [
         "Unknown",
         "Spaniard",
         "South American",
@@ -181,7 +181,7 @@
         "Central and South American",
         "Central American"
       ],
-      "text":[
+      "text": [
         "280",
         "27",
         "35",
@@ -195,17 +195,17 @@
         "4",
         "43"
       ],
-      "orientation":"h",
-      "hoverinfo":"none",
-      "type":"bar",
-      "marker":{
-        "color":"#65c2ff"
+      "orientation": "h",
+      "hoverinfo": "none",
+      "type": "bar",
+      "marker": {
+        "color": "#45b7ad"
       }
     },
     {
-      "namelong":"American Indian     ",
-      "name":"American Indian     ",
-      "x":[
+      "namelong": "American Indian     ",
+      "name": "American Indian     ",
+      "x": [
         64,
         11,
         17,
@@ -219,7 +219,7 @@
         1,
         19
       ],
-      "y":[
+      "y": [
         "Unknown",
         "Spaniard",
         "S American",
@@ -233,7 +233,7 @@
         "C/SA",
         "C American"
       ],
-      "ylong":[
+      "ylong": [
         "Unknown",
         "Spaniard",
         "South American",
@@ -247,7 +247,7 @@
         "Central and South American",
         "Central American"
       ],
-      "text":[
+      "text": [
         "64",
         "11",
         "17",
@@ -261,59 +261,59 @@
         "1",
         "19"
       ],
-      "orientation":"h",
-      "hoverinfo":"none",
-      "type":"bar",
-      "marker":{
-        "color":"#ED93CB"
+      "orientation": "h",
+      "hoverinfo": "none",
+      "type": "bar",
+      "marker": {
+        "color": "#FF9F4A"
       }
     }
   ],
-  "layout":{
-    "width":128,
-    "autosize":true,
-    "showlegend":true,
-    "legend":{
-      "orientation":"h",
-      "y":1.25,
-      "x":0.4
+  "layout": {
+    "width": 128,
+    "autosize": true,
+    "showlegend": true,
+    "legend": {
+      "orientation": "h",
+      "y": 1.25,
+      "x": 0.4
     },
-    "xaxis":{
-      "visible":true,
-      "titlefont":{
-        "size":15
+    "xaxis": {
+      "visible": true,
+      "titlefont": {
+        "size": 15
       },
-      "exponentformat":"auto",
-      "tickangle":45,
-      "showline":true,
-      "gridcolor":"#bdbdbd",
-      "showticklabels":true,
-      "fixedrange":true,
-      "title":"Deaths"
+      "exponentformat": "auto",
+      "tickangle": 45,
+      "showline": true,
+      "gridcolor": "#bdbdbd",
+      "showticklabels": true,
+      "fixedrange": true,
+      "title": "Deaths"
     },
-    "yaxis":{
-      "visible":true,
-      "titlefont":{
-        "size":15
+    "yaxis": {
+      "visible": true,
+      "titlefont": {
+        "size": 15
       },
-      "exponentformat":"auto",
-      "tickangle":45,
-      "ticksuffix":"   ",
-      "showline":true,
-      "gridcolor":"#bdbdbd",
-      "showticklabels":true,
-      "fixedrange":true,
-      "title":"label.filter.hispanicOrigin"
+      "exponentformat": "auto",
+      "tickangle": 45,
+      "ticksuffix": "   ",
+      "showline": true,
+      "gridcolor": "#bdbdbd",
+      "showticklabels": true,
+      "fixedrange": true,
+      "title": "label.filter.hispanicOrigin"
     },
-    "margin":{
-      "l":100,
-      "r":10,
-      "b":50,
-      "t":50
+    "margin": {
+      "l": 100,
+      "r": 10,
+      "b": 50,
+      "t": 50
     },
-    "barmode":"stack"
+    "barmode": "stack"
   },
-  "options":{
-    "displayModeBar":false
+  "options": {
+    "displayModeBar": false
   }
 }

@@ -41,7 +41,9 @@ describe('search factory ', function(){
         $httpBackend.whenGET('/pramsAdvancesQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('jsons/ucd-conditions-ICD-10.json').respond({data: []});
         $httpBackend.whenGET('jsons/mcd-conditions-ICD-10.json').respond({data: []});
-        $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('/getGoogAnalyInfo').respond({data: { }});
+        $httpBackend.whenGET('/brfsQuestionsTree/true').respond({data: { }});
+        $httpBackend.whenGET('/brfsQuestionsTree/false').respond({data: { }});
         $rootScope.questionsList = questionsTreeJson.questionsList;
         filters = searchFactory.getAllFilters();
         filters.primaryFilters = utils.findAllByKeyAndValue(filters.search, 'primary', true);
@@ -430,8 +432,8 @@ describe('search factory ', function(){
         });
         it('updateFiltersAndData for brfss response', function(){
             var groupOptions = {
-                alcohol_consumption: {
-                    "topic": ['cat_12', 'cat_47', 'cat_50']
+                basic_alcohol_consumption: {
+                    "topic": ['cat_20', 'cat_36', 'cat_30', 'cat_21']
                 }
             };
             var brfsFilters = {
@@ -439,12 +441,11 @@ describe('search factory ', function(){
                 brfsBasicFilters: basicFilters
             };
             spyOn(utils, 'getValuesByKeyIncludingKeyAndValue').and.returnValue([]);
-            $rootScope.brfsQuestions = [{"id":"cat_44","text":"Aerobic Activity","children":[{"text":"Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)","id":"x_pastae1"},{"text":"Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)","id":"x_pastaer"}]},{"id":"cat_12","text":"Alcohol Consumption","children":[{"text":"Adults who have had at least one drink of alcohol within the past 30 days","id":"drnkany5"}]},{"id":"cat_47","text":"Binge Drinking","children":[{"text":"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)","id":"x_rfbing5"}]},{"id":"cat_50","text":"Heavy Drinking","children":[{"text":"Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions)","id":"x_rfdrhv5"},{"text":"Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)","id":"x_rfdrhv4"}]},{"id":"cat_1","text":"Age","children":[{"text":"What is your age?","id":"age"}]}];
+            $rootScope.brfsBasicQuestions = [{"id":"cat_20","text":"Aerobic Activity","children":[{"text":"Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)","id":"_paindex","years":["2011"]},{"text":"Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)","id":"_paindx1","years":["2015","2013"]}]},{"id":"cat_36","text":"Exercise","children":[{"text":"During the past month, did you participate in any physical activities? (variable calculated from one or more BRFSS questions)","id":"_totinda","years":["1996","2001","2015","2005","2003","2013","2007","2010","2004","2002","1998","2009","2008","2000","2011","2012","2016","2014","2006"]}]},{"id":"cat_30","text":"Physical Activity","children":[{"text":"Adults with 20+ minutes of vigorous physical activity three or more days per week (variable calculated from one or more BRFSS questions)","id":"_rfpavig","years":["2009","2007","2001","2005","2003"]},{"text":"Adults with 30+ minutes of any physical activity five or more days per week (variable calculated from one or more BRFSS questions)","id":"_rfregul","years":["1996","1998","2000"]},{"text":"Adults with 30+ minutes of moderate physical activity five or more days per week, or vigorous physical activity for 20+ minutes three or more days per week","id":"_rfpamod","years":["2009","2007","2001","2005","2003"]}]},{"id":"cat_21","text":"Physical Activity Index","children":[{"text":"Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)","id":"_pastae1","years":["2015","2013"]},{"text":"Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)","id":"_pastaer","years":["2011"]}]}];
 
             var result = searchFactory.updateFiltersAndData(brfsFilters, response, groupOptions);
-
             expect(JSON.stringify(result.primaryFilter.data.question)).toEqual(JSON.stringify(response.data.resultData.table.question));
-            expect(result.primaryFilter.allFilters[8].questions.length).toEqual(groupOptions.alcohol_consumption.topic.length);
+            expect(result.primaryFilter.allFilters[8].questions.length).toEqual(groupOptions.basic_alcohol_consumption.topic.length);
         });
 
         it('searchBRFSSResults', function(){
