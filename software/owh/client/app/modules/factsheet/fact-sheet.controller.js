@@ -1334,7 +1334,7 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Sources: 2015, U.S. Census Bureau and NCHS', style: 'info'},
+                    {text: 'Sources: 2017, U.S. Census Bureau and NCHS', style: 'info'},
                     {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Mortality',  style: 'heading'},
                     {
