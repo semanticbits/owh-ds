@@ -770,6 +770,8 @@
 
             //bridge data filter options
             var censusYearsOptions = [
+                { "key": "2017", "title": "2017" },
+                { "key": "2016", "title": "2016" },
                 { "key": "2015", "title": "2015" },
                 { "key": "2014", "title": "2014" },
                 { "key": "2013", "title": "2013" },
@@ -870,7 +872,7 @@
             //prepare filter definitions
             var bridgeDataFilters = [
                 {key: 'current_year', title: 'label.filter.yearly.estimate', queryKey:"current_year",
-                    primary: false, value: ['2015'], defaultGroup:'row', groupBy: false, filterType: 'checkbox',
+                    primary: false, value: ['2017'], defaultGroup:'row', groupBy: false, filterType: 'checkbox',
                     autoCompleteOptions: censusYearsOptions, refreshFiltersOnChange: true, helpText:"label.help.text.bridged-race.year" },
                 {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'column', filterType: 'checkbox',
