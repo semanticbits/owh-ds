@@ -5964,10 +5964,10 @@
             "key": "question",
             "queryKey": "question.key",
             "value": [
-              "x_bmi5cat",
-              "x_rfsmok3",
-              "x_rfdrhv5",
-              "x_paindx1"
+              "_bmi5cat",
+              "_rfsmok3",
+              "_rfdrhv5",
+              "_paindx1"
             ],
             "primary": false
           }
@@ -11715,10 +11715,10 @@
           "key": "question",
           "queryKey": "question.key",
           "value": [
-            "x_bmi5cat",
-            "x_rfsmok3",
-            "x_rfdrhv5",
-            "x_paindx1"
+            "_bmi5cat",
+            "_rfsmok3",
+            "_rfdrhv5",
+            "_paindx1"
           ],
           "primary": false
         }
@@ -22967,10 +22967,10 @@
             "key": "question",
             "queryKey": "question.key",
             "value": [
-              "x_bmi5cat",
-              "x_rfsmok3",
-              "x_rfdrhv5",
-              "x_paindx1"
+              "_bmi5cat",
+              "_rfsmok3",
+              "_rfdrhv5",
+              "_paindx1"
             ],
             "primary": false
           }

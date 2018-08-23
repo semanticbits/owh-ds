@@ -106,16 +106,16 @@ function prepareBRFSSData(data){
         var property = 'name';
         var sortOrder = ['AI/AN', 'Asian', 'Black', 'NHOPI', 'Multiracial non-Hispanic', 'Other Race', 'Hispanic'];
         switch(eachRecord.name){
-            case "x_bmi5cat":
+            case "_bmi5cat":
                 brfssData[0].data = sortArrayByPropertyAndSortOrder(eachRecord["obese (bmi 30.0 - 99.8)"].race, property, sortOrder);
                 break;
-            case "x_rfsmok3":
+            case "_rfsmok3":
                 brfssData[1].data = sortArrayByPropertyAndSortOrder(eachRecord.yes.race, property, sortOrder);
                 break;
-            case "x_rfdrhv5":
+            case "_rfdrhv5":
                 brfssData[2].data = sortArrayByPropertyAndSortOrder(eachRecord["meet criteria for heavy drinking"].race, property, sortOrder);
                 break;
-            case "x_paindx1":
+            case "_paindx1":
                 brfssData[3].data = sortArrayByPropertyAndSortOrder(eachRecord.yes.race, property, sortOrder);
                 break;
         }

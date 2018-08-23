@@ -568,16 +568,16 @@ function prepareBRFSSData(data_2015){
     brfssData.push({question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable'});
     data_2015.table.question.forEach(function(eachRecord){
         switch(eachRecord.name){
-            case "x_bmi5cat":
+            case "_bmi5cat":
                 brfssData[0].data = getMeanDisplayValue(eachRecord["obese (bmi 30.0 - 99.8)"].brfss.mean);
                 break;
-            case "x_rfsmok3":
+            case "_rfsmok3":
                 brfssData[1].data = getMeanDisplayValue(eachRecord.yes.brfss.mean);
                 break;
-            case "x_rfdrhv5":
+            case "_rfdrhv5":
                 brfssData[2].data = getMeanDisplayValue(eachRecord["meet criteria for heavy drinking"].brfss.mean);
                 break;
-            case "x_paindx1":
+            case "_paindx1":
                 brfssData[3].data = getMeanDisplayValue(eachRecord.yes.brfss.mean);
                 break;
         }
