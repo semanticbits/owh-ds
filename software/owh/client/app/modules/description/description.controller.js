@@ -192,11 +192,11 @@
                     key:"bridge_race",
                     title: 'Bridged Race',
                     image: 'bridged-race-icon.svg',
-                    yrsAvail: '2000-2015',
+                    yrsAvail: '2000-2017',
                     topics: 'Demographics, Population Data',
                     dataDescription: "The estimates result from bridging the 31 race categories used in Census 2000, as specified in the 1997 Office of Management and Budget (OMB) standards for the collection of data on race and ethnicity, to the four race categories specified under the 1977 standards (Asian or Pacific Islander, Black or African American, American Indian or Alaska Native, White).",
                     source: "Data source is United States Department of Health and Human Services (HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS), Bridged-Race Population Estimates, United States July 1st resident population by state, age, sex, bridged-race, and Hispanic origin." +
-                    "<ul><li>2010 to 2015 (Vintage 2015) postcensal estimates of the July 1 resident population by five-year of age groups, bridged-race, sex, and Hispanic origin released by NCHS on June 28, 2016.</li>" +
+                    "<ul><li>2010 to 2017 (Vintage 2017) postcensal estimates of the July 1 resident population by five-year of age groups, bridged-race, sex, and Hispanic origin released by NCHS on June 27, 2018.</li>" +
                     "<li>2000 to 2009 revised intercensal estimates of the July 1 resident population by five-year of age groups, bridged-race, sex, and Hispanic origin released by NCHS on October 26, 2012.</li>" +
                     "</ul>",
                     filters: [
@@ -551,7 +551,7 @@
                     yrsAvail: '2000-2014',
                     topics: " Alcohol and Other Drug Use, Tobacco Use, Births, Babies, Demographics, Delivery, Family, Planning, Flu, Infant Health, Maternal Behavior/Health, Prenatal Care, Insurance/Medicaid/Services, Health Care Access/ Coverage , Women's Health",
                     dataDescription: "Pregnancy Risk Assessment Monitoring System is a joint research project between the state departments of health and the Centers for Disease Control and Prevention, Division of Reproductive Health.PRAMS collects state-specific, population-based data on maternal attitudes and experiences before, during, and shortly after pregnancy. PRAMS surveillance currently covers about 83% of all U.S. births. These data can be used to identify groups of women and infants at high risk for health problems, to monitor changes in health status, and to measure progress towards goals in improving the health of mothers and infants. PRAMS data are used by researchers to investigate emerging issues in the field of reproductive health and by state and local governments to plan and review programs and policies aimed at reducing health problems among mothers and babies.<br/>",
-                    announcement:"PRAMS data from 2012-2014 are being updated during the week of 07/23/2018. Advanced search with updated data will be available coming weeks",
+                    announcement:"PRAMS data from 2012-2014 are being updated during the week of 08/27/2018. Advanced search with updated data will be available coming weeks",
                     suppression: "Data suppression must be applied if the unweighted sample size was < 30.",
                     source: "PRAMSTAT - Pregnancy Risk Assessment Monitoring System (PRAMS) Statistics is produced by the United States Department of Health and Human Services (HHS), Centers for Disease Control and Prevention (CDC), National Center for Chronic Disease Prevention and Health Promotion (NCCDPHP), Division of Reproductive Health (DRH).",
                     filters: [

@@ -57,7 +57,7 @@
             if(['number_of_deaths', 'crude_death_rates',
                     'age-adjusted_death_rates'].indexOf(mc.selectedFilter.tableView) !== -1) {
                 filters = mc.showMeOptions.deaths;
-            } else if (mc.selectedFilter.key == 'prams') {
+            } else if (mc.selectedFilter.key === 'prams' || mc.selectedFilter.key === 'brfss') {
                 if(mc.isBasicSearch) {
                     filters = mc.showMeOptions[mc.selectedFilter.key][0].basic;
                 } else {

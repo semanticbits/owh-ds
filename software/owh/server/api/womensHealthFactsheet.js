@@ -511,16 +511,16 @@ function prepareBRFSSData(brfssResp) {
 
     brfssResp.table.question.forEach(function(eachRecord) {
         switch(eachRecord.name) {
-            case "x_bmi5cat":
+            case "_bmi5cat":
                 brfssData[0].data = eachRecord["obese (bmi 30.0 - 99.8)"].brfss.mean;
                 break;
-            case "x_rfsmok3":
+            case "_rfsmok3":
                 brfssData[1].data = eachRecord.yes.brfss.mean;
                 break;
-            case "x_rfdrhv5":
+            case "_rfdrhv5":
                 brfssData[2].data = eachRecord["meet criteria for heavy drinking"].brfss.mean;
                 break;
-            case "x_paindx1":
+            case "_paindx1":
                 brfssData[3].data = eachRecord.yes.brfss.mean;
                 break;
         }

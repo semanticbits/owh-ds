@@ -1099,7 +1099,7 @@
                             'smoked_before': 'Smoked 3 months before pregnancy', 'smoked_last': 'Smoked last 3 months of pregnancy'
                         };
 
-                        if (chartType.length == 1) {
+                        if (chartType.length === 1) {
                             return chartNames[chartType[0]];
                         } else {
                             return chartNames[chartType[0]+'&'+chartType[1]];

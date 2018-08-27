@@ -67,7 +67,7 @@
       "type":"bar",
       "hoverinfo":"none",
       "marker":{
-        "color":"#56b783"
+        "color":"#61B861"
       }
     },
     {
@@ -133,7 +133,7 @@
       "type":"bar",
       "hoverinfo":"none",
       "marker":{
-        "color":"#FFCC9A"
+        "color":"#7577CD"
       }
     },
     {
@@ -199,7 +199,7 @@
       "type":"bar",
       "hoverinfo":"none",
       "marker":{
-        "color":"#65c2ff"
+        "color":"#45b7ad"
       }
     },
     {
@@ -265,7 +265,7 @@
       "type":"bar",
       "hoverinfo":"none",
       "marker":{
-        "color":"#ED93CB"
+        "color":"#FF9F4A"
       }
     }
   ],

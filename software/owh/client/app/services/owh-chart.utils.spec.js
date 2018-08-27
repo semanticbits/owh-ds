@@ -6,7 +6,7 @@ describe('chart utils', function(){
         filter1, filter2, filter3, data1, data2, censusRatesData, primaryFilter, postFixToTooltip,
         horizontalStackExpectedResult1, horizontalStackExpectedResult2,
         verticalStackExpectedResult, horizontalBarExpectedResult,
-        horizontalBarExpectedResultForCurdeDeathRates,
+        horizontalBarExpectedResultForCurdeDeathRates, multiChartBridgeRaceFilteres,
         verticalBarExpectedResult1, verticalBarExpectedResult2,
         horizontalStackNoDataExpectedResult, verticalBarNoDataExpectedResult, lineChartFilter, lineChartExpectedResult,
         lineChartData, pieChartData, pieChartExpectedResult, pieChartWithpostFixToTooltipExpectedResult,
@@ -83,6 +83,7 @@ describe('chart utils', function(){
         pieChartWithpostFixToTooltipExpectedResult = __fixtures__['app/services/fixtures/owh.chart.utils/pieChartWithpostFixToTooltipExpectedResult'];
 
         expandedGraphExpectedResult = __fixtures__['app/services/fixtures/owh.chart.utils/expandedGraphExpectedResult'];
+        multiChartBridgeRaceFilteres = __fixtures__['app/services/fixtures/owh.chart.utils/multiChartBridgeRaceFilteres'];
 
         postFixToTooltip = 'data';
 
@@ -97,7 +98,9 @@ describe('chart utils', function(){
         $httpBackend.whenGET('/pramsAdvancesQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('jsons/ucd-conditions-ICD-10.json').respond({data: []});
         $httpBackend.whenGET('jsons/mcd-conditions-ICD-10.json').respond({data: []});
-        $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
+        $httpBackend.whenGET('/getGoogAnalyInfo').respond({data: { }});
+        $httpBackend.whenGET('/brfsQuestionsTree/true').respond({data: { }});
+        $httpBackend.whenGET('/brfsQuestionsTree/false').respond({data: { }});
     }));
 
     it('test chart utils horizontalStack', function () {
@@ -140,7 +143,7 @@ describe('chart utils', function(){
         var filter = {"key":"state","title":"label.prams.filter.state","queryKey":"sitecode","value":["AK"],"autoCompleteOptions":[{"key":"AL","title":"Alabama"},{"key":"AK","title":"Alaska"}]};
         var data = {"question":[{"name":"qn365","-1":{"sitecode":[{"name":"AK","prams":{"mean":"23.0","ci_l":"0","ci_u":"0"}},{"name":"AK","prams":{"mean":"21.0","ci_l":"0","ci_u":"0"}}]},"NO (UNCHECKED)":{"sitecode":[{"name":"AK","prams":{"mean":"97.4","ci_l":"96.0","ci_u":"98.3"}},{"name":"AK","prams":{"mean":"97.1","ci_l":"95.6","ci_u":"98.1"}}]},"YES (CHECKED)":{"sitecode":[{"name":"AK","prams":{"mean":"2.6","ci_l":"1.7","ci_u":"4.0"}},{"name":"AK","prams":{"mean":"2.9","ci_l":"1.9","ci_u":"4.4"}}]}}]};
         var primaryFilter = {key:'prams', chartAxisLabel: 'Percentage', allFilters:[{topic:[]}, {year:[]}, {state:[]}, {ques:[]}, {value:[]}]};
-        var expectedOutput = {"charttype":"multiBarHorizontalChart","title":"label.prams.filter.state and label.prams.filter.state","longtitle":"chart.title.measure.prams by label.prams.filter.state in undefined for undefined","dataset":"prams","data":[{"namelong":"Percentage - YES (CHECKED)     ","name":"Percentage - YES (CHECKED)     ","x":[2.6],"y":["AK"],"ylong":["Alaska"],"text":["2.6"],"orientation":"h","hoverinfo":"none","type":"bar","marker":{"color":"#65c2ff"}},{"namelong":"Percentage - NO (UNCHECKED)     ","name":"Percentage - NO (UNCHECKED)     ","x":[97.4],"y":["AK"],"ylong":["Alaska"],"text":["97.4"],"orientation":"h","hoverinfo":"none","type":"bar","marker":{"color":"#ED93CB"}}],"layout":{"width":128,"autosize":true,"showlegend":true,"legend":{"orientation":"h","y":1.25,"x":0.4},"xaxis":{"visible":true,"titlefont":{"size":15},"exponentformat":"auto","tickangle":45,"showline":true,"gridcolor":"#bdbdbd","showticklabels":true,"fixedrange":true,"title":"Percentage"},"yaxis":{"visible":true,"titlefont":{"size":15},"exponentformat":"auto","tickangle":45,"ticksuffix":"   ","showline":true,"gridcolor":"#bdbdbd","showticklabels":true,"fixedrange":true,"title":"label.prams.filter.state"},"margin":{"l":100,"r":10,"b":50,"t":50},"barmode":"bar"},"options":{"displayModeBar":false}};
+        var expectedOutput = {"charttype":"multiBarHorizontalChart","title":"label.prams.filter.state and label.prams.filter.state","longtitle":"chart.title.measure.prams by label.prams.filter.state in undefined for undefined","dataset":"prams","data":[{"namelong":"Percentage - YES (CHECKED)     ","name":"Percentage - YES (CHECKED)     ","x":[2.6],"y":["AK"],"ylong":["Alaska"],"text":["2.6"],"orientation":"h","hoverinfo":"none","type":"bar","marker":{"color":"#45b7ad"}},{"namelong":"Percentage - NO (UNCHECKED)     ","name":"Percentage - NO (UNCHECKED)     ","x":[97.4],"y":["AK"],"ylong":["Alaska"],"text":["97.4"],"orientation":"h","hoverinfo":"none","type":"bar","marker":{"color":"#FF9F4A"}}],"layout":{"width":128,"autosize":true,"showlegend":true,"legend":{"orientation":"h","y":1.25,"x":0.4},"xaxis":{"visible":true,"titlefont":{"size":15},"exponentformat":"auto","tickangle":45,"showline":true,"gridcolor":"#bdbdbd","showticklabels":true,"fixedrange":true,"title":"Percentage"},"yaxis":{"visible":true,"titlefont":{"size":15},"exponentformat":"auto","tickangle":45,"ticksuffix":"   ","showline":true,"gridcolor":"#bdbdbd","showticklabels":true,"fixedrange":true,"title":"label.prams.filter.state"},"margin":{"l":100,"r":10,"b":50,"t":50},"barmode":"bar"},"options":{"displayModeBar":false}};
         var result = chartUtils.horizontalBar(filter, filter, data, primaryFilter);
         expect(JSON.stringify(result)).toEqual(JSON.stringify(expectedOutput));
     });
@@ -193,7 +196,9 @@ describe('chart utils', function(){
     });
 
     it('test chart utils showExpandedGraph with multiple charts', function () {
-        chartUtils.showExpandedGraph([verticalBarExpectedResult1, horizontalStackExpectedResult1]);
+        var chartData = [{"charttype":"multiBarHorizontalChart","title":"Race and Ethnicity","longtitle":"Population by Race and Ethnicity in US for 2015","dataset":"bridge_race","data":[{"namelong":"White     ","name":"White     ","x":[50632773,201242281],"y":["Hispanic","Non Hisp."],"ylong":["Hispanic or Latino","Non Hispanic"],"text":["50,632,773","201,242,281"],"orientation":"h","hoverinfo":"none","type":"bar","marker":{"color":"#61B861"},"uid":"b4cf63"},{"namelong":"Black or African American     ","name":"Black     ","x":[3085713,41777483],"y":["Hispanic","Non Hisp."],"ylong":["Hispanic or Latino","Non Hispanic"],"text":["3,085,713","41,777,483"],"orientation":"h","hoverinfo":"none","type":"bar","marker":{"color":"#7577CD"},"uid":"c71bb9"},{"namelong":"Asian or Pacific Islander     ","name":"API     ","x":[986160,19116557],"y":["Hispanic","Non Hisp."],"ylong":["Hispanic or Latino","Non Hispanic"],"text":["986,160","19,116,557"],"orientation":"h","hoverinfo":"none","type":"bar","marker":{"color":"#45b7ad"},"uid":"ff4a6f"},{"namelong":"American Indian or Alaska Native     ","name":"AI/AN     ","x":[1888147,2689706],"y":["Hispanic","Non Hisp."],"ylong":["Hispanic or Latino","Non Hispanic"],"text":["1,888,147","2,689,706"],"orientation":"h","hoverinfo":"none","type":"bar","marker":{"color":"#FF9F4A"},"uid":"433e64"}],"layout":{"width":437.12,"autosize":true,"showlegend":true,"legend":{"orientation":"h","y":1.25,"x":0.4},"xaxis":{"visible":true,"titlefont":{"size":15},"exponentformat":"auto","tickangle":45,"showline":true,"gridcolor":"#bdbdbd","showticklabels":true,"fixedrange":true,"title":"Population","type":"linear","range":[0,211833980],"autorange":true},"yaxis":{"visible":true,"titlefont":{"size":15},"exponentformat":"auto","tickangle":45,"ticksuffix":"   ","showline":true,"gridcolor":"#bdbdbd","showticklabels":true,"fixedrange":true,"title":"Ethnicity","type":"category","range":[-0.5,1.5],"autorange":true},"margin":{"l":100,"r":10,"b":50,"t":50},"barmode":"bar"},"options":{"displayModeBar":false},"$$hashKey":"object:6205"}];
+        chartUtils.showExpandedGraph(chartData, 'bridge_race', "graph title", "graph sub title",
+            'Race Ethnicity', multiChartBridgeRaceFilteres, null, {year:'2015'});
         var ctrl = controllerProvider(givenModalDefaults.controller, { $scope: $scope, close: closeDeferred.promise, shareUtilService: shareUtils});
         ctrl.element = givenModalDefaults.element;
         thenFunction(ctrl);
@@ -206,25 +211,17 @@ describe('chart utils', function(){
     it('test chart utils showExpandedGraph with multiple charts for agegroup.autopsy and gender.placeofdeath', function () {
         horizontalStackExpectedResult1.title = 'label.title.agegroup.autopsy';
         verticalBarExpectedResult1.title = 'label.title.gender.placeofdeath';
-        chartUtils.showExpandedGraph([verticalBarExpectedResult1, horizontalStackExpectedResult1], null, 'graph title');
+        chartUtils.showExpandedGraph([verticalBarExpectedResult1, horizontalStackExpectedResult1], null, 'graph title', "test title", null, multiChartBridgeRaceFilteres);
         var ctrl = controllerProvider(givenModalDefaults.controller, { $scope: $scope, close: closeDeferred.promise, shareUtilService: shareUtils});
         expect(ctrl.graphTitle).toEqual('graph title');
     });
 
-    it('test chart utils showExpandedGraph with multiple charts for yrbsSex.yrbsRace and yrbsGrade', function () {
-        horizontalStackExpectedResult1.title = 'label.title.yrbsSex.yrbsRace';
-        pieChartExpectedResult.title = 'label.graph.yrbsGrade';
-        chartUtils.showExpandedGraph([horizontalStackExpectedResult1, pieChartExpectedResult]);
-        var ctrl = controllerProvider(givenModalDefaults.controller, { $scope: $scope, close: closeDeferred.promise, shareUtilService: shareUtils});
-        expect(JSON.stringify(ctrl.chartData)).toEqual(JSON.stringify(expandedGraphExpectedResult));
-    });
-
     it('test chart utils showExpandedGraph with multiple charts for gender.hispanicOrigin and race.hispanicOrigin', function () {
-        horizontalStackExpectedResult1.title = 'label.title.race.hispanicOrigin';
-        verticalBarExpectedResult1.title = 'label.title.gender.hispanicOrigin';
-        chartUtils.showExpandedGraph([verticalBarExpectedResult1, horizontalStackExpectedResult1]);
+        var chartData = [{"charttype":"multiBarChart","title":"Sex and Ethnicity","longtitle":"Number of Deaths by Sex and Ethnicity in US for 2000 - 2015","dataset":"deaths","data":[{"namelong":"Male     ","name":"Male     ","xlong":["Unknown","Other Hispanic","Spaniard","South American","Puerto Rican","Mexican","Latin American","Dominican","Cuban","Central American","Central and South American","Non-Hispanic"],"x":["Unknown","Other","Spaniard","S American","P Rican","Mexican","L American","Dominican","Cuban","C American","C/SA","Non-Hispanic"],"y":[62015,125210,3249,24384,155131,716431,2682,16747,109354,43900,33802,18476962],"text":["62,015","125,210","3,249","24,384","155,131","716,431","2,682","16,747","109,354","43,900","33,802","18,476,962"],"orientation":"v","type":"bar","hoverinfo":"none","marker":{"color":"#45b7ad"},"uid":"3ebc9e"},{"namelong":"Female     ","name":"Female     ","xlong":["Unknown","Other Hispanic","Spaniard","South American","Puerto Rican","Mexican","Latin American","Dominican","Cuban","Central American","Central and South American","Non-Hispanic"],"x":["Unknown","Other","Spaniard","S American","P Rican","Mexican","L American","Dominican","Cuban","C American","C/SA","Non-Hispanic"],"y":[43776,104915,3388,24334,128756,540327,2328,17035,103552,39627,30222,18971292],"text":["43,776","104,915","3,388","24,334","128,756","540,327","2,328","17,035","103,552","39,627","30,222","18,971,292"],"orientation":"v","type":"bar","hoverinfo":"none","marker":{"color":"#FF9F4A"},"uid":"5a2f2c"}],"layout":{"width":437.12,"autosize":true,"showlegend":true,"legend":{"orientation":"h","y":1.25,"x":0.4},"xaxis":{"visible":true,"titlefont":{"size":15},"exponentformat":"auto","tickangle":45,"showline":true,"gridcolor":"#bdbdbd","showticklabels":true,"fixedrange":true,"title":"Ethnicity","type":"category","range":[-0.5,11.5],"autorange":true},"yaxis":{"visible":true,"titlefont":{"size":15},"exponentformat":"auto","tickangle":45,"ticksuffix":"   ","showline":true,"gridcolor":"#bdbdbd","showticklabels":true,"fixedrange":true,"title":"Deaths","type":"linear","range":[0,19969781.05263158],"autorange":true},"margin":{"l":75,"r":10,"b":100,"t":50},"barmode":"bar"},"options":{"displayModeBar":false},"$$hashKey":"object:7476"}];
+        var primaryFilters = {showBasicSearchSideMenu: false, showMap: false};
+        chartUtils.showExpandedGraph(chartData, 'number_of_deaths', null, null, null, primaryFilters ,null, null);
         var ctrl = controllerProvider(givenModalDefaults.controller, { $scope: $scope, close: closeDeferred.promise, shareUtilService: shareUtils});
-        expect(ctrl.graphTitle).toEqual('label.graph.expanded');
+        expect(ctrl.graphTitle).toEqual('Sex and Ethnicity');
     });
 
     it('test chart utils showExpandedGraph for getChartName', function () {
@@ -259,7 +256,6 @@ describe('chart utils', function(){
         diferredMapData.resolve(yrbsMockData.stateData);
         $scope.$apply();
     });
-
     it('test chart utils showExpandedGraph for getYrbsChartData', function () {
 
         spyOn(searchFactory, 'prepareQuestionChart').and.returnValue(diferred.promise);

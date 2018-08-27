@@ -45,10 +45,12 @@ describe("Search controller: ", function () {
             $httpBackend.whenGET('/yrbsQuestionsTree').respond({});
             $httpBackend.whenGET('/pramsBasicQuestionsTree').respond({data: { }});
             $httpBackend.whenGET('/pramsAdvancesQuestionsTree').respond({data: { }});
-            $httpBackend.whenGET('/brfsQuestionsTree').respond({data: { }});
+            $httpBackend.whenGET('/brfsQuestionsTree/true').respond({data: { }});
+            $httpBackend.whenGET('/brfsQuestionsTree/false').respond({data: { }});
             $httpBackend.whenGET('app/modules/home/home.html').respond({});
             $httpBackend.whenGET('jsons/ucd-conditions-ICD-10.json').respond({data: []});
             $httpBackend.whenGET('jsons/mcd-conditions-ICD-10.json').respond({data: []});
+            $httpBackend.whenGET('/getGoogAnalyInfo').respond({data: []});
             searchResultsResponse = __fixtures__['app/modules/search/fixtures/search.factory/searchResultsResponse'];
             pramsFilters = __fixtures__['app/modules/search/fixtures/search.controller/pramsFilters'];
             $searchFactory = searchFactory;
@@ -794,9 +796,9 @@ describe("Search controller: ", function () {
         expect(JSON.stringify(searchController.filters.pramsAdvanceFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.pramsAdvanceQuestionsList));
     }));
 
-    it("should listen for brfsQuestionsLoaded event", inject(function () {
+    it("should listen for brfsBasicQuestionsLoaded event", inject(function () {
 
-        $rootScope.brfsQuestionsList = [
+        $rootScope.brfsBasicQuestionsList = [
             {
                 "text": "Ever told you that you have a form of depression?",
                 "id": "ADDEPEV2"
@@ -811,10 +813,31 @@ describe("Search controller: ", function () {
             brfsAdvancedFilters: [{"key": "question", autoCompleteOptions:[]}]
         };
 
-        $rootScope.$broadcast('brfsQuestionsLoaded', $rootScope.brfsQuestionsList);
+        $rootScope.$broadcast('brfsBasicQuestionsLoaded', $rootScope.brfsBasicQuestionsList);
         //should collect questions from selected topic of a class only
-        expect(JSON.stringify(searchController.filters.brfsBasicFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.brfsQuestionsList));
-        expect(JSON.stringify(searchController.filters.brfsAdvancedFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.brfsQuestionsList));
+        expect(JSON.stringify(searchController.filters.brfsBasicFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.brfsBasicQuestionsList));
+    }));
+
+    it("should listen for brfsAdvanceQuestionsList event", inject(function () {
+
+        $rootScope.brfsAdvanceQuestionsList = [
+            {
+                "text": "Ever told you that you have a form of depression?",
+                "id": "ADDEPEV2"
+            },
+            {
+                "text": "What is your age?",
+                "id": "AGE"
+            }
+        ];
+        searchController.filters =  {
+            brfsBasicFilters: [{"key": "question", autoCompleteOptions:[]}],
+            brfsAdvancedFilters: [{"key": "question", autoCompleteOptions:[]}]
+        };
+
+        $rootScope.$broadcast('brfsAdvanceQuestionsLoaded', $rootScope.brfsAdvanceQuestionsList);
+        //should collect questions from selected topic of a class only
+        expect(JSON.stringify(searchController.filters.brfsAdvancedFilters[0].autoCompleteOptions)).toEqual(JSON.stringify($rootScope.brfsAdvanceQuestionsList));
     }));
 
     it("should listen for yrbsQuestionsLoadded event", inject(function () {

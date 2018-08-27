@@ -57,7 +57,7 @@
       },
       'getBRFSQuestionsTree': {
           method: 'GET',
-          url: '/brfsQuestionsTree'
+          url: '/brfsQuestionsTree/:precomputed'
       },
       'getDsMetadata' : {
         method : 'GET',

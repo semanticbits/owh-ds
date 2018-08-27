@@ -33,7 +33,9 @@
             getYrbsQuestionsForTopic: getYrbsQuestionsForTopic,
             getQuestionsByTopics: getQuestionsByTopics,
             getQuestionsByDataset: getQuestionsByDataset,
-            getPrimaryFilterByKey: getPrimaryFilterByKey
+            getPrimaryFilterByKey: getPrimaryFilterByKey,
+            filterQuestionsByTopicsAndYear: filterQuestionsByTopicsAndYear,
+            updateSelectedQuestionsForYear: updateSelectedQuestionsForYear
 
         };
         return service;
@@ -46,7 +48,7 @@
             var primaryFilters = filters.primaryFilters;
             //sets primary filter
             var primaryFilter = utilService.findByKeyAndValue(primaryFilters, 'key', response.data.queryJSON.key);
-            if(primaryFilter.key == 'mental_health') {
+            if(primaryFilter.key === 'mental_health') {
                 if (response.data.queryJSON.showBasicSearchSideMenu) {
                     primaryFilter.allFilters = filters.yrbsBasicFilters;
                     primaryFilter.sideFilters = primaryFilter.basicSideFilters;
@@ -54,7 +56,7 @@
                     primaryFilter.allFilters = filters.yrbsAdvancedFilters;
                     primaryFilter.sideFilters = primaryFilter.advancedSideFilters;
                 }
-            } else if(primaryFilter.key == 'prams') {
+            } else if(primaryFilter.key === 'prams') {
                 if (response.data.queryJSON.showBasicSearchSideMenu) {
                     primaryFilter.allFilters = filters.pramsBasicFilters;
                     primaryFilter.sideFilters = primaryFilter.basicSideFilters[0].sideFilters;
@@ -62,7 +64,7 @@
                     primaryFilter.allFilters = filters.pramsAdvanceFilters;
                     primaryFilter.sideFilters = primaryFilter.advancedSideFilters[0].sideFilters;
                 }
-            } else if(primaryFilter.key == 'brfss') {
+            } else if(primaryFilter.key === 'brfss') {
                 if (response.data.queryJSON.showBasicSearchSideMenu) {
                     primaryFilter.allFilters = filters.brfsBasicFilters;
                     primaryFilter.sideFilters = primaryFilter.basicSideFilters[0].sideFilters;
@@ -115,12 +117,16 @@
                 //update questions based on topics
                 var topics = groupOptions[tableView].topic;
                 var questionFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'question');
-                questionFilter.questions = getQuestionsByTopics(topics, questions);
-
+                if(primaryFilter.key === 'brfss') {
+                    var yearFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year');
+                    questionFilter.questions = filterQuestionsByTopicsAndYear(questions, topics, yearFilter);
+                } else {
+                    questionFilter.questions = getQuestionsByTopics(topics, questions);
+                }
                 var topicFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'topic');
                 var selectedTopics = [];
                 //iff All topics selected
-                if(topicFilter.value.length == 0) {
+                if(topicFilter.value.length === 0) {
                     selectedTopics = questionFilter.questions;
                 } else {//get selected topic objects only
                     selectedTopics = questionFilter.questions.filter(function(obj){
@@ -136,7 +142,7 @@
                 primaryFilter.chartData = prepareChartData(response.data.resultData.headers, response.data.resultData.nested, primaryFilter);
                 mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
-            else if (response.data.queryJSON.key == 'natality') {
+            else if (response.data.queryJSON.key === 'natality') {
                 primaryFilter.data = response.data.resultData.nested.table;
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
@@ -158,8 +164,8 @@
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
-            else if (response.data.queryJSON.key == 'std' ||
-                response.data.queryJSON.key == 'tb' || response.data.queryJSON.key === 'aids') {
+            else if (response.data.queryJSON.key === 'std' ||
+                response.data.queryJSON.key === 'tb' || response.data.queryJSON.key === 'aids') {
                 primaryFilter.nestedData = response.data.resultData.nested;
                 primaryFilter.data = response.data.resultData.nested.table;
                 populateSideFilterTotals(primaryFilter, response.data);
@@ -197,17 +203,85 @@
             });
             return data;
         }
+
         /**
-         * Update prams questions based on topics
+         * Update questions based on topics and year
+         * @param questionList
          * @param topics
+         * @param yearFilter
+         * @returns {Array}
          */
-        function getQuestionsByTopics(topics, questionList) {
+        function filterQuestionsByTopicsAndYear(questionList, topics, yearFilter) {
             var questions = [];
             angular.forEach(topics, function (topic) {
-                var ques = utilService.findByKeyAndValue(questionList, 'id', topic);
+                var ques = angular.copy(utilService.findByKeyAndValue(questionList, 'id', topic));
+                ques.children = ques.children.filter(function(el) {
+                    if (angular.isArray(yearFilter.value)) {
+                        var isPresent = false;
+                        for (var v in yearFilter.value) {
+                            if( el.years.indexOf(yearFilter.value[v]) !== -1) {
+                                isPresent = true; break;
+                            }
+                        }
+                        return isPresent;
+                    } else {
+                        return el.years.indexOf(yearFilter.value) !== -1;
+                    }
+                });
                 questions.push(ques);
             });
             return questions;
+        }
+
+        /**
+         * Update selected questions for selected year
+         * @param quesFilter
+         * @param yearFilter
+         */
+        function updateSelectedQuestionsForYear(quesFilter, yearFilter) {
+            if (quesFilter.value) {
+                var allQues = quesFilter.autoCompleteOptions;
+                //update questions based on selected years
+                quesFilter.value = quesFilter.value.filter(function(el) {
+                    var ques = utilService.findByKeyAndValue(allQues, 'qkey', el);
+                    if (angular.isArray(yearFilter.value)) {
+                        var isPresent = false;
+                        for (var v in yearFilter.value) {
+                            if( ques.years.indexOf(yearFilter.value[v]) !== -1) {
+                                isPresent = true;
+                                break;
+                            }
+                        }
+                        return isPresent;
+                    } else {
+                        return ques.years.indexOf(yearFilter.value) !== -1;
+                    }
+                });
+
+                //update selected question's list
+                if (quesFilter.value && quesFilter.value.length > 0) {
+                    var selectedNodes = quesFilter.selectedNodes;
+                    for (var v in selectedNodes) {
+                        selectedNodes[v].childNodes = selectedNodes[v].childNodes.filter(function(aNode) {
+                            var ques = utilService.findByKeyAndValue(allQues, 'qkey', aNode.id);
+                            if (angular.isArray(yearFilter.value)) {
+                                var isPresent = false;
+                                for (var v in yearFilter.value) {
+                                    if( ques.years.indexOf(yearFilter.value[v]) !== -1) {
+                                        isPresent = true;
+                                        break;
+                                    }
+                                }
+                                return isPresent;
+                            } else {
+                                return ques.years.indexOf(yearFilter.value) !== -1;
+                            }
+                        });
+                    }
+                } else {
+                    quesFilter.selectedNodes = [];
+                }
+            }
         }
 
         /**
@@ -220,7 +294,8 @@
                 isBasicSearch ? questions = $rootScope.pramsBasicQuestions
                     : questions = $rootScope.pramsAdvanceQuestions;
             } else if (dataset === 'brfss') {
-                questions = $rootScope.brfsQuestions;
+                isBasicSearch ? questions = $rootScope.brfsBasicQuestions
+                    : questions = $rootScope.brfsAdvanceQuestions;
             }
             return questions;
         }
@@ -235,6 +310,18 @@
             } else {
                 return [utilService.findByKeyAndValue($rootScope.questions, 'text', topic)];
             }
+        }
+
+        /**
+         * Filter out questions based on topics
+         */
+        function getQuestionsByTopics(topics, questionList) {
+            var questions = [];
+            angular.forEach(topics, function (topic) {
+                var ques = utilService.findByKeyAndValue(questionList, 'id', topic);
+                questions.push(ques);
+            });
+            return questions;
         }
 
         function populateSelectedFilters(primaryFilter, updatedSideFilters) {
@@ -2483,8 +2570,74 @@
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsSmokedLastOptions, doNotShowAll: false, helpText: "label.help.text.prams.breakouts.smoked.last"}
             ];
 
-            filters.brfsTopicOptions = [
-                {"key": "cat_48", "title": "Aerobic Activity"},
+            filters.brfsPrecTopicOptions = [
+                {"key": "cat_20", "title": "Aerobic Activity"},
+                {"key": "cat_39",  "title": "Age"},
+                {"key": "cat_48", "title": "Alcohol Consumption"},
+                {"key": "cat_0", "title": "All Teeth Removed"},
+                {"key": "cat_10", "title": "Arthritis"},
+                {"key": "cat_2", "title": "Asthma"},
+                {"key": "cat_1", "title": "BMI Categories"},
+                {"key": "cat_24", "title": "Binge Drinking"},
+                {"key": "cat_13", "title": "Blood Stool Test"},
+                {"key": "cat_41",  "title": "COPD"},
+                {"key": "cat_19", "title": "Cardiovascular Disease"},
+                {"key": "cat_4",  "title": "Cholesterol Checked"},
+                {"key": "cat_25", "title": "Cholesterol High"},
+                {"key": "cat_5", "title": "Colonoscopy"},
+                {"key": "cat_34", "title": "Current Smoker Status"},
+                {"key": "cat_8", "title": "Dental Visit"},
+                {"key": "cat_38",  "title": "Depression"},
+                {"key": "cat_47", "title": "Diabetes"},
+                {"key": "cat_40",  "title": "Disability status"},
+                {"key": "cat_9", "title": "Drink and Drive"},
+                {"key": "cat_49", "title": "Education"},
+                {"key": "cat_50", "title": "Employment"},
+                {"key": "cat_36", "title": "Exercise"},
+                {"key": "cat_28", "title": "Fair or Poor Health"},
+                {"key": "cat_16", "title": "Five Servings per Day"},
+                {"key": "cat_12", "title": "Flu Shot"},
+                {"key": "cat_14", "title": "Fruit Consumption"},
+                {"key": "cat_52", "title": "HIV Test"},
+                {"key": "cat_57", "title": "Health Care Cost"},
+                {"key": "cat_53", "title": "Health Care Coverage"},
+                {"key": "cat_27", "title": "Heavy Drinking"},
+                {"key": "cat_29", "title": "High Blood Pressure"},
+                {"key": "cat_54", "title": "Income"},
+                {"key": "cat_55", "title": "Internet"},
+                {"key": "cat_42",  "title": "Kidney"},
+                {"key": "cat_46",  "title": "Last Checkup"},
+                {"key": "cat_18", "title": "Mammogram"},
+                {"key": "cat_56", "title": "Marital Status"},
+                {"key": "cat_3", "title": "Number of Children"},
+                {"key": "cat_43",  "title": "Other Cancer"},
+                {"key": "cat_51", "title": "Overall Health"},
+                {"key": "cat_32", "title": "PSA Test"},
+                {"key": "cat_31", "title": "Pap Test"},
+                {"key": "cat_58", "title": "Personal Care Provider"},
+                {"key": "cat_30", "title": "Physical Activity"},
+                {"key": "cat_21", "title": "Physical Activity Index"},
+                {"key": "cat_23", "title": "Pneumonia Vaccination"},
+                {"key": "cat_59", "title": "Race"},
+                {"key": "cat_60", "title": "Rent/Own Home"},
+                {"key": "cat_33", "title": "Seatbelt Use"},
+                {"key": "cat_61", "title": "Sex"},
+                {"key": "cat_62", "title": "Shingle Vaccination"},
+                {"key": "cat_15", "title": "Sigmoidoscopy"},
+                {"key": "cat_44",  "title": "Skin Cancer"},
+                {"key": "cat_64", "title": "Smokeless Tobacco"},
+                {"key": "cat_35", "title": "Smoker Status"},
+                {"key": "cat_22", "title": "Strength Activity"},
+                {"key": "cat_11", "title": "Teeth Removed"},
+                {"key": "cat_63", "title": "Tetanus Shot"},
+                {"key": "cat_6", "title": "USPSTF Recommendations"},
+                {"key": "cat_17", "title": "Under 65 Coverage"},
+                {"key": "cat_37", "title": "Vegetable Consumption"},
+                {"key": "cat_65", "title": "Veteran Status"},
+                {"key": "cat_45",  "title":  "Vision"}
+            ];
+            filters.brfsAdvanceTopicOptions = [
+                {"key": "cat_47", "title": "Aerobic Activity"},
                 {"key": "cat_1",  "title": "Age"},
                 {"key": "cat_12", "title": "Alcohol Consumption"},
                 {"key": "cat_30", "title": "All Teeth Removed"},
@@ -2504,7 +2657,6 @@
                 {"key": "cat_11", "title": "Diabetes"},
                 {"key": "cat_2",  "title": "Disability status"},
                 {"key": "cat_39", "title": "Drink and Drive"},
-                {"key": "cat_36", "title": "E-Cigarette Use"},
                 {"key": "cat_13", "title": "Education"},
                 {"key": "cat_14", "title": "Employment"},
                 {"key": "cat_61", "title": "Exercise"},
@@ -2528,8 +2680,7 @@
                 {"key": "cat_57", "title": "PSA Test"},
                 {"key": "cat_56", "title": "Pap Test"},
                 {"key": "cat_22", "title": "Personal Care Provider"},
-                /*{"key": "cat_55", "title": "Physical Activity"},*/
-                {"key": "cat_47", "title": "Physical Activity Index"},
+                {"key": "cat_48", "title": "Physical Activity Index"},
                 {"key": "cat_50", "title": "Pneumonia Vaccination"},
                 {"key": "cat_23", "title": "Race"},
                 {"key": "cat_24", "title": "Rent/Own Home"},
@@ -2550,7 +2701,25 @@
                 {"key": "cat_8",  "title":  "Vision"}
             ];
 
-            filters.brfsYearOptions = [
+            filters.brfsPrecYearOptions = [
+                { "key": "2015", "title": "2015" },
+                { "key": "2014", "title": "2014" },
+                { "key": "2013", "title": "2013" },
+                { "key": "2012", "title": "2012" },
+                { "key": "2011", "title": "2011" },
+                { "key": "2010", "title": "2010" },
+                { "key": "2009", "title": "2009" },
+                { "key": "2008", "title": "2008" },
+                { "key": "2007", "title": "2007" },
+                { "key": "2006", "title": "2006" },
+                { "key": "2005", "title": "2005" },
+                { "key": "2004", "title": "2004" },
+                { "key": "2003", "title": "2003" },
+                { "key": "2002", "title": "2002" },
+                { "key": "2001", "title": "2001" },
+                { "key": "2000", "title": "2000" }
+            ];
+            filters.brfsAdvanceYearOptions = [
                 { "key": "2015", "title": "2015" },
                 { "key": "2014", "title": "2014" },
                 { "key": "2013", "title": "2013" },
@@ -2667,14 +2836,14 @@
                     key: 'topic', title: 'label.brfss.filter.topic',
                     queryKey:"topic", primary: false,
                     value: [], groupBy: false,
-                    filterType: 'checkbox', autoCompleteOptions: filters.brfsTopicOptions,
+                    filterType: 'checkbox', autoCompleteOptions: filters.brfsPrecTopicOptions,
                     doNotShowAll: false, helpText: 'label.help.text.brfss.topic', disableFilter: true
                 },
                 {
                     key: 'year', title: 'label.filter.year',
                     queryKey:"year", primary: false,
-                    value: ['2015'], groupBy: false,
-                    filterType: 'radio', autoCompleteOptions: filters.brfsYearOptions,
+                    value: '2015', groupBy: false,
+                    filterType: 'radio', autoCompleteOptions: filters.brfsPrecYearOptions,
                     doNotShowAll: true, helpText: 'label.help.text.brfss.year', disableFilter: true
                 },
                 {
@@ -2730,9 +2899,9 @@
                     queryKey:"question.path", aggregationKey:"question.key",
                     primary: false, value: [],
                     groupBy: 'row', filterType: 'tree',
-                    autoCompleteOptions: $rootScope.brfsQuestionsList,
+                    autoCompleteOptions: $rootScope.brfsBasicQuestionsList,
                     donotshowOnSearch:true,
-                    questions: $rootScope.brfsQuestions,
+                    questions: $rootScope.brfsBasicQuestions,
                     selectTitle: 'label.brfss.select.question',
                     updateTitle: 'label.brfss.update.question',
                     iconClass: 'fa fa-pie-chart purple-text',
@@ -2747,14 +2916,14 @@
                     key: 'topic', title: 'label.brfss.filter.topic',
                     queryKey:"topic",primary: false,
                     value: [], groupBy: false,
-                    filterType: 'checkbox', autoCompleteOptions: filters.brfsTopicOptions,disableFilter: true,
+                    filterType: 'checkbox', autoCompleteOptions: filters.brfsAdvanceTopicOptions, disableFilter: true,
                     doNotShowAll: false, helpText: 'label.help.text.brfss.topic'
                 },
                 {
                     key: 'year', title: 'label.filter.year',
                     queryKey:"year", primary: false,
-                    value: ['2015'], groupBy: false,
-                    filterType: 'checkbox', autoCompleteOptions: filters.brfsYearOptions,
+                    value: '2015', groupBy: false,
+                    filterType: 'checkbox', autoCompleteOptions: filters.brfsAdvanceYearOptions,
                     doNotShowAll: true, helpText: 'label.help.text.brfss.year'
                 },
                 {
@@ -2810,9 +2979,9 @@
                     queryKey:"question.path", aggregationKey:"question.key",
                     primary: false, value: [],
                     groupBy: 'row', filterType: 'tree',
-                    autoCompleteOptions: $rootScope.brfsQuestionsList,
+                    autoCompleteOptions: $rootScope.brfsAdvanceQuestionsList,
                     donotshowOnSearch:true,
-                    questions: $rootScope.brfsQuestions,
+                    questions: $rootScope.brfsAdvanceQuestions,
                     selectTitle: 'label.brfss.select.question',
                     updateTitle: 'label.brfss.update.question',
                     iconClass: 'fa fa-pie-chart purple-text',
@@ -4107,7 +4276,7 @@
                     key: 'brfss', title: 'label.brfss.title', primary: true, value:[],
                     searchResults: invokeStatsService, dontShowInlineCharting: true,
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total',
-                    tableView:'alcohol_consumption',  chartAxisLabel:'Percentage',
+                    tableView:'basic_alcohol_consumption',  chartAxisLabel:'Percentage',
                     showBasicSearchSideMenu: true, runOnFilterChange: true,
                     allFilters: filters.brfsBasicFilters, header:"Behavioral Risk Factors",
                     advancedSideFilters:[

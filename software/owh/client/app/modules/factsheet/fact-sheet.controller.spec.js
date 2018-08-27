@@ -23,7 +23,7 @@ describe("FactSheet Controller: ", function() {
          var response = {data:"4dcdd1323203ffe625cac68900edc1b5"};
          deferred.resolve(response);
          spyOn(SearchService, 'generateHashCode').and.returnValue(deferred.promise);
-         factSheetController.getFactSheet("AL");
+         factSheetController.getFactSheet("AL", "State Health");
          expect(SearchService.generateHashCode).toHaveBeenCalled();
     }));
 
