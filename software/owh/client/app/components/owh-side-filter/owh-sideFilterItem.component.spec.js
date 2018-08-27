@@ -59,9 +59,11 @@ describe('OWH Side filter item component: ', function () {
         $httpBackend.whenGET('/yrbsQuestionsTree').respond({ data: {} });
         $httpBackend.whenGET('/pramsBasicQuestionsTree').respond({data: { }});
         $httpBackend.whenGET('/pramsAdvancesQuestionsTree').respond({data: { }});
-        $httpBackend.whenGET('/brfsQuestionsTree').respond({ data: {} });
+        $httpBackend.whenGET('/brfsQuestionsTree/true').respond({ data: {} });
+        $httpBackend.whenGET('/brfsQuestionsTree/false').respond({ data: {} });
         $httpBackend.whenGET('jsons/ucd-conditions-ICD-10.json').respond({ data: [] });
         $httpBackend.whenGET('jsons/mcd-conditions-ICD-10.json').respond({ data: [] });
+        $httpBackend.whenGET('/getGoogAnalyInfo').respond({ data: [] });
 
         function searchResultsFn() {
         }

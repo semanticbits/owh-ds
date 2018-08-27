@@ -6,7 +6,7 @@ var searchUtils = require('../api/utils');
 var cahcedQuestions = null;
 var cachedPramsBasicQuestions = null;
 var cachedPramsAdvanceQuestions = null;
-var cachedBRFSQuestions = null;
+var cachedBRFSQuestions = {};
 function yrbs() {
 }
 
@@ -191,7 +191,7 @@ yrbs.prototype.buildYRBSQueries = function (apiQuery){
                 } else if(apiQuery.searchFor === 'prams') {
                     apiQuery.basicSearch ? qry += 'd=prams&' : qry += 'd=prams_p2011&'; // prams dataset
                 } else if(apiQuery.searchFor === 'brfss') {
-                    qry += 'd=brfss&'; // brfss dataset
+                    apiQuery.basicSearch ? qry += 'd=brfss_pre2011&' : qry += 'd=brfss&'; // brfss dataset
                 }
                 if(apiQuery.basicSearch) {
                     qry +='s=1&';
@@ -575,20 +575,21 @@ yrbs.prototype.getPramsAdvanceQuestionsTree = function () {
  * Get questions for BRFS
  * @returns {*\promise}
  */
-yrbs.prototype.getBRFSQuestionsTree = function () {
+yrbs.prototype.getBRFSQuestionsTree = function (precomputed) {
     var deferred = Q.defer();
-    if(cachedBRFSQuestions) {
+    var dset = precomputed? 'brfss_pre2011' : 'brfss';
+    if(cachedBRFSQuestions[dset]) {
         logger.info("Returning cached BRFS questions");
-        deferred.resolve(cachedBRFSQuestions);
+        deferred.resolve(cachedBRFSQuestions[dset]);
     } else {
-        invokeYRBS(config.yrbs.questionsUrl + '?d=brfss').then(function(response) {
+        invokeYRBS(config.yrbs.questionsUrl + '?d='+dset).then(function(response) {
             logger.info("Getting BRFS questions from stats service");
             var data = prepareQuestionTree(response.questions, true);
             // Cache the result only if it is valid
             if (data.questionsList.length > 0) {
-                cachedBRFSQuestions = {questionTree: data.questionTree, questionsList: data.questionsList};
+                cachedBRFSQuestions[dset] = {questionTree: data.questionTree, questionsList: data.questionsList};
             }
-            deferred.resolve(cachedBRFSQuestions);
+            deferred.resolve(cachedBRFSQuestions[dset]);
         });
     }
     return deferred.promise;
@@ -623,16 +624,18 @@ function prepareQuestionTree(questions,  prams) {
         }
 
         if (quesObj.description !== undefined) {
-            var question = {text:quesObj.question +"("+quesObj.description+")", id:quesObj.qid};
+            var question = {text:quesObj.question +"("+quesObj.description+")", id:quesObj.qid, years: quesObj.year};
             qCategoryMap[qCategory].children.push(question);
             //capture all questions into questionsList
 
             if (quesObj.description) {
-                questionsList.push({key : quesObj.question, qkey : quesObj.qid, title : quesObj.question +"("+quesObj.description+")"});
+                questionsList.push({key : quesObj.question, qkey : quesObj.qid,
+                    title : quesObj.question +"("+quesObj.description+")", years: quesObj.year});
             }
 
             else {
-                questionsList.push({key : quesObj.question, qkey : quesObj.qid, title : quesObj.question});
+                questionsList.push({key : quesObj.question, qkey : quesObj.qid,
+                    title : quesObj.question, years: quesObj.year});
             }
 
         } else if(prams) {
@@ -640,9 +643,10 @@ function prepareQuestionTree(questions,  prams) {
             if(questionKeys.indexOf(quesObj.qid) >= 0) {
                 continue;
             }
-            var question = {text:quesObj.question, id: quesObj.qid};
+            var question = {text:quesObj.question, id: quesObj.qid, years: quesObj.year};
             qCategoryMap[qCategory].children.push(question);
-            questionsList.push({key: quesObj.question, qkey: quesObj.qid, title: quesObj.question});
+            questionsList.push({key: quesObj.question, qkey: quesObj.qid,
+                title: quesObj.question, years: quesObj.year});
             questionKeys.push(quesObj.qid);
         }
     }

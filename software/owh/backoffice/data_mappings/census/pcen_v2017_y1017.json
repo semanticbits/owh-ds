@@ -204,6 +204,22 @@
           "field": "July 1, 2015 postcensal resident population estimate",
           "mappings": {
           }
+        },
+        {
+          "start": 70,
+          "stop": 77,
+          "index_value": "2016",
+          "field": "July 1, 2016 postcensal resident population estimate",
+          "mappings": {
+          }
+        },
+        {
+          "start": 78,
+          "stop": 85,
+          "index_value": "2017",
+          "field": "July 1, 2016 postcensal resident population estimate",
+          "mappings": {
+          }
         }
       ]
     }

@@ -1,1319 +1,4957 @@
 [
-  {
-    "key": "topic",
-    "title": "label.brfss.filter.topic",
-    "queryKey": "topic",
-    "primary": false,
-    "value": [],
-    "groupBy": false,
-    "filterType": "checkbox",
-    "autoCompleteOptions": [
-      {
-        "key": "cat_12",
-        "title": "Alcohol Consumption",
-        "$$hashKey": "object:4771",
-        "count": 0
-      },
-      {
-        "key": "cat_47",
-        "title": "Binge Drinking",
-        "$$hashKey": "object:4772",
-        "count": 0
-      },
-      {
-        "key": "cat_50",
-        "title": "Heavy Drinking",
-        "$$hashKey": "object:4773",
-        "count": 0
-      }
-    ],
-    "doNotShowAll": false,
-    "helpText": "label.help.text.brfss.topic",
-    "filterLength": 3,
-    "$$hashKey": "object:4730",
-    "allChecked": true
-  },
-  {
-    "key": "year",
-    "title": "label.filter.year",
-    "queryKey": "year",
-    "primary": false,
-    "value": [
-      "2015"
-    ],
-    "groupBy": false,
-    "defaultGroup": "column",
-    "filterType": "radio",
-    "autoCompleteOptions": [
-      {
-        "key": "2015",
-        "title": "2015",
-        "$$hashKey": "object:4809",
-        "count": 0
-      },
-      {
-        "key": "2014",
-        "title": "2014",
-        "$$hashKey": "object:4810",
-        "count": 0
-      },
-      {
-        "key": "2013",
-        "title": "2013",
-        "$$hashKey": "object:4811",
-        "count": 0
-      },
-      {
-        "key": "2012",
-        "title": "2012",
-        "$$hashKey": "object:4812",
-        "count": 0
-      },
-      {
-        "key": "2011",
-        "title": "2011",
-        "$$hashKey": "object:4813",
-        "count": 0
-      },
-      {
-        "key": "2010",
-        "title": "2010",
-        "$$hashKey": "object:4814",
-        "count": 0
-      },
-      {
-        "key": "2009",
-        "title": "2009",
-        "$$hashKey": "object:4815",
-        "count": 0
-      },
-      {
-        "key": "2008",
-        "title": "2008",
-        "$$hashKey": "object:4816",
-        "count": 0
-      },
-      {
-        "key": "2007",
-        "title": "2007",
-        "$$hashKey": "object:4817",
-        "count": 0
-      },
-      {
-        "key": "2006",
-        "title": "2006",
-        "$$hashKey": "object:4818",
-        "count": 0
-      },
-      {
-        "key": "2005",
-        "title": "2005",
-        "$$hashKey": "object:4819",
-        "count": 0
-      },
-      {
-        "key": "2004",
-        "title": "2004",
-        "$$hashKey": "object:4820",
-        "count": 0
-      },
-      {
-        "key": "2003",
-        "title": "2003",
-        "$$hashKey": "object:4821",
-        "count": 0
-      },
-      {
-        "key": "2002",
-        "title": "2002",
-        "$$hashKey": "object:4822",
-        "count": 0
-      },
-      {
-        "key": "2001",
-        "title": "2001",
-        "$$hashKey": "object:4823",
-        "count": 0
-      },
-      {
-        "key": "2000",
-        "title": "2000",
-        "$$hashKey": "object:4824",
-        "count": 0
-      }
-    ],
-    "doNotShowAll": true,
-    "helpText": "label.help.text.brfss.year",
-    "$$hashKey": "object:4731"
-  },
-  {
-    "key": "sex",
-    "title": "label.filter.gender",
-    "queryKey": "sex",
-    "primary": false,
-    "value": [],
-    "groupBy": false,
-    "filterType": "radio",
-    "defaultGroup": "column",
-    "autoCompleteOptions": [
-      {
-        "key": "Male",
-        "title": "Male",
-        "$$hashKey": "object:5317",
-        "count": 0
-      },
-      {
-        "key": "Female",
-        "title": "Female",
-        "$$hashKey": "object:5318",
-        "count": 0
-      }
-    ],
-    "doNotShowAll": false,
-    "helpText": "label.help.text.brfss.sex",
-    "$$hashKey": "object:4732"
-  },
-  {
-    "key": "state",
-    "title": "label.brfss.filter.state",
-    "queryKey": "sitecode",
-    "primary": false,
-    "value": [
-      "AL"
-    ],
-    "groupBy": false,
-    "filterType": "radio",
-    "defaultGroup": "column",
-    "autoCompleteOptions": [
-      {
-        "key": "AL",
-        "title": "Alabama",
-        "$$hashKey": "object:4895",
-        "count": 0
-      },
-      {
-        "key": "AK",
-        "title": "Alaska",
-        "$$hashKey": "object:4896",
-        "count": 0
-      },
-      {
-        "key": "AZ",
-        "title": "Arizona",
-        "$$hashKey": "object:4897",
-        "count": 0
-      },
-      {
-        "key": "AR",
-        "title": "Arkansas",
-        "$$hashKey": "object:4898",
-        "count": 0
-      },
-      {
-        "key": "CA",
-        "title": "California",
-        "$$hashKey": "object:4899",
-        "count": 0
-      },
-      {
-        "key": "CO",
-        "title": "Colorado",
-        "$$hashKey": "object:4900",
-        "count": 0
-      },
-      {
-        "key": "CT",
-        "title": "Connecticut",
-        "$$hashKey": "object:4901",
-        "count": 0
-      },
-      {
-        "key": "DE",
-        "title": "Delaware",
-        "$$hashKey": "object:4902",
-        "count": 0
-      },
-      {
-        "key": "DC",
-        "title": "District of Columbia",
-        "$$hashKey": "object:4903",
-        "count": 0
-      },
-      {
-        "key": "FL",
-        "title": "Florida",
-        "$$hashKey": "object:4904",
-        "count": 0
-      },
-      {
-        "key": "GA",
-        "title": "Georgia",
-        "$$hashKey": "object:4905",
-        "count": 0
-      },
-      {
-        "key": "HI",
-        "title": "Hawaii",
-        "$$hashKey": "object:4906",
-        "count": 0
-      },
-      {
-        "key": "ID",
-        "title": "Idaho",
-        "$$hashKey": "object:4907",
-        "count": 0
-      },
-      {
-        "key": "IL",
-        "title": "Illinois",
-        "$$hashKey": "object:4908",
-        "count": 0
-      },
-      {
-        "key": "IN",
-        "title": "Indiana",
-        "$$hashKey": "object:4909",
-        "count": 0
-      },
-      {
-        "key": "IA",
-        "title": "Iowa",
-        "$$hashKey": "object:4910",
-        "count": 0
-      },
-      {
-        "key": "KS",
-        "title": "Kansas",
-        "$$hashKey": "object:4911",
-        "count": 0
-      },
-      {
-        "key": "KY",
-        "title": "Kentucky",
-        "$$hashKey": "object:4912",
-        "count": 0
-      },
-      {
-        "key": "LA",
-        "title": "Louisiana",
-        "$$hashKey": "object:4913",
-        "count": 0
-      },
-      {
-        "key": "ME",
-        "title": "Maine",
-        "$$hashKey": "object:4914",
-        "count": 0
-      },
-      {
-        "key": "MD",
-        "title": "Maryland",
-        "$$hashKey": "object:4915",
-        "count": 0
-      },
-      {
-        "key": "MA",
-        "title": "Massachusetts",
-        "$$hashKey": "object:4916",
-        "count": 0
-      },
-      {
-        "key": "MI",
-        "title": "Michigan",
-        "$$hashKey": "object:4917",
-        "count": 0
-      },
-      {
-        "key": "MN",
-        "title": "Minnesota",
-        "$$hashKey": "object:4918",
-        "count": 0
-      },
-      {
-        "key": "MS",
-        "title": "Mississippi",
-        "$$hashKey": "object:4919",
-        "count": 0
-      },
-      {
-        "key": "MO",
-        "title": "Missouri",
-        "$$hashKey": "object:4920",
-        "count": 0
-      },
-      {
-        "key": "MT",
-        "title": "Montana",
-        "$$hashKey": "object:4921",
-        "count": 0
-      },
-      {
-        "key": "NE",
-        "title": "Nebraska",
-        "$$hashKey": "object:4922",
-        "count": 0
-      },
-      {
-        "key": "NV",
-        "title": "Nevada",
-        "$$hashKey": "object:4923",
-        "count": 0
-      },
-      {
-        "key": "NH",
-        "title": "New Hampshire",
-        "$$hashKey": "object:4924",
-        "count": 0
-      },
-      {
-        "key": "NJ",
-        "title": "New Jersey",
-        "$$hashKey": "object:4925",
-        "count": 0
-      },
-      {
-        "key": "NM",
-        "title": "New Mexico",
-        "$$hashKey": "object:4926",
-        "count": 0
-      },
-      {
-        "key": "NY",
-        "title": "New York",
-        "$$hashKey": "object:4927",
-        "count": 0
-      },
-      {
-        "key": "NC",
-        "title": "North Carolina",
-        "$$hashKey": "object:4928",
-        "count": 0
-      },
-      {
-        "key": "ND",
-        "title": "North Dakota",
-        "$$hashKey": "object:4929",
-        "count": 0
-      },
-      {
-        "key": "OH",
-        "title": "Ohio",
-        "$$hashKey": "object:4930",
-        "count": 0
-      },
-      {
-        "key": "OK",
-        "title": "Oklahoma",
-        "$$hashKey": "object:4931",
-        "count": 0
-      },
-      {
-        "key": "OR",
-        "title": "Oregon",
-        "$$hashKey": "object:4932",
-        "count": 0
-      },
-      {
-        "key": "PA",
-        "title": "Pennsylvania",
-        "$$hashKey": "object:4933",
-        "count": 0
-      },
-      {
-        "key": "RI",
-        "title": "Rhode Island",
-        "$$hashKey": "object:4934",
-        "count": 0
-      },
-      {
-        "key": "SC",
-        "title": "South Carolina",
-        "$$hashKey": "object:4935",
-        "count": 0
-      },
-      {
-        "key": "SD",
-        "title": "South Dakota",
-        "$$hashKey": "object:4936",
-        "count": 0
-      },
-      {
-        "key": "TN",
-        "title": "Tennessee",
-        "$$hashKey": "object:4937",
-        "count": 0
-      },
-      {
-        "key": "TX",
-        "title": "Texas",
-        "$$hashKey": "object:4938",
-        "count": 0
-      },
-      {
-        "key": "UT",
-        "title": "Utah",
-        "$$hashKey": "object:4939",
-        "count": 0
-      },
-      {
-        "key": "VT",
-        "title": "Vermont",
-        "$$hashKey": "object:4940",
-        "count": 0
-      },
-      {
-        "key": "VA",
-        "title": "Virginia",
-        "$$hashKey": "object:4941",
-        "count": 0
-      },
-      {
-        "key": "WV",
-        "title": "West Virginia",
-        "$$hashKey": "object:4942",
-        "count": 0
-      },
-      {
-        "key": "WA",
-        "title": "Washington",
-        "$$hashKey": "object:4943",
-        "count": 0
-      },
-      {
-        "key": "WI",
-        "title": "Wisconsin",
-        "$$hashKey": "object:4944",
-        "count": 0
-      },
-      {
-        "key": "WY",
-        "title": "Wyoming",
-        "$$hashKey": "object:4945",
-        "count": 0
-      }
-    ],
-    "displaySearchBox": true,
-    "displaySelectedFirst": true,
-    "doNotShowAll": false,
-    "helpText": "label.help.text.brfss.state",
-    "$$hashKey": "object:4733"
-  },
-  {
-    "key": "race",
-    "title": "label.brfss.filter.race_ethnicity",
-    "queryKey": "race",
-    "primary": false,
-    "value": [],
-    "groupBy": "column",
-    "filterType": "radio",
-    "defaultGroup": "column",
-    "autoCompleteOptions": [
-      {
-        "key": "White",
-        "title": "White, non-Hispanic",
-        "$$hashKey": "object:5352",
-        "count": 0
-      },
-      {
-        "key": "Black",
-        "title": "Black, non-Hispanic",
-        "$$hashKey": "object:5353",
-        "count": 0
-      },
-      {
-        "key": "AI/AN",
-        "title": "American Indian or Alaskan Native, non-Hispanic",
-        "$$hashKey": "object:5354",
-        "count": 0
-      },
-      {
-        "key": "Asian",
-        "title": "Asian, non-Hispanic",
-        "$$hashKey": "object:5355",
-        "count": 0
-      },
-      {
-        "key": "NHOPI",
-        "title": "Native Hawaiian or other Pacific Islander, non-Hispanic",
-        "$$hashKey": "object:5356",
-        "count": 0
-      },
-      {
-        "key": "Other Race",
-        "title": "Other, non-Hispanic",
-        "$$hashKey": "object:5357",
-        "count": 0
-      },
-      {
-        "key": "Multiracial non-Hispanic",
-        "title": "Multiracial, non-Hispanic",
-        "$$hashKey": "object:5358",
-        "count": 0
-      },
-      {
-        "key": "Hispanic",
-        "title": "Hispanic",
-        "$$hashKey": "object:5359",
-        "count": 0
-      }
-    ],
-    "doNotShowAll": false,
-    "helpText": "label.help.text.brfss.race_ethnicity",
-    "$$hashKey": "object:4734"
-  },
-  {
-    "key": "age_group",
-    "title": "label.filter.age_group",
-    "queryKey": "age",
-    "primary": false,
-    "value": [],
-    "groupBy": false,
-    "filterType": "radio",
-    "defaultGroup": "column",
-    "autoCompleteOptions": [
-      {
-        "key": "18-24",
-        "title": "Age 18-24",
-        "count": 0
-      },
-      {
-        "key": "25-34",
-        "title": "Age 25-34",
-        "count": 0
-      },
-      {
-        "key": "35-44",
-        "title": "Age 35-44",
-        "count": 0
-      },
-      {
-        "key": "45-54",
-        "title": "Age 45-54",
-        "count": 0
-      },
-      {
-        "key": "55-64",
-        "title": "Age 55-64",
-        "count": 0
-      },
-      {
-        "key": "40-49",
-        "title": "Age 40-49",
-        "count": 0
-      },
-      {
-        "key": "50-59",
-        "title": "Age 50-59",
-        "count": 0
-      },
-      {
-        "key": "60-64",
-        "title": "Age 60-64",
-        "count": 0
-      },
-      {
-        "key": "65+",
-        "title": "Age 65+",
-        "count": 0
-      },
-      {
-        "key": "65-74",
-        "title": "Age 65-74",
-        "count": 0
-      },
-      {
-        "key": "75+",
-        "title": "Age 75+",
-        "count": 0
-      },
-      {
-        "key": "21-30",
-        "title": "Age 21-30",
-        "count": 0
-      },
-      {
-        "key": "31-40",
-        "title": "Age 31-40",
-        "count": 0
-      },
-      {
-        "key": "41-50",
-        "title": "Age 41-50",
-        "count": 0
-      },
-      {
-        "key": "51-60",
-        "title": "Age 51-60",
-        "count": 0
-      },
-      {
-        "key": "61-65",
-        "title": "Age 61-65",
-        "count": 0
-      },
-      {
-        "key": "60-69",
-        "title": "Age 60-69",
-        "count": 0
-      },
-      {
-        "key": "70-74",
-        "title": "Age 70-74",
-        "count": 0
-      },
-      {
-        "key": "70-75",
-        "title": "Age 70-75",
-        "count": 0
-      }
-    ],
-    "doNotShowAll": false,
-    "helpText": "label.help.text.brfss.age_group",
-    "$$hashKey": "object:4735"
-  },
-  {
-    "key": "education",
-    "title": "label.filter.education.attained",
-    "queryKey": "education",
-    "primary": false,
-    "value": [],
-    "groupBy": false,
-    "filterType": "radio",
-    "defaultGroup": "column",
-    "autoCompleteOptions": [
-      {
-        "key": "Less than High School",
-        "title": "Less than H.S.",
-        "count": 0
-      },
-      {
-        "key": "High School Graduate",
-        "title": "High School or Graduate",
-        "count": 0
-      },
-      {
-        "key": "Attended College/Technical School",
-        "title": "Some post-H.S.",
-        "count": 0
-      },
-      {
-        "key": "College/Technical School Graduate",
-        "title": "College graduate",
-        "count": 0
-      }
-    ],
-    "doNotShowAll": false,
-    "helpText": "label.help.text.brfss.education",
-    "$$hashKey": "object:4736"
-  },
-  {
-    "key": "income",
-    "title": "label.filter.household.income",
-    "queryKey": "income",
-    "primary": false,
-    "value": [],
-    "groupBy": false,
-    "filterType": "radio",
-    "defaultGroup": "column",
-    "autoCompleteOptions": [
-      {
-        "key": "<$15k",
-        "title": "Less than $15,000",
-        "count": 0
-      },
-      {
-        "key": "$15k-$25k",
-        "title": "$15,000-$25,000",
-        "count": 0
-      },
-      {
-        "key": "$25k-$35k",
-        "title": "$25,000-$35,000",
-        "count": 0
-      },
-      {
-        "key": "$35,000 -  49,999",
-        "title": "$35,000-$49,999",
-        "count": 0
-      },
-      {
-        "key": "$50k+",
-        "title": "$50,000+",
-        "count": 0
-      }
-    ],
-    "doNotShowAll": false,
-    "helpText": "label.help.text.brfss.income",
-    "$$hashKey": "object:4737"
-  },
-  {
-    "key": "question",
-    "title": "label.brfss.filter.question",
-    "queryKey": "question.path",
-    "aggregationKey": "question.key",
-    "primary": false,
-    "value": [],
-    "groupBy": "row",
-    "filterType": "tree",
-    "autoCompleteOptions": [
-      {
-        "key": "Ever told you that you have a form of depression?",
-        "qkey": "addepev2",
-        "title": "Ever told you that you have a form of depression?",
-        "count": 0
-      },
-      {
-        "key": "What is your age?",
-        "qkey": "age",
-        "title": "What is your age?",
-        "count": 0
-      },
-      {
-        "key": "Are you blind or do you have serious difficulty seeing, even when wearing glasses?",
-        "qkey": "blind",
-        "title": "Are you blind or do you have serious difficulty seeing, even when wearing glasses?",
-        "count": 0
-      },
-      {
-        "key": "Adults who have ever had their blood cholesterol checked",
-        "qkey": "bloodcho",
-        "title": "Adults who have ever had their blood cholesterol checked",
-        "count": 0
-      },
-      {
-        "key": "Ever told you have COPD?",
-        "qkey": "chccopd",
-        "title": "Ever told you have COPD?",
-        "count": 0
-      },
-      {
-        "key": "Ever told you have COPD?",
-        "qkey": "chccopd1",
-        "title": "Ever told you have COPD?",
-        "count": 0
-      },
-      {
-        "key": "Ever told you have kidney disease?",
-        "qkey": "chckidny",
-        "title": "Ever told you have kidney disease?",
-        "count": 0
-      },
-      {
-        "key": "Ever told you had any other types of cancer?",
-        "qkey": "chcocncr",
-        "title": "Ever told you had any other types of cancer?",
-        "count": 0
-      },
-      {
-        "key": "Ever told you had skin cancer?",
-        "qkey": "chcscncr",
-        "title": "Ever told you had skin cancer?",
-        "count": 0
-      },
-      {
-        "key": "Ever told you have vision impairment?",
-        "qkey": "chcvisn1",
-        "title": "Ever told you have vision impairment?",
-        "count": 0
-      },
-      {
-        "key": "Ever told you have vision impairment?",
-        "qkey": "chcvison",
-        "title": "Ever told you have vision impairment?",
-        "count": 0
-      },
-      {
-        "key": "About how long has it been since you last visited a doctor for a routine checkup?",
-        "qkey": "checkup1",
-        "title": "About how long has it been since you last visited a doctor for a routine checkup?",
-        "count": 0
-      },
-      {
-        "key": "Ever told you had angina or coronary heart disease?",
-        "qkey": "cvdcrhd4",
-        "title": "Ever told you had angina or coronary heart disease?",
-        "count": 0
-      },
-      {
-        "key": "Ever told you had a heart attack (myocardial infarction)?",
-        "qkey": "cvdinfr4",
-        "title": "Ever told you had a heart attack (myocardial infarction)?",
-        "count": 0
-      },
-      {
-        "key": "Ever told you had a stroke?",
-        "qkey": "cvdstrk3",
-        "title": "Ever told you had a stroke?",
-        "count": 0
-      },
-      {
-        "key": "Do you have serious difficulty concentrating, remembering, or making decisions?",
-        "qkey": "decide",
-        "title": "Do you have serious difficulty concentrating, remembering, or making decisions?",
-        "count": 0
-      },
-      {
-        "key": "Have you ever been told by a doctor that you have diabetes?",
-        "qkey": "diabete3",
-        "title": "Have you ever been told by a doctor that you have diabetes?",
-        "count": 0
-      },
-      {
-        "key": "Do you have difficulty doing errands alone?",
-        "qkey": "diffalon",
-        "title": "Do you have difficulty doing errands alone?",
-        "count": 0
-      },
-      {
-        "key": "Do you have difficulty dressing or bathing?",
-        "qkey": "diffdres",
-        "title": "Do you have difficulty dressing or bathing?",
-        "count": 0
-      },
-      {
-        "key": "Do you have serious difficulty walking or climbing stairs?",
-        "qkey": "diffwalk",
-        "title": "Do you have serious difficulty walking or climbing stairs?",
-        "count": 0
-      },
-      {
-        "key": "Adults who have had at least one drink of alcohol within the past 30 days",
-        "qkey": "drnkany5",
-        "title": "Adults who have had at least one drink of alcohol within the past 30 days",
-        "count": 0
-      },
-      {
-        "key": "What is the highest grade or year of school you completed?",
-        "qkey": "educa",
-        "title": "What is the highest grade or year of school you completed?",
-        "count": 0
-      },
-      {
-        "key": "What is your employment status?",
-        "qkey": "employ",
-        "title": "What is your employment status?",
-        "count": 0
-      },
-      {
-        "key": "What is your employment status?",
-        "qkey": "employ1",
-        "title": "What is your employment status?",
-        "count": 0
-      },
-      {
-        "key": "How is your general health?",
-        "qkey": "genhlth",
-        "title": "How is your general health?",
-        "count": 0
-      },
-      {
-        "key": "Have you ever been tested for HIV?",
-        "qkey": "hivtst6",
-        "title": "Have you ever been tested for HIV?",
-        "count": 0
-      },
-      {
-        "key": "Do you have any kind of health care coverage?",
-        "qkey": "hlthpln1",
-        "title": "Do you have any kind of health care coverage?",
-        "count": 0
-      },
-      {
-        "key": "What is your annual household income?",
-        "qkey": "income",
-        "title": "What is your annual household income?",
-        "count": 0
-      },
-      {
-        "key": "Have you used the internet in the past 30 days?",
-        "qkey": "internet",
-        "title": "Have you used the internet in the past 30 days?",
-        "count": 0
-      },
-      {
-        "key": "What is your marital status?",
-        "qkey": "marital",
-        "title": "What is your marital status?",
-        "count": 0
-      },
-      {
-        "key": "Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?",
-        "qkey": "medcost",
-        "title": "Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?",
-        "count": 0
-      },
-      {
-        "key": "Do you have one person you think of as your personal doctor or health care provider?",
-        "qkey": "persdoc2",
-        "title": "Do you have one person you think of as your personal doctor or health care provider?",
-        "count": 0
-      },
-      {
-        "key": "Adults who are limited in any activities because of physical, mental, or emotional problems",
-        "qkey": "qlactlm2",
-        "title": "Adults who are limited in any activities because of physical, mental, or emotional problems",
-        "count": 0
-      },
-      {
-        "key": "What is your race/ethnicity?",
-        "qkey": "race",
-        "title": "What is your race/ethnicity?",
-        "count": 0
-      },
-      {
-        "key": "Do you own or rent your home?",
-        "qkey": "renthom1",
-        "title": "Do you own or rent your home?",
-        "count": 0
-      },
-      {
-        "key": "Gender of respondent",
-        "qkey": "sex",
-        "title": "Gender of respondent",
-        "count": 0
-      },
-      {
-        "key": "Have you ever had the shingles or zoster vaccine?",
-        "qkey": "shingle2",
-        "title": "Have you ever had the shingles or zoster vaccine?",
-        "count": 0
-      },
-      {
-        "key": "Since 2005, have you had a tetanus shot?",
-        "qkey": "tetanus",
-        "title": "Since 2005, have you had a tetanus shot?",
-        "count": 0
-      },
-      {
-        "key": "Adults with health problem(s) that requires the use of special equipment",
-        "qkey": "useequip",
-        "title": "Adults with health problem(s) that requires the use of special equipment",
-        "count": 0
-      },
-      {
-        "key": "Do you currently use chewing tobacco, snuff, or snus?",
-        "qkey": "usenow3",
-        "title": "Do you currently use chewing tobacco, snuff, or snus?",
-        "count": 0
-      },
-      {
-        "key": "Have you ever served on active duty in the United States Armed Forces?",
-        "qkey": "veteran3",
-        "title": "Have you ever served on active duty in the United States Armed Forces?",
-        "count": 0
-      },
-      {
-        "key": "Adults aged 65+ who have had all their natural teeth extracted (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_alteth2",
-        "title": "Adults aged 65+ who have had all their natural teeth extracted (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Weight classification by Body Mass Index (BMI) (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_bmi5cat",
-        "title": "Weight classification by Body Mass Index (BMI) (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Adults who have been told they currently have asthma (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_casthm1",
-        "title": "Adults who have been told they currently have asthma (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "How many children live in your household? (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_chldcnt",
-        "title": "How many children live in your household? (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Adults who have had their blood cholesterol checked within the last five years (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_cholchk",
-        "title": "Adults who have had their blood cholesterol checked within the last five years (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Respondents aged 50-75 who have fully met the USPSTF recommendation (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_crcrec",
-        "title": "Respondents aged 50-75 who have fully met the USPSTF recommendation (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Visited the dentist or dental clinic within the past year for any reason (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_denvst2",
-        "title": "Visited the dentist or dental clinic within the past year for any reason (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Adults who have been told they have arthritis (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_drdxar1",
-        "title": "Adults who have been told they have arthritis (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Respondents who have reported having driven after drinking too much (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_drnkdrv",
-        "title": "Respondents who have reported having driven after drinking too much (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Adults that have had any permanent teeth extracted (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_exteth2",
-        "title": "Adults that have had any permanent teeth extracted (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_flshot5",
-        "title": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_flshot6",
-        "title": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Consumed fruit less than one time per day (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_frtlt1",
-        "title": "Consumed fruit less than one time per day (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Adults aged 18-64 who have any kind of health care coverage (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_hcvu651",
-        "title": "Adults aged 18-64 who have any kind of health care coverage (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Are you now limited in any way in any of your usual activities because of arthritis? (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_lmtact1",
-        "title": "Are you now limited in any way in any of your usual activities because of arthritis? (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Does arthritis or joint symptoms interfere with your normal social activities? (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_lmtscl1",
-        "title": "Does arthritis or joint symptoms interfere with your normal social activities? (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Do arthritis or joint symptoms now affect whether you work? (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_lmtwrk1",
-        "title": "Do arthritis or joint symptoms now affect whether you work? (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Adults who have ever been told they have asthma (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_ltasth1",
-        "title": "Adults who have ever been told they have asthma (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Women aged 50-74 who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_mam5021",
-        "title": "Women aged 50-74 who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Women aged 50+ who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_mam502y",
-        "title": "Women aged 50+ who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Respondents that have ever reported having coronary heart disease (chd) or myocardial infarction (mi) (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_michd",
-        "title": "Respondents that have ever reported having coronary heart disease (chd) or myocardial infarction (mi) (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_paindex",
-        "title": "Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_paindx1",
-        "title": "Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_pastae1",
-        "title": "Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_pastaer",
-        "title": "Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Participated Muscle Strengthening exercises more than twice  per week (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_pastrng",
-        "title": "Participated Muscle Strengthening exercises more than twice  per week (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Adults aged 65+ who have ever had a pneumonia vaccination (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_pneumo2",
-        "title": "Adults aged 65+ who have ever had a pneumonia vaccination (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_rfbing5",
-        "title": "Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Adults aged 50+ who have had a blood stool test within the past two years (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_rfblds2",
-        "title": "Adults aged 50+ who have had a blood stool test within the past two years (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Adults aged 50-75 who have had a blood stool test within the past year (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_rfblds3",
-        "title": "Adults aged 50-75 who have had a blood stool test within the past year (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Adults who have had their blood cholesterol checked and have been told it was high (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_rfchol",
-        "title": "Adults who have had their blood cholesterol checked and have been told it was high (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_rfdrhv4",
-        "title": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_rfdrhv5",
-        "title": "Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Health Status (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_rfhlth",
-        "title": "Health Status (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_rfhype5",
-        "title": "Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Women aged 40+ who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_rfmam2y",
-        "title": "Women aged 40+ who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Women aged 18+ who have had a pap test within the past three years (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_rfpap32",
-        "title": "Women aged 18+ who have had a pap test within the past three years (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Women aged 21-65 who have had a pap test in the past three years (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_rfpap33",
-        "title": "Women aged 21-65 who have had a pap test in the past three years (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Men aged 40+ who have had a PSA test within the past two years (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_rfpsa21",
-        "title": "Men aged 40+ who have had a PSA test within the past two years (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Always wears a seat belt? (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_rfseat3",
-        "title": "Always wears a seat belt? (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Adults aged 50+ who have ever had a sigmoidoscopy or colonoscopy (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_rfsigm2",
-        "title": "Adults aged 50+ who have ever had a sigmoidoscopy or colonoscopy (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Adults who are current smokers (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_rfsmok3",
-        "title": "Adults who are current smokers (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Four Level Smoking Status (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_smoker3",
-        "title": "Four Level Smoking Status (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "During the past month, did you participate in any physical activities? (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_totinda",
-        "title": "During the past month, did you participate in any physical activities? (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      },
-      {
-        "key": "Consumed vegetables less than one time per day (variable calculated from one or more BRFSS questions)",
-        "qkey": "x_veglt1",
-        "title": "Consumed vegetables less than one time per day (variable calculated from one or more BRFSS questions)",
-        "count": 0
-      }
-    ],
-    "donotshowOnSearch": true,
-    "questions": [
-      {
-        "id": "cat_12",
-        "text": "Alcohol Consumption",
-        "children": [
-          {
-            "text": "Adults who have had at least one drink of alcohol within the past 30 days",
-            "id": "drnkany5"
-          }
-        ]
-      },
-      {
-        "id": "cat_47",
-        "text": "Binge Drinking",
-        "children": [
-          {
-            "text": "Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
-            "id": "x_rfbing5"
-          }
-        ]
-      },
-      {
-        "id": "cat_50",
-        "text": "Heavy Drinking",
-        "children": [
-          {
-            "text": "Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions)",
-            "id": "x_rfdrhv5"
-          },
-          {
-            "text": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
-            "id": "x_rfdrhv4"
-          }
-        ]
-      }
-    ],
-    "selectTitle": "label.brfss.select.question",
-    "updateTitle": "label.brfss.update.question",
-    "iconClass": "fa fa-pie-chart purple-text",
-    "helpText": "label.help.text.brfss.question",
-    "$$hashKey": "object:4724"
-  }
-]
+    {
+      "key": "topic",
+      "title": "label.brfss.filter.topic",
+      "queryKey": "topic",
+      "primary": false,
+      "value": [],
+      "groupBy": false,
+      "filterType": "checkbox",
+      "autoCompleteOptions": [
+        {
+          "key": "cat_20",
+          "title": "Aerobic Activity"
+        },
+        {
+          "key": "cat_39",
+          "title": "Age"
+        },
+        {
+          "key": "cat_48",
+          "title": "Alcohol Consumption"
+        },
+        {
+          "key": "cat_0",
+          "title": "All Teeth Removed"
+        },
+        {
+          "key": "cat_10",
+          "title": "Arthritis"
+        },
+        {
+          "key": "cat_2",
+          "title": "Asthma"
+        },
+        {
+          "key": "cat_1",
+          "title": "BMI Categories"
+        },
+        {
+          "key": "cat_24",
+          "title": "Binge Drinking"
+        },
+        {
+          "key": "cat_13",
+          "title": "Blood Stool Test"
+        },
+        {
+          "key": "cat_41",
+          "title": "COPD"
+        },
+        {
+          "key": "cat_19",
+          "title": "Cardiovascular Disease"
+        },
+        {
+          "key": "cat_4",
+          "title": "Cholesterol Checked"
+        },
+        {
+          "key": "cat_25",
+          "title": "Cholesterol High"
+        },
+        {
+          "key": "cat_5",
+          "title": "Colonoscopy"
+        },
+        {
+          "key": "cat_34",
+          "title": "Current Smoker Status"
+        },
+        {
+          "key": "cat_8",
+          "title": "Dental Visit"
+        },
+        {
+          "key": "cat_38",
+          "title": "Depression"
+        },
+        {
+          "key": "cat_47",
+          "title": "Diabetes"
+        },
+        {
+          "key": "cat_40",
+          "title": "Disability status"
+        },
+        {
+          "key": "cat_9",
+          "title": "Drink and Drive"
+        },
+        {
+          "key": "cat_49",
+          "title": "Education"
+        },
+        {
+          "key": "cat_50",
+          "title": "Employment"
+        },
+        {
+          "key": "cat_36",
+          "title": "Exercise"
+        },
+        {
+          "key": "cat_28",
+          "title": "Fair or Poor Health"
+        },
+        {
+          "key": "cat_16",
+          "title": "Five Servings per Day"
+        },
+        {
+          "key": "cat_12",
+          "title": "Flu Shot"
+        },
+        {
+          "key": "cat_14",
+          "title": "Fruit Consumption"
+        },
+        {
+          "key": "cat_52",
+          "title": "HIV Test"
+        },
+        {
+          "key": "cat_57",
+          "title": "Health Care Cost"
+        },
+        {
+          "key": "cat_53",
+          "title": "Health Care Coverage"
+        },
+        {
+          "key": "cat_27",
+          "title": "Heavy Drinking"
+        },
+        {
+          "key": "cat_29",
+          "title": "High Blood Pressure"
+        },
+        {
+          "key": "cat_54",
+          "title": "Income"
+        },
+        {
+          "key": "cat_55",
+          "title": "Internet"
+        },
+        {
+          "key": "cat_42",
+          "title": "Kidney"
+        },
+        {
+          "key": "cat_46",
+          "title": "Last Checkup"
+        },
+        {
+          "key": "cat_18",
+          "title": "Mammogram"
+        },
+        {
+          "key": "cat_56",
+          "title": "Marital Status"
+        },
+        {
+          "key": "cat_3",
+          "title": "Number of Children"
+        },
+        {
+          "key": "cat_43",
+          "title": "Other Cancer"
+        },
+        {
+          "key": "cat_51",
+          "title": "Overall Health"
+        },
+        {
+          "key": "cat_32",
+          "title": "PSA Test"
+        },
+        {
+          "key": "cat_31",
+          "title": "Pap Test"
+        },
+        {
+          "key": "cat_58",
+          "title": "Personal Care Provider"
+        },
+        {
+          "key": "cat_30",
+          "title": "Physical Activity"
+        },
+        {
+          "key": "cat_21",
+          "title": "Physical Activity Index"
+        },
+        {
+          "key": "cat_23",
+          "title": "Pneumonia Vaccination"
+        },
+        {
+          "key": "cat_59",
+          "title": "Race"
+        },
+        {
+          "key": "cat_60",
+          "title": "Rent/Own Home"
+        },
+        {
+          "key": "cat_33",
+          "title": "Seatbelt Use"
+        },
+        {
+          "key": "cat_61",
+          "title": "Sex"
+        },
+        {
+          "key": "cat_62",
+          "title": "Shingle Vaccination"
+        },
+        {
+          "key": "cat_15",
+          "title": "Sigmoidoscopy"
+        },
+        {
+          "key": "cat_44",
+          "title": "Skin Cancer"
+        },
+        {
+          "key": "cat_64",
+          "title": "Smokeless Tobacco"
+        },
+        {
+          "key": "cat_35",
+          "title": "Smoker Status"
+        },
+        {
+          "key": "cat_22",
+          "title": "Strength Activity"
+        },
+        {
+          "key": "cat_11",
+          "title": "Teeth Removed"
+        },
+        {
+          "key": "cat_63",
+          "title": "Tetanus Shot"
+        },
+        {
+          "key": "cat_6",
+          "title": "USPSTF Recommendations"
+        },
+        {
+          "key": "cat_17",
+          "title": "Under 65 Coverage"
+        },
+        {
+          "key": "cat_37",
+          "title": "Vegetable Consumption"
+        },
+        {
+          "key": "cat_65",
+          "title": "Veteran Status"
+        },
+        {
+          "key": "cat_45",
+          "title": "Vision"
+        }
+      ],
+      "doNotShowAll": false,
+      "helpText": "label.help.text.brfss.topic",
+      "disableFilter": true
+    },
+    {
+      "key": "year",
+      "title": "label.filter.year",
+      "queryKey": "year",
+      "primary": false,
+      "value": "2015",
+      "groupBy": false,
+      "filterType": "radio",
+      "autoCompleteOptions": [
+        {
+          "key": "2015",
+          "title": "2015"
+        },
+        {
+          "key": "2014",
+          "title": "2014"
+        },
+        {
+          "key": "2013",
+          "title": "2013"
+        },
+        {
+          "key": "2012",
+          "title": "2012"
+        },
+        {
+          "key": "2011",
+          "title": "2011"
+        },
+        {
+          "key": "2010",
+          "title": "2010"
+        },
+        {
+          "key": "2009",
+          "title": "2009"
+        },
+        {
+          "key": "2008",
+          "title": "2008"
+        },
+        {
+          "key": "2007",
+          "title": "2007"
+        },
+        {
+          "key": "2006",
+          "title": "2006"
+        },
+        {
+          "key": "2005",
+          "title": "2005"
+        },
+        {
+          "key": "2004",
+          "title": "2004"
+        },
+        {
+          "key": "2003",
+          "title": "2003"
+        },
+        {
+          "key": "2002",
+          "title": "2002"
+        },
+        {
+          "key": "2001",
+          "title": "2001"
+        }
+      ],
+      "doNotShowAll": true,
+      "helpText": "label.help.text.brfss.year",
+      "disableFilter": true
+    },
+    {
+      "key": "sex",
+      "title": "label.filter.gender",
+      "queryKey": "sex",
+      "primary": false,
+      "value": [],
+      "groupBy": false,
+      "filterType": "radio",
+      "defaultGroup": "column",
+      "autoCompleteOptions": [
+        {
+          "key": "Male",
+          "title": "Male"
+        },
+        {
+          "key": "Female",
+          "title": "Female"
+        }
+      ],
+      "doNotShowAll": false,
+      "helpText": "label.help.text.brfss.sex"
+    },
+    {
+      "key": "state",
+      "title": "label.brfss.filter.state",
+      "queryKey": "sitecode",
+      "primary": false,
+      "value": [
+        "AL"
+      ],
+      "groupBy": false,
+      "filterType": "radio",
+      "defaultGroup": "column",
+      "autoCompleteOptions": [
+        {
+          "key": "AL",
+          "title": "Alabama"
+        },
+        {
+          "key": "AK",
+          "title": "Alaska"
+        },
+        {
+          "key": "AZ",
+          "title": "Arizona"
+        },
+        {
+          "key": "AR",
+          "title": "Arkansas"
+        },
+        {
+          "key": "CA",
+          "title": "California"
+        },
+        {
+          "key": "CO",
+          "title": "Colorado"
+        },
+        {
+          "key": "CT",
+          "title": "Connecticut"
+        },
+        {
+          "key": "DE",
+          "title": "Delaware"
+        },
+        {
+          "key": "DC",
+          "title": "District of Columbia"
+        },
+        {
+          "key": "FL",
+          "title": "Florida"
+        },
+        {
+          "key": "GA",
+          "title": "Georgia"
+        },
+        {
+          "key": "HI",
+          "title": "Hawaii"
+        },
+        {
+          "key": "ID",
+          "title": "Idaho"
+        },
+        {
+          "key": "IL",
+          "title": "Illinois"
+        },
+        {
+          "key": "IN",
+          "title": "Indiana"
+        },
+        {
+          "key": "IA",
+          "title": "Iowa"
+        },
+        {
+          "key": "KS",
+          "title": "Kansas"
+        },
+        {
+          "key": "KY",
+          "title": "Kentucky"
+        },
+        {
+          "key": "LA",
+          "title": "Louisiana"
+        },
+        {
+          "key": "ME",
+          "title": "Maine"
+        },
+        {
+          "key": "MD",
+          "title": "Maryland"
+        },
+        {
+          "key": "MA",
+          "title": "Massachusetts"
+        },
+        {
+          "key": "MI",
+          "title": "Michigan"
+        },
+        {
+          "key": "MN",
+          "title": "Minnesota"
+        },
+        {
+          "key": "MS",
+          "title": "Mississippi"
+        },
+        {
+          "key": "MO",
+          "title": "Missouri"
+        },
+        {
+          "key": "MT",
+          "title": "Montana"
+        },
+        {
+          "key": "NE",
+          "title": "Nebraska"
+        },
+        {
+          "key": "NV",
+          "title": "Nevada"
+        },
+        {
+          "key": "NH",
+          "title": "New Hampshire"
+        },
+        {
+          "key": "NJ",
+          "title": "New Jersey"
+        },
+        {
+          "key": "NM",
+          "title": "New Mexico"
+        },
+        {
+          "key": "NY",
+          "title": "New York"
+        },
+        {
+          "key": "NC",
+          "title": "North Carolina"
+        },
+        {
+          "key": "ND",
+          "title": "North Dakota"
+        },
+        {
+          "key": "OH",
+          "title": "Ohio"
+        },
+        {
+          "key": "OK",
+          "title": "Oklahoma"
+        },
+        {
+          "key": "OR",
+          "title": "Oregon"
+        },
+        {
+          "key": "PA",
+          "title": "Pennsylvania"
+        },
+        {
+          "key": "RI",
+          "title": "Rhode Island"
+        },
+        {
+          "key": "SC",
+          "title": "South Carolina"
+        },
+        {
+          "key": "SD",
+          "title": "South Dakota"
+        },
+        {
+          "key": "TN",
+          "title": "Tennessee"
+        },
+        {
+          "key": "TX",
+          "title": "Texas"
+        },
+        {
+          "key": "UT",
+          "title": "Utah"
+        },
+        {
+          "key": "VT",
+          "title": "Vermont"
+        },
+        {
+          "key": "VA",
+          "title": "Virginia"
+        },
+        {
+          "key": "WV",
+          "title": "West Virginia"
+        },
+        {
+          "key": "WA",
+          "title": "Washington"
+        },
+        {
+          "key": "WI",
+          "title": "Wisconsin"
+        },
+        {
+          "key": "WY",
+          "title": "Wyoming"
+        }
+      ],
+      "displaySearchBox": true,
+      "displaySelectedFirst": true,
+      "doNotShowAll": false,
+      "helpText": "label.help.text.brfss.state"
+    },
+    {
+      "key": "race",
+      "title": "label.brfss.filter.race_ethnicity",
+      "queryKey": "race",
+      "primary": false,
+      "value": [],
+      "groupBy": "column",
+      "filterType": "radio",
+      "defaultGroup": "column",
+      "autoCompleteOptions": [
+        {
+          "key": "White",
+          "title": "White, non-Hispanic"
+        },
+        {
+          "key": "Black",
+          "title": "Black, non-Hispanic"
+        },
+        {
+          "key": "AI/AN",
+          "title": "American Indian or Alaskan Native, non-Hispanic"
+        },
+        {
+          "key": "Asian",
+          "title": "Asian, non-Hispanic"
+        },
+        {
+          "key": "NHOPI",
+          "title": "Native Hawaiian or other Pacific Islander, non-Hispanic"
+        },
+        {
+          "key": "Other Race",
+          "title": "Other, non-Hispanic"
+        },
+        {
+          "key": "Multiracial non-Hispanic",
+          "title": "Multiracial, non-Hispanic"
+        },
+        {
+          "key": "Hispanic",
+          "title": "Hispanic"
+        }
+      ],
+      "doNotShowAll": false,
+      "helpText": "label.help.text.brfss.race_ethnicity"
+    },
+    {
+      "key": "age_group",
+      "title": "label.filter.age_group",
+      "queryKey": "age",
+      "primary": false,
+      "value": [],
+      "groupBy": false,
+      "filterType": "radio",
+      "defaultGroup": "column",
+      "autoCompleteOptions": [
+        {
+          "key": "18-24",
+          "title": "Age 18-24"
+        },
+        {
+          "key": "25-34",
+          "title": "Age 25-34"
+        },
+        {
+          "key": "35-44",
+          "title": "Age 35-44"
+        },
+        {
+          "key": "45-54",
+          "title": "Age 45-54"
+        },
+        {
+          "key": "55-64",
+          "title": "Age 55-64"
+        },
+        {
+          "key": "40-49",
+          "title": "Age 40-49"
+        },
+        {
+          "key": "50-59",
+          "title": "Age 50-59"
+        },
+        {
+          "key": "60-64",
+          "title": "Age 60-64"
+        },
+        {
+          "key": "65+",
+          "title": "Age 65+"
+        },
+        {
+          "key": "65-74",
+          "title": "Age 65-74"
+        },
+        {
+          "key": "75+",
+          "title": "Age 75+"
+        },
+        {
+          "key": "21-30",
+          "title": "Age 21-30"
+        },
+        {
+          "key": "31-40",
+          "title": "Age 31-40"
+        },
+        {
+          "key": "41-50",
+          "title": "Age 41-50"
+        },
+        {
+          "key": "51-60",
+          "title": "Age 51-60"
+        },
+        {
+          "key": "61-65",
+          "title": "Age 61-65"
+        },
+        {
+          "key": "60-69",
+          "title": "Age 60-69"
+        },
+        {
+          "key": "70-74",
+          "title": "Age 70-74"
+        },
+        {
+          "key": "70-75",
+          "title": "Age 70-75"
+        }
+      ],
+      "doNotShowAll": false,
+      "helpText": "label.help.text.brfss.age_group"
+    },
+    {
+      "key": "education",
+      "title": "label.filter.education.attained",
+      "queryKey": "education",
+      "primary": false,
+      "value": [],
+      "groupBy": false,
+      "filterType": "radio",
+      "defaultGroup": "column",
+      "autoCompleteOptions": [
+        {
+          "key": "Less than High School",
+          "title": "Less than H.S."
+        },
+        {
+          "key": "High School Graduate",
+          "title": "High School or Graduate"
+        },
+        {
+          "key": "Attended College/Technical School",
+          "title": "Some post-H.S."
+        },
+        {
+          "key": "College/Technical School Graduate",
+          "title": "College graduate"
+        }
+      ],
+      "doNotShowAll": false,
+      "helpText": "label.help.text.brfss.education"
+    },
+    {
+      "key": "income",
+      "title": "label.filter.household.income",
+      "queryKey": "income",
+      "primary": false,
+      "value": [],
+      "groupBy": false,
+      "filterType": "radio",
+      "defaultGroup": "column",
+      "autoCompleteOptions": [
+        {
+          "key": "<$15k",
+          "title": "Less than $15,000"
+        },
+        {
+          "key": "$15k-$25k",
+          "title": "$15,000-$25,000"
+        },
+        {
+          "key": "$25k-$35k",
+          "title": "$25,000-$35,000"
+        },
+        {
+          "key": "$35k-$50k",
+          "title": "$35,000-$49,999"
+        },
+        {
+          "key": "$50k plus",
+          "title": "$50,000+"
+        }
+      ],
+      "doNotShowAll": false,
+      "helpText": "label.help.text.brfss.income"
+    },
+    {
+      "key": "question",
+      "title": "label.brfss.filter.question",
+      "queryKey": "question.path",
+      "aggregationKey": "question.key",
+      "primary": false,
+      "value": [],
+      "groupBy": "row",
+      "filterType": "tree",
+      "autoCompleteOptions": [
+        {
+          "key": "Adults aged 65+ who have had all their natural teeth extracted (variable calculated from one or more BRFSS questions)",
+          "qkey": "_alteeth",
+          "title": "Adults aged 65+ who have had all their natural teeth extracted (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2004",
+            "2002",
+            "1999"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults aged 65+ who have had all their natural teeth extracted (variable calculated from one or more BRFSS questions)",
+          "qkey": "_alteth2",
+          "title": "Adults aged 65+ who have had all their natural teeth extracted (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2008",
+            "2010",
+            "2012",
+            "2016",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Weight classification by Body Mass Index (BMI) (variable calculated from one or more BRFSS questions)",
+          "qkey": "_bmi2cat",
+          "title": "Weight classification by Body Mass Index (BMI) (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1996",
+            "2001",
+            "2002",
+            "1999",
+            "1998",
+            "2000",
+            "1997",
+            "1995"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Weight classification by Body Mass Index (BMI) (variable calculated from one or more BRFSS questions)",
+          "qkey": "_bmi3cat",
+          "title": "Weight classification by Body Mass Index (BMI) (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2003"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Weight classification by Body Mass Index (BMI) (variable calculated from one or more BRFSS questions)",
+          "qkey": "_bmi4cat",
+          "title": "Weight classification by Body Mass Index (BMI) (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2009",
+            "2007",
+            "2008",
+            "2010",
+            "2004",
+            "2005",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Weight classification by Body Mass Index (BMI) (variable calculated from one or more BRFSS questions)",
+          "qkey": "_bmi5cat",
+          "title": "Weight classification by Body Mass Index (BMI) (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have been told they currently have asthma (variable calculated from one or more BRFSS questions)",
+          "qkey": "_casthm1",
+          "title": "Adults who have been told they currently have asthma (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have been told they currently have asthma (variable calculated from one or more BRFSS questions)",
+          "qkey": "_casthma",
+          "title": "Adults who have been told they currently have asthma (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2007",
+            "2001",
+            "2010",
+            "2004",
+            "2005",
+            "2002",
+            "2003",
+            "2009",
+            "2008",
+            "2000",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "How many children live in your household? (variable calculated from one or more BRFSS questions)",
+          "qkey": "_chldcnt",
+          "title": "How many children live in your household? (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1996",
+            "2001",
+            "2015",
+            "2005",
+            "2003",
+            "2013",
+            "1997",
+            "1995",
+            "2007",
+            "2010",
+            "2004",
+            "2002",
+            "1998",
+            "2009",
+            "2008",
+            "2000",
+            "1999",
+            "2011",
+            "2012",
+            "2016",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have had their blood cholesterol checked within the last five years (variable calculated from one or more BRFSS questions)",
+          "qkey": "_cholchk",
+          "title": "Adults who have had their blood cholesterol checked within the last five years (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1997",
+            "2007",
+            "2001",
+            "2015",
+            "2005",
+            "2003",
+            "2009",
+            "2013",
+            "1999",
+            "2011",
+            "1995"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Aged 50-75 had a colonoscopy in the past 10 years",
+          "qkey": "_col10yr",
+          "title": "Aged 50-75 had a colonoscopy in the past 10 years",
+          "years": [
+            "2016"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Respondents aged 50-75 who have fully met the USPSTF recommendation (variable calculated from one or more BRFSS questions)",
+          "qkey": "_crcrec",
+          "title": "Respondents aged 50-75 who have fully met the USPSTF recommendation (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Current E-cigarette user",
+          "qkey": "_curecig",
+          "title": "Current E-cigarette user",
+          "years": [
+            "2016"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Visited the dentist or dental clinic within the past year for any reason (variable calculated from one or more BRFSS questions)",
+          "qkey": "_dentvst",
+          "title": "Visited the dentist or dental clinic within the past year for any reason (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2004",
+            "2002",
+            "1999"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Visited the dentist or dental clinic within the past year for any reason (variable calculated from one or more BRFSS questions)",
+          "qkey": "_denvst1",
+          "title": "Visited the dentist or dental clinic within the past year for any reason (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2008",
+            "2010",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Visited the dentist or dental clinic within the past year for any reason (variable calculated from one or more BRFSS questions)",
+          "qkey": "_denvst2",
+          "title": "Visited the dentist or dental clinic within the past year for any reason (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "During the past month, have you driven at least once after having too much to drink? (variable calculated from one or more BRFSS questions)",
+          "qkey": "_dkdr12",
+          "title": "During the past month, have you driven at least once after having too much to drink? (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2010"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have been told they have arthritis (variable calculated from one or more BRFSS questions)",
+          "qkey": "_drdxar1",
+          "title": "Adults who have been told they have arthritis (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have been told they have arthritis (variable calculated from one or more BRFSS questions)",
+          "qkey": "_drdxart",
+          "title": "Adults who have been told they have arthritis (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2005",
+            "2007",
+            "2009"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Respondents who have reported having driven after drinking too much (variable calculated from one or more BRFSS questions)",
+          "qkey": "_drnkdrv",
+          "title": "Respondents who have reported having driven after drinking too much (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "E-cigarette use status",
+          "qkey": "_ecigsts",
+          "title": "E-cigarette use status",
+          "years": [
+            "2016"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults that have had any permanent teeth extracted (variable calculated from one or more BRFSS questions)",
+          "qkey": "_exteeth",
+          "title": "Adults that have had any permanent teeth extracted (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2004",
+            "2002",
+            "1999"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults that have had any permanent teeth extracted (variable calculated from one or more BRFSS questions)",
+          "qkey": "_exteth2",
+          "title": "Adults that have had any permanent teeth extracted (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2008",
+            "2010",
+            "2012",
+            "2016",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+          "qkey": "_flshot2",
+          "title": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2004"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+          "qkey": "_flshot3",
+          "title": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2009",
+            "2007",
+            "2008",
+            "2005",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+          "qkey": "_flshot4",
+          "title": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2010"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+          "qkey": "_flshot5",
+          "title": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2011",
+            "2012"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+          "qkey": "_flshot6",
+          "title": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015",
+            "2013",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+          "qkey": "_flushot",
+          "title": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1997",
+            "2001",
+            "2002",
+            "1999",
+            "1995",
+            "2003"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Aged 50-75 had a blood stool test within the past 3 years",
+          "qkey": "_fobtfs",
+          "title": "Aged 50-75 had a blood stool test within the past 3 years",
+          "years": [
+            "2016"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Consumed fruit less than one time per day (variable calculated from one or more BRFSS questions)",
+          "qkey": "_frtlt1",
+          "title": "Consumed fruit less than one time per day (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015",
+            "2013"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Aged 50-75 had a sigmoidoscopy within the past 5 years",
+          "qkey": "_fs5yr",
+          "title": "Aged 50-75 had a sigmoidoscopy within the past 5 years",
+          "years": [
+            "2016"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have consumed fruits and vegetables five or more times per day (variable calculated from one or more BRFSS questions)",
+          "qkey": "_fv5srv",
+          "title": "Adults who have consumed fruits and vegetables five or more times per day (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2009",
+            "2007",
+            "2005",
+            "2002",
+            "2003"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults aged 18-64 who have any kind of health care coverage (variable calculated from one or more BRFSS questions)",
+          "qkey": "_hcvu65",
+          "title": "Adults aged 18-64 who have any kind of health care coverage (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1996",
+            "2001",
+            "2005",
+            "2003",
+            "1997",
+            "1995",
+            "2007",
+            "2010",
+            "2004",
+            "2002",
+            "1998",
+            "2009",
+            "2008",
+            "2000",
+            "1999",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults aged 18-64 who have any kind of health care coverage (variable calculated from one or more BRFSS questions)",
+          "qkey": "_hcvu651",
+          "title": "Adults aged 18-64 who have any kind of health care coverage (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Are you now limited in any way in any of your usual activities because of arthritis? (variable calculated from one or more BRFSS questions)",
+          "qkey": "_lmtact1",
+          "title": "Are you now limited in any way in any of your usual activities because of arthritis? (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015",
+            "2013"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Does arthritis or joint symptoms interfere with your normal social activities? (variable calculated from one or more BRFSS questions)",
+          "qkey": "_lmtscl1",
+          "title": "Does arthritis or joint symptoms interfere with your normal social activities? (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015",
+            "2013"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Do arthritis or joint symptoms now affect whether you work? (variable calculated from one or more BRFSS questions)",
+          "qkey": "_lmtwrk1",
+          "title": "Do arthritis or joint symptoms now affect whether you work? (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015",
+            "2013"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have ever been told they have asthma (variable calculated from one or more BRFSS questions)",
+          "qkey": "_ltasth1",
+          "title": "Adults who have ever been told they have asthma (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have ever been told they have asthma (variable calculated from one or more BRFSS questions)",
+          "qkey": "_ltasthm",
+          "title": "Adults who have ever been told they have asthma (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2007",
+            "2001",
+            "2010",
+            "2004",
+            "2005",
+            "2002",
+            "2003",
+            "2009",
+            "2008",
+            "2000",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Women aged 50-74 who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
+          "qkey": "_mam5021",
+          "title": "Women aged 50-74 who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Women aged 50+ who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
+          "qkey": "_mam502y",
+          "title": "Women aged 50+ who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1996",
+            "1997",
+            "2010",
+            "2004",
+            "2002",
+            "1998",
+            "2008",
+            "2000",
+            "1999",
+            "2012",
+            "1995",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Respondents that have ever reported having coronary heart disease (chd) or myocardial infarction (mi) (variable calculated from one or more BRFSS questions)",
+          "qkey": "_michd",
+          "title": "Respondents that have ever reported having coronary heart disease (chd) or myocardial infarction (mi) (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)",
+          "qkey": "_paindex",
+          "title": "Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2011"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)",
+          "qkey": "_paindx1",
+          "title": "Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015",
+            "2013"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)",
+          "qkey": "_pastae1",
+          "title": "Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015",
+            "2013"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)",
+          "qkey": "_pastaer",
+          "title": "Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2011"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Participated in muscle strengthening exercises two or more times per week (variable calculated from one or more BRFSS questions).",
+          "qkey": "_pastrng",
+          "title": "Participated in muscle strengthening exercises two or more times per week (variable calculated from one or more BRFSS questions).",
+          "years": [
+            "2015",
+            "2013",
+            "2011"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults aged 65+ who have ever had a pneumonia vaccination (variable calculated from one or more BRFSS questions)",
+          "qkey": "_pneumo2",
+          "title": "Adults aged 65+ who have ever had a pneumonia vaccination (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2007",
+            "2010",
+            "2015",
+            "2005",
+            "2009",
+            "2008",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults aged 65+ who have ever had a pneumonia vaccination (variable calculated from one or more BRFSS questions)",
+          "qkey": "_pneumoc",
+          "title": "Adults aged 65+ who have ever had a pneumonia vaccination (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1999",
+            "2001",
+            "2004",
+            "2002",
+            "1997",
+            "1995",
+            "2003"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Binge drinkers (adults having five or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfbing2",
+          "title": "Binge drinkers (adults having five or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2004",
+            "2002",
+            "2003"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Binge drinkers (adults having five or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfbing3",
+          "title": "Binge drinkers (adults having five or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2005"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfbing4",
+          "title": "Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2009",
+            "2007",
+            "2008",
+            "2010",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfbing5",
+          "title": "Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Binge drinkers (adults having five or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfbinge",
+          "title": "Binge drinkers (adults having five or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2001",
+            "1997",
+            "1999",
+            "1995"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults aged 50+ who have had a blood stool test within the past two years (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfblds2",
+          "title": "Adults aged 50+ who have had a blood stool test within the past two years (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2014",
+            "2012",
+            "2010",
+            "2008"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults aged 50-75 who have had a blood stool test within the past year (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfblds3",
+          "title": "Adults aged 50-75 who have had a blood stool test within the past year (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults aged 50+ who have had a blood stool test within the past two years (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfbldst",
+          "title": "Adults aged 50+ who have had a blood stool test within the past two years (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1999",
+            "2004",
+            "2002",
+            "1997",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have had their blood cholesterol checked and have been told it was high (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfchol",
+          "title": "Adults who have had their blood cholesterol checked and have been told it was high (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2007",
+            "2001",
+            "2015",
+            "2005",
+            "1999",
+            "2003",
+            "2009",
+            "2013",
+            "1997",
+            "2011",
+            "1995"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Chronic drinkers (adult respondents having more than 60 alcoholic beverages in the past month) (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfdrchr",
+          "title": "Chronic drinkers (adult respondents having more than 60 alcoholic beverages in the past month) (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1997",
+            "1999",
+            "1995"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfdrhv2",
+          "title": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2004",
+            "2002",
+            "2003"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfdrhv3",
+          "title": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2009",
+            "2007",
+            "2008",
+            "2010",
+            "2005",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfdrhv4",
+          "title": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2013",
+            "2011",
+            "2012",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfdrhv5",
+          "title": "Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015",
+            "2016"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfdrhvy",
+          "title": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2001"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Health Status (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfhlth",
+          "title": "Health Status (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1996",
+            "2001",
+            "2015",
+            "2005",
+            "2003",
+            "2013",
+            "1997",
+            "1995",
+            "2007",
+            "2010",
+            "2004",
+            "2002",
+            "1998",
+            "2009",
+            "2008",
+            "2000",
+            "1999",
+            "2011",
+            "2012",
+            "2016",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfhype2",
+          "title": "Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1997",
+            "1999",
+            "1995"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfhype3",
+          "title": "Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2001"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfhype4",
+          "title": "Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2003"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfhype5",
+          "title": "Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2009",
+            "2013",
+            "2007",
+            "2015",
+            "2005",
+            "2011"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Women aged 40+ who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfmam2y",
+          "title": "Women aged 40+ who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1996",
+            "2010",
+            "2016",
+            "2004",
+            "2002",
+            "1999",
+            "1998",
+            "2008",
+            "2000",
+            "1997",
+            "2012",
+            "1995",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults with 30+ minutes of moderate physical activity five or more days per week, or vigorous physical activity for 20+ minutes three or more days per week",
+          "qkey": "_rfpamod",
+          "title": "Adults with 30+ minutes of moderate physical activity five or more days per week, or vigorous physical activity for 20+ minutes three or more days per week",
+          "years": [
+            "2009",
+            "2007",
+            "2001",
+            "2005",
+            "2003"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Women aged 18+ who have had a pap test within the past three years (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfpap32",
+          "title": "Women aged 18+ who have had a pap test within the past three years (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2008",
+            "2010",
+            "2004",
+            "2012",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Women aged 21-65 who have had a pap test in the past three years (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfpap33",
+          "title": "Women aged 21-65 who have had a pap test in the past three years (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Women aged 18+ who have had a pap smear within the past three years (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfpap3y",
+          "title": "Women aged 18+ who have had a pap smear within the past three years (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1996",
+            "1999",
+            "2000",
+            "2002",
+            "1997",
+            "1995",
+            "1998"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults with 20+ minutes of vigorous physical activity three or more days per week (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfpavig",
+          "title": "Adults with 20+ minutes of vigorous physical activity three or more days per week (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2009",
+            "2007",
+            "2001",
+            "2005",
+            "2003"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Men aged 40+ who have had a PSA test within the past two years (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfpsa21",
+          "title": "Men aged 40+ who have had a PSA test within the past two years (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Men aged 40+ who have had a PSA test within the past two years (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfpsa2y",
+          "title": "Men aged 40+ who have had a PSA test within the past two years (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2008",
+            "2010",
+            "2004",
+            "2002",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults with 30+ minutes of any physical activity five or more days per week (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfregul",
+          "title": "Adults with 30+ minutes of any physical activity five or more days per week (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1996",
+            "1998",
+            "2000"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Always or nearly always wears a seat belt?",
+          "qkey": "_rfseat2",
+          "title": "Always or nearly always wears a seat belt?",
+          "years": [
+            "2016"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Always wears a seat belt? (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfseat3",
+          "title": "Always wears a seat belt? (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015",
+            "2013",
+            "2011",
+            "2012",
+            "1995",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults aged 50+ who have ever had a sigmoidoscopy or colonoscopy (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfsigm2",
+          "title": "Adults aged 50+ who have ever had a sigmoidoscopy or colonoscopy (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2008",
+            "2010",
+            "2004",
+            "2012",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults aged 50+ who have ever had a sigmoidoscopy or colonoscopy (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfsigmd",
+          "title": "Adults aged 50+ who have ever had a sigmoidoscopy or colonoscopy (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2002",
+            "1999",
+            "1997"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who are current smokers (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfsmok2",
+          "title": "Adults who are current smokers (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1996",
+            "2001",
+            "2004",
+            "2002",
+            "1999",
+            "2003",
+            "1998",
+            "2000",
+            "1997",
+            "1995"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who are current smokers (variable calculated from one or more BRFSS questions)",
+          "qkey": "_rfsmok3",
+          "title": "Adults who are current smokers (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2007",
+            "2010",
+            "2015",
+            "2005",
+            "2009",
+            "2008",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Always wears a seat belt (variable calculated from one or more BRFSS questions)",
+          "qkey": "_seat2",
+          "title": "Always wears a seat belt (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2010"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Four Level Smoking Status (variable calculated from one or more BRFSS questions)",
+          "qkey": "_smoker1",
+          "title": "Four Level Smoking Status (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1995"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Four Level Smoking Status (variable calculated from one or more BRFSS questions)",
+          "qkey": "_smoker2",
+          "title": "Four Level Smoking Status (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1996",
+            "2001",
+            "2004",
+            "2002",
+            "1999",
+            "1998",
+            "2003",
+            "2000",
+            "1997"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Four Level Smoking Status (variable calculated from one or more BRFSS questions)",
+          "qkey": "_smoker3",
+          "title": "Four Level Smoking Status (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2007",
+            "2010",
+            "2015",
+            "2005",
+            "2009",
+            "2008",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "During the past month, did you participate in any physical activities? (variable calculated from one or more BRFSS questions)",
+          "qkey": "_totinda",
+          "title": "During the past month, did you participate in any physical activities? (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "1996",
+            "2001",
+            "2015",
+            "2005",
+            "2003",
+            "2013",
+            "2007",
+            "2010",
+            "2004",
+            "2002",
+            "1998",
+            "2009",
+            "2008",
+            "2000",
+            "2011",
+            "2012",
+            "2016",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Consumed vegetables less than one time per day (variable calculated from one or more BRFSS questions)",
+          "qkey": "_veglt1",
+          "title": "Consumed vegetables less than one time per day (variable calculated from one or more BRFSS questions)",
+          "years": [
+            "2015",
+            "2013"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Ever told you that you have a form of depression?",
+          "qkey": "addepev2",
+          "title": "Ever told you that you have a form of depression?",
+          "years": [
+            "2015",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "What is your age?",
+          "qkey": "age",
+          "title": "What is your age?",
+          "years": [
+            "1996",
+            "2001",
+            "2015",
+            "2005",
+            "2003",
+            "2013",
+            "1997",
+            "1995",
+            "2007",
+            "2010",
+            "2004",
+            "2002",
+            "1998",
+            "2009",
+            "2008",
+            "2000",
+            "1999",
+            "2011",
+            "2012",
+            "2016",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Are you blind or do you have serious difficulty seeing, even when wearing glasses?",
+          "qkey": "blind",
+          "title": "Are you blind or do you have serious difficulty seeing, even when wearing glasses?",
+          "years": [
+            "2015",
+            "2013",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have ever had their blood cholesterol checked",
+          "qkey": "bloodcho",
+          "title": "Adults who have ever had their blood cholesterol checked",
+          "years": [
+            "1997",
+            "2007",
+            "2001",
+            "2015",
+            "2005",
+            "2003",
+            "2009",
+            "2013",
+            "1999",
+            "2011",
+            "1995"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Ever told you have COPD?",
+          "qkey": "chccopd",
+          "title": "Ever told you have COPD?",
+          "years": [
+            "2011"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Ever told you have COPD?",
+          "qkey": "chccopd1",
+          "title": "Ever told you have COPD?",
+          "years": [
+            "2015",
+            "2013",
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Ever told you have kidney disease?",
+          "qkey": "chckidny",
+          "title": "Ever told you have kidney disease?",
+          "years": [
+            "2015",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Ever told you had any other types of cancer?",
+          "qkey": "chcocncr",
+          "title": "Ever told you had any other types of cancer?",
+          "years": [
+            "2015",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Ever told you had skin cancer?",
+          "qkey": "chcscncr",
+          "title": "Ever told you had skin cancer?",
+          "years": [
+            "2015",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Ever told you have vision impairment?",
+          "qkey": "chcvisn1",
+          "title": "Ever told you have vision impairment?",
+          "years": [
+            "2012"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Ever told you have vision impairment?",
+          "qkey": "chcvison",
+          "title": "Ever told you have vision impairment?",
+          "years": [
+            "2011"
+          ],
+          "count": 0
+        },
+        {
+          "key": "About how long has it been since you last visited a doctor for a routine checkup?",
+          "qkey": "checkup1",
+          "title": "About how long has it been since you last visited a doctor for a routine checkup?",
+          "years": [
+            "2015",
+            "2013",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Ever told you had angina or coronary heart disease?",
+          "qkey": "cvdcrhd3",
+          "title": "Ever told you had angina or coronary heart disease?",
+          "years": [
+            "2005",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Ever told you had angina or coronary heart disease?",
+          "qkey": "cvdcrhd4",
+          "title": "Ever told you had angina or coronary heart disease?",
+          "years": [
+            "2007",
+            "2010",
+            "2015",
+            "2009",
+            "2008",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Ever told you had a heart attack (myocardial infarction)?",
+          "qkey": "cvdinfr3",
+          "title": "Ever told you had a heart attack (myocardial infarction)?",
+          "years": [
+            "2005",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Ever told you had a heart attack (myocardial infarction)?",
+          "qkey": "cvdinfr4",
+          "title": "Ever told you had a heart attack (myocardial infarction)?",
+          "years": [
+            "2007",
+            "2010",
+            "2015",
+            "2009",
+            "2008",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Ever told you had a stroke?",
+          "qkey": "cvdstrk3",
+          "title": "Ever told you had a stroke?",
+          "years": [
+            "2007",
+            "2010",
+            "2015",
+            "2005",
+            "2009",
+            "2008",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Do you have serious difficulty concentrating, remembering, or making decisions?",
+          "qkey": "decide",
+          "title": "Do you have serious difficulty concentrating, remembering, or making decisions?",
+          "years": [
+            "2015",
+            "2013",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Have you ever been told by a doctor that you have diabetes?",
+          "qkey": "diabete2",
+          "title": "Have you ever been told by a doctor that you have diabetes?",
+          "years": [
+            "2009",
+            "2007",
+            "2008",
+            "2010",
+            "2004",
+            "2005",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Have you ever been told by a doctor that you have diabetes?",
+          "qkey": "diabete3",
+          "title": "Have you ever been told by a doctor that you have diabetes?",
+          "years": [
+            "2015",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Have you ever been told by a doctor that you have diabetes?",
+          "qkey": "diabetes",
+          "title": "Have you ever been told by a doctor that you have diabetes?",
+          "years": [
+            "1996",
+            "1997",
+            "2001",
+            "2002",
+            "2003",
+            "1998",
+            "2000",
+            "1999",
+            "1995"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Do you have difficulty doing errands alone?",
+          "qkey": "diffalon",
+          "title": "Do you have difficulty doing errands alone?",
+          "years": [
+            "2015",
+            "2013",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Do you have difficulty dressing or bathing?",
+          "qkey": "diffdres",
+          "title": "Do you have difficulty dressing or bathing?",
+          "years": [
+            "2015",
+            "2013",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Do you have serious difficulty walking or climbing stairs?",
+          "qkey": "diffwalk",
+          "title": "Do you have serious difficulty walking or climbing stairs?",
+          "years": [
+            "2015",
+            "2013",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "During the past month, have you had at least one drink of any alcoholic beverage?",
+          "qkey": "drinkany",
+          "title": "During the past month, have you had at least one drink of any alcoholic beverage?",
+          "years": [
+            "1997",
+            "1999",
+            "1995"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have had at least one drink of alcohol within the past 30 days",
+          "qkey": "drnkany2",
+          "title": "Adults who have had at least one drink of alcohol within the past 30 days",
+          "years": [
+            "2001"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have had at least one drink of alcohol within the past 30 days",
+          "qkey": "drnkany3",
+          "title": "Adults who have had at least one drink of alcohol within the past 30 days",
+          "years": [
+            "2004",
+            "2002",
+            "2003"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have had at least one drink of alcohol within the past 30 days",
+          "qkey": "drnkany4",
+          "title": "Adults who have had at least one drink of alcohol within the past 30 days",
+          "years": [
+            "2009",
+            "2007",
+            "2008",
+            "2010",
+            "2005",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have had at least one drink of alcohol within the past 30 days",
+          "qkey": "drnkany5",
+          "title": "Adults who have had at least one drink of alcohol within the past 30 days",
+          "years": [
+            "2015",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "What is the highest grade or year of school you completed?",
+          "qkey": "educa",
+          "title": "What is the highest grade or year of school you completed?",
+          "years": [
+            "1996",
+            "2001",
+            "2015",
+            "2005",
+            "2003",
+            "2013",
+            "1997",
+            "1995",
+            "2007",
+            "2010",
+            "2004",
+            "2002",
+            "1998",
+            "2009",
+            "2008",
+            "2000",
+            "1999",
+            "2011",
+            "2012",
+            "2016",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "What is your employment status?",
+          "qkey": "employ",
+          "title": "What is your employment status?",
+          "years": [
+            "1996",
+            "2001",
+            "2005",
+            "2003",
+            "1997",
+            "1995",
+            "2007",
+            "2010",
+            "2004",
+            "2002",
+            "1998",
+            "2009",
+            "2008",
+            "2000",
+            "1999",
+            "2011",
+            "2012",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "What is your employment status?",
+          "qkey": "employ1",
+          "title": "What is your employment status?",
+          "years": [
+            "2015",
+            "2013",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have consumed fruits and vegetables five or more times per day",
+          "qkey": "fv5srv",
+          "title": "Adults who have consumed fruits and vegetables five or more times per day",
+          "years": [
+            "1996",
+            "2000",
+            "2001",
+            "1998"
+          ],
+          "count": 0
+        },
+        {
+          "key": "How is your general health?",
+          "qkey": "genhlth",
+          "title": "How is your general health?",
+          "years": [
+            "1996",
+            "2001",
+            "2015",
+            "2005",
+            "2003",
+            "2013",
+            "1997",
+            "1995",
+            "2007",
+            "2010",
+            "2004",
+            "2002",
+            "1998",
+            "2009",
+            "2008",
+            "2000",
+            "1999",
+            "2011",
+            "2012",
+            "2016",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have been told they have arthritis",
+          "qkey": "havarth",
+          "title": "Adults who have been told they have arthritis",
+          "years": [
+            "2001"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who have been told they have arthritis",
+          "qkey": "havarth2",
+          "title": "Adults who have been told they have arthritis",
+          "years": [
+            "2003"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Have you ever been tested for HIV?",
+          "qkey": "hivtst6",
+          "title": "Have you ever been tested for HIV?",
+          "years": [
+            "2015",
+            "2013",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Do you have any kind of health care coverage?",
+          "qkey": "hlthplan",
+          "title": "Do you have any kind of health care coverage?",
+          "years": [
+            "1996",
+            "2001",
+            "2005",
+            "2003",
+            "1997",
+            "1995",
+            "2007",
+            "2010",
+            "2004",
+            "2002",
+            "1998",
+            "2009",
+            "2008",
+            "2000",
+            "1999",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Do you have any kind of health care coverage?",
+          "qkey": "hlthpln1",
+          "title": "Do you have any kind of health care coverage?",
+          "years": [
+            "2015",
+            "2013",
+            "2011",
+            "2012",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "What is your annual household income?",
+          "qkey": "income",
+          "title": "What is your annual household income?",
+          "years": [
+            "1996",
+            "2001",
+            "2015",
+            "2005",
+            "2003",
+            "2013",
+            "1997",
+            "1995",
+            "2007",
+            "2010",
+            "2004",
+            "2002",
+            "1998",
+            "2009",
+            "2008",
+            "2000",
+            "1999",
+            "2011",
+            "2012",
+            "2016",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Have you used the internet in the past 30 days?",
+          "qkey": "internet",
+          "title": "Have you used the internet in the past 30 days?",
+          "years": [
+            "2015",
+            "2013",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "What is your marital status?",
+          "qkey": "marital",
+          "title": "What is your marital status?",
+          "years": [
+            "1996",
+            "2001",
+            "2015",
+            "2005",
+            "2003",
+            "2013",
+            "1997",
+            "1995",
+            "2007",
+            "2010",
+            "2004",
+            "2002",
+            "1998",
+            "2009",
+            "2008",
+            "2000",
+            "1999",
+            "2011",
+            "2012",
+            "2016",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?",
+          "qkey": "medcost",
+          "title": "Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?",
+          "years": [
+            "2015",
+            "2013",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Do you have one person you think of as your personal doctor or health care provider?",
+          "qkey": "persdoc2",
+          "title": "Do you have one person you think of as your personal doctor or health care provider?",
+          "years": [
+            "2015",
+            "2013",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults who are limited in any activities because of physical, mental, or emotional problems",
+          "qkey": "qlactlm2",
+          "title": "Adults who are limited in any activities because of physical, mental, or emotional problems",
+          "years": [
+            "2007",
+            "2001",
+            "2010",
+            "2015",
+            "2005",
+            "2003",
+            "2009",
+            "2008",
+            "2013",
+            "2011",
+            "2012",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "What is your race/ethnicity?",
+          "qkey": "race",
+          "title": "What is your race/ethnicity?",
+          "years": [
+            "1996",
+            "2001",
+            "2005",
+            "2003",
+            "2013",
+            "1997",
+            "1995",
+            "2007",
+            "2010",
+            "2004",
+            "2002",
+            "1998",
+            "2009",
+            "2008",
+            "2000",
+            "1999",
+            "2011",
+            "2012",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "What is your race/ethnicity?",
+          "qkey": "race8",
+          "title": "What is your race/ethnicity?",
+          "years": [
+            "2015",
+            "2016"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Do you own or rent your home?",
+          "qkey": "renthom1",
+          "title": "Do you own or rent your home?",
+          "years": [
+            "2015",
+            "2013",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Gender of respondent",
+          "qkey": "sex",
+          "title": "Gender of respondent",
+          "years": [
+            "1996",
+            "2001",
+            "2015",
+            "2005",
+            "2003",
+            "2013",
+            "1997",
+            "1995",
+            "2007",
+            "2010",
+            "2004",
+            "2002",
+            "1998",
+            "2009",
+            "2008",
+            "2000",
+            "1999",
+            "2011",
+            "2012",
+            "2016",
+            "2014",
+            "2006"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Have you ever had the shingles or zoster vaccine?",
+          "qkey": "shingle2",
+          "title": "Have you ever had the shingles or zoster vaccine?",
+          "years": [
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Since 2005, have you had a tetanus shot?",
+          "qkey": "tetanus",
+          "title": "Since 2005, have you had a tetanus shot?",
+          "years": [
+            "2013"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Adults with health problem(s) that requires the use of special equipment",
+          "qkey": "useequip",
+          "title": "Adults with health problem(s) that requires the use of special equipment",
+          "years": [
+            "2007",
+            "2001",
+            "2010",
+            "2015",
+            "2005",
+            "2003",
+            "2009",
+            "2008",
+            "2013",
+            "2011",
+            "2012",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Do you currently use chewing tobacco, snuff, or snus?",
+          "qkey": "usenow3",
+          "title": "Do you currently use chewing tobacco, snuff, or snus?",
+          "years": [
+            "2015",
+            "2013",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        },
+        {
+          "key": "Have you ever served on active duty in the United States Armed Forces?",
+          "qkey": "veteran3",
+          "title": "Have you ever served on active duty in the United States Armed Forces?",
+          "years": [
+            "2015",
+            "2013",
+            "2016",
+            "2014"
+          ],
+          "count": 0
+        }
+      ],
+      "donotshowOnSearch": true,
+      "questions": [
+        {
+          "id": "cat_20",
+          "text": "Aerobic Activity",
+          "children": [
+            {
+              "text": "Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)",
+              "id": "_paindex",
+              "years": [
+                "2011"
+              ]
+            },
+            {
+              "text": "Participated in 150 minutes or more of Aerobic Physical Activity per week (variable calculated from one or more BRFSS questions)",
+              "id": "_paindx1",
+              "years": [
+                "2015",
+                "2013"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_39",
+          "text": "Age",
+          "children": [
+            {
+              "text": "What is your age?",
+              "id": "age",
+              "years": [
+                "1996",
+                "2001",
+                "2015",
+                "2005",
+                "2003",
+                "2013",
+                "1997",
+                "1995",
+                "2007",
+                "2010",
+                "2004",
+                "2002",
+                "1998",
+                "2009",
+                "2008",
+                "2000",
+                "1999",
+                "2011",
+                "2012",
+                "2016",
+                "2014",
+                "2006"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_48",
+          "text": "Alcohol Consumption",
+          "children": [
+            {
+              "text": "Adults who have had at least one drink of alcohol within the past 30 days",
+              "id": "drnkany2",
+              "years": [
+                "2001"
+              ]
+            },
+            {
+              "text": "Adults who have had at least one drink of alcohol within the past 30 days",
+              "id": "drnkany3",
+              "years": [
+                "2004",
+                "2002",
+                "2003"
+              ]
+            },
+            {
+              "text": "Adults who have had at least one drink of alcohol within the past 30 days",
+              "id": "drnkany4",
+              "years": [
+                "2009",
+                "2007",
+                "2008",
+                "2010",
+                "2005",
+                "2006"
+              ]
+            },
+            {
+              "text": "Adults who have had at least one drink of alcohol within the past 30 days",
+              "id": "drnkany5",
+              "years": [
+                "2015",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014"
+              ]
+            },
+            {
+              "text": "During the past month, have you had at least one drink of any alcoholic beverage?",
+              "id": "drinkany",
+              "years": [
+                "1997",
+                "1999",
+                "1995"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_0",
+          "text": "All Teeth Removed",
+          "children": [
+            {
+              "text": "Adults aged 65+ who have had all their natural teeth extracted (variable calculated from one or more BRFSS questions)",
+              "id": "_alteeth",
+              "years": [
+                "2004",
+                "2002",
+                "1999"
+              ]
+            },
+            {
+              "text": "Adults aged 65+ who have had all their natural teeth extracted (variable calculated from one or more BRFSS questions)",
+              "id": "_alteth2",
+              "years": [
+                "2008",
+                "2010",
+                "2012",
+                "2016",
+                "2014",
+                "2006"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_10",
+          "text": "Arthritis",
+          "children": [
+            {
+              "text": "Adults who have been told they have arthritis",
+              "id": "havarth",
+              "years": [
+                "2001"
+              ]
+            },
+            {
+              "text": "Adults who have been told they have arthritis",
+              "id": "havarth2",
+              "years": [
+                "2003"
+              ]
+            },
+            {
+              "text": "Adults who have been told they have arthritis (variable calculated from one or more BRFSS questions)",
+              "id": "_drdxar1",
+              "years": [
+                "2015",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014"
+              ]
+            },
+            {
+              "text": "Adults who have been told they have arthritis (variable calculated from one or more BRFSS questions)",
+              "id": "_drdxart",
+              "years": [
+                "2005",
+                "2007",
+                "2009"
+              ]
+            },
+            {
+              "text": "Are you now limited in any way in any of your usual activities because of arthritis? (variable calculated from one or more BRFSS questions)",
+              "id": "_lmtact1",
+              "years": [
+                "2015",
+                "2013"
+              ]
+            },
+            {
+              "text": "Do arthritis or joint symptoms now affect whether you work? (variable calculated from one or more BRFSS questions)",
+              "id": "_lmtwrk1",
+              "years": [
+                "2015",
+                "2013"
+              ]
+            },
+            {
+              "text": "Does arthritis or joint symptoms interfere with your normal social activities? (variable calculated from one or more BRFSS questions)",
+              "id": "_lmtscl1",
+              "years": [
+                "2015",
+                "2013"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_2",
+          "text": "Asthma",
+          "children": [
+            {
+              "text": "Adults who have been told they currently have asthma (variable calculated from one or more BRFSS questions)",
+              "id": "_casthm1",
+              "years": [
+                "2015",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014"
+              ]
+            },
+            {
+              "text": "Adults who have been told they currently have asthma (variable calculated from one or more BRFSS questions)",
+              "id": "_casthma",
+              "years": [
+                "2007",
+                "2001",
+                "2010",
+                "2004",
+                "2005",
+                "2002",
+                "2003",
+                "2009",
+                "2008",
+                "2000",
+                "2006"
+              ]
+            },
+            {
+              "text": "Adults who have ever been told they have asthma (variable calculated from one or more BRFSS questions)",
+              "id": "_ltasth1",
+              "years": [
+                "2015",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014"
+              ]
+            },
+            {
+              "text": "Adults who have ever been told they have asthma (variable calculated from one or more BRFSS questions)",
+              "id": "_ltasthm",
+              "years": [
+                "2007",
+                "2001",
+                "2010",
+                "2004",
+                "2005",
+                "2002",
+                "2003",
+                "2009",
+                "2008",
+                "2000",
+                "2006"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_1",
+          "text": "BMI Categories",
+          "children": [
+            {
+              "text": "Weight classification by Body Mass Index (BMI) (variable calculated from one or more BRFSS questions)",
+              "id": "_bmi2cat",
+              "years": [
+                "1996",
+                "2001",
+                "2002",
+                "1999",
+                "1998",
+                "2000",
+                "1997",
+                "1995"
+              ]
+            },
+            {
+              "text": "Weight classification by Body Mass Index (BMI) (variable calculated from one or more BRFSS questions)",
+              "id": "_bmi3cat",
+              "years": [
+                "2003"
+              ]
+            },
+            {
+              "text": "Weight classification by Body Mass Index (BMI) (variable calculated from one or more BRFSS questions)",
+              "id": "_bmi4cat",
+              "years": [
+                "2009",
+                "2007",
+                "2008",
+                "2010",
+                "2004",
+                "2005",
+                "2006"
+              ]
+            },
+            {
+              "text": "Weight classification by Body Mass Index (BMI) (variable calculated from one or more BRFSS questions)",
+              "id": "_bmi5cat",
+              "years": [
+                "2015",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_24",
+          "text": "Binge Drinking",
+          "children": [
+            {
+              "text": "Binge drinkers (adults having five or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+              "id": "_rfbing2",
+              "years": [
+                "2004",
+                "2002",
+                "2003"
+              ]
+            },
+            {
+              "text": "Binge drinkers (adults having five or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+              "id": "_rfbing3",
+              "years": [
+                "2005"
+              ]
+            },
+            {
+              "text": "Binge drinkers (adults having five or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+              "id": "_rfbinge",
+              "years": [
+                "2001",
+                "1997",
+                "1999",
+                "1995"
+              ]
+            },
+            {
+              "text": "Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+              "id": "_rfbing4",
+              "years": [
+                "2009",
+                "2007",
+                "2008",
+                "2010",
+                "2006"
+              ]
+            },
+            {
+              "text": "Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",
+              "id": "_rfbing5",
+              "years": [
+                "2015",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_13",
+          "text": "Blood Stool Test",
+          "children": [
+            {
+              "text": "Adults aged 50+ who have had a blood stool test within the past two years (variable calculated from one or more BRFSS questions)",
+              "id": "_rfblds2",
+              "years": [
+                "2014",
+                "2012",
+                "2010",
+                "2008"
+              ]
+            },
+            {
+              "text": "Adults aged 50+ who have had a blood stool test within the past two years (variable calculated from one or more BRFSS questions)",
+              "id": "_rfbldst",
+              "years": [
+                "1999",
+                "2004",
+                "2002",
+                "1997",
+                "2006"
+              ]
+            },
+            {
+              "text": "Adults aged 50-75 who have had a blood stool test within the past year (variable calculated from one or more BRFSS questions)",
+              "id": "_rfblds3",
+              "years": [
+                "2016",
+                "2014"
+              ]
+            },
+            {
+              "text": "Aged 50-75 had a blood stool test within the past 3 years",
+              "id": "_fobtfs",
+              "years": [
+                "2016"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_41",
+          "text": "COPD",
+          "children": [
+            {
+              "text": "Ever told you have COPD?",
+              "id": "chccopd",
+              "years": [
+                "2011"
+              ]
+            },
+            {
+              "text": "Ever told you have COPD?",
+              "id": "chccopd1",
+              "years": [
+                "2015",
+                "2013",
+                "2012",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_19",
+          "text": "Cardiovascular Disease",
+          "children": [
+            {
+              "text": "Ever told you had a heart attack (myocardial infarction)?",
+              "id": "cvdinfr3",
+              "years": [
+                "2005",
+                "2006"
+              ]
+            },
+            {
+              "text": "Ever told you had a heart attack (myocardial infarction)?",
+              "id": "cvdinfr4",
+              "years": [
+                "2007",
+                "2010",
+                "2015",
+                "2009",
+                "2008",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014"
+              ]
+            },
+            {
+              "text": "Ever told you had a stroke?",
+              "id": "cvdstrk3",
+              "years": [
+                "2007",
+                "2010",
+                "2015",
+                "2005",
+                "2009",
+                "2008",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014",
+                "2006"
+              ]
+            },
+            {
+              "text": "Ever told you had angina or coronary heart disease?",
+              "id": "cvdcrhd3",
+              "years": [
+                "2005",
+                "2006"
+              ]
+            },
+            {
+              "text": "Ever told you had angina or coronary heart disease?",
+              "id": "cvdcrhd4",
+              "years": [
+                "2007",
+                "2010",
+                "2015",
+                "2009",
+                "2008",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014"
+              ]
+            },
+            {
+              "text": "Respondents that have ever reported having coronary heart disease (chd) or myocardial infarction (mi) (variable calculated from one or more BRFSS questions)",
+              "id": "_michd",
+              "years": [
+                "2015"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_4",
+          "text": "Cholesterol Checked",
+          "children": [
+            {
+              "text": "Adults who have ever had their blood cholesterol checked",
+              "id": "bloodcho",
+              "years": [
+                "1997",
+                "2007",
+                "2001",
+                "2015",
+                "2005",
+                "2003",
+                "2009",
+                "2013",
+                "1999",
+                "2011",
+                "1995"
+              ]
+            },
+            {
+              "text": "Adults who have had their blood cholesterol checked within the last five years (variable calculated from one or more BRFSS questions)",
+              "id": "_cholchk",
+              "years": [
+                "1997",
+                "2007",
+                "2001",
+                "2015",
+                "2005",
+                "2003",
+                "2009",
+                "2013",
+                "1999",
+                "2011",
+                "1995"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_25",
+          "text": "Cholesterol High",
+          "children": [
+            {
+              "text": "Adults who have had their blood cholesterol checked and have been told it was high (variable calculated from one or more BRFSS questions)",
+              "id": "_rfchol",
+              "years": [
+                "2007",
+                "2001",
+                "2015",
+                "2005",
+                "1999",
+                "2003",
+                "2009",
+                "2013",
+                "1997",
+                "2011",
+                "1995"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_26",
+          "text": "Chronic Drinking",
+          "children": [
+            {
+              "text": "Chronic drinkers (adult respondents having more than 60 alcoholic beverages in the past month) (variable calculated from one or more BRFSS questions)",
+              "id": "_rfdrchr",
+              "years": [
+                "1997",
+                "1999",
+                "1995"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_5",
+          "text": "Colonoscopy",
+          "children": [
+            {
+              "text": "Aged 50-75 had a colonoscopy in the past 10 years",
+              "id": "_col10yr",
+              "years": [
+                "2016"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_34",
+          "text": "Current Smoker Status",
+          "children": [
+            {
+              "text": "Adults who are current smokers (variable calculated from one or more BRFSS questions)",
+              "id": "_rfsmok2",
+              "years": [
+                "1996",
+                "2001",
+                "2004",
+                "2002",
+                "1999",
+                "2003",
+                "1998",
+                "2000",
+                "1997",
+                "1995"
+              ]
+            },
+            {
+              "text": "Adults who are current smokers (variable calculated from one or more BRFSS questions)",
+              "id": "_rfsmok3",
+              "years": [
+                "2007",
+                "2010",
+                "2015",
+                "2005",
+                "2009",
+                "2008",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014",
+                "2006"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_8",
+          "text": "Dental Visit",
+          "children": [
+            {
+              "text": "Visited the dentist or dental clinic within the past year for any reason (variable calculated from one or more BRFSS questions)",
+              "id": "_dentvst",
+              "years": [
+                "2004",
+                "2002",
+                "1999"
+              ]
+            },
+            {
+              "text": "Visited the dentist or dental clinic within the past year for any reason (variable calculated from one or more BRFSS questions)",
+              "id": "_denvst1",
+              "years": [
+                "2008",
+                "2010",
+                "2006"
+              ]
+            },
+            {
+              "text": "Visited the dentist or dental clinic within the past year for any reason (variable calculated from one or more BRFSS questions)",
+              "id": "_denvst2",
+              "years": [
+                "2012",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_38",
+          "text": "Depression",
+          "children": [
+            {
+              "text": "Ever told you that you have a form of depression?",
+              "id": "addepev2",
+              "years": [
+                "2015",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_47",
+          "text": "Diabetes",
+          "children": [
+            {
+              "text": "Have you ever been told by a doctor that you have diabetes?",
+              "id": "diabete2",
+              "years": [
+                "2009",
+                "2007",
+                "2008",
+                "2010",
+                "2004",
+                "2005",
+                "2006"
+              ]
+            },
+            {
+              "text": "Have you ever been told by a doctor that you have diabetes?",
+              "id": "diabete3",
+              "years": [
+                "2015",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014"
+              ]
+            },
+            {
+              "text": "Have you ever been told by a doctor that you have diabetes?",
+              "id": "diabetes",
+              "years": [
+                "1996",
+                "1997",
+                "2001",
+                "2002",
+                "2003",
+                "1998",
+                "2000",
+                "1999",
+                "1995"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_40",
+          "text": "Disability status",
+          "children": [
+            {
+              "text": "Adults who are limited in any activities because of physical, mental, or emotional problems",
+              "id": "qlactlm2",
+              "years": [
+                "2007",
+                "2001",
+                "2010",
+                "2015",
+                "2005",
+                "2003",
+                "2009",
+                "2008",
+                "2013",
+                "2011",
+                "2012",
+                "2014"
+              ]
+            },
+            {
+              "text": "Adults with health problem(s) that requires the use of special equipment",
+              "id": "useequip",
+              "years": [
+                "2007",
+                "2001",
+                "2010",
+                "2015",
+                "2005",
+                "2003",
+                "2009",
+                "2008",
+                "2013",
+                "2011",
+                "2012",
+                "2014"
+              ]
+            },
+            {
+              "text": "Are you blind or do you have serious difficulty seeing, even when wearing glasses?",
+              "id": "blind",
+              "years": [
+                "2015",
+                "2013",
+                "2016",
+                "2014"
+              ]
+            },
+            {
+              "text": "Do you have difficulty doing errands alone?",
+              "id": "diffalon",
+              "years": [
+                "2015",
+                "2013",
+                "2016",
+                "2014"
+              ]
+            },
+            {
+              "text": "Do you have difficulty dressing or bathing?",
+              "id": "diffdres",
+              "years": [
+                "2015",
+                "2013",
+                "2016",
+                "2014"
+              ]
+            },
+            {
+              "text": "Do you have serious difficulty concentrating, remembering, or making decisions?",
+              "id": "decide",
+              "years": [
+                "2015",
+                "2013",
+                "2016",
+                "2014"
+              ]
+            },
+            {
+              "text": "Do you have serious difficulty walking or climbing stairs?",
+              "id": "diffwalk",
+              "years": [
+                "2015",
+                "2013",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_9",
+          "text": "Drink and Drive",
+          "children": [
+            {
+              "text": "During the past month, have you driven at least once after having too much to drink? (variable calculated from one or more BRFSS questions)",
+              "id": "_dkdr12",
+              "years": [
+                "2010"
+              ]
+            },
+            {
+              "text": "Respondents who have reported having driven after drinking too much (variable calculated from one or more BRFSS questions)",
+              "id": "_drnkdrv",
+              "years": [
+                "2012",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_7",
+          "text": "E-Cigarette Use",
+          "children": [
+            {
+              "text": "Current E-cigarette user",
+              "id": "_curecig",
+              "years": [
+                "2016"
+              ]
+            },
+            {
+              "text": "E-cigarette use status",
+              "id": "_ecigsts",
+              "years": [
+                "2016"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_49",
+          "text": "Education",
+          "children": [
+            {
+              "text": "What is the highest grade or year of school you completed?",
+              "id": "educa",
+              "years": [
+                "1996",
+                "2001",
+                "2015",
+                "2005",
+                "2003",
+                "2013",
+                "1997",
+                "1995",
+                "2007",
+                "2010",
+                "2004",
+                "2002",
+                "1998",
+                "2009",
+                "2008",
+                "2000",
+                "1999",
+                "2011",
+                "2012",
+                "2016",
+                "2014",
+                "2006"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_50",
+          "text": "Employment",
+          "children": [
+            {
+              "text": "What is your employment status?",
+              "id": "employ",
+              "years": [
+                "1996",
+                "2001",
+                "2005",
+                "2003",
+                "1997",
+                "1995",
+                "2007",
+                "2010",
+                "2004",
+                "2002",
+                "1998",
+                "2009",
+                "2008",
+                "2000",
+                "1999",
+                "2011",
+                "2012",
+                "2006"
+              ]
+            },
+            {
+              "text": "What is your employment status?",
+              "id": "employ1",
+              "years": [
+                "2015",
+                "2013",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_36",
+          "text": "Exercise",
+          "children": [
+            {
+              "text": "During the past month, did you participate in any physical activities? (variable calculated from one or more BRFSS questions)",
+              "id": "_totinda",
+              "years": [
+                "1996",
+                "2001",
+                "2015",
+                "2005",
+                "2003",
+                "2013",
+                "2007",
+                "2010",
+                "2004",
+                "2002",
+                "1998",
+                "2009",
+                "2008",
+                "2000",
+                "2011",
+                "2012",
+                "2016",
+                "2014",
+                "2006"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_28",
+          "text": "Fair or Poor Health",
+          "children": [
+            {
+              "text": "Health Status (variable calculated from one or more BRFSS questions)",
+              "id": "_rfhlth",
+              "years": [
+                "1996",
+                "2001",
+                "2015",
+                "2005",
+                "2003",
+                "2013",
+                "1997",
+                "1995",
+                "2007",
+                "2010",
+                "2004",
+                "2002",
+                "1998",
+                "2009",
+                "2008",
+                "2000",
+                "1999",
+                "2011",
+                "2012",
+                "2016",
+                "2014",
+                "2006"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_16",
+          "text": "Five Servings per Day",
+          "children": [
+            {
+              "text": "Adults who have consumed fruits and vegetables five or more times per day",
+              "id": "fv5srv",
+              "years": [
+                "1996",
+                "2000",
+                "2001",
+                "1998"
+              ]
+            },
+            {
+              "text": "Adults who have consumed fruits and vegetables five or more times per day (variable calculated from one or more BRFSS questions)",
+              "id": "_fv5srv",
+              "years": [
+                "2009",
+                "2007",
+                "2005",
+                "2002",
+                "2003"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_12",
+          "text": "Flu Shot",
+          "children": [
+            {
+              "text": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+              "id": "_flshot2",
+              "years": [
+                "2004"
+              ]
+            },
+            {
+              "text": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+              "id": "_flshot3",
+              "years": [
+                "2009",
+                "2007",
+                "2008",
+                "2005",
+                "2006"
+              ]
+            },
+            {
+              "text": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+              "id": "_flshot4",
+              "years": [
+                "2010"
+              ]
+            },
+            {
+              "text": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+              "id": "_flshot5",
+              "years": [
+                "2011",
+                "2012"
+              ]
+            },
+            {
+              "text": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+              "id": "_flshot6",
+              "years": [
+                "2015",
+                "2013",
+                "2016",
+                "2014"
+              ]
+            },
+            {
+              "text": "Adults aged 65+ who have had a flu shot within the past year (variable calculated from one or more BRFSS questions)",
+              "id": "_flushot",
+              "years": [
+                "1997",
+                "2001",
+                "2002",
+                "1999",
+                "1995",
+                "2003"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_14",
+          "text": "Fruit Consumption",
+          "children": [
+            {
+              "text": "Consumed fruit less than one time per day (variable calculated from one or more BRFSS questions)",
+              "id": "_frtlt1",
+              "years": [
+                "2015",
+                "2013"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_52",
+          "text": "HIV Test",
+          "children": [
+            {
+              "text": "Have you ever been tested for HIV?",
+              "id": "hivtst6",
+              "years": [
+                "2015",
+                "2013",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_57",
+          "text": "Health Care Cost",
+          "children": [
+            {
+              "text": "Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?",
+              "id": "medcost",
+              "years": [
+                "2015",
+                "2013",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_53",
+          "text": "Health Care Coverage",
+          "children": [
+            {
+              "text": "Do you have any kind of health care coverage?",
+              "id": "hlthplan",
+              "years": [
+                "1996",
+                "2001",
+                "2005",
+                "2003",
+                "1997",
+                "1995",
+                "2007",
+                "2010",
+                "2004",
+                "2002",
+                "1998",
+                "2009",
+                "2008",
+                "2000",
+                "1999",
+                "2006"
+              ]
+            },
+            {
+              "text": "Do you have any kind of health care coverage?",
+              "id": "hlthpln1",
+              "years": [
+                "2015",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_27",
+          "text": "Heavy Drinking",
+          "children": [
+            {
+              "text": "Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions)",
+              "id": "_rfdrhv5",
+              "years": [
+                "2015",
+                "2016"
+              ]
+            },
+            {
+              "text": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
+              "id": "_rfdrhv2",
+              "years": [
+                "2004",
+                "2002",
+                "2003"
+              ]
+            },
+            {
+              "text": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
+              "id": "_rfdrhv3",
+              "years": [
+                "2009",
+                "2007",
+                "2008",
+                "2010",
+                "2005",
+                "2006"
+              ]
+            },
+            {
+              "text": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
+              "id": "_rfdrhv4",
+              "years": [
+                "2013",
+                "2011",
+                "2012",
+                "2014"
+              ]
+            },
+            {
+              "text": "Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions)",
+              "id": "_rfdrhvy",
+              "years": [
+                "2001"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_29",
+          "text": "High Blood Pressure",
+          "children": [
+            {
+              "text": "Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)",
+              "id": "_rfhype2",
+              "years": [
+                "1997",
+                "1999",
+                "1995"
+              ]
+            },
+            {
+              "text": "Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)",
+              "id": "_rfhype3",
+              "years": [
+                "2001"
+              ]
+            },
+            {
+              "text": "Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)",
+              "id": "_rfhype4",
+              "years": [
+                "2003"
+              ]
+            },
+            {
+              "text": "Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)",
+              "id": "_rfhype5",
+              "years": [
+                "2009",
+                "2013",
+                "2007",
+                "2015",
+                "2005",
+                "2011"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_54",
+          "text": "Income",
+          "children": [
+            {
+              "text": "What is your annual household income?",
+              "id": "income",
+              "years": [
+                "1996",
+                "2001",
+                "2015",
+                "2005",
+                "2003",
+                "2013",
+                "1997",
+                "1995",
+                "2007",
+                "2010",
+                "2004",
+                "2002",
+                "1998",
+                "2009",
+                "2008",
+                "2000",
+                "1999",
+                "2011",
+                "2012",
+                "2016",
+                "2014",
+                "2006"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_55",
+          "text": "Internet",
+          "children": [
+            {
+              "text": "Have you used the internet in the past 30 days?",
+              "id": "internet",
+              "years": [
+                "2015",
+                "2013",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_42",
+          "text": "Kidney",
+          "children": [
+            {
+              "text": "Ever told you have kidney disease?",
+              "id": "chckidny",
+              "years": [
+                "2015",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_46",
+          "text": "Last Checkup",
+          "children": [
+            {
+              "text": "About how long has it been since you last visited a doctor for a routine checkup?",
+              "id": "checkup1",
+              "years": [
+                "2015",
+                "2013",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_18",
+          "text": "Mammogram",
+          "children": [
+            {
+              "text": "Women aged 40+ who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
+              "id": "_rfmam2y",
+              "years": [
+                "1996",
+                "2010",
+                "2016",
+                "2004",
+                "2002",
+                "1999",
+                "1998",
+                "2008",
+                "2000",
+                "1997",
+                "2012",
+                "1995",
+                "2014",
+                "2006"
+              ]
+            },
+            {
+              "text": "Women aged 50+ who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
+              "id": "_mam502y",
+              "years": [
+                "1996",
+                "1997",
+                "2010",
+                "2004",
+                "2002",
+                "1998",
+                "2008",
+                "2000",
+                "1999",
+                "2012",
+                "1995",
+                "2014",
+                "2006"
+              ]
+            },
+            {
+              "text": "Women aged 50-74 who have had a mammogram within the past two years (variable calculated from one or more BRFSS questions)",
+              "id": "_mam5021",
+              "years": [
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_56",
+          "text": "Marital Status",
+          "children": [
+            {
+              "text": "What is your marital status?",
+              "id": "marital",
+              "years": [
+                "1996",
+                "2001",
+                "2015",
+                "2005",
+                "2003",
+                "2013",
+                "1997",
+                "1995",
+                "2007",
+                "2010",
+                "2004",
+                "2002",
+                "1998",
+                "2009",
+                "2008",
+                "2000",
+                "1999",
+                "2011",
+                "2012",
+                "2016",
+                "2014",
+                "2006"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_3",
+          "text": "Number of Children",
+          "children": [
+            {
+              "text": "How many children live in your household? (variable calculated from one or more BRFSS questions)",
+              "id": "_chldcnt",
+              "years": [
+                "1996",
+                "2001",
+                "2015",
+                "2005",
+                "2003",
+                "2013",
+                "1997",
+                "1995",
+                "2007",
+                "2010",
+                "2004",
+                "2002",
+                "1998",
+                "2009",
+                "2008",
+                "2000",
+                "1999",
+                "2011",
+                "2012",
+                "2016",
+                "2014",
+                "2006"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_43",
+          "text": "Other Cancer",
+          "children": [
+            {
+              "text": "Ever told you had any other types of cancer?",
+              "id": "chcocncr",
+              "years": [
+                "2015",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_51",
+          "text": "Overall Health",
+          "children": [
+            {
+              "text": "How is your general health?",
+              "id": "genhlth",
+              "years": [
+                "1996",
+                "2001",
+                "2015",
+                "2005",
+                "2003",
+                "2013",
+                "1997",
+                "1995",
+                "2007",
+                "2010",
+                "2004",
+                "2002",
+                "1998",
+                "2009",
+                "2008",
+                "2000",
+                "1999",
+                "2011",
+                "2012",
+                "2016",
+                "2014",
+                "2006"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_32",
+          "text": "PSA Test",
+          "children": [
+            {
+              "text": "Men aged 40+ who have had a PSA test within the past two years (variable calculated from one or more BRFSS questions)",
+              "id": "_rfpsa21",
+              "years": [
+                "2012",
+                "2016",
+                "2014"
+              ]
+            },
+            {
+              "text": "Men aged 40+ who have had a PSA test within the past two years (variable calculated from one or more BRFSS questions)",
+              "id": "_rfpsa2y",
+              "years": [
+                "2008",
+                "2010",
+                "2004",
+                "2002",
+                "2006"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_31",
+          "text": "Pap Test",
+          "children": [
+            {
+              "text": "Women aged 18+ who have had a pap smear within the past three years (variable calculated from one or more BRFSS questions)",
+              "id": "_rfpap3y",
+              "years": [
+                "1996",
+                "1999",
+                "2000",
+                "2002",
+                "1997",
+                "1995",
+                "1998"
+              ]
+            },
+            {
+              "text": "Women aged 18+ who have had a pap test within the past three years (variable calculated from one or more BRFSS questions)",
+              "id": "_rfpap32",
+              "years": [
+                "2008",
+                "2010",
+                "2004",
+                "2012",
+                "2014",
+                "2006"
+              ]
+            },
+            {
+              "text": "Women aged 21-65 who have had a pap test in the past three years (variable calculated from one or more BRFSS questions)",
+              "id": "_rfpap33",
+              "years": [
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_58",
+          "text": "Personal Care Provider",
+          "children": [
+            {
+              "text": "Do you have one person you think of as your personal doctor or health care provider?",
+              "id": "persdoc2",
+              "years": [
+                "2015",
+                "2013",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_30",
+          "text": "Physical Activity",
+          "children": [
+            {
+              "text": "Adults with 20+ minutes of vigorous physical activity three or more days per week (variable calculated from one or more BRFSS questions)",
+              "id": "_rfpavig",
+              "years": [
+                "2009",
+                "2007",
+                "2001",
+                "2005",
+                "2003"
+              ]
+            },
+            {
+              "text": "Adults with 30+ minutes of any physical activity five or more days per week (variable calculated from one or more BRFSS questions)",
+              "id": "_rfregul",
+              "years": [
+                "1996",
+                "1998",
+                "2000"
+              ]
+            },
+            {
+              "text": "Adults with 30+ minutes of moderate physical activity five or more days per week, or vigorous physical activity for 20+ minutes three or more days per week",
+              "id": "_rfpamod",
+              "years": [
+                "2009",
+                "2007",
+                "2001",
+                "2005",
+                "2003"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_21",
+          "text": "Physical Activity Index",
+          "children": [
+            {
+              "text": "Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)",
+              "id": "_pastae1",
+              "years": [
+                "2015",
+                "2013"
+              ]
+            },
+            {
+              "text": "Participated in enough Aerobic and Muscle Strengthening exercises to meet guidelines (variable calculated from one or more BRFSS questions)",
+              "id": "_pastaer",
+              "years": [
+                "2011"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_23",
+          "text": "Pneumonia Vaccination",
+          "children": [
+            {
+              "text": "Adults aged 65+ who have ever had a pneumonia vaccination (variable calculated from one or more BRFSS questions)",
+              "id": "_pneumo2",
+              "years": [
+                "2007",
+                "2010",
+                "2015",
+                "2005",
+                "2009",
+                "2008",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014",
+                "2006"
+              ]
+            },
+            {
+              "text": "Adults aged 65+ who have ever had a pneumonia vaccination (variable calculated from one or more BRFSS questions)",
+              "id": "_pneumoc",
+              "years": [
+                "1999",
+                "2001",
+                "2004",
+                "2002",
+                "1997",
+                "1995",
+                "2003"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_59",
+          "text": "Race",
+          "children": [
+            {
+              "text": "What is your race/ethnicity?",
+              "id": "race",
+              "years": [
+                "1996",
+                "2001",
+                "2005",
+                "2003",
+                "2013",
+                "1997",
+                "1995",
+                "2007",
+                "2010",
+                "2004",
+                "2002",
+                "1998",
+                "2009",
+                "2008",
+                "2000",
+                "1999",
+                "2011",
+                "2012",
+                "2014",
+                "2006"
+              ]
+            },
+            {
+              "text": "What is your race/ethnicity?",
+              "id": "race8",
+              "years": [
+                "2015",
+                "2016"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_60",
+          "text": "Rent/Own Home",
+          "children": [
+            {
+              "text": "Do you own or rent your home?",
+              "id": "renthom1",
+              "years": [
+                "2015",
+                "2013",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_33",
+          "text": "Seatbelt Use",
+          "children": [
+            {
+              "text": "Always or nearly always wears a seat belt?",
+              "id": "_rfseat2",
+              "years": [
+                "2016"
+              ]
+            },
+            {
+              "text": "Always wears a seat belt (variable calculated from one or more BRFSS questions)",
+              "id": "_seat2",
+              "years": [
+                "2010"
+              ]
+            },
+            {
+              "text": "Always wears a seat belt? (variable calculated from one or more BRFSS questions)",
+              "id": "_rfseat3",
+              "years": [
+                "2015",
+                "2013",
+                "2011",
+                "2012",
+                "1995",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_61",
+          "text": "Sex",
+          "children": [
+            {
+              "text": "Gender of respondent",
+              "id": "sex",
+              "years": [
+                "1996",
+                "2001",
+                "2015",
+                "2005",
+                "2003",
+                "2013",
+                "1997",
+                "1995",
+                "2007",
+                "2010",
+                "2004",
+                "2002",
+                "1998",
+                "2009",
+                "2008",
+                "2000",
+                "1999",
+                "2011",
+                "2012",
+                "2016",
+                "2014",
+                "2006"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_62",
+          "text": "Shingle Vaccination",
+          "children": [
+            {
+              "text": "Have you ever had the shingles or zoster vaccine?",
+              "id": "shingle2",
+              "years": [
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_15",
+          "text": "Sigmoidoscopy",
+          "children": [
+            {
+              "text": "Adults aged 50+ who have ever had a sigmoidoscopy or colonoscopy (variable calculated from one or more BRFSS questions)",
+              "id": "_rfsigm2",
+              "years": [
+                "2008",
+                "2010",
+                "2004",
+                "2012",
+                "2014",
+                "2006"
+              ]
+            },
+            {
+              "text": "Adults aged 50+ who have ever had a sigmoidoscopy or colonoscopy (variable calculated from one or more BRFSS questions)",
+              "id": "_rfsigmd",
+              "years": [
+                "2002",
+                "1999",
+                "1997"
+              ]
+            },
+            {
+              "text": "Aged 50-75 had a sigmoidoscopy within the past 5 years",
+              "id": "_fs5yr",
+              "years": [
+                "2016"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_44",
+          "text": "Skin Cancer",
+          "children": [
+            {
+              "text": "Ever told you had skin cancer?",
+              "id": "chcscncr",
+              "years": [
+                "2015",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_64",
+          "text": "Smokeless Tobacco",
+          "children": [
+            {
+              "text": "Do you currently use chewing tobacco, snuff, or snus?",
+              "id": "usenow3",
+              "years": [
+                "2015",
+                "2013",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_35",
+          "text": "Smoker Status",
+          "children": [
+            {
+              "text": "Four Level Smoking Status (variable calculated from one or more BRFSS questions)",
+              "id": "_smoker1",
+              "years": [
+                "1995"
+              ]
+            },
+            {
+              "text": "Four Level Smoking Status (variable calculated from one or more BRFSS questions)",
+              "id": "_smoker2",
+              "years": [
+                "1996",
+                "2001",
+                "2004",
+                "2002",
+                "1999",
+                "1998",
+                "2003",
+                "2000",
+                "1997"
+              ]
+            },
+            {
+              "text": "Four Level Smoking Status (variable calculated from one or more BRFSS questions)",
+              "id": "_smoker3",
+              "years": [
+                "2007",
+                "2010",
+                "2015",
+                "2005",
+                "2009",
+                "2008",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014",
+                "2006"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_22",
+          "text": "Strength Activity",
+          "children": [
+            {
+              "text": "Participated in muscle strengthening exercises two or more times per week (variable calculated from one or more BRFSS questions).",
+              "id": "_pastrng",
+              "years": [
+                "2015",
+                "2013",
+                "2011"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_11",
+          "text": "Teeth Removed",
+          "children": [
+            {
+              "text": "Adults that have had any permanent teeth extracted (variable calculated from one or more BRFSS questions)",
+              "id": "_exteeth",
+              "years": [
+                "2004",
+                "2002",
+                "1999"
+              ]
+            },
+            {
+              "text": "Adults that have had any permanent teeth extracted (variable calculated from one or more BRFSS questions)",
+              "id": "_exteth2",
+              "years": [
+                "2008",
+                "2010",
+                "2012",
+                "2016",
+                "2014",
+                "2006"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_63",
+          "text": "Tetanus Shot",
+          "children": [
+            {
+              "text": "Since 2005, have you had a tetanus shot?",
+              "id": "tetanus",
+              "years": [
+                "2013"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_6",
+          "text": "USPSTF Recommendations",
+          "children": [
+            {
+              "text": "Respondents aged 50-75 who have fully met the USPSTF recommendation (variable calculated from one or more BRFSS questions)",
+              "id": "_crcrec",
+              "years": [
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_17",
+          "text": "Under 65 Coverage",
+          "children": [
+            {
+              "text": "Adults aged 18-64 who have any kind of health care coverage (variable calculated from one or more BRFSS questions)",
+              "id": "_hcvu65",
+              "years": [
+                "1996",
+                "2001",
+                "2005",
+                "2003",
+                "1997",
+                "1995",
+                "2007",
+                "2010",
+                "2004",
+                "2002",
+                "1998",
+                "2009",
+                "2008",
+                "2000",
+                "1999",
+                "2006"
+              ]
+            },
+            {
+              "text": "Adults aged 18-64 who have any kind of health care coverage (variable calculated from one or more BRFSS questions)",
+              "id": "_hcvu651",
+              "years": [
+                "2015",
+                "2013",
+                "2011",
+                "2012",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_37",
+          "text": "Vegetable Consumption",
+          "children": [
+            {
+              "text": "Consumed vegetables less than one time per day (variable calculated from one or more BRFSS questions)",
+              "id": "_veglt1",
+              "years": [
+                "2015",
+                "2013"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_65",
+          "text": "Veteran Status",
+          "children": [
+            {
+              "text": "Have you ever served on active duty in the United States Armed Forces?",
+              "id": "veteran3",
+              "years": [
+                "2015",
+                "2013",
+                "2016",
+                "2014"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat_45",
+          "text": "Vision",
+          "children": [
+            {
+              "text": "Ever told you have vision impairment?",
+              "id": "chcvisn1",
+              "years": [
+                "2012"
+              ]
+            },
+            {
+              "text": "Ever told you have vision impairment?",
+              "id": "chcvison",
+              "years": [
+                "2011"
+              ]
+            }
+          ]
+        }
+      ],
+      "selectTitle": "label.brfss.select.question",
+      "updateTitle": "label.brfss.update.question",
+      "iconClass": "fa fa-pie-chart purple-text",
+      "helpText": "label.help.text.brfss.question"
+    }
+  ]
