@@ -4227,7 +4227,7 @@ describe("YRBS API", function () {
             expect(yesReponse.race[3].brfss.count).to.eql(11);
 
             //No response
-            expect(yesReponse.race[0].name).to.eql("native hawaiian or other pacific islander, non-hispanic");
+            expect(yesReponse.race[0].name).to.eql("NHOPI");
             expect(yesReponse.race[0].brfss.mean).to.eql("na");
             expect(yesReponse.race[0].brfss.ci_l).to.eql(0);
             expect(yesReponse.race[0].brfss.ci_u).to.eql(0);
