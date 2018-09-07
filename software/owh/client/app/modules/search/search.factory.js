@@ -2702,6 +2702,7 @@
             ];
 
             filters.brfsPrecYearOptions = [
+                { "key": "2016", "title": "2016" },
                 { "key": "2015", "title": "2015" },
                 { "key": "2014", "title": "2014" },
                 { "key": "2013", "title": "2013" },
@@ -2842,7 +2843,7 @@
                 {
                     key: 'year', title: 'label.filter.year',
                     queryKey:"year", primary: false,
-                    value: '2015', groupBy: false,
+                    value: '2016', groupBy: false,
                     filterType: 'radio', autoCompleteOptions: filters.brfsPrecYearOptions,
                     doNotShowAll: true, helpText: 'label.help.text.brfss.year', disableFilter: true
                 },
