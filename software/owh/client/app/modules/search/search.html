@@ -48,6 +48,7 @@
                                  show-filters="sc.availableFilters[sc.tableView]"
                                  utilities="sc.filterUtilities[sc.filters.selectedPrimaryFilter.key]"
                                  run-on-filter-change="sc.filters.selectedPrimaryFilter.runOnFilterChange"
+                                 show-ci="sc.filters.selectedPrimaryFilter.showCi"
                 ></owh-side-filter>
             </div>
             </div>
@@ -199,7 +200,8 @@
                                          primary-key="sc.filters.selectedPrimaryFilter.key"
                                          show-ci="sc.filters.filterUtilities[sc.filters.selectedPrimaryFilter.key][0].options[0].value"
                                          show-uf="sc.filters.filterUtilities[sc.filters.selectedPrimaryFilter.key][0].options[1].value"
-                                         show-charts = "sc.filters.selectedPrimaryFilter.value.length > 1">
+                                         show-charts = "sc.filters.selectedPrimaryFilter.value.length > 1"
+                                         pre-computed="sc.filters.selectedPrimaryFilter.showBasicSearchSideMenu">
                     </owh-accordion-table>
                 </div>
                 <!--Table-->

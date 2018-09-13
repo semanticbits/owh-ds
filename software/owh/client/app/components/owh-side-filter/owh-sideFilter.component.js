@@ -15,7 +15,8 @@
                 sort: '<',
                 showFilters: '<',
                 utilities: '<',
-                runOnFilterChange: '<'
+                runOnFilterChange: '<',
+                showCi: '<'
             }
         });
 

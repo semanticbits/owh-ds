@@ -60,9 +60,11 @@
                 if (response.data.queryJSON.showBasicSearchSideMenu) {
                     primaryFilter.allFilters = filters.pramsBasicFilters;
                     primaryFilter.sideFilters = primaryFilter.basicSideFilters[0].sideFilters;
+                    primaryFilter.showCi = true;
                 } else {
                     primaryFilter.allFilters = filters.pramsAdvanceFilters;
                     primaryFilter.sideFilters = primaryFilter.advancedSideFilters[0].sideFilters;
+                    primaryFilter.showCi = false;
                 }
             } else if(primaryFilter.key === 'brfss') {
                 if (response.data.queryJSON.showBasicSearchSideMenu) {
