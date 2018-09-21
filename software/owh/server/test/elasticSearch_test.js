@@ -224,19 +224,19 @@ describe("Elastic Search", function () {
         return new elasticSearch().aggregateCensusData([query], true).then(function (response) {
             var data = response.data.simple;
             expect(data.current_year[0].name).to.eql("2015");
-            expect(data.current_year[0].bridge_race).to.eql(321418820);
+            expect(data.current_year[0].bridge_race).to.eql(321039839);
 
             expect(data.sex[0].name).to.eql("Female");
-            expect(data.sex[0].bridge_race).to.eql(163189523);
+            expect(data.sex[0].bridge_race).to.eql(162991686);
 
             expect(data.sex[1].name).to.eql("Male");
-            expect(data.sex[1].bridge_race).to.eql(158229297);
+            expect(data.sex[1].bridge_race).to.eql(158048153);
 
             expect(data.race[0].name).to.eql("American Indian");
-            expect(data.race[0].bridge_race).to.eql(4577853);
+            expect(data.race[0].bridge_race).to.eql(4571638);
 
             expect(data.race[1].name).to.eql("Asian or Pacific Islander");
-            expect(data.race[1].bridge_race).to.eql(20102717);
+            expect(data.race[1].bridge_race).to.eql(19972154);
         });
     });
 
@@ -246,18 +246,18 @@ describe("Elastic Search", function () {
         return new elasticSearch().aggregateCensusData([tableQuery, {}, mapQuery], true).then(function (response) {
             var race = response.data.nested.table.race;
             expect(race[0].name).to.eql("American Indian");
-            expect(race[0].bridge_race).to.be(4577853);
+            expect(race[0].bridge_race).to.be(4571638);
             expect(race[0].sex[0].name).to.eql("Female");
-            expect(race[0].sex[0].bridge_race).to.be(2279263);
+            expect(race[0].sex[0].bridge_race).to.be(2276911);
             expect(race[0].sex[1].name).to.eql("Male");
-            expect(race[0].sex[1].bridge_race).to.be(2298590);
+            expect(race[0].sex[1].bridge_race).to.be(2294727);
 
             expect(race[1].name).to.eql("Asian or Pacific Islander");
-            expect(race[1].bridge_race).to.be(20102717);
+            expect(race[1].bridge_race).to.be(19972154);
             expect(race[1].sex[0].name).to.eql("Female");
-            expect(race[1].sex[0].bridge_race).to.be(10480265);
+            expect(race[1].sex[0].bridge_race).to.be(10406564);
             expect(race[1].sex[1].name).to.eql("Male");
-            expect(race[1].sex[1].bridge_race).to.be(9622452);
+            expect(race[1].sex[1].bridge_race).to.be(9565590);
         });
     });
 

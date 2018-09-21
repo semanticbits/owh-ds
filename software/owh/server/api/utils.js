@@ -1307,6 +1307,18 @@ function applyPopulationSpecificSuppression (root, countKey) {
     }
 }
 
+/**
+ * Rounds the number with specified precision
+ * @param number
+ * @param precision
+ * @returns {number}
+ */
+function round(number, precision) {
+    var multiplier = Math.pow(10, precision || 0);
+    var num = Math.round(number * multiplier) / multiplier;
+    return num.toFixed(precision);
+}
+
 module.exports.populateDataWithMappings = populateDataWithMappings;
 module.exports.populateWonderDataWithMappings = populateWonderDataWithMappings;
 module.exports.populateYRBSData = populateYRBSData;
@@ -1339,3 +1351,4 @@ module.exports.attachPopulation = attachPopulation;
 module.exports.createPopIndex = createPopIndex;
 module.exports.applyPopulationSpecificSuppression = applyPopulationSpecificSuppression;
 module.exports.addMissingFilterOptions = addMissingFilterOptions;
+module.exports.round = round;

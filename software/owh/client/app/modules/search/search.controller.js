@@ -917,6 +917,7 @@
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[4].basicSideFilters[0].sideFilters;
                 sc.filters.selectedPrimaryFilter.tableView = 'basic_delivery';
                 sc.tableView = 'basic_delivery';
+                sc.filters.selectedPrimaryFilter.showCi = true;
                 //reset income filter as there are different sets of income filters for pre-comp and raw data
                 sc.filters.selectedPrimaryFilter.allFilters[6].value = '';
                 sc.filters.selectedPrimaryFilter.allFilters[0].autoCompleteOptions = sc.filters.pramsPrecTopicOptions;
@@ -945,6 +946,8 @@
                 sc.filters.selectedPrimaryFilter.sideFilters = sc.filters.search[4].advancedSideFilters[0].sideFilters;
                 sc.filters.selectedPrimaryFilter.tableView = 'advance_delivery';
                 sc.tableView = 'advance_delivery';
+                //hide confidence intervals for prams advance search
+                sc.filters.selectedPrimaryFilter.showCi = false;
                 //reset income filter as there are different sets of income filters for pre-comp and raw data
                 sc.filters.selectedPrimaryFilter.allFilters[6].value = '';
                 sc.filters.selectedPrimaryFilter.allFilters[0].autoCompleteOptions = sc.filters.pramsRawTopicOptions;
