@@ -47,7 +47,7 @@
                             <div ng-if="eachColumn.title.mean">
                                 {{eachColumn.title.mean == 'suppressed' ? 'Suppressed' :
                                 (eachColumn.title.mean == 'na'? 'No response' : eachColumn.title.mean + '%')}}
-                                <div ng-if="oatc.showCi && eachColumn.title.mean != 'suppressed' && eachColumn.title.mean != 'na'"
+                                <div ng-if="oatc.showConfidenceIntervals(eachColumn)"
                                      title="Confidence interval">
                                     <br/><br/>
                                     ({{eachColumn.title.ci_l}}-{{eachColumn.title.ci_u}})

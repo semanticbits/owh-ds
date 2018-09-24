@@ -67,7 +67,8 @@
                     </a>
                 </div>
                 <ul class="owh-side-menu__options-list usa-unstyled-list group-options" ng-hide="util.collapse">
-                    <div class="owh-side-menu__utility-option" ng-repeat="option in util.options">
+                    <div class="owh-side-menu__utility-option" ng-repeat="option in util.options"
+                         ng-hide="sfc.showCi === false && option.title === 'Confidence Intervals'">
                         <div ng-if="option.type === 'toggle'">
                             <span>{{option.title}}</span>
                             <owh-toggle-switch class="pull-right"

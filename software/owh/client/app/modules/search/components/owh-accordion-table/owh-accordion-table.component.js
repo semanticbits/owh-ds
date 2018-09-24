@@ -12,7 +12,8 @@
                 showCi: '<',
                 showUf: '<',
                 showCharts:'<',
-                primaryKey: '<'
+                primaryKey: '<',
+                preComputed: '<'
             }
         });
     OWHAccordionTableController.$inject = ['$scope', 'utilService', '$rootScope'];
@@ -20,6 +21,7 @@
         var oatc = this;
         oatc.categoryFilter = null;
         oatc.isShowCounts = isShowCounts;
+        oatc.showConfidenceIntervals = showConfidenceIntervals;
 
         var questionDefaults = {
             "Tobacco Use": [/^Currently Used E/, /^Currently Used C/], // SP
@@ -135,6 +137,17 @@
                 return true;
             } else {
                 return mean != 'suppressed' && mean != 'na';
+            }
+        }
+
+        function showConfidenceIntervals(responce) {
+            if(oatc.primaryKey === 'prams' && !oatc.preComputed) {
+                return false
+            } else if(oatc.showCi && responce.title.mean != 'suppressed'
+                && responce.title.mean != 'na') {
+                return true
+            } else {
+                return false;
             }
         }
     }

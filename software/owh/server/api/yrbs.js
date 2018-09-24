@@ -451,9 +451,9 @@ function getResultCell (currentcell, cellkey, cellvalue){
 function resultCellObject (response, key) {
     var prec = 1;
     var result = {
-        mean: toRoundedPercentage(response.mean, prec),
-        ci_l: toRoundedPercentage(response.ci_l, prec),
-        ci_u: toRoundedPercentage(response.ci_u, prec)
+        mean: toRoundedPercentage(response.mean, prec, key),
+        ci_l: toRoundedPercentage(response.ci_l, prec, key),
+        ci_u: toRoundedPercentage(response.ci_u, prec, key)
     };
     if(key == 'mental_health') {
         result.count = response.sample_size;
@@ -465,11 +465,15 @@ function resultCellObject (response, key) {
     return result;
 }
 
-function toRoundedPercentage(num, prec){
+function toRoundedPercentage(num, prec, dataset){
     if (!isNaN(num)){
         if(num > 0) {
-            return (num * 100).toFixed(prec);
-        }else {
+            if(dataset === 'prams') {
+                return searchUtils.round(num * 100, prec);
+            } else {
+                return (num * 100).toFixed(prec);
+            }
+        } else {
             return '0';
         }
     }else {
