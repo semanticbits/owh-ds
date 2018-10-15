@@ -10,6 +10,8 @@
     //service to provide utilities for leaflet geographical map
     function mapService($rootScope, $timeout, utilService, leafletData,
                         $translate, $filter, $templateCache, $compile) {
+
+        var suppression = {suppressed: false, isNA: false};
         var service = {
             updateStatesDeaths: updateStatesDeaths,
             getMapTitle: getMapTitle,
@@ -32,6 +34,8 @@
          */
         function updateStatesDeaths(primaryFilter, data, totalCount, mapOptions) {
             var years = getSelectedYears(primaryFilter);
+            suppression.suppressed = false;
+            suppression.isNA = false;
             //update states info with trials data
             var stateDeathTotals = [];
             angular.forEach($rootScope.states.features, function(feature) {
@@ -152,14 +156,19 @@
 
         //generate labels for map legend labels
         function getLabels(minValue, maxValue) {
+            if (isNaN(minValue)) {return []};
             return utilService.generateMapLegendLabels(minValue, maxValue);
         }
 
         //get map feature colors
         function getColor(d, ranges) {
 
-            if (d == -1) {
-                return '#D3D3D3';
+            if (d === -1 || d === 'na' || d === 'n/a') {
+                suppression.isNA = true;
+                return '#65cdee';
+            } if (d === 'suppressed') {
+                suppression.suppressed = true;
+                return '#4bb6c0';
             }
             return d >= ranges[6] ? '#ea8484' :
                    d >= ranges[5] ? '#f3af60' :
@@ -211,6 +220,56 @@
         }
 
         /**
+         * Get the map colors based on number of legend intervals
+         * @param labels
+         * @returns {string[]}
+         */
+        function getLegendColorsAndSuppressionLabels(labels) {
+            var colors;
+            debugger
+            if (labels.length === 0 && suppression.suppressed && suppression.isNA) {
+                labels.push('Suppressed'); labels.push('NA');
+                colors = ['#4bb6c0', '#65cdee'];
+            } else if (labels.length === 0 && suppression.suppressed) {
+                labels.push('Suppressed');
+                colors = ['#4bb6c0'];
+            } else if (labels.length === 0 && suppression.isNA) {
+                labels.push('NA');
+                colors = ['#65cdee'];
+            } else if (labels.length === 1 && suppression.suppressed && suppression.isNA) {
+                labels.push('Suppressed');labels.push('NA');
+                colors = ['#aa7ed4', '#4bb6c0', '#65cdee' ];
+            } else if (labels.length === 1 && suppression.suppressed) {
+                labels.push('Suppressed');
+                colors = ['#aa7ed4', '#4bb6c0'];
+            } else if (labels.length === 1 && suppression.isNA) {
+                labels.push('NA');
+                colors = ['#aa7ed4', '#65cdee' ];
+            } else if (labels.length === 2 && suppression.suppressed && suppression.isNA) {
+                labels.push('Suppressed');labels.push('NA');
+                colors = ['#aa7ed4', '#5569de', '#4bb6c0', '#65cdee' ];
+            } else if (labels.length === 2 && suppression.suppressed) {
+                labels.push('Suppressed');
+                colors = ['#aa7ed4', '#5569de', '#4bb6c0'];
+            } else if (labels.length === 2 && suppression.isNA) {
+                labels.push('NA');
+                colors = ['#aa7ed4', '#5569de', '#65cdee'];
+            } else if (labels.length > 2 && suppression.suppressed && suppression.isNA) {
+                labels.push('Suppressed');labels.push('NA');
+                colors = ['#aa7ed4', '#5569de', '#6f9af1', '#8bd480', '#fff280', '#f3af60', '#ea8484', '#4bb6c0', '#65cdee' ];
+            } else if (labels.length > 2 && suppression.suppressed) {
+                labels.push('Suppressed');
+                colors = ['#aa7ed4', '#5569de', '#6f9af1', '#8bd480', '#fff280', '#f3af60', '#ea8484', '#4bb6c0' ];
+            } else if (labels.length > 2 && suppression.isNA) {
+                labels.push('NA');
+                colors = ['#aa7ed4', '#5569de', '#6f9af1', '#8bd480', '#fff280', '#f3af60', '#ea8484', '#65cdee' ];
+            } else {
+                colors = ['#aa7ed4', '#5569de', '#6f9af1', '#8bd480', '#fff280', '#f3af60', '#ea8484'];
+            }
+            return colors.slice(0, labels.length);
+        }
+
+        /**
          * Add horizontal Legend
          * @param mapData
          */
@@ -222,9 +281,9 @@
                 onAdd: function (map) {
                     map.customControl = this;
                     var container = L.DomUtil.create('div', 'leaflet-control leaflet-control-custom custom-legend');
-
-                    var colors = ['#aa7ed4', '#5569de', '#6f9af1', '#8bd480', '#fff280', '#f3af60', '#ea8484' ];
                     var labels = getLabels(mapData.mapMinValue, mapData.mapMaxValue);
+                    var colors = getLegendColorsAndSuppressionLabels(labels);
+                    debugger
                     var legendScale = L.DomUtil.create('ul', 'legend-scale', container);
                     var polygons = [];
                     colors.forEach(function(color, index) {

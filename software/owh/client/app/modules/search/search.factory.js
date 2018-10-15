@@ -2925,7 +2925,7 @@
                 {
                     key: 'year', title: 'label.filter.year',
                     queryKey:"year", primary: false,
-                    value: '2015', groupBy: false,
+                    value: ['2015'], groupBy: false,
                     filterType: 'checkbox', autoCompleteOptions: filters.brfsAdvanceYearOptions,
                     doNotShowAll: true, helpText: 'label.help.text.brfss.year'
                 },

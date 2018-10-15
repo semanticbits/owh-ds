@@ -870,10 +870,16 @@
             var ranges = [];
             var counter = (maxValue - minValue)/7;
             var temp = minValue;
-            [1, 2, 3, 4, 5, 6, 7].forEach(function(option, index) {
-                ranges.push(Math.round(temp, 0));
-                temp = temp + counter;
-            });
+            if(counter > 1) {
+                [1, 2, 3, 4, 5, 6, 7].forEach(function(option, index) {
+                    ranges.push(Math.round(temp, 0));
+                    temp = temp + counter;
+                });
+            } else if(counter === 0) {
+                ranges = [minValue];
+            } else {
+                ranges = [minValue, maxValue];
+            }
             return ranges;
         }
 
