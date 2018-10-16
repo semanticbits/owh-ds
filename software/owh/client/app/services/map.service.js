@@ -291,7 +291,6 @@
                     var container = L.DomUtil.create('div', 'leaflet-control leaflet-control-custom custom-legend');
                     var labels = getLabels(mapData.mapMinValue, mapData.mapMaxValue);
                     var colors = getLegendColorsAndSuppressionLabels(labels);
-                    debugger
                     var legendScale = L.DomUtil.create('ul', 'legend-scale', container);
                     var polygons = [];
                     colors.forEach(function(color, index) {
