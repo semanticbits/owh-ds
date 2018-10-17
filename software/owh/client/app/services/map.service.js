@@ -165,7 +165,7 @@
 
             if (d === -1 || d === 'na' || d === 'n/a') {
                 suppression.isNA = true;
-                return '#65cdee';
+                return '#c0414b';
             } if (d === 'suppressed') {
                 suppression.suppressed = true;
                 return '#4bb6c0';
@@ -229,37 +229,35 @@
             if(labels.length === 0) {
                 if(suppression.suppressed && suppression.isNA) {
                     labels.push('Suppressed'); labels.push('NA');
-                    colors = ['#4bb6c0', '#65cdee'];
+                    colors = ['#4bb6c0', '#c0414b'];
                 } else if (suppression.suppressed) {
-                    labels.push('Suppressed');
-                    colors = ['#4bb6c0'];
+                    labels.push('Suppressed'); colors = ['#4bb6c0'];
                 } else if (suppression.isNA) {
-                    labels.push('NA');
-                    colors = ['#65cdee'];
+                    labels.push('NA'); colors = ['#c0414b'];
                 }
             } else if (labels.length === 1){
                 if(suppression.suppressed && suppression.isNA) {
                     labels.push('Suppressed');labels.push('NA');
-                    colors = ['#aa7ed4', '#4bb6c0', '#65cdee' ];
+                    colors = ['#aa7ed4', '#4bb6c0', '#c0414b' ];
                 } else if (suppression.suppressed) {
                     labels.push('Suppressed');
                     colors = ['#aa7ed4', '#4bb6c0'];
                 } else if (suppression.isNA) {
                     labels.push('NA');
-                    colors = ['#aa7ed4', '#65cdee' ];
+                    colors = ['#aa7ed4', '#c0414b' ];
                 } else {
                     colors = ['#aa7ed4' ];
                 }
             } else if(labels.length === 2) {
                 if (suppression.suppressed && suppression.isNA) {
                     labels.push('Suppressed');labels.push('NA');
-                    colors = ['#aa7ed4', '#5569de', '#4bb6c0', '#65cdee' ];
+                    colors = ['#aa7ed4', '#5569de', '#4bb6c0', '#c0414b' ];
                 } else if (suppression.suppressed) {
                     labels.push('Suppressed');
                     colors = ['#aa7ed4', '#5569de', '#4bb6c0'];
                 } else if (suppression.isNA) {
                     labels.push('NA');
-                    colors = ['#aa7ed4', '#5569de', '#65cdee'];
+                    colors = ['#aa7ed4', '#5569de', '#c0414b'];
                 } else {
                     colors = ['#aa7ed4', '#5569de'];
                 }
@@ -267,11 +265,11 @@
                 colors = ['#aa7ed4', '#5569de', '#6f9af1', '#8bd480', '#fff280', '#f3af60', '#ea8484'];
                 if (suppression.suppressed && suppression.isNA) {
                     labels.push('Suppressed');labels.push('NA');
-                    colors.push('#4bb6c0'); colors.push('#65cdee');
+                    colors.push('#4bb6c0'); colors.push('#c0414b');
                 } else if (suppression.suppressed) {
                     labels.push('Suppressed'); colors.push('#4bb6c0');
                 } else if (suppression.isNA) {
-                    labels.push('NA'); colors.push('#65cdee');
+                    labels.push('NA'); colors.push('#c0414b');
                 }
             }
             return colors;
