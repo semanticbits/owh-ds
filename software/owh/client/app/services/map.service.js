@@ -34,6 +34,7 @@
          */
         function updateStatesDeaths(primaryFilter, data, totalCount, mapOptions) {
             var years = getSelectedYears(primaryFilter);
+            debugger
             suppression.suppressed = false;
             suppression.isNA = false;
             //update states info with trials data
@@ -101,10 +102,11 @@
                         else {
                             //calculate male and female rate
                             angular.forEach(feature.properties.sex, function (eachGender) {
-                                eachGender['rate'] = $filter('number')(Math.round((eachGender[primaryFilter.key]) / eachGender['pop'] * 1000000) / 10, 1);
+                                var rate = calculateRates(eachGender[primaryFilter.key], eachGender['pop']);
+                                eachGender.rate = isNaN(rate)? rate : $filter('number')(rate, 1);
                             });
 
-                            var rate = Math.round(feature.properties.sex[0][primaryFilter.key] / feature.properties.sex[0]['pop'] * 1000000) / 10;
+                            var rate = calculateRates(feature.properties.sex[0][primaryFilter.key], feature.properties.sex[0]['pop']);
                             feature.properties.rate = rate;
                             stateDeathTotals.push(rate);
                         }
@@ -145,6 +147,16 @@
                 },
                 mapTotalCount: totalCount
             });
+        }
+
+        function calculateRates(count, pop) {
+            if(count === 'suppressed' || pop === 'suppressed') {
+                return 'suppressed';
+            } else  if (!pop || pop === 'n/a' || count === 'na') {
+                return 'na';
+            } else{
+                return Math.round(count / pop * 1000000) / 10;
+            }
         }
 
         function getSelectedYears(primaryFilter) {

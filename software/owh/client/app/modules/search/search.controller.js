@@ -981,12 +981,14 @@
             selectedPrimaryFilter.chartView = chartOption.key;
             selectedPrimaryFilter.chartData = searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
             selectedPrimaryFilter.showRates = (chartView === 'disease_rate' || chartView === 'infant_death_rate');
-            mapService.updateStatesDeaths(sc.filters.selectedPrimaryFilter, sc.filters.selectedPrimaryFilter.nestedData.maps, undefined, sc.mapOptions);
             $timeout(function(){
-                leafletData.getMap('minimizedMap').then(function(map) {
-                    mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
-                });
-            }, 1700);
+                mapService.updateStatesDeaths(sc.filters.selectedPrimaryFilter, sc.filters.selectedPrimaryFilter.nestedData.maps, undefined, sc.mapOptions);
+                $timeout(function(){
+                    leafletData.getMap('minimizedMap').then(function(map) {
+                        mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
+                    });
+                }, 500)
+            }, 200);
         }
 
         function findNameByKeyAndValue(key) {

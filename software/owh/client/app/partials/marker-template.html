@@ -18,9 +18,10 @@
                           ng-bind="'label.not.available' | translate"></span>
                 </div>
                 <div class="usa-width-one-third" ng-if="properties.showRates">
-                    <span ng-if="eachCat.rate && eachCat.rate !== 'suppressed'" ng-bind="eachCat.rate"></span>
+                    <span ng-if="eachCat.rate && eachCat.rate !== 'suppressed'
+                        && eachCat.rate !== 'na'" ng-bind="eachCat.rate"></span>
                     <span ng-if="eachCat.rate === 'suppressed'">Suppressed</span>
-                    <span ng-if="!eachCat.rate" ng-bind="'label.not.available' | translate"></span>
+                    <span ng-if="eachCat.rate === 'na'" ng-bind="'label.not.applicable' | translate"></span>
                 </div>
             </div>
             <div class="usa-width-one-whole margin-top-5 padding-top-5 border-top-default padding-bottom-10" ng-if="(!properties.showRates || (properties.showRates && properties.tableView === 'number_of_infant_deaths')) && ['std', 'tb', 'aids'].indexOf(properties.tableView) < 0">
