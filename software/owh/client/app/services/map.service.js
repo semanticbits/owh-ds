@@ -34,7 +34,6 @@
          */
         function updateStatesDeaths(primaryFilter, data, totalCount, mapOptions) {
             var years = getSelectedYears(primaryFilter);
-            debugger
             suppression.suppressed = false;
             suppression.isNA = false;
             //update states info with trials data
