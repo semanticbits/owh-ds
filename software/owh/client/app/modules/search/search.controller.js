@@ -987,8 +987,8 @@
                     leafletData.getMap('minimizedMap').then(function(map) {
                         mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
                     });
-                }, 500)
-            }, 200);
+                }, 800)
+            }, 300);
         }
 
         function findNameByKeyAndValue(key) {
