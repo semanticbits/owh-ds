@@ -1202,13 +1202,32 @@
                 {key:'Unknown or not Stated', title:'Unknown or not Stated'}
             ];
 
+            var yearOptions = [
+                { "key": "2016", "title": "2016"},
+                { "key": "2015", "title": "2015"},
+                { "key": "2014", "title": "2014"},
+                { "key": "2013", "title": "2013"},
+                { "key": "2012", "title": "2012"},
+                { "key": "2011", "title": "2011"},
+                { "key": "2010", "title": "2010"},
+                { "key": "2009", "title": "2009"},
+                { "key": "2008", "title": "2008"},
+                { "key": "2007", "title": "2007"},
+                { "key": "2006", "title": "2006"},
+                { "key": "2005", "title": "2005"},
+                { "key": "2004", "title": "2004"},
+                { "key": "2003", "title": "2003"},
+                { "key": "2002", "title": "2002"},
+                { "key": "2001", "title": "2001"},
+                { "key": "2000", "title": "2000"}
+            ];
+
             return [
                 // Infant Characteristics
-                {key: 'year_of_death', title: 'label.filter.year', queryKey:"year_of_death", primary: false, value: ["2014"],
-                    defaultGroup:'column', groupBy: false, filterType: "checkbox", doNotShowAll: true, defaultValue: ["2014"],
-                    // Data only available for 2000-2014
-                    autoCompleteOptions: yearOptions.slice(1), helpText:"label.help.text.infantmort.year",
-                    D69Years: ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014'],
+                {key: 'year_of_death', title: 'label.filter.year', queryKey:"year_of_death", primary: false, value: ["2016"],
+                    defaultGroup:'column', groupBy: false, filterType: "checkbox", doNotShowAll: true, defaultValue: ["2016"],
+                    autoCompleteOptions: yearOptions, helpText:"label.help.text.infantmort.year",
+                    D69Years: ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'],
                     D31Years: ['2003', '2004', '2005', '2006'], D18Years: ['2000', '2001', '2002']},
 
                 {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [],
