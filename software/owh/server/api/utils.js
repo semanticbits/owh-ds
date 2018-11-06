@@ -235,10 +235,10 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
         "Wyoming": "WY"
     };
     var result = {};
+    if(keyMap[key]){
+        key = keyMap[key];
+    }
     if (wonderResponse.Total){
-        if(keyMap[key]){
-            key = keyMap[key];
-        }
         result['name'] = key.trim();
         result.infant_mortality = wonderResponse.Total['deathRate'] === 'Suppressed' ? 'suppressed': wonderResponse.Total['infant_mortality'];
         result['deathRate'] = wonderResponse.Total['deathRate'] === 'Suppressed' ? 'suppressed': wonderResponse.Total['deathRate'];
@@ -250,11 +250,15 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
             }
         });
         return result;
+    } else if (!wonderResponse.hasOwnProperty('infant_mortality')) {
+        result['name'] = key.trim();
+        result [filterKeys[0]] = [];
+        Object.keys(wonderResponse).forEach(function (key) {
+            result [filterKeys[0]].push(populateAggregateDataForWonderResponse(wonderResponse[key], key, filterKeys.slice(0).filter(function (x, i) { return i !== 0;}), isStateSelected));
+        });
+        return result;
     }
     else if(isStateSelected && !wonderResponse.hasOwnProperty('infant_mortality')) {
-        if(keyMap[key]){
-            key = keyMap[key];
-        }
         result['name'] = key.trim();
         result['infant_mortality'] = 'na';
         result['deathRate'] = 'na';
@@ -266,9 +270,6 @@ var populateAggregateDataForWonderResponse = function(wonderResponse, key, filte
         return result;
     }
     else {
-        if(keyMap[key]){
-            key = keyMap[key];
-        }
         result['name'] = key.trim();
         result.infant_mortality = wonderResponse['deathRate'] === 'Suppressed' ? 'suppressed' : wonderResponse['infant_mortality'];
         result['deathRate'] = wonderResponse['deathRate'] === 'Suppressed' ? 'suppressed' : wonderResponse['deathRate'];

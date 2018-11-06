@@ -34,13 +34,19 @@
                 </div>
                 <div class="usa-width-one-third" ng-if="!properties.showRates && properties.tableView === 'number_of_infant_deaths'">
                     <span ng-if="properties.infant_mortality === 'suppressed'">Suppressed</span>
-                    <span ng-if="properties.infant_mortality === 'na'">Not Available</span>
+                    <span ng-if="properties.infant_mortality === 'na' || !properties.infant_mortality">Not Available</span>
                     <span ng-if="properties.infant_mortality !== 'suppressed'">{{properties.infant_mortality | number}}</span>
                 </div>
-                <div class="usa-width-one-third" ng-if="['crude_death_rates', 'age-adjusted_death_rates', 'crude_cancer_incidence_rates', 'crude_cancer_death_rates'].indexOf(properties.tableView) !== -1 || (properties.tableView === 'number_of_infant_deaths' && properties.showRates)">
+                <div class="usa-width-one-third" ng-if="['crude_death_rates', 'age-adjusted_death_rates', 'crude_cancer_incidence_rates', 'crude_cancer_death_rates'].indexOf(properties.tableView) !== -1">
                     <span ng-if="properties.rate === 'suppressed'">Suppressed</span>
                     <span ng-if="properties.rate === 'n/a'">Not Avaliable</span>
                     <span ng-if="properties.rate === 'na'">Not Avaliable</span>
+                    <span ng-if="properties.rate !== 'suppressed' && !isNaN(properties.rate)">{{properties.rate | number}}</span>
+                </div>
+                <div class="usa-width-one-third" ng-if="(properties.tableView === 'number_of_infant_deaths' && properties.showRates)">
+                    <span ng-if="properties.rate === 'suppressed' && properties.infant_mortality">Suppressed</span>
+                    <span ng-if="properties.rate === 'n/a' || properties.rate === 'na'
+                            || !properties.infant_mortality">Not Avaliable</span>
                     <span ng-if="properties.rate !== 'suppressed' && !isNaN(properties.rate)">{{properties.rate | number}}</span>
                 </div>
                 <div class="usa-width-one-third"

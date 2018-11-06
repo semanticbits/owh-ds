@@ -907,6 +907,12 @@ ul.legend-scale li span {
     margin-bottom: 2px;
 }
 
+div.legend-text {
+    bottom: 25px;
+    cursor: default;
+    color: #974bc2;
+}
+
 /*header*/
 .qh-header {
     background-color: #3b699b;

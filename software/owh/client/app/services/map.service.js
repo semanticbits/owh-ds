@@ -67,13 +67,11 @@
                     }
                     else if (primaryFilter.showRates) {
                         if(primaryFilter.tableView === 'number_of_infant_deaths') {
-                            var suppressTotal = false;
                             angular.forEach(feature.properties.sex, function(eachGender){
                                 if(eachGender[primaryFilter.key] < 20 || eachGender['deathRate'].indexOf('Unreliable') > 0) {
                                     eachGender['rate'] = 'Unreliable';
                                 }
                                 else if(eachGender['deathRate'] === 'suppressed') {
-                                    suppressTotal = true;
                                     eachGender['rate'] = eachGender['deathRate'];
                                 }
                                 else if(eachGender['deathRate'] === 'na') {
@@ -84,17 +82,15 @@
                                 }
                             });
                             //For Total
-                            if(suppressTotal || state['deathRate'] === 'suppressed') {
-                                feature.properties.rate = 'suppressed';
-                                stateDeathTotals.push('suppressed');
-                            }
-                            else if(state['deathRate'] === 'na') {
-                                feature.properties.rate = state['deathRate'];
-                                stateDeathTotals.push(state['deathRate']);
-                            }
-                            else {
+                            if(state['deathRate'] !== 'suppressed') {
                                 feature.properties.rate = $filter('number')(state['deathRate'], 1);
                                 stateDeathTotals.push($filter('number')(state['deathRate'], 1));
+                            } else if(state['deathRate'] === 'suppressed') {
+                                feature.properties.rate = 'suppressed';
+                                stateDeathTotals.push('suppressed');
+                            } else {
+                                feature.properties.rate = undefined;
+                                stateDeathTotals.push(undefined);
                             }
 
                         }
@@ -300,26 +296,33 @@
                     var container = L.DomUtil.create('div', 'leaflet-control leaflet-control-custom custom-legend');
                     var labels = getLabels(mapData.mapMinValue, mapData.mapMaxValue);
                     var colors = getLegendColorsAndSuppressionLabels(labels);
-                    var legendScale = L.DomUtil.create('ul', 'legend-scale', container);
-                    var polygons = [];
-                    colors.forEach(function(color, index) {
-                        var li = L.DomUtil.create('li', '', legendScale);
-                        var span = L.DomUtil.create('span', '', li);
-                        span.style.background = color;
-                        angular.element(li).append(labels[index]);
+                    if(colors) {
+                        var legendScale = L.DomUtil.create('ul', 'legend-scale', container);
+                        var polygons = [];
+                        colors.forEach(function(color, index) {
+                            var li = L.DomUtil.create('li', '', legendScale);
+                            var span = L.DomUtil.create('span', '', li);
+                            span.style.background = color;
+                            angular.element(li).append(labels[index]);
 
-                        L.DomEvent.on(span, 'mouseover', function(event) {
-                            var target = event.target;
-                            var color = target.style.background;
-                            polygons = getMapPolygonsByColor(map, color);
-                            highlightPolygons(polygons);
-                        });
+                            L.DomEvent.on(span, 'mouseover', function(event) {
+                                var target = event.target;
+                                var color = target.style.background;
+                                polygons = getMapPolygonsByColor(map, color);
+                                highlightPolygons(polygons);
+                            });
 
-                        L.DomEvent.on(span, 'mouseout', function(event) {
-                            resetHighlightedPolygons(polygons);
+                            L.DomEvent.on(span, 'mouseout', function(event) {
+                                resetHighlightedPolygons(polygons);
+                            });
                         });
-                    });
-                    return container;
+                        return container;
+                    } else {
+                        var legendTxt = L.DomUtil.create('div', 'legend-text', container);
+                        var span = L.DomUtil.create('span', '', legendTxt);
+                        angular.element(span).append("Since totals are not available, can't show legend.");
+                        return container;
+                    }
                 }
             });
         }

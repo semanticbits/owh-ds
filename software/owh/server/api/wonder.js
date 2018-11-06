@@ -211,11 +211,11 @@ var wonderParamCodeMap = {
                 '9th through 12th grade with no diploma': '2',
                 'High school graduate or GED completed': '3',
                 'Some college credit, but not a degree': '4',
-                'Associate degree (AA,AS)': '5',
-                'Bachelor’s degree (BA, AB, BS)': '6',
-                'Master’s degree (MA, MS, MEng, MEd, MSW, MBA)': '7',
-                'Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)': '8',
-                'Unknown': 'Unk',
+                'Associate degree (AA, AS)': '5',
+                "Bachelor's degree (BA, AB, BS)": '6',
+                "Master's degree (MA, MS)": '7',
+                'Doctorate (PHD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)': '8',
+                'Unknown/Not on certificate': 'Unk',
                 'Not on certificate': '999'
             }
         },
@@ -223,11 +223,11 @@ var wonderParamCodeMap = {
             'key': 'D69.V24',
             'values': {
                 'Under 20 weeks': '01',
-                '20 - 27 weeks': '02',
-                '28 - 31 weeks': '03',
-                '32 - 33 weeks': '04',
-                '34 - 36 weeks': '05',
-                '37 - 38 weeks': '06',
+                '20-27 weeks': '02',
+                '28-31 weeks': '03',
+                '32-33 weeks': '04',
+                '34-36 weeks': '05',
+                '37-38 weeks': '06',
                 '39 weeks': '07',
                 '40 weeks': '08',
                 '41 weeks': '09',
@@ -239,11 +239,11 @@ var wonderParamCodeMap = {
             'key': 'D69.V6',
             'values': {
                 'Under 20 weeks':'01',
-                '20 - 27 weeks':'02',
-                '28 - 31 weeks':'03',
-                '32 - 35 weeks':'04',
+                '20-27 weeks':'02',
+                '28-31 weeks':'03',
+                '32-35 weeks':'04',
                 '36 weeks':'05',
-                '37 - 39 weeks':'06',
+                '37-39 weeks':'06',
                 '40 weeks':'07',
                 '41 weeks':'08',
                 '42 weeks and over':'09',
@@ -319,7 +319,7 @@ var wonderParamCodeMap = {
                 '4000 - 4499 grams':'09',
                 '4500 - 4999 grams':'10',
                 '5000 - 8165 grams':'11',
-                'Not Stated': '12'
+                'Not stated': '12'
             }
         },
         'birth_plurality': {
@@ -559,12 +559,12 @@ var wonderParamCodeMap = {
         'mother_education': {
             'key': 'D31.V5',
             'values': {
-                '0 – 8 years': '19176',
-                '9 – 11 years': '19177',
+                '0 -  8 years': '19176',
+                '9 - 11 years': '19177',
                 '12 years': '19178',
-                '13 – 15 years': '19179',
+                '13 - 15 years': '19179',
                 '16 years and over': '16+',
-                'Not stated': 'NR'
+                'Not stated/Not on certificate': 'NR'
             }
         },
         'gestation_recode11': {
@@ -900,23 +900,23 @@ var wonderParamCodeMap = {
         'mother_education': {
             'key': 'D18.V5',
             'values': {
-                '0 – 8 years': '19176',
-                '9 – 11 years': '19177',
+                '0 -  8 years': '19176',
+                '9 - 11 years': '19177',
                 '12 years': '19178',
-                '13 – 15 years': '19179',
+                '13 - 15 years': '19179',
                 '16 years and over': '16+',
-                'Not stated': 'NR'
+                'Not stated/Not on certificate': 'NR'
             }
         },
         'gestation_recode11': {
             'key': 'D18.V24',
             'values': {
                 'Under 20 weeks': '01',
-                '20 - 27 weeks': '02',
-                '28 - 31 weeks': '03',
-                '32 - 33 weeks': '04',
-                '34 - 36 weeks': '05',
-                '37 - 38 weeks': '06',
+                '20-27 weeks': '02',
+                '28-31 weeks': '03',
+                '32-33 weeks': '04',
+                '34-36 weeks': '05',
+                '37-38 weeks': '06',
                 '39 weeks': '07',
                 '40 weeks': '08',
                 '41 weeks': '09',
