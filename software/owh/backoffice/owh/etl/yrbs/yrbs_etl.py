@@ -28,7 +28,8 @@ class YrbsETL (ETL):
         self.loadDataSetMetaData('mental_health', '2009', os.path.join(self.dataDirectory, 'data_mapping', 'yrbs_1991_2013.json'))
         self.loadDataSetMetaData('mental_health', '2011', os.path.join(self.dataDirectory, 'data_mapping', 'yrbs_1991_2013.json'))
         self.loadDataSetMetaData('mental_health', '2013', os.path.join(self.dataDirectory, 'data_mapping', 'yrbs_1991_2013.json'))
-        self.loadDataSetMetaData('mental_health', '2015', os.path.join(self.dataDirectory, 'data_mapping', 'yrbs_2015.json'))
+        self.loadDataSetMetaData('mental_health', '2015', os.path.join(self.dataDirectory, 'data_mapping', 'yrbs_2015_2017.json'))
+        self.loadDataSetMetaData('mental_health', '2017', os.path.join(self.dataDirectory, 'data_mapping', 'yrbs_2015_2017.json'))
 
     def validate_etl(self):
         return True
