@@ -468,7 +468,7 @@ function resultCellObject (response, key) {
 function toRoundedPercentage(num, prec, dataset){
     if (!isNaN(num)){
         if(num > 0) {
-            if(dataset === 'prams') {
+            if(dataset === 'prams' || dataset === 'mental_health') {
                 return searchUtils.round(num * 100, prec);
             } else {
                 return (num * 100).toFixed(prec);
