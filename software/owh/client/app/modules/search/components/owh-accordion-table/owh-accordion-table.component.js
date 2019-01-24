@@ -141,7 +141,7 @@
         }
 
         function showConfidenceIntervals(responce) {
-            if(oatc.primaryKey === 'prams' && !oatc.preComputed) {
+            if(!oatc.preComputed) {
                 return false
             } else if(oatc.showCi && responce.title.mean != 'suppressed'
                 && responce.title.mean != 'na') {

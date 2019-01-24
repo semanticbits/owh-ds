@@ -52,9 +52,11 @@
                 if (response.data.queryJSON.showBasicSearchSideMenu) {
                     primaryFilter.allFilters = filters.yrbsBasicFilters;
                     primaryFilter.sideFilters = primaryFilter.basicSideFilters;
+                    primaryFilter.showCi = true;
                 } else {
                     primaryFilter.allFilters = filters.yrbsAdvancedFilters;
                     primaryFilter.sideFilters = primaryFilter.advancedSideFilters;
+                    primaryFilter.showCi = false;
                 }
             } else if(primaryFilter.key === 'prams') {
                 if (response.data.queryJSON.showBasicSearchSideMenu) {
@@ -70,9 +72,11 @@
                 if (response.data.queryJSON.showBasicSearchSideMenu) {
                     primaryFilter.allFilters = filters.brfsBasicFilters;
                     primaryFilter.sideFilters = primaryFilter.basicSideFilters[0].sideFilters;
+                    primaryFilter.showCi = true;
                 } else {
                     primaryFilter.allFilters = filters.brfsAdvancedFilters;
                     primaryFilter.sideFilters = primaryFilter.advancedSideFilters[0].sideFilters;
+                    primaryFilter.showCi = false;
                 }
             }
             //sets tableView
