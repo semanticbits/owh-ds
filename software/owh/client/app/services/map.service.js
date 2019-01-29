@@ -320,7 +320,7 @@
                     } else {
                         var legendTxt = L.DomUtil.create('div', 'legend-text', container);
                         var span = L.DomUtil.create('span', '', legendTxt);
-                        angular.element(span).append("Since totals are not available, can't show legend.");
+                        angular.element(span).append("Legend can't be shown if totals are not available.");
                         return container;
                     }
                 }

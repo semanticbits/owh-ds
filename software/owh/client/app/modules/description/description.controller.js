@@ -592,7 +592,7 @@
                         },
                         {
                             question:"Why are results not available for every state?",
-                            answer:"Results are not available from every state for several reasons. Firstly, 11 states (Arizona, Connecticut, District of Columbia, Idaho, Indiana, Iowa, Kansas, Kentucky, Nevada, New Hampshire, Virginia) do not participate in the PRAMS. Secondly, data are not available for some states in certain years (See Availability of PRAMS Data For Analysis by State and Year: <a href='https://www.cdc.gov/prams/pramstat/state-availability-year.html' target='_blank'>https://www.cdc.gov/prams/pramstat/state-availability-year.html</a>)"
+                            answer:"Forty-seven states currently participate in PRAMS. Three other states (California, Idaho and Ohio) previously participated: <a href='https://www.cdc.gov/prams/states.htm' target='_blank'>https://www.cdc.gov/prams/states.htm</a>"
                         }
                     ]
                 },
