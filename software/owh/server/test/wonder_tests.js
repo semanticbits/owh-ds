@@ -241,7 +241,7 @@ describe("WONDER API", function () {
         });
     });
 
-    it("perform state level filtering query", function (done){
+    xit("perform state level filtering query", function (done){
         query = {"searchFor":"deaths","query":{"race":{"key":"state","queryKey":"state","value":["01","02"],"primary":false}},
             "aggregations":{"simple":[],"nested":{"table":[{"key":"state","queryKey":"state","size":100000}],"charts":[[{"key":"gender","queryKey":"sex","size":100000},{"key":"race","queryKey":"race","size":100000}]],"maps":[[{"key":"states","queryKey":"state","size":100000},{"key":"sex","queryKey":"sex","size":100000}]]}}}
         var startTime = new Date();

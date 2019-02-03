@@ -454,7 +454,7 @@
                     key:"infant_mortality",
                     title: 'Infant Mortality',
                     image: 'infant-mortality-icon.svg',
-                    yrsAvail: '2000-2014',
+                    yrsAvail: '2000-2016',
                     topics: "Underlying Cause of Death, Cancer, Diabetes, Deaths, Tuberculosis, Obesity, Overweight and Weight Control, Tobacco Use, Unintentional Injury and Violence, Births, Infant Deaths, HIV/AIDS, Delivery, Infant Health, Prenatal Care",
                     dataDescription: "This data collection provides counts and rates for deaths of children under 1 year of age, occurring within the United States to U.S. residents. Data are available by state of mother's residence, child's age, underlying cause of death, gender, birth weight, birth plurality, birth order, gestational age at birth, period of prenatal care, maternal race and ethnicity, maternal age, maternal education and marital status.<br/> This dataset is powered by CDC WONDER.",
                     suppression: "Vital statistics data are suppressed due to confidentiality constraints, in order to protect personal privacy." +
@@ -500,15 +500,15 @@
                         },
                         {
                             question:"Why can I not pick years from two groups?",
-                            answer:"Different sets of years have different filter options available. Hence the years under one set cannot be combined and compared with other set. The years 2000-2014 are divided into three sets 2000-2002, 2003-2006 and 2007-2014.<br/><br/>"
+                            answer:"Different sets of years have different filter options available. Hence the years under one set cannot be combined and compared with other set. The years 2000-2016 are divided into three sets 2000-2002, 2003-2006 and 2007-2016.<br/><br/>"
                         }
                     ]
                 },
-                 mental_health: {
+                mental_health: {
                     key:"mental_health",
                     title: 'Youth Risk Behavior Surveillance System (YRBSS)',
                     image: 'yrbss-icon.svg',
-                    yrsAvail: '2000-2015',
+                    yrsAvail: '2000-2017',
                     topics: "Diabetes, Alcohol and Other Drug Use, Obesity, Overweight and Weight Control, Dietary Behaviors, Physical Activity, Sexual Behavior, Tobacco Use, Unintentional Injury and Violence, Health and Nutrition, Youth Risk",
                     dataDescription: "The YRBS includes national, state, territorial, tribal government, and local school-based surveys of representative samples of 9th through 12th grade students. These surveys are conducted every two years, usually during the spring semester. The national survey, conducted by CDC, provides data representative of 9th through 12th grade students in public and private schools in the United States. The state, territorial, tribal government, and local surveys, conducted by departments of health and education, provide data representative of mostly public high school students in each jurisdiction.",
                     suppression: "Data suppressions must be applied: When the unweighted frequency <100, then corresponding percentage response must be suppressed.",
@@ -592,7 +592,7 @@
                         },
                         {
                             question:"Why are results not available for every state?",
-                            answer:"Results are not available from every state for several reasons. Firstly, 11 states (Arizona, Connecticut, District of Columbia, Idaho, Indiana, Iowa, Kansas, Kentucky, Nevada, New Hampshire, Virginia) do not participate in the PRAMS. Secondly, data are not available for some states in certain years (See Availability of PRAMS Data For Analysis by State and Year: <a href='https://www.cdc.gov/prams/pramstat/state-availability-year.html' target='_blank'>https://www.cdc.gov/prams/pramstat/state-availability-year.html</a>)"
+                            answer:"Forty-seven states currently participate in PRAMS. The CDC does not provide data for California, Idaho, Ohio and Washington DC: <a href='https://www.cdc.gov/prams/states.htm' target='_blank'>https://www.cdc.gov/prams/states.htm</a>"
                         }
                     ]
                 },
@@ -600,7 +600,7 @@
                     key:"brfss",
                     title: 'Behavioral Risk Factor Surveillance System(BRFSS)',
                     image: 'brfss-icon.svg',
-                    yrsAvail: '2000-2015',
+                    yrsAvail: '2000-2017',
                     topics: "Cancer, Diabetes, Alcohol and Other Drug Use, Obesity, Overweight and Weight Control, Dietary Behaviors, Physical Activity, Sexual Behavior, Tobacco Use, Babies, Health and Nutrition, Demographics, Chronic Health Indicators, Health Care Access and Coverage, Oral Health, Women’s Health, Prostate Cancer",
                     dataDescription: "BRFSS is the nation's premier system of health-related telephone surveys that collect state data about U.S. residents regarding their health-related risk behaviors, chronic health conditions, and use of preventive services. BRFSS collects data in all 50 states as well as the District of Columbia. BRFSS completes more than 400,000 adult interviews each year, making it the largest continuously conducted health survey system in the world",
                     suppression: "The Prevalence estimate not available if the unweighted sample size for the denominator was < 50 or the Relative Standard Error (RSE) is > 0.3 or if the state did not collect data for that calendar year.",

@@ -771,7 +771,7 @@ describe("YRBS API", function () {
                         "YES":{
                             "mental_health":{
                                 "mean":"4.3",
-                                "ci_l":"3.5",
+                                "ci_l":"3.6",
                                 "ci_u":"5.2",
                                 "count":11597
                             },
@@ -799,7 +799,7 @@ describe("YRBS API", function () {
                         "NO":{
                             "mental_health":{
                                 "mean":"4.3",
-                                "ci_l":"3.5",
+                                "ci_l":"3.6",
                                 "ci_u":"5.2",
                                 "count":11597
                             },
@@ -948,7 +948,7 @@ describe("YRBS API", function () {
                         "YES":{
                             "mental_health":{
                                 "mean":"4.3",
-                                "ci_l":"3.5",
+                                "ci_l":"3.6",
                                 "ci_u":"5.2",
                                 "count":11597
                             }
@@ -956,7 +956,7 @@ describe("YRBS API", function () {
                         "NO":{
                             "mental_health":{
                                 "mean":"4.3",
-                                "ci_l":"3.5",
+                                "ci_l":"3.6",
                                 "ci_u":"5.2",
                                 "count":11597
                             }
@@ -1333,7 +1333,7 @@ describe("YRBS API", function () {
                                     "mental_health":{
                                         "mean":"50.3",
                                         "ci_l":"46.5",
-                                        "ci_u":"54.0",
+                                        "ci_u":"54.1",
                                         "count":626
                                     }
                                 }
@@ -1341,7 +1341,7 @@ describe("YRBS API", function () {
                             "mental_health":{
                                 "mean":"50.3",
                                 "ci_l":"46.5",
-                                "ci_u":"54.0",
+                                "ci_u":"54.1",
                                 "count":626
                             }
                         }
@@ -2146,7 +2146,7 @@ describe("YRBS API", function () {
                                             "name":"Black or African American",
                                             "mental_health":{
                                                 "mean":"53.8",
-                                                "ci_l":"45.1",
+                                                "ci_l":"45.2",
                                                 "ci_u":"62.2",
                                                 "count":192
                                             }
@@ -4015,18 +4015,19 @@ describe("YRBS API", function () {
 
         return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
             var q0=resp.table.question[0];
-            expect(q0.Yes.mental_health.mean).to.eql(87.4);
-            expect(q0.Yes.mental_health.ci_l).to.eql(86.5);
-            expect(q0.Yes.mental_health.ci_u).to.eql(88.3);
-            expect(q0.Yes.mental_health.count).to.eql(121103);
+            expect(q0.Yes.mental_health.mean).to.eql(13.6);
+            expect(q0.Yes.mental_health.ci_l).to.eql(12.8);
+            expect(q0.Yes.mental_health.ci_u).to.eql(14.5);
+            expect(q0.Yes.mental_health.count).to.eql(198028);
             var sex = sortByKey(q0.Yes.sex,'name',true);
             expect(sex.length).to.eql(2);
             expect(sex[0].name).to.eql("Female");
             expect(sex[1].name).to.eql("Male");
             var female = sortByKey(sex[0].race, 'name', true);
-            expect(female).to.eql([{"name":"Am Indian / Alaska Native","mental_health":{"mean":"88.4","ci_l":"83.0","ci_u":"92.2","count":519}},{"name":"Asian","mental_health":{"mean":"76.8","ci_l":"72.9","ci_u":"80.2","count":1541}},{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11670}},{"name":"Hispanic/Latino","mental_health":{"mean":"89.6","ci_l":"88.5","ci_u":"90.6","count":14016}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"82.1","ci_l":"77.5","ci_u":"85.9","count":1370}},{"name":"Native Hawaiian/other PI","mental_health":{"mean":"81.3","ci_l":"71.9","ci_u":"88.1","count":274}},{"name":"Total","mental_health":{"mean":"86.3","ci_l":"85.1","ci_u":"87.3","count":54197}},{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":23714}}]);
+            expect(female).to.eql([{"name":"Am Indian / Alaska Native","mental_health":{"mean":"15.5","ci_l":"12.1","ci_u":"19.5","count":984}},{"name":"Asian","mental_health":{"mean":"8.6","ci_l":"7.2","ci_u":"10.2","count":3347}},{"name":"Black or African American","mental_health":{"mean":"15.4","ci_l":"14.1","ci_u":"16.8","count":22879}},{"name":"Hispanic/Latino","mental_health":{"mean":"10.8","ci_l":"9.8","ci_u":"11.9","count":27173}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"7.1","ci_l":"5.6","ci_u":"9.0","count":2812}},{"name":"Native Hawaiian/other PI","mental_health":{"mean":"10.9","ci_l":"7.5","ci_u":"15.4","count":538}},{"name":"Total","mental_health":{"mean":"10.6","ci_l":"9.8","ci_u":"11.3","count":99880}},{"name":"White","mental_health":{"mean":"9.4","ci_l":"8.5","ci_u":"10.4","count":40155}}]);
             var male = sortByKey(sex[1].race, 'name', true);
-            expect(male).to.eql([{"name":"Am Indian / Alaska Native","mental_health":{"mean":"91.5","ci_l":"87.3","ci_u":"94.3","count":832}},{"name":"Asian","mental_health":{"mean":"81.3","ci_l":"78.1","ci_u":"84.1","count":2115}},{"name":"Black or African American","mental_health":{"mean":"94.4","ci_l":"93.7","ci_u":"95.1","count":13866}},{"name":"Hispanic/Latino","mental_health":{"mean":"91.5","ci_l":"90.6","ci_u":"92.3","count":17566}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"83.9","ci_l":"78.7","ci_u":"88.0","count":1509}},{"name":"Native Hawaiian/other PI","mental_health":{"mean":"81.2","ci_l":"73.2","ci_u":"87.3","count":417}},{"name":"Total","mental_health":{"mean":"88.3","ci_l":"87.4","ci_u":"89.1","count":66586}},{"name":"White","mental_health":{"mean":"86.8","ci_l":"85.7","ci_u":"87.9","count":28769}}]);
+
+            expect(male).to.eql([{"name":"Am Indian / Alaska Native","mental_health":{"mean":"22.2","ci_l":"18.3","ci_u":"26.7","count":1222}},{"name":"Asian","mental_health":{"mean":"10.9","ci_l":"9.4","ci_u":"12.7","count":3473}},{"name":"Black or African American","mental_health":{"mean":"22.0","ci_l":"20.4","ci_u":"23.6","count":20467}},{"name":"Hispanic/Latino","mental_health":{"mean":"14.4","ci_l":"13.1","ci_u":"15.8","count":26303}},{"name":"Multiple - Non-Hispanic","mental_health":{"mean":"12.9","ci_l":"10.5","ci_u":"15.8","count":2386}},{"name":"Native Hawaiian/other PI","mental_health":{"mean":"21.0","ci_l":"15.8","ci_u":"27.4","count":657}},{"name":"Total","mental_health":{"mean":"16.5","ci_l":"15.6","ci_u":"17.6","count":97549}},{"name":"White","mental_health":{"mean":"16.1","ci_l":"14.8","ci_u":"17.4","count":40836}}]);
         });
     });
 
@@ -4042,18 +4043,18 @@ describe("YRBS API", function () {
                             "name": "qn8",
                             "Yes": {
                                 "mental_health": {
-                                    "mean": "87.4",
-                                    "ci_l": "86.5",
-                                    "ci_u": "88.3",
-                                    "count": 121103
+                                    "mean": "13.6",
+                                    "ci_l": "12.8",
+                                    "ci_u": "14.5",
+                                    "count": 198028
                                 }
                             },
                             "No": {
                                 "mental_health": {
-                                    "mean": "12.6",
-                                    "ci_l": "11.7",
-                                    "ci_u": "13.5",
-                                    "count": 121103
+                                    "mean": "86.4",
+                                    "ci_l": "85.5",
+                                    "ci_u": "87.2",
+                                    "count": 198028
                                 }
                             }
                         }
@@ -4069,13 +4070,13 @@ describe("YRBS API", function () {
 
         return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
             var q0=resp.table.question[0];
-            expect(q0.Yes.mental_health).to.eql({"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":35384});
+            expect(q0.Yes.mental_health).to.eql({"mean":"10.5","ci_l":"9.7","ci_u":"11.4","count":63034});
             expect(q0.Yes.sex.length).to.eql(1);
             var sex = sortByKey(q0.Yes.sex, 'name', true);
             expect(sex[0].name).to.eql("Female");
             var race = sortByKey(sex[0].race, 'name', true);
-            expect(race).to.eql([{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11670}},{"name":"Total","mental_health":{"mean":"86.1","ci_l":"84.9","ci_u":"87.3","count":35384}},{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":23714}}]);
-            expect(q0.No.mental_health).to.eql({"mean":"13.9","ci_l":"12.7","ci_u":"15.1","count":35384});
+            expect(race).to.eql([{"name":"Black or African American","mental_health":{"mean":"15.4","ci_l":"14.1","ci_u":"16.8","count":22879}},{"name":"Total","mental_health":{"mean":"10.5","ci_l":"9.7","ci_u":"11.4","count":63034}},{"name":"White","mental_health":{"mean":"9.4","ci_l":"8.5","ci_u":"10.4","count":40155}}]);
+            expect(q0.No.mental_health).to.eql({"mean":"89.5","ci_l":"88.6","ci_u":"90.3","count":63034});
             expect(sex[0].name).to.eql("Female");
             race = sortByKey(sex[0].race, 'name', true);
             expect([{"name":"Black or African American","mental_health":{"mean":"92.9","ci_l":"91.5","ci_u":"94.0","count":11670}},{"name":"White","mental_health":{"mean":"84.8","ci_l":"83.4","ci_u":"86.1","count":23714}}]);
@@ -4088,14 +4089,14 @@ describe("YRBS API", function () {
 
         return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
             var q0=resp.table.question[0];
-            expect(q0.Yes.mental_health).to.eql({"mean":"81.6","ci_l":"77.4","ci_u":"85.1","count":10156});
+            expect(q0.Yes.mental_health).to.eql({"mean":"12.8","ci_l":"11.3","ci_u":"14.5","count":19343});
             var race = sortByKey(q0.Yes.race,'name',true);
             expect(race[0].name).to.eql("Black or African American");
             expect(race[1].name).to.eql("White");
             var b = sortByKey(race[0].sitecode, 'name', true);
-            expect(b).to.eql([{"name":"CA","mental_health":{"mean":"suppressed","ci_l":"76.8","ci_u":"96.1","count":38}},{"name":"MO","mental_health":{"mean":"92.8","ci_l":"90.2","ci_u":"94.7","count":1395}},{"name":"Total","mental_health":{"mean":"92.5","ci_l":"90.5","ci_u":"94.1","count":1433}}]);
+            expect(b).to.eql([{"name":"CA","mental_health":{"mean":"8.2","ci_l":"4.1","ci_u":"15.7","count":149}},{"name":"MO","mental_health":{"mean":"22.1","ci_l":"20.0","ci_u":"24.4","count":2704}},{"name":"Total","mental_health":{"mean":"19.2","ci_l":"17.2","ci_u":"21.5","count":2853}}]);
             var w = sortByKey(race[1].sitecode, 'name', true);
-            expect(w).to.eql([{"name":"CA","mental_health":{"mean":"48.8","ci_l":"37.8","ci_u":"59.8","count":240}},{"name":"MO","mental_health":{"mean":"87.8","ci_l":"85.1","ci_u":"90.1","count":8483}},{"name":"Total","mental_health":{"mean":"79.6","ci_l":"74.8","ci_u":"83.8","count":8723}}]);
+            expect(w).to.eql([{"name":"CA","mental_health":{"mean":"2.3","ci_l":"1.0","ci_u":"5.0","count":677}},{"name":"MO","mental_health":{"mean":"14.9","ci_l":"13.2","ci_u":"16.9","count":15813}},{"name":"Total","mental_health":{"mean":"11.6","ci_l":"9.9","ci_u":"13.4","count":16490}}]);
         });
     });
 
@@ -4104,7 +4105,7 @@ describe("YRBS API", function () {
             'query': {'question.path':{ 'value': ['qn8']}, 'year':{value:['2015']}}};
 
         return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
-            expect(resp).to.eql( {"table":{"question":[{"name":"qn8","Yes":{"mental_health":{"mean":"81.4","ci_l":"77.0","ci_u":"85.1","count":8757}},"No":{"mental_health":{"mean":"18.6","ci_l":"14.9","ci_u":"23.0","count":8757}}}]}} );
+            expect(resp).to.eql( {"table":{"question":[{"name":"qn8","Yes":{"mental_health":{"mean":"6.1","ci_l":"4.9","ci_u":"7.6","count":14070}},"No":{"mental_health":{"mean":"93.9","ci_l":"92.4","ci_u":"95.1","count":14070}}}]}} );
         });
     });
 
@@ -4114,60 +4115,32 @@ describe("YRBS API", function () {
 
         return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
             var q0=resp.table.question[0];
-            expect(q0.Yes.mental_health.mean).to.eql(81.4);
-            expect(q0.Yes.mental_health.ci_l).to.eql(77.0);
-            expect(q0.Yes.mental_health.ci_u).to.eql(85.1);
-            expect(q0.Yes.mental_health.count).to.eql(8757);
+            expect(q0.Yes.mental_health.mean).to.eql(6.1);
+            expect(q0.Yes.mental_health.ci_l).to.eql(4.9);
+            expect(q0.Yes.mental_health.ci_u).to.eql(7.6);
+            expect(q0.Yes.mental_health.count).to.eql(14070);
             var sex= sortByKey(q0.Yes.sex,'name',true);
             expect(sex[0].name).to.eql("Female");
-            expect(sex[0].mental_health.mean).to.eql(80.1);
-            expect(sex[0].mental_health.ci_l).to.eql(75.2);
-            expect(sex[0].mental_health.ci_u).to.eql(84.3);
-            expect(sex[0].mental_health.count).to.eql(3951);
-            expect(q0.No.mental_health.mean).to.eql(18.6);
-            expect(q0.No.mental_health.ci_l).to.eql(14.9);
-            expect(q0.No.mental_health.ci_u).to.eql(23.0);
-            expect(q0.No.mental_health.count).to.eql(8757);
+            expect(sex[0].mental_health.mean).to.eql(4.9);
+            expect(sex[0].mental_health.ci_l).to.eql(3.8);
+            expect(sex[0].mental_health.ci_u).to.eql(6.3);
+            expect(sex[0].mental_health.count).to.eql(7028);
+            expect(q0.No.mental_health.mean).to.eql(93.9);
+            expect(q0.No.mental_health.ci_l).to.eql(92.4);
+            expect(q0.No.mental_health.ci_u).to.eql(95.1);
+            expect(q0.No.mental_health.count).to.eql(14070);
         });
     });
 
     it("invokeYRBS service for basic results with default grouping - suppressing if value < 100", function (){
-        var apiQuery = {basicSearch:true, "searchFor":"mental_health","query":{"year":{"key":"year","queryKey":"year","value":"2015","primary":false},
-            "question.path":{"key":"question","queryKey":"question.key","value":["qn14"],"primary":false}},"aggregations":{"simple":[],
-            "nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"yrbsSex","queryKey":"sex","size":0},
-                {"key":"yrbsRace","queryKey":"race","size":0}],"charts":[],"maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}},"yrbsBasic":true,"pagination":{"from":0,"size":10000}}
+        var apiQuery = {"searchFor":"mental_health","query":{"sex":{"key":"yrbsSex","queryKey":"sex","value":"Male","primary":false},"race":{"key":"yrbsRace","queryKey":"race","value":"Am Indian / Alaska Native","primary":false},"year":{"key":"year","queryKey":"year","value":"2017","primary":false},"question.path":{"key":"question","queryKey":"question.key","value":["qn42"],"primary":false}},"aggregations":{"simple":[],"nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"yrbsRace","queryKey":"race","size":0}],"charts":[],"maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}},"basicSearch":true,"pagination":{"from":0,"size":10000}}
 
         return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
             var q0=resp.table.question[0];
-            var sex= sortByKey(q0.Yes.sex,'name',true);
-            var race= sortByKey(sex[0].race,'name',true);
-            expect(race[5].name).to.eql("Native Hawaiian/other PI");
-            expect(race[5].mental_health.mean).to.eql("suppressed");
-            expect(race[5].mental_health.count).to.eql("19");
-
-            expect(race[6].name).to.eql("White");
-            expect(race[6].mental_health.mean).to.not.eql("suppressed");
-            expect(race[6].mental_health.count).to.eql("2723");
-        });
-    });
-
-    it("invokeYRBS service for basic results with default grouping for chart - supressed values are set to -1 if count < 100", function (){
-        var apiQuery = {basicSearch:true, "searchFor":"mental_health", "isChartorMapQuery":true, "query":{"year":{"key":"year","queryKey":"year","value":"2015","primary":false},
-            "question.path":{"key":"question","queryKey":"question.key","value":["qn14"],"primary":false}},"aggregations":{"simple":[],
-            "nested":{"table":[{"key":"question","queryKey":"question.key","size":0},{"key":"yrbsSex","queryKey":"sex","size":0},
-                {"key":"yrbsRace","queryKey":"race","size":0}],"charts":[],"maps":[[{"key":"states","queryKey":"state","size":0},{"key":"sex","queryKey":"sex","size":0}]]}},"yrbsBasic":true,"pagination":{"from":0,"size":10000}}
-
-        return yrbs.invokeYRBSService(apiQuery).then( function (resp) {
-            var q0=resp.table.question[0];
-            var sex= sortByKey(q0.Yes.sex,'name',true);
-            var race= sortByKey(sex[0].race,'name',true);
-            expect(race[5].name).to.eql("Native Hawaiian/other PI");
-            expect(race[5].mental_health.mean).to.eql("-1");
-            expect(race[5].mental_health.count).to.eql("19");
-
-            expect(race[6].name).to.eql("White");
-            expect(race[6].mental_health.mean).to.not.eql("-1");
-            expect(race[6].mental_health.count).to.eql("2723");
+            var race= q0.Yes.race;
+            expect(race[0].name).to.eql("Am Indian / Alaska Native");
+            expect(race[0].mental_health.mean).to.eql("suppressed");
+            expect(race[0].mental_health.count).to.eql("68");
         });
     });
 
@@ -4183,15 +4156,15 @@ describe("YRBS API", function () {
             var race = sortByKey(q0.Yes.race,'name',true);
             expect(race[5].name).to.eql("Native Hawaiian/other PI");
             expect(race[5].mental_health.mean).to.eql("suppressed");
-            expect(race[5].mental_health.count).to.eql("16");
+            expect(race[5].mental_health.count).to.eql("17");
 
             expect(race[1].name).to.eql("Asian");
-            expect(race[1].mental_health.mean).to.eql("15.8");
-            expect(race[1].mental_health.count).to.eql("81");
+            expect(race[1].mental_health.mean).to.eql("38.6");
+            expect(race[1].mental_health.count).to.eql("79");
 
             expect(race[2].name).to.eql("Black or African American");
             expect(race[2].mental_health.mean).to.not.eql("suppressed");
-            expect(race[2].mental_health.count).to.eql("394");
+            expect(race[2].mental_health.count).to.eql("417");
         });
     });
 
@@ -4206,11 +4179,11 @@ describe("YRBS API", function () {
             var race = sortByKey(q0.Yes.race,'name',true);
             expect(race[5].name).to.eql("Native Hawaiian/other PI");
             expect(race[5].mental_health.mean).to.eql("-1");
-            expect(race[5].mental_health.count).to.eql("16");
+            expect(race[5].mental_health.count).to.eql("17");
 
             expect(race[1].name).to.eql("Asian");
-            expect(race[1].mental_health.mean).to.eql("15.8");
-            expect(race[1].mental_health.count).to.eql("81");
+            expect(race[1].mental_health.mean).to.eql("38.6");
+            expect(race[1].mental_health.count).to.eql("79");
         });
     });
 
@@ -4246,9 +4219,9 @@ describe("YRBS API", function () {
     it("getYRBSQuestionsTree from yrbs service", function (){
         return yrbs.getYRBSQuestionsTree().then(function (response) {
             expect(response.questionTree[0].text).to.eql("Alcohol and Other Drug Use");
-            expect(response.questionTree[0].children.length).to.eql(21);
-            expect(response.questionTree[0].children[0].id).to.eql('qn43');
-            expect(response.questionTree[0].children[0].text).to.eql('Currently drank alcohol(at least one drink of alcohol on at least 1 day during the 30 days before the survey)');
+            expect(response.questionTree[0].children.length).to.eql(20);
+            expect(response.questionTree[0].children[0].id).to.eql('qn42');
+            expect(response.questionTree[0].children[0].text).to.eql('Currently drank alcohol(at least one drink of alcohol, on at least 1 day during the 30 days before the survey)');
 
             expect(response.questionTree[7].text).to.eql("Unintentional Injuries and Violence");
             expect(response.questionTree[6].text).to.eql("Tobacco Use");
@@ -4259,18 +4232,18 @@ describe("YRBS API", function () {
             expect(response.questionTree[4].text).to.eql("Physical Activity");
             expect(response.questionTree[3].text).to.eql("Other Health Topics");
             //Childrens are in alphabetical order
-            expect(response.questionTree[7].children[0].text).to.eql("Attempted suicide that resulted in an injury, poisoning, or overdose that had to be treated by a doctor or nurse(during the 12 months before the survey)");
-            expect(response.questionTree[7].children[1].text).to.eql("Attempted suicide(one or more times during the 12 months before the survey)");
-            expect(response.questionTree[7].children[2].text).to.eql("Carried a gun(on at least 1 day during the 30 days before the survey)");
-            expect(response.questionTree[7].children[3].text).to.eql("Carried a weapon on school property(such as, a gun, knife, or club, on at least 1 day during the 30 days before the survey)");
-            expect(response.questionTree[7].children[4].text).to.eql("Carried a weapon(such as, a gun, knife, or club, on at least 1 day during the 30 days before the survey)");
+            expect(response.questionTree[7].children[0].text).to.eql("Attempted suicide(one or more times during the 12 months before the survey)");
+            expect(response.questionTree[7].children[1].text).to.eql("Carried a gun(on at least 1 day during the 12 months before the survey, not counting the days when they carried a gun only for hunting or for a sport such as target shooting)");
+            expect(response.questionTree[7].children[2].text).to.eql("Carried a weapon on school property(such as a gun, knife, or club, on at least 1 day during the 30 days before the survey)");
+            expect(response.questionTree[7].children[3].text).to.eql("Carried a weapon(such as a gun, knife, or club, on at least 1 day during the 30 days before the survey)");
+            expect(response.questionTree[7].children[4].text).to.eql("Did not go to school because they felt unsafe at school or on their way to or from school(on at least 1 day during the 30 days before the survey)");
 
             //Verify questionsList
             expect(response.questionsList[0].qkey).to.eql("qn10");
-            expect(response.questionsList[0].title).to.eql("Rode with a driver who had been drinking alcohol(in a car or other vehicle one or more times during the 30 days before the survey)");
+            expect(response.questionsList[0].title).to.eql("Drove a car or other vehicle when they had been drinking alcohol(in a car or other vehicle, one or more times during the 30 days before the survey, among students who had driven a car or other vehicle during the 30 days before the survey)");
             expect(response.questionsList[1].qkey).to.eql("qn11");
-            expect(response.questionsList[0].title).to.eql("Rode with a driver who had been drinking alcohol(in a car or other vehicle one or more times during the 30 days before the survey)");
-            expect(response.questionsList[1].title).to.eql("Drove when drinking alcohol(in a car or other vehicle one or more times during the 30 days before the survey, among students who had driven a car or other vehicle during the 30 days before the survey)");
+            expect(response.questionsList[0].title).to.eql("Drove a car or other vehicle when they had been drinking alcohol(in a car or other vehicle, one or more times during the 30 days before the survey, among students who had driven a car or other vehicle during the 30 days before the survey)");
+            expect(response.questionsList[1].title).to.eql("Texted or e-mailed while driving a car or other vehicle(on at least 1 day during the 30 days before the survey, among students who had driven a car or other vehicle during the 30 days before the survey)");
         });
     });
 
@@ -4339,10 +4312,8 @@ describe("YRBS API", function () {
             expect(response.questionTree[2].children.length).to.eql(1);
             expect(response.questionTree[2].children[0].text).to.eql("Adults who have had at least one drink of alcohol within the past 30 days");
 
-            //46 topics
-            expect(response.questionTree.length).to.eql(63);
-            //270 questions
-            expect(response.questionsList.length).to.eql(92);
+            expect(response.questionTree.length).to.eql(64);
+            expect(response.questionsList.length).to.eql(97);
 
             yrbs.getBRFSQuestionsTree().then(function (cachedResponse) {
                 return expect(JSON.stringify(response)).to.eql(JSON.stringify(cachedResponse));
