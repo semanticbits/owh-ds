@@ -592,7 +592,7 @@
                         },
                         {
                             question:"Why are results not available for every state?",
-                            answer:"Forty-seven states currently participate in PRAMS. Three other states (California, Idaho and Ohio) previously participated: <a href='https://www.cdc.gov/prams/states.htm' target='_blank'>https://www.cdc.gov/prams/states.htm</a>"
+                            answer:"Forty-seven states currently participate in PRAMS. The CDC does not provide data for California, Idaho, Ohio and Washington DC: <a href='https://www.cdc.gov/prams/states.htm' target='_blank'>https://www.cdc.gov/prams/states.htm</a>"
                         }
                     ]
                 },

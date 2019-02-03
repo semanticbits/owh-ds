@@ -911,6 +911,7 @@ div.legend-text {
     bottom: 25px;
     cursor: default;
     color: #974bc2;
+    width: 95%;
 }
 
 /*header*/

@@ -320,7 +320,7 @@
                     } else {
                         var legendTxt = L.DomUtil.create('div', 'legend-text', container);
                         var span = L.DomUtil.create('span', '', legendTxt);
-                        angular.element(span).append("Legend can't be shown if totals are not available.");
+                        angular.element(span).append("Legend does not display because totals by state for 2015, 2016 are not available from the CDC.");
                         return container;
                     }
                 }
