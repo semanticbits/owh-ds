@@ -99,6 +99,7 @@
                         {key: 'basic_chronic_health_indicator', title: 'Chronic Health Indicators'},
                         {key: 'basic_colorectal_cancer_screening', title: 'Colorectal Cancer Screening'},
                         {key: 'basic_brfs_demographics', title: 'Demographics'},
+                        {key: 'basic_ecigarette', title: 'E-Cigarette Use'},
                         {key: 'basic_fruits_vegetables', title: 'Fruits and Vegetables'},
                         {key: 'basic_healthcare_access_coverage', title: 'Health Care Access/Coverage'},
                         {key: 'basic_health_status', title: 'Health Status'},
@@ -121,6 +122,7 @@
                         {key: 'advance_chronic_health_indicator', title: 'Chronic Health Indicators'},
                         {key: 'advance_colorectal_cancer_screening', title: 'Colorectal Cancer Screening'},
                         {key: 'advance_brfs_demographics', title: 'Demographics'},
+                        {key: 'advance_ecigarette', title: 'E-Cigarette Use'},
                         {key: 'advance_fruits_vegetables', title: 'Fruits and Vegetables'},
                         {key: 'advance_healthcare_access_coverage', title: 'Health Care Access/Coverage'},
                         {key: 'advance_health_status', title: 'Health Status'},
@@ -270,39 +272,42 @@
                 "topic": ['cat_11', 'cat_20', 'cat_38']
             },
             basic_alcohol_consumption: {
-                "topic": ['cat_48', 'cat_24', 'cat_27']
+                "topic": ['cat_49', 'cat_24', 'cat_27']
             },
             basic_cholesterol_awareness: {
                 "topic": ['cat_4', 'cat_25']
             },
             basic_chronic_health_indicator:{
-                "topic": ['cat_10', 'cat_2', 'cat_19', 'cat_41', 'cat_38', 'cat_47',
+                "topic": ['cat_10', 'cat_2', 'cat_19', 'cat_41', 'cat_38', 'cat_48',
                     'cat_42', 'cat_43', 'cat_44', 'cat_45']
             },
             basic_healthcare_access_coverage: {
-                "topic": ['cat_57', 'cat_53', 'cat_46', 'cat_58', 'cat_17']
+                "topic": ['cat_58', 'cat_54', 'cat_46', 'cat_59', 'cat_17']
             },
             basic_colorectal_cancer_screening:{
                 "topic": ['cat_13', 'cat_5', 'cat_15', 'cat_6']
             },
             basic_brfs_demographics:{
-                "topic": ['cat_39', 'cat_40', 'cat_49','cat_50', 'cat_54', 'cat_55',
-                    'cat_56', 'cat_3', 'cat_59', 'cat_60', 'cat_61', 'cat_65']
+                "topic": ['cat_39', 'cat_40', 'cat_50','cat_51', 'cat_47', 'cat_55',
+                    'cat_56', 'cat_57', 'cat_3', 'cat_60', 'cat_61', 'cat_62', 'cat_66']
+            },
+            basic_ecigarette: {
+                "topic": ['cat_7']
             },
             basic_fruits_vegetables:{
                 "topic": ['cat_16', 'cat_14', 'cat_37']
             },
             basic_health_status:{
-                "topic": ['cat_28', 'cat_51']
+                "topic": ['cat_28', 'cat_52']
             },
             basic_hiv_aids:{
-                "topic": ['cat_52']
+                "topic": ['cat_53']
             },
             basic_hypertension_awareness:{
                 "topic": ['cat_29']
             },
             basic_immunization:{
-                "topic": ['cat_12', 'cat_23', 'cat_62', 'cat_63']
+                "topic": ['cat_12', 'cat_23', 'cat_64', 'cat_63']
             },
             basic_injury:{
                 "topic": ['cat_9', 'cat_33']
@@ -317,69 +322,72 @@
                 "topic": ['cat_32']
             },
             basic_tobbaco_use:{
-                "topic": ['cat_34', 'cat_64', 'cat_35']
+                "topic": ['cat_34', 'cat_65', 'cat_35']
             },
             basic_womens_health:{
                 "topic": ['cat_18', 'cat_31']
             },
             basic_physical_activity:{
-                "topic": ['cat_20', 'cat_36', 'cat_30', 'cat_21']
+                "topic": ['cat_20', 'cat_36', 'cat_30', 'cat_21', 'cat_22']
             },
             advance_alcohol_consumption: {
-                "topic": ['cat_12', 'cat_51', 'cat_53']
+                "topic": ['cat_13', 'cat_52', 'cat_54']
             },
             advance_cholesterol_awareness: {
-                "topic": ['cat_3', 'cat_52']
+                "topic": ['cat_3', 'cat_53']
             },
             advance_chronic_health_indicator:{
-                "topic": ['cat_38', 'cat_32', 'cat_10', 'cat_4', 'cat_0', 'cat_11',
+                "topic": ['cat_39', 'cat_33', 'cat_10', 'cat_4', 'cat_0', 'cat_12',
                     'cat_5', 'cat_6', 'cat_7', 'cat_8']
             },
             advance_healthcare_access_coverage: {
-                "topic": ['cat_21', 'cat_17', 'cat_9', 'cat_22', 'cat_45']
+                "topic": ['cat_22', 'cat_18', 'cat_9', 'cat_23', 'cat_46']
             },
             advance_colorectal_cancer_screening:{
-                "topic": ['cat_42', 'cat_34', 'cat_44', 'cat_35']
+                "topic": ['cat_43', 'cat_35', 'cat_45', 'cat_36']
             },
             advance_brfs_demographics:{
-                "topic": ['cat_1', 'cat_2', 'cat_13','cat_14', 'cat_18', 'cat_19',
-                    'cat_20', 'cat_33', 'cat_23', 'cat_24', 'cat_25', 'cat_29']
+                "topic": ['cat_1', 'cat_2', 'cat_14','cat_15', 'cat_11', 'cat_19',
+                    'cat_20', 'cat_21', 'cat_34', 'cat_24', 'cat_25', 'cat_26', 'cat_30']
+            },
+            advance_ecigarette: {
+                "topic": ['cat_37']
             },
             advance_fruits_vegetables:{
-                "topic": ['cat_43', 'cat_62']
+                "topic": ['cat_44', 'cat_63']
             },
             advance_health_status:{
-                "topic": ['cat_54', 'cat_15']
+                "topic": ['cat_55', 'cat_16']
             },
             advance_hiv_aids:{
-                "topic": ['cat_16']
+                "topic": ['cat_17']
             },
             advance_hypertension_awareness:{
-                "topic": ['cat_55']
+                "topic": ['cat_56']
             },
             advance_immunization:{
-                "topic": ['cat_41', 'cat_50', 'cat_27', 'cat_26']
+                "topic": ['cat_42', 'cat_51', 'cat_28', 'cat_27']
             },
             advance_injury:{
-                "topic": ['cat_39', 'cat_58']
+                "topic": ['cat_40', 'cat_59']
             },
             advance_oral_health:{
-                "topic": ['cat_30', 'cat_37', 'cat_40']
+                "topic": ['cat_31', 'cat_38', 'cat_41']
             },
             advance_overweight_and_ovesity:{
-                "topic": ['cat_31']
+                "topic": ['cat_32']
             },
             advance_prostate_cancer:{
-                "topic": ['cat_57']
+                "topic": ['cat_58']
             },
             advance_tobbaco_use:{
-                "topic": ['cat_59', 'cat_28', 'cat_60']
+                "topic": ['cat_60', 'cat_29', 'cat_61']
             },
             advance_womens_health:{
-                "topic": ['cat_46', 'cat_56']
+                "topic": ['cat_47', 'cat_57']
             },
             advance_physical_activity:{
-                "topic": ['cat_47', 'cat_61', 'cat_48', 'cat_49']
+                "topic": ['cat_48', 'cat_62', 'cat_49', 'cat_50']
             }
 
         };
@@ -524,8 +532,10 @@
         * When we refresh search page, below listener populate autoCompleteOptions value with $rootScope.questionsList
          */
         $scope.$on('yrbsQuestionsLoadded', function() {
-            sc.filters.yrbsBasicFilters[4].autoCompleteOptions = $rootScope.questionsList;
-            sc.filters.yrbsAdvancedFilters[4].autoCompleteOptions = $rootScope.questionsList;
+            var yrbsBasicFilter = utilService.findFilterByKeyAndValue(sc.filters.yrbsBasicFilters, 'key', 'question');
+            yrbsBasicFilter.autoCompleteOptions = $rootScope.questionsList;
+            var yrbsAdvanceFilter = utilService.findFilterByKeyAndValue(sc.filters.yrbsAdvancedFilters, 'key', 'question');
+            yrbsAdvanceFilter.autoCompleteOptions = $rootScope.questionsList;
         });
 
         $scope.$on('pramsBasicQuestionsLoaded', function() {
@@ -981,12 +991,14 @@
             selectedPrimaryFilter.chartView = chartOption.key;
             selectedPrimaryFilter.chartData = searchFactory.prepareChartData(sc.filters.selectedPrimaryFilter.headers, sc.filters.selectedPrimaryFilter.nestedData, sc.filters.selectedPrimaryFilter);
             selectedPrimaryFilter.showRates = (chartView === 'disease_rate' || chartView === 'infant_death_rate');
-            mapService.updateStatesDeaths(sc.filters.selectedPrimaryFilter, sc.filters.selectedPrimaryFilter.nestedData.maps, undefined, sc.mapOptions);
             $timeout(function(){
-                leafletData.getMap('minimizedMap').then(function(map) {
-                    mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
-                });
-            }, 1700);
+                mapService.updateStatesDeaths(sc.filters.selectedPrimaryFilter, sc.filters.selectedPrimaryFilter.nestedData.maps, undefined, sc.mapOptions);
+                $timeout(function(){
+                    leafletData.getMap('minimizedMap').then(function(map) {
+                        mapService.attachEventsForMap(map, sc.filters.selectedPrimaryFilter);
+                    });
+                }, 800)
+            }, 300);
         }
 
         function findNameByKeyAndValue(key) {

@@ -527,12 +527,7 @@
                                tooltip="{{'label.group.by.tooltip' | translate}}">
             </owh-toggle-switch>
             <div class="clearfix"></div>
-            <!--<a class="group-by-link custom-link" href="javascript:void(0)"
-               ng-if="sfic.filter.allowGrouping" ng-class="{'selected': group.groupBy}"
-               ng-click="sfic.groupBysfic.filter(group)">
-                <span translate="label.group.by"></span>
-                <span class="fa" ng-class="{'fa-times': group.groupBy}"></span>
-            </a>-->
+
         </div>
         <ul class="usa-unstyled-list group-options" ng-if="group.filterGroup" ng-hide="sfic.filter.collapse">
             <li ng-repeat="eachFilter in group.filters" class="group-option"
@@ -587,8 +582,11 @@
                     <label for="{{sfic.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                            ng-init="title = option.title">
                         <span class="count-label" translate="{{title}}"></span>
-                        <span class="pull-right count-value" ng-if="!sfic.filter.dontShowCounts"
+                        <span class="pull-right count-value"
+                              ng-if="!sfic.filter.dontShowCounts && option.count !== -1"
                               ng-bind="option.count | number"></span>
+                        <span class="pull-right count-value"
+                              ng-if="!sfic.filter.dontShowCounts && option.count === -1">Suppressed</span>
                     </label>
                 </div>
             </li>
@@ -608,8 +606,13 @@
                            ng-init="title = option.title">
                         <span ng-class="option.disabled?'disable-click':'count-label'"
                               translate="{{title}}"></span>
-                        <span class="pull-right count-value" ng-if="!sfic.filter.dontShowCounts && (group.value.length === 0 || group.value === option.key)"
+                        <span class="pull-right count-value"
+                              ng-if="!sfic.filter.dontShowCounts && option.count !== -1
+                              && (group.value.length === 0 || group.value === option.key)"
                               ng-bind="option.count | number"></span>
+                        <span class="pull-right count-value"
+                              ng-if="!sfic.filter.dontShowCounts && option.count === -1
+                              && (group.value.length === 0 || group.value === option.key)">Suppressed</span>
                     </label>
                 </div>
             </li>

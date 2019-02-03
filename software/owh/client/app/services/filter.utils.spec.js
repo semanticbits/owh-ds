@@ -70,7 +70,7 @@ describe('filterUtils', function(){
         it('when I call getInfantMortalityDataFilters, I should get infant mortality filters', function () {
             var InfantMortalityData= filterUtils.getInfantMortalityDataFilters();
             expect(InfantMortalityData[0].key).toEqual('year_of_death');
-            expect(InfantMortalityData[0].value).toEqual(['2014']);
+            expect(InfantMortalityData[0].value).toEqual(['2016']);
             expect(InfantMortalityData[1].key).toEqual('sex');
             expect(InfantMortalityData[2].key).toEqual('infant_age_at_death');
             expect(InfantMortalityData[3].key).toEqual('race');

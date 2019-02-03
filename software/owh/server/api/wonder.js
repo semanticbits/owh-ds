@@ -147,10 +147,10 @@ var wonderParamCodeMap = {
             'key': 'D69.V13',
             'values': {
                 'Under 1 hour': '01',
-                '1-23 hours': '02',
-                '1-6 days': '03',
-                '7-27 days': '04',
-                '28 days and over': '05'
+                '1 - 23 hours': '02',
+                '1 - 6 days': '03',
+                '7 - 27 days': '04',
+                '28 - 364 days': '05'
             }
         },
         'race': {
@@ -172,7 +172,7 @@ var wonderParamCodeMap = {
                 'Other and Unknown Hispanic': '5',
                 'Non-Hispanic White': '6',
                 'Non-Hispanic Black': '7',
-                'Non-Hispanic Other Races': '8',
+                'Non-Hispanic other races': '8',
                 'Origin unknown or not stated': '9'
             }
         },
@@ -187,7 +187,7 @@ var wonderParamCodeMap = {
                 '35-39 years': '35-39',
                 '40-44 years': '40-44',
                 '45-49 years': '45-49',
-                '50-54 years': '50+'
+                '50 years and over': '50+'
             }
         },
         'marital_status': {
@@ -211,11 +211,11 @@ var wonderParamCodeMap = {
                 '9th through 12th grade with no diploma': '2',
                 'High school graduate or GED completed': '3',
                 'Some college credit, but not a degree': '4',
-                'Associate degree (AA,AS)': '5',
-                'Bachelor’s degree (BA, AB, BS)': '6',
-                'Master’s degree (MA, MS, MEng, MEd, MSW, MBA)': '7',
-                'Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)': '8',
-                'Unknown': 'Unk',
+                'Associate degree (AA, AS)': '5',
+                "Bachelor's degree (BA, AB, BS)": '6',
+                "Master's degree (MA, MS)": '7',
+                'Doctorate (PHD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)': '8',
+                'Unknown/Not on certificate': 'Unk',
                 'Not on certificate': '999'
             }
         },
@@ -223,11 +223,11 @@ var wonderParamCodeMap = {
             'key': 'D69.V24',
             'values': {
                 'Under 20 weeks': '01',
-                '20 - 27 weeks': '02',
-                '28 - 31 weeks': '03',
-                '32 - 33 weeks': '04',
-                '34 - 36 weeks': '05',
-                '37 - 38 weeks': '06',
+                '20-27 weeks': '02',
+                '28-31 weeks': '03',
+                '32-33 weeks': '04',
+                '34-36 weeks': '05',
+                '37-38 weeks': '06',
                 '39 weeks': '07',
                 '40 weeks': '08',
                 '41 weeks': '09',
@@ -239,11 +239,11 @@ var wonderParamCodeMap = {
             'key': 'D69.V6',
             'values': {
                 'Under 20 weeks':'01',
-                '20 - 27 weeks':'02',
-                '28 - 31 weeks':'03',
-                '32 - 35 weeks':'04',
+                '20-27 weeks':'02',
+                '28-31 weeks':'03',
+                '32-35 weeks':'04',
                 '36 weeks':'05',
-                '37 - 39 weeks':'06',
+                '37-39 weeks':'06',
                 '40 weeks':'07',
                 '41 weeks':'08',
                 '42 weeks and over':'09',
@@ -302,7 +302,7 @@ var wonderParamCodeMap = {
                 '9th month': '09',
                 '10th month': '10',
                 'Unknown or not stated': '98',
-                'Not on certificate': '99'
+                'Not stated/Not on certificate': '99'
             }
         },
         'birth_weight': {
@@ -319,7 +319,7 @@ var wonderParamCodeMap = {
                 '4000 - 4499 grams':'09',
                 '4500 - 4999 grams':'10',
                 '5000 - 8165 grams':'11',
-                'Not Stated': '12'
+                'Not stated': '12'
             }
         },
         'birth_plurality': {
@@ -340,7 +340,7 @@ var wonderParamCodeMap = {
                 '3rd child born alive to mother':'03',
                 '4th child born alive to mother':'04',
                 '5th child born alive to mother':'05',
-                '6th child born alive to mother':'06',
+                '6th child and over born alive to mother':'06',
                 //'7th child born alive to mother':'',
                 //'8 or more live births': '',
                 'Unknown or not stated': '99'
@@ -350,11 +350,8 @@ var wonderParamCodeMap = {
             'key': 'D69.V21',
             'values': {
                 'In Hospital':'1',
-                //'Freestanding Birthing Center':'',
-                //'Clinic / Doctor’s Office':'',
-                //'Residence':'',
-                //'Other':'',
-                'Unknown':'3'
+                'Not in Hospital':'2',
+                'Unknown or Not Stated':'3'
             }
         },
         'delivery_method': {
@@ -362,16 +359,16 @@ var wonderParamCodeMap = {
             'values': {
                 'Cesarean':'2',
                 'Vaginal':'1',
-                'Not stated':'9'
+                'Not Stated':'9'
                 //'Unknown':''
             }
         },
         'medical_attendant': {
             'key': 'D69.V20',
             'values': {
-                'Doctor of Medicine (MD)':'1',
-                'Doctor of Osteopathy (DO)':'2',
-                'Certified Nurse Midwife (CNM)':'3',
+                'Doctor of Medicine(MD)':'1',
+                'Doctor of Osteopathy(DO)':'2',
+                'Certified Nurse Midwife(CNM)':'3',
                 'Other Midwife':'4',
                 'Other':'5',
                 'Unknown or not stated':'9'
@@ -505,10 +502,10 @@ var wonderParamCodeMap = {
             'key': 'D31.V13',
             'values': {
                 'Under 1 hour': '01',
-                '1-23 hours': '02',
-                '1-6 days': '03',
-                '7-27 days': '04',
-                '28 days and over': '05'
+                '1 - 23 hours': '02',
+                '1 - 6 days': '03',
+                '7 - 27 days': '04',
+                '28 - 364 days': '05'
             }
         },
         'race': {
@@ -530,7 +527,7 @@ var wonderParamCodeMap = {
                 'Other and Unknown Hispanic': '5',
                 'Non-Hispanic White': '6',
                 'Non-Hispanic Black': '7',
-                'Non-Hispanic Other Races': '8',
+                'Non-Hispanic other races': '8',
                 'Origin unknown or not stated': '9'
             }
         },
@@ -545,7 +542,7 @@ var wonderParamCodeMap = {
                 '35-39 years': '35-39',
                 '40-44 years': '40-44',
                 '45-49 years': '45-49',
-                '50-54 years': '50+'
+                '50 years and over': '50+'
             }
         },
         'marital_status': {
@@ -559,12 +556,12 @@ var wonderParamCodeMap = {
         'mother_education': {
             'key': 'D31.V5',
             'values': {
-                '0 – 8 years': '19176',
-                '9 – 11 years': '19177',
+                '0 -  8 years': '19176',
+                '9 - 11 years': '19177',
                 '12 years': '19178',
-                '13 – 15 years': '19179',
+                '13 - 15 years': '19179',
                 '16 years and over': '16+',
-                'Not stated': 'NR'
+                'Not stated/Not on certificate': 'NR'
             }
         },
         'gestation_recode11': {
@@ -650,7 +647,7 @@ var wonderParamCodeMap = {
                 '9th month': '09',
                 '10th month': '10',
                 'Unknown or not stated': '98',
-                'Not on certificate': '99'
+                'Not stated/Not on certificate': '99'
             }
         },
         'birth_weight': {
@@ -688,7 +685,7 @@ var wonderParamCodeMap = {
                 '3rd child born alive to mother':'03',
                 '4th child born alive to mother':'04',
                 '5th child born alive to mother':'05',
-                '6th child born alive to mother':'06',
+                '6th child and over born alive to mother':'06',
                 'Unknown or not stated': '99'
             }
         },
@@ -696,7 +693,8 @@ var wonderParamCodeMap = {
             'key': 'D31.V21',
             'values': {
                 'In Hospital':'1',
-                'Unknown':'3'
+                'Not in Hospital':'2',
+                'Unknown or Not Stated':'3'
             }
         },
         'delivery_method': {
@@ -704,15 +702,15 @@ var wonderParamCodeMap = {
             'values': {
                 'Cesarean':'2',
                 'Vaginal':'1',
-                'Not stated':'9'
+                'Not Stated':'9'
             }
         },
         'medical_attendant': {
             'key': 'D31.V20',
             'values': {
-                'Doctor of Medicine (MD)':'1',
-                'Doctor of Osteopathy (DO)':'2',
-                'Certified Nurse Midwife (CNM)':'3',
+                'Doctor of Medicine(MD)':'1',
+                'Doctor of Osteopathy(DO)':'2',
+                'Certified Nurse Midwife(CNM)':'3',
                 'Other Midwife':'4',
                 'Other':'5',
                 'Unknown or not stated':'9'
@@ -846,10 +844,10 @@ var wonderParamCodeMap = {
             'key': 'D18.V13',
             'values': {
                 'Under 1 hour': '01',
-                '1-23 hours': '02',
-                '1-6 days': '03',
-                '7-27 days': '04',
-                '28 days and over': '05'
+                '1 - 23 hours': '02',
+                '1 - 6 days': '03',
+                '7 - 27 days': '04',
+                '28 - 364 days': '05'
             }
         },
         'race': {
@@ -858,7 +856,11 @@ var wonderParamCodeMap = {
                 "White": '2106-3',
                 "Black or African American": '2054-5',
                 "American Indian or Alaska Native": '1002-5',
-                "Asian or Pacific Islander": 'A-PI'
+                "Chinese": '2034-7',
+                "Filipino": '2036-2',
+                "Hawaiian": '2076-8',
+                "Japanese": '2039-6',
+                "Other Asian": '2028-9'
             }
         },
         'hispanic_origin': {
@@ -871,7 +873,7 @@ var wonderParamCodeMap = {
                 'Other and Unknown Hispanic': '5',
                 'Non-Hispanic White': '6',
                 'Non-Hispanic Black': '7',
-                'Non-Hispanic Other Races': '8',
+                'Non-Hispanic other races': '8',
                 'Origin unknown or not stated': '9'
             }
         },
@@ -886,7 +888,7 @@ var wonderParamCodeMap = {
                 '35-39 years': '35-39',
                 '40-44 years': '40-44',
                 '45-49 years': '45-49',
-                '50-54 years': '50+'
+                '50 years and over': '50+'
             }
         },
         'marital_status': {
@@ -900,23 +902,23 @@ var wonderParamCodeMap = {
         'mother_education': {
             'key': 'D18.V5',
             'values': {
-                '0 – 8 years': '19176',
-                '9 – 11 years': '19177',
+                '0 -  8 years': '19176',
+                '9 - 11 years': '19177',
                 '12 years': '19178',
-                '13 – 15 years': '19179',
+                '13 - 15 years': '19179',
                 '16 years and over': '16+',
-                'Not stated': 'NR'
+                'Not stated/Not on certificate': 'NR'
             }
         },
         'gestation_recode11': {
             'key': 'D18.V24',
             'values': {
                 'Under 20 weeks': '01',
-                '20 - 27 weeks': '02',
-                '28 - 31 weeks': '03',
-                '32 - 33 weeks': '04',
-                '34 - 36 weeks': '05',
-                '37 - 38 weeks': '06',
+                '20-27 weeks': '02',
+                '28-31 weeks': '03',
+                '32-33 weeks': '04',
+                '34-36 weeks': '05',
+                '37-38 weeks': '06',
                 '39 weeks': '07',
                 '40 weeks': '08',
                 '41 weeks': '09',
@@ -991,7 +993,7 @@ var wonderParamCodeMap = {
                 '9th month': '09',
                 '10th month': '10',
                 'Unknown or not stated': '98',
-                'Not on certificate': '99'
+                'Not stated/Not on certificate': '99'
             }
         },
         'birth_weight': {
@@ -1029,7 +1031,7 @@ var wonderParamCodeMap = {
                 '3rd child born alive to mother':'03',
                 '4th child born alive to mother':'04',
                 '5th child born alive to mother':'05',
-                '6th child born alive to mother':'06',
+                '6th child and over born alive to mother':'06',
                 'Unknown or not stated': '99'
             }
         },
@@ -1037,7 +1039,8 @@ var wonderParamCodeMap = {
             'key': 'D18.V21',
             'values': {
                 'In Hospital':'1',
-                'Unknown':'3'
+                'Not in Hospital':'2',
+                'Unknown or Not Stated':'3'
             }
         },
         'delivery_method': {
@@ -1045,15 +1048,15 @@ var wonderParamCodeMap = {
             'values': {
                 'Cesarean':'2',
                 'Vaginal':'1',
-                'Not stated':'9'
+                'Not Stated':'9'
             }
         },
         'medical_attendant': {
             'key': 'D18.V20',
             'values': {
-                'Doctor of Medicine (MD)':'1',
-                'Doctor of Osteopathy (DO)':'2',
-                'Certified Nurse Midwife (CNM)':'3',
+                'Doctor of Medicine(MD)':'1',
+                'Doctor of Osteopathy(DO)':'2',
+                'Certified Nurse Midwife(CNM)':'3',
                 'Other Midwife':'4',
                 'Other':'5',
                 'Unknown or not stated':'9'

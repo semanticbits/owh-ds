@@ -10,6 +10,8 @@
     //service to provide utilities for leaflet geographical map
     function mapService($rootScope, $timeout, utilService, leafletData,
                         $translate, $filter, $templateCache, $compile) {
+
+        var suppression = {suppressed: false, isNA: false};
         var service = {
             updateStatesDeaths: updateStatesDeaths,
             getMapTitle: getMapTitle,
@@ -32,6 +34,8 @@
          */
         function updateStatesDeaths(primaryFilter, data, totalCount, mapOptions) {
             var years = getSelectedYears(primaryFilter);
+            suppression.suppressed = false;
+            suppression.isNA = false;
             //update states info with trials data
             var stateDeathTotals = [];
             angular.forEach($rootScope.states.features, function(feature) {
@@ -63,13 +67,11 @@
                     }
                     else if (primaryFilter.showRates) {
                         if(primaryFilter.tableView === 'number_of_infant_deaths') {
-                            var suppressTotal = false;
                             angular.forEach(feature.properties.sex, function(eachGender){
                                 if(eachGender[primaryFilter.key] < 20 || eachGender['deathRate'].indexOf('Unreliable') > 0) {
                                     eachGender['rate'] = 'Unreliable';
                                 }
                                 else if(eachGender['deathRate'] === 'suppressed') {
-                                    suppressTotal = true;
                                     eachGender['rate'] = eachGender['deathRate'];
                                 }
                                 else if(eachGender['deathRate'] === 'na') {
@@ -80,27 +82,26 @@
                                 }
                             });
                             //For Total
-                            if(suppressTotal || state['deathRate'] === 'suppressed') {
-                                feature.properties.rate = 'suppressed';
-                                stateDeathTotals.push('suppressed');
-                            }
-                            else if(state['deathRate'] === 'na') {
-                                feature.properties.rate = state['deathRate'];
-                                stateDeathTotals.push(state['deathRate']);
-                            }
-                            else {
+                            if(state['deathRate'] !== 'suppressed') {
                                 feature.properties.rate = $filter('number')(state['deathRate'], 1);
                                 stateDeathTotals.push($filter('number')(state['deathRate'], 1));
+                            } else if(state['deathRate'] === 'suppressed') {
+                                feature.properties.rate = 'suppressed';
+                                stateDeathTotals.push('suppressed');
+                            } else {
+                                feature.properties.rate = undefined;
+                                stateDeathTotals.push(undefined);
                             }
 
                         }
                         else {
                             //calculate male and female rate
                             angular.forEach(feature.properties.sex, function (eachGender) {
-                                eachGender['rate'] = $filter('number')(Math.round((eachGender[primaryFilter.key]) / eachGender['pop'] * 1000000) / 10, 1);
+                                var rate = calculateRates(eachGender[primaryFilter.key], eachGender['pop']);
+                                eachGender.rate = isNaN(rate)? rate : $filter('number')(rate, 1);
                             });
 
-                            var rate = Math.round(feature.properties.sex[0][primaryFilter.key] / feature.properties.sex[0]['pop'] * 1000000) / 10;
+                            var rate = calculateRates(feature.properties.sex[0][primaryFilter.key], feature.properties.sex[0]['pop']);
                             feature.properties.rate = rate;
                             stateDeathTotals.push(rate);
                         }
@@ -143,6 +144,16 @@
             });
         }
 
+        function calculateRates(count, pop) {
+            if(count === 'suppressed' || pop === 'suppressed') {
+                return 'suppressed';
+            } else  if (!pop || pop === 'n/a' || count === 'na') {
+                return 'na';
+            } else{
+                return Math.round(count / pop * 1000000) / 10;
+            }
+        }
+
         function getSelectedYears(primaryFilter) {
             var yearFilter = utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'current_year') || utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year') || utilService.findByKeyAndValue(primaryFilter.allFilters, 'key', 'year_of_death');
             if (yearFilter) {
@@ -152,14 +163,19 @@
 
         //generate labels for map legend labels
         function getLabels(minValue, maxValue) {
+            if (isNaN(minValue)) {return []};
             return utilService.generateMapLegendLabels(minValue, maxValue);
         }
 
         //get map feature colors
         function getColor(d, ranges) {
 
-            if (d == -1) {
-                return '#D3D3D3';
+            if (d === -1 || d === 'na' || d === 'n/a') {
+                suppression.isNA = true;
+                return '#c0414b';
+            } if (d === 'suppressed') {
+                suppression.suppressed = true;
+                return '#4bb6c0';
             }
             return d >= ranges[6] ? '#ea8484' :
                    d >= ranges[5] ? '#f3af60' :
@@ -211,6 +227,62 @@
         }
 
         /**
+         * Get the map colors based on number of legend intervals
+         * @param labels
+         * @returns {string[]}
+         */
+        function getLegendColorsAndSuppressionLabels(labels) {
+            var colors;
+            if(labels.length === 0) {
+                if(suppression.suppressed && suppression.isNA) {
+                    labels.push('Suppressed'); labels.push('NA');
+                    colors = ['#4bb6c0', '#c0414b'];
+                } else if (suppression.suppressed) {
+                    labels.push('Suppressed'); colors = ['#4bb6c0'];
+                } else if (suppression.isNA) {
+                    labels.push('NA'); colors = ['#c0414b'];
+                }
+            } else if (labels.length === 1){
+                if(suppression.suppressed && suppression.isNA) {
+                    labels.push('Suppressed');labels.push('NA');
+                    colors = ['#aa7ed4', '#4bb6c0', '#c0414b' ];
+                } else if (suppression.suppressed) {
+                    labels.push('Suppressed');
+                    colors = ['#aa7ed4', '#4bb6c0'];
+                } else if (suppression.isNA) {
+                    labels.push('NA');
+                    colors = ['#aa7ed4', '#c0414b' ];
+                } else {
+                    colors = ['#aa7ed4' ];
+                }
+            } else if(labels.length === 2) {
+                if (suppression.suppressed && suppression.isNA) {
+                    labels.push('Suppressed');labels.push('NA');
+                    colors = ['#aa7ed4', '#5569de', '#4bb6c0', '#c0414b' ];
+                } else if (suppression.suppressed) {
+                    labels.push('Suppressed');
+                    colors = ['#aa7ed4', '#5569de', '#4bb6c0'];
+                } else if (suppression.isNA) {
+                    labels.push('NA');
+                    colors = ['#aa7ed4', '#5569de', '#c0414b'];
+                } else {
+                    colors = ['#aa7ed4', '#5569de'];
+                }
+            } else if (labels.length > 2) {
+                colors = ['#aa7ed4', '#5569de', '#6f9af1', '#8bd480', '#fff280', '#f3af60', '#ea8484'];
+                if (suppression.suppressed && suppression.isNA) {
+                    labels.push('Suppressed');labels.push('NA');
+                    colors.push('#4bb6c0'); colors.push('#c0414b');
+                } else if (suppression.suppressed) {
+                    labels.push('Suppressed'); colors.push('#4bb6c0');
+                } else if (suppression.isNA) {
+                    labels.push('NA'); colors.push('#c0414b');
+                }
+            }
+            return colors;
+        }
+
+        /**
          * Add horizontal Legend
          * @param mapData
          */
@@ -222,29 +294,35 @@
                 onAdd: function (map) {
                     map.customControl = this;
                     var container = L.DomUtil.create('div', 'leaflet-control leaflet-control-custom custom-legend');
-
-                    var colors = ['#aa7ed4', '#5569de', '#6f9af1', '#8bd480', '#fff280', '#f3af60', '#ea8484' ];
                     var labels = getLabels(mapData.mapMinValue, mapData.mapMaxValue);
-                    var legendScale = L.DomUtil.create('ul', 'legend-scale', container);
-                    var polygons = [];
-                    colors.forEach(function(color, index) {
-                        var li = L.DomUtil.create('li', '', legendScale);
-                        var span = L.DomUtil.create('span', '', li);
-                        span.style.background = color;
-                        angular.element(li).append(labels[index]);
+                    var colors = getLegendColorsAndSuppressionLabels(labels);
+                    if(colors) {
+                        var legendScale = L.DomUtil.create('ul', 'legend-scale', container);
+                        var polygons = [];
+                        colors.forEach(function(color, index) {
+                            var li = L.DomUtil.create('li', '', legendScale);
+                            var span = L.DomUtil.create('span', '', li);
+                            span.style.background = color;
+                            angular.element(li).append(labels[index]);
 
-                        L.DomEvent.on(span, 'mouseover', function(event) {
-                            var target = event.target;
-                            var color = target.style.background;
-                            polygons = getMapPolygonsByColor(map, color);
-                            highlightPolygons(polygons);
-                        });
+                            L.DomEvent.on(span, 'mouseover', function(event) {
+                                var target = event.target;
+                                var color = target.style.background;
+                                polygons = getMapPolygonsByColor(map, color);
+                                highlightPolygons(polygons);
+                            });
 
-                        L.DomEvent.on(span, 'mouseout', function(event) {
-                            resetHighlightedPolygons(polygons);
+                            L.DomEvent.on(span, 'mouseout', function(event) {
+                                resetHighlightedPolygons(polygons);
+                            });
                         });
-                    });
-                    return container;
+                        return container;
+                    } else {
+                        var legendTxt = L.DomUtil.create('div', 'legend-text', container);
+                        var span = L.DomUtil.create('span', '', legendTxt);
+                        angular.element(span).append("Legend does not display because totals by state for 2015, 2016 are not available from the CDC.");
+                        return container;
+                    }
                 }
             });
         }

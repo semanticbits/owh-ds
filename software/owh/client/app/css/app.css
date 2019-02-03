@@ -879,7 +879,7 @@ body {
 }
 
 .custom-legend {
-    width: 80%;
+    width: 100%;
     margin-bottom: 1px !important;
     padding: 5px;
 }
@@ -905,6 +905,13 @@ ul.legend-scale li span {
     height: 10px;
     width: 75px;
     margin-bottom: 2px;
+}
+
+div.legend-text {
+    bottom: 25px;
+    cursor: default;
+    color: #974bc2;
+    width: 95%;
 }
 
 /*header*/

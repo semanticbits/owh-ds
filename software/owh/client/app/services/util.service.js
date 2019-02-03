@@ -870,10 +870,16 @@
             var ranges = [];
             var counter = (maxValue - minValue)/7;
             var temp = minValue;
-            [1, 2, 3, 4, 5, 6, 7].forEach(function(option, index) {
-                ranges.push(Math.round(temp, 0));
-                temp = temp + counter;
-            });
+            if(counter > 1) {
+                [1, 2, 3, 4, 5, 6, 7].forEach(function(option, index) {
+                    ranges.push(Math.round(temp, 0));
+                    temp = temp + counter;
+                });
+            } else if(counter === 0) {
+                ranges = [minValue];
+            } else {
+                ranges = [minValue, maxValue];
+            }
             return ranges;
         }
 
@@ -1272,7 +1278,7 @@
             }
             var selectedYear = yearSideFilter.filters.value[yearSideFilter.filters.value.length - 1];
             var listOfSelectedYears = clone(yearSideFilter.filters.value);
-            if( selectedYear >= '2007' && selectedYear <= '2014') {
+            if( selectedYear >= '2007' && selectedYear <= '2016') {
                 angular.forEach(listOfSelectedYears, function(eachYear){
                    if(yearSideFilter.filters.D31Years.indexOf(eachYear) >= 0 || yearSideFilter.filters.D18Years.indexOf(eachYear) >= 0){
                         var index = yearSideFilter.filters.value.indexOf(eachYear);

@@ -2221,7 +2221,7 @@ div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leafl
 }
 
 div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.custom-legend {
-	width: 875px;
+	width: 100%;
 }
 
 div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leaflet-control-attribution {

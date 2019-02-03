@@ -502,6 +502,7 @@
   "label.help.text.cancer_mortality.cancer_site": "This field indicates the primary cancer site that is the organ of origin within the body where a given cancer occurs in an individual.",
   "label.help.text.cancer_mortality.state": "State This field indicates the State of patient's residence at the time the case was submitted to the registry.",
   "label.documentation.about.dataset": "About This Dataset",
+  "label.not.applicable": "Not Applicable",
   "label.not.available": "Not Available",
   "label.data.not.available": "Data not available",
   "label.survey.data.not.available": "Survey data are not available for the selected year",

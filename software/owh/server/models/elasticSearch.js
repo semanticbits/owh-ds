@@ -172,6 +172,12 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected, allSe
         if(query.wonderQuery) {
             logger.debug("Wonder Query: "+ JSON.stringify(query.wonderQuery));
             promises.push(new wonder('D77').invokeWONDER(query.wonderQuery));
+            //if state is selected, remove it as we need data for all state to show on map
+            if (query.wonderQuery.query.state !== 'undefined') {
+                var mwQuery = JSON.parse(JSON.stringify(query.wonderQuery));
+                delete mwQuery.query.state
+                promises.push(new wonder('D77').invokeWONDER(mwQuery));
+            }
         }
         Q.all(promises).then( function (respArray) {
             var data = searchUtils.populateDataWithMappings(respArray[0], 'deaths', undefined, allSelectedFilterOptions, query[0]);
@@ -188,7 +194,11 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected, allSe
                     });
                 }
                 //Merge Age Adjusted results for Map
-                respArray[4].maps && searchUtils.mergeAgeAdjustedRates(data.data.nested.maps, respArray[4].maps);
+                if(respArray[5].maps) {//if state is selected
+                    searchUtils.mergeAgeAdjustedRates(data.data.nested.maps, respArray[5].maps);
+                } else if (respArray[4].maps) {//if no state is selected
+                    searchUtils.mergeAgeAdjustedRates(data.data.nested.maps, respArray[4].maps);
+                }
             }
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'deaths');
@@ -316,7 +326,7 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
     var dbID;
     //Based on selected year choose wonder database ID
     var selectedYear = selectedYears[0];
-    if(selectedYear <= '2014' && selectedYear >= '2007') {
+    if(selectedYear <= '2016' && selectedYear >= '2007') {
         dbID = 'D69';
     }
     else if(selectedYear <= '2006' && selectedYear >= '2003') {

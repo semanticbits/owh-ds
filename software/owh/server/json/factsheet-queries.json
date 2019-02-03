@@ -5896,12 +5896,12 @@
             "key": "question",
             "queryKey": "question.key",
             "value": [
-              "qn43",
+              "qn42",
               "qndaycig",
-              "qn49",
-              "qn63",
-              "qn30",
-              "qn69",
+              "qn48",
+              "qn62",
+              "qn29",
+              "qn68",
               "qnobese"
             ],
             "primary": false
@@ -11641,13 +11641,13 @@
             "key": "question",
             "queryKey": "question.key",
             "value": [
-              "qn43",
+              "qn42",
               "qndaycig",
-              "qn40",
-              "qn49",
-              "qn63",
-              "qn30",
-              "qn69",
+              "qn35",
+              "qn48",
+              "qn62",
+              "qn29",
+              "qn68",
               "qnobese"
             ],
             "primary": false
@@ -12438,7 +12438,7 @@
             "queryKey": "hispanic_origin",
             "value": [
               "Non-Hispanic Black",
-              "Non-Hispanic Other Races"
+              "Non-Hispanic other races"
             ],
             "primary": false
           },
@@ -22895,12 +22895,12 @@
             "key": "question",
             "queryKey": "question.key",
             "value": [
-              "qn43",
+              "qn42",
               "qndaycig",
-              "qn49",
-              "qn63",
-              "qn30",
-              "qn69",
+              "qn48",
+              "qn62",
+              "qn29",
+              "qn68",
               "qnobese"
             ],
             "primary": false

@@ -468,7 +468,7 @@ function resultCellObject (response, key) {
 function toRoundedPercentage(num, prec, dataset){
     if (!isNaN(num)){
         if(num > 0) {
-            if(dataset === 'prams') {
+            if(dataset === 'prams' || dataset === 'mental_health'|| dataset === 'brfss') {
                 return searchUtils.round(num * 100, prec);
             } else {
                 return (num * 100).toFixed(prec);
@@ -628,16 +628,17 @@ function prepareQuestionTree(questions,  prams) {
         }
 
         if (quesObj.description !== undefined) {
-            var question = {text:quesObj.question +"("+quesObj.description+")", id:quesObj.qid, years: quesObj.year};
-            qCategoryMap[qCategory].children.push(question);
             //capture all questions into questionsList
 
-            if (quesObj.description) {
+            if (quesObj.description && quesObj.description !== 'NULL') {
+                qCategoryMap[qCategory].children.push({text:quesObj.question +"("+quesObj.description+")",
+                    id:quesObj.qid, years: quesObj.year});
                 questionsList.push({key : quesObj.question, qkey : quesObj.qid,
                     title : quesObj.question +"("+quesObj.description+")", years: quesObj.year});
             }
 
             else {
+                qCategoryMap[qCategory].children.push({text:quesObj.question, id:quesObj.qid, years: quesObj.year});
                 questionsList.push({key : quesObj.question, qkey : quesObj.qid,
                     title : quesObj.question, years: quesObj.year});
             }
