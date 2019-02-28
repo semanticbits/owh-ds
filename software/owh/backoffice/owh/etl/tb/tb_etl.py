@@ -44,20 +44,32 @@ class TBETL (ETL):
                     continue
                 if (record ['race_ethnicity'] == None or record['age_group'] == None or record['sex'] == None): # Skip 'All' race, sex and age records
                     continue
-                if(len(record ['pop']) > 0):
+                if(record ['pop'] != 'NULL'):
                     record['pop'] = int(record['pop'])
                 else:
                     record['pop'] = 0
 
-                if(len(record ['cases']) > 0):
+                if(record ['cases'] != 'NULL'):
                     record['cases'] = int(record['cases'])
                 else:
                     record['cases'] = 0
+
+                if(record ['rate'] != 'NULL'):
+                    record['rate'] = float(record['rate'])
+                else:
+                    record['rate'] = 0.0
 
                 # suppression_cases or suppression_rate are equals to '1' means Data suppressed
                 # so we are setting cases and pop to -1 when data suppressed.
                 if(record['suppression_cases'] == '1'):
                     record['cases'] = -1
+                elif(record['suppression_cases'] == '2'):
+                    record['cases'] = -2
+
+                if(record['suppression_rate'] == '1'):
+                    record['rate'] = -1
+                elif (record['suppression_rate'] == '2'):
+                    record['rate'] = -2
 
                 record_count += 1
                 self.batchRepository.persist({"index": {"_index": self.config['elastic_search']['index'],
@@ -72,7 +84,7 @@ class TBETL (ETL):
         logger.info("*** Processed %s records from TB data file", self.metrics.insertCount)
 
     def updateDsMetadata(self):
-        for y in range(2000, 2016):
+        for y in range(2000, 2018):
             self.loadDataSetMetaData('tb', str(y), os.path.join(self.dataDirectory, 'data_mapping', 'tb.json'))
 
     def validate_etl(self):
