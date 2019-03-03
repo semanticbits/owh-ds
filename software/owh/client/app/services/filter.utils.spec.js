@@ -130,7 +130,7 @@ describe('filterUtils', function(){
         it('when I call getTBDataFilters, I should get all TB filters', function () {
             var stdDataFilters= filterUtils.getTBDataFilters();
             expect(stdDataFilters[0].key).toEqual('current_year');
-            expect(stdDataFilters[0].value).toEqual('2015');
+            expect(stdDataFilters[0].value).toEqual('2017');
             expect(stdDataFilters[1].key).toEqual('age_group');
             expect(stdDataFilters[2].key).toEqual('race');
             expect(stdDataFilters[2].value).toEqual('All races/ethnicities');
