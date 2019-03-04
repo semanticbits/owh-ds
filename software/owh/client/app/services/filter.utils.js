@@ -606,6 +606,7 @@
         ];
 
         var diseaseYearOptions = [
+            {"key": "2016", "title": "2016"},
             {"key": "2015", "title": "2015"},
             {"key": "2014", "title": "2014"},
             {"key": "2013", "title": "2013"},
@@ -1331,8 +1332,8 @@
                     title: 'label.filter.year',
                     queryKey: "current_year",
                     primary: false,
-                    value: "2015",
-                    defaultValue: "2015",
+                    value: "2016",
+                    defaultValue: "2016",
                     groupBy: false,
                     filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: diseaseYearOptions,
