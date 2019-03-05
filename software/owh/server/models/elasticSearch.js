@@ -43,7 +43,7 @@ ElasticClient.prototype.getClient = function(database) {
     });*/
 
      var configuration = {};
-     configuration.apiVersion = '1.5';
+     configuration.apiVersion = '6.6';
     /* configuration.log = [{
      type: 'stdio',
      levels: ['info', 'debug', 'error', 'warning']
@@ -458,7 +458,7 @@ ElasticClient.prototype.getQueryCache = function(query){
 ElasticClient.prototype.insertQueryData = function (query) {
     var client = this.getClient();
     var deferred = Q.defer();
-    client.create({
+    client.index({
         index: _queryIndex,
         type: _queryType,
         body: query
