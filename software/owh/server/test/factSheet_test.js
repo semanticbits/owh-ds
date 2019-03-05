@@ -21,7 +21,7 @@ describe("Fact sheet", function () {
             expect(resp.tuberculosis[5].displayValue).to.eql("2 (1.5)");
             //std
             expect(resp.stdData[3].disease).to.eql("Early Latent Syphilis");
-            expect(resp.stdData[3].data[0].pop).to.eql(5976407);
+            expect(resp.stdData[3].data[0].pop).to.eql(6006401);
             expect(resp.stdData[3].data[0].displayValue).to.eql("594 (9.9)");
             //hiv
             expect(resp.hivAIDSData[3].disease).to.eql("HIV Diagnoses");

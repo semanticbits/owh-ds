@@ -305,20 +305,20 @@
               {
                 "name": "Both sexes",
                 "std": 26359,
-                "pop": 318857056
+                "pop": 321418820
               },
               {
                 "name": "Female",
                 "std": 18674,
-                "pop": 161920569
+                "pop": 163189523
               },
               {
                 "name": "Male",
                 "std": 7549,
-                "pop": 156936487
+                "pop": 158229297
               }
             ],
-            "pop": 637714112
+            "pop": 642837640
           },
           {
             "name": "American Indian or Alaska Native",
@@ -327,20 +327,20 @@
               {
                 "name": "Both sexes",
                 "std": 42,
-                "pop": 2002659
+                "pop": 2135028
               },
               {
                 "name": "Female",
                 "std": 35,
-                "pop": 1015540
+                "pop": 1083983
               },
               {
                 "name": "Male",
                 "std": 7,
-                "pop": 987119
+                "pop": 1051045
               }
             ],
-            "pop": 4005318
+            "pop": 4270056
           },
           {
             "name": "Asian",
@@ -349,20 +349,20 @@
               {
                 "name": "Both sexes",
                 "std": 62,
-                "pop": 14165657
+                "pop": 14970128
               },
               {
                 "name": "Female",
                 "std": 45,
-                "pop": 7441839
+                "pop": 7860366
               },
               {
                 "name": "Male",
                 "std": 17,
-                "pop": 6723818
+                "pop": 7109762
               }
             ],
-            "pop": 28331314
+            "pop": 29940256
           },
           {
             "name": "Black or African American",
@@ -371,20 +371,20 @@
               {
                 "name": "Both sexes",
                 "std": 13367,
-                "pop": 31052236
+                "pop": 33552972
               },
               {
                 "name": "Female",
                 "std": 9096,
-                "pop": 16131777
+                "pop": 17453590
               },
               {
                 "name": "Male",
                 "std": 4266,
-                "pop": 14920459
+                "pop": 16099382
               }
             ],
-            "pop": 62104472
+            "pop": 67105944
           },
           {
             "name": "Hispanic or Latino",
@@ -393,20 +393,20 @@
               {
                 "name": "Both sexes",
                 "std": 261,
-                "pop": 49668283
+                "pop": 51684688
               },
               {
                 "name": "Female",
                 "std": 195,
-                "pop": 24528829
+                "pop": 25531149
               },
               {
                 "name": "Male",
                 "std": 66,
-                "pop": 25139454
+                "pop": 26153539
               }
             ],
-            "pop": 99336566
+            "pop": 103369376
           },
           {
             "name": "Multiple races",
@@ -415,20 +415,20 @@
               {
                 "name": "Both sexes",
                 "std": 43,
-                "pop": 5495862
+                "pop": 5847729
               },
               {
                 "name": "Female",
                 "std": 32,
-                "pop": 2789815
+                "pop": 2965885
               },
               {
                 "name": "Male",
                 "std": 11,
-                "pop": 2706047
+                "pop": 2881844
               }
             ],
-            "pop": 10991724
+            "pop": 11695458
           },
           {
             "name": "Native Hawaiian or Other Pacific Islander",
@@ -437,20 +437,20 @@
               {
                 "name": "Both sexes",
                 "std": "suppressed",
-                "pop": 515735
+                "pop": 535748
               },
               {
                 "name": "Female",
                 "std": "suppressed",
-                "pop": 255102
+                "pop": 265418
               },
               {
                 "name": "Male",
                 "std": "na",
-                "pop": 260633
+                "pop": 270330
               }
             ],
-            "pop": 1031470
+            "pop": 1071496
           },
           {
             "name": "Unknown",
@@ -477,20 +477,20 @@
               {
                 "name": "Both sexes",
                 "std": 4764,
-                "pop": 168984524
+                "pop": 175557099
               },
               {
                 "name": "Female",
                 "std": 3500,
-                "pop": 85676198
+                "pop": 89002076
               },
               {
                 "name": "Male",
                 "std": 1263,
-                "pop": 83308326
+                "pop": 86555023
               }
             ],
-            "pop": 337969048
+            "pop": 351114198
           }
         ]
       },
@@ -504,37 +504,37 @@
                 {
                   "name": "All races/ethnicities",
                   "std": 26359,
-                  "pop": 318857056
+                  "pop": 321418820
                 },
                 {
                   "name": "American Indian or Alaska Native",
                   "std": 42,
-                  "pop": 2002659
+                  "pop": 2135028
                 },
                 {
                   "name": "Asian",
                   "std": 62,
-                  "pop": 14165657
+                  "pop": 14970128
                 },
                 {
                   "name": "Black or African American",
                   "std": 13367,
-                  "pop": 31052236
+                  "pop": 33552972
                 },
                 {
                   "name": "Hispanic or Latino",
                   "std": 261,
-                  "pop": 49668283
+                  "pop": 51684688
                 },
                 {
                   "name": "Multiple races",
                   "std": 43,
-                  "pop": 5495862
+                  "pop": 5847729
                 },
                 {
                   "name": "Native Hawaiian or Other Pacific Islander",
-                  "std": 0,
-                  "pop": 515735
+                  "std": -1,
+                  "pop": 535748
                 },
                 {
                   "name": "Unknown",
@@ -543,10 +543,10 @@
                 {
                   "name": "White",
                   "std": 4764,
-                  "pop": 168984524
+                  "pop": 175557099
                 }
               ],
-              "pop": 590742012
+              "pop": 605702212
             },
             {
               "name": "Female",
@@ -555,37 +555,37 @@
                 {
                   "name": "All races/ethnicities",
                   "std": 18674,
-                  "pop": 161920569
+                  "pop": 163189523
                 },
                 {
                   "name": "American Indian or Alaska Native",
                   "std": 35,
-                  "pop": 1015540
+                  "pop": 1083983
                 },
                 {
                   "name": "Asian",
                   "std": 45,
-                  "pop": 7441839
+                  "pop": 7860366
                 },
                 {
                   "name": "Black or African American",
                   "std": 9096,
-                  "pop": 16131777
+                  "pop": 17453590
                 },
                 {
                   "name": "Hispanic or Latino",
                   "std": 195,
-                  "pop": 24528829
+                  "pop": 25531149
                 },
                 {
                   "name": "Multiple races",
                   "std": 32,
-                  "pop": 2789815
+                  "pop": 2965885
                 },
                 {
                   "name": "Native Hawaiian or Other Pacific Islander",
-                  "std": 0,
-                  "pop": 255102
+                  "std": -1,
+                  "pop": 265418
                 },
                 {
                   "name": "Unknown",
@@ -594,10 +594,10 @@
                 {
                   "name": "White",
                   "std": 3500,
-                  "pop": 85676198
+                  "pop": 89002076
                 }
               ],
-              "pop": 299759669
+              "pop": 307351990
             },
             {
               "name": "Male",
@@ -606,37 +606,37 @@
                 {
                   "name": "All races/ethnicities",
                   "std": 7549,
-                  "pop": 156936487
+                  "pop": 158229297
                 },
                 {
                   "name": "American Indian or Alaska Native",
                   "std": 7,
-                  "pop": 987119
+                  "pop": 1051045
                 },
                 {
                   "name": "Asian",
                   "std": 17,
-                  "pop": 6723818
+                  "pop": 7109762
                 },
                 {
                   "name": "Black or African American",
                   "std": 4266,
-                  "pop": 14920459
+                  "pop": 16099382
                 },
                 {
                   "name": "Hispanic or Latino",
                   "std": 66,
-                  "pop": 25139454
+                  "pop": 26153539
                 },
                 {
                   "name": "Multiple races",
                   "std": 11,
-                  "pop": 2706047
+                  "pop": 2881844
                 },
                 {
                   "name": "Native Hawaiian or Other Pacific Islander",
-                  "std": 0,
-                  "pop": 260633
+                  "std": -1,
+                  "pop": 270330
                 },
                 {
                   "name": "Unknown",
@@ -645,10 +645,140 @@
                 {
                   "name": "White",
                   "std": 1263,
-                  "pop": 83308326
+                  "pop": 86555023
                 }
               ],
-              "pop": 290982343
+              "pop": 298350222
+            }
+          ]
+        },
+        {
+          "sex": [
+            {
+              "name": "Both sexes",
+              "std": 2862211,
+              "race": [
+                {
+                  "name": "All races/ethnicities",
+                  "std": 1526658
+                },
+                {
+                  "name": "American Indian or Alaska Native",
+                  "std": 13888
+                },
+                {
+                  "name": "Asian",
+                  "std": 17079
+                },
+                {
+                  "name": "Black or African American",
+                  "std": 378042
+                },
+                {
+                  "name": "Hispanic or Latino",
+                  "std": 189002
+                },
+                {
+                  "name": "Multiple races",
+                  "std": 6688
+                },
+                {
+                  "name": "Native Hawaiian or Other Pacific Islander",
+                  "std": 3192
+                },
+                {
+                  "name": "Unknown",
+                  "std": 391830
+                },
+                {
+                  "name": "White",
+                  "std": 335832
+                }
+              ]
+            },
+            {
+              "name": "Female",
+              "std": 1964667,
+              "race": [
+                {
+                  "name": "All races/ethnicities",
+                  "std": 1045143
+                },
+                {
+                  "name": "American Indian or Alaska Native",
+                  "std": 10802
+                },
+                {
+                  "name": "Asian",
+                  "std": 11874
+                },
+                {
+                  "name": "Black or African American",
+                  "std": 250289
+                },
+                {
+                  "name": "Hispanic or Latino",
+                  "std": 135926
+                },
+                {
+                  "name": "Multiple races",
+                  "std": 4735
+                },
+                {
+                  "name": "Native Hawaiian or Other Pacific Islander",
+                  "std": 2401
+                },
+                {
+                  "name": "Unknown",
+                  "std": 269303
+                },
+                {
+                  "name": "White",
+                  "std": 234194
+                }
+              ]
+            },
+            {
+              "name": "Male",
+              "std": 892842,
+              "race": [
+                {
+                  "name": "All races/ethnicities",
+                  "std": 478981
+                },
+                {
+                  "name": "American Indian or Alaska Native",
+                  "std": 3083
+                },
+                {
+                  "name": "Asian",
+                  "std": 5189
+                },
+                {
+                  "name": "Black or African American",
+                  "std": 127487
+                },
+                {
+                  "name": "Hispanic or Latino",
+                  "std": 52939
+                },
+                {
+                  "name": "Multiple races",
+                  "std": 1953
+                },
+                {
+                  "name": "Native Hawaiian or Other Pacific Islander",
+                  "std": 789
+                },
+                {
+                  "name": "Unknown",
+                  "std": 121020
+                },
+                {
+                  "name": "White",
+                  "std": 101401
+                }
+              ]
             }
           ]
         }
@@ -656,22 +786,1126 @@
       "maps": {
         "states": [
           {
-            "name": "AL",
-            "std": 27,
+            "name": "AK",
+            "std": 22634,
             "sex": [
               {
                 "name": "Both sexes",
-                "std": 9
+                "std": 11320,
+                "pop": 1476864
               },
               {
                 "name": "Female",
-                "std": 9
+                "std": 7572,
+                "pop": 698814
               },
               {
                 "name": "Male",
-                "std": 9
+                "std": 3742,
+                "pop": 778050
               }
-            ]
+            ],
+            "pop": 2953728
+          },
+          {
+            "name": "AL",
+            "std": 105164,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 52718,
+                "pop": 9717958
+              },
+              {
+                "name": "Female",
+                "std": 37348,
+                "pop": 5011590
+              },
+              {
+                "name": "Male",
+                "std": 15098,
+                "pop": 4706368
+              }
+            ],
+            "pop": 19435916
+          },
+          {
+            "name": "AR",
+            "std": 64664,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 32332,
+                "pop": 5956408
+              },
+              {
+                "name": "Female",
+                "std": 24176,
+                "pop": 3030696
+              },
+              {
+                "name": "Male",
+                "std": 8156,
+                "pop": 2925712
+              }
+            ],
+            "pop": 11912816
+          },
+          {
+            "name": "AZ",
+            "std": 129428,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 64774,
+                "pop": 13656130
+              },
+              {
+                "name": "Female",
+                "std": 44598,
+                "pop": 6873150
+              },
+              {
+                "name": "Male",
+                "std": 20056,
+                "pop": 6782980
+              }
+            ],
+            "pop": 27312260
+          },
+          {
+            "name": "CA",
+            "std": 756064,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 378340,
+                "pop": 78289636
+              },
+              {
+                "name": "Female",
+                "std": 242774,
+                "pop": 39403500
+              },
+              {
+                "name": "Male",
+                "std": 134950,
+                "pop": 38886136
+              }
+            ],
+            "pop": 156579272
+          },
+          {
+            "name": "CO",
+            "std": 95428,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 47714,
+                "pop": 10913148
+              },
+              {
+                "name": "Female",
+                "std": 32302,
+                "pop": 5425622
+              },
+              {
+                "name": "Male",
+                "std": 15412,
+                "pop": 5487526
+              }
+            ],
+            "pop": 21826296
+          },
+          {
+            "name": "CT",
+            "std": 52282,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 26252,
+                "pop": 7181772
+              },
+              {
+                "name": "Female",
+                "std": 18178,
+                "pop": 3678278
+              },
+              {
+                "name": "Male",
+                "std": 7852,
+                "pop": 3503494
+              }
+            ],
+            "pop": 14363544
+          },
+          {
+            "name": "DC",
+            "std": 15634,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 7894,
+                "pop": 672228
+              },
+              {
+                "name": "Female",
+                "std": 4632,
+                "pop": 353627
+              },
+              {
+                "name": "Male",
+                "std": 3108,
+                "pop": 318601
+              }
+            ],
+            "pop": 1344456
+          },
+          {
+            "name": "DE",
+            "std": 18420,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 9210,
+                "pop": 1891868
+              },
+              {
+                "name": "Female",
+                "std": 6236,
+                "pop": 976250
+              },
+              {
+                "name": "Male",
+                "std": 2974,
+                "pop": 915618
+              }
+            ],
+            "pop": 3783736
+          },
+          {
+            "name": "FL",
+            "std": 361696,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 180936,
+                "pop": 40542544
+              },
+              {
+                "name": "Female",
+                "std": 124096,
+                "pop": 20737466
+              },
+              {
+                "name": "Male",
+                "std": 56664,
+                "pop": 19805078
+              }
+            ],
+            "pop": 81085088
+          },
+          {
+            "name": "GA",
+            "std": 230306,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 115278,
+                "pop": 20429720
+              },
+              {
+                "name": "Female",
+                "std": 80604,
+                "pop": 10469956
+              },
+              {
+                "name": "Male",
+                "std": 34424,
+                "pop": 9959764
+              }
+            ],
+            "pop": 40859440
+          },
+          {
+            "name": "HI",
+            "std": 28292,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 14148,
+                "pop": 2863206
+              },
+              {
+                "name": "Female",
+                "std": 9440,
+                "pop": 1412462
+              },
+              {
+                "name": "Male",
+                "std": 4704,
+                "pop": 1450744
+              }
+            ],
+            "pop": 5726412
+          },
+          {
+            "name": "IA",
+            "std": 48338,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 24170,
+                "pop": 6247798
+              },
+              {
+                "name": "Female",
+                "std": 16744,
+                "pop": 3143746
+              },
+              {
+                "name": "Male",
+                "std": 7424,
+                "pop": 3104052
+              }
+            ],
+            "pop": 12495596
+          },
+          {
+            "name": "ID",
+            "std": 22514,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 11262,
+                "pop": 3309860
+              },
+              {
+                "name": "Female",
+                "std": 7926,
+                "pop": 1652366
+              },
+              {
+                "name": "Male",
+                "std": 3326,
+                "pop": 1657494
+              }
+            ],
+            "pop": 6619720
+          },
+          {
+            "name": "IL",
+            "std": 277688,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 139220,
+                "pop": 25719990
+              },
+              {
+                "name": "Female",
+                "std": 94536,
+                "pop": 13091000
+              },
+              {
+                "name": "Male",
+                "std": 43932,
+                "pop": 12628990
+              }
+            ],
+            "pop": 51439980
+          },
+          {
+            "name": "IN",
+            "std": 115526,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 57772,
+                "pop": 13239360
+              },
+              {
+                "name": "Female",
+                "std": 40770,
+                "pop": 6715630
+              },
+              {
+                "name": "Male",
+                "std": 16984,
+                "pop": 6523730
+              }
+            ],
+            "pop": 26478720
+          },
+          {
+            "name": "KS",
+            "std": 45856,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 22928,
+                "pop": 5823282
+              },
+              {
+                "name": "Female",
+                "std": 16650,
+                "pop": 2916016
+              },
+              {
+                "name": "Male",
+                "std": 6278,
+                "pop": 2907266
+              }
+            ],
+            "pop": 11646564
+          },
+          {
+            "name": "KY",
+            "std": 69714,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 34888,
+                "pop": 8850184
+              },
+              {
+                "name": "Female",
+                "std": 24280,
+                "pop": 4491996
+              },
+              {
+                "name": "Male",
+                "std": 10546,
+                "pop": 4358188
+              }
+            ],
+            "pop": 17700368
+          },
+          {
+            "name": "LA",
+            "std": 129300,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 64650,
+                "pop": 9341448
+              },
+              {
+                "name": "Female",
+                "std": 46702,
+                "pop": 4773830
+              },
+              {
+                "name": "Male",
+                "std": 17948,
+                "pop": 4567618
+              }
+            ],
+            "pop": 18682896
+          },
+          {
+            "name": "MA",
+            "std": 96188,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 48200,
+                "pop": 13588844
+              },
+              {
+                "name": "Female",
+                "std": 31176,
+                "pop": 6996608
+              },
+              {
+                "name": "Male",
+                "std": 16812,
+                "pop": 6592236
+              }
+            ],
+            "pop": 27177688
+          },
+          {
+            "name": "MD",
+            "std": 109684,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 54900,
+                "pop": 12012802
+              },
+              {
+                "name": "Female",
+                "std": 37224,
+                "pop": 6190632
+              },
+              {
+                "name": "Male",
+                "std": 17560,
+                "pop": 5822170
+              }
+            ],
+            "pop": 24025604
+          },
+          {
+            "name": "ME",
+            "std": 15860,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 7930,
+                "pop": 2658656
+              },
+              {
+                "name": "Female",
+                "std": 5470,
+                "pop": 1356142
+              },
+              {
+                "name": "Male",
+                "std": 2460,
+                "pop": 1302514
+              }
+            ],
+            "pop": 5317312
+          },
+          {
+            "name": "MI",
+            "std": 185852,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 92972,
+                "pop": 19845152
+              },
+              {
+                "name": "Female",
+                "std": 64850,
+                "pop": 10088856
+              },
+              {
+                "name": "Male",
+                "std": 28030,
+                "pop": 9756296
+              }
+            ],
+            "pop": 39690304
+          },
+          {
+            "name": "MN",
+            "std": 84954,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 42486,
+                "pop": 10979188
+              },
+              {
+                "name": "Female",
+                "std": 28224,
+                "pop": 5519460
+              },
+              {
+                "name": "Male",
+                "std": 14244,
+                "pop": 5459728
+              }
+            ],
+            "pop": 21958376
+          },
+          {
+            "name": "MO",
+            "std": 115792,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 57896,
+                "pop": 12167344
+              },
+              {
+                "name": "Female",
+                "std": 39852,
+                "pop": 6197254
+              },
+              {
+                "name": "Male",
+                "std": 18044,
+                "pop": 5970090
+              }
+            ],
+            "pop": 24334688
+          },
+          {
+            "name": "MS",
+            "std": 69448,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 34742,
+                "pop": 5984666
+              },
+              {
+                "name": "Female",
+                "std": 24670,
+                "pop": 3080966
+              },
+              {
+                "name": "Male",
+                "std": 10036,
+                "pop": 2903700
+              }
+            ],
+            "pop": 11969332
+          },
+          {
+            "name": "MT",
+            "std": 16736,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 8368,
+                "pop": 2065898
+              },
+              {
+                "name": "Female",
+                "std": 5692,
+                "pop": 1027238
+              },
+              {
+                "name": "Male",
+                "std": 2676,
+                "pop": 1038660
+              }
+            ],
+            "pop": 4131796
+          },
+          {
+            "name": "NC",
+            "std": 257498,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 128752,
+                "pop": 20085604
+              },
+              {
+                "name": "Female",
+                "std": 94356,
+                "pop": 10301554
+              },
+              {
+                "name": "Male",
+                "std": 34390,
+                "pop": 9784050
+              }
+            ],
+            "pop": 40171208
+          },
+          {
+            "name": "ND",
+            "std": 12636,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 6318,
+                "pop": 1513854
+              },
+              {
+                "name": "Female",
+                "std": 4056,
+                "pop": 736148
+              },
+              {
+                "name": "Male",
+                "std": 2262,
+                "pop": 777706
+              }
+            ],
+            "pop": 3027708
+          },
+          {
+            "name": "NE",
+            "std": 31792,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 15912,
+                "pop": 3792380
+              },
+              {
+                "name": "Female",
+                "std": 10818,
+                "pop": 1902044
+              },
+              {
+                "name": "Male",
+                "std": 5062,
+                "pop": 1890336
+              }
+            ],
+            "pop": 7584760
+          },
+          {
+            "name": "NH",
+            "std": 12380,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 6190,
+                "pop": 2661216
+              },
+              {
+                "name": "Female",
+                "std": 4178,
+                "pop": 1345904
+              },
+              {
+                "name": "Male",
+                "std": 2012,
+                "pop": 1315312
+              }
+            ],
+            "pop": 5322432
+          },
+          {
+            "name": "NJ",
+            "std": 125272,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 62674,
+                "pop": 17916026
+              },
+              {
+                "name": "Female",
+                "std": 44548,
+                "pop": 9171794
+              },
+              {
+                "name": "Male",
+                "std": 18050,
+                "pop": 8744232
+              }
+            ],
+            "pop": 35832052
+          },
+          {
+            "name": "NM",
+            "std": 50518,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 25264,
+                "pop": 4170218
+              },
+              {
+                "name": "Female",
+                "std": 18454,
+                "pop": 2103376
+              },
+              {
+                "name": "Male",
+                "std": 6800,
+                "pop": 2066842
+              }
+            ],
+            "pop": 8340436
+          },
+          {
+            "name": "NV",
+            "std": 51640,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 25850,
+                "pop": 5781690
+              },
+              {
+                "name": "Female",
+                "std": 17486,
+                "pop": 2880588
+              },
+              {
+                "name": "Male",
+                "std": 8304,
+                "pop": 2901102
+              }
+            ],
+            "pop": 11563380
+          },
+          {
+            "name": "NY",
+            "std": 414250,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 207230,
+                "pop": 39591582
+              },
+              {
+                "name": "Female",
+                "std": 132328,
+                "pop": 20368556
+              },
+              {
+                "name": "Male",
+                "std": 74692,
+                "pop": 19223026
+              }
+            ],
+            "pop": 79183164
+          },
+          {
+            "name": "OH",
+            "std": 226904,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 113452,
+                "pop": 23226846
+              },
+              {
+                "name": "Female",
+                "std": 79650,
+                "pop": 11853786
+              },
+              {
+                "name": "Male",
+                "std": 33802,
+                "pop": 11373060
+              }
+            ],
+            "pop": 46453692
+          },
+          {
+            "name": "OK",
+            "std": 84100,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 42050,
+                "pop": 7822676
+              },
+              {
+                "name": "Female",
+                "std": 29808,
+                "pop": 3948428
+              },
+              {
+                "name": "Male",
+                "std": 12242,
+                "pop": 3874248
+              }
+            ],
+            "pop": 15645352
+          },
+          {
+            "name": "OR",
+            "std": 65206,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 32610,
+                "pop": 8057954
+              },
+              {
+                "name": "Female",
+                "std": 22150,
+                "pop": 4071614
+              },
+              {
+                "name": "Male",
+                "std": 10446,
+                "pop": 3986340
+              }
+            ],
+            "pop": 16115908
+          },
+          {
+            "name": "PA",
+            "std": 213724,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 106920,
+                "pop": 25605006
+              },
+              {
+                "name": "Female",
+                "std": 70402,
+                "pop": 13076258
+              },
+              {
+                "name": "Male",
+                "std": 36402,
+                "pop": 12528748
+              }
+            ],
+            "pop": 51210012
+          },
+          {
+            "name": "RI",
+            "std": 18300,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 9150,
+                "pop": 2112596
+              },
+              {
+                "name": "Female",
+                "std": 6128,
+                "pop": 1088698
+              },
+              {
+                "name": "Male",
+                "std": 3022,
+                "pop": 1023898
+              }
+            ],
+            "pop": 4225192
+          },
+          {
+            "name": "SC",
+            "std": 109972,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 55076,
+                "pop": 9792292
+              },
+              {
+                "name": "Female",
+                "std": 39486,
+                "pop": 5034356
+              },
+              {
+                "name": "Male",
+                "std": 15410,
+                "pop": 4757936
+              }
+            ],
+            "pop": 19584584
+          },
+          {
+            "name": "SD",
+            "std": 15796,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 7898,
+                "pop": 1716938
+              },
+              {
+                "name": "Female",
+                "std": 5662,
+                "pop": 852986
+              },
+              {
+                "name": "Male",
+                "std": 2236,
+                "pop": 863952
+              }
+            ],
+            "pop": 3433876
+          },
+          {
+            "name": "TN",
+            "std": 125084,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 62544,
+                "pop": 13200598
+              },
+              {
+                "name": "Female",
+                "std": 42224,
+                "pop": 6765676
+              },
+              {
+                "name": "Male",
+                "std": 20316,
+                "pop": 6434922
+              }
+            ],
+            "pop": 26401196
+          },
+          {
+            "name": "TX",
+            "std": 563676,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 282316,
+                "pop": 54938228
+              },
+              {
+                "name": "Female",
+                "std": 204282,
+                "pop": 27662648
+              },
+              {
+                "name": "Male",
+                "std": 77078,
+                "pop": 27275580
+              }
+            ],
+            "pop": 109876456
+          },
+          {
+            "name": "UT",
+            "std": 34532,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 17266,
+                "pop": 5991838
+              },
+              {
+                "name": "Female",
+                "std": 11408,
+                "pop": 2977638
+              },
+              {
+                "name": "Male",
+                "std": 5858,
+                "pop": 3014200
+              }
+            ],
+            "pop": 11983676
+          },
+          {
+            "name": "VA",
+            "std": 141336,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 70698,
+                "pop": 16765986
+              },
+              {
+                "name": "Female",
+                "std": 47718,
+                "pop": 8516456
+              },
+              {
+                "name": "Male",
+                "std": 22920,
+                "pop": 8249530
+              }
+            ],
+            "pop": 33531972
+          },
+          {
+            "name": "VT",
+            "std": 7604,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 3802,
+                "pop": 1252084
+              },
+              {
+                "name": "Female",
+                "std": 2704,
+                "pop": 635032
+              },
+              {
+                "name": "Male",
+                "std": 1098,
+                "pop": 617052
+              }
+            ],
+            "pop": 2504168
+          },
+          {
+            "name": "WA",
+            "std": 114794,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 57398,
+                "pop": 14340702
+              },
+              {
+                "name": "Female",
+                "std": 38094,
+                "pop": 7170706
+              },
+              {
+                "name": "Male",
+                "std": 19302,
+                "pop": 7169996
+              }
+            ],
+            "pop": 28681404
+          },
+          {
+            "name": "WI",
+            "std": 97488,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 48762,
+                "pop": 11542674
+              },
+              {
+                "name": "Female",
+                "std": 33320,
+                "pop": 5807474
+              },
+              {
+                "name": "Male",
+                "std": 15406,
+                "pop": 5735200
+              }
+            ],
+            "pop": 23085348
+          },
+          {
+            "name": "WV",
+            "std": 19832,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 9916,
+                "pop": 3688256
+              },
+              {
+                "name": "Female",
+                "std": 6898,
+                "pop": 1866136
+              },
+              {
+                "name": "Male",
+                "std": 3018,
+                "pop": 1822120
+              }
+            ],
+            "pop": 7376512
+          },
+          {
+            "name": "WY",
+            "std": 8134,
+            "sex": [
+              {
+                "name": "Both sexes",
+                "std": 4074,
+                "pop": 1172214
+              },
+              {
+                "name": "Female",
+                "std": 2774,
+                "pop": 574412
+              },
+              {
+                "name": "Male",
+                "std": 1286,
+                "pop": 597802
+              }
+            ],
+            "pop": 2344428
           }
         ]
       }
