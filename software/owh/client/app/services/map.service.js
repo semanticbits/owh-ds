@@ -427,7 +427,7 @@
         function attachEventsForMap(map, primaryFilter) {
             map.invalidateSize();
             map.eachLayer(function (layer){
-                if(layer.feature) {
+                if(layer.feature && primaryFilter) {
                     layer.on("mouseover", function (event) {
                         var isStatData = ['mental_health', 'prams', 'brfss'].indexOf(primaryFilter.key) != -1;
                         if(primaryFilter && event.target.feature) {
