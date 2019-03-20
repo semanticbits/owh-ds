@@ -1417,7 +1417,6 @@
         function getTBDataFilters() {
             var tbAgeGroupOptions = [
                 {"key": "All age groups", "title": "All age groups"},
-                {"key": "Age 15 and older", "title": "Age 15 and older"},
                 {"key": "0-4", "title": "0-4"},
                 {"key": "05-14", "title": "05-14"},
                 {"key": "15-24", "title": "15-24"},
