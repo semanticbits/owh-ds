@@ -324,11 +324,11 @@
                     key:"std",
                     title: 'Sexually Transmitted Diseases/Infections',
                     image: 'std-icon.svg',
-                    yrsAvail: '2000-2015',
+                    yrsAvail: '2000-2016',
                     topics: "Infants, Sexually Transmitted Diseases, Chlamydia, Gonorrhea, Primary and Secondary Syphilis, Early Latent Syphilis, Congenital Syphilis",
-                    dataDescription: "STD morbidity data presented in this report are compiled from a combination of data reported on standardized hard copy reporting forms and electronic data received through the National Electronic Tele­communications System for Surveillance (NETSS) for diagnosis years 2000 through 2015.",
+                    dataDescription: "STD morbidity data presented in this report are compiled from a combination of data reported on standardized hard copy reporting forms and electronic data received through the National Electronic Tele­communications System for Surveillance (NETSS) for diagnosis years 2000 through 2016.",
                     suppression: "For STD data, the data suppression rule is applied when the numerator for a given state is 3 or less. When suppressed, data are only displayed by state totals and breakdown by demographic characteristics is not permitted.",
-                    source: "The CDC collects, analyzes, and disseminates surveillance data on STD diagnoses. The NCHHSTP AtlasPlus presents chlamydia, gonorrhea, congenital syphilis, and primary and secondary syphilis case report data submitted from all 50 states, the District of Columbia for the years 2000 to 2015 and early latent syphilis case report data for 2003-2015. STD data are presented by disease, year of diagnosis, reporting area (state), age group, race/ethnicity, and sex.",
+                    source: "The CDC collects, analyzes, and disseminates surveillance data on STD diagnoses. The NCHHSTP AtlasPlus presents chlamydia, gonorrhea, congenital syphilis, and primary and secondary syphilis case report data submitted from all 50 states, the District of Columbia for the years 2000 to 2016 and early latent syphilis case report data for 2003-2016. STD data are presented by disease, year of diagnosis, reporting area (state), age group, race/ethnicity, and sex.",
                     isRateCalculation: true,
                     filters: [
                         {name: "Cases", description: "Cases of a given STD refer to confirmed diagnoses during a given time period"},
@@ -392,9 +392,9 @@
                     key:"aids",
                     title: 'HIV/AIDS',
                     image: 'aids-hiv-icon.svg',
-                    yrsAvail: '2000-2015',
+                    yrsAvail: '2000-2017',
                     topics: "Deaths, Babies, HIV/AIDS, AIDS Diagnoses, AIDS Deaths, AIDS Prevalence, HIV Diagnoses, HIV Deaths, HIV Prevalence",
-                    dataDescription: "These data are the nation’s source of information on HIV in the United States. Numbers and rates and presented based on the date of diagnosis of HIV infection and infection classified as stage 3 (AIDS) (from the beginning of the epidemic through December 31, 2015; reported as of June 30, 2016).<br/>Data on diagnoses of HIV infection should be interpreted with caution. Data may not be representative of all persons with HIV because not all infected persons have been tested. Also, many states offer anonymous testing; the results of anonymous tests are not reported to the confidential name-based HIV registries of state and local health departments.",
+                    dataDescription: "These data are the nation’s source of information on HIV in the United States. Numbers and rates and presented based on the date of diagnosis of HIV infection and infection classified as stage 3 (AIDS) (from the beginning of the epidemic through December 31, 2017; reported as of June 30, 2018).<br/>Data on diagnoses of HIV infection should be interpreted with caution. Data may not be representative of all persons with HIV because not all infected persons have been tested. Also, many states offer anonymous testing; the results of anonymous tests are not reported to the confidential name-based HIV registries of state and local health departments.",
                     suppression: "A data suppression rule is applied if:" +
                     "<ul>" +
                     "<li>The population denominator for 1-way and 2-way demographic/transmission category data is less than 100.</li>" +
@@ -403,14 +403,14 @@
                     "<li>Two-way demographic/risk stratifications for the race groups Native Hawaiians/Other Pacific Islanders (NHOPIs) and Multiple races are queried.</li>" +
                     "<li>Two-way demographic/transmission category stratifications for New Hampshire are queried.</li>" +
                     "</ul>Also, data are suppressed or aggregated to preclude arithmetic calculation of a suppressed cell.",
-                    source: "CDC collects, analyzes, and disseminates surveillance data on diagnoses of HIV infection; these data are the nation’s source of information on HIV in the United States. Numbers and rates and presented based on the date of diagnosis of HIV infection and infection classified as stage 3 (AIDS) (from the beginning of the epidemic through December 31, 2015; reported as of June 30, 2016).",
+                    source: "CDC collects, analyzes, and disseminates surveillance data on diagnoses of HIV infection; these data are the nation’s source of information on HIV in the United States. Numbers and rates are presented based on the date of diagnosis of HIV infection and infection classified as stage 3 (AIDS) (from the beginning of the epidemic through December 31, 2017; reported as of June 30, 2018).",
                     isRateCalculation: true,
                     filters: [
                         {name: "Deaths", description: "Persons reported to the national HIV surveillance system are assumed alive unless their deaths have been reported to CDC by state/local HIV surveillance programs."},
-                        {name: "Prevalence", description: "(Persons Living with Diagnosed HIV Infection or infection classified as stage 3 (AIDS)): The data reflect persons living with diagnosed HIV infection at the end of each year during 2008–2014, or persons living with infection ever classified as stage 3 (AIDS) at the end of each year during 2000–2014"},
+                        {name: "Prevalence", description: "(Persons Living with Diagnosed HIV Infection or infection classified as stage 3 (AIDS)): The data reflect persons living with diagnosed HIV infection at the end of each year during 2008–2016, or persons living with infection ever classified as stage 3 (AIDS) at the end of each year during 2000–2016"},
                         {name: "Diagnoses", description: "Diagnoses of HIV infection or infection classified as stage 3 (AIDS) refer to confirmed diagnoses during a given time period."},
                         {name: "Rates", description: "Each rate was calculated by dividing the total number of diagnoses (or deaths or prevalence) for the calendar year by the population for that calendar year and then multiplying the result by 100,000"},
-                        {name: "Population", description: "The population denominators used to compute the rates for the 50 states, the District of Columbia were based on the Vintage 2009 postcensal estimates file (for the years 2000 to 2009) and the Vintage 2015 file (for years 2010 to 2015) from the U.S. Census Bureau."},
+                        {name: "Population", description: "The population denominators used to compute the rates for the 50 states, the District of Columbia were based on the Vintage 2009 postcensal estimates file (for the years 2000 to 2009) and the Vintage 2017 file (for years 2010 to 2017) from the U.S. Census Bureau."},
                         {name: "Indicator", description: "This field indicates diagnosis, prevalence of deaths of AIDS/HIV"},
                         {name: "Location(State)", description: "This field indicates the State where the AIDS/HIV surveillance data are collected"},
                         {name: "Year", description: "This field indicates year of diagnosis or death. For persons living with diagnosed HIV, year refers to the end of the queried calendar year"},
@@ -446,7 +446,7 @@
                         },
                         {
                             question:"What are the  population sources?",
-                            answer:"The population denominators used to compute the rates for the 50 states, the District of Columbia were based on the Vintage 2009 postcensal estimates file (for the years 2000 to 2009) and the Vintage 2015 file (for years 2010 to 2015) from the U.S. Census Bureau. The denominators used for calculating age-, sex-, and race/ethnicity-specific rates were computed by applying the appropriate vintage estimates for age, sex, and race/ethnicity for the 50 states and the District of Columbia.<br/><br/>"
+                            answer:"The population denominators used to compute the rates for the 50 states, the District of Columbia were based on the Vintage 2009 postcensal estimates file (for the years 2000 to 2009) and the Vintage 2017 file (for years 2010 to 2017) from the U.S. Census Bureau. The denominators used for calculating age-, sex-, and race/ethnicity-specific rates were computed by applying the appropriate vintage estimates for age, sex, and race/ethnicity for the 50 states and the District of Columbia.<br/><br/>"
                         }
                     ]
                 },

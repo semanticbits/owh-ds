@@ -4,6 +4,9 @@ import logging
 from owh.etl.common.datafile_parser import DataFileParser
 logger = logging.getLogger('aids_etl')
 
+data_mappings = {'HIV_1_2000_2017.csv':'aids_diagnoses.json', 'HIV_2_2000_2016.csv':'aids.json', 'HIV_3_2000_2016.csv':'aids.json',
+                 'HIV_4_2008_2017.csv':'aids.json', 'HIV_5_2008_2016.csv':'aids.json', 'HIV_6_2008_2016.csv':'aids.json'}
+
 class AIDSETL (ETL):
     """
         Loads AIDS data into ES db
@@ -12,6 +15,14 @@ class AIDSETL (ETL):
         ETL.__init__(self, configFile)
         self.create_index(os.path.join(os.path.dirname(__file__), "es_mapping"
                              ,self.config['elastic_search']['type_mapping']), True)
+
+    def parse_int(self, s):
+        try:
+            res = int(eval(str(s)))
+            if type(res) == int:
+                return res
+        except:
+            return
 
     def perform_etl(self):
         """Load the AIDS data"""
@@ -26,7 +37,7 @@ class AIDSETL (ETL):
             logger.info("Processing file: %s", f)
 
             # get the corresponding data mapping file
-            config_file = os.path.join(self.dataDirectory, 'data_mapping', 'aids.json')
+            config_file = os.path.join(self.dataDirectory, 'data_mapping', data_mappings[f])
 
             if not config_file:
                 logger.warn("No mapping available for data file %s, skipping", file_path)
@@ -44,12 +55,12 @@ class AIDSETL (ETL):
                     continue
                 if (record ['race_ethnicity'] == None or record['age_group'] == None or record['sex'] == None): # Skip 'All' race, sex and age records
                     continue
-                if(len(record ['pop']) > 0):
+                if(len(record ['pop']) > 0 and self.parse_int(record['pop']) != None):
                     record['pop'] = int(record['pop'])
                 else:
                     record['pop'] = 0
 
-                if(len(record ['cases']) > 0):
+                if(len(record ['cases']) > 0 and self.parse_int(record['cases']) != None):
                     record['cases'] = int(record['cases'])
                 else:
                     record['cases'] = 0
@@ -72,8 +83,8 @@ class AIDSETL (ETL):
         logger.info("*** Processed %s records from AIDS data file", self.metrics.insertCount)
 
     def updateDsMetadata(self):
-        for y in range(2000, 2016):
-            self.loadDataSetMetaData('aids', str(y), os.path.join(self.dataDirectory, 'data_mapping', 'aids.json'))
+        for y in range(2000, 2018):
+            self.loadDataSetMetaData('aids', str(y), os.path.join(self.dataDirectory, 'data_mapping', 'aids_diagnoses.json'))
 
     def validate_etl(self):
         """ Validate the ETL"""

@@ -143,7 +143,7 @@
                                 else if (rateVisibility === 'suppressed') {
                                     cell += 'Suppressed';
                                 } else if (rateVisibility === 'na') {
-                                    cell += 'Not Applicable'
+                                    cell += 'Not Applicable';
                                 } else if (rateVisibility === 'unreliable') {
                                     cell += 'Unreliable';
                                 }
@@ -174,9 +174,9 @@
                             if(column.title === 'suppressed') {
                                 cell += 'Suppressed';
                             }
-                            else if(column.title === 'na') {
+                            else if(column.title === 'na' || column.title === -2) {
                                 cell += 'Not Available';
-                            }else {
+                            } else {
                                 cell += $filter('number')(column.title);
                             }
                             cell += '</span>';

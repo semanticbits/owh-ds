@@ -11,10 +11,11 @@
                 <div class="usa-width-one-third" ng-if="!properties.showRates">
                     <span ng-if="eachCat.deaths !== 'suppressed' && ['crude_death_rates', 'age-adjusted_death_rates', 'crude_cancer_incidence_rates', 'crude_cancer_death_rates'].indexOf(properties.tableView) !== -1"
                           ng-bind="eachCat.rate"></span>
-                    <span ng-if="eachCat.deaths !== 'suppressed' && ['crude_death_rates', 'age-adjusted_death_rates', 'crude_cancer_incidence_rates', 'crude_cancer_death_rates'].indexOf(properties.tableView) === -1"
+                    <span ng-if="eachCat.deaths !== 'suppressed' && eachCat[key] !== -2
+                        && ['crude_death_rates', 'age-adjusted_death_rates', 'crude_cancer_incidence_rates', 'crude_cancer_death_rates'].indexOf(properties.tableView) === -1"
                           ng-bind="eachCat[key] | number"></span>
                     <span ng-if="eachCat[key] === 'suppressed'">Suppressed</span>
-                    <span ng-if="(!eachCat[key] && eachCat[key] != 0) || eachCat[key] == 'na'"
+                    <span ng-if="(!eachCat[key] && eachCat[key] != 0) || eachCat[key] == 'na' || eachCat[key] == -2"
                           ng-bind="'label.not.available' | translate"></span>
                 </div>
                 <div class="usa-width-one-third" ng-if="properties.showRates">
