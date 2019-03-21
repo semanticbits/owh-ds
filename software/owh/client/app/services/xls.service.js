@@ -94,7 +94,7 @@
                 cell.z = XLSX.SSF._table[164];
             }
 
-            if(typeof cell.v === 'number') cell.t = 'n';
+            if(typeof cell.v === 'number' && cell.v !== -2) cell.t = 'n';
             else if(typeof cell.v === 'boolean') cell.t = 'b';
             else if(cell.v instanceof Date) {
                 cell.t = 'n'; cell.z = XLSX.SSF._table[14];
@@ -107,6 +107,8 @@
                 }
                 else if(cell.v === 'na') {
                     cell.v = 'No response';
+                } else if(cell.v === -2) {
+                    cell.v = 'Not Available';
                 }
                 else if(convertNumbers) {
                     //check if string is parsable as integer and make sure doesn't contain letters
