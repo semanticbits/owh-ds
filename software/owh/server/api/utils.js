@@ -418,8 +418,10 @@ function suppressCounts (obj, countKey, dataType, suppressKey, maxValue, dataset
                 obj.mean = suppressedVal;
             }
         } else if(obj[countKey] != undefined && obj[countKey] < value) {
-            if(countKey === 'std' && (obj[countKey] === 0 || obj[countKey] === -2)) {
+            if(countKey === 'std' && obj[countKey] === 0) {
                 //obj[countKey] = naVal;
+            } else if(obj[countKey] === -2) {
+                obj[countKey] = naVal;
             } else {// suppress value
                 obj[key] = suppressedVal;
             }
