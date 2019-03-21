@@ -124,7 +124,7 @@
             },
             {
               "name": "Male",
-              "std": "na"
+              "std": 0
             }
           ]
         },
@@ -281,7 +281,7 @@
             },
             {
               "name": "Native Hawaiian or Other Pacific Islander",
-              "std": "na"
+              "std": 0
             },
             {
               "name": "Unknown",
@@ -446,7 +446,7 @@
               },
               {
                 "name": "Male",
-                "std": "na",
+                "std": 0,
                 "pop": 270330
               }
             ],
@@ -635,7 +635,7 @@
                 },
                 {
                   "name": "Native Hawaiian or Other Pacific Islander",
-                  "std": -1,
+                  "std": 0,
                   "pop": 270330
                 },
                 {
@@ -941,21 +941,21 @@
           },
           {
             "name": "DC",
-            "std": 15634,
+            "std": 15586,
             "sex": [
               {
                 "name": "Both sexes",
-                "std": 7894,
+                "std": 7878,
                 "pop": 672228
               },
               {
                 "name": "Female",
-                "std": 4632,
+                "std": 4616,
                 "pop": 353627
               },
               {
                 "name": "Male",
-                "std": 3108,
+                "std": 3092,
                 "pop": 318601
               }
             ],
