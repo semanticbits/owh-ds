@@ -1182,7 +1182,7 @@
             var disabledFilterCombinations = {
                 'HIV, stage 3 (AIDS) deaths': [ '2017' ],
                 'Persons living with HIV, stage 3 (AIDS)': [ '2017' ],
-                'HIV diagnoses': [ '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2017' ],
+                'HIV diagnoses': [ '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007' ],
                 'HIV deaths': [ '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2017' ],
                 'Persons living with diagnosed HIV': [ '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2017' ],
                 '2017': [ 'HIV, stage 3 (AIDS) deaths', 'Persons living with HIV, stage 3 (AIDS)', 'HIV deaths', 'Persons living with diagnosed HIV' ],
