@@ -131,7 +131,7 @@
                                     cell += column.title === 'suppressed' ? 'Suppressed' : column.ageAdjustedRate;
                                 }
                                 else {
-                                    cell += 'Not Available'
+                                    cell += 'Not Available';
                                 }
                                 cell += '</span>';
                             }
@@ -171,7 +171,7 @@
                                 }
                             }
                             cell += '<span>';
-                            if(column.title === 'suppressed') {
+                            if(column.title === 'suppressed' || column.title === -1) {
                                 cell += 'Suppressed';
                             }
                             else if(column.title === 'na' || column.title === -2) {

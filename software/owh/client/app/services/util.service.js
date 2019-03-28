@@ -852,9 +852,9 @@
         }
 
         function getMinAndMaxValue(array) {
-            //collect only numbers. exlude strings e.g 'suppressed', 'na'
+            //collect only numbers(only +ve). exclude strings e.g 'suppressed', 'na'
             var filteredArray = array.filter(function(elm){
-                return !isNaN(elm);
+                return !isNaN(elm) && elm > -1;
             });
             var sortedArray = filteredArray.sort(function(a,b) {
                 return a-b;
