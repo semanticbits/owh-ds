@@ -65,11 +65,11 @@
         })();
 
         function getRateVisibility(count, pop, tableView) {
-            if(count === 'suppressed' || pop === 'suppressed') {
+            if(count === 'suppressed' || pop === 'suppressed' || count === -1) {
                 return 'suppressed';
             }
-            if (pop === 'n/a') {
-                return 'na'
+            if (pop === 'n/a' || count === -2) {
+                return 'na';
             }
             //If population value is undefined
             // OR
