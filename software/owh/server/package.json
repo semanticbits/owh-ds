@@ -23,7 +23,7 @@
     "mime": "^2.4.0",
     "morgan": "~1.9.1",
     "node-uuid": "^1.4.7",
-    "node-yaml-config": "0.0.4",
+    "node-yaml-config": "0.0.5",
     "q": "^1.4.1",
     "request": "^2.76.0",
     "rio": "^2.4.1",
