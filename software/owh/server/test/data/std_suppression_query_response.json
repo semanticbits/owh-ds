@@ -112,15 +112,15 @@
         },
         {
           "name": "Native Hawaiian or Other Pacific Islander",
-          "std": "suppressed",
+          "std": 4,
           "group_table_sex": [
             {
               "name": "Both sexes",
-              "std": "suppressed"
+              "std": 2
             },
             {
               "name": "Female",
-              "std": "suppressed"
+              "std": 2
             },
             {
               "name": "Male",
@@ -169,7 +169,7 @@
       "group_chart_0_sex": [
         {
           "name": "Both sexes",
-          "std": "suppressed",
+          "std": 52718,
           "group_chart_0_race": [
             {
               "name": "All races/ethnicities",
@@ -197,7 +197,7 @@
             },
             {
               "name": "Native Hawaiian or Other Pacific Islander",
-              "std": "suppressed"
+              "std": 2
             },
             {
               "name": "Unknown",
@@ -211,7 +211,7 @@
         },
         {
           "name": "Female",
-          "std": "suppressed",
+          "std": 37348,
           "group_chart_0_race": [
             {
               "name": "All races/ethnicities",
@@ -239,7 +239,7 @@
             },
             {
               "name": "Native Hawaiian or Other Pacific Islander",
-              "std": "suppressed"
+              "std": 2
             },
             {
               "name": "Unknown",
@@ -432,16 +432,16 @@
           },
           {
             "name": "Native Hawaiian or Other Pacific Islander",
-            "std": "suppressed",
+            "std": 4,
             "sex": [
               {
                 "name": "Both sexes",
-                "std": "suppressed",
+                "std": 2,
                 "pop": 535748
               },
               {
                 "name": "Female",
-                "std": "suppressed",
+                "std": 2,
                 "pop": 265418
               },
               {
@@ -533,7 +533,7 @@
                 },
                 {
                   "name": "Native Hawaiian or Other Pacific Islander",
-                  "std": -1,
+                  "std": 2,
                   "pop": 535748
                 },
                 {
@@ -584,7 +584,7 @@
                 },
                 {
                   "name": "Native Hawaiian or Other Pacific Islander",
-                  "std": -1,
+                  "std": 2,
                   "pop": 265418
                 },
                 {

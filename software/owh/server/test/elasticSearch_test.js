@@ -770,13 +770,11 @@ describe("Elastic Search", function () {
             //Both Sexes
             expect(resp.data.nested.table.race[6].sex[0].name).equal(stdSuppressionQueryResp.data.nested.table.race[6].sex[0].name);
             //value Suppressed
-            expect(resp.data.nested.table.race[6].sex[0].std).equal('suppressed');
-            expect(stdSuppressionQueryResp.data.nested.table.race[6].sex[0].std).equal('suppressed');
+            expect(resp.data.nested.table.race[6].sex[0].std).equal(2);
             //Female
             expect(resp.data.nested.table.race[6].sex[1].name).equal(stdSuppressionQueryResp.data.nested.table.race[6].sex[1].name);
             //value Suppressed
-            expect(resp.data.nested.table.race[6].sex[1].std).equal('suppressed');
-            expect(stdSuppressionQueryResp.data.nested.table.race[6].sex[1].std).equal('suppressed');
+            expect(resp.data.nested.table.race[6].sex[1].std).equal(2);
             //Male
             expect(resp.data.nested.table.race[6].sex[2].name).equal(stdSuppressionQueryResp.data.nested.table.race[6].sex[2].name);
             //value Suppressed
