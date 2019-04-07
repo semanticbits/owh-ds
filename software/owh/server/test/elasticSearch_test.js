@@ -707,17 +707,17 @@ describe("Elastic Search", function () {
             expect(resp.data.nested.charts[0].age_group[10].name).equal("All age groups");
             expect(resp.data.nested.charts[0].age_group[10].race[0].name).equal("All races/ethnicities");
             expect(resp.data.nested.charts[0].age_group[10].race[0].std).equal(1526658);
-            expect(resp.data.nested.charts[0].age_group[10].race[0].pop).equal(318857056);
+            expect(resp.data.nested.charts[0].age_group[10].race[0].pop).equal(321418820);
             //Chart 1 -> sex vs age_group
             expect(resp.data.nested.charts[1].sex[0].name).equal("Both sexes");
             expect(resp.data.nested.charts[1].sex[0].age_group[10].name).equal("All age groups");
             expect(resp.data.nested.charts[1].sex[0].age_group[10].std).equal(1526658);
-            expect(resp.data.nested.charts[1].sex[0].age_group[10].pop).equal(318857056);
+            expect(resp.data.nested.charts[1].sex[0].age_group[10].pop).equal(321418820);
             //Chart 2 -> sex vs race
             expect(resp.data.nested.charts[2].sex[0].name).equal("Both sexes");
             expect(resp.data.nested.charts[2].sex[0].race[0].name).equal("All races/ethnicities");
             expect(resp.data.nested.charts[2].sex[0].race[0].std).equal(1526658);
-            expect(resp.data.nested.charts[2].sex[0].race[0].pop).equal(318857056);
+            expect(resp.data.nested.charts[2].sex[0].race[0].pop).equal(321418820);
             done();
         })
     });
@@ -770,18 +770,16 @@ describe("Elastic Search", function () {
             //Both Sexes
             expect(resp.data.nested.table.race[6].sex[0].name).equal(stdSuppressionQueryResp.data.nested.table.race[6].sex[0].name);
             //value Suppressed
-            expect(resp.data.nested.table.race[6].sex[0].std).equal('suppressed');
-            expect(stdSuppressionQueryResp.data.nested.table.race[6].sex[0].std).equal('suppressed');
+            expect(resp.data.nested.table.race[6].sex[0].std).equal(2);
             //Female
             expect(resp.data.nested.table.race[6].sex[1].name).equal(stdSuppressionQueryResp.data.nested.table.race[6].sex[1].name);
             //value Suppressed
-            expect(resp.data.nested.table.race[6].sex[1].std).equal('suppressed');
-            expect(stdSuppressionQueryResp.data.nested.table.race[6].sex[1].std).equal('suppressed');
+            expect(resp.data.nested.table.race[6].sex[1].std).equal(2);
             //Male
             expect(resp.data.nested.table.race[6].sex[2].name).equal(stdSuppressionQueryResp.data.nested.table.race[6].sex[2].name);
             //value Suppressed
-            expect(resp.data.nested.table.race[6].sex[2].std).equal('na');
-            expect(stdSuppressionQueryResp.data.nested.table.race[6].sex[2].std).equal('na');
+            expect(resp.data.nested.table.race[6].sex[2].std).equal(0);
+            expect(stdSuppressionQueryResp.data.nested.table.race[6].sex[2].std).equal(0);
             done();
         })
     });
@@ -793,23 +791,23 @@ describe("Elastic Search", function () {
         new elasticSearch().aggregateDiseaseData(query, 'tb', 'owh_tb', 'tb').then(function (resp) {
             //All races/ethnicities
             expect(resp.data.nested.table.race[0].name).equal('All races/ethnicities');
-            expect(resp.data.nested.table.race[0].tb).equal(38168);
+            expect(resp.data.nested.table.race[0].tb).equal(38170);
 
             //Both sexes
             expect(resp.data.nested.table.race[0].sex[0].name).equal('Both sexes');
-            expect(resp.data.nested.table.race[0].sex[0].tb).equal(19087);
+            expect(resp.data.nested.table.race[0].sex[0].tb).equal(19089);
 
             expect(resp.data.nested.table.race[0].sex[1].name).equal('Female');
-            expect(resp.data.nested.table.race[0].sex[1].tb).equal(7648);
+            expect(resp.data.nested.table.race[0].sex[1].tb).equal(7647);
 
             expect(resp.data.nested.table.race[0].sex[2].name).equal('Male');
-            expect(resp.data.nested.table.race[0].sex[2].tb).equal(11433);
+            expect(resp.data.nested.table.race[0].sex[2].tb).equal(11434);
 
             //map data
             var states = resp.data.nested.maps.states;
             expect(states[0].name).equal('AK');
             expect(states[0].sex[0].name).equal('Both sexes');
-            expect(states[0].sex[0].tb).equal(199);
+            expect(states[0].sex[0].tb).equal(204);
             expect(states[0].sex[1].name).equal('Female');
             expect(states[0].sex[1].tb).equal(24);
             expect(states[0].sex[2].name).equal('Male');
@@ -824,16 +822,16 @@ describe("Elastic Search", function () {
         new elasticSearch().aggregateDiseaseData([query], 'tb', 'owh_tb', 'tb', false).then(function (resp) {
             //SideFilter counts: current_year
             expect(resp.data.simple.current_year[0].name).equal('2015');
-            expect(resp.data.simple.current_year[0].tb).equal(19087);
+            expect(resp.data.simple.current_year[0].tb).equal(19089);
             //SideFilter counts: race
             expect(resp.data.simple.race[0].name).equal('All races/ethnicities');
-            expect(resp.data.simple.race[0].tb).equal(19087);
+            expect(resp.data.simple.race[0].tb).equal(19089);
             //SideFilter counts: age_group
             expect(resp.data.simple.age_group[0].name).equal('All age groups');
-            expect(resp.data.simple.age_group[0].tb).equal(19087);
+            expect(resp.data.simple.age_group[0].tb).equal(19089);
             //SideFilter counts: sex
             expect(resp.data.simple.sex[0].name).equal('Both sexes');
-            expect(resp.data.simple.sex[0].tb).equal(19087);
+            expect(resp.data.simple.sex[0].tb).equal(19089);
             done();
         })
     });
@@ -846,20 +844,20 @@ describe("Elastic Search", function () {
         var query = [casesQuery, populationQuery, mapQuery, chartQuery];
         new elasticSearch().aggregateDiseaseData(query, 'tb', 'owh_tb', 'tb').then(function (resp) {
             //Chart 0 -> age_group vs race
-            expect(resp.data.nested.charts[0].age_group[9].name).equal("All age groups");
-            expect(resp.data.nested.charts[0].age_group[9].race[0].name).equal("All races/ethnicities");
-            expect(resp.data.nested.charts[0].age_group[9].race[0].tb).equal(19087);
-            expect(resp.data.nested.charts[0].age_group[9].race[0].pop).equal(321418820);
+            expect(resp.data.nested.charts[0].age_group[8].name).equal("All age groups");
+            expect(resp.data.nested.charts[0].age_group[8].race[0].name).equal("All races/ethnicities");
+            expect(resp.data.nested.charts[0].age_group[8].race[0].tb).equal(19089);
+            expect(resp.data.nested.charts[0].age_group[8].race[0].pop).equal(321039839);
             //Chart 1 -> sex vs age_group
             expect(resp.data.nested.charts[1].sex[0].name).equal("Both sexes");
             expect(resp.data.nested.charts[1].sex[0].race[0].name).equal("All races/ethnicities");
-            expect(resp.data.nested.charts[1].sex[0].race[0].tb).equal(19087);
-            expect(resp.data.nested.charts[1].sex[0].race[0].pop).equal(321418820);
+            expect(resp.data.nested.charts[1].sex[0].race[0].tb).equal(19089);
+            expect(resp.data.nested.charts[1].sex[0].race[0].pop).equal(321039839);
             //Chart 2 -> sex vs race
             expect(resp.data.nested.charts[2].sex[0].name).equal("Both sexes");
-            expect(resp.data.nested.charts[2].sex[0].age_group[9].name).equal("All age groups");
-            expect(resp.data.nested.charts[2].sex[0].age_group[9].tb).equal(19087);
-            expect(resp.data.nested.charts[2].sex[0].age_group[9].pop).equal(321418820);
+            expect(resp.data.nested.charts[2].sex[0].age_group[8].name).equal("All age groups");
+            expect(resp.data.nested.charts[2].sex[0].age_group[8].tb).equal(19089);
+            expect(resp.data.nested.charts[2].sex[0].age_group[8].pop).equal(321039839);
             done();
         })
     });
@@ -874,18 +872,18 @@ describe("Elastic Search", function () {
             //Chart 0 -> age_group vs race
             expect(resp.data.nested.charts[0].age_group[0].name).equal("All age groups");
             expect(resp.data.nested.charts[0].age_group[0].race[0].name).equal("All races/ethnicities");
-            expect(resp.data.nested.charts[0].age_group[0].race[0].aids).equal(18274);
-            expect(resp.data.nested.charts[0].age_group[0].race[0].pop).equal(268671725);
+            expect(resp.data.nested.charts[0].age_group[0].race[0].aids).equal(18902);
+            expect(resp.data.nested.charts[0].age_group[0].race[0].pop).equal(268302942);
             //Chart 1 -> sex vs age_group
             expect(resp.data.nested.charts[1].sex[0].name).equal("Both sexes");
             expect(resp.data.nested.charts[1].sex[0].age_group[0].name).equal("All age groups");
-            expect(resp.data.nested.charts[1].sex[0].age_group[0].aids).equal(18274);
-            expect(resp.data.nested.charts[1].sex[0].age_group[0].pop).equal(268671725);
+            expect(resp.data.nested.charts[1].sex[0].age_group[0].aids).equal(18902);
+            expect(resp.data.nested.charts[1].sex[0].age_group[0].pop).equal(268302942);
             //Chart 2 -> sex vs race
             expect(resp.data.nested.charts[2].sex[0].name).equal("Both sexes");
             expect(resp.data.nested.charts[2].sex[0].race[0].name).equal("All races/ethnicities");
-            expect(resp.data.nested.charts[2].sex[0].race[0].aids).equal(18274);
-            expect(resp.data.nested.charts[2].sex[0].race[0].pop).equal(268671725);
+            expect(resp.data.nested.charts[2].sex[0].race[0].aids).equal(18902);
+            expect(resp.data.nested.charts[2].sex[0].race[0].pop).equal(268302942);
             done();
         })
     });

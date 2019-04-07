@@ -22,7 +22,7 @@ describe("Women's Health Fact sheet", function () {
             expect(resp.stdData[3].data.std).to.eql("43");
             //hiv
             expect(resp.hivAIDSData[3].disease).to.eql("HIV Diagnoses");
-            expect(resp.hivAIDSData[3].data.aids).to.eql("182");
+            expect(resp.hivAIDSData[3].data.aids).to.eql("185");
 
             //detail mortality
             expect(resp.detailMortalityData[0].causeOfDeath).to.eql("Diseases of heart");

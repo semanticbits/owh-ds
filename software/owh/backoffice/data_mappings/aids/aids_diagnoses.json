@@ -12,16 +12,7 @@
         "3": "Persons living with HIV, stage 3 (AIDS)",
         "4": "HIV diagnoses",
         "5": "HIV deaths",
-        "6": "Persons living with diagnosed HIV",
-        "7": "Chlamydia",
-        "8": "Gonorrhea",
-        "9": "Primary and Secondary Syphilis",
-        "14": "Early Latent Syphilis",
-        "3506": "Congenital Syphilis",
-        "10": "Tuberculosis",
-        "11": "Acute Viral Hepatitis  A",
-        "12": "Acute Viral Hepatitis  B",
-        "13": "Acute Viral Hepatitis  C"
+        "6": "Persons living with diagnosed HIV"
       }
     },
     {
@@ -30,14 +21,14 @@
       "type": "map",
       "field": "AREA",
       "mappings": {
-        "00": "National",
-        "01": "AL",
-        "02": "AK",
-        "04": "AZ",
-        "05": "AR",
-        "06": "CA",
-        "08": "CO",
-        "09": "CT",
+        "0": "National",
+        "1": "AL",
+        "2": "AK",
+        "4": "AZ",
+        "5": "AR",
+        "6": "CA",
+        "8": "CO",
+        "9": "CT",
         "10": "DE",
         "11": "DC",
         "12": "FL",
@@ -91,27 +82,26 @@
       "field": "YEAR"
     },
     {
-      "column": "age_group",
+      "column": "race_ethnicity",
       "column_index": 3,
       "type": "map",
-      "field": "AGEGROUP",
+      "field": "RACE",
       "mappings": {
-        "10": "All age groups",
-        "40": "0-14",
-        "70": "15-19",
-        "100": "20-24",
-        "110": "25-29",
-        "130": "30-34",
-        "140": "35-39",
-        "160": "40-44",
-        "180": "45-54",
-        "190": "55-64",
-        "220": "65+",
-        "999": "Unknown"}
+        "0": "All races/ethnicities",
+        "1": "American Indian or Alaska Native",
+        "2": "Asian",
+        "3": "Black or African American",
+        "4": "Hispanic or Latino",
+        "5": "Native Hawaiian or Other Pacific Islander",
+        "6": "White",
+        "7": "Multiple races",
+        "9": "Asian or Pacific Islander",
+        "10": "Other"
+      }
     },
     {
       "column": "sex",
-      "column_index": 5,
+      "column_index": 4,
       "type": "map",
       "field": "SEX",
       "mappings": {
@@ -120,6 +110,37 @@
         "2": "Female"
       }
     },
+    {
+      "column": "age_group",
+      "column_index": 5,
+      "type": "map",
+      "field": "AGEGROUP",
+      "comment": " '0' mapping is for 'All age groups 13 and up' to make similar to 'std' and 'tb' and avoid code complications changed to 'All age groups'",
+      "mappings": {
+        "0": "All age groups",
+        "30": "0-4",
+        "40": "0-14",
+        "50": "05-14",
+        "60": "13-24",
+        "70": "15-19",
+        "80": "15-24",
+        "90": "15-39",
+        "100": "20-24",
+        "110": "25-29",
+        "120": "25-34",
+        "130": "30-34",
+        "140": "35-39",
+        "150": "35-44",
+        "160": "40-44",
+        "170": "40-59",
+        "180": "45-54",
+        "190": "55-64",
+        "200": "55+",
+        "210": "60+",
+        "220": "65+",
+        "999": "Unknown"}
+    },
+
     {
       "column": "transmission",
       "column_index": 6,
@@ -131,9 +152,7 @@
         "2": "Injection drug use",
         "3": "Male-to-male sexual contact and injection drug use",
         "4": "Heterosexual contact",
-        "5": "Other",
-        "6": "US-born",
-        "7": "Foreign-born"
+        "5": "Other"
       }
     },
     {

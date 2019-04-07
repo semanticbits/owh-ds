@@ -606,6 +606,7 @@
         ];
 
         var diseaseYearOptions = [
+            {"key": "2016", "title": "2016"},
             {"key": "2015", "title": "2015"},
             {"key": "2014", "title": "2014"},
             {"key": "2013", "title": "2013"},
@@ -1331,8 +1332,8 @@
                     title: 'label.filter.year',
                     queryKey: "current_year",
                     primary: false,
-                    value: "2015",
-                    defaultValue: "2015",
+                    value: "2016",
+                    defaultValue: "2016",
                     groupBy: false,
                     filterType: 'radio',defaultGroup:"column",
                     autoCompleteOptions: diseaseYearOptions,
@@ -1416,7 +1417,6 @@
         function getTBDataFilters() {
             var tbAgeGroupOptions = [
                 {"key": "All age groups", "title": "All age groups"},
-                {"key": "Age 15 and older", "title": "Age 15 and older"},
                 {"key": "0-4", "title": "0-4"},
                 {"key": "05-14", "title": "05-14"},
                 {"key": "15-24", "title": "15-24"},
@@ -1562,6 +1562,26 @@
                 { key: 'Male-to-male sexual contact and injection drug use', title: 'Male-to-male sexual contact and injection drug use' },
                 { key: 'Other', title: 'Other' }
             ];
+            var yearOpt = [
+                {"key": "2017", "title": "2017"},
+                {"key": "2016", "title": "2016"},
+                {"key": "2015", "title": "2015"},
+                {"key": "2014", "title": "2014"},
+                {"key": "2013", "title": "2013"},
+                {"key": "2012", "title": "2012"},
+                {"key": "2011", "title": "2011"},
+                {"key": "2010", "title": "2010"},
+                {"key": "2009", "title": "2009"},
+                {"key": "2008", "title": "2008"},
+                {"key": "2007", "title": "2007"},
+                {"key": "2006", "title": "2006"},
+                {"key": "2005", "title": "2005"},
+                {"key": "2004", "title": "2004"},
+                {"key": "2003", "title": "2003"},
+                {"key": "2002", "title": "2002"},
+                {"key": "2001", "title": "2001"},
+                {"key": "2000", "title": "2000"}
+            ];
 
             return [
                 {
@@ -1597,11 +1617,11 @@
                     title: 'label.filter.year',
                     queryKey: 'current_year',
                     primary: false,
-                    value: '2014',
+                    value: '2016',
                     groupBy: false,
                     filterType: 'radio',
                     defaultGroup:"row",
-                    autoCompleteOptions: yearOptions,
+                    autoCompleteOptions: yearOpt,
                     doNotShowAll: true,
                     helpText: 'label.help.text.hiv.year'
                 },

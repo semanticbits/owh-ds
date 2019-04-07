@@ -43,7 +43,7 @@ ElasticClient.prototype.getClient = function(database) {
     });*/
 
      var configuration = {};
-     configuration.apiVersion = '1.5';
+     configuration.apiVersion = '6.6';
     /* configuration.log = [{
      type: 'stdio',
      levels: ['info', 'debug', 'error', 'warning']
@@ -399,6 +399,7 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
                 }
             }
             self.mergeWithCensusData(data, populationResponse, 'pop');
+            /*TODO: commented for now. Once ATLAS gives go ahead will remove completely
             if (diseaseName === 'std') {
                 var threshold = 4;
                 if (isStateSelected) {
@@ -408,7 +409,7 @@ ElasticClient.prototype.aggregateDiseaseData = function (query, diseaseName, ind
                 }
             } else if (diseaseName === 'aids') {
                 searchUtils.applySuppressions(data, indexType, 0);
-            }
+            }*/
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
@@ -458,7 +459,7 @@ ElasticClient.prototype.getQueryCache = function(query){
 ElasticClient.prototype.insertQueryData = function (query) {
     var client = this.getClient();
     var deferred = Q.defer();
-    client.create({
+    client.index({
         index: _queryIndex,
         type: _queryType,
         body: query

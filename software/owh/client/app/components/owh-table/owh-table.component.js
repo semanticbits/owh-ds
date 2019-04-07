@@ -65,11 +65,11 @@
         })();
 
         function getRateVisibility(count, pop, tableView) {
-            if(count === 'suppressed' || pop === 'suppressed') {
+            if(count === 'suppressed' || pop === 'suppressed' || count === -1) {
                 return 'suppressed';
             }
-            if (pop === 'n/a') {
-                return 'na'
+            if (pop === 'n/a' || count === -2) {
+                return 'na';
             }
             //If population value is undefined
             // OR
@@ -131,7 +131,7 @@
                                     cell += column.title === 'suppressed' ? 'Suppressed' : column.ageAdjustedRate;
                                 }
                                 else {
-                                    cell += 'Not Available'
+                                    cell += 'Not Available';
                                 }
                                 cell += '</span>';
                             }
@@ -143,7 +143,7 @@
                                 else if (rateVisibility === 'suppressed') {
                                     cell += 'Suppressed';
                                 } else if (rateVisibility === 'na') {
-                                    cell += 'Not Applicable'
+                                    cell += 'Not Applicable';
                                 } else if (rateVisibility === 'unreliable') {
                                     cell += 'Unreliable';
                                 }
@@ -171,12 +171,12 @@
                                 }
                             }
                             cell += '<span>';
-                            if(column.title === 'suppressed') {
+                            if(column.title === 'suppressed' || column.title === -1) {
                                 cell += 'Suppressed';
                             }
-                            else if(column.title === 'na') {
+                            else if(column.title === 'na' || column.title === -2) {
                                 cell += 'Not Available';
-                            }else {
+                            } else {
                                 cell += $filter('number')(column.title);
                             }
                             cell += '</span>';

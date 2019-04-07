@@ -33,31 +33,33 @@ class STDETL (ETL):
                 continue
 
             std_parser =  DataFileParser(file_path, config_file)
-            std_parser.parseNextLine() # skip the header line
+            std_parser.parseNextLine()  # skip the header line
             while True:
                 record  = std_parser.parseNextLine()
                 if not record:
                     break
-                if (int(record['current_year']) < 2000): # skip data before year 2000
+                if int(record['current_year']) < 2000:  # skip data before year 2000
                     continue
-                if (record['state'] == None): # skip county level data and national level data
+                if record['state'] is None:  # skip county level data and national level data
                     continue
-                if (record ['race_ethnicity'] == None or record['age_group'] == None or record['sex'] == None): # Skip 'All' race, sex and age records
+                if record['race_ethnicity'] is None or record['age_group'] is None or record['sex'] is None: # Skip 'All' race, sex and age records
                     continue
-                if(len(record ['pop']) > 0):
+                if len(record ['pop']) > 0:
                     record['pop'] = int(record['pop'])
                 else:
                     record['pop'] = 0
 
-                if(len(record ['cases']) > 0):
+                if len(record ['cases']) > 0:
                     record['cases'] = int(record['cases'])
                 else:
                     record['cases'] = 0
 
                 # suppression_cases or suppression_rate are equals to '1' means Data suppressed
                 # so we are setting cases and pop to -1 when data suppressed.
-                if(record['suppression_cases'] == '1'):
+                if record['suppression_cases'] == '1':
                     record['cases'] = -1
+                elif record['suppression_cases'] == '2':
+                    record['cases'] = -2
 
                 record_count += 1
                 self.batchRepository.persist({"index": {"_index": self.config['elastic_search']['index'],
@@ -72,10 +74,8 @@ class STDETL (ETL):
         logger.info("*** Processed %s records from std data file", self.metrics.insertCount)
 
     def updateDsMetadata(self):
-        # for 2000 to 2006 years data, Race/Ethnicity column mapping not available for National and State
-        for y in range(2000, 2007):
-            self.loadDataSetMetaData('std', str(y), os.path.join(self.dataDirectory, 'data_mapping', 'std_00_06.json'))
-        for y in range(2007, 2016):
+        # for 2000 to 2017 years data, Race/Ethnicity column mapping not available for National and State
+        for y in range(2000, 2017):
             self.loadDataSetMetaData('std', str(y), os.path.join(self.dataDirectory, 'data_mapping', 'std.json'))
 
     def validate_etl(self):

@@ -21,13 +21,21 @@
       "type": "map",
       "field": "AREA",
       "mappings": {
+        "0": "National",
         "00": "National",
+        "1": "AL",
         "01": "AL",
+        "2": "AK",
         "02": "AK",
+        "4": "AZ",
         "04": "AZ",
+        "5": "AR",
         "05": "AR",
+        "6": "CA",
         "06": "CA",
+        "8": "CO",
         "08": "CO",
+        "9": "CT",
         "09": "CT",
         "10": "DE",
         "11": "DC",
@@ -95,7 +103,6 @@
         "5": "Native Hawaiian or Other Pacific Islander",
         "6": "White",
         "7": "Multiple races",
-        "8": "Unknown",
         "9": "Asian or Pacific Islander",
         "10": "Other"
       }
@@ -170,13 +177,13 @@
     },
     {
       "column": "suppression_cases",
-      "column_index": 10,
+      "column_index": 11,
       "type": "simple",
       "field": "SUPPRESSIONCASES"
     },
     {
       "column": "suppression_rate",
-      "column_index": 11,
+      "column_index": 10,
       "type": "simple",
       "field": "SUPPRESSIONRATE"
     }

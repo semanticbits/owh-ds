@@ -852,9 +852,9 @@
         }
 
         function getMinAndMaxValue(array) {
-            //collect only numbers. exlude strings e.g 'suppressed', 'na'
+            //collect only numbers(only +ve). exclude strings e.g 'suppressed', 'na'
             var filteredArray = array.filter(function(elm){
-                return !isNaN(elm);
+                return !isNaN(elm) && elm > -1;
             });
             var sortedArray = filteredArray.sort(function(a,b) {
                 return a-b;
@@ -1180,12 +1180,12 @@
                 return sideFilter.filters.key === 'disease';
             })[0];
             var disabledFilterCombinations = {
-                'HIV, stage 3 (AIDS) deaths': [ '2015' ],
-                'Persons living with HIV, stage 3 (AIDS)': [ '2015' ],
+                'HIV, stage 3 (AIDS) deaths': [ '2017' ],
+                'Persons living with HIV, stage 3 (AIDS)': [ '2017' ],
                 'HIV diagnoses': [ '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007' ],
-                'HIV deaths': [ '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2015' ],
-                'Persons living with diagnosed HIV': [ '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2015' ],
-                '2015': [ 'HIV, stage 3 (AIDS) deaths', 'Persons living with HIV, stage 3 (AIDS)', 'HIV deaths', 'Persons living with diagnosed HIV' ],
+                'HIV deaths': [ '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2017' ],
+                'Persons living with diagnosed HIV': [ '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2017' ],
+                '2017': [ 'HIV, stage 3 (AIDS) deaths', 'Persons living with HIV, stage 3 (AIDS)', 'HIV deaths', 'Persons living with diagnosed HIV' ],
                 '2007': [ 'HIV diagnoses', 'HIV deaths', 'Persons living with diagnosed HIV' ],
                 '2006': [ 'HIV diagnoses', 'HIV deaths', 'Persons living with diagnosed HIV' ],
                 '2005': [ 'HIV diagnoses', 'HIV deaths', 'Persons living with diagnosed HIV' ],
