@@ -733,7 +733,7 @@ describe("Utils", function(){
        expect(result.data.nested.table.race[6].sex[1].pop).equal(1096);
        expect(result.data.nested.table.race[6].sex[2].name).equal('Male');
        //Cases not available
-       expect(result.data.nested.table.race[6].sex[2].std).equal('na');
+       expect(result.data.nested.table.race[6].sex[2].std).equal(0);
        expect(result.data.nested.table.race[6].sex[2].pop).equal(1168);
        //Unknown cases should not be 'Not Available'
         expect(result.data.nested.table.race[7].name).equal('Unknown');

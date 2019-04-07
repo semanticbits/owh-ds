@@ -21,12 +21,12 @@ describe("Fact sheet", function () {
             expect(resp.tuberculosis[5].displayValue).to.eql("2 (1.5)");
             //std
             expect(resp.stdData[3].disease).to.eql("Early Latent Syphilis");
-            expect(resp.stdData[3].data[0].pop).to.eql(5976407);
+            expect(resp.stdData[3].data[0].pop).to.eql(6006401);
             expect(resp.stdData[3].data[0].displayValue).to.eql("594 (9.9)");
             //hiv
             expect(resp.hivAIDSData[3].disease).to.eql("HIV Diagnoses");
             expect(resp.hivAIDSData[3].data[2].name).to.eql("Asian");
-            expect(resp.hivAIDSData[3].data[2].displayValue).to.eql("18 (5.5)");
+            expect(resp.hivAIDSData[3].data[2].displayValue).to.eql("12 (3.8)");
             //detail mortality
             expect(resp.detailMortalityData[0].causeOfDeath).to.eql("Diseases of heart");
             expect(resp.detailMortalityData[0].data.deaths).to.eql(11481);

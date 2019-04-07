@@ -85,7 +85,7 @@ describe('filterUtils', function(){
         it('when I call getSTDDataFilters, I should get all std filters', function () {
             var stdDataFilters= filterUtils.getSTDDataFilters();
             expect(stdDataFilters[0].key).toEqual('current_year');
-            expect(stdDataFilters[0].value).toEqual('2015');
+            expect(stdDataFilters[0].value).toEqual('2016');
             expect(stdDataFilters[0].helpText).toEqual('label.std.help.text.year');
             expect(stdDataFilters[1].key).toEqual('disease');
             expect(stdDataFilters[1].value).toEqual('Chlamydia');
@@ -117,7 +117,7 @@ describe('filterUtils', function(){
             expect(stdDataFilters[5].helpText).toEqual('label.std.help.text.sex');
         });
 
-        it('When I call getAllOptionValues, I should get list of All option values', function(){
+        it('When I call getAllOptionValues, I should get list of All option values', function() {
             var values = filterUtils.getAllOptionValues();
             expect(values[0]).toEqual("Both sexes");
             expect(values[1]).toEqual("All races/ethnicities");

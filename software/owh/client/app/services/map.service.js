@@ -169,11 +169,10 @@
 
         //get map feature colors
         function getColor(d, ranges) {
-
-            if (d === -1 || d === 'na' || d === 'n/a') {
+            if (d === -2 || d === 'na' || d === 'n/a') {
                 suppression.isNA = true;
                 return '#c0414b';
-            } if (d === 'suppressed') {
+            } if (d === 'suppressed' || d === -1) {
                 suppression.suppressed = true;
                 return '#4bb6c0';
             }
@@ -427,7 +426,7 @@
         function attachEventsForMap(map, primaryFilter) {
             map.invalidateSize();
             map.eachLayer(function (layer){
-                if(layer.feature) {
+                if(layer.feature && primaryFilter) {
                     layer.on("mouseover", function (event) {
                         var isStatData = ['mental_health', 'prams', 'brfss'].indexOf(primaryFilter.key) != -1;
                         if(primaryFilter && event.target.feature) {
