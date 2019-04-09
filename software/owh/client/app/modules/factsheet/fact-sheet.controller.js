@@ -300,7 +300,9 @@
                     return {
                         columns: [
                             { text: [
-                                    {text: 'This factsheet is downloaded from', style: 'footer'},
+                                    {text: 'This factsheet is last updated on '
+                                        + $filter('translate')('app.revision.date')+' and downloaded from',
+                                        style: 'footer'},
                                     {text: ' Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
                                 ]
                             },
@@ -1282,7 +1284,8 @@
                     return {
                         columns: [
                             { text: [
-                                    {text: 'This factsheet is downloaded from', style: 'footer'},
+                                    {text: 'This factsheet is last updated on '
+                                        + $filter('translate')('app.revision.date')+' and downloaded from', style: 'footer'},
                                     {text: ' Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
                                 ]
                             },
@@ -1543,7 +1546,8 @@
                     return {
                         columns: [
                             { text: [
-                                    {text: 'This factsheet is downloaded from', style: 'footer'},
+                                    {text: 'This factsheet is last updated on '
+                                        + $filter('translate')('app.revision.date')+' and downloaded from', style: 'footer'},
                                     {text: ' Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
                                 ]
                             },
