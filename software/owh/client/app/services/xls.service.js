@@ -94,7 +94,7 @@
                 cell.z = XLSX.SSF._table[164];
             }
 
-            if(typeof cell.v === 'number' && cell.v !== -2) cell.t = 'n';
+            if(typeof cell.v === 'number' && cell.v !== -1 && cell.v !== -2) cell.t = 'n';
             else if(typeof cell.v === 'boolean') cell.t = 'b';
             else if(cell.v instanceof Date) {
                 cell.t = 'n'; cell.z = XLSX.SSF._table[14];
@@ -102,7 +102,7 @@
             }
             else {
                 cell.t = 's';
-                if(cell.v === 'suppressed') {
+                if(cell.v === 'suppressed' || cell.v === -1) {
                     cell.v = 'Suppressed';
                 }
                 else if(cell.v === 'na') {
@@ -443,11 +443,11 @@
         }
 
         function getRateVisibility(count, pop, tableView) {
-            if(count === 'suppressed' || pop === 'suppressed') {
+            if(count === 'suppressed' || pop === 'suppressed'|| count === -1) {
                 return 'suppressed';
             }
-            if (pop === 'n/a') {
-                return 'na'
+            if (pop === 'n/a' || count === -2) {
+                return 'na';
             }
 
             //If population value is undefined
