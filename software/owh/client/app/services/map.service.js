@@ -1,4 +1,4 @@
-(function(){
+(function() {
     'use strict';
     angular
         .module('owh')
@@ -51,41 +51,41 @@
                     if(primaryFilter.tableView === 'crude_death_rates' || primaryFilter.tableView === 'crude_cancer_incidence_rates' || primaryFilter.tableView === 'crude_cancer_death_rates') {
                         //calculate male and female rate
                         angular.forEach(feature.properties.sex, function(eachGender){
-                            eachGender['rate'] = eachGender[primaryFilter.key] < 20 ? 'Unreliable' : $filter('number')(eachGender[primaryFilter.key]/eachGender['pop'] * 1000000 / 10, 1);
+                            eachGender.rate = eachGender[primaryFilter.key] < 20 ? 'Unreliable' : $filter('number')(eachGender[primaryFilter.key]/eachGender.pop * 1000000 / 10, 1);
                         });
-                        var crudeDeathRate = isNaN(state[primaryFilter.key]) ? state[primaryFilter.key] : Math.round(state[primaryFilter.key]/state['pop'] * 1000000) / 10 ;
+                        var crudeDeathRate = isNaN(state[primaryFilter.key]) ? state[primaryFilter.key] : Math.round(state[primaryFilter.key]/state.pop * 1000000) / 10 ;
                         feature.properties.rate = crudeDeathRate;
                         stateDeathTotals.push(crudeDeathRate);
                     }
                     else if(primaryFilter.tableView === 'age-adjusted_death_rates') {
                         //calculate male and female rate
                         angular.forEach(feature.properties.sex, function(eachGender){
-                            eachGender['rate'] = eachGender['ageAdjustedRate'];
+                            eachGender.rate = eachGender.ageAdjustedRate;
                         });
-                        feature.properties.rate = state['ageAdjustedRate'];
-                        stateDeathTotals.push(state['ageAdjustedRate']);
+                        feature.properties.rate = state.ageAdjustedRate;
+                        stateDeathTotals.push(state.ageAdjustedRate);
                     }
                     else if (primaryFilter.showRates) {
                         if(primaryFilter.tableView === 'number_of_infant_deaths') {
                             angular.forEach(feature.properties.sex, function(eachGender){
-                                if(eachGender[primaryFilter.key] < 20 || eachGender['deathRate'].indexOf('Unreliable') > 0) {
-                                    eachGender['rate'] = 'Unreliable';
+                                if(eachGender[primaryFilter.key] < 20 || eachGender.deathRate.indexOf('Unreliable') > 0) {
+                                    eachGender.rate = 'Unreliable';
                                 }
-                                else if(eachGender['deathRate'] === 'suppressed') {
-                                    eachGender['rate'] = eachGender['deathRate'];
+                                else if(eachGender.deathRate === 'suppressed') {
+                                    eachGender.rate = eachGender.deathRate;
                                 }
-                                else if(eachGender['deathRate'] === 'na') {
-                                    eachGender['rate'] = eachGender['deathRate'];
+                                else if(eachGender.deathRate === 'na') {
+                                    eachGender.rate = eachGender.deathRate;
                                 }
                                 else {
-                                    eachGender['rate'] = $filter('number')(eachGender['deathRate'],1);
+                                    eachGender.rate = $filter('number')(eachGender.deathRate,1);
                                 }
                             });
                             //For Total
-                            if(state['deathRate'] !== 'suppressed') {
-                                feature.properties.rate = $filter('number')(state['deathRate'], 1);
-                                stateDeathTotals.push($filter('number')(state['deathRate'], 1));
-                            } else if(state['deathRate'] === 'suppressed') {
+                            if(state.deathRate !== 'suppressed') {
+                                feature.properties.rate = $filter('number')(state.deathRate, 1);
+                                stateDeathTotals.push($filter('number')(state.deathRate, 1));
+                            } else if(state.deathRate === 'suppressed') {
                                 feature.properties.rate = 'suppressed';
                                 stateDeathTotals.push('suppressed');
                             } else {
@@ -97,22 +97,22 @@
                         else {
                             //calculate male and female rate
                             angular.forEach(feature.properties.sex, function (eachGender) {
-                                var rate = calculateRates(eachGender[primaryFilter.key], eachGender['pop']);
+                                var rate = calculateRates(eachGender[primaryFilter.key], eachGender.pop);
                                 eachGender.rate = isNaN(rate)? rate : $filter('number')(rate, 1);
                             });
 
-                            var rate = calculateRates(feature.properties.sex[0][primaryFilter.key], feature.properties.sex[0]['pop']);
+                            var rate = calculateRates(feature.properties.sex[0][primaryFilter.key], feature.properties.sex[0].pop);
                             feature.properties.rate = rate;
                             stateDeathTotals.push(rate);
                         }
                     } else if(['std', 'tb', 'aids'].indexOf(primaryFilter.key) != -1) {
                         //for disease datasets, use both sexes to decide intervals
                         stateDeathTotals.push(state.sex[0][primaryFilter.key]);
-                    } else if(primaryFilter.key === 'mental_health' ) {
+                    } else if(primaryFilter.key === 'mental_health' || primaryFilter.key === 'brfss' ) {
                         var res = utilService.findByKeyAndValue(state.responses, 'rKey', data.selectedResponse);
-                        if (angular.isDefined(res)) {
+                        if (res) {
                             feature.properties.response = res;
-                            res.rData.mean == -1? stateDeathTotals.push('suppressed'): stateDeathTotals.push(res.rData.mean);
+                            res.rData.mean == -1 ? stateDeathTotals.push('suppressed'): stateDeathTotals.push(res.rData.mean);
                         } else {
                             feature.properties.response = "NA";
                             stateDeathTotals.push('NA');
@@ -163,13 +163,13 @@
 
         //generate labels for map legend labels
         function getLabels(minValue, maxValue) {
-            if (isNaN(minValue)) {return []};
+            if (isNaN(minValue)) { return []; }
             return utilService.generateMapLegendLabels(minValue, maxValue);
         }
 
         //get map feature colors
         function getColor(d, ranges) {
-            if (d === -2 || d === 'na' || d === 'n/a') {
+            if (d === -2 || d === 'na' || d === 'n/a' || d === 'NA') {
                 suppression.isNA = true;
                 return '#c0414b';
             } if (d === 'suppressed' || d === -1) {
@@ -198,20 +198,20 @@
                     dashArray: '3',
                     fillOpacity: 0.7
                 };
-            }
+            };
         }
 
 
         function getTotal(primaryFilter, feature) {
-            if(primaryFilter.tableView === 'crude_death_rates'
-                || primaryFilter.tableView === 'age-adjusted_death_rates'
-                || primaryFilter.tableView === 'crude_cancer_incidence_rates'
-                || primaryFilter.tableView === 'crude_cancer_death_rates'
-                || primaryFilter.showRates) {
+            if(primaryFilter.tableView === 'crude_death_rates' ||
+                primaryFilter.tableView === 'age-adjusted_death_rates' ||
+                primaryFilter.tableView === 'crude_cancer_incidence_rates' ||
+                primaryFilter.tableView === 'crude_cancer_death_rates' ||
+                primaryFilter.showRates) {
                 return feature.properties.rate;
-            } else if (primaryFilter.key  === 'mental_health') {
+            } else if (primaryFilter.key  === 'mental_health' || primaryFilter.key  === 'brfss') {
                 if (feature.properties.isDisabled) {
-                    return -1;
+                    return -2;
                 }
                 if (feature.properties.response.rData) {
                     return feature.properties.response.rData.mean;
@@ -374,7 +374,7 @@
         function setInitialView () {
             leafletData.getMap().then(function (map) {
                map.setView(new L.LatLng(38, 14), 3);
-                $timeout(function(){ map.invalidateSize()}, 100);
+                $timeout(function(){ map.invalidateSize(); }, 100);
             });
         }
 
@@ -481,8 +481,7 @@
 
                     var popup = evt.popup;
 
-                    var popupHeight = angular.element('#chart_us_map').find('.leaflet-popup-content').height()
-                        || angular.element('#expanded_us_map').find('.leaflet-popup-content').height();
+                    var popupHeight = angular.element('#chart_us_map').find('.leaflet-popup-content').height() || angular.element('#expanded_us_map').find('.leaflet-popup-content').height();
 
                     //keep track of old position of popup
                     if(!popup.options.oldOffset) {
@@ -505,7 +504,7 @@
                 map.on("popupclose", function (evt, args) {
                     $('#chart_us_map').removeClass('reverse-popup');
                     $('#expanded_us_map').removeClass('reverse-popup');
-                })
+                });
             };
             rotatePopup();
         }

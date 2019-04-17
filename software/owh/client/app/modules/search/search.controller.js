@@ -594,6 +594,7 @@
         var cancerMortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'cancer_mortality');
         var infantMortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'infant_mortality');
         var yrbsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'mental_health');
+        var brfsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'brfss');
 
         angular.extend(mortalityFilter.mapData, mapOptions);
         angular.extend(bridgeRaceFilter.mapData, mapOptions);
@@ -604,6 +605,7 @@
         angular.extend(cancerMortalityFilter.mapData, mapOptions);
         angular.extend(infantMortalityFilter.mapData, mapOptions);
         angular.extend(yrbsFilter.mapData, mapOptions);
+        angular.extend(brfsFilter.mapData, mapOptions);
 
         function updateCharts() {
             angular.forEach(sc.filters.selectedPrimaryFilter.chartData, function (chartData) {

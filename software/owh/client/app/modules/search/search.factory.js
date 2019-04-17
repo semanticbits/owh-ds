@@ -837,6 +837,7 @@
             var stateFilter = utilService.findByKeyAndValue(copiedPrimaryFilter.allFilters, 'queryKey', 'sitecode');
             stateFilter.groupBy = 'column';
             stateFilter.getPercent = true;
+            stateFilter.value = "";
             var deferred = $q.defer();
             generateHashCode(copiedPrimaryFilter).then(function (hash) {
                 //get the chart data
@@ -847,21 +848,24 @@
                     primaryFilter.responses = responseTypes;
                     var states = [];
                     //collect responses for all state
-                    for (var i = 0; i < data[responseTypes[0]].sitecode.length; i++) {
+                    stateFilter.autoCompleteOptions.forEach(function (state) {
                         var stateResp = [];
                         //collect response for each response type for a state
                         responseTypes.forEach(function (respType) {
-                            stateResp.push( {
+                            var rData = utilService.findByKeyAndValue(data[respType].sitecode, 'name', state.key);
+                            if(rData) {
+                                stateResp.push( {
                                     rKey: respType,
-                                    rData: data[respType].sitecode[i].mental_health
+                                    rData: rData[copiedPrimaryFilter.key]
                                 });
+                            }
                         });
                         //state response for all response types
                         states.push({
-                            name:data[responseTypes[0]].sitecode[i].name,
+                            name:state.key,
                             responses: stateResp
                         });
-                    }
+                    });
                     deferred.resolve(states);
                 });
             });
@@ -4295,7 +4299,7 @@
                     searchResults: invokeStatsService, dontShowInlineCharting: true,
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total',
                     tableView:'basic_alcohol_consumption',  chartAxisLabel:'Percentage',
-                    showBasicSearchSideMenu: true, runOnFilterChange: true,
+                    showBasicSearchSideMenu: true, runOnFilterChange: true, showMap:true, mapData: {},
                     allFilters: filters.brfsBasicFilters, header:"Behavioral Risk Factors",
                     advancedSideFilters:[
                         {

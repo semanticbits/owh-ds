@@ -404,14 +404,14 @@ describe('search factory ', function(){
 
             var yrbsFilters =  filters.search[1];
             searchFactory.getMapDataForQuestion(yrbsFilters, question).then(function (stateData) {
-                expect(stateData[1].name).toEqual('NE');
+                expect(stateData[1].name).toEqual('AK');
                 expect(stateData[1].responses[0].rKey).toEqual('Yes');
-                expect(stateData[1].responses[0].rData.mean).toEqual('22.7');
-                expect(stateData[1].responses[0].rData.count).toEqual(1572);
+                expect(stateData[1].responses[0].rData.mean).toEqual('22.0');
+                expect(stateData[1].responses[0].rData.count).toEqual(1301);
 
                 expect(stateData[1].responses[1].rKey).toEqual('No');
-                expect(stateData[1].responses[1].rData.mean).toEqual('77.3');
-                expect(stateData[1].responses[1].rData.count).toEqual(1572);
+                expect(stateData[1].responses[1].rData.mean).toEqual('78.0');
+                expect(stateData[1].responses[1].rData.count).toEqual(1301);
             });
 
 
