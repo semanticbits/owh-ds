@@ -105,14 +105,26 @@
                             feature.properties.rate = rate;
                             stateDeathTotals.push(rate);
                         }
-                    } else if(['std', 'tb', 'aids'].indexOf(primaryFilter.key) != -1) {
+                    } else if(['std', 'tb', 'aids'].indexOf(primaryFilter.key) !== -1) {
                         //for disease datasets, use both sexes to decide intervals
                         stateDeathTotals.push(state.sex[0][primaryFilter.key]);
-                    } else if(primaryFilter.key === 'mental_health' || primaryFilter.key === 'brfss' ) {
+                    } else if(primaryFilter.key === 'mental_health' ||
+                        primaryFilter.key === 'brfss' || primaryFilter.key === 'prams' ) {
                         var res = utilService.findByKeyAndValue(state.responses, 'rKey', data.selectedResponse);
                         if (res) {
                             feature.properties.response = res;
-                            res.rData.mean == -1 ? stateDeathTotals.push('suppressed'): stateDeathTotals.push(res.rData.mean);
+                            if(res.rData.mean === -1 || res.rData.mean === 'suppressed') {
+                                stateDeathTotals.push('suppressed');
+                                if(primaryFilter.key !== 'mental_health') {
+                                    res.rData.mean = -1;
+                                    res.rData.count = '-';
+                                }
+                            } else if(res.rData.mean === -2 && primaryFilter.key === 'brfss') {
+                                stateDeathTotals.push('No response');
+                                res.rData.count = '-';
+                            } else {
+                                stateDeathTotals.push(res.rData.mean);
+                            }
                         } else {
                             feature.properties.response = "NA";
                             stateDeathTotals.push('NA');
@@ -209,7 +221,8 @@
                 primaryFilter.tableView === 'crude_cancer_death_rates' ||
                 primaryFilter.showRates) {
                 return feature.properties.rate;
-            } else if (primaryFilter.key  === 'mental_health' || primaryFilter.key  === 'brfss') {
+            } else if (primaryFilter.key  === 'mental_health' ||
+                primaryFilter.key  === 'brfss' || primaryFilter.key  === 'prams') {
                 if (feature.properties.isDisabled) {
                     return -2;
                 }

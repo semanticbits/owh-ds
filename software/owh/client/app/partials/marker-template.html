@@ -67,14 +67,18 @@
             <div class="usa-width-one-whole margin-top-10">
                 <div class="usa-width-two-thirds marker-label">Percentage</div>
                 <div class="usa-width-one-third marker-years"
-                     ng-if="properties.response.rData.mean != -1">{{properties.response.rData.mean}}&#37;</div>
+                     ng-if="properties.response.rData.mean > -1">{{properties.response.rData.mean}}&#37;</div>
                 <div class="usa-width-one-third marker-years"
                      ng-if="properties.response.rData.mean == -1">Suppressed</div>
+                <div class="usa-width-one-third marker-years"
+                     ng-if="properties.response.rData.mean == -2">No response</div>
             </div>
             <div class="usa-width-one-whole margin-top-10">
                 <div class="usa-width-two-thirds marker-label">Confidence Intervals</div>
-                <div class="usa-width-one-third marker-years" ng-if="properties.response.rData.mean != -1">{{properties.response.rData.ci_l}}-{{properties.response.rData.ci_u}}</div>
-                <div class="usa-width-one-third marker-years" ng-if="properties.response.rData.mean == -1">-</div>
+                <div class="usa-width-one-third marker-years"
+                     ng-if="properties.response.rData.mean > -1">{{properties.response.rData.ci_l}}-{{properties.response.rData.ci_u}}</div>
+                <div class="usa-width-one-third marker-years"
+                     ng-if="properties.response.rData.mean == -1 || properties.response.rData.mean == -2">-</div>
             </div>
             <div class="usa-width-one-whole margin-top-10">
                 <div class="usa-width-two-thirds marker-label">Unweighted Frequency</div>
