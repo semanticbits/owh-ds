@@ -3497,7 +3497,7 @@
                     key: 'prams', title: 'label.prams.title', primary: true, value:[], header:"Pregnancy Risk Assessment",
                     searchResults: invokeStatsService, dontShowInlineCharting: true,
                     additionalHeaders:filters.yrbsAdditionalHeaders, tableView:'basic_delivery',
-                    chartAxisLabel:'Percentage', countLabel: 'Total',
+                    chartAxisLabel:'Percentage', countLabel: 'Total', showMap:true, mapData: {},
                     showBasicSearchSideMenu: true, runOnFilterChange: true, allFilters: filters.pramsBasicFilters, // Default to basic filter
                     advancedSideFilters:[
                         {
