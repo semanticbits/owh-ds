@@ -837,6 +837,7 @@
             var stateFilter = utilService.findByKeyAndValue(copiedPrimaryFilter.allFilters, 'queryKey', 'sitecode');
             stateFilter.groupBy = 'column';
             stateFilter.getPercent = true;
+            stateFilter.value = "";
             var deferred = $q.defer();
             generateHashCode(copiedPrimaryFilter).then(function (hash) {
                 //get the chart data
@@ -847,21 +848,24 @@
                     primaryFilter.responses = responseTypes;
                     var states = [];
                     //collect responses for all state
-                    for (var i = 0; i < data[responseTypes[0]].sitecode.length; i++) {
+                    stateFilter.autoCompleteOptions.forEach(function (state) {
                         var stateResp = [];
                         //collect response for each response type for a state
                         responseTypes.forEach(function (respType) {
-                            stateResp.push( {
+                            var rData = utilService.findByKeyAndValue(data[respType].sitecode, 'name', state.key);
+                            if(rData) {
+                                stateResp.push( {
                                     rKey: respType,
-                                    rData: data[respType].sitecode[i].mental_health
+                                    rData: rData[copiedPrimaryFilter.key]
                                 });
+                            }
                         });
                         //state response for all response types
                         states.push({
-                            name:data[responseTypes[0]].sitecode[i].name,
+                            name:state.key,
                             responses: stateResp
                         });
-                    }
+                    });
                     deferred.resolve(states);
                 });
             });
@@ -1902,7 +1906,7 @@
                 { "key": "count", "title": "Total" }
             ];
 
-            filters.yrbsBasicStateFilters =  [
+            filters.yrbsStateFilters =  [
                 { "key": "AL", "title": "Alabama" },
                 { "key": "AK", "title": "Alaska" },
                 { "key": "AZB", "title": "Arizona" },
@@ -1926,6 +1930,7 @@
                 { "key": "MD", "title": "Maryland" },
                 { "key": "MA", "title": "Massachusetts" },
                 { "key": "MI", "title": "Michigan" },
+                { "key": "MN", "title": "Minnesota" },
                 { "key": "MS", "title": "Mississippi" },
                 { "key": "MO", "title": "Missouri" },
                 { "key": "MT", "title": "Montana" },
@@ -1939,6 +1944,7 @@
                 { "key": "ND", "title": "North Dakota" },
                 { "key": "OH", "title": "Ohio" },
                 { "key": "OK", "title": "Oklahoma" },
+                { "key": "OR", "title": "Oregon" },
                 { "key": "PA", "title": "Pennsylvania" },
                 { "key": "RI", "title": "Rhode Island" },
                 { "key": "SC", "title": "South Carolina" },
@@ -1949,46 +1955,7 @@
                 { "key": "VT", "title": "Vermont" },
                 { "key": "VA", "title": "Virginia" },
                 { "key": "WV", "title": "West Virginia" },
-                { "key": "WI", "title": "Wisconsin" },
-                { "key": "WY", "title": "Wyoming" }
-            ];
-
-            filters.yrbsAdvancedStateFilters =  [
-                { "key": "AL", "title": "Alabama" },
-                { "key": "AK", "title": "Alaska" },
-                { "key": "AZB", "title": "Arizona" },
-                { "key": "AR", "title": "Arkansas" },
-                { "key": "CA", "title": "California" },
-                { "key": "CT", "title": "Connecticut" },
-                { "key": "DE", "title": "Delaware" },
-                { "key": "DC", "title": "District of Columbia" },
-                { "key": "FL", "title": "Florida" },
-                { "key": "ID", "title": "Idaho" },
-                { "key": "IL", "title": "Illinois" },
-                { "key": "IA", "title": "Iowa" },
-                { "key": "KS", "title": "Kansas" },
-                { "key": "KY", "title": "Kentucky" },
-                { "key": "ME", "title": "Maine" },
-                { "key": "MD", "title": "Maryland" },
-                { "key": "MI", "title": "Michigan" },
-                { "key": "MS", "title": "Mississippi" },
-                { "key": "MO", "title": "Missouri" },
-                { "key": "MT", "title": "Montana" },
-                { "key": "NE", "title": "Nebraska" },
-                { "key": "NV", "title": "Nevada" },
-                { "key": "NH", "title": "New Hampshire" },
-                { "key": "NJ", "title": "New Jersey" },
-                { "key": "NY", "title": "New York" },
-                { "key": "NC", "title": "North Carolina" },
-                { "key": "ND", "title": "North Dakota" },
-                { "key": "OK", "title": "Oklahoma" },
-                { "key": "RI", "title": "Rhode Island" },
-                { "key": "SC", "title": "South Carolina" },
-                { "key": "SD", "title": "South Dakota" },
-                { "key": "TN", "title": "Tennessee" },
-                { "key": "UT", "title": "Utah" },
-                { "key": "VA", "title": "Virginia" },
-                { "key": "WV", "title": "West Virginia" },
+                { "key": "WA", "title": "Washington" },
                 { "key": "WI", "title": "Wisconsin" },
                 { "key": "WY", "title": "Wyoming" }
             ];
@@ -2014,7 +1981,7 @@
                 { key: 'yrbsGrade', title: 'label.yrbs.filter.grade', queryKey:"grade", primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: filters.yrbsGradeOptions, defaultGroup:"column", helpText:"label.help.text.yrbs.grade"},
                 { key: 'yrbsState', title: 'label.yrbs.filter.state', queryKey:"sitecode", primary: false, value: [], groupBy: false,
-                    filterType: 'checkbox',autoCompleteOptions: filters.yrbsAdvancedStateFilters, defaultGroup:"column",
+                    filterType: 'checkbox',autoCompleteOptions: filters.yrbsStateFilters, defaultGroup:"column",
                     displaySearchBox:true, displaySelectedFirst:true, helpText:"label.help.text.yrbs.state" },
                 { key: 'yrbsRace', title: 'label.yrbs.filter.race', queryKey:"race", primary: false, value: [], groupBy: 'column',
                     filterType: 'checkbox',autoCompleteOptions: filters.yrbsRaceOptions, defaultGroup:"column", helpText:"label.help.text.yrbs.race.ethnicity"},
@@ -2042,7 +2009,7 @@
                 { key: 'yrbsGrade', title: 'label.yrbs.filter.grade', queryKey:"grade", primary: false, value: '', groupBy: false,
                     filterType: 'radio',autoCompleteOptions: filters.yrbsGradeOptions, defaultGroup:"column", helpText:"label.help.text.yrbs.grade" },
                 { key: 'yrbsState', title: 'label.yrbs.filter.state', queryKey:"sitecode", primary: false, value: '', groupBy: false,
-                    filterType: 'radio',autoCompleteOptions: filters.yrbsBasicStateFilters, defaultGroup:"column",
+                    filterType: 'radio',autoCompleteOptions: filters.yrbsStateFilters, defaultGroup:"column",
                     displaySearchBox:true, displaySelectedFirst:true, helpText:"label.help.text.yrbs.state" },
                 { key: 'yrbsRace', title: 'label.yrbs.filter.race', queryKey:"race", primary: false, value:'', groupBy: 'column',
                     filterType: 'radio',autoCompleteOptions: filters.yrbsRaceOptions, defaultGroup:"column", helpText:"label.help.text.yrbs.race.ethnicity"},
@@ -2235,18 +2202,25 @@
                 { "key": "cat_38", "title": "WIC" }
             ];
 
-            filters.pramsBasicSearchStateOptions =  [
+            filters.pramsStateOptions = [
                 { "key": "AL", "title": "Alabama" },
                 { "key": "AK", "title": "Alaska" },
+                { "key": "AZ", "title": "Arizona" },
                 { "key": "AR", "title": "Arkansas" },
                 { "key": "CA", "title": "California" },
                 { "key": "CO", "title": "Colorado" },
+                { "key": "CT", "title": "Connecticut" },
                 { "key": "DE", "title": "Delaware" },
                 { "key": "DC", "title": "District of Columbia" },
                 { "key": "FL", "title": "Florida" },
                 { "key": "GA", "title": "Georgia" },
                 { "key": "HI", "title": "Hawaii" },
+                { "key": "HD", "title": "Idaho" },
                 { "key": "IL", "title": "Illinois" },
+                { "key": "IN", "title": "Indiana" },
+                { "key": "IA", "title": "Iowa" },
+                { "key": "KS", "title": "Kansas" },
+                { "key": "KY", "title": "Kentucky" },
                 { "key": "LA", "title": "Louisiana" },
                 { "key": "ME", "title": "Maine" },
                 { "key": "MD", "title": "Maryland" },
@@ -2257,6 +2231,8 @@
                 { "key": "MO", "title": "Missouri" },
                 { "key": "MT", "title": "Montana" },
                 { "key": "NE", "title": "Nebraska" },
+                { "key": "NV", "title": "Nevada" },
+                { "key": "NH", "title": "New Hampshire" },
                 { "key": "NJ", "title": "New Jersey" },
                 { "key": "NM", "title": "New Mexico" },
                 { "key": "NY", "title": "New York(excluding NYC)" },
@@ -2273,50 +2249,12 @@
                 { "key": "TX", "title": "Texas" },
                 { "key": "UT", "title": "Utah" },
                 { "key": "VT", "title": "Vermont" },
+                { "key": "VA", "title": "Virginia" },
                 { "key": "WA", "title": "Washington" },
                 { "key": "WV", "title": "West Virginia" },
                 { "key": "WI", "title": "Wisconsin" },
                 { "key": "WY", "title": "Wyoming" }
             ];
-
-            filters.pramsRawDataStateOptions =  [
-                { "key": "AL", "title": "Alabama" },
-                { "key": "AK", "title": "Alaska" },
-                { "key": "AR", "title": "Arkansas" },
-                { "key": "CO", "title": "Colorado" },
-                { "key": "CT", "title": "Connecticut" },
-                { "key": "DE", "title": "Delaware" },
-                { "key": "DC", "title": "District of Columbia" },
-                { "key": "GA", "title": "Georgia" },
-                { "key": "HI", "title": "Hawaii" },
-                { "key": "IL", "title": "Illinois" },
-                { "key": "IA", "title": "Iowa" },
-                { "key": "ME", "title": "Maine" },
-                { "key": "MD", "title": "Maryland" },
-                { "key": "MA", "title": "Massachusetts" },
-                { "key": "MI", "title": "Michigan" },
-                { "key": "MN", "title": "Minnesota" },
-                { "key": "MO", "title": "Missouri" },
-                { "key": "NE", "title": "Nebraska" },
-                { "key": "NH", "title": "New Hampshire" },
-                { "key": "NJ", "title": "New Jersey" },
-                { "key": "NM", "title": "New Mexico" },
-                { "key": "NY", "title": "New York(excluding NYC)" },
-                { "key": "OH", "title": "Ohio" },
-                { "key": "OK", "title": "Oklahoma" },
-                { "key": "OR", "title": "Oregon" },
-                { "key": "PA", "title": "Pennsylvania" },
-                { "key": "RI", "title": "Rhode Island" },
-                { "key": "TN", "title": "Tennessee" },
-                { "key": "UT", "title": "Utah" },
-                { "key": "VT", "title": "Vermont" },
-                { "key": "WA", "title": "Washington" },
-                { "key": "WV", "title": "West Virginia" },
-                { "key": "WI", "title": "Wisconsin" },
-                { "key": "WY", "title": "Wyoming" }
-            ];
-
-
 
             filters.pramsBasicSearchYearOptions = [
                 { "key": "2011", "title": "2011" },
@@ -2480,7 +2418,7 @@
                     filterType: 'radio',autoCompleteOptions: filters.pramsBasicSearchYearOptions, doNotShowAll: false, helpText: "label.help.text.prams.year"},
                 {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [],
                     displaySearchBox:true, displaySelectedFirst:true, groupBy: 'column',defaultGroup:"column",
-                    filterType: 'checkbox',autoCompleteOptions: filters.pramsBasicSearchStateOptions, doNotShowAll: false, helpText: "label.help.text.prams.state"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsStateOptions, doNotShowAll: false, helpText: "label.help.text.prams.state"},
                 { key: 'question', title: 'label.prams.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
                     filterType: 'tree', autoCompleteOptions: $rootScope.pramsBasicQuestionsList, donotshowOnSearch:true,
                     //add questions property to pass into owh-tree component
@@ -2533,7 +2471,7 @@
                     filterType: 'checkbox',autoCompleteOptions: filters.pramsRawDataYearOptions, doNotShowAll: false, helpText: "label.help.text.prams.year"},
                 {key: 'state', title: 'label.prams.filter.state', queryKey:"sitecode",primary: false, value: [],
                     displaySearchBox:true, displaySelectedFirst:true, groupBy: 'column',defaultGroup:"column",
-                    filterType: 'checkbox',autoCompleteOptions: filters.pramsRawDataStateOptions, doNotShowAll: false, helpText: "label.help.text.prams.state"},
+                    filterType: 'checkbox',autoCompleteOptions: filters.pramsStateOptions, doNotShowAll: false, helpText: "label.help.text.prams.state"},
                 { key: 'question', title: 'label.prams.filter.question', queryKey:"question.path", aggregationKey:"question.key", primary: false, value: [], groupBy: 'row',
                     filterType: 'tree', autoCompleteOptions: $rootScope.pramsAdvanceQuestionsList, donotshowOnSearch:true,
                     //add questions property to pass into owh-tree component
@@ -3559,7 +3497,7 @@
                     key: 'prams', title: 'label.prams.title', primary: true, value:[], header:"Pregnancy Risk Assessment",
                     searchResults: invokeStatsService, dontShowInlineCharting: true,
                     additionalHeaders:filters.yrbsAdditionalHeaders, tableView:'basic_delivery',
-                    chartAxisLabel:'Percentage', countLabel: 'Total',
+                    chartAxisLabel:'Percentage', countLabel: 'Total', showMap:true, mapData: {},
                     showBasicSearchSideMenu: true, runOnFilterChange: true, allFilters: filters.pramsBasicFilters, // Default to basic filter
                     advancedSideFilters:[
                         {
@@ -4295,7 +4233,7 @@
                     searchResults: invokeStatsService, dontShowInlineCharting: true,
                     additionalHeaders:filters.yrbsAdditionalHeaders, countLabel: 'Total',
                     tableView:'basic_alcohol_consumption',  chartAxisLabel:'Percentage',
-                    showBasicSearchSideMenu: true, runOnFilterChange: true,
+                    showBasicSearchSideMenu: true, runOnFilterChange: true, showMap:true, mapData: {},
                     allFilters: filters.brfsBasicFilters, header:"Behavioral Risk Factors",
                     advancedSideFilters:[
                         {
