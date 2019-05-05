@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <div ng-if="isStatDta && !properties.isDisabled">
+        <div ng-if="isStatDta && !properties.isDisabled && properties.response !== 'NA'">
             <div class="usa-width-one-whole margin-top-10">
                 <div class="usa-width-two-thirds marker-label">Year(s)</div>
                 <div class="usa-width-one-third marker-years">{{properties.years}}</div>
@@ -67,21 +67,25 @@
             <div class="usa-width-one-whole margin-top-10">
                 <div class="usa-width-two-thirds marker-label">Percentage</div>
                 <div class="usa-width-one-third marker-years"
-                     ng-if="properties.response.rData.mean != -1">{{properties.response.rData.mean}}&#37;</div>
+                     ng-if="properties.response.rData.mean > -1">{{properties.response.rData.mean}}&#37;</div>
                 <div class="usa-width-one-third marker-years"
                      ng-if="properties.response.rData.mean == -1">Suppressed</div>
+                <div class="usa-width-one-third marker-years"
+                     ng-if="properties.response.rData.mean == -2">No response</div>
             </div>
             <div class="usa-width-one-whole margin-top-10">
                 <div class="usa-width-two-thirds marker-label">Confidence Intervals</div>
-                <div class="usa-width-one-third marker-years" ng-if="properties.response.rData.mean != -1">{{properties.response.rData.ci_l}}-{{properties.response.rData.ci_u}}</div>
-                <div class="usa-width-one-third marker-years" ng-if="properties.response.rData.mean == -1">-</div>
+                <div class="usa-width-one-third marker-years"
+                     ng-if="properties.response.rData.mean > -1">{{properties.response.rData.ci_l}}-{{properties.response.rData.ci_u}}</div>
+                <div class="usa-width-one-third marker-years"
+                     ng-if="properties.response.rData.mean == -1 || properties.response.rData.mean == -2">-</div>
             </div>
             <div class="usa-width-one-whole margin-top-10">
                 <div class="usa-width-two-thirds marker-label">Unweighted Frequency</div>
                 <div class="usa-width-one-third marker-years">{{properties.response.rData.count}}</div>
             </div>
         </div>
-        <div ng-if="!properties.sex && !properties.response">
+        <div ng-if="(!properties.sex && !properties.response) || properties.response === 'NA'">
             <div class="usa-width-one-whole margin-top-10">
                 <div ng-bind="'label.data.not.available' | translate">{{properties.years}}</div>
             </div>

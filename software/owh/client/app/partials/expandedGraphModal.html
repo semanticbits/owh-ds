@@ -15,8 +15,9 @@
                       <i class="material-icons purple-icon share-icon-purple" title="Share on facebook">share</i>
                     </a>
                 </span>
-                <span  ng-if="eg.chartData.length === 1" class="custom-modal-button">
-                    <owh-export-chart chart="'chart_expanded_0'", charttitle="eg.graphTitle | translate" chartdata=eg.chartData primaryFilters=eg.primaryFilters selectedfilterstxt=eg.selectedFiltersTxt/>
+                <span  ng-if="eg.chartData.length === 1 && eg.activeTab !== 'map'" class="custom-modal-button">
+                    <owh-export-chart chart="'chart_expanded_0'", charttitle="eg.graphTitle | translate"
+                                      chartdata=eg.chartData primaryFilters=eg.primaryFilters selectedfilterstxt=eg.selectedFiltersTxt/>
                 </span>
             </div>
         </div>
