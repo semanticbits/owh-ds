@@ -226,7 +226,7 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
         censusQuery.query.filtered.filter = clonedFilterQuery;
     }
     //prepare query for map
-    var  mapQuery = buildMapQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, params.searchFor);
+    var  mapQuery = buildMapQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, params.searchFor, params.view);
     searchQueryArray.push(elasticQuery);
     //Prepare chart query for disease datasets 'std', 'tb' and 'aids'.
     if(params.searchFor == 'std' || params.searchFor == 'tb' || params.searchFor == 'aids') {
@@ -725,7 +725,6 @@ var chartMappings = {
     "mother_age&mother_education": "horizontalBar",
     "current_year&marital_status": "horizontalBar",
     "current_year&hispanic_origin": "horizontalBar",
-    "current_year&race": "horizontalBar",
     "current_year&mother_age": "horizontalBar",
     "current_year&mother_education": "horizontalBar",
     "hispanic_origin&month": "horizontalBar",
@@ -745,7 +744,6 @@ var chartMappings = {
     "sex&marital_status": "horizontalBar",
     "sex&mother_age": "horizontalBar",
     "sex&mother_education": "horizontalBar",
-    "current_year&sex": "horizontalBar",
     "sex&month": "horizontalBar",
     "sex&weekday": "horizontalBar",
     //insert gestation age here
@@ -990,7 +988,7 @@ function addCountsToAutoCompleteOptions(primaryFilter) {
  * @param datasetName
  * @return {undefined}
  */
-function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery, datasetName) {
+function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery, datasetName, view) {
 
     var mapQuery = undefined;
 
@@ -1012,9 +1010,17 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery, d
                 mustFilters.splice(index, 1);
             }
         });
+        //gender aggregation not allowed for birth_rates & fertility_rates
+        if (view === 'birth_rates' || view === 'fertility_rates') {
+            var mapAggs = aggregations['nested']['maps'][0];
+            aggregations['nested']['maps'][0] = mapAggs.filter(function(obj){
+                return obj.key !== 'sex';
+            });
+        }
+
         //prepare aggregations
         for(var index in aggregations['nested']['maps']) {
-            if(datasetName == 'deaths' || datasetName == 'cancer_incident' || datasetName == 'cancer_mortality') {
+            if(datasetName == 'deaths' || datasetName == 'natality' || datasetName == 'cancer_incident' || datasetName == 'cancer_mortality') {
                 mapQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_');
             }
             else if(datasetName === 'std' || datasetName === 'tb' || datasetName === 'aids') {

@@ -39,7 +39,7 @@
             //update states info with trials data
             var stateDeathTotals = [];
             angular.forEach($rootScope.states.features, function(feature) {
-                var state;
+                var state, rate;
                 //in yrbs Arizona has different fips code
                 if(primaryFilter.key === 'mental_health' && feature.properties.abbreviation === 'AZ') {
                     state = utilService.findByKeyAndValue(data.states, 'name', 'AZB');
@@ -97,14 +97,19 @@
                         else {
                             //calculate male and female rate
                             angular.forEach(feature.properties.sex, function (eachGender) {
-                                var rate = calculateRates(eachGender[primaryFilter.key], eachGender.pop);
+                                rate = calculateRates(eachGender[primaryFilter.key], eachGender.pop, primaryFilter.tableView);
                                 eachGender.rate = isNaN(rate)? rate : $filter('number')(rate, 1);
                             });
 
-                            var rate = calculateRates(feature.properties.sex[0][primaryFilter.key], feature.properties.sex[0].pop);
+                            rate = calculateRates(feature.properties.sex[0][primaryFilter.key], feature.properties.sex[0].pop, primaryFilter.tableView);
                             feature.properties.rate = rate;
                             stateDeathTotals.push(rate);
                         }
+                    } else if (primaryFilter.tableView === 'birth_rates' || primaryFilter.tableView === 'fertility_rates') {
+                        rate = calculateRates(state[primaryFilter.key], state.pop, primaryFilter.tableView);
+                        feature.properties.rate = rate;
+                        feature.properties.sex = undefined;
+                        stateDeathTotals.push(rate);
                     } else if(['std', 'tb', 'aids'].indexOf(primaryFilter.key) !== -1) {
                         //for disease datasets, use both sexes to decide intervals
                         stateDeathTotals.push(state.sex[0][primaryFilter.key]);
@@ -156,11 +161,13 @@
             });
         }
 
-        function calculateRates(count, pop) {
+        function calculateRates(count, pop, tableView) {
             if(count === 'suppressed' || pop === 'suppressed') {
                 return 'suppressed';
             } else  if (!pop || pop === 'n/a' || count === 'na') {
                 return 'na';
+            } else if(['std', 'tb', 'aids', 'disease_rate'].indexOf(tableView) < 0 && count < 20) {
+                return 'Unreliable';
             } else{
                 return Math.round(count / pop * 1000000) / 10;
             }
@@ -219,6 +226,8 @@
                 primaryFilter.tableView === 'age-adjusted_death_rates' ||
                 primaryFilter.tableView === 'crude_cancer_incidence_rates' ||
                 primaryFilter.tableView === 'crude_cancer_death_rates' ||
+                primaryFilter.tableView === 'birth_rates' ||
+                primaryFilter.tableView === 'fertility_rates' ||
                 primaryFilter.showRates) {
                 return feature.properties.rate;
             } else if (primaryFilter.key  === 'mental_health' ||
@@ -427,7 +436,8 @@
                 'age-adjusted_death_rates':'Total', bridge_race:'Total',
                 cancer_incident:'Total', crude_cancer_incidence_rates:'Total',
                 cancer_mortality:'Total', crude_cancer_death_rates: 'Total',
-                std:'Total', tb:'Total', aids:'Total', number_of_infant_deaths: 'Total'
+                std:'Total', tb:'Total', aids:'Total', number_of_infant_deaths: 'Total',
+                number_of_births: 'Total Births', birth_rates: 'Birth Rate', fertility_rates: 'Fertility Rate'
             };
             return totalLableMap[key];
         }

@@ -148,6 +148,11 @@
     background-position: center;
     background-repeat: no-repeat;
   }
+  .vbar_chart-icon {
+    background: url(../images/material-icons/baseline-insert_chart.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
   .chevron-right-purple {
     background: url(../images/material-icons/chevron-right-purple.svg);
   }

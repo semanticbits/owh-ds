@@ -25,13 +25,19 @@
                     <span ng-if="eachCat.rate === 'na'" ng-bind="'label.not.applicable' | translate"></span>
                 </div>
             </div>
-            <div class="usa-width-one-whole margin-top-5 padding-top-5 border-top-default padding-bottom-10" ng-if="(!properties.showRates || (properties.showRates && properties.tableView === 'number_of_infant_deaths')) && ['std', 'tb', 'aids'].indexOf(properties.tableView) < 0">
+            <div class="usa-width-one-whole margin-top-5 padding-top-5 border-top-default padding-bottom-10"
+                 ng-if="(!properties.showRates || (properties.showRates && properties.tableView === 'number_of_infant_deaths'))
+                 && ['std', 'tb', 'aids'].indexOf(properties.tableView) < 0">
                 <div class="usa-width-two-thirds marker-label">
                     <span ng-bind="totalLabel"></span>
                 </div>
                 <div class="usa-width-one-third" ng-if="properties.tableView === 'number_of_deaths'">
                     <span ng-if="properties.deaths === 'suppressed'">Suppressed</span>
                     <span ng-if="properties.deaths !== 'suppressed'">{{properties.deaths | number}}</span>
+                </div>
+                <div ng-if="properties.tableView === 'number_of_births'">
+                    <span ng-if="properties.natality === 'suppressed'">Suppressed</span>
+                    <span ng-if="properties.natality !== 'suppressed'">{{properties.natality | number}}</span>
                 </div>
                 <div class="usa-width-one-third" ng-if="!properties.showRates && properties.tableView === 'number_of_infant_deaths'">
                     <span ng-if="properties.infant_mortality === 'suppressed'">Suppressed</span>
@@ -85,7 +91,14 @@
                 <div class="usa-width-one-third marker-years">{{properties.response.rData.count}}</div>
             </div>
         </div>
-        <div ng-if="(!properties.sex && !properties.response) || properties.response === 'NA'">
+        <div class="usa-width-one-whole margin-top-10"
+             ng-if="properties.tableView === 'birth_rates' || properties.tableView === 'fertility_rates'">
+            <div class="usa-width-two-thirds marker-label" ng-bind="totalLabel"></div>
+            <div ng-if="properties.rate === 'suppressed'">Suppressed</div>
+            <div ng-if="properties.rate === 'Unreliable'">Unreliable</div>
+            <div ng-if="!isNaN(properties.rate)">{{properties.rate | number}}</div>
+        </div>
+        <div ng-if="(!properties.sex && !properties.response && !properties.rate) || properties.response === 'NA'">
             <div class="usa-width-one-whole margin-top-10">
                 <div ng-bind="'label.data.not.available' | translate">{{properties.years}}</div>
             </div>

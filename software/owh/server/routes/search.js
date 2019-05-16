@@ -266,17 +266,22 @@ function search(q) {
             });
         });
     } else if (preparedQuery.apiQuery.searchFor === "natality") {
+        preparedQuery.apiQuery.view = q.tableView;
         finalQuery = queryBuilder.buildSearchQuery(preparedQuery.apiQuery, true);
         var allSelectedFilterOptions = searchUtils.getAllSelectedFilterOptions(q);
         var allFilterOptions = searchUtils.getAllFilterOptions(q);
         logger.debug("Natality - Selected filters and filter options: ", JSON.stringify(allSelectedFilterOptions));
         logger.debug("Natality - All Filters and filter options: ", JSON.stringify(allFilterOptions));
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
+        var mapQuery = JSON.stringify(finalQuery[2]);
+        //keep a copy for census rates query
+        finalQuery[3] = mapQuery;
         new elasticSearch().aggregateNatalityData(sideFilterQuery, isStateSelected, allFilterOptions).then(function (sideFilterResults) {
             if(q.tableView === 'fertility_rates' && finalQuery[1]) {
-                var query1 = JSON.stringify(finalQuery[1]);
+                var censusQuery = JSON.stringify(finalQuery[1]);
                 //For Natality Fertility Rates add mother's age filter
-                finalQuery[1] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(query1));
+                finalQuery[1] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(censusQuery));
+                finalQuery[3] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(mapQuery));
             }
             new elasticSearch().aggregateNatalityData(finalQuery, isStateSelected, allSelectedFilterOptions).then(function (response) {
                 var resData = {};

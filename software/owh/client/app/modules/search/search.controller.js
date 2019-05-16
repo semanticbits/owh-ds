@@ -587,6 +587,7 @@
 
         var mortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'deaths');
         var bridgeRaceFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'bridge_race');
+        var natalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'natality');
         var stdFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'std');
         var tbFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'tb');
         var aidsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'aids');
@@ -599,6 +600,7 @@
 
         angular.extend(mortalityFilter.mapData, mapOptions);
         angular.extend(bridgeRaceFilter.mapData, mapOptions);
+        angular.extend(natalityFilter.mapData, mapOptions);
         angular.extend(stdFilter.mapData, mapOptions);
         angular.extend(tbFilter.mapData, mapOptions);
         angular.extend(aidsFilter.mapData, mapOptions);
@@ -762,7 +764,7 @@
                  * when user switch to 'brith_rates' we are disabling 'sex' filter(not year, race), so we need enable sex filter group when
                  * user switch to 'number_of_births' view.
                  */
-                if(sc.filters.selectedPrimaryFilter.tableView == 'number_of_births') {
+                if(sc.filters.selectedPrimaryFilter.tableView === 'number_of_births') {
                    searchFactory.setFilterGroupBy(sc.filters.selectedPrimaryFilter.allFilters, 'sex', 'column');
                 }
             }
