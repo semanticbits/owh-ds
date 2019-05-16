@@ -27,12 +27,12 @@
             </thead>
             <tbody ng-repeat="eachRow in oatc.listRows(topic)">
                 <tr ng-if="eachRow[0].title">
-                   <td colspan="100%">
+                   <td colspan="100%" class="padding_08_rem">
                        <span class="visualize cursor-pointer {{eachRow[0].iconClass}}"
                              id="{{eachRow[0].qkey}}" style="color: #ff9a06;"
                              ng-if="eachRow[0].iconClass && oatc.showCharts"
                              ng-click="eachRow[0].onIconClick(eachRow[0])">
-                           <i class="material-icons vbar_chart-icon" title="Visualize">insert_chart</i>
+                           <i class="material-icons vbar_chart-icon font-32" title="Visualize">insert_chart</i>
                        </span> &nbsp;&nbsp;
                        <span ng-bind="eachRow[0].title" class="stat-question"></span>
                    </td>
