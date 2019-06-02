@@ -153,6 +153,7 @@
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
+                mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions)
             }
             else if (primaryFilter.key === 'infant_mortality') {
                 primaryFilter.data = response.data.resultData.nested.table;
@@ -3206,7 +3207,7 @@
                     key: 'natality', title: 'label.filter.natality', primary: true, value:[], header:"Births",
                     allFilters: filters.natalityFilters, searchResults: searchNatality, dontShowInlineCharting: true,
                     chartAxisLabel:'Births', countLabel: 'Total',  countQueryKey: 'pop', tableView:'number_of_births',
-                    runOnFilterChange: true, applySuppression:true,
+                    runOnFilterChange: true, applySuppression:true, showMap: true, mapData: {},
                     birthAndFertilityRatesDisabledYears: ['2000', '2001', '2002'],
                     sideFilters:[
                         {

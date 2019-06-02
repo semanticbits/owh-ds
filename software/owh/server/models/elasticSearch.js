@@ -286,14 +286,23 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected,
         logger.debug("Census Rates ES Query: "+ JSON.stringify( query[1]));
         var promises = [
             this.executeMultipleESQueries(query[0], natality_index, natality_type),
-            this.aggregateCensusDataQuery(query[1], census_rates_index, census_rates_type, 'pop')
+            this.aggregateCensusDataQuery(query[1], census_rates_index, census_rates_type, 'pop'),
+            this.executeMultipleESQueries(query[2], natality_index, natality_type),
+            this.aggregateCensusDataQuery(query[3], census_rates_index, census_rates_type, 'pop')
         ];
         Q.all(promises).then( function (resp) {
 
             var data = searchUtils.populateDataWithMappings(resp[0], 'natality', undefined, allSelectedFilterOptions, query[0]);
             self.mergeWithCensusData(data, resp[1], 'pop');
+            var mapData = searchUtils.populateDataWithMappings(resp[2], 'natality', undefined, allSelectedFilterOptions, query[2]);
+            data.data.nested.maps = mapData.data.nested.maps;
+            mergeCensusRecursively(data.data.nested.maps, resp[3].data.nested.maps, 'pop');
+            //apply supression on whole data if state selected
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'natality');
+            } else {
+                //apply suppression only on map data
+                searchUtils.applySuppressions(mapData, 'natality');
             }
             deferred.resolve(data);
         }, function (err) {

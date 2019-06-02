@@ -2274,3 +2274,10 @@ div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leafl
 	font-size: 12px;
 	color: #C70039;
 }
+
+.padding_08_rem{
+	padding: 0.5rem;
+}
+.font-32 {
+	font-size: 32px !important;
+}
