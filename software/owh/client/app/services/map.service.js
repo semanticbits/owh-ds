@@ -454,7 +454,7 @@
                         var isStatData = ['mental_health', 'prams', 'brfss'].indexOf(primaryFilter.key) != -1;
                         if(primaryFilter && event.target.feature) {
                             buildMarkerPopup(event.latlng.lat, event.latlng.lng, event.target.feature.properties,
-                                event.target._map, primaryFilter.key, event.containerPoint, isStatData);
+                                event.target._map, primaryFilter, event.containerPoint, isStatData);
                                highlightFeature(event.target._map._layers[event.target._leaflet_id]);
                         }
                         angular.element('#minimizedMap').addClass('unset-position');
@@ -477,13 +477,14 @@
             map.doubleClickZoom.disable();
         }
 
-        function buildMarkerPopup(lat, lng, properties, map, key, markerPosition, isStatDta) {
+        function buildMarkerPopup(lat, lng, properties, map, primaryFilter, markerPosition, isStatDta) {
             if(currentFeature.properties !== properties || !mapPopup._isOpen) {
                 var childScope = $rootScope.$new();
                 childScope.lat = lat;
                 childScope.lng = lng;
                 childScope.properties = properties;
-                childScope.key = key;
+                childScope.key = primaryFilter.key;
+                childScope.isBasicSearch = primaryFilter.showBasicSearchSideMenu;
                 childScope.isStatDta = isStatDta;
                 childScope.totalLabel = getTotalLabel(properties.tableView);
                 var ele = angular.element('<div></div>');
