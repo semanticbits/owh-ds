@@ -76,7 +76,7 @@ class CancerMortalityETL (ETL):
         logger.info("*** Processed %s records from cancer mortality data file", self.metrics.insertCount)
 
     def updateDsMetadata(self):
-        for y in range(2000, 2014):
+        for y in range(2000, 2017):
             self.loadDataSetMetaData('cancer_mortality', str(y), os.path.join(self.dataDirectory, 'data_mapping', 'mortality.json'))
 
     def validate_etl(self):

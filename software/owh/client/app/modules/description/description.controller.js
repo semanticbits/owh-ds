@@ -210,8 +210,8 @@
                         {name: "Census Regions", description: "The United States is split into 4 Census Regions: Northeast, Midwest, South and West. Census Divisions are multi-state groups, sub-sets of Census Regions. You can group by Census Division, or select any combination of individual Census Divisions"}
                     ]
                 },
-                cancer_incident: {
-                    key:"cancer_incident",
+                cancer_incidence: {
+                    key:"cancer_incidence",
                     title: 'Cancer Incidence',
                     image: 'cancer-incidence-icon.svg',
                     yrsAvail: '2000-2014',

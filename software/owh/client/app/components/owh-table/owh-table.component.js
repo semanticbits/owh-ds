@@ -218,7 +218,7 @@
                         } else if (otc.tableView === 'number_of_deaths' ||
                                    otc.tableView === 'bridge_race' ||
                                    otc.tableView === 'number_of_births' ||
-                                   otc.tableView === 'cancer_incident' ||
+                                   otc.tableView === 'cancer_incidence' ||
                                    otc.tableView === 'cancer_mortality') {
                             if(column.title === 'suppressed') {
                                 cell += '<span>Suppressed</span>';

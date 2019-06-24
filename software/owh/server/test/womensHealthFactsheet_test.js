@@ -30,7 +30,7 @@ describe("Women's Health Fact sheet", function () {
             //cancer
             expect(resp.cancerData[0].site).to.eql("Breast");
             expect(resp.cancerData[0].mortality.cancer_mortality).to.eql(1145);
-            expect(resp.cancerData[0].mortality.pop).to.eql(4231101);
+            expect(resp.cancerData[0].mortality.pop).to.eql(4227548);
             //yrbs
             expect(resp.yrbs[3].question).to.eql("Currently use marijuana");
             expect(resp.yrbs[3].data).to.eql("14.9");

@@ -1020,7 +1020,7 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery, d
 
         //prepare aggregations
         for(var index in aggregations['nested']['maps']) {
-            if(datasetName == 'deaths' || datasetName == 'natality' || datasetName == 'cancer_incident' || datasetName == 'cancer_mortality') {
+            if(datasetName == 'deaths' || datasetName == 'natality' || datasetName == 'cancer_incidence' || datasetName == 'cancer_mortality') {
                 mapQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_');
             }
             else if(datasetName === 'std' || datasetName === 'tb' || datasetName === 'aids') {

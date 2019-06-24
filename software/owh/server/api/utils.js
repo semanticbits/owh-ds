@@ -1194,7 +1194,7 @@ function applyCustomMapSuppressions (mapData, allFilters) {
             return unique;
         }, [])
     mapSuppressionRules.forEach(function (rule) {
-        searchTree(mapData, rule, { countKey: 'cancer_incident', suppressionValue: 'suppressed' }, []);
+        searchTree(mapData, rule, { countKey: 'cancer_incidence', suppressionValue: 'suppressed' }, []);
     });
 }
 
@@ -1243,7 +1243,7 @@ function applyCustomSidebarTotalSuppressions (sidebarTotals, allFilters) {
             return unique;
         }, [])
     sidebarSuppressionRules.forEach(function (rule) {
-        searchTree(sidebarTotals, rule, { countKey: 'cancer_incident', suppressionValue: 'suppressed' }, []);
+        searchTree(sidebarTotals, rule, { countKey: 'cancer_incidence', suppressionValue: 'suppressed' }, []);
     });
 }
 
