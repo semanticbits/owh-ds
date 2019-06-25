@@ -210,13 +210,13 @@
                         {name: "Census Regions", description: "The United States is split into 4 Census Regions: Northeast, Midwest, South and West. Census Divisions are multi-state groups, sub-sets of Census Regions. You can group by Census Division, or select any combination of individual Census Divisions"}
                     ]
                 },
-                cancer_incident: {
-                    key:"cancer_incident",
+                cancer_incidence: {
+                    key:"cancer_incidence",
                     title: 'Cancer Incidence',
                     image: 'cancer-incidence-icon.svg',
-                    yrsAvail: '2000-2014',
+                    yrsAvail: '2000-2016',
                     topics: "Cancer, Babies, Prostate Cancer, Childhood Cancers",
-                    dataDescription: "Cancer incidence data are collected from cancer registries, based on oncology reports from health care providers. Cancer incidence and death counts, rates, cancer classification, age, race, and gender. Charts and maps are also available. The data are updated annually.\n\nCancer incidence and mortality data are available for the United States, state by age group, race, ethnicity, gender and cancer site for the years 2000-2014.",
+                    dataDescription: "Cancer incidence data are collected from cancer registries, based on oncology reports from health care providers. Cancer incidence and death counts, rates, cancer classification, age, race, and gender. Charts and maps are also available. The data are updated annually.\n\nCancer incidence and mortality data are available for the United States, state by age group, race, ethnicity, gender and cancer site for the years 2000-2016.",
                     suppression: "<ul>" +
                       "<li>Data are suppressed if the figures represent fewer than 16 cases for the specific category:" +
                         "<ul class='sub'>" +
@@ -285,12 +285,17 @@
                     key:"cancer_mortality",
                     title: 'Cancer Mortality',
                     image: 'cancer-mortality-icon.svg',
-                    yrsAvail: '2000-2014',
+                    yrsAvail: '2000-2016',
                     topics: "Cancer, Deaths, Prostate Cancer",
-                    dataDescription: "Cancer mortality data are derived from death certificates. Cancer incidence and death counts, rates, cancer classification, age, race, and gender. Charts and maps are also available. The data are updated annually. Cancer incidence and mortality data are available for the United States, state by age group, race, ethnicity, gender and cancer site for the years 2000- 2014.",
+                    dataDescription: "Cancer mortality data are derived from death certificates. Cancer incidence and death counts, rates, cancer classification, age, race, and gender. Charts and maps are also available. The data are updated annually. Cancer incidence and mortality data are available for the United States, state by age group, race, ethnicity, gender and cancer site for the years 2000-2016.",
                     suppression: "<ul>" +
                       "<li>Data are suppressed if the figures represent fewer than 16 cases for the specific category." +"</li>"+
                       "</ul>",
+                    source: "The United States Cancer Statistics (USCS) are the official federal statistics on cancer incidence from registries having high-quality data and cancer mortality statistics for 50 states and the District of Columbia. USCS are produced by the Centers for Disease Control and Prevention (CDC) and the National Cancer Institute (NCI), in collaboration with the North American Association of Central Cancer Registries (NAACCR). Data are provided by:" +
+                    "<ul>" +
+                    "<li>The Centers for Disease Control and Prevention National Program of Cancer Registries (NPCR) </li>" +
+                    "<li>The National Cancer Institute Surveillance, Epidemiology and End Results (SEER) program.</li>" +
+                    "</ul>",
                     isRateCalculation: true,
                     filters: [
                         {name: "Cancer Counts", description: "Cancer case reports in this data set are counted by or summed by the cancer reported. For example, a single person with more than one primary cancer verified by a medical doctor is counted as a case report for each type of primary cancer reported. Having more than one primary cancer occurs in less than 20% of the population. The counts report the frequency of verified cancer diagnoses in the selected population and time period."},

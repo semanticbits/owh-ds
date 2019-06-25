@@ -11,6 +11,6 @@ elastic_search:
   host: 127.0.0.1
   port: 9200
   bulk_load_size: 10000
-  index: owh_cancer_incident
-  type: cancer_incident
-  type_mapping: insident-type-mapping.json
+  index: owh_cancer_incidence
+  type: cancer_incidence
+  type_mapping: insidence-type-mapping.json

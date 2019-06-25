@@ -1,5 +1,5 @@
 {
-  "cancer_incident": {
+  "cancer_incidence": {
     "include_in_all": false,
     "_source": {
       "enabled": true

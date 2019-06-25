@@ -35,7 +35,7 @@ describe("Fact sheet", function () {
             expect(resp.natalityData.population).to.eql(6006401);
             //cancer
             expect(resp.cancerData[0].site).to.eql("Breast");
-            expect(resp.cancerData[0].count).to.eql(4791);
+            expect(resp.cancerData[0].count).to.eql(4875);
             expect(resp.cancerData[0].mortality_rate).to.eql(14.6);
             //yrbs
             expect(resp.yrbs[2].question).to.eql("Currently use marijuana");

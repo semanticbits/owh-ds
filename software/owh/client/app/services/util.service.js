@@ -1406,7 +1406,9 @@
               '2011': [ 'KS', 'NV' ],
               '2012': [ 'KS' ],
               '2013': [ 'KS' ],
-              '2014': [ 'KS' ]
+              '2014': [ 'KS' ],
+              '2015': [ 'KS' ],
+              '2016': [ 'KS' ]
             };
 
             var yearsApplied = !yearFilter.filters.allChecked ? yearFilter.filters.value : yearFilter.filters.autoCompleteOptions.map(function (option) {

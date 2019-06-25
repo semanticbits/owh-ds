@@ -70,7 +70,7 @@
     {
       "column": "sex",
       "type": "map",
-      "column_index": 2,
+      "column_index": 3,
       "field": "Sex",
       "mappings": {
         "1": "Male",
@@ -80,7 +80,7 @@
     {
       "type": "map",
       "column": "race",
-      "column_index": 3,
+      "column_index": 4,
       "field": "Detail Race",
       "mappings": {
         "1": "White",
@@ -93,7 +93,7 @@
     {
       "type": "map",
       "column": "hispanic_origin",
-      "column_index": 4,
+      "column_index": 5,
       "field": "Hispanic Origin",
       "mappings": {
         "0": "Non-Hispanic",
@@ -104,7 +104,7 @@
     {
       "type": "map",
       "column": "age_group",
-      "column_index": 5,
+      "column_index": 6,
       "field": "Marital Status",
       "mappings": {
         "0": "00 years",
@@ -130,7 +130,7 @@
     },{
       "type": "map",
       "column": "cbsa",
-      "column_index": 6,
+      "column_index": 7,
       "field": "Core Based Statistical Area (CBSA)",
       "mappings": {
         "10420": "Akron, OH",
@@ -159,13 +159,14 @@
         "17900": "Columbia, SC",
         "18140": "Columbus, OH",
         "19100": "Dallas-Fort Worth-Arlington, TX",
-        "19380": "Dayton, OH",
+        "19430": "Dayton-Kettering, OH",
         "19660": "Deltona-Daytona Beach-Ormond Beach, FL",
         "19740": "Denver-Aurora-Lakewood, CO",
         "19780": "Des Moines-West Des Moines, IA",
         "19820": "Detroit-Warren-Dearborn, MI",
         "20500": "Durham-Chapel Hill, NC",
         "21340": "El Paso, TX",
+        "22180": "Fayetteville, NC",
         "22220": "Fayetteville-Springdale-Rogers, AR-MO",
         "23420": "Fresno, CA",
         "24340": "Grand Rapids-Wyoming, MI",
@@ -181,6 +182,7 @@
         "28940": "Knoxville, TN",
         "29460": "Lakeland-Winter Haven, FL",
         "29540": "Lancaster, PA",
+        "29620": "Lansing-East Lansing, MI",
         "29820": "Las Vegas-Henderson-Paradise, NV",
         "30780": "Little Rock-North Little Rock-Conway, AR",
         "31080": "Los Angeles-Long Beach-Anaheim, CA",
@@ -208,6 +210,7 @@
         "38300": "Pittsburgh, PA",
         "38860": "Portland-South Portland, ME",
         "38900": "Portland-Vancouver-Hillsboro, OR-WA",
+        "39100": "Poughkeepsie-Newburgh-Middletown, NY",
         "39300": "Providence-Warwick, RI-MA",
         "39340": "Provo-Orem, UT",
         "39580": "Raleigh, NC",
@@ -234,7 +237,6 @@
         "46520": "Urban Honolulu, HI",
         "47260": "Virginia Beach-Norfolk-Newport News, VA-NC",
         "47900": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
-        "48620": "Wichita, KS",
         "49180": "Winston-Salem, NC",
         "49340": "Worcester, MA-CT",
         "49660": "Youngstown-Warren-Boardman, OH-PA"
@@ -243,14 +245,14 @@
     {
       "type": "simple",
       "column": "childhood_cancer",
-      "column_index": 8,
+      "column_index": 9,
       "field": "ICCC site recode ICD-O-3/WHO 2008",
       "mappings": {}
     },
     {
       "type": "map",
       "column": "cancer_site",
-      "column_index": 9,
+      "column_index": 10,
       "field": "Site recode ICD-O-3/WHO 2008",
       "mappings": {
         "1": "20010",

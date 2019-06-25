@@ -180,7 +180,7 @@
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 mapService.updateStatesDeaths(primaryFilter, response.data.resultData.nested.maps, primaryFilter.searchCount, mapOptions);
             }
-            else if (response.data.queryJSON.key  === 'cancer_incident' || response.data.queryJSON.key  === 'cancer_mortality') {
+            else if (response.data.queryJSON.key  === 'cancer_incidence' || response.data.queryJSON.key  === 'cancer_mortality') {
                 primaryFilter.data = response.data.resultData.nested.table;
                 populateSideFilterTotals(primaryFilter, response.data);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
@@ -4123,9 +4123,9 @@
                     ]
                 },
                 {
-                    key: 'cancer_incident', title: 'label.filter.cancer_incident', primary: true, value: [], header: 'Cancer Incidence',
+                    key: 'cancer_incidence', title: 'label.filter.cancer_incidence', primary: true, value: [], header: 'Cancer Incidence',
                     allFilters: filters.cancerIncidenceFilters, searchResults: searchCancerResults, showMap: true, countLabel: 'Total Incidence',
-                    mapData: {}, chartAxisLabel: 'Incidence', tableView: 'cancer_incident', runOnFilterChange: true,
+                    mapData: {}, chartAxisLabel: 'Incidence', tableView: 'cancer_incidence', runOnFilterChange: true,
                     sideFilters: [
                         {
                             sideFilters: [

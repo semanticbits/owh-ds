@@ -5,7 +5,8 @@ import logging
 from owh.etl.common.datafile_parser import DataFileParser
 logger = logging.getLogger('incident_etl')
 
-class CancerIncidentETL (ETL):
+
+class CancerIncidenceETL (ETL):
     """
         Loads cancer incidents data into ES db
     """
@@ -31,7 +32,7 @@ class CancerIncidentETL (ETL):
                 record['cancer_site'] = 'Breast-InSitu-Male'
             else:
                 record['cancer_site'] = 'Breast-InSitu-Female'
-        elif record['cancer_site'] == '26000':# to separate male/female breast cancer sites
+        elif record['cancer_site'] == '26000':  # to separate male/female breast cancer sites
             if record['sex'] == 'Male':
                 record['cancer_site'] = '26000-Male'
             else:
@@ -51,7 +52,7 @@ class CancerIncidentETL (ETL):
                 record['childhood_cancer'] = '254F'
         childhood_cancer__hierarchy = []
         if record['childhood_cancer']:
-            childhood_cancer__hierarchy  = self.childhood_cancer_mappings[record['childhood_cancer']]
+            childhood_cancer__hierarchy = self.childhood_cancer_mappings[record['childhood_cancer']]
         record['childhood_cancer'] = {'code': record['childhood_cancer'], 'path': childhood_cancer__hierarchy}
 
 
@@ -81,11 +82,12 @@ class CancerIncidentETL (ETL):
                 record  = cancer_incident_parser.parseNextLine()
                 if not record:
                     break
-                if (record['current_year'] == '1999') or record['state']== 'PR': # skip year 1999 records & Puerto Rica
+                # skip year 1999 records & Puerto Rica
+                if (record['current_year'] == '1999') or record['state'] == 'PR':
                     continue
                 self.process_cancer_sites(record)
                 self.process_childhood_cancers(record)
-                #prepare region data
+                # prepare region data
                 self.loadRegionData(record)
                 record_count += 1
                 self.batchRepository.persist({"index": {"_index": self.config['elastic_search']['index'],
@@ -100,8 +102,8 @@ class CancerIncidentETL (ETL):
         logger.info("*** Processed %s records from cancer incidents data file", self.metrics.insertCount)
 
     def updateDsMetadata(self):
-        for y in range(2000, 2014):
-            self.loadDataSetMetaData('cancer_incident', str(y), os.path.join(self.dataDirectory, 'data_mapping', 'incidence.json'))
+        for y in range(2000, 2017):
+            self.loadDataSetMetaData('cancer_incidence', str(y), os.path.join(self.dataDirectory, 'data_mapping', 'incidence.json'))
 
     def validate_etl(self):
         """ Validate the ETL"""
@@ -120,5 +122,5 @@ class CancerIncidentETL (ETL):
 
 if __name__ == "__main__":
     # Perform ETL
-    etl = CancerIncidentETL(file(os.path.join(os.path.dirname(__file__), "config.yaml"), 'r'))
+    etl = CancerIncidenceETL(file(os.path.join(os.path.dirname(__file__), "config.yaml"), 'r'))
     etl.execute()
