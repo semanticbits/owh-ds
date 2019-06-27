@@ -149,7 +149,7 @@
                 {key: 'Tobacco Use', title: 'Tobacco Use'},
                 {key: 'Unintentional Injuries and Violence', title: 'Unintentional Injuries and Violence'},
                 {key: 'Other Health Topics', title: 'Other Health Topics'}],
-            cancer_incident: [
+            cancer_incidence: [
                 { key: 'cancer_incidence', title: 'Number of Incidents' },
                 { key: 'crude_cancer_incidence_rates', title: 'Crude Incidence Rates' }
             ],
