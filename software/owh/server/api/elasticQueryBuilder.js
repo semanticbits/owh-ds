@@ -203,6 +203,7 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     //check if primary query is empty
     elasticQuery.query.filtered.query = primaryQuery;
     elasticQuery.query.filtered.filter = filterQuery;
+    var clonedFilterQuery, mapPopQuery;
     if(censusQuery) {
         var clonedUserQuery = clone(userQuery);
         if (clonedUserQuery['ICD_10_code']) delete clonedUserQuery['ICD_10_code'];
@@ -217,7 +218,7 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
             clonedUserQuery['year_of_death'].queryKey = 'current_year';
         }
         var clonedPrimaryQuery = buildTopLevelBoolQuery(groupByPrimary(clonedUserQuery, true), true);
-        var clonedFilterQuery = buildTopLevelBoolQuery(groupByPrimary(clonedUserQuery, false), false);
+        clonedFilterQuery = buildTopLevelBoolQuery(groupByPrimary(clonedUserQuery, false), false);
 
         censusQuery.query = {};
         censusQuery.query.filtered = {};
@@ -232,7 +233,7 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     if(params.searchFor == 'std' || params.searchFor == 'tb' || params.searchFor == 'aids') {
         var chartQueryArray = buildChartQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, censusQuery, params.searchFor);
         if (!params.filterCountsQuery) {
-            var mapPopQuery = getPopulationQueryForMap(params.aggregations);
+            mapPopQuery = getPopulationQueryForMap(params.aggregations);
             mapPopQuery.query = mapQuery.query;
             chartQueryArray[0].splice(0, 0, mapPopQuery );
         }
@@ -241,8 +242,13 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
         searchQueryArray.push(mapQuery);
         //Chart 'Cases' query
         searchQueryArray.push(chartQueryArray[1]);
-    }
-    else {
+    } else if ((params.searchFor === 'cancer_incidence' || params.searchFor === 'cancer_mortality') && mapQuery) {
+        mapPopQuery = clone(mapQuery);
+        mapPopQuery.query.filtered.filter = clonedFilterQuery;
+        searchQueryArray.push(censusQuery);
+        searchQueryArray.push(mapQuery);
+        searchQueryArray.push(mapPopQuery);
+    } else {
         searchQueryArray.push(censusQuery);
         searchQueryArray.push(mapQuery);
     }

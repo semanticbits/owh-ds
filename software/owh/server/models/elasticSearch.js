@@ -523,7 +523,7 @@ ElasticClient.prototype.aggregateCancerData = function (query, cancer_index, all
     if (query[1]) promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[1]));
     if (query[2]) {
         promises.push(this.executeESQuery(index, type, query[2]));
-        promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[2]));
+        promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[3]));
     }
 
     return Q.all(promises).spread(function (queryResponse, populationResponse, mapResponse, populationMapResponse) {
