@@ -217,7 +217,15 @@
           "start": 78,
           "stop": 85,
           "index_value": "2017",
-          "field": "July 1, 2016 postcensal resident population estimate",
+          "field": "July 1, 2017 postcensal resident population estimate",
+          "mappings": {
+          }
+        },
+        {
+          "start": 86,
+          "stop": 93,
+          "index_value": "2018",
+          "field": "July 1, 2018 postcensal resident population estimate",
           "mappings": {
           }
         }
