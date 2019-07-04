@@ -6,7 +6,9 @@
     "prestart": "npm install",
     "start": "node ./bin/www",
     "debug": "nodemon --inspect=3001 ./bin/www",
-    "test": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive test"
+    "test": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive test",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "body-parser": "~1.18.3",
@@ -30,7 +32,8 @@
     "serve-favicon": "~2.4.3",
     "svg2png": "^4.1.1",
     "x2js": "^3.0.1",
-    "xmlbuilder": "^8.2.2"
+    "xmlbuilder": "^8.2.2",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
@@ -38,5 +41,6 @@
     "object-hash": "^1.1.4",
     "supertest": "^3.3.0",
     "istanbul": "^0.4.5"
-  }
+  },
+  "snyk": true
 }
