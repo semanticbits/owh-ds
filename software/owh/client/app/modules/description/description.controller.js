@@ -193,11 +193,11 @@
                     key:"bridge_race",
                     title: 'Bridged Race',
                     image: 'bridged-race-icon.svg',
-                    yrsAvail: '2000-2017',
+                    yrsAvail: '2000-2018',
                     topics: 'Demographics, Population Data',
                     dataDescription: "The estimates result from bridging the 31 race categories used in Census 2000, as specified in the 1997 Office of Management and Budget (OMB) standards for the collection of data on race and ethnicity, to the four race categories specified under the 1977 standards (Asian or Pacific Islander, Black or African American, American Indian or Alaska Native, White).",
                     source: "Data source is United States Department of Health and Human Services (HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS), Bridged-Race Population Estimates, United States July 1st resident population by state, age, sex, bridged-race, and Hispanic origin." +
-                    "<ul><li>2010 to 2017 (Vintage 2017) postcensal estimates of the July 1 resident population by five-year of age groups, bridged-race, sex, and Hispanic origin released by NCHS on June 27, 2018.</li>" +
+                    "<ul><li>2010 to 2018 (Vintage 2018) postcensal estimates of the July 1 resident population by five-year of age groups, bridged-race, sex, and Hispanic origin released by NCHS on June 25, 2019.</li>" +
                     "<li>2000 to 2009 revised intercensal estimates of the July 1 resident population by five-year of age groups, bridged-race, sex, and Hispanic origin released by NCHS on October 26, 2012.</li>" +
                     "</ul>",
                     filters: [
