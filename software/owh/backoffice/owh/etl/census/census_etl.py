@@ -80,14 +80,15 @@ class CensusETL (ETL):
         self.loadDataSetMetaData('bridge_race', '2007', os.path.join(self.dataDirectory, 'data_mapping', 'icen_2000_09_y0509.json'))
         self.loadDataSetMetaData('bridge_race', '2008', os.path.join(self.dataDirectory, 'data_mapping', 'icen_2000_09_y0509.json'))
         self.loadDataSetMetaData('bridge_race', '2009', os.path.join(self.dataDirectory, 'data_mapping', 'icen_2000_09_y0509.json'))
-        self.loadDataSetMetaData('bridge_race', '2010', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2017_y1017.json'))
-        self.loadDataSetMetaData('bridge_race', '2011', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2017_y1017.json'))
-        self.loadDataSetMetaData('bridge_race', '2012', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2017_y1017.json'))
-        self.loadDataSetMetaData('bridge_race', '2013', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2017_y1017.json'))
-        self.loadDataSetMetaData('bridge_race', '2014', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2017_y1017.json'))
-        self.loadDataSetMetaData('bridge_race', '2015', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2017_y1017.json'))
-        self.loadDataSetMetaData('bridge_race', '2016', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2017_y1017.json'))
-        self.loadDataSetMetaData('bridge_race', '2017', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2017_y1017.json'))
+        self.loadDataSetMetaData('bridge_race', '2010', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2018_y1018.json'))
+        self.loadDataSetMetaData('bridge_race', '2011', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2018_y1018.json'))
+        self.loadDataSetMetaData('bridge_race', '2012', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2018_y1018.json'))
+        self.loadDataSetMetaData('bridge_race', '2013', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2018_y1018.json'))
+        self.loadDataSetMetaData('bridge_race', '2014', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2018_y1018.json'))
+        self.loadDataSetMetaData('bridge_race', '2015', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2018_y1018.json'))
+        self.loadDataSetMetaData('bridge_race', '2016', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2018_y1018.json'))
+        self.loadDataSetMetaData('bridge_race', '2017', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2018_y1018.json'))
+        self.loadDataSetMetaData('bridge_race', '2018', os.path.join(self.dataDirectory, 'data_mapping', 'pcen_v2018_y1018.json'))
 
 
     def validate_etl(self):

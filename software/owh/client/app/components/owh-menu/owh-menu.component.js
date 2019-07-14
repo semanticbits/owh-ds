@@ -47,7 +47,7 @@
           std: '../images/icons/std-icon.svg',
           tb: '../images/icons/tuberculosis-icon.svg',
           aids: '../images/icons/aids-hiv-icon.svg',
-          cancer_incident: '../images/icons/cancer-incidence-icon.svg',
+          cancer_incidence: '../images/icons/cancer-incidence-icon.svg',
           cancer_mortality: '../images/icons/cancer-mortality-icon.svg',
           brfss: '../images/icons/brfss-icon.svg'
         };

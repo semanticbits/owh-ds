@@ -782,20 +782,20 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
         es.executeESQuery('owh_cancer_population', 'cancer_population', prostateCancerHispanicPopQuery),
 
         //Cancer - incident
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', breastCancerESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', breastCancerHispanicESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', colonCancerESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', colonCancerHispanicESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', lungCancerESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', lungCancerHispanicESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', melanomaCancerESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', melanomaCancerHispanicESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', cervixCancerESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', cervixCancerHispanicESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', ovaryCancerESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', ovaryCancerHispanicESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', prostateCancerESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', prostateCancerHispanicESQuery)
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', breastCancerESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', breastCancerHispanicESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', colonCancerESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', colonCancerHispanicESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', lungCancerESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', lungCancerHispanicESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', melanomaCancerESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', melanomaCancerHispanicESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', cervixCancerESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', cervixCancerHispanicESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', ovaryCancerESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', ovaryCancerHispanicESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', prostateCancerESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', prostateCancerHispanicESQuery)
     ];
     var deferred = Q.defer();
     Q.all(promises).then(function (resp) {
@@ -817,26 +817,26 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
 
         //Cancer - Incident
         var rules = searchUtils.createCancerIncidenceSuppressionRules(['2014'], true, false);
-        var cancerIncidentBreastData = prepareCancerData(resp[28], resp[1], resp[29], resp[3], 'cancer_incident');
-        searchUtils.applyCustomSuppressions(cancerIncidentBreastData.data.nested, rules, 'cancer_incident');
+        var cancerIncidentBreastData = prepareCancerData(resp[28], resp[1], resp[29], resp[3], 'cancer_incidence');
+        searchUtils.applyCustomSuppressions(cancerIncidentBreastData.data.nested, rules, 'cancer_incidence');
 
-        var cancerIncidentColonAndRectumData = prepareCancerData(resp[30], resp[5], resp[31], resp[7], 'cancer_incident');
-        searchUtils.applyCustomSuppressions(cancerIncidentColonAndRectumData.data.nested, rules, 'cancer_incident');
+        var cancerIncidentColonAndRectumData = prepareCancerData(resp[30], resp[5], resp[31], resp[7], 'cancer_incidence');
+        searchUtils.applyCustomSuppressions(cancerIncidentColonAndRectumData.data.nested, rules, 'cancer_incidence');
 
-        var cancerIncidentLungAndBronchusData = prepareCancerData(resp[32], resp[9], resp[33], resp[11], 'cancer_incident');
-        searchUtils.applyCustomSuppressions(cancerIncidentLungAndBronchusData.data.nested, rules, 'cancer_incident');
+        var cancerIncidentLungAndBronchusData = prepareCancerData(resp[32], resp[9], resp[33], resp[11], 'cancer_incidence');
+        searchUtils.applyCustomSuppressions(cancerIncidentLungAndBronchusData.data.nested, rules, 'cancer_incidence');
 
-        var cancerIncidentMelanomaData = prepareCancerData(resp[34], resp[13], resp[35], resp[15], 'cancer_incident');
-        searchUtils.applyCustomSuppressions(cancerIncidentMelanomaData.data.nested, rules, 'cancer_incident');
+        var cancerIncidentMelanomaData = prepareCancerData(resp[34], resp[13], resp[35], resp[15], 'cancer_incidence');
+        searchUtils.applyCustomSuppressions(cancerIncidentMelanomaData.data.nested, rules, 'cancer_incidence');
 
-        var cancerIncidentCervixData = prepareCancerData(resp[36], resp[17], resp[37], resp[19], 'cancer_incident');
-        searchUtils.applyCustomSuppressions(cancerIncidentCervixData.data.nested, rules, 'cancer_incident');
+        var cancerIncidentCervixData = prepareCancerData(resp[36], resp[17], resp[37], resp[19], 'cancer_incidence');
+        searchUtils.applyCustomSuppressions(cancerIncidentCervixData.data.nested, rules, 'cancer_incidence');
 
-        var cancerIncidentOvaryData = prepareCancerData(resp[38], resp[21], resp[39], resp[23], 'cancer_incident');
-        searchUtils.applyCustomSuppressions(cancerIncidentOvaryData.data.nested, rules, 'cancer_incident');
+        var cancerIncidentOvaryData = prepareCancerData(resp[38], resp[21], resp[39], resp[23], 'cancer_incidence');
+        searchUtils.applyCustomSuppressions(cancerIncidentOvaryData.data.nested, rules, 'cancer_incidence');
 
-        var cancerIncidentProstateData = prepareCancerData(resp[40], resp[25], resp[41], resp[27], 'cancer_incident');
-        searchUtils.applyCustomSuppressions(cancerIncidentProstateData.data.nested, rules, 'cancer_incident');
+        var cancerIncidentProstateData = prepareCancerData(resp[40], resp[25], resp[41], resp[27], 'cancer_incidence');
+        searchUtils.applyCustomSuppressions(cancerIncidentProstateData.data.nested, rules, 'cancer_incidence');
 
         var sortOrder = ['American Indian/Alaska Native', 'Asian or Pacific Islander', 'Black', 'Hispanic'];
         var cancerData = [

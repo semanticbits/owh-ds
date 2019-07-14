@@ -856,8 +856,8 @@
                 var deathsRates = ['', 'Mortality Crude Rates'];
                 angular.forEach(eachRecord.incidence, function (incidence) {
                     var populationCount = incidence.pop === 'suppressed' ? 'Suppressed' : $filter('number')(incidence.pop);
-                    var incidenceCount = fsc.getCancerCountDisplayVal(incidence.cancer_incident);
-                    var incidenceRate = (fsc.state === 'KS'? 'Not available' : fsc.calculateRate(incidence.cancer_incident, incidence.pop, true));
+                    var incidenceCount = fsc.getCancerCountDisplayVal(incidence.cancer_incidence);
+                    var incidenceRate = (fsc.state === 'KS'? 'Not available' : fsc.calculateRate(incidence.cancer_incidence, incidence.pop, true));
                     population.push(populationCount); incidenceCounts.push(incidenceCount); incidenceRates.push(incidenceRate);
                 });
 
@@ -961,7 +961,7 @@
             angular.forEach(fsc.factSheet.cancerData, function(eachRecord) {
                 var aRow = [
                     eachRecord.site,
-                    fsc.calculateRate(eachRecord.incidence.cancer_incident, eachRecord.incidence.pop, true),
+                    fsc.calculateRate(eachRecord.incidence.cancer_incidence, eachRecord.incidence.pop, true),
                     fsc.calculateRate(eachRecord.mortality.cancer_mortality, eachRecord.mortality.pop, true)
                 ];
                 cancerData.push(aRow);

@@ -463,12 +463,12 @@
                                 <tr>
                                     <td>Count</td>
                                     <td ng-repeat="dt in eachRecord.incidence"
-                                        ng-bind="fsc.getCancerCountDisplayVal(dt.cancer_incident)"></td>
+                                        ng-bind="fsc.getCancerCountDisplayVal(dt.cancer_incidence)"></td>
                                 </tr>
                                 <tr>
                                     <td>Incidence Crude Rates</td>
                                     <td ng-if="fsc.state != 'KS'" ng-repeat="dt in eachRecord.incidence"
-                                        ng-bind="fsc.calculateRate(dt.cancer_incident, dt.pop, true)"></td>
+                                        ng-bind="fsc.calculateRate(dt.cancer_incidence, dt.pop, true)"></td>
                                     <td ng-if="fsc.state == 'KS'" ng-repeat="dt in eachRecord.incidence">Not available</td>
                                 </tr>
                                 <tr>
@@ -671,7 +671,7 @@
                             <tbody>
                             <tr ng-repeat="dt in fsc.factSheet.cancerData">
                                 <td ng-bind="dt.site"></td>
-                                <td ng-bind="fsc.calculateRate(dt.incidence.cancer_incident, dt.incidence.pop, true)"></td>
+                                <td ng-bind="fsc.calculateRate(dt.incidence.cancer_incidence, dt.incidence.pop, true)"></td>
                                 <td ng-bind="fsc.calculateRate(dt.mortality.cancer_mortality, dt.mortality.pop, true)"></td>
                             </tr>
                             </tbody>

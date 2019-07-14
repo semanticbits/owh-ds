@@ -408,13 +408,13 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
         es.executeESQuery('owh_cancer_population', 'cancer_population', uterusCancerPopulationQuery),
 
         //Cancer - incident
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', breastCancerESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', colonAndRectumCancerESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', lungAndBronchusCancerESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', melanomaCancerESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', cervixCancerESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', ovaryCancerESQuery),
-        es.executeESQuery('owh_cancer_incident', 'cancer_incident', uterusCancerESQuery)
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', breastCancerESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', colonAndRectumCancerESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', lungAndBronchusCancerESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', melanomaCancerESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', cervixCancerESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', ovaryCancerESQuery),
+        es.executeESQuery('owh_cancer_incidence', 'cancer_incidence', uterusCancerESQuery)
     ];
     var deferred = Q.defer();
     Q.all(promises).then(function (resp) {
@@ -427,27 +427,27 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
         var uterusCancerMortalityData = prepareCancerData(resp[12], resp[13], 'cancer_mortality');
 
         var rules = searchUtils.createCancerIncidenceSuppressionRules(['2014'], true, false);
-        var breastCancerIncidentData = prepareCancerData(resp[14], resp[1], 'cancer_incident');
-        searchUtils.applyCustomSuppressions(breastCancerIncidentData.data.nested, rules, 'cancer_incident');
+        var breastCancerIncidentData = prepareCancerData(resp[14], resp[1], 'cancer_incidence');
+        searchUtils.applyCustomSuppressions(breastCancerIncidentData.data.nested, rules, 'cancer_incidence');
 
-        var colonCancerIncidentData = prepareCancerData(resp[15], resp[3], 'cancer_incident');
-        searchUtils.applyCustomSuppressions(colonCancerIncidentData.data.nested, rules, 'cancer_incident');
+        var colonCancerIncidentData = prepareCancerData(resp[15], resp[3], 'cancer_incidence');
+        searchUtils.applyCustomSuppressions(colonCancerIncidentData.data.nested, rules, 'cancer_incidence');
 
-        var lungCancerIncidentData = prepareCancerData(resp[16], resp[5], 'cancer_incident');
-        searchUtils.applyCustomSuppressions(lungCancerIncidentData.data.nested, rules, 'cancer_incident');
+        var lungCancerIncidentData = prepareCancerData(resp[16], resp[5], 'cancer_incidence');
+        searchUtils.applyCustomSuppressions(lungCancerIncidentData.data.nested, rules, 'cancer_incidence');
 
-        var melanomaCancerIncidentData = prepareCancerData(resp[17], resp[7], 'cancer_incident');
-        searchUtils.applyCustomSuppressions(melanomaCancerIncidentData.data.nested, rules, 'cancer_incident');
+        var melanomaCancerIncidentData = prepareCancerData(resp[17], resp[7], 'cancer_incidence');
+        searchUtils.applyCustomSuppressions(melanomaCancerIncidentData.data.nested, rules, 'cancer_incidence');
 
-        var cervixCancerIncidentData = prepareCancerData(resp[18], resp[9], 'cancer_incident');
-        searchUtils.applyCustomSuppressions(cervixCancerIncidentData.data.nested, rules, 'cancer_incident');
+        var cervixCancerIncidentData = prepareCancerData(resp[18], resp[9], 'cancer_incidence');
+        searchUtils.applyCustomSuppressions(cervixCancerIncidentData.data.nested, rules, 'cancer_incidence');
 
-        var ovaryCancerIncidentData = prepareCancerData(resp[19], resp[11], 'cancer_incident');
-        searchUtils.applyCustomSuppressions(ovaryCancerIncidentData.data.nested, rules, 'cancer_incident');
+        var ovaryCancerIncidentData = prepareCancerData(resp[19], resp[11], 'cancer_incidence');
+        searchUtils.applyCustomSuppressions(ovaryCancerIncidentData.data.nested, rules, 'cancer_incidence');
 
-        var uterusCancerIncidentData = prepareCancerData(resp[20], resp[13], 'cancer_incident');
-        searchUtils.applyCustomSuppressions(uterusCancerIncidentData.data.nested, rules, 'cancer_incident');
-        var naIncidence = {cancer_incident: 'Not available'};
+        var uterusCancerIncidentData = prepareCancerData(resp[20], resp[13], 'cancer_incidence');
+        searchUtils.applyCustomSuppressions(uterusCancerIncidentData.data.nested, rules, 'cancer_incidence');
+        var naIncidence = {cancer_incidence: 'Not available'};
 
         var data = [
             {

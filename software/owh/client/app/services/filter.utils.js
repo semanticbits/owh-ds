@@ -13,6 +13,7 @@
     function filterUtils(utilService, $timeout, cancerService) {
         //filter options
         var yearOptions = [
+            { "key": "2016", "title": "2016"},
             { "key": "2015", "title": "2015"},
             { "key": "2014", "title": "2014"},
             { "key": "2013", "title": "2013"},
@@ -771,6 +772,7 @@
 
             //bridge data filter options
             var censusYearsOptions = [
+                { "key": "2018", "title": "2018" },
                 { "key": "2017", "title": "2017" },
                 { "key": "2016", "title": "2016" },
                 { "key": "2015", "title": "2015" },
@@ -873,7 +875,7 @@
             //prepare filter definitions
             var bridgeDataFilters = [
                 {key: 'current_year', title: 'label.filter.yearly.estimate', queryKey:"current_year",
-                    primary: false, value: ['2017'], defaultGroup:'row', groupBy: false, filterType: 'checkbox',
+                    primary: false, value: ['2018'], defaultGroup:'row', groupBy: false, filterType: 'checkbox',
                     autoCompleteOptions: censusYearsOptions, refreshFiltersOnChange: true, helpText:"label.help.text.bridged-race.year" },
                 {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'column', filterType: 'checkbox',
@@ -948,7 +950,7 @@
                     autoCompleteOptions: educationOptions, helpText:"label.help.text.mother.education"},
 
                 {key: 'current_year', title: 'label.filter.year', queryKey:"current_year", primary: false, value: ["2015"], defaultGroup:'column', groupBy: false,
-                    filterType: "checkbox", autoCompleteOptions: yearOptions, helpText:"label.help.text.year"},
+                    filterType: "checkbox", autoCompleteOptions: yearOptions.slice(1), helpText:"label.help.text.year"},
 
                 {key: 'month', title: 'label.filter.month', queryKey:"month", primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: monthOptions, helpText:"label.help.text.month"},
@@ -1201,26 +1203,6 @@
                 {key:'Married', title:'Married'},
                 {key:'Unmarried', title:'Unmarried'},
                 {key:'Unknown or not Stated', title:'Unknown or not Stated'}
-            ];
-
-            var yearOptions = [
-                { "key": "2016", "title": "2016"},
-                { "key": "2015", "title": "2015"},
-                { "key": "2014", "title": "2014"},
-                { "key": "2013", "title": "2013"},
-                { "key": "2012", "title": "2012"},
-                { "key": "2011", "title": "2011"},
-                { "key": "2010", "title": "2010"},
-                { "key": "2009", "title": "2009"},
-                { "key": "2008", "title": "2008"},
-                { "key": "2007", "title": "2007"},
-                { "key": "2006", "title": "2006"},
-                { "key": "2005", "title": "2005"},
-                { "key": "2004", "title": "2004"},
-                { "key": "2003", "title": "2003"},
-                { "key": "2002", "title": "2002"},
-                { "key": "2001", "title": "2001"},
-                { "key": "2000", "title": "2000"}
             ];
 
             return [
@@ -1696,10 +1678,10 @@
                     title: 'label.filter.year',
                     queryKey: 'current_year',
                     primary: false,
-                    value: [ '2014' ],
+                    value: [ '2016' ],
                     groupBy: false,
                     filterType: 'checkbox',
-                    autoCompleteOptions: yearOptions.slice(1),
+                    autoCompleteOptions: yearOptions,
                     defaultGroup: 'column',
                     helpText: 'label.help.text.cancer_incidence.year'
                 },
@@ -1816,10 +1798,10 @@
                     title: 'label.filter.year',
                     queryKey: 'current_year',
                     primary: false,
-                    value: [ '2014' ],
+                    value: [ '2016' ],
                     groupBy: false,
                     filterType: 'checkbox',
-                    autoCompleteOptions: yearOptions.slice(1),
+                    autoCompleteOptions: yearOptions,
                     defaultGroup:"column",
                     helpText: 'label.help.text.cancer_mortality.year'
                 },

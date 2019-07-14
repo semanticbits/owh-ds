@@ -6,7 +6,7 @@
     "prestart": "npm install",
     "start": "node ./bin/www",
     "debug": "nodemon --inspect=3001 ./bin/www",
-    "test": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive test"
+    "test": "snyk test && istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive test"
   },
   "dependencies": {
     "body-parser": "~1.18.3",
@@ -37,6 +37,7 @@
     "mocha": "^5.2.0",
     "object-hash": "^1.1.4",
     "supertest": "^3.3.0",
-    "istanbul": "^0.4.5"
+    "istanbul": "^0.4.5",
+    "snyk": "^1.153.0"
   }
 }

@@ -203,6 +203,7 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     //check if primary query is empty
     elasticQuery.query.filtered.query = primaryQuery;
     elasticQuery.query.filtered.filter = filterQuery;
+    var clonedFilterQuery, mapPopQuery;
     if(censusQuery) {
         var clonedUserQuery = clone(userQuery);
         if (clonedUserQuery['ICD_10_code']) delete clonedUserQuery['ICD_10_code'];
@@ -211,13 +212,14 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
         if (clonedUserQuery['ICD_130_code']) delete clonedUserQuery['ICD_130_code'];
         if (clonedUserQuery['infant_age_at_death']) delete clonedUserQuery['infant_age_at_death'];
         if (clonedUserQuery['cancer_site']) delete clonedUserQuery['cancer_site'];
+        if (clonedUserQuery['childhood_cancer']) delete clonedUserQuery['childhood_cancer'];
         if(clonedUserQuery['year_of_death']) {
             //Infant mortality index has column 'year_of_death', should match with natality index column in Elastic Search
             //So that we can query natality index for Birth counts.
             clonedUserQuery['year_of_death'].queryKey = 'current_year';
         }
         var clonedPrimaryQuery = buildTopLevelBoolQuery(groupByPrimary(clonedUserQuery, true), true);
-        var clonedFilterQuery = buildTopLevelBoolQuery(groupByPrimary(clonedUserQuery, false), false);
+        clonedFilterQuery = buildTopLevelBoolQuery(groupByPrimary(clonedUserQuery, false), false);
 
         censusQuery.query = {};
         censusQuery.query.filtered = {};
@@ -232,7 +234,7 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     if(params.searchFor == 'std' || params.searchFor == 'tb' || params.searchFor == 'aids') {
         var chartQueryArray = buildChartQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, censusQuery, params.searchFor);
         if (!params.filterCountsQuery) {
-            var mapPopQuery = getPopulationQueryForMap(params.aggregations);
+            mapPopQuery = getPopulationQueryForMap(params.aggregations);
             mapPopQuery.query = mapQuery.query;
             chartQueryArray[0].splice(0, 0, mapPopQuery );
         }
@@ -241,8 +243,13 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
         searchQueryArray.push(mapQuery);
         //Chart 'Cases' query
         searchQueryArray.push(chartQueryArray[1]);
-    }
-    else {
+    } else if ((params.searchFor === 'cancer_incidence' || params.searchFor === 'cancer_mortality') && mapQuery) {
+        mapPopQuery = clone(mapQuery);
+        mapPopQuery.query.filtered.filter = clonedFilterQuery;
+        searchQueryArray.push(censusQuery);
+        searchQueryArray.push(mapQuery);
+        searchQueryArray.push(mapPopQuery);
+    } else {
         searchQueryArray.push(censusQuery);
         searchQueryArray.push(mapQuery);
     }
@@ -1020,7 +1027,7 @@ function buildMapQuery(aggregations, countQueryKey, primaryQuery, filterQuery, d
 
         //prepare aggregations
         for(var index in aggregations['nested']['maps']) {
-            if(datasetName == 'deaths' || datasetName == 'natality' || datasetName == 'cancer_incident' || datasetName == 'cancer_mortality') {
+            if(datasetName == 'deaths' || datasetName == 'natality' || datasetName == 'cancer_incidence' || datasetName == 'cancer_mortality') {
                 mapQuery.aggregations = generateNestedCensusAggQuery(aggregations['nested']['maps'][index], 'group_maps_' + index + '_');
             }
             else if(datasetName === 'std' || datasetName === 'tb' || datasetName === 'aids') {

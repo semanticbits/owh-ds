@@ -149,8 +149,8 @@
                 {key: 'Tobacco Use', title: 'Tobacco Use'},
                 {key: 'Unintentional Injuries and Violence', title: 'Unintentional Injuries and Violence'},
                 {key: 'Other Health Topics', title: 'Other Health Topics'}],
-            cancer_incident: [
-                { key: 'cancer_incident', title: 'Number of Incidents' },
+            cancer_incidence: [
+                { key: 'cancer_incidence', title: 'Number of Incidents' },
                 { key: 'crude_cancer_incidence_rates', title: 'Crude Incidence Rates' }
             ],
             cancer_mortality: [
@@ -177,7 +177,7 @@
             "label.filter.std": [],
             "label.filter.tb": [],
             "label.filter.aids": [],
-            "label.filter.cancer_incident": [],
+            "label.filter.cancer_incidence": [],
             "label.filter.cancer_mortality": []
         };
 
@@ -214,7 +214,7 @@
             disease_rate:{},
             tb:{},
             aids: {},
-            cancer_incident: {},
+            cancer_incidence: {},
             cancer_mortality: {},
             mental_health:{},
             natality:{},
@@ -591,7 +591,7 @@
         var stdFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'std');
         var tbFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'tb');
         var aidsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'aids');
-        var cancerIncidenceFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'cancer_incident');
+        var cancerIncidenceFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'cancer_incidence');
         var cancerMortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'cancer_mortality');
         var infantMortalityFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'infant_mortality');
         var yrbsFilter = utilService.findByKeyAndValue(sc.filters.primaryFilters, 'key', 'mental_health');
@@ -1018,7 +1018,7 @@
                         createDataSet('bridge_race', 'label.bridged.race', 'label.bridged.race.dsc')
                     ]),
                     createDataSource('label.filter.disease', 'label.disease.dsc', 'diseases-icon.svg', 'Disease', [
-                        createDataSet('cancer_incident', 'label.filter.cancer_incident', 'label.cancer.dsc'),
+                        createDataSet('cancer_incidence', 'label.filter.cancer_incidence', 'label.cancer.dsc'),
                         createDataSet('aids', 'label.filter.aids', 'label.aids.dsc'),
                         createDataSet('std', 'label.std', 'label.std.dsc'),
                         createDataSet('tb', 'label.filter.tb', 'label.tb.dsc')
