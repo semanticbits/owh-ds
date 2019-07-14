@@ -2,8 +2,8 @@
   "status": "OK",
   "data": {
     "queryJSON": {
-      "key": "cancer_incident",
-      "title": "label.filter.cancer_incident",
+      "key": "cancer_incidence",
+      "title": "label.filter.cancer_incidence",
       "primary": true,
       "value": [],
       "header": "Cancer Incidence",
@@ -998,7 +998,7 @@
       "countLabel": "Total Incidences",
       "mapData": {},
       "chartAxisLabel": "Incidence",
-      "tableView": "cancer_incident",
+      "tableView": "cancer_incidence",
       "runOnFilterChange": true,
       "sideFilters": [
         {
@@ -2152,71 +2152,71 @@
         "group_table_race": [
           {
             "name": "White",
-            "cancer_incident": 1364295,
+            "cancer_incidence": 1364295,
             "group_table_sex": [
               {
                 "name": "Female",
-                "cancer_incident": 705033
+                "cancer_incidence": 705033
               },
               {
                 "name": "Male",
-                "cancer_incident": 659262
+                "cancer_incidence": 659262
               }
             ]
           },
           {
             "name": "Black",
-            "cancer_incident": 180310,
+            "cancer_incidence": 180310,
             "group_table_sex": [
               {
                 "name": "Female",
-                "cancer_incident": 94161
+                "cancer_incidence": 94161
               },
               {
                 "name": "Male",
-                "cancer_incident": 86149
+                "cancer_incidence": 86149
               }
             ]
           },
           {
             "name": "Asian or Pacific Islander",
-            "cancer_incident": 53141,
+            "cancer_incidence": 53141,
             "group_table_sex": [
               {
                 "name": "Female",
-                "cancer_incident": 31423
+                "cancer_incidence": 31423
               },
               {
                 "name": "Male",
-                "cancer_incident": 21718
+                "cancer_incidence": 21718
               }
             ]
           },
           {
             "name": "Unknown",
-            "cancer_incident": 47775,
+            "cancer_incidence": 47775,
             "group_table_sex": [
               {
                 "name": "Male",
-                "cancer_incident": 26316
+                "cancer_incidence": 26316
               },
               {
                 "name": "Female",
-                "cancer_incident": 21459
+                "cancer_incidence": 21459
               }
             ]
           },
           {
             "name": "American Indian/Alaska Native",
-            "cancer_incident": 9317,
+            "cancer_incidence": 9317,
             "group_table_sex": [
               {
                 "name": "Female",
-                "cancer_incident": 4963
+                "cancer_incidence": 4963
               },
               {
                 "name": "Male",
-                "cancer_incident": 4354
+                "cancer_incidence": 4354
               }
             ]
           }
@@ -2224,53 +2224,53 @@
         "group_chart_0_sex": [
           {
             "name": "Female",
-            "cancer_incident": 857039,
+            "cancer_incidence": 857039,
             "group_chart_0_race": [
               {
                 "name": "White",
-                "cancer_incident": 705033
+                "cancer_incidence": 705033
               },
               {
                 "name": "Black",
-                "cancer_incident": 94161
+                "cancer_incidence": 94161
               },
               {
                 "name": "Asian or Pacific Islander",
-                "cancer_incident": 31423
+                "cancer_incidence": 31423
               },
               {
                 "name": "Unknown",
-                "cancer_incident": 21459
+                "cancer_incidence": 21459
               },
               {
                 "name": "American Indian/Alaska Native",
-                "cancer_incident": 4963
+                "cancer_incidence": 4963
               }
             ]
           },
           {
             "name": "Male",
-            "cancer_incident": 797799,
+            "cancer_incidence": 797799,
             "group_chart_0_race": [
               {
                 "name": "White",
-                "cancer_incident": 659262
+                "cancer_incidence": 659262
               },
               {
                 "name": "Black",
-                "cancer_incident": 86149
+                "cancer_incidence": 86149
               },
               {
                 "name": "Unknown",
-                "cancer_incident": 26316
+                "cancer_incidence": 26316
               },
               {
                 "name": "Asian or Pacific Islander",
-                "cancer_incident": 21718
+                "cancer_incidence": 21718
               },
               {
                 "name": "American Indian/Alaska Native",
-                "cancer_incident": 4354
+                "cancer_incidence": 4354
               }
             ]
           }
@@ -2281,71 +2281,71 @@
           "race": [
             {
               "name": "White",
-              "cancer_incident": 1364295,
+              "cancer_incidence": 1364295,
               "sex": [
                 {
                   "name": "Female",
-                  "cancer_incident": 705033
+                  "cancer_incidence": 705033
                 },
                 {
                   "name": "Male",
-                  "cancer_incident": 659262
+                  "cancer_incidence": 659262
                 }
               ]
             },
             {
               "name": "Black",
-              "cancer_incident": 180310,
+              "cancer_incidence": 180310,
               "sex": [
                 {
                   "name": "Female",
-                  "cancer_incident": 94161
+                  "cancer_incidence": 94161
                 },
                 {
                   "name": "Male",
-                  "cancer_incident": 86149
+                  "cancer_incidence": 86149
                 }
               ]
             },
             {
               "name": "Asian or Pacific Islander",
-              "cancer_incident": 53141,
+              "cancer_incidence": 53141,
               "sex": [
                 {
                   "name": "Female",
-                  "cancer_incident": 31423
+                  "cancer_incidence": 31423
                 },
                 {
                   "name": "Male",
-                  "cancer_incident": 21718
+                  "cancer_incidence": 21718
                 }
               ]
             },
             {
               "name": "Unknown",
-              "cancer_incident": 47775,
+              "cancer_incidence": 47775,
               "sex": [
                 {
                   "name": "Male",
-                  "cancer_incident": 26316
+                  "cancer_incidence": 26316
                 },
                 {
                   "name": "Female",
-                  "cancer_incident": 21459
+                  "cancer_incidence": 21459
                 }
               ]
             },
             {
               "name": "American Indian/Alaska Native",
-              "cancer_incident": 9317,
+              "cancer_incidence": 9317,
               "sex": [
                 {
                   "name": "Female",
-                  "cancer_incident": 4963
+                  "cancer_incidence": 4963
                 },
                 {
                   "name": "Male",
-                  "cancer_incident": 4354
+                  "cancer_incidence": 4354
                 }
               ]
             }
@@ -2356,53 +2356,53 @@
             "sex": [
               {
                 "name": "Female",
-                "cancer_incident": 857039,
+                "cancer_incidence": 857039,
                 "race": [
                   {
                     "name": "White",
-                    "cancer_incident": 705033
+                    "cancer_incidence": 705033
                   },
                   {
                     "name": "Black",
-                    "cancer_incident": 94161
+                    "cancer_incidence": 94161
                   },
                   {
                     "name": "Asian or Pacific Islander",
-                    "cancer_incident": 31423
+                    "cancer_incidence": 31423
                   },
                   {
                     "name": "Unknown",
-                    "cancer_incident": 21459
+                    "cancer_incidence": 21459
                   },
                   {
                     "name": "American Indian/Alaska Native",
-                    "cancer_incident": 4963
+                    "cancer_incidence": 4963
                   }
                 ]
               },
               {
                 "name": "Male",
-                "cancer_incident": 797799,
+                "cancer_incidence": 797799,
                 "race": [
                   {
                     "name": "White",
-                    "cancer_incident": 659262
+                    "cancer_incidence": 659262
                   },
                   {
                     "name": "Black",
-                    "cancer_incident": 86149
+                    "cancer_incidence": 86149
                   },
                   {
                     "name": "Unknown",
-                    "cancer_incident": 26316
+                    "cancer_incidence": 26316
                   },
                   {
                     "name": "Asian or Pacific Islander",
-                    "cancer_incident": 21718
+                    "cancer_incidence": 21718
                   },
                   {
                     "name": "American Indian/Alaska Native",
-                    "cancer_incident": 4354
+                    "cancer_incidence": 4354
                   }
                 ]
               }
@@ -2558,333 +2558,333 @@
           "current_year": [
             {
               "name": "2014",
-              "cancer_incident": 1654838
+              "cancer_incidence": 1654838
             }
           ],
           "race": [
             {
               "name": "White",
-              "cancer_incident": 1364295
+              "cancer_incidence": 1364295
             },
             {
               "name": "Black",
-              "cancer_incident": 180310
+              "cancer_incidence": 180310
             },
             {
               "name": "Asian or Pacific Islander",
-              "cancer_incident": 53141
+              "cancer_incidence": 53141
             },
             {
               "name": "Unknown",
-              "cancer_incident": 47775
+              "cancer_incidence": 47775
             },
             {
               "name": "American Indian/Alaska Native",
-              "cancer_incident": 9317
+              "cancer_incidence": 9317
             }
           ],
           "age_group": [
             {
               "name": "65-69 years",
-              "cancer_incident": 248615
+              "cancer_incidence": 248615
             },
             {
               "name": "60-64 years",
-              "cancer_incident": 221104
+              "cancer_incidence": 221104
             },
             {
               "name": "70-74 years",
-              "cancer_incident": 216083
+              "cancer_incidence": 216083
             },
             {
               "name": "55-59 years",
-              "cancer_incident": 186317
+              "cancer_incidence": 186317
             },
             {
               "name": "75-79 years",
-              "cancer_incident": 172730
+              "cancer_incidence": 172730
             },
             {
               "name": "50-54 years",
-              "cancer_incident": 135868
+              "cancer_incidence": 135868
             },
             {
               "name": "80-84 years",
-              "cancer_incident": 129280
+              "cancer_incidence": 129280
             },
             {
               "name": "85+ years",
-              "cancer_incident": 127083
+              "cancer_incidence": 127083
             },
             {
               "name": "45-49 years",
-              "cancer_incident": 80233
+              "cancer_incidence": 80233
             },
             {
               "name": "40-44 years",
-              "cancer_incident": 50579
+              "cancer_incidence": 50579
             },
             {
               "name": "35-39 years",
-              "cancer_incident": 29408
+              "cancer_incidence": 29408
             },
             {
               "name": "30-34 years",
-              "cancer_incident": 20666
+              "cancer_incidence": 20666
             },
             {
               "name": "25-29 years",
-              "cancer_incident": 13298
+              "cancer_incidence": 13298
             },
             {
               "name": "20-24 years",
-              "cancer_incident": 8386
+              "cancer_incidence": 8386
             },
             {
               "name": "15-19 years",
-              "cancer_incident": 4810
+              "cancer_incidence": 4810
             },
             {
               "name": "01-04 years",
-              "cancer_incident": 3486
+              "cancer_incidence": 3486
             },
             {
               "name": "10-14 years",
-              "cancer_incident": 3075
+              "cancer_incidence": 3075
             },
             {
               "name": "05-09 years",
-              "cancer_incident": 2737
+              "cancer_incidence": 2737
             },
             {
               "name": "00 years",
-              "cancer_incident": 1080
+              "cancer_incidence": 1080
             }
           ],
           "sex": [
             {
               "name": "Female",
-              "cancer_incident": 857039
+              "cancer_incidence": 857039
             },
             {
               "name": "Male",
-              "cancer_incident": 797799
+              "cancer_incidence": 797799
             }
           ],
           "state": [
             {
               "name": "CA",
-              "cancer_incident": 169952
+              "cancer_incidence": 169952
             },
             {
               "name": "NY",
-              "cancer_incident": 114286
+              "cancer_incidence": 114286
             },
             {
               "name": "FL",
-              "cancer_incident": 113635
+              "cancer_incidence": 113635
             },
             {
               "name": "TX",
-              "cancer_incident": 109012
+              "cancer_incidence": 109012
             },
             {
               "name": "PA",
-              "cancer_incident": 80269
+              "cancer_incidence": 80269
             },
             {
               "name": "IL",
-              "cancer_incident": 69212
+              "cancer_incidence": 69212
             },
             {
               "name": "OH",
-              "cancer_incident": 65601
+              "cancer_incidence": 65601
             },
             {
               "name": "MI",
-              "cancer_incident": 54663
+              "cancer_incidence": 54663
             },
             {
               "name": "NC",
-              "cancer_incident": 53568
+              "cancer_incidence": 53568
             },
             {
               "name": "NJ",
-              "cancer_incident": 51867
+              "cancer_incidence": 51867
             },
             {
               "name": "GA",
-              "cancer_incident": 49358
+              "cancer_incidence": 49358
             },
             {
               "name": "VA",
-              "cancer_incident": 40591
+              "cancer_incidence": 40591
             },
             {
               "name": "MA",
-              "cancer_incident": 38016
+              "cancer_incidence": 38016
             },
             {
               "name": "WA",
-              "cancer_incident": 36473
+              "cancer_incidence": 36473
             },
             {
               "name": "TN",
-              "cancer_incident": 35517
+              "cancer_incidence": 35517
             },
             {
               "name": "IN",
-              "cancer_incident": 33662
+              "cancer_incidence": 33662
             },
             {
               "name": "MO",
-              "cancer_incident": 33487
+              "cancer_incidence": 33487
             },
             {
               "name": "WI",
-              "cancer_incident": 32939
+              "cancer_incidence": 32939
             },
             {
               "name": "AZ",
-              "cancer_incident": 31084
+              "cancer_incidence": 31084
             },
             {
               "name": "MD",
-              "cancer_incident": 30940
+              "cancer_incidence": 30940
             },
             {
               "name": "MN",
-              "cancer_incident": 29689
+              "cancer_incidence": 29689
             },
             {
               "name": "KY",
-              "cancer_incident": 27357
+              "cancer_incidence": 27357
             },
             {
               "name": "SC",
-              "cancer_incident": 26229
+              "cancer_incidence": 26229
             },
             {
               "name": "AL",
-              "cancer_incident": 26089
+              "cancer_incidence": 26089
             },
             {
               "name": "LA",
-              "cancer_incident": 25426
+              "cancer_incidence": 25426
             },
             {
               "name": "CO",
-              "cancer_incident": 23320
+              "cancer_incidence": 23320
             },
             {
               "name": "CT",
-              "cancer_incident": 21338
+              "cancer_incidence": 21338
             },
             {
               "name": "OR",
-              "cancer_incident": 20485
+              "cancer_incidence": 20485
             },
             {
               "name": "OK",
-              "cancer_incident": 19862
+              "cancer_incidence": 19862
             },
             {
               "name": "IA",
-              "cancer_incident": 18192
+              "cancer_incidence": 18192
             },
             {
               "name": "AR",
-              "cancer_incident": 16641
+              "cancer_incidence": 16641
             },
             {
               "name": "MS",
-              "cancer_incident": 16226
+              "cancer_incidence": 16226
             },
             {
               "name": "NV",
-              "cancer_incident": 12195
+              "cancer_incidence": 12195
             },
             {
               "name": "WV",
-              "cancer_incident": 11534
+              "cancer_incidence": 11534
             },
             {
               "name": "UT",
-              "cancer_incident": 10296
+              "cancer_incidence": 10296
             },
             {
               "name": "NE",
-              "cancer_incident": 9757
+              "cancer_incidence": 9757
             },
             {
               "name": "NM",
-              "cancer_incident": 9279
+              "cancer_incidence": 9279
             },
             {
               "name": "ME",
-              "cancer_incident": 8949
+              "cancer_incidence": 8949
             },
             {
               "name": "NH",
-              "cancer_incident": 8171
+              "cancer_incidence": 8171
             },
             {
               "name": "ID",
-              "cancer_incident": 7833
+              "cancer_incidence": 7833
             },
             {
               "name": "HI",
-              "cancer_incident": 7227
+              "cancer_incidence": 7227
             },
             {
               "name": "RI",
-              "cancer_incident": 6310
+              "cancer_incidence": 6310
             },
             {
               "name": "DE",
-              "cancer_incident": 5891
+              "cancer_incidence": 5891
             },
             {
               "name": "MT",
-              "cancer_incident": 5781
+              "cancer_incidence": 5781
             },
             {
               "name": "SD",
-              "cancer_incident": 4624
+              "cancer_incidence": 4624
             },
             {
               "name": "VT",
-              "cancer_incident": 3778
+              "cancer_incidence": 3778
             },
             {
               "name": "ND",
-              "cancer_incident": 3654
+              "cancer_incidence": 3654
             },
             {
               "name": "DC",
-              "cancer_incident": 2959
+              "cancer_incidence": 2959
             },
             {
               "name": "AK",
-              "cancer_incident": 2781
+              "cancer_incidence": 2781
             },
             {
               "name": "WY",
-              "cancer_incident": 2710
+              "cancer_incidence": 2710
             }
           ],
           "hispanic_origin": [
             {
               "name": "Non-Hispanic",
-              "cancer_incident": 1510485
+              "cancer_incidence": 1510485
             },
             {
               "name": "Hispanic",
-              "cancer_incident": 128078
+              "cancer_incidence": 128078
             },
             {
               "name": "Invalid",
-              "cancer_incident": 16275
+              "cancer_incidence": 16275
             }
           ]
         },

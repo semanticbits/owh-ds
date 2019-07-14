@@ -10,11 +10,11 @@ describe("Women's Health Fact sheet", function () {
             expect(resp.state).to.eql("VA");
             expect(resp.fsType).to.eql("women_health");
             expect(resp.race[0].name).to.eql('Black');
-            expect(resp.race[0].bridge_race).to.eql("864500");
+            expect(resp.race[0].bridge_race).to.eql("864266");
             expect(resp.race[1].name).to.eql('White');
-            expect(resp.race[1].bridge_race).to.eql("2708960");
+            expect(resp.race[1].bridge_race).to.eql("2708443");
             expect(resp.race[2].name).to.eql('American Indian');
-            expect(resp.race[2].bridge_race).to.eql("23859");
+            expect(resp.race[2].bridge_race).to.eql("23837");
             expect(resp.race[3].name).to.eql('Asian or Pacific Islander');
             expect(resp.race[4].name).to.eql('Hispanic');
             //std
@@ -30,7 +30,7 @@ describe("Women's Health Fact sheet", function () {
             //cancer
             expect(resp.cancerData[0].site).to.eql("Breast");
             expect(resp.cancerData[0].mortality.cancer_mortality).to.eql(1145);
-            expect(resp.cancerData[0].mortality.pop).to.eql(4231101);
+            expect(resp.cancerData[0].mortality.pop).to.eql(4227548);
             //yrbs
             expect(resp.yrbs[3].question).to.eql("Currently use marijuana");
             expect(resp.yrbs[3].data).to.eql("14.9");

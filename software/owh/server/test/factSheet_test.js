@@ -7,14 +7,14 @@ describe("Fact sheet", function () {
 
     it("prepare FactSheet for MD state health", function (done){
         new factSheet().prepareFactSheet('MD', 'State Health').then(function (resp) {
-            expect(resp.totalGenderPop).to.eql(6000561);
+            expect(resp.totalGenderPop).to.eql(5986717);
             expect(resp.state).to.eql("MD");
             expect(resp.fsType).to.eql("State Health");
             //Bridge Race data
             expect(resp.gender[0].name).to.eql("Female");
-            expect(resp.gender[0].bridge_race).to.eql(3092772);
+            expect(resp.gender[0].bridge_race).to.eql(3085654);
             expect(resp.ageGroups[0].name).to.eql("10-14 years");
-            expect(resp.ageGroups[0].bridge_race).to.eql(374442);
+            expect(resp.ageGroups[0].bridge_race).to.eql(373863);
             //Infant
             expect(resp.infantMortalityData.infant_mortality).to.eql(480);
             //TB
@@ -35,7 +35,7 @@ describe("Fact sheet", function () {
             expect(resp.natalityData.population).to.eql(6006401);
             //cancer
             expect(resp.cancerData[0].site).to.eql("Breast");
-            expect(resp.cancerData[0].count).to.eql(4791);
+            expect(resp.cancerData[0].count).to.eql(4875);
             expect(resp.cancerData[0].mortality_rate).to.eql(14.6);
             //yrbs
             expect(resp.yrbs[2].question).to.eql("Currently use marijuana");

@@ -2,71 +2,71 @@ module.exports.incidence = {
   "race": [
     {
       "name": "White",
-      "cancer_incident": 1364295,
+      "cancer_incidence": 1364295,
       "sex": [
         {
           "name": "Female",
-          "cancer_incident": 705033
+          "cancer_incidence": 705033
         },
         {
           "name": "Male",
-          "cancer_incident": 659262
+          "cancer_incidence": 659262
         }
       ]
     },
     {
       "name": "Black",
-      "cancer_incident": 180310,
+      "cancer_incidence": 180310,
       "sex": [
         {
           "name": "Female",
-          "cancer_incident": 94161
+          "cancer_incidence": 94161
         },
         {
           "name": "Male",
-          "cancer_incident": 86149
+          "cancer_incidence": 86149
         }
       ]
     },
     {
       "name": "Asian or Pacific Islander",
-      "cancer_incident": 53141,
+      "cancer_incidence": 53141,
       "sex": [
         {
           "name": "Female",
-          "cancer_incident": 31423
+          "cancer_incidence": 31423
         },
         {
           "name": "Male",
-          "cancer_incident": 21718
+          "cancer_incidence": 21718
         }
       ]
     },
     {
       "name": "Unknown",
-      "cancer_incident": 31652,
+      "cancer_incidence": 31652,
       "sex": [
         {
           "name": "Male",
-          "cancer_incident": 18102
+          "cancer_incidence": 18102
         },
         {
           "name": "Female",
-          "cancer_incident": 13550
+          "cancer_incidence": 13550
         }
       ]
     },
     {
       "name": "American Indian/Alaska Native",
-      "cancer_incident": 9317,
+      "cancer_incidence": 9317,
       "sex": [
         {
           "name": "Female",
-          "cancer_incident": 4963
+          "cancer_incidence": 4963
         },
         {
           "name": "Male",
-          "cancer_incident": 4354
+          "cancer_incidence": 4354
         }
       ]
     }

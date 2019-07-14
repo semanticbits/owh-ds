@@ -18,8 +18,8 @@ var census_type="census";
 var census_rates_type="census_rates";
 var infant_mortality_index = "owh_infant_mortality";
 var infant_mortality_type = "infant_mortality";
-var cancer_incident_index = "owh_cancer_incident";
-var cancer_incident_type = "cancer_incident";
+var cancer_incidence_index = "owh_cancer_incidence";
+var cancer_incidence_type = "cancer_incidence";
 var cancer_mortality_index = "owh_cancer_mortality";
 var cancer_mortality_type = "cancer_mortality";
 var cancer_population_index = "owh_cancer_population";
@@ -514,8 +514,8 @@ ElasticClient.prototype.getDsMetadata = function (dataset, years) {
 };
 
 ElasticClient.prototype.aggregateCancerData = function (query, cancer_index, allSelectedFilterOptions) {
-    var index = cancer_index === cancer_incident_type ? cancer_incident_index : cancer_mortality_index;
-    var type = cancer_index === cancer_incident_type ? cancer_incident_type : cancer_mortality_type;
+    var index = cancer_index === cancer_incidence_type ? cancer_incidence_index : cancer_mortality_index;
+    var type = cancer_index === cancer_incidence_type ? cancer_incidence_type : cancer_mortality_type;
     var promises = [ this.executeESQuery(index, type, query[0]) ];
 
     logger.debug("Cancer ES Query for " + index + " :" + JSON.stringify(query[0]));
@@ -523,7 +523,7 @@ ElasticClient.prototype.aggregateCancerData = function (query, cancer_index, all
     if (query[1]) promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[1]));
     if (query[2]) {
         promises.push(this.executeESQuery(index, type, query[2]));
-        promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[2]));
+        promises.push(this.executeESQuery(cancer_population_index, cancer_population_type, query[3]));
     }
 
     return Q.all(promises).spread(function (queryResponse, populationResponse, mapResponse, populationMapResponse) {
