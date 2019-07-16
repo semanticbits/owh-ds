@@ -216,7 +216,7 @@
                     image: 'cancer-incidence-icon.svg',
                     yrsAvail: '2000-2016',
                     topics: "Cancer, Babies, Prostate Cancer, Childhood Cancers",
-                    dataDescription: "Cancer incidence data are collected from cancer registries, based on oncology reports from health care providers. Cancer incidence and death counts, rates, cancer classification, age, race, and gender. Charts and maps are also available. The data are updated annually.\n\nCancer incidence and mortality data are available for the United States, state by age group, race, ethnicity, gender and cancer site for the years 2000-2016.",
+                    dataDescription: "Cancer incidence data are collected from cancer registries, based on oncology reports from health care providers. Cancer incidence and death counts, rates, cancer classification, age, race, and gender. Charts and maps are also available. The data are updated annually.\n\nCancer incidence and mortality data are available for the United States, state by age group, race, ethnicity, gender and cancer site for the years 2000-2016 (2016 is the most recent year for which incidence data are available).",
                     suppression: "<ul>" +
                       "<li>Data are suppressed if the figures represent fewer than 16 cases for the specific category:" +
                         "<ul class='sub'>" +
@@ -287,7 +287,7 @@
                     image: 'cancer-mortality-icon.svg',
                     yrsAvail: '2000-2016',
                     topics: "Cancer, Deaths, Prostate Cancer",
-                    dataDescription: "Cancer mortality data are derived from death certificates. Cancer incidence and death counts, rates, cancer classification, age, race, and gender. Charts and maps are also available. The data are updated annually. Cancer incidence and mortality data are available for the United States, state by age group, race, ethnicity, gender and cancer site for the years 2000-2016.",
+                    dataDescription: "Cancer mortality data are derived from death certificates. Cancer incidence and death counts, rates, cancer classification, age, race, and gender. Charts and maps are also available. The data are updated annually. Cancer incidence and mortality data are available for the United States, state by age group, race, ethnicity, gender and cancer site for the years 2000-2016 (2016 is the most recent year for which incidence data are available).",
                     suppression: "<ul>" +
                       "<li>Data are suppressed if the figures represent fewer than 16 cases for the specific category." +"</li>"+
                       "</ul>",
