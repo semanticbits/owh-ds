@@ -60,9 +60,9 @@ before_script:
 #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install; fi
 #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install -g pm2@latest; fi
 #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sudo apt-get install nodejs-legacy; fi
-  - npm start > /dev/null &
-  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ./node_modules/protractor/bin/webdriver-manager update; fi
-  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sleep 1; fi #give server time to start
+#  - npm start > /dev/null &
+#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ./node_modules/protractor/bin/webdriver-manager update; fi
+#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sleep 1; fi #give server time to start
 
 group: deprecated-2017Q4
 language: if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then java; fi
