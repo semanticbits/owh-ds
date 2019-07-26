@@ -149,7 +149,7 @@ script:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ls 'coverage/PhantomJS 2.1.1 (Linux 0.0.0)'; fi
   - cd $TRAVIS_BUILD_DIR/software/owh/
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive test; fi
-  - npm start > /dev/null &
+#  - npm start > /dev/null &
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sleep 10; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then cd ../client; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then cd $TRAVIS_BUILD_DIR/software/owh; fi
