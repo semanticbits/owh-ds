@@ -1278,7 +1278,7 @@
             }
             var selectedYear = yearSideFilter.filters.value[yearSideFilter.filters.value.length - 1];
             var listOfSelectedYears = clone(yearSideFilter.filters.value);
-            if( selectedYear >= '2007' && selectedYear <= '2016') {
+            if( selectedYear >= '2007' && selectedYear <= '2017') {
                 angular.forEach(listOfSelectedYears, function(eachYear){
                    if(yearSideFilter.filters.D31Years.indexOf(eachYear) >= 0 || yearSideFilter.filters.D18Years.indexOf(eachYear) >= 0){
                         var index = yearSideFilter.filters.value.indexOf(eachYear);

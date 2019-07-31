@@ -1340,7 +1340,7 @@ describe('utilService', function(){
             yearSideFilter.value.push("2013");
             utils.infantMortalityFilterChange(yearSideFilter, categories);
             expect(yearSideFilter.value.length).toEqual(2);
-            expect(yearSideFilter.value[0]).toEqual("2016");
+            expect(yearSideFilter.value[0]).toEqual("2017");
             expect(yearSideFilter.value[1]).toEqual("2013");
         });
         it('Should keep years which on in same range if user selected multiple years - 2006(D31) and 2002(D18)', function(){
@@ -1360,7 +1360,7 @@ describe('utilService', function(){
             //Then default value '2014' should be set
             utils.infantMortalityFilterChange(yearSideFilter, categories);
             expect(yearSideFilter.value.length).toEqual(1);
-            expect(yearSideFilter.value[0]).toEqual("2016");
+            expect(yearSideFilter.value[0]).toEqual("2017");
         });
     });
 
