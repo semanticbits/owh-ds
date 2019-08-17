@@ -34,10 +34,10 @@
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
+    "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
     "object-hash": "^1.1.4",
-    "supertest": "^3.3.0",
-    "istanbul": "^0.4.5",
-    "snyk": "^1.153.0"
+    "snyk": "^1.193.2",
+    "supertest": "^3.3.0"
   }
 }

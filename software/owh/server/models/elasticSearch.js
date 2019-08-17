@@ -335,7 +335,7 @@ ElasticClient.prototype.aggregateInfantMortalityData = function (query, isStateS
     var dbID;
     //Based on selected year choose wonder database ID
     var selectedYear = selectedYears[0];
-    if(selectedYear <= '2016' && selectedYear >= '2007') {
+    if(selectedYear <= '2017' && selectedYear >= '2007') {
         dbID = 'D69';
     }
     else if(selectedYear <= '2006' && selectedYear >= '2003') {
