@@ -32,7 +32,7 @@ describe('mapService', function(){
     }));
 
     describe('test map custom controls', function() {
-        it('should add custom legend', function () {
+        xit('should add custom legend', function () {
             var mapData = {mapMinValue:40289400, mapMaxValue:58000};
             var control = mapService.addScaleControl(mapData);
             //test callback

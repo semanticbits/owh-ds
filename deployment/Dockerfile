@@ -1,4 +1,4 @@
-FROM node:8.4-wheezy
+FROM node:10.16.0-jessie
 
 
 RUN mkdir -p /usr/local/owh

@@ -459,7 +459,7 @@
                     key:"infant_mortality",
                     title: 'Infant Mortality',
                     image: 'infant-mortality-icon.svg',
-                    yrsAvail: '2000-2016',
+                    yrsAvail: '2000-2017',
                     topics: "Underlying Cause of Death, Cancer, Diabetes, Deaths, Tuberculosis, Obesity, Overweight and Weight Control, Tobacco Use, Unintentional Injury and Violence, Births, Infant Deaths, HIV/AIDS, Delivery, Infant Health, Prenatal Care",
                     dataDescription: "This data collection provides counts and rates for deaths of children under 1 year of age, occurring within the United States to U.S. residents. Data are available by state of mother's residence, child's age, underlying cause of death, gender, birth weight, birth plurality, birth order, gestational age at birth, period of prenatal care, maternal race and ethnicity, maternal age, maternal education and marital status.<br/> This dataset is powered by CDC WONDER.",
                     suppression: "Vital statistics data are suppressed due to confidentiality constraints, in order to protect personal privacy." +
@@ -505,7 +505,7 @@
                         },
                         {
                             question:"Why can I not pick years from two groups?",
-                            answer:"Different sets of years have different filter options available. Hence the years under one set cannot be combined and compared with other set. The years 2000-2016 are divided into three sets 2000-2002, 2003-2006 and 2007-2016.<br/><br/>"
+                            answer:"Different sets of years have different filter options available. Hence the years under one set cannot be combined and compared with other set. The years 2000-2017 are divided into three sets 2000-2002, 2003-2006 and 2007-2017.<br/><br/>"
                         }
                     ]
                 },

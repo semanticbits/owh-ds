@@ -60,9 +60,9 @@ before_script:
 #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install; fi
 #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install -g pm2@latest; fi
 #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sudo apt-get install nodejs-legacy; fi
-  - npm start > /dev/null &
-  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ./node_modules/protractor/bin/webdriver-manager update; fi
-  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sleep 1; fi #give server time to start
+#  - npm start > /dev/null &
+#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ./node_modules/protractor/bin/webdriver-manager update; fi
+#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sleep 1; fi #give server time to start
 
 group: deprecated-2017Q4
 language: if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then java; fi
@@ -143,6 +143,15 @@ deploy:
 #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then kill -9 $(fuser -n tcp 3000 2> /dev/null); fi
 
 script:
+#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm run-script test-single-run; fi
+#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ls; fi
+#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ls coverage; fi
+#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ls 'coverage/PhantomJS 2.1.1 (Linux 0.0.0)'; fi
+#  - cd $TRAVIS_BUILD_DIR/software/owh/server
+#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive test; fi
+#  - npm start > /dev/null &
+#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sleep 10; fi
+#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then cd ../client; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then cd $TRAVIS_BUILD_DIR/software/owh; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then cp -R $TRAVIS_BUILD_DIR/deployment/* $TRAVIS_BUILD_DIR/software/owh; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then mkdir -p $TRAVIS_BUILD_DIR/software/owh/.owh/logs; fi
