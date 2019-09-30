@@ -949,8 +949,8 @@
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
                     autoCompleteOptions: educationOptions, helpText:"label.help.text.mother.education"},
 
-                {key: 'current_year', title: 'label.filter.year', queryKey:"current_year", primary: false, value: ["2015"], defaultGroup:'column', groupBy: false,
-                    filterType: "checkbox", autoCompleteOptions: yearOptions.slice(1), helpText:"label.help.text.year"},
+                {key: 'current_year', title: 'label.filter.year', queryKey:"current_year", primary: false, value: ["2017"], defaultGroup:'column', groupBy: false,
+                    filterType: "checkbox", autoCompleteOptions: yearOptions.splice(0, 0, '2017'), helpText:"label.help.text.year"},
 
                 {key: 'month', title: 'label.filter.month', queryKey:"month", primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: monthOptions, helpText:"label.help.text.month"},
