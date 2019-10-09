@@ -425,7 +425,7 @@
 
         function setDefaults() {
             var yearFilter = utilService.findByKeyAndValue(sc.filters.selectedPrimaryFilter.allFilters, 'key', 'year');
-            yearFilter.value.push('2015');
+            yearFilter.value.push('2017');
         }
 
         if(sc.queryID === '') {
