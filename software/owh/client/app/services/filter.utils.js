@@ -13,7 +13,6 @@
     function filterUtils(utilService, $timeout, cancerService) {
         //filter options
         var yearOptions = [
-            { "key": "2017", "title": "2017"},
             { "key": "2016", "title": "2016"},
             { "key": "2015", "title": "2015"},
             { "key": "2014", "title": "2014"},
@@ -367,7 +366,35 @@
             {key:'Not on certificate', title:'Not on certificate'}
         ];
 
+        var prePregnancyHypertensionOptions = [
+            {key:'Yes', title:'Yes'},
+            {key:'No', title:'No'},
+            {key:'Unknown', title:'Unknown'},
+            {key:'Not on certificate', title:'Not on certificate'}
+        ];
+
+        var gestationalHypertensionOptions = [
+            {key:'Yes', title:'Yes'},
+            {key:'No', title:'No'},
+            {key:'Unknown', title:'Unknown'},
+            {key:'Not on certificate', title:'Not on certificate'}
+        ];
+
         var diabetesOptions = [
+            {key:'Yes', title:'Yes'},
+            {key:'No', title:'No'},
+            {key:'Unknown', title:'Unknown'},
+            {key:'Not on certificate', title:'Not on certificate'}
+        ];
+
+        var prePregnancyDiabetesOptions = [
+            {key:'Yes', title:'Yes'},
+            {key:'No', title:'No'},
+            {key:'Unknown', title:'Unknown'},
+            {key:'Not on certificate', title:'Not on certificate'}
+        ];
+
+        var gestationalDiabetesOptions = [
             {key:'Yes', title:'Yes'},
             {key:'No', title:'No'},
             {key:'Unknown', title:'Unknown'},
@@ -909,6 +936,28 @@
         }
 
         function getNatalityDataFilters() {
+
+            var birthYearOptions = [
+                { "key": "2017", "title": "2017"},
+                { "key": "2016", "title": "2016"},
+                { "key": "2015", "title": "2015"},
+                { "key": "2014", "title": "2014"},
+                { "key": "2013", "title": "2013"},
+                { "key": "2012", "title": "2012"},
+                { "key": "2011", "title": "2011"},
+                { "key": "2010", "title": "2010"},
+                { "key": "2009", "title": "2009"},
+                { "key": "2008", "title": "2008"},
+                { "key": "2007", "title": "2007"},
+                { "key": "2006", "title": "2006"},
+                { "key": "2005", "title": "2005"},
+                { "key": "2004", "title": "2004"},
+                { "key": "2003", "title": "2003"},
+                { "key": "2002", "title": "2002"},
+                { "key": "2001", "title": "2001"},
+                { "key": "2000", "title": "2000"}
+            ];
+
             //prepare filter definitions
             var natalityFilters = [
                 {key: 'hispanic_origin', title: 'label.filter.hispanicOrigin', queryKey:"hispanic_origin",
@@ -951,7 +1000,7 @@
                     autoCompleteOptions: educationOptions, helpText:"label.help.text.mother.education"},
 
                 {key: 'current_year', title: 'label.filter.year', queryKey:"current_year", primary: false, value: ["2017"], defaultGroup:'column', groupBy: false,
-                    filterType: "checkbox", autoCompleteOptions: yearOptions, helpText:"label.help.text.year"},
+                    filterType: "checkbox", autoCompleteOptions: birthYearOptions, helpText:"label.help.text.year"},
 
                 {key: 'month', title: 'label.filter.month', queryKey:"month", primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: monthOptions, helpText:"label.help.text.month"},
@@ -1012,9 +1061,25 @@
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
                     autoCompleteOptions: diabetesOptions, helpText:"label.help.text.diabetes"},
 
+                {key: 'prepregnancy_diabetes', title: 'label.filter.pre.pregnancy.diabetes', queryKey:"prepregnancy_diabetes", primary: false,
+                    value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
+                    autoCompleteOptions: prePregnancyDiabetesOptions, helpText:"label.help.text.pre.pregnancy.diabetes"},
+
+                {key: 'gestational_diabetes', title: 'label.filter.gestational.diabetes', queryKey:"gestational_diabetes", primary: false,
+                    value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
+                    autoCompleteOptions: gestationalDiabetesOptions, helpText:"label.help.text.gestational.diabetes"},
+
                 {key: 'pregnancy_hypertension', title: 'label.filter.pregnancy.hypertension', queryKey:"pregnancy_hypertension", primary: false,
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
                     autoCompleteOptions: pregnancyHypertensionOptions, helpText:"label.help.text.pregnancy.hypertension"},
+
+                {key: 'prepregnancy_hypertension', title: 'label.filter.pre.pregnancy.hypertension', queryKey:"prepregnancy_hypertension", primary: false,
+                    value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
+                    autoCompleteOptions: prePregnancyHypertensionOptions, helpText:"label.help.text.pre.pregnancy.hypertension"},
+
+                {key: 'gestational_hypertension', title: 'label.filter.gestational.hypertension', queryKey:"gestational_hypertension", primary: false,
+                    value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
+                    autoCompleteOptions: gestationalHypertensionOptions, helpText:"label.help.text.gestational.hypertension"},
 
                 {key: 'eclampsia', title: 'label.filter.eclampsia', queryKey:"eclampsia", primary: false, value: [],
                     defaultGroup:'column', groupBy: false, filterType: "checkbox",
