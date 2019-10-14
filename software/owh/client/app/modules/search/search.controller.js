@@ -198,12 +198,12 @@
             "crude_death_rates": {
                 "hispanicOrigin": ['Non-Hispanic', 'Hispanic', 'Unknown'],
                 "race": ['American Indian', 'Asian or Pacific Islander', 'Black', 'White'],
-                "year": ['2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000']
+                "year": ['2017','2016','2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000']
             },
             "age-adjusted_death_rates": {
                 "hispanicOrigin": ['Non-Hispanic', 'Hispanic', 'Unknown'],
                 "race": ['American Indian', 'Asian or Pacific Islander', 'Black', 'White'],
-                "year": ['2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000']
+                "year": ['2017','2016','2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000']
             },
             number_of_births: {},
             number_of_infant_deaths: {},
