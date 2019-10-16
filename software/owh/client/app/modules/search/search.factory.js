@@ -1781,6 +1781,8 @@
             ];
 
             filters.yearOptions = [
+                {key: '2017', title: '2017'},
+                {key: '2016', title: '2016'},
                 {key: '2015', title: '2015'},
                 {key: '2014', title: '2014'},
                 {key: '2013', title: '2013'},
@@ -2046,7 +2048,7 @@
 
                 /*Year and Month*/
                 //TODO: consider setting default selected years elsewhere
-                {key: 'year', title: 'label.filter.year', queryKey:"current_year",primary: false, value: [],
+                {key: 'year', title: 'label.filter.year', queryKey:"current_year",primary: false, value: ['2017'],
                     groupBy: false, type:"label.filter.group.year.month", filterType: 'checkbox',
                     autoCompleteOptions: filters.yearOptions,defaultGroup:"row", helpText: 'label.help.text.mortality.year'},
                 {key: 'month', title: 'label.filter.month', queryKey:"month_of_death", primary: false, value: [],
@@ -3417,7 +3419,35 @@
                                     collapse: true,
                                     allowGrouping: true,
                                     groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'prepregnancy_hypertension')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'gestational_hypertension')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
                                     filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'diabetes')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'prepregnancy_diabetes')
+                                },
+                                {
+                                    filterGroup: false,
+                                    collapse: true,
+                                    allowGrouping: true,
+                                    groupOptions: filters.groupOptions,
+                                    filters: utilService.findByKeyAndValue(filters.natalityFilters, 'key', 'gestational_diabetes')
                                 },
                                 {
                                     filterGroup: false,
