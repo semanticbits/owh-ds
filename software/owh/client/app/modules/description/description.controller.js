@@ -15,7 +15,7 @@
                     key:"natality",
                     title: 'Births',
                     image: 'natality-icon.svg',
-                    yrsAvail: '2000-2015',
+                    yrsAvail: '2000-2017',
                     topics: 'Births, Babies, Birth Rates, Fertility Rates, Prenatal Care',
                     dataDescription:"This dataset has counts and rates of births occurring within the United States to U.S. residents and nonresidents. State is defined by the mother's place of residence recorded on the birth certificate. Data elements include demographics, and maternal risk factors. Population is Live Births in United States.",
                     suppression:"Vital statistics data are suppressed due to confidentiality constraints, in order to protect personal privacy. All sub-national data representing zero to nine (0-9) births are suppressed. Corresponding population denominator data are also suppressed when the figure represents fewer than ten persons.",
@@ -62,6 +62,8 @@
                             question:"What are the population sources?",
                             answer:"The current population sources for calculating birth and fertility rates come from these sources:" +
                             "<ul>" +
+                            "<li>Rates for year 2017:  the July 1st, 2016 (Vintage 2017) postcensal bridged-race estimates of the resident population, released by NCHS on June 27, 2018.</li>" +
+                            "<li>Rates for year 2016:  the July 1st, 2016 (Vintage 2016) postcensal bridged-race estimates of the resident population, released by NCHS on June 26, 2017.</li>" +
                             "<li>Rates for year 2015:  the July 1st, 2015 (Vintage 2015) postcensal bridged-race estimates of the resident population, released by NCHS on June 28, 2016.</li>" +
                             "<li>Rates for year 2014:  the July 1st, 2014 (Vintage 2014) postcensal bridged-race estimates of the resident population, released by NCHS on June 30, 2015.</li>" +
                             "<li>Rates for year 2013:  the July 1st, 2013 (Vintage 2013) postcensal bridged-race estimates of the resident population, released by NCHS on June 26, 2014.</li>" +
@@ -115,9 +117,9 @@
                     key:"deaths",
                     title: 'Detailed Mortality',
                     image: 'detailed-mortality-icon.svg',
-                    yrsAvail: '2000-2015',
+                    yrsAvail: '2000-2017',
                     topics: 'Multiple Causes of Death, Cancer, Diabetes, Deaths, Sexually Transmitted Diseases, Tuberculosis, Alcohol and Other Drug Use, Obesity, Overweight, Weight Control, Tobacco Use, HIV/AIDS, Prostate Cancer, Population Data',
-                    dataDescription: 'The mortality data are based on death certificates for U.S. residents. Each death certificate identifies a single underlying cause of death and demographic data. The number of deaths, crude death rates or age-adjusted death rates can be obtained by place of residence (total U.S., region, and state), 5-year age groups, race (4 groups), Hispanic ethnicity, gender, year, cause-of-death (4-digit ICD-10 code or group of codes), injury intent and injury mechanism, drug/alcohol induced causes. Data are also available for place of death, month and week day of death, and whether an autopsy was performed.',
+                    dataDescription: 'The mortality data are based on death certificates for U.S. residents. Each death certificate identifies a single underlying cause of death and demographic data. The number of deaths, crude death rates or age-adjusted death rates can be obtained by place of residence (total U.S., region, and state), 5-year age groups, race (4 groups), Hispanic ethnicity, gender, year, cause-of-death (4-digit ICD-10 code or group of codes), injury intent and injury mechanism, drug/alcohol induced causes. Data are also available for place of death, month and week day of death, and whether an autopsy was performed (2017 is the most recent year for which detailed mortality data are available).',
                     suppression: 'Vital statistics data are suppressed due to confidentiality constraints, in order to protect personal privacy. As of May 23, 2011, all sub-national data representing zero to nine (0-9) deaths or births are suppressed. Corresponding sub-national denominator population figures are also suppressed when the population represents fewer than ten persons.',
                     source: 'The Detailed Mortality data are compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative; the data set is produced by the U.S. Department of Health and Human Services (US HHS), Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS), Division of Vital Statistics (DVS), Mortality Statistics Branch.',
                     isRateCalculation: true,
@@ -148,7 +150,7 @@
                             "<li>The year 2000 and year 2010 populations are April 1 modified census counts.</li>" +
                             "<li>The 2001 through 2009 population estimates are revised intercensal estimates of the July 1 resident population, based on the year 2000 and year 2010 census counts (released by NCHS on 10/26/2012).</li>" +
                             "<li>The archive population estimates for years 2001 - 2009 are postcensal estimates of the July 1 resident population.</li>" +
-                            "<li>The 2011 - 2015 population estimates are postcensal estimates of the July 1 resident population.</li>" +
+                            "<li>The 2011 - 2017 population estimates are postcensal estimates of the July 1 resident population.</li>" +
                             "</ul>" +
                             "Note that these estimates are based on bridged-race categories. The population estimates are by geographic unit (total United States, State), year, race (white, black, other races), sex, and age group. To permit the calculation of infant mortality rates, NCHS live-birth data are included on the file.<br/><br/>"
                         },

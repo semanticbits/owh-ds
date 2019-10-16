@@ -166,7 +166,8 @@
                 'birth_weight', 'birth_weight_r4', 'birth_weight_r12', 'birth_plurality', 'live_birth', 'birth_place',
                 'delivery_method', 'medical_attendant', 'race', 'hispanic_origin', 'marital_status',
                 'mother_education', 'mother_age_1year_interval', 'mother_age_5year_interval',
-                'anemia', 'cardiac_disease', 'chronic_hypertension', 'diabetes', 'eclampsia', 'hydramnios_oligohydramnios',
+                'anemia', 'cardiac_disease', 'chronic_hypertension', 'prepregnancy_hypertension', 'gestational_hypertension',
+                'diabetes', 'prepregnancy_diabetes', 'gestational_diabetes', 'eclampsia', 'hydramnios_oligohydramnios',
                 'incompetent_cervix', 'lung_disease', 'pregnancy_hypertension', 'tobacco_use'],
             "label.filter.infant_mortality": ['year_of_death', 'sex', 'infant_age_at_death', 'race', 'hispanic_origin', 'marital_status',
                 'mother_age_5_interval', 'mother_education', 'gestational_age_r11', 'gestational_age_r10', 'gestation_weekly',
@@ -193,17 +194,17 @@
                     'Unknown'
                 ],
                 "race": ['American Indian', 'Asian or Pacific Islander', 'Black', 'White'],
-                "year": ['2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000', '1999', '1997','1995','1993','1991' ]
+                "year": ['2017','2016','2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000', '1999', '1997','1995','1993','1991' ]
             },
             "crude_death_rates": {
                 "hispanicOrigin": ['Non-Hispanic', 'Hispanic', 'Unknown'],
                 "race": ['American Indian', 'Asian or Pacific Islander', 'Black', 'White'],
-                "year": ['2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000']
+                "year": ['2017','2016','2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000']
             },
             "age-adjusted_death_rates": {
                 "hispanicOrigin": ['Non-Hispanic', 'Hispanic', 'Unknown'],
                 "race": ['American Indian', 'Asian or Pacific Islander', 'Black', 'White'],
-                "year": ['2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000']
+                "year": ['2017','2016','2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000']
             },
             number_of_births: {},
             number_of_infant_deaths: {},
@@ -425,7 +426,9 @@
 
         function setDefaults() {
             var yearFilter = utilService.findByKeyAndValue(sc.filters.selectedPrimaryFilter.allFilters, 'key', 'year');
-            yearFilter.value.push('2015');
+            if(yearFilter.length == 0) {
+                yearFilter.value.push('2017');
+            }
         }
 
         if(sc.queryID === '') {
