@@ -5,14 +5,15 @@ from owh.etl.common.datafile_parser import DataFileParser
 logger = logging.getLogger('natality_etl')
 
 # data mappings config file map for natality data files
-data_mapping_configs = {'Natl00us.pt2':'nat_2000_2002.json', 'Nat01us.pt2':'nat_2000_2002.json', 'Nat02us.dat':'nat_2000_2002.json',
-                        'Nat03uspt2.dat': 'nat_2003.json', 'NAT04USpt2.dat':'nat_2004.json',
-                        'NAT05USgeo.dat': 'nat_2005_2006.json', 'NAT06USgeo.dat': 'nat_2005_2006.json',
-                        'VS07NATL.DETAILUS.GEO': 'nat_2007_2010.json', 'VS08NATL.DETAILUS.GEO':'nat_2007_2010.json',
-                        'vs09natl.detailus.GEO':'nat_2007_2010.json', 'vs2010natl.detailus.GEO.c20120221.r20121119': 'nat_2007_2010.json',
-                        'vs2011natl.LimGeo_2013_08_27':'nat_2011_2013.json', 'Nat2012LimGeoUS_2014_02_03':'nat_2011_2013.json',
-                        'Nat2013US.LimGeo':'nat_2011_2013.json', 'Nat2014US.LimGeo.c20150514.r20151022.txt':'nat_2014_2015.json',
-                        'Nat2015US.LimGeo.c20160517.r20160919.txt': 'nat_2014_2015.json'}
+data_mapping_configs = {'Nat2000US.PubUse.txt':'nat_2000_2002.json', 'Nat2001US.PubUse.txt':'nat_2000_2002.json',
+                        'NAT2002US.PubUse.txt':'nat_2000_2002.json', 'Nat2003us.PubUse.txt': 'nat_2003.json',
+                        'Nat2004us.PubUse.txt':'nat_2004.json', 'Nat2005US.LimGeo.txt': 'nat_2005_2006.json',
+                        'Nat2006US.LimGeo.txt': 'nat_2005_2006.json', 'Nat2007US.LimGeo.txt': 'nat_2007_2010.json',
+                        'Nat2008US.LimGeo.txt':'nat_2007_2010.json', 'Nat2009US.LimGeo.txt':'nat_2007_2010.json',
+                        'Nat2010US.LimGeo.txt': 'nat_2007_2010.json', 'Nat2011US.LimGeo.txt':'nat_2011_2013.json',
+                        'Nat2012US.LimGeo.txt':'nat_2011_2013.json', 'Nat2013US.LimGeo.txt':'nat_2011_2013.json',
+                        'Nat2014us.LimGeo.txt':'nat_2014_2015.json', 'Nat2015us.LimGeo.txt': 'nat_2014_2015.json',
+                        'Nat2016US.LimGeo.txt': 'nat_2016_2017.json', 'Nat2017US.LimGeo.txt': 'nat_2016_2017.json'}
 
 class NatalityETL (ETL):
     """
@@ -84,6 +85,8 @@ class NatalityETL (ETL):
         self.loadDataSetMetaData('natality', '2013', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2011_2013.json'))
         self.loadDataSetMetaData('natality', '2014', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2014_2015.json'))
         self.loadDataSetMetaData('natality', '2015', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2014_2015.json'))
+        self.loadDataSetMetaData('natality', '2016', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2016_2017.json'))
+        self.loadDataSetMetaData('natality', '2017', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2016_2017.json'))
 
     def validate_etl(self):
         """ Validate the ETL"""

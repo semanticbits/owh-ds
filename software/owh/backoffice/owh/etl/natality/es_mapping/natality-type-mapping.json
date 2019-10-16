@@ -38,6 +38,12 @@
       "diabetes": {
         "type": "string", "index": "not_analyzed"
       },
+      "prepregnancy_diabetes": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "gestational_diabetes": {
+        "type": "string", "index": "not_analyzed"
+      },
       "chronic_hypertension": {
         "type": "string", "index": "not_analyzed"
       },
@@ -81,6 +87,12 @@
         "type": "string", "index": "not_analyzed"
       },
       "pregnancy_hypertension": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "prepregnancy_hypertension": {
+        "type": "string", "index": "not_analyzed"
+      },
+      "gestational_hypertension": {
         "type": "string", "index": "not_analyzed"
       },
       "prenatal_care": {

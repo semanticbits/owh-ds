@@ -61,10 +61,10 @@ class MortalityIndexer (ETL):
             if f.startswith("MULT"):
                 year = int(f[4:8])  # e.g. MULT2011
             else:
-                year = 2000 + int(f[4:6])  # e.g Mort01us
+                year = 2000 + int(f[2:4])  # e.g Mort01us
 
-            if year <= 2015 and year >= 2003:   # data file for year 2003 to 2014
-                config_file =  os.path.join(self.dataDirectory, 'data_mapping', 'mortality_mapping_03-15.json')
+            if year <= 2017 and year >= 2003:   # data file for year 2003 to 2014
+                config_file =  os.path.join(self.dataDirectory, 'data_mapping', 'mortality_mapping_03-17.json')
             elif year <= 2002 and year >= 2000:
                 config_file =  os.path.join(self.dataDirectory, 'data_mapping', 'mortality_mapping_00-02.json')
             else:
