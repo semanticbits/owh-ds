@@ -110,7 +110,8 @@
                 if(column.isCount) {
                     classes += ' text-right';
                 }
-                var cell = '<td class="' + classes + '" colspan="' + column.colspan + '" rowspan="' + (flatten ? 1 : column.rowspan) + '">'
+                var cell = '<td class="' + classes + '" colspan="' + column.colspan + '" rowspan="' + (flatten ? 1 : column.rowspan) + '">';
+                if(column.hidden==undefined || column.hidden==false) {
                     if(column.isCount) {
                         cell += '<div class="custom-div owh-table__cell-content">';
                             cell += '<div>';
@@ -247,6 +248,7 @@
                     } else {
                         cell += column.title;
                     }
+                }
                     cell += '</td>';
                 return cell;
             };
