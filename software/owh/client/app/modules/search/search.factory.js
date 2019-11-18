@@ -442,7 +442,7 @@
             var calculateRowTotal = selectedFilter.calculateRowTotal;
             var secondaryCountKeys = ['pop', 'ageAdjustedRate', 'standardPop', 'deathRate'];
 
-            var tableData = utilService.prepareMixedTableData(headers, file, countKey, totalCount, countLabel, calculatePercentage, calculateRowTotal, secondaryCountKeys, filterUtils.getAllOptionValues());
+            var tableData = utilService.prepareMixedTableData(headers, file, countKey, totalCount, countLabel, calculatePercentage, calculateRowTotal, secondaryCountKeys, filterUtils.getAllOptionValues(), tableView);
 
             if (selectedFilter.key === 'prams' ||selectedFilter.key === 'brfss' || selectedFilter.key == 'mental_health') {
                 tableData.headers[0].splice(1, 0, { colspan: 1, rowspan: tableData.headers.length, title: "Response", helpText: $filter('translate')('label.help.text.prams.response') });

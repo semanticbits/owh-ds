@@ -379,14 +379,14 @@
          * @return Table data and headers
          */
         function prepareMixedTableData(headers, data, countKey, totalCount, countLabel, calculatePercentage,
-                                       calculateRowTotal, secondaryCountKeys, allOptionValues) {
+                                       calculateRowTotal, secondaryCountKeys, allOptionValues, tableView) {
             var tableData = {
                 headers: prepareMixedTableHeaders(headers, countLabel, allOptionValues),
                 data: [],
                 calculatePercentage: calculatePercentage
             };
             tableData.data = prepareMixedTableRowData(headers.rowHeaders, headers.columnHeaders, data, countKey,
-                totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys);
+                totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys, true, tableView);
             tableData.calculatePercentage = calculatePercentage;
             return tableData;
         }
@@ -548,7 +548,7 @@
          * @param secondaryCountKey
          * @returns {Array}
          */
-        function prepareMixedTableRowData(rowHeaders, columnHeaders, data, countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys) {
+        function prepareMixedTableRowData(rowHeaders, columnHeaders, data, countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys, addLastRow, tableView) {
             var tableData = [];
             /**
              * This if condition prepares data
@@ -578,7 +578,9 @@
 
                         var questionCellAdded = false;
                         angular.forEach(eachData, function(eachPramsData) {
-                            var childTableData = prepareMixedTableRowData(rowHeaders.slice(1), columnHeaders, eachPramsData, countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys);
+                            var childTableData = prepareMixedTableRowData(rowHeaders.slice(1), columnHeaders,
+                                eachPramsData, countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys,
+                                false, tableView);
                             if(rowHeaders.length > 1 && calculateRowTotal) {
                                 childTableData.push(prepareTotalRow(eachPramsData, countKey, childTableData[0].length, totalCount, secondaryCountKeys));
                             }
@@ -629,7 +631,8 @@
                         if(!eachData) {
                             return;
                         }
-                        var childTableData = prepareMixedTableRowData(rowHeaders.slice(1), columnHeaders, eachData, countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys);
+                        var childTableData = prepareMixedTableRowData(rowHeaders.slice(1), columnHeaders, eachData,
+                            countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys, false, tableView);
                         if(rowHeaders.length > 1 && calculateRowTotal) {
                             childTableData.push(prepareTotalRow(eachData, countKey, childTableData[0].length, totalCount, secondaryCountKeys));
                         }
@@ -662,8 +665,155 @@
                 }
                 tableData.push(columnData);
             }
+
+            //Below logic will iterate the result table entries and counts total of all columns
+            if(rowHeaders.length > 0 && columnHeaders.length > 0 && addLastRow) {
+                var columnCount = 1;
+                //Counting all columns count. In some cases columns will be added from nested tables in individual rows.
+                //Based on the multi row/columns selection from filter options in UI, table will contain nested tables.
+                columnHeaders.forEach(function(columnHeader) {
+                    if(columnHeader.allChecked || columnHeader.value.length==0)
+                        columnCount *= columnHeader.autoCompleteOptions.length>1?columnHeader.autoCompleteOptions.length:1;
+                    else
+                        columnCount *= (angular.isArray(columnHeader.value) && columnHeader.value.length)>1?columnHeader.value.length:1;
+                });
+                var totalColumnsCount = rowHeaders.length+columnCount;
+                if(tableData[0]){
+                    var lastColumn = tableData[0][tableData[0].length-1];
+                    if(tableData[0].length!=totalColumnsCount && lastColumn.isCount) totalColumnsCount++;
+                }
+                var actualRows = [];
+                //Iterating all columns to data to another array with missing columns, so that count of each column will be easier.
+                tableData.forEach(function(row) {
+                    if(row.length!=2 && row[0].title != "Total") {
+                        if(row.length==totalColumnsCount) {
+                            actualRows.push(JSON.parse(JSON.stringify(row)));
+                        } else {
+                            var actualRow = JSON.parse(JSON.stringify(row));
+                            for(var missingColumnsIdx=0;missingColumnsIdx<totalColumnsCount-row.length;missingColumnsIdx++) {
+                                actualRow.unshift({title: ''});
+                            }
+                            actualRows.push(actualRow);
+                        }
+                    }
+                });
+                var getDisplayValue = function(lastRowColumn, columnData, rowIdx) {
+                    if (!(columnData.title === 'suppressed' || columnData.title < 20 || isNaN(parseInt(columnData.title)))) {
+                        if(angular.isNumber(columnData.title))
+                            lastRowColumn.title += parseFloat(columnData.title);
+                        if (columnData.percentage  > 0) {
+                            lastRowColumn.percentage += parseFloat(columnData.percentage);
+                        }
+                    }
+                    return result;
+                };
+
+                var lastRow=[{title: 'Total', isBold: true}];
+                //Below loop will iterate all actualRows and calculates the actual total and total percentage for each column.
+                //This loop considers all sub-tab types and populates the lastrow counts accordingly.
+                for(var columnIdx=0;columnIdx<totalColumnsCount;columnIdx++) {
+                    if(columnIdx>0) {
+                        lastRow[columnIdx] = {
+                            title: 0,percentage: 0,isCount: true,rowspan: 1,colspan: 1,
+                            ageAdjustedRate:0, deathRate:0, pop:0, standardPop:0, isBold: true
+                        };
+                        if(columnIdx<rowHeaders.length) {
+                            lastRow[columnIdx].hidden = true;
+                        }
+                        for(var rowIdx=0;rowIdx<actualRows.length;rowIdx++) {
+                            if(actualRows[rowIdx][columnIdx]) {
+                                if(['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates',
+                                    'std', 'tb', 'aids', 'disease_rate', 'number_of_infant_deaths', 'crude_cancer_incidence_rates',
+                                    'crude_cancer_death_rates'].indexOf(tableView) >= 0) {
+                                    var column = actualRows[rowIdx][columnIdx];
+                                    var rateVisibility = getRateVisibility(column.title, column.pop, tableView);
+                                    if(tableView === 'age-adjusted_death_rates') {
+                                        if(column.ageAdjustedRate){
+                                            lastRow[columnIdx].ageAdjustedRate += column.title === 'suppressed' ? 0 : parseFloat(column.ageAdjustedRate);
+                                        }
+                                    }
+                                    else {
+                                        if(rateVisibility === 'visible') {
+                                            lastRow[columnIdx].deathRate +=
+                                                (tableView === 'number_of_infant_deaths') ?
+                                                    parseFloat(column.deathRate) :
+                                                    parseFloat(column.title / column.pop * 100000);
+                                        }
+                                    }
+                                    if(!(column.title === 'suppressed' || column.title === -1 || column.title === 'na' || column.title === -2)) {
+                                        if(angular.isNumber(column.title))
+                                            lastRow[columnIdx].title += parseFloat(column.title);
+                                    }
+                                    if(tableView !== 'age-adjusted_death_rates') {
+                                        if(column.pop && column.pop !== 'n/a') {
+                                            lastRow[columnIdx].pop += column.pop === 'suppressed' ? 0 : parseFloat(column.pop);
+                                        }
+                                    } else {
+                                        if(column.standardPop && angular.isNumber(column.pop)) {
+                                            lastRow[columnIdx].standardPop += parseFloat(column.standardPop);
+                                        }
+                                    }
+
+                                } else if (tableView === 'number_of_deaths' ||
+                                    tableView === 'bridge_race' ||
+                                    tableView === 'number_of_births' ||
+                                    tableView === 'cancer_incidence' ||
+                                    tableView === 'cancer_mortality') {
+                                    var title = actualRows[rowIdx][columnIdx].title;
+                                    var percentage = actualRows[rowIdx][columnIdx].percentage;
+                                    if(title != 'suppressed' || title != 'na') {
+                                        if(angular.isNumber(title))
+                                            lastRow[columnIdx].title += parseFloat(title);
+                                        if(columnIdx != actualRows[rowIdx].length - 1 && percentage  > 0) {
+                                            lastRow[columnIdx].percentage += parseFloat(percentage);
+                                        }
+                                    }
+
+                                } else if (tableView === 'number_of_infant_deaths') {
+                                    getDisplayValue(lastRow[columnIdx], actualRows[rowIdx][columnIdx], rowIdx);
+                                }
+                            }
+                        }
+
+                    }
+                }
+                //Calculating the percentages for all items
+                for(var i=0;i<lastRow.length;i++) {
+                    if(i!=0) {
+                        if(lastRow[i].percentage) {
+                            lastRow[i].percentage = lastRow[i].percentage / (actualRows.length);
+                        } else if(lastRow[i].deathRate) {
+                            lastRow[i].deathRate = lastRow[i].deathRate / (actualRows.length);
+                        }
+                    }
+                }
+                lastRow[lastRow.length-1].isBold = true;
+                tableData.push(lastRow);
+            }
             return tableData;
         }
+        function getRateVisibility(count, pop, tableView) {
+            if(count === 'suppressed' || pop === 'suppressed' || count === -1) {
+                return 'suppressed';
+            }
+            if (pop === 'n/a' || count === -2) {
+                return 'na';
+            }
+            //If population value is undefined
+            // OR
+            //If table view is equals to 'std' OR 'tb' OR 'aids' OR 'disease_rate' and count == 'na'
+            //Then @return 'na'
+            if(!pop || (['std', 'tb', 'aids', 'disease_rate'].indexOf(tableView) >= 0 && count === 'na')) {
+                return 'na';
+            }
+            //if table view is not equals to 'std' OR 'tb' OR 'aids' OR 'disease_rate' and count < 20
+            //Basically we are skipping displaying 'unreliable' string for disease related data sets.
+            if(['std', 'tb', 'aids', 'disease_rate'].indexOf(tableView) < 0 && count < 20) {
+                return 'unreliable';
+            }
+            return 'visible';
+        }
+
 
         function prepareCountCell(count, data, countKey, totalCount, calculatePercentage, secondaryCountKeys, isTotal) {
             var title = Number(count);
@@ -754,7 +904,9 @@
                                     });
                                 }
 
-                                var childTableData = prepareMixedTableColumnData(columnHeaders.slice(1), matchedData, countKey, totalCount, calculatePercentage, secondaryCountKeys, eachOption.options ? includeKeys : undefined);
+                                var childTableData = prepareMixedTableColumnData(columnHeaders.slice(1), matchedData,
+                                    countKey, totalCount, calculatePercentage, secondaryCountKeys,
+                                    eachOption.options ? includeKeys : undefined);
                                 eachOptionLength = childTableData.length;
                                 tableData = tableData.concat(childTableData);
                             } else {

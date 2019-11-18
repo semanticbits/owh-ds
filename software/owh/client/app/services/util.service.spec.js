@@ -241,12 +241,15 @@ describe('utilService', function(){
     });
 
     it('test utils prepareMixedTableData', function () {
-        var result = utils.prepareMixedTableData(tableData.headers, tableData.data, tableData.countKey, tableData.totalCount, tableData.countLabel, tableData.calculatePercentage, tableData.calculateRowTotal);
+        var result = utils.prepareMixedTableData(tableData.headers, tableData.data, tableData.countKey, tableData.totalCount,
+            tableData.countLabel, tableData.calculatePercentage, tableData.calculateRowTotal, undefined, undefined, 'number_of_births');
         expect(JSON.stringify(result)).toEqual(JSON.stringify(tableData.expectedResult));
     });
 
     it('test utils prepareMixedTableData for multiple column headers', function () {
-        var result = utils.prepareMixedTableData(multipleColumnsTableData.headers, multipleColumnsTableData.data, multipleColumnsTableData.countKey, multipleColumnsTableData.totalCount, multipleColumnsTableData.countLabel, multipleColumnsTableData.calculatePercentage, multipleColumnsTableData.calculateRowTotal);
+        var result = utils.prepareMixedTableData(multipleColumnsTableData.headers, multipleColumnsTableData.data, multipleColumnsTableData.countKey,
+            multipleColumnsTableData.totalCount, multipleColumnsTableData.countLabel, multipleColumnsTableData.calculatePercentage,
+            multipleColumnsTableData.calculateRowTotal, undefined, undefined, 'number_of_births');
         expect(JSON.stringify(result)).toEqual(JSON.stringify(multipleColumnsTableData.expectedResult));
     });
 
@@ -254,29 +257,37 @@ describe('utilService', function(){
         var result = utils.prepareMixedTableData(multipleColumnsTableDataWithUnmatchedColumns.headers,
             multipleColumnsTableDataWithUnmatchedColumns.data, multipleColumnsTableDataWithUnmatchedColumns.countKey,
             multipleColumnsTableDataWithUnmatchedColumns.totalCount, multipleColumnsTableDataWithUnmatchedColumns.countLabel,
-            multipleColumnsTableDataWithUnmatchedColumns.calculatePercentage, multipleColumnsTableDataWithUnmatchedColumns.calculateRowTotal);
+            multipleColumnsTableDataWithUnmatchedColumns.calculatePercentage, multipleColumnsTableDataWithUnmatchedColumns.calculateRowTotal,
+            undefined, undefined, 'number_of_births');
         expect(JSON.stringify(result)).toEqual(JSON.stringify(multipleColumnsTableDataWithUnmatchedColumns.expectedResult));
     });
 
     it('test utils prepareMixedTableData for no column headers', function () {
-        var result = utils.prepareMixedTableData(noColumnsTableData.headers, noColumnsTableData.data, noColumnsTableData.countKey, noColumnsTableData.totalCount, noColumnsTableData.countLabel, noColumnsTableData.calculatePercentage, noColumnsTableData.calculateRowTotal);
+        var result = utils.prepareMixedTableData(noColumnsTableData.headers, noColumnsTableData.data, noColumnsTableData.countKey,
+            noColumnsTableData.totalCount, noColumnsTableData.countLabel, noColumnsTableData.calculatePercentage, noColumnsTableData.calculateRowTotal,
+            undefined, undefined, 'number_of_births');
         expect(JSON.stringify(result)).toEqual(JSON.stringify(noColumnsTableData.expectedResult));
     });
 
     it('test utils prepareMixedTableData for no row headers and with calculatePercentage', function () {
-        var result = utils.prepareMixedTableData(noRowsTableData.headers, noRowsTableData.data, noRowsTableData.countKey, noRowsTableData.totalCount, noRowsTableData.countLabel, noRowsTableData.calculatePercentage, noRowsTableData.calculateRowTotal);
+        var result = utils.prepareMixedTableData(noRowsTableData.headers, noRowsTableData.data, noRowsTableData.countKey,
+            noRowsTableData.totalCount, noRowsTableData.countLabel, noRowsTableData.calculatePercentage, noRowsTableData.calculateRowTotal,
+            undefined, undefined, 'number_of_births');
         expect(JSON.stringify(result)).toEqual(JSON.stringify(noRowsTableData.expectedResult));
     });
 
     it('test utils prepareMixedTableData for no row headers and without calculatePercentage', function () {
-        var result = utils.prepareMixedTableData(singleValuedTableData.headers, singleValuedTableData.data, singleValuedTableData.countKey, singleValuedTableData.totalCount, singleValuedTableData.countLabel, singleValuedTableData.calculatePercentage, singleValuedTableData.calculateRowTotal);
+        var result = utils.prepareMixedTableData(singleValuedTableData.headers, singleValuedTableData.data, singleValuedTableData.countKey,
+            singleValuedTableData.totalCount, singleValuedTableData.countLabel, singleValuedTableData.calculatePercentage, singleValuedTableData.calculateRowTotal,
+            undefined, undefined, 'number_of_births');
         expect(JSON.stringify(result)).toEqual(JSON.stringify(singleValuedTableData.expectedResult));
     });
 
     it('test utils prepareMixedTableData for numbers and percentages', function () {
         //Implementation pending
         var result = utils.prepareMixedTableData(tableData.headers, tableData.data, tableData.countKey,
-            tableData.totalCount, tableData.countLabel, tableData.calculatePercentage, tableData.calculateRowTotal);
+            tableData.totalCount, tableData.countLabel, tableData.calculatePercentage, tableData.calculateRowTotal,
+            undefined, undefined, 'number_of_births');
         expect(result).not.toBe(null);
         expect(JSON.stringify(result)).toEqual(JSON.stringify(tableData.expectedResult));
     });
@@ -292,7 +303,16 @@ describe('utilService', function(){
 
     it('test utils prepareMixedTableData for std row and column headers', function () {
         var stdHeadersAndData = __fixtures__['app/services/fixtures/util.service/stdHeadersAndData'];
-        var result = utils.prepareMixedTableData(stdHeadersAndData.headers, stdHeadersAndData.data, 'std', 1, undefined, true, undefined, ["pop"], ["Both sexes", "All races/ethnicities", "All age groups", "National"]);
+        var result = utils.prepareMixedTableData(stdHeadersAndData.headers, stdHeadersAndData.data, 'std',
+            1, undefined, true, undefined, ["pop"],
+            ["Both sexes", "All races/ethnicities", "All age groups", "National"], 'number_of_deaths');
+        expect(JSON.stringify(result)).toEqual(JSON.stringify(stdHeadersAndData.expectedResults));
+    });
+    it('test utils prepareMixedTableData for std row and column headers for crude_death_rates tab', function () {
+        var stdHeadersAndData = __fixtures__['app/services/fixtures/util.service/stdHeadersAndDataCrudeDeathRates'];
+        var result = utils.prepareMixedTableData(stdHeadersAndData.headers, stdHeadersAndData.data, 'std',
+            1, undefined, true, undefined, ["pop"],
+            ["Both sexes", "All races/ethnicities", "All age groups", "National"], 'crude_death_rates');
         expect(JSON.stringify(result)).toEqual(JSON.stringify(stdHeadersAndData.expectedResults));
     });
 
