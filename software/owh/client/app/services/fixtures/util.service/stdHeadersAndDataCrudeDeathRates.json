@@ -648,25 +648,25 @@
         },
         {
           "title": 1917489,
-          "percentage": 35.3848535945586,
+          "percentage": 0,
           "isCount": true,
           "rowspan": 1,
           "colspan": 1,
           "ageAdjustedRate": 0,
-          "deathRate": 0,
-          "pop": 0,
+          "deathRate": 563.8607494241886,
+          "pop": 299759669,
           "standardPop": 0,
           "isBold": true
         },
         {
           "title": 875647,
-          "percentage": 14.588153831179548,
+          "percentage": 0,
           "isCount": true,
           "rowspan": 1,
           "colspan": 1,
           "ageAdjustedRate": 0,
-          "deathRate": 0,
-          "pop": 0,
+          "deathRate": 239.50963792674196,
+          "pop": 290982343,
           "standardPop": 0,
           "isBold": true
         },
@@ -677,8 +677,8 @@
           "rowspan": 1,
           "colspan": 1,
           "ageAdjustedRate": 0,
-          "deathRate": 0,
-          "pop": 0,
+          "deathRate": 403.97922147103617,
+          "pop": 590742012,
           "standardPop": 0,
           "isBold": true
         }

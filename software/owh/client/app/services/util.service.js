@@ -667,7 +667,7 @@
             }
 
             //Below logic will iterate the result table entries and counts total of all columns
-            if(addLastRow) {
+            if(rowHeaders.length > 0 && columnHeaders.length > 0 && addLastRow) {
                 var columnCount = 1;
                 //Counting all columns count. In some cases columns will be added from nested tables in individual rows.
                 //Based on the multi row/columns selection from filter options in UI, table will contain nested tables.

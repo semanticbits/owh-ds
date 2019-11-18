@@ -409,7 +409,7 @@
           "title": "Number of Deaths",
           "colspan": 1,
           "rowspan": 1,
-          "isTotal":true,
+          "isTotal": true,
           "isData": true
         }
       ]
@@ -451,7 +451,7 @@
           "rowspan": 1,
           "colspan": 1,
           "isBold": true,
-          "isTotal":true
+          "isTotal": true
         }
       ],
       [
@@ -470,8 +470,63 @@
           "colspan": 1,
           "isBold": true
         }
+      ],
+      [
+        {
+          "title": "Total",
+          "isBold": true
+        },
+        {
+          "title": 0,
+          "percentage": 0,
+          "isCount": true,
+          "rowspan": 1,
+          "colspan": 1,
+          "ageAdjustedRate": 0,
+          "deathRate": 0,
+          "pop": 0,
+          "standardPop": 0,
+          "isBold": true,
+          "hidden": true
+        },
+        {
+          "title": 50390,
+          "percentage": 31.92271143490656,
+          "isCount": true,
+          "rowspan": 1,
+          "colspan": 1,
+          "ageAdjustedRate": 0,
+          "deathRate": 0,
+          "pop": 0,
+          "standardPop": 0,
+          "isBold": true
+        },
+        {
+          "title": 107460,
+          "percentage": 68.07728856509344,
+          "isCount": true,
+          "rowspan": 1,
+          "colspan": 1,
+          "ageAdjustedRate": 0,
+          "deathRate": 0,
+          "pop": 0,
+          "standardPop": 0,
+          "isBold": true
+        },
+        {
+          "title": 157850,
+          "percentage": 0,
+          "isCount": true,
+          "rowspan": 1,
+          "colspan": 1,
+          "ageAdjustedRate": 0,
+          "deathRate": 0,
+          "pop": 0,
+          "standardPop": 0,
+          "isBold": true
+        }
       ]
     ],
-    "calculatePercentage":true
+    "calculatePercentage": true
   }
 }
