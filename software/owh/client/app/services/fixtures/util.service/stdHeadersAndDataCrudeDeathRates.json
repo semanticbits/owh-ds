@@ -656,7 +656,8 @@
           "deathRate": 563.8607494241886,
           "pop": 299759669,
           "standardPop": 0,
-          "isBold": true
+          "isBold": true,
+          "isColumntotal": true
         },
         {
           "title": 875647,
@@ -668,7 +669,8 @@
           "deathRate": 239.50963792674196,
           "pop": 290982343,
           "standardPop": 0,
-          "isBold": true
+          "isBold": true,
+          "isColumntotal": true
         },
         {
           "title": 2797835,
@@ -680,7 +682,8 @@
           "deathRate": 403.97922147103617,
           "pop": 590742012,
           "standardPop": 0,
-          "isBold": true
+          "isBold": true,
+          "isColumntotal": true
         }
       ]
     ],

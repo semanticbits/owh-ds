@@ -139,7 +139,8 @@
                             else {
                                 cell += '<span>'
                                 if(rateVisibility === 'visible') {
-                                    cell += otc.tableView === 'number_of_infant_deaths' ? $filter('number')(column.deathRate, 1) : $filter('number')(column.title / column.pop * 100000, 1) ;
+                                    cell += (otc.tableView === 'number_of_infant_deaths' || column.isColumntotal) ?
+                                        $filter('number')(column.deathRate, 1) : $filter('number')(column.title / column.pop * 100000, 1) ;
                                 }
                                 else if (rateVisibility === 'suppressed') {
                                     cell += 'Suppressed';

@@ -597,6 +597,7 @@
           "pop": 0,
           "standardPop": 0,
           "isBold": true,
+          "isColumntotal": true,
           "hidden": true
         },
         {
@@ -609,7 +610,8 @@
           "deathRate": 0,
           "pop": 0,
           "standardPop": 0,
-          "isBold": true
+          "isBold": true,
+          "isColumntotal": true
         },
         {
           "title": 49699,
@@ -621,7 +623,8 @@
           "deathRate": 0,
           "pop": 0,
           "standardPop": 0,
-          "isBold": true
+          "isBold": true,
+          "isColumntotal": true
         },
         {
           "title": 0,
@@ -633,7 +636,8 @@
           "deathRate": 0,
           "pop": 0,
           "standardPop": 0,
-          "isBold": true
+          "isBold": true,
+          "isColumntotal": true
         },
         {
           "title": 0,
@@ -645,7 +649,8 @@
           "deathRate": 0,
           "pop": 0,
           "standardPop": 0,
-          "isBold": true
+          "isBold": true,
+          "isColumntotal": true
         },
         {
           "title": 314748,
@@ -657,7 +662,8 @@
           "deathRate": 0,
           "pop": 0,
           "standardPop": 0,
-          "isBold": true
+          "isBold": true,
+          "isColumntotal": true
         }
       ]
     ],

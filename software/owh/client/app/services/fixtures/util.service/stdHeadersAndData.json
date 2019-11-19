@@ -656,7 +656,8 @@
           "deathRate": 0,
           "pop": 0,
           "standardPop": 0,
-          "isBold": true
+          "isBold": true,
+          "isColumntotal": true
         },
         {
           "title": 875647,
@@ -668,7 +669,8 @@
           "deathRate": 0,
           "pop": 0,
           "standardPop": 0,
-          "isBold": true
+          "isBold": true,
+          "isColumntotal": true
         },
         {
           "title": 2797835,
@@ -680,7 +682,8 @@
           "deathRate": 0,
           "pop": 0,
           "standardPop": 0,
-          "isBold": true
+          "isBold": true,
+          "isColumntotal": true
         }
       ]
     ],

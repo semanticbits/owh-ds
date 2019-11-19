@@ -487,6 +487,7 @@
           "pop": 0,
           "standardPop": 0,
           "isBold": true,
+          "isColumntotal": true,
           "hidden": true
         },
         {
@@ -499,7 +500,8 @@
           "deathRate": 0,
           "pop": 0,
           "standardPop": 0,
-          "isBold": true
+          "isBold": true,
+          "isColumntotal": true
         },
         {
           "title": 107460,
@@ -511,7 +513,8 @@
           "deathRate": 0,
           "pop": 0,
           "standardPop": 0,
-          "isBold": true
+          "isBold": true,
+          "isColumntotal": true
         },
         {
           "title": 157850,
@@ -523,7 +526,8 @@
           "deathRate": 0,
           "pop": 0,
           "standardPop": 0,
-          "isBold": true
+          "isBold": true,
+          "isColumntotal": true
         }
       ]
     ],
