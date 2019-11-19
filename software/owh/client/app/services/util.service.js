@@ -715,7 +715,7 @@
                     if(columnIdx>0) {
                         lastRow[columnIdx] = {
                             title: 0,percentage: 0,isCount: true,rowspan: 1,colspan: 1,
-                            ageAdjustedRate:0, deathRate:0, pop:0, standardPop:0, isBold: true
+                            ageAdjustedRate:0, deathRate:0, pop:0, standardPop:0, isBold: true, isColumntotal: true
                         };
                         if(columnIdx<rowHeaders.length) {
                             lastRow[columnIdx].hidden = true;
