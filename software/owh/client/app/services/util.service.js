@@ -782,8 +782,11 @@
                     if(i!=0) {
                         if(lastRow[i].percentage) {
                             lastRow[i].percentage = lastRow[i].percentage / (actualRows.length);
+                        } else if(lastRow[i].ageAdjustedRate) {
+                            lastRow[i].ageAdjustedRate = $filter('number')(lastRow[i].ageAdjustedRate / (actualRows.length),1);
                         } else if(lastRow[i].deathRate) {
-                            lastRow[i].deathRate = lastRow[i].deathRate / (actualRows.length);
+                            // lastRow[i].deathRate = lastRow[i].deathRate / (actualRows.length);
+                            lastRow[i].deathRate = $filter('number')((lastRow[i].title/lastRow[i].pop)*100000,1);
                         }
                     }
                 }
