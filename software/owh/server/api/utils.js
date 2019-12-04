@@ -57,6 +57,7 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelect
             simple: {},
             nested: {
                 table: {},
+                tableCounts: {},
                 charts: [],
                 maps:{}
             }
@@ -103,6 +104,11 @@ var populateDataWithMappings = function(resp, countKey, countQueryKey, allSelect
                 var groupKeyRegex = /group_table_/;
                 dataKey = key.split(groupKeyRegex)[1];
                 result.data.nested.table[dataKey] = populateAggregatedData(data[key].buckets, countKey, 1, undefined, countQueryKey, groupKeyRegex, dataKey, allSelectedFilterOptions, tableAggKeys, 'group_table_');
+            }
+            if (key.indexOf('group_table_counts_') > -1) {
+                var groupKeyRegex = /group_table_counts_/;
+                dataKey = key.split(groupKeyRegex)[1];
+                result.data.nested.tableCounts[dataKey] = populateAggregatedData(data[key].buckets, countKey, 1, undefined, countQueryKey, groupKeyRegex, dataKey, allSelectedFilterOptions, tableAggKeys, 'group_table_counts_');
             }
             if (key.indexOf('group_chart_') > -1) {
                 var keySplits = key.split("_");
@@ -158,6 +164,10 @@ var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, won
     wonderQuery.aggregations.nested.table.forEach(function(eachAgg){
         tableFilterKeys.push(eachAgg.key);
     });
+    var tableCountsFilterKeys = [];
+    wonderQuery.aggregations.nested.tableCounts.forEach(function(eachAgg){
+        tableCountsFilterKeys.push(eachAgg.key);
+    });
     var chartFilterKeys = [];
     wonderQuery.aggregations.nested.charts.forEach(function(eachChartArray){
         var chartAggKeyArray = [];
@@ -172,6 +182,7 @@ var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, won
     });
     if(resp) {
         result.data.nested.table = populateAggregateDataForWonderResponse(resp.table, 'Total', tableFilterKeys, isStateSelected);
+        result.data.nested.tableCounts = populateAggregateDataForWonderResponse(resp.tableCounts, 'Total', tableCountsFilterKeys, isStateSelected);
         chartFilterKeys.forEach(function(eachChartFilterKeys, index){
             result.data.nested.charts[index] = populateAggregateDataForWonderResponse(resp.charts[index], 'Total', eachChartFilterKeys, isStateSelected);
         });
@@ -337,7 +348,7 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
             }
             if( innerObjKey ) {
                 //if you want to split group key by regex
-                if (regex && (regex.test('group_table_') || regex.test('group_chart_0_') || regex.test('group_maps_0_'))) {
+                if (regex && (regex.test('group_table_') || regex.test('group_table_counts_') || regex.test('group_chart_0_') || regex.test('group_maps_0_'))) {
                     aggregation[innerObjKey.split(regex)[1]] =  populateAggregatedData(newBuckets[index][innerObjKey].buckets,
                         countKey, splitIndex, map, countQueryKey, regex, innerObjKey.split(regex)[1], allSelectedFilterOptions, groupFilters  ? groupFilters.slice(1): undefined, groupKey,newBuckets[index].key );
                 } else {//by default split group key by underscore and retrieve key based on index
@@ -357,7 +368,7 @@ var populateAggregatedData = function(buckets, countKey, splitIndex, map, countQ
     * So we are adding missing 'Female' data (like this {name:'Female', countkey: 0})]
     * Here we are adding missing options for 'Infant_mortality' only
     **/
-    if(regex && (regex.test('group_table_') || regex.test('group_chart_0_') || regex.test('group_maps_0_')) && allSelectedFilterOptions && allSelectedFilterOptions[dataKey] != undefined && dataKey !== 'census-region|census_division') {
+    if(regex && (regex.test('group_table_') || regex.test('group_table_counts_') || regex.test('group_chart_0_') || regex.test('group_maps_0_')) && allSelectedFilterOptions && allSelectedFilterOptions[dataKey] != undefined && dataKey !== 'census-region|census_division') {
        addMissingFilterOptions(allSelectedFilterOptions[dataKey], result, countKey);
     }
     return result;
