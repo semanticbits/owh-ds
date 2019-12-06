@@ -165,9 +165,10 @@ var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, won
         tableFilterKeys.push(eachAgg.key);
     });
     var tableCountsFilterKeys = [];
-    wonderQuery.aggregations.nested.tableCounts.forEach(function(eachAgg){
-        tableCountsFilterKeys.push(eachAgg.key);
-    });
+    if(wonderQuery.aggregations.nested.tableCounts)
+        wonderQuery.aggregations.nested.tableCounts.forEach(function(eachAgg){
+            tableCountsFilterKeys.push(eachAgg.key);
+        });
     var chartFilterKeys = [];
     wonderQuery.aggregations.nested.charts.forEach(function(eachChartArray){
         var chartAggKeyArray = [];
@@ -182,7 +183,8 @@ var populateWonderDataWithMappings = function(resp, countKey, countQueryKey, won
     });
     if(resp) {
         result.data.nested.table = populateAggregateDataForWonderResponse(resp.table, 'Total', tableFilterKeys, isStateSelected);
-        result.data.nested.tableCounts = populateAggregateDataForWonderResponse(resp.tableCounts, 'Total', tableCountsFilterKeys, isStateSelected);
+        if(resp.tableCounts)
+            result.data.nested.tableCounts = populateAggregateDataForWonderResponse(resp.tableCounts, 'Total', tableCountsFilterKeys, isStateSelected);
         chartFilterKeys.forEach(function(eachChartFilterKeys, index){
             result.data.nested.charts[index] = populateAggregateDataForWonderResponse(resp.charts[index], 'Total', eachChartFilterKeys, isStateSelected);
         });

@@ -125,7 +125,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <i class="mortality-info">Source: 2015, NCHS National Vital Statistics System</i>
+                        <i class="mortality-info" translate="{{ 'fs.minority.health.mortality.footnote' }}"></i>
                         <i style="margin-top: 2px;" class="mortality-info" ng-bind="'fs.adge-adjusted.rates.def' | translate"></i>
                     </div>
                     <br/>
@@ -198,7 +198,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i>Source: 2014  NCHS National Vital Statistics System</i>
+                        <i translate="{{ 'fs.minority.infant.mortality.footnote' }}"></i>
                     </div>
                     <!-- Prenatal Care and Pregnancy Risk -->
                     <div class="prams-factsheet">
@@ -345,7 +345,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <i>Sources:  2015, NCHS National Vital Statistics System</i>
+                        <i translate="{{ 'fs.minority.birth.mortality.footnote' }}"></i>
                     </div>
                     <!-- Tuberculosis -->
                     <div class="tb-factsheet">
@@ -373,7 +373,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <i>Source: 2015, Estimated Data from the CDC NCHHSTP Atlas</i>
+                        <i translate="{{ 'fs.minority.tuberculosis.mortality.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- STD -->
@@ -405,7 +405,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <i>Source: 2015, Estimated Data from the CDC NCHHSTP Atlas</i>
+                        <i translate="{{ 'fs.minority.std.mortality.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- HIV/AIDS -->
@@ -433,7 +433,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <i>Source: 2015, Estimated Data from the CDC NCHHSTP Atlas, *2014</i>
+                        <i translate="{{ 'fs.minority.aids.mortality.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- Cancer - Moratlity & Incidence -->
@@ -553,7 +553,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i class="mortality-info">Source: 2015, NCHS National Vital Statistics System</i>
+                        <i class="mortality-info" translate="{{ 'fs.women.health.mortality.footnote' }}"></i>
                         <i style="margin-top: 2px;" class="mortality-info" ng-bind="'label.help.text.age.adjusted.rate' | translate"></i>
                     </div>
                     <br/>
@@ -573,7 +573,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">Sources: 2011, CDC PRAMS</i>
+                        <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.women.prams.mortality.footnote' }}"></i>
                         <i ng-show="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['PRAMS'].message}}</i>
                     </div>
                     <!-- BRFSS -->
@@ -593,7 +593,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i>Source:  2015, CDC BRFSS</i>
+                        <i translate="{{ 'fs.women.brfss.mortality.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- YRBS -->
@@ -612,7 +612,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">Sources: 2015, YRBS</i>
+                        <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.women.yrbs.mortality.footnote' }}"></i>
                         <i ng-show="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['YRBS'].message}}</i>
                     </div>
                 </div>
@@ -634,7 +634,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i>Source: 2015, Estimated Data from the CDC NCHHSTP Atlas</i>
+                        <i translate="{{ 'fs.women.std.mortality.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- HIV/AIDS -->
@@ -654,7 +654,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i>Source: 2015, Estimated Data from the CDC NCHHSTP Atlas, *2014</i>
+                        <i translate="{{ 'fs.women.aids.mortality.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- Cancer - Moratlity - Incidence -->
@@ -676,8 +676,8 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i ng-hide="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2014, NPCR Cancer Statistics</i>
-                        <i ng-show="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2014, NPCR Cancer Statistics. {{fsc.notParticipateStates['CancerIncidence'].message}}</i>
+                        <i ng-hide="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, NPCR Cancer Statistics</i>
+                        <i ng-show="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, NPCR Cancer Statistics. {{fsc.notParticipateStates['CancerIncidence'].message}}</i>
                     </div>
                 </div>
                 <div class="usa-width-one-whole">
@@ -776,7 +776,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i class="mortality-info">Source: 2015, NCHS National Vital Statistics System</i>
+                        <i class="mortality-info" translate="{{ 'fs.state.health.mortality.footnote' }}"></i>
                         <i style="margin-top: 2px;" class="mortality-info" ng-bind="'label.help.text.age.adjusted.rate' | translate"></i>
                     </div>
                     <br/>
@@ -799,7 +799,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i>Source: 2014  NCHS National Vital Statistics System</i>
+                        <i translate="{{ 'fs.state.infant.mortality.footnote' }}"></i>
                     </div>
                     <!-- Prenatal Care and Pregnancy Risk -->
                     <div class="prams-factsheet">
@@ -810,7 +810,7 @@
                                 <td ng-bind="eachRecord.data"></td>
                             </tr>
                         </table>
-                        <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">Sources: 2011, CDC PRAMS</i>
+                        <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.state.prams.mortality.footnote' }}"></i>
                         <i ng-show="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['PRAMS'].message}}</i>
                     </div>
                     <!-- BRFSS -->
@@ -823,7 +823,7 @@
                                 <td ng-bind="eachRecord.data"></td>
                             </tr>
                         </table>
-                        <i>Source:  2015, CDC BRFSS</i>
+                        <i translate="{{ 'fs.state.brfss.mortality.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- YRBS -->
@@ -835,7 +835,7 @@
                                 <td ng-bind="eachRecord.data"></td>
                             </tr>
                         </table>
-                        <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">Sources: 2015, YRBS</i>
+                        <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.state.yrbs.mortality.footnote' }}"></i>
                         <i ng-show="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['YRBS'].message}}</i>
                     </div>
                 </div>
@@ -881,7 +881,7 @@
                                 <td>{{fsc.factSheet.natalityData.twinBirthRate}}</td>
                             </tr>
                         </table>
-                        <i>Sources:  2015, NCHS National Vital Statistics System</i>
+                        <i translate="{{ 'fs.state.birth.mortality.footnote' }}"></i>
                     </div>
                     <!-- Tuberculosis -->
                     <div class="tb-factsheet">
@@ -901,7 +901,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i>Source: 2015, Estimated Data from the CDC NCHHSTP Atlas</i>
+                        <i translate="{{ 'fs.state.tuberculosis.mortality.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- STD -->
@@ -924,7 +924,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i>Source: 2015, Estimated Data from the CDC NCHHSTP Atlas</i>
+                        <i translate="{{ 'fs.state.std.mortality.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- HIV/AIDS -->
@@ -947,7 +947,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i>Source: 2015, Estimated Data from the CDC NCHHSTP Atlas, *2014</i>
+                        <i translate="{{ 'fs.state.aids.mortality.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- Cancer - Moratlity - Incidence -->
@@ -975,8 +975,8 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i ng-hide="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only</i>
-                        <i ng-show="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only. {{fsc.notParticipateStates['CancerIncidence'].message}}</i>
+                        <i ng-hide="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only</i>
+                        <i ng-show="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only. {{fsc.notParticipateStates['CancerIncidence'].message}}</i>
                     </div>
                 </div>
                 <div class="usa-width-one-whole">

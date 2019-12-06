@@ -1269,7 +1269,8 @@ wonder.prototype.invokeWONDER = function (query){
     }else {
         var reqArray = [];
         reqArray.push(createWONDERRquest(query.query, query.aggregations.nested.table, dbID));
-        reqArray.push(createWONDERRquest(query.query, query.aggregations.nested.tableCounts, dbID));
+        if(query.aggregations.nested.tableCounts)
+            reqArray.push(createWONDERRquest(query.query, query.aggregations.nested.tableCounts, dbID));
         if(query.aggregations.nested.maps){
             reqArray.push(createWONDERRquest(query.query, query.aggregations.nested.maps[0], dbID));
         }

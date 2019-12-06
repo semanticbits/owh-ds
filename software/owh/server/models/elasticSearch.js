@@ -111,7 +111,8 @@ ElasticClient.prototype.executeMultipleESQueries = function(query, index, type){
 
 ElasticClient.prototype.mergeWithCensusData = function(data, censusData, censusTotalData, countKey){
     mergeCensusRecursively(data.data.nested.table, censusData.data.nested.table, countKey);
-    mergeCensusRecursively(data.data.nested.tableCounts, censusTotalData.data.nested.tableCounts, countKey);
+    if(censusTotalData)
+        mergeCensusRecursively(data.data.nested.tableCounts, censusTotalData.data.nested.tableCounts, countKey);
     mergeCensusRecursively(data.data.nested.charts, censusData.data.nested.charts, countKey);
     mergeCensusRecursively(data.data.nested.maps, censusData.data.nested.maps, countKey);
 };

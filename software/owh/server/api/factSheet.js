@@ -270,51 +270,51 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             var infantMortalityData = resp[5].table.Total;
             //TB data
             var tbData = searchUtils.populateDataWithMappings(resp[6], 'tb' , 'cases');
-            es.mergeWithCensusData(tbData, resp[7], 'pop');
+            es.mergeWithCensusData(tbData, resp[7], undefined, 'pop');
             //STD data
             // For STD - Chlamydia
             var stdChlamydiaData = searchUtils.populateDataWithMappings(resp[8], 'std' , 'cases');
-            es.mergeWithCensusData(stdChlamydiaData, resp[9], 'pop');
+            es.mergeWithCensusData(stdChlamydiaData, resp[9], undefined, 'pop');
             searchUtils.applySuppressions(stdChlamydiaData, 'std', 4);
             // For STD - Gonorrhea
             var stdGonorrheaData = searchUtils.populateDataWithMappings(resp[10], 'std' , 'cases');
-            es.mergeWithCensusData(stdGonorrheaData, resp[11], 'pop');
+            es.mergeWithCensusData(stdGonorrheaData, resp[11], undefined, 'pop');
             searchUtils.applySuppressions(stdGonorrheaData, 'std', 4);
             // For STD - Primary and Secondary Syphilis
             var stdPrimarySyphilisData = searchUtils.populateDataWithMappings(resp[12], 'std' , 'cases');
-            es.mergeWithCensusData(stdPrimarySyphilisData, resp[13], 'pop');
+            es.mergeWithCensusData(stdPrimarySyphilisData, resp[13], undefined, 'pop');
             searchUtils.applySuppressions(stdPrimarySyphilisData, 'std', 4);
             // For STD - Early Latent Syphilis
             var stdEarlySyphilisData = searchUtils.populateDataWithMappings(resp[14], 'std' , 'cases');
-            es.mergeWithCensusData(stdEarlySyphilisData, resp[15], 'pop');
+            es.mergeWithCensusData(stdEarlySyphilisData, resp[15], undefined, 'pop');
             searchUtils.applySuppressions(stdEarlySyphilisData, 'std', 4);
             //For STD - Congenital Syphilis
             var stdCongenitalData = searchUtils.populateDataWithMappings(resp[16], 'std' , 'cases');
-            es.mergeWithCensusData(stdCongenitalData, resp[17], 'pop');
+            es.mergeWithCensusData(stdCongenitalData, resp[17], undefined, 'pop');
             searchUtils.applySuppressions(stdCongenitalData, 'std', 4);
             //For - AIDS Diagnoses
             var AIDSDiagnosesData = searchUtils.populateDataWithMappings(resp[18], 'aids' , 'cases');
-            es.mergeWithCensusData(AIDSDiagnosesData, resp[19], 'pop');
+            es.mergeWithCensusData(AIDSDiagnosesData, resp[19], undefined, 'pop');
             searchUtils.applySuppressions(AIDSDiagnosesData, 'aids', 0);
             //For - AIDS Deaths
             var AIDSDeathsData = searchUtils.populateDataWithMappings(resp[20], 'aids' , 'cases');
-            es.mergeWithCensusData(AIDSDeathsData, resp[21], 'pop');
+            es.mergeWithCensusData(AIDSDeathsData, resp[21], undefined, 'pop');
             searchUtils.applySuppressions(AIDSDeathsData, 'aids', 0);
             //For - AIDS Prevalence
             var AIDSPrevalenceData = searchUtils.populateDataWithMappings(resp[22], 'aids' , 'cases');
-            es.mergeWithCensusData(AIDSPrevalenceData, resp[23], 'pop');
+            es.mergeWithCensusData(AIDSPrevalenceData, resp[23], undefined, 'pop');
             searchUtils.applySuppressions(AIDSPrevalenceData, 'aids', 0);
             //For - HIV Diagnoses
             var HIVDiagnosesData = searchUtils.populateDataWithMappings(resp[24], 'aids' , 'cases');
-            es.mergeWithCensusData(HIVDiagnosesData, resp[25], 'pop');
+            es.mergeWithCensusData(HIVDiagnosesData, resp[25], undefined, 'pop');
             searchUtils.applySuppressions(HIVDiagnosesData, 'aids', 0);
             //For - HIV Deaths
             var HIVDeathsData = searchUtils.populateDataWithMappings(resp[26], 'aids' , 'cases');
-            es.mergeWithCensusData(HIVDeathsData, resp[27], 'pop');
+            es.mergeWithCensusData(HIVDeathsData, resp[27], undefined, 'pop');
             searchUtils.applySuppressions(HIVDeathsData, 'aids', 0);
             //For - HIV Prevalence
             var HIVPrevalenceData = searchUtils.populateDataWithMappings(resp[28], 'aids' , 'cases');
-            es.mergeWithCensusData(HIVPrevalenceData, resp[29], 'pop');
+            es.mergeWithCensusData(HIVPrevalenceData, resp[29], undefined, 'pop');
             searchUtils.applySuppressions(HIVPrevalenceData, 'aids', 0);
             //For - Detail Mortality - malignantNeoplasm
             var malignantNeoplasmData = searchUtils.populateDataWithMappings(resp[32], 'deaths');
@@ -358,11 +358,11 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             searchUtils.applySuppressions(heartDiseaseData, 'deaths');
             //Natality - Birth Rates
             var natality_BirthRates_Data = searchUtils.populateDataWithMappings(resp[50], 'natality');
-            es.mergeWithCensusData(natality_BirthRates_Data, resp[51], 'pop');
+            es.mergeWithCensusData(natality_BirthRates_Data, resp[51], undefined, 'pop');
             searchUtils.applySuppressions(natality_BirthRates_Data, 'natality');
             //Natality - fertilityRates
             var natality_fertilityRates_Data = searchUtils.populateDataWithMappings(resp[52], 'natality');
-            es.mergeWithCensusData(natality_fertilityRates_Data, resp[53], 'pop');
+            es.mergeWithCensusData(natality_fertilityRates_Data, resp[53], undefined, 'pop');
             searchUtils.applySuppressions(natality_fertilityRates_Data, 'natality');
             //Natality - vaginal
             var natality_vaginal_Data = searchUtils.populateDataWithMappings(resp[54], 'natality');
