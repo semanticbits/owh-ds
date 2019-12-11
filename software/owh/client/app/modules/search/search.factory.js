@@ -89,6 +89,7 @@
 
             if (primaryFilter.key === 'deaths') {
                 primaryFilter.data = response.data.resultData.nested.table;
+                primaryFilter.dataCounts = response.data.resultData.nested.tableCounts;
                 primaryFilter.searchCount = response.pagination.total;
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 populateSideFilterTotals(primaryFilter, response.data);
@@ -143,6 +144,7 @@
             }
             else if (primaryFilter.key === 'bridge_race') {
                 primaryFilter.data = response.data.resultData.nested.table;
+                primaryFilter.dataCounts = response.data.resultData.nested.tableCounts;
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(response.data.resultData.headers, response.data.resultData.nested, primaryFilter);
@@ -150,6 +152,7 @@
             }
             else if (response.data.queryJSON.key === 'natality') {
                 primaryFilter.data = response.data.resultData.nested.table;
+                primaryFilter.dataCounts = response.data.resultData.nested.tableCounts;
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
@@ -157,6 +160,7 @@
             }
             else if (primaryFilter.key === 'infant_mortality') {
                 primaryFilter.data = response.data.resultData.nested.table;
+                primaryFilter.dataCounts = response.data.resultData.nested.tableCounts;
                 primaryFilter.nestedData = response.data.resultData.nested;
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
@@ -175,6 +179,7 @@
                 response.data.queryJSON.key === 'tb' || response.data.queryJSON.key === 'aids') {
                 primaryFilter.nestedData = response.data.resultData.nested;
                 primaryFilter.data = response.data.resultData.nested.table;
+                primaryFilter.dataCounts = response.data.resultData.nested.tableCounts;
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
@@ -182,6 +187,7 @@
             }
             else if (response.data.queryJSON.key  === 'cancer_incidence' || response.data.queryJSON.key  === 'cancer_mortality') {
                 primaryFilter.data = response.data.resultData.nested.table;
+                primaryFilter.dataCounts = response.data.resultData.nested.tableCounts;
                 populateSideFilterTotals(primaryFilter, response.data);
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
@@ -403,6 +409,7 @@
          */
         function getMixedTable(selectedFilter, groupOptions, tableView, calculatePercentage){
             var file = selectedFilter.data ? selectedFilter.data : {};
+            var dataCounts = selectedFilter.dataCounts ? selectedFilter.dataCounts : {};
 
             if(selectedFilter.key === 'prams' || selectedFilter.key === 'brfss'
                 || selectedFilter.key == 'mental_health') {
@@ -442,7 +449,7 @@
             var calculateRowTotal = selectedFilter.calculateRowTotal;
             var secondaryCountKeys = ['pop', 'ageAdjustedRate', 'standardPop', 'deathRate'];
 
-            var tableData = utilService.prepareMixedTableData(headers, file, countKey, totalCount, countLabel, calculatePercentage, calculateRowTotal, secondaryCountKeys, filterUtils.getAllOptionValues(), tableView);
+            var tableData = utilService.prepareMixedTableData(headers, file, dataCounts, countKey, totalCount, countLabel, calculatePercentage, calculateRowTotal, secondaryCountKeys, filterUtils.getAllOptionValues(), tableView);
 
             if (selectedFilter.key === 'prams' ||selectedFilter.key === 'brfss' || selectedFilter.key == 'mental_health') {
                 tableData.headers[0].splice(1, 0, { colspan: 1, rowspan: tableData.headers.length, title: "Response", helpText: $filter('translate')('label.help.text.prams.response') });

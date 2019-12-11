@@ -61,7 +61,8 @@ function getBridgeRaceDataForFactSheet(factSheetQueryJSON) {
         es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.gender_population),
         es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.nonHispanicRace_population),
         es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.race_population),
-        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.hispanic_population)
+        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.hispanic_population),
+        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.age_population)
     ];
 
     Q.all(promises).then( function (resp) {
@@ -69,8 +70,9 @@ function getBridgeRaceDataForFactSheet(factSheetQueryJSON) {
         var nonHispanicRaceData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop');
         var raceData = searchUtils.populateDataWithMappings(resp[2], 'bridge_race', 'pop');
         var hispanicData = searchUtils.populateDataWithMappings(resp[3], 'bridge_race', 'pop');
+        var ageGroupData = searchUtils.populateDataWithMappings(resp[4], 'bridge_race', 'pop');
         var data =  prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
-            raceData, hispanicData);
+            raceData, hispanicData, ageGroupData);
         deferred.resolve(data);
     }, function (err) {
         logger.error(err.message);
@@ -275,19 +277,19 @@ function getSTDDataForFactSheet(factSheetQueryJSON) {
     var deferred = Q.defer();
     Q.all(promises).then(function (resp) {
         var chlamydiaData = searchUtils.populateDataWithMappings(resp[0], 'std' , 'cases');
-        es.mergeWithCensusData(chlamydiaData, resp[1], 'pop');
+        es.mergeWithCensusData(chlamydiaData, resp[1], undefined, 'pop');
         searchUtils.applySuppressions(chlamydiaData, 'std', 4);
 
         var gonorrheaData = searchUtils.populateDataWithMappings(resp[2], 'std' , 'cases');
-        es.mergeWithCensusData(gonorrheaData, resp[3], 'pop');
+        es.mergeWithCensusData(gonorrheaData, resp[3], undefined, 'pop');
         searchUtils.applySuppressions(gonorrheaData, 'std', 4);
 
         var primarySyphilisData = searchUtils.populateDataWithMappings(resp[4], 'std' , 'cases');
-        es.mergeWithCensusData(primarySyphilisData, resp[5], 'pop');
+        es.mergeWithCensusData(primarySyphilisData, resp[5],  undefined,'pop');
         searchUtils.applySuppressions(primarySyphilisData, 'std', 4);
 
         var earlySyphilisData = searchUtils.populateDataWithMappings(resp[6], 'std' , 'cases');
-        es.mergeWithCensusData(earlySyphilisData, resp[7], 'pop');
+        es.mergeWithCensusData(earlySyphilisData, resp[7], undefined, 'pop');
         searchUtils.applySuppressions(earlySyphilisData, 'std', 4);
 
         var data = [
@@ -335,27 +337,27 @@ function getHivDataForFactSheet(factSheetQueryJSON) {
     var deferred = Q.defer();
     Q.all(promises).then(function (resp) {
         var aidsDiagnosesData = searchUtils.populateDataWithMappings(resp[0], 'aids' , 'cases');
-        es.mergeWithCensusData(aidsDiagnosesData, resp[1], 'pop');
+        es.mergeWithCensusData(aidsDiagnosesData, resp[1], undefined, 'pop');
         searchUtils.applySuppressions(aidsDiagnosesData, 'aids', 0);
 
         var aidsDeathsData = searchUtils.populateDataWithMappings(resp[2], 'aids' , 'cases');
-        es.mergeWithCensusData(aidsDeathsData, resp[3], 'pop');
+        es.mergeWithCensusData(aidsDeathsData, resp[3], undefined, 'pop');
         searchUtils.applySuppressions(aidsDeathsData, 'aids', 0);
 
         var aidsPrevalenceData = searchUtils.populateDataWithMappings(resp[4], 'aids' , 'cases');
-        es.mergeWithCensusData(aidsPrevalenceData, resp[5], 'pop');
+        es.mergeWithCensusData(aidsPrevalenceData, resp[5], undefined, 'pop');
         searchUtils.applySuppressions(aidsPrevalenceData, 'aids', 0);
 
         var hivDiagnosesData = searchUtils.populateDataWithMappings(resp[6], 'aids' , 'cases');
-        es.mergeWithCensusData(hivDiagnosesData, resp[7], 'pop');
+        es.mergeWithCensusData(hivDiagnosesData, resp[7], undefined, 'pop');
         searchUtils.applySuppressions(hivDiagnosesData, 'aids', 0);
 
         var hivDeathsData = searchUtils.populateDataWithMappings(resp[8], 'aids' , 'cases');
-        es.mergeWithCensusData(hivDeathsData, resp[9], 'pop');
+        es.mergeWithCensusData(hivDeathsData, resp[9], undefined, 'pop');
         searchUtils.applySuppressions(hivDeathsData, 'aids', 0);
 
         var hivPrevalenceData = searchUtils.populateDataWithMappings(resp[10], 'aids' , 'cases');
-        es.mergeWithCensusData(hivPrevalenceData, resp[11], 'pop');
+        es.mergeWithCensusData(hivPrevalenceData, resp[11], undefined, 'pop');
         searchUtils.applySuppressions(hivPrevalenceData, 'aids', 0);
 
         var data = [
@@ -529,11 +531,45 @@ function prepareBRFSSData(brfssResp) {
 }
 
 function prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
-                                       raceData, hispanicData) {
+                                       raceData, hispanicData, ageGroupData) {
     var factSheet = {};
     factSheet.gender = genderData.data.simple.group_table_sex;
     var race = nonHispanicRaceData.data.simple.group_table_race;
     race = race.concat(raceData.data.simple.group_table_race, hispanicData.data.simple.group_table_ethnicity);
+
+    ageGroupData = ageGroupData.data.simple.group_table_agegroup;
+
+    factSheet.ageGroups = [];
+    var ageGroups15to44 = ['15-19 years', '20-24 years', '25-29 years', '30-34 years',
+        '35-39 years', '40-44 years'];
+
+    var ageGroups45to64 = ['45-49 years', '50-54 years', '55-59 years', '60-64 years'];
+    var ageGroups65to84 = ['65-69 years', '70-74 years', '75-79 years', '80-84 years'];
+
+    var count15to44 = {"15-44 years" : [{ name:'15-19 years' }, { name:'20-44 years' }]};
+    var count20to44 = 0;
+    var count45to64 = 0;
+    var count65to84 = 0;
+    ageGroupData.forEach(function (data) {
+        if (ageGroups15to44.indexOf(data.name) !== -1) {
+            if (data.name === '15-19 years') {
+                count15to44["15-44 years"][0].bridge_race = data.bridge_race;
+            } else {
+                count20to44 += data.bridge_race;
+            }
+        } else if(ageGroups45to64.indexOf(data.name) !== -1) {
+            count45to64 += data.bridge_race;
+        } else if (ageGroups65to84.indexOf(data.name) !== -1) {
+            count65to84 += data.bridge_race;
+        } else {
+            factSheet.ageGroups.push(data);
+        }
+    });
+
+    count15to44["15-44 years"][1].bridge_race = count20to44;
+    factSheet.ageGroups.splice(1, 0, count15to44);
+    factSheet.ageGroups.splice(2, 0, {name:'45-64 years', bridge_race: count45to64});
+    factSheet.ageGroups.splice(3, 0, {name:'65-84 years', bridge_race: count65to84});
 
     factSheet.race = race;
     return factSheet;

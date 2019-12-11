@@ -1269,6 +1269,8 @@ wonder.prototype.invokeWONDER = function (query){
     }else {
         var reqArray = [];
         reqArray.push(createWONDERRquest(query.query, query.aggregations.nested.table, dbID));
+        if(query.aggregations.nested.tableCounts)
+            reqArray.push(createWONDERRquest(query.query, query.aggregations.nested.tableCounts, dbID));
         if(query.aggregations.nested.maps){
             reqArray.push(createWONDERRquest(query.query, query.aggregations.nested.maps[0], dbID));
         }
@@ -1285,8 +1287,9 @@ wonder.prototype.invokeWONDER = function (query){
           var result = {};
           if(respArray.length > 0) {
               result.table = respArray[0];
-              result.maps = respArray[1];
-              respArray.splice(0, 2);
+              result.tableCounts = respArray[1];
+              result.maps = respArray[2];
+              respArray.splice(0, 3);
               result.charts = respArray;
           }
           defer.resolve(result);

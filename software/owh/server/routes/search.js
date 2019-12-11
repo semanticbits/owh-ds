@@ -273,15 +273,15 @@ function search(q) {
         logger.debug("Natality - Selected filters and filter options: ", JSON.stringify(allSelectedFilterOptions));
         logger.debug("Natality - All Filters and filter options: ", JSON.stringify(allFilterOptions));
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
-        var mapQuery = JSON.stringify(finalQuery[2]);
+        var mapQuery = JSON.stringify(finalQuery[4]);
         //keep a copy for census rates query
-        finalQuery[3] = mapQuery;
+        finalQuery[5] = mapQuery;
         new elasticSearch().aggregateNatalityData(sideFilterQuery, isStateSelected, allFilterOptions).then(function (sideFilterResults) {
-            if(q.tableView === 'fertility_rates' && finalQuery[1]) {
-                var censusQuery = JSON.stringify(finalQuery[1]);
+            if(q.tableView === 'fertility_rates' && finalQuery[2]) {
+                var censusQuery = JSON.stringify(finalQuery[2]);
                 //For Natality Fertility Rates add mother's age filter
-                finalQuery[1] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(censusQuery));
-                finalQuery[3] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(mapQuery));
+                finalQuery[2] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(censusQuery));
+                finalQuery[5] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(mapQuery));
             }
             new elasticSearch().aggregateNatalityData(finalQuery, isStateSelected, allSelectedFilterOptions).then(function (response) {
                 var resData = {};

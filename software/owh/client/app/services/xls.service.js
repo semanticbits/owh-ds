@@ -218,9 +218,9 @@
 
                 angular.forEach(row, function(cell, innerIdx) {
                     var colspan = cell.colspan;
-                    if(cell.title === 'Total') {
-                        colspan += numOfPercentageColumns;
-                    }
+                    // if(cell.title === 'Total') {
+                    //     colspan += numOfPercentageColumns;
+                    // }
                     rowArray.push({title: cell.title, colspan: colspan, rowspan: cell.rowspan});
                     //if we have a percentage then add an extra column to display it
                     if (table.calculatePercentage && innerIdx < row.length - 1) {
@@ -298,10 +298,10 @@
                     }
                 });
 
-                // Update the colspan of the total row
-                if (row[0].title === "Total") {
-                    row[0].colspan += previousRowCellsCount - 2;
-                }
+                // // Update the colspan of the total row
+                // if (row[0].title === "Total") {
+                //     row[0].colspan += previousRowCellsCount - 2;
+                // }
 
                 previousRowCellsCount = newCells.length;
 

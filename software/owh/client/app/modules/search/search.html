@@ -84,7 +84,7 @@
                                    tooltip="{{'label.group.by.tooltip' | translate}}">
                 </owh-toggle-switch>
 
-                <div ng-repeat="startChartData in sc.filters.selectedPrimaryFilter.chartData" ng-init="parentIndex = $index">
+                <div ng-repeat="startChartData in sc.filters.selectedPrimaryFilter.chartData" ng-init="parentIndex = $index" class="chart-data">
                     <div  class="graph-box" ng-repeat="chartData in startChartData"
                           ng-class="!chartData.isMap || sc.mapOptions.selectedMapSize==='small'?'usa-width-one-half':'usa-width-one-half margin-bottom-20'">
                         <!-- Map -->
