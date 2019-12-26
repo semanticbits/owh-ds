@@ -707,8 +707,13 @@
                     });
                 }
             }
-            // title: title,
-            cell.percentage = (calculatePercentage && !isNaN(totalCount)) ? (Number(cell[countKey]) / totalCount) * 100 : undefined;
+            //Update the average of all columns
+            if (calculatePercentage) {
+                for(var i=0;i<columns.length;i++) {
+                    columns[i].percentage = (calculatePercentage && !isNaN(columns[i].title)) ? (Number(columns[i].title) / cell.title) * 100 : undefined;
+                }
+                cell.percentage = (calculatePercentage && !isNaN(totalCount)) ? (Number(cell[countKey]) / totalCount) * 100 : undefined;
+            }
             if(isTotal) {
                 cell.isBold = true;
                 cell.isTotal = true;
