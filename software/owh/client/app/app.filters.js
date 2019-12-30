@@ -31,6 +31,13 @@
                 input = input || '';
                 var reg = (all) ? /([^\W_]+[^\s-]*) */g : /([^\W_]+[^\s-]*)/;
                 return (!!input) ? input.replace(reg, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
-            }
+            };
+        }).filter('range', function() {
+            return function(input, total) {
+                total = parseInt(total);
+                for (var i=0; i<total; i++)
+                    input.push(i);
+                return input;
+            };
         });
 }());

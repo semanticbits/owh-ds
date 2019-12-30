@@ -39,25 +39,30 @@ yrbs.prototype.invokeYRBSService = function(apiQuery){
     }
 
     Q.all(queryPromises).then(function(resp){
-        var duration = new Date().getTime() - startTime;
-        logger.info("YRBS service response received for all "+yrbsquery.length+" questions, duration(s)="+ duration/1000);
-        var data = self.processYRBSReponses(resp, apiQuery.basicSearch, apiQuery.searchFor);
-        //if 'Sexual Identity' or 'Sex of Sexual Contacts' option(s) selected
-        var isSexualOrientationSelected = 'sexid' in apiQuery.query || 'sexpart' in apiQuery.query;
-        //if only groupBy 'row' or 'column' selected for 'Sexual Identity' or 'Sex of Sexual Contacts' filters
-        apiQuery.aggregations.nested.table.forEach(function(filter){
-            if(filter.key == 'sexid' || filter.key == 'sexpart'){
-                isSexualOrientationSelected = true;
+        try {
+            var duration = new Date().getTime() - startTime;
+            logger.info("YRBS service response received for all "+yrbsquery.length+" questions, duration(s)="+ duration/1000);
+            var data = self.processYRBSReponses(resp, apiQuery.basicSearch, apiQuery.searchFor);
+            //if 'Sexual Identity' or 'Sex of Sexual Contacts' option(s) selected
+            var isSexualOrientationSelected = 'sexid' in apiQuery.query || 'sexpart' in apiQuery.query;
+            //if only groupBy 'row' or 'column' selected for 'Sexual Identity' or 'Sex of Sexual Contacts' filters
+            apiQuery.aggregations.nested.table.forEach(function(filter){
+                if(filter.key == 'sexid' || filter.key == 'sexpart'){
+                    isSexualOrientationSelected = true;
+                }
+            });
+            if(apiQuery.searchFor == 'mental_health') {
+                searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexualOrientationSelected, apiQuery.isChartorMapQuery);
+            } else if(apiQuery.searchFor == 'brfss') {
+                searchUtils.applyBRFSSuppression({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery, apiQuery.basicSearch);
+            } else if(apiQuery.searchFor == 'prams') {
+                searchUtils.applyPRAMSuppressions({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery, apiQuery.basicSearch);
             }
-        });
-        if(apiQuery.searchFor == 'mental_health') {
-            searchUtils.applyYRBSSuppressions({data: data.table.question}, 'count', 'mean', isSexualOrientationSelected, apiQuery.isChartorMapQuery);
-        } else if(apiQuery.searchFor == 'brfss') {
-            searchUtils.applyBRFSSuppression({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery, apiQuery.basicSearch);
-        } else if(apiQuery.searchFor == 'prams') {
-            searchUtils.applyPRAMSuppressions({data: data.table.question}, 'count', 'mean', apiQuery.isChartorMapQuery, apiQuery.basicSearch);
+            deferred.resolve(data);
+        } catch (e) {
+            console.error("Error in YRBS request: ", e);
+            deferred.reject("Error in YRBS request.");
         }
-        deferred.resolve(data);
     }, function (error) {
         deferred.reject(error);
     });

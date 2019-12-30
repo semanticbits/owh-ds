@@ -96,7 +96,7 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <i class="bridge-race-info">Sources: 2015, U.S. Census Bureau and NCHS</i>
+                            <i class="bridge-race-info" translate="{{ 'fs.minority.health.footnote'}}"></i>
                         </div>
                     </div>
                     <!--  Detail Mortality - Cause of Death -->
@@ -221,7 +221,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">Sources: 2011, CDC PRAMS</i>
+                        <i translate="{{ 'fs.minority.prams.footnote' }}" ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">Sources: 2011, CDC PRAMS</i>
                         <i ng-show="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['PRAMS'].message}}</i>
                     </div>
                     <!-- BRFSS -->
@@ -241,10 +241,12 @@
                             </thead>
                             <tr ng-repeat="eachRecord in fsc.factSheet.brfss" ng-class="{solidBorder: $index == 0}">
                                 <td ng-bind="eachRecord.question"></td>
-                                <td ng-repeat="dt in eachRecord.data track by $index" ng-bind="fsc.getMeanDisplayValue(dt.brfss.mean)"></td>
+                                <td ng-repeat="n in [] | range:7" ng-if="eachRecord.data =='Not applicable'" ng-bind="eachRecord.data"></td>
+                                <td ng-if="eachRecord.data !='Not applicable'"
+                                    ng-repeat="dt in eachRecord.data track by $index" ng-bind="fsc.getMeanDisplayValue(dt.brfss.mean)"></td>
                             </tr>
                         </table>
-                        <i>Source:  2015, CDC BRFSS</i>
+                        <i translate="{{ 'fs.minority.brfss.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- YRBS -->
@@ -273,7 +275,7 @@
                                 <td ng-if="eachRecord.data == 'Not applicable'" ng-bind="eachRecord.data"></td>
                             </tr>
                         </table>
-                        <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">Sources: 2015, YRBS</i>
+                        <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.minority.yrbs.footnote' }}"></i>
                         <i ng-show="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['YRBS'].message}}</i>
                     </div>
                 </div>
@@ -345,7 +347,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <i translate="{{ 'fs.minority.birth.mortality.footnote' }}"></i>
+                        <i translate="{{ 'fs.minority.birth.footnote' }}"></i>
                     </div>
                     <!-- Tuberculosis -->
                     <div class="tb-factsheet">
@@ -373,7 +375,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <i translate="{{ 'fs.minority.tuberculosis.mortality.footnote' }}"></i>
+                        <i translate="{{ 'fs.minority.tuberculosis.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- STD -->
@@ -405,7 +407,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <i translate="{{ 'fs.minority.std.mortality.footnote' }}"></i>
+                        <i translate="{{ 'fs.minority.std.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- HIV/AIDS -->
@@ -433,7 +435,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <i translate="{{ 'fs.minority.aids.mortality.footnote' }}"></i>
+                        <i translate="{{ 'fs.minority.aids.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- Cancer - Moratlity & Incidence -->
@@ -483,8 +485,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <i ng-hide="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only</i>
-                        <i ng-show="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only. {{fsc.notParticipateStates['CancerIncidence'].message}}</i>
+                        <i ng-hide="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only</i>
+                        <i ng-show="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only. {{fsc.notParticipateStates['CancerIncidence'].message}}</i>
                     </div>
                 </div>
                 <div class="usa-width-one-whole">
@@ -573,7 +575,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.women.prams.mortality.footnote' }}"></i>
+                        <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.women.prams.footnote' }}"></i>
                         <i ng-show="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['PRAMS'].message}}</i>
                     </div>
                     <!-- BRFSS -->
@@ -593,7 +595,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i translate="{{ 'fs.women.brfss.mortality.footnote' }}"></i>
+                        <i translate="{{ 'fs.women.brfss.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- YRBS -->
@@ -612,7 +614,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.women.yrbs.mortality.footnote' }}"></i>
+                        <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.women.yrbs.footnote' }}"></i>
                         <i ng-show="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['YRBS'].message}}</i>
                     </div>
                 </div>
@@ -634,7 +636,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i translate="{{ 'fs.women.std.mortality.footnote' }}"></i>
+                        <i translate="{{ 'fs.women.std.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- HIV/AIDS -->
@@ -654,7 +656,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i translate="{{ 'fs.women.aids.mortality.footnote' }}"></i>
+                        <i translate="{{ 'fs.women.aids.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- Cancer - Moratlity - Incidence -->
@@ -810,7 +812,7 @@
                                 <td ng-bind="eachRecord.data"></td>
                             </tr>
                         </table>
-                        <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.state.prams.mortality.footnote' }}"></i>
+                        <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.state.prams.footnote' }}"></i>
                         <i ng-show="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['PRAMS'].message}}</i>
                     </div>
                     <!-- BRFSS -->
@@ -823,7 +825,7 @@
                                 <td ng-bind="eachRecord.data"></td>
                             </tr>
                         </table>
-                        <i translate="{{ 'fs.state.brfss.mortality.footnote' }}"></i>
+                        <i translate="{{ 'fs.state.brfss.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- YRBS -->
@@ -835,7 +837,7 @@
                                 <td ng-bind="eachRecord.data"></td>
                             </tr>
                         </table>
-                        <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.state.yrbs.mortality.footnote' }}"></i>
+                        <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.state.yrbs.footnote' }}"></i>
                         <i ng-show="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['YRBS'].message}}</i>
                     </div>
                 </div>
@@ -881,7 +883,7 @@
                                 <td>{{fsc.factSheet.natalityData.twinBirthRate}}</td>
                             </tr>
                         </table>
-                        <i translate="{{ 'fs.state.birth.mortality.footnote' }}"></i>
+                        <i translate="{{ 'fs.state.birth.footnote' }}"></i>
                     </div>
                     <!-- Tuberculosis -->
                     <div class="tb-factsheet">
@@ -901,7 +903,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i translate="{{ 'fs.state.tuberculosis.mortality.footnote' }}"></i>
+                        <i translate="{{ 'fs.state.tuberculosis.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- STD -->
@@ -924,7 +926,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i translate="{{ 'fs.state.std.mortality.footnote' }}"></i>
+                        <i translate="{{ 'fs.state.std.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- HIV/AIDS -->
@@ -947,7 +949,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <i translate="{{ 'fs.state.aids.mortality.footnote' }}"></i>
+                        <i translate="{{ 'fs.state.aids.footnote' }}"></i>
                     </div>
                     <br/>
                     <!-- Cancer - Moratlity - Incidence -->
