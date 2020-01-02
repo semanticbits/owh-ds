@@ -53,6 +53,23 @@
           "size": 0
         }
       ],
+      "tableCounts": [
+        {
+          "key": "race",
+          "queryKey": "race_ethnicity",
+          "size": 0
+        },
+        {
+          "key": "age_group",
+          "queryKey": "age_group",
+          "size": 0
+        },
+        {
+          "key": "sex",
+          "queryKey": "sex",
+          "size": 0
+        }
+      ],
       "charts": [
         [
           {
