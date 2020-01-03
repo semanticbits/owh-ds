@@ -63,20 +63,24 @@ function getBridgeRaceDataForFactSheet(factSheetQueryJSON) {
     var es = new elasticSearch();
     var promises = [
         es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.gender_population),
+        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.gender_men_population),
         es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.nonHispanicRace_population),
         es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.race_population),
         es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.hispanic_population),
-        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.age_population)
+        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.age_population),
+        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.age_men_population)
     ];
 
     Q.all(promises).then( function (resp) {
         var genderData = searchUtils.populateDataWithMappings(resp[0], 'bridge_race', 'pop');
-        var nonHispanicRaceData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop');
-        var raceData = searchUtils.populateDataWithMappings(resp[2], 'bridge_race', 'pop');
-        var hispanicData = searchUtils.populateDataWithMappings(resp[3], 'bridge_race', 'pop');
-        var ageGroupData = searchUtils.populateDataWithMappings(resp[4], 'bridge_race', 'pop');
-        var data =  prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
-            raceData, hispanicData, ageGroupData);
+        var maleGenderData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop');
+        var nonHispanicRaceData = searchUtils.populateDataWithMappings(resp[2], 'bridge_race', 'pop');
+        var raceData = searchUtils.populateDataWithMappings(resp[3], 'bridge_race', 'pop');
+        var hispanicData = searchUtils.populateDataWithMappings(resp[4], 'bridge_race', 'pop');
+        var ageGroupData = searchUtils.populateDataWithMappings(resp[5], 'bridge_race', 'pop');
+        var maleAgeGroupData = searchUtils.populateDataWithMappings(resp[6], 'bridge_race', 'pop');
+        var data =  prepareFactSheetForPopulation(genderData, maleGenderData, nonHispanicRaceData,
+            raceData, hispanicData, ageGroupData, maleAgeGroupData);
         deferred.resolve(data);
     }, function (err) {
         logger.error(err.message);
@@ -536,16 +540,25 @@ function prepareBRFSSData(brfssResp) {
     return brfssData;
 }
 
-function prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
-                                       raceData, hispanicData, ageGroupData) {
+function prepareFactSheetForPopulation(genderData, maleGenderData, nonHispanicRaceData,
+                                       raceData, hispanicData, ageGroupData, maleAgeGroupData) {
     var factSheet = {};
     factSheet.gender = genderData.data.simple.group_table_sex;
+    factSheet.genderMalePop = maleGenderData.data.simple.group_table_sex;
     var race = nonHispanicRaceData.data.simple.group_table_race;
     race = race.concat(raceData.data.simple.group_table_race, hispanicData.data.simple.group_table_ethnicity);
 
     ageGroupData = ageGroupData.data.simple.group_table_agegroup;
+    maleAgeGroupData = maleAgeGroupData.data.simple.group_table_agegroup;
+    prepareAgeGroups(factSheet, ageGroupData, "ageGroups");
+    prepareAgeGroups(factSheet, maleAgeGroupData, "maleAgeGroups");
+    factSheet.race = race;
+    return factSheet;
+}
 
-    factSheet.ageGroups = [];
+function prepareAgeGroups(factSheet, ageGroupData, factSheetAttr) {
+
+    factSheet[factSheetAttr] = [];
     var ageGroups15to44 = ['15-19 years', '20-24 years', '25-29 years', '30-34 years',
         '35-39 years', '40-44 years'];
 
@@ -568,17 +581,13 @@ function prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
         } else if (ageGroups65to84.indexOf(data.name) !== -1) {
             count65to84 += data.bridge_race;
         } else {
-            factSheet.ageGroups.push(data);
+            factSheet[factSheetAttr].push(data);
         }
     });
 
     count15to44["15-44 years"][1].bridge_race = count20to44;
-    factSheet.ageGroups.splice(1, 0, count15to44);
-    factSheet.ageGroups.splice(2, 0, {name:'45-64 years', bridge_race: count45to64});
-    factSheet.ageGroups.splice(3, 0, {name:'65-84 years', bridge_race: count65to84});
-
-    factSheet.race = race;
-    return factSheet;
+    factSheet[factSheetAttr].splice(1, 0, count15to44);
+    factSheet[factSheetAttr].splice(2, 0, {name:'45-64 years', bridge_race: count45to64});
+    factSheet[factSheetAttr].splice(3, 0, {name:'65-84 years', bridge_race: count65to84});
 }
-
 module.exports = WomenHealthFactSheet;
