@@ -185,19 +185,41 @@
          */
         function getQueryResults(state, fsType, queryID) {
             var deffered = $q.defer();
-            factSheetService.prepareFactSheetForState(state, fsType, queryID).then(function (response) {
-                if(response && response.resultData){
-                    fsc.state = response.resultData.state;
-                    fsc.fsType = response.resultData.fsType;
-                    fsc.fsTypeForTable = response.resultData.fsType;
-                    fsc.stateName = fsc.states[response.resultData.state];
-                    fsc.factSheetTitle = fsc.stateName+" - "+fsc.fsTypeForTable;
-                    fsc.stateImg = 'state_' + response.resultData.state + '.svg';
-                    fsc.stateImgUrl = '../../images/state-shapes/state_' + response.resultData.state + '.svg';
-                    fsc.factSheet = response.resultData;
-                }
-                deffered.resolve(response);
-            });
+            if($rootScope.nationFactSheet == undefined || ($rootScope.previousFSType == undefined || $rootScope.previousFSType != fsType)) {
+                factSheetService.prepareFactSheetForNation(fsType, queryID).then(function (response) {
+                    if (response && response.resultData) {
+                        $rootScope.nationFactSheet = response.resultData;
+                        $rootScope.previousFSType = fsType;
+                    }
+                    factSheetService.prepareFactSheetForState(state, fsType, queryID).then(function (res) {
+                        if(res && res.resultData){
+                            fsc.state = res.resultData.state;
+                            fsc.fsType = res.resultData.fsType;
+                            fsc.fsTypeForTable = res.resultData.fsType;
+                            fsc.stateName = fsc.states[res.resultData.state];
+                            fsc.factSheetTitle = fsc.stateName+" - "+fsc.fsTypeForTable;
+                            fsc.stateImg = 'state_' + res.resultData.state + '.svg';
+                            fsc.stateImgUrl = '../../images/state-shapes/state_' + res.resultData.state + '.svg';
+                            fsc.factSheet = res.resultData;
+                        }
+                        deffered.resolve(res);
+                    });
+                });
+            }else {
+                factSheetService.prepareFactSheetForState(state, fsType, queryID).then(function (response) {
+                    if(response && response.resultData){
+                        fsc.state = response.resultData.state;
+                        fsc.fsType = response.resultData.fsType;
+                        fsc.fsTypeForTable = response.resultData.fsType;
+                        fsc.stateName = fsc.states[response.resultData.state];
+                        fsc.factSheetTitle = fsc.stateName+" - "+fsc.fsTypeForTable;
+                        fsc.stateImg = 'state_' + response.resultData.state + '.svg';
+                        fsc.stateImgUrl = '../../images/state-shapes/state_' + response.resultData.state + '.svg';
+                        fsc.factSheet = response.resultData;
+                    }
+                    deffered.resolve(response);
+                });
+            }
             return deffered.promise;
         }
 
