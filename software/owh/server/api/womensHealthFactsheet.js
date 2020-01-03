@@ -1,6 +1,7 @@
 var elasticSearch = require('../models/elasticSearch');
 var yrbs = require("../api/yrbs");
 var factSheetQueries = require('../json/factsheet-queries.json');
+var factSheetCountriesQueries = require('../json/factsheet-country-queries.json');
 var searchUtils = require('../api/utils');
 var wonder = require("../api/wonder");
 var Q = require('q');
@@ -10,12 +11,15 @@ var WomenHealthFactSheet = function() {};
 
 WomenHealthFactSheet.prototype.prepareFactSheet = function (state, fsType) {
     var deferred = Q.defer();
-    var factSheetQueryString = JSON.stringify(factSheetQueries.women_health);
     var factSheetQueryJSON;
-    factSheetQueryJSON = JSON.parse(factSheetQueryString.split("$state$").join(state));
+    if(state) {
+        factSheetQueryJSON = JSON.parse(JSON.stringify(factSheetQueries.women_health).split("$state$").join(state));
+    } else {
+        factSheetQueryJSON = factSheetCountriesQueries.women_health;
+    }
     if (factSheetQueryJSON) {
         //For YRBS & prams - If state 'Arizona', change code to 'AZB'
-        if(state === 'AZ') {
+        if(state && state === 'AZ') {
             factSheetQueryJSON.yrbs["alcohol"].query.sitecode.value = 'AZB';
             Object.keys(factSheetQueryJSON.prams).forEach(function(eachKey){
                 factSheetQueryJSON.prams[eachKey].query.sitecode.value = ["AZB"];
