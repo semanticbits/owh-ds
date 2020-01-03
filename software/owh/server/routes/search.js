@@ -90,7 +90,7 @@ var searchRouter = function(app, rConfig) {
                     resData.resultData = JSON.parse(r._source.resultJSON);
                     res.send(new result('OK', resData, "success"));
                 }
-                else if(req.body.state && req.body.fsType) {
+                else if(req.body.fsType) {
                     logger.info("Query with ID " + queryId + " not in cache, executing query");
                     var state = req.sanitize(req.body.state);
                     var fsType = req.sanitize(req.body.fsType);
