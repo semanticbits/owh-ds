@@ -21,18 +21,33 @@
                 <table class="bridge-race-table1">
                     <thead>
                     <tr>
-                        <th>Racial distributions of female residents</th>
-                        <th>Black, non-Hispanic</th>
-                        <th>White, non-Hispanic</th>
-                        <th>American Indian or Alaska Native</th>
-                        <th>Asian or Pacific Islander</th>
-                        <th>Hispanic</th>
+                        <th>Distributions of Residents</th>
+                        <th>State Population</th>
+                        <th>National Population</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td class="bold-class">Population</td>
-                        <td ng-repeat="race in fsc.factSheet.race" ng-bind="race.bridge_race | number "></td>
+                        <td>{{fsc.factSheet.totalWomenGenderPop | number }}</td>
+                        <td>{{nationFactSheet.totalWomenGenderPop | number }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <table class="bridge-race-table2" style="background-color: white;">
+                    <thead>
+                    <tr>
+                        <th>Age Distributions of Residents</th>
+                        <th>State Population (Women)</th>
+                        <th>National Population (Women)</th>
+                        <th>State Population (Men)</th>
+                        <th>National Population (Men)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="agePopulationRow in fsc.populationTableEntries">
+                        <td ng-repeat="populationEntry in agePopulationRow track by $index" ng-bind="populationEntry"> </td>
                     </tr>
                     </tbody>
                 </table>

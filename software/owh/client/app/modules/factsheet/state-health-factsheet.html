@@ -21,20 +21,16 @@
                 <table class="bridge-race-table1">
                     <thead>
                     <tr>
-                        <th>Racial Distributions of Residents*</th>
-                        <th>Total</th>
-                        <th>Black, non-Hispanic</th>
-                        <th>White, non-Hispanic</th>
-                        <th>American Indian or Alaska Native</th>
-                        <th>Asian or Pacific Islander</th>
-                        <th>Hispanic</th>
+                        <th>Distributions of Residents</th>
+                        <th>State Population</th>
+                        <th>National Population</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td class="bold-class">Population</td>
                         <td>{{fsc.factSheet.totalGenderPop | number }}</td>
-                        <td ng-repeat="race in fsc.factSheet.race" ng-bind="race.bridge_race | number "></td>
+                        <td>{{nationFactSheet.totalGenderPop | number }}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -43,23 +39,13 @@
                     <thead>
                     <tr>
                         <th>Age Distributions of Residents</th>
-                        <th>10-14</th>
-                        <th>15-19</th>
-                        <th>20-44</th>
-                        <th>45-64</th>
-                        <th>65-84</th>
-                        <th>85+</th>
+                        <th>State Population</th>
+                        <th>National Population</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td class="bold-class">Population</td>
-                        <td>{{fsc.factSheet.ageGroups[0].bridge_race | number }}</td>
-                        <td>{{fsc.factSheet.ageGroups[1]["15-44 years"][0].bridge_race  | number }}</td>
-                        <td>{{fsc.factSheet.ageGroups[1]["15-44 years"][1].bridge_race  | number }}</td>
-                        <td>{{fsc.factSheet.ageGroups[2].bridge_race | number }}</td>
-                        <td>{{fsc.factSheet.ageGroups[3].bridge_race | number }}</td>
-                        <td>{{fsc.factSheet.ageGroups[4].bridge_race | number }}</td>
+                    <tr ng-repeat="agePopulationRow in fsc.populationTableEntries">
+                        <td ng-repeat="populationEntry in agePopulationRow track by $index" ng-bind="populationEntry"> </td>
                     </tr>
                     </tbody>
                 </table>

@@ -899,6 +899,36 @@
         }
 
         /**
+         * Initializes the Population table entries.
+         * @param displayNational
+         */
+        function preparePopulationTable(displayNational) {
+            fsc.populationTableEntries = [];
+            var entriesTitles = ["10-14", "15-19", "20-44", "45-64", "65-84", "85+"];
+            for(var i=0; i<entriesTitles.length-1;i++) {
+                var tableRow = [];
+                tableRow.push(entriesTitles[i]);
+                tableRow.push(getPopValue(fsc.factSheet.ageGroups, i));
+                if (displayNational)
+                    tableRow.push(getPopValue($rootScope.nationFactSheet.ageGroups, i));
+                tableRow.push(getPopValue(fsc.factSheet.maleAgeGroups, i));
+                if (displayNational)
+                    tableRow.push(getPopValue($rootScope.nationFactSheet.maleAgeGroups, i));
+                fsc.populationTableEntries.push(tableRow);
+            }
+        }
+        function getPopValue(ageGroups, index) {
+            var popValue;
+            if (index==1) {
+                popValue = $filter('number')(ageGroups[1]["15-44 years"][0].bridge_race);
+            } else if (index==2) {
+                popValue = $filter('number')(ageGroups[1]["15-44 years"][1].bridge_race);
+            } else {
+                popValue = $filter('number')(ageGroups[(index==0)?index:index-1].bridge_race);
+            }
+            return popValue;
+        }
+        /**
          * This function generates women's health fact sheet tables
          * @returns {{}}
          */

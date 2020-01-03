@@ -545,6 +545,14 @@ function prepareFactSheetForPopulation(genderData, maleGenderData, nonHispanicRa
     var factSheet = {};
     factSheet.gender = genderData.data.simple.group_table_sex;
     factSheet.genderMalePop = maleGenderData.data.simple.group_table_sex;
+
+    factSheet.totalWomenGenderPop = 0, totalMenGenderPop=0;
+    factSheet.gender.forEach(function (data) {
+        factSheet.totalWomenGenderPop += data.bridge_race;
+    });
+    factSheet.genderMalePop.forEach(function (data) {
+        factSheet.totalMenGenderPop += data.bridge_race;
+    });
     var race = nonHispanicRaceData.data.simple.group_table_race;
     race = race.concat(raceData.data.simple.group_table_race, hispanicData.data.simple.group_table_ethnicity);
 
