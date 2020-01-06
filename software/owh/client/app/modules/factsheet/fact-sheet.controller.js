@@ -185,43 +185,30 @@
          */
         function getQueryResults(state, fsType, queryID) {
             var deffered = $q.defer();
-            if($rootScope.nationFactSheet == undefined || ($rootScope.previousFSType == undefined || $rootScope.previousFSType != fsType)) {
-                SearchService.generateHashCode({ fsType:fsType}).then(function (response) {
-                    factSheetService.prepareFactSheetForNation(fsType, response.data).then(function (response) {
-                        if (response && response.resultData) {
-                            $rootScope.nationFactSheet = response.resultData;
-                            $rootScope.previousFSType = fsType;
-                        }
-                        factSheetService.prepareFactSheetForState(state, fsType, queryID).then(function (res) {
-                            if(res && res.resultData){
-                                fsc.state = res.resultData.state;
-                                fsc.fsType = res.resultData.fsType;
-                                fsc.fsTypeForTable = res.resultData.fsType;
-                                fsc.stateName = fsc.states[res.resultData.state];
-                                fsc.factSheetTitle = fsc.stateName+" - "+fsc.fsTypeForTable;
-                                fsc.stateImg = 'state_' + res.resultData.state + '.svg';
-                                fsc.stateImgUrl = '../../images/state-shapes/state_' + res.resultData.state + '.svg';
-                                fsc.factSheet = res.resultData;
-                            }
-                            deffered.resolve(res);
+            factSheetService.prepareFactSheetForState(state, fsType, queryID).then(function (res) {
+                if(res && res.resultData){
+                    fsc.state = res.resultData.state;
+                    fsc.fsType = res.resultData.fsType;
+                    fsc.fsTypeForTable = res.resultData.fsType;
+                    fsc.stateName = fsc.states[res.resultData.state];
+                    fsc.factSheetTitle = fsc.stateName+" - "+fsc.fsTypeForTable;
+                    fsc.stateImg = 'state_' + res.resultData.state + '.svg';
+                    fsc.stateImgUrl = '../../images/state-shapes/state_' + res.resultData.state + '.svg';
+                    fsc.factSheet = res.resultData;
+                    if($rootScope.nationalFactSheet == undefined || ($rootScope.previousFSType == undefined || $rootScope.previousFSType != fsType)) {
+                        SearchService.generateHashCode({fsType: res.resultData.fsType}).then(function (response) {
+                            factSheetService.prepareFactSheetForNation(fsType, response.data).then(function (response) {
+                                if (response && response.resultData) {
+                                    $rootScope.nationalFactSheet = response.resultData;
+                                    $rootScope.previousFSType = fsType;
+                                }
+                                preparePopulationTable(fsType == fsc.fsTypes.womens_health);
+                            });
                         });
-                    });
-                });
-            }else {
-                factSheetService.prepareFactSheetForState(state, fsType, queryID).then(function (response) {
-                    if(response && response.resultData){
-                        fsc.state = response.resultData.state;
-                        fsc.fsType = response.resultData.fsType;
-                        fsc.fsTypeForTable = response.resultData.fsType;
-                        fsc.stateName = fsc.states[response.resultData.state];
-                        fsc.factSheetTitle = fsc.stateName+" - "+fsc.fsTypeForTable;
-                        fsc.stateImg = 'state_' + response.resultData.state + '.svg';
-                        fsc.stateImgUrl = '../../images/state-shapes/state_' + response.resultData.state + '.svg';
-                        fsc.factSheet = response.resultData;
                     }
-                    deffered.resolve(response);
-                });
-            }
+                }
+                deffered.resolve(res);
+            });
             return deffered.promise;
         }
 
@@ -912,10 +899,10 @@
                 tableRow.push(entriesTitles[i]);
                 tableRow.push(getPopValue(fsc.factSheet.ageGroups, i));
                 if (displayNational)
-                    tableRow.push(getPopValue($rootScope.nationFactSheet.ageGroups, i));
+                    tableRow.push(getPopValue($rootScope.nationalFactSheet.ageGroups, i));
                 tableRow.push(getPopValue(fsc.factSheet.maleAgeGroups, i));
                 if (displayNational)
-                    tableRow.push(getPopValue($rootScope.nationFactSheet.maleAgeGroups, i));
+                    tableRow.push(getPopValue($rootScope.nationalFactSheet.maleAgeGroups, i));
                 fsc.populationTableEntries.push(tableRow);
             }
         }
