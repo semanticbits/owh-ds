@@ -546,7 +546,7 @@ function prepareFactSheetForPopulation(genderData, maleGenderData, nonHispanicRa
     factSheet.gender = genderData.data.simple.group_table_sex;
     factSheet.genderMalePop = maleGenderData.data.simple.group_table_sex;
 
-    factSheet.totalWomenGenderPop = 0, totalMenGenderPop=0;
+    factSheet.totalWomenGenderPop = 0; factSheet.totalMenGenderPop=0;
     factSheet.gender.forEach(function (data) {
         factSheet.totalWomenGenderPop += data.bridge_race;
     });

@@ -785,7 +785,8 @@ function prepareDiseaseData(data, countKey) {
         }
         else {
             var rate = record['pop'] ? Math.round(record[countKey] / record['pop'] * 1000000) / 10 : 0;
-            record['displayValue'] = formatNumber(record[countKey]) + " (" + rate.toFixed(1) + ")";
+            record['displayValue'] = formatNumber(record[countKey]);
+            record['rate'] = rate.toFixed(1);
         }
         //Delete un wanted properties from JSON
         delete record[countKey];

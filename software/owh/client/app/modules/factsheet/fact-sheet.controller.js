@@ -898,8 +898,8 @@
                 var tableRow = [];
                 tableRow.push(entriesTitles[i]);
                 tableRow.push(getPopValue(fsc.factSheet.ageGroups, i));
+                tableRow.push(getPopValue($rootScope.nationalFactSheet.ageGroups, i));
                 if (displayNational)
-                    tableRow.push(getPopValue($rootScope.nationalFactSheet.ageGroups, i));
                 tableRow.push(getPopValue(fsc.factSheet.maleAgeGroups, i));
                 if (displayNational)
                     tableRow.push(getPopValue($rootScope.nationalFactSheet.maleAgeGroups, i));
