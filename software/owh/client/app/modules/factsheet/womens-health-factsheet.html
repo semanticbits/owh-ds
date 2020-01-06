@@ -22,8 +22,10 @@
                     <thead>
                     <tr>
                         <th>Distributions of Residents</th>
-                        <th>State Population</th>
-                        <th>National Population</th>
+                        <th>State Population (Women)</th>
+                        <th>National Population (Women)</th>
+                        <th>State Population (Men)</th>
+                        <th>National Population (Men)</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -31,6 +33,8 @@
                         <td class="bold-class">Population</td>
                         <td>{{fsc.factSheet.totalWomenGenderPop | number }}</td>
                         <td>{{nationalFactSheet.totalWomenGenderPop | number }}</td>
+                        <td>{{fsc.factSheet.totalMenGenderPop | number }}</td>
+                        <td>{{nationalFactSheet.totalMenGenderPop | number }}</td>
                     </tr>
                     </tbody>
                 </table>
