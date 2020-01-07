@@ -21,7 +21,7 @@
                 <table class="bridge-race-table1">
                     <thead>
                     <tr>
-                        <th>Racial distributions of minority residents*</th>
+                        <th>Racial distributions of residents*</th>
                         <th>American Indian or Alaska Native</th>
                         <th>Asian or Pacific Islander</th>
                         <th>Black or African American</th>
@@ -30,36 +30,16 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="bold-class">Population</td>
+                        <td class="bold-class">State Population</td>
                         <td ng-repeat="race in fsc.factSheet.race" ng-bind="race.bridge_race | number "></td>
+                    </tr>
+                    <tr>
+                        <td class="bold-class">National Population*</td>
+                        <td ng-repeat="race in nationalFactSheet.race" ng-bind="race.bridge_race | number "></td>
                     </tr>
                     </tbody>
                 </table>
                 <br/>
-                <table class="bridge-race-table2" style="background-color: white;">
-                    <thead>
-                    <tr>
-                        <th>Age distributions of minority residents</th>
-                        <th>10-14</th>
-                        <th>15-19</th>
-                        <th>20-44</th>
-                        <th>45-64</th>
-                        <th>65-84</th>
-                        <th>85+</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="bold-class">Population</td>
-                        <td>{{fsc.factSheet.ageGroups[0].bridge_race | number }}</td>
-                        <td>{{fsc.factSheet.ageGroups[1]["15-44 years"][0].bridge_race  | number }}</td>
-                        <td>{{fsc.factSheet.ageGroups[1]["15-44 years"][1].bridge_race  | number }}</td>
-                        <td>{{fsc.factSheet.ageGroups[2].bridge_race | number }}</td>
-                        <td>{{fsc.factSheet.ageGroups[3].bridge_race | number }}</td>
-                        <td>{{fsc.factSheet.ageGroups[4].bridge_race | number }}</td>
-                    </tr>
-                    </tbody>
-                </table>
                 <i class="bridge-race-info" translate="{{ 'fs.minority.health.footnote'}}"></i>
             </div>
         </div>
@@ -69,23 +49,26 @@
             <table class="detail-mortality-table">
                 <thead>
                 <tr>
-                    <th style="width: 20%;">Cause of Death</th>
-                    <th>Measure</th>
-                    <th>American Indian or Alaska Native</th>
-                    <th>Asian or Pacific Islander</th>
-                    <th>Black or African American</th>
-                    <th>Hispanic</th>
+                    <th rowspan="2">Cause of Death</th>
+                    <th colspan="2" scope="colgroup">Number of Deaths</th>
+                    <th colspan="2" scope="colgroup">Age-Adjusted Death Rate (per 100,000)</th>
+                </tr>
+                <tr>
+                    <th scope="col">State</th>
+                    <th scope="col">National</th>
+                    <th scope="col">State</th>
+                    <th scope="col">National</th>
                 </tr>
                 </thead>
-                <tbody ng-repeat="eachRecord in fsc.factSheet.detailMortalityData">
-                <tr>
-                    <td ng-bind="eachRecord.causeOfDeath" rowspan="2"></td>
-                    <td>Number of deaths</td>
-                    <td ng-repeat="r in eachRecord.data" ng-bind="r.deaths === 'suppressed' ? 'Suppressed' : ( r.deaths | number )"></td>
-                </tr>
-                <tr>
-                    <td>Age adjusted rates</td>
-                    <td ng-repeat="r in eachRecord.data" ng-bind="r.ageAdjustedRate ? r.ageAdjustedRate :'Not Available'"></td>
+                <tbody>
+                <tr ng-repeat="eachRecord in fsc.factSheet.detailMortalityData">
+                    <td ng-bind="eachRecord.causeOfDeath"> </td>
+                    <td ng-bind="eachRecord.data[0].deaths === 'suppressed' ? 'Suppressed' : ( eachRecord.data[0].deaths | number )"></td>
+                    <td ng-bind="nationalFactSheet.detailMortalityData[$index].data[0].deaths === 'suppressed' ? 'Suppressed' :
+                     ( nationalFactSheet.detailMortalityData[$index].data[0].deaths | number )"></td>
+                    <td ng-bind="eachRecord.data[0].ageAdjustedRate ? eachRecord.data[0].ageAdjustedRate :'Not Available'"></td>
+                    <td ng-bind="nationalFactSheet.detailMortalityData[$index].data[0].ageAdjustedRate ?
+                     nationalFactSheet.detailMortalityData[$index].data[0].ageAdjustedRate :'Not Available'"></td>
                 </tr>
                 </tbody>
             </table>
