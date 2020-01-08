@@ -101,20 +101,18 @@ function prepareBRFSSData(data){
         { question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable' }
     ];
     data.table.question.forEach(function(eachRecord) {
-        var property = 'name';
-        var sortOrder = ['AI/AN', 'Asian', 'Black', 'NHOPI', 'Multiracial non-Hispanic', 'Other Race', 'Hispanic'];
         switch(eachRecord.name){
             case "_bmi5cat":
-                if(eachRecord["obese (bmi 30.0 - 99.8)"]) brfssData[0].data = sortArrayByPropertyAndSortOrder(eachRecord["obese (bmi 30.0 - 99.8)"].race, property, sortOrder);
+                if(eachRecord["obese (bmi 30.0 - 99.8)"]) brfssData[0].data = eachRecord["obese (bmi 30.0 - 99.8)"].year;
                 break;
             case "_rfsmok3":
-                if(eachRecord.yes) brfssData[1].data = sortArrayByPropertyAndSortOrder(eachRecord.yes.race, property, sortOrder);
+                if(eachRecord.yes) brfssData[1].data = eachRecord.yes.year;
                 break;
             case "_rfdrhv5":
-                if(eachRecord["meet criteria for heavy drinking"]) brfssData[2].data = sortArrayByPropertyAndSortOrder(eachRecord["meet criteria for heavy drinking"].race, property, sortOrder);
+                if(eachRecord["meet criteria for heavy drinking"]) brfssData[2].data = eachRecord["meet criteria for heavy drinking"].year;
                 break;
             case "_paindx1":
-                if(eachRecord.yes) brfssData[3].data = sortArrayByPropertyAndSortOrder(eachRecord.yes.race, property, sortOrder);
+                if(eachRecord.yes) brfssData[3].data = eachRecord.yes.year;
                 break;
         }
     });

@@ -142,19 +142,17 @@
             <table class="brfss-table">
                 <thead>
                 <th>Question</th>
-                <th>American Indian or Alaskan Native, non-Hispanic</th>
-                <th>Asian, non-Hispanic</th>
-                <th>Black, non-Hispanic</th>
-                <th>Native Hawaiian or other Pacific Islander, non-Hispanic</th>
-                <th>Multiracial non-Hispanic</th>
-                <th>Other, non-Hispanic</th>
-                <th>Hispanic</th>
+                <th>State</th>
+                <th>National</th>
                 </thead>
                 <tr ng-repeat="eachRecord in fsc.factSheet.brfss" ng-class="{solidBorder: $index == 0}">
                     <td ng-bind="eachRecord.question"></td>
-                    <td ng-repeat="n in [] | range:7" ng-if="eachRecord.data =='Not applicable'" ng-bind="eachRecord.data"></td>
                     <td ng-if="eachRecord.data !='Not applicable'"
-                        ng-repeat="dt in eachRecord.data track by $index" ng-bind="fsc.getMeanDisplayValue(dt.brfss.mean)"></td>
+                        ng-bind="fsc.getMeanDisplayValue(eachRecord.data[0].brfss.mean)"></td>
+                    <td ng-if="eachRecord.data =='Not applicable'" ng-bind="eachRecord.data"></td>
+                    <td ng-if="eachRecord.data !='Not applicable'"
+                        ng-bind="fsc.getMeanDisplayValue(nationalFactSheet.brfss[$index].brfss.mean)"></td>
+                    <td ng-if="eachRecord.data =='Not applicable'" ng-bind="eachRecord.data"></td>
                 </tr>
             </table>
             <i translate="{{ 'fs.minority.brfss.footnote' }}"></i>
