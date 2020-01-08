@@ -192,60 +192,68 @@
                 <thead>
                 <tr>
                     <th>Measure</th>
-                    <th>American Indian or Alaska Native</th>
-                    <th>Asian or Pacific Islander</th>
-                    <th>Black or African American</th>
+                    <th>State</th>
+                    <th>National*</th>
                 </tr>
 
                 </thead>
                 <tbody>
                 <tr class="solidBorder">
                     <td>Births</td>
-                    <td ng-repeat="birthRateData in fsc.factSheet.natality.birthRateData">
-                        {{birthRateData.natality=='suppressed'?'Suppressed': birthRateData.natality | number}}
+                    <td>
+                        {{fsc.factSheet.natality.birthRateData.natality=='suppressed'?'Suppressed': fsc.factSheet.natality.birthRateData.natality | number}}
+                    </td>
+                    <td>
+                        {{nationalFactSheet.natality.birthRateData.natality=='suppressed'?'Suppressed': nationalFactSheet.natality.birthRateData.natality | number}}
                     </td>
                 </tr>
                 <tr>
                     <td>Total minority population</td>
-                    <td ng-repeat="birthRateData in fsc.factSheet.natality.birthRateData">
-                        {{birthRateData.pop=='suppressed'?'Suppressed': birthRateData.pop | number}}
+                    <td>
+                        {{fsc.factSheet.natality.birthRateData.pop=='suppressed'?'Suppressed': fsc.factSheet.natality.birthRateData.pop | number}}
+                    </td>
+                    <td>
+                        {{nationalFactSheet.natality.birthRateData.pop=='suppressed'?'Suppressed': nationalFactSheet.natality.birthRateData.pop | number}}
                     </td>
                 </tr>
                 <tr>
                     <td>Birth rates</td>
-                    <td ng-repeat="birthRateData in fsc.factSheet.natality.birthRateData"
-                        ng-bind="fsc.calculateRate(birthRateData.natality, birthRateData.pop)"></td>
+                    <td ng-bind="fsc.calculateRate(fsc.factSheet.natality.birthRateData.natality, fsc.factSheet.natality.birthRateData.pop)"></td>
+                    <td ng-bind="fsc.calculateRate(nationalFactSheet.natality.birthRateData.natality, nationalFactSheet.natality.birthRateData.pop)"></td>
                 </tr>
                 <tr>
                     <td>Female minority population (Ages 15 to 44)</td>
-                    <td ng-repeat="fertilityRatesData in fsc.factSheet.natality.fertilityRatesData">
-                        {{fertilityRatesData.pop=='suppressed'?'Suppressed': fertilityRatesData.pop | number}}
+                    <td>
+                        {{fsc.factSheet.natality.fertilityRatesData.pop=='suppressed'?'Suppressed': fsc.factSheet.natality.fertilityRatesData.pop | number}}
+                    </td>
+                    <td>
+                        {{nationalFactSheet.natality.fertilityRatesData.pop=='suppressed'?'Suppressed': nationalFactSheet.natality.fertilityRatesData.pop | number}}
                     </td>
                 </tr>
                 <tr>
                     <td>Fertility rates</td>
-                    <td ng-repeat="fertilityRatesData in fsc.factSheet.natality.fertilityRatesData"
-                        ng-bind="fsc.calculateRate(fertilityRatesData.natality, fertilityRatesData.pop)"></td>
+                    <td ng-bind="fsc.calculateRate(fsc.factSheet.natality.fertilityRatesData.natality, fsc.factSheet.natality.fertilityRatesData.pop)"></td>
+                    <td ng-bind="fsc.calculateRate(nationalFactSheet.natality.fertilityRatesData.natality, nationalFactSheet.natality.fertilityRatesData.pop)"></td>
                 </tr>
                 <tr>
                     <td>Vaginal rates</td>
-                    <td ng-repeat="vaginalData in fsc.factSheet.natality.vaginalData"
-                        ng-bind="fsc.calculateRate(vaginalData.natality, fsc.factSheet.natality.totalBirthPopulation[$index].natality)"></td>
+                    <td ng-bind="fsc.calculateRate(fsc.factSheet.natality.vaginalData.natality, fsc.factSheet.natality.totalBirthPopulation.natality)"></td>
+                    <td ng-bind="fsc.calculateRate(nationalFactSheet.natality.vaginalData.natality, nationalFactSheet.natality.totalBirthPopulation.natality)"></td>
                 </tr>
                 <tr>
                     <td>Cesarean rates</td>
-                    <td ng-repeat="cesareanData in fsc.factSheet.natality.cesareanData"
-                        ng-bind="fsc.calculateRate(cesareanData.natality, fsc.factSheet.natality.totalBirthPopulation[$index].natality)"></td>
+                    <td ng-bind="fsc.calculateRate(fsc.factSheet.natality.cesareanData.natality, fsc.factSheet.natality.totalBirthPopulation.natality)"></td>
+                    <td ng-bind="fsc.calculateRate(nationalFactSheet.natality.cesareanData.natality, nationalFactSheet.natality.totalBirthPopulation.natality)"></td>
                 </tr>
                 <tr>
                     <td>Low birth weight (<2500 gms)</td>
-                    <td ng-repeat="lowBirthWeightData in fsc.factSheet.natality.lowBirthWeightData"
-                        ng-bind="fsc.calculateRate(lowBirthWeightData.natality, fsc.factSheet.natality.totalBirthPopulation[$index].natality)"></td>
+                    <td ng-bind="fsc.calculateRate(fsc.factSheet.natality.lowBirthWeightData.natality, fsc.factSheet.natality.totalBirthPopulation.natality)"></td>
+                    <td ng-bind="fsc.calculateRate(nationalFactSheet.natality.lowBirthWeightData.natality, nationalFactSheet.natality.totalBirthPopulation.natality)"></td>
                 </tr>
                 <tr>
                     <td>Twin birth rate</td>
-                    <td ng-repeat="twinBirthData in fsc.factSheet.natality.twinBirthData"
-                        ng-bind="fsc.calculateRate(twinBirthData.natality, fsc.factSheet.natality.totalBirthPopulation[$index].natality)"></td>
+                    <td ng-bind="fsc.calculateRate(fsc.factSheet.natality.twinBirthData.natality, fsc.factSheet.natality.totalBirthPopulation.natality)"></td>
+                    <td ng-bind="fsc.calculateRate(nationalFactSheet.natality.twinBirthData.natality, nationalFactSheet.natality.totalBirthPopulation.natality)"></td>
                 </tr>
                 </tbody>
             </table>

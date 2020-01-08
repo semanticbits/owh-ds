@@ -19801,9 +19801,9 @@
         {
           "size": 0,
           "aggregations": {
-            "group_table_race": {
+            "group_table_year": {
               "terms": {
-                "field": "race",
+                "field": "current_year",
                 "size": 0
               },
               "aggregations": {
@@ -19882,9 +19882,9 @@
         {
           "size": 0,
           "aggregations": {
-            "group_table_race": {
+            "group_table_year": {
               "terms": {
-                "field": "race",
+                "field": "current_year",
                 "size": 0
               },
               "aggregations": {
@@ -19960,9 +19960,9 @@
         {
           "size": 0,
           "aggregations": {
-            "group_table_race": {
+            "group_table_year": {
               "terms": {
-                "field": "race",
+                "field": "current_year",
                 "size": 0
               },
               "aggregations": {
@@ -20041,9 +20041,9 @@
         {
           "size": 0,
           "aggregations": {
-            "group_table_race": {
+            "group_table_year": {
               "terms": {
-                "field": "race",
+                "field": "current_year",
                 "size": 0
               },
               "aggregations": {
@@ -20295,9 +20295,9 @@
       "vaginal": {
         "size": 0,
         "aggregations": {
-          "group_table_race": {
+          "group_table_year": {
             "terms": {
-              "field": "race",
+              "field": "current_year",
               "size": 0
             },
             "aggregations": {
@@ -20387,9 +20387,9 @@
       "cesarean": {
         "size": 0,
         "aggregations": {
-          "group_table_race": {
+          "group_table_year": {
             "terms": {
-              "field": "race",
+              "field": "current_year",
               "size": 0
             },
             "aggregations": {
@@ -20479,9 +20479,9 @@
       "lowBirthWeight": {
         "size": 0,
         "aggregations": {
-          "group_table_race": {
+          "group_table_year": {
             "terms": {
-              "field": "race",
+              "field": "current_year",
               "size": 0
             },
             "aggregations": {
@@ -20576,9 +20576,9 @@
       "twinBirth": {
         "size": 0,
         "aggregations": {
-          "group_table_race": {
+          "group_table_year": {
             "terms": {
-              "field": "race",
+              "field": "current_year",
               "size": 0
             },
             "aggregations": {
@@ -20668,9 +20668,9 @@
       "totalBirthsByYear": {
         "size": 0,
         "aggregations": {
-          "group_table_race": {
+          "group_table_year": {
             "terms": {
-              "field": "race",
+              "field": "current_year",
               "size": 0
             },
             "aggregations": {
