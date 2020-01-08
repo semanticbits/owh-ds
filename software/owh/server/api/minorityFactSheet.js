@@ -77,19 +77,13 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
  * @return {{pregnantWoment: [], women: []}}
  */
 function preparePRAMSData(respData) {
-    var selectedRaces = {options: ['Black', 'Other Race' ,'Hispanic']};
+    // var selectedRaces = {options: ['Black', 'Other Race' ,'Hispanic']};
     var resultData = [
-        {"question": "Smoking cigarettes during the last three months of pregnancy", data: respData[0].table.question[0] && respData[0].table.question[0].yes ? respData[0].table.question[0].yes.maternal_race : "Not applicable"},
-        {"question": "Females reported physical abuse by husband or partner during pregnancy", data: respData[1].table.question[0] && respData[1].table.question[0].yes ? respData[1].table.question[0].yes.maternal_race: "Not applicable"},
-        {"question": "Ever breastfed or pump breast milk to feed after delivery", data: respData[2].table.question[0] && respData[2].table.question[0].yes ? respData[2].table.question[0].yes.maternal_race : "Not applicable"},
-        {"question": "Indicator of depression 3 months before pregnancy", data: respData[3].table.question[0] && respData[3].table.question[0].yes ? respData[3].table.question[0].yes.maternal_race : "Not applicable"}
+        {"question": "Smoking cigarettes during the last three months of pregnancy", data: respData[0].table.question[0] && respData[0].table.question[0].yes ? respData[0].table.question[0].yes.year : "Not applicable"},
+        {"question": "Females reported physical abuse by husband or partner during pregnancy", data: respData[1].table.question[0] && respData[1].table.question[0].yes ? respData[1].table.question[0].yes.year: "Not applicable"},
+        {"question": "Ever breastfed or pump breast milk to feed after delivery", data: respData[2].table.question[0] && respData[2].table.question[0].yes ? respData[2].table.question[0].yes.year : "Not applicable"},
+        {"question": "Indicator of depression 3 months before pregnancy", data: respData[3].table.question[0] && respData[3].table.question[0].yes ? respData[3].table.question[0].yes.year : "Not applicable"}
     ];
-    resultData.forEach(function (quest, indx) {
-        if(quest.data !== 'Not applicable') {
-            searchUtils.addMissingFilterOptions(selectedRaces, quest.data, 'prams');
-            quest.data = sortArrayByPropertyAndSortOrder(quest.data, 'name', selectedRaces.options);
-        }
-    });
     return resultData;
 }
 

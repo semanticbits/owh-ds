@@ -117,18 +117,18 @@
             <table class="prams-table-1">
                 <thead>
                 <th>Question</th>
-                <th>Black, Non-Hispanic</th>
-                <th>Other, Non- Hispanic</th>
-                <th>Hispanic</th>
+                <th>State</th>
+                <th>National</th>
                 </thead>
                 <tbody>
                 <tr ng-repeat="eachRecord in fsc.factSheet.prams" ng-class="{solidBorder: $index == 0}">
                     <td ng-bind="eachRecord.question"></td>
-                    <td ng-repeat="dt in eachRecord.data" ng-if="eachRecord.data != 'Not applicable'"
-                        ng-bind="fsc.getMeanDisplayValue(dt.prams.mean)"></td>
+                    <td ng-if="eachRecord.data != 'Not applicable'"
+                        ng-bind="fsc.getMeanDisplayValue(eachRecord.data[0].prams.mean)"></td>
                     <td ng-if="eachRecord.data == 'Not applicable'">{{eachRecord.data}}</td>
-                    <td ng-if="eachRecord.data == 'Not applicable'">{{eachRecord.data}}</td>
-                    <td ng-if="eachRecord.data == 'Not applicable'">{{eachRecord.data}}</td>
+                    <td ng-if="nationalFactSheet.prams[$index].data != 'Not applicable'"
+                        ng-bind="fsc.getMeanDisplayValue(nationalFactSheet.prams[$index].data[0].prams.mean)"></td>
+                    <td ng-if="nationalFactSheet.prams[$index].data == 'Not applicable'">{{nationalFactSheet.prams[$index].data}}</td>
                 </tr>
                 </tbody>
             </table>
