@@ -11105,43 +11105,6 @@
           "nested": {
             "table": [
               {
-                "key": "race",
-                "queryKey": "race",
-                "size": 0
-              }
-            ]
-          }
-        }
-      },
-      "hispanicPopulation": {
-        "searchFor": "infant_mortality",
-        "query": {
-          "hispanic_origin": {
-            "key": "hispanic_origin",
-            "queryKey": "hispanic_origin",
-            "value": [
-              "Central or South American",
-              "Cuban",
-              "Mexican",
-              "Other and Unknown Hispanic",
-              "Puerto Rican"
-            ],
-            "primary": false
-          },
-          "year_of_death": {
-            "key": "year_of_death",
-            "queryKey": "year_of_death",
-            "value": [
-              "2016"
-            ],
-            "primary": false
-          }
-        },
-        "aggregations": {
-          "simple": [],
-          "nested": {
-            "table": [
-              {
                 "key": "year_of_death",
                 "queryKey": "year_of_death",
                 "size": 0
@@ -20462,12 +20425,6 @@
             "value": "2015",
             "primary": false
           },
-          "sitecode": {
-            "key": "yrbsState",
-            "queryKey": "sitecode",
-            "value": "",
-            "primary": false
-          },
           "question.path": {
             "key": "question",
             "queryKey": "question.key",
@@ -20534,12 +20491,6 @@
             ],
             "primary": false
           },
-          "sitecode": {
-            "key": "state",
-            "queryKey": "sitecode",
-            "value": "",
-            "primary": false
-          },
           "question.path": {
             "key": "question",
             "queryKey": "question.key",
@@ -20604,14 +20555,6 @@
             ],
             "primary": false
           },
-          "sitecode": {
-            "key": "state",
-            "queryKey": "sitecode",
-            "value": [
-              ""
-            ],
-            "primary": false
-          },
           "question.path": {
             "key": "question",
             "queryKey": "question.key",
@@ -20668,14 +20611,6 @@
             "queryKey": "topic",
             "value": [
               "cat_29"
-            ],
-            "primary": false
-          },
-          "sitecode": {
-            "key": "state",
-            "queryKey": "sitecode",
-            "value": [
-              ""
             ],
             "primary": false
           },
@@ -20738,14 +20673,6 @@
             ],
             "primary": false
           },
-          "sitecode": {
-            "key": "state",
-            "queryKey": "sitecode",
-            "value": [
-              ""
-            ],
-            "primary": false
-          },
           "question.path": {
             "key": "question",
             "queryKey": "question.key",
@@ -20802,14 +20729,6 @@
             "queryKey": "topic",
             "value": [
               "cat_12"
-            ],
-            "primary": false
-          },
-          "sitecode": {
-            "key": "state",
-            "queryKey": "sitecode",
-            "value": [
-              ""
             ],
             "primary": false
           },

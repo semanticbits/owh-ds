@@ -12677,51 +12677,6 @@
           "nested": {
             "table": [
               {
-                "key": "race",
-                "queryKey": "race",
-                "size": 0
-              }
-            ]
-          }
-        }
-      },
-      "hispanicPopulation": {
-        "searchFor": "infant_mortality",
-        "query": {
-          "hispanic_origin": {
-            "key": "hispanic_origin",
-            "queryKey": "hispanic_origin",
-            "value": [
-              "Central or South American",
-              "Cuban",
-              "Mexican",
-              "Other and Unknown Hispanic",
-              "Puerto Rican"
-            ],
-            "primary": false
-          },
-          "year_of_death": {
-            "key": "year_of_death",
-            "queryKey": "year_of_death",
-            "value": [
-              "2016"
-            ],
-            "primary": false
-          },
-          "state": {
-            "key": "state",
-            "queryKey": "state",
-            "value": [
-              "$state$"
-            ],
-            "primary": false
-          }
-        },
-        "aggregations": {
-          "simple": [],
-          "nested": {
-            "table": [
-              {
                 "key": "year_of_death",
                 "queryKey": "year_of_death",
                 "size": 0

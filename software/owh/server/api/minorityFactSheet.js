@@ -307,20 +307,15 @@ function getFactSheetDataForInfants(factSheetQueryJSON) {
     var deferred = Q.defer();
     var promises = [
         new wonder('D69').invokeWONDER(factSheetQueryJSON.infant_mortality.racePopulation),
-        new wonder('D69').invokeWONDER(factSheetQueryJSON.infant_mortality.hispanicPopulation)
     ];
     Q.all(promises).then(function (resp) {
         //non-hispanic races
-        var infantMortalityData = resp[0].table;
-        //hispanic data
-        infantMortalityData['Hispanic'] = resp[1].table['2016'];
+        var infantMortalityData = resp[0].table['2016'];
         //cdc returns NUMBER+(Unreliable) i.e. 5.20 (Unreliable) if data is Unreliable
         //Convert it into 'Unreliable' string
-        for (var prop in infantMortalityData) {
-            var deathRate = infantMortalityData[prop].deathRate;
-            if (deathRate && deathRate.indexOf('Unreliable') != -1) {
-                infantMortalityData[prop].deathRate = 'Unreliable';
-            }
+        var deathRate = infantMortalityData.deathRate;
+        if (deathRate && deathRate.indexOf('Unreliable') != -1) {
+            infantMortalityData.deathRate = 'Unreliable';
         }
         deferred.resolve(infantMortalityData);
     }, function (err) {

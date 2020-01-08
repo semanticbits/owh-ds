@@ -84,64 +84,28 @@
             <table class="infant-mortality-table">
                 <thead>
                 <tr>
-                    <th>Measure</th>
-                    <th>American Indian or Alaska Native</th>
-                    <th>Asian or Pacific Islander</th>
-                    <th>Black or African American</th>
-                    <th>Hispanic</th>
+                    <th>State/National</th>
+                    <th>Deaths</th>
+                    <th>Births</th>
+                    <th>Death Rates</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>Deaths</td>
-                    <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].infant_mortality)"
-                        ng-bind="fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].infant_mortality | number"></td>
-                    <td ng-if="!fsc.isNumeric(fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].infant_mortality)"
-                        ng-bind="fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].infant_mortality"></td>
-
-                    <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].infant_mortality)"
-                        ng-bind="fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].infant_mortality | number"></td>
-                    <td ng-if="!fsc.isNumeric(fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].infant_mortality)"
-                        ng-bind="fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].infant_mortality"></td>
-
-                    <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData['Black or African American'].infant_mortality)"
-                        ng-bind="fsc.factSheet.infantMortalityData['Black or African American'].infant_mortality | number"></td>
-                    <td ng-if="!fsc.isNumeric(fsc.factSheet.infantMortalityData['Black or African American'].infant_mortality)"
-                        ng-bind="fsc.factSheet.infantMortalityData['Black or African American'].infant_mortality"></td>
-
-                    <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData['Hispanic'].infant_mortality)"
-                        ng-bind="fsc.factSheet.infantMortalityData['Hispanic'].infant_mortality | number"></td>
-                    <td ng-if="!fsc.isNumeric(fsc.factSheet.infantMortalityData['Hispanic'].infant_mortality)"
-                        ng-bind="fsc.factSheet.infantMortalityData['Hispanic'].infant_mortality"></td>
+                    <td>State</td>
+                    <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData.infant_mortality)"
+                        ng-bind="fsc.factSheet.infantMortalityData.infant_mortality | number"></td>
+                    <td ng-bind="fsc.factSheet.infantMortalityData.births | number"></td>
+                    <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData.deathRate)"
+                        ng-bind="fsc.factSheet.infantMortalityData.deathRate | number:1"></td>
                 </tr>
                 <tr>
-                    <td>Births</td>
-                    <td ng-bind="fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].births | number"></td>
-                    <td ng-bind="fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].births | number"></td>
-                    <td ng-bind="fsc.factSheet.infantMortalityData['Black or African American'].births | number"></td>
-                    <td ng-bind="fsc.factSheet.infantMortalityData['Hispanic'].births | number"></td>
-                </tr>
-                <tr>
-                    <td>Death rates</td>
-                    <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate)"
-                        ng-bind="fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate | number:1"></td>
-                    <td ng-if="!fsc.isNumeric(fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate)"
-                        ng-bind="fsc.factSheet.infantMortalityData['American Indian or Alaska Native'].deathRate"></td>
-
-                    <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].deathRate)"
-                        ng-bind="fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].deathRate | number:1"></td>
-                    <td ng-if="!fsc.isNumeric(fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].deathRate)"
-                        ng-bind="fsc.factSheet.infantMortalityData['Asian or Pacific Islander'].deathRate"></td>
-
-                    <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData['Black or African American'].deathRate)"
-                        ng-bind="fsc.factSheet.infantMortalityData['Black or African American'].deathRate | number:1"></td>
-                    <td ng-if="!fsc.isNumeric(fsc.factSheet.infantMortalityData['Black or African American'].deathRate)"
-                        ng-bind="fsc.factSheet.infantMortalityData['Black or African American'].deathRate"></td>
-
-                    <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData['Hispanic'].deathRate)"
-                        ng-bind="fsc.factSheet.infantMortalityData['Hispanic'].deathRate | number:1"></td>
-                    <td ng-if="!fsc.isNumeric(fsc.factSheet.infantMortalityData['Hispanic'].deathRate)"
-                        ng-bind="fsc.factSheet.infantMortalityData['Hispanic'].deathRate"></td>
+                    <td>National*</td>
+                    <td ng-if="fsc.isNumeric(nationalFactSheet.infantMortalityData.infant_mortality)"
+                        ng-bind="nationalFactSheet.infantMortalityData.infant_mortality | number"></td>
+                    <td ng-bind="nationalFactSheet.infantMortalityData.births | number"></td>
+                    <td ng-if="fsc.isNumeric(nationalFactSheet.infantMortalityData.deathRate)"
+                        ng-bind="nationalFactSheet.infantMortalityData.deathRate | number:1"></td>
                 </tr>
                 </tbody>
             </table>
