@@ -126,36 +126,33 @@ function prepareBRFSSData(data){
  */
 function prepareYRBSData(data) {
     var yrbsData = [];
-    var sortOrder = ['Am Indian / Alaska Native', 'Asian', 'Black or African American',
-        'Native Hawaiian/other PI', 'Multiple - Non-Hispanic', 'Hispanic/Latino'];
-    var property = 'name';
     yrbsData.push({
         "question": "Currently use alcohol", data:data.table.question[0] && data.table.question[0].Yes ?
-            sortArrayByPropertyAndSortOrder(data.table.question[0].Yes.race, property, sortOrder) : "Not applicable"
+            data.table.question[0].Yes.year: "Not applicable"
     });
     yrbsData.push({
         "question": "Currently use cigarettes", data:data.table.question[1] && data.table.question[1].Yes ?
-            sortArrayByPropertyAndSortOrder(data.table.question[1].Yes.race, property, sortOrder) : "Not applicable"
+            data.table.question[1].Yes.year: "Not applicable"
     });
     yrbsData.push({
         "question": "Currently use marijuana", data:data.table.question[2] && data.table.question[2].Yes ?
-            sortArrayByPropertyAndSortOrder(data.table.question[2].Yes.race, property, sortOrder) : "Not applicable"
+            data.table.question[2].Yes.year: "Not applicable"
     });
     yrbsData.push({
         "question": "Currently sexually active", data:data.table.question[3] && data.table.question[3].Yes ?
-            sortArrayByPropertyAndSortOrder(data.table.question[3].Yes.race, property, sortOrder) : "Not applicable"
+            data.table.question[3].Yes.year: "Not applicable"
     });
     yrbsData.push({
         "question": "Attempted suicide", data:data.table.question[4] && data.table.question[4].Yes ?
-            sortArrayByPropertyAndSortOrder(data.table.question[4].Yes.race, property, sortOrder) : "Not applicable"
+            data.table.question[4].Yes.year: "Not applicable"
     });
     yrbsData.push({
         "question": "Overweight", data:data.table.question[5] && data.table.question[5].Yes ?
-            sortArrayByPropertyAndSortOrder(data.table.question[5].Yes.race, property, sortOrder) : "Not applicable"
+            data.table.question[5].Yes.year: "Not applicable"
     });
     yrbsData.push({
         "question": "Obese", data:data.table.question[6] && data.table.question[6].Yes ?
-            sortArrayByPropertyAndSortOrder(data.table.question[6].Yes.race, property, sortOrder) : "Not applicable"
+            data.table.question[6].Yes.year: "Not applicable"
     });
     return yrbsData;
 }
