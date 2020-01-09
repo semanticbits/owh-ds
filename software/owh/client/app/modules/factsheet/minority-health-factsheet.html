@@ -191,7 +191,7 @@
             <table class="natality-table">
                 <thead>
                 <tr>
-                    <th>Measure</th>
+                    <th></th>
                     <th>State</th>
                     <th>National*</th>
                 </tr>
@@ -270,18 +270,18 @@
             <table class="tb-table">
                 <thead>
                 <tr>
-                    <th>Measure</th>
+                    <th></th>
                     <th ng-repeat="eachRecord in fsc.factSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>Cases</td>
-                    <td ng-repeat="eachRecord in  fsc.factSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.cases"></td>
+                    <td>State</td>
+                    <td ng-repeat="eachRecord in fsc.factSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'">{{eachRecord.cases}}({{eachRecord.rates}})</td>
                 </tr>
                 <tr>
-                    <td>Rates</td>
-                    <td ng-repeat="eachRecord in  fsc.factSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.rates"></td>
+                    <td>National*</td>
+                    <td ng-repeat="eachRecord in nationalFactSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'">{{eachRecord.cases}}({{eachRecord.rates}})</td>
                 </tr>
                 </tbody>
             </table>
@@ -299,21 +299,24 @@
                 <thead>
                 <tr>
                     <th>Disease</th>
-                    <th>Measure</th>
+                    <th>State/National</th>
                     <th ng-repeat="eachRecord in fsc.factSheet.stdData[0].data" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
                 </tr>
                 </thead>
                 <tbody ng-repeat="eachRecord in fsc.factSheet.stdData">
                 <tr>
                     <td rowspan="2">{{eachRecord.disease}}</td>
-                    <td>Cases</td>
-                    <td ng-repeat="eachRaceValue in eachRecord.data"
-                        ng-if="eachRaceValue.name != 'Unknown'">{{eachRaceValue.cases}}</td>
+                    <td>State</td>
+                    <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown'">
+                        <span ng-if="fsc.isValueInvalidDisplay(eachRaceValue.cases)" ng-bind="eachRaceValue.cases"></span>
+                        <span ng-if="(!fsc.isValueInvalidDisplay(eachRaceValue.cases)) && (eachRaceValue.name != 'Unknown')">{{eachRaceValue.cases}} ({{eachRaceValue.rates}})</span>
                 </tr>
                 <tr>
-                    <td>Rates</td>
-                    <td ng-repeat="eachRaceValue in eachRecord.data"
-                        ng-if="eachRaceValue.name != 'Unknown'">{{eachRaceValue.rates}}</td>
+                    <td>National*</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.stdData[$index].data" ng-if="eachRaceValue.name != 'Unknown'">
+                        <span ng-if="isValueInvalidDisplay(eachRaceValue.cases)" ng-bind="eachRaceValue.cases"></span>
+                        <span ng-if="!isValueInvalidDisplay(eachRaceValue.cases)">{{eachRaceValue.cases}} ({{eachRaceValue.rates}})</span>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -329,19 +332,25 @@
                 <thead>
                 <tr>
                     <th>Indicator</th>
-                    <th>Measure</th>
+                    <th>State/National</th>
                     <th ng-repeat="eachRecord in fsc.factSheet.hivAIDSData[0].data" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
                 </tr>
                 </thead>
                 <tbody ng-repeat="eachRecord in fsc.factSheet.hivAIDSData">
                 <tr>
                     <td rowspan="2">{{eachRecord.disease}}</td>
-                    <td>Cases</td>
-                    <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown'">{{eachRaceValue.cases}}</td>
+                    <td>State</td>
+                    <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown'">
+                        <span ng-if="fsc.isValueInvalidDisplay(eachRaceValue.cases)" ng-bind="eachRaceValue.cases"></span>
+                        <span ng-if="(!fsc.isValueInvalidDisplay(eachRaceValue.cases)) && (eachRaceValue.name != 'Unknown')">{{eachRaceValue.cases}} ({{eachRaceValue.rates}})</span>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Rates</td>
-                    <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown'">{{eachRaceValue.rates}}</td>
+                    <td>National*</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.hivAIDSData[$index].data" ng-if="eachRaceValue.name != 'Unknown'">
+                        <span ng-if="isValueInvalidDisplay(eachRaceValue.cases)" ng-bind="eachRaceValue.cases"></span>
+                        <span ng-if="!isValueInvalidDisplay(eachRaceValue.cases)">{{eachRaceValue.cases}} ({{eachRaceValue.rates}})</span>
+                    </td>
                 </tr>
                 </tbody>
             </table>

@@ -162,36 +162,41 @@ function prepareYRBSData(data) {
  * @param data
  * @param countKey
  */
-function prepareDiseaseData(data, countKey) {
+function prepareDiseaseData(data, countKey, totalRecord) {
     var sortOrder = ['American Indian or Alaska Native', 'Asian', 'Black or African American',
     'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino', 'Unknown'];
     var diseaseData = sortArrayByPropertyAndSortOrder(data.data.nested.table.race, 'name', sortOrder);
     diseaseData.forEach(function(record, index){
-        if(record[countKey] === 0) {
-            record['cases'] = 0;
-            record['rates'] = '0.0';
-        }
-        else if(record[countKey] === 'na') {
-            record['cases'] = 'Not available';
-            record['rates'] = 'Not applicable';
-        }
-        else if(record[countKey] === 'suppressed') {
-            record['cases'] = 'Suppressed';
-            record['rates'] = 'Suppressed';
-        }
-        else {
-            var rate = record['pop'] ? Math.round(record[countKey] / record['pop'] * 1000000) / 10 : 0;
-            record.rates = rate.toFixed(1);
-            record['cases'] = formatNumber(record[countKey]);
-        }
+        updateDiseaseRecord(record, countKey);
         //Delete un wanted properties from JSON
         delete record[countKey];
         //Remove population property except All races population
         index != 0 && delete record['pop'];
     });
+    if(totalRecord) diseaseData.unshift(updateDiseaseRecord(totalRecord, countKey));
     return diseaseData;
 }
 
+function updateDiseaseRecord(record, countKey) {
+    if(record[countKey] === 0) {
+        record['cases'] = 0;
+        record['rates'] = '0.0';
+    }
+    else if(record[countKey] === 'na') {
+        record['cases'] = 'Not available';
+        record['rates'] = 'Not applicable';
+    }
+    else if(record[countKey] === 'suppressed') {
+        record['cases'] = 'Suppressed';
+        record['rates'] = 'Suppressed';
+    }
+    else {
+        var rate = record['pop'] ? Math.round(record[countKey] / record['pop'] * 1000000) / 10 : 0;
+        record.rates = rate.toFixed(1);
+        record['cases'] = formatNumber(record[countKey]);
+    }
+    return record;
+}
 /**
  * To format number
  * @param num
@@ -325,7 +330,8 @@ function getTBDataForFactSheets(factSheetQueryJSON) {
     Q.all(promises).then(function (resp) {
         var tbData = searchUtils.populateDataWithMappings(resp[0], 'tb' , 'cases');
         es.mergeWithCensusData(tbData, resp[1], undefined, 'pop');
-        var data = prepareDiseaseData(tbData, 'tb');
+        var data = prepareDiseaseData(tbData, 'tb', {name: "Total Cases (Rates)",
+            pop: resp[2].aggregations.total_pop.value, tb: resp[0].aggregations.group_count_cases.value});
         var totalPop = resp[2].aggregations.total_pop.value;
         deferred.resolve({data:data, population: totalPop});
     }, function (err) {
@@ -350,12 +356,16 @@ function getSTDDataForFactSheets(factSheetQueryJSON) {
     var promises = [
         es.executeESQuery('owh_std', 'std', chlamydiaESQuery),
         es.aggregateCensusDataQuery(chlamydiaPopQuery, 'owh_std', "std", 'pop'),
+        es.executeESQuery('owh_std', 'std', chlamydiaPopQuery),
         es.executeESQuery('owh_std', 'std', gonorrheaESQuery),
         es.aggregateCensusDataQuery(gonorrheaPopQuery, 'owh_std', "std", 'pop'),
+        es.executeESQuery('owh_std', 'std', gonorrheaPopQuery),
         es.executeESQuery('owh_std', 'std', syphilisESQuery),
         es.aggregateCensusDataQuery(syphilisPopQuery, 'owh_std', "std", 'pop'),
+        es.executeESQuery('owh_std', 'std', syphilisPopQuery),
         es.executeESQuery('owh_std', 'std', earlySyphilisESQuery),
-        es.aggregateCensusDataQuery(earlySyphilisPopQuery, 'owh_std', "std", 'pop')
+        es.aggregateCensusDataQuery(earlySyphilisPopQuery, 'owh_std', "std", 'pop'),
+        es.executeESQuery('owh_std', 'std', earlySyphilisPopQuery)
     ];
 
     var deferred = Q.defer();
@@ -365,22 +375,26 @@ function getSTDDataForFactSheets(factSheetQueryJSON) {
         es.mergeWithCensusData(stdChlamydiaData, resp[1], undefined, 'pop');
         searchUtils.applySuppressions(stdChlamydiaData, 'std', 4);
         // For Gonorrhea
-        var stdGonorrheaData = searchUtils.populateDataWithMappings(resp[2], 'std' , 'cases');
-        es.mergeWithCensusData(stdGonorrheaData, resp[3], undefined, 'pop');
+        var stdGonorrheaData = searchUtils.populateDataWithMappings(resp[3], 'std' , 'cases');
+        es.mergeWithCensusData(stdGonorrheaData, resp[4], undefined, 'pop');
         searchUtils.applySuppressions(stdGonorrheaData, 'std', 4);
         // For Primary and Secondary Syphilis
-        var stdPrimarySyphilisData = searchUtils.populateDataWithMappings(resp[4], 'std' , 'cases');
-        es.mergeWithCensusData(stdPrimarySyphilisData, resp[5], undefined, 'pop');
+        var stdPrimarySyphilisData = searchUtils.populateDataWithMappings(resp[6], 'std' , 'cases');
+        es.mergeWithCensusData(stdPrimarySyphilisData, resp[7], undefined, 'pop');
         searchUtils.applySuppressions(stdPrimarySyphilisData, 'std', 4);
         // For Early Latent Syphilis
-        var stdEarlySyphilisData = searchUtils.populateDataWithMappings(resp[6], 'std' , 'cases');
-        es.mergeWithCensusData(stdEarlySyphilisData, resp[7], undefined, 'pop');
+        var stdEarlySyphilisData = searchUtils.populateDataWithMappings(resp[9], 'std' , 'cases');
+        es.mergeWithCensusData(stdEarlySyphilisData, resp[10], undefined, 'pop');
         searchUtils.applySuppressions(stdEarlySyphilisData, 'std', 4);
 
-        var stdData = [{disease:"Chlamydia", data:prepareDiseaseData(stdChlamydiaData, 'std')},
-            {disease:"Gonorrhea", data:prepareDiseaseData(stdGonorrheaData, 'std')},
-            {disease:"Primary and Secondary Syphilis", data:prepareDiseaseData(stdPrimarySyphilisData, 'std')},
-            {disease:"Early Latent Syphilis", data:prepareDiseaseData(stdEarlySyphilisData, 'std')}];
+        var stdData = [{disease:"Chlamydia", data:prepareDiseaseData(stdChlamydiaData, 'std', {name: "Total Cases (Rates)",
+                pop: resp[2].aggregations.total_pop.value, std: resp[0].aggregations.group_count_cases.value})},
+            {disease:"Gonorrhea", data:prepareDiseaseData(stdGonorrheaData, 'std', {name: "Total Cases (Rates)",
+                    pop: resp[5].aggregations.total_pop.value, std: resp[3].aggregations.group_count_cases.value})},
+            {disease:"Primary and Secondary Syphilis", data:prepareDiseaseData(stdPrimarySyphilisData, 'std', {name: "Total Cases (Rates)",
+                    pop: resp[8].aggregations.total_pop.value, std: resp[6].aggregations.group_count_cases.value})},
+            {disease:"Early Latent Syphilis", data:prepareDiseaseData(stdEarlySyphilisData, 'std', {name: "Total Cases (Rates)",
+                    pop: resp[11].aggregations.total_pop.value, std: resp[9].aggregations.group_count_cases.value})}];
 
         deferred.resolve(stdData);
     }, function (err) {
@@ -408,16 +422,22 @@ function getAIDSDataForFactSheets(factSheetQueryJSON) {
     var promises = [
         es.executeESQuery('owh_aids', 'aids', aidsDiagnosesESQuery),
         es.aggregateCensusDataQuery(aidsDiagnosesPopQuery, 'owh_aids', "aids", 'pop'),
+        es.executeESQuery('owh_aids', 'aids', aidsDiagnosesPopQuery),
         es.executeESQuery('owh_aids', 'aids', aidsDeathsESQuery),
         es.aggregateCensusDataQuery(aidsDeathsPopQuery, 'owh_aids', "aids", 'pop'),
+        es.executeESQuery('owh_aids', 'aids', aidsDeathsPopQuery),
         es.executeESQuery('owh_aids', 'aids', aidsPrevalenceESQuery),
         es.aggregateCensusDataQuery(aidsPrevalencePopQuery, 'owh_aids', "aids", 'pop'),
+        es.executeESQuery('owh_aids', 'aids', aidsPrevalencePopQuery),
         es.executeESQuery('owh_aids', 'aids', hivDiagnosesESQuery),
         es.aggregateCensusDataQuery(hivDiagnosesPopQuery, 'owh_aids', "aids", 'pop'),
+        es.executeESQuery('owh_aids', 'aids', hivDiagnosesPopQuery),
         es.executeESQuery('owh_aids', 'aids', hivDeathsESQuery),
         es.aggregateCensusDataQuery(hivDeathsPopQuery, 'owh_aids', "aids", 'pop'),
+        es.executeESQuery('owh_aids', 'aids', hivDeathsPopQuery),
         es.executeESQuery('owh_aids', 'aids', hivPrevalenceESQuery),
-        es.aggregateCensusDataQuery(hivPrevalencePopQuery, 'owh_aids', "aids", 'pop')
+        es.aggregateCensusDataQuery(hivPrevalencePopQuery, 'owh_aids', "aids", 'pop'),
+        es.executeESQuery('owh_aids', 'aids', hivPrevalencePopQuery)
     ];
 
     var deferred = Q.defer();
@@ -427,32 +447,38 @@ function getAIDSDataForFactSheets(factSheetQueryJSON) {
         es.mergeWithCensusData(aidsDiagnosesData, resp[1], undefined, 'pop');
         searchUtils.applySuppressions(aidsDiagnosesData, 'aids', 0);
         //AIDS Deaths
-        var aidsDeathsData = searchUtils.populateDataWithMappings(resp[2], 'aids' , 'cases');
-        es.mergeWithCensusData(aidsDeathsData, resp[3], undefined, 'pop');
+        var aidsDeathsData = searchUtils.populateDataWithMappings(resp[3], 'aids' , 'cases');
+        es.mergeWithCensusData(aidsDeathsData, resp[4], undefined, 'pop');
         searchUtils.applySuppressions(aidsDeathsData, 'aids', 0);
         //AIDS Prevalence
-        var aidsPrevalenceData = searchUtils.populateDataWithMappings(resp[4], 'aids' , 'cases');
-        es.mergeWithCensusData(aidsPrevalenceData, resp[5], undefined, 'pop');
+        var aidsPrevalenceData = searchUtils.populateDataWithMappings(resp[6], 'aids' , 'cases');
+        es.mergeWithCensusData(aidsPrevalenceData, resp[7], undefined, 'pop');
         searchUtils.applySuppressions(aidsPrevalenceData, 'aids', 0);
         //HIV Diagnoses
-        var hivDiagnosesData = searchUtils.populateDataWithMappings(resp[6], 'aids' , 'cases');
-        es.mergeWithCensusData(hivDiagnosesData, resp[7], undefined, 'pop');
+        var hivDiagnosesData = searchUtils.populateDataWithMappings(resp[9], 'aids' , 'cases');
+        es.mergeWithCensusData(hivDiagnosesData, resp[10], undefined, 'pop');
         searchUtils.applySuppressions(hivDiagnosesData, 'aids', 0);
         //HIV Deaths
-        var hivDeathsData = searchUtils.populateDataWithMappings(resp[8], 'aids' , 'cases');
-        es.mergeWithCensusData(hivDeathsData, resp[9], undefined, 'pop');
+        var hivDeathsData = searchUtils.populateDataWithMappings(resp[12], 'aids' , 'cases');
+        es.mergeWithCensusData(hivDeathsData, resp[13], undefined, 'pop');
         searchUtils.applySuppressions(hivDeathsData, 'aids', 0);
         //HIV Prevalence
-        var hivPrevalenceData = searchUtils.populateDataWithMappings(resp[10], 'aids' , 'cases');
-        es.mergeWithCensusData(hivPrevalenceData, resp[11], undefined, 'pop');
+        var hivPrevalenceData = searchUtils.populateDataWithMappings(resp[15], 'aids' , 'cases');
+        es.mergeWithCensusData(hivPrevalenceData, resp[16], undefined, 'pop');
         searchUtils.applySuppressions(hivPrevalenceData, 'aids', 0);
 
-        var hivData = [{disease:"AIDS Diagnoses", data:prepareDiseaseData(aidsDiagnosesData, 'aids')},
-            {disease:"AIDS Deaths*", data:prepareDiseaseData(aidsDeathsData, 'aids')},
-            {disease:"AIDS Prevalence*", data:prepareDiseaseData(aidsPrevalenceData, 'aids')},
-            {disease:"HIV Diagnoses", data:prepareDiseaseData(hivDiagnosesData, 'aids')},
-            {disease:"HIV Deaths*", data:prepareDiseaseData(hivDeathsData, 'aids')},
-            {disease:"HIV Prevalence*", data:prepareDiseaseData(hivPrevalenceData, 'aids')}];
+        var hivData = [{disease:"AIDS Diagnoses", data:prepareDiseaseData(aidsDiagnosesData, 'aids', {name: "Total Cases (Rates)",
+                pop: resp[2].aggregations.total_pop.value, aids: resp[0].aggregations.group_count_cases.value})},
+            {disease:"AIDS Deaths*", data:prepareDiseaseData(aidsDeathsData, 'aids', {name: "Total Cases (Rates)",
+                    pop: resp[5].aggregations.total_pop.value, aids: resp[3].aggregations.group_count_cases.value})},
+            {disease:"AIDS Prevalence*", data:prepareDiseaseData(aidsPrevalenceData, 'aids', {name: "Total Cases (Rates)",
+                    pop: resp[8].aggregations.total_pop.value, aids: resp[6].aggregations.group_count_cases.value})},
+            {disease:"HIV Diagnoses", data:prepareDiseaseData(hivDiagnosesData, 'aids', {name: "Total Cases (Rates)",
+                    pop: resp[11].aggregations.total_pop.value, aids: resp[9].aggregations.group_count_cases.value})},
+            {disease:"HIV Deaths*", data:prepareDiseaseData(hivDeathsData, 'aids', {name: "Total Cases (Rates)",
+                    pop: resp[14].aggregations.total_pop.value, aids: resp[12].aggregations.group_count_cases.value})},
+            {disease:"HIV Prevalence*", data:prepareDiseaseData(hivPrevalenceData, 'aids', {name: "Total Cases (Rates)",
+                    pop: resp[17].aggregations.total_pop.value, aids: resp[15].aggregations.group_count_cases.value})}];
 
         deferred.resolve(hivData);
     }, function (err) {

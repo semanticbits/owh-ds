@@ -13108,6 +13108,11 @@
                   }
                 }
               }
+            },
+            "total_pop": {
+              "sum": {
+                "field": "pop"
+              }
             }
           },
           "query": {
@@ -13372,6 +13377,11 @@
                     "field": "pop"
                   }
                 }
+              }
+            },
+            "total_pop": {
+              "sum": {
+                "field": "pop"
               }
             }
           },
@@ -13638,6 +13648,11 @@
                   }
                 }
               }
+            },
+            "total_pop": {
+              "sum": {
+                "field": "pop"
+              }
             }
           },
           "query": {
@@ -13903,6 +13918,11 @@
                   }
                 }
               }
+            },
+            "total_pop": {
+              "sum": {
+                "field": "pop"
+              }
             }
           },
           "query": {
@@ -14167,6 +14187,11 @@
                     "field": "pop"
                   }
                 }
+              }
+            },
+            "total_pop": {
+              "sum": {
+                "field": "pop"
               }
             }
           },
@@ -14440,6 +14465,11 @@
                     "field": "pop"
                   }
                 }
+              }
+            },
+            "total_pop": {
+              "sum": {
+                "field": "pop"
               }
             }
           },
@@ -14718,6 +14748,11 @@
                   }
                 }
               }
+            },
+            "total_pop": {
+              "sum": {
+                "field": "pop"
+              }
             }
           },
           "query": {
@@ -14994,6 +15029,11 @@
                     "field": "pop"
                   }
                 }
+              }
+            },
+            "total_pop": {
+              "sum": {
+                "field": "pop"
               }
             }
           },
@@ -15272,6 +15312,11 @@
                   }
                 }
               }
+            },
+            "total_pop": {
+              "sum": {
+                "field": "pop"
+              }
             }
           },
           "query": {
@@ -15549,6 +15594,11 @@
                   }
                 }
               }
+            },
+            "total_pop": {
+              "sum": {
+                "field": "pop"
+              }
             }
           },
           "query": {
@@ -15825,6 +15875,11 @@
                     "field": "pop"
                   }
                 }
+              }
+            },
+            "total_pop": {
+              "sum": {
+                "field": "pop"
               }
             }
           },

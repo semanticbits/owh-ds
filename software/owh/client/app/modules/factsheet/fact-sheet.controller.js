@@ -160,6 +160,7 @@
         fsc.calculateRate = calculateRate;
         fsc.isNumeric = isNumeric;
         fsc.getCancerCountDisplayVal = getCancerCountDisplayVal;
+        fsc.isValueInvalidDisplay = isValueInvalidDisplay;
 
         if(fsc.queryID) {
             getQueryResults(fsc.state, fsc.fsType, fsc.queryID).then(function (response) {
@@ -1752,7 +1753,12 @@
             }
             return displayValue;
         }
-
+        function isValueInvalidDisplay(value) {
+            if(['suppressed', 'Not available', 'Not applicable'].indexOf(value.toLowerCase())>=0) {
+                return true;
+            }
+            return false;
+        }
         function calculateRate(count, totalPopulation, checkReliability) {
             if(count === 'suppressed') {
                 return 'Suppressed';
