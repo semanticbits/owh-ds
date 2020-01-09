@@ -1754,10 +1754,9 @@
             return displayValue;
         }
         function isValueInvalidDisplay(value) {
-            if(value && value instanceof String)
-                if(['suppressed', 'Not available', 'Not applicable'].indexOf(value.toLowerCase())>=0) {
-                    return true;
-                }
+            if(['suppressed', 'not available', 'not applicable'].indexOf(new String(value).toLowerCase())>=0) {
+                return true;
+            }
             return false;
         }
         function calculateRate(count, totalPopulation, checkReliability) {
