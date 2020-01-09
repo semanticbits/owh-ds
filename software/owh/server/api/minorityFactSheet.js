@@ -839,35 +839,35 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
             var cancerIncidentProstateData = prepareCancerData(resp[40], resp[25], resp[41], resp[27], 'cancer_incidence');
             searchUtils.applyCustomSuppressions(cancerIncidentProstateData.data.nested, rules, 'cancer_incidence');
 
-            var sortOrder = ['American Indian/Alaska Native', 'Asian or Pacific Islander', 'Black', 'Hispanic'];
+            // var sortOrder = ['American Indian/Alaska Native', 'Asian or Pacific Islander', 'Black', 'Hispanic'];
             var cancerData = [
                 {
-                    mortality: sortArrayByPropertyAndSortOrder(cancerMortalityBreastData.data.nested.table.race, 'name', sortOrder),
-                    incidence: sortArrayByPropertyAndSortOrder(cancerIncidentBreastData.data.nested.table.race, 'name', sortOrder),
+                    mortality: cancerMortalityBreastData.data.nested.table.year[0],
+                    incidence: cancerIncidentBreastData.data.nested.table.year[0],
                     site: 'Breast'
                 }, {
-                    mortality: sortArrayByPropertyAndSortOrder(cancerMortalityCervixData.data.nested.table.race, 'name', sortOrder),
-                    incidence: sortArrayByPropertyAndSortOrder(cancerIncidentCervixData.data.nested.table.race, 'name', sortOrder),
+                    mortality: cancerMortalityCervixData.data.nested.table.year[0],
+                    incidence: cancerIncidentCervixData.data.nested.table.year[0],
                     site: 'Cervix Uteri†'
                 }, {
-                    mortality: sortArrayByPropertyAndSortOrder(cancerMortalityColonAndRectumData.data.nested.table.race, 'name', sortOrder),
-                    incidence: sortArrayByPropertyAndSortOrder(cancerIncidentColonAndRectumData.data.nested.table.race, 'name', sortOrder),
+                    mortality: cancerMortalityColonAndRectumData.data.nested.table.year[0],
+                    incidence: cancerIncidentColonAndRectumData.data.nested.table.year[0],
                     site: 'Colon and Rectum'
                 }, {
-                    mortality: sortArrayByPropertyAndSortOrder(cancerMortalityLungAndBronchusData.data.nested.table.race, 'name', sortOrder),
-                    incidence: sortArrayByPropertyAndSortOrder(cancerIncidentLungAndBronchusData.data.nested.table.race, 'name', sortOrder),
+                    mortality: cancerMortalityLungAndBronchusData.data.nested.table.year[0],
+                    incidence: cancerIncidentLungAndBronchusData.data.nested.table.year[0],
                     site: 'Lung and Bronchus'
                 }, {
-                    mortality: sortArrayByPropertyAndSortOrder(cancerMortalityMelanomaData.data.nested.table.race, 'name', sortOrder),
-                    incidence: sortArrayByPropertyAndSortOrder(cancerIncidentMelanomaData.data.nested.table.race, 'name', sortOrder),
+                    mortality: cancerMortalityMelanomaData.data.nested.table.year[0],
+                    incidence: cancerIncidentMelanomaData.data.nested.table.year[0],
                     site: 'Melanoma of the Skin'
                 }, {
-                    mortality: sortArrayByPropertyAndSortOrder(cancerMortalityOvaryData.data.nested.table.race, 'name', sortOrder),
-                    incidence: sortArrayByPropertyAndSortOrder(cancerIncidentOvaryData.data.nested.table.race, 'name', sortOrder),
+                    mortality: cancerMortalityOvaryData.data.nested.table.year[0],
+                    incidence: cancerIncidentOvaryData.data.nested.table.year[0],
                     site: 'Ovary†'
                 }, {
-                    mortality: sortArrayByPropertyAndSortOrder(cancerMortalityProstateData.data.nested.table.race, 'name', sortOrder),
-                    incidence: sortArrayByPropertyAndSortOrder(cancerIncidentProstateData.data.nested.table.race, 'name', sortOrder),
+                    mortality: cancerMortalityProstateData.data.nested.table.year[0],
+                    incidence: cancerIncidentProstateData.data.nested.table.year[0],
                     site: 'Prostate††'
                 }
             ];
@@ -887,24 +887,24 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
 
 function prepareCancerData(pop, totalPop, hispanicPop, hispanicTotalPop, countKey) {
 
-    var selectedRaces = { "options": [ "American Indian/Alaska Native", "Asian or Pacific Islander", "Black" ]};
+    // var selectedRaces = { "options": [ "American Indian/Alaska Native", "Asian or Pacific Islander", "Black" ]};
     var resultantData = searchUtils.populateDataWithMappings(pop, countKey);
-    searchUtils.addMissingFilterOptions(selectedRaces, resultantData.data.nested.table.race, countKey);
+    // searchUtils.addMissingFilterOptions(selectedRaces, resultantData.data.nested.table.current_year, countKey);
     var cancerPopulation = searchUtils.populateDataWithMappings(totalPop, 'cancer_population');
-    searchUtils.addMissingFilterOptions(selectedRaces, cancerPopulation.data.nested.table.race, countKey);
+    // searchUtils.addMissingFilterOptions(selectedRaces, cancerPopulation.data.nested.table.current_year, countKey);
     var cancerPopulationIndex = searchUtils.createPopIndex(cancerPopulation.data.nested.table, 'cancer_population');
     searchUtils.attachPopulation(resultantData.data.nested.table, cancerPopulationIndex, '');
 
-    var cancerHispanicData = searchUtils.populateDataWithMappings(hispanicPop, countKey);
-    var cancerHispanicPopulation = searchUtils.populateDataWithMappings(hispanicTotalPop, 'cancer_population');
-    var hispanicPopulationIndex = searchUtils.createPopIndex(cancerHispanicPopulation.data.nested.table, 'cancer_population');
-    searchUtils.attachPopulation(cancerHispanicData.data.nested.table, hispanicPopulationIndex, '');
-    var hispanicData = cancerHispanicData.data.nested.table.current_year[0] || {name:'Hispanic', pop:cancerHispanicPopulation.data.nested.table.current_year[0].cancer_population};
-    if(hispanicData[countKey] === undefined) {
-        hispanicData[countKey] = 0;
-    }
-    hispanicData['name'] = 'Hispanic';
-    resultantData.data.nested.table.race.push(hispanicData);
+    // var cancerHispanicData = searchUtils.populateDataWithMappings(hispanicPop, countKey);
+    // var cancerHispanicPopulation = searchUtils.populateDataWithMappings(hispanicTotalPop, 'cancer_population');
+    // var hispanicPopulationIndex = searchUtils.createPopIndex(cancerHispanicPopulation.data.nested.table, 'cancer_population');
+    // searchUtils.attachPopulation(cancerHispanicData.data.nested.table, hispanicPopulationIndex, '');
+    // var hispanicData = cancerHispanicData.data.nested.table.current_year[0] || {name:'Hispanic', pop:cancerHispanicPopulation.data.nested.table.current_year[0].cancer_population};
+    // if(hispanicData[countKey] === undefined) {
+    //     hispanicData[countKey] = 0;
+    // }
+    // hispanicData['name'] = 'Hispanic';
+    // resultantData.data.nested.table.current_year.push(hispanicData);
     searchUtils.applySuppressions(resultantData, countKey, 16);
 
     return resultantData;

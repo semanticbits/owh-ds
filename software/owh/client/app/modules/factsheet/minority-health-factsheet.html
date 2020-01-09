@@ -367,40 +367,33 @@
                 <thead>
                 <tr>
                     <th>Cancer Site</th>
-                    <th>Measure</th>
-                    <th>American Indian or Alaska Native</th>
-                    <th>Asian or Pacific Islander</th>
-                    <th>Black</th>
-                    <th>Hispanic</th>
+                    <th>State/National</th>
+                    <th>Population</th>
+                    <th>Count</th>
+                    <th>Incidence Crude Rates (per 100,000)</th>
+                    <th>Deaths</th>
+                    <th>Mortality Crude Rates (per 100,000)</th>
                 </tr>
                 </thead>
                 <tbody ng-repeat="eachRecord in fsc.factSheet.cancerData">
                 <tr>
-                    <td ng-bind="eachRecord.site" rowspan="5"></td>
-                    <td>Population</td>
-                    <td ng-repeat="dt in eachRecord.incidence"
-                        ng-bind="dt.pop === 'suppressed' ? 'Suppressed' : ( dt.pop | number )"></td>
+                    <td ng-bind="eachRecord.site" rowspan="2"></td>
+                    <td>State</td>
+                    <td ng-bind="eachRecord.incidence.pop === 'suppressed' ? 'Suppressed' : ( eachRecord.incidence.pop | number )"></td>
+                    <td ng-bind="fsc.getCancerCountDisplayVal(eachRecord.incidence.cancer_incidence)"></td>
+                    <td ng-if="fsc.state != 'KS'" ng-bind="fsc.calculateRate(eachRecord.incidence.cancer_incidence, eachRecord.incidence.pop, true)"></td>
+                    <td ng-if="fsc.state == 'KS'">Not available</td>
+                    <td ng-bind="eachRecord.mortality.cancer_mortality === 'suppressed' ? 'Suppressed' : ( eachRecord.mortality.cancer_mortality | number )"></td>
+                    <td ng-bind="fsc.calculateRate(eachRecord.mortality.cancer_mortality, eachRecord.mortality.pop, true)"></td>
                 </tr>
                 <tr>
-                    <td>Count</td>
-                    <td ng-repeat="dt in eachRecord.incidence"
-                        ng-bind="fsc.getCancerCountDisplayVal(dt.cancer_incidence)"></td>
-                </tr>
-                <tr>
-                    <td>Incidence Crude Rates</td>
-                    <td ng-if="fsc.state != 'KS'" ng-repeat="dt in eachRecord.incidence"
-                        ng-bind="fsc.calculateRate(dt.cancer_incidence, dt.pop, true)"></td>
-                    <td ng-if="fsc.state == 'KS'" ng-repeat="dt in eachRecord.incidence">Not available</td>
-                </tr>
-                <tr>
-                    <td>Deaths</td>
-                    <td ng-repeat="dt in eachRecord.mortality"
-                        ng-bind="dt.cancer_mortality === 'suppressed' ? 'Suppressed' : ( dt.cancer_mortality | number )"></td>
-                </tr>
-                <tr>
-                    <td>Mortality Crude Rates</td>
-                    <td ng-repeat="dt in eachRecord.mortality"
-                        ng-bind="fsc.calculateRate(dt.cancer_mortality, dt.pop, true)"></td>
+                    <td>National*</td>
+                    <td ng-bind="nationalFactSheet.cancerData[$index].incidence.pop === 'suppressed' ? 'Suppressed' : ( nationalFactSheet.cancerData[$index].incidence.pop | number )"></td>
+                    <td ng-bind="fsc.getCancerCountDisplayVal(nationalFactSheet.cancerData[$index].incidence.cancer_incidence)"></td>
+                    <td ng-if="fsc.state != 'KS'" ng-bind="fsc.calculateRate(nationalFactSheet.cancerData[$index].incidence.cancer_incidence, nationalFactSheet.cancerData[$index].incidence.pop, true)"></td>
+                    <td ng-if="fsc.state == 'KS'">Not available</td>
+                    <td ng-bind="nationalFactSheet.cancerData[$index].mortality.cancer_mortality === 'suppressed' ? 'Suppressed' : ( nationalFactSheet.cancerData[$index].mortality.cancer_mortality | number )"></td>
+                    <td ng-bind="fsc.calculateRate(nationalFactSheet.cancerData[$index].mortality.cancer_mortality, nationalFactSheet.cancerData[$index].mortality.pop, true)"></td>
                 </tr>
                 </tbody>
             </table>

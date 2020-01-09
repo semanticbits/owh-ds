@@ -18488,9 +18488,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_race": {
+              "group_table_year": {
                 "terms": {
-                  "field": "race",
+                  "field": "current_year",
                   "size": 0
                 }
               }
@@ -18568,9 +18568,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_race": {
+              "group_table_year": {
                 "terms": {
-                  "field": "race",
+                  "field": "current_year",
                   "size": 0
                 },
                 "aggregations": {
@@ -18644,7 +18644,7 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_year": {
                 "terms": {
                   "field": "current_year",
                   "size": 0
@@ -18703,7 +18703,7 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_year": {
                 "terms": {
                   "field": "current_year",
                   "size": 0
@@ -18760,9 +18760,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_race": {
+              "group_table_year": {
                 "terms": {
-                  "field": "race",
+                  "field": "current_year",
                   "size": 0
                 }
               }
@@ -18840,9 +18840,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_race": {
+              "group_table_year": {
                 "terms": {
-                  "field": "race",
+                  "field": "current_year",
                   "size": 0
                 },
                 "aggregations": {
@@ -18916,7 +18916,7 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_year": {
                 "terms": {
                   "field": "current_year",
                   "size": 0
@@ -18975,7 +18975,7 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_year": {
                 "terms": {
                   "field": "current_year",
                   "size": 0
@@ -19032,9 +19032,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_race": {
+              "group_table_year": {
                 "terms": {
-                  "field": "race",
+                  "field": "current_year",
                   "size": 0
                 }
               }
@@ -19112,9 +19112,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_race": {
+              "group_table_year": {
                 "terms": {
-                  "field": "race",
+                  "field": "current_year",
                   "size": 0
                 },
                 "aggregations": {
@@ -19188,7 +19188,7 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_year": {
                 "terms": {
                   "field": "current_year",
                   "size": 0
@@ -19247,7 +19247,7 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_year": {
                 "terms": {
                   "field": "current_year",
                   "size": 0
@@ -19304,9 +19304,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_race": {
+              "group_table_year": {
                 "terms": {
-                  "field": "race",
+                  "field": "current_year",
                   "size": 0
                 }
               }
@@ -19384,9 +19384,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_race": {
+              "group_table_year": {
                 "terms": {
-                  "field": "race",
+                  "field": "current_year",
                   "size": 0
                 },
                 "aggregations": {
@@ -19460,7 +19460,7 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_year": {
                 "terms": {
                   "field": "current_year",
                   "size": 0
@@ -19519,7 +19519,7 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_year": {
                 "terms": {
                   "field": "current_year",
                   "size": 0
@@ -19576,9 +19576,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_race": {
+              "group_table_year": {
                 "terms": {
-                  "field": "race",
+                  "field": "current_year",
                   "size": 0
                 }
               }
@@ -19656,9 +19656,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_race": {
+              "group_table_year": {
                 "terms": {
-                  "field": "race",
+                  "field": "current_year",
                   "size": 0
                 },
                 "aggregations": {
@@ -19743,7 +19743,7 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_year": {
                 "terms": {
                   "field": "current_year",
                   "size": 0
@@ -19802,7 +19802,7 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_year": {
                 "terms": {
                   "field": "current_year",
                   "size": 0
@@ -19870,9 +19870,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_race": {
+              "group_table_year": {
                 "terms": {
-                  "field": "race",
+                  "field": "current_year",
                   "size": 0
                 }
               }
@@ -19950,9 +19950,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_race": {
+              "group_table_year": {
                 "terms": {
-                  "field": "race",
+                  "field": "current_year",
                   "size": 0
                 },
                 "aggregations": {
@@ -20037,7 +20037,7 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_year": {
                 "terms": {
                   "field": "current_year",
                   "size": 0
@@ -20096,7 +20096,7 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_year": {
                 "terms": {
                   "field": "current_year",
                   "size": 0
@@ -20164,9 +20164,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_race": {
+              "group_table_year": {
                 "terms": {
-                  "field": "race",
+                  "field": "current_year",
                   "size": 0
                 }
               }
@@ -20244,9 +20244,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_race": {
+              "group_table_year": {
                 "terms": {
-                  "field": "race",
+                  "field": "current_year",
                   "size": 0
                 },
                 "aggregations": {
@@ -20331,7 +20331,7 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_year": {
                 "terms": {
                   "field": "current_year",
                   "size": 0
@@ -20390,7 +20390,7 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_current_year": {
+              "group_table_year": {
                 "terms": {
                   "field": "current_year",
                   "size": 0
