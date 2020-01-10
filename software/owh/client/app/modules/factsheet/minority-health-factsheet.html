@@ -22,6 +22,7 @@
                     <thead>
                     <tr>
                         <th>Racial distributions of residents*</th>
+                        <th>Total</th>
                         <th>American Indian or Alaska Native</th>
                         <th>Asian or Pacific Islander</th>
                         <th>Black or African American</th>
@@ -40,6 +41,39 @@
                     </tbody>
                 </table>
                 <br/>
+                <table class="bridge-race-table2" style="background-color: white;">
+                    <thead>
+                    <tr>
+                        <th>Age Distributions of Residents</th>
+                        <th>10-14</th>
+                        <th>15-19</th>
+                        <th>20-44</th>
+                        <th>45-64</th>
+                        <th>65-84</th>
+                        <th>85+</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="bold-class">Population</td>
+                        <td>{{fsc.factSheet.ageGroups[0].bridge_race | number }}</td>
+                        <td>{{fsc.factSheet.ageGroups[1]["15-44 years"][0].bridge_race  | number }}</td>
+                        <td>{{fsc.factSheet.ageGroups[1]["15-44 years"][1].bridge_race  | number }}</td>
+                        <td>{{fsc.factSheet.ageGroups[2].bridge_race | number }}</td>
+                        <td>{{fsc.factSheet.ageGroups[3].bridge_race | number }}</td>
+                        <td>{{fsc.factSheet.ageGroups[4].bridge_race | number }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold-class">Population</td>
+                        <td>{{nationalFactSheet.ageGroups[0].bridge_race | number }}</td>
+                        <td>{{nationalFactSheet.ageGroups[1]["15-44 years"][0].bridge_race  | number }}</td>
+                        <td>{{nationalFactSheet.ageGroups[1]["15-44 years"][1].bridge_race  | number }}</td>
+                        <td>{{nationalFactSheet.ageGroups[2].bridge_race | number }}</td>
+                        <td>{{nationalFactSheet.ageGroups[3].bridge_race | number }}</td>
+                        <td>{{nationalFactSheet.ageGroups[4].bridge_race | number }}</td>
+                    </tr>
+                    </tbody>
+                </table>
                 <i class="bridge-race-info" translate="{{ 'fs.minority.health.footnote'}}"></i>
             </div>
         </div>

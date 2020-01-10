@@ -221,6 +221,7 @@ function getBridgeRaceDataForFactSheet(factSheetQueryJSON) {
         var ageGroupData = searchUtils.populateDataWithMappings(resp[2], 'bridge_race', 'pop');
         var data =  prepareFactSheetForPopulation(nonHispanicRaceData, hispanicData, ageGroupData);
         data.totalPop = resp[0].aggregations.group_count_pop.value + resp[1].aggregations.group_count_pop.value;
+        data.race.unshift({name: "Total", bridge_race: data.totalPop});
         deferred.resolve(data);
     }, function (err) {
         logger.error(err.message);
