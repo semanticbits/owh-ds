@@ -79,14 +79,21 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
 function preparePRAMSData(respData) {
     // var selectedRaces = {options: ['Black', 'Other Race' ,'Hispanic']};
     var resultData = [
-        {"question": "Smoking cigarettes during the last three months of pregnancy", data: respData[0].table.question[0] && respData[0].table.question[0].yes ? respData[0].table.question[0].yes.year : "Not applicable"},
-        {"question": "Females reported physical abuse by husband or partner during pregnancy", data: respData[1].table.question[0] && respData[1].table.question[0].yes ? respData[1].table.question[0].yes.year: "Not applicable"},
-        {"question": "Ever breastfed or pump breast milk to feed after delivery", data: respData[2].table.question[0] && respData[2].table.question[0].yes ? respData[2].table.question[0].yes.year : "Not applicable"},
-        {"question": "Indicator of depression 3 months before pregnancy", data: respData[3].table.question[0] && respData[3].table.question[0].yes ? respData[3].table.question[0].yes.year : "Not applicable"}
+        {"question": "Smoking cigarettes during the last three months of pregnancy", data: processPramsValue(respData[0])},
+        {"question": "Females reported physical abuse by husband or partner during pregnancy", data: processPramsValue(respData[1])},
+        {"question": "Ever breastfed or pump breast milk to feed after delivery", data: processPramsValue(respData[2])},
+        {"question": "Indicator of depression 3 months before pregnancy", data: processPramsValue(respData[3])}
     ];
     return resultData;
 }
-
+function processPramsValue(data) {
+    if(data.table.question[0] && data.table.question[0].yes && data.table.question[0].yes.year &&
+        data.table.question[0].yes.year[0] && data.table.question[0].yes.year[0].prams &&
+        data.table.question[0].yes.year[0].prams.mean) {
+        return data.table.question[0].yes.year[0].prams.mean;
+    }
+    return "Not applicable";
+}
 /**
  * To prepare BRFSS data
  * @param data_2015
@@ -103,20 +110,26 @@ function prepareBRFSSData(data){
     data.table.question.forEach(function(eachRecord) {
         switch(eachRecord.name){
             case "_bmi5cat":
-                if(eachRecord["obese (bmi 30.0 - 99.8)"]) brfssData[0].data = eachRecord["obese (bmi 30.0 - 99.8)"].year;
+                if(eachRecord["obese (bmi 30.0 - 99.8)"]) brfssData[0].data = processBrfssValue(eachRecord["obese (bmi 30.0 - 99.8)"].year);
                 break;
             case "_rfsmok3":
-                if(eachRecord.yes) brfssData[1].data = eachRecord.yes.year;
+                if(eachRecord.yes) brfssData[1].data = processBrfssValue(eachRecord.yes.year);
                 break;
             case "_rfdrhv5":
-                if(eachRecord["meet criteria for heavy drinking"]) brfssData[2].data = eachRecord["meet criteria for heavy drinking"].year;
+                if(eachRecord["meet criteria for heavy drinking"]) brfssData[2].data = processBrfssValue(eachRecord["meet criteria for heavy drinking"].year);
                 break;
             case "_paindx1":
-                if(eachRecord.yes) brfssData[3].data = eachRecord.yes.year;
+                if(eachRecord.yes) brfssData[3].data = processBrfssValue(eachRecord.yes.year);
                 break;
         }
     });
     return brfssData;
+}
+function processBrfssValue(data) {
+    if(data && data[0] && data[0].brfss && data[0].brfss.mean) {
+        return data[0].brfss.mean;
+    }
+    return data;
 }
 
 /**
@@ -126,35 +139,22 @@ function prepareBRFSSData(data){
  */
 function prepareYRBSData(data) {
     var yrbsData = [];
-    yrbsData.push({
-        "question": "Currently use alcohol", data:data.table.question[0] && data.table.question[0].Yes ?
-            data.table.question[0].Yes.year: "Not applicable"
-    });
-    yrbsData.push({
-        "question": "Currently use cigarettes", data:data.table.question[1] && data.table.question[1].Yes ?
-            data.table.question[1].Yes.year: "Not applicable"
-    });
-    yrbsData.push({
-        "question": "Currently use marijuana", data:data.table.question[2] && data.table.question[2].Yes ?
-            data.table.question[2].Yes.year: "Not applicable"
-    });
-    yrbsData.push({
-        "question": "Currently sexually active", data:data.table.question[3] && data.table.question[3].Yes ?
-            data.table.question[3].Yes.year: "Not applicable"
-    });
-    yrbsData.push({
-        "question": "Attempted suicide", data:data.table.question[4] && data.table.question[4].Yes ?
-            data.table.question[4].Yes.year: "Not applicable"
-    });
-    yrbsData.push({
-        "question": "Overweight", data:data.table.question[5] && data.table.question[5].Yes ?
-            data.table.question[5].Yes.year: "Not applicable"
-    });
-    yrbsData.push({
-        "question": "Obese", data:data.table.question[6] && data.table.question[6].Yes ?
-            data.table.question[6].Yes.year: "Not applicable"
-    });
+    yrbsData.push({"question": "Currently use alcohol", data: processYrbsValue(data.table.question[0])});
+    yrbsData.push({"question": "Currently use cigarettes", data: processYrbsValue(data.table.question[1])});
+    yrbsData.push({"question": "Currently use marijuana", data: processYrbsValue(data.table.question[2])});
+    yrbsData.push({"question": "Currently sexually active", data: processYrbsValue(data.table.question[3])});
+    yrbsData.push({"question": "Attempted suicide", data: processYrbsValue(data.table.question[4])});
+    yrbsData.push({"question": "Overweight", data: processYrbsValue(data.table.question[5])});
+    yrbsData.push({"question": "Obese", data: processYrbsValue(data.table.question[6])});
     return yrbsData;
+}
+
+function processYrbsValue(data) {
+    if(data && data.Yes && data.Yes.year && data.Yes.year[0] &&
+        data.Yes.year[0].mental_health && data.Yes.year[0].mental_health.mean) {
+        return data.Yes.year[0].mental_health.mean;
+    }
+    return "Not applicable";
 }
 
 /**
@@ -574,11 +574,11 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
         var heartDiseaseData = prepareDetailMortalityData(resp[16], resp[17], resp[18], resp[19]);
 
         return [
-            {causeOfDeath:"Diseases of heart", data:heartDiseaseData.data.nested.table.year},
-            {causeOfDeath:"Malignant neoplasms", data:malignantNeoplasmData.data.nested.table.year},
-            {causeOfDeath: "Chronic lower respiratory disease", data:chronicRespiratoryData.data.nested.table.year},
-            {causeOfDeath: "Accidents (unintentional injuries)", data:accidentData.data.nested.table.year},
-            {causeOfDeath: "Cerebrovascular diseases", data:cerebroVascularData.data.nested.table.year}
+            {causeOfDeath:"Diseases of heart", data:heartDiseaseData.data.nested.table.year[0]},
+            {causeOfDeath:"Malignant neoplasms", data:malignantNeoplasmData.data.nested.table.year[0]},
+            {causeOfDeath: "Chronic lower respiratory disease", data:chronicRespiratoryData.data.nested.table.year[0]},
+            {causeOfDeath: "Accidents (unintentional injuries)", data:accidentData.data.nested.table.year[0]},
+            {causeOfDeath: "Cerebrovascular diseases", data:cerebroVascularData.data.nested.table.year[0]}
         ];
     }).then(function (set1Data) {
         var executeSet2Queries = function () {
@@ -620,11 +620,11 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
 
                 var nephritisData = prepareDetailMortalityData(resp[16], resp[17], resp[18], resp[19]);
                 var data = set1Data.concat([
-                    {causeOfDeath: "Alzheimer's disease", data:alzheimerData.data.nested.table.year},
-                    {causeOfDeath: "Diabetes mellitus", data:diabetesMellitusData.data.nested.table.year},
-                    {causeOfDeath: "Influenza and pneumonia", data:influenzaData.data.nested.table.year},
-                    {causeOfDeath: "Nephritis, nephrotic syndrome and nephrosis", data:nephritisData.data.nested.table.year},
-                    {causeOfDeath: "Intentional self-harm (suicide)", data:suicideData.data.nested.table.year}
+                    {causeOfDeath: "Alzheimer's disease", data:alzheimerData.data.nested.table.year[0]},
+                    {causeOfDeath: "Diabetes mellitus", data:diabetesMellitusData.data.nested.table.year[0]},
+                    {causeOfDeath: "Influenza and pneumonia", data:influenzaData.data.nested.table.year[0]},
+                    {causeOfDeath: "Nephritis, nephrotic syndrome and nephrosis", data:nephritisData.data.nested.table.year[0]},
+                    {causeOfDeath: "Intentional self-harm (suicide)", data:suicideData.data.nested.table.year[0]}
                 ]);
                 defr.resolve(data);
             });
