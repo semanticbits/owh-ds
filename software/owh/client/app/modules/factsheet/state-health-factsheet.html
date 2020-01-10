@@ -282,7 +282,10 @@
                 <tbody>
                 <tr ng-repeat="eachRecord in fsc.factSheet.stdData">
                     <td>{{eachRecord.disease}}</td>
-                    <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown'">{{eachRaceValue.displayValue}}</td>
+                    <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown' && $index == 0">{{eachRaceValue.displayValue}}</td>
+                    <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown' && $index == 0">{{eachRaceValue.rate}}</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.stdData[$index].data" ng-if="eachRaceValue.name != 'Unknown' && $index == 0">{{eachRaceValue.displayValue}}</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.stdData[$index].data" ng-if="eachRaceValue.name != 'Unknown' && $index == 0">{{eachRaceValue.rate}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -296,16 +299,24 @@
             <table class="hiv-table">
                 <thead>
                 <tr>
-                    <th>Indicator</th>
-                    <th ng-if="fsc.fsTypeForTable != fsc.fsTypes.minority_health">Total Cases (Rates)</th>
-                    <th ng-repeat="eachRecord in fsc.factSheet.hivAIDSData[0].data" ng-if="fsc.fsTypeForTable != fsc.fsTypes.minority_health && $index > 0 && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
-                    <th ng-repeat="eachRecord in fsc.factSheet.hivAIDSData[0].data" ng-if="fsc.fsTypeForTable == fsc.fsTypes.minority_health && eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
+                    <th rowspan="2">Indicator</th>
+                    <th colspan="2" scope="colgroup">State</th>
+                    <th colspan="2" scope="colgroup">National</th>
+                </tr>
+                <tr>
+                    <th scope="col">Total Cases</th>
+                    <th scope="col">Rate</th>
+                    <th scope="col">Total Cases</th>
+                    <th scope="col">Rate</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="eachRecord in fsc.factSheet.hivAIDSData">
                     <td>{{eachRecord.disease}}</td>
-                    <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown'">{{eachRaceValue.displayValue}}</td>
+                    <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown' && $index == 0">{{eachRaceValue.displayValue}}</td>
+                    <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown' && $index == 0">{{eachRaceValue.rate}}</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.hivAIDSData[$index].data" ng-if="eachRaceValue.name != 'Unknown' && $index == 0">{{eachRaceValue.displayValue}}</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.hivAIDSData[$index].data" ng-if="eachRaceValue.name != 'Unknown' && $index == 0">{{eachRaceValue.rate}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -318,22 +329,24 @@
             <table class="cancer-table">
                 <thead>
                 <tr>
-                    <th>Cancer Site</th>
-                    <th>Population</th>
-                    <th>Count</th>
-                    <th>Incidence Crude Rates (per 100,000)</th>
-                    <th>Deaths</th>
-                    <th>Mortality Crude Rates (per 100,000)</th>
+                    <th rowspan="2">Cancer Site</th>
+                    <th colspan="2" scope="colgroup">State</th>
+                    <th colspan="2" scope="colgroup">National</th>
+                </tr>
+                <tr>
+                    <th scope="col">Incidence Crude Rates (per 100,000)</th>
+                    <th scope="col">Mortality Crude Rates (per 100,000)</th>
+                    <th scope="col">Incidence Crude Rates (per 100,000)</th>
+                    <th scope="col">Mortality Crude Rates (per 100,000)</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="eachRecord in fsc.factSheet.cancerData">
                     <td ng-bind="eachRecord.site"></td>
-                    <td ng-bind="eachRecord.pop == 'Not available' ? eachRecord.pop : (eachRecord.pop | number)"></td>
-                    <td ng-bind="eachRecord.count == 'Not available' || eachRecord.count == 'Suppressed' ? eachRecord.count : (eachRecord.count | number)"></td>
                     <td ng-bind="eachRecord.incident_rate"></td>
-                    <td ng-bind="eachRecord.deaths === 'Suppressed' ? eachRecord.deaths : ( eachRecord.deaths | number)"></td>
                     <td ng-bind="eachRecord.mortality_rate"></td>
+                    <td ng-bind="nationalFactSheet.cancerData[$index].incident_rate"></td>
+                    <td ng-bind="nationalFactSheet.cancerData[$index].mortality_rate"></td>
                 </tr>
                 </tbody>
             </table>
