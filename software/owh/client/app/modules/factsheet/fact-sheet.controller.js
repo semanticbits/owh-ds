@@ -426,7 +426,7 @@
                             layout: lightHorizontalLines
                         },
                         {text: 'Source: 2014  NCHS National Vital Statistics System', style: 'info'},
-                        {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image'},
+                        {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                         {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},
                         {
                             style: 'table',
@@ -440,7 +440,7 @@
                             layout: lightHorizontalLines
                         },
                         {text: PRAMSSource, style: 'info'},
-                        {image: fsc.imageDataURLs.brfs, width: 50, height: 50, pageBreak: 'before', style: 'dataset-image'},
+                        {image: fsc.imageDataURLs.brfs, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Behavioral Risk Factors', style: 'heading'},
                         {
                             style: 'table',
@@ -497,7 +497,7 @@
                             layout: lightHorizontalLines
                         },
                         {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
-                        {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
+                        {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Sexually Transmitted Infections', style: 'heading'},
                         {text: 'Population: '+$filter('number')(fsc.factSheet.stdData[0].data[0].pop)},
                         {
@@ -802,6 +802,113 @@
                 bodyData: [stateData, nationalData]
             };
 
+            //STD
+            var stdHeaderData = ['Disease', "State/National"];
+            angular.forEach(fsc.factSheet.stdData[0].data, function(eachHeader) {
+                if(eachHeader.name != 'Unknown') {
+                    stdHeaderData.push(eachHeader.name);
+                }
+            });
+
+            var stdData = [];
+            angular.forEach(fsc.factSheet.stdData, function(eachRecord, index){
+                var stateRow = [{text:eachRecord.disease, rowSpan: 2}, 'State'];
+                var nationalRow = ["", "National*"];
+                angular.forEach(eachRecord.data, function(data, index){
+                    if(data.name !== 'Unknown') {
+                        stateRow.push(data.cases + ' ' + (data.rates =='Suppressed' ? '': '('+ data.rates +')'));
+                    }
+                });
+                angular.forEach($rootScope.nationalFactSheet.stdData[index].data, function(nationalData, j) {
+                    if(nationalData.name !== 'Unknown') {
+                        nationalRow.push(nationalData.cases + ' ' + (nationalData.rates == 'Suppressed' ? '' :
+                            '(' + nationalData.rates + ')'));
+                    }
+                });
+                if (eachRecord.data.length === 0) {
+                    for(var i=1; i < stdHeaderData.length - 1; i++) {
+                        stateRow.push('Not available');
+                        nationalRow.push('Not available');
+                    }
+                }
+                stdData.push(stateRow);
+                stdData.push(nationalRow);
+            });
+            allTablesData.std = {
+                headerData:  stdHeaderData,
+                bodyData: stdData
+            };
+
+            //HIV/AIDS
+            var hivHeaderData = ['Indicator', 'State/National'];
+            var hivData = [];
+            angular.forEach(fsc.factSheet.hivAIDSData[0].data, function(eachHeader, index){
+                if(eachHeader.name !== 'Unknown') {
+                    hivHeaderData.push(eachHeader.name);
+                }
+            });
+            angular.forEach(fsc.factSheet.hivAIDSData, function(eachRecord, index) {
+                var stateRow = [{text:eachRecord.disease, rowSpan: 2}, 'State'];
+                var nationalRow = ['', 'National*'];
+                angular.forEach(eachRecord.data, function(data){
+                    if(data.name !== 'Unknown') {
+                        stateRow.push(data.cases + ' ' + (data.rates =='Suppressed' ? '': '('+ data.rates +')'));
+                    }
+                });
+
+                angular.forEach($rootScope.nationalFactSheet.hivAIDSData[index].data, function(nationalData, j) {
+                    if(nationalData.name !== 'Unknown') {
+                        nationalRow.push(nationalData.cases + ' ' + (nationalData.rates == 'Suppressed' ? '' :
+                            '(' + nationalData.rates + ')'));
+                    }
+                });
+
+                if (eachRecord.data.length === 0) {
+                    for(var i=1; i < hivHeaderData.length - 1; i++) {
+                        stateRow.push('Not available');
+                        nationalRow.push('Not available');
+                    }
+                }
+                hivData.push(stateRow);
+                hivData.push(nationalRow);
+            });
+            allTablesData.hiv = {
+                headerData:  hivHeaderData,
+                bodyData: hivData
+            };
+
+            //Cancer
+            var cancerData = [];
+            angular.forEach(fsc.factSheet.cancerData, function(eachRecord, index) {
+                var stateRow = [{text:eachRecord.site, rowSpan: 2}, 'State'];
+                var nationalRow = ['', 'National*'];
+
+                var incidence = eachRecord.incidence;
+                stateRow.push(incidence.pop === 'suppressed' ? 'Suppressed' : $filter('number')(incidence.pop));
+                stateRow.push(fsc.getCancerCountDisplayVal(incidence.cancer_incidence));
+                stateRow.push(fsc.state === 'KS'? 'Not available' : fsc.calculateRate(incidence.cancer_incidence, incidence.pop, true));
+
+                var mortality = eachRecord.mortality;
+                stateRow.push(mortality.cancer_mortality === 'suppressed' ? 'Suppressed' : $filter('number')(mortality.cancer_mortality));
+                stateRow.push(fsc.calculateRate(mortality.cancer_mortality, mortality.pop, true));
+
+                //national
+                var nationalIncidence = $rootScope.nationalFactSheet.cancerData[index].incidence;
+                nationalRow.push(nationalIncidence.pop === 'suppressed' ? 'Suppressed' : $filter('number')(nationalIncidence.pop));
+                nationalRow.push(fsc.getCancerCountDisplayVal(nationalIncidence.cancer_incidence));
+                nationalRow.push(fsc.state === 'KS'? 'Not available' : fsc.calculateRate(nationalIncidence.cancer_incidence, nationalIncidence.pop, true));
+
+                var nationalMortality = $rootScope.nationalFactSheet.cancerData[index].mortality;
+                nationalRow.push(nationalMortality.cancer_mortality === 'suppressed' ? 'Suppressed' : $filter('number')(nationalMortality.cancer_mortality));
+                nationalRow.push(fsc.calculateRate(nationalMortality.cancer_mortality, nationalMortality.pop, true));
+
+                cancerData.push(stateRow);
+                cancerData.push(nationalRow);
+            });
+            allTablesData.cancer = {
+                headerData:  ["Cancer Site", "State/National", "Population", "Count", "Incidence Crude Rates (per 100,000)", 'Deaths', 'Mortality Crude Rates (per 100,000)'],
+                bodyData: cancerData
+            };
             return allTablesData;
         }
 
@@ -1250,6 +1357,15 @@
                 allTablesData.tb.bodyData = prepareTableBody(allTablesData.tb.bodyData);
                 allTablesData.tb.bodyData.unshift(prepareTableHeaders(allTablesData.tb.headerData));
 
+                var stdTableData = allTablesData.std.bodyData;
+                stdTableData.unshift(prepareTableHeaders(allTablesData.std.headerData));
+
+                var hivTableData = allTablesData.hiv.bodyData;
+                hivTableData.unshift(prepareTableHeaders(allTablesData.hiv.headerData));
+
+                var cancerTableData = allTablesData.cancer.bodyData;
+                cancerTableData.unshift(prepareTableHeaders(allTablesData.cancer.headerData));
+
                 var bridgeRaceTotalText = "Total minority state population: "+$filter('number')(fsc.factSheet.totalPop);
                 var lightHorizontalLines = {
                     hLineWidth: function (i, node) {
@@ -1478,8 +1594,48 @@
                     },
                     {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
                     {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image'},
+                    {text: ['Sexually Transmitted Infections ',
+                            {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},
+                    {
+                        style: 'table',
+                        table: {
+                            widths: $.map( allTablesData.std.headerData, function (d, i) {
+                                return '*';
+                            } ),
+                            body: stdTableData
+                        },
+                        layout: lightHorizontalLines
+                    },
+                    {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
+                    {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
+                    {text: ['HIV/AIDS ',
+                            {text:$filter('translate')('fs.hiv.rates.per.hundredK'), bold:false}],style: 'heading'},
+                    {
+                        style: 'table',
+                        table: {
+                            widths: $.map( allTablesData.hiv.headerData, function (d, i) {
+                                return '*';
+                            } ),
+                            body: hivTableData
+                        },
+                        layout: lightHorizontalLines
+                    },
+                    {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas, *2014', style: 'info'},
+                    {image: fsc.imageDataURLs.cancer, width: 50, height: 50, style: 'dataset-image',  pageBreak: 'before'},
+                    {text: ['Cancer Statistics ',
+                            {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},
+                    {
+                        style: 'table',
+                        table: {
+                            widths: $.map( allTablesData.cancer.headerData, function (d, i) {
+                                return '*';
+                            } ),
+                            body: cancerTableData
+                        },
+                        layout: lightHorizontalLines
+                    },
+                    {text: CancerSource, style: 'info'}
                 ];
-
 
                 var document = pdfMake.createPdf(pdfDefinition);
                 document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
@@ -1656,7 +1812,7 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Source:  2015, CDC BRFSS', style: 'info', pageBreak: 'after'},
+                    {text: 'Source:  2015, CDC BRFSS', style: 'info'},
                     {image: fsc.imageDataURLs.yrbs, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Teen Health', style: 'heading'},
                     {
@@ -1696,7 +1852,7 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas, *2014', style: 'info'},
+                    {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas, *2014', style: 'info', pageBreak: 'after'},
                     {image: fsc.imageDataURLs.cancer, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Cancer Statistics', style: 'heading'},
                     {
