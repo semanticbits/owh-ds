@@ -55,7 +55,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <i class="bridge-race-info" ng-bind="'fs.women.health.bridgerace.footnote' | translate"></i>
+                <i class="bridge-race-info" ng-bind="'fs.women.health.footnote' | translate"></i>
             </div>
         </div>
         <!--  Detail Mortality - Cause of Death -->
@@ -105,9 +105,10 @@
                 <tbody>
                 <tr ng-repeat="eachRecord in fsc.factSheet.prams" ng-class="{solidBorder: $index == 0}">
                     <td ng-bind="eachRecord.question"></td>
-                    <td ng-if="eachRecord.data =='Not applicable'" ng-bind="eachRecord.data"></td>
-                    <td ng-if="nationalFactSheet.prams[$index].data =='Not applicable'" ng-bind="nationalFactSheet.prams[$index].data"></td>
-<!--                    <td ng-if="eachRecord.data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(eachRecord.data)"></td>-->
+                    <td ng-if="eachRecord.data =='Not applicable'" ng-bind="'Not applicable'"></td>
+                    <td ng-if="eachRecord.data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(eachRecord.data)"></td>
+                    <td ng-if="nationalFactSheet.prams[$index].data =='Not applicable'" ng-bind="'Not applicable'"></td>
+                    <td ng-if="nationalFactSheet.prams[$index].data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(nationalFactSheet.prams[$index].data)"></td>
                 </tr>
                 </tbody>
             </table>
@@ -129,8 +130,10 @@
                 <tbody>
                 <tr ng-repeat="eachRecord in fsc.factSheet.brfss" ng-class="{solidBorder: $index == 0}">
                     <td ng-bind="eachRecord.question"></td>
-                    <td ng-bind="eachRecord.data"></td>
-                    <td ng-bind="nationalFactSheet.brfss[$index].data"></td>
+                    <td ng-if="eachRecord.data =='Not applicable'" ng-bind="'Not applicable'"></td>
+                    <td ng-if="eachRecord.data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(eachRecord.data)"></td>
+                    <td ng-if="nationalFactSheet.brfss[$index].data =='Not applicable'" ng-bind="'Not applicable'"></td>
+                    <td ng-if="nationalFactSheet.brfss[$index].data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(nationalFactSheet.brfss[$index].data)"></td>
                 </tr>
                 </tbody>
             </table>
@@ -151,8 +154,10 @@
                 <tbody>
                 <tr ng-repeat="eachRecord in fsc.factSheet.yrbs" ng-class="{solidBorder: $index == 0}">
                     <td ng-bind="eachRecord.question"></td>
-                    <td ng-bind="eachRecord.data"></td>
-                    <td ng-bind="nationalFactSheet.yrbs[$index].data"></td>
+                    <td ng-if="eachRecord.data =='Not applicable'" ng-bind="'Not applicable'"></td>
+                    <td ng-if="eachRecord.data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(eachRecord.data)"></td>
+                    <td ng-if="nationalFactSheet.yrbs[$index].data =='Not applicable'" ng-bind="'Not applicable'"></td>
+                    <td ng-if="nationalFactSheet.yrbs[$index].data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(nationalFactSheet.yrbs[$index].data)"></td>
                 </tr>
                 </tbody>
             </table>
