@@ -194,7 +194,8 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected, allSe
             self.mergeWithCensusData(data, respArray[2], respArray[3], 'pop');
             mergeCensusRecursively(data.data.nested.maps, respArray[5].data.nested.maps, 'pop');
             if(query.wonderQuery) {
-                respArray[6].table && searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[6].table);
+                respArray[6].table && searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[6].tableCounts);
+                respArray[6].tableCounts && searchUtils.mergeAgeAdjustedRates(data.data.nested.tableCounts, respArray[6].tableCounts);
                 //Loop through charts array and merge age ajusted rates from response
                 if(respArray[6].charts) {
                     data.data.nested.charts.forEach(function (chart, index) {

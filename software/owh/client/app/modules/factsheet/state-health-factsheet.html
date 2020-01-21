@@ -1,5 +1,5 @@
 <!--for state health factsheet-->
-<div class="factsheet-content" ng-if="fsc.fsTypeForTable == fsc.fsTypes.state_health && fsc.factSheet">
+<div class="state-health-factsheet factsheet-content" ng-if="fsc.fsTypeForTable == fsc.fsTypes.state_health && fsc.factSheet">
 
     <div class="factsheet-header flex-container">
         <img ng-src="{{fsc.stateImgUrl}}" />
@@ -255,6 +255,11 @@
                     <td>Total Cases (Rates)</td>
                     <td ng-if="fsc.factSheet.tuberculosis[0].name != 'Unknown'" ng-bind="fsc.factSheet.tuberculosis[0].displayValue"></td>
                     <td ng-if="nationalFactSheet.tuberculosis[0].name != 'Unknown'" ng-bind="nationalFactSheet.tuberculosis[0].displayValue"></td>
+                </tr>
+                <tr>
+                    <td>Rates</td>
+                    <td ng-if="fsc.factSheet.tuberculosis[0].name != 'Unknown'" ng-bind="fsc.factSheet.tuberculosis[0].rate"></td>
+                    <td ng-if="nationalFactSheet.tuberculosis[0].name != 'Unknown'" ng-bind="nationalFactSheet.tuberculosis[0].rate"></td>
                 </tr>
                 </tbody>
             </table>

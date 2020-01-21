@@ -456,6 +456,28 @@
                       "should": [
                         {
                           "term": {
+                            "race_ethnicity": "All races/ethnicities"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "National"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
                             "current_year": "2016"
                           }
                         }
@@ -523,6 +545,28 @@
                         {
                           "term": {
                             "transmission": "No stratification"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "race_ethnicity": "All races/ethnicities"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "National"
                           }
                         }
                       ]
@@ -629,7 +673,29 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -706,7 +772,29 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -790,7 +878,29 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -867,7 +977,29 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -951,7 +1083,29 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -1028,7 +1182,29 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -1112,7 +1288,29 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -1189,7 +1387,29 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -1273,7 +1493,29 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -1350,7 +1592,29 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -1426,6 +1690,28 @@
                           {
                             "term": {
                               "age_group": "All age groups"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
                             }
                           }
                         ]
@@ -1514,6 +1800,28 @@
                           {
                             "term": {
                               "age_group": "All age groups"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
                             }
                           }
                         ]
@@ -1619,6 +1927,28 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "transmission": "No stratification"
                             }
                           }
@@ -1686,6 +2016,28 @@
                           {
                             "term": {
                               "disease": "HIV, stage 3 (AIDS) deaths"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
                             }
                           }
                         ]
@@ -1802,6 +2154,28 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "transmission": "No stratification"
                             }
                           }
@@ -1880,6 +2254,28 @@
                           {
                             "term": {
                               "age_group": "All age groups"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
                             }
                           }
                         ]
@@ -1985,6 +2381,28 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "transmission": "No stratification"
                             }
                           }
@@ -2063,6 +2481,28 @@
                           {
                             "term": {
                               "age_group": "All age groups"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
                             }
                           }
                         ]
@@ -2168,6 +2608,28 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "transmission": "No stratification"
                             }
                           }
@@ -2246,6 +2708,28 @@
                           {
                             "term": {
                               "age_group": "All age groups"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
                             }
                           }
                         ]
@@ -2351,6 +2835,28 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "transmission": "No stratification"
                             }
                           }
@@ -2429,6 +2935,28 @@
                           {
                             "term": {
                               "age_group": "All age groups"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
                             }
                           }
                         ]
@@ -6130,6 +6658,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
                             }
                           }
@@ -6208,6 +6747,17 @@
                           {
                             "term": {
                               "age_group": "All age groups"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -6313,6 +6863,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
                             }
                           }
@@ -6391,6 +6952,17 @@
                           {
                             "term": {
                               "age_group": "All age groups"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -6496,6 +7068,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
                             }
                           }
@@ -6574,6 +7157,17 @@
                           {
                             "term": {
                               "age_group": "All age groups"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -6679,6 +7273,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
                             }
                           }
@@ -6757,6 +7362,17 @@
                           {
                             "term": {
                               "age_group": "All age groups"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -6864,6 +7480,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "transmission": "No stratification"
                             }
                           }
@@ -6964,6 +7591,17 @@
                           {
                             "term": {
                               "transmission": "No stratification"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -7080,6 +7718,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
                             }
                           }
@@ -7169,6 +7818,17 @@
                           {
                             "term": {
                               "transmission": "No stratification"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -7285,6 +7945,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
                             }
                           }
@@ -7374,6 +8045,17 @@
                           {
                             "term": {
                               "transmission": "No stratification"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -7490,6 +8172,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
                             }
                           }
@@ -7579,6 +8272,17 @@
                           {
                             "term": {
                               "transmission": "No stratification"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -7695,6 +8399,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
                             }
                           }
@@ -7784,6 +8499,17 @@
                           {
                             "term": {
                               "transmission": "No stratification"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -7900,6 +8626,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
                             }
                           }
@@ -7989,6 +8726,17 @@
                           {
                             "term": {
                               "transmission": "No stratification"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -11194,6 +11942,17 @@
                       "should": [
                         {
                           "term": {
+                            "state": "National"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
                             "sex": "Both sexes"
                           }
                         }
@@ -11307,6 +12066,17 @@
                         {
                           "term": {
                             "race_ethnicity": "Unknown"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "National"
                           }
                         }
                       ]
@@ -11443,6 +12213,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "sex": "Both sexes"
                             }
                           }
@@ -11556,6 +12337,17 @@
                           {
                             "term": {
                               "race_ethnicity": "Unknown"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -11691,6 +12483,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "sex": "Both sexes"
                             }
                           }
@@ -11804,6 +12607,17 @@
                           {
                             "term": {
                               "race_ethnicity": "Unknown"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -11939,6 +12753,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "sex": "Both sexes"
                             }
                           }
@@ -12052,6 +12877,17 @@
                           {
                             "term": {
                               "race_ethnicity": "Unknown"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -12187,6 +13023,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "sex": "Both sexes"
                             }
                           }
@@ -12300,6 +13147,17 @@
                           {
                             "term": {
                               "race_ethnicity": "Unknown"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -12435,6 +13293,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "sex": "Both sexes"
                             }
                           }
@@ -12548,6 +13417,17 @@
                           {
                             "term": {
                               "race_ethnicity": "Unknown"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -12680,6 +13560,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "sex": "Both sexes"
                             }
                           }
@@ -12799,6 +13690,17 @@
                           {
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -12940,6 +13842,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "sex": "Both sexes"
                             }
                           }
@@ -13059,6 +13972,17 @@
                           {
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -13200,6 +14124,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "sex": "Both sexes"
                             }
                           }
@@ -13319,6 +14254,17 @@
                           {
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -13460,6 +14406,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "sex": "Both sexes"
                             }
                           }
@@ -13579,6 +14536,17 @@
                           {
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -13720,6 +14688,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "sex": "Both sexes"
                             }
                           }
@@ -13839,6 +14818,17 @@
                           {
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
@@ -13980,6 +14970,17 @@
                         "should": [
                           {
                             "term": {
+                              "state": "National"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "sex": "Both sexes"
                             }
                           }
@@ -14099,6 +15100,17 @@
                           {
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "state": "National"
                             }
                           }
                         ]
