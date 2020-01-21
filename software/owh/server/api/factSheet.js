@@ -2,6 +2,7 @@ var elasticSearch = require('../models/elasticSearch');
 var yrbs = require("../api/yrbs");
 var queryBuilder = require('../api/elasticQueryBuilder');
 var factSheetQueries = require('../json/factsheet-queries.json');
+var factSheetCountryQueries = require('../json/factsheet-country-queries.json');
 var searchUtils = require('../api/utils');
 var wonder = require("../api/wonder");
 var Q = require('q');
@@ -14,9 +15,12 @@ var FactSheet = function() {
 FactSheet.prototype.prepareFactSheet = function (state, fsType) {
     var self = this;
     var deferred = Q.defer();
-    var factSheetQueryString = JSON.stringify(factSheetQueries[fsType]);
     var factSheetQueryJSON;
-    factSheetQueryJSON = JSON.parse(factSheetQueryString.split("$state$").join(state));
+    if(state) {
+        factSheetQueryJSON = JSON.parse(JSON.stringify(factSheetQueries[fsType]).split("$state$").join(state));
+    } else {
+        factSheetQueryJSON = JSON.parse(JSON.stringify(factSheetCountryQueries[fsType]));
+    }
     if (factSheetQueryJSON) {
         var bridgeRaceQueryObj = factSheetQueryJSON.bridge_race;
         //STD
@@ -111,7 +115,7 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
 
         //YRBS - Use Alcohol
         //If state 'Arizona' change code to 'AZB' for YRBS,
-        if(state === 'AZ') {
+        if(state && state === 'AZ') {
             factSheetQueryJSON.yrbs["alcohol"].query.sitecode.value = 'AZB';
             Object.keys(factSheetQueryJSON.prams).forEach(function(eachKey){
                 factSheetQueryJSON.prams[eachKey].query.sitecode.value = ["AZB"];
@@ -550,12 +554,27 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
  * @return {{pregnantWoment: [], women: []}}
  */
 function preparePRAMSData(pramsData) {
-    return [
-        {"question": "Smoking cigarettes during the last three months of pregnancy", data: pramsData[0].table.question[0] && pramsData[0].table.question[0].yes ? getMeanDisplayValue(pramsData[0].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"},
-        {"question": "Females reported physical abuse by husband or partner during pregnancy", data: pramsData[1].table.question[0] && pramsData[1].table.question[0].yes ? getMeanDisplayValue(pramsData[1].table.question[0].yes.sitecode[0].prams.mean): "Not applicable"},
-        {"question": "Ever breastfed or pump breast milk to feed after delivery", data: pramsData[2].table.question[0] && pramsData[2].table.question[0].yes ? getMeanDisplayValue(pramsData[2].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"},
-        {"question": "Indicator of depression 3 months before pregnancy", data: pramsData[3].table.question[0] && pramsData[3].table.question[0].yes ? getMeanDisplayValue(pramsData[3].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"}
-    ];
+    if(pramsData) {
+        return [
+            {"question": "Smoking cigarettes during the last three months of pregnancy",
+                data: (pramsData[0].table.question[0] && pramsData[0].table.question[0].yes &&
+                    pramsData[0].table.question[0].yes.sitecode) ?
+                    getMeanDisplayValue(pramsData[0].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"},
+            {"question": "Females reported physical abuse by husband or partner during pregnancy",
+                data: (pramsData[1].table.question[0] && pramsData[1].table.question[0].yes &&
+                pramsData[1].table.question[0].yes.sitecode) ?
+                    getMeanDisplayValue(pramsData[1].table.question[0].yes.sitecode[0].prams.mean): "Not applicable"},
+            {"question": "Ever breastfed or pump breast milk to feed after delivery",
+                data: (pramsData[2].table.question[0] && pramsData[2].table.question[0].yes &&
+                    pramsData[2].table.question[0].yes.sitecode) ?
+                    getMeanDisplayValue(pramsData[2].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"},
+            {"question": "Indicator of depression 3 months before pregnancy",
+                data: (pramsData[3].table.question[0] && pramsData[3].table.question[0].yes &&
+                    pramsData[3].table.question[0].yes.sitecode) ?
+                    getMeanDisplayValue(pramsData[3].table.question[0].yes.sitecode[0].prams.mean) : "Not applicable"}
+        ];
+    } else
+        return [];
 }
 
 function getMeanDisplayValue(data) {
@@ -766,7 +785,8 @@ function prepareDiseaseData(data, countKey) {
         }
         else {
             var rate = record['pop'] ? Math.round(record[countKey] / record['pop'] * 1000000) / 10 : 0;
-            record['displayValue'] = formatNumber(record[countKey]) + " (" + rate.toFixed(1) + ")";
+            record['displayValue'] = formatNumber(record[countKey]);
+            record['rate'] = rate.toFixed(1);
         }
         //Delete un wanted properties from JSON
         delete record[countKey];
