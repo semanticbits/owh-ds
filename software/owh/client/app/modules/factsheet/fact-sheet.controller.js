@@ -250,6 +250,9 @@
                 allTablesData.infantMortality.bodyData = prepareTableBody(allTablesData.infantMortality.bodyData);
                 allTablesData.infantMortality.bodyData.unshift(prepareTableHeaders(allTablesData.infantMortality.headerData));
 
+                allTablesData.tb.bodyData = prepareTableBody(allTablesData.tb.bodyData);
+                allTablesData.tb.bodyData.unshift(prepareTableHeaders(allTablesData.tb.headerData));
+
                 allTablesData.brfss.bodyData = prepareTableBody(allTablesData.brfss.bodyData);
                 allTablesData.brfss.bodyData.unshift(prepareTableHeaders(allTablesData.bridgeRaceTable2.headerData));
 
@@ -329,9 +332,9 @@
                     }
                 };
                 //Prepare source for PRAMS, YRBS and Cancer based on selected state
-                var PRAMSSource = 'Sources: 2011, CDC PRAMS';
-                var YRBSSource = 'Sources: 2015, YRBS';
-                var CancerSource = 'Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only';
+                var PRAMSSource = $filter('translate')('fs.state.prams.footnote');
+                var YRBSSource = $filter('translate')('fs.state.yrbs.footnote');
+                var CancerSource = 'Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only';
                 if(fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1) {
                     PRAMSSource = 'This state did not take part in PRAMS';
                 }
@@ -339,7 +342,7 @@
                     YRBSSource = 'This state did not take part in YRBS';
                 }
                 if(fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1) {
-                    CancerSource = 'Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only. The state did not meet the United States Cancer Statistics (USCS) publication standard or did not allow permission for their data to be used.';
+                    CancerSource = 'Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only. The state did not meet the United States Cancer Statistics (USCS) publication standard or did not allow permission for their data to be used.';
                 }
                 pdfDefinition.footer = function(page, pages) {
                     return {
@@ -410,7 +413,7 @@
                             },
                             layout: lightHorizontalLines
                         },
-                        {text: 'Source: 2015, NCHS National Vital Statistics System', style: 'info'},
+                        {text: $filter('translate')('fs.state.health.mortality.footnote'), style: 'info'},
                         {text: $filter('translate')('label.help.text.age.adjusted.rate'), style: 'info'},
                         {image: fsc.imageDataURLs.infantMortality, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Infant Mortality: (All Causes, Not gender-specific)', style: 'heading'},
@@ -425,7 +428,7 @@
                             },
                             layout: lightHorizontalLines
                         },
-                        {text: 'Source: 2014  NCHS National Vital Statistics System', style: 'info'},
+                        {text: $filter('translate')('fs.state.infant.mortality.footnote'), style: 'info'},
                         {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                         {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},
                         {
@@ -453,7 +456,7 @@
                             },
                             layout: lightHorizontalLines
                         },
-                        {text: 'Source:  2015, CDC BRFSS', style: 'info'},
+                        {text: $filter('translate')('fs.state.brfss.footnote'), style: 'info'},
                         {image: fsc.imageDataURLs.yrbs, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Teen Health', style: 'heading'},
                         {
@@ -467,7 +470,7 @@
                             layout: lightHorizontalLines
                         },
                         {text: YRBSSource, style: 'info'},
-                        {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image'},
+                        {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                         {text: 'Births', style: 'heading'},
                         {
                             style: 'table',
@@ -479,7 +482,7 @@
                             },
                             layout: lightHorizontalLines
                         },
-                        {text: 'Sources:  2015, NCHS National Vital Statistics System', style: 'info'},
+                        {text: $filter('translate')('fs.state.birth.footnote'), style: 'info'},
                         {image: fsc.imageDataURLs.tb, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Tuberculosis', style: 'heading'},
                         {text: 'Population: '+$filter('number')(fsc.factSheet.tuberculosis[0].pop)},
@@ -489,14 +492,11 @@
                                 widths: $.map( allTablesData.tb.headerData, function (d, i) {
                                     return '*';
                                 } ),
-                                body: [
-                                    prepareTableHeaders(allTablesData.tb.headerData),
-                                    prepareTableBody(allTablesData.tb.bodyData)
-                                ]
+                                body: allTablesData.tb.bodyData
                             },
                             layout: lightHorizontalLines
                         },
-                        {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
+                        {text: $filter('translate')('fs.state.tuberculosis.footnote'), style: 'info'},
                         {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Sexually Transmitted Infections', style: 'heading'},
                         {text: 'Population: '+$filter('number')(fsc.factSheet.stdData[0].data[0].pop)},
@@ -510,8 +510,8 @@
                             },
                             layout: lightHorizontalLines
                         },
-                        {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
-                        {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
+                        {text: $filter('translate')('fs.state.std.footnote'), style: 'info'},
+                        {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                         {text: 'HIV/AIDS', style: 'heading'},
                         {text: 'Population: '+$filter('number')(fsc.factSheet.hivAIDSData[0].data[0].pop)},
                         {
@@ -524,7 +524,7 @@
                             },
                             layout: lightHorizontalLines
                         },
-                        {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas, *2014', style: 'info'},
+                        {text: $filter('translate')('fs.state.aids.footnote'), style: 'info'},
                         {image: fsc.imageDataURLs.cancer, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Cancer Statistics', style: 'heading'},
                         {
@@ -917,7 +917,6 @@
          * @param displayNational
          */
         function prepareStateHealthPopulationTable() {
-            console.log("--State fsc.populationTableEntries;;", fsc.populationTableEntries);
             fsc.populationTableEntries = [];
             var entriesTitles = ["10-14", "15-19", "20-44", "45-64", "65-84", "85+"];
             for(var i=0; i<entriesTitles.length-1;i++) {
@@ -929,7 +928,6 @@
             }
         }
         function prepareWomensHealthPopulationTable() {
-            console.log("--Womens fsc.populationTableEntries;;", fsc.populationTableEntries);
             fsc.populationTableEntries = [];
             var entriesTitles = ["10-14", "15-19", "20-44", "45-64", "65-84", "85+"];
             for(var i=0; i<entriesTitles.length-1;i++) {
@@ -944,7 +942,6 @@
         }
 
         function prepareMinorityHealthPopulationTable() {
-            console.log("--Minority fsc.populationTableEntries;;", fsc.populationTableEntries);
             fsc.populationTableEntries = [];
             var tableRow = [];
             tableRow.push("State Population");
@@ -1239,16 +1236,20 @@
             };
             //Tuberculosis
             var tbHeaderData = ["", "State", "National"];
-            var tbData = [];
+            var tbTotalCasesData = [], tbRates = [];
 
             if(fsc.factSheet.tuberculosis[0].name != 'Unknown') {
-                tbData.push("Total Cases (Rates)")
-                tbData.push(fsc.factSheet.tuberculosis[0].displayValue)
-                tbData.push($rootScope.nationalFactSheet.tuberculosis[0].displayValue)
+                tbTotalCasesData.push("Total Cases");
+                tbTotalCasesData.push(fsc.factSheet.tuberculosis[0].displayValue);
+                tbTotalCasesData.push($rootScope.nationalFactSheet.tuberculosis[0].displayValue);
+                tbRates.push("Rates");
+                tbRates.push(fsc.factSheet.tuberculosis[0].rate);
+                tbRates.push($rootScope.nationalFactSheet.tuberculosis[0].rate);
+
             }
             allTablesData.tb = {
                 headerData:  tbHeaderData,
-                bodyData: tbData
+                bodyData: [tbTotalCasesData, tbRates]
             };
             //STD
             var stdHeaderData =  [{header: 'Disease'}, {header:'State', nestedHeaders: ['Total Cases','Rate']},
@@ -1430,9 +1431,9 @@
                     }
                 };
                 //Prepare source for PRAMS, YRBS and Cancer based on selected state
-                var PRAMSSource = 'Sources: 2011, CDC PRAMS';
-                var YRBSSource = 'Sources: 2015, YRBS';
-                var CancerSource = 'Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only';
+                var PRAMSSource = $filter('translate')('fs.minority.prams.footnote');
+                var YRBSSource = $filter('translate')('fs.minority.yrbs.footnote');
+                var CancerSource = 'Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only';
                 if(fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1) {
                     PRAMSSource = 'This state did not take part in PRAMS';
                 }
@@ -1440,7 +1441,7 @@
                     YRBSSource = 'This state did not take part in YRBS';
                 }
                 if(fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1) {
-                    CancerSource = 'Sources: 2014, NPCR Cancer Statistics, † Female only, †† Male only. The state did not meet the United States Cancer Statistics (USCS) publication standard or did not allow permission for their data to be used.';
+                    CancerSource = 'Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only. The state did not meet the United States Cancer Statistics (USCS) publication standard or did not allow permission for their data to be used.';
                 }
                 pdfDefinition.footer = function(page, pages) {
                     return {
@@ -1493,7 +1494,7 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Sources: 2015, U.S. Census Bureau and NCHS', style: 'info'},
+                    {text: $filter('translate')('fs.minority.health.footnote'), style: 'info'},
                     {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Mortality',  style: 'heading'},
                     {
@@ -1508,7 +1509,7 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Source: 2015, NCHS National Vital Statistics System', style: 'info'},
+                    {text: $filter('translate')('fs.minority.health.mortality.footnote'), style: 'info'},
                     {text: $filter('translate')('fs.adge-adjusted.rates.def'), style: 'info'},
                     {image: fsc.imageDataURLs.infantMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: ['Infant Mortality ',
@@ -1524,7 +1525,7 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Source: 2014  NCHS National Vital Statistics System', style: 'info'},
+                    {text: $filter('translate')('fs.minority.infant.mortality.footnote'), style: 'info'},
                     {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                     {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},
                     {
@@ -1550,7 +1551,7 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Source:  2015, CDC BRFSS', style: 'info'},
+                    {text: $filter('translate')('fs.minority.brfss.footnote'), style: 'info'},
                     {image: fsc.imageDataURLs.yrbs, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Teen Health', style: 'heading'},
                     {
@@ -1564,7 +1565,7 @@
                         layout: lightHorizontalLines
                     },
                     {text: YRBSSource, style: 'info'},
-                    {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image'},
+                    {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                     {text: ['Births ',
                     {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},
                     {
@@ -1577,7 +1578,7 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Sources:  2015, NCHS National Vital Statistics System', style: 'info'},
+                    {text: $filter('translate')('fs.minority.birth.footnote'), style: 'info'},
                     {image: fsc.imageDataURLs.tb, width: 50, height: 50, style: 'dataset-image'},
                     {text: ['Tuberculosis ',
                     {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},
@@ -1592,7 +1593,7 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
+                    {text: $filter('translate')('fs.minority.tuberculosis.footnote'), style: 'info'},
                     {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image'},
                     {text: ['Sexually Transmitted Infections ',
                             {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},
@@ -1606,8 +1607,8 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
-                    {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
+                    {text: $filter('translate')('fs.minority.std.footnote'), style: 'info'},
+                    {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                     {text: ['HIV/AIDS ',
                             {text:$filter('translate')('fs.hiv.rates.per.hundredK'), bold:false}],style: 'heading'},
                     {
@@ -1620,8 +1621,8 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas, *2014', style: 'info'},
-                    {image: fsc.imageDataURLs.cancer, width: 50, height: 50, style: 'dataset-image',  pageBreak: 'before'},
+                    {text: $filter('translate')('fs.minority.aids.footnote'), style: 'info'},
+                    {image: fsc.imageDataURLs.cancer, width: 50, height: 50, style: 'dataset-image'},
                     {text: ['Cancer Statistics ',
                             {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},
                     {
@@ -1701,9 +1702,9 @@
                     defaultStyle: { fontSize: 8 }
                 };
                 //Prepare source for PRAMS, YRBS and Cancer based on selected state
-                var PRAMSSource = 'Sources: 2011, CDC PRAMS';
-                var YRBSSource = 'Sources: 2015, YRBS';
-                var CancerSource = 'Sources: 2014, NPCR Cancer Statistics';
+                var PRAMSSource = $filter('translate')('fs.women.prams.footnote');
+                var YRBSSource = $filter('translate')('fs.women.yrbs.footnote');
+                var CancerSource = 'Sources: 2016, NPCR Cancer Statistics';
                 if(fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1) {
                     PRAMSSource = 'This state did not take part in PRAMS';
                 }
@@ -1711,7 +1712,7 @@
                     YRBSSource = 'This state did not take part in YRBS';
                 }
                 if(fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1) {
-                    CancerSource = 'Sources: 2014, NPCR Cancer Statistics. The state did not meet the United States Cancer Statistics (USCS) publication standard or did not allow permission for their data to be used.';
+                    CancerSource = 'Sources: 2016, NPCR Cancer Statistics. The state did not meet the United States Cancer Statistics (USCS) publication standard or did not allow permission for their data to be used.';
                 }
                 pdfDefinition.footer = function(page, pages) {
                     return {
@@ -1769,7 +1770,7 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: $filter('translate')('fs.women.health.bridgerace.footnote'), style: 'info'},
+                    {text: $filter('translate')('fs.women.health.footnote'), style: 'info'},
                     {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Mortality',  style: 'heading'},
                     {
@@ -1783,7 +1784,7 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Source: 2015, NCHS National Vital Statistics System', style: 'info'},
+                    {text: $filter('translate')('fs.women.health.mortality.footnote'), style: 'info'},
                     {text: $filter('translate')('label.help.text.age.adjusted.rate'), style: 'info'},
                     {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},
@@ -1812,7 +1813,7 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Source:  2015, CDC BRFSS', style: 'info'},
+                    {text: $filter('translate')('fs.women.brfss.footnote'), style: 'info'},
                     {image: fsc.imageDataURLs.yrbs, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Teen Health', style: 'heading'},
                     {
@@ -1839,7 +1840,7 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas', style: 'info'},
+                    {text: $filter('translate')('fs.women.std.footnote'), style: 'info'},
                     {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'HIV/AIDS', style: 'heading'},
                     {
@@ -1852,7 +1853,7 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: 'Source: 2015, Estimated Data from the CDC NCHHSTP Atlas, *2014', style: 'info', pageBreak: 'after'},
+                    {text: $filter('translate')('fs.women.aids.footnote'), style: 'info', pageBreak: 'after'},
                     {image: fsc.imageDataURLs.cancer, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Cancer Statistics', style: 'heading'},
                     {
