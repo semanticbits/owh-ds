@@ -702,8 +702,8 @@
                 //add additional data to the cell, used for population
                 if(secondaryCountKeys) {
                     angular.forEach(secondaryCountKeys, function(secondaryCountKey) {
-                        var secondaryCount = data[secondaryCountKey];
-                        cell[secondaryCountKey] = cell[secondaryCountKey]?(cell[secondaryCountKey]+secondaryCount):secondaryCount;
+                        var secondaryCount = parseFloat(data[secondaryCountKey]);
+                        cell[secondaryCountKey] = (cell[secondaryCountKey]!=undefined && !isNaN(secondaryCount))?(cell[secondaryCountKey]+secondaryCount):secondaryCount;
                     });
                 }
             }

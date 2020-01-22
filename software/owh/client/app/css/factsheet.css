@@ -203,10 +203,10 @@
     width: 30%;
 }
 .minority-health-factsheet table.tb-table td:nth-child(1) {
-    width: 25%;
+    width: 15%;
 }
 .minority-health-factsheet table.tb-table td {
-    width: 14%;
+    width: 10%;
 }
 .minority-health-factsheet table.std-table td:nth-child(1) {
     width: 12%;

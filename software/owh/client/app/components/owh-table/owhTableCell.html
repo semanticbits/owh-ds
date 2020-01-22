@@ -18,7 +18,7 @@
                 <div>
                     <span title="{{'label.help.text.deaths' | translate}}" ng-if="otcc.rowIndex === 0" class="owh-table-span">Deaths</span>
                     <span ng-if="otcc.cell.title !== 'suppressed'">{{ otcc.cell.title | number }}</span>
-                    <span ng-if="otcc.cell.title === 'suppressed'">Suppressed</span>
+                    <span ng-if="otcc.cell.title === 'suppressed'">Suppressed</span><br>
                 </div>
                 <div ng-if="otcc.tableView === 'crude_death_rates'">
                     <span title="{{'label.help.text.pop' | translate}}" ng-if="otcc.rowIndex === 0" class="owh-table-span">Population</span>
