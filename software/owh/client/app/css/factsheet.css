@@ -78,76 +78,76 @@
 /* Women's Health Factsheet css */
 /* --------------------------- */
 .womens-health-factsheet table.bridge-race-table1 td:nth-child(1) {
-    width: 40%;
+    width: 19%;
 }
 .womens-health-factsheet table.bridge-race-table1 td {
     width: 15%;
 }
 .womens-health-factsheet table.bridge-race-table2 td:nth-child(1) {
-    width: 40%;
+    width: 19%;
 }
 .womens-health-factsheet table.bridge-race-table2 td {
     width: 15%;
 }
 .womens-health-factsheet table.detail-mortality-table td:nth-child(1) {
-    width: 40%;
+    width: 30%;
 }
 .womens-health-factsheet table.detail-mortality-table td {
-    width: 10%;
+    width: 12%;
 }
 .womens-health-factsheet table.infant-mortality-table td:nth-child(1) {
-    width: 40%;
+    width: 30%;
 }
 .womens-health-factsheet table.infant-mortality-table td {
     width: 30%;
 }
 .womens-health-factsheet table.prams-table-1 td:nth-child(1) {
-    width: 40%;
+    width: 30%;
 }
 .womens-health-factsheet table.prams-table-1 td {
-    width: 30%;
+    width: 23%;
 }
 .womens-health-factsheet table.brfss-table td:nth-child(1) {
-    width: 40%;
+    width: 30%;
 }
 .womens-health-factsheet table.brfss-table td {
-    width: 30%;
+    width: 23%;
 }
 .womens-health-factsheet table.yrbs-table td:nth-child(1) {
-    width: 40%;
+    width: 30%;
 }
 .womens-health-factsheet table.yrbs-table td {
-    width: 30%;
+    width: 23%;
 }
 .womens-health-factsheet table.natality-table td:nth-child(1) {
-    width: 40%;
-}
-.womens-health-factsheet table.natality-table td {
     width: 30%;
 }
+.womens-health-factsheet table.natality-table td {
+    width: 23%;
+}
 .womens-health-factsheet table.tb-table td:nth-child(1) {
-    width: 40%;
+    width: 30%;
 }
 .womens-health-factsheet table.tb-table td {
     width: 30%;
 }
 .womens-health-factsheet table.std-table td:nth-child(1) {
-    width: 40%;
+    width: 30%;
 }
 .womens-health-factsheet table.std-table td {
-    width: 15%;
+    width: 12%;
 }
 .womens-health-factsheet table.hiv-table td:nth-child(1) {
-    width: 40%;
+    width: 30%;
 }
 .womens-health-factsheet table.hiv-table td {
-    width: 15%;
+    width: 12%;
 }
 .womens-health-factsheet table.cancer-table td:nth-child(1) {
-    width: 40%;
+    width: 30%;
 }
 .womens-health-factsheet table.cancer-table td {
-    width: 15%;
+    width: 12%;
 }
 
 /* --------------------------- */

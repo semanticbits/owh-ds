@@ -188,6 +188,16 @@
             var deffered = $q.defer();
             factSheetService.prepareFactSheetForState(state, fsType, queryID).then(function (res) {
                 if(res && res.resultData){
+                    var womensHealthCallback = function () {
+                        SearchService.generateHashCode({fsType: res.resultData.fsType, sex: 'male', state: state}).then(function (hashcodeResponse) {
+                            factSheetService.prepareWomenFactSheetMenData(state, fsType, hashcodeResponse.data).then(function (mensResponse) {
+                                if(mensResponse && mensResponse.resultData) {
+                                    $rootScope.mensFactSheet = mensResponse.resultData;
+                                }
+                                prepareWomensHealthPopulationTable();
+                            });
+                        });
+                    };
                     fsc.state = res.resultData.state;
                     fsc.fsType = res.resultData.fsType;
                     fsc.fsTypeForTable = res.resultData.fsType;
@@ -205,19 +215,14 @@
                                 }
                                 if(fsc.fsType == fsc.fsTypes.state_health) prepareStateHealthPopulationTable();
                                 else if(fsc.fsType == fsc.fsTypes.womens_health) {
-                                    SearchService.generateHashCode({fsType: res.resultData.fsType, sex: 'male', state: state}).then(function (hashcodeResponse) {
-                                        factSheetService.prepareWomenFactSheetMenData(state, fsType, hashcodeResponse.data).then(function (mensResponse) {
-                                            if(mensResponse && mensResponse.resultData) {
-                                                $rootScope.mensFactSheet = mensResponse.resultData;
-                                            }
-                                            prepareWomensHealthPopulationTable();
-                                        });
-                                    });
+                                    womensHealthCallback();
                                 }
                                 else prepareMinorityHealthPopulationTable();
                                 deffered.resolve(res);
                             });
                         });
+                    } else if(fsc.fsType == fsc.fsTypes.womens_health) {
+                        womensHealthCallback();
                     }
                 }
             });

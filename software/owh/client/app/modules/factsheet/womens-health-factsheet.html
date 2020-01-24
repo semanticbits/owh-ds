@@ -103,8 +103,9 @@
                 <thead>
                 <tr>
                     <th>Question</th>
-                    <th>State</th>
-                    <th>National</th>
+                    <th>State (Women)</th>
+                    <th>National (Women)</th>
+                    <th>State (Men)</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -114,6 +115,8 @@
                     <td ng-if="eachRecord.data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(eachRecord.data)"></td>
                     <td ng-if="nationalFactSheet.prams[$index].data =='Not applicable'" ng-bind="'Not applicable'"></td>
                     <td ng-if="nationalFactSheet.prams[$index].data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(nationalFactSheet.prams[$index].data)"></td>
+                    <td ng-if="mensFactSheet.prams[$index].data =='Not applicable'" ng-bind="'Not applicable'"></td>
+                    <td ng-if="mensFactSheet.prams[$index].data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(mensFactSheet.prams[$index].data)"></td>
                 </tr>
                 </tbody>
             </table>
@@ -128,8 +131,9 @@
                 <thead>
                 <tr>
                     <th>Question</th>
-                    <th>State</th>
-                    <th>National</th>
+                    <th>State (Women)</th>
+                    <th>National (Women)</th>
+                    <th>State (Men)</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -139,6 +143,8 @@
                     <td ng-if="eachRecord.data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(eachRecord.data)"></td>
                     <td ng-if="nationalFactSheet.brfss[$index].data =='Not applicable'" ng-bind="'Not applicable'"></td>
                     <td ng-if="nationalFactSheet.brfss[$index].data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(nationalFactSheet.brfss[$index].data)"></td>
+                    <td ng-if="mensFactSheet.brfss[$index].data =='Not applicable'" ng-bind="'Not applicable'"></td>
+                    <td ng-if="mensFactSheet.brfss[$index].data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(mensFactSheet.brfss[$index].data)"></td>
                 </tr>
                 </tbody>
             </table>
@@ -152,8 +158,9 @@
                 <thead>
                 <tr>
                     <th>Question</th>
-                    <th>State</th>
-                    <th>National</th>
+                    <th>State (Women)</th>
+                    <th>National (Women)</th>
+                    <th>State (Men)</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -163,6 +170,8 @@
                     <td ng-if="eachRecord.data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(eachRecord.data)"></td>
                     <td ng-if="nationalFactSheet.yrbs[$index].data =='Not applicable'" ng-bind="'Not applicable'"></td>
                     <td ng-if="nationalFactSheet.yrbs[$index].data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(nationalFactSheet.yrbs[$index].data)"></td>
+                    <td ng-if="mensFactSheet.yrbs[$index].data =='Not applicable'" ng-bind="'Not applicable'"></td>
+                    <td ng-if="mensFactSheet.yrbs[$index].data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(mensFactSheet.yrbs[$index].data)"></td>
                 </tr>
                 </tbody>
             </table>
@@ -178,10 +187,13 @@
                 <thead>
                 <tr>
                     <th rowspan="2">Disease</th>
-                    <th colspan="2" scope="colgroup">State</th>
-                    <th colspan="2" scope="colgroup">National</th>
+                    <th colspan="2" scope="colgroup">State (Women)</th>
+                    <th colspan="2" scope="colgroup">National (Women)</th>
+                    <th colspan="2" scope="colgroup">State (Men)</th>
                 </tr>
                 <tr>
+                    <th scope="col">Total Cases</th>
+                    <th scope="col">Rate</th>
                     <th scope="col">Total Cases</th>
                     <th scope="col">Rate</th>
                     <th scope="col">Total Cases</th>
@@ -192,11 +204,11 @@
                 <tr ng-repeat="eachRecord in fsc.factSheet.stdData">
                     <td>{{eachRecord.disease}}</td>
                     <td ng-bind="eachRecord.data.std"></td>
-                    <td ng-bind="fsc.calculateRate(eachRecord.data.std, eachRecord.data.pop)">
-
-                    </td><td ng-bind="nationalFactSheet.stdData[$index].data.std"></td>
-                    <td ng-bind="fsc.calculateRate(nationalFactSheet.stdData[$index].data.std,
-                    nationalFactSheet.stdData[$index].data.pop)"></td>
+                    <td ng-bind="fsc.calculateRate(eachRecord.data.std, eachRecord.data.pop)"></td>
+                    <td ng-bind="nationalFactSheet.stdData[$index].data.std"></td>
+                    <td ng-bind="fsc.calculateRate(nationalFactSheet.stdData[$index].data.std, nationalFactSheet.stdData[$index].data.pop)"></td>
+                    <td ng-bind="mensFactSheet.stdData[$index].data.std"></td>
+                    <td ng-bind="fsc.calculateRate(mensFactSheet.stdData[$index].data.std, mensFactSheet.stdData[$index].data.pop)"></td>
                 </tr>
                 </tbody>
             </table>
@@ -210,10 +222,13 @@
                 <thead>
                 <tr>
                     <th rowspan="2">Disease</th>
-                    <th colspan="2" scope="colgroup">State</th>
-                    <th colspan="2" scope="colgroup">National</th>
+                    <th colspan="2" scope="colgroup">State (Women)</th>
+                    <th colspan="2" scope="colgroup">National (Women)</th>
+                    <th colspan="2" scope="colgroup">State (Men)</th>
                 </tr>
                 <tr>
+                    <th scope="col">Total Cases</th>
+                    <th scope="col">Rate</th>
                     <th scope="col">Total Cases</th>
                     <th scope="col">Rate</th>
                     <th scope="col">Total Cases</th>
@@ -226,8 +241,9 @@
                     <td ng-bind="eachRecord.data.aids"></td>
                     <td ng-bind="fsc.calculateRate(eachRecord.data.aids, eachRecord.data.pop)"></td>
                     <td ng-bind="nationalFactSheet.hivAIDSData[$index].data.aids"></td>
-                    <td ng-bind="fsc.calculateRate(nationalFactSheet.hivAIDSData[$index].data.aids,
-                    nationalFactSheet.hivAIDSData[$index].data.pop)"></td>
+                    <td ng-bind="fsc.calculateRate(nationalFactSheet.hivAIDSData[$index].data.aids, nationalFactSheet.hivAIDSData[$index].data.pop)"></td>
+                    <td ng-bind="mensFactSheet.hivAIDSData[$index].data.aids"></td>
+                    <td ng-bind="fsc.calculateRate(mensFactSheet.hivAIDSData[$index].data.aids, mensFactSheet.hivAIDSData[$index].data.pop)"></td>
                 </tr>
                 </tbody>
             </table>
@@ -241,10 +257,13 @@
                 <thead>
                 <tr>
                     <th rowspan="2">Cancer Site</th>
-                    <th colspan="2" scope="colgroup">State</th>
-                    <th colspan="2" scope="colgroup">National</th>
+                    <th colspan="2" scope="colgroup">State (Women)</th>
+                    <th colspan="2" scope="colgroup">National (Women)</th>
+                    <th colspan="2" scope="colgroup">State (Men)</th>
                 </tr>
                 <tr>
+                    <th scope="col">Incidence Crude Rates (per 100,000)</th>
+                    <th scope="col">Mortality Crude Rates (per 100,000)</th>
                     <th scope="col">Incidence Crude Rates (per 100,000)</th>
                     <th scope="col">Mortality Crude Rates (per 100,000)</th>
                     <th scope="col">Incidence Crude Rates (per 100,000)</th>
@@ -260,6 +279,10 @@
                     nationalFactSheet.cancerData[$index].incidence.pop, true)"></td>
                     <td ng-bind="fsc.calculateRate(nationalFactSheet.cancerData[$index].mortality.cancer_mortality,
                     nationalFactSheet.cancerData[$index].mortality.pop, true)"></td>
+                    <td ng-bind="fsc.calculateRate(mensFactSheet.cancerData[$index].incidence.cancer_incidence,
+                    mensFactSheet.cancerData[$index].incidence.pop, true)"></td>
+                    <td ng-bind="fsc.calculateRate(mensFactSheet.cancerData[$index].mortality.cancer_mortality,
+                    mensFactSheet.cancerData[$index].mortality.pop, true)"></td>
                 </tr>
                 </tbody>
             </table>
