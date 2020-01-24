@@ -203,11 +203,11 @@
                 <tbody>
                 <tr ng-repeat="eachRecord in fsc.factSheet.stdData">
                     <td>{{eachRecord.disease}}</td>
-                    <td ng-bind="eachRecord.data.std"></td>
+                    <td ng-bind="eachRecord.data.std | number"></td>
                     <td ng-bind="fsc.calculateRate(eachRecord.data.std, eachRecord.data.pop)"></td>
-                    <td ng-bind="nationalFactSheet.stdData[$index].data.std"></td>
+                    <td ng-bind="nationalFactSheet.stdData[$index].data.std | number"></td>
                     <td ng-bind="fsc.calculateRate(nationalFactSheet.stdData[$index].data.std, nationalFactSheet.stdData[$index].data.pop)"></td>
-                    <td ng-bind="mensFactSheet.stdData[$index].data.std"></td>
+                    <td ng-bind="mensFactSheet.stdData[$index].data.std | number"></td>
                     <td ng-bind="fsc.calculateRate(mensFactSheet.stdData[$index].data.std, mensFactSheet.stdData[$index].data.pop)"></td>
                 </tr>
                 </tbody>
@@ -238,11 +238,11 @@
                 <tbody>
                 <tr ng-repeat="eachRecord in fsc.factSheet.hivAIDSData">
                     <td>{{eachRecord.disease}}</td>
-                    <td ng-bind="eachRecord.data.aids"></td>
+                    <td ng-bind="eachRecord.data.aids | number"></td>
                     <td ng-bind="fsc.calculateRate(eachRecord.data.aids, eachRecord.data.pop)"></td>
-                    <td ng-bind="nationalFactSheet.hivAIDSData[$index].data.aids"></td>
+                    <td ng-bind="nationalFactSheet.hivAIDSData[$index].data.aids | number"></td>
                     <td ng-bind="fsc.calculateRate(nationalFactSheet.hivAIDSData[$index].data.aids, nationalFactSheet.hivAIDSData[$index].data.pop)"></td>
-                    <td ng-bind="mensFactSheet.hivAIDSData[$index].data.aids"></td>
+                    <td ng-bind="mensFactSheet.hivAIDSData[$index].data.aids | number"></td>
                     <td ng-bind="fsc.calculateRate(mensFactSheet.hivAIDSData[$index].data.aids, mensFactSheet.hivAIDSData[$index].data.pop)"></td>
                 </tr>
                 </tbody>
