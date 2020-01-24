@@ -134,7 +134,7 @@
                         ng-bind="fsc.factSheet.infantMortalityData.deathRate | number:1"></td>
                 </tr>
                 <tr>
-                    <td>National*</td>
+                    <td>National</td>
                     <td ng-if="fsc.isNumeric(nationalFactSheet.infantMortalityData.infant_mortality)"
                         ng-bind="nationalFactSheet.infantMortalityData.infant_mortality | number"></td>
                     <td ng-bind="nationalFactSheet.infantMortalityData.births | number"></td>
@@ -227,7 +227,7 @@
                 <tr>
                     <th></th>
                     <th>State</th>
-                    <th>National*</th>
+                    <th>National</th>
                 </tr>
 
                 </thead>
@@ -314,7 +314,7 @@
                     <td ng-repeat="eachRecord in fsc.factSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'">{{eachRecord.cases}}({{eachRecord.rates}})</td>
                 </tr>
                 <tr>
-                    <td>National*</td>
+                    <td>National</td>
                     <td ng-repeat="eachRecord in nationalFactSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'">{{eachRecord.cases}}({{eachRecord.rates}})</td>
                 </tr>
                 </tbody>
@@ -346,7 +346,7 @@
                         <span ng-if="(!fsc.isValueInvalidDisplay(eachRaceValue.cases)) && (eachRaceValue.name != 'Unknown')">{{eachRaceValue.cases}} ({{eachRaceValue.rates}})</span>
                 </tr>
                 <tr>
-                    <td>National*</td>
+                    <td>National</td>
                     <td ng-repeat="eachRaceValue in nationalFactSheet.stdData[$index].data" ng-if="eachRaceValue.name != 'Unknown'">
                         <span ng-if="isValueInvalidDisplay(eachRaceValue.cases)" ng-bind="eachRaceValue.cases"></span>
                         <span ng-if="!isValueInvalidDisplay(eachRaceValue.cases)">{{eachRaceValue.cases}} ({{eachRaceValue.rates}})</span>
@@ -380,7 +380,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>National*</td>
+                    <td>National</td>
                     <td ng-repeat="eachRaceValue in nationalFactSheet.hivAIDSData[$index].data" ng-if="eachRaceValue.name != 'Unknown'">
                         <span ng-if="isValueInvalidDisplay(eachRaceValue.cases)" ng-bind="eachRaceValue.cases"></span>
                         <span ng-if="!isValueInvalidDisplay(eachRaceValue.cases)">{{eachRaceValue.cases}} ({{eachRaceValue.rates}})</span>
@@ -421,7 +421,7 @@
                     <td ng-bind="fsc.calculateRate(eachRecord.mortality.cancer_mortality, eachRecord.mortality.pop, true)"></td>
                 </tr>
                 <tr>
-                    <td>National*</td>
+                    <td>National</td>
                     <td ng-bind="nationalFactSheet.cancerData[$index].incidence.pop === 'suppressed' ? 'Suppressed' : ( nationalFactSheet.cancerData[$index].incidence.pop | number )"></td>
                     <td ng-bind="fsc.getCancerCountDisplayVal(nationalFactSheet.cancerData[$index].incidence.cancer_incidence)"></td>
                     <td ng-if="fsc.state != 'KS'" ng-bind="fsc.calculateRate(nationalFactSheet.cancerData[$index].incidence.cancer_incidence, nationalFactSheet.cancerData[$index].incidence.pop, true)"></td>

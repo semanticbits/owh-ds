@@ -171,15 +171,9 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             //For HIV Diagnoses
             es.executeESQuery('owh_aids', 'aids', HIVDiagnoses_esQuery),
             es.aggregateCensusDataQuery(HIVDiagnoses_populationQuery, 'owh_aids', "aids", 'pop'),
-            //For HIV Deaths
-            es.executeESQuery('owh_aids', 'aids', HIVDeaths_esQuery),
-            es.aggregateCensusDataQuery(HIVDeaths_populationQuery, 'owh_aids', "aids", 'pop'),
             //For HIV Prevalence
             es.executeESQuery('owh_aids', 'aids', HIVPrevalence_esQuery),
             es.aggregateCensusDataQuery(HIVPrevalence_populationQuery, 'owh_aids', "aids", 'pop'),
-            //Detail Mortality - Total ages
-            es.executeMultipleESQueries(mortality_total_esQuery, 'owh_mortality', 'mortality'),
-            new wonder('D77').invokeWONDER(mortality_total_wonderQuery),
             //Detail Mortality - Malignant Neoplasm
             es.executeMultipleESQueries(malignantNeoplasmESQuery, 'owh_mortality', 'mortality'),
             new wonder('D77').invokeWONDER(malignantNeoplasmWonderQuery),
@@ -314,116 +308,112 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
                 var HIVDiagnosesData = searchUtils.populateDataWithMappings(resp[24], 'aids', 'cases');
                 es.mergeWithCensusData(HIVDiagnosesData, resp[25], undefined, 'pop');
                 searchUtils.applySuppressions(HIVDiagnosesData, 'aids', 0);
-                //For - HIV Deaths
-                var HIVDeathsData = searchUtils.populateDataWithMappings(resp[26], 'aids', 'cases');
-                es.mergeWithCensusData(HIVDeathsData, resp[27], undefined, 'pop');
-                searchUtils.applySuppressions(HIVDeathsData, 'aids', 0);
                 //For - HIV Prevalence
-                var HIVPrevalenceData = searchUtils.populateDataWithMappings(resp[28], 'aids', 'cases');
-                es.mergeWithCensusData(HIVPrevalenceData, resp[29], undefined, 'pop');
+                var HIVPrevalenceData = searchUtils.populateDataWithMappings(resp[26], 'aids', 'cases');
+                es.mergeWithCensusData(HIVPrevalenceData, resp[27], undefined, 'pop');
                 searchUtils.applySuppressions(HIVPrevalenceData, 'aids', 0);
                 //For - Detail Mortality - malignantNeoplasm
-                var malignantNeoplasmData = searchUtils.populateDataWithMappings(resp[32], 'deaths');
-                searchUtils.mergeAgeAdjustedRates(malignantNeoplasmData.data.nested.table, resp[33].table);
+                var malignantNeoplasmData = searchUtils.populateDataWithMappings(resp[28], 'deaths');
+                searchUtils.mergeAgeAdjustedRates(malignantNeoplasmData.data.nested.table, resp[29].table);
                 searchUtils.applySuppressions(malignantNeoplasmData, 'deaths');
                 //For - Detail Mortality - alzheimer
-                var alzheimerData = searchUtils.populateDataWithMappings(resp[34], 'deaths');
-                searchUtils.mergeAgeAdjustedRates(alzheimerData.data.nested.table, resp[35].table);
+                var alzheimerData = searchUtils.populateDataWithMappings(resp[30], 'deaths');
+                searchUtils.mergeAgeAdjustedRates(alzheimerData.data.nested.table, resp[31].table);
                 searchUtils.applySuppressions(alzheimerData, 'deaths');
                 //For - Detail Mortality - accident
-                var accidentData = searchUtils.populateDataWithMappings(resp[36], 'deaths');
-                searchUtils.mergeAgeAdjustedRates(accidentData.data.nested.table, resp[37].table);
+                var accidentData = searchUtils.populateDataWithMappings(resp[32], 'deaths');
+                searchUtils.mergeAgeAdjustedRates(accidentData.data.nested.table, resp[33].table);
                 searchUtils.applySuppressions(accidentData, 'deaths');
                 //For - Detail Mortality - Cerebrovascular Disease
-                var cerebrovascularData = searchUtils.populateDataWithMappings(resp[38], 'deaths');
-                searchUtils.mergeAgeAdjustedRates(cerebrovascularData.data.nested.table, resp[39].table);
+                var cerebrovascularData = searchUtils.populateDataWithMappings(resp[34], 'deaths');
+                searchUtils.mergeAgeAdjustedRates(cerebrovascularData.data.nested.table, resp[35].table);
                 searchUtils.applySuppressions(cerebrovascularData, 'deaths');
                 //For - Detail Mortality - Chronic Respiratory
-                var chronicRespiratoryData = searchUtils.populateDataWithMappings(resp[40], 'deaths');
-                searchUtils.mergeAgeAdjustedRates(chronicRespiratoryData.data.nested.table, resp[41].table);
+                var chronicRespiratoryData = searchUtils.populateDataWithMappings(resp[36], 'deaths');
+                searchUtils.mergeAgeAdjustedRates(chronicRespiratoryData.data.nested.table, resp[37].table);
                 searchUtils.applySuppressions(chronicRespiratoryData, 'deaths');
                 //For - Detail Mortality - diabetesMellitus
-                var diabetesMellitusData = searchUtils.populateDataWithMappings(resp[42], 'deaths');
-                searchUtils.mergeAgeAdjustedRates(diabetesMellitusData.data.nested.table, resp[43].table);
+                var diabetesMellitusData = searchUtils.populateDataWithMappings(resp[38], 'deaths');
+                searchUtils.mergeAgeAdjustedRates(diabetesMellitusData.data.nested.table, resp[39].table);
                 searchUtils.applySuppressions(diabetesMellitusData, 'deaths');
                 //For - Detail Mortality - Influenza
-                var influenzaData = searchUtils.populateDataWithMappings(resp[44], 'deaths');
-                searchUtils.mergeAgeAdjustedRates(influenzaData.data.nested.table, resp[45].table);
+                var influenzaData = searchUtils.populateDataWithMappings(resp[40], 'deaths');
+                searchUtils.mergeAgeAdjustedRates(influenzaData.data.nested.table, resp[41].table);
                 searchUtils.applySuppressions(influenzaData, 'deaths');
                 //For - Detail Mortality - Nephritis
-                var nephritisData = searchUtils.populateDataWithMappings(resp[46], 'deaths');
-                searchUtils.mergeAgeAdjustedRates(nephritisData.data.nested.table, resp[47].table);
+                var nephritisData = searchUtils.populateDataWithMappings(resp[42], 'deaths');
+                searchUtils.mergeAgeAdjustedRates(nephritisData.data.nested.table, resp[43].table);
                 searchUtils.applySuppressions(nephritisData, 'deaths');
                 //For - Detail Mortality - Suicide
-                var suicideData = searchUtils.populateDataWithMappings(resp[48], 'deaths');
-                searchUtils.mergeAgeAdjustedRates(suicideData.data.nested.table, resp[49].table);
+                var suicideData = searchUtils.populateDataWithMappings(resp[44], 'deaths');
+                searchUtils.mergeAgeAdjustedRates(suicideData.data.nested.table, resp[45].table);
                 searchUtils.applySuppressions(suicideData, 'deaths');
                 //For - Detail Mortality - Heart Diseases
-                var heartDiseaseData = searchUtils.populateDataWithMappings(resp[86], 'deaths');
-                searchUtils.mergeAgeAdjustedRates(heartDiseaseData.data.nested.table, resp[87].table);
+                var heartDiseaseData = searchUtils.populateDataWithMappings(resp[82], 'deaths');
+                searchUtils.mergeAgeAdjustedRates(heartDiseaseData.data.nested.table, resp[83].table);
                 searchUtils.applySuppressions(heartDiseaseData, 'deaths');
                 //Natality - Birth Rates
-                var natality_BirthRates_Data = searchUtils.populateDataWithMappings(resp[50], 'natality');
-                es.mergeWithCensusData(natality_BirthRates_Data, resp[51], undefined, 'pop');
+                var natality_BirthRates_Data = searchUtils.populateDataWithMappings(resp[46], 'natality');
+                es.mergeWithCensusData(natality_BirthRates_Data, resp[47], undefined, 'pop');
                 searchUtils.applySuppressions(natality_BirthRates_Data, 'natality');
                 //Natality - fertilityRates
-                var natality_fertilityRates_Data = searchUtils.populateDataWithMappings(resp[52], 'natality');
-                es.mergeWithCensusData(natality_fertilityRates_Data, resp[53], undefined, 'pop');
+                var natality_fertilityRates_Data = searchUtils.populateDataWithMappings(resp[48], 'natality');
+                es.mergeWithCensusData(natality_fertilityRates_Data, resp[49], undefined, 'pop');
                 searchUtils.applySuppressions(natality_fertilityRates_Data, 'natality');
                 //Natality - vaginal
-                var natality_vaginal_Data = searchUtils.populateDataWithMappings(resp[54], 'natality');
+                var natality_vaginal_Data = searchUtils.populateDataWithMappings(resp[50], 'natality');
                 searchUtils.applySuppressions(natality_vaginal_Data, 'natality');
                 //Natality n- Cesarean
-                var natality_cesarean_Data = searchUtils.populateDataWithMappings(resp[55], 'natality');
+                var natality_cesarean_Data = searchUtils.populateDataWithMappings(resp[51], 'natality');
                 searchUtils.applySuppressions(natality_cesarean_Data, 'natality');
                 //Natality - Low Birth weight (<2500 gms)
-                var natality_lowBirthWeight_Data = searchUtils.populateDataWithMappings(resp[56], 'natality');
+                var natality_lowBirthWeight_Data = searchUtils.populateDataWithMappings(resp[52], 'natality');
                 searchUtils.applySuppressions(natality_lowBirthWeight_Data, 'natality');
                 //Natality - Twin Birth Rate
-                var natality_twinBirth_Data = searchUtils.populateDataWithMappings(resp[57], 'natality');
+                var natality_twinBirth_Data = searchUtils.populateDataWithMappings(resp[53], 'natality');
                 searchUtils.applySuppressions(natality_twinBirth_Data, 'natality');
                 //Natality - Total birth population by year
-                var natality_totalBirthPopulation_Data = searchUtils.populateDataWithMappings(resp[58], 'natality');
+                var natality_totalBirthPopulation_Data = searchUtils.populateDataWithMappings(resp[54], 'natality');
                 searchUtils.applySuppressions(natality_totalBirthPopulation_Data, 'natality');
                 //Cancer - Mortality
-                var cancer_mortality_breast_data = searchUtils.populateDataWithMappings(resp[59], 'cancer_mortality');
-                var cancer_breast_population = searchUtils.populateDataWithMappings(resp[60], 'cancer_population');
+                var cancer_mortality_breast_data = searchUtils.populateDataWithMappings(resp[55], 'cancer_mortality');
+                var cancer_breast_population = searchUtils.populateDataWithMappings(resp[56], 'cancer_population');
                 var cancer_breast_population_index = searchUtils.createPopIndex(cancer_breast_population.data.nested.table, 'cancer_population');
                 searchUtils.attachPopulation(cancer_mortality_breast_data.data.nested.table, cancer_breast_population_index, '');
                 searchUtils.applySuppressions(cancer_mortality_breast_data, 'cancer_mortality', 16);
 
-                var cancer_mortality_colonAndRectum_data = searchUtils.populateDataWithMappings(resp[61], 'cancer_mortality');
-                var cancer_colonAndRectum_population = searchUtils.populateDataWithMappings(resp[62], 'cancer_population');
+                var cancer_mortality_colonAndRectum_data = searchUtils.populateDataWithMappings(resp[57], 'cancer_mortality');
+                var cancer_colonAndRectum_population = searchUtils.populateDataWithMappings(resp[58], 'cancer_population');
                 var cancer_colonAndRectum_population_index = searchUtils.createPopIndex(cancer_colonAndRectum_population.data.nested.table, 'cancer_population');
                 searchUtils.attachPopulation(cancer_mortality_colonAndRectum_data.data.nested.table, cancer_colonAndRectum_population_index, '');
                 searchUtils.applySuppressions(cancer_mortality_colonAndRectum_data, 'cancer_mortality', 16);
 
-                var cancer_mortality_lungAndBronchus_data = searchUtils.populateDataWithMappings(resp[63], 'cancer_mortality');
-                var cancer_lungAndBronchus_population = searchUtils.populateDataWithMappings(resp[64], 'cancer_population');
+                var cancer_mortality_lungAndBronchus_data = searchUtils.populateDataWithMappings(resp[59], 'cancer_mortality');
+                var cancer_lungAndBronchus_population = searchUtils.populateDataWithMappings(resp[60], 'cancer_population');
                 var cancer_lungAndBronchus_population_index = searchUtils.createPopIndex(cancer_lungAndBronchus_population.data.nested.table, 'cancer_population');
                 searchUtils.attachPopulation(cancer_mortality_lungAndBronchus_data.data.nested.table, cancer_lungAndBronchus_population_index, '');
                 searchUtils.applySuppressions(cancer_mortality_lungAndBronchus_data, 'cancer_mortality', 16);
 
-                var cancer_mortality_melanoma_data = searchUtils.populateDataWithMappings(resp[65], 'cancer_mortality');
-                var cancer_melanoma_population = searchUtils.populateDataWithMappings(resp[66], 'cancer_population');
+                var cancer_mortality_melanoma_data = searchUtils.populateDataWithMappings(resp[61], 'cancer_mortality');
+                var cancer_melanoma_population = searchUtils.populateDataWithMappings(resp[62], 'cancer_population');
                 var cancer_melanoma_population_index = searchUtils.createPopIndex(cancer_melanoma_population.data.nested.table, 'cancer_population');
                 searchUtils.attachPopulation(cancer_mortality_melanoma_data.data.nested.table, cancer_melanoma_population_index, '');
                 searchUtils.applySuppressions(cancer_mortality_melanoma_data, 'cancer_mortality', 16);
 
-                var cancer_mortality_cervix_data = searchUtils.populateDataWithMappings(resp[67], 'cancer_mortality');
-                var cancer_cervix_population = searchUtils.populateDataWithMappings(resp[68], 'cancer_population');
+                var cancer_mortality_cervix_data = searchUtils.populateDataWithMappings(resp[63], 'cancer_mortality');
+                var cancer_cervix_population = searchUtils.populateDataWithMappings(resp[64], 'cancer_population');
                 var cancer_cervix_population_index = searchUtils.createPopIndex(cancer_cervix_population.data.nested.table, 'cancer_population')
                 searchUtils.attachPopulation(cancer_mortality_cervix_data.data.nested.table, cancer_cervix_population_index, '');
                 searchUtils.applySuppressions(cancer_mortality_cervix_data, 'cancer_mortality', 16);
 
-                var cancer_mortality_ovary_data = searchUtils.populateDataWithMappings(resp[69], 'cancer_mortality');
-                var cancer_ovary_population = searchUtils.populateDataWithMappings(resp[70], 'cancer_population');
+                var cancer_mortality_ovary_data = searchUtils.populateDataWithMappings(resp[65], 'cancer_mortality');
+                var cancer_ovary_population = searchUtils.populateDataWithMappings(resp[66], 'cancer_population');
                 var cancer_ovary_population_index = searchUtils.createPopIndex(cancer_ovary_population.data.nested.table, 'cancer_population');
                 searchUtils.attachPopulation(cancer_mortality_ovary_data.data.nested.table, cancer_ovary_population_index, '');
                 searchUtils.applySuppressions(cancer_mortality_ovary_data, 'cancer_mortality', 16);
 
-                var cancer_mortality_prostate_data = searchUtils.populateDataWithMappings(resp[71], 'cancer_mortality');
-                var cancer_prostate_population = searchUtils.populateDataWithMappings(resp[72], 'cancer_population');
+                var cancer_mortality_prostate_data = searchUtils.populateDataWithMappings(resp[67], 'cancer_mortality');
+                var cancer_prostate_population = searchUtils.populateDataWithMappings(resp[68], 'cancer_population');
                 var cancer_prostate_population_index = searchUtils.createPopIndex(cancer_prostate_population.data.nested.table, 'cancer_population');
                 searchUtils.attachPopulation(cancer_mortality_prostate_data.data.nested.table, cancer_prostate_population_index, '');
                 searchUtils.applySuppressions(cancer_mortality_ovary_data, 'cancer_mortality', 16);
@@ -438,31 +428,31 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
                 cancer_mortality_data.data.nested.table.current_year.push.apply(cancer_mortality_data.data.nested.table.current_year, cancer_mortality_prostate_data.data.nested.table.current_year);
                 //Cancer - Incident
                 var rules = searchUtils.createCancerIncidenceSuppressionRules(['2014'], true, false);
-                var cancer_incident_breast_data = searchUtils.populateDataWithMappings(resp[73], 'cancer_incidence');
+                var cancer_incident_breast_data = searchUtils.populateDataWithMappings(resp[69], 'cancer_incidence');
                 searchUtils.attachPopulation(cancer_incident_breast_data.data.nested.table, cancer_breast_population_index, '');
                 searchUtils.applySuppressions(cancer_incident_breast_data, 'cancer_incidence', 16);
                 searchUtils.applyCustomSuppressions(cancer_incident_breast_data.data.nested, rules, 'cancer_incidence');
-                var cancer_incident_colonAndRectum_data = searchUtils.populateDataWithMappings(resp[74], 'cancer_incidence');
+                var cancer_incident_colonAndRectum_data = searchUtils.populateDataWithMappings(resp[70], 'cancer_incidence');
                 searchUtils.attachPopulation(cancer_incident_colonAndRectum_data.data.nested.table, cancer_colonAndRectum_population_index, '');
                 searchUtils.applySuppressions(cancer_incident_colonAndRectum_data, 'cancer_incidence', 16);
                 searchUtils.applyCustomSuppressions(cancer_incident_colonAndRectum_data.data.nested, rules, 'cancer_incidence');
-                var cancer_incident_lungAndBronchus_data = searchUtils.populateDataWithMappings(resp[75], 'cancer_incidence');
+                var cancer_incident_lungAndBronchus_data = searchUtils.populateDataWithMappings(resp[71], 'cancer_incidence');
                 searchUtils.attachPopulation(cancer_incident_lungAndBronchus_data.data.nested.table, cancer_lungAndBronchus_population_index, '');
                 searchUtils.applySuppressions(cancer_incident_lungAndBronchus_data, 'cancer_incidence', 16);
                 searchUtils.applyCustomSuppressions(cancer_incident_lungAndBronchus_data.data.nested, rules, 'cancer_incidence');
-                var cancer_incident_melanoma_data = searchUtils.populateDataWithMappings(resp[76], 'cancer_incidence');
+                var cancer_incident_melanoma_data = searchUtils.populateDataWithMappings(resp[72], 'cancer_incidence');
                 searchUtils.attachPopulation(cancer_incident_melanoma_data.data.nested.table, cancer_melanoma_population_index, '');
                 searchUtils.applySuppressions(cancer_incident_melanoma_data, 'cancer_incidence', 16);
                 searchUtils.applyCustomSuppressions(cancer_incident_melanoma_data.data.nested, rules, 'cancer_incidence');
-                var cancer_incident_cervix_data = searchUtils.populateDataWithMappings(resp[77], 'cancer_incidence');
+                var cancer_incident_cervix_data = searchUtils.populateDataWithMappings(resp[73], 'cancer_incidence');
                 searchUtils.attachPopulation(cancer_incident_cervix_data.data.nested.table, cancer_cervix_population_index, '');
                 searchUtils.applySuppressions(cancer_incident_cervix_data, 'cancer_incidence', 16);
                 searchUtils.applyCustomSuppressions(cancer_incident_cervix_data.data.nested, rules, 'cancer_incidence');
-                var cancer_incident_ovary_data = searchUtils.populateDataWithMappings(resp[78], 'cancer_incidence');
+                var cancer_incident_ovary_data = searchUtils.populateDataWithMappings(resp[74], 'cancer_incidence');
                 searchUtils.attachPopulation(cancer_incident_ovary_data.data.nested.table, cancer_ovary_population_index, '');
                 searchUtils.applySuppressions(cancer_incident_ovary_data, 'cancer_incidence', 16);
                 searchUtils.applyCustomSuppressions(cancer_incident_ovary_data.data.nested, rules, 'cancer_incidence');
-                var cancer_incident_prostate_data = searchUtils.populateDataWithMappings(resp[79], 'cancer_incidence');
+                var cancer_incident_prostate_data = searchUtils.populateDataWithMappings(resp[75], 'cancer_incidence');
                 searchUtils.attachPopulation(cancer_incident_prostate_data.data.nested.table, cancer_prostate_population_index, '');
                 searchUtils.applySuppressions(cancer_incident_prostate_data, 'cancer_incidence', 16);
                 searchUtils.applyCustomSuppressions(cancer_incident_prostate_data.data.nested, rules, 'cancer_incidence');
@@ -475,17 +465,17 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
                 cancer_incident_data.data.nested.table.current_year.push.apply(cancer_incident_data.data.nested.table.current_year, cancer_incident_ovary_data.data.nested.table.current_year);
                 cancer_incident_data.data.nested.table.current_year.push.apply(cancer_incident_data.data.nested.table.current_year, cancer_incident_prostate_data.data.nested.table.current_year);
                 //YRBS - Alcohol
-                var yrbs_alchohol_data = resp[80];
+                var yrbs_alchohol_data = resp[76];
                 //BRFSS - 2015 - Overweight and Obesity(BMI), Tobbaco use, Fruits and Vegetables, Alcohol Consumption
-                var brfss_2015_data = resp[81];
+                var brfss_2015_data = resp[77];
                 //PRAMS - 2009 - Smoking cigarettes during the last three months of pregnancy
-                var prams_smoking_data = resp[82];
+                var prams_smoking_data = resp[78];
                 //PRAMS - 2009 - Females reported physical abuse by husband or partner during pregnancy (percent)
-                var prams_physical_abuse_data = resp[83];
+                var prams_physical_abuse_data = resp[79];
                 //PRAMS - 2009 - Ever breastfed or pump breast milk to feed after delivery
-                var prams_breast_milk_feed_data = resp[84];
+                var prams_breast_milk_feed_data = resp[80];
                 //PRAMS - 2009 - Indicator of depression 3 months before pregnancy
-                var prams_indicator_depression_data = resp[85];
+                var prams_indicator_depression_data = resp[81];
 
                 var factSheet = prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
                     raceData, hispanicData, ageGroupData, fsType);
@@ -505,11 +495,10 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
                     disease: "AIDS Diagnoses",
                     data: prepareDiseaseData(AIDSDiagnosesData, 'aids')
                 },
-                    {disease: "AIDS Deaths*", data: prepareDiseaseData(AIDSDeathsData, 'aids')},
-                    {disease: "AIDS Prevalence*", data: prepareDiseaseData(AIDSPrevalenceData, 'aids')},
+                    {disease: "AIDS Deaths", data: prepareDiseaseData(AIDSDeathsData, 'aids')},
+                    {disease: "AIDS Prevalence", data: prepareDiseaseData(AIDSPrevalenceData, 'aids')},
                     {disease: "HIV Diagnoses", data: prepareDiseaseData(HIVDiagnosesData, 'aids')},
-                    {disease: "HIV Deaths*", data: prepareDiseaseData(HIVDeathsData, 'aids')},
-                    {disease: "HIV Prevalence*", data: prepareDiseaseData(HIVPrevalenceData, 'aids')}];
+                    {disease: "HIV Prevalence", data: prepareDiseaseData(HIVPrevalenceData, 'aids')}];
                 factSheet.detailMortalityData = [
                     {causeOfDeath: "Diseases of heart", data: heartDiseaseData.data.nested.table.year[0]},
                     {causeOfDeath: "Malignant neoplasms", data: malignantNeoplasmData.data.nested.table.year[0]},

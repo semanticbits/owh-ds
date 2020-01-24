@@ -9,7 +9,8 @@
     function factSheetService ($q, SearchService) {
         var service = {
             prepareFactSheetForState: prepareFactSheetForState,
-            prepareFactSheetForNation: prepareFactSheetForNation
+            prepareFactSheetForNation: prepareFactSheetForNation,
+            prepareWomenFactSheetMenData: prepareWomenFactSheetMenData
         };
 
         return service;
@@ -27,6 +28,16 @@
             var deferred = $q.defer();
             //state - undefined will fetch nation data.
             SearchService.getFactSheetForState(undefined, fsType, queryID).then(function (response) {
+                var fsData = response.data;
+                deferred.resolve(fsData);
+            });
+            return deferred.promise;
+        }
+
+        function prepareWomenFactSheetMenData(state, fsType, queryID) {
+            var deferred = $q.defer();
+            //state - undefined will fetch nation data.
+            SearchService.getFactSheetForState(state, fsType, queryID, 'male').then(function (response) {
                 var fsData = response.data;
                 deferred.resolve(fsData);
             });

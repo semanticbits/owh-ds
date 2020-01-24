@@ -186,31 +186,96 @@
          */
         function getQueryResults(state, fsType, queryID) {
             var deffered = $q.defer();
-            factSheetService.prepareFactSheetForState(state, fsType, queryID).then(function (res) {
-                if(res && res.resultData){
-                    fsc.state = res.resultData.state;
-                    fsc.fsType = res.resultData.fsType;
-                    fsc.fsTypeForTable = res.resultData.fsType;
-                    fsc.stateName = fsc.states[res.resultData.state];
-                    fsc.factSheetTitle = fsc.stateName+" - "+fsc.fsTypeForTable;
-                    fsc.stateImg = 'state_' + res.resultData.state + '.svg';
-                    fsc.stateImgUrl = '../../images/state-shapes/state_' + res.resultData.state + '.svg';
-                    fsc.factSheet = res.resultData;
-                    if($rootScope.nationalFactSheet == undefined || ($rootScope.previousFSType == undefined || $rootScope.previousFSType != fsType)) {
-                        SearchService.generateHashCode({fsType: res.resultData.fsType}).then(function (response) {
-                            factSheetService.prepareFactSheetForNation(fsType, response.data).then(function (response) {
-                                if (response && response.resultData) {
-                                    $rootScope.nationalFactSheet = response.resultData;
+            var stateFactSheetPromise = $q.defer();
+            var nationalFactSheetPromise = $q.defer();
+            var menFactSheetPromise = $q.defer();
+            var dataPromises = [stateFactSheetPromise.promise, nationalFactSheetPromise.promise];
+            SearchService.validateCachedQuery(queryID).then(function (queryValidatedResp) {
+                if(queryValidatedResp.status=='OK') {
+                    factSheetService.prepareFactSheetForState(state, fsType, queryID).then(function (res) {
+                        if(res && res.resultData){
+                            fsc.state = res.resultData.state;
+                            fsc.fsType = res.resultData.fsType;
+                            fsc.fsTypeForTable = res.resultData.fsType;
+                            fsc.stateName = fsc.states[res.resultData.state];
+                            fsc.factSheetTitle = fsc.stateName+" - "+fsc.fsTypeForTable;
+                            fsc.stateImg = 'state_' + res.resultData.state + '.svg';
+                            fsc.stateImgUrl = '../../images/state-shapes/state_' + res.resultData.state + '.svg';
+                            fsc.factSheet = res.resultData;
+                            if($rootScope.nationalFactSheet == undefined || ($rootScope.previousFSType == undefined || $rootScope.previousFSType != fsType)) {
+                                SearchService.generateHashCode({fsType: res.resultData.fsType}).then(function (hashcodeResponse) {
+                                    factSheetService.prepareFactSheetForNation(fsType, hashcodeResponse.data).then(function (response) {
+                                        if (response && response.resultData) {
+                                            $rootScope.nationalFactSheet = response.resultData;
+                                            $rootScope.previousFSType = fsType;
+                                        }
+                                        if(fsc.fsType == fsc.fsTypes.state_health) prepareStateHealthPopulationTable();
+                                        else if(fsc.fsType == fsc.fsTypes.womens_health) {
+                                            SearchService.generateHashCode({fsType: res.resultData.fsType, sex: 'male'}).then(function (hashcodeResponse) {
+                                                factSheetService.prepareWomenFactSheetMenData(state, fsType, hashcodeResponse.data).then(function (mensResponse) {
+                                                    if(mensResponse && mensResponse.resultData) {
+                                                        $rootScope.mensFactSheet = mensResponse.resultData;
+                                                    }
+                                                    prepareWomensHealthPopulationTable();
+                                                });
+                                            });
+                                        }
+                                        else prepareMinorityHealthPopulationTable();
+                                    });
+                                });
+                            }
+                        }
+                        deffered.resolve(res);
+                    });
+                } else {
+                    factSheetService.prepareFactSheetForState(state, fsType, queryID).then(function (stateRes) {
+                        if (stateRes && stateRes.resultData) {
+                            fsc.state = stateRes.resultData.state;
+                            fsc.fsType = stateRes.resultData.fsType;
+                            fsc.fsTypeForTable = stateRes.resultData.fsType;
+                            fsc.stateName = fsc.states[stateRes.resultData.state];
+                            fsc.factSheetTitle = fsc.stateName + " - " + fsc.fsTypeForTable;
+                            fsc.stateImg = 'state_' + stateRes.resultData.state + '.svg';
+                            fsc.stateImgUrl = '../../images/state-shapes/state_' + stateRes.resultData.state + '.svg';
+                            fsc.factSheet = stateRes.resultData;
+                        }
+                        stateFactSheetPromise.resolve();
+                    });
+                    if ($rootScope.nationalFactSheet == undefined || ($rootScope.previousFSType == undefined || $rootScope.previousFSType != fsType)) {
+                        SearchService.generateHashCode({fsType: fsType}).then(function (hashcodeResponse) {
+                            factSheetService.prepareFactSheetForNation(fsType, hashcodeResponse.data).then(function (nationalResponse) {
+                                if (nationalResponse && nationalResponse.resultData) {
+                                    $rootScope.nationalFactSheet = nationalResponse.resultData;
                                     $rootScope.previousFSType = fsType;
                                 }
-                                if(fsc.fsType == fsc.fsTypes.state_health) prepareStateHealthPopulationTable();
-                                else if(fsc.fsType == fsc.fsTypes.womens_health)prepareWomensHealthPopulationTable();
-                                else prepareMinorityHealthPopulationTable();
+                                nationalFactSheetPromise.resolve();
                             });
                         });
                     }
+                    if (fsc.fsType == fsc.fsTypes.womens_health) {
+                        SearchService.generateHashCode({fsType: fsType, sex: 'male'}).then(function (hashcodeResponse) {
+                            factSheetService.prepareWomenFactSheetMenData(state, fsType, hashcodeResponse.data).then(function (mensResponse) {
+                                if (mensResponse && mensResponse.resultData) {
+                                    $rootScope.mensFactSheet = mensResponse.resultData;
+                                }
+                                menFactSheetPromise.resolve();
+                            });
+                        });
+                        dataPromises.push(menFactSheetPromise.promise);
+                    }
+                    Promise.all(dataPromises).then(function (respValues) {
+                        if (fsc.fsType == fsc.fsTypes.womens_health) {
+                            prepareWomensHealthPopulationTable();
+                            deffered.resolve(respValues[0]);
+                        } else {
+                            if (fsc.fsType == fsc.fsTypes.state_health) prepareStateHealthPopulationTable();
+                            else prepareMinorityHealthPopulationTable();
+                            deffered.resolve(respValues[0]);
+                        }
+                    });
                 }
-                deffered.resolve(res);
+            }).catch(function(error){
+                console.log('Failed to validate query cache....');
             });
             return deffered.promise;
         }
@@ -398,7 +463,8 @@
                             },
                             layout: lightHorizontalLines
                         },
-                        {text: $filter('translate')('fs.state.health.bridgerace.footnote'), style: 'info'},
+                        {text: $filter('translate')('fs.state.health.bridgerace.footnote1'), style: 'info'},
+                        {text: $filter('translate')('fs.state.health.bridgerace.footnote2'), style: 'info'},
                         {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Mortality',  style: 'heading'},
                         {
@@ -790,7 +856,7 @@
                 }
             });
             var stateData = ['State'];
-            var nationalData = ['National*'];
+            var nationalData = ['National'];
             angular.forEach(fsc.factSheet.tuberculosis, function(eachRecord, index) {
                 if(eachRecord.name !== 'Unknown') {
                     stateData.push(eachRecord.cases+"("+eachRecord.rates+")");
@@ -813,7 +879,7 @@
             var stdData = [];
             angular.forEach(fsc.factSheet.stdData, function(eachRecord, index){
                 var stateRow = [{text:eachRecord.disease, rowSpan: 2}, 'State'];
-                var nationalRow = ["", "National*"];
+                var nationalRow = ["", "National"];
                 angular.forEach(eachRecord.data, function(data, index){
                     if(data.name !== 'Unknown') {
                         stateRow.push(data.cases + ' ' + (data.rates =='Suppressed' ? '': '('+ data.rates +')'));
@@ -849,7 +915,7 @@
             });
             angular.forEach(fsc.factSheet.hivAIDSData, function(eachRecord, index) {
                 var stateRow = [{text:eachRecord.disease, rowSpan: 2}, 'State'];
-                var nationalRow = ['', 'National*'];
+                var nationalRow = ['', 'National'];
                 angular.forEach(eachRecord.data, function(data){
                     if(data.name !== 'Unknown') {
                         stateRow.push(data.cases + ' ' + (data.rates =='Suppressed' ? '': '('+ data.rates +')'));
@@ -881,7 +947,7 @@
             var cancerData = [];
             angular.forEach(fsc.factSheet.cancerData, function(eachRecord, index) {
                 var stateRow = [{text:eachRecord.site, rowSpan: 2}, 'State'];
-                var nationalRow = ['', 'National*'];
+                var nationalRow = ['', 'National'];
 
                 var incidence = eachRecord.incidence;
                 stateRow.push(incidence.pop === 'suppressed' ? 'Suppressed' : $filter('number')(incidence.pop));
@@ -935,8 +1001,7 @@
                 tableRow.push(entriesTitles[i]);
                 tableRow.push(getPopValue(fsc.factSheet.ageGroups, i));
                 tableRow.push(getPopValue($rootScope.nationalFactSheet.ageGroups, i));
-                tableRow.push(getPopValue(fsc.factSheet.maleAgeGroups, i));
-                tableRow.push(getPopValue($rootScope.nationalFactSheet.maleAgeGroups, i));
+                tableRow.push(getPopValue($rootScope.mensFactSheet.ageGroups, i));
                 fsc.populationTableEntries.push(tableRow);
             }
         }
@@ -1680,7 +1745,7 @@
                 detailMortalityTableData.unshift(detailMortalityHeaders[1]);
                 detailMortalityTableData.unshift(detailMortalityHeaders[0]);
 
-                var bridgeRaceTotalText = "Total state female population*: "+$filter('number')(fsc.factSheet.gender[0].bridge_race);
+                var bridgeRaceTotalText = "Total state female population: "+$filter('number')(fsc.factSheet.gender[0].bridge_race);
 
                 var lightHorizontalLines = {
                     hLineWidth: function (i, node) {return .5;}, vLineWidth: function (i, node) {return .5;},
@@ -1770,7 +1835,8 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: $filter('translate')('fs.women.health.footnote'), style: 'info'},
+                    {text: $filter('translate')('fs.women.health.footnote1'), style: 'info'},
+                    {text: $filter('translate')('fs.women.health.footnote2'), style: 'info'},
                     {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Mortality',  style: 'heading'},
                     {

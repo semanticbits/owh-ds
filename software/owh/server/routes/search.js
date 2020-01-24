@@ -18,6 +18,27 @@ var fs = require('fs');
 var queryCache = new qc();
 
 var searchRouter = function(app, rConfig) {
+    app.post('/validateCachedQuery', function (req, res) {
+        var queryId = req.sanitize(req.body.qID);
+        if (queryId) {
+            queryCache.getCachedQuery(queryId).then(function (r) {
+                if(r && !config.disableQueryCache) {
+                    logger.info("Retrieved query results for query ID " + queryId + " from query cache");
+                    res.send(new result('OK', {}, "success"));
+                }
+                else if(req.body.fsType) {
+                    logger.info("Query with ID " + queryId + " not in cache, executing query");
+                    res.send(new result('FAILED', 'Query ID not present', "failed"));
+                } else{
+                    logger.warn('Query ID not present, query failed');
+                    res.send(new result('FAILED', 'Query ID not present', "failed"));
+                }
+            });
+        } else {
+            logger.warn('Query ID not present, query failed');
+            res.send(new result('FAILED', 'Query ID not present', "failed"));
+        }
+    });
     app.post('/search', function (req, res) {
         var q = req.body.q;
         logger.debug("Incoming RAW query: ", JSON.stringify(q));
@@ -106,7 +127,8 @@ var searchRouter = function(app, rConfig) {
                             res.send(new result('OK', resData, "success"));
                         });
                     } else if (fsType === "Women's and Girls' Health") {
-                        new womenHealthFactSheet().prepareFactSheet(state, fsType).then(function(response) {
+                        var sex = req.sanitize(req.body.sex);
+                        new womenHealthFactSheet().prepareFactSheet(state, fsType, sex).then(function(response) {
                             if(!config.disableQueryCache) {
                                 var resData = {};
                                 resData.queryJSON = {};

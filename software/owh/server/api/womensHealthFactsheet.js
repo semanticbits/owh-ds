@@ -2,6 +2,7 @@ var elasticSearch = require('../models/elasticSearch');
 var yrbs = require("../api/yrbs");
 var factSheetQueries = require('../json/factsheet-queries.json');
 var factSheetCountriesQueries = require('../json/factsheet-country-queries.json');
+var factSheetMensQueries = require('../json/factsheet-mens-queries.json');
 var searchUtils = require('../api/utils');
 var wonder = require("../api/wonder");
 var Q = require('q');
@@ -9,11 +10,15 @@ var logger = require('../config/logging');
 
 var WomenHealthFactSheet = function() {};
 
-WomenHealthFactSheet.prototype.prepareFactSheet = function (state, fsType) {
+WomenHealthFactSheet.prototype.prepareFactSheet = function (state, fsType, sex) {
     var deferred = Q.defer();
     var factSheetQueryJSON;
     if(state) {
-        factSheetQueryJSON = JSON.parse(JSON.stringify(factSheetQueries.women_health).split("$state$").join(state));
+        if(sex == 'male') {
+            factSheetQueryJSON = JSON.parse(JSON.stringify(factSheetMensQueries.women_health).split("$state$").join(state));
+        } else {
+            factSheetQueryJSON = JSON.parse(JSON.stringify(factSheetQueries.women_health).split("$state$").join(state));
+        }
     } else {
         factSheetQueryJSON = factSheetCountriesQueries.women_health;
     }
@@ -63,24 +68,20 @@ function getBridgeRaceDataForFactSheet(factSheetQueryJSON) {
     var es = new elasticSearch();
     var promises = [
         es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.gender_population),
-        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.gender_men_population),
         es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.nonHispanicRace_population),
         es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.race_population),
         es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.hispanic_population),
-        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.age_population),
-        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.age_men_population)
+        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.age_population)
     ];
 
     Q.all(promises).then( function (resp) {
         var genderData = searchUtils.populateDataWithMappings(resp[0], 'bridge_race', 'pop');
-        var maleGenderData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop');
-        var nonHispanicRaceData = searchUtils.populateDataWithMappings(resp[2], 'bridge_race', 'pop');
-        var raceData = searchUtils.populateDataWithMappings(resp[3], 'bridge_race', 'pop');
-        var hispanicData = searchUtils.populateDataWithMappings(resp[4], 'bridge_race', 'pop');
-        var ageGroupData = searchUtils.populateDataWithMappings(resp[5], 'bridge_race', 'pop');
-        var maleAgeGroupData = searchUtils.populateDataWithMappings(resp[6], 'bridge_race', 'pop');
-        var data =  prepareFactSheetForPopulation(genderData, maleGenderData, nonHispanicRaceData,
-            raceData, hispanicData, ageGroupData, maleAgeGroupData);
+        var nonHispanicRaceData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop');
+        var raceData = searchUtils.populateDataWithMappings(resp[2], 'bridge_race', 'pop');
+        var hispanicData = searchUtils.populateDataWithMappings(resp[3], 'bridge_race', 'pop');
+        var ageGroupData = searchUtils.populateDataWithMappings(resp[4], 'bridge_race', 'pop');
+        var data =  prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
+            raceData, hispanicData, ageGroupData);
         deferred.resolve(data);
     }, function (err) {
         logger.error(err.message);
@@ -323,8 +324,6 @@ function getHivDataForFactSheet(factSheetQueryJSON) {
     var aidsPrevalencePopulationQuery = factSheetQueryJSON.aids["AIDS Prevalence"][1];
     var hivDiagnosesESQuery = factSheetQueryJSON.aids["HIV Diagnoses"][0];
     var hivDiagnosesPopulationQuery = factSheetQueryJSON.aids["HIV Diagnoses"][1];
-    var hivDeathsESQuery = factSheetQueryJSON.aids["HIV Deaths"][0];
-    var hivDeathsPopulationQuery = factSheetQueryJSON.aids["HIV Deaths"][1];
     var hivPrevalenceESQuery = factSheetQueryJSON.aids["HIV Prevalence"][0];
     var hivPrevalencePopulationQuery = factSheetQueryJSON.aids["HIV Prevalence"][1];
     var es = new elasticSearch();
@@ -337,8 +336,6 @@ function getHivDataForFactSheet(factSheetQueryJSON) {
         es.aggregateCensusDataQuery(aidsPrevalencePopulationQuery, 'owh_aids', "aids", 'pop'),
         es.executeESQuery('owh_aids', 'aids', hivDiagnosesESQuery),
         es.aggregateCensusDataQuery(hivDiagnosesPopulationQuery, 'owh_aids', "aids", 'pop'),
-        es.executeESQuery('owh_aids', 'aids', hivDeathsESQuery),
-        es.aggregateCensusDataQuery(hivDeathsPopulationQuery, 'owh_aids', "aids", 'pop'),
         es.executeESQuery('owh_aids', 'aids', hivPrevalenceESQuery),
         es.aggregateCensusDataQuery(hivPrevalencePopulationQuery, 'owh_aids', "aids", 'pop')
     ];
@@ -360,21 +357,16 @@ function getHivDataForFactSheet(factSheetQueryJSON) {
         es.mergeWithCensusData(hivDiagnosesData, resp[7], undefined, 'pop');
         searchUtils.applySuppressions(hivDiagnosesData, 'aids', 0);
 
-        var hivDeathsData = searchUtils.populateDataWithMappings(resp[8], 'aids' , 'cases');
-        es.mergeWithCensusData(hivDeathsData, resp[9], undefined, 'pop');
-        searchUtils.applySuppressions(hivDeathsData, 'aids', 0);
-
-        var hivPrevalenceData = searchUtils.populateDataWithMappings(resp[10], 'aids' , 'cases');
-        es.mergeWithCensusData(hivPrevalenceData, resp[11], undefined, 'pop');
+        var hivPrevalenceData = searchUtils.populateDataWithMappings(resp[8], 'aids' , 'cases');
+        es.mergeWithCensusData(hivPrevalenceData, resp[9], undefined, 'pop');
         searchUtils.applySuppressions(hivPrevalenceData, 'aids', 0);
 
         var data = [
             {disease:"AIDS Diagnoses", data: aidsDiagnosesData.data.nested.table.state[0]},
-            {disease:"AIDS Deaths*", data: aidsDeathsData.data.nested.table.state[0]},
-            {disease:"AIDS Prevalence*", data: aidsPrevalenceData.data.nested.table.state[0]},
+            {disease:"AIDS Deaths", data: aidsDeathsData.data.nested.table.state[0]},
+            {disease:"AIDS Prevalence", data: aidsPrevalenceData.data.nested.table.state[0]},
             {disease:"HIV Diagnoses", data: hivDiagnosesData.data.nested.table.state[0]},
-            {disease:"HIV Deaths*", data: hivDeathsData.data.nested.table.state[0]},
-            {disease:"HIV Prevalence*", data: hivPrevalenceData.data.nested.table.state[0]}
+            {disease:"HIV Prevalence", data: hivPrevalenceData.data.nested.table.state[0]}
         ];
         deferred.resolve(data);
     }, function (err) {
@@ -540,26 +532,20 @@ function prepareBRFSSData(brfssResp) {
     return brfssData;
 }
 
-function prepareFactSheetForPopulation(genderData, maleGenderData, nonHispanicRaceData,
-                                       raceData, hispanicData, ageGroupData, maleAgeGroupData) {
+function prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
+                                       raceData, hispanicData, ageGroupData) {
     var factSheet = {};
     factSheet.gender = genderData.data.simple.group_table_sex;
-    factSheet.genderMalePop = maleGenderData.data.simple.group_table_sex;
 
-    factSheet.totalWomenGenderPop = 0; factSheet.totalMenGenderPop=0;
+    factSheet.totalGenderPop = 0;
     factSheet.gender.forEach(function (data) {
-        factSheet.totalWomenGenderPop += data.bridge_race;
-    });
-    factSheet.genderMalePop.forEach(function (data) {
-        factSheet.totalMenGenderPop += data.bridge_race;
+        factSheet.totalGenderPop += data.bridge_race;
     });
     var race = nonHispanicRaceData.data.simple.group_table_race;
     race = race.concat(raceData.data.simple.group_table_race, hispanicData.data.simple.group_table_ethnicity);
 
     ageGroupData = ageGroupData.data.simple.group_table_agegroup;
-    maleAgeGroupData = maleAgeGroupData.data.simple.group_table_agegroup;
     prepareAgeGroups(factSheet, ageGroupData, "ageGroups");
-    prepareAgeGroups(factSheet, maleAgeGroupData, "maleAgeGroups");
     factSheet.race = race;
     return factSheet;
 }
