@@ -1084,14 +1084,14 @@
             angular.forEach(fsc.factSheet.stdData, function(eachRecord, index){
                 var eachRow = [];
                 eachRow.push(eachRecord.disease);
-                eachRow.push(eachRecord.data.std);
+                eachRow.push($filter('number')(eachRecord.data.std));
                 eachRow.push(fsc.calculateRate(eachRecord.data.std, eachRecord.data.pop));
 
-                eachRow.push($rootScope.nationalFactSheet.stdData[index].data.std);
+                eachRow.push($filter('number')($rootScope.nationalFactSheet.stdData[index].data.std));
                 eachRow.push(fsc.calculateRate($rootScope.nationalFactSheet.stdData[index].data.std,
                     $rootScope.nationalFactSheet.stdData[index].data.pop));
 
-                eachRow.push($rootScope.mensFactSheet.stdData[index].data.std);
+                eachRow.push($filter('number')($rootScope.mensFactSheet.stdData[index].data.std));
                 eachRow.push(fsc.calculateRate($rootScope.mensFactSheet.stdData[index].data.std,
                     $rootScope.mensFactSheet.stdData[index].data.pop));
                 stdData.push(eachRow);
@@ -1109,14 +1109,14 @@
             angular.forEach(fsc.factSheet.hivAIDSData, function(eachRecord, index) {
                 var eachRow = [];
                 eachRow.push(eachRecord.disease);
-                eachRow.push(eachRecord.data.aids);
+                eachRow.push($filter('number')(eachRecord.data.aids));
                 eachRow.push(fsc.calculateRate(eachRecord.data.aids, eachRecord.data.pop));
 
-                eachRow.push($rootScope.nationalFactSheet.hivAIDSData[index].data.aids);
+                eachRow.push($filter('number')($rootScope.nationalFactSheet.hivAIDSData[index].data.aids));
                 eachRow.push(fsc.calculateRate($rootScope.nationalFactSheet.hivAIDSData[index].data.aids,
                     $rootScope.nationalFactSheet.hivAIDSData[index].data.pop));
 
-                eachRow.push($rootScope.mensFactSheet.hivAIDSData[index].data.aids);
+                eachRow.push($filter('number')($rootScope.mensFactSheet.hivAIDSData[index].data.aids));
                 eachRow.push(fsc.calculateRate($rootScope.mensFactSheet.hivAIDSData[index].data.aids,
                     $rootScope.mensFactSheet.hivAIDSData[index].data.pop));
 
