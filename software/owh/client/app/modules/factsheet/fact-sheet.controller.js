@@ -606,8 +606,11 @@
             //first row
             angular.forEach(headers, function(eachHeader){
                 if(eachHeader.nestedHeaders) {
-                    tableHeaders.push({text: eachHeader.header, colSpan: 2,
-                        style: cssClass ? cssClass : 'tableHeader', border: [true, true, true, true], fillColor: '#EFFAFE'}, {})
+                    tableHeaders.push({text: eachHeader.header, colSpan: eachHeader.nestedHeaders.length,
+                        style: cssClass ? cssClass : 'tableHeader', border: [true, true, true, true], fillColor: '#EFFAFE'});
+                    for(var i=0;i<eachHeader.nestedHeaders.length-1;i++) {
+                        tableHeaders.push({});
+                    }
                 }else {
                     tableHeaders.push({text: eachHeader.header, style: cssClass ? cssClass : 'tableHeader',
                         border: [true, true, true, true], fillColor: '#EFFAFE', rowSpan: 2})
@@ -989,13 +992,12 @@
             var allTablesData = {};
             //bridgeRace table1 data
             var bridgeRaceTable1Data = ['Population'];
-            bridgeRaceTable1Data.push($filter('number')(fsc.factSheet.totalWomenGenderPop));
-            bridgeRaceTable1Data.push($filter('number')($rootScope.nationalFactSheet.totalWomenGenderPop));
-            bridgeRaceTable1Data.push($filter('number')(fsc.factSheet.totalMenGenderPop));
-            bridgeRaceTable1Data.push($filter('number')($rootScope.nationalFactSheet.totalMenGenderPop));
+            bridgeRaceTable1Data.push($filter('number')(fsc.factSheet.totalGenderPop));
+            bridgeRaceTable1Data.push($filter('number')($rootScope.nationalFactSheet.totalGenderPop));
+            bridgeRaceTable1Data.push($filter('number')($rootScope.mensFactSheet.totalGenderPop));
 
             allTablesData.bridgeRaceTable1 = {
-                headerData: ['Distribution Residents', 'State Population (Women)', 'National Population (Women)','State Population (Men)', 'National Population (Men)'],
+                headerData: ['Distribution Residents', 'State Population (Women)', 'National Population (Women)','State Population (Men)'],
                 bodyData: bridgeRaceTable1Data
             };
 
@@ -1006,14 +1008,14 @@
             });
 
             allTablesData.bridgeRaceTable2 = {
-                headerData: ['Age Distribution of Residents', 'State Population (Women)', 'National Population (Women)','State Population (Men)', 'National Population (Men)'],
+                headerData: ['Age Distribution of Residents', 'State Population (Women)', 'National Population (Women)','State Population (Men)'],
                 bodyData: bridgeRaceTable2Data
             };
 
             //Detail Mortality
             var detailsMortalityData = [];
             angular.forEach(fsc.factSheet.detailMortalityData, function(eachRecord, index){
-                var deathCount = "", nationalDeathCount = "";
+                var deathCount = "", nationalDeathCount = "", mensDeathCount="";
                 if(eachRecord.data.deaths){
                     deathCount = eachRecord.data.deaths === 'suppressed' ? 'Suppressed' : $filter('number')(eachRecord.data.deaths);
                 }
@@ -1021,52 +1023,62 @@
                     nationalDeathCount = $rootScope.nationalFactSheet.detailMortalityData[index].data.deaths === 'suppressed'
                         ? 'Suppressed' : $filter('number')($rootScope.nationalFactSheet.detailMortalityData[index].data.deaths);
                 }
+                if($rootScope.mensFactSheet.detailMortalityData[index].data.deaths) {
+                    mensDeathCount = $rootScope.mensFactSheet.detailMortalityData[index].data.deaths === 'suppressed'
+                        ? 'Suppressed' : $filter('number')($rootScope.mensFactSheet.detailMortalityData[index].data.deaths);
+                }
 
-                detailsMortalityData.push([eachRecord.causeOfDeath, deathCount, nationalDeathCount,
+                detailsMortalityData.push([eachRecord.causeOfDeath, deathCount, nationalDeathCount, mensDeathCount,
                     eachRecord.data.ageAdjustedRate ? eachRecord.data.ageAdjustedRate : "Not available",
                     $rootScope.nationalFactSheet.detailMortalityData[index].data.ageAdjustedRate ?
-                        $rootScope.nationalFactSheet.detailMortalityData[index].data.ageAdjustedRate : "Not available"
+                        $rootScope.nationalFactSheet.detailMortalityData[index].data.ageAdjustedRate : "Not available",
+                    $rootScope.mensFactSheet.detailMortalityData[index].data.ageAdjustedRate ?
+                        $rootScope.mensFactSheet.detailMortalityData[index].data.ageAdjustedRate : "Not available"
                 ]);
             });
             allTablesData.detailMortality = {
-                headerData: [{header: 'Cause of Death'}, {header:'Number of Deaths', nestedHeaders: ['State','National']},
-                    {header:'Age-Adjusted Death Rate (per 100,000 women)',nestedHeaders: ['State', 'National']}],
+                headerData: [{header: 'Cause of Death'}, {header:'Number of Deaths', nestedHeaders: ['State (Women)','National (Women)','State (Men)']},
+                    {header:'Age-Adjusted Death Rate (per 100,000 women)',nestedHeaders: ['State (Women)', 'National (Women)','State (Men)']}],
                 bodyData: detailsMortalityData
             };
 
             //PRAMS
             var pramsTableData = [];
             angular.forEach(fsc.factSheet.prams, function(eachRecord, index){
-                pramsTableData.push([eachRecord.question, eachRecord.data, $rootScope.nationalFactSheet.prams[index].data]);
+                pramsTableData.push([eachRecord.question, eachRecord.data, $rootScope.nationalFactSheet.prams[index].data,
+                    $rootScope.mensFactSheet.prams[index].data]);
             });
             allTablesData.pramsTable = {
-                headerData: ['Question', 'State', 'National'],
+                headerData: ['Question', 'State (Women)', 'National (Women)','State (Men)'],
                 bodyData: pramsTableData
             };
 
             //BRFSS
             var brfssData = [];
             angular.forEach(fsc.factSheet.brfss, function(eachRecord, index){
-                brfssData.push([eachRecord.question, eachRecord.data, $rootScope.nationalFactSheet.brfss[index].data]);
+                brfssData.push([eachRecord.question, eachRecord.data, $rootScope.nationalFactSheet.brfss[index].data,
+                    $rootScope.mensFactSheet.brfss[index].data]);
             });
             allTablesData.brfss = {
-                headerData: ['Question', 'State', 'National'],
+                headerData: ['Question', 'State (Women)', 'National (Women)','State (Men)'],
                 bodyData: brfssData
             };
 
             //YRBS
             var yrbsData = [];
             angular.forEach(fsc.factSheet.yrbs, function(eachRecord, index){
-                yrbsData.push([eachRecord.question, eachRecord.data, $rootScope.nationalFactSheet.yrbs[index].data]);
+                yrbsData.push([eachRecord.question, eachRecord.data, $rootScope.nationalFactSheet.yrbs[index].data,
+                    $rootScope.mensFactSheet.yrbs[index].data]);
             });
             allTablesData.yrbsTable = {
-                headerData: ["Question", "State", "National"],
+                headerData: ["Question", "State (Women)", "National (Women)",'State (Men)'],
                 bodyData: yrbsData
             };
 
             //STD
-            var stdHeaderData =  [{header: 'Disease'}, {header:'State', nestedHeaders: ['Total Cases','Rate']},
-                {header:'National',nestedHeaders: ['Total Cases', 'Rate']}];
+            var stdHeaderData =  [{header: 'Disease'}, {header:'State (Women)', nestedHeaders: ['Total Cases','Rate']},
+                {header:'National (Women)',nestedHeaders: ['Total Cases', 'Rate']},
+                {header:',State (Men)',nestedHeaders: ['Total Cases', 'Rate']}];
             var stdData = [];
 
             angular.forEach(fsc.factSheet.stdData, function(eachRecord, index){
@@ -1078,6 +1090,10 @@
                 eachRow.push($rootScope.nationalFactSheet.stdData[index].data.std);
                 eachRow.push(fsc.calculateRate($rootScope.nationalFactSheet.stdData[index].data.std,
                     $rootScope.nationalFactSheet.stdData[index].data.pop));
+
+                eachRow.push($rootScope.mensFactSheet.stdData[index].data.std);
+                eachRow.push(fsc.calculateRate($rootScope.mensFactSheet.stdData[index].data.std,
+                    $rootScope.mensFactSheet.stdData[index].data.pop));
                 stdData.push(eachRow);
             });
             allTablesData.std = {
@@ -1086,8 +1102,9 @@
             };
 
             //HIV/AIDS
-            var hivHeaderData =  [{header: 'Indicator'}, {header:'State', nestedHeaders: ['Total Cases','Rate']},
-                {header:'National',nestedHeaders: ['Total Cases', 'Rate']}];
+            var hivHeaderData =  [{header: 'Indicator'}, {header:'State (Women)', nestedHeaders: ['Total Cases','Rate']},
+                {header:'National (Women)',nestedHeaders: ['Total Cases', 'Rate']},
+                {header:'State (Men)',nestedHeaders: ['Total Cases', 'Rate']}];
             var hivData = [];
             angular.forEach(fsc.factSheet.hivAIDSData, function(eachRecord, index) {
                 var eachRow = [];
@@ -1099,6 +1116,10 @@
                 eachRow.push(fsc.calculateRate($rootScope.nationalFactSheet.hivAIDSData[index].data.aids,
                     $rootScope.nationalFactSheet.hivAIDSData[index].data.pop));
 
+                eachRow.push($rootScope.mensFactSheet.hivAIDSData[index].data.aids);
+                eachRow.push(fsc.calculateRate($rootScope.mensFactSheet.hivAIDSData[index].data.aids,
+                    $rootScope.mensFactSheet.hivAIDSData[index].data.pop));
+
                 hivData.push(eachRow);
             });
             allTablesData.hiv = {
@@ -1107,8 +1128,9 @@
             };
 
             //Cancer
-            var cancerHeaderData =  [{header: 'Cancer Site'}, {header:'State', nestedHeaders:
-                    ['Incidence Crude Rates (per 100,000)','Mortality Crude Rates (per 100,000)']}, {header:'National',
+            var cancerHeaderData =  [{header: 'Cancer Site'}, {header:'State (Women)', nestedHeaders:
+                    ['Incidence Crude Rates (per 100,000)','Mortality Crude Rates (per 100,000)']}, {header:'National (Women)',
+                nestedHeaders: ['Incidence Crude Rates (per 100,000)', 'Mortality Crude Rates (per 100,000)']}, {header:'State (Men)',
                 nestedHeaders: ['Incidence Crude Rates (per 100,000)', 'Mortality Crude Rates (per 100,000)']}];
 
             var cancerData = [];
@@ -1120,8 +1142,18 @@
                     fsc.calculateRate($rootScope.nationalFactSheet.cancerData[index].incidence.cancer_incidence,
                         $rootScope.nationalFactSheet.cancerData[index].incidence.pop, true),
                     fsc.calculateRate($rootScope.nationalFactSheet.cancerData[index].mortality.cancer_mortality,
-                        $rootScope.nationalFactSheet.cancerData[index].mortality.pop, true)
-                ];
+                        $rootScope.nationalFactSheet.cancerData[index].mortality.pop, true)];
+
+                if($rootScope.mensFactSheet.cancerData[index].incidence)
+                    aRow.push(fsc.calculateRate($rootScope.mensFactSheet.cancerData[index].incidence.cancer_incidence,
+                        $rootScope.mensFactSheet.cancerData[index].incidence.pop, true));
+                else
+                    aRow.push('Not available');
+                if($rootScope.mensFactSheet.cancerData[index].mortality)
+                    aRow.push(fsc.calculateRate($rootScope.mensFactSheet.cancerData[index].mortality.cancer_mortality,
+                        $rootScope.mensFactSheet.cancerData[index].mortality.pop, true));
+                else
+                    aRow.push('Not available');
                 cancerData.push(aRow);
             });
             allTablesData.cancer = {
@@ -1665,6 +1697,9 @@
             var imageNamesForPDF = ["../client/app/images/state-shapes/"+fsc.stateImg];
             SearchService.SVGtoPNG(imageNamesForPDF).then(function(response){
                 var allTablesData = prepareWomenHealthTabledData();
+                allTablesData.bridgeRaceTable2.bodyData = prepareTableBody(allTablesData.bridgeRaceTable2.bodyData);
+                allTablesData.bridgeRaceTable2.bodyData.unshift(prepareTableHeaders(allTablesData.bridgeRaceTable2.headerData));
+
                 allTablesData.pramsTable.bodyData = prepareTableBody(allTablesData.pramsTable.bodyData);
                 allTablesData.pramsTable.bodyData.unshift(prepareTableHeaders(allTablesData.pramsTable.headerData));
 
@@ -1777,10 +1812,7 @@
                             widths: $.map( allTablesData.bridgeRaceTable2.headerData, function (d, i) {
                                 return '*';
                             } ),
-                            body: [
-                                prepareTableHeaders(allTablesData.bridgeRaceTable2.headerData),
-                                prepareTableBody(allTablesData.bridgeRaceTable2.bodyData)
-                            ]
+                            body: allTablesData.bridgeRaceTable2.bodyData
                         },
                         layout: lightHorizontalLines
                     },
