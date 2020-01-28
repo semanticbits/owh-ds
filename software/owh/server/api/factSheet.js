@@ -590,18 +590,18 @@ function getMeanDisplayValue(data) {
 function prepareBRFSSData(data_2015){
     var brfssData = [];
     brfssData.push({question: 'Obese (Body Mass Index 30.0 - 99.8)', data: 'Not applicable' });
-    brfssData.push({question: 'Adults who are current smokers', data: 'Not applicable'});
-    brfssData.push({question: 'Are heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)', data: 'Not applicable'});
+    brfssData.push({question: 'Do you have any kind of health care coverage?', data: 'Not applicable'});
+    brfssData.push({question: 'Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)', data: 'Not applicable'});
     brfssData.push({question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable'});
     data_2015.table.question.forEach(function(eachRecord){
         switch(eachRecord.name){
             case "_bmi5cat":
                 if(eachRecord["obese (bmi 30.0 - 99.8)"]) brfssData[0].data = getMeanDisplayValue(eachRecord["obese (bmi 30.0 - 99.8)"].brfss.mean);
                 break;
-            case "_rfsmok3":
+            case "hlthpln1":
                 if(eachRecord.yes) brfssData[1].data = getMeanDisplayValue(eachRecord.yes.brfss.mean);
                 break;
-            case "_rfdrhv5":
+            case "x_rfhype5":
                 if(eachRecord["meet criteria for heavy drinking"]) brfssData[2].data = getMeanDisplayValue(eachRecord["meet criteria for heavy drinking"].brfss.mean);
                 break;
             case "_paindx1":
