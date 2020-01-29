@@ -82,9 +82,10 @@
                      nationalFactSheet.detailMortalityData[$index].data.ageAdjustedRate :'Not Available'"></td>
                 </tr>
                 </tbody>
-            </table>
-            <i class="mortality-info" translate="{{ 'fs.state.health.mortality.footnote' }}"></i>
-            <i style="margin-top: 2px;" class="mortality-info" ng-bind="'label.help.text.age.adjusted.rate' | translate"></i>
+            </table><br>
+            <i class="mortality-info footer-notes primary" translate="{{ 'fs.state.health.mortality.footnote1' }}"></i>
+            <i class="mortality-info footer-notes" translate="{{ 'fs.state.health.mortality.footnote2' }}"></i>
+            <i class="mortality-info footer-notes" translate="{{ 'fs.state.health.mortality.footnote3' }}"></i>
         </div>
         <br/>
         <!-- Infant mortality total deaths, births and rates for 2014 for selected state -->
@@ -124,7 +125,7 @@
             <table class="prams-table-1">
                 <thead>
                 <tr>
-                    <th>Question</th>
+                    <th></th>
                     <th>State</th>
                     <th>National</th>
                 </tr>
@@ -145,7 +146,7 @@
             <table class="brfss-table">
                 <thead>
                 <tr>
-                    <th>Question</th>
+                    <th></th>
                     <th>State</th>
                     <th>National</th>
                 </tr>
@@ -165,7 +166,7 @@
             <table class="yrbs-table">
                 <thead>
                 <tr>
-                    <th>Question</th>
+                    <th></th>
                     <th>State</th>
                     <th>National</th>
                 </tr>
@@ -196,11 +197,6 @@
                     <td>Births</td>
                     <td>{{fsc.factSheet.natalityData.births | number }}</td>
                     <td>{{nationalFactSheet.natalityData.births | number }}</td>
-                </tr>
-                <tr>
-                    <td>Total population</td>
-                    <td>{{fsc.factSheet.natalityData.population | number }}</td>
-                    <td>{{nationalFactSheet.natalityData.population | number }}</td>
                 </tr>
                 <tr>
                     <td>Birth rates (per 100,000)</td>
@@ -357,8 +353,8 @@
                 </tr>
                 </tbody>
             </table>
-            <i ng-hide="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only</i>
-            <i ng-show="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only. {{fsc.notParticipateStates['CancerIncidence'].message}}</i>
+            <i ng-hide="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, CDC NPCR , † Female only, †† Male only</i>
+            <i ng-show="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, CDC NPCR Cancer Statistics, † Female only, †† Male only. {{fsc.notParticipateStates['CancerIncidence'].message}}</i>
         </div>
     </div>
     <div class="usa-width-one-whole">

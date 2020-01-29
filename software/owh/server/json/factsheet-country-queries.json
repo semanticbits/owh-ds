@@ -10773,6 +10773,17 @@
                         "should": [
                           {
                             "term": {
+                              "sex": "Female"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "current_year": "2016"
                             }
                           }

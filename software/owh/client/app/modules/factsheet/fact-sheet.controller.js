@@ -188,9 +188,9 @@
             var deffered = $q.defer();
             factSheetService.prepareFactSheetForState(state, fsType, queryID).then(function (res) {
                 if(res && res.resultData){
-                    var womensHealthCallback = function () {
-                        SearchService.generateHashCode({fsType: res.resultData.fsType, sex: 'male', state: state}).then(function (hashcodeResponse) {
-                            factSheetService.prepareWomenFactSheetMenData(state, fsType, hashcodeResponse.data).then(function (mensResponse) {
+                    var womensHealthCallback = function (resFsType, resState) {
+                        SearchService.generateHashCode({fsType: resFsType, sex: 'male', state: resState}).then(function (hashcodeResponse) {
+                            factSheetService.prepareWomenFactSheetMenData(state, resFsType, hashcodeResponse.data).then(function (mensResponse) {
                                 if(mensResponse && mensResponse.resultData) {
                                     $rootScope.mensFactSheet = mensResponse.resultData;
                                 }
@@ -215,14 +215,14 @@
                                 }
                                 if(fsc.fsType == fsc.fsTypes.state_health) prepareStateHealthPopulationTable();
                                 else if(fsc.fsType == fsc.fsTypes.womens_health) {
-                                    womensHealthCallback();
+                                    womensHealthCallback(res.resultData.fsType, res.resultData.state);
                                 }
                                 else prepareMinorityHealthPopulationTable();
                                 deffered.resolve(res);
                             });
                         });
                     } else if(fsc.fsType == fsc.fsTypes.womens_health) {
-                        womensHealthCallback();
+                        womensHealthCallback(res.resultData.fsType, res.resultData.state);
                     }
                 }
             });
@@ -348,7 +348,7 @@
                 //Prepare source for PRAMS, YRBS and Cancer based on selected state
                 var PRAMSSource = $filter('translate')('fs.state.prams.footnote');
                 var YRBSSource = $filter('translate')('fs.state.yrbs.footnote');
-                var CancerSource = 'Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only';
+                var CancerSource = 'Sources: 2016, CDC NPCR Cancer Statistics, † Female only, †† Male only';
                 if(fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1) {
                     PRAMSSource = 'This state did not take part in PRAMS';
                 }
@@ -356,7 +356,7 @@
                     YRBSSource = 'This state did not take part in YRBS';
                 }
                 if(fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1) {
-                    CancerSource = 'Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only. The state did not meet the United States Cancer Statistics (USCS) publication standard or did not allow permission for their data to be used.';
+                    CancerSource = 'Sources: 2016, CDC NPCR Cancer Statistics, † Female only, †† Male only. The state did not meet the United States Cancer Statistics (USCS) publication standard or did not allow permission for their data to be used.';
                 }
                 pdfDefinition.footer = function(page, pages) {
                     return {
@@ -428,8 +428,9 @@
                             },
                             layout: lightHorizontalLines
                         },
-                        {text: $filter('translate')('fs.state.health.mortality.footnote'), style: 'info'},
-                        {text: $filter('translate')('label.help.text.age.adjusted.rate'), style: 'info'},
+                        {text: $filter('translate')('fs.state.health.mortality.footnote1'), style: 'info'},
+                        {text: $filter('translate')('fs.state.health.mortality.footnote2'), style: 'info'},
+                        {text: $filter('translate')('fs.state.health.mortality.footnote3'), style: 'info'},
                         {image: fsc.imageDataURLs.infantMortality, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Infant Mortality: (All Causes, Not gender-specific)', style: 'heading'},
                         {
@@ -1038,7 +1039,7 @@
             });
             allTablesData.detailMortality = {
                 headerData: [{header: 'Cause of Death'}, {header:'Number of Deaths', nestedHeaders: ['State (Women)','National (Women)','State (Men)']},
-                    {header:'Age-Adjusted Death Rate (per 100,000 women)',nestedHeaders: ['State (Women)', 'National (Women)','State (Men)']}],
+                    {header:'Age-Adjusted Death Rate (per 100,000)',nestedHeaders: ['State (Women)', 'National (Women)','State (Men)']}],
                 bodyData: detailsMortalityData
             };
 
@@ -1049,18 +1050,18 @@
                     $rootScope.mensFactSheet.prams[index].data]);
             });
             allTablesData.pramsTable = {
-                headerData: ['Question', 'State (Women)', 'National (Women)','State (Men)'],
+                headerData: ['', 'State (Women)', 'National (Women)','State (Men)'],
                 bodyData: pramsTableData
             };
 
             //BRFSS
             var brfssData = [];
             angular.forEach(fsc.factSheet.brfss, function(eachRecord, index){
-                brfssData.push([eachRecord.question, eachRecord.data, $rootScope.nationalFactSheet.brfss[index].data,
+                brfssData.push([eachRecord.question, eachRecord.data,
                     $rootScope.mensFactSheet.brfss[index].data]);
             });
             allTablesData.brfss = {
-                headerData: ['Question', 'State (Women)', 'National (Women)','State (Men)'],
+                headerData: ['', 'State (Women)', 'State (Men)'],
                 bodyData: brfssData
             };
 
@@ -1071,14 +1072,14 @@
                     $rootScope.mensFactSheet.yrbs[index].data]);
             });
             allTablesData.yrbsTable = {
-                headerData: ["Question", "State (Women)", "National (Women)",'State (Men)'],
+                headerData: ["", "State (Girls)", "National (Girls)",'State (Men)'],
                 bodyData: yrbsData
             };
 
             //STD
             var stdHeaderData =  [{header: 'Disease'}, {header:'State (Women)', nestedHeaders: ['Total Cases','Rate']},
                 {header:'National (Women)',nestedHeaders: ['Total Cases', 'Rate']},
-                {header:',State (Men)',nestedHeaders: ['Total Cases', 'Rate']}];
+                {header:'State (Men)',nestedHeaders: ['Total Cases', 'Rate']}];
             var stdData = [];
 
             angular.forEach(fsc.factSheet.stdData, function(eachRecord, index){
@@ -1244,7 +1245,7 @@
                 pramsTableData.push([eachRecord.question, eachRecord.data, $rootScope.nationalFactSheet.prams[index].data]);
             });
             allTablesData.pramsTable = {
-                headerData: ['Question', 'State', 'National'],
+                headerData: ['', 'State', 'National'],
                 bodyData: pramsTableData
             };
 
@@ -1254,7 +1255,7 @@
                 brfssData.push([eachRecord.question, eachRecord.data, $rootScope.nationalFactSheet.brfss[index].data]);
             });
             allTablesData.brfss = {
-                headerData: ['Question', 'State', 'National'],
+                headerData: ['', 'State', 'National'],
                 bodyData: brfssData
             };
             //YRBS
@@ -1263,14 +1264,13 @@
                 yrbsData.push([eachRecord.question, eachRecord.data, $rootScope.nationalFactSheet.yrbs[index].data]);
             });
             allTablesData.yrbs = {
-                headerData: ["Question", "State", "National"],
+                headerData: ["", "State", "National"],
                 bodyData: yrbsData
             };
             //Natality
             allTablesData.natality = {
                 headerData: ["", "State", "National"],
                 bodyData: [["Births", $filter('number')(fsc.factSheet.natalityData.births), $filter('number')($rootScope.nationalFactSheet.natalityData.births)],
-                    ["Total population", $filter('number')(fsc.factSheet.natalityData.population), $filter('number')($rootScope.nationalFactSheet.natalityData.population)],
                     ["Birth rates (per 100,000)", fsc.factSheet.natalityData.birthRate, $rootScope.nationalFactSheet.natalityData.birthRate],
                     ["Female  population (Ages 15 to 44)", $filter('number')(fsc.factSheet.natalityData.femalePopulation), $filter('number')($rootScope.nationalFactSheet.natalityData.femalePopulation)],
                     ["Fertility rates (per 100,000)", fsc.factSheet.natalityData.fertilityRate, $rootScope.nationalFactSheet.natalityData.fertilityRate],
@@ -1753,7 +1753,7 @@
                 //Prepare source for PRAMS, YRBS and Cancer based on selected state
                 var PRAMSSource = $filter('translate')('fs.women.prams.footnote');
                 var YRBSSource = $filter('translate')('fs.women.yrbs.footnote');
-                var CancerSource = 'Sources: 2016, NPCR Cancer Statistics';
+                var CancerSource = 'Sources: 2016, CDC NPCR , † Female only';
                 if(fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1) {
                     PRAMSSource = 'This state did not take part in PRAMS';
                 }
@@ -1761,7 +1761,7 @@
                     YRBSSource = 'This state did not take part in YRBS';
                 }
                 if(fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1) {
-                    CancerSource = 'Sources: 2016, NPCR Cancer Statistics. The state did not meet the United States Cancer Statistics (USCS) publication standard or did not allow permission for their data to be used.';
+                    CancerSource = 'Sources: 2016, CDC NPCR , † Female only. The state did not meet the United States Cancer Statistics (USCS) publication standard or did not allow permission for their data to be used.';
                 }
                 pdfDefinition.footer = function(page, pages) {
                     return {
@@ -1831,8 +1831,9 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: $filter('translate')('fs.women.health.mortality.footnote'), style: 'info'},
-                    {text: $filter('translate')('label.help.text.age.adjusted.rate'), style: 'info'},
+                    {text: $filter('translate')('fs.women.health.mortality.footnote1'), style: 'info'},
+                    {text: $filter('translate')('fs.women.health.mortality.footnote2'), style: 'info'},
+                    {text: $filter('translate')('fs.women.health.mortality.footnote3'), style: 'info'},
                     {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},
                     {
@@ -1954,7 +1955,9 @@
             return false;
         }
         function calculateRate(count, totalPopulation, checkReliability) {
-            if(count === 'suppressed') {
+            if(count === undefined) {
+                return 'Not available';
+            } if(count === 'suppressed') {
                 return 'Suppressed';
             } else if(count === 'Not available') {
                 return 'Not available';

@@ -1,3 +1,11 @@
+/*--- Common ---*/
+.factsheet-content .footer-notes {
+    margin-top: 2px;
+}
+.factsheet-content .footer-notes.primary {
+    margin-top: auto;
+}
+
 /* --------------------------- */
 /* State Health Factsheet css */
 /* --------------------------- */
@@ -135,19 +143,19 @@
     width: 30%;
 }
 .womens-health-factsheet table.std-table td {
-    width: 12%;
+    width: 11%;
 }
 .womens-health-factsheet table.hiv-table td:nth-child(1) {
     width: 30%;
 }
 .womens-health-factsheet table.hiv-table td {
-    width: 12%;
+    width: 11%;
 }
 .womens-health-factsheet table.cancer-table td:nth-child(1) {
     width: 30%;
 }
 .womens-health-factsheet table.cancer-table td {
-    width: 12%;
+    width: 11%;
 }
 
 /* --------------------------- */

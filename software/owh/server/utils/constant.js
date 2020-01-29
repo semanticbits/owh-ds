@@ -1,0 +1,1 @@
+module.exports.MENS_CANCER_LIST = ['Breast', 'Lung and Bronchus', 'Colon and Rectum', 'Melanoma of the Skin'];

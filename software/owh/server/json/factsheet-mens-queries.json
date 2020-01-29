@@ -5439,6 +5439,17 @@
                         "should": [
                           {
                             "term": {
+                              "sex": "Male"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
                               "state": "$state$"
                             }
                           }
