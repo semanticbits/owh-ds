@@ -91,6 +91,7 @@
                 primaryFilter.data = response.data.resultData.nested.table;
                 primaryFilter.dataCounts = response.data.resultData.nested.tableCounts;
                 primaryFilter.searchCount = response.pagination.total;
+                primaryFilter.grandTotals = response.data.resultData.simple?response.data.resultData.simple.grandTotals:undefined;
                 tableData = getMixedTable(primaryFilter, groupOptions, tableView);
                 populateSideFilterTotals(primaryFilter, response.data);
                 prepareMortalityResults(primaryFilter, response.data);
@@ -162,6 +163,10 @@
                 primaryFilter.data = response.data.resultData.nested.table;
                 primaryFilter.dataCounts = response.data.resultData.nested.tableCounts;
                 primaryFilter.nestedData = response.data.resultData.nested;
+                primaryFilter.grandTotals = response.data.resultData.simple?
+                    {infant_mortality:response.data.resultData.nested.table.infant_mortality,
+                        deathRate: response.data.resultData.nested.table.deathRate,
+                        pop: response.data.resultData.nested.table.pop}:undefined;
                 populateSideFilterTotals(primaryFilter, response.data);
                 primaryFilter.chartData = prepareChartData(primaryFilter.headers, response.data.resultData.nested, primaryFilter);
                 var headers = angular.copy(primaryFilter.headers.columnHeaders);
@@ -449,7 +454,9 @@
             var calculateRowTotal = selectedFilter.calculateRowTotal;
             var secondaryCountKeys = ['pop', 'ageAdjustedRate', 'standardPop', 'deathRate'];
 
-            var tableData = utilService.prepareMixedTableData(headers, file, dataCounts, countKey, totalCount, countLabel, calculatePercentage, calculateRowTotal, secondaryCountKeys, filterUtils.getAllOptionValues(), tableView);
+            var tableData = utilService.prepareMixedTableData(headers, file, dataCounts, countKey, totalCount, countLabel,
+                selectedFilter.grandTotals, calculatePercentage, calculateRowTotal, secondaryCountKeys,
+                filterUtils.getAllOptionValues(), tableView);
 
             if (selectedFilter.key === 'prams' ||selectedFilter.key === 'brfss' || selectedFilter.key == 'mental_health') {
                 tableData.headers[0].splice(1, 0, { colspan: 1, rowspan: tableData.headers.length, title: "Response", helpText: $filter('translate')('label.help.text.prams.response') });

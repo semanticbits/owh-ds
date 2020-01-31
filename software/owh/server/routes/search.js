@@ -301,8 +301,10 @@ function search(q) {
         new elasticSearch().aggregateNatalityData(sideFilterQuery, isStateSelected, allFilterOptions).then(function (sideFilterResults) {
             if(q.tableView === 'fertility_rates' && finalQuery[2]) {
                 var censusQuery = JSON.stringify(finalQuery[2]);
+                var censusCountQuery = JSON.stringify(finalQuery[3]);
                 //For Natality Fertility Rates add mother's age filter
                 finalQuery[2] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(censusQuery));
+                finalQuery[3] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(censusCountQuery));
                 finalQuery[5] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(mapQuery));
             }
             new elasticSearch().aggregateNatalityData(finalQuery, isStateSelected, allSelectedFilterOptions).then(function (response) {
