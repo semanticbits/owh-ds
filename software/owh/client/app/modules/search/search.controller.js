@@ -407,8 +407,8 @@
         sc.tableName = null;
 
         function changePrimaryFilter(newFilter) {
-            $rootScope.acceptDUR = false;
-            if (newFilter == 'deaths' ||newFilter== 'natality' ||newFilter == 'infant_mortality'){
+            // $rootScope.acceptDUR = false;
+            if (!$rootScope.acceptDUR && (newFilter == 'deaths' ||newFilter== 'natality' ||newFilter == 'infant_mortality')){
                 showDataUseRestriction().then (function () {
                     sc.tableData = {};
                     sc.filters.selectedPrimaryFilter = searchFactory.getPrimaryFilterByKey(newFilter);
@@ -1080,7 +1080,7 @@
                 controllerAs: 'dur',
                 controller: function ($scope, close) {
                     var dur = this;
-                    $rootScope.acceptDUR = false;
+                    // $rootScope.acceptDUR = false;
                     dur.close = close;
                     dur.accept = function () {
                         dur.close(true);
@@ -1089,7 +1089,7 @@
             }).then(function (modal) {
                 modal.element.show();
                 modal.close.then(function (accept) {
-                    if(accept === true){     
+                    if(accept === true){
                         modal.element.hide();
                         $rootScope.acceptDUR = accept;
                         deffered.resolve(accept);
