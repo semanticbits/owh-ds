@@ -37,7 +37,7 @@ WomenHealthFactSheet.prototype.prepareFactSheet = function (state, fsType, sex) 
             return getDetailMortalityDataForFactSheet(factSheetQueryJSON);
         }).then(function (mortalityData) {
             factsheet.detailMortalityData = mortalityData;
-            return getPramsDataForFactSheet(factSheetQueryJSON);
+            return getPramsDataForFactSheet(factSheetQueryJSON, state, sex);
         }).then(function (pramsData) {
             factsheet.prams = pramsData;
             return getBrfsDataForFactSheet(factSheetQueryJSON);
@@ -199,34 +199,62 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
     return deferred.promise;
 }
 
-function getPramsDataForFactSheet(factSheetQueryJSON) {
-    var smokingQuery = factSheetQueryJSON.prams['qnSmokingCigar'];
-    var physicalAbuseQuery = factSheetQueryJSON.prams['qnPhysicalAbuse'];
-    var breastFeedQuery = factSheetQueryJSON.prams['qnBreastFeeding'];
-    var indicatorDepressionQuery = factSheetQueryJSON.prams['qnDepressionIndicator'];
-    var adequacyOfPrenatalCare = factSheetQueryJSON.prams['qnAdequacyOfPrenatalCare'];
-    var yrbsAPI = new yrbs();
-    var promises = [
-        yrbsAPI.invokeYRBSService(adequacyOfPrenatalCare),
-        yrbsAPI.invokeYRBSService(smokingQuery),
-        yrbsAPI.invokeYRBSService(physicalAbuseQuery),
-        yrbsAPI.invokeYRBSService(breastFeedQuery),
-        yrbsAPI.invokeYRBSService(indicatorDepressionQuery)
-    ];
+function processPramsResponse(pramsData, state) {
+    if(state) {
+        return (pramsData.table.question[0] && pramsData.table.question[0].yes &&
+            pramsData.table.question[0].yes.sitecode) ?
+            pramsData.table.question[0].yes.sitecode[0].prams.mean : "Not applicable"
+    } else {
+        return (pramsData.table.question[0] && pramsData.table.question[0].yes &&
+            pramsData.table.question[0].yes) ?
+            pramsData.table.question[0].yes.prams.mean : "Not applicable"
+    }
+}
+function getPramsDataForFactSheet(factSheetQueryJSON, state, sex) {
     var deferred = Q.defer();
-    Q.all(promises).then(function (resp) {
-        var pramsData = [
-            {"question": "Adequacy of Prenatal Care (Kessner index)", data: resp[0].table.question[0] && resp[0].table.question[0]['adequate pnc'] ? resp[0].table.question[0]['adequate pnc'].sitecode[0].prams.mean : "Not applicable"},
-            {"question": "Smoking cigarettes during the last three months of pregnancy", data: resp[1].table.question[0] && resp[1].table.question[0].yes ? resp[1].table.question[0].yes.sitecode[0].prams.mean : "Not applicable"},
-            {"question": "Females reported physical abuse by husband or partner during pregnancy", data: resp[2].table.question[0] && resp[2].table.question[0].yes ? resp[2].table.question[0].yes.sitecode[0].prams.mean: "Not applicable"},
-            {"question": "Ever breastfed or pump breast milk to feed after delivery", data: resp[3].table.question[0] && resp[3].table.question[0].yes ? resp[3].table.question[0].yes.sitecode[0].prams.mean : "Not applicable"},
-            {"question": "Indicator of depression 3 months before pregnancy", data: resp[4].table.question[0] && resp[4].table.question[0].yes ? resp[4].table.question[0].yes.sitecode[0].prams.mean : "Not applicable"}
+    if(sex != 'male') {
+        var smokingQuery = factSheetQueryJSON.prams['qnSmokingCigar'];
+        var physicalAbuseQuery = factSheetQueryJSON.prams['qnPhysicalAbuse'];
+        var breastFeedQuery = factSheetQueryJSON.prams['qnBreastFeeding'];
+        var indicatorDepressionQuery = factSheetQueryJSON.prams['qnDepressionIndicator'];
+        var adequacyOfPrenatalCare = factSheetQueryJSON.prams['qnAdequacyOfPrenatalCare'];
+        //Question: In the 12 months before your baby was born  you were in a physical fight
+        var qn205 = factSheetQueryJSON.prams['qn205'];
+        //Question: Was your baby seen by a doctor  nurse or other health care provider in the first week after he or she left the hospital?
+        var qn101 = factSheetQueryJSON.prams['qn101'];
+        var yrbsAPI = new yrbs();
+        var promises = [
+            yrbsAPI.invokeYRBSService(adequacyOfPrenatalCare),
+            yrbsAPI.invokeYRBSService(smokingQuery),
+            yrbsAPI.invokeYRBSService(physicalAbuseQuery),
+            yrbsAPI.invokeYRBSService(breastFeedQuery),
+            yrbsAPI.invokeYRBSService(indicatorDepressionQuery),
+            yrbsAPI.invokeYRBSService(qn205),
+            yrbsAPI.invokeYRBSService(qn101)
         ];
-        deferred.resolve(pramsData);
-    }, function (err) {
-        logger.error(err.message);
-        deferred.reject(err);
-    });
+        Q.all(promises).then(function (resp) {
+            var pramsData = [
+                {"question": "Adequacy of Prenatal Care (Kessner index)", data:
+                        state ? (resp[0].table.question[0] && resp[0].table.question[0]['adequate pnc'] ?
+                            resp[0].table.question[0]['adequate pnc'].sitecode[0].prams.mean : "Not applicable"):
+                            (resp[0].table.question[0] && resp[0].table.question[0]['adequate pnc'] ?
+                                resp[0].table.question[0]['adequate pnc'].prams.mean : "Not applicable")},
+                {"question": "Smoking cigarettes during the last three months of pregnancy", data: processPramsResponse(resp[1], state)},
+                {"question": "Females reported physical abuse by husband or partner during pregnancy", data: processPramsResponse(resp[2], state)},
+                {"question": "Ever breastfed or pump breast milk to feed after delivery", data: processPramsResponse(resp[3], state)},
+                {"question": "Indicator of depression 3 months before pregnancy", data: processPramsResponse(resp[4], state)},
+                {"question": "In the 12 months before your baby was born  you were in a physical fight", data: processPramsResponse(resp[5], state)},
+                {"question": "Was your baby seen by a doctor  nurse or other health care provider in the first week after he or she left the hospital?",
+                    data: processPramsResponse(resp[6], state)}
+            ];
+            deferred.resolve(pramsData);
+        }, function (err) {
+            logger.error(err.message);
+            deferred.reject(err);
+        });
+    } else {
+        deferred.resolve([]);
+    }
     return deferred.promise;
 }
 

@@ -186,7 +186,6 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected, allSe
             }
         }
         Q.all(promises).then( function (respArray) {
-            var grandTotals = {};
             var data = searchUtils.populateDataWithMappings(respArray[0], 'deaths', undefined, allSelectedFilterOptions, query[0]);
             var dataCounts = searchUtils.populateDataWithMappings(respArray[1], 'deaths', undefined, allSelectedFilterOptions, query[1]);
             var mapData = searchUtils.populateDataWithMappings(respArray[4], 'deaths', undefined, allSelectedFilterOptions, query[4]);
@@ -194,13 +193,13 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected, allSe
             data.data.nested.tableCounts = dataCounts.data.nested.tableCounts;
             self.mergeWithCensusData(data, respArray[2], respArray[3], 'pop');
             mergeCensusRecursively(data.data.nested.maps, respArray[5].data.nested.maps, 'pop');
+            data.data.simple.grandTotals = {ageAdjustedRate : 'Not available', standardPop: 'Not available'};
             if(query.wonderQuery) {
                 respArray[6].table && searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[6].table);
                 respArray[6].tableCounts && searchUtils.mergeAgeAdjustedRates(data.data.nested.tableCounts, respArray[6].tableCounts);
                 if(respArray[6].table['Total']) {
-                    grandTotals.ageAdjustedRate = respArray[6].table['Total'].ageAdjustedRate;
-                    grandTotals.standardPop = respArray[6].table['Total'].standardPop;
-                    data.data.simple.grandTotals = grandTotals;
+                    data.data.simple.grandTotals = {ageAdjustedRate: respArray[6].table['Total'].ageAdjustedRate,
+                        standardPop: respArray[6].table['Total'].standardPop};
                 }
                 //Loop through charts array and merge age ajusted rates from response
                 if(respArray[6].charts) {

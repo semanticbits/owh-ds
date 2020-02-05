@@ -6557,6 +6557,150 @@
           "from": 0,
           "size": 10000
         }
+      },
+      "qn205": {
+        "basicSearch":true,
+        "searchFor": "prams",
+        "query": {
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2011",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_12"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn205"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "state",
+                "queryKey": "sitecode",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
+      },
+      "qn101": {
+        "basicSearch":true,
+        "searchFor": "prams",
+        "query": {
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2011",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_12"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn101"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "state",
+                "queryKey": "sitecode",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
       }
     }
   },
@@ -12329,6 +12473,150 @@
             "queryKey": "question.key",
             "value": [
               "qn133"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "state",
+                "queryKey": "sitecode",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
+      },
+      "qn205": {
+        "basicSearch":true,
+        "searchFor": "prams",
+        "query": {
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2011",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_12"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn205"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "state",
+                "queryKey": "sitecode",
+                "size": 0
+              }
+            ],
+            "charts": [],
+            "maps": [
+              [
+                {
+                  "key": "states",
+                  "queryKey": "state",
+                  "size": 0
+                },
+                {
+                  "key": "sex",
+                  "queryKey": "sex",
+                  "size": 0
+                }
+              ]
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
+      },
+      "qn101": {
+        "basicSearch":true,
+        "searchFor": "prams",
+        "query": {
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2011",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_12"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn101"
             ],
             "primary": false
           }
@@ -23526,6 +23814,140 @@
             "queryKey": "question.key",
             "value": [
               "qn133"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "year",
+                "queryKey": "year",
+                "size": 0
+              }
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
+      },
+      "qn205": {
+        "basicSearch":true,
+        "searchFor": "prams",
+        "query": {
+          "maternal_race": {
+            "key": "maternal_race",
+            "queryKey": "maternal_race",
+            "value": [
+              "Black",
+              "Hispanic",
+              "Other Race"
+            ],
+            "primary": false
+          },
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2011",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_12"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn205"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "question",
+                "queryKey": "question.key",
+                "size": 0
+              },
+              {
+                "key": "year",
+                "queryKey": "year",
+                "size": 0
+              }
+            ]
+          }
+        },
+        "pagination": {
+          "from": 0,
+          "size": 10000
+        }
+      },
+      "qn101": {
+        "basicSearch":true,
+        "searchFor": "prams",
+        "query": {
+          "maternal_race": {
+            "key": "maternal_race",
+            "queryKey": "maternal_race",
+            "value": [
+              "Black",
+              "Hispanic",
+              "Other Race"
+            ],
+            "primary": false
+          },
+          "year": {
+            "key": "year",
+            "queryKey": "year",
+            "value": "2011",
+            "primary": false
+          },
+          "topic": {
+            "key": "topic",
+            "queryKey": "topic",
+            "value": [
+              "cat_12"
+            ],
+            "primary": false
+          },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": [
+              "$state$"
+            ],
+            "primary": false
+          },
+          "question.path": {
+            "key": "question",
+            "queryKey": "question.key",
+            "value": [
+              "qn101"
             ],
             "primary": false
           }

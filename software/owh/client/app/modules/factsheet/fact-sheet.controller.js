@@ -1046,11 +1046,10 @@
             //PRAMS
             var pramsTableData = [];
             angular.forEach(fsc.factSheet.prams, function(eachRecord, index){
-                pramsTableData.push([eachRecord.question, eachRecord.data, $rootScope.nationalFactSheet.prams[index].data,
-                    $rootScope.mensFactSheet.prams[index].data]);
+                pramsTableData.push([eachRecord.question, eachRecord.data, $rootScope.nationalFactSheet.prams[index].data]);
             });
             allTablesData.pramsTable = {
-                headerData: ['', 'State (Women)', 'National (Women)','State (Men)'],
+                headerData: ['', 'State (Women)', 'National (Women)'],
                 bodyData: pramsTableData
             };
 

@@ -106,7 +106,6 @@
                     <th></th>
                     <th>State (Women)</th>
                     <th>National (Women)</th>
-                    <th>State (Men)</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -116,8 +115,6 @@
                     <td ng-if="eachRecord.data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(eachRecord.data)"></td>
                     <td ng-if="nationalFactSheet.prams[$index].data =='Not applicable'" ng-bind="'Not applicable'"></td>
                     <td ng-if="nationalFactSheet.prams[$index].data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(nationalFactSheet.prams[$index].data)"></td>
-                    <td ng-if="mensFactSheet.prams[$index].data =='Not applicable'" ng-bind="'Not applicable'"></td>
-                    <td ng-if="mensFactSheet.prams[$index].data !='Not applicable'" ng-bind="fsc.getMeanDisplayValue(mensFactSheet.prams[$index].data)"></td>
                 </tr>
                 </tbody>
             </table>
