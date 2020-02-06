@@ -488,7 +488,7 @@ ElasticClient.prototype.insertQueryData = function (query) {
  * @returns {*|promise}
  */
 ElasticClient.prototype.getDsMetadata = function (dataset, years) {
-    var query = {"size": 1000,"filter":{"and":{"filters":[{"term":{"dataset":dataset}}]}}};
+    var query = {"size": 2147483647,"filter":{"and":{"filters":[{"term":{"dataset":dataset}}]}}};
     if (years && years.length > 0){
         var yearfilter = [];
         for (var year in years) {
