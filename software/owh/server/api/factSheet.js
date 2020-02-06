@@ -248,14 +248,6 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             new yrbs().invokeYRBSService(yrbs_alcohol_stats_query),
             //BRFSS - 2015 - Overweight and Obesity(BMI), Tobbaco use, Fruits and Vegetables, Alcohol Consumption
             new yrbs().invokeYRBSService(brfss_2015_query),
-            //PRAMS - 2009 - Smoking cigarettes during the last three months of pregnancy
-            new yrbs().invokeYRBSService(prams_smoking_query),
-            //PRAMS - 2009 - Females reported physical abuse by husband or partner during pregnancy (percent)
-            new yrbs().invokeYRBSService(prams_physical_abuse_query),
-            //PRAMS - 2009 - Ever breastfed or pump breast milk to feed after delivery
-            new yrbs().invokeYRBSService(prams_breast_milk_feed_query),
-            //PRAMS - 2009 - Indicator of depression 3 months before pregnancy
-            new yrbs().invokeYRBSService(prams_indicator_depression_query),
             //PRAMS - 2011 - In the 12 months before your baby was born  you were in a physical fight
             new yrbs().invokeYRBSService(prams_QN205),
             //PRAMS - 2011 - Was your baby seen by a doctor  nurse or other health care provider in the first week after he or she left the hospital?
@@ -357,8 +349,8 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
                 searchUtils.mergeAgeAdjustedRates(suicideData.data.nested.table, resp[45].table);
                 searchUtils.applySuppressions(suicideData, 'deaths');
                 //For - Detail Mortality - Heart Diseases
-                var heartDiseaseData = searchUtils.populateDataWithMappings(resp[84], 'deaths');
-                searchUtils.mergeAgeAdjustedRates(heartDiseaseData.data.nested.table, resp[85].table);
+                var heartDiseaseData = searchUtils.populateDataWithMappings(resp[80], 'deaths');
+                searchUtils.mergeAgeAdjustedRates(heartDiseaseData.data.nested.table, resp[81].table);
                 searchUtils.applySuppressions(heartDiseaseData, 'deaths');
                 //Natality - Birth Rates
                 var natality_BirthRates_Data = searchUtils.populateDataWithMappings(resp[46], 'natality');
@@ -476,18 +468,10 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
                 var yrbs_alchohol_data = resp[76];
                 //BRFSS - 2015 - Overweight and Obesity(BMI), Tobbaco use, Fruits and Vegetables, Alcohol Consumption
                 var brfss_2015_data = resp[77];
-                //PRAMS - 2011 - Smoking cigarettes during the last three months of pregnancy
-                var prams_smoking_data = resp[78];
-                //PRAMS - 2011 - Females reported physical abuse by husband or partner during pregnancy (percent)
-                var prams_physical_abuse_data = resp[79];
-                //PRAMS - 2011 - Ever breastfed or pump breast milk to feed after delivery
-                var prams_breast_milk_feed_data = resp[80];
-                //PRAMS - 2011 - Indicator of depression 3 months before pregnancy
-                var prams_indicator_depression_data = resp[81];
                 //PRAMS - 2011 - In the 12 months before your baby was born  you were in a physical fight
-                var prams_QN205 = resp[82];
+                var prams_QN205 = resp[78];
                 //PRAMS - 2011 - Was your baby seen by a doctor  nurse or other health care provider in the first week after he or she left the hospital?
-                var prams_QN101 = resp[83];
+                var prams_QN101 = resp[79];
 
                 var factSheet = prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
                     raceData, hispanicData, ageGroupData, fsType);
@@ -533,8 +517,7 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
                 factSheet.cancerData = prepareCancerData(cancer_mortality_data, cancer_incident_data);
                 factSheet.yrbs = prepareYRBSData(yrbs_alchohol_data);
                 factSheet.brfss = prepareBRFSSData(brfss_2015_data);
-                factSheet.prams = preparePRAMSData([prams_smoking_data, prams_physical_abuse_data,
-                    prams_breast_milk_feed_data, prams_indicator_depression_data, prams_QN205, prams_QN101], state);
+                factSheet.prams = preparePRAMSData([prams_QN205, prams_QN101], state);
                 deferred.resolve(factSheet);
             } catch(error) {
                 console.log('Error occured in factsheet processing.');
@@ -575,18 +558,10 @@ function processPramsResponse(pramsData, state) {
 function preparePRAMSData(pramsData, state) {
     if(pramsData) {
         return [
-            {"question": "Smoking cigarettes during the last three months of pregnancy",
-                data: processPramsResponse(pramsData[0], state)},
-            {"question": "Females reported physical abuse by husband or partner during pregnancy",
-                data:  processPramsResponse(pramsData[1], state)},
-            {"question": "Ever breastfed or pump breast milk to feed after delivery",
-                data:  processPramsResponse(pramsData[2], state)},
-            {"question": "Indicator of depression 3 months before pregnancy",
-                data:  processPramsResponse(pramsData[3], state)},
             {"question": "In the 12 months before your baby was born  you were in a physical fight",
-                data:  processPramsResponse(pramsData[4], state)},
+                data:  processPramsResponse(pramsData[0], state)},
             {"question": "Was your baby seen by a doctor  nurse or other health care provider in the first week after he or she left the hospital?",
-                data:  processPramsResponse(pramsData[5], state)},
+                data:  processPramsResponse(pramsData[1], state)},
         ];
     } else
         return [];

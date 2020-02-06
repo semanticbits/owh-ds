@@ -79,13 +79,9 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
 function preparePRAMSData(respData) {
     // var selectedRaces = {options: ['Black', 'Other Race' ,'Hispanic']};
     var resultData = [
-        {"question": "Smoking cigarettes during the last three months of pregnancy", data: processPramsValue(respData[0])},
-        {"question": "Females reported physical abuse by husband or partner during pregnancy", data: processPramsValue(respData[1])},
-        {"question": "Ever breastfed or pump breast milk to feed after delivery", data: processPramsValue(respData[2])},
-        {"question": "Indicator of depression 3 months before pregnancy", data: processPramsValue(respData[3])},
-        {"question": "In the 12 months before your baby was born  you were in a physical fight", data: processPramsValue(respData[4])},
+        {"question": "In the 12 months before your baby was born  you were in a physical fight", data: processPramsValue(respData[0])},
         {"question": "Was your baby seen by a doctor  nurse or other health care provider in the first week after he or she left the hospital?",
-            data: processPramsValue(respData[5])}
+            data: processPramsValue(respData[1])}
     ];
     return resultData;
 }
@@ -941,16 +937,12 @@ function getBRFSDataForFactSheet(factSheetQueryJSON) {
 function getPRAMSDataForFactSheet(factSheetQueryJSON) {
     var deferred = Q.defer();
     var promises = [
-        new yrbs().invokeYRBSService(factSheetQueryJSON.prams['qn30']),//Smoking
-        new yrbs().invokeYRBSService(factSheetQueryJSON.prams['qn21']),//Physical Abuse
-        new yrbs().invokeYRBSService(factSheetQueryJSON.prams['qn5']),//Breast feeding
-        new yrbs().invokeYRBSService(factSheetQueryJSON.prams['qn133']),//indicator of depression
         new yrbs().invokeYRBSService(factSheetQueryJSON.prams['qn205']),//In the 12 months before your baby was born  you were in a physical fight
         new yrbs().invokeYRBSService(factSheetQueryJSON.prams['qn101'])//Was your baby seen by a doctor  nurse or other health care provider in the first week after he or she left the hospital?
     ];
 
     Q.all(promises).then(function (resp) {
-        var data = preparePRAMSData([resp[0], resp[1], resp[2], resp[3], resp[4], resp[5]]);
+        var data = preparePRAMSData([resp[0], resp[1]]);
         deferred.resolve(data);
     }, function (err) {
         logger.error(err.message);

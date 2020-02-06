@@ -223,7 +223,8 @@
                         });
                     } else if(fsc.fsType == fsc.fsTypes.womens_health) {
                         womensHealthCallback(res.resultData.fsType, res.resultData.state);
-                    }
+                    } else if(fsc.fsType == fsc.fsTypes.state_health) prepareStateHealthPopulationTable();
+                    else prepareMinorityHealthPopulationTable();
                 }
             });
             return deffered.promise;
@@ -1926,7 +1927,6 @@
             return fsc.states[key];
         }
         $scope.redirectToMortalityPage = function(){
-            $rootScope.acceptDUR = false;
             $state.go('search');
         };
 

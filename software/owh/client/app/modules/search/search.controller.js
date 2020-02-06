@@ -5,11 +5,12 @@
 
     SearchController.$inject = ['$scope', 'utilService', 'searchFactory', '$rootScope',
         '$filter', 'leafletData', '$timeout', 'chartUtilService', 'shareUtilService',
-        '$stateParams', '$state', 'xlsService', '$window', 'mapService', 'ModalService', '$q'];
+        '$stateParams', '$state', 'xlsService', '$window', 'mapService', 'ModalService', '$q', '$sessionStorage'];
 
     function SearchController($scope, utilService, searchFactory, $rootScope,
                                  $filter, leafletData, $timeout, chartUtilService,
-                                 shareUtilService, $stateParams, $state, xlsService, $window, mapService, ModalService, $q) {
+                                 shareUtilService, $stateParams, $state, xlsService, $window, mapService, ModalService,
+                              $q, $sessionStorage) {
 
         var sc = this;
         sc.downloadCSV = downloadCSV;
@@ -407,8 +408,8 @@
         sc.tableName = null;
 
         function changePrimaryFilter(newFilter) {
-            // $rootScope.acceptDUR = false;
-            if (!$rootScope.acceptDUR && (newFilter == 'deaths' ||newFilter== 'natality' ||newFilter == 'infant_mortality')){
+            // $sessionStorage.acceptDUR = false;
+            if (!$sessionStorage.acceptDUR && (newFilter == 'deaths' ||newFilter== 'natality' ||newFilter == 'infant_mortality')){
                 showDataUseRestriction().then (function () {
                     sc.tableData = {};
                     sc.filters.selectedPrimaryFilter = searchFactory.getPrimaryFilterByKey(newFilter);
@@ -460,7 +461,7 @@
         }
 
         function search(isFilterChanged) {
-            if (!$rootScope.acceptDUR  && (sc.filters.selectedPrimaryFilter.key === 'deaths' || sc.filters.selectedPrimaryFilter.key === 'natality' ||sc.filters.selectedPrimaryFilter.key === 'infant_mortality')) {
+            if (!$sessionStorage.acceptDUR  && (sc.filters.selectedPrimaryFilter.key === 'deaths' || sc.filters.selectedPrimaryFilter.key === 'natality' ||sc.filters.selectedPrimaryFilter.key === 'infant_mortality')) {
                 showDataUseRestriction().then (function () {
                     search(isFilterChanged);
                 }).catch(function () {
@@ -632,7 +633,7 @@
                //if queryID exists in owh_querycache index, then update data that are required to display search results
                 if (response.data) {
                     var dataset = response.data.queryJSON.key;
-                    if (!$rootScope.acceptDUR && (dataset === 'deaths' || dataset === 'natality' || dataset === 'infant_mortality')) {
+                    if (!$sessionStorage.acceptDUR && (dataset === 'deaths' || dataset === 'natality' || dataset === 'infant_mortality')) {
                         showDataUseRestriction().then(function () {
                             var result = searchFactory.updateFiltersAndData(sc.filters, response, sc.optionsGroup, sc.mapOptions);
                             sc.tableView = result.tableView;
@@ -1080,7 +1081,7 @@
                 controllerAs: 'dur',
                 controller: function ($scope, close) {
                     var dur = this;
-                    // $rootScope.acceptDUR = false;
+                    // $sessionStorage.acceptDUR = false;
                     dur.close = close;
                     dur.accept = function () {
                         dur.close(true);
@@ -1091,11 +1092,11 @@
                 modal.close.then(function (accept) {
                     if(accept === true){
                         modal.element.hide();
-                        $rootScope.acceptDUR = accept;
+                        $sessionStorage.acceptDUR = accept;
                         deffered.resolve(accept);
                     }else if (accept === false) {
                         modal.element.hide();
-                        $rootScope.acceptDUR = accept;
+                        $sessionStorage.acceptDUR = accept;
                         deffered.reject();
                     }else {
                         // Call the showdataUsage again if the modal closes for any reason other than user accepting or cancelling
