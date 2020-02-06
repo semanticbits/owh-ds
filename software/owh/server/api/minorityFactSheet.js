@@ -469,15 +469,15 @@ function getAIDSDataForFactSheets(factSheetQueryJSON) {
 
         var hivData = [{disease:"AIDS Diagnoses", data:prepareDiseaseData(aidsDiagnosesData, 'aids', {name: "Total Cases (Rates)",
                 pop: resp[2].aggregations.total_pop.value, aids: resp[0].aggregations.group_count_cases.value})},
-            {disease:"AIDS Deaths*", data:prepareDiseaseData(aidsDeathsData, 'aids', {name: "Total Cases (Rates)",
+            {disease:"AIDS Deaths", data:prepareDiseaseData(aidsDeathsData, 'aids', {name: "Total Cases (Rates)",
                     pop: resp[5].aggregations.total_pop.value, aids: resp[3].aggregations.group_count_cases.value})},
-            {disease:"AIDS Prevalence*", data:prepareDiseaseData(aidsPrevalenceData, 'aids', {name: "Total Cases (Rates)",
+            {disease:"AIDS Prevalence", data:prepareDiseaseData(aidsPrevalenceData, 'aids', {name: "Total Cases (Rates)",
                     pop: resp[8].aggregations.total_pop.value, aids: resp[6].aggregations.group_count_cases.value})},
             {disease:"HIV Diagnoses", data:prepareDiseaseData(hivDiagnosesData, 'aids', {name: "Total Cases (Rates)",
                     pop: resp[11].aggregations.total_pop.value, aids: resp[9].aggregations.group_count_cases.value})},
-            {disease:"HIV Deaths*", data:prepareDiseaseData(hivDeathsData, 'aids', {name: "Total Cases (Rates)",
+            {disease:"HIV Deaths", data:prepareDiseaseData(hivDeathsData, 'aids', {name: "Total Cases (Rates)",
                     pop: resp[14].aggregations.total_pop.value, aids: resp[12].aggregations.group_count_cases.value})},
-            {disease:"HIV Prevalence*", data:prepareDiseaseData(hivPrevalenceData, 'aids', {name: "Total Cases (Rates)",
+            {disease:"HIV Prevalence", data:prepareDiseaseData(hivPrevalenceData, 'aids', {name: "Total Cases (Rates)",
                     pop: resp[17].aggregations.total_pop.value, aids: resp[15].aggregations.group_count_cases.value})}];
 
         deferred.resolve(hivData);

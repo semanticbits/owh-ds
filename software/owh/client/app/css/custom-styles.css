@@ -2058,6 +2058,12 @@ ul.filter-group li.selected a {
 .text-align-left {
 	text-align: left;
 }
+.text-align-right {
+	text-align: right;
+}
+.text-align-center {
+	text-align: center;
+}
 
 .stat-question {
 	font-weight: bold;

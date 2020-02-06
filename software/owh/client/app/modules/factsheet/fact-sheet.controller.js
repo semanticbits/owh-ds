@@ -686,7 +686,7 @@
             });
 
             allTablesData.bridgeRaceTable1 = {
-                headerData: ['Racial distributions of minority residents*', 'Total', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic'],
+                headerData: ['Racial distributions of minority residents', 'Total', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic'],
                 bodyData: [bridgeRaceTableOneStateData, bridgeRaceTableOneNationalData]
             };
             allTablesData.bridgeRaceTable1.bodyData = prepareTableBody(allTablesData.bridgeRaceTable1.bodyData);
@@ -1187,7 +1187,7 @@
 
             if(fsc.fsTypeForTable === fsc.fsTypes.womens_health) {
                 allTablesData.bridgeRaceTable1 = {
-                    headerData: ['Racial Distributions of Residents*', 'Black, non-Hispanic', 'White, non-Hispanic', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Hispanic'],
+                    headerData: ['Racial Distributions of Residents', 'Black, non-Hispanic', 'White, non-Hispanic', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Hispanic'],
                     bodyData: bridgeRaceTableOneData
                 };
             }

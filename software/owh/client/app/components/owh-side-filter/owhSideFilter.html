@@ -13,11 +13,16 @@
                 <div ng-switch-when="tabbed">
                     <li class="accordion">
                         <ul class="filter-group">
-                            <li ng-repeat="sideFilter in category.sideFilters" ng-init="group = (sideFilter.filterGroup ? sideFilter : sideFilter.filters)" ng-class="{selected: category.selectedFilter === group.key, 'cursor-not-allowed disabled-filter': !sfc.isVisible(sideFilter) || sideFilter.disabled}">
+                            <li ng-repeat="sideFilter in category.sideFilters"
+                                ng-init="group = (sideFilter.filterGroup ? sideFilter : sideFilter.filters)"
+                                ng-class="{selected: category.selectedFilter === group.key, 'cursor-not-allowed disabled-filter': !sfc.isVisible(sideFilter) || sideFilter.disabled}">
                                 <a href="javascript:void(0)" ng-click="sfc.changeSelectedFilter(sideFilter, category)">By {{group.title | translate}}</a>
                             </li>
                         </ul>
-                        <div ng-repeat="sideFilter in category.sideFilters" ng-init="group = (sideFilter.filterGroup ? sideFilter : sideFilter.filters)" ng-show="category.selectedFilter === group.key" ng-class="{'cursor-not-allowed disabled-filter': !sfc.isVisible(sideFilter) || sideFilter.disabled}">
+                        <div ng-repeat="sideFilter in category.sideFilters"
+                             ng-init="group = (sideFilter.filterGroup ? sideFilter : sideFilter.filters)"
+                             ng-show="category.selectedFilter === group.key"
+                             ng-class="{'cursor-not-allowed disabled-filter': !sfc.isVisible(sideFilter) || sideFilter.disabled}">
                             <owh-side-filter-item filter="sideFilter"
                                                   group-options="sfc.groupOptions"
                                                   run-on-filter-change="sfc.runOnFilterChange"

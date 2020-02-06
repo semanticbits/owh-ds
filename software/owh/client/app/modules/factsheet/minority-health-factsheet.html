@@ -21,7 +21,7 @@
                 <table class="bridge-race-table1">
                     <thead>
                     <tr>
-                        <th>Racial distributions of residents*</th>
+                        <th>Racial distributions of residents</th>
                         <th>Total</th>
                         <th>American Indian or Alaska Native</th>
                         <th>Asian or Pacific Islander</th>
@@ -35,7 +35,7 @@
                         <td ng-repeat="race in fsc.factSheet.race" ng-bind="race.bridge_race | number "></td>
                     </tr>
                     <tr>
-                        <td class="bold-class">National Population*</td>
+                        <td class="bold-class">National Population</td>
                         <td ng-repeat="race in nationalFactSheet.race" ng-bind="race.bridge_race | number "></td>
                     </tr>
                     </tbody>
@@ -64,7 +64,7 @@
                         <td>{{fsc.factSheet.ageGroups[4].bridge_race | number }}</td>
                     </tr>
                     <tr>
-                        <td class="bold-class">National Population*</td>
+                        <td class="bold-class">National Population</td>
                         <td>{{nationalFactSheet.ageGroups[0].bridge_race | number }}</td>
                         <td>{{nationalFactSheet.ageGroups[1]["15-44 years"][0].bridge_race  | number }}</td>
                         <td>{{nationalFactSheet.ageGroups[1]["15-44 years"][1].bridge_race  | number }}</td>
