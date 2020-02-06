@@ -1,0 +1,35 @@
+{
+  "owh_querycache": {
+    "mappings": {
+      "queryData": {
+        "properties": {
+          "dataset": {
+            "type": "string",
+            "index": "not_analyzed"
+          },
+          "lastupdated": {
+            "type": "date",
+            "index": "no",
+            "format": "dateOptionalTime"
+          },
+          "queryID": {
+            "type": "string",
+            "index": "not_analyzed"
+          },
+          "queryJSON": {
+            "type": "string",
+            "index": "no"
+          },
+          "resultJSON": {
+            "type": "string",
+            "index": "no"
+          },
+          "sideFilterResults": {
+            "type": "string",
+            "index": "no"
+          }
+        }
+      }
+    }
+  }
+}
