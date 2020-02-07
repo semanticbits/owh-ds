@@ -1,7 +1,7 @@
 sudo: required
 
 language: node_js
-dist: trusty
+#dist: trusty
 node_js:
   - "node"
 
@@ -68,7 +68,7 @@ before_script:
 group: deprecated-2017Q4
 language: if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then java; fi
 jdk:
-  - oraclejdk8
+  - openjdk8
 
 script:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm run-script test-single-run; fi
