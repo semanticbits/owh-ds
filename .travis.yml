@@ -25,6 +25,10 @@ addons:
 #          AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PROD;
 #       fi;
 
+env:
+  AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID_PROD
+  AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY_PROD
+
 before_install:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then docker info; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then mkdir -p .owh/logs; fi
