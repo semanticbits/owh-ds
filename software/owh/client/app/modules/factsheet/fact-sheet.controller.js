@@ -1690,7 +1690,6 @@
             return fsc.states[key];
         }
         $scope.redirectToMortalityPage = function(){
-            $rootScope.acceptDUR = false;
             $state.go('search');
         };
 

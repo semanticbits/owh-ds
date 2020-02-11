@@ -12,7 +12,6 @@
         hc.toggleSlideDown = toggleSlideDown;
         var root = document.getElementsByTagName( 'html' )[0]; // '0' to assign the first (and only `HTML` tag)
         root.setAttribute( 'class', 'parallax' );
-        $rootScope.acceptDUR = false;
 
         function showPhaseTwoWarningModal(message) {
             searchFactory.showPhaseTwoModal(message);
@@ -27,7 +26,6 @@
         }
 
         $scope.redirectToMortalityPage = function(){
-            $rootScope.acceptDUR = false;
             $state.go('search');
         }
     }
