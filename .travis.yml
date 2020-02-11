@@ -13,17 +13,17 @@ addons:
   code_climate:
     repo_token: aa4bb84528f703e93a68f03079e9870898d452659e9498bbba8fb043c66e3083
 
-env:
-  global:
-    - |
-      if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then
-         AWS_ACCESS_KEY_ID=$OWH_ACCESS_KEY;
-         AWS_SECRET_ACCESS_KEY=$OWH_ACCESS_SECRET;
-         NODE_ENV=test;
-      else
-         AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PROD;
-         AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PROD;
-      fi;
+# env:
+#   global:
+#     - |
+#       if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then
+#          AWS_ACCESS_KEY_ID=$OWH_ACCESS_KEY;
+#          AWS_SECRET_ACCESS_KEY=$OWH_ACCESS_SECRET;
+#          NODE_ENV=test;
+#       else
+#          AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PROD;
+#          AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PROD;
+#       fi;
 
 before_install:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then docker info; fi
