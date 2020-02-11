@@ -37,7 +37,8 @@
     "ngSticky": "^1.8.13",
     "angular-filter": "^0.5.15",
     "leaflet": "^1.2.0",
-    "ui-leaflet": "^2.0.0"
+    "ui-leaflet": "^2.0.0",
+    "ngstorage": "^0.3.11"
   },
   "resolutions": {
     "angular": "~1.5.5",
