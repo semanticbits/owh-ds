@@ -1,7 +1,7 @@
 {
   "app.title": "OWH-Health Information Gateway",
-  "app.version": "v1.9.8",
-  "app.revision.date":"02/06/2020",
+  "app.version": "v1.9.9",
+  "app.revision.date":"02/11/2020",
   "label.total": "Total",
   "label.search": "Search",
   "label.inline.charting": "Inline charting",
@@ -608,6 +608,7 @@
   "label.help.text.brfss.income": "This field indicates the household income of the survey respondents",
   "datadoc.tb.data.filter.restrictions":"TB state-level data can be viewed in aggregate format or one-way stratifications (i.e., by Sex, Race/Ethnicity, Age group or Country of birth).",
   "minority.factsheet.definition": "This fact sheet displays demographic and health status information for Hispanic individuals of any race and the following non-Hispanic groups: African Americans, American Indians and Alaska Natives, Asian Americans, Native Hawaiians and Pacific Islanders.",
+
   "fs.rates.per.hundredK":"(rate per 100,000 population)",
   "fs.hiv.rates.per.hundredK": "(rate per 100,000 population aged 13 years and older)",
   "fs.rates.per.thousand":"(rate per 1000 population)",

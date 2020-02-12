@@ -6,4 +6,4 @@ sleep 1m
 echo "-------------------------------"
 echo "*** Starting Node server ******"
 export OWH_HOME=/usr/local/owh/.owh
-nohup npm start
+nohup npm start | bunyan

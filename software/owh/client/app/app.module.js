@@ -21,6 +21,7 @@
     'owh.search',
     'owh.description',
     'owh.fact-sheet',
-    'sticky'
+    'sticky',
+    'ngStorage'
   ]);
 }());

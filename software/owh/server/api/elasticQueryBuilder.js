@@ -250,8 +250,13 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
         searchQueryArray.push(mapQuery);
         searchQueryArray.push(mapPopQuery);
     } else {
+        if(mapQuery) {
+            mapPopQuery = clone(mapQuery);
+            mapPopQuery.query.filtered.query = clonedPrimaryQuery;
+        }
         searchQueryArray.push(censusQuery);
         searchQueryArray.push(mapQuery);
+        searchQueryArray.push(mapPopQuery);
     }
 
     return searchQueryArray;

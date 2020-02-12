@@ -4,6 +4,7 @@ FROM node:10.16.0-jessie
 RUN mkdir -p /usr/local/owh
 WORKDIR /usr/local/owh
 COPY . /usr/local/owh
+RUN npm -g config set user root
 RUN npm install -g bower
 RUN npm install -g nodemon
 RUN chmod 777 /usr/local/owh/scripts/*.sh
@@ -13,6 +14,8 @@ RUN npm install
 WORKDIR /usr/local/owh/client
 RUN cd /usr/local/owh/client
 RUN npm install
+RUN bower install --allow-root
+RUN npm install -g bunyan
 WORKDIR /usr/local/owh
 RUN cd /usr/local/owh/server
 EXPOSE 80:3000

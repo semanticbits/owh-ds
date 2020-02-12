@@ -167,7 +167,7 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected, allSe
             this.aggregateCensusDataQuery(query[1], census_rates_index, census_rates_type, 'pop'),
             this.executeMultipleESQueries(query[2], mortality_index, mortality_type),
             //To get population count for MAP
-            this.aggregateCensusDataQuery(query[2], census_rates_index, census_rates_type, 'pop')
+            this.aggregateCensusDataQuery(query[3], census_rates_index, census_rates_type, 'pop')
         ];
         if(query.wonderQuery) {
             logger.debug("Wonder Query: "+ JSON.stringify(query.wonderQuery));

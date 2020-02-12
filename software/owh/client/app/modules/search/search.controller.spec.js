@@ -1,7 +1,7 @@
 'use strict';
 
 describe("Search controller: ", function () {
-    var searchController, $scope, $controller, $httpBackend, $injector, $templateCache, $rootScope,
+    var searchController, $scope, $controller, $httpBackend, $injector, $templateCache, $rootScope, $sessionStorage,
         searchResultsResponse, $searchFactory, $q, filters, shareUtilService, $compile, pramsFilters, ModalService, givenModalDefaults, elementVisible, thenFunction;
 
     beforeEach(function() {
@@ -541,7 +541,7 @@ describe("Search controller: ", function () {
             primaryFilterKey: 'deaths'
         };
 
-        $rootScope.acceptDUR = true;
+        $sessionStorage.acceptDUR = true;
         spyOn(searchFactory, "generateHashCode").and.returnValue({
             then: function(){}
         });
