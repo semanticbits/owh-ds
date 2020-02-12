@@ -303,9 +303,13 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
         searchQueryArray.push(mapQuery);
         searchQueryArray.push(mapPopQuery);
     } else {
+        if(mapQuery) {
+            mapPopQuery = clone(mapQuery);
+            mapPopQuery.query.filtered.query = clonedPrimaryQuery;
+        }
         if(censusQuery)searchQueryArray.push(censusQuery);
-        if(censusCountQuery)searchQueryArray.push(censusCountQuery);
-        if(mapQuery)searchQueryArray.push(mapQuery);
+        if(censusCountQuery)searchQueryArray.push(mapQuery);
+        if(mapPopQuery)searchQueryArray.push(mapPopQuery);
     }
 
     return searchQueryArray;
