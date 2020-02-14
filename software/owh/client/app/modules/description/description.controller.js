@@ -236,6 +236,12 @@
                         "</ul>" +
                       "</li>" +
                       "<li>States decide whether to suppress data for specific race and ethnicity categories. The suppression criteria may vary in previous releases of these data</li>" +
+                      "<li>Death rates are flagged as Unreliable when the rate is calculated with a numerator of 20 or less</li>" +
+                      "<li>'Not Applicable' is displayed: </li>" +
+                        "<ul class='sub'>" +
+                            "<li>For all data values when sex-specific cancers are combined with the wrong sex.</li>"+
+                            "<li>For Population when it is not available, and for Age Adjusted Rates, Crude Rates, 95% Confidence Interval, and Standard Error when they cannot be calculated due to lack of denominator population.</li>" +
+                        "</ul>"+
                     "</ul>",
                     source: "The United States Cancer Statistics (USCS) are the official federal statistics on cancer incidence from registries having high-quality data and cancer mortality statistics for 50 states and the District of Columbia. USCS are produced by the Centers for Disease Control and Prevention (CDC) and the National Cancer Institute (NCI), in collaboration with the North American Association of Central Cancer Registries (NAACCR). Data are provided by:" +
                     "<ul>" +
