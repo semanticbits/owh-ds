@@ -173,8 +173,9 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected, allSe
             this.aggregateCensusDataQuery(query[3], census_rates_index, census_rates_type, 'pop'),
             this.executeMultipleESQueries(query[4], mortality_index, mortality_type),
             //To get population count for MAP
-            this.aggregateCensusDataQuery(query[4], census_rates_index, census_rates_type, 'pop')
+            this.aggregateCensusDataQuery(query[5], census_rates_index, census_rates_type, 'pop')
         ];
+        //TODO: check and fix with latest hotfix changes
         if(query.wonderQuery) {
             logger.debug("Wonder Query: "+ JSON.stringify(query.wonderQuery));
             promises.push(new wonder('D77').invokeWONDER(query.wonderQuery));
@@ -515,7 +516,7 @@ ElasticClient.prototype.insertQueryData = function (query) {
  * @returns {*|promise}
  */
 ElasticClient.prototype.getDsMetadata = function (dataset, years) {
-    var query = {"size": 1000,"filter":{"and":{"filters":[{"term":{"dataset":dataset}}]}}};
+    var query = {"size": 2147483647,"filter":{"and":{"filters":[{"term":{"dataset":dataset}}]}}};
     if (years && years.length > 0){
         var yearfilter = [];
         for (var year in years) {
