@@ -429,7 +429,7 @@ function getCancerDataForFactSheet(factSheetQueryJSON, sex) {
 
     var deferred = Q.defer();
     Q.all(promises).then(function (resp) {
-        var rules = searchUtils.createCancerIncidenceSuppressionRules(['2014'], true, false);
+        var rules = searchUtils.createCancerIncidenceSuppressionRules(['2016'], true, false);
 
         var breastCancerMortalityData = prepareCancerData(resp[0], resp[1], 'cancer_mortality');
         var breastCancerIncidentData = prepareCancerData(resp[2], resp[1], 'cancer_incidence');

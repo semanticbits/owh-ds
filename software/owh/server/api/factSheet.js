@@ -427,7 +427,7 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
                 cancer_mortality_data.data.nested.table.current_year.push.apply(cancer_mortality_data.data.nested.table.current_year, cancer_mortality_ovary_data.data.nested.table.current_year);
                 cancer_mortality_data.data.nested.table.current_year.push.apply(cancer_mortality_data.data.nested.table.current_year, cancer_mortality_prostate_data.data.nested.table.current_year);
                 //Cancer - Incident
-                var rules = searchUtils.createCancerIncidenceSuppressionRules(['2014'], true, false);
+                var rules = searchUtils.createCancerIncidenceSuppressionRules(['2016'], true, false);
                 var cancer_incident_breast_data = searchUtils.populateDataWithMappings(resp[69], 'cancer_incidence');
                 searchUtils.attachPopulation(cancer_incident_breast_data.data.nested.table, cancer_breast_population_index, '');
                 searchUtils.applySuppressions(cancer_incident_breast_data, 'cancer_incidence', 16);

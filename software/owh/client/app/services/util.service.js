@@ -700,7 +700,8 @@
                 if(isNaN(title)) {
                     title = data[countKey];
                 }
-                cell.title = cell.title?(cell.title+title):title;
+                if(cell.title!= 'suppressed')
+                    cell.title = cell.title?(cell.title+title):title;
                 //add additional data to the cell, used for population
                 if(secondaryCountKeys) {
                     angular.forEach(secondaryCountKeys, function(secondaryCountKey) {
@@ -708,7 +709,8 @@
                             cell[secondaryCountKey] = grandTotals[secondaryCountKey];
                         } else {
                             var secondaryCount = parseFloat(data[secondaryCountKey]);
-                            cell[secondaryCountKey] = (cell[secondaryCountKey]!=undefined && !isNaN(secondaryCount))?(cell[secondaryCountKey]+secondaryCount):secondaryCount;
+                            if(cell[secondaryCountKey]!= 'suppressed')
+                                cell[secondaryCountKey] = (cell[secondaryCountKey]!=undefined && !isNaN(secondaryCount))?(cell[secondaryCountKey]+secondaryCount):secondaryCount;
                         }
                     });
                 }

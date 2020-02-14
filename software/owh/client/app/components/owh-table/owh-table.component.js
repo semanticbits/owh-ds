@@ -180,6 +180,8 @@
                             }
                             else if(column.title === 'na' || column.title === -2) {
                                 cell += 'Not Available';
+                            } if(isNaN(column.title)) {
+                                cell += '<br />';
                             } else {
                                 cell += $filter('number')(column.title);
                             }
