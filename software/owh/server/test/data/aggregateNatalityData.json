@@ -1,0 +1,1215 @@
+[
+  [
+    {
+      "size": 0,
+      "aggregations": {
+        "group_table_race": {
+          "terms": {
+            "field": "race",
+            "size": 100000
+          },
+          "aggregations": {
+            "group_table_sex": {
+              "terms": {
+                "field": "sex",
+                "size": 100000
+              }
+            }
+          }
+        },
+        "group_maps_0_states": {
+          "terms": {
+            "field": "state",
+            "size": 100000
+          },
+          "aggregations": {
+            "group_maps_0_sex": {
+              "terms": {
+                "field": "sex",
+                "size": 100000
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2014"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  [
+    {
+      "size": 0,
+      "aggregations": {
+        "group_table_race": {
+          "terms": {
+            "field": "race",
+            "size": 0
+          },
+          "aggregations": {
+            "group_table_sex": {
+              "terms": {
+                "field": "sex",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        },
+        "group_chart_0_sex": {
+          "terms": {
+            "field": "sex",
+            "size": 0
+          },
+          "aggregations": {
+            "group_chart_0_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "15 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "16 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "17 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "18 years"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "AK"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
+        "group_table_counts_sex": {
+          "terms": {
+            "field": "sex",
+            "size": 0
+          },
+          "aggregations": {
+            "group_table_counts_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        },
+        "group_chart_0_sex": {
+          "terms": {
+            "field": "sex",
+            "size": 0
+          },
+          "aggregations": {
+            "group_chart_0_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "15 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "16 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "17 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "18 years"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "AK"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
+        "group_table_race": {
+          "terms": {
+            "field": "race",
+            "size": 0
+          },
+          "aggregations": {
+            "group_table_sex": {
+              "terms": {
+                "field": "sex",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "15 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "16 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "17 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "18 years"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "AK"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
+        "group_table_counts_sex": {
+          "terms": {
+            "field": "sex",
+            "size": 0
+          },
+          "aggregations": {
+            "group_table_counts_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "15 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "16 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "17 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "18 years"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "AK"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
+        "group_maps_0_states": {
+          "terms": {
+            "field": "state",
+            "size": 0
+          },
+          "aggregations": {
+            "group_maps_0_sex": {
+              "terms": {
+                "field": "sex",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "15 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "16 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "17 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "18 years"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "AK"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
+        "group_maps_0_states": {
+          "terms": {
+            "field": "state",
+            "size": 0
+          },
+          "aggregations": {
+            "group_maps_0_sex": {
+              "terms": {
+                "field": "sex",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "15 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "16 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "17 years"
+                        }
+                      },
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "18 years"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "state": "AK"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  [
+    {
+      "size": 0,
+      "aggregations": {
+        "current_year": {
+          "terms": {
+            "field": "current_year",
+            "size": 0
+          }
+        },
+        "mother_age_1year_interval": {
+          "terms": {
+            "field": "mother_age_1year_interval",
+            "size": 0
+          }
+        },
+        "state": {
+          "terms": {
+            "field": "state",
+            "size": 0
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "mother_age_1year_interval": "Under 15 years"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  [
+    {
+      "size": 0,
+      "aggregations": {
+        "group_table_race": {
+          "terms": {
+            "field": "race",
+            "size": 0
+          },
+          "aggregations": {
+            "group_table_sex": {
+              "terms": {
+                "field": "sex",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        },
+        "group_chart_0_sex": {
+          "terms": {
+            "field": "sex",
+            "size": 0
+          },
+          "aggregations": {
+            "group_chart_0_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "race": "American Indian"
+                        }
+                      },
+                      {
+                        "term": {
+                          "race": "Black"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2014"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
+        "group_table_counts_sex": {
+          "terms": {
+            "field": "sex",
+            "size": 0
+          },
+          "aggregations": {
+            "group_table_counts_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        },
+        "group_chart_0_sex": {
+          "terms": {
+            "field": "sex",
+            "size": 0
+          },
+          "aggregations": {
+            "group_chart_0_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "race": "American Indian"
+                        }
+                      },
+                      {
+                        "term": {
+                          "race": "Black"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2014"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
+        "group_table_race": {
+          "terms": {
+            "field": "race",
+            "size": 0
+          },
+          "aggregations": {
+            "group_table_sex": {
+              "terms": {
+                "field": "sex",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "race": "American Indian"
+                        }
+                      },
+                      {
+                        "term": {
+                          "race": "Black"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2014"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
+        "group_table_counts_sex": {
+          "terms": {
+            "field": "sex",
+            "size": 0
+          },
+          "aggregations": {
+            "group_table_counts_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "race": "American Indian"
+                        }
+                      },
+                      {
+                        "term": {
+                          "race": "Black"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2014"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
+        "group_maps_0_states": {
+          "terms": {
+            "field": "state",
+            "size": 0
+          },
+          "aggregations": {
+            "group_maps_0_sex": {
+              "terms": {
+                "field": "sex",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "race": "American Indian"
+                        }
+                      },
+                      {
+                        "term": {
+                          "race": "Black"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2014"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
+        "group_maps_0_states": {
+          "terms": {
+            "field": "state",
+            "size": 0
+          },
+          "aggregations": {
+            "group_maps_0_sex": {
+              "terms": {
+                "field": "sex",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "race": "American Indian"
+                        }
+                      },
+                      {
+                        "term": {
+                          "race": "Black"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2014"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+]
